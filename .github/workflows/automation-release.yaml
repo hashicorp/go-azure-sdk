@@ -1,0 +1,26 @@
+name: Conditionally Release the SDK
+on:
+  pull_request:
+    types: ['closed']
+
+concurrency:
+  group: 'release-${{ github.head_ref }}'
+  cancel-in-progress: true
+
+jobs:
+  release-go-sdk:
+    if: ${{ github.event.pull_request.merged == true && contains( github.event.pull_request.labels.*.name, 'release-once-merged') }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: run the unit tests
+        run: |
+          make tools
+          make test
+
+      - name: "determine and publish the Git Tag"
+        run: |
+          ./scripts/determine-and-publish-git-tag.sh

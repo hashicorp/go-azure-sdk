@@ -1,0 +1,52 @@
+name: Support New Service or a New API Version
+description: Request support for a New Service, or a new API Version for an existing Service.
+title: "Support for [Service] / [API Version]"
+body:
+  - type: checkboxes
+    attributes:
+      label: Is there an existing issue for this?
+      description: Please search to see if an issue already exists for the Service/API Version you are requesting.
+      options:
+        - label: I have searched the existing issues
+          required: true
+  - type: textarea
+    id: community
+    attributes:
+      label: Community Note
+      description: This note is for the community, please leave and skip this.
+      value: |
+        <!--- Please keep this note for the community --->
+
+        * Please vote on this issue by adding a :thumbsup: [reaction](https://blog.github.com/2016-03-10-add-reactions-to-pull-requests-issues-and-comments/) to the original issue to help the community and maintainers prioritize this request
+        * Please do not leave "+1" or "me too" comments, they generate extra noise for issue followers and do not help prioritize the request
+        * If you are interested in working on this issue or have submitted a pull request, please leave a comment
+
+        <!--- Thank you for keeping this note for the community --->
+    validations:
+      required: true
+  - type: input
+    id: service_name
+    attributes:
+      label: Service Name
+      description: What's the name of the Azure Service you'd like to support? The [available Services can be found here](https://github.com/Azure/azure-rest-api-specs/tree/main/specification).
+      placeholder: (e.g. Compute)
+    validations:
+      required: true
+  - type: textarea
+    id: api_versions
+    attributes:
+      label: API Versions Required
+      description: Which API Versions are required for this Azure Service? These must be available within the directory for the Service in the link above.
+      placeholder: (e.g. 2020-02-01)
+    validations:
+      required: true
+  - type: textarea
+    id: references
+    attributes:
+      label: References
+      description: |
+        Information about referencing Github Issues: https://help.github.com/articles/basic-writing-and-formatting-syntax/#referencing-issues-and-pull-requests
+
+        Are there any other GitHub issues (open or closed) or pull requests that should be linked here? Vendor blog posts or documentation? For example:
+
+        * https://azure.microsoft.com/en-us/roadmap/virtual-network-service-endpoint-for-azure-cosmos-db/
