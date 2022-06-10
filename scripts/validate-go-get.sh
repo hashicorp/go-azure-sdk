@@ -6,7 +6,7 @@ mkdir -p ./tmp/go-get
 cd ./tmp/go-get
 echo 'package main
 
-//import _ "github.com/hashicorp/go-azure-sdk/resource-manager/aadb2c/2021-04-01-preview/tenants"
+import _ "github.com/hashicorp/go-azure-sdk/resource-manager/aadb2c/2021-04-01-preview/tenants"
 
 func main() {
 }
