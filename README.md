@@ -21,7 +21,7 @@ import (
 	"github.com/Azure/go-autorest/autorest/adal"
 	"github.com/Azure/go-autorest/autorest/azure"
 	"github.com/hashicorp/go-azure-helpers/lang/response"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/signalr/2020-05-01/signalr"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/signalr/2021-10-01/signalr"
 )
 
 func main() {
