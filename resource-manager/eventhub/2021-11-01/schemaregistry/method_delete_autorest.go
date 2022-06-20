@@ -13,7 +13,7 @@ type DeleteOperationResponse struct {
 }
 
 // Delete ...
-func (c SchemaRegistryClient) Delete(ctx context.Context, id SchemagroupId) (result DeleteOperationResponse, err error) {
+func (c SchemaRegistryClient) Delete(ctx context.Context, id SchemaGroupId) (result DeleteOperationResponse, err error) {
 	req, err := c.preparerForDelete(ctx, id)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "schemaregistry.SchemaRegistryClient", "Delete", nil, "Failure preparing request")
@@ -36,7 +36,7 @@ func (c SchemaRegistryClient) Delete(ctx context.Context, id SchemagroupId) (res
 }
 
 // preparerForDelete prepares the Delete request.
-func (c SchemaRegistryClient) preparerForDelete(ctx context.Context, id SchemagroupId) (*http.Request, error) {
+func (c SchemaRegistryClient) preparerForDelete(ctx context.Context, id SchemaGroupId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

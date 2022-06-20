@@ -14,7 +14,7 @@ type GetOperationResponse struct {
 }
 
 // Get ...
-func (c SchemaRegistryClient) Get(ctx context.Context, id SchemagroupId) (result GetOperationResponse, err error) {
+func (c SchemaRegistryClient) Get(ctx context.Context, id SchemaGroupId) (result GetOperationResponse, err error) {
 	req, err := c.preparerForGet(ctx, id)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "schemaregistry.SchemaRegistryClient", "Get", nil, "Failure preparing request")
@@ -37,7 +37,7 @@ func (c SchemaRegistryClient) Get(ctx context.Context, id SchemagroupId) (result
 }
 
 // preparerForGet prepares the Get request.
-func (c SchemaRegistryClient) preparerForGet(ctx context.Context, id SchemagroupId) (*http.Request, error) {
+func (c SchemaRegistryClient) preparerForGet(ctx context.Context, id SchemaGroupId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

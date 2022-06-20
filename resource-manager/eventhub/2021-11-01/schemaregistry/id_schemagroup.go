@@ -7,19 +7,19 @@ import (
 	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
 )
 
-var _ resourceids.ResourceId = SchemagroupId{}
+var _ resourceids.ResourceId = SchemaGroupId{}
 
-// SchemagroupId is a struct representing the Resource ID for a Schemagroup
-type SchemagroupId struct {
+// SchemaGroupId is a struct representing the Resource ID for a Schema Group
+type SchemaGroupId struct {
 	SubscriptionId    string
 	ResourceGroupName string
 	NamespaceName     string
 	SchemaGroupName   string
 }
 
-// NewSchemagroupID returns a new SchemagroupId struct
-func NewSchemagroupID(subscriptionId string, resourceGroupName string, namespaceName string, schemaGroupName string) SchemagroupId {
-	return SchemagroupId{
+// NewSchemaGroupID returns a new SchemaGroupId struct
+func NewSchemaGroupID(subscriptionId string, resourceGroupName string, namespaceName string, schemaGroupName string) SchemaGroupId {
+	return SchemaGroupId{
 		SubscriptionId:    subscriptionId,
 		ResourceGroupName: resourceGroupName,
 		NamespaceName:     namespaceName,
@@ -27,16 +27,16 @@ func NewSchemagroupID(subscriptionId string, resourceGroupName string, namespace
 	}
 }
 
-// ParseSchemagroupID parses 'input' into a SchemagroupId
-func ParseSchemagroupID(input string) (*SchemagroupId, error) {
-	parser := resourceids.NewParserFromResourceIdType(SchemagroupId{})
+// ParseSchemaGroupID parses 'input' into a SchemaGroupId
+func ParseSchemaGroupID(input string) (*SchemaGroupId, error) {
+	parser := resourceids.NewParserFromResourceIdType(SchemaGroupId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
 	var ok bool
-	id := SchemagroupId{}
+	id := SchemaGroupId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
 		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
@@ -57,17 +57,17 @@ func ParseSchemagroupID(input string) (*SchemagroupId, error) {
 	return &id, nil
 }
 
-// ParseSchemagroupIDInsensitively parses 'input' case-insensitively into a SchemagroupId
+// ParseSchemaGroupIDInsensitively parses 'input' case-insensitively into a SchemaGroupId
 // note: this method should only be used for API response data and not user input
-func ParseSchemagroupIDInsensitively(input string) (*SchemagroupId, error) {
-	parser := resourceids.NewParserFromResourceIdType(SchemagroupId{})
+func ParseSchemaGroupIDInsensitively(input string) (*SchemaGroupId, error) {
+	parser := resourceids.NewParserFromResourceIdType(SchemaGroupId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
 	var ok bool
-	id := SchemagroupId{}
+	id := SchemaGroupId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
 		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
@@ -88,29 +88,29 @@ func ParseSchemagroupIDInsensitively(input string) (*SchemagroupId, error) {
 	return &id, nil
 }
 
-// ValidateSchemagroupID checks that 'input' can be parsed as a Schemagroup ID
-func ValidateSchemagroupID(input interface{}, key string) (warnings []string, errors []error) {
+// ValidateSchemaGroupID checks that 'input' can be parsed as a Schema Group ID
+func ValidateSchemaGroupID(input interface{}, key string) (warnings []string, errors []error) {
 	v, ok := input.(string)
 	if !ok {
 		errors = append(errors, fmt.Errorf("expected %q to be a string", key))
 		return
 	}
 
-	if _, err := ParseSchemagroupID(v); err != nil {
+	if _, err := ParseSchemaGroupID(v); err != nil {
 		errors = append(errors, err)
 	}
 
 	return
 }
 
-// ID returns the formatted Schemagroup ID
-func (id SchemagroupId) ID() string {
-	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.EventHub/namespaces/%s/schemagroups/%s"
+// ID returns the formatted Schema Group ID
+func (id SchemaGroupId) ID() string {
+	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.EventHub/namespaces/%s/schemaGroups/%s"
 	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.NamespaceName, id.SchemaGroupName)
 }
 
-// Segments returns a slice of Resource ID Segments which comprise this Schemagroup ID
-func (id SchemagroupId) Segments() []resourceids.Segment {
+// Segments returns a slice of Resource ID Segments which comprise this Schema Group ID
+func (id SchemaGroupId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
 		resourceids.StaticSegment("staticSubscriptions", "subscriptions", "subscriptions"),
 		resourceids.SubscriptionIdSegment("subscriptionId", "12345678-1234-9876-4563-123456789012"),
@@ -120,18 +120,18 @@ func (id SchemagroupId) Segments() []resourceids.Segment {
 		resourceids.ResourceProviderSegment("staticMicrosoftEventHub", "Microsoft.EventHub", "Microsoft.EventHub"),
 		resourceids.StaticSegment("staticNamespaces", "namespaces", "namespaces"),
 		resourceids.UserSpecifiedSegment("namespaceName", "namespaceValue"),
-		resourceids.StaticSegment("staticSchemagroups", "schemagroups", "schemagroups"),
+		resourceids.StaticSegment("staticSchemaGroups", "schemaGroups", "schemaGroups"),
 		resourceids.UserSpecifiedSegment("schemaGroupName", "schemaGroupValue"),
 	}
 }
 
-// String returns a human-readable description of this Schemagroup ID
-func (id SchemagroupId) String() string {
+// String returns a human-readable description of this Schema Group ID
+func (id SchemaGroupId) String() string {
 	components := []string{
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
 		fmt.Sprintf("Namespace Name: %q", id.NamespaceName),
 		fmt.Sprintf("Schema Group Name: %q", id.SchemaGroupName),
 	}
-	return fmt.Sprintf("Schemagroup (%s)", strings.Join(components, "\n"))
+	return fmt.Sprintf("Schema Group (%s)", strings.Join(components, "\n"))
 }
