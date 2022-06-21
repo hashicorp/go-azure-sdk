@@ -9,6 +9,9 @@ import (
 	"github.com/Azure/go-autorest/autorest/azure"
 )
 
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
 type ListSecretsOperationResponse struct {
 	HttpResponse *http.Response
 	Model        *SecretsCollection
