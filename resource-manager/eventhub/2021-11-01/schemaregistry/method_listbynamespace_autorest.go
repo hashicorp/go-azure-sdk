@@ -144,7 +144,7 @@ func (c SchemaRegistryClient) preparerForListByNamespace(ctx context.Context, id
 		autorest.AsGet(),
 		autorest.WithBaseURL(c.baseUri),
 		autorest.WithHeaders(options.toHeaders()),
-		autorest.WithPath(fmt.Sprintf("%s/schemagroups", id.ID())),
+		autorest.WithPath(fmt.Sprintf("%s/schemaGroups", id.ID())),
 		autorest.WithQueryParameters(queryParameters))
 	return preparer.Prepare((&http.Request{}).WithContext(ctx))
 }
