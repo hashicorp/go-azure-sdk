@@ -14,7 +14,7 @@ type CreateOrUpdateOperationResponse struct {
 }
 
 // CreateOrUpdate ...
-func (c SchemaRegistryClient) CreateOrUpdate(ctx context.Context, id SchemagroupId, input SchemaGroup) (result CreateOrUpdateOperationResponse, err error) {
+func (c SchemaRegistryClient) CreateOrUpdate(ctx context.Context, id SchemaGroupId, input SchemaGroup) (result CreateOrUpdateOperationResponse, err error) {
 	req, err := c.preparerForCreateOrUpdate(ctx, id, input)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "schemaregistry.SchemaRegistryClient", "CreateOrUpdate", nil, "Failure preparing request")
@@ -37,7 +37,7 @@ func (c SchemaRegistryClient) CreateOrUpdate(ctx context.Context, id Schemagroup
 }
 
 // preparerForCreateOrUpdate prepares the CreateOrUpdate request.
-func (c SchemaRegistryClient) preparerForCreateOrUpdate(ctx context.Context, id SchemagroupId, input SchemaGroup) (*http.Request, error) {
+func (c SchemaRegistryClient) preparerForCreateOrUpdate(ctx context.Context, id SchemaGroupId, input SchemaGroup) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}
