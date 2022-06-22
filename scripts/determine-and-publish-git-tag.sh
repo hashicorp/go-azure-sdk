@@ -12,7 +12,12 @@ function determineGitTag {
   # whilst an odd choice for an SDK, makes sense insofar as the API Versions
   # themselves are versioned too - so we can use a date/time stamp for now:
   # e.g.v0.YYYYMMDD.HHMMSS (v0.20220504.115712)
-  date '+v0.%Y%m%d.%H%M%S'
+  #
+  # turns out that Go doesn't like the minor/patch to start with a 0, else
+  # the Go Module Proxy returns:
+  # > bad request: version "v0.20220622.050833" is not canonical (wanted "")
+  # as such we'll prefix the Hours-Minutes-Seconds segment with a `1` for now
+  date '+v0.%Y%m%d.1%H%M%S'
 }
 
 function publish {
