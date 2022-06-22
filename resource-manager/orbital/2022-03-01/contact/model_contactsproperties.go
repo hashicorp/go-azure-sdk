@@ -24,7 +24,7 @@ type ContactsProperties struct {
 	RxStartTime             *string                                 `json:"rxStartTime,omitempty"`
 	StartAzimuthDegrees     *float64                                `json:"startAzimuthDegrees,omitempty"`
 	StartElevationDegrees   *float64                                `json:"startElevationDegrees,omitempty"`
-	Status                  *Status                                 `json:"status,omitempty"`
+	Status                  *ContactsStatus                         `json:"status,omitempty"`
 	TxEndTime               *string                                 `json:"txEndTime,omitempty"`
 	TxStartTime             *string                                 `json:"txStartTime,omitempty"`
 }

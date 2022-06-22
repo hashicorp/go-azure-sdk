@@ -5,6 +5,43 @@ import "strings"
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
+type ContactsStatus string
+
+const (
+	ContactsStatusCancelled         ContactsStatus = "cancelled"
+	ContactsStatusFailed            ContactsStatus = "failed"
+	ContactsStatusProviderCancelled ContactsStatus = "providerCancelled"
+	ContactsStatusScheduled         ContactsStatus = "scheduled"
+	ContactsStatusSucceeded         ContactsStatus = "succeeded"
+)
+
+func PossibleValuesForContactsStatus() []string {
+	return []string{
+		string(ContactsStatusCancelled),
+		string(ContactsStatusFailed),
+		string(ContactsStatusProviderCancelled),
+		string(ContactsStatusScheduled),
+		string(ContactsStatusSucceeded),
+	}
+}
+
+func parseContactsStatus(input string) (*ContactsStatus, error) {
+	vals := map[string]ContactsStatus{
+		"cancelled":         ContactsStatusCancelled,
+		"failed":            ContactsStatusFailed,
+		"providercancelled": ContactsStatusProviderCancelled,
+		"scheduled":         ContactsStatusScheduled,
+		"succeeded":         ContactsStatusSucceeded,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ContactsStatus(input)
+	return &out, nil
+}
+
 type ProvisioningState string
 
 const (
@@ -42,42 +79,5 @@ func parseProvisioningState(input string) (*ProvisioningState, error) {
 
 	// otherwise presume it's an undefined value and best-effort it
 	out := ProvisioningState(input)
-	return &out, nil
-}
-
-type Status string
-
-const (
-	StatusCancelled         Status = "cancelled"
-	StatusFailed            Status = "failed"
-	StatusProviderCancelled Status = "providerCancelled"
-	StatusScheduled         Status = "scheduled"
-	StatusSucceeded         Status = "succeeded"
-)
-
-func PossibleValuesForStatus() []string {
-	return []string{
-		string(StatusCancelled),
-		string(StatusFailed),
-		string(StatusProviderCancelled),
-		string(StatusScheduled),
-		string(StatusSucceeded),
-	}
-}
-
-func parseStatus(input string) (*Status, error) {
-	vals := map[string]Status{
-		"cancelled":         StatusCancelled,
-		"failed":            StatusFailed,
-		"providercancelled": StatusProviderCancelled,
-		"scheduled":         StatusScheduled,
-		"succeeded":         StatusSucceeded,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := Status(input)
 	return &out, nil
 }
