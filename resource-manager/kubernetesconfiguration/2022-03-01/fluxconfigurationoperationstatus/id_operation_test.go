@@ -6,10 +6,10 @@ import (
 	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
 )
 
-var _ resourceids.ResourceId = FluxConfigurationOperationId{}
+var _ resourceids.ResourceId = OperationId{}
 
-func TestNewFluxConfigurationOperationID(t *testing.T) {
-	id := NewFluxConfigurationOperationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "clusterRpValue", "clusterResourceValue", "clusterValue", "fluxConfigurationValue", "operationIdValue")
+func TestNewOperationID(t *testing.T) {
+	id := NewOperationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "clusterRpValue", "clusterResourceValue", "clusterValue", "extensionValue", "operationIdValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -31,8 +31,8 @@ func TestNewFluxConfigurationOperationID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ClusterName'", id.ClusterName, "clusterValue")
 	}
 
-	if id.FluxConfigurationName != "fluxConfigurationValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'FluxConfigurationName'", id.FluxConfigurationName, "fluxConfigurationValue")
+	if id.ExtensionName != "extensionValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'ExtensionName'", id.ExtensionName, "extensionValue")
 	}
 
 	if id.OperationId != "operationIdValue" {
@@ -40,19 +40,19 @@ func TestNewFluxConfigurationOperationID(t *testing.T) {
 	}
 }
 
-func TestFormatFluxConfigurationOperationID(t *testing.T) {
-	actual := NewFluxConfigurationOperationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "clusterRpValue", "clusterResourceValue", "clusterValue", "fluxConfigurationValue", "operationIdValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/clusterRpValue/clusterResourceValue/clusterValue/providers/Microsoft.KubernetesConfiguration/fluxConfigurations/fluxConfigurationValue/operations/operationIdValue"
+func TestFormatOperationID(t *testing.T) {
+	actual := NewOperationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "clusterRpValue", "clusterResourceValue", "clusterValue", "extensionValue", "operationIdValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/clusterRpValue/clusterResourceValue/clusterValue/providers/Microsoft.KubernetesConfiguration/extensions/extensionValue/operations/operationIdValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
 }
 
-func TestParseFluxConfigurationOperationID(t *testing.T) {
+func TestParseOperationID(t *testing.T) {
 	testData := []struct {
 		Input    string
 		Error    bool
-		Expected *FluxConfigurationOperationId
+		Expected *OperationId
 	}{
 		{
 			// Incomplete URI
@@ -111,42 +111,42 @@ func TestParseFluxConfigurationOperationID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/clusterRpValue/clusterResourceValue/clusterValue/providers/Microsoft.KubernetesConfiguration/fluxConfigurations",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/clusterRpValue/clusterResourceValue/clusterValue/providers/Microsoft.KubernetesConfiguration/extensions",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/clusterRpValue/clusterResourceValue/clusterValue/providers/Microsoft.KubernetesConfiguration/fluxConfigurations/fluxConfigurationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/clusterRpValue/clusterResourceValue/clusterValue/providers/Microsoft.KubernetesConfiguration/extensions/extensionValue",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/clusterRpValue/clusterResourceValue/clusterValue/providers/Microsoft.KubernetesConfiguration/fluxConfigurations/fluxConfigurationValue/operations",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/clusterRpValue/clusterResourceValue/clusterValue/providers/Microsoft.KubernetesConfiguration/extensions/extensionValue/operations",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/clusterRpValue/clusterResourceValue/clusterValue/providers/Microsoft.KubernetesConfiguration/fluxConfigurations/fluxConfigurationValue/operations/operationIdValue",
-			Expected: &FluxConfigurationOperationId{
-				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName:     "example-resource-group",
-				ClusterRp:             "clusterRpValue",
-				ClusterResourceName:   "clusterResourceValue",
-				ClusterName:           "clusterValue",
-				FluxConfigurationName: "fluxConfigurationValue",
-				OperationId:           "operationIdValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/clusterRpValue/clusterResourceValue/clusterValue/providers/Microsoft.KubernetesConfiguration/extensions/extensionValue/operations/operationIdValue",
+			Expected: &OperationId{
+				SubscriptionId:      "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:   "example-resource-group",
+				ClusterRp:           "clusterRpValue",
+				ClusterResourceName: "clusterResourceValue",
+				ClusterName:         "clusterValue",
+				ExtensionName:       "extensionValue",
+				OperationId:         "operationIdValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/clusterRpValue/clusterResourceValue/clusterValue/providers/Microsoft.KubernetesConfiguration/fluxConfigurations/fluxConfigurationValue/operations/operationIdValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/clusterRpValue/clusterResourceValue/clusterValue/providers/Microsoft.KubernetesConfiguration/extensions/extensionValue/operations/operationIdValue/extra",
 			Error: true,
 		},
 	}
 	for _, v := range testData {
 		t.Logf("[DEBUG] Testing %q", v.Input)
 
-		actual, err := ParseFluxConfigurationOperationID(v.Input)
+		actual, err := ParseOperationID(v.Input)
 		if err != nil {
 			if v.Error {
 				continue
@@ -178,8 +178,8 @@ func TestParseFluxConfigurationOperationID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ClusterName", v.Expected.ClusterName, actual.ClusterName)
 		}
 
-		if actual.FluxConfigurationName != v.Expected.FluxConfigurationName {
-			t.Fatalf("Expected %q but got %q for FluxConfigurationName", v.Expected.FluxConfigurationName, actual.FluxConfigurationName)
+		if actual.ExtensionName != v.Expected.ExtensionName {
+			t.Fatalf("Expected %q but got %q for ExtensionName", v.Expected.ExtensionName, actual.ExtensionName)
 		}
 
 		if actual.OperationId != v.Expected.OperationId {
@@ -189,11 +189,11 @@ func TestParseFluxConfigurationOperationID(t *testing.T) {
 	}
 }
 
-func TestParseFluxConfigurationOperationIDInsensitively(t *testing.T) {
+func TestParseOperationIDInsensitively(t *testing.T) {
 	testData := []struct {
 		Input    string
 		Error    bool
-		Expected *FluxConfigurationOperationId
+		Expected *OperationId
 	}{
 		{
 			// Incomplete URI
@@ -302,75 +302,75 @@ func TestParseFluxConfigurationOperationIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/clusterRpValue/clusterResourceValue/clusterValue/providers/Microsoft.KubernetesConfiguration/fluxConfigurations",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/clusterRpValue/clusterResourceValue/clusterValue/providers/Microsoft.KubernetesConfiguration/extensions",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/cLuStErRpVaLuE/cLuStErReSoUrCeVaLuE/cLuStErVaLuE/pRoViDeRs/mIcRoSoFt.kUbErNeTeScOnFiGuRaTiOn/fLuXcOnFiGuRaTiOnS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/cLuStErRpVaLuE/cLuStErReSoUrCeVaLuE/cLuStErVaLuE/pRoViDeRs/mIcRoSoFt.kUbErNeTeScOnFiGuRaTiOn/eXtEnSiOnS",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/clusterRpValue/clusterResourceValue/clusterValue/providers/Microsoft.KubernetesConfiguration/fluxConfigurations/fluxConfigurationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/clusterRpValue/clusterResourceValue/clusterValue/providers/Microsoft.KubernetesConfiguration/extensions/extensionValue",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/cLuStErRpVaLuE/cLuStErReSoUrCeVaLuE/cLuStErVaLuE/pRoViDeRs/mIcRoSoFt.kUbErNeTeScOnFiGuRaTiOn/fLuXcOnFiGuRaTiOnS/fLuXcOnFiGuRaTiOnVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/cLuStErRpVaLuE/cLuStErReSoUrCeVaLuE/cLuStErVaLuE/pRoViDeRs/mIcRoSoFt.kUbErNeTeScOnFiGuRaTiOn/eXtEnSiOnS/eXtEnSiOnVaLuE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/clusterRpValue/clusterResourceValue/clusterValue/providers/Microsoft.KubernetesConfiguration/fluxConfigurations/fluxConfigurationValue/operations",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/clusterRpValue/clusterResourceValue/clusterValue/providers/Microsoft.KubernetesConfiguration/extensions/extensionValue/operations",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/cLuStErRpVaLuE/cLuStErReSoUrCeVaLuE/cLuStErVaLuE/pRoViDeRs/mIcRoSoFt.kUbErNeTeScOnFiGuRaTiOn/fLuXcOnFiGuRaTiOnS/fLuXcOnFiGuRaTiOnVaLuE/oPeRaTiOnS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/cLuStErRpVaLuE/cLuStErReSoUrCeVaLuE/cLuStErVaLuE/pRoViDeRs/mIcRoSoFt.kUbErNeTeScOnFiGuRaTiOn/eXtEnSiOnS/eXtEnSiOnVaLuE/oPeRaTiOnS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/clusterRpValue/clusterResourceValue/clusterValue/providers/Microsoft.KubernetesConfiguration/fluxConfigurations/fluxConfigurationValue/operations/operationIdValue",
-			Expected: &FluxConfigurationOperationId{
-				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName:     "example-resource-group",
-				ClusterRp:             "clusterRpValue",
-				ClusterResourceName:   "clusterResourceValue",
-				ClusterName:           "clusterValue",
-				FluxConfigurationName: "fluxConfigurationValue",
-				OperationId:           "operationIdValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/clusterRpValue/clusterResourceValue/clusterValue/providers/Microsoft.KubernetesConfiguration/extensions/extensionValue/operations/operationIdValue",
+			Expected: &OperationId{
+				SubscriptionId:      "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:   "example-resource-group",
+				ClusterRp:           "clusterRpValue",
+				ClusterResourceName: "clusterResourceValue",
+				ClusterName:         "clusterValue",
+				ExtensionName:       "extensionValue",
+				OperationId:         "operationIdValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/clusterRpValue/clusterResourceValue/clusterValue/providers/Microsoft.KubernetesConfiguration/fluxConfigurations/fluxConfigurationValue/operations/operationIdValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/clusterRpValue/clusterResourceValue/clusterValue/providers/Microsoft.KubernetesConfiguration/extensions/extensionValue/operations/operationIdValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/cLuStErRpVaLuE/cLuStErReSoUrCeVaLuE/cLuStErVaLuE/pRoViDeRs/mIcRoSoFt.kUbErNeTeScOnFiGuRaTiOn/fLuXcOnFiGuRaTiOnS/fLuXcOnFiGuRaTiOnVaLuE/oPeRaTiOnS/oPeRaTiOnIdVaLuE",
-			Expected: &FluxConfigurationOperationId{
-				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName:     "eXaMpLe-rEsOuRcE-GrOuP",
-				ClusterRp:             "cLuStErRpVaLuE",
-				ClusterResourceName:   "cLuStErReSoUrCeVaLuE",
-				ClusterName:           "cLuStErVaLuE",
-				FluxConfigurationName: "fLuXcOnFiGuRaTiOnVaLuE",
-				OperationId:           "oPeRaTiOnIdVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/cLuStErRpVaLuE/cLuStErReSoUrCeVaLuE/cLuStErVaLuE/pRoViDeRs/mIcRoSoFt.kUbErNeTeScOnFiGuRaTiOn/eXtEnSiOnS/eXtEnSiOnVaLuE/oPeRaTiOnS/oPeRaTiOnIdVaLuE",
+			Expected: &OperationId{
+				SubscriptionId:      "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:   "eXaMpLe-rEsOuRcE-GrOuP",
+				ClusterRp:           "cLuStErRpVaLuE",
+				ClusterResourceName: "cLuStErReSoUrCeVaLuE",
+				ClusterName:         "cLuStErVaLuE",
+				ExtensionName:       "eXtEnSiOnVaLuE",
+				OperationId:         "oPeRaTiOnIdVaLuE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/cLuStErRpVaLuE/cLuStErReSoUrCeVaLuE/cLuStErVaLuE/pRoViDeRs/mIcRoSoFt.kUbErNeTeScOnFiGuRaTiOn/fLuXcOnFiGuRaTiOnS/fLuXcOnFiGuRaTiOnVaLuE/oPeRaTiOnS/oPeRaTiOnIdVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/cLuStErRpVaLuE/cLuStErReSoUrCeVaLuE/cLuStErVaLuE/pRoViDeRs/mIcRoSoFt.kUbErNeTeScOnFiGuRaTiOn/eXtEnSiOnS/eXtEnSiOnVaLuE/oPeRaTiOnS/oPeRaTiOnIdVaLuE/extra",
 			Error: true,
 		},
 	}
 	for _, v := range testData {
 		t.Logf("[DEBUG] Testing %q", v.Input)
 
-		actual, err := ParseFluxConfigurationOperationIDInsensitively(v.Input)
+		actual, err := ParseOperationIDInsensitively(v.Input)
 		if err != nil {
 			if v.Error {
 				continue
@@ -402,8 +402,8 @@ func TestParseFluxConfigurationOperationIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ClusterName", v.Expected.ClusterName, actual.ClusterName)
 		}
 
-		if actual.FluxConfigurationName != v.Expected.FluxConfigurationName {
-			t.Fatalf("Expected %q but got %q for FluxConfigurationName", v.Expected.FluxConfigurationName, actual.FluxConfigurationName)
+		if actual.ExtensionName != v.Expected.ExtensionName {
+			t.Fatalf("Expected %q but got %q for ExtensionName", v.Expected.ExtensionName, actual.ExtensionName)
 		}
 
 		if actual.OperationId != v.Expected.OperationId {
@@ -413,10 +413,10 @@ func TestParseFluxConfigurationOperationIDInsensitively(t *testing.T) {
 	}
 }
 
-func TestSegmentsForFluxConfigurationOperationId(t *testing.T) {
-	segments := FluxConfigurationOperationId{}.Segments()
+func TestSegmentsForOperationId(t *testing.T) {
+	segments := OperationId{}.Segments()
 	if len(segments) == 0 {
-		t.Fatalf("FluxConfigurationOperationId has no segments")
+		t.Fatalf("OperationId has no segments")
 	}
 
 	uniqueNames := make(map[string]struct{}, 0)

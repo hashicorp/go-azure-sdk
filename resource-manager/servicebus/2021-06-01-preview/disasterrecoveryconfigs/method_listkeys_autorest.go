@@ -18,7 +18,7 @@ type ListKeysOperationResponse struct {
 }
 
 // ListKeys ...
-func (c DisasterRecoveryConfigsClient) ListKeys(ctx context.Context, id DisasterRecoveryConfigAuthorizationRuleId) (result ListKeysOperationResponse, err error) {
+func (c DisasterRecoveryConfigsClient) ListKeys(ctx context.Context, id AuthorizationRuleId) (result ListKeysOperationResponse, err error) {
 	req, err := c.preparerForListKeys(ctx, id)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "disasterrecoveryconfigs.DisasterRecoveryConfigsClient", "ListKeys", nil, "Failure preparing request")
@@ -41,7 +41,7 @@ func (c DisasterRecoveryConfigsClient) ListKeys(ctx context.Context, id Disaster
 }
 
 // preparerForListKeys prepares the ListKeys request.
-func (c DisasterRecoveryConfigsClient) preparerForListKeys(ctx context.Context, id DisasterRecoveryConfigAuthorizationRuleId) (*http.Request, error) {
+func (c DisasterRecoveryConfigsClient) preparerForListKeys(ctx context.Context, id AuthorizationRuleId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}
