@@ -17,7 +17,7 @@ type FluxConfigOperationStatusGetOperationResponse struct {
 }
 
 // FluxConfigOperationStatusGet ...
-func (c FluxConfigurationOperationStatusClient) FluxConfigOperationStatusGet(ctx context.Context, id FluxConfigurationOperationId) (result FluxConfigOperationStatusGetOperationResponse, err error) {
+func (c FluxConfigurationOperationStatusClient) FluxConfigOperationStatusGet(ctx context.Context, id OperationId) (result FluxConfigOperationStatusGetOperationResponse, err error) {
 	req, err := c.preparerForFluxConfigOperationStatusGet(ctx, id)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "fluxconfigurationoperationstatus.FluxConfigurationOperationStatusClient", "FluxConfigOperationStatusGet", nil, "Failure preparing request")
@@ -40,7 +40,7 @@ func (c FluxConfigurationOperationStatusClient) FluxConfigOperationStatusGet(ctx
 }
 
 // preparerForFluxConfigOperationStatusGet prepares the FluxConfigOperationStatusGet request.
-func (c FluxConfigurationOperationStatusClient) preparerForFluxConfigOperationStatusGet(ctx context.Context, id FluxConfigurationOperationId) (*http.Request, error) {
+func (c FluxConfigurationOperationStatusClient) preparerForFluxConfigOperationStatusGet(ctx context.Context, id OperationId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

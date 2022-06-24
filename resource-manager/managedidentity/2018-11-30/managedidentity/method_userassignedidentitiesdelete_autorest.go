@@ -6,6 +6,7 @@ import (
 
 	"github.com/Azure/go-autorest/autorest"
 	"github.com/Azure/go-autorest/autorest/azure"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -16,7 +17,7 @@ type UserAssignedIdentitiesDeleteOperationResponse struct {
 }
 
 // UserAssignedIdentitiesDelete ...
-func (c ManagedIdentityClient) UserAssignedIdentitiesDelete(ctx context.Context, id UserAssignedIdentitiesId) (result UserAssignedIdentitiesDeleteOperationResponse, err error) {
+func (c ManagedIdentityClient) UserAssignedIdentitiesDelete(ctx context.Context, id commonids.UserAssignedIdentityId) (result UserAssignedIdentitiesDeleteOperationResponse, err error) {
 	req, err := c.preparerForUserAssignedIdentitiesDelete(ctx, id)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "managedidentity.ManagedIdentityClient", "UserAssignedIdentitiesDelete", nil, "Failure preparing request")
@@ -39,7 +40,7 @@ func (c ManagedIdentityClient) UserAssignedIdentitiesDelete(ctx context.Context,
 }
 
 // preparerForUserAssignedIdentitiesDelete prepares the UserAssignedIdentitiesDelete request.
-func (c ManagedIdentityClient) preparerForUserAssignedIdentitiesDelete(ctx context.Context, id UserAssignedIdentitiesId) (*http.Request, error) {
+func (c ManagedIdentityClient) preparerForUserAssignedIdentitiesDelete(ctx context.Context, id commonids.UserAssignedIdentityId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

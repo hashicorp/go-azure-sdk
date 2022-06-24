@@ -17,7 +17,7 @@ type GetAuthorizationRuleOperationResponse struct {
 }
 
 // GetAuthorizationRule ...
-func (c DisasterRecoveryConfigsClient) GetAuthorizationRule(ctx context.Context, id DisasterRecoveryConfigAuthorizationRuleId) (result GetAuthorizationRuleOperationResponse, err error) {
+func (c DisasterRecoveryConfigsClient) GetAuthorizationRule(ctx context.Context, id AuthorizationRuleId) (result GetAuthorizationRuleOperationResponse, err error) {
 	req, err := c.preparerForGetAuthorizationRule(ctx, id)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "disasterrecoveryconfigs.DisasterRecoveryConfigsClient", "GetAuthorizationRule", nil, "Failure preparing request")
@@ -40,7 +40,7 @@ func (c DisasterRecoveryConfigsClient) GetAuthorizationRule(ctx context.Context,
 }
 
 // preparerForGetAuthorizationRule prepares the GetAuthorizationRule request.
-func (c DisasterRecoveryConfigsClient) preparerForGetAuthorizationRule(ctx context.Context, id DisasterRecoveryConfigAuthorizationRuleId) (*http.Request, error) {
+func (c DisasterRecoveryConfigsClient) preparerForGetAuthorizationRule(ctx context.Context, id AuthorizationRuleId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

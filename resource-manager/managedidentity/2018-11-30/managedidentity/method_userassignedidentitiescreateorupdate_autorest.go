@@ -6,6 +6,7 @@ import (
 
 	"github.com/Azure/go-autorest/autorest"
 	"github.com/Azure/go-autorest/autorest/azure"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -17,7 +18,7 @@ type UserAssignedIdentitiesCreateOrUpdateOperationResponse struct {
 }
 
 // UserAssignedIdentitiesCreateOrUpdate ...
-func (c ManagedIdentityClient) UserAssignedIdentitiesCreateOrUpdate(ctx context.Context, id UserAssignedIdentitiesId, input Identity) (result UserAssignedIdentitiesCreateOrUpdateOperationResponse, err error) {
+func (c ManagedIdentityClient) UserAssignedIdentitiesCreateOrUpdate(ctx context.Context, id commonids.UserAssignedIdentityId, input Identity) (result UserAssignedIdentitiesCreateOrUpdateOperationResponse, err error) {
 	req, err := c.preparerForUserAssignedIdentitiesCreateOrUpdate(ctx, id, input)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "managedidentity.ManagedIdentityClient", "UserAssignedIdentitiesCreateOrUpdate", nil, "Failure preparing request")
@@ -40,7 +41,7 @@ func (c ManagedIdentityClient) UserAssignedIdentitiesCreateOrUpdate(ctx context.
 }
 
 // preparerForUserAssignedIdentitiesCreateOrUpdate prepares the UserAssignedIdentitiesCreateOrUpdate request.
-func (c ManagedIdentityClient) preparerForUserAssignedIdentitiesCreateOrUpdate(ctx context.Context, id UserAssignedIdentitiesId, input Identity) (*http.Request, error) {
+func (c ManagedIdentityClient) preparerForUserAssignedIdentitiesCreateOrUpdate(ctx context.Context, id commonids.UserAssignedIdentityId, input Identity) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

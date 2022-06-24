@@ -7,38 +7,36 @@ import (
 	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
 )
 
-var _ resourceids.ResourceId = DisasterRecoveryConfigAuthorizationRuleId{}
+var _ resourceids.ResourceId = AuthorizationRuleId{}
 
-// DisasterRecoveryConfigAuthorizationRuleId is a struct representing the Resource ID for a Disaster Recovery Config Authorization Rule
-type DisasterRecoveryConfigAuthorizationRuleId struct {
+// AuthorizationRuleId is a struct representing the Resource ID for a Authorization Rule
+type AuthorizationRuleId struct {
 	SubscriptionId        string
 	ResourceGroupName     string
 	NamespaceName         string
-	Alias                 string
 	AuthorizationRuleName string
 }
 
-// NewDisasterRecoveryConfigAuthorizationRuleID returns a new DisasterRecoveryConfigAuthorizationRuleId struct
-func NewDisasterRecoveryConfigAuthorizationRuleID(subscriptionId string, resourceGroupName string, namespaceName string, alias string, authorizationRuleName string) DisasterRecoveryConfigAuthorizationRuleId {
-	return DisasterRecoveryConfigAuthorizationRuleId{
+// NewAuthorizationRuleID returns a new AuthorizationRuleId struct
+func NewAuthorizationRuleID(subscriptionId string, resourceGroupName string, namespaceName string, authorizationRuleName string) AuthorizationRuleId {
+	return AuthorizationRuleId{
 		SubscriptionId:        subscriptionId,
 		ResourceGroupName:     resourceGroupName,
 		NamespaceName:         namespaceName,
-		Alias:                 alias,
 		AuthorizationRuleName: authorizationRuleName,
 	}
 }
 
-// ParseDisasterRecoveryConfigAuthorizationRuleID parses 'input' into a DisasterRecoveryConfigAuthorizationRuleId
-func ParseDisasterRecoveryConfigAuthorizationRuleID(input string) (*DisasterRecoveryConfigAuthorizationRuleId, error) {
-	parser := resourceids.NewParserFromResourceIdType(DisasterRecoveryConfigAuthorizationRuleId{})
+// ParseAuthorizationRuleID parses 'input' into a AuthorizationRuleId
+func ParseAuthorizationRuleID(input string) (*AuthorizationRuleId, error) {
+	parser := resourceids.NewParserFromResourceIdType(AuthorizationRuleId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
 	var ok bool
-	id := DisasterRecoveryConfigAuthorizationRuleId{}
+	id := AuthorizationRuleId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
 		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
@@ -52,10 +50,6 @@ func ParseDisasterRecoveryConfigAuthorizationRuleID(input string) (*DisasterReco
 		return nil, fmt.Errorf("the segment 'namespaceName' was not found in the resource id %q", input)
 	}
 
-	if id.Alias, ok = parsed.Parsed["alias"]; !ok {
-		return nil, fmt.Errorf("the segment 'alias' was not found in the resource id %q", input)
-	}
-
 	if id.AuthorizationRuleName, ok = parsed.Parsed["authorizationRuleName"]; !ok {
 		return nil, fmt.Errorf("the segment 'authorizationRuleName' was not found in the resource id %q", input)
 	}
@@ -63,17 +57,17 @@ func ParseDisasterRecoveryConfigAuthorizationRuleID(input string) (*DisasterReco
 	return &id, nil
 }
 
-// ParseDisasterRecoveryConfigAuthorizationRuleIDInsensitively parses 'input' case-insensitively into a DisasterRecoveryConfigAuthorizationRuleId
+// ParseAuthorizationRuleIDInsensitively parses 'input' case-insensitively into a AuthorizationRuleId
 // note: this method should only be used for API response data and not user input
-func ParseDisasterRecoveryConfigAuthorizationRuleIDInsensitively(input string) (*DisasterRecoveryConfigAuthorizationRuleId, error) {
-	parser := resourceids.NewParserFromResourceIdType(DisasterRecoveryConfigAuthorizationRuleId{})
+func ParseAuthorizationRuleIDInsensitively(input string) (*AuthorizationRuleId, error) {
+	parser := resourceids.NewParserFromResourceIdType(AuthorizationRuleId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
 	var ok bool
-	id := DisasterRecoveryConfigAuthorizationRuleId{}
+	id := AuthorizationRuleId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
 		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
@@ -87,10 +81,6 @@ func ParseDisasterRecoveryConfigAuthorizationRuleIDInsensitively(input string) (
 		return nil, fmt.Errorf("the segment 'namespaceName' was not found in the resource id %q", input)
 	}
 
-	if id.Alias, ok = parsed.Parsed["alias"]; !ok {
-		return nil, fmt.Errorf("the segment 'alias' was not found in the resource id %q", input)
-	}
-
 	if id.AuthorizationRuleName, ok = parsed.Parsed["authorizationRuleName"]; !ok {
 		return nil, fmt.Errorf("the segment 'authorizationRuleName' was not found in the resource id %q", input)
 	}
@@ -98,29 +88,29 @@ func ParseDisasterRecoveryConfigAuthorizationRuleIDInsensitively(input string) (
 	return &id, nil
 }
 
-// ValidateDisasterRecoveryConfigAuthorizationRuleID checks that 'input' can be parsed as a Disaster Recovery Config Authorization Rule ID
-func ValidateDisasterRecoveryConfigAuthorizationRuleID(input interface{}, key string) (warnings []string, errors []error) {
+// ValidateAuthorizationRuleID checks that 'input' can be parsed as a Authorization Rule ID
+func ValidateAuthorizationRuleID(input interface{}, key string) (warnings []string, errors []error) {
 	v, ok := input.(string)
 	if !ok {
 		errors = append(errors, fmt.Errorf("expected %q to be a string", key))
 		return
 	}
 
-	if _, err := ParseDisasterRecoveryConfigAuthorizationRuleID(v); err != nil {
+	if _, err := ParseAuthorizationRuleID(v); err != nil {
 		errors = append(errors, err)
 	}
 
 	return
 }
 
-// ID returns the formatted Disaster Recovery Config Authorization Rule ID
-func (id DisasterRecoveryConfigAuthorizationRuleId) ID() string {
-	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.ServiceBus/namespaces/%s/disasterRecoveryConfigs/%s/authorizationRules/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.NamespaceName, id.Alias, id.AuthorizationRuleName)
+// ID returns the formatted Authorization Rule ID
+func (id AuthorizationRuleId) ID() string {
+	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.ServiceBus/namespaces/%s/authorizationRules/%s"
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.NamespaceName, id.AuthorizationRuleName)
 }
 
-// Segments returns a slice of Resource ID Segments which comprise this Disaster Recovery Config Authorization Rule ID
-func (id DisasterRecoveryConfigAuthorizationRuleId) Segments() []resourceids.Segment {
+// Segments returns a slice of Resource ID Segments which comprise this Authorization Rule ID
+func (id AuthorizationRuleId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
 		resourceids.StaticSegment("staticSubscriptions", "subscriptions", "subscriptions"),
 		resourceids.SubscriptionIdSegment("subscriptionId", "12345678-1234-9876-4563-123456789012"),
@@ -130,21 +120,18 @@ func (id DisasterRecoveryConfigAuthorizationRuleId) Segments() []resourceids.Seg
 		resourceids.ResourceProviderSegment("staticMicrosoftServiceBus", "Microsoft.ServiceBus", "Microsoft.ServiceBus"),
 		resourceids.StaticSegment("staticNamespaces", "namespaces", "namespaces"),
 		resourceids.UserSpecifiedSegment("namespaceName", "namespaceValue"),
-		resourceids.StaticSegment("staticDisasterRecoveryConfigs", "disasterRecoveryConfigs", "disasterRecoveryConfigs"),
-		resourceids.UserSpecifiedSegment("alias", "aliasValue"),
 		resourceids.StaticSegment("staticAuthorizationRules", "authorizationRules", "authorizationRules"),
 		resourceids.UserSpecifiedSegment("authorizationRuleName", "authorizationRuleValue"),
 	}
 }
 
-// String returns a human-readable description of this Disaster Recovery Config Authorization Rule ID
-func (id DisasterRecoveryConfigAuthorizationRuleId) String() string {
+// String returns a human-readable description of this Authorization Rule ID
+func (id AuthorizationRuleId) String() string {
 	components := []string{
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
 		fmt.Sprintf("Namespace Name: %q", id.NamespaceName),
-		fmt.Sprintf("Alias: %q", id.Alias),
 		fmt.Sprintf("Authorization Rule Name: %q", id.AuthorizationRuleName),
 	}
-	return fmt.Sprintf("Disaster Recovery Config Authorization Rule (%s)", strings.Join(components, "\n"))
+	return fmt.Sprintf("Authorization Rule (%s)", strings.Join(components, "\n"))
 }

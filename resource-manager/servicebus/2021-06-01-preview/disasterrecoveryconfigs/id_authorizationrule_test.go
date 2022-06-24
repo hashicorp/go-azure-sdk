@@ -6,10 +6,10 @@ import (
 	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
 )
 
-var _ resourceids.ResourceId = DisasterRecoveryConfigAuthorizationRuleId{}
+var _ resourceids.ResourceId = AuthorizationRuleId{}
 
-func TestNewDisasterRecoveryConfigAuthorizationRuleID(t *testing.T) {
-	id := NewDisasterRecoveryConfigAuthorizationRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceValue", "aliasValue", "authorizationRuleValue")
+func TestNewAuthorizationRuleID(t *testing.T) {
+	id := NewAuthorizationRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceValue", "authorizationRuleValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -23,28 +23,24 @@ func TestNewDisasterRecoveryConfigAuthorizationRuleID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'NamespaceName'", id.NamespaceName, "namespaceValue")
 	}
 
-	if id.Alias != "aliasValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'Alias'", id.Alias, "aliasValue")
-	}
-
 	if id.AuthorizationRuleName != "authorizationRuleValue" {
 		t.Fatalf("Expected %q but got %q for Segment 'AuthorizationRuleName'", id.AuthorizationRuleName, "authorizationRuleValue")
 	}
 }
 
-func TestFormatDisasterRecoveryConfigAuthorizationRuleID(t *testing.T) {
-	actual := NewDisasterRecoveryConfigAuthorizationRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceValue", "aliasValue", "authorizationRuleValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ServiceBus/namespaces/namespaceValue/disasterRecoveryConfigs/aliasValue/authorizationRules/authorizationRuleValue"
+func TestFormatAuthorizationRuleID(t *testing.T) {
+	actual := NewAuthorizationRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceValue", "authorizationRuleValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ServiceBus/namespaces/namespaceValue/authorizationRules/authorizationRuleValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
 }
 
-func TestParseDisasterRecoveryConfigAuthorizationRuleID(t *testing.T) {
+func TestParseAuthorizationRuleID(t *testing.T) {
 	testData := []struct {
 		Input    string
 		Error    bool
-		Expected *DisasterRecoveryConfigAuthorizationRuleId
+		Expected *AuthorizationRuleId
 	}{
 		{
 			// Incomplete URI
@@ -93,40 +89,29 @@ func TestParseDisasterRecoveryConfigAuthorizationRuleID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ServiceBus/namespaces/namespaceValue/disasterRecoveryConfigs",
-			Error: true,
-		},
-		{
-			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ServiceBus/namespaces/namespaceValue/disasterRecoveryConfigs/aliasValue",
-			Error: true,
-		},
-		{
-			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ServiceBus/namespaces/namespaceValue/disasterRecoveryConfigs/aliasValue/authorizationRules",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ServiceBus/namespaces/namespaceValue/authorizationRules",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ServiceBus/namespaces/namespaceValue/disasterRecoveryConfigs/aliasValue/authorizationRules/authorizationRuleValue",
-			Expected: &DisasterRecoveryConfigAuthorizationRuleId{
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ServiceBus/namespaces/namespaceValue/authorizationRules/authorizationRuleValue",
+			Expected: &AuthorizationRuleId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:     "example-resource-group",
 				NamespaceName:         "namespaceValue",
-				Alias:                 "aliasValue",
 				AuthorizationRuleName: "authorizationRuleValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ServiceBus/namespaces/namespaceValue/disasterRecoveryConfigs/aliasValue/authorizationRules/authorizationRuleValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ServiceBus/namespaces/namespaceValue/authorizationRules/authorizationRuleValue/extra",
 			Error: true,
 		},
 	}
 	for _, v := range testData {
 		t.Logf("[DEBUG] Testing %q", v.Input)
 
-		actual, err := ParseDisasterRecoveryConfigAuthorizationRuleID(v.Input)
+		actual, err := ParseAuthorizationRuleID(v.Input)
 		if err != nil {
 			if v.Error {
 				continue
@@ -150,10 +135,6 @@ func TestParseDisasterRecoveryConfigAuthorizationRuleID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for NamespaceName", v.Expected.NamespaceName, actual.NamespaceName)
 		}
 
-		if actual.Alias != v.Expected.Alias {
-			t.Fatalf("Expected %q but got %q for Alias", v.Expected.Alias, actual.Alias)
-		}
-
 		if actual.AuthorizationRuleName != v.Expected.AuthorizationRuleName {
 			t.Fatalf("Expected %q but got %q for AuthorizationRuleName", v.Expected.AuthorizationRuleName, actual.AuthorizationRuleName)
 		}
@@ -161,11 +142,11 @@ func TestParseDisasterRecoveryConfigAuthorizationRuleID(t *testing.T) {
 	}
 }
 
-func TestParseDisasterRecoveryConfigAuthorizationRuleIDInsensitively(t *testing.T) {
+func TestParseAuthorizationRuleIDInsensitively(t *testing.T) {
 	testData := []struct {
 		Input    string
 		Error    bool
-		Expected *DisasterRecoveryConfigAuthorizationRuleId
+		Expected *AuthorizationRuleId
 	}{
 		{
 			// Incomplete URI
@@ -254,71 +235,49 @@ func TestParseDisasterRecoveryConfigAuthorizationRuleIDInsensitively(t *testing.
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ServiceBus/namespaces/namespaceValue/disasterRecoveryConfigs",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ServiceBus/namespaces/namespaceValue/authorizationRules",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sErViCeBuS/nAmEsPaCeS/nAmEsPaCeVaLuE/dIsAsTeRrEcOvErYcOnFiGs",
-			Error: true,
-		},
-		{
-			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ServiceBus/namespaces/namespaceValue/disasterRecoveryConfigs/aliasValue",
-			Error: true,
-		},
-		{
-			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sErViCeBuS/nAmEsPaCeS/nAmEsPaCeVaLuE/dIsAsTeRrEcOvErYcOnFiGs/aLiAsVaLuE",
-			Error: true,
-		},
-		{
-			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ServiceBus/namespaces/namespaceValue/disasterRecoveryConfigs/aliasValue/authorizationRules",
-			Error: true,
-		},
-		{
-			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sErViCeBuS/nAmEsPaCeS/nAmEsPaCeVaLuE/dIsAsTeRrEcOvErYcOnFiGs/aLiAsVaLuE/aUtHoRiZaTiOnRuLeS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sErViCeBuS/nAmEsPaCeS/nAmEsPaCeVaLuE/aUtHoRiZaTiOnRuLeS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ServiceBus/namespaces/namespaceValue/disasterRecoveryConfigs/aliasValue/authorizationRules/authorizationRuleValue",
-			Expected: &DisasterRecoveryConfigAuthorizationRuleId{
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ServiceBus/namespaces/namespaceValue/authorizationRules/authorizationRuleValue",
+			Expected: &AuthorizationRuleId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:     "example-resource-group",
 				NamespaceName:         "namespaceValue",
-				Alias:                 "aliasValue",
 				AuthorizationRuleName: "authorizationRuleValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ServiceBus/namespaces/namespaceValue/disasterRecoveryConfigs/aliasValue/authorizationRules/authorizationRuleValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ServiceBus/namespaces/namespaceValue/authorizationRules/authorizationRuleValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sErViCeBuS/nAmEsPaCeS/nAmEsPaCeVaLuE/dIsAsTeRrEcOvErYcOnFiGs/aLiAsVaLuE/aUtHoRiZaTiOnRuLeS/aUtHoRiZaTiOnRuLeVaLuE",
-			Expected: &DisasterRecoveryConfigAuthorizationRuleId{
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sErViCeBuS/nAmEsPaCeS/nAmEsPaCeVaLuE/aUtHoRiZaTiOnRuLeS/aUtHoRiZaTiOnRuLeVaLuE",
+			Expected: &AuthorizationRuleId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:     "eXaMpLe-rEsOuRcE-GrOuP",
 				NamespaceName:         "nAmEsPaCeVaLuE",
-				Alias:                 "aLiAsVaLuE",
 				AuthorizationRuleName: "aUtHoRiZaTiOnRuLeVaLuE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sErViCeBuS/nAmEsPaCeS/nAmEsPaCeVaLuE/dIsAsTeRrEcOvErYcOnFiGs/aLiAsVaLuE/aUtHoRiZaTiOnRuLeS/aUtHoRiZaTiOnRuLeVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sErViCeBuS/nAmEsPaCeS/nAmEsPaCeVaLuE/aUtHoRiZaTiOnRuLeS/aUtHoRiZaTiOnRuLeVaLuE/extra",
 			Error: true,
 		},
 	}
 	for _, v := range testData {
 		t.Logf("[DEBUG] Testing %q", v.Input)
 
-		actual, err := ParseDisasterRecoveryConfigAuthorizationRuleIDInsensitively(v.Input)
+		actual, err := ParseAuthorizationRuleIDInsensitively(v.Input)
 		if err != nil {
 			if v.Error {
 				continue
@@ -342,10 +301,6 @@ func TestParseDisasterRecoveryConfigAuthorizationRuleIDInsensitively(t *testing.
 			t.Fatalf("Expected %q but got %q for NamespaceName", v.Expected.NamespaceName, actual.NamespaceName)
 		}
 
-		if actual.Alias != v.Expected.Alias {
-			t.Fatalf("Expected %q but got %q for Alias", v.Expected.Alias, actual.Alias)
-		}
-
 		if actual.AuthorizationRuleName != v.Expected.AuthorizationRuleName {
 			t.Fatalf("Expected %q but got %q for AuthorizationRuleName", v.Expected.AuthorizationRuleName, actual.AuthorizationRuleName)
 		}
@@ -353,10 +308,10 @@ func TestParseDisasterRecoveryConfigAuthorizationRuleIDInsensitively(t *testing.
 	}
 }
 
-func TestSegmentsForDisasterRecoveryConfigAuthorizationRuleId(t *testing.T) {
-	segments := DisasterRecoveryConfigAuthorizationRuleId{}.Segments()
+func TestSegmentsForAuthorizationRuleId(t *testing.T) {
+	segments := AuthorizationRuleId{}.Segments()
 	if len(segments) == 0 {
-		t.Fatalf("DisasterRecoveryConfigAuthorizationRuleId has no segments")
+		t.Fatalf("AuthorizationRuleId has no segments")
 	}
 
 	uniqueNames := make(map[string]struct{}, 0)
