@@ -2,6 +2,7 @@ package managementpolicies
 
 import (
 	"context"
+	"fmt"
 	"net/http"
 
 	"github.com/Azure/go-autorest/autorest"
@@ -16,7 +17,7 @@ type DeleteOperationResponse struct {
 }
 
 // Delete ...
-func (c ManagementPoliciesClient) Delete(ctx context.Context, id ManagementPolicyId) (result DeleteOperationResponse, err error) {
+func (c ManagementPoliciesClient) Delete(ctx context.Context, id StorageAccountId) (result DeleteOperationResponse, err error) {
 	req, err := c.preparerForDelete(ctx, id)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "managementpolicies.ManagementPoliciesClient", "Delete", nil, "Failure preparing request")
@@ -39,7 +40,7 @@ func (c ManagementPoliciesClient) Delete(ctx context.Context, id ManagementPolic
 }
 
 // preparerForDelete prepares the Delete request.
-func (c ManagementPoliciesClient) preparerForDelete(ctx context.Context, id ManagementPolicyId) (*http.Request, error) {
+func (c ManagementPoliciesClient) preparerForDelete(ctx context.Context, id StorageAccountId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}
@@ -48,7 +49,7 @@ func (c ManagementPoliciesClient) preparerForDelete(ctx context.Context, id Mana
 		autorest.AsContentType("application/json; charset=utf-8"),
 		autorest.AsDelete(),
 		autorest.WithBaseURL(c.baseUri),
-		autorest.WithPath(id.ID()),
+		autorest.WithPath(fmt.Sprintf("%s/managementPolicies/default", id.ID())),
 		autorest.WithQueryParameters(queryParameters))
 	return preparer.Prepare((&http.Request{}).WithContext(ctx))
 }

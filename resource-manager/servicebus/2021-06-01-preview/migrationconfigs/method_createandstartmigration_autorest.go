@@ -19,7 +19,7 @@ type CreateAndStartMigrationOperationResponse struct {
 }
 
 // CreateAndStartMigration ...
-func (c MigrationConfigsClient) CreateAndStartMigration(ctx context.Context, id ConfigId, input MigrationConfigProperties) (result CreateAndStartMigrationOperationResponse, err error) {
+func (c MigrationConfigsClient) CreateAndStartMigration(ctx context.Context, id NamespaceId, input MigrationConfigProperties) (result CreateAndStartMigrationOperationResponse, err error) {
 	req, err := c.preparerForCreateAndStartMigration(ctx, id, input)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "migrationconfigs.MigrationConfigsClient", "CreateAndStartMigration", nil, "Failure preparing request")
@@ -36,7 +36,7 @@ func (c MigrationConfigsClient) CreateAndStartMigration(ctx context.Context, id 
 }
 
 // CreateAndStartMigrationThenPoll performs CreateAndStartMigration then polls until it's completed
-func (c MigrationConfigsClient) CreateAndStartMigrationThenPoll(ctx context.Context, id ConfigId, input MigrationConfigProperties) error {
+func (c MigrationConfigsClient) CreateAndStartMigrationThenPoll(ctx context.Context, id NamespaceId, input MigrationConfigProperties) error {
 	result, err := c.CreateAndStartMigration(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing CreateAndStartMigration: %+v", err)
@@ -50,7 +50,7 @@ func (c MigrationConfigsClient) CreateAndStartMigrationThenPoll(ctx context.Cont
 }
 
 // preparerForCreateAndStartMigration prepares the CreateAndStartMigration request.
-func (c MigrationConfigsClient) preparerForCreateAndStartMigration(ctx context.Context, id ConfigId, input MigrationConfigProperties) (*http.Request, error) {
+func (c MigrationConfigsClient) preparerForCreateAndStartMigration(ctx context.Context, id NamespaceId, input MigrationConfigProperties) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}
@@ -59,7 +59,7 @@ func (c MigrationConfigsClient) preparerForCreateAndStartMigration(ctx context.C
 		autorest.AsContentType("application/json; charset=utf-8"),
 		autorest.AsPut(),
 		autorest.WithBaseURL(c.baseUri),
-		autorest.WithPath(id.ID()),
+		autorest.WithPath(fmt.Sprintf("%s/migrationConfigurations/$default", id.ID())),
 		autorest.WithJSON(input),
 		autorest.WithQueryParameters(queryParameters))
 	return preparer.Prepare((&http.Request{}).WithContext(ctx))

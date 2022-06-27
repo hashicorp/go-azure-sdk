@@ -47,28 +47,3 @@ func parseAllowedMethods(input string) (*AllowedMethods, error) {
 	out := AllowedMethods(input)
 	return &out, nil
 }
-
-type TableServiceName string
-
-const (
-	TableServiceNameDefault TableServiceName = "default"
-)
-
-func PossibleValuesForTableServiceName() []string {
-	return []string{
-		string(TableServiceNameDefault),
-	}
-}
-
-func parseTableServiceName(input string) (*TableServiceName, error) {
-	vals := map[string]TableServiceName{
-		"default": TableServiceNameDefault,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := TableServiceName(input)
-	return &out, nil
-}

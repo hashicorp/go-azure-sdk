@@ -13,16 +13,14 @@ var _ resourceids.ResourceId = EnvironmentManagedClusterVersionId{}
 type EnvironmentManagedClusterVersionId struct {
 	SubscriptionId string
 	Location       string
-	Environment    ManagedClusterVersionEnvironment
 	ClusterVersion string
 }
 
 // NewEnvironmentManagedClusterVersionID returns a new EnvironmentManagedClusterVersionId struct
-func NewEnvironmentManagedClusterVersionID(subscriptionId string, location string, environment ManagedClusterVersionEnvironment, clusterVersion string) EnvironmentManagedClusterVersionId {
+func NewEnvironmentManagedClusterVersionID(subscriptionId string, location string, clusterVersion string) EnvironmentManagedClusterVersionId {
 	return EnvironmentManagedClusterVersionId{
 		SubscriptionId: subscriptionId,
 		Location:       location,
-		Environment:    environment,
 		ClusterVersion: clusterVersion,
 	}
 }
@@ -44,18 +42,6 @@ func ParseEnvironmentManagedClusterVersionID(input string) (*EnvironmentManagedC
 
 	if id.Location, ok = parsed.Parsed["location"]; !ok {
 		return nil, fmt.Errorf("the segment 'location' was not found in the resource id %q", input)
-	}
-
-	if v, ok := parsed.Parsed["environment"]; true {
-		if !ok {
-			return nil, fmt.Errorf("the segment 'environment' was not found in the resource id %q", input)
-		}
-
-		environment, err := parseManagedClusterVersionEnvironment(v)
-		if err != nil {
-			return nil, fmt.Errorf("parsing %q: %+v", v, err)
-		}
-		id.Environment = *environment
 	}
 
 	if id.ClusterVersion, ok = parsed.Parsed["clusterVersion"]; !ok {
@@ -85,18 +71,6 @@ func ParseEnvironmentManagedClusterVersionIDInsensitively(input string) (*Enviro
 		return nil, fmt.Errorf("the segment 'location' was not found in the resource id %q", input)
 	}
 
-	if v, ok := parsed.Parsed["environment"]; true {
-		if !ok {
-			return nil, fmt.Errorf("the segment 'environment' was not found in the resource id %q", input)
-		}
-
-		environment, err := parseManagedClusterVersionEnvironment(v)
-		if err != nil {
-			return nil, fmt.Errorf("parsing %q: %+v", v, err)
-		}
-		id.Environment = *environment
-	}
-
 	if id.ClusterVersion, ok = parsed.Parsed["clusterVersion"]; !ok {
 		return nil, fmt.Errorf("the segment 'clusterVersion' was not found in the resource id %q", input)
 	}
@@ -121,8 +95,8 @@ func ValidateEnvironmentManagedClusterVersionID(input interface{}, key string) (
 
 // ID returns the formatted Environment Managed Cluster Version ID
 func (id EnvironmentManagedClusterVersionId) ID() string {
-	fmtString := "/subscriptions/%s/providers/Microsoft.ServiceFabric/locations/%s/environments/%s/managedClusterVersions/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.Location, string(id.Environment), id.ClusterVersion)
+	fmtString := "/subscriptions/%s/providers/Microsoft.ServiceFabric/locations/%s/environments/Windows/managedClusterVersions/%s"
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.Location, id.ClusterVersion)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Environment Managed Cluster Version ID
@@ -135,7 +109,7 @@ func (id EnvironmentManagedClusterVersionId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticLocations", "locations", "locations"),
 		resourceids.UserSpecifiedSegment("location", "locationValue"),
 		resourceids.StaticSegment("staticEnvironments", "environments", "environments"),
-		resourceids.ConstantSegment("environment", PossibleValuesForManagedClusterVersionEnvironment(), "Windows"),
+		resourceids.StaticSegment("environment", "Windows", "Windows"),
 		resourceids.StaticSegment("staticManagedClusterVersions", "managedClusterVersions", "managedClusterVersions"),
 		resourceids.UserSpecifiedSegment("clusterVersion", "clusterVersionValue"),
 	}
@@ -146,7 +120,6 @@ func (id EnvironmentManagedClusterVersionId) String() string {
 	components := []string{
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Location: %q", id.Location),
-		fmt.Sprintf("Environment: %q", string(id.Environment)),
 		fmt.Sprintf("Cluster Version: %q", id.ClusterVersion),
 	}
 	return fmt.Sprintf("Environment Managed Cluster Version (%s)", strings.Join(components, "\n"))

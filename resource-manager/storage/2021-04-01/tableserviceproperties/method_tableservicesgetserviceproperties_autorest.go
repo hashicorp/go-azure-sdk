@@ -2,6 +2,7 @@ package tableserviceproperties
 
 import (
 	"context"
+	"fmt"
 	"net/http"
 
 	"github.com/Azure/go-autorest/autorest"
@@ -17,7 +18,7 @@ type TableServicesGetServicePropertiesOperationResponse struct {
 }
 
 // TableServicesGetServiceProperties ...
-func (c TableServicePropertiesClient) TableServicesGetServiceProperties(ctx context.Context, id TableServiceId) (result TableServicesGetServicePropertiesOperationResponse, err error) {
+func (c TableServicePropertiesClient) TableServicesGetServiceProperties(ctx context.Context, id StorageAccountId) (result TableServicesGetServicePropertiesOperationResponse, err error) {
 	req, err := c.preparerForTableServicesGetServiceProperties(ctx, id)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "tableserviceproperties.TableServicePropertiesClient", "TableServicesGetServiceProperties", nil, "Failure preparing request")
@@ -40,7 +41,7 @@ func (c TableServicePropertiesClient) TableServicesGetServiceProperties(ctx cont
 }
 
 // preparerForTableServicesGetServiceProperties prepares the TableServicesGetServiceProperties request.
-func (c TableServicePropertiesClient) preparerForTableServicesGetServiceProperties(ctx context.Context, id TableServiceId) (*http.Request, error) {
+func (c TableServicePropertiesClient) preparerForTableServicesGetServiceProperties(ctx context.Context, id StorageAccountId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}
@@ -49,7 +50,7 @@ func (c TableServicePropertiesClient) preparerForTableServicesGetServiceProperti
 		autorest.AsContentType("application/json; charset=utf-8"),
 		autorest.AsGet(),
 		autorest.WithBaseURL(c.baseUri),
-		autorest.WithPath(id.ID()),
+		autorest.WithPath(fmt.Sprintf("%s/tableServices/default", id.ID())),
 		autorest.WithQueryParameters(queryParameters))
 	return preparer.Prepare((&http.Request{}).WithContext(ctx))
 }

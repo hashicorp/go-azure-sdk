@@ -2,6 +2,7 @@ package queueserviceproperties
 
 import (
 	"context"
+	"fmt"
 	"net/http"
 
 	"github.com/Azure/go-autorest/autorest"
@@ -17,7 +18,7 @@ type QueueServicesGetServicePropertiesOperationResponse struct {
 }
 
 // QueueServicesGetServiceProperties ...
-func (c QueueServicePropertiesClient) QueueServicesGetServiceProperties(ctx context.Context, id QueueServiceId) (result QueueServicesGetServicePropertiesOperationResponse, err error) {
+func (c QueueServicePropertiesClient) QueueServicesGetServiceProperties(ctx context.Context, id StorageAccountId) (result QueueServicesGetServicePropertiesOperationResponse, err error) {
 	req, err := c.preparerForQueueServicesGetServiceProperties(ctx, id)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "queueserviceproperties.QueueServicePropertiesClient", "QueueServicesGetServiceProperties", nil, "Failure preparing request")
@@ -40,7 +41,7 @@ func (c QueueServicePropertiesClient) QueueServicesGetServiceProperties(ctx cont
 }
 
 // preparerForQueueServicesGetServiceProperties prepares the QueueServicesGetServiceProperties request.
-func (c QueueServicePropertiesClient) preparerForQueueServicesGetServiceProperties(ctx context.Context, id QueueServiceId) (*http.Request, error) {
+func (c QueueServicePropertiesClient) preparerForQueueServicesGetServiceProperties(ctx context.Context, id StorageAccountId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}
@@ -49,7 +50,7 @@ func (c QueueServicePropertiesClient) preparerForQueueServicesGetServiceProperti
 		autorest.AsContentType("application/json; charset=utf-8"),
 		autorest.AsGet(),
 		autorest.WithBaseURL(c.baseUri),
-		autorest.WithPath(id.ID()),
+		autorest.WithPath(fmt.Sprintf("%s/queueServices/default", id.ID())),
 		autorest.WithQueryParameters(queryParameters))
 	return preparer.Prepare((&http.Request{}).WithContext(ctx))
 }

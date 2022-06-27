@@ -42,31 +42,6 @@ func parseAction(input string) (*Action, error) {
 	return &out, nil
 }
 
-type ImmutabilityPolicyName string
-
-const (
-	ImmutabilityPolicyNameDefault ImmutabilityPolicyName = "default"
-)
-
-func PossibleValuesForImmutabilityPolicyName() []string {
-	return []string{
-		string(ImmutabilityPolicyNameDefault),
-	}
-}
-
-func parseImmutabilityPolicyName(input string) (*ImmutabilityPolicyName, error) {
-	vals := map[string]ImmutabilityPolicyName{
-		"default": ImmutabilityPolicyNameDefault,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ImmutabilityPolicyName(input)
-	return &out, nil
-}
-
 type ImmutabilityPolicyState string
 
 const (

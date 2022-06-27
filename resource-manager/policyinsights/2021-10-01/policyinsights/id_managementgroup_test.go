@@ -9,11 +9,7 @@ import (
 var _ resourceids.ResourceId = ManagementGroupId{}
 
 func TestNewManagementGroupID(t *testing.T) {
-	id := NewManagementGroupID("Microsoft.Management", "managementGroupIdValue")
-
-	if id.ManagementGroupsNamespace != "Microsoft.Management" {
-		t.Fatalf("Expected %q but got %q for Segment 'ManagementGroupsNamespace'", id.ManagementGroupsNamespace, "Microsoft.Management")
-	}
+	id := NewManagementGroupID("managementGroupIdValue")
 
 	if id.ManagementGroupId != "managementGroupIdValue" {
 		t.Fatalf("Expected %q but got %q for Segment 'ManagementGroupId'", id.ManagementGroupId, "managementGroupIdValue")
@@ -21,7 +17,7 @@ func TestNewManagementGroupID(t *testing.T) {
 }
 
 func TestFormatManagementGroupID(t *testing.T) {
-	actual := NewManagementGroupID("Microsoft.Management", "managementGroupIdValue").ID()
+	actual := NewManagementGroupID("managementGroupIdValue").ID()
 	expected := "/providers/Microsoft.Management/managementGroups/managementGroupIdValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
@@ -58,8 +54,7 @@ func TestParseManagementGroupID(t *testing.T) {
 			// Valid URI
 			Input: "/providers/Microsoft.Management/managementGroups/managementGroupIdValue",
 			Expected: &ManagementGroupId{
-				ManagementGroupsNamespace: "Microsoft.Management",
-				ManagementGroupId:         "managementGroupIdValue",
+				ManagementGroupId: "managementGroupIdValue",
 			},
 		},
 		{
@@ -81,10 +76,6 @@ func TestParseManagementGroupID(t *testing.T) {
 		}
 		if v.Error {
 			t.Fatal("Expect an error but didn't get one")
-		}
-
-		if actual.ManagementGroupsNamespace != v.Expected.ManagementGroupsNamespace {
-			t.Fatalf("Expected %q but got %q for ManagementGroupsNamespace", v.Expected.ManagementGroupsNamespace, actual.ManagementGroupsNamespace)
 		}
 
 		if actual.ManagementGroupId != v.Expected.ManagementGroupId {
@@ -139,8 +130,7 @@ func TestParseManagementGroupIDInsensitively(t *testing.T) {
 			// Valid URI
 			Input: "/providers/Microsoft.Management/managementGroups/managementGroupIdValue",
 			Expected: &ManagementGroupId{
-				ManagementGroupsNamespace: "Microsoft.Management",
-				ManagementGroupId:         "managementGroupIdValue",
+				ManagementGroupId: "managementGroupIdValue",
 			},
 		},
 		{
@@ -152,8 +142,7 @@ func TestParseManagementGroupIDInsensitively(t *testing.T) {
 			// Valid URI (mIxEd CaSe since this is insensitive)
 			Input: "/pRoViDeRs/mIcRoSoFt.mAnAgEmEnT/mAnAgEmEnTgRoUpS/mAnAgEmEnTgRoUpIdVaLuE",
 			Expected: &ManagementGroupId{
-				ManagementGroupsNamespace: "Microsoft.Management",
-				ManagementGroupId:         "mAnAgEmEnTgRoUpIdVaLuE",
+				ManagementGroupId: "mAnAgEmEnTgRoUpIdVaLuE",
 			},
 		},
 		{
@@ -175,10 +164,6 @@ func TestParseManagementGroupIDInsensitively(t *testing.T) {
 		}
 		if v.Error {
 			t.Fatal("Expect an error but didn't get one")
-		}
-
-		if actual.ManagementGroupsNamespace != v.Expected.ManagementGroupsNamespace {
-			t.Fatalf("Expected %q but got %q for ManagementGroupsNamespace", v.Expected.ManagementGroupsNamespace, actual.ManagementGroupsNamespace)
 		}
 
 		if actual.ManagementGroupId != v.Expected.ManagementGroupId {

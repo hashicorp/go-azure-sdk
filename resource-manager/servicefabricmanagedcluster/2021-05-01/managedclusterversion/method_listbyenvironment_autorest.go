@@ -18,7 +18,7 @@ type ListByEnvironmentOperationResponse struct {
 }
 
 // ListByEnvironment ...
-func (c ManagedClusterVersionClient) ListByEnvironment(ctx context.Context, id EnvironmentId) (result ListByEnvironmentOperationResponse, err error) {
+func (c ManagedClusterVersionClient) ListByEnvironment(ctx context.Context, id LocationId) (result ListByEnvironmentOperationResponse, err error) {
 	req, err := c.preparerForListByEnvironment(ctx, id)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "managedclusterversion.ManagedClusterVersionClient", "ListByEnvironment", nil, "Failure preparing request")
@@ -41,7 +41,7 @@ func (c ManagedClusterVersionClient) ListByEnvironment(ctx context.Context, id E
 }
 
 // preparerForListByEnvironment prepares the ListByEnvironment request.
-func (c ManagedClusterVersionClient) preparerForListByEnvironment(ctx context.Context, id EnvironmentId) (*http.Request, error) {
+func (c ManagedClusterVersionClient) preparerForListByEnvironment(ctx context.Context, id LocationId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}
@@ -50,7 +50,7 @@ func (c ManagedClusterVersionClient) preparerForListByEnvironment(ctx context.Co
 		autorest.AsContentType("application/json; charset=utf-8"),
 		autorest.AsGet(),
 		autorest.WithBaseURL(c.baseUri),
-		autorest.WithPath(fmt.Sprintf("%s/managedClusterVersions", id.ID())),
+		autorest.WithPath(fmt.Sprintf("%s/environments/Windows/managedClusterVersions", id.ID())),
 		autorest.WithQueryParameters(queryParameters))
 	return preparer.Prepare((&http.Request{}).WithContext(ctx))
 }

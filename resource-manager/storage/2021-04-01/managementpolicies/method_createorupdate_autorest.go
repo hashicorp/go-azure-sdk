@@ -2,6 +2,7 @@ package managementpolicies
 
 import (
 	"context"
+	"fmt"
 	"net/http"
 
 	"github.com/Azure/go-autorest/autorest"
@@ -17,7 +18,7 @@ type CreateOrUpdateOperationResponse struct {
 }
 
 // CreateOrUpdate ...
-func (c ManagementPoliciesClient) CreateOrUpdate(ctx context.Context, id ManagementPolicyId, input ManagementPolicy) (result CreateOrUpdateOperationResponse, err error) {
+func (c ManagementPoliciesClient) CreateOrUpdate(ctx context.Context, id StorageAccountId, input ManagementPolicy) (result CreateOrUpdateOperationResponse, err error) {
 	req, err := c.preparerForCreateOrUpdate(ctx, id, input)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "managementpolicies.ManagementPoliciesClient", "CreateOrUpdate", nil, "Failure preparing request")
@@ -40,7 +41,7 @@ func (c ManagementPoliciesClient) CreateOrUpdate(ctx context.Context, id Managem
 }
 
 // preparerForCreateOrUpdate prepares the CreateOrUpdate request.
-func (c ManagementPoliciesClient) preparerForCreateOrUpdate(ctx context.Context, id ManagementPolicyId, input ManagementPolicy) (*http.Request, error) {
+func (c ManagementPoliciesClient) preparerForCreateOrUpdate(ctx context.Context, id StorageAccountId, input ManagementPolicy) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}
@@ -49,7 +50,7 @@ func (c ManagementPoliciesClient) preparerForCreateOrUpdate(ctx context.Context,
 		autorest.AsContentType("application/json; charset=utf-8"),
 		autorest.AsPut(),
 		autorest.WithBaseURL(c.baseUri),
-		autorest.WithPath(id.ID()),
+		autorest.WithPath(fmt.Sprintf("%s/managementPolicies/default", id.ID())),
 		autorest.WithJSON(input),
 		autorest.WithQueryParameters(queryParameters))
 	return preparer.Prepare((&http.Request{}).WithContext(ctx))

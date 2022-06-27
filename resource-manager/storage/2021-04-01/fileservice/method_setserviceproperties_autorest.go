@@ -2,6 +2,7 @@ package fileservice
 
 import (
 	"context"
+	"fmt"
 	"net/http"
 
 	"github.com/Azure/go-autorest/autorest"
@@ -17,7 +18,7 @@ type SetServicePropertiesOperationResponse struct {
 }
 
 // SetServiceProperties ...
-func (c FileServiceClient) SetServiceProperties(ctx context.Context, id FileServiceId, input FileServiceProperties) (result SetServicePropertiesOperationResponse, err error) {
+func (c FileServiceClient) SetServiceProperties(ctx context.Context, id StorageAccountId, input FileServiceProperties) (result SetServicePropertiesOperationResponse, err error) {
 	req, err := c.preparerForSetServiceProperties(ctx, id, input)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "fileservice.FileServiceClient", "SetServiceProperties", nil, "Failure preparing request")
@@ -40,7 +41,7 @@ func (c FileServiceClient) SetServiceProperties(ctx context.Context, id FileServ
 }
 
 // preparerForSetServiceProperties prepares the SetServiceProperties request.
-func (c FileServiceClient) preparerForSetServiceProperties(ctx context.Context, id FileServiceId, input FileServiceProperties) (*http.Request, error) {
+func (c FileServiceClient) preparerForSetServiceProperties(ctx context.Context, id StorageAccountId, input FileServiceProperties) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}
@@ -49,7 +50,7 @@ func (c FileServiceClient) preparerForSetServiceProperties(ctx context.Context, 
 		autorest.AsContentType("application/json; charset=utf-8"),
 		autorest.AsPut(),
 		autorest.WithBaseURL(c.baseUri),
-		autorest.WithPath(id.ID()),
+		autorest.WithPath(fmt.Sprintf("%s/fileServices/default", id.ID())),
 		autorest.WithJSON(input),
 		autorest.WithQueryParameters(queryParameters))
 	return preparer.Prepare((&http.Request{}).WithContext(ctx))

@@ -9,11 +9,7 @@ import (
 var _ resourceids.ResourceId = Providers2RemediationId{}
 
 func TestNewProviders2RemediationID(t *testing.T) {
-	id := NewProviders2RemediationID("Microsoft.Management", "managementGroupIdValue", "remediationValue")
-
-	if id.ManagementGroupsNamespace != "Microsoft.Management" {
-		t.Fatalf("Expected %q but got %q for Segment 'ManagementGroupsNamespace'", id.ManagementGroupsNamespace, "Microsoft.Management")
-	}
+	id := NewProviders2RemediationID("managementGroupIdValue", "remediationValue")
 
 	if id.ManagementGroupId != "managementGroupIdValue" {
 		t.Fatalf("Expected %q but got %q for Segment 'ManagementGroupId'", id.ManagementGroupId, "managementGroupIdValue")
@@ -25,7 +21,7 @@ func TestNewProviders2RemediationID(t *testing.T) {
 }
 
 func TestFormatProviders2RemediationID(t *testing.T) {
-	actual := NewProviders2RemediationID("Microsoft.Management", "managementGroupIdValue", "remediationValue").ID()
+	actual := NewProviders2RemediationID("managementGroupIdValue", "remediationValue").ID()
 	expected := "/providers/Microsoft.Management/managementGroups/managementGroupIdValue/providers/Microsoft.PolicyInsights/remediations/remediationValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
@@ -82,9 +78,8 @@ func TestParseProviders2RemediationID(t *testing.T) {
 			// Valid URI
 			Input: "/providers/Microsoft.Management/managementGroups/managementGroupIdValue/providers/Microsoft.PolicyInsights/remediations/remediationValue",
 			Expected: &Providers2RemediationId{
-				ManagementGroupsNamespace: "Microsoft.Management",
-				ManagementGroupId:         "managementGroupIdValue",
-				RemediationName:           "remediationValue",
+				ManagementGroupId: "managementGroupIdValue",
+				RemediationName:   "remediationValue",
 			},
 		},
 		{
@@ -106,10 +101,6 @@ func TestParseProviders2RemediationID(t *testing.T) {
 		}
 		if v.Error {
 			t.Fatal("Expect an error but didn't get one")
-		}
-
-		if actual.ManagementGroupsNamespace != v.Expected.ManagementGroupsNamespace {
-			t.Fatalf("Expected %q but got %q for ManagementGroupsNamespace", v.Expected.ManagementGroupsNamespace, actual.ManagementGroupsNamespace)
 		}
 
 		if actual.ManagementGroupId != v.Expected.ManagementGroupId {
@@ -208,9 +199,8 @@ func TestParseProviders2RemediationIDInsensitively(t *testing.T) {
 			// Valid URI
 			Input: "/providers/Microsoft.Management/managementGroups/managementGroupIdValue/providers/Microsoft.PolicyInsights/remediations/remediationValue",
 			Expected: &Providers2RemediationId{
-				ManagementGroupsNamespace: "Microsoft.Management",
-				ManagementGroupId:         "managementGroupIdValue",
-				RemediationName:           "remediationValue",
+				ManagementGroupId: "managementGroupIdValue",
+				RemediationName:   "remediationValue",
 			},
 		},
 		{
@@ -222,9 +212,8 @@ func TestParseProviders2RemediationIDInsensitively(t *testing.T) {
 			// Valid URI (mIxEd CaSe since this is insensitive)
 			Input: "/pRoViDeRs/mIcRoSoFt.mAnAgEmEnT/mAnAgEmEnTgRoUpS/mAnAgEmEnTgRoUpIdVaLuE/pRoViDeRs/mIcRoSoFt.pOlIcYiNsIgHtS/rEmEdIaTiOnS/rEmEdIaTiOnVaLuE",
 			Expected: &Providers2RemediationId{
-				ManagementGroupsNamespace: "Microsoft.Management",
-				ManagementGroupId:         "mAnAgEmEnTgRoUpIdVaLuE",
-				RemediationName:           "rEmEdIaTiOnVaLuE",
+				ManagementGroupId: "mAnAgEmEnTgRoUpIdVaLuE",
+				RemediationName:   "rEmEdIaTiOnVaLuE",
 			},
 		},
 		{
@@ -246,10 +235,6 @@ func TestParseProviders2RemediationIDInsensitively(t *testing.T) {
 		}
 		if v.Error {
 			t.Fatal("Expect an error but didn't get one")
-		}
-
-		if actual.ManagementGroupsNamespace != v.Expected.ManagementGroupsNamespace {
-			t.Fatalf("Expected %q but got %q for ManagementGroupsNamespace", v.Expected.ManagementGroupsNamespace, actual.ManagementGroupsNamespace)
 		}
 
 		if actual.ManagementGroupId != v.Expected.ManagementGroupId {

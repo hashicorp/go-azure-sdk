@@ -48,31 +48,6 @@ func parseAllowedMethods(input string) (*AllowedMethods, error) {
 	return &out, nil
 }
 
-type FileServicesName string
-
-const (
-	FileServicesNameDefault FileServicesName = "default"
-)
-
-func PossibleValuesForFileServicesName() []string {
-	return []string{
-		string(FileServicesNameDefault),
-	}
-}
-
-func parseFileServicesName(input string) (*FileServicesName, error) {
-	vals := map[string]FileServicesName{
-		"default": FileServicesNameDefault,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := FileServicesName(input)
-	return &out, nil
-}
-
 type SkuName string
 
 const (

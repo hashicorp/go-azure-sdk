@@ -2,6 +2,7 @@ package migrationconfigs
 
 import (
 	"context"
+	"fmt"
 	"net/http"
 
 	"github.com/Azure/go-autorest/autorest"
@@ -16,7 +17,7 @@ type DeleteOperationResponse struct {
 }
 
 // Delete ...
-func (c MigrationConfigsClient) Delete(ctx context.Context, id ConfigId) (result DeleteOperationResponse, err error) {
+func (c MigrationConfigsClient) Delete(ctx context.Context, id NamespaceId) (result DeleteOperationResponse, err error) {
 	req, err := c.preparerForDelete(ctx, id)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "migrationconfigs.MigrationConfigsClient", "Delete", nil, "Failure preparing request")
@@ -39,7 +40,7 @@ func (c MigrationConfigsClient) Delete(ctx context.Context, id ConfigId) (result
 }
 
 // preparerForDelete prepares the Delete request.
-func (c MigrationConfigsClient) preparerForDelete(ctx context.Context, id ConfigId) (*http.Request, error) {
+func (c MigrationConfigsClient) preparerForDelete(ctx context.Context, id NamespaceId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}
@@ -48,7 +49,7 @@ func (c MigrationConfigsClient) preparerForDelete(ctx context.Context, id Config
 		autorest.AsContentType("application/json; charset=utf-8"),
 		autorest.AsDelete(),
 		autorest.WithBaseURL(c.baseUri),
-		autorest.WithPath(id.ID()),
+		autorest.WithPath(fmt.Sprintf("%s/migrationConfigurations/$default", id.ID())),
 		autorest.WithQueryParameters(queryParameters))
 	return preparer.Prepare((&http.Request{}).WithContext(ctx))
 }

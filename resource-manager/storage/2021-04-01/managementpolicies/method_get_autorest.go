@@ -2,6 +2,7 @@ package managementpolicies
 
 import (
 	"context"
+	"fmt"
 	"net/http"
 
 	"github.com/Azure/go-autorest/autorest"
@@ -17,7 +18,7 @@ type GetOperationResponse struct {
 }
 
 // Get ...
-func (c ManagementPoliciesClient) Get(ctx context.Context, id ManagementPolicyId) (result GetOperationResponse, err error) {
+func (c ManagementPoliciesClient) Get(ctx context.Context, id StorageAccountId) (result GetOperationResponse, err error) {
 	req, err := c.preparerForGet(ctx, id)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "managementpolicies.ManagementPoliciesClient", "Get", nil, "Failure preparing request")
@@ -40,7 +41,7 @@ func (c ManagementPoliciesClient) Get(ctx context.Context, id ManagementPolicyId
 }
 
 // preparerForGet prepares the Get request.
-func (c ManagementPoliciesClient) preparerForGet(ctx context.Context, id ManagementPolicyId) (*http.Request, error) {
+func (c ManagementPoliciesClient) preparerForGet(ctx context.Context, id StorageAccountId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}
@@ -49,7 +50,7 @@ func (c ManagementPoliciesClient) preparerForGet(ctx context.Context, id Managem
 		autorest.AsContentType("application/json; charset=utf-8"),
 		autorest.AsGet(),
 		autorest.WithBaseURL(c.baseUri),
-		autorest.WithPath(id.ID()),
+		autorest.WithPath(fmt.Sprintf("%s/managementPolicies/default", id.ID())),
 		autorest.WithQueryParameters(queryParameters))
 	return preparer.Prepare((&http.Request{}).WithContext(ctx))
 }

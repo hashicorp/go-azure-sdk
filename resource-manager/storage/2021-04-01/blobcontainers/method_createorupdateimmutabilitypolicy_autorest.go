@@ -2,6 +2,7 @@ package blobcontainers
 
 import (
 	"context"
+	"fmt"
 	"net/http"
 
 	"github.com/Azure/go-autorest/autorest"
@@ -41,7 +42,7 @@ func (o CreateOrUpdateImmutabilityPolicyOperationOptions) toQueryString() map[st
 }
 
 // CreateOrUpdateImmutabilityPolicy ...
-func (c BlobContainersClient) CreateOrUpdateImmutabilityPolicy(ctx context.Context, id ImmutabilityPolicyId, input ImmutabilityPolicy, options CreateOrUpdateImmutabilityPolicyOperationOptions) (result CreateOrUpdateImmutabilityPolicyOperationResponse, err error) {
+func (c BlobContainersClient) CreateOrUpdateImmutabilityPolicy(ctx context.Context, id ContainerId, input ImmutabilityPolicy, options CreateOrUpdateImmutabilityPolicyOperationOptions) (result CreateOrUpdateImmutabilityPolicyOperationResponse, err error) {
 	req, err := c.preparerForCreateOrUpdateImmutabilityPolicy(ctx, id, input, options)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "blobcontainers.BlobContainersClient", "CreateOrUpdateImmutabilityPolicy", nil, "Failure preparing request")
@@ -64,7 +65,7 @@ func (c BlobContainersClient) CreateOrUpdateImmutabilityPolicy(ctx context.Conte
 }
 
 // preparerForCreateOrUpdateImmutabilityPolicy prepares the CreateOrUpdateImmutabilityPolicy request.
-func (c BlobContainersClient) preparerForCreateOrUpdateImmutabilityPolicy(ctx context.Context, id ImmutabilityPolicyId, input ImmutabilityPolicy, options CreateOrUpdateImmutabilityPolicyOperationOptions) (*http.Request, error) {
+func (c BlobContainersClient) preparerForCreateOrUpdateImmutabilityPolicy(ctx context.Context, id ContainerId, input ImmutabilityPolicy, options CreateOrUpdateImmutabilityPolicyOperationOptions) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}
@@ -78,7 +79,7 @@ func (c BlobContainersClient) preparerForCreateOrUpdateImmutabilityPolicy(ctx co
 		autorest.AsPut(),
 		autorest.WithBaseURL(c.baseUri),
 		autorest.WithHeaders(options.toHeaders()),
-		autorest.WithPath(id.ID()),
+		autorest.WithPath(fmt.Sprintf("%s/immutabilityPolicies/default", id.ID())),
 		autorest.WithJSON(input),
 		autorest.WithQueryParameters(queryParameters))
 	return preparer.Prepare((&http.Request{}).WithContext(ctx))

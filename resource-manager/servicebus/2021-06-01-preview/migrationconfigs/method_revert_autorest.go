@@ -17,7 +17,7 @@ type RevertOperationResponse struct {
 }
 
 // Revert ...
-func (c MigrationConfigsClient) Revert(ctx context.Context, id ConfigId) (result RevertOperationResponse, err error) {
+func (c MigrationConfigsClient) Revert(ctx context.Context, id NamespaceId) (result RevertOperationResponse, err error) {
 	req, err := c.preparerForRevert(ctx, id)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "migrationconfigs.MigrationConfigsClient", "Revert", nil, "Failure preparing request")
@@ -40,7 +40,7 @@ func (c MigrationConfigsClient) Revert(ctx context.Context, id ConfigId) (result
 }
 
 // preparerForRevert prepares the Revert request.
-func (c MigrationConfigsClient) preparerForRevert(ctx context.Context, id ConfigId) (*http.Request, error) {
+func (c MigrationConfigsClient) preparerForRevert(ctx context.Context, id NamespaceId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}
@@ -49,7 +49,7 @@ func (c MigrationConfigsClient) preparerForRevert(ctx context.Context, id Config
 		autorest.AsContentType("application/json; charset=utf-8"),
 		autorest.AsPost(),
 		autorest.WithBaseURL(c.baseUri),
-		autorest.WithPath(fmt.Sprintf("%s/revert", id.ID())),
+		autorest.WithPath(fmt.Sprintf("%s/migrationConfigurations/$default/revert", id.ID())),
 		autorest.WithQueryParameters(queryParameters))
 	return preparer.Prepare((&http.Request{}).WithContext(ctx))
 }
