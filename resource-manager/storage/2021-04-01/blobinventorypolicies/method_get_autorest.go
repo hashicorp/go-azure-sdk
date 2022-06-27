@@ -2,6 +2,7 @@ package blobinventorypolicies
 
 import (
 	"context"
+	"fmt"
 	"net/http"
 
 	"github.com/Azure/go-autorest/autorest"
@@ -17,7 +18,7 @@ type GetOperationResponse struct {
 }
 
 // Get ...
-func (c BlobInventoryPoliciesClient) Get(ctx context.Context, id BlobInventoryPolicyId) (result GetOperationResponse, err error) {
+func (c BlobInventoryPoliciesClient) Get(ctx context.Context, id StorageAccountId) (result GetOperationResponse, err error) {
 	req, err := c.preparerForGet(ctx, id)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "blobinventorypolicies.BlobInventoryPoliciesClient", "Get", nil, "Failure preparing request")
@@ -40,7 +41,7 @@ func (c BlobInventoryPoliciesClient) Get(ctx context.Context, id BlobInventoryPo
 }
 
 // preparerForGet prepares the Get request.
-func (c BlobInventoryPoliciesClient) preparerForGet(ctx context.Context, id BlobInventoryPolicyId) (*http.Request, error) {
+func (c BlobInventoryPoliciesClient) preparerForGet(ctx context.Context, id StorageAccountId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}
@@ -49,7 +50,7 @@ func (c BlobInventoryPoliciesClient) preparerForGet(ctx context.Context, id Blob
 		autorest.AsContentType("application/json; charset=utf-8"),
 		autorest.AsGet(),
 		autorest.WithBaseURL(c.baseUri),
-		autorest.WithPath(id.ID()),
+		autorest.WithPath(fmt.Sprintf("%s/inventoryPolicies/default", id.ID())),
 		autorest.WithQueryParameters(queryParameters))
 	return preparer.Prepare((&http.Request{}).WithContext(ctx))
 }

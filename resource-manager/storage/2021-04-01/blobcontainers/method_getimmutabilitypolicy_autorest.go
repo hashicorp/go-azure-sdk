@@ -2,6 +2,7 @@ package blobcontainers
 
 import (
 	"context"
+	"fmt"
 	"net/http"
 
 	"github.com/Azure/go-autorest/autorest"
@@ -41,7 +42,7 @@ func (o GetImmutabilityPolicyOperationOptions) toQueryString() map[string]interf
 }
 
 // GetImmutabilityPolicy ...
-func (c BlobContainersClient) GetImmutabilityPolicy(ctx context.Context, id ImmutabilityPolicyId, options GetImmutabilityPolicyOperationOptions) (result GetImmutabilityPolicyOperationResponse, err error) {
+func (c BlobContainersClient) GetImmutabilityPolicy(ctx context.Context, id ContainerId, options GetImmutabilityPolicyOperationOptions) (result GetImmutabilityPolicyOperationResponse, err error) {
 	req, err := c.preparerForGetImmutabilityPolicy(ctx, id, options)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "blobcontainers.BlobContainersClient", "GetImmutabilityPolicy", nil, "Failure preparing request")
@@ -64,7 +65,7 @@ func (c BlobContainersClient) GetImmutabilityPolicy(ctx context.Context, id Immu
 }
 
 // preparerForGetImmutabilityPolicy prepares the GetImmutabilityPolicy request.
-func (c BlobContainersClient) preparerForGetImmutabilityPolicy(ctx context.Context, id ImmutabilityPolicyId, options GetImmutabilityPolicyOperationOptions) (*http.Request, error) {
+func (c BlobContainersClient) preparerForGetImmutabilityPolicy(ctx context.Context, id ContainerId, options GetImmutabilityPolicyOperationOptions) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}
@@ -78,7 +79,7 @@ func (c BlobContainersClient) preparerForGetImmutabilityPolicy(ctx context.Conte
 		autorest.AsGet(),
 		autorest.WithBaseURL(c.baseUri),
 		autorest.WithHeaders(options.toHeaders()),
-		autorest.WithPath(id.ID()),
+		autorest.WithPath(fmt.Sprintf("%s/immutabilityPolicies/default", id.ID())),
 		autorest.WithQueryParameters(queryParameters))
 	return preparer.Prepare((&http.Request{}).WithContext(ctx))
 }

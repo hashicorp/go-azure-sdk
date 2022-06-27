@@ -48,31 +48,6 @@ func parseAllowedMethods(input string) (*AllowedMethods, error) {
 	return &out, nil
 }
 
-type BlobServicesName string
-
-const (
-	BlobServicesNameDefault BlobServicesName = "default"
-)
-
-func PossibleValuesForBlobServicesName() []string {
-	return []string{
-		string(BlobServicesNameDefault),
-	}
-}
-
-func parseBlobServicesName(input string) (*BlobServicesName, error) {
-	vals := map[string]BlobServicesName{
-		"default": BlobServicesNameDefault,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := BlobServicesName(input)
-	return &out, nil
-}
-
 type Name string
 
 const (

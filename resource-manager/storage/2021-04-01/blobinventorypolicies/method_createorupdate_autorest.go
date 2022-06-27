@@ -2,6 +2,7 @@ package blobinventorypolicies
 
 import (
 	"context"
+	"fmt"
 	"net/http"
 
 	"github.com/Azure/go-autorest/autorest"
@@ -17,7 +18,7 @@ type CreateOrUpdateOperationResponse struct {
 }
 
 // CreateOrUpdate ...
-func (c BlobInventoryPoliciesClient) CreateOrUpdate(ctx context.Context, id BlobInventoryPolicyId, input BlobInventoryPolicy) (result CreateOrUpdateOperationResponse, err error) {
+func (c BlobInventoryPoliciesClient) CreateOrUpdate(ctx context.Context, id StorageAccountId, input BlobInventoryPolicy) (result CreateOrUpdateOperationResponse, err error) {
 	req, err := c.preparerForCreateOrUpdate(ctx, id, input)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "blobinventorypolicies.BlobInventoryPoliciesClient", "CreateOrUpdate", nil, "Failure preparing request")
@@ -40,7 +41,7 @@ func (c BlobInventoryPoliciesClient) CreateOrUpdate(ctx context.Context, id Blob
 }
 
 // preparerForCreateOrUpdate prepares the CreateOrUpdate request.
-func (c BlobInventoryPoliciesClient) preparerForCreateOrUpdate(ctx context.Context, id BlobInventoryPolicyId, input BlobInventoryPolicy) (*http.Request, error) {
+func (c BlobInventoryPoliciesClient) preparerForCreateOrUpdate(ctx context.Context, id StorageAccountId, input BlobInventoryPolicy) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}
@@ -49,7 +50,7 @@ func (c BlobInventoryPoliciesClient) preparerForCreateOrUpdate(ctx context.Conte
 		autorest.AsContentType("application/json; charset=utf-8"),
 		autorest.AsPut(),
 		autorest.WithBaseURL(c.baseUri),
-		autorest.WithPath(id.ID()),
+		autorest.WithPath(fmt.Sprintf("%s/inventoryPolicies/default", id.ID())),
 		autorest.WithJSON(input),
 		autorest.WithQueryParameters(queryParameters))
 	return preparer.Prepare((&http.Request{}).WithContext(ctx))

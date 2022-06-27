@@ -2,6 +2,7 @@ package blobinventorypolicies
 
 import (
 	"context"
+	"fmt"
 	"net/http"
 
 	"github.com/Azure/go-autorest/autorest"
@@ -16,7 +17,7 @@ type DeleteOperationResponse struct {
 }
 
 // Delete ...
-func (c BlobInventoryPoliciesClient) Delete(ctx context.Context, id BlobInventoryPolicyId) (result DeleteOperationResponse, err error) {
+func (c BlobInventoryPoliciesClient) Delete(ctx context.Context, id StorageAccountId) (result DeleteOperationResponse, err error) {
 	req, err := c.preparerForDelete(ctx, id)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "blobinventorypolicies.BlobInventoryPoliciesClient", "Delete", nil, "Failure preparing request")
@@ -39,7 +40,7 @@ func (c BlobInventoryPoliciesClient) Delete(ctx context.Context, id BlobInventor
 }
 
 // preparerForDelete prepares the Delete request.
-func (c BlobInventoryPoliciesClient) preparerForDelete(ctx context.Context, id BlobInventoryPolicyId) (*http.Request, error) {
+func (c BlobInventoryPoliciesClient) preparerForDelete(ctx context.Context, id StorageAccountId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}
@@ -48,7 +49,7 @@ func (c BlobInventoryPoliciesClient) preparerForDelete(ctx context.Context, id B
 		autorest.AsContentType("application/json; charset=utf-8"),
 		autorest.AsDelete(),
 		autorest.WithBaseURL(c.baseUri),
-		autorest.WithPath(id.ID()),
+		autorest.WithPath(fmt.Sprintf("%s/inventoryPolicies/default", id.ID())),
 		autorest.WithQueryParameters(queryParameters))
 	return preparer.Prepare((&http.Request{}).WithContext(ctx))
 }

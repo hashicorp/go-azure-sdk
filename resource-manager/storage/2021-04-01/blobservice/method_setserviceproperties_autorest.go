@@ -2,6 +2,7 @@ package blobservice
 
 import (
 	"context"
+	"fmt"
 	"net/http"
 
 	"github.com/Azure/go-autorest/autorest"
@@ -17,7 +18,7 @@ type SetServicePropertiesOperationResponse struct {
 }
 
 // SetServiceProperties ...
-func (c BlobServiceClient) SetServiceProperties(ctx context.Context, id BlobServiceId, input BlobServiceProperties) (result SetServicePropertiesOperationResponse, err error) {
+func (c BlobServiceClient) SetServiceProperties(ctx context.Context, id StorageAccountId, input BlobServiceProperties) (result SetServicePropertiesOperationResponse, err error) {
 	req, err := c.preparerForSetServiceProperties(ctx, id, input)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "blobservice.BlobServiceClient", "SetServiceProperties", nil, "Failure preparing request")
@@ -40,7 +41,7 @@ func (c BlobServiceClient) SetServiceProperties(ctx context.Context, id BlobServ
 }
 
 // preparerForSetServiceProperties prepares the SetServiceProperties request.
-func (c BlobServiceClient) preparerForSetServiceProperties(ctx context.Context, id BlobServiceId, input BlobServiceProperties) (*http.Request, error) {
+func (c BlobServiceClient) preparerForSetServiceProperties(ctx context.Context, id StorageAccountId, input BlobServiceProperties) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}
@@ -49,7 +50,7 @@ func (c BlobServiceClient) preparerForSetServiceProperties(ctx context.Context, 
 		autorest.AsContentType("application/json; charset=utf-8"),
 		autorest.AsPut(),
 		autorest.WithBaseURL(c.baseUri),
-		autorest.WithPath(id.ID()),
+		autorest.WithPath(fmt.Sprintf("%s/blobServices/default", id.ID())),
 		autorest.WithJSON(input),
 		autorest.WithQueryParameters(queryParameters))
 	return preparer.Prepare((&http.Request{}).WithContext(ctx))

@@ -2,6 +2,7 @@ package heatmaps
 
 import (
 	"context"
+	"fmt"
 	"net/http"
 
 	"github.com/Azure/go-autorest/autorest"
@@ -46,7 +47,7 @@ func (o HeatMapGetOperationOptions) toQueryString() map[string]interface{} {
 }
 
 // HeatMapGet ...
-func (c HeatMapsClient) HeatMapGet(ctx context.Context, id HeatMapTypeId, options HeatMapGetOperationOptions) (result HeatMapGetOperationResponse, err error) {
+func (c HeatMapsClient) HeatMapGet(ctx context.Context, id TrafficManagerProfileId, options HeatMapGetOperationOptions) (result HeatMapGetOperationResponse, err error) {
 	req, err := c.preparerForHeatMapGet(ctx, id, options)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "heatmaps.HeatMapsClient", "HeatMapGet", nil, "Failure preparing request")
@@ -69,7 +70,7 @@ func (c HeatMapsClient) HeatMapGet(ctx context.Context, id HeatMapTypeId, option
 }
 
 // preparerForHeatMapGet prepares the HeatMapGet request.
-func (c HeatMapsClient) preparerForHeatMapGet(ctx context.Context, id HeatMapTypeId, options HeatMapGetOperationOptions) (*http.Request, error) {
+func (c HeatMapsClient) preparerForHeatMapGet(ctx context.Context, id TrafficManagerProfileId, options HeatMapGetOperationOptions) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}
@@ -83,7 +84,7 @@ func (c HeatMapsClient) preparerForHeatMapGet(ctx context.Context, id HeatMapTyp
 		autorest.AsGet(),
 		autorest.WithBaseURL(c.baseUri),
 		autorest.WithHeaders(options.toHeaders()),
-		autorest.WithPath(id.ID()),
+		autorest.WithPath(fmt.Sprintf("%s/heatMaps/default", id.ID())),
 		autorest.WithQueryParameters(queryParameters))
 	return preparer.Prepare((&http.Request{}).WithContext(ctx))
 }

@@ -2,6 +2,7 @@ package migrationconfigs
 
 import (
 	"context"
+	"fmt"
 	"net/http"
 
 	"github.com/Azure/go-autorest/autorest"
@@ -17,7 +18,7 @@ type GetOperationResponse struct {
 }
 
 // Get ...
-func (c MigrationConfigsClient) Get(ctx context.Context, id ConfigId) (result GetOperationResponse, err error) {
+func (c MigrationConfigsClient) Get(ctx context.Context, id NamespaceId) (result GetOperationResponse, err error) {
 	req, err := c.preparerForGet(ctx, id)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "migrationconfigs.MigrationConfigsClient", "Get", nil, "Failure preparing request")
@@ -40,7 +41,7 @@ func (c MigrationConfigsClient) Get(ctx context.Context, id ConfigId) (result Ge
 }
 
 // preparerForGet prepares the Get request.
-func (c MigrationConfigsClient) preparerForGet(ctx context.Context, id ConfigId) (*http.Request, error) {
+func (c MigrationConfigsClient) preparerForGet(ctx context.Context, id NamespaceId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}
@@ -49,7 +50,7 @@ func (c MigrationConfigsClient) preparerForGet(ctx context.Context, id ConfigId)
 		autorest.AsContentType("application/json; charset=utf-8"),
 		autorest.AsGet(),
 		autorest.WithBaseURL(c.baseUri),
-		autorest.WithPath(id.ID()),
+		autorest.WithPath(fmt.Sprintf("%s/migrationConfigurations/$default", id.ID())),
 		autorest.WithQueryParameters(queryParameters))
 	return preparer.Prepare((&http.Request{}).WithContext(ctx))
 }

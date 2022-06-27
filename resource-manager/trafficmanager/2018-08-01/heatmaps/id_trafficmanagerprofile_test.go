@@ -1,4 +1,4 @@
-package fileservice
+package heatmaps
 
 import (
 	"testing"
@@ -6,10 +6,10 @@ import (
 	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
 )
 
-var _ resourceids.ResourceId = FileServiceId{}
+var _ resourceids.ResourceId = TrafficManagerProfileId{}
 
-func TestNewFileServiceID(t *testing.T) {
-	id := NewFileServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "default")
+func TestNewTrafficManagerProfileID(t *testing.T) {
+	id := NewTrafficManagerProfileID("12345678-1234-9876-4563-123456789012", "example-resource-group", "profileValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -19,28 +19,24 @@ func TestNewFileServiceID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.AccountName != "accountValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AccountName'", id.AccountName, "accountValue")
-	}
-
-	if id.FileServicesName != "default" {
-		t.Fatalf("Expected %q but got %q for Segment 'FileServicesName'", id.FileServicesName, "default")
+	if id.ProfileName != "profileValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'ProfileName'", id.ProfileName, "profileValue")
 	}
 }
 
-func TestFormatFileServiceID(t *testing.T) {
-	actual := NewFileServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "default").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/accountValue/fileServices/default"
+func TestFormatTrafficManagerProfileID(t *testing.T) {
+	actual := NewTrafficManagerProfileID("12345678-1234-9876-4563-123456789012", "example-resource-group", "profileValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/trafficManagerProfiles/profileValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
 }
 
-func TestParseFileServiceID(t *testing.T) {
+func TestParseTrafficManagerProfileID(t *testing.T) {
 	testData := []struct {
 		Input    string
 		Error    bool
-		Expected *FileServiceId
+		Expected *TrafficManagerProfileId
 	}{
 		{
 			// Incomplete URI
@@ -74,44 +70,33 @@ func TestParseFileServiceID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts",
-			Error: true,
-		},
-		{
-			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/accountValue",
-			Error: true,
-		},
-		{
-			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/accountValue/fileServices",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/trafficManagerProfiles",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/accountValue/fileServices/default",
-			Expected: &FileServiceId{
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/trafficManagerProfiles/profileValue",
+			Expected: &TrafficManagerProfileId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				AccountName:       "accountValue",
-				FileServicesName:  "default",
+				ProfileName:       "profileValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/accountValue/fileServices/default/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/trafficManagerProfiles/profileValue/extra",
 			Error: true,
 		},
 	}
 	for _, v := range testData {
 		t.Logf("[DEBUG] Testing %q", v.Input)
 
-		actual, err := ParseFileServiceID(v.Input)
+		actual, err := ParseTrafficManagerProfileID(v.Input)
 		if err != nil {
 			if v.Error {
 				continue
@@ -131,22 +116,18 @@ func TestParseFileServiceID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.AccountName != v.Expected.AccountName {
-			t.Fatalf("Expected %q but got %q for AccountName", v.Expected.AccountName, actual.AccountName)
-		}
-
-		if actual.FileServicesName != v.Expected.FileServicesName {
-			t.Fatalf("Expected %q but got %q for FileServicesName", v.Expected.FileServicesName, actual.FileServicesName)
+		if actual.ProfileName != v.Expected.ProfileName {
+			t.Fatalf("Expected %q but got %q for ProfileName", v.Expected.ProfileName, actual.ProfileName)
 		}
 
 	}
 }
 
-func TestParseFileServiceIDInsensitively(t *testing.T) {
+func TestParseTrafficManagerProfileIDInsensitively(t *testing.T) {
 	testData := []struct {
 		Input    string
 		Error    bool
-		Expected *FileServiceId
+		Expected *TrafficManagerProfileId
 	}{
 		{
 			// Incomplete URI
@@ -205,79 +186,57 @@ func TestParseFileServiceIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/trafficManagerProfiles",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGe/sToRaGeAcCoUnTs",
-			Error: true,
-		},
-		{
-			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/accountValue",
-			Error: true,
-		},
-		{
-			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGe/sToRaGeAcCoUnTs/aCcOuNtVaLuE",
-			Error: true,
-		},
-		{
-			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/accountValue/fileServices",
-			Error: true,
-		},
-		{
-			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGe/sToRaGeAcCoUnTs/aCcOuNtVaLuE/fIlEsErViCeS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/tRaFfIcMaNaGeRpRoFiLeS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/accountValue/fileServices/default",
-			Expected: &FileServiceId{
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/trafficManagerProfiles/profileValue",
+			Expected: &TrafficManagerProfileId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				AccountName:       "accountValue",
-				FileServicesName:  "default",
+				ProfileName:       "profileValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/accountValue/fileServices/default/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/trafficManagerProfiles/profileValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGe/sToRaGeAcCoUnTs/aCcOuNtVaLuE/fIlEsErViCeS/dEfAuLt",
-			Expected: &FileServiceId{
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/tRaFfIcMaNaGeRpRoFiLeS/pRoFiLeVaLuE",
+			Expected: &TrafficManagerProfileId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				AccountName:       "aCcOuNtVaLuE",
-				FileServicesName:  "default",
+				ProfileName:       "pRoFiLeVaLuE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGe/sToRaGeAcCoUnTs/aCcOuNtVaLuE/fIlEsErViCeS/dEfAuLt/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/tRaFfIcMaNaGeRpRoFiLeS/pRoFiLeVaLuE/extra",
 			Error: true,
 		},
 	}
 	for _, v := range testData {
 		t.Logf("[DEBUG] Testing %q", v.Input)
 
-		actual, err := ParseFileServiceIDInsensitively(v.Input)
+		actual, err := ParseTrafficManagerProfileIDInsensitively(v.Input)
 		if err != nil {
 			if v.Error {
 				continue
@@ -297,21 +256,17 @@ func TestParseFileServiceIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.AccountName != v.Expected.AccountName {
-			t.Fatalf("Expected %q but got %q for AccountName", v.Expected.AccountName, actual.AccountName)
-		}
-
-		if actual.FileServicesName != v.Expected.FileServicesName {
-			t.Fatalf("Expected %q but got %q for FileServicesName", v.Expected.FileServicesName, actual.FileServicesName)
+		if actual.ProfileName != v.Expected.ProfileName {
+			t.Fatalf("Expected %q but got %q for ProfileName", v.Expected.ProfileName, actual.ProfileName)
 		}
 
 	}
 }
 
-func TestSegmentsForFileServiceId(t *testing.T) {
-	segments := FileServiceId{}.Segments()
+func TestSegmentsForTrafficManagerProfileId(t *testing.T) {
+	segments := TrafficManagerProfileId{}.Segments()
 	if len(segments) == 0 {
-		t.Fatalf("FileServiceId has no segments")
+		t.Fatalf("TrafficManagerProfileId has no segments")
 	}
 
 	uniqueNames := make(map[string]struct{}, 0)

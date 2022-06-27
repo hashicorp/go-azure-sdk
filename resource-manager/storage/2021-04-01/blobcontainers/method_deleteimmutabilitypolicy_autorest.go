@@ -2,6 +2,7 @@ package blobcontainers
 
 import (
 	"context"
+	"fmt"
 	"net/http"
 
 	"github.com/Azure/go-autorest/autorest"
@@ -41,7 +42,7 @@ func (o DeleteImmutabilityPolicyOperationOptions) toQueryString() map[string]int
 }
 
 // DeleteImmutabilityPolicy ...
-func (c BlobContainersClient) DeleteImmutabilityPolicy(ctx context.Context, id ImmutabilityPolicyId, options DeleteImmutabilityPolicyOperationOptions) (result DeleteImmutabilityPolicyOperationResponse, err error) {
+func (c BlobContainersClient) DeleteImmutabilityPolicy(ctx context.Context, id ContainerId, options DeleteImmutabilityPolicyOperationOptions) (result DeleteImmutabilityPolicyOperationResponse, err error) {
 	req, err := c.preparerForDeleteImmutabilityPolicy(ctx, id, options)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "blobcontainers.BlobContainersClient", "DeleteImmutabilityPolicy", nil, "Failure preparing request")
@@ -64,7 +65,7 @@ func (c BlobContainersClient) DeleteImmutabilityPolicy(ctx context.Context, id I
 }
 
 // preparerForDeleteImmutabilityPolicy prepares the DeleteImmutabilityPolicy request.
-func (c BlobContainersClient) preparerForDeleteImmutabilityPolicy(ctx context.Context, id ImmutabilityPolicyId, options DeleteImmutabilityPolicyOperationOptions) (*http.Request, error) {
+func (c BlobContainersClient) preparerForDeleteImmutabilityPolicy(ctx context.Context, id ContainerId, options DeleteImmutabilityPolicyOperationOptions) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}
@@ -78,7 +79,7 @@ func (c BlobContainersClient) preparerForDeleteImmutabilityPolicy(ctx context.Co
 		autorest.AsDelete(),
 		autorest.WithBaseURL(c.baseUri),
 		autorest.WithHeaders(options.toHeaders()),
-		autorest.WithPath(id.ID()),
+		autorest.WithPath(fmt.Sprintf("%s/immutabilityPolicies/default", id.ID())),
 		autorest.WithQueryParameters(queryParameters))
 	return preparer.Prepare((&http.Request{}).WithContext(ctx))
 }

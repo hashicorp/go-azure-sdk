@@ -2,6 +2,7 @@ package queueserviceproperties
 
 import (
 	"context"
+	"fmt"
 	"net/http"
 
 	"github.com/Azure/go-autorest/autorest"
@@ -17,7 +18,7 @@ type QueueServicesSetServicePropertiesOperationResponse struct {
 }
 
 // QueueServicesSetServiceProperties ...
-func (c QueueServicePropertiesClient) QueueServicesSetServiceProperties(ctx context.Context, id QueueServiceId, input QueueServiceProperties) (result QueueServicesSetServicePropertiesOperationResponse, err error) {
+func (c QueueServicePropertiesClient) QueueServicesSetServiceProperties(ctx context.Context, id StorageAccountId, input QueueServiceProperties) (result QueueServicesSetServicePropertiesOperationResponse, err error) {
 	req, err := c.preparerForQueueServicesSetServiceProperties(ctx, id, input)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "queueserviceproperties.QueueServicePropertiesClient", "QueueServicesSetServiceProperties", nil, "Failure preparing request")
@@ -40,7 +41,7 @@ func (c QueueServicePropertiesClient) QueueServicesSetServiceProperties(ctx cont
 }
 
 // preparerForQueueServicesSetServiceProperties prepares the QueueServicesSetServiceProperties request.
-func (c QueueServicePropertiesClient) preparerForQueueServicesSetServiceProperties(ctx context.Context, id QueueServiceId, input QueueServiceProperties) (*http.Request, error) {
+func (c QueueServicePropertiesClient) preparerForQueueServicesSetServiceProperties(ctx context.Context, id StorageAccountId, input QueueServiceProperties) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}
@@ -49,7 +50,7 @@ func (c QueueServicePropertiesClient) preparerForQueueServicesSetServiceProperti
 		autorest.AsContentType("application/json; charset=utf-8"),
 		autorest.AsPut(),
 		autorest.WithBaseURL(c.baseUri),
-		autorest.WithPath(id.ID()),
+		autorest.WithPath(fmt.Sprintf("%s/queueServices/default", id.ID())),
 		autorest.WithJSON(input),
 		autorest.WithQueryParameters(queryParameters))
 	return preparer.Prepare((&http.Request{}).WithContext(ctx))

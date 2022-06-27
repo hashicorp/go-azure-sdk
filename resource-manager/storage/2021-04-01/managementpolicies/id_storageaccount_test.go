@@ -1,4 +1,4 @@
-package blobservice
+package managementpolicies
 
 import (
 	"testing"
@@ -6,10 +6,10 @@ import (
 	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
 )
 
-var _ resourceids.ResourceId = BlobServiceId{}
+var _ resourceids.ResourceId = StorageAccountId{}
 
-func TestNewBlobServiceID(t *testing.T) {
-	id := NewBlobServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "default")
+func TestNewStorageAccountID(t *testing.T) {
+	id := NewStorageAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,25 +22,21 @@ func TestNewBlobServiceID(t *testing.T) {
 	if id.AccountName != "accountValue" {
 		t.Fatalf("Expected %q but got %q for Segment 'AccountName'", id.AccountName, "accountValue")
 	}
-
-	if id.BlobServicesName != "default" {
-		t.Fatalf("Expected %q but got %q for Segment 'BlobServicesName'", id.BlobServicesName, "default")
-	}
 }
 
-func TestFormatBlobServiceID(t *testing.T) {
-	actual := NewBlobServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "default").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/accountValue/blobServices/default"
+func TestFormatStorageAccountID(t *testing.T) {
+	actual := NewStorageAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/accountValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
 }
 
-func TestParseBlobServiceID(t *testing.T) {
+func TestParseStorageAccountID(t *testing.T) {
 	testData := []struct {
 		Input    string
 		Error    bool
-		Expected *BlobServiceId
+		Expected *StorageAccountId
 	}{
 		{
 			// Incomplete URI
@@ -83,35 +79,24 @@ func TestParseBlobServiceID(t *testing.T) {
 			Error: true,
 		},
 		{
-			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/accountValue",
-			Error: true,
-		},
-		{
-			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/accountValue/blobServices",
-			Error: true,
-		},
-		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/accountValue/blobServices/default",
-			Expected: &BlobServiceId{
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/accountValue",
+			Expected: &StorageAccountId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				AccountName:       "accountValue",
-				BlobServicesName:  "default",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/accountValue/blobServices/default/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/accountValue/extra",
 			Error: true,
 		},
 	}
 	for _, v := range testData {
 		t.Logf("[DEBUG] Testing %q", v.Input)
 
-		actual, err := ParseBlobServiceID(v.Input)
+		actual, err := ParseStorageAccountID(v.Input)
 		if err != nil {
 			if v.Error {
 				continue
@@ -135,18 +120,14 @@ func TestParseBlobServiceID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for AccountName", v.Expected.AccountName, actual.AccountName)
 		}
 
-		if actual.BlobServicesName != v.Expected.BlobServicesName {
-			t.Fatalf("Expected %q but got %q for BlobServicesName", v.Expected.BlobServicesName, actual.BlobServicesName)
-		}
-
 	}
 }
 
-func TestParseBlobServiceIDInsensitively(t *testing.T) {
+func TestParseStorageAccountIDInsensitively(t *testing.T) {
 	testData := []struct {
 		Input    string
 		Error    bool
-		Expected *BlobServiceId
+		Expected *StorageAccountId
 	}{
 		{
 			// Incomplete URI
@@ -224,60 +205,38 @@ func TestParseBlobServiceIDInsensitively(t *testing.T) {
 			Error: true,
 		},
 		{
-			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/accountValue",
-			Error: true,
-		},
-		{
-			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGe/sToRaGeAcCoUnTs/aCcOuNtVaLuE",
-			Error: true,
-		},
-		{
-			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/accountValue/blobServices",
-			Error: true,
-		},
-		{
-			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGe/sToRaGeAcCoUnTs/aCcOuNtVaLuE/bLoBsErViCeS",
-			Error: true,
-		},
-		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/accountValue/blobServices/default",
-			Expected: &BlobServiceId{
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/accountValue",
+			Expected: &StorageAccountId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				AccountName:       "accountValue",
-				BlobServicesName:  "default",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/accountValue/blobServices/default/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/accountValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGe/sToRaGeAcCoUnTs/aCcOuNtVaLuE/bLoBsErViCeS/dEfAuLt",
-			Expected: &BlobServiceId{
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGe/sToRaGeAcCoUnTs/aCcOuNtVaLuE",
+			Expected: &StorageAccountId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
 				AccountName:       "aCcOuNtVaLuE",
-				BlobServicesName:  "default",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGe/sToRaGeAcCoUnTs/aCcOuNtVaLuE/bLoBsErViCeS/dEfAuLt/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGe/sToRaGeAcCoUnTs/aCcOuNtVaLuE/extra",
 			Error: true,
 		},
 	}
 	for _, v := range testData {
 		t.Logf("[DEBUG] Testing %q", v.Input)
 
-		actual, err := ParseBlobServiceIDInsensitively(v.Input)
+		actual, err := ParseStorageAccountIDInsensitively(v.Input)
 		if err != nil {
 			if v.Error {
 				continue
@@ -301,17 +260,13 @@ func TestParseBlobServiceIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for AccountName", v.Expected.AccountName, actual.AccountName)
 		}
 
-		if actual.BlobServicesName != v.Expected.BlobServicesName {
-			t.Fatalf("Expected %q but got %q for BlobServicesName", v.Expected.BlobServicesName, actual.BlobServicesName)
-		}
-
 	}
 }
 
-func TestSegmentsForBlobServiceId(t *testing.T) {
-	segments := BlobServiceId{}.Segments()
+func TestSegmentsForStorageAccountId(t *testing.T) {
+	segments := StorageAccountId{}.Segments()
 	if len(segments) == 0 {
-		t.Fatalf("BlobServiceId has no segments")
+		t.Fatalf("StorageAccountId has no segments")
 	}
 
 	uniqueNames := make(map[string]struct{}, 0)

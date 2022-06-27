@@ -17,7 +17,7 @@ type CompleteMigrationOperationResponse struct {
 }
 
 // CompleteMigration ...
-func (c MigrationConfigsClient) CompleteMigration(ctx context.Context, id ConfigId) (result CompleteMigrationOperationResponse, err error) {
+func (c MigrationConfigsClient) CompleteMigration(ctx context.Context, id NamespaceId) (result CompleteMigrationOperationResponse, err error) {
 	req, err := c.preparerForCompleteMigration(ctx, id)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "migrationconfigs.MigrationConfigsClient", "CompleteMigration", nil, "Failure preparing request")
@@ -40,7 +40,7 @@ func (c MigrationConfigsClient) CompleteMigration(ctx context.Context, id Config
 }
 
 // preparerForCompleteMigration prepares the CompleteMigration request.
-func (c MigrationConfigsClient) preparerForCompleteMigration(ctx context.Context, id ConfigId) (*http.Request, error) {
+func (c MigrationConfigsClient) preparerForCompleteMigration(ctx context.Context, id NamespaceId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}
@@ -49,7 +49,7 @@ func (c MigrationConfigsClient) preparerForCompleteMigration(ctx context.Context
 		autorest.AsContentType("application/json; charset=utf-8"),
 		autorest.AsPost(),
 		autorest.WithBaseURL(c.baseUri),
-		autorest.WithPath(fmt.Sprintf("%s/upgrade", id.ID())),
+		autorest.WithPath(fmt.Sprintf("%s/migrationConfigurations/$default/upgrade", id.ID())),
 		autorest.WithQueryParameters(queryParameters))
 	return preparer.Prepare((&http.Request{}).WithContext(ctx))
 }

@@ -47,28 +47,3 @@ func parseAllowedMethods(input string) (*AllowedMethods, error) {
 	out := AllowedMethods(input)
 	return &out, nil
 }
-
-type QueueServiceName string
-
-const (
-	QueueServiceNameDefault QueueServiceName = "default"
-)
-
-func PossibleValuesForQueueServiceName() []string {
-	return []string{
-		string(QueueServiceNameDefault),
-	}
-}
-
-func parseQueueServiceName(input string) (*QueueServiceName, error) {
-	vals := map[string]QueueServiceName{
-		"default": QueueServiceNameDefault,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := QueueServiceName(input)
-	return &out, nil
-}

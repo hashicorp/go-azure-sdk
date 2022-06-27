@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = EnvironmentManagedClusterVersionId{}
 
 func TestNewEnvironmentManagedClusterVersionID(t *testing.T) {
-	id := NewEnvironmentManagedClusterVersionID("12345678-1234-9876-4563-123456789012", "locationValue", "Windows", "clusterVersionValue")
+	id := NewEnvironmentManagedClusterVersionID("12345678-1234-9876-4563-123456789012", "locationValue", "clusterVersionValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -19,17 +19,13 @@ func TestNewEnvironmentManagedClusterVersionID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'Location'", id.Location, "locationValue")
 	}
 
-	if id.Environment != "Windows" {
-		t.Fatalf("Expected %q but got %q for Segment 'Environment'", id.Environment, "Windows")
-	}
-
 	if id.ClusterVersion != "clusterVersionValue" {
 		t.Fatalf("Expected %q but got %q for Segment 'ClusterVersion'", id.ClusterVersion, "clusterVersionValue")
 	}
 }
 
 func TestFormatEnvironmentManagedClusterVersionID(t *testing.T) {
-	actual := NewEnvironmentManagedClusterVersionID("12345678-1234-9876-4563-123456789012", "locationValue", "Windows", "clusterVersionValue").ID()
+	actual := NewEnvironmentManagedClusterVersionID("12345678-1234-9876-4563-123456789012", "locationValue", "clusterVersionValue").ID()
 	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.ServiceFabric/locations/locationValue/environments/Windows/managedClusterVersions/clusterVersionValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
@@ -98,7 +94,6 @@ func TestParseEnvironmentManagedClusterVersionID(t *testing.T) {
 			Expected: &EnvironmentManagedClusterVersionId{
 				SubscriptionId: "12345678-1234-9876-4563-123456789012",
 				Location:       "locationValue",
-				Environment:    "Windows",
 				ClusterVersion: "clusterVersionValue",
 			},
 		},
@@ -129,10 +124,6 @@ func TestParseEnvironmentManagedClusterVersionID(t *testing.T) {
 
 		if actual.Location != v.Expected.Location {
 			t.Fatalf("Expected %q but got %q for Location", v.Expected.Location, actual.Location)
-		}
-
-		if actual.Environment != v.Expected.Environment {
-			t.Fatalf("Expected %q but got %q for Environment", v.Expected.Environment, actual.Environment)
 		}
 
 		if actual.ClusterVersion != v.Expected.ClusterVersion {
@@ -249,7 +240,6 @@ func TestParseEnvironmentManagedClusterVersionIDInsensitively(t *testing.T) {
 			Expected: &EnvironmentManagedClusterVersionId{
 				SubscriptionId: "12345678-1234-9876-4563-123456789012",
 				Location:       "locationValue",
-				Environment:    "Windows",
 				ClusterVersion: "clusterVersionValue",
 			},
 		},
@@ -264,7 +254,6 @@ func TestParseEnvironmentManagedClusterVersionIDInsensitively(t *testing.T) {
 			Expected: &EnvironmentManagedClusterVersionId{
 				SubscriptionId: "12345678-1234-9876-4563-123456789012",
 				Location:       "lOcAtIoNvAlUe",
-				Environment:    "Windows",
 				ClusterVersion: "cLuStErVeRsIoNvAlUe",
 			},
 		},
@@ -295,10 +284,6 @@ func TestParseEnvironmentManagedClusterVersionIDInsensitively(t *testing.T) {
 
 		if actual.Location != v.Expected.Location {
 			t.Fatalf("Expected %q but got %q for Location", v.Expected.Location, actual.Location)
-		}
-
-		if actual.Environment != v.Expected.Environment {
-			t.Fatalf("Expected %q but got %q for Environment", v.Expected.Environment, actual.Environment)
 		}
 
 		if actual.ClusterVersion != v.Expected.ClusterVersion {
