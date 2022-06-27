@@ -73,6 +73,8 @@ func (c SignalRClient) senderForRegenerateKey(ctx context.Context, req *http.Req
 	if err != nil {
 		return
 	}
+
 	future.Poller, err = polling.NewLongRunningPollerFromResponse(ctx, resp, c.Client)
+
 	return
 }

@@ -73,6 +73,8 @@ func (c SqlVirtualMachineGroupsClient) senderForCreateOrUpdate(ctx context.Conte
 	if err != nil {
 		return
 	}
+
 	future.Poller, err = polling.NewLongRunningPollerFromResponse(ctx, resp, c.Client)
+
 	return
 }

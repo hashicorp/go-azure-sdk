@@ -73,6 +73,8 @@ func (c OnlineEndpointClient) senderForRegenerateKeys(ctx context.Context, req *
 	if err != nil {
 		return
 	}
+
 	future.Poller, err = polling.NewLongRunningPollerFromResponse(ctx, resp, c.Client)
+
 	return
 }

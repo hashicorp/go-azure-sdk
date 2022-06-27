@@ -73,6 +73,8 @@ func (c LinksClient) senderForLinkerUpdate(ctx context.Context, req *http.Reques
 	if err != nil {
 		return
 	}
+
 	future.Poller, err = polling.NewLongRunningPollerFromResponse(ctx, resp, c.Client)
+
 	return
 }

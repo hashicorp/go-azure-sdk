@@ -73,6 +73,8 @@ func (c SpacecraftClient) senderForUpdateTags(ctx context.Context, req *http.Req
 	if err != nil {
 		return
 	}
+
 	future.Poller, err = polling.NewLongRunningPollerFromResponse(ctx, resp, c.Client)
+
 	return
 }

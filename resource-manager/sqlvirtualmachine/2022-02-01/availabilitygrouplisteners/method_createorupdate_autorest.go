@@ -73,6 +73,8 @@ func (c AvailabilityGroupListenersClient) senderForCreateOrUpdate(ctx context.Co
 	if err != nil {
 		return
 	}
+
 	future.Poller, err = polling.NewLongRunningPollerFromResponse(ctx, resp, c.Client)
+
 	return
 }
