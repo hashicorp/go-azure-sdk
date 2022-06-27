@@ -73,6 +73,8 @@ func (c ManagedEnvironmentsClient) senderForUpdate(ctx context.Context, req *htt
 	if err != nil {
 		return
 	}
+
 	future.Poller, err = polling.NewLongRunningPollerFromResponse(ctx, resp, c.Client)
+
 	return
 }

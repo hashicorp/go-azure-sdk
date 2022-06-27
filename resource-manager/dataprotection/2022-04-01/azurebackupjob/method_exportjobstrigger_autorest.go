@@ -72,6 +72,8 @@ func (c AzureBackupJobClient) senderForExportJobsTrigger(ctx context.Context, re
 	if err != nil {
 		return
 	}
+
 	future.Poller, err = polling.NewLongRunningPollerFromResponse(ctx, resp, c.Client)
+
 	return
 }

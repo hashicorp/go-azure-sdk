@@ -72,6 +72,8 @@ func (c LabClient) senderForSyncGroup(ctx context.Context, req *http.Request) (f
 	if err != nil {
 		return
 	}
+
 	future.Poller, err = polling.NewLongRunningPollerFromResponse(ctx, resp, c.Client)
+
 	return
 }

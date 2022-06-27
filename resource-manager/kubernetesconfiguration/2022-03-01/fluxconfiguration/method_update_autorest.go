@@ -73,6 +73,8 @@ func (c FluxConfigurationClient) senderForUpdate(ctx context.Context, req *http.
 	if err != nil {
 		return
 	}
+
 	future.Poller, err = polling.NewLongRunningPollerFromResponse(ctx, resp, c.Client)
+
 	return
 }

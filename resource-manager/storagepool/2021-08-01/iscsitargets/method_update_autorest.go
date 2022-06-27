@@ -73,6 +73,8 @@ func (c IscsiTargetsClient) senderForUpdate(ctx context.Context, req *http.Reque
 	if err != nil {
 		return
 	}
+
 	future.Poller, err = polling.NewLongRunningPollerFromResponse(ctx, resp, c.Client)
+
 	return
 }

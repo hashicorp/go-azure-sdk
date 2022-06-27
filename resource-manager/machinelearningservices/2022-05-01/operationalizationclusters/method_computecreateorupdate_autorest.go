@@ -73,6 +73,8 @@ func (c OperationalizationClustersClient) senderForComputeCreateOrUpdate(ctx con
 	if err != nil {
 		return
 	}
+
 	future.Poller, err = polling.NewLongRunningPollerFromResponse(ctx, resp, c.Client)
+
 	return
 }

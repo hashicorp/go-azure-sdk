@@ -73,6 +73,8 @@ func (c MachineLearningComputesClient) senderForComputeCreateOrUpdate(ctx contex
 	if err != nil {
 		return
 	}
+
 	future.Poller, err = polling.NewLongRunningPollerFromResponse(ctx, resp, c.Client)
+
 	return
 }

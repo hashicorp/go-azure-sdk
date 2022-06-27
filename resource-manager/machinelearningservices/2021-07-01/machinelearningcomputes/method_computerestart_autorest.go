@@ -72,6 +72,8 @@ func (c MachineLearningComputesClient) senderForComputeRestart(ctx context.Conte
 	if err != nil {
 		return
 	}
+
 	future.Poller, err = polling.NewLongRunningPollerFromResponse(ctx, resp, c.Client)
+
 	return
 }

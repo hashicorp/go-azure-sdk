@@ -72,6 +72,8 @@ func (c DiskPoolsClient) senderForDeallocate(ctx context.Context, req *http.Requ
 	if err != nil {
 		return
 	}
+
 	future.Poller, err = polling.NewLongRunningPollerFromResponse(ctx, resp, c.Client)
+
 	return
 }

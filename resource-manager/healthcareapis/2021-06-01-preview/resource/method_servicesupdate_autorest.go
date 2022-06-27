@@ -73,6 +73,8 @@ func (c ResourceClient) senderForServicesUpdate(ctx context.Context, req *http.R
 	if err != nil {
 		return
 	}
+
 	future.Poller, err = polling.NewLongRunningPollerFromResponse(ctx, resp, c.Client)
+
 	return
 }

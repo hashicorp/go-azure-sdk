@@ -73,6 +73,8 @@ func (c DatabasesClient) senderForCreate(ctx context.Context, req *http.Request)
 	if err != nil {
 		return
 	}
+
 	future.Poller, err = polling.NewLongRunningPollerFromResponse(ctx, resp, c.Client)
+
 	return
 }

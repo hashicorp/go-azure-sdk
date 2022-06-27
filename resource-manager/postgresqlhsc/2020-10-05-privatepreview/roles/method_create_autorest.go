@@ -73,6 +73,8 @@ func (c RolesClient) senderForCreate(ctx context.Context, req *http.Request) (fu
 	if err != nil {
 		return
 	}
+
 	future.Poller, err = polling.NewLongRunningPollerFromResponse(ctx, resp, c.Client)
+
 	return
 }

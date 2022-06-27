@@ -73,6 +73,8 @@ func (c PrivateEndpointConnectionsClient) senderForCreate(ctx context.Context, r
 	if err != nil {
 		return
 	}
+
 	future.Poller, err = polling.NewLongRunningPollerFromResponse(ctx, resp, c.Client)
+
 	return
 }

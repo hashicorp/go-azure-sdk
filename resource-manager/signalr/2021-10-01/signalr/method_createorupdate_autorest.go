@@ -73,6 +73,8 @@ func (c SignalRClient) senderForCreateOrUpdate(ctx context.Context, req *http.Re
 	if err != nil {
 		return
 	}
+
 	future.Poller, err = polling.NewLongRunningPollerFromResponse(ctx, resp, c.Client)
+
 	return
 }
