@@ -17,9 +17,6 @@ import "github.com/hashicorp/go-azure-sdk/resource-manager/resources/2020-06-01/
 ```go
 client := providers.NewProvidersClientWithBaseURI("https://management.azure.com")
 client.Client.Authorizer = authorizer
-if err != nil {
-	// handle the error
-}
 ```
 
 
@@ -28,6 +25,7 @@ if err != nil {
 ```go
 ctx := context.TODO()
 id := providers.NewSubscriptionProviderID("12345678-1234-9876-4563-123456789012", "resourceProviderNamespaceValue")
+
 read, err := client.Get(ctx, id, providers.DefaultGetOperationOptions())
 if err != nil {
 	// handle the error
@@ -43,6 +41,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := providers.NewProviderID("resourceProviderNamespaceValue")
+
 read, err := client.GetAtTenantScope(ctx, id, providers.DefaultGetAtTenantScopeOperationOptions())
 if err != nil {
 	// handle the error
@@ -58,6 +57,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := providers.NewSubscriptionID()
+
 // alternatively `client.List(ctx, id, providers.DefaultListOperationOptions())` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id, providers.DefaultListOperationOptions())
 if err != nil {
@@ -73,6 +73,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
+
 
 // alternatively `client.ListAtTenantScope(ctx, providers.DefaultListAtTenantScopeOperationOptions())` can be used to do batched pagination
 items, err := client.ListAtTenantScopeComplete(ctx, providers.DefaultListAtTenantScopeOperationOptions())
@@ -90,6 +91,7 @@ for _, item := range items {
 ```go
 ctx := context.TODO()
 id := providers.NewSubscriptionProviderID("12345678-1234-9876-4563-123456789012", "resourceProviderNamespaceValue")
+
 read, err := client.Register(ctx, id)
 if err != nil {
 	// handle the error
@@ -105,6 +107,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := providers.NewProviders2ID("groupIdValue", "resourceProviderNamespaceValue")
+
 read, err := client.RegisterAtManagementGroupScope(ctx, id)
 if err != nil {
 	// handle the error
@@ -120,6 +123,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := providers.NewSubscriptionProviderID("12345678-1234-9876-4563-123456789012", "resourceProviderNamespaceValue")
+
 read, err := client.Unregister(ctx, id)
 if err != nil {
 	// handle the error

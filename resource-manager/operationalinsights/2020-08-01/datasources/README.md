@@ -17,9 +17,6 @@ import "github.com/hashicorp/go-azure-sdk/resource-manager/operationalinsights/2
 ```go
 client := datasources.NewDataSourcesClientWithBaseURI("https://management.azure.com")
 client.Client.Authorizer = authorizer
-if err != nil {
-	// handle the error
-}
 ```
 
 
@@ -32,6 +29,7 @@ id := datasources.NewDataSourceID("12345678-1234-9876-4563-123456789012", "examp
 payload := datasources.DataSource{
 	// ...
 }
+
 
 read, err := client.CreateOrUpdate(ctx, id, payload)
 if err != nil {
@@ -48,6 +46,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := datasources.NewDataSourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "dataSourceValue")
+
 read, err := client.Delete(ctx, id)
 if err != nil {
 	// handle the error
@@ -63,6 +62,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := datasources.NewDataSourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "dataSourceValue")
+
 read, err := client.Get(ctx, id)
 if err != nil {
 	// handle the error
@@ -78,6 +78,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := datasources.NewWorkspaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue")
+
 // alternatively `client.ListByWorkspace(ctx, id, datasources.DefaultListByWorkspaceOperationOptions())` can be used to do batched pagination
 items, err := client.ListByWorkspaceComplete(ctx, id, datasources.DefaultListByWorkspaceOperationOptions())
 if err != nil {

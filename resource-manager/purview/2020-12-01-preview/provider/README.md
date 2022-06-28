@@ -17,9 +17,6 @@ import "github.com/hashicorp/go-azure-sdk/resource-manager/purview/2020-12-01-pr
 ```go
 client := provider.NewProviderClientWithBaseURI("https://management.azure.com")
 client.Client.Authorizer = authorizer
-if err != nil {
-	// handle the error
-}
 ```
 
 
@@ -32,6 +29,7 @@ id := provider.NewSubscriptionID()
 payload := provider.CheckNameAvailabilityRequest{
 	// ...
 }
+
 
 read, err := client.AccountsCheckNameAvailability(ctx, id, payload)
 if err != nil {

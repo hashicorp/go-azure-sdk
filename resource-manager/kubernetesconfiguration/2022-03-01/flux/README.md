@@ -17,9 +17,6 @@ import "github.com/hashicorp/go-azure-sdk/resource-manager/kubernetesconfigurati
 ```go
 client := flux.NewFluxClientWithBaseURI("https://management.azure.com")
 client.Client.Authorizer = authorizer
-if err != nil {
-	// handle the error
-}
 ```
 
 
@@ -33,11 +30,8 @@ payload := flux.FluxConfiguration{
 	// ...
 }
 
-future, err := client.ConfigurationsCreateOrUpdate(ctx, id, payload)
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.ConfigurationsCreateOrUpdateThenPoll(ctx, id, payload); err != nil {
 	// handle the error
 }
 ```
@@ -48,11 +42,8 @@ if err := future.Poller.PollUntilDone(); err != nil {
 ```go
 ctx := context.TODO()
 id := flux.NewFluxConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "clusterRpValue", "clusterResourceValue", "clusterValue", "fluxConfigurationValue")
-future, err := client.ConfigurationsDelete(ctx, id, flux.DefaultConfigurationsDeleteOperationOptions())
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.ConfigurationsDeleteThenPoll(ctx, id, flux.DefaultConfigurationsDeleteOperationOptions()); err != nil {
 	// handle the error
 }
 ```
@@ -63,6 +54,7 @@ if err := future.Poller.PollUntilDone(); err != nil {
 ```go
 ctx := context.TODO()
 id := flux.NewFluxConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "clusterRpValue", "clusterResourceValue", "clusterValue", "fluxConfigurationValue")
+
 read, err := client.ConfigurationsGet(ctx, id)
 if err != nil {
 	// handle the error
@@ -78,6 +70,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := flux.NewProviderID("12345678-1234-9876-4563-123456789012", "example-resource-group", "clusterRpValue", "clusterResourceValue", "clusterValue")
+
 // alternatively `client.ConfigurationsList(ctx, id)` can be used to do batched pagination
 items, err := client.ConfigurationsListComplete(ctx, id)
 if err != nil {
@@ -99,11 +92,8 @@ payload := flux.FluxConfigurationPatch{
 	// ...
 }
 
-future, err := client.ConfigurationsUpdate(ctx, id, payload)
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.ConfigurationsUpdateThenPoll(ctx, id, payload); err != nil {
 	// handle the error
 }
 ```

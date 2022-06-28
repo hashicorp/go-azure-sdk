@@ -17,9 +17,6 @@ import "github.com/hashicorp/go-azure-sdk/resource-manager/orbital/2022-03-01/co
 ```go
 client := contactprofile.NewContactProfileClientWithBaseURI("https://management.azure.com")
 client.Client.Authorizer = authorizer
-if err != nil {
-	// handle the error
-}
 ```
 
 
@@ -33,11 +30,8 @@ payload := contactprofile.ContactProfile{
 	// ...
 }
 
-future, err := client.ContactProfilesCreateOrUpdate(ctx, id, payload)
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.ContactProfilesCreateOrUpdateThenPoll(ctx, id, payload); err != nil {
 	// handle the error
 }
 ```
@@ -48,11 +42,8 @@ if err := future.Poller.PollUntilDone(); err != nil {
 ```go
 ctx := context.TODO()
 id := contactprofile.NewContactProfileID("12345678-1234-9876-4563-123456789012", "example-resource-group", "contactProfileValue")
-future, err := client.ContactProfilesDelete(ctx, id)
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.ContactProfilesDeleteThenPoll(ctx, id); err != nil {
 	// handle the error
 }
 ```
@@ -63,6 +54,7 @@ if err := future.Poller.PollUntilDone(); err != nil {
 ```go
 ctx := context.TODO()
 id := contactprofile.NewContactProfileID("12345678-1234-9876-4563-123456789012", "example-resource-group", "contactProfileValue")
+
 read, err := client.ContactProfilesGet(ctx, id)
 if err != nil {
 	// handle the error
@@ -78,6 +70,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := contactprofile.NewResourceGroupID()
+
 // alternatively `client.ContactProfilesList(ctx, id)` can be used to do batched pagination
 items, err := client.ContactProfilesListComplete(ctx, id)
 if err != nil {
@@ -94,6 +87,7 @@ for _, item := range items {
 ```go
 ctx := context.TODO()
 id := contactprofile.NewSubscriptionID()
+
 // alternatively `client.ContactProfilesListBySubscription(ctx, id)` can be used to do batched pagination
 items, err := client.ContactProfilesListBySubscriptionComplete(ctx, id)
 if err != nil {
@@ -115,11 +109,8 @@ payload := contactprofile.TagsObject{
 	// ...
 }
 
-future, err := client.ContactProfilesUpdateTags(ctx, id, payload)
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.ContactProfilesUpdateTagsThenPoll(ctx, id, payload); err != nil {
 	// handle the error
 }
 ```

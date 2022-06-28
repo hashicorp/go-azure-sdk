@@ -17,9 +17,6 @@ import "github.com/hashicorp/go-azure-sdk/resource-manager/datalakeanalytics/201
 ```go
 client := computepolicies.NewComputePoliciesClientWithBaseURI("https://management.azure.com")
 client.Client.Authorizer = authorizer
-if err != nil {
-	// handle the error
-}
 ```
 
 
@@ -32,6 +29,7 @@ id := computepolicies.NewComputePoliciesID("12345678-1234-9876-4563-123456789012
 payload := computepolicies.CreateOrUpdateComputePolicyParameters{
 	// ...
 }
+
 
 read, err := client.CreateOrUpdate(ctx, id, payload)
 if err != nil {
@@ -48,6 +46,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := computepolicies.NewComputePoliciesID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "computePolicyValue")
+
 read, err := client.Delete(ctx, id)
 if err != nil {
 	// handle the error
@@ -63,6 +62,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := computepolicies.NewComputePoliciesID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "computePolicyValue")
+
 read, err := client.Get(ctx, id)
 if err != nil {
 	// handle the error
@@ -78,6 +78,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := computepolicies.NewAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue")
+
 // alternatively `client.ListByAccount(ctx, id)` can be used to do batched pagination
 items, err := client.ListByAccountComplete(ctx, id)
 if err != nil {
@@ -98,6 +99,7 @@ id := computepolicies.NewComputePoliciesID("12345678-1234-9876-4563-123456789012
 payload := computepolicies.UpdateComputePolicyParameters{
 	// ...
 }
+
 
 read, err := client.Update(ctx, id, payload)
 if err != nil {

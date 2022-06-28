@@ -17,9 +17,6 @@ import "github.com/hashicorp/go-azure-sdk/resource-manager/resources/2020-06-01/
 ```go
 client := resources.NewResourcesClientWithBaseURI("https://management.azure.com")
 client.Client.Authorizer = authorizer
-if err != nil {
-	// handle the error
-}
 ```
 
 
@@ -28,6 +25,7 @@ if err != nil {
 ```go
 ctx := context.TODO()
 id := resources.NewResourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceProviderNamespaceValue", "parentResourcePathValue", "resourceTypeValue", "resourceValue")
+
 read, err := client.CheckExistence(ctx, id)
 if err != nil {
 	// handle the error
@@ -43,6 +41,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := resources.NewScopeID()
+
 read, err := client.CheckExistenceById(ctx, id)
 if err != nil {
 	// handle the error
@@ -63,11 +62,8 @@ payload := resources.GenericResource{
 	// ...
 }
 
-future, err := client.CreateOrUpdate(ctx, id, payload)
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.CreateOrUpdateThenPoll(ctx, id, payload); err != nil {
 	// handle the error
 }
 ```
@@ -83,11 +79,8 @@ payload := resources.GenericResource{
 	// ...
 }
 
-future, err := client.CreateOrUpdateById(ctx, id, payload)
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.CreateOrUpdateByIdThenPoll(ctx, id, payload); err != nil {
 	// handle the error
 }
 ```
@@ -98,11 +91,8 @@ if err := future.Poller.PollUntilDone(); err != nil {
 ```go
 ctx := context.TODO()
 id := resources.NewResourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceProviderNamespaceValue", "parentResourcePathValue", "resourceTypeValue", "resourceValue")
-future, err := client.Delete(ctx, id)
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.DeleteThenPoll(ctx, id); err != nil {
 	// handle the error
 }
 ```
@@ -113,11 +103,8 @@ if err := future.Poller.PollUntilDone(); err != nil {
 ```go
 ctx := context.TODO()
 id := resources.NewScopeID()
-future, err := client.DeleteById(ctx, id)
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.DeleteByIdThenPoll(ctx, id); err != nil {
 	// handle the error
 }
 ```
@@ -128,6 +115,7 @@ if err := future.Poller.PollUntilDone(); err != nil {
 ```go
 ctx := context.TODO()
 id := resources.NewResourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceProviderNamespaceValue", "parentResourcePathValue", "resourceTypeValue", "resourceValue")
+
 read, err := client.Get(ctx, id)
 if err != nil {
 	// handle the error
@@ -143,6 +131,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := resources.NewScopeID()
+
 read, err := client.GetById(ctx, id)
 if err != nil {
 	// handle the error
@@ -158,6 +147,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := resources.NewSubscriptionID()
+
 // alternatively `client.List(ctx, id, resources.DefaultListOperationOptions())` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id, resources.DefaultListOperationOptions())
 if err != nil {
@@ -179,11 +169,8 @@ payload := resources.ResourcesMoveInfo{
 	// ...
 }
 
-future, err := client.MoveResources(ctx, id, payload)
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.MoveResourcesThenPoll(ctx, id, payload); err != nil {
 	// handle the error
 }
 ```
@@ -199,11 +186,8 @@ payload := resources.GenericResource{
 	// ...
 }
 
-future, err := client.Update(ctx, id, payload)
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.UpdateThenPoll(ctx, id, payload); err != nil {
 	// handle the error
 }
 ```
@@ -219,11 +203,8 @@ payload := resources.GenericResource{
 	// ...
 }
 
-future, err := client.UpdateById(ctx, id, payload)
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.UpdateByIdThenPoll(ctx, id, payload); err != nil {
 	// handle the error
 }
 ```
@@ -239,11 +220,8 @@ payload := resources.ResourcesMoveInfo{
 	// ...
 }
 
-future, err := client.ValidateMoveResources(ctx, id, payload)
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.ValidateMoveResourcesThenPoll(ctx, id, payload); err != nil {
 	// handle the error
 }
 ```

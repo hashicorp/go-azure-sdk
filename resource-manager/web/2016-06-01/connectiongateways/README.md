@@ -17,9 +17,6 @@ import "github.com/hashicorp/go-azure-sdk/resource-manager/web/2016-06-01/connec
 ```go
 client := connectiongateways.NewConnectionGatewaysClientWithBaseURI("https://management.azure.com")
 client.Client.Authorizer = authorizer
-if err != nil {
-	// handle the error
-}
 ```
 
 
@@ -28,6 +25,7 @@ if err != nil {
 ```go
 ctx := context.TODO()
 id := connectiongateways.NewConnectionGatewayInstallationID("12345678-1234-9876-4563-123456789012", "locationValue", "gatewayIdValue")
+
 read, err := client.ConnectionGatewayInstallationsGet(ctx, id)
 if err != nil {
 	// handle the error
@@ -43,6 +41,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := connectiongateways.NewLocationID("12345678-1234-9876-4563-123456789012", "locationValue")
+
 read, err := client.ConnectionGatewayInstallationsList(ctx, id)
 if err != nil {
 	// handle the error
@@ -63,6 +62,7 @@ payload := connectiongateways.ConnectionGatewayDefinition{
 	// ...
 }
 
+
 read, err := client.ConnectionGatewaysCreateOrUpdate(ctx, id, payload)
 if err != nil {
 	// handle the error
@@ -78,6 +78,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := connectiongateways.NewConnectionGatewayID("12345678-1234-9876-4563-123456789012", "example-resource-group", "connectionGatewayValue")
+
 read, err := client.ConnectionGatewaysDelete(ctx, id)
 if err != nil {
 	// handle the error
@@ -93,6 +94,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := connectiongateways.NewConnectionGatewayID("12345678-1234-9876-4563-123456789012", "example-resource-group", "connectionGatewayValue")
+
 read, err := client.ConnectionGatewaysGet(ctx, id)
 if err != nil {
 	// handle the error
@@ -108,6 +110,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := connectiongateways.NewSubscriptionID()
+
 read, err := client.ConnectionGatewaysList(ctx, id)
 if err != nil {
 	// handle the error
@@ -123,6 +126,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := connectiongateways.NewResourceGroupID()
+
 read, err := client.ConnectionGatewaysListByResourceGroup(ctx, id)
 if err != nil {
 	// handle the error
@@ -142,6 +146,7 @@ id := connectiongateways.NewConnectionGatewayID("12345678-1234-9876-4563-1234567
 payload := connectiongateways.ConnectionGatewayDefinition{
 	// ...
 }
+
 
 read, err := client.ConnectionGatewaysUpdate(ctx, id, payload)
 if err != nil {

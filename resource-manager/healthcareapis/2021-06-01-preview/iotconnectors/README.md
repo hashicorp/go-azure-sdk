@@ -17,9 +17,6 @@ import "github.com/hashicorp/go-azure-sdk/resource-manager/healthcareapis/2021-0
 ```go
 client := iotconnectors.NewIotConnectorsClientWithBaseURI("https://management.azure.com")
 client.Client.Authorizer = authorizer
-if err != nil {
-	// handle the error
-}
 ```
 
 
@@ -33,11 +30,8 @@ payload := iotconnectors.IotConnector{
 	// ...
 }
 
-future, err := client.CreateOrUpdate(ctx, id, payload)
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.CreateOrUpdateThenPoll(ctx, id, payload); err != nil {
 	// handle the error
 }
 ```
@@ -48,11 +42,8 @@ if err := future.Poller.PollUntilDone(); err != nil {
 ```go
 ctx := context.TODO()
 id := iotconnectors.NewIotConnectorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "iotConnectorValue")
-future, err := client.Delete(ctx, id)
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.DeleteThenPoll(ctx, id); err != nil {
 	// handle the error
 }
 ```
@@ -63,6 +54,7 @@ if err := future.Poller.PollUntilDone(); err != nil {
 ```go
 ctx := context.TODO()
 id := iotconnectors.NewIotConnectorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "iotConnectorValue")
+
 // alternatively `client.FhirDestinationsListByIotConnector(ctx, id)` can be used to do batched pagination
 items, err := client.FhirDestinationsListByIotConnectorComplete(ctx, id)
 if err != nil {
@@ -79,6 +71,7 @@ for _, item := range items {
 ```go
 ctx := context.TODO()
 id := iotconnectors.NewIotConnectorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "iotConnectorValue")
+
 read, err := client.Get(ctx, id)
 if err != nil {
 	// handle the error
@@ -99,11 +92,8 @@ payload := iotconnectors.IotFhirDestination{
 	// ...
 }
 
-future, err := client.IotConnectorFhirDestinationCreateOrUpdate(ctx, id, payload)
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.IotConnectorFhirDestinationCreateOrUpdateThenPoll(ctx, id, payload); err != nil {
 	// handle the error
 }
 ```
@@ -114,11 +104,8 @@ if err := future.Poller.PollUntilDone(); err != nil {
 ```go
 ctx := context.TODO()
 id := iotconnectors.NewFhirDestinationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "iotConnectorValue", "fhirDestinationValue")
-future, err := client.IotConnectorFhirDestinationDelete(ctx, id)
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.IotConnectorFhirDestinationDeleteThenPoll(ctx, id); err != nil {
 	// handle the error
 }
 ```
@@ -129,6 +116,7 @@ if err := future.Poller.PollUntilDone(); err != nil {
 ```go
 ctx := context.TODO()
 id := iotconnectors.NewFhirDestinationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "iotConnectorValue", "fhirDestinationValue")
+
 read, err := client.IotConnectorFhirDestinationGet(ctx, id)
 if err != nil {
 	// handle the error
@@ -144,6 +132,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := iotconnectors.NewWorkspaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue")
+
 // alternatively `client.ListByWorkspace(ctx, id)` can be used to do batched pagination
 items, err := client.ListByWorkspaceComplete(ctx, id)
 if err != nil {
@@ -165,11 +154,8 @@ payload := iotconnectors.IotConnectorPatchResource{
 	// ...
 }
 
-future, err := client.Update(ctx, id, payload)
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.UpdateThenPoll(ctx, id, payload); err != nil {
 	// handle the error
 }
 ```

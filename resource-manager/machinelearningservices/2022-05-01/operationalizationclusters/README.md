@@ -17,9 +17,6 @@ import "github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservic
 ```go
 client := operationalizationclusters.NewOperationalizationClustersClientWithBaseURI("https://management.azure.com")
 client.Client.Authorizer = authorizer
-if err != nil {
-	// handle the error
-}
 ```
 
 
@@ -33,11 +30,8 @@ payload := operationalizationclusters.ComputeResource{
 	// ...
 }
 
-future, err := client.ComputeCreateOrUpdate(ctx, id, payload)
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.ComputeCreateOrUpdateThenPoll(ctx, id, payload); err != nil {
 	// handle the error
 }
 ```
@@ -48,11 +42,8 @@ if err := future.Poller.PollUntilDone(); err != nil {
 ```go
 ctx := context.TODO()
 id := operationalizationclusters.NewComputeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "computeValue")
-future, err := client.ComputeDelete(ctx, id, operationalizationclusters.DefaultComputeDeleteOperationOptions())
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.ComputeDeleteThenPoll(ctx, id, operationalizationclusters.DefaultComputeDeleteOperationOptions()); err != nil {
 	// handle the error
 }
 ```
@@ -63,6 +54,7 @@ if err := future.Poller.PollUntilDone(); err != nil {
 ```go
 ctx := context.TODO()
 id := operationalizationclusters.NewComputeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "computeValue")
+
 read, err := client.ComputeGet(ctx, id)
 if err != nil {
 	// handle the error
@@ -78,6 +70,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := operationalizationclusters.NewWorkspaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue")
+
 // alternatively `client.ComputeList(ctx, id, operationalizationclusters.DefaultComputeListOperationOptions())` can be used to do batched pagination
 items, err := client.ComputeListComplete(ctx, id, operationalizationclusters.DefaultComputeListOperationOptions())
 if err != nil {
@@ -94,6 +87,7 @@ for _, item := range items {
 ```go
 ctx := context.TODO()
 id := operationalizationclusters.NewComputeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "computeValue")
+
 read, err := client.ComputeListKeys(ctx, id)
 if err != nil {
 	// handle the error
@@ -109,11 +103,8 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := operationalizationclusters.NewComputeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "computeValue")
-future, err := client.ComputeRestart(ctx, id)
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.ComputeRestartThenPoll(ctx, id); err != nil {
 	// handle the error
 }
 ```
@@ -124,11 +115,8 @@ if err := future.Poller.PollUntilDone(); err != nil {
 ```go
 ctx := context.TODO()
 id := operationalizationclusters.NewComputeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "computeValue")
-future, err := client.ComputeStart(ctx, id)
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.ComputeStartThenPoll(ctx, id); err != nil {
 	// handle the error
 }
 ```
@@ -139,11 +127,8 @@ if err := future.Poller.PollUntilDone(); err != nil {
 ```go
 ctx := context.TODO()
 id := operationalizationclusters.NewComputeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "computeValue")
-future, err := client.ComputeStop(ctx, id)
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.ComputeStopThenPoll(ctx, id); err != nil {
 	// handle the error
 }
 ```
@@ -159,11 +144,8 @@ payload := operationalizationclusters.ClusterUpdateParameters{
 	// ...
 }
 
-future, err := client.ComputeUpdate(ctx, id, payload)
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.ComputeUpdateThenPoll(ctx, id, payload); err != nil {
 	// handle the error
 }
 ```

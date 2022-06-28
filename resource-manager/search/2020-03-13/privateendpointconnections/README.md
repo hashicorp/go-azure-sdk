@@ -17,9 +17,6 @@ import "github.com/hashicorp/go-azure-sdk/resource-manager/search/2020-03-13/pri
 ```go
 client := privateendpointconnections.NewPrivateEndpointConnectionsClientWithBaseURI("https://management.azure.com")
 client.Client.Authorizer = authorizer
-if err != nil {
-	// handle the error
-}
 ```
 
 
@@ -28,6 +25,7 @@ if err != nil {
 ```go
 ctx := context.TODO()
 id := privateendpointconnections.NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "searchServiceValue", "privateEndpointConnectionValue")
+
 read, err := client.Delete(ctx, id, privateendpointconnections.DefaultDeleteOperationOptions())
 if err != nil {
 	// handle the error
@@ -43,6 +41,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := privateendpointconnections.NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "searchServiceValue", "privateEndpointConnectionValue")
+
 read, err := client.Get(ctx, id, privateendpointconnections.DefaultGetOperationOptions())
 if err != nil {
 	// handle the error
@@ -58,6 +57,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := privateendpointconnections.NewSearchServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "searchServiceValue")
+
 // alternatively `client.ListByService(ctx, id, privateendpointconnections.DefaultListByServiceOperationOptions())` can be used to do batched pagination
 items, err := client.ListByServiceComplete(ctx, id, privateendpointconnections.DefaultListByServiceOperationOptions())
 if err != nil {
@@ -78,6 +78,7 @@ id := privateendpointconnections.NewPrivateEndpointConnectionID("12345678-1234-9
 payload := privateendpointconnections.PrivateEndpointConnection{
 	// ...
 }
+
 
 read, err := client.Update(ctx, id, payload, privateendpointconnections.DefaultUpdateOperationOptions())
 if err != nil {

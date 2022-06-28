@@ -17,9 +17,6 @@ import "github.com/hashicorp/go-azure-sdk/resource-manager/eventhub/2021-11-01/e
 ```go
 client := eventhubsclustersconfiguration.NewEventHubsClustersConfigurationClientWithBaseURI("https://management.azure.com")
 client.Client.Authorizer = authorizer
-if err != nil {
-	// handle the error
-}
 ```
 
 
@@ -28,6 +25,7 @@ if err != nil {
 ```go
 ctx := context.TODO()
 id := eventhubsclustersconfiguration.NewClusterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "clusterValue")
+
 read, err := client.ConfigurationGet(ctx, id)
 if err != nil {
 	// handle the error
@@ -47,6 +45,7 @@ id := eventhubsclustersconfiguration.NewClusterID("12345678-1234-9876-4563-12345
 payload := eventhubsclustersconfiguration.ClusterQuotaConfigurationProperties{
 	// ...
 }
+
 
 read, err := client.ConfigurationPatch(ctx, id, payload)
 if err != nil {

@@ -17,9 +17,6 @@ import "github.com/hashicorp/go-azure-sdk/resource-manager/healthcareapis/2021-0
 ```go
 client := resource.NewResourceClientWithBaseURI("https://management.azure.com")
 client.Client.Authorizer = authorizer
-if err != nil {
-	// handle the error
-}
 ```
 
 
@@ -33,11 +30,8 @@ payload := resource.ServicesDescription{
 	// ...
 }
 
-future, err := client.ServicesCreateOrUpdate(ctx, id, payload)
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.ServicesCreateOrUpdateThenPoll(ctx, id, payload); err != nil {
 	// handle the error
 }
 ```
@@ -48,11 +42,8 @@ if err := future.Poller.PollUntilDone(); err != nil {
 ```go
 ctx := context.TODO()
 id := resource.NewServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue")
-future, err := client.ServicesDelete(ctx, id)
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.ServicesDeleteThenPoll(ctx, id); err != nil {
 	// handle the error
 }
 ```
@@ -63,6 +54,7 @@ if err := future.Poller.PollUntilDone(); err != nil {
 ```go
 ctx := context.TODO()
 id := resource.NewServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue")
+
 read, err := client.ServicesGet(ctx, id)
 if err != nil {
 	// handle the error
@@ -83,11 +75,8 @@ payload := resource.ServicesPatchDescription{
 	// ...
 }
 
-future, err := client.ServicesUpdate(ctx, id, payload)
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.ServicesUpdateThenPoll(ctx, id, payload); err != nil {
 	// handle the error
 }
 ```

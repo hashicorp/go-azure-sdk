@@ -17,9 +17,6 @@ import "github.com/hashicorp/go-azure-sdk/resource-manager/healthcareapis/2021-0
 ```go
 client := collection.NewCollectionClientWithBaseURI("https://management.azure.com")
 client.Client.Authorizer = authorizer
-if err != nil {
-	// handle the error
-}
 ```
 
 
@@ -28,6 +25,7 @@ if err != nil {
 ```go
 ctx := context.TODO()
 id := collection.NewSubscriptionID()
+
 // alternatively `client.ServicesList(ctx, id)` can be used to do batched pagination
 items, err := client.ServicesListComplete(ctx, id)
 if err != nil {
@@ -44,6 +42,7 @@ for _, item := range items {
 ```go
 ctx := context.TODO()
 id := collection.NewResourceGroupID()
+
 // alternatively `client.ServicesListByResourceGroup(ctx, id)` can be used to do batched pagination
 items, err := client.ServicesListByResourceGroupComplete(ctx, id)
 if err != nil {

@@ -17,9 +17,6 @@ import "github.com/hashicorp/go-azure-sdk/resource-manager/storage/2021-04-01/bl
 ```go
 client := blobcontainers.NewBlobContainersClientWithBaseURI("https://management.azure.com")
 client.Client.Authorizer = authorizer
-if err != nil {
-	// handle the error
-}
 ```
 
 
@@ -32,6 +29,7 @@ id := blobcontainers.NewContainerID("12345678-1234-9876-4563-123456789012", "exa
 payload := blobcontainers.LegalHold{
 	// ...
 }
+
 
 read, err := client.ClearLegalHold(ctx, id, payload)
 if err != nil {
@@ -53,6 +51,7 @@ payload := blobcontainers.BlobContainer{
 	// ...
 }
 
+
 read, err := client.Create(ctx, id, payload)
 if err != nil {
 	// handle the error
@@ -73,6 +72,7 @@ payload := blobcontainers.ImmutabilityPolicy{
 	// ...
 }
 
+
 read, err := client.CreateOrUpdateImmutabilityPolicy(ctx, id, payload, blobcontainers.DefaultCreateOrUpdateImmutabilityPolicyOperationOptions())
 if err != nil {
 	// handle the error
@@ -88,6 +88,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := blobcontainers.NewContainerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "containerValue")
+
 read, err := client.Delete(ctx, id)
 if err != nil {
 	// handle the error
@@ -103,6 +104,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := blobcontainers.NewContainerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "containerValue")
+
 read, err := client.DeleteImmutabilityPolicy(ctx, id, blobcontainers.DefaultDeleteImmutabilityPolicyOperationOptions())
 if err != nil {
 	// handle the error
@@ -123,6 +125,7 @@ payload := blobcontainers.ImmutabilityPolicy{
 	// ...
 }
 
+
 read, err := client.ExtendImmutabilityPolicy(ctx, id, payload, blobcontainers.DefaultExtendImmutabilityPolicyOperationOptions())
 if err != nil {
 	// handle the error
@@ -138,6 +141,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := blobcontainers.NewContainerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "containerValue")
+
 read, err := client.Get(ctx, id)
 if err != nil {
 	// handle the error
@@ -153,6 +157,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := blobcontainers.NewContainerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "containerValue")
+
 read, err := client.GetImmutabilityPolicy(ctx, id, blobcontainers.DefaultGetImmutabilityPolicyOperationOptions())
 if err != nil {
 	// handle the error
@@ -173,6 +178,7 @@ payload := blobcontainers.LeaseContainerRequest{
 	// ...
 }
 
+
 read, err := client.Lease(ctx, id, payload)
 if err != nil {
 	// handle the error
@@ -188,6 +194,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := blobcontainers.NewStorageAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue")
+
 // alternatively `client.List(ctx, id, blobcontainers.DefaultListOperationOptions())` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id, blobcontainers.DefaultListOperationOptions())
 if err != nil {
@@ -204,6 +211,7 @@ for _, item := range items {
 ```go
 ctx := context.TODO()
 id := blobcontainers.NewContainerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "containerValue")
+
 read, err := client.LockImmutabilityPolicy(ctx, id, blobcontainers.DefaultLockImmutabilityPolicyOperationOptions())
 if err != nil {
 	// handle the error
@@ -219,11 +227,8 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := blobcontainers.NewContainerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "containerValue")
-future, err := client.ObjectLevelWorm(ctx, id)
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.ObjectLevelWormThenPoll(ctx, id); err != nil {
 	// handle the error
 }
 ```
@@ -238,6 +243,7 @@ id := blobcontainers.NewContainerID("12345678-1234-9876-4563-123456789012", "exa
 payload := blobcontainers.LegalHold{
 	// ...
 }
+
 
 read, err := client.SetLegalHold(ctx, id, payload)
 if err != nil {
@@ -258,6 +264,7 @@ id := blobcontainers.NewContainerID("12345678-1234-9876-4563-123456789012", "exa
 payload := blobcontainers.BlobContainer{
 	// ...
 }
+
 
 read, err := client.Update(ctx, id, payload)
 if err != nil {

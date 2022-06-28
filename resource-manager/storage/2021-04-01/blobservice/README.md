@@ -17,9 +17,6 @@ import "github.com/hashicorp/go-azure-sdk/resource-manager/storage/2021-04-01/bl
 ```go
 client := blobservice.NewBlobServiceClientWithBaseURI("https://management.azure.com")
 client.Client.Authorizer = authorizer
-if err != nil {
-	// handle the error
-}
 ```
 
 
@@ -28,6 +25,7 @@ if err != nil {
 ```go
 ctx := context.TODO()
 id := blobservice.NewStorageAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue")
+
 read, err := client.GetServiceProperties(ctx, id)
 if err != nil {
 	// handle the error
@@ -43,6 +41,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := blobservice.NewStorageAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue")
+
 read, err := client.List(ctx, id)
 if err != nil {
 	// handle the error
@@ -62,6 +61,7 @@ id := blobservice.NewStorageAccountID("12345678-1234-9876-4563-123456789012", "e
 payload := blobservice.BlobServiceProperties{
 	// ...
 }
+
 
 read, err := client.SetServiceProperties(ctx, id, payload)
 if err != nil {

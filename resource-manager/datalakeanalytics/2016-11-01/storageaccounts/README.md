@@ -17,9 +17,6 @@ import "github.com/hashicorp/go-azure-sdk/resource-manager/datalakeanalytics/201
 ```go
 client := storageaccounts.NewStorageAccountsClientWithBaseURI("https://management.azure.com")
 client.Client.Authorizer = authorizer
-if err != nil {
-	// handle the error
-}
 ```
 
 
@@ -32,6 +29,7 @@ id := storageaccounts.NewStorageAccountID("12345678-1234-9876-4563-123456789012"
 payload := storageaccounts.AddStorageAccountParameters{
 	// ...
 }
+
 
 read, err := client.Add(ctx, id, payload)
 if err != nil {
@@ -48,6 +46,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := storageaccounts.NewStorageAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "storageAccountValue")
+
 read, err := client.Delete(ctx, id)
 if err != nil {
 	// handle the error
@@ -63,6 +62,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := storageaccounts.NewStorageAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "storageAccountValue")
+
 read, err := client.Get(ctx, id)
 if err != nil {
 	// handle the error
@@ -78,6 +78,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := storageaccounts.NewContainerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "storageAccountValue", "containerValue")
+
 read, err := client.GetStorageContainer(ctx, id)
 if err != nil {
 	// handle the error
@@ -93,6 +94,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := storageaccounts.NewAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue")
+
 // alternatively `client.ListByAccount(ctx, id, storageaccounts.DefaultListByAccountOperationOptions())` can be used to do batched pagination
 items, err := client.ListByAccountComplete(ctx, id, storageaccounts.DefaultListByAccountOperationOptions())
 if err != nil {
@@ -109,6 +111,7 @@ for _, item := range items {
 ```go
 ctx := context.TODO()
 id := storageaccounts.NewContainerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "storageAccountValue", "containerValue")
+
 // alternatively `client.ListSasTokens(ctx, id)` can be used to do batched pagination
 items, err := client.ListSasTokensComplete(ctx, id)
 if err != nil {
@@ -125,6 +128,7 @@ for _, item := range items {
 ```go
 ctx := context.TODO()
 id := storageaccounts.NewStorageAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "storageAccountValue")
+
 // alternatively `client.ListStorageContainers(ctx, id)` can be used to do batched pagination
 items, err := client.ListStorageContainersComplete(ctx, id)
 if err != nil {
@@ -145,6 +149,7 @@ id := storageaccounts.NewStorageAccountID("12345678-1234-9876-4563-123456789012"
 payload := storageaccounts.UpdateStorageAccountParameters{
 	// ...
 }
+
 
 read, err := client.Update(ctx, id, payload)
 if err != nil {

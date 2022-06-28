@@ -17,9 +17,6 @@ import "github.com/hashicorp/go-azure-sdk/resource-manager/postgresqlhsc/2020-10
 ```go
 client := servers.NewServersClientWithBaseURI("https://management.azure.com")
 client.Client.Authorizer = authorizer
-if err != nil {
-	// handle the error
-}
 ```
 
 
@@ -28,6 +25,7 @@ if err != nil {
 ```go
 ctx := context.TODO()
 id := servers.NewServerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverGroupValue", "serverValue")
+
 read, err := client.Get(ctx, id)
 if err != nil {
 	// handle the error
@@ -43,6 +41,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := servers.NewServerGroupsv2ID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverGroupValue")
+
 read, err := client.ListByServerGroup(ctx, id)
 if err != nil {
 	// handle the error

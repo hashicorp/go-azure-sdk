@@ -17,9 +17,6 @@ import "github.com/hashicorp/go-azure-sdk/resource-manager/elastic/2020-07-01/mo
 ```go
 client := monitoredresources.NewMonitoredResourcesClientWithBaseURI("https://management.azure.com")
 client.Client.Authorizer = authorizer
-if err != nil {
-	// handle the error
-}
 ```
 
 
@@ -28,6 +25,7 @@ if err != nil {
 ```go
 ctx := context.TODO()
 id := monitoredresources.NewMonitorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorValue")
+
 // alternatively `client.List(ctx, id)` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id)
 if err != nil {

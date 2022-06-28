@@ -17,9 +17,6 @@ import "github.com/hashicorp/go-azure-sdk/resource-manager/storagepool/2021-08-0
 ```go
 client := diskpools.NewDiskPoolsClientWithBaseURI("https://management.azure.com")
 client.Client.Authorizer = authorizer
-if err != nil {
-	// handle the error
-}
 ```
 
 
@@ -33,11 +30,8 @@ payload := diskpools.DiskPoolCreate{
 	// ...
 }
 
-future, err := client.CreateOrUpdate(ctx, id, payload)
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.CreateOrUpdateThenPoll(ctx, id, payload); err != nil {
 	// handle the error
 }
 ```
@@ -48,11 +42,8 @@ if err := future.Poller.PollUntilDone(); err != nil {
 ```go
 ctx := context.TODO()
 id := diskpools.NewDiskPoolID("12345678-1234-9876-4563-123456789012", "example-resource-group", "diskPoolValue")
-future, err := client.Deallocate(ctx, id)
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.DeallocateThenPoll(ctx, id); err != nil {
 	// handle the error
 }
 ```
@@ -63,11 +54,8 @@ if err := future.Poller.PollUntilDone(); err != nil {
 ```go
 ctx := context.TODO()
 id := diskpools.NewDiskPoolID("12345678-1234-9876-4563-123456789012", "example-resource-group", "diskPoolValue")
-future, err := client.Delete(ctx, id)
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.DeleteThenPoll(ctx, id); err != nil {
 	// handle the error
 }
 ```
@@ -78,6 +66,7 @@ if err := future.Poller.PollUntilDone(); err != nil {
 ```go
 ctx := context.TODO()
 id := diskpools.NewDiskPoolID("12345678-1234-9876-4563-123456789012", "example-resource-group", "diskPoolValue")
+
 read, err := client.Get(ctx, id)
 if err != nil {
 	// handle the error
@@ -93,6 +82,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := diskpools.NewResourceGroupID()
+
 // alternatively `client.ListByResourceGroup(ctx, id)` can be used to do batched pagination
 items, err := client.ListByResourceGroupComplete(ctx, id)
 if err != nil {
@@ -109,6 +99,7 @@ for _, item := range items {
 ```go
 ctx := context.TODO()
 id := diskpools.NewSubscriptionID()
+
 // alternatively `client.ListBySubscription(ctx, id)` can be used to do batched pagination
 items, err := client.ListBySubscriptionComplete(ctx, id)
 if err != nil {
@@ -125,6 +116,7 @@ for _, item := range items {
 ```go
 ctx := context.TODO()
 id := diskpools.NewDiskPoolID("12345678-1234-9876-4563-123456789012", "example-resource-group", "diskPoolValue")
+
 // alternatively `client.ListOutboundNetworkDependenciesEndpoints(ctx, id)` can be used to do batched pagination
 items, err := client.ListOutboundNetworkDependenciesEndpointsComplete(ctx, id)
 if err != nil {
@@ -141,11 +133,8 @@ for _, item := range items {
 ```go
 ctx := context.TODO()
 id := diskpools.NewDiskPoolID("12345678-1234-9876-4563-123456789012", "example-resource-group", "diskPoolValue")
-future, err := client.Start(ctx, id)
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.StartThenPoll(ctx, id); err != nil {
 	// handle the error
 }
 ```
@@ -161,11 +150,8 @@ payload := diskpools.DiskPoolUpdate{
 	// ...
 }
 
-future, err := client.Update(ctx, id, payload)
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.UpdateThenPoll(ctx, id, payload); err != nil {
 	// handle the error
 }
 ```
@@ -176,11 +162,8 @@ if err := future.Poller.PollUntilDone(); err != nil {
 ```go
 ctx := context.TODO()
 id := diskpools.NewDiskPoolID("12345678-1234-9876-4563-123456789012", "example-resource-group", "diskPoolValue")
-future, err := client.Upgrade(ctx, id)
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.UpgradeThenPoll(ctx, id); err != nil {
 	// handle the error
 }
 ```

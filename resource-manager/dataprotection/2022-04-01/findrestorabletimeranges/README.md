@@ -17,9 +17,6 @@ import "github.com/hashicorp/go-azure-sdk/resource-manager/dataprotection/2022-0
 ```go
 client := findrestorabletimeranges.NewFindRestorableTimeRangesClientWithBaseURI("https://management.azure.com")
 client.Client.Authorizer = authorizer
-if err != nil {
-	// handle the error
-}
 ```
 
 
@@ -32,6 +29,7 @@ id := findrestorabletimeranges.NewBackupInstanceID("12345678-1234-9876-4563-1234
 payload := findrestorabletimeranges.AzureBackupFindRestorableTimeRangesRequest{
 	// ...
 }
+
 
 read, err := client.RestorableTimeRangesFind(ctx, id, payload)
 if err != nil {

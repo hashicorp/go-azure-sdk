@@ -17,9 +17,6 @@ import "github.com/hashicorp/go-azure-sdk/resource-manager/kubernetesconfigurati
 ```go
 client := clusterextensions.NewClusterExtensionsClientWithBaseURI("https://management.azure.com")
 client.Client.Authorizer = authorizer
-if err != nil {
-	// handle the error
-}
 ```
 
 
@@ -33,11 +30,8 @@ payload := clusterextensions.Extension{
 	// ...
 }
 
-future, err := client.ExtensionsCreate(ctx, id, payload)
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.ExtensionsCreateThenPoll(ctx, id, payload); err != nil {
 	// handle the error
 }
 ```
@@ -48,11 +42,8 @@ if err := future.Poller.PollUntilDone(); err != nil {
 ```go
 ctx := context.TODO()
 id := clusterextensions.NewExtensionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "clusterRpValue", "clusterResourceValue", "clusterValue", "extensionValue")
-future, err := client.ExtensionsDelete(ctx, id, clusterextensions.DefaultExtensionsDeleteOperationOptions())
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.ExtensionsDeleteThenPoll(ctx, id, clusterextensions.DefaultExtensionsDeleteOperationOptions()); err != nil {
 	// handle the error
 }
 ```
@@ -63,6 +54,7 @@ if err := future.Poller.PollUntilDone(); err != nil {
 ```go
 ctx := context.TODO()
 id := clusterextensions.NewExtensionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "clusterRpValue", "clusterResourceValue", "clusterValue", "extensionValue")
+
 read, err := client.ExtensionsGet(ctx, id)
 if err != nil {
 	// handle the error
@@ -78,6 +70,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := clusterextensions.NewProviderID("12345678-1234-9876-4563-123456789012", "example-resource-group", "clusterRpValue", "clusterResourceValue", "clusterValue")
+
 // alternatively `client.ExtensionsList(ctx, id)` can be used to do batched pagination
 items, err := client.ExtensionsListComplete(ctx, id)
 if err != nil {
@@ -99,11 +92,8 @@ payload := clusterextensions.PatchExtension{
 	// ...
 }
 
-future, err := client.ExtensionsUpdate(ctx, id, payload)
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.ExtensionsUpdateThenPoll(ctx, id, payload); err != nil {
 	// handle the error
 }
 ```

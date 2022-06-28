@@ -17,9 +17,6 @@ import "github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservic
 ```go
 client := modelcontainer.NewModelContainerClientWithBaseURI("https://management.azure.com")
 client.Client.Authorizer = authorizer
-if err != nil {
-	// handle the error
-}
 ```
 
 
@@ -32,6 +29,7 @@ id := modelcontainer.NewModelID("12345678-1234-9876-4563-123456789012", "example
 payload := modelcontainer.ModelContainerResource{
 	// ...
 }
+
 
 read, err := client.CreateOrUpdate(ctx, id, payload)
 if err != nil {
@@ -48,6 +46,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := modelcontainer.NewModelID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "nameValue")
+
 read, err := client.Delete(ctx, id)
 if err != nil {
 	// handle the error
@@ -63,6 +62,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := modelcontainer.NewModelID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "nameValue")
+
 read, err := client.Get(ctx, id)
 if err != nil {
 	// handle the error
@@ -78,6 +78,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := modelcontainer.NewWorkspaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue")
+
 // alternatively `client.List(ctx, id, modelcontainer.DefaultListOperationOptions())` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id, modelcontainer.DefaultListOperationOptions())
 if err != nil {

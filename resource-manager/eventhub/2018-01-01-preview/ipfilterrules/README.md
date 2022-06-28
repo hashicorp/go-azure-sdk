@@ -17,9 +17,6 @@ import "github.com/hashicorp/go-azure-sdk/resource-manager/eventhub/2018-01-01-p
 ```go
 client := ipfilterrules.NewIpFilterRulesClientWithBaseURI("https://management.azure.com")
 client.Client.Authorizer = authorizer
-if err != nil {
-	// handle the error
-}
 ```
 
 
@@ -32,6 +29,7 @@ id := ipfilterrules.NewIpfilterruleID("12345678-1234-9876-4563-123456789012", "e
 payload := ipfilterrules.IpFilterRule{
 	// ...
 }
+
 
 read, err := client.NamespacesCreateOrUpdateIpFilterRule(ctx, id, payload)
 if err != nil {
@@ -48,6 +46,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := ipfilterrules.NewIpfilterruleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceValue", "ipFilterRuleValue")
+
 read, err := client.NamespacesDeleteIpFilterRule(ctx, id)
 if err != nil {
 	// handle the error
@@ -63,6 +62,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := ipfilterrules.NewIpfilterruleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceValue", "ipFilterRuleValue")
+
 read, err := client.NamespacesGetIpFilterRule(ctx, id)
 if err != nil {
 	// handle the error
@@ -78,6 +78,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := ipfilterrules.NewNamespaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceValue")
+
 // alternatively `client.NamespacesListIPFilterRules(ctx, id)` can be used to do batched pagination
 items, err := client.NamespacesListIPFilterRulesComplete(ctx, id)
 if err != nil {

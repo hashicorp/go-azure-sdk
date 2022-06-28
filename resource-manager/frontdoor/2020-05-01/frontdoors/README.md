@@ -17,9 +17,6 @@ import "github.com/hashicorp/go-azure-sdk/resource-manager/frontdoor/2020-05-01/
 ```go
 client := frontdoors.NewFrontDoorsClientWithBaseURI("https://management.azure.com")
 client.Client.Authorizer = authorizer
-if err != nil {
-	// handle the error
-}
 ```
 
 
@@ -33,11 +30,8 @@ payload := frontdoors.FrontDoor{
 	// ...
 }
 
-future, err := client.CreateOrUpdate(ctx, id, payload)
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.CreateOrUpdateThenPoll(ctx, id, payload); err != nil {
 	// handle the error
 }
 ```
@@ -48,11 +42,8 @@ if err := future.Poller.PollUntilDone(); err != nil {
 ```go
 ctx := context.TODO()
 id := frontdoors.NewFrontDoorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "frontDoorValue")
-future, err := client.Delete(ctx, id)
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.DeleteThenPoll(ctx, id); err != nil {
 	// handle the error
 }
 ```
@@ -68,11 +59,8 @@ payload := frontdoors.PurgeParameters{
 	// ...
 }
 
-future, err := client.EndpointsPurgeContent(ctx, id, payload)
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.EndpointsPurgeContentThenPoll(ctx, id, payload); err != nil {
 	// handle the error
 }
 ```
@@ -83,11 +71,8 @@ if err := future.Poller.PollUntilDone(); err != nil {
 ```go
 ctx := context.TODO()
 id := frontdoors.NewFrontendEndpointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "frontDoorValue", "frontendEndpointValue")
-future, err := client.FrontendEndpointsDisableHttps(ctx, id)
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.FrontendEndpointsDisableHttpsThenPoll(ctx, id); err != nil {
 	// handle the error
 }
 ```
@@ -103,11 +88,8 @@ payload := frontdoors.CustomHttpsConfiguration{
 	// ...
 }
 
-future, err := client.FrontendEndpointsEnableHttps(ctx, id, payload)
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.FrontendEndpointsEnableHttpsThenPoll(ctx, id, payload); err != nil {
 	// handle the error
 }
 ```
@@ -118,6 +100,7 @@ if err := future.Poller.PollUntilDone(); err != nil {
 ```go
 ctx := context.TODO()
 id := frontdoors.NewFrontendEndpointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "frontDoorValue", "frontendEndpointValue")
+
 read, err := client.FrontendEndpointsGet(ctx, id)
 if err != nil {
 	// handle the error
@@ -133,6 +116,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := frontdoors.NewFrontDoorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "frontDoorValue")
+
 // alternatively `client.FrontendEndpointsListByFrontDoor(ctx, id)` can be used to do batched pagination
 items, err := client.FrontendEndpointsListByFrontDoorComplete(ctx, id)
 if err != nil {
@@ -149,6 +133,7 @@ for _, item := range items {
 ```go
 ctx := context.TODO()
 id := frontdoors.NewFrontDoorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "frontDoorValue")
+
 read, err := client.Get(ctx, id)
 if err != nil {
 	// handle the error
@@ -164,6 +149,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := frontdoors.NewSubscriptionID()
+
 // alternatively `client.List(ctx, id)` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id)
 if err != nil {
@@ -180,6 +166,7 @@ for _, item := range items {
 ```go
 ctx := context.TODO()
 id := frontdoors.NewResourceGroupID()
+
 // alternatively `client.ListByResourceGroup(ctx, id)` can be used to do batched pagination
 items, err := client.ListByResourceGroupComplete(ctx, id)
 if err != nil {
@@ -201,11 +188,8 @@ payload := frontdoors.RulesEngine{
 	// ...
 }
 
-future, err := client.RulesEnginesCreateOrUpdate(ctx, id, payload)
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.RulesEnginesCreateOrUpdateThenPoll(ctx, id, payload); err != nil {
 	// handle the error
 }
 ```
@@ -216,11 +200,8 @@ if err := future.Poller.PollUntilDone(); err != nil {
 ```go
 ctx := context.TODO()
 id := frontdoors.NewRulesEngineID("12345678-1234-9876-4563-123456789012", "example-resource-group", "frontDoorValue", "rulesEngineValue")
-future, err := client.RulesEnginesDelete(ctx, id)
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.RulesEnginesDeleteThenPoll(ctx, id); err != nil {
 	// handle the error
 }
 ```
@@ -231,6 +212,7 @@ if err := future.Poller.PollUntilDone(); err != nil {
 ```go
 ctx := context.TODO()
 id := frontdoors.NewRulesEngineID("12345678-1234-9876-4563-123456789012", "example-resource-group", "frontDoorValue", "rulesEngineValue")
+
 read, err := client.RulesEnginesGet(ctx, id)
 if err != nil {
 	// handle the error
@@ -246,6 +228,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := frontdoors.NewFrontDoorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "frontDoorValue")
+
 // alternatively `client.RulesEnginesListByFrontDoor(ctx, id)` can be used to do batched pagination
 items, err := client.RulesEnginesListByFrontDoorComplete(ctx, id)
 if err != nil {
@@ -266,6 +249,7 @@ id := frontdoors.NewFrontDoorID("12345678-1234-9876-4563-123456789012", "example
 payload := frontdoors.ValidateCustomDomainInput{
 	// ...
 }
+
 
 read, err := client.ValidateCustomDomain(ctx, id, payload)
 if err != nil {

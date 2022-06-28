@@ -17,9 +17,6 @@ import "github.com/hashicorp/go-azure-sdk/resource-manager/containerapps/2022-03
 ```go
 client := managedenvironmentsstorages.NewManagedEnvironmentsStoragesClientWithBaseURI("https://management.azure.com")
 client.Client.Authorizer = authorizer
-if err != nil {
-	// handle the error
-}
 ```
 
 
@@ -32,6 +29,7 @@ id := managedenvironmentsstorages.NewStorageID("12345678-1234-9876-4563-12345678
 payload := managedenvironmentsstorages.ManagedEnvironmentStorage{
 	// ...
 }
+
 
 read, err := client.CreateOrUpdate(ctx, id, payload)
 if err != nil {
@@ -48,6 +46,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := managedenvironmentsstorages.NewStorageID("12345678-1234-9876-4563-123456789012", "example-resource-group", "environmentValue", "storageValue")
+
 read, err := client.Delete(ctx, id)
 if err != nil {
 	// handle the error
@@ -63,6 +62,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := managedenvironmentsstorages.NewStorageID("12345678-1234-9876-4563-123456789012", "example-resource-group", "environmentValue", "storageValue")
+
 read, err := client.Get(ctx, id)
 if err != nil {
 	// handle the error
@@ -78,6 +78,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := managedenvironmentsstorages.NewManagedEnvironmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "environmentValue")
+
 read, err := client.List(ctx, id)
 if err != nil {
 	// handle the error

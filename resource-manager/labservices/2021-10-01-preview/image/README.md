@@ -17,9 +17,6 @@ import "github.com/hashicorp/go-azure-sdk/resource-manager/labservices/2021-10-0
 ```go
 client := image.NewImageClientWithBaseURI("https://management.azure.com")
 client.Client.Authorizer = authorizer
-if err != nil {
-	// handle the error
-}
 ```
 
 
@@ -32,6 +29,7 @@ id := image.NewImageID("12345678-1234-9876-4563-123456789012", "example-resource
 payload := image.Image{
 	// ...
 }
+
 
 read, err := client.CreateOrUpdate(ctx, id, payload)
 if err != nil {
@@ -48,6 +46,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := image.NewImageID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labPlanValue", "imageValue")
+
 read, err := client.Get(ctx, id)
 if err != nil {
 	// handle the error
@@ -63,6 +62,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := image.NewLabPlanID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labPlanValue")
+
 // alternatively `client.ListByLabPlan(ctx, id)` can be used to do batched pagination
 items, err := client.ListByLabPlanComplete(ctx, id)
 if err != nil {
@@ -83,6 +83,7 @@ id := image.NewImageID("12345678-1234-9876-4563-123456789012", "example-resource
 payload := image.ImageUpdate{
 	// ...
 }
+
 
 read, err := client.Update(ctx, id, payload)
 if err != nil {

@@ -17,9 +17,6 @@ import "github.com/hashicorp/go-azure-sdk/resource-manager/servicebus/2021-06-01
 ```go
 client := migrationconfigs.NewMigrationConfigsClientWithBaseURI("https://management.azure.com")
 client.Client.Authorizer = authorizer
-if err != nil {
-	// handle the error
-}
 ```
 
 
@@ -28,6 +25,7 @@ if err != nil {
 ```go
 ctx := context.TODO()
 id := migrationconfigs.NewNamespaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceValue")
+
 read, err := client.CompleteMigration(ctx, id)
 if err != nil {
 	// handle the error
@@ -48,11 +46,8 @@ payload := migrationconfigs.MigrationConfigProperties{
 	// ...
 }
 
-future, err := client.CreateAndStartMigration(ctx, id, payload)
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.CreateAndStartMigrationThenPoll(ctx, id, payload); err != nil {
 	// handle the error
 }
 ```
@@ -63,6 +58,7 @@ if err := future.Poller.PollUntilDone(); err != nil {
 ```go
 ctx := context.TODO()
 id := migrationconfigs.NewNamespaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceValue")
+
 read, err := client.Delete(ctx, id)
 if err != nil {
 	// handle the error
@@ -78,6 +74,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := migrationconfigs.NewNamespaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceValue")
+
 read, err := client.Get(ctx, id)
 if err != nil {
 	// handle the error
@@ -93,6 +90,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := migrationconfigs.NewNamespaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceValue")
+
 // alternatively `client.List(ctx, id)` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id)
 if err != nil {
@@ -109,6 +107,7 @@ for _, item := range items {
 ```go
 ctx := context.TODO()
 id := migrationconfigs.NewNamespaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceValue")
+
 read, err := client.Revert(ctx, id)
 if err != nil {
 	// handle the error

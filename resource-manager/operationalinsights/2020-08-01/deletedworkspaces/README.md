@@ -17,9 +17,6 @@ import "github.com/hashicorp/go-azure-sdk/resource-manager/operationalinsights/2
 ```go
 client := deletedworkspaces.NewDeletedWorkspacesClientWithBaseURI("https://management.azure.com")
 client.Client.Authorizer = authorizer
-if err != nil {
-	// handle the error
-}
 ```
 
 
@@ -28,6 +25,7 @@ if err != nil {
 ```go
 ctx := context.TODO()
 id := deletedworkspaces.NewSubscriptionID()
+
 read, err := client.List(ctx, id)
 if err != nil {
 	// handle the error
@@ -43,6 +41,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := deletedworkspaces.NewResourceGroupID()
+
 read, err := client.ListByResourceGroup(ctx, id)
 if err != nil {
 	// handle the error

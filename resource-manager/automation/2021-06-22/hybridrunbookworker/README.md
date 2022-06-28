@@ -17,9 +17,6 @@ import "github.com/hashicorp/go-azure-sdk/resource-manager/automation/2021-06-22
 ```go
 client := hybridrunbookworker.NewHybridRunbookWorkerClientWithBaseURI("https://management.azure.com")
 client.Client.Authorizer = authorizer
-if err != nil {
-	// handle the error
-}
 ```
 
 
@@ -32,6 +29,7 @@ id := hybridrunbookworker.NewHybridRunbookWorkerID("12345678-1234-9876-4563-1234
 payload := hybridrunbookworker.HybridRunbookWorkerCreateParameters{
 	// ...
 }
+
 
 read, err := client.Create(ctx, id, payload)
 if err != nil {
@@ -48,6 +46,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := hybridrunbookworker.NewHybridRunbookWorkerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountValue", "hybridRunbookWorkerGroupValue", "hybridRunbookWorkerIdValue")
+
 read, err := client.Delete(ctx, id)
 if err != nil {
 	// handle the error
@@ -63,6 +62,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := hybridrunbookworker.NewHybridRunbookWorkerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountValue", "hybridRunbookWorkerGroupValue", "hybridRunbookWorkerIdValue")
+
 read, err := client.Get(ctx, id)
 if err != nil {
 	// handle the error
@@ -78,6 +78,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := hybridrunbookworker.NewHybridRunbookWorkerGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountValue", "hybridRunbookWorkerGroupValue")
+
 // alternatively `client.ListByHybridRunbookWorkerGroup(ctx, id, hybridrunbookworker.DefaultListByHybridRunbookWorkerGroupOperationOptions())` can be used to do batched pagination
 items, err := client.ListByHybridRunbookWorkerGroupComplete(ctx, id, hybridrunbookworker.DefaultListByHybridRunbookWorkerGroupOperationOptions())
 if err != nil {
@@ -98,6 +99,7 @@ id := hybridrunbookworker.NewHybridRunbookWorkerID("12345678-1234-9876-4563-1234
 payload := hybridrunbookworker.HybridRunbookWorkerMoveParameters{
 	// ...
 }
+
 
 read, err := client.Move(ctx, id, payload)
 if err != nil {

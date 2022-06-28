@@ -17,9 +17,6 @@ import "github.com/hashicorp/go-azure-sdk/resource-manager/storage/2021-04-01/ta
 ```go
 client := tableservice.NewTableServiceClientWithBaseURI("https://management.azure.com")
 client.Client.Authorizer = authorizer
-if err != nil {
-	// handle the error
-}
 ```
 
 
@@ -28,6 +25,7 @@ if err != nil {
 ```go
 ctx := context.TODO()
 id := tableservice.NewTableID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "tableValue")
+
 read, err := client.TableCreate(ctx, id)
 if err != nil {
 	// handle the error
@@ -43,6 +41,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := tableservice.NewTableID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "tableValue")
+
 read, err := client.TableDelete(ctx, id)
 if err != nil {
 	// handle the error
@@ -58,6 +57,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := tableservice.NewTableID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "tableValue")
+
 read, err := client.TableGet(ctx, id)
 if err != nil {
 	// handle the error
@@ -73,6 +73,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := tableservice.NewStorageAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue")
+
 // alternatively `client.TableList(ctx, id)` can be used to do batched pagination
 items, err := client.TableListComplete(ctx, id)
 if err != nil {
@@ -89,6 +90,7 @@ for _, item := range items {
 ```go
 ctx := context.TODO()
 id := tableservice.NewTableID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "tableValue")
+
 read, err := client.TableUpdate(ctx, id)
 if err != nil {
 	// handle the error

@@ -17,9 +17,6 @@ import "github.com/hashicorp/go-azure-sdk/resource-manager/hybridkubernetes/2021
 ```go
 client := hybridkubernetes.NewHybridKubernetesClientWithBaseURI("https://management.azure.com")
 client.Client.Authorizer = authorizer
-if err != nil {
-	// handle the error
-}
 ```
 
 
@@ -33,11 +30,8 @@ payload := hybridkubernetes.ConnectedCluster{
 	// ...
 }
 
-future, err := client.ConnectedClusterCreate(ctx, id, payload)
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.ConnectedClusterCreateThenPoll(ctx, id, payload); err != nil {
 	// handle the error
 }
 ```
@@ -48,11 +42,8 @@ if err := future.Poller.PollUntilDone(); err != nil {
 ```go
 ctx := context.TODO()
 id := hybridkubernetes.NewConnectedClusterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "clusterValue")
-future, err := client.ConnectedClusterDelete(ctx, id)
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.ConnectedClusterDeleteThenPoll(ctx, id); err != nil {
 	// handle the error
 }
 ```
@@ -63,6 +54,7 @@ if err := future.Poller.PollUntilDone(); err != nil {
 ```go
 ctx := context.TODO()
 id := hybridkubernetes.NewConnectedClusterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "clusterValue")
+
 read, err := client.ConnectedClusterGet(ctx, id)
 if err != nil {
 	// handle the error
@@ -78,6 +70,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := hybridkubernetes.NewResourceGroupID()
+
 // alternatively `client.ConnectedClusterListByResourceGroup(ctx, id)` can be used to do batched pagination
 items, err := client.ConnectedClusterListByResourceGroupComplete(ctx, id)
 if err != nil {
@@ -94,6 +87,7 @@ for _, item := range items {
 ```go
 ctx := context.TODO()
 id := hybridkubernetes.NewSubscriptionID()
+
 // alternatively `client.ConnectedClusterListBySubscription(ctx, id)` can be used to do batched pagination
 items, err := client.ConnectedClusterListBySubscriptionComplete(ctx, id)
 if err != nil {
@@ -115,6 +109,7 @@ payload := hybridkubernetes.ListClusterUserCredentialProperties{
 	// ...
 }
 
+
 read, err := client.ConnectedClusterListClusterUserCredential(ctx, id, payload)
 if err != nil {
 	// handle the error
@@ -134,6 +129,7 @@ id := hybridkubernetes.NewConnectedClusterID("12345678-1234-9876-4563-1234567890
 payload := hybridkubernetes.ConnectedClusterPatch{
 	// ...
 }
+
 
 read, err := client.ConnectedClusterUpdate(ctx, id, payload)
 if err != nil {

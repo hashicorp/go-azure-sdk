@@ -17,9 +17,6 @@ import "github.com/hashicorp/go-azure-sdk/resource-manager/orbital/2022-03-01/gr
 ```go
 client := groundstation.NewGroundStationClientWithBaseURI("https://management.azure.com")
 client.Client.Authorizer = authorizer
-if err != nil {
-	// handle the error
-}
 ```
 
 
@@ -28,6 +25,7 @@ if err != nil {
 ```go
 ctx := context.TODO()
 id := groundstation.NewAvailableGroundStationID("12345678-1234-9876-4563-123456789012", "groundStationValue")
+
 read, err := client.AvailableGroundStationsGet(ctx, id)
 if err != nil {
 	// handle the error
@@ -43,6 +41,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := groundstation.NewSubscriptionID()
+
 // alternatively `client.AvailableGroundStationsListByCapability(ctx, id, groundstation.DefaultAvailableGroundStationsListByCapabilityOperationOptions())` can be used to do batched pagination
 items, err := client.AvailableGroundStationsListByCapabilityComplete(ctx, id, groundstation.DefaultAvailableGroundStationsListByCapabilityOperationOptions())
 if err != nil {

@@ -17,9 +17,6 @@ import "github.com/hashicorp/go-azure-sdk/resource-manager/storage/2021-04-01/st
 ```go
 client := storageaccounts.NewStorageAccountsClientWithBaseURI("https://management.azure.com")
 client.Client.Authorizer = authorizer
-if err != nil {
-	// handle the error
-}
 ```
 
 
@@ -32,6 +29,7 @@ id := storageaccounts.NewSubscriptionID()
 payload := storageaccounts.StorageAccountCheckNameAvailabilityParameters{
 	// ...
 }
+
 
 read, err := client.CheckNameAvailability(ctx, id, payload)
 if err != nil {
@@ -53,11 +51,8 @@ payload := storageaccounts.StorageAccountCreateParameters{
 	// ...
 }
 
-future, err := client.Create(ctx, id, payload)
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.CreateThenPoll(ctx, id, payload); err != nil {
 	// handle the error
 }
 ```
@@ -68,6 +63,7 @@ if err := future.Poller.PollUntilDone(); err != nil {
 ```go
 ctx := context.TODO()
 id := storageaccounts.NewStorageAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue")
+
 read, err := client.Delete(ctx, id)
 if err != nil {
 	// handle the error
@@ -83,11 +79,8 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := storageaccounts.NewStorageAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue")
-future, err := client.Failover(ctx, id)
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.FailoverThenPoll(ctx, id); err != nil {
 	// handle the error
 }
 ```
@@ -98,6 +91,7 @@ if err := future.Poller.PollUntilDone(); err != nil {
 ```go
 ctx := context.TODO()
 id := storageaccounts.NewStorageAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue")
+
 read, err := client.GetProperties(ctx, id, storageaccounts.DefaultGetPropertiesOperationOptions())
 if err != nil {
 	// handle the error
@@ -113,6 +107,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := storageaccounts.NewSubscriptionID()
+
 // alternatively `client.List(ctx, id)` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id)
 if err != nil {
@@ -134,6 +129,7 @@ payload := storageaccounts.AccountSasParameters{
 	// ...
 }
 
+
 read, err := client.ListAccountSAS(ctx, id, payload)
 if err != nil {
 	// handle the error
@@ -149,6 +145,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := storageaccounts.NewResourceGroupID()
+
 // alternatively `client.ListByResourceGroup(ctx, id)` can be used to do batched pagination
 items, err := client.ListByResourceGroupComplete(ctx, id)
 if err != nil {
@@ -165,6 +162,7 @@ for _, item := range items {
 ```go
 ctx := context.TODO()
 id := storageaccounts.NewStorageAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue")
+
 read, err := client.ListKeys(ctx, id, storageaccounts.DefaultListKeysOperationOptions())
 if err != nil {
 	// handle the error
@@ -184,6 +182,7 @@ id := storageaccounts.NewStorageAccountID("12345678-1234-9876-4563-123456789012"
 payload := storageaccounts.ServiceSasParameters{
 	// ...
 }
+
 
 read, err := client.ListServiceSAS(ctx, id, payload)
 if err != nil {
@@ -205,6 +204,7 @@ payload := storageaccounts.StorageAccountRegenerateKeyParameters{
 	// ...
 }
 
+
 read, err := client.RegenerateKey(ctx, id, payload)
 if err != nil {
 	// handle the error
@@ -225,11 +225,8 @@ payload := storageaccounts.BlobRestoreParameters{
 	// ...
 }
 
-future, err := client.RestoreBlobRanges(ctx, id, payload)
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.RestoreBlobRangesThenPoll(ctx, id, payload); err != nil {
 	// handle the error
 }
 ```
@@ -240,6 +237,7 @@ if err := future.Poller.PollUntilDone(); err != nil {
 ```go
 ctx := context.TODO()
 id := storageaccounts.NewStorageAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue")
+
 read, err := client.RevokeUserDelegationKeys(ctx, id)
 if err != nil {
 	// handle the error
@@ -259,6 +257,7 @@ id := storageaccounts.NewStorageAccountID("12345678-1234-9876-4563-123456789012"
 payload := storageaccounts.StorageAccountUpdateParameters{
 	// ...
 }
+
 
 read, err := client.Update(ctx, id, payload)
 if err != nil {

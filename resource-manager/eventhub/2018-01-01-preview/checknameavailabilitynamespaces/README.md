@@ -17,9 +17,6 @@ import "github.com/hashicorp/go-azure-sdk/resource-manager/eventhub/2018-01-01-p
 ```go
 client := checknameavailabilitynamespaces.NewCheckNameAvailabilityNamespacesClientWithBaseURI("https://management.azure.com")
 client.Client.Authorizer = authorizer
-if err != nil {
-	// handle the error
-}
 ```
 
 
@@ -32,6 +29,7 @@ id := checknameavailabilitynamespaces.NewSubscriptionID()
 payload := checknameavailabilitynamespaces.CheckNameAvailabilityParameter{
 	// ...
 }
+
 
 read, err := client.NamespacesCheckNameAvailability(ctx, id, payload)
 if err != nil {

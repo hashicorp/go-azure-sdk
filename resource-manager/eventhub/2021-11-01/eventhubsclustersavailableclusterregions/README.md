@@ -17,9 +17,6 @@ import "github.com/hashicorp/go-azure-sdk/resource-manager/eventhub/2021-11-01/e
 ```go
 client := eventhubsclustersavailableclusterregions.NewEventHubsClustersAvailableClusterRegionsClientWithBaseURI("https://management.azure.com")
 client.Client.Authorizer = authorizer
-if err != nil {
-	// handle the error
-}
 ```
 
 
@@ -28,6 +25,7 @@ if err != nil {
 ```go
 ctx := context.TODO()
 id := eventhubsclustersavailableclusterregions.NewSubscriptionID()
+
 read, err := client.ClustersListAvailableClusterRegion(ctx, id)
 if err != nil {
 	// handle the error

@@ -17,9 +17,6 @@ import "github.com/hashicorp/go-azure-sdk/resource-manager/powerbidedicated/2021
 ```go
 client := autoscalevcores.NewAutoScaleVCoresClientWithBaseURI("https://management.azure.com")
 client.Client.Authorizer = authorizer
-if err != nil {
-	// handle the error
-}
 ```
 
 
@@ -32,6 +29,7 @@ id := autoscalevcores.NewAutoScaleVCoreID("12345678-1234-9876-4563-123456789012"
 payload := autoscalevcores.AutoScaleVCore{
 	// ...
 }
+
 
 read, err := client.Create(ctx, id, payload)
 if err != nil {
@@ -48,6 +46,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := autoscalevcores.NewAutoScaleVCoreID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vcoreValue")
+
 read, err := client.Delete(ctx, id)
 if err != nil {
 	// handle the error
@@ -63,6 +62,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := autoscalevcores.NewAutoScaleVCoreID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vcoreValue")
+
 read, err := client.Get(ctx, id)
 if err != nil {
 	// handle the error
@@ -78,6 +78,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := autoscalevcores.NewResourceGroupID()
+
 read, err := client.ListByResourceGroup(ctx, id)
 if err != nil {
 	// handle the error
@@ -93,6 +94,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := autoscalevcores.NewSubscriptionID()
+
 read, err := client.ListBySubscription(ctx, id)
 if err != nil {
 	// handle the error
@@ -112,6 +114,7 @@ id := autoscalevcores.NewAutoScaleVCoreID("12345678-1234-9876-4563-123456789012"
 payload := autoscalevcores.AutoScaleVCoreUpdateParameters{
 	// ...
 }
+
 
 read, err := client.Update(ctx, id, payload)
 if err != nil {

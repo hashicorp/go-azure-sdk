@@ -17,9 +17,6 @@ import "github.com/hashicorp/go-azure-sdk/resource-manager/iotcentral/2021-11-01
 ```go
 client := networking.NewNetworkingClientWithBaseURI("https://management.azure.com")
 client.Client.Authorizer = authorizer
-if err != nil {
-	// handle the error
-}
 ```
 
 
@@ -33,11 +30,8 @@ payload := networking.PrivateEndpointConnection{
 	// ...
 }
 
-future, err := client.PrivateEndpointConnectionsCreate(ctx, id, payload)
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.PrivateEndpointConnectionsCreateThenPoll(ctx, id, payload); err != nil {
 	// handle the error
 }
 ```
@@ -48,11 +42,8 @@ if err := future.Poller.PollUntilDone(); err != nil {
 ```go
 ctx := context.TODO()
 id := networking.NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue", "privateEndpointConnectionValue")
-future, err := client.PrivateEndpointConnectionsDelete(ctx, id)
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.PrivateEndpointConnectionsDeleteThenPoll(ctx, id); err != nil {
 	// handle the error
 }
 ```
@@ -63,6 +54,7 @@ if err := future.Poller.PollUntilDone(); err != nil {
 ```go
 ctx := context.TODO()
 id := networking.NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue", "privateEndpointConnectionValue")
+
 read, err := client.PrivateEndpointConnectionsGet(ctx, id)
 if err != nil {
 	// handle the error
@@ -78,6 +70,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := networking.NewIotAppID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue")
+
 read, err := client.PrivateEndpointConnectionsList(ctx, id)
 if err != nil {
 	// handle the error
@@ -93,6 +86,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := networking.NewPrivateLinkResourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue", "groupIdValue")
+
 read, err := client.PrivateLinksGet(ctx, id)
 if err != nil {
 	// handle the error
@@ -108,6 +102,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := networking.NewIotAppID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue")
+
 read, err := client.PrivateLinksList(ctx, id)
 if err != nil {
 	// handle the error

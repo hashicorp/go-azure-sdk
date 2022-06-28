@@ -17,9 +17,6 @@ import "github.com/hashicorp/go-azure-sdk/resource-manager/operationalinsights/2
 ```go
 client := operationalinsights.NewOperationalInsightsClientWithBaseURI("https://management.azure.com")
 client.Client.Authorizer = authorizer
-if err != nil {
-	// handle the error
-}
 ```
 
 
@@ -28,6 +25,7 @@ if err != nil {
 ```go
 ctx := context.TODO()
 id := operationalinsights.NewQueriesID("12345678-1234-9876-4563-123456789012", "example-resource-group", "queryPackValue", "idValue")
+
 read, err := client.QueriesDelete(ctx, id)
 if err != nil {
 	// handle the error
@@ -43,6 +41,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := operationalinsights.NewQueriesID("12345678-1234-9876-4563-123456789012", "example-resource-group", "queryPackValue", "idValue")
+
 read, err := client.QueriesGet(ctx, id)
 if err != nil {
 	// handle the error
@@ -58,6 +57,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := operationalinsights.NewQueryPackID("12345678-1234-9876-4563-123456789012", "example-resource-group", "queryPackValue")
+
 // alternatively `client.QueriesList(ctx, id, operationalinsights.DefaultQueriesListOperationOptions())` can be used to do batched pagination
 items, err := client.QueriesListComplete(ctx, id, operationalinsights.DefaultQueriesListOperationOptions())
 if err != nil {
@@ -79,6 +79,7 @@ payload := operationalinsights.LogAnalyticsQueryPackQuery{
 	// ...
 }
 
+
 read, err := client.QueriesPut(ctx, id, payload)
 if err != nil {
 	// handle the error
@@ -98,6 +99,7 @@ id := operationalinsights.NewQueryPackID("12345678-1234-9876-4563-123456789012",
 payload := operationalinsights.LogAnalyticsQueryPackQuerySearchProperties{
 	// ...
 }
+
 
 // alternatively `client.QueriesSearch(ctx, id, payload, operationalinsights.DefaultQueriesSearchOperationOptions())` can be used to do batched pagination
 items, err := client.QueriesSearchComplete(ctx, id, payload, operationalinsights.DefaultQueriesSearchOperationOptions())
@@ -120,6 +122,7 @@ payload := operationalinsights.LogAnalyticsQueryPackQuery{
 	// ...
 }
 
+
 read, err := client.QueriesUpdate(ctx, id, payload)
 if err != nil {
 	// handle the error
@@ -140,6 +143,7 @@ payload := operationalinsights.LogAnalyticsQueryPack{
 	// ...
 }
 
+
 read, err := client.QueryPacksCreateOrUpdate(ctx, id, payload)
 if err != nil {
 	// handle the error
@@ -155,6 +159,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := operationalinsights.NewQueryPackID("12345678-1234-9876-4563-123456789012", "example-resource-group", "queryPackValue")
+
 read, err := client.QueryPacksDelete(ctx, id)
 if err != nil {
 	// handle the error
@@ -170,6 +175,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := operationalinsights.NewQueryPackID("12345678-1234-9876-4563-123456789012", "example-resource-group", "queryPackValue")
+
 read, err := client.QueryPacksGet(ctx, id)
 if err != nil {
 	// handle the error
@@ -185,6 +191,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := operationalinsights.NewSubscriptionID()
+
 // alternatively `client.QueryPacksList(ctx, id)` can be used to do batched pagination
 items, err := client.QueryPacksListComplete(ctx, id)
 if err != nil {
@@ -201,6 +208,7 @@ for _, item := range items {
 ```go
 ctx := context.TODO()
 id := operationalinsights.NewResourceGroupID()
+
 // alternatively `client.QueryPacksListByResourceGroup(ctx, id)` can be used to do batched pagination
 items, err := client.QueryPacksListByResourceGroupComplete(ctx, id)
 if err != nil {
@@ -221,6 +229,7 @@ id := operationalinsights.NewQueryPackID("12345678-1234-9876-4563-123456789012",
 payload := operationalinsights.TagsResource{
 	// ...
 }
+
 
 read, err := client.QueryPacksUpdateTags(ctx, id, payload)
 if err != nil {

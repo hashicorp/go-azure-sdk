@@ -17,9 +17,6 @@ import "github.com/hashicorp/go-azure-sdk/resource-manager/frontdoor/2020-05-01/
 ```go
 client := checkfrontdoornameavailabilitywithsubscription.NewCheckFrontDoorNameAvailabilityWithSubscriptionClientWithBaseURI("https://management.azure.com")
 client.Client.Authorizer = authorizer
-if err != nil {
-	// handle the error
-}
 ```
 
 
@@ -32,6 +29,7 @@ id := checkfrontdoornameavailabilitywithsubscription.NewSubscriptionID()
 payload := checkfrontdoornameavailabilitywithsubscription.CheckNameAvailabilityInput{
 	// ...
 }
+
 
 read, err := client.FrontDoorNameAvailabilityWithSubscriptionCheck(ctx, id, payload)
 if err != nil {

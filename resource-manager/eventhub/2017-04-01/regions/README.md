@@ -17,9 +17,6 @@ import "github.com/hashicorp/go-azure-sdk/resource-manager/eventhub/2017-04-01/r
 ```go
 client := regions.NewRegionsClientWithBaseURI("https://management.azure.com")
 client.Client.Authorizer = authorizer
-if err != nil {
-	// handle the error
-}
 ```
 
 
@@ -28,6 +25,7 @@ if err != nil {
 ```go
 ctx := context.TODO()
 id := regions.NewSkuID("12345678-1234-9876-4563-123456789012", "skuValue")
+
 // alternatively `client.ListBySku(ctx, id)` can be used to do batched pagination
 items, err := client.ListBySkuComplete(ctx, id)
 if err != nil {

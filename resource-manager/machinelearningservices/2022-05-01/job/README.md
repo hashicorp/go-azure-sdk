@@ -17,9 +17,6 @@ import "github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservic
 ```go
 client := job.NewJobClientWithBaseURI("https://management.azure.com")
 client.Client.Authorizer = authorizer
-if err != nil {
-	// handle the error
-}
 ```
 
 
@@ -28,11 +25,8 @@ if err != nil {
 ```go
 ctx := context.TODO()
 id := job.NewJobID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "idValue")
-future, err := client.Cancel(ctx, id)
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.CancelThenPoll(ctx, id); err != nil {
 	// handle the error
 }
 ```
@@ -47,6 +41,7 @@ id := job.NewJobID("12345678-1234-9876-4563-123456789012", "example-resource-gro
 payload := job.JobBaseResource{
 	// ...
 }
+
 
 read, err := client.CreateOrUpdate(ctx, id, payload)
 if err != nil {
@@ -63,11 +58,8 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := job.NewJobID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "idValue")
-future, err := client.Delete(ctx, id)
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.DeleteThenPoll(ctx, id); err != nil {
 	// handle the error
 }
 ```
@@ -78,6 +70,7 @@ if err := future.Poller.PollUntilDone(); err != nil {
 ```go
 ctx := context.TODO()
 id := job.NewJobID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "idValue")
+
 read, err := client.Get(ctx, id)
 if err != nil {
 	// handle the error
@@ -93,6 +86,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := job.NewWorkspaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue")
+
 // alternatively `client.List(ctx, id, job.DefaultListOperationOptions())` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id, job.DefaultListOperationOptions())
 if err != nil {

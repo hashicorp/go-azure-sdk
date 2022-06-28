@@ -17,9 +17,6 @@ import "github.com/hashicorp/go-azure-sdk/resource-manager/costmanagement/2021-1
 ```go
 client := forecast.NewForecastClientWithBaseURI("https://management.azure.com")
 client.Client.Authorizer = authorizer
-if err != nil {
-	// handle the error
-}
 ```
 
 
@@ -32,6 +29,7 @@ id := forecast.NewExternalCloudProviderTypeID("externalBillingAccounts", "extern
 payload := forecast.ForecastDefinition{
 	// ...
 }
+
 
 read, err := client.ExternalCloudProviderUsage(ctx, id, payload, forecast.DefaultExternalCloudProviderUsageOperationOptions())
 if err != nil {
@@ -52,6 +50,7 @@ id := forecast.NewScopeID()
 payload := forecast.ForecastDefinition{
 	// ...
 }
+
 
 read, err := client.Usage(ctx, id, payload, forecast.DefaultUsageOperationOptions())
 if err != nil {

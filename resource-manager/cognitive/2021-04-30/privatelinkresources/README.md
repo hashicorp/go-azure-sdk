@@ -17,9 +17,6 @@ import "github.com/hashicorp/go-azure-sdk/resource-manager/cognitive/2021-04-30/
 ```go
 client := privatelinkresources.NewPrivateLinkResourcesClientWithBaseURI("https://management.azure.com")
 client.Client.Authorizer = authorizer
-if err != nil {
-	// handle the error
-}
 ```
 
 
@@ -28,6 +25,7 @@ if err != nil {
 ```go
 ctx := context.TODO()
 id := privatelinkresources.NewAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue")
+
 read, err := client.List(ctx, id)
 if err != nil {
 	// handle the error

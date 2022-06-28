@@ -17,9 +17,6 @@ import "github.com/hashicorp/go-azure-sdk/resource-manager/labservices/2021-10-0
 ```go
 client := schedule.NewScheduleClientWithBaseURI("https://management.azure.com")
 client.Client.Authorizer = authorizer
-if err != nil {
-	// handle the error
-}
 ```
 
 
@@ -32,6 +29,7 @@ id := schedule.NewScheduleID("12345678-1234-9876-4563-123456789012", "example-re
 payload := schedule.Schedule{
 	// ...
 }
+
 
 read, err := client.CreateOrUpdate(ctx, id, payload)
 if err != nil {
@@ -48,11 +46,8 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := schedule.NewScheduleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "scheduleValue")
-future, err := client.Delete(ctx, id)
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.DeleteThenPoll(ctx, id); err != nil {
 	// handle the error
 }
 ```
@@ -63,6 +58,7 @@ if err := future.Poller.PollUntilDone(); err != nil {
 ```go
 ctx := context.TODO()
 id := schedule.NewScheduleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "scheduleValue")
+
 read, err := client.Get(ctx, id)
 if err != nil {
 	// handle the error
@@ -78,6 +74,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := schedule.NewLabID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue")
+
 // alternatively `client.ListByLab(ctx, id)` can be used to do batched pagination
 items, err := client.ListByLabComplete(ctx, id)
 if err != nil {
@@ -98,6 +95,7 @@ id := schedule.NewScheduleID("12345678-1234-9876-4563-123456789012", "example-re
 payload := schedule.ScheduleUpdate{
 	// ...
 }
+
 
 read, err := client.Update(ctx, id, payload)
 if err != nil {

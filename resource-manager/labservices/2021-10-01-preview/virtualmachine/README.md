@@ -17,9 +17,6 @@ import "github.com/hashicorp/go-azure-sdk/resource-manager/labservices/2021-10-0
 ```go
 client := virtualmachine.NewVirtualMachineClientWithBaseURI("https://management.azure.com")
 client.Client.Authorizer = authorizer
-if err != nil {
-	// handle the error
-}
 ```
 
 
@@ -28,6 +25,7 @@ if err != nil {
 ```go
 ctx := context.TODO()
 id := virtualmachine.NewVirtualMachineID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "virtualMachineValue")
+
 read, err := client.Get(ctx, id)
 if err != nil {
 	// handle the error
@@ -48,11 +46,8 @@ payload := virtualmachine.SaveImageBody{
 	// ...
 }
 
-future, err := client.LabPlansSaveImage(ctx, id, payload)
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.LabPlansSaveImageThenPoll(ctx, id, payload); err != nil {
 	// handle the error
 }
 ```
@@ -63,6 +58,7 @@ if err := future.Poller.PollUntilDone(); err != nil {
 ```go
 ctx := context.TODO()
 id := virtualmachine.NewLabID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue")
+
 // alternatively `client.ListByLab(ctx, id)` can be used to do batched pagination
 items, err := client.ListByLabComplete(ctx, id)
 if err != nil {
@@ -79,11 +75,8 @@ for _, item := range items {
 ```go
 ctx := context.TODO()
 id := virtualmachine.NewVirtualMachineID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "virtualMachineValue")
-future, err := client.Redeploy(ctx, id)
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.RedeployThenPoll(ctx, id); err != nil {
 	// handle the error
 }
 ```
@@ -94,11 +87,8 @@ if err := future.Poller.PollUntilDone(); err != nil {
 ```go
 ctx := context.TODO()
 id := virtualmachine.NewVirtualMachineID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "virtualMachineValue")
-future, err := client.Reimage(ctx, id)
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.ReimageThenPoll(ctx, id); err != nil {
 	// handle the error
 }
 ```
@@ -114,11 +104,8 @@ payload := virtualmachine.ResetPasswordBody{
 	// ...
 }
 
-future, err := client.ResetPassword(ctx, id, payload)
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.ResetPasswordThenPoll(ctx, id, payload); err != nil {
 	// handle the error
 }
 ```
@@ -129,11 +116,8 @@ if err := future.Poller.PollUntilDone(); err != nil {
 ```go
 ctx := context.TODO()
 id := virtualmachine.NewVirtualMachineID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "virtualMachineValue")
-future, err := client.Start(ctx, id)
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.StartThenPoll(ctx, id); err != nil {
 	// handle the error
 }
 ```
@@ -144,11 +128,8 @@ if err := future.Poller.PollUntilDone(); err != nil {
 ```go
 ctx := context.TODO()
 id := virtualmachine.NewVirtualMachineID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "virtualMachineValue")
-future, err := client.Stop(ctx, id)
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.StopThenPoll(ctx, id); err != nil {
 	// handle the error
 }
 ```
