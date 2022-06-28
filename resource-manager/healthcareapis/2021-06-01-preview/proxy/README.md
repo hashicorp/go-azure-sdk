@@ -1,0 +1,43 @@
+
+## `github.com/hashicorp/go-azure-sdk/resource-manager/healthcareapis/2021-06-01-preview/proxy` Documentation
+
+The `proxy` SDK allows for interaction with the Azure Resource Manager Service `healthcareapis` (API Version `2021-06-01-preview`).
+
+This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
+
+### Import Path
+
+```go
+import "github.com/hashicorp/go-azure-sdk/resource-manager/healthcareapis/2021-06-01-preview/proxy"
+```
+
+
+### Client Initialization
+
+```go
+client := proxy.NewProxyClientWithBaseURI("https://management.azure.com")
+client.Client.Authorizer = authorizer
+if err != nil {
+	// handle the error
+}
+```
+
+
+### Example Usage: `ProxyClient.ServicesCheckNameAvailability`
+
+```go
+ctx := context.TODO()
+id := proxy.NewSubscriptionID()
+
+payload := proxy.CheckNameAvailabilityParameters{
+	// ...
+}
+
+read, err := client.ServicesCheckNameAvailability(ctx, id, payload)
+if err != nil {
+	// handle the error
+}
+if model := read.Model; model != nil {
+	// do something with the model/response object
+}
+```
