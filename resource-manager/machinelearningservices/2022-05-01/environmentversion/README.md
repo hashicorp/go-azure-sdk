@@ -17,9 +17,6 @@ import "github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservic
 ```go
 client := environmentversion.NewEnvironmentVersionClientWithBaseURI("https://management.azure.com")
 client.Client.Authorizer = authorizer
-if err != nil {
-	// handle the error
-}
 ```
 
 
@@ -32,6 +29,7 @@ id := environmentversion.NewEnvironmentVersionID("12345678-1234-9876-4563-123456
 payload := environmentversion.EnvironmentVersionResource{
 	// ...
 }
+
 
 read, err := client.CreateOrUpdate(ctx, id, payload)
 if err != nil {
@@ -48,6 +46,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := environmentversion.NewEnvironmentVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "nameValue", "versionValue")
+
 read, err := client.Delete(ctx, id)
 if err != nil {
 	// handle the error
@@ -63,6 +62,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := environmentversion.NewEnvironmentVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "nameValue", "versionValue")
+
 read, err := client.Get(ctx, id)
 if err != nil {
 	// handle the error
@@ -78,6 +78,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := environmentversion.NewEnvironmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "nameValue")
+
 // alternatively `client.List(ctx, id, environmentversion.DefaultListOperationOptions())` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id, environmentversion.DefaultListOperationOptions())
 if err != nil {

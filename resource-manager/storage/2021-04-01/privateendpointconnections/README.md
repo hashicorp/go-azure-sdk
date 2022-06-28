@@ -17,9 +17,6 @@ import "github.com/hashicorp/go-azure-sdk/resource-manager/storage/2021-04-01/pr
 ```go
 client := privateendpointconnections.NewPrivateEndpointConnectionsClientWithBaseURI("https://management.azure.com")
 client.Client.Authorizer = authorizer
-if err != nil {
-	// handle the error
-}
 ```
 
 
@@ -28,6 +25,7 @@ if err != nil {
 ```go
 ctx := context.TODO()
 id := privateendpointconnections.NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "privateEndpointConnectionValue")
+
 read, err := client.Delete(ctx, id)
 if err != nil {
 	// handle the error
@@ -43,6 +41,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := privateendpointconnections.NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "privateEndpointConnectionValue")
+
 read, err := client.Get(ctx, id)
 if err != nil {
 	// handle the error
@@ -58,6 +57,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := privateendpointconnections.NewStorageAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue")
+
 read, err := client.List(ctx, id)
 if err != nil {
 	// handle the error
@@ -77,6 +77,7 @@ id := privateendpointconnections.NewPrivateEndpointConnectionID("12345678-1234-9
 payload := privateendpointconnections.PrivateEndpointConnection{
 	// ...
 }
+
 
 read, err := client.Put(ctx, id, payload)
 if err != nil {

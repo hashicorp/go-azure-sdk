@@ -17,9 +17,6 @@ import "github.com/hashicorp/go-azure-sdk/resource-manager/labservices/2021-10-0
 ```go
 client := user.NewUserClientWithBaseURI("https://management.azure.com")
 client.Client.Authorizer = authorizer
-if err != nil {
-	// handle the error
-}
 ```
 
 
@@ -33,11 +30,8 @@ payload := user.User{
 	// ...
 }
 
-future, err := client.CreateOrUpdate(ctx, id, payload)
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.CreateOrUpdateThenPoll(ctx, id, payload); err != nil {
 	// handle the error
 }
 ```
@@ -48,11 +42,8 @@ if err := future.Poller.PollUntilDone(); err != nil {
 ```go
 ctx := context.TODO()
 id := user.NewUserID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "userValue")
-future, err := client.Delete(ctx, id)
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.DeleteThenPoll(ctx, id); err != nil {
 	// handle the error
 }
 ```
@@ -63,6 +54,7 @@ if err := future.Poller.PollUntilDone(); err != nil {
 ```go
 ctx := context.TODO()
 id := user.NewUserID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "userValue")
+
 read, err := client.Get(ctx, id)
 if err != nil {
 	// handle the error
@@ -83,11 +75,8 @@ payload := user.InviteBody{
 	// ...
 }
 
-future, err := client.Invite(ctx, id, payload)
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.InviteThenPoll(ctx, id, payload); err != nil {
 	// handle the error
 }
 ```
@@ -98,6 +87,7 @@ if err := future.Poller.PollUntilDone(); err != nil {
 ```go
 ctx := context.TODO()
 id := user.NewLabID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue")
+
 // alternatively `client.ListByLab(ctx, id)` can be used to do batched pagination
 items, err := client.ListByLabComplete(ctx, id)
 if err != nil {
@@ -119,11 +109,8 @@ payload := user.UserUpdate{
 	// ...
 }
 
-future, err := client.Update(ctx, id, payload)
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.UpdateThenPoll(ctx, id, payload); err != nil {
 	// handle the error
 }
 ```

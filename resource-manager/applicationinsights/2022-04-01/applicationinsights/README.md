@@ -17,9 +17,6 @@ import "github.com/hashicorp/go-azure-sdk/resource-manager/applicationinsights/2
 ```go
 client := applicationinsights.NewApplicationInsightsClientWithBaseURI("https://management.azure.com")
 client.Client.Authorizer = authorizer
-if err != nil {
-	// handle the error
-}
 ```
 
 
@@ -32,6 +29,7 @@ id := applicationinsights.NewWorkbookID("12345678-1234-9876-4563-123456789012", 
 payload := applicationinsights.Workbook{
 	// ...
 }
+
 
 read, err := client.WorkbooksCreateOrUpdate(ctx, id, payload, applicationinsights.DefaultWorkbooksCreateOrUpdateOperationOptions())
 if err != nil {
@@ -48,6 +46,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := applicationinsights.NewWorkbookID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue")
+
 read, err := client.WorkbooksDelete(ctx, id)
 if err != nil {
 	// handle the error
@@ -63,6 +62,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := applicationinsights.NewWorkbookID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue")
+
 read, err := client.WorkbooksGet(ctx, id, applicationinsights.DefaultWorkbooksGetOperationOptions())
 if err != nil {
 	// handle the error
@@ -78,6 +78,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := applicationinsights.NewResourceGroupID()
+
 // alternatively `client.WorkbooksListByResourceGroup(ctx, id, applicationinsights.DefaultWorkbooksListByResourceGroupOperationOptions())` can be used to do batched pagination
 items, err := client.WorkbooksListByResourceGroupComplete(ctx, id, applicationinsights.DefaultWorkbooksListByResourceGroupOperationOptions())
 if err != nil {
@@ -94,6 +95,7 @@ for _, item := range items {
 ```go
 ctx := context.TODO()
 id := applicationinsights.NewSubscriptionID()
+
 // alternatively `client.WorkbooksListBySubscription(ctx, id, applicationinsights.DefaultWorkbooksListBySubscriptionOperationOptions())` can be used to do batched pagination
 items, err := client.WorkbooksListBySubscriptionComplete(ctx, id, applicationinsights.DefaultWorkbooksListBySubscriptionOperationOptions())
 if err != nil {
@@ -110,6 +112,7 @@ for _, item := range items {
 ```go
 ctx := context.TODO()
 id := applicationinsights.NewRevisionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue", "revisionIdValue")
+
 read, err := client.WorkbooksRevisionGet(ctx, id)
 if err != nil {
 	// handle the error
@@ -125,6 +128,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := applicationinsights.NewWorkbookID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue")
+
 // alternatively `client.WorkbooksRevisionsList(ctx, id)` can be used to do batched pagination
 items, err := client.WorkbooksRevisionsListComplete(ctx, id)
 if err != nil {
@@ -145,6 +149,7 @@ id := applicationinsights.NewWorkbookID("12345678-1234-9876-4563-123456789012", 
 payload := applicationinsights.WorkbookUpdateParameters{
 	// ...
 }
+
 
 read, err := client.WorkbooksUpdate(ctx, id, payload, applicationinsights.DefaultWorkbooksUpdateOperationOptions())
 if err != nil {

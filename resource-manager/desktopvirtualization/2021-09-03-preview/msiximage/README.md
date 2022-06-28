@@ -17,9 +17,6 @@ import "github.com/hashicorp/go-azure-sdk/resource-manager/desktopvirtualization
 ```go
 client := msiximage.NewMsixImageClientWithBaseURI("https://management.azure.com")
 client.Client.Authorizer = authorizer
-if err != nil {
-	// handle the error
-}
 ```
 
 
@@ -32,6 +29,7 @@ id := msiximage.NewHostPoolID("12345678-1234-9876-4563-123456789012", "example-r
 payload := msiximage.MSIXImageURI{
 	// ...
 }
+
 
 // alternatively `client.Expand(ctx, id, payload)` can be used to do batched pagination
 items, err := client.ExpandComplete(ctx, id, payload)

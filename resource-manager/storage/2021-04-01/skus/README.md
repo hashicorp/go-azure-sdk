@@ -17,9 +17,6 @@ import "github.com/hashicorp/go-azure-sdk/resource-manager/storage/2021-04-01/sk
 ```go
 client := skus.NewSkusClientWithBaseURI("https://management.azure.com")
 client.Client.Authorizer = authorizer
-if err != nil {
-	// handle the error
-}
 ```
 
 
@@ -28,6 +25,7 @@ if err != nil {
 ```go
 ctx := context.TODO()
 id := skus.NewSubscriptionID()
+
 read, err := client.List(ctx, id)
 if err != nil {
 	// handle the error

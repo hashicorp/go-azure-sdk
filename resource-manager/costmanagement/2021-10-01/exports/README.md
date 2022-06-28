@@ -17,9 +17,6 @@ import "github.com/hashicorp/go-azure-sdk/resource-manager/costmanagement/2021-1
 ```go
 client := exports.NewExportsClientWithBaseURI("https://management.azure.com")
 client.Client.Authorizer = authorizer
-if err != nil {
-	// handle the error
-}
 ```
 
 
@@ -32,6 +29,7 @@ id := exports.NewScopedExportID("/subscriptions/12345678-1234-9876-4563-12345678
 payload := exports.Export{
 	// ...
 }
+
 
 read, err := client.CreateOrUpdate(ctx, id, payload)
 if err != nil {
@@ -48,6 +46,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := exports.NewScopedExportID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "exportValue")
+
 read, err := client.Delete(ctx, id)
 if err != nil {
 	// handle the error
@@ -63,6 +62,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := exports.NewScopedExportID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "exportValue")
+
 read, err := client.Execute(ctx, id)
 if err != nil {
 	// handle the error
@@ -78,6 +78,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := exports.NewScopedExportID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "exportValue")
+
 read, err := client.Get(ctx, id, exports.DefaultGetOperationOptions())
 if err != nil {
 	// handle the error
@@ -93,6 +94,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := exports.NewScopedExportID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "exportValue")
+
 read, err := client.GetExecutionHistory(ctx, id)
 if err != nil {
 	// handle the error
@@ -108,6 +110,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := exports.NewScopeID()
+
 read, err := client.List(ctx, id, exports.DefaultListOperationOptions())
 if err != nil {
 	// handle the error

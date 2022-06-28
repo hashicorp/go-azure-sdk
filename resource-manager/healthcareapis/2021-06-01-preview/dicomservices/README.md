@@ -17,9 +17,6 @@ import "github.com/hashicorp/go-azure-sdk/resource-manager/healthcareapis/2021-0
 ```go
 client := dicomservices.NewDicomServicesClientWithBaseURI("https://management.azure.com")
 client.Client.Authorizer = authorizer
-if err != nil {
-	// handle the error
-}
 ```
 
 
@@ -33,11 +30,8 @@ payload := dicomservices.DicomService{
 	// ...
 }
 
-future, err := client.CreateOrUpdate(ctx, id, payload)
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.CreateOrUpdateThenPoll(ctx, id, payload); err != nil {
 	// handle the error
 }
 ```
@@ -48,11 +42,8 @@ if err := future.Poller.PollUntilDone(); err != nil {
 ```go
 ctx := context.TODO()
 id := dicomservices.NewDicomServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "dicomServiceValue")
-future, err := client.Delete(ctx, id)
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.DeleteThenPoll(ctx, id); err != nil {
 	// handle the error
 }
 ```
@@ -63,6 +54,7 @@ if err := future.Poller.PollUntilDone(); err != nil {
 ```go
 ctx := context.TODO()
 id := dicomservices.NewDicomServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "dicomServiceValue")
+
 read, err := client.Get(ctx, id)
 if err != nil {
 	// handle the error
@@ -78,6 +70,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := dicomservices.NewWorkspaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue")
+
 // alternatively `client.ListByWorkspace(ctx, id)` can be used to do batched pagination
 items, err := client.ListByWorkspaceComplete(ctx, id)
 if err != nil {
@@ -99,11 +92,8 @@ payload := dicomservices.ResourceTags{
 	// ...
 }
 
-future, err := client.Update(ctx, id, payload)
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.UpdateThenPoll(ctx, id, payload); err != nil {
 	// handle the error
 }
 ```

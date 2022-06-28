@@ -17,9 +17,6 @@ import "github.com/hashicorp/go-azure-sdk/resource-manager/operationalinsights/2
 ```go
 client := storageinsights.NewStorageInsightsClientWithBaseURI("https://management.azure.com")
 client.Client.Authorizer = authorizer
-if err != nil {
-	// handle the error
-}
 ```
 
 
@@ -32,6 +29,7 @@ id := storageinsights.NewStorageInsightConfigID("12345678-1234-9876-4563-1234567
 payload := storageinsights.StorageInsight{
 	// ...
 }
+
 
 read, err := client.StorageInsightConfigsCreateOrUpdate(ctx, id, payload)
 if err != nil {
@@ -48,6 +46,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := storageinsights.NewStorageInsightConfigID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "storageInsightValue")
+
 read, err := client.StorageInsightConfigsDelete(ctx, id)
 if err != nil {
 	// handle the error
@@ -63,6 +62,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := storageinsights.NewStorageInsightConfigID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "storageInsightValue")
+
 read, err := client.StorageInsightConfigsGet(ctx, id)
 if err != nil {
 	// handle the error
@@ -78,6 +78,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := storageinsights.NewWorkspaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue")
+
 // alternatively `client.StorageInsightConfigsListByWorkspace(ctx, id)` can be used to do batched pagination
 items, err := client.StorageInsightConfigsListByWorkspaceComplete(ctx, id)
 if err != nil {

@@ -17,9 +17,6 @@ import "github.com/hashicorp/go-azure-sdk/resource-manager/chaosstudio/2021-09-1
 ```go
 client := targets.NewTargetsClientWithBaseURI("https://management.azure.com")
 client.Client.Authorizer = authorizer
-if err != nil {
-	// handle the error
-}
 ```
 
 
@@ -32,6 +29,7 @@ id := targets.NewTargetID("12345678-1234-9876-4563-123456789012", "example-resou
 payload := targets.Target{
 	// ...
 }
+
 
 read, err := client.CreateOrUpdate(ctx, id, payload)
 if err != nil {
@@ -48,6 +46,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := targets.NewTargetID("12345678-1234-9876-4563-123456789012", "example-resource-group", "parentProviderNamespaceValue", "parentResourceTypeValue", "parentResourceValue", "targetValue")
+
 read, err := client.Delete(ctx, id)
 if err != nil {
 	// handle the error
@@ -63,6 +62,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := targets.NewTargetID("12345678-1234-9876-4563-123456789012", "example-resource-group", "parentProviderNamespaceValue", "parentResourceTypeValue", "parentResourceValue", "targetValue")
+
 read, err := client.Get(ctx, id)
 if err != nil {
 	// handle the error
@@ -78,6 +78,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := targets.NewProviderID("12345678-1234-9876-4563-123456789012", "example-resource-group", "parentProviderNamespaceValue", "parentResourceTypeValue", "parentResourceValue")
+
 // alternatively `client.List(ctx, id, targets.DefaultListOperationOptions())` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id, targets.DefaultListOperationOptions())
 if err != nil {

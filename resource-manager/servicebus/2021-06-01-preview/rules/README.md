@@ -17,9 +17,6 @@ import "github.com/hashicorp/go-azure-sdk/resource-manager/servicebus/2021-06-01
 ```go
 client := rules.NewRulesClientWithBaseURI("https://management.azure.com")
 client.Client.Authorizer = authorizer
-if err != nil {
-	// handle the error
-}
 ```
 
 
@@ -32,6 +29,7 @@ id := rules.NewRuleID("12345678-1234-9876-4563-123456789012", "example-resource-
 payload := rules.Rule{
 	// ...
 }
+
 
 read, err := client.CreateOrUpdate(ctx, id, payload)
 if err != nil {
@@ -48,6 +46,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := rules.NewRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceValue", "topicValue", "subscriptionValue", "ruleValue")
+
 read, err := client.Delete(ctx, id)
 if err != nil {
 	// handle the error
@@ -63,6 +62,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := rules.NewSubscriptions2ID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceValue", "topicValue", "subscriptionValue")
+
 // alternatively `client.ListBySubscriptions(ctx, id, rules.DefaultListBySubscriptionsOperationOptions())` can be used to do batched pagination
 items, err := client.ListBySubscriptionsComplete(ctx, id, rules.DefaultListBySubscriptionsOperationOptions())
 if err != nil {

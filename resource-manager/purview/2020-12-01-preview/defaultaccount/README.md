@@ -17,9 +17,6 @@ import "github.com/hashicorp/go-azure-sdk/resource-manager/purview/2020-12-01-pr
 ```go
 client := defaultaccount.NewDefaultAccountClientWithBaseURI("https://management.azure.com")
 client.Client.Authorizer = authorizer
-if err != nil {
-	// handle the error
-}
 ```
 
 
@@ -27,6 +24,7 @@ if err != nil {
 
 ```go
 ctx := context.TODO()
+
 
 read, err := client.Get(ctx, defaultaccount.DefaultGetOperationOptions())
 if err != nil {
@@ -42,6 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
+
 
 read, err := client.Remove(ctx, defaultaccount.DefaultRemoveOperationOptions())
 if err != nil {
@@ -61,6 +60,7 @@ ctx := context.TODO()
 payload := defaultaccount.DefaultAccountPayload{
 	// ...
 }
+
 
 read, err := client.Set(ctx, payload)
 if err != nil {

@@ -17,9 +17,6 @@ import "github.com/hashicorp/go-azure-sdk/resource-manager/healthcareapis/2021-0
 ```go
 client := proxy.NewProxyClientWithBaseURI("https://management.azure.com")
 client.Client.Authorizer = authorizer
-if err != nil {
-	// handle the error
-}
 ```
 
 
@@ -32,6 +29,7 @@ id := proxy.NewSubscriptionID()
 payload := proxy.CheckNameAvailabilityParameters{
 	// ...
 }
+
 
 read, err := client.ServicesCheckNameAvailability(ctx, id, payload)
 if err != nil {

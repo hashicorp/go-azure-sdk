@@ -17,9 +17,6 @@ import "github.com/hashicorp/go-azure-sdk/resource-manager/mixedreality/2021-01-
 ```go
 client := proxy.NewProxyClientWithBaseURI("https://management.azure.com")
 client.Client.Authorizer = authorizer
-if err != nil {
-	// handle the error
-}
 ```
 
 
@@ -32,6 +29,7 @@ id := proxy.NewLocationID("12345678-1234-9876-4563-123456789012", "locationValue
 payload := proxy.CheckNameAvailabilityRequest{
 	// ...
 }
+
 
 read, err := client.CheckNameAvailabilityLocal(ctx, id, payload)
 if err != nil {
@@ -48,6 +46,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := proxy.NewSubscriptionID()
+
 // alternatively `client.RemoteRenderingAccountsListBySubscription(ctx, id)` can be used to do batched pagination
 items, err := client.RemoteRenderingAccountsListBySubscriptionComplete(ctx, id)
 if err != nil {
@@ -64,6 +63,7 @@ for _, item := range items {
 ```go
 ctx := context.TODO()
 id := proxy.NewSubscriptionID()
+
 // alternatively `client.SpatialAnchorsAccountsListBySubscription(ctx, id)` can be used to do batched pagination
 items, err := client.SpatialAnchorsAccountsListBySubscriptionComplete(ctx, id)
 if err != nil {

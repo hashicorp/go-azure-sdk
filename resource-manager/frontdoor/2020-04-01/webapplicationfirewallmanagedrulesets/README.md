@@ -17,9 +17,6 @@ import "github.com/hashicorp/go-azure-sdk/resource-manager/frontdoor/2020-04-01/
 ```go
 client := webapplicationfirewallmanagedrulesets.NewWebApplicationFirewallManagedRuleSetsClientWithBaseURI("https://management.azure.com")
 client.Client.Authorizer = authorizer
-if err != nil {
-	// handle the error
-}
 ```
 
 
@@ -28,6 +25,7 @@ if err != nil {
 ```go
 ctx := context.TODO()
 id := webapplicationfirewallmanagedrulesets.NewSubscriptionID()
+
 // alternatively `client.ManagedRuleSetsList(ctx, id)` can be used to do batched pagination
 items, err := client.ManagedRuleSetsListComplete(ctx, id)
 if err != nil {

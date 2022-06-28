@@ -17,9 +17,6 @@ import "github.com/hashicorp/go-azure-sdk/resource-manager/costmanagement/2021-1
 ```go
 client := reservedinstances.NewReservedInstancesClientWithBaseURI("https://management.azure.com")
 client.Client.Authorizer = authorizer
-if err != nil {
-	// handle the error
-}
 ```
 
 
@@ -28,11 +25,8 @@ if err != nil {
 ```go
 ctx := context.TODO()
 id := reservedinstances.NewBillingAccountID("billingAccountIdValue")
-future, err := client.GenerateReservationDetailsReportByBillingAccountId(ctx, id, reservedinstances.DefaultGenerateReservationDetailsReportByBillingAccountIdOperationOptions())
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.GenerateReservationDetailsReportByBillingAccountIdThenPoll(ctx, id, reservedinstances.DefaultGenerateReservationDetailsReportByBillingAccountIdOperationOptions()); err != nil {
 	// handle the error
 }
 ```
@@ -43,11 +37,8 @@ if err := future.Poller.PollUntilDone(); err != nil {
 ```go
 ctx := context.TODO()
 id := reservedinstances.NewBillingProfileID("billingAccountIdValue", "billingProfileIdValue")
-future, err := client.GenerateReservationDetailsReportByBillingProfileId(ctx, id, reservedinstances.DefaultGenerateReservationDetailsReportByBillingProfileIdOperationOptions())
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.GenerateReservationDetailsReportByBillingProfileIdThenPoll(ctx, id, reservedinstances.DefaultGenerateReservationDetailsReportByBillingProfileIdOperationOptions()); err != nil {
 	// handle the error
 }
 ```

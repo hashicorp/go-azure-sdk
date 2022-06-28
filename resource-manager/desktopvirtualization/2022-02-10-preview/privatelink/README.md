@@ -17,9 +17,6 @@ import "github.com/hashicorp/go-azure-sdk/resource-manager/desktopvirtualization
 ```go
 client := privatelink.NewPrivateLinkClientWithBaseURI("https://management.azure.com")
 client.Client.Authorizer = authorizer
-if err != nil {
-	// handle the error
-}
 ```
 
 
@@ -28,6 +25,7 @@ if err != nil {
 ```go
 ctx := context.TODO()
 id := privatelink.NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hostPoolValue", "privateEndpointConnectionValue")
+
 read, err := client.PrivateEndpointConnectionsDeleteByHostPool(ctx, id)
 if err != nil {
 	// handle the error
@@ -43,6 +41,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := privatelink.NewWorkspacePrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "privateEndpointConnectionValue")
+
 read, err := client.PrivateEndpointConnectionsDeleteByWorkspace(ctx, id)
 if err != nil {
 	// handle the error
@@ -58,6 +57,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := privatelink.NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hostPoolValue", "privateEndpointConnectionValue")
+
 read, err := client.PrivateEndpointConnectionsGetByHostPool(ctx, id)
 if err != nil {
 	// handle the error
@@ -73,6 +73,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := privatelink.NewWorkspacePrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "privateEndpointConnectionValue")
+
 read, err := client.PrivateEndpointConnectionsGetByWorkspace(ctx, id)
 if err != nil {
 	// handle the error
@@ -88,6 +89,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := privatelink.NewHostPoolID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hostPoolValue")
+
 // alternatively `client.PrivateEndpointConnectionsListByHostPool(ctx, id)` can be used to do batched pagination
 items, err := client.PrivateEndpointConnectionsListByHostPoolComplete(ctx, id)
 if err != nil {
@@ -104,6 +106,7 @@ for _, item := range items {
 ```go
 ctx := context.TODO()
 id := privatelink.NewWorkspaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue")
+
 // alternatively `client.PrivateEndpointConnectionsListByWorkspace(ctx, id)` can be used to do batched pagination
 items, err := client.PrivateEndpointConnectionsListByWorkspaceComplete(ctx, id)
 if err != nil {
@@ -125,6 +128,7 @@ payload := privatelink.PrivateEndpointConnection{
 	// ...
 }
 
+
 read, err := client.PrivateEndpointConnectionsUpdateByHostPool(ctx, id, payload)
 if err != nil {
 	// handle the error
@@ -145,6 +149,7 @@ payload := privatelink.PrivateEndpointConnection{
 	// ...
 }
 
+
 read, err := client.PrivateEndpointConnectionsUpdateByWorkspace(ctx, id, payload)
 if err != nil {
 	// handle the error
@@ -160,6 +165,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := privatelink.NewHostPoolID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hostPoolValue")
+
 // alternatively `client.ResourcesListByHostPool(ctx, id)` can be used to do batched pagination
 items, err := client.ResourcesListByHostPoolComplete(ctx, id)
 if err != nil {
@@ -176,6 +182,7 @@ for _, item := range items {
 ```go
 ctx := context.TODO()
 id := privatelink.NewWorkspaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue")
+
 // alternatively `client.ResourcesListByWorkspace(ctx, id)` can be used to do batched pagination
 items, err := client.ResourcesListByWorkspaceComplete(ctx, id)
 if err != nil {

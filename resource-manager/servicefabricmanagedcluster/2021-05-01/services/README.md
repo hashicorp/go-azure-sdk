@@ -17,9 +17,6 @@ import "github.com/hashicorp/go-azure-sdk/resource-manager/servicefabricmanagedc
 ```go
 client := services.NewServicesClientWithBaseURI("https://management.azure.com")
 client.Client.Authorizer = authorizer
-if err != nil {
-	// handle the error
-}
 ```
 
 
@@ -32,6 +29,7 @@ id := services.NewServiceID("12345678-1234-9876-4563-123456789012", "example-res
 payload := services.ServiceUpdateParameters{
 	// ...
 }
+
 
 read, err := client.Update(ctx, id, payload)
 if err != nil {

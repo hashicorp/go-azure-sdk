@@ -17,9 +17,6 @@ import "github.com/hashicorp/go-azure-sdk/resource-manager/labservices/2021-10-0
 ```go
 client := lab.NewLabClientWithBaseURI("https://management.azure.com")
 client.Client.Authorizer = authorizer
-if err != nil {
-	// handle the error
-}
 ```
 
 
@@ -33,11 +30,8 @@ payload := lab.Lab{
 	// ...
 }
 
-future, err := client.CreateOrUpdate(ctx, id, payload)
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.CreateOrUpdateThenPoll(ctx, id, payload); err != nil {
 	// handle the error
 }
 ```
@@ -48,11 +42,8 @@ if err := future.Poller.PollUntilDone(); err != nil {
 ```go
 ctx := context.TODO()
 id := lab.NewLabID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue")
-future, err := client.Delete(ctx, id)
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.DeleteThenPoll(ctx, id); err != nil {
 	// handle the error
 }
 ```
@@ -63,6 +54,7 @@ if err := future.Poller.PollUntilDone(); err != nil {
 ```go
 ctx := context.TODO()
 id := lab.NewLabID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue")
+
 read, err := client.Get(ctx, id)
 if err != nil {
 	// handle the error
@@ -78,6 +70,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := lab.NewResourceGroupID()
+
 // alternatively `client.ListByResourceGroup(ctx, id)` can be used to do batched pagination
 items, err := client.ListByResourceGroupComplete(ctx, id)
 if err != nil {
@@ -94,6 +87,7 @@ for _, item := range items {
 ```go
 ctx := context.TODO()
 id := lab.NewSubscriptionID()
+
 // alternatively `client.ListBySubscription(ctx, id)` can be used to do batched pagination
 items, err := client.ListBySubscriptionComplete(ctx, id)
 if err != nil {
@@ -110,11 +104,8 @@ for _, item := range items {
 ```go
 ctx := context.TODO()
 id := lab.NewLabID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue")
-future, err := client.Publish(ctx, id)
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.PublishThenPoll(ctx, id); err != nil {
 	// handle the error
 }
 ```
@@ -125,11 +116,8 @@ if err := future.Poller.PollUntilDone(); err != nil {
 ```go
 ctx := context.TODO()
 id := lab.NewLabID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue")
-future, err := client.SyncGroup(ctx, id)
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.SyncGroupThenPoll(ctx, id); err != nil {
 	// handle the error
 }
 ```
@@ -145,11 +133,8 @@ payload := lab.LabUpdate{
 	// ...
 }
 
-future, err := client.Update(ctx, id, payload)
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.UpdateThenPoll(ctx, id, payload); err != nil {
 	// handle the error
 }
 ```

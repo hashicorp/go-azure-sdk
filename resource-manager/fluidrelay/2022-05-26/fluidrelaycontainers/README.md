@@ -17,9 +17,6 @@ import "github.com/hashicorp/go-azure-sdk/resource-manager/fluidrelay/2022-05-26
 ```go
 client := fluidrelaycontainers.NewFluidRelayContainersClientWithBaseURI("https://management.azure.com")
 client.Client.Authorizer = authorizer
-if err != nil {
-	// handle the error
-}
 ```
 
 
@@ -28,6 +25,7 @@ if err != nil {
 ```go
 ctx := context.TODO()
 id := fluidrelaycontainers.NewFluidRelayContainerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "fluidRelayServerValue", "fluidRelayContainerValue")
+
 read, err := client.Delete(ctx, id)
 if err != nil {
 	// handle the error
@@ -43,6 +41,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := fluidrelaycontainers.NewFluidRelayContainerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "fluidRelayServerValue", "fluidRelayContainerValue")
+
 read, err := client.Get(ctx, id)
 if err != nil {
 	// handle the error
@@ -58,6 +57,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := fluidrelaycontainers.NewFluidRelayServerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "fluidRelayServerValue")
+
 // alternatively `client.ListByFluidRelayServers(ctx, id)` can be used to do batched pagination
 items, err := client.ListByFluidRelayServersComplete(ctx, id)
 if err != nil {

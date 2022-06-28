@@ -17,9 +17,6 @@ import "github.com/hashicorp/go-azure-sdk/resource-manager/storage/2021-04-01/qu
 ```go
 client := queueservice.NewQueueServiceClientWithBaseURI("https://management.azure.com")
 client.Client.Authorizer = authorizer
-if err != nil {
-	// handle the error
-}
 ```
 
 
@@ -32,6 +29,7 @@ id := queueservice.NewQueueID("12345678-1234-9876-4563-123456789012", "example-r
 payload := queueservice.StorageQueue{
 	// ...
 }
+
 
 read, err := client.QueueCreate(ctx, id, payload)
 if err != nil {
@@ -48,6 +46,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := queueservice.NewQueueID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "queueValue")
+
 read, err := client.QueueDelete(ctx, id)
 if err != nil {
 	// handle the error
@@ -63,6 +62,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := queueservice.NewQueueID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "queueValue")
+
 read, err := client.QueueGet(ctx, id)
 if err != nil {
 	// handle the error
@@ -78,6 +78,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := queueservice.NewStorageAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue")
+
 // alternatively `client.QueueList(ctx, id, queueservice.DefaultQueueListOperationOptions())` can be used to do batched pagination
 items, err := client.QueueListComplete(ctx, id, queueservice.DefaultQueueListOperationOptions())
 if err != nil {
@@ -98,6 +99,7 @@ id := queueservice.NewQueueID("12345678-1234-9876-4563-123456789012", "example-r
 payload := queueservice.StorageQueue{
 	// ...
 }
+
 
 read, err := client.QueueUpdate(ctx, id, payload)
 if err != nil {

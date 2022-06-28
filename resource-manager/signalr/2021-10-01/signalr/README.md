@@ -17,9 +17,6 @@ import "github.com/hashicorp/go-azure-sdk/resource-manager/signalr/2021-10-01/si
 ```go
 client := signalr.NewSignalRClientWithBaseURI("https://management.azure.com")
 client.Client.Authorizer = authorizer
-if err != nil {
-	// handle the error
-}
 ```
 
 
@@ -32,6 +29,7 @@ id := signalr.NewLocationID("12345678-1234-9876-4563-123456789012", "locationVal
 payload := signalr.NameAvailabilityParameters{
 	// ...
 }
+
 
 read, err := client.CheckNameAvailability(ctx, id, payload)
 if err != nil {
@@ -53,11 +51,8 @@ payload := signalr.SignalRResource{
 	// ...
 }
 
-future, err := client.CreateOrUpdate(ctx, id, payload)
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.CreateOrUpdateThenPoll(ctx, id, payload); err != nil {
 	// handle the error
 }
 ```
@@ -68,11 +63,8 @@ if err := future.Poller.PollUntilDone(); err != nil {
 ```go
 ctx := context.TODO()
 id := signalr.NewSignalRID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue")
-future, err := client.Delete(ctx, id)
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.DeleteThenPoll(ctx, id); err != nil {
 	// handle the error
 }
 ```
@@ -83,6 +75,7 @@ if err := future.Poller.PollUntilDone(); err != nil {
 ```go
 ctx := context.TODO()
 id := signalr.NewSignalRID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue")
+
 read, err := client.Get(ctx, id)
 if err != nil {
 	// handle the error
@@ -98,6 +91,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := signalr.NewResourceGroupID()
+
 // alternatively `client.ListByResourceGroup(ctx, id)` can be used to do batched pagination
 items, err := client.ListByResourceGroupComplete(ctx, id)
 if err != nil {
@@ -114,6 +108,7 @@ for _, item := range items {
 ```go
 ctx := context.TODO()
 id := signalr.NewSubscriptionID()
+
 // alternatively `client.ListBySubscription(ctx, id)` can be used to do batched pagination
 items, err := client.ListBySubscriptionComplete(ctx, id)
 if err != nil {
@@ -130,6 +125,7 @@ for _, item := range items {
 ```go
 ctx := context.TODO()
 id := signalr.NewSignalRID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue")
+
 read, err := client.ListKeys(ctx, id)
 if err != nil {
 	// handle the error
@@ -145,6 +141,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := signalr.NewSignalRID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue")
+
 read, err := client.ListSkus(ctx, id)
 if err != nil {
 	// handle the error
@@ -160,11 +157,8 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := signalr.NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue", "privateEndpointConnectionValue")
-future, err := client.PrivateEndpointConnectionsDelete(ctx, id)
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.PrivateEndpointConnectionsDeleteThenPoll(ctx, id); err != nil {
 	// handle the error
 }
 ```
@@ -175,6 +169,7 @@ if err := future.Poller.PollUntilDone(); err != nil {
 ```go
 ctx := context.TODO()
 id := signalr.NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue", "privateEndpointConnectionValue")
+
 read, err := client.PrivateEndpointConnectionsGet(ctx, id)
 if err != nil {
 	// handle the error
@@ -190,6 +185,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := signalr.NewSignalRID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue")
+
 // alternatively `client.PrivateEndpointConnectionsList(ctx, id)` can be used to do batched pagination
 items, err := client.PrivateEndpointConnectionsListComplete(ctx, id)
 if err != nil {
@@ -211,6 +207,7 @@ payload := signalr.PrivateEndpointConnection{
 	// ...
 }
 
+
 read, err := client.PrivateEndpointConnectionsUpdate(ctx, id, payload)
 if err != nil {
 	// handle the error
@@ -226,6 +223,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := signalr.NewSignalRID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue")
+
 // alternatively `client.PrivateLinkResourcesList(ctx, id)` can be used to do batched pagination
 items, err := client.PrivateLinkResourcesListComplete(ctx, id)
 if err != nil {
@@ -247,11 +245,8 @@ payload := signalr.RegenerateKeyParameters{
 	// ...
 }
 
-future, err := client.RegenerateKey(ctx, id, payload)
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.RegenerateKeyThenPoll(ctx, id, payload); err != nil {
 	// handle the error
 }
 ```
@@ -262,11 +257,8 @@ if err := future.Poller.PollUntilDone(); err != nil {
 ```go
 ctx := context.TODO()
 id := signalr.NewSignalRID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue")
-future, err := client.Restart(ctx, id)
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.RestartThenPoll(ctx, id); err != nil {
 	// handle the error
 }
 ```
@@ -282,11 +274,8 @@ payload := signalr.SharedPrivateLinkResource{
 	// ...
 }
 
-future, err := client.SharedPrivateLinkResourcesCreateOrUpdate(ctx, id, payload)
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.SharedPrivateLinkResourcesCreateOrUpdateThenPoll(ctx, id, payload); err != nil {
 	// handle the error
 }
 ```
@@ -297,11 +286,8 @@ if err := future.Poller.PollUntilDone(); err != nil {
 ```go
 ctx := context.TODO()
 id := signalr.NewSharedPrivateLinkResourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue", "sharedPrivateLinkResourceValue")
-future, err := client.SharedPrivateLinkResourcesDelete(ctx, id)
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.SharedPrivateLinkResourcesDeleteThenPoll(ctx, id); err != nil {
 	// handle the error
 }
 ```
@@ -312,6 +298,7 @@ if err := future.Poller.PollUntilDone(); err != nil {
 ```go
 ctx := context.TODO()
 id := signalr.NewSharedPrivateLinkResourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue", "sharedPrivateLinkResourceValue")
+
 read, err := client.SharedPrivateLinkResourcesGet(ctx, id)
 if err != nil {
 	// handle the error
@@ -327,6 +314,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := signalr.NewSignalRID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue")
+
 // alternatively `client.SharedPrivateLinkResourcesList(ctx, id)` can be used to do batched pagination
 items, err := client.SharedPrivateLinkResourcesListComplete(ctx, id)
 if err != nil {
@@ -348,11 +336,8 @@ payload := signalr.SignalRResource{
 	// ...
 }
 
-future, err := client.Update(ctx, id, payload)
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.UpdateThenPoll(ctx, id, payload); err != nil {
 	// handle the error
 }
 ```
@@ -363,6 +348,7 @@ if err := future.Poller.PollUntilDone(); err != nil {
 ```go
 ctx := context.TODO()
 id := signalr.NewLocationID("12345678-1234-9876-4563-123456789012", "locationValue")
+
 // alternatively `client.UsagesList(ctx, id)` can be used to do batched pagination
 items, err := client.UsagesListComplete(ctx, id)
 if err != nil {

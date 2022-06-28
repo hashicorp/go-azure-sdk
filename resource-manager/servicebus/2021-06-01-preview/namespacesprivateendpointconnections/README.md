@@ -17,9 +17,6 @@ import "github.com/hashicorp/go-azure-sdk/resource-manager/servicebus/2021-06-01
 ```go
 client := namespacesprivateendpointconnections.NewNamespacesPrivateEndpointConnectionsClientWithBaseURI("https://management.azure.com")
 client.Client.Authorizer = authorizer
-if err != nil {
-	// handle the error
-}
 ```
 
 
@@ -32,6 +29,7 @@ id := namespacesprivateendpointconnections.NewPrivateEndpointConnectionID("12345
 payload := namespacesprivateendpointconnections.PrivateEndpointConnection{
 	// ...
 }
+
 
 read, err := client.PrivateEndpointConnectionsCreateOrUpdate(ctx, id, payload)
 if err != nil {
@@ -48,11 +46,8 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := namespacesprivateendpointconnections.NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceValue", "privateEndpointConnectionValue")
-future, err := client.PrivateEndpointConnectionsDelete(ctx, id)
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.PrivateEndpointConnectionsDeleteThenPoll(ctx, id); err != nil {
 	// handle the error
 }
 ```
@@ -63,6 +58,7 @@ if err := future.Poller.PollUntilDone(); err != nil {
 ```go
 ctx := context.TODO()
 id := namespacesprivateendpointconnections.NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceValue", "privateEndpointConnectionValue")
+
 read, err := client.PrivateEndpointConnectionsGet(ctx, id)
 if err != nil {
 	// handle the error
@@ -78,6 +74,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := namespacesprivateendpointconnections.NewNamespaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceValue")
+
 // alternatively `client.PrivateEndpointConnectionsList(ctx, id)` can be used to do batched pagination
 items, err := client.PrivateEndpointConnectionsListComplete(ctx, id)
 if err != nil {

@@ -17,9 +17,6 @@ import "github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservic
 ```go
 client := workspaceprivateendpointconnections.NewWorkspacePrivateEndpointConnectionsClientWithBaseURI("https://management.azure.com")
 client.Client.Authorizer = authorizer
-if err != nil {
-	// handle the error
-}
 ```
 
 
@@ -32,6 +29,7 @@ id := workspaceprivateendpointconnections.NewPrivateEndpointConnectionID("123456
 payload := workspaceprivateendpointconnections.PrivateEndpointConnection{
 	// ...
 }
+
 
 read, err := client.PrivateEndpointConnectionsCreateOrUpdate(ctx, id, payload)
 if err != nil {
@@ -48,6 +46,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := workspaceprivateendpointconnections.NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "privateEndpointConnectionValue")
+
 read, err := client.PrivateEndpointConnectionsDelete(ctx, id)
 if err != nil {
 	// handle the error
@@ -63,6 +62,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := workspaceprivateendpointconnections.NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "privateEndpointConnectionValue")
+
 read, err := client.PrivateEndpointConnectionsGet(ctx, id)
 if err != nil {
 	// handle the error

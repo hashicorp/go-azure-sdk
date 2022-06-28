@@ -17,9 +17,6 @@ import "github.com/hashicorp/go-azure-sdk/resource-manager/costmanagement/2021-1
 ```go
 client := query.NewQueryClientWithBaseURI("https://management.azure.com")
 client.Client.Authorizer = authorizer
-if err != nil {
-	// handle the error
-}
 ```
 
 
@@ -32,6 +29,7 @@ id := query.NewScopeID()
 payload := query.QueryDefinition{
 	// ...
 }
+
 
 read, err := client.Usage(ctx, id, payload)
 if err != nil {
@@ -52,6 +50,7 @@ id := query.NewExternalCloudProviderTypeID("externalBillingAccounts", "externalC
 payload := query.QueryDefinition{
 	// ...
 }
+
 
 read, err := client.UsageByExternalCloudProviderType(ctx, id, payload)
 if err != nil {

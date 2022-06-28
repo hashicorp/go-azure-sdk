@@ -17,9 +17,6 @@ import "github.com/hashicorp/go-azure-sdk/resource-manager/chaosstudio/2021-09-1
 ```go
 client := capabilitytypes.NewCapabilityTypesClientWithBaseURI("https://management.azure.com")
 client.Client.Authorizer = authorizer
-if err != nil {
-	// handle the error
-}
 ```
 
 
@@ -28,6 +25,7 @@ if err != nil {
 ```go
 ctx := context.TODO()
 id := capabilitytypes.NewTargetTypeID("12345678-1234-9876-4563-123456789012", "locationValue", "targetTypeValue")
+
 // alternatively `client.List(ctx, id, capabilitytypes.DefaultListOperationOptions())` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id, capabilitytypes.DefaultListOperationOptions())
 if err != nil {

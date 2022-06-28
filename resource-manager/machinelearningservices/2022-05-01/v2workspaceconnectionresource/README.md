@@ -17,9 +17,6 @@ import "github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservic
 ```go
 client := v2workspaceconnectionresource.NewV2WorkspaceConnectionResourceClientWithBaseURI("https://management.azure.com")
 client.Client.Authorizer = authorizer
-if err != nil {
-	// handle the error
-}
 ```
 
 
@@ -32,6 +29,7 @@ id := v2workspaceconnectionresource.NewConnectionID("12345678-1234-9876-4563-123
 payload := v2workspaceconnectionresource.WorkspaceConnectionPropertiesV2BasicResource{
 	// ...
 }
+
 
 read, err := client.WorkspaceConnectionsCreate(ctx, id, payload)
 if err != nil {
@@ -48,6 +46,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := v2workspaceconnectionresource.NewConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "connectionValue")
+
 read, err := client.WorkspaceConnectionsDelete(ctx, id)
 if err != nil {
 	// handle the error
@@ -63,6 +62,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := v2workspaceconnectionresource.NewConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "connectionValue")
+
 read, err := client.WorkspaceConnectionsGet(ctx, id)
 if err != nil {
 	// handle the error
@@ -78,6 +78,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := v2workspaceconnectionresource.NewWorkspaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue")
+
 // alternatively `client.WorkspaceConnectionsList(ctx, id, v2workspaceconnectionresource.DefaultWorkspaceConnectionsListOperationOptions())` can be used to do batched pagination
 items, err := client.WorkspaceConnectionsListComplete(ctx, id, v2workspaceconnectionresource.DefaultWorkspaceConnectionsListOperationOptions())
 if err != nil {

@@ -17,9 +17,6 @@ import "github.com/hashicorp/go-azure-sdk/resource-manager/servicebus/2021-06-01
 ```go
 client := topicsauthorizationrule.NewTopicsAuthorizationRuleClientWithBaseURI("https://management.azure.com")
 client.Client.Authorizer = authorizer
-if err != nil {
-	// handle the error
-}
 ```
 
 
@@ -32,6 +29,7 @@ id := topicsauthorizationrule.NewTopicAuthorizationRuleID("12345678-1234-9876-45
 payload := topicsauthorizationrule.SBAuthorizationRule{
 	// ...
 }
+
 
 read, err := client.TopicsCreateOrUpdateAuthorizationRule(ctx, id, payload)
 if err != nil {
@@ -48,6 +46,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := topicsauthorizationrule.NewTopicAuthorizationRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceValue", "topicValue", "authorizationRuleValue")
+
 read, err := client.TopicsDeleteAuthorizationRule(ctx, id)
 if err != nil {
 	// handle the error
@@ -63,6 +62,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := topicsauthorizationrule.NewTopicAuthorizationRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceValue", "topicValue", "authorizationRuleValue")
+
 read, err := client.TopicsGetAuthorizationRule(ctx, id)
 if err != nil {
 	// handle the error
@@ -78,6 +78,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := topicsauthorizationrule.NewTopicID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceValue", "topicValue")
+
 // alternatively `client.TopicsListAuthorizationRules(ctx, id)` can be used to do batched pagination
 items, err := client.TopicsListAuthorizationRulesComplete(ctx, id)
 if err != nil {
@@ -94,6 +95,7 @@ for _, item := range items {
 ```go
 ctx := context.TODO()
 id := topicsauthorizationrule.NewTopicAuthorizationRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceValue", "topicValue", "authorizationRuleValue")
+
 read, err := client.TopicsListKeys(ctx, id)
 if err != nil {
 	// handle the error
@@ -113,6 +115,7 @@ id := topicsauthorizationrule.NewTopicAuthorizationRuleID("12345678-1234-9876-45
 payload := topicsauthorizationrule.RegenerateAccessKeyParameters{
 	// ...
 }
+
 
 read, err := client.TopicsRegenerateKeys(ctx, id, payload)
 if err != nil {

@@ -17,9 +17,6 @@ import "github.com/hashicorp/go-azure-sdk/resource-manager/resources/2020-06-01/
 ```go
 client := resourcegroups.NewResourceGroupsClientWithBaseURI("https://management.azure.com")
 client.Client.Authorizer = authorizer
-if err != nil {
-	// handle the error
-}
 ```
 
 
@@ -28,6 +25,7 @@ if err != nil {
 ```go
 ctx := context.TODO()
 id := resourcegroups.NewResourceGroupID()
+
 read, err := client.CheckExistence(ctx, id)
 if err != nil {
 	// handle the error
@@ -48,6 +46,7 @@ payload := resourcegroups.ResourceGroup{
 	// ...
 }
 
+
 read, err := client.CreateOrUpdate(ctx, id, payload)
 if err != nil {
 	// handle the error
@@ -63,11 +62,8 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := resourcegroups.NewResourceGroupID()
-future, err := client.Delete(ctx, id, resourcegroups.DefaultDeleteOperationOptions())
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.DeleteThenPoll(ctx, id, resourcegroups.DefaultDeleteOperationOptions()); err != nil {
 	// handle the error
 }
 ```
@@ -83,11 +79,8 @@ payload := resourcegroups.ExportTemplateRequest{
 	// ...
 }
 
-future, err := client.ExportTemplate(ctx, id, payload)
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.ExportTemplateThenPoll(ctx, id, payload); err != nil {
 	// handle the error
 }
 ```
@@ -98,6 +91,7 @@ if err := future.Poller.PollUntilDone(); err != nil {
 ```go
 ctx := context.TODO()
 id := resourcegroups.NewResourceGroupID()
+
 read, err := client.Get(ctx, id)
 if err != nil {
 	// handle the error
@@ -113,6 +107,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := resourcegroups.NewSubscriptionID()
+
 // alternatively `client.List(ctx, id, resourcegroups.DefaultListOperationOptions())` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id, resourcegroups.DefaultListOperationOptions())
 if err != nil {
@@ -129,6 +124,7 @@ for _, item := range items {
 ```go
 ctx := context.TODO()
 id := resourcegroups.NewResourceGroupID()
+
 // alternatively `client.ResourcesListByResourceGroup(ctx, id, resourcegroups.DefaultResourcesListByResourceGroupOperationOptions())` can be used to do batched pagination
 items, err := client.ResourcesListByResourceGroupComplete(ctx, id, resourcegroups.DefaultResourcesListByResourceGroupOperationOptions())
 if err != nil {
@@ -149,6 +145,7 @@ id := resourcegroups.NewResourceGroupID()
 payload := resourcegroups.ResourceGroupPatchable{
 	// ...
 }
+
 
 read, err := client.Update(ctx, id, payload)
 if err != nil {

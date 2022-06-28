@@ -17,9 +17,6 @@ import "github.com/hashicorp/go-azure-sdk/resource-manager/costmanagement/2021-1
 ```go
 client := views.NewViewsClientWithBaseURI("https://management.azure.com")
 client.Client.Authorizer = authorizer
-if err != nil {
-	// handle the error
-}
 ```
 
 
@@ -32,6 +29,7 @@ id := views.NewViewID("viewValue")
 payload := views.View{
 	// ...
 }
+
 
 read, err := client.CreateOrUpdate(ctx, id, payload)
 if err != nil {
@@ -53,6 +51,7 @@ payload := views.View{
 	// ...
 }
 
+
 read, err := client.CreateOrUpdateByScope(ctx, id, payload)
 if err != nil {
 	// handle the error
@@ -68,6 +67,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := views.NewViewID("viewValue")
+
 read, err := client.Delete(ctx, id)
 if err != nil {
 	// handle the error
@@ -83,6 +83,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := views.NewScopedViewID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "viewValue")
+
 read, err := client.DeleteByScope(ctx, id)
 if err != nil {
 	// handle the error
@@ -98,6 +99,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := views.NewViewID("viewValue")
+
 read, err := client.Get(ctx, id)
 if err != nil {
 	// handle the error
@@ -113,6 +115,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := views.NewScopedViewID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "viewValue")
+
 read, err := client.GetByScope(ctx, id)
 if err != nil {
 	// handle the error
@@ -127,6 +130,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
+
 
 // alternatively `client.List(ctx)` can be used to do batched pagination
 items, err := client.ListComplete(ctx)
@@ -144,6 +148,7 @@ for _, item := range items {
 ```go
 ctx := context.TODO()
 id := views.NewScopeID()
+
 // alternatively `client.ListByScope(ctx, id)` can be used to do batched pagination
 items, err := client.ListByScopeComplete(ctx, id)
 if err != nil {

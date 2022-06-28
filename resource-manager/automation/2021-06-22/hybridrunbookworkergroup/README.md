@@ -17,9 +17,6 @@ import "github.com/hashicorp/go-azure-sdk/resource-manager/automation/2021-06-22
 ```go
 client := hybridrunbookworkergroup.NewHybridRunbookWorkerGroupClientWithBaseURI("https://management.azure.com")
 client.Client.Authorizer = authorizer
-if err != nil {
-	// handle the error
-}
 ```
 
 
@@ -32,6 +29,7 @@ id := hybridrunbookworkergroup.NewHybridRunbookWorkerGroupID("12345678-1234-9876
 payload := hybridrunbookworkergroup.HybridRunbookWorkerGroupCreateOrUpdateParameters{
 	// ...
 }
+
 
 read, err := client.Create(ctx, id, payload)
 if err != nil {
@@ -48,6 +46,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := hybridrunbookworkergroup.NewHybridRunbookWorkerGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountValue", "hybridRunbookWorkerGroupValue")
+
 read, err := client.Delete(ctx, id)
 if err != nil {
 	// handle the error
@@ -63,6 +62,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := hybridrunbookworkergroup.NewHybridRunbookWorkerGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountValue", "hybridRunbookWorkerGroupValue")
+
 read, err := client.Get(ctx, id)
 if err != nil {
 	// handle the error
@@ -78,6 +78,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := hybridrunbookworkergroup.NewAutomationAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountValue")
+
 // alternatively `client.ListByAutomationAccount(ctx, id, hybridrunbookworkergroup.DefaultListByAutomationAccountOperationOptions())` can be used to do batched pagination
 items, err := client.ListByAutomationAccountComplete(ctx, id, hybridrunbookworkergroup.DefaultListByAutomationAccountOperationOptions())
 if err != nil {
@@ -98,6 +99,7 @@ id := hybridrunbookworkergroup.NewHybridRunbookWorkerGroupID("12345678-1234-9876
 payload := hybridrunbookworkergroup.HybridRunbookWorkerGroupCreateOrUpdateParameters{
 	// ...
 }
+
 
 read, err := client.Update(ctx, id, payload)
 if err != nil {

@@ -17,9 +17,6 @@ import "github.com/hashicorp/go-azure-sdk/resource-manager/servicelinker/2022-05
 ```go
 client := servicelinker.NewServiceLinkerClientWithBaseURI("https://management.azure.com")
 client.Client.Authorizer = authorizer
-if err != nil {
-	// handle the error
-}
 ```
 
 
@@ -33,11 +30,8 @@ payload := servicelinker.LinkerResource{
 	// ...
 }
 
-future, err := client.LinkerCreateOrUpdate(ctx, id, payload)
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.LinkerCreateOrUpdateThenPoll(ctx, id, payload); err != nil {
 	// handle the error
 }
 ```
@@ -48,6 +42,7 @@ if err := future.Poller.PollUntilDone(); err != nil {
 ```go
 ctx := context.TODO()
 id := servicelinker.NewScopedLinkerID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "linkerValue")
+
 read, err := client.LinkerGet(ctx, id)
 if err != nil {
 	// handle the error
@@ -63,6 +58,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := servicelinker.NewScopeID()
+
 // alternatively `client.LinkerList(ctx, id)` can be used to do batched pagination
 items, err := client.LinkerListComplete(ctx, id)
 if err != nil {

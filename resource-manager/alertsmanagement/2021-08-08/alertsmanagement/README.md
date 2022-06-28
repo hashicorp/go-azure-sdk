@@ -17,9 +17,6 @@ import "github.com/hashicorp/go-azure-sdk/resource-manager/alertsmanagement/2021
 ```go
 client := alertsmanagement.NewAlertsManagementClientWithBaseURI("https://management.azure.com")
 client.Client.Authorizer = authorizer
-if err != nil {
-	// handle the error
-}
 ```
 
 
@@ -32,6 +29,7 @@ id := alertsmanagement.NewActionRuleID("12345678-1234-9876-4563-123456789012", "
 payload := alertsmanagement.AlertProcessingRule{
 	// ...
 }
+
 
 read, err := client.AlertProcessingRulesCreateOrUpdate(ctx, id, payload)
 if err != nil {
@@ -48,6 +46,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := alertsmanagement.NewActionRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "alertProcessingRuleValue")
+
 read, err := client.AlertProcessingRulesDelete(ctx, id)
 if err != nil {
 	// handle the error
@@ -63,6 +62,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := alertsmanagement.NewActionRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "alertProcessingRuleValue")
+
 read, err := client.AlertProcessingRulesGetByName(ctx, id)
 if err != nil {
 	// handle the error
@@ -78,6 +78,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := alertsmanagement.NewResourceGroupID()
+
 // alternatively `client.AlertProcessingRulesListByResourceGroup(ctx, id)` can be used to do batched pagination
 items, err := client.AlertProcessingRulesListByResourceGroupComplete(ctx, id)
 if err != nil {
@@ -94,6 +95,7 @@ for _, item := range items {
 ```go
 ctx := context.TODO()
 id := alertsmanagement.NewSubscriptionID()
+
 // alternatively `client.AlertProcessingRulesListBySubscription(ctx, id)` can be used to do batched pagination
 items, err := client.AlertProcessingRulesListBySubscriptionComplete(ctx, id)
 if err != nil {
@@ -114,6 +116,7 @@ id := alertsmanagement.NewActionRuleID("12345678-1234-9876-4563-123456789012", "
 payload := alertsmanagement.PatchObject{
 	// ...
 }
+
 
 read, err := client.AlertProcessingRulesUpdate(ctx, id, payload)
 if err != nil {

@@ -17,9 +17,6 @@ import "github.com/hashicorp/go-azure-sdk/resource-manager/trafficmanager/2018-0
 ```go
 client := heatmaps.NewHeatMapsClientWithBaseURI("https://management.azure.com")
 client.Client.Authorizer = authorizer
-if err != nil {
-	// handle the error
-}
 ```
 
 
@@ -28,6 +25,7 @@ if err != nil {
 ```go
 ctx := context.TODO()
 id := heatmaps.NewTrafficManagerProfileID("12345678-1234-9876-4563-123456789012", "example-resource-group", "profileValue")
+
 read, err := client.HeatMapGet(ctx, id, heatmaps.DefaultHeatMapGetOperationOptions())
 if err != nil {
 	// handle the error

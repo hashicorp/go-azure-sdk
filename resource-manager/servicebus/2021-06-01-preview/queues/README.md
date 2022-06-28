@@ -17,9 +17,6 @@ import "github.com/hashicorp/go-azure-sdk/resource-manager/servicebus/2021-06-01
 ```go
 client := queues.NewQueuesClientWithBaseURI("https://management.azure.com")
 client.Client.Authorizer = authorizer
-if err != nil {
-	// handle the error
-}
 ```
 
 
@@ -32,6 +29,7 @@ id := queues.NewQueueID("12345678-1234-9876-4563-123456789012", "example-resourc
 payload := queues.SBQueue{
 	// ...
 }
+
 
 read, err := client.CreateOrUpdate(ctx, id, payload)
 if err != nil {
@@ -48,6 +46,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := queues.NewQueueID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceValue", "queueValue")
+
 read, err := client.Delete(ctx, id)
 if err != nil {
 	// handle the error
@@ -63,6 +62,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := queues.NewQueueID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceValue", "queueValue")
+
 read, err := client.Get(ctx, id)
 if err != nil {
 	// handle the error
@@ -78,6 +78,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := queues.NewNamespaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceValue")
+
 // alternatively `client.ListByNamespace(ctx, id, queues.DefaultListByNamespaceOperationOptions())` can be used to do batched pagination
 items, err := client.ListByNamespaceComplete(ctx, id, queues.DefaultListByNamespaceOperationOptions())
 if err != nil {

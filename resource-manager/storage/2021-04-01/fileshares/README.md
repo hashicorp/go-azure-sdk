@@ -17,9 +17,6 @@ import "github.com/hashicorp/go-azure-sdk/resource-manager/storage/2021-04-01/fi
 ```go
 client := fileshares.NewFileSharesClientWithBaseURI("https://management.azure.com")
 client.Client.Authorizer = authorizer
-if err != nil {
-	// handle the error
-}
 ```
 
 
@@ -32,6 +29,7 @@ id := fileshares.NewShareID("12345678-1234-9876-4563-123456789012", "example-res
 payload := fileshares.FileShare{
 	// ...
 }
+
 
 read, err := client.Create(ctx, id, payload, fileshares.DefaultCreateOperationOptions())
 if err != nil {
@@ -48,6 +46,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := fileshares.NewShareID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "shareValue")
+
 read, err := client.Delete(ctx, id, fileshares.DefaultDeleteOperationOptions())
 if err != nil {
 	// handle the error
@@ -63,6 +62,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := fileshares.NewShareID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "shareValue")
+
 read, err := client.Get(ctx, id, fileshares.DefaultGetOperationOptions())
 if err != nil {
 	// handle the error
@@ -83,6 +83,7 @@ payload := fileshares.LeaseShareRequest{
 	// ...
 }
 
+
 read, err := client.Lease(ctx, id, payload, fileshares.DefaultLeaseOperationOptions())
 if err != nil {
 	// handle the error
@@ -98,6 +99,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := fileshares.NewStorageAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue")
+
 // alternatively `client.List(ctx, id, fileshares.DefaultListOperationOptions())` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id, fileshares.DefaultListOperationOptions())
 if err != nil {
@@ -119,6 +121,7 @@ payload := fileshares.DeletedShare{
 	// ...
 }
 
+
 read, err := client.Restore(ctx, id, payload)
 if err != nil {
 	// handle the error
@@ -138,6 +141,7 @@ id := fileshares.NewShareID("12345678-1234-9876-4563-123456789012", "example-res
 payload := fileshares.FileShare{
 	// ...
 }
+
 
 read, err := client.Update(ctx, id, payload)
 if err != nil {

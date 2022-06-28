@@ -17,9 +17,6 @@ import "github.com/hashicorp/go-azure-sdk/resource-manager/dataprotection/2022-0
 ```go
 client := backuppolicies.NewBackupPoliciesClientWithBaseURI("https://management.azure.com")
 client.Client.Authorizer = authorizer
-if err != nil {
-	// handle the error
-}
 ```
 
 
@@ -32,6 +29,7 @@ id := backuppolicies.NewBackupPoliciesID("12345678-1234-9876-4563-123456789012",
 payload := backuppolicies.BaseBackupPolicyResource{
 	// ...
 }
+
 
 read, err := client.CreateOrUpdate(ctx, id, payload)
 if err != nil {
@@ -48,6 +46,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := backuppolicies.NewBackupPoliciesID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue", "backupPolicyValue")
+
 read, err := client.Delete(ctx, id)
 if err != nil {
 	// handle the error
@@ -63,6 +62,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := backuppolicies.NewBackupPoliciesID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue", "backupPolicyValue")
+
 read, err := client.Get(ctx, id)
 if err != nil {
 	// handle the error
@@ -78,6 +78,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := backuppolicies.NewBackupVaultID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue")
+
 // alternatively `client.List(ctx, id)` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id)
 if err != nil {

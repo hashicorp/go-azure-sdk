@@ -17,9 +17,6 @@ import "github.com/hashicorp/go-azure-sdk/resource-manager/chaosstudio/2021-09-1
 ```go
 client := capabilities.NewCapabilitiesClientWithBaseURI("https://management.azure.com")
 client.Client.Authorizer = authorizer
-if err != nil {
-	// handle the error
-}
 ```
 
 
@@ -28,6 +25,7 @@ if err != nil {
 ```go
 ctx := context.TODO()
 id := capabilities.NewCapabilityTypeID("12345678-1234-9876-4563-123456789012", "locationValue", "targetTypeValue", "capabilityTypeValue")
+
 read, err := client.CapabilityTypesGet(ctx, id)
 if err != nil {
 	// handle the error
@@ -48,6 +46,7 @@ payload := capabilities.Capability{
 	// ...
 }
 
+
 read, err := client.CreateOrUpdate(ctx, id, payload)
 if err != nil {
 	// handle the error
@@ -63,6 +62,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := capabilities.NewCapabilitiesID("12345678-1234-9876-4563-123456789012", "example-resource-group", "parentProviderNamespaceValue", "parentResourceTypeValue", "parentResourceValue", "targetValue", "capabilityValue")
+
 read, err := client.Delete(ctx, id)
 if err != nil {
 	// handle the error
@@ -78,6 +78,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := capabilities.NewCapabilitiesID("12345678-1234-9876-4563-123456789012", "example-resource-group", "parentProviderNamespaceValue", "parentResourceTypeValue", "parentResourceValue", "targetValue", "capabilityValue")
+
 read, err := client.Get(ctx, id)
 if err != nil {
 	// handle the error
@@ -93,6 +94,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := capabilities.NewTargetID("12345678-1234-9876-4563-123456789012", "example-resource-group", "parentProviderNamespaceValue", "parentResourceTypeValue", "parentResourceValue", "targetValue")
+
 // alternatively `client.List(ctx, id, capabilities.DefaultListOperationOptions())` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id, capabilities.DefaultListOperationOptions())
 if err != nil {

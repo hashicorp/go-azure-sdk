@@ -17,9 +17,6 @@ import "github.com/hashicorp/go-azure-sdk/resource-manager/mixedreality/2021-01-
 ```go
 client := key.NewKeyClientWithBaseURI("https://management.azure.com")
 client.Client.Authorizer = authorizer
-if err != nil {
-	// handle the error
-}
 ```
 
 
@@ -28,6 +25,7 @@ if err != nil {
 ```go
 ctx := context.TODO()
 id := key.NewRemoteRenderingAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue")
+
 read, err := client.RemoteRenderingAccountsListKeys(ctx, id)
 if err != nil {
 	// handle the error
@@ -48,6 +46,7 @@ payload := key.AccountKeyRegenerateRequest{
 	// ...
 }
 
+
 read, err := client.RemoteRenderingAccountsRegenerateKeys(ctx, id, payload)
 if err != nil {
 	// handle the error
@@ -63,6 +62,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := key.NewSpatialAnchorsAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue")
+
 read, err := client.SpatialAnchorsAccountsListKeys(ctx, id)
 if err != nil {
 	// handle the error
@@ -82,6 +82,7 @@ id := key.NewSpatialAnchorsAccountID("12345678-1234-9876-4563-123456789012", "ex
 payload := key.AccountKeyRegenerateRequest{
 	// ...
 }
+
 
 read, err := client.SpatialAnchorsAccountsRegenerateKeys(ctx, id, payload)
 if err != nil {

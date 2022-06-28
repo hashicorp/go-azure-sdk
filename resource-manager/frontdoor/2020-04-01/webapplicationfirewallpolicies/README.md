@@ -17,9 +17,6 @@ import "github.com/hashicorp/go-azure-sdk/resource-manager/frontdoor/2020-04-01/
 ```go
 client := webapplicationfirewallpolicies.NewWebApplicationFirewallPoliciesClientWithBaseURI("https://management.azure.com")
 client.Client.Authorizer = authorizer
-if err != nil {
-	// handle the error
-}
 ```
 
 
@@ -33,11 +30,8 @@ payload := webapplicationfirewallpolicies.WebApplicationFirewallPolicy{
 	// ...
 }
 
-future, err := client.PoliciesCreateOrUpdate(ctx, id, payload)
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.PoliciesCreateOrUpdateThenPoll(ctx, id, payload); err != nil {
 	// handle the error
 }
 ```
@@ -48,11 +42,8 @@ if err := future.Poller.PollUntilDone(); err != nil {
 ```go
 ctx := context.TODO()
 id := webapplicationfirewallpolicies.NewFrontDoorWebApplicationFirewallPoliciesID("12345678-1234-9876-4563-123456789012", "example-resource-group", "policyValue")
-future, err := client.PoliciesDelete(ctx, id)
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.PoliciesDeleteThenPoll(ctx, id); err != nil {
 	// handle the error
 }
 ```
@@ -63,6 +54,7 @@ if err := future.Poller.PollUntilDone(); err != nil {
 ```go
 ctx := context.TODO()
 id := webapplicationfirewallpolicies.NewFrontDoorWebApplicationFirewallPoliciesID("12345678-1234-9876-4563-123456789012", "example-resource-group", "policyValue")
+
 read, err := client.PoliciesGet(ctx, id)
 if err != nil {
 	// handle the error
@@ -78,6 +70,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := webapplicationfirewallpolicies.NewResourceGroupID()
+
 // alternatively `client.PoliciesList(ctx, id)` can be used to do batched pagination
 items, err := client.PoliciesListComplete(ctx, id)
 if err != nil {

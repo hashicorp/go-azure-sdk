@@ -17,9 +17,6 @@ import "github.com/hashicorp/go-azure-sdk/resource-manager/analysisservices/2017
 ```go
 client := analysisservices.NewAnalysisServicesClientWithBaseURI("https://management.azure.com")
 client.Client.Authorizer = authorizer
-if err != nil {
-	// handle the error
-}
 ```
 
 
@@ -28,6 +25,7 @@ if err != nil {
 ```go
 ctx := context.TODO()
 id := analysisservices.NewSubscriptionID()
+
 read, err := client.ServersListSkusForNew(ctx, id)
 if err != nil {
 	// handle the error

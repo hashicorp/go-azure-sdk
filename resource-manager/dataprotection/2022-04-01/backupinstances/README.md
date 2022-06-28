@@ -17,9 +17,6 @@ import "github.com/hashicorp/go-azure-sdk/resource-manager/dataprotection/2022-0
 ```go
 client := backupinstances.NewBackupInstancesClientWithBaseURI("https://management.azure.com")
 client.Client.Authorizer = authorizer
-if err != nil {
-	// handle the error
-}
 ```
 
 
@@ -33,11 +30,8 @@ payload := backupinstances.TriggerBackupRequest{
 	// ...
 }
 
-future, err := client.AdhocBackup(ctx, id, payload)
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.AdhocBackupThenPoll(ctx, id, payload); err != nil {
 	// handle the error
 }
 ```
@@ -53,11 +47,8 @@ payload := backupinstances.BackupInstanceResource{
 	// ...
 }
 
-future, err := client.CreateOrUpdate(ctx, id, payload)
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.CreateOrUpdateThenPoll(ctx, id, payload); err != nil {
 	// handle the error
 }
 ```
@@ -68,11 +59,8 @@ if err := future.Poller.PollUntilDone(); err != nil {
 ```go
 ctx := context.TODO()
 id := backupinstances.NewBackupInstanceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue", "backupInstanceValue")
-future, err := client.Delete(ctx, id)
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.DeleteThenPoll(ctx, id); err != nil {
 	// handle the error
 }
 ```
@@ -83,6 +71,7 @@ if err := future.Poller.PollUntilDone(); err != nil {
 ```go
 ctx := context.TODO()
 id := backupinstances.NewBackupInstanceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue", "backupInstanceValue")
+
 read, err := client.Get(ctx, id)
 if err != nil {
 	// handle the error
@@ -98,6 +87,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := backupinstances.NewBackupVaultID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue")
+
 // alternatively `client.List(ctx, id)` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id)
 if err != nil {
@@ -114,11 +104,8 @@ for _, item := range items {
 ```go
 ctx := context.TODO()
 id := backupinstances.NewBackupInstanceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue", "backupInstanceValue")
-future, err := client.ResumeBackups(ctx, id)
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.ResumeBackupsThenPoll(ctx, id); err != nil {
 	// handle the error
 }
 ```
@@ -129,11 +116,8 @@ if err := future.Poller.PollUntilDone(); err != nil {
 ```go
 ctx := context.TODO()
 id := backupinstances.NewBackupInstanceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue", "backupInstanceValue")
-future, err := client.ResumeProtection(ctx, id)
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.ResumeProtectionThenPoll(ctx, id); err != nil {
 	// handle the error
 }
 ```
@@ -144,11 +128,8 @@ if err := future.Poller.PollUntilDone(); err != nil {
 ```go
 ctx := context.TODO()
 id := backupinstances.NewBackupInstanceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue", "backupInstanceValue")
-future, err := client.StopProtection(ctx, id)
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.StopProtectionThenPoll(ctx, id); err != nil {
 	// handle the error
 }
 ```
@@ -159,11 +140,8 @@ if err := future.Poller.PollUntilDone(); err != nil {
 ```go
 ctx := context.TODO()
 id := backupinstances.NewBackupInstanceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue", "backupInstanceValue")
-future, err := client.SuspendBackups(ctx, id)
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.SuspendBackupsThenPoll(ctx, id); err != nil {
 	// handle the error
 }
 ```
@@ -179,11 +157,8 @@ payload := backupinstances.SyncBackupInstanceRequest{
 	// ...
 }
 
-future, err := client.SyncBackupInstance(ctx, id, payload)
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.SyncBackupInstanceThenPoll(ctx, id, payload); err != nil {
 	// handle the error
 }
 ```
@@ -199,11 +174,8 @@ payload := backupinstances.AzureBackupRehydrationRequest{
 	// ...
 }
 
-future, err := client.TriggerRehydrate(ctx, id, payload)
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.TriggerRehydrateThenPoll(ctx, id, payload); err != nil {
 	// handle the error
 }
 ```
@@ -219,11 +191,8 @@ payload := backupinstances.AzureBackupRestoreRequest{
 	// ...
 }
 
-future, err := client.TriggerRestore(ctx, id, payload)
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.TriggerRestoreThenPoll(ctx, id, payload); err != nil {
 	// handle the error
 }
 ```
@@ -239,11 +208,8 @@ payload := backupinstances.ValidateForBackupRequest{
 	// ...
 }
 
-future, err := client.ValidateForBackup(ctx, id, payload)
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.ValidateForBackupThenPoll(ctx, id, payload); err != nil {
 	// handle the error
 }
 ```
@@ -259,11 +225,8 @@ payload := backupinstances.ValidateRestoreRequestObject{
 	// ...
 }
 
-future, err := client.ValidateForRestore(ctx, id, payload)
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.ValidateForRestoreThenPoll(ctx, id, payload); err != nil {
 	// handle the error
 }
 ```

@@ -17,9 +17,6 @@ import "github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservic
 ```go
 client := onlinedeployment.NewOnlineDeploymentClientWithBaseURI("https://management.azure.com")
 client.Client.Authorizer = authorizer
-if err != nil {
-	// handle the error
-}
 ```
 
 
@@ -33,11 +30,8 @@ payload := onlinedeployment.OnlineDeploymentTrackedResource{
 	// ...
 }
 
-future, err := client.CreateOrUpdate(ctx, id, payload)
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.CreateOrUpdateThenPoll(ctx, id, payload); err != nil {
 	// handle the error
 }
 ```
@@ -48,11 +42,8 @@ if err := future.Poller.PollUntilDone(); err != nil {
 ```go
 ctx := context.TODO()
 id := onlinedeployment.NewOnlineEndpointDeploymentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "endpointValue", "deploymentValue")
-future, err := client.Delete(ctx, id)
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.DeleteThenPoll(ctx, id); err != nil {
 	// handle the error
 }
 ```
@@ -63,6 +54,7 @@ if err := future.Poller.PollUntilDone(); err != nil {
 ```go
 ctx := context.TODO()
 id := onlinedeployment.NewOnlineEndpointDeploymentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "endpointValue", "deploymentValue")
+
 read, err := client.Get(ctx, id)
 if err != nil {
 	// handle the error
@@ -83,6 +75,7 @@ payload := onlinedeployment.DeploymentLogsRequest{
 	// ...
 }
 
+
 read, err := client.GetLogs(ctx, id, payload)
 if err != nil {
 	// handle the error
@@ -98,6 +91,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := onlinedeployment.NewOnlineEndpointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "endpointValue")
+
 // alternatively `client.List(ctx, id, onlinedeployment.DefaultListOperationOptions())` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id, onlinedeployment.DefaultListOperationOptions())
 if err != nil {
@@ -114,6 +108,7 @@ for _, item := range items {
 ```go
 ctx := context.TODO()
 id := onlinedeployment.NewOnlineEndpointDeploymentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "endpointValue", "deploymentValue")
+
 // alternatively `client.ListSkus(ctx, id, onlinedeployment.DefaultListSkusOperationOptions())` can be used to do batched pagination
 items, err := client.ListSkusComplete(ctx, id, onlinedeployment.DefaultListSkusOperationOptions())
 if err != nil {
@@ -135,11 +130,8 @@ payload := onlinedeployment.PartialMinimalTrackedResourceWithSku{
 	// ...
 }
 
-future, err := client.Update(ctx, id, payload)
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.UpdateThenPoll(ctx, id, payload); err != nil {
 	// handle the error
 }
 ```

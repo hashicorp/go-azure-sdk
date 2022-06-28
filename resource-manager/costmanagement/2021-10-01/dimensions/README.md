@@ -17,9 +17,6 @@ import "github.com/hashicorp/go-azure-sdk/resource-manager/costmanagement/2021-1
 ```go
 client := dimensions.NewDimensionsClientWithBaseURI("https://management.azure.com")
 client.Client.Authorizer = authorizer
-if err != nil {
-	// handle the error
-}
 ```
 
 
@@ -28,6 +25,7 @@ if err != nil {
 ```go
 ctx := context.TODO()
 id := dimensions.NewExternalCloudProviderTypeID("externalBillingAccounts", "externalCloudProviderIdValue")
+
 read, err := client.ByExternalCloudProviderType(ctx, id, dimensions.DefaultByExternalCloudProviderTypeOperationOptions())
 if err != nil {
 	// handle the error
@@ -43,6 +41,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := dimensions.NewScopeID()
+
 read, err := client.List(ctx, id, dimensions.DefaultListOperationOptions())
 if err != nil {
 	// handle the error

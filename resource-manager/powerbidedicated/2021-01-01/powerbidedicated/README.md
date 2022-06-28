@@ -17,9 +17,6 @@ import "github.com/hashicorp/go-azure-sdk/resource-manager/powerbidedicated/2021
 ```go
 client := powerbidedicated.NewPowerBIDedicatedClientWithBaseURI("https://management.azure.com")
 client.Client.Authorizer = authorizer
-if err != nil {
-	// handle the error
-}
 ```
 
 
@@ -28,6 +25,7 @@ if err != nil {
 ```go
 ctx := context.TODO()
 id := powerbidedicated.NewSubscriptionID()
+
 read, err := client.CapacitiesListSkus(ctx, id)
 if err != nil {
 	// handle the error

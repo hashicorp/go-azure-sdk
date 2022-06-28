@@ -17,9 +17,6 @@ import "github.com/hashicorp/go-azure-sdk/resource-manager/redisenterprise/2022-
 ```go
 client := privateendpointconnections.NewPrivateEndpointConnectionsClientWithBaseURI("https://management.azure.com")
 client.Client.Authorizer = authorizer
-if err != nil {
-	// handle the error
-}
 ```
 
 
@@ -28,6 +25,7 @@ if err != nil {
 ```go
 ctx := context.TODO()
 id := privateendpointconnections.NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "clusterValue", "privateEndpointConnectionValue")
+
 read, err := client.Delete(ctx, id)
 if err != nil {
 	// handle the error
@@ -43,6 +41,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := privateendpointconnections.NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "clusterValue", "privateEndpointConnectionValue")
+
 read, err := client.Get(ctx, id)
 if err != nil {
 	// handle the error
@@ -58,6 +57,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := privateendpointconnections.NewRedisEnterpriseID("12345678-1234-9876-4563-123456789012", "example-resource-group", "clusterValue")
+
 read, err := client.List(ctx, id)
 if err != nil {
 	// handle the error
@@ -78,11 +78,8 @@ payload := privateendpointconnections.PrivateEndpointConnection{
 	// ...
 }
 
-future, err := client.Put(ctx, id, payload)
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.PutThenPoll(ctx, id, payload); err != nil {
 	// handle the error
 }
 ```

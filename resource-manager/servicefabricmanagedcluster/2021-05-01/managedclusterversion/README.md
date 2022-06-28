@@ -17,9 +17,6 @@ import "github.com/hashicorp/go-azure-sdk/resource-manager/servicefabricmanagedc
 ```go
 client := managedclusterversion.NewManagedClusterVersionClientWithBaseURI("https://management.azure.com")
 client.Client.Authorizer = authorizer
-if err != nil {
-	// handle the error
-}
 ```
 
 
@@ -28,6 +25,7 @@ if err != nil {
 ```go
 ctx := context.TODO()
 id := managedclusterversion.NewManagedClusterVersionID("12345678-1234-9876-4563-123456789012", "locationValue", "clusterVersionValue")
+
 read, err := client.Get(ctx, id)
 if err != nil {
 	// handle the error
@@ -43,6 +41,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := managedclusterversion.NewEnvironmentManagedClusterVersionID("12345678-1234-9876-4563-123456789012", "locationValue", "clusterVersionValue")
+
 read, err := client.GetByEnvironment(ctx, id)
 if err != nil {
 	// handle the error
@@ -58,6 +57,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := managedclusterversion.NewLocationID("12345678-1234-9876-4563-123456789012", "locationValue")
+
 read, err := client.List(ctx, id)
 if err != nil {
 	// handle the error
@@ -73,6 +73,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := managedclusterversion.NewLocationID("12345678-1234-9876-4563-123456789012", "locationValue")
+
 read, err := client.ListByEnvironment(ctx, id)
 if err != nil {
 	// handle the error

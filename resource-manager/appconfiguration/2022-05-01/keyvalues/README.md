@@ -17,9 +17,6 @@ import "github.com/hashicorp/go-azure-sdk/resource-manager/appconfiguration/2022
 ```go
 client := keyvalues.NewKeyValuesClientWithBaseURI("https://management.azure.com")
 client.Client.Authorizer = authorizer
-if err != nil {
-	// handle the error
-}
 ```
 
 
@@ -32,6 +29,7 @@ id := keyvalues.NewKeyValueID("12345678-1234-9876-4563-123456789012", "example-r
 payload := keyvalues.KeyValue{
 	// ...
 }
+
 
 read, err := client.CreateOrUpdate(ctx, id, payload)
 if err != nil {
@@ -48,11 +46,8 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := keyvalues.NewKeyValueID("12345678-1234-9876-4563-123456789012", "example-resource-group", "configStoreValue", "keyValueValue")
-future, err := client.Delete(ctx, id)
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.DeleteThenPoll(ctx, id); err != nil {
 	// handle the error
 }
 ```
@@ -63,6 +58,7 @@ if err := future.Poller.PollUntilDone(); err != nil {
 ```go
 ctx := context.TODO()
 id := keyvalues.NewKeyValueID("12345678-1234-9876-4563-123456789012", "example-resource-group", "configStoreValue", "keyValueValue")
+
 read, err := client.Get(ctx, id)
 if err != nil {
 	// handle the error
@@ -78,6 +74,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := keyvalues.NewConfigurationStoreID("12345678-1234-9876-4563-123456789012", "example-resource-group", "configStoreValue")
+
 // alternatively `client.ListByConfigurationStore(ctx, id)` can be used to do batched pagination
 items, err := client.ListByConfigurationStoreComplete(ctx, id)
 if err != nil {

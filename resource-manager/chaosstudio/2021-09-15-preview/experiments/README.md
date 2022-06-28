@@ -17,9 +17,6 @@ import "github.com/hashicorp/go-azure-sdk/resource-manager/chaosstudio/2021-09-1
 ```go
 client := experiments.NewExperimentsClientWithBaseURI("https://management.azure.com")
 client.Client.Authorizer = authorizer
-if err != nil {
-	// handle the error
-}
 ```
 
 
@@ -28,11 +25,8 @@ if err != nil {
 ```go
 ctx := context.TODO()
 id := experiments.NewExperimentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "experimentValue")
-future, err := client.Cancel(ctx, id)
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.CancelThenPoll(ctx, id); err != nil {
 	// handle the error
 }
 ```
@@ -48,11 +42,8 @@ payload := experiments.Experiment{
 	// ...
 }
 
-future, err := client.CreateOrUpdate(ctx, id, payload)
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.CreateOrUpdateThenPoll(ctx, id, payload); err != nil {
 	// handle the error
 }
 ```
@@ -63,6 +54,7 @@ if err := future.Poller.PollUntilDone(); err != nil {
 ```go
 ctx := context.TODO()
 id := experiments.NewExperimentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "experimentValue")
+
 read, err := client.Delete(ctx, id)
 if err != nil {
 	// handle the error
@@ -78,6 +70,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := experiments.NewExperimentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "experimentValue")
+
 read, err := client.Get(ctx, id)
 if err != nil {
 	// handle the error
@@ -93,6 +86,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := experiments.NewExecutionDetailID("12345678-1234-9876-4563-123456789012", "example-resource-group", "experimentValue", "executionDetailsIdValue")
+
 read, err := client.GetExecutionDetails(ctx, id)
 if err != nil {
 	// handle the error
@@ -108,6 +102,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := experiments.NewStatuseID("12345678-1234-9876-4563-123456789012", "example-resource-group", "experimentValue", "statusIdValue")
+
 read, err := client.GetStatus(ctx, id)
 if err != nil {
 	// handle the error
@@ -123,6 +118,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := experiments.NewResourceGroupID()
+
 // alternatively `client.List(ctx, id, experiments.DefaultListOperationOptions())` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id, experiments.DefaultListOperationOptions())
 if err != nil {
@@ -139,6 +135,7 @@ for _, item := range items {
 ```go
 ctx := context.TODO()
 id := experiments.NewSubscriptionID()
+
 // alternatively `client.ListAll(ctx, id, experiments.DefaultListAllOperationOptions())` can be used to do batched pagination
 items, err := client.ListAllComplete(ctx, id, experiments.DefaultListAllOperationOptions())
 if err != nil {
@@ -155,6 +152,7 @@ for _, item := range items {
 ```go
 ctx := context.TODO()
 id := experiments.NewExperimentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "experimentValue")
+
 // alternatively `client.ListAllStatuses(ctx, id)` can be used to do batched pagination
 items, err := client.ListAllStatusesComplete(ctx, id)
 if err != nil {
@@ -171,6 +169,7 @@ for _, item := range items {
 ```go
 ctx := context.TODO()
 id := experiments.NewExperimentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "experimentValue")
+
 // alternatively `client.ListExecutionDetails(ctx, id)` can be used to do batched pagination
 items, err := client.ListExecutionDetailsComplete(ctx, id)
 if err != nil {
@@ -187,6 +186,7 @@ for _, item := range items {
 ```go
 ctx := context.TODO()
 id := experiments.NewExperimentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "experimentValue")
+
 read, err := client.Start(ctx, id)
 if err != nil {
 	// handle the error

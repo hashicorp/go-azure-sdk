@@ -17,9 +17,6 @@ import "github.com/hashicorp/go-azure-sdk/resource-manager/costmanagement/2021-1
 ```go
 client := usagedetails.NewUsageDetailsClientWithBaseURI("https://management.azure.com")
 client.Client.Authorizer = authorizer
-if err != nil {
-	// handle the error
-}
 ```
 
 
@@ -33,11 +30,8 @@ payload := usagedetails.GenerateDetailedCostReportDefinition{
 	// ...
 }
 
-future, err := client.GenerateDetailedCostReportCreateOperation(ctx, id, payload)
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.GenerateDetailedCostReportCreateOperationThenPoll(ctx, id, payload); err != nil {
 	// handle the error
 }
 ```

@@ -17,9 +17,6 @@ import "github.com/hashicorp/go-azure-sdk/resource-manager/web/2016-06-01/custom
 ```go
 client := customapis.NewCustomAPIsClientWithBaseURI("https://management.azure.com")
 client.Client.Authorizer = authorizer
-if err != nil {
-	// handle the error
-}
 ```
 
 
@@ -32,6 +29,7 @@ id := customapis.NewCustomApiID("12345678-1234-9876-4563-123456789012", "example
 payload := customapis.CustomApiDefinition{
 	// ...
 }
+
 
 read, err := client.CustomApisCreateOrUpdate(ctx, id, payload)
 if err != nil {
@@ -48,6 +46,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := customapis.NewCustomApiID("12345678-1234-9876-4563-123456789012", "example-resource-group", "apiValue")
+
 read, err := client.CustomApisDelete(ctx, id)
 if err != nil {
 	// handle the error
@@ -68,6 +67,7 @@ payload := customapis.WsdlDefinition{
 	// ...
 }
 
+
 read, err := client.CustomApisExtractApiDefinitionFromWsdl(ctx, id, payload)
 if err != nil {
 	// handle the error
@@ -83,6 +83,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := customapis.NewCustomApiID("12345678-1234-9876-4563-123456789012", "example-resource-group", "apiValue")
+
 read, err := client.CustomApisGet(ctx, id)
 if err != nil {
 	// handle the error
@@ -98,6 +99,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := customapis.NewSubscriptionID()
+
 read, err := client.CustomApisList(ctx, id, customapis.DefaultCustomApisListOperationOptions())
 if err != nil {
 	// handle the error
@@ -113,6 +115,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := customapis.NewResourceGroupID()
+
 read, err := client.CustomApisListByResourceGroup(ctx, id, customapis.DefaultCustomApisListByResourceGroupOperationOptions())
 if err != nil {
 	// handle the error
@@ -132,6 +135,7 @@ id := customapis.NewLocationID("12345678-1234-9876-4563-123456789012", "location
 payload := customapis.WsdlDefinition{
 	// ...
 }
+
 
 read, err := client.CustomApisListWsdlInterfaces(ctx, id, payload)
 if err != nil {
@@ -153,6 +157,7 @@ payload := customapis.CustomApiReference{
 	// ...
 }
 
+
 read, err := client.CustomApisMove(ctx, id, payload)
 if err != nil {
 	// handle the error
@@ -172,6 +177,7 @@ id := customapis.NewCustomApiID("12345678-1234-9876-4563-123456789012", "example
 payload := customapis.CustomApiDefinition{
 	// ...
 }
+
 
 read, err := client.CustomApisUpdate(ctx, id, payload)
 if err != nil {

@@ -17,9 +17,6 @@ import "github.com/hashicorp/go-azure-sdk/resource-manager/dns/2018-05-01/zones"
 ```go
 client := zones.NewZonesClientWithBaseURI("https://management.azure.com")
 client.Client.Authorizer = authorizer
-if err != nil {
-	// handle the error
-}
 ```
 
 
@@ -32,6 +29,7 @@ id := zones.NewDnsZoneID("12345678-1234-9876-4563-123456789012", "example-resour
 payload := zones.Zone{
 	// ...
 }
+
 
 read, err := client.CreateOrUpdate(ctx, id, payload, zones.DefaultCreateOrUpdateOperationOptions())
 if err != nil {
@@ -48,11 +46,8 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := zones.NewDnsZoneID("12345678-1234-9876-4563-123456789012", "example-resource-group", "zoneValue")
-future, err := client.Delete(ctx, id, zones.DefaultDeleteOperationOptions())
-if err != nil {
-	// handle the error
-}
-if err := future.Poller.PollUntilDone(); err != nil {
+
+if err := client.DeleteThenPoll(ctx, id, zones.DefaultDeleteOperationOptions()); err != nil {
 	// handle the error
 }
 ```
@@ -63,6 +58,7 @@ if err := future.Poller.PollUntilDone(); err != nil {
 ```go
 ctx := context.TODO()
 id := zones.NewDnsZoneID("12345678-1234-9876-4563-123456789012", "example-resource-group", "zoneValue")
+
 read, err := client.Get(ctx, id)
 if err != nil {
 	// handle the error
@@ -78,6 +74,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := zones.NewSubscriptionID()
+
 // alternatively `client.List(ctx, id, zones.DefaultListOperationOptions())` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id, zones.DefaultListOperationOptions())
 if err != nil {
@@ -94,6 +91,7 @@ for _, item := range items {
 ```go
 ctx := context.TODO()
 id := zones.NewResourceGroupID()
+
 // alternatively `client.ListByResourceGroup(ctx, id, zones.DefaultListByResourceGroupOperationOptions())` can be used to do batched pagination
 items, err := client.ListByResourceGroupComplete(ctx, id, zones.DefaultListByResourceGroupOperationOptions())
 if err != nil {
@@ -114,6 +112,7 @@ id := zones.NewDnsZoneID("12345678-1234-9876-4563-123456789012", "example-resour
 payload := zones.ZoneUpdate{
 	// ...
 }
+
 
 read, err := client.Update(ctx, id, payload, zones.DefaultUpdateOperationOptions())
 if err != nil {

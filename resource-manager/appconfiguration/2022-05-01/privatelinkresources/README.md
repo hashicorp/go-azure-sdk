@@ -17,9 +17,6 @@ import "github.com/hashicorp/go-azure-sdk/resource-manager/appconfiguration/2022
 ```go
 client := privatelinkresources.NewPrivateLinkResourcesClientWithBaseURI("https://management.azure.com")
 client.Client.Authorizer = authorizer
-if err != nil {
-	// handle the error
-}
 ```
 
 
@@ -28,6 +25,7 @@ if err != nil {
 ```go
 ctx := context.TODO()
 id := privatelinkresources.NewPrivateLinkResourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "configStoreValue", "groupValue")
+
 read, err := client.Get(ctx, id)
 if err != nil {
 	// handle the error
@@ -43,6 +41,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := privatelinkresources.NewConfigurationStoreID("12345678-1234-9876-4563-123456789012", "example-resource-group", "configStoreValue")
+
 // alternatively `client.ListByConfigurationStore(ctx, id)` can be used to do batched pagination
 items, err := client.ListByConfigurationStoreComplete(ctx, id)
 if err != nil {

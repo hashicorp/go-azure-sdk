@@ -17,9 +17,6 @@ import "github.com/hashicorp/go-azure-sdk/resource-manager/trafficmanager/2018-0
 ```go
 client := realusermetrics.NewRealUserMetricsClientWithBaseURI("https://management.azure.com")
 client.Client.Authorizer = authorizer
-if err != nil {
-	// handle the error
-}
 ```
 
 
@@ -28,6 +25,7 @@ if err != nil {
 ```go
 ctx := context.TODO()
 id := realusermetrics.NewSubscriptionID()
+
 read, err := client.TrafficManagerUserMetricsKeysCreateOrUpdate(ctx, id)
 if err != nil {
 	// handle the error
@@ -43,6 +41,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := realusermetrics.NewSubscriptionID()
+
 read, err := client.TrafficManagerUserMetricsKeysDelete(ctx, id)
 if err != nil {
 	// handle the error
@@ -58,6 +57,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := realusermetrics.NewSubscriptionID()
+
 read, err := client.TrafficManagerUserMetricsKeysGet(ctx, id)
 if err != nil {
 	// handle the error

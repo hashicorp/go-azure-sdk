@@ -17,9 +17,6 @@ import "github.com/hashicorp/go-azure-sdk/resource-manager/confidentialledger/20
 ```go
 client := nameavailability.NewNameAvailabilityClientWithBaseURI("https://management.azure.com")
 client.Client.Authorizer = authorizer
-if err != nil {
-	// handle the error
-}
 ```
 
 
@@ -32,6 +29,7 @@ id := nameavailability.NewSubscriptionID()
 payload := nameavailability.CheckNameAvailabilityRequest{
 	// ...
 }
+
 
 read, err := client.CheckNameAvailability(ctx, id, payload)
 if err != nil {

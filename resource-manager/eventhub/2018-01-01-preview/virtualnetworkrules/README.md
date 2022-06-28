@@ -17,9 +17,6 @@ import "github.com/hashicorp/go-azure-sdk/resource-manager/eventhub/2018-01-01-p
 ```go
 client := virtualnetworkrules.NewVirtualNetworkRulesClientWithBaseURI("https://management.azure.com")
 client.Client.Authorizer = authorizer
-if err != nil {
-	// handle the error
-}
 ```
 
 
@@ -32,6 +29,7 @@ id := virtualnetworkrules.NewVirtualnetworkruleID("12345678-1234-9876-4563-12345
 payload := virtualnetworkrules.VirtualNetworkRule{
 	// ...
 }
+
 
 read, err := client.NamespacesCreateOrUpdateVirtualNetworkRule(ctx, id, payload)
 if err != nil {
@@ -48,6 +46,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := virtualnetworkrules.NewVirtualnetworkruleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceValue", "virtualNetworkRuleValue")
+
 read, err := client.NamespacesDeleteVirtualNetworkRule(ctx, id)
 if err != nil {
 	// handle the error
@@ -63,6 +62,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := virtualnetworkrules.NewVirtualnetworkruleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceValue", "virtualNetworkRuleValue")
+
 read, err := client.NamespacesGetVirtualNetworkRule(ctx, id)
 if err != nil {
 	// handle the error
@@ -78,6 +78,7 @@ if model := read.Model; model != nil {
 ```go
 ctx := context.TODO()
 id := virtualnetworkrules.NewNamespaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceValue")
+
 // alternatively `client.NamespacesListVirtualNetworkRules(ctx, id)` can be used to do batched pagination
 items, err := client.NamespacesListVirtualNetworkRulesComplete(ctx, id)
 if err != nil {

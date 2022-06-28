@@ -17,9 +17,6 @@ import "github.com/hashicorp/go-azure-sdk/resource-manager/dns/2018-05-01/dns"
 ```go
 client := dns.NewDNSClientWithBaseURI("https://management.azure.com")
 client.Client.Authorizer = authorizer
-if err != nil {
-	// handle the error
-}
 ```
 
 
@@ -32,6 +29,7 @@ id := dns.NewSubscriptionID()
 payload := dns.DnsResourceReferenceRequest{
 	// ...
 }
+
 
 read, err := client.DnsResourceReferenceGetByTargetResources(ctx, id, payload)
 if err != nil {
