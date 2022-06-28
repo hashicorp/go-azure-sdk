@@ -75,6 +75,5 @@ func (c FrontDoorsClient) senderForFrontendEndpointsEnableHttps(ctx context.Cont
 	}
 
 	future.Poller, err = polling.NewLongRunningPollerFromResponse(ctx, resp, c.Client)
-
 	return
 }

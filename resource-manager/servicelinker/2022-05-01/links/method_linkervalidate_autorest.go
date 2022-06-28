@@ -74,6 +74,5 @@ func (c LinksClient) senderForLinkerValidate(ctx context.Context, req *http.Requ
 	}
 
 	future.Poller, err = polling.NewLongRunningPollerFromResponse(ctx, resp, c.Client)
-
 	return
 }

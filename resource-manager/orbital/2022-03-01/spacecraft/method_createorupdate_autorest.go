@@ -75,6 +75,5 @@ func (c SpacecraftClient) senderForCreateOrUpdate(ctx context.Context, req *http
 	}
 
 	future.Poller, err = polling.NewLongRunningPollerFromResponse(ctx, resp, c.Client)
-
 	return
 }

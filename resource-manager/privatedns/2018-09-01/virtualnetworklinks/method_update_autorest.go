@@ -104,6 +104,5 @@ func (c VirtualNetworkLinksClient) senderForUpdate(ctx context.Context, req *htt
 	}
 
 	future.Poller, err = polling.NewLongRunningPollerFromResponse(ctx, resp, c.Client)
-
 	return
 }

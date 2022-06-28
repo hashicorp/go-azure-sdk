@@ -76,6 +76,5 @@ func (c UsageDetailsClient) senderForGenerateDetailedCostReportCreateOperation(c
 	}
 
 	future.Poller, err = polling.NewLongRunningPollerFromResponse(ctx, resp, c.Client)
-
 	return
 }

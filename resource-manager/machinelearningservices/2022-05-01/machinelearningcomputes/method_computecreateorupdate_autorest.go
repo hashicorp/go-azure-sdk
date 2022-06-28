@@ -75,6 +75,5 @@ func (c MachineLearningComputesClient) senderForComputeCreateOrUpdate(ctx contex
 	}
 
 	future.Poller, err = polling.NewLongRunningPollerFromResponse(ctx, resp, c.Client)
-
 	return
 }

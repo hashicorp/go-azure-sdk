@@ -74,6 +74,5 @@ func (c BlobContainersClient) senderForObjectLevelWorm(ctx context.Context, req 
 	}
 
 	future.Poller, err = polling.NewLongRunningPollerFromResponse(ctx, resp, c.Client)
-
 	return
 }

@@ -75,6 +75,5 @@ func (c OnlineEndpointClient) senderForUpdate(ctx context.Context, req *http.Req
 	}
 
 	future.Poller, err = polling.NewLongRunningPollerFromResponse(ctx, resp, c.Client)
-
 	return
 }

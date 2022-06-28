@@ -75,6 +75,5 @@ func (c LabPlanClient) senderForUpdate(ctx context.Context, req *http.Request) (
 	}
 
 	future.Poller, err = polling.NewLongRunningPollerFromResponse(ctx, resp, c.Client)
-
 	return
 }

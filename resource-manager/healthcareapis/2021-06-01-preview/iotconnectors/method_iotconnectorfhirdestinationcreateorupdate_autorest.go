@@ -75,6 +75,5 @@ func (c IotConnectorsClient) senderForIotConnectorFhirDestinationCreateOrUpdate(
 	}
 
 	future.Poller, err = polling.NewLongRunningPollerFromResponse(ctx, resp, c.Client)
-
 	return
 }

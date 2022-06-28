@@ -75,6 +75,5 @@ func (c OperationalizationClustersClient) senderForComputeUpdate(ctx context.Con
 	}
 
 	future.Poller, err = polling.NewLongRunningPollerFromResponse(ctx, resp, c.Client)
-
 	return
 }

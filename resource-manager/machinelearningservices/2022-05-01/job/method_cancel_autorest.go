@@ -74,6 +74,5 @@ func (c JobClient) senderForCancel(ctx context.Context, req *http.Request) (futu
 	}
 
 	future.Poller, err = polling.NewLongRunningPollerFromResponse(ctx, resp, c.Client)
-
 	return
 }
