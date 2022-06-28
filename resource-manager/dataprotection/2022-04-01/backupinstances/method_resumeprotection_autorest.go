@@ -74,6 +74,5 @@ func (c BackupInstancesClient) senderForResumeProtection(ctx context.Context, re
 	}
 
 	future.Poller, err = polling.NewLongRunningPollerFromResponse(ctx, resp, c.Client)
-
 	return
 }

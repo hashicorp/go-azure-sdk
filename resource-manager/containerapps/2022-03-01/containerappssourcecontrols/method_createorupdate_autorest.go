@@ -75,6 +75,5 @@ func (c ContainerAppsSourceControlsClient) senderForCreateOrUpdate(ctx context.C
 	}
 
 	future.Poller, err = polling.NewLongRunningPollerFromResponse(ctx, resp, c.Client)
-
 	return
 }

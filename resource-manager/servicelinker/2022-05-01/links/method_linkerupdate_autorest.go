@@ -75,6 +75,5 @@ func (c LinksClient) senderForLinkerUpdate(ctx context.Context, req *http.Reques
 	}
 
 	future.Poller, err = polling.NewLongRunningPollerFromResponse(ctx, resp, c.Client)
-
 	return
 }

@@ -75,6 +75,5 @@ func (c StorageAccountsClient) senderForCreate(ctx context.Context, req *http.Re
 	}
 
 	future.Poller, err = polling.NewLongRunningPollerFromResponse(ctx, resp, c.Client)
-
 	return
 }

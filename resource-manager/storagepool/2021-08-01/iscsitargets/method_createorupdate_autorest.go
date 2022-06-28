@@ -75,6 +75,5 @@ func (c IscsiTargetsClient) senderForCreateOrUpdate(ctx context.Context, req *ht
 	}
 
 	future.Poller, err = polling.NewLongRunningPollerFromResponse(ctx, resp, c.Client)
-
 	return
 }

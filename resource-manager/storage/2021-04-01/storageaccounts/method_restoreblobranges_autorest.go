@@ -75,6 +75,5 @@ func (c StorageAccountsClient) senderForRestoreBlobRanges(ctx context.Context, r
 	}
 
 	future.Poller, err = polling.NewLongRunningPollerFromResponse(ctx, resp, c.Client)
-
 	return
 }

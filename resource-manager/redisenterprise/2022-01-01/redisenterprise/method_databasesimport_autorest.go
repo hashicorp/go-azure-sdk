@@ -75,6 +75,5 @@ func (c RedisEnterpriseClient) senderForDatabasesImport(ctx context.Context, req
 	}
 
 	future.Poller, err = polling.NewLongRunningPollerFromResponse(ctx, resp, c.Client)
-
 	return
 }

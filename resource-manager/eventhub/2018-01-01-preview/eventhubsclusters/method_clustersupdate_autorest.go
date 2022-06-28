@@ -75,6 +75,5 @@ func (c EventHubsClustersClient) senderForClustersUpdate(ctx context.Context, re
 	}
 
 	future.Poller, err = polling.NewLongRunningPollerFromResponse(ctx, resp, c.Client)
-
 	return
 }

@@ -75,6 +75,5 @@ func (c WorkspacesClient) senderForDiagnose(ctx context.Context, req *http.Reque
 	}
 
 	future.Poller, err = polling.NewLongRunningPollerFromResponse(ctx, resp, c.Client)
-
 	return
 }

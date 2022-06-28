@@ -75,6 +75,5 @@ func (c FrontDoorsClient) senderForRulesEnginesCreateOrUpdate(ctx context.Contex
 	}
 
 	future.Poller, err = polling.NewLongRunningPollerFromResponse(ctx, resp, c.Client)
-
 	return
 }

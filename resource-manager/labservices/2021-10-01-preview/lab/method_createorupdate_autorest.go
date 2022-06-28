@@ -75,6 +75,5 @@ func (c LabClient) senderForCreateOrUpdate(ctx context.Context, req *http.Reques
 	}
 
 	future.Poller, err = polling.NewLongRunningPollerFromResponse(ctx, resp, c.Client)
-
 	return
 }

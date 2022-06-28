@@ -75,6 +75,5 @@ func (c ContactProfileClient) senderForContactProfilesCreateOrUpdate(ctx context
 	}
 
 	future.Poller, err = polling.NewLongRunningPollerFromResponse(ctx, resp, c.Client)
-
 	return
 }

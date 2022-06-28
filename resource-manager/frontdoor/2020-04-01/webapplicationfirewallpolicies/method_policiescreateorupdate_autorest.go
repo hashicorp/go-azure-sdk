@@ -75,6 +75,5 @@ func (c WebApplicationFirewallPoliciesClient) senderForPoliciesCreateOrUpdate(ct
 	}
 
 	future.Poller, err = polling.NewLongRunningPollerFromResponse(ctx, resp, c.Client)
-
 	return
 }

@@ -75,6 +75,5 @@ func (c BackupInstancesClient) senderForValidateForBackup(ctx context.Context, r
 	}
 
 	future.Poller, err = polling.NewLongRunningPollerFromResponse(ctx, resp, c.Client)
-
 	return
 }
