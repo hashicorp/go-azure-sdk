@@ -73,6 +73,6 @@ func (c VirtualMachineClient) senderForStop(ctx context.Context, req *http.Reque
 		return
 	}
 
-	future.Poller, err = polling.NewLongRunningPollerFromResponse(ctx, resp, c.Client)
+	future.Poller, err = polling.NewPollerFromResponse(ctx, resp, c.Client, req.Method)
 	return
 }
