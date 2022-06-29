@@ -74,6 +74,6 @@ func (c ResourcesClient) senderForDeleteById(ctx context.Context, req *http.Requ
 		return
 	}
 
-	future.Poller, err = polling.NewLongRunningPollerFromResponse(ctx, resp, c.Client)
+	future.Poller, err = polling.NewPollerFromResponse(ctx, resp, c.Client, req.Method)
 	return
 }

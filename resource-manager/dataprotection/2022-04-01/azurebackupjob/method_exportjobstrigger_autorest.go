@@ -73,6 +73,6 @@ func (c AzureBackupJobClient) senderForExportJobsTrigger(ctx context.Context, re
 		return
 	}
 
-	future.Poller, err = polling.NewLongRunningPollerFromResponse(ctx, resp, c.Client)
+	future.Poller, err = polling.NewPollerFromResponse(ctx, resp, c.Client, req.Method)
 	return
 }
