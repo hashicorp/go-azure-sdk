@@ -70,16 +70,17 @@ func parseAzureResourceType(input string) (*AzureResourceType, error) {
 type ClientType string
 
 const (
-	ClientTypeDjango     ClientType = "django"
-	ClientTypeDotnet     ClientType = "dotnet"
-	ClientTypeGo         ClientType = "go"
-	ClientTypeJava       ClientType = "java"
-	ClientTypeNodejs     ClientType = "nodejs"
-	ClientTypeNone       ClientType = "none"
-	ClientTypePhp        ClientType = "php"
-	ClientTypePython     ClientType = "python"
-	ClientTypeRuby       ClientType = "ruby"
-	ClientTypeSpringBoot ClientType = "springBoot"
+	ClientTypeDjango                  ClientType = "django"
+	ClientTypeDotnet                  ClientType = "dotnet"
+	ClientTypeGo                      ClientType = "go"
+	ClientTypeJava                    ClientType = "java"
+	ClientTypeKafkaNegativespringBoot ClientType = "kafka-springBoot"
+	ClientTypeNodejs                  ClientType = "nodejs"
+	ClientTypeNone                    ClientType = "none"
+	ClientTypePhp                     ClientType = "php"
+	ClientTypePython                  ClientType = "python"
+	ClientTypeRuby                    ClientType = "ruby"
+	ClientTypeSpringBoot              ClientType = "springBoot"
 )
 
 func PossibleValuesForClientType() []string {
@@ -88,6 +89,7 @@ func PossibleValuesForClientType() []string {
 		string(ClientTypeDotnet),
 		string(ClientTypeGo),
 		string(ClientTypeJava),
+		string(ClientTypeKafkaNegativespringBoot),
 		string(ClientTypeNodejs),
 		string(ClientTypeNone),
 		string(ClientTypePhp),
@@ -99,16 +101,17 @@ func PossibleValuesForClientType() []string {
 
 func parseClientType(input string) (*ClientType, error) {
 	vals := map[string]ClientType{
-		"django":     ClientTypeDjango,
-		"dotnet":     ClientTypeDotnet,
-		"go":         ClientTypeGo,
-		"java":       ClientTypeJava,
-		"nodejs":     ClientTypeNodejs,
-		"none":       ClientTypeNone,
-		"php":        ClientTypePhp,
-		"python":     ClientTypePython,
-		"ruby":       ClientTypeRuby,
-		"springboot": ClientTypeSpringBoot,
+		"django":           ClientTypeDjango,
+		"dotnet":           ClientTypeDotnet,
+		"go":               ClientTypeGo,
+		"java":             ClientTypeJava,
+		"kafka-springboot": ClientTypeKafkaNegativespringBoot,
+		"nodejs":           ClientTypeNodejs,
+		"none":             ClientTypeNone,
+		"php":              ClientTypePhp,
+		"python":           ClientTypePython,
+		"ruby":             ClientTypeRuby,
+		"springboot":       ClientTypeSpringBoot,
 	}
 	if v, ok := vals[strings.ToLower(input)]; ok {
 		return &v, nil
