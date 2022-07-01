@@ -3,6 +3,7 @@
 ## Overview
 
 * [Authentication](authentication.md).
+* [Working with Discriminated Types](working-with-discriminators.md).
 * [Frequently Asked Question](frequently-asked-questions.md).
 
 Additional README's can be found within each the directory for each Service / API Version ([example](XXX)).
