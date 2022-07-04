@@ -42,3 +42,31 @@ func (s AzureBackupRecoveryTimeBasedRestoreRequest) MarshalJSON() ([]byte, error
 
 	return encoded, nil
 }
+
+var _ json.Unmarshaler = &AzureBackupRecoveryTimeBasedRestoreRequest{}
+
+func (s *AzureBackupRecoveryTimeBasedRestoreRequest) UnmarshalJSON(bytes []byte) error {
+	type alias AzureBackupRecoveryTimeBasedRestoreRequest
+	var decoded alias
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling into AzureBackupRecoveryTimeBasedRestoreRequest: %+v", err)
+	}
+
+	s.RecoveryPointTime = decoded.RecoveryPointTime
+	s.SourceDataStoreType = decoded.SourceDataStoreType
+	s.SourceResourceId = decoded.SourceResourceId
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling AzureBackupRecoveryTimeBasedRestoreRequest into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["restoreTargetInfo"]; ok {
+		impl, err := unmarshalRestoreTargetInfoBaseImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'RestoreTargetInfo' for 'AzureBackupRecoveryTimeBasedRestoreRequest': %+v", err)
+		}
+		s.RestoreTargetInfo = impl
+	}
+	return nil
+}

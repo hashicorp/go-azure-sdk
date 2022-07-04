@@ -53,6 +53,7 @@ func (s *AzureBackupRule) UnmarshalJSON(bytes []byte) error {
 	}
 
 	s.DataStore = decoded.DataStore
+	s.Name = decoded.Name
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {

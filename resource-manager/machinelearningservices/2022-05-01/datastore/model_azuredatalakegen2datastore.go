@@ -48,3 +48,37 @@ func (s AzureDataLakeGen2Datastore) MarshalJSON() ([]byte, error) {
 
 	return encoded, nil
 }
+
+var _ json.Unmarshaler = &AzureDataLakeGen2Datastore{}
+
+func (s *AzureDataLakeGen2Datastore) UnmarshalJSON(bytes []byte) error {
+	type alias AzureDataLakeGen2Datastore
+	var decoded alias
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling into AzureDataLakeGen2Datastore: %+v", err)
+	}
+
+	s.AccountName = decoded.AccountName
+	s.Description = decoded.Description
+	s.Endpoint = decoded.Endpoint
+	s.Filesystem = decoded.Filesystem
+	s.IsDefault = decoded.IsDefault
+	s.Properties = decoded.Properties
+	s.Protocol = decoded.Protocol
+	s.ServiceDataAccessAuthIdentity = decoded.ServiceDataAccessAuthIdentity
+	s.Tags = decoded.Tags
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling AzureDataLakeGen2Datastore into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["credentials"]; ok {
+		impl, err := unmarshalDatastoreCredentialsImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'Credentials' for 'AzureDataLakeGen2Datastore': %+v", err)
+		}
+		s.Credentials = impl
+	}
+	return nil
+}

@@ -52,3 +52,41 @@ func (s ManagedOnlineDeployment) MarshalJSON() ([]byte, error) {
 
 	return encoded, nil
 }
+
+var _ json.Unmarshaler = &ManagedOnlineDeployment{}
+
+func (s *ManagedOnlineDeployment) UnmarshalJSON(bytes []byte) error {
+	type alias ManagedOnlineDeployment
+	var decoded alias
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling into ManagedOnlineDeployment: %+v", err)
+	}
+
+	s.AppInsightsEnabled = decoded.AppInsightsEnabled
+	s.CodeConfiguration = decoded.CodeConfiguration
+	s.Description = decoded.Description
+	s.EnvironmentId = decoded.EnvironmentId
+	s.EnvironmentVariables = decoded.EnvironmentVariables
+	s.InstanceType = decoded.InstanceType
+	s.LivenessProbe = decoded.LivenessProbe
+	s.Model = decoded.Model
+	s.ModelMountPath = decoded.ModelMountPath
+	s.Properties = decoded.Properties
+	s.ProvisioningState = decoded.ProvisioningState
+	s.ReadinessProbe = decoded.ReadinessProbe
+	s.RequestSettings = decoded.RequestSettings
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling ManagedOnlineDeployment into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["scaleSettings"]; ok {
+		impl, err := unmarshalOnlineScaleSettingsImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'ScaleSettings' for 'ManagedOnlineDeployment': %+v", err)
+		}
+		s.ScaleSettings = impl
+	}
+	return nil
+}
