@@ -62,12 +62,29 @@ func (s *PipelineJob) UnmarshalJSON(bytes []byte) error {
 		return fmt.Errorf("unmarshaling into PipelineJob: %+v", err)
 	}
 
+	s.ComputeId = decoded.ComputeId
+	s.Description = decoded.Description
+	s.DisplayName = decoded.DisplayName
+	s.ExperimentName = decoded.ExperimentName
+	s.IsArchived = decoded.IsArchived
 	s.Jobs = decoded.Jobs
+	s.Properties = decoded.Properties
+	s.Services = decoded.Services
 	s.Settings = decoded.Settings
+	s.Status = decoded.Status
+	s.Tags = decoded.Tags
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
 		return fmt.Errorf("unmarshaling PipelineJob into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["identity"]; ok {
+		impl, err := unmarshalIdentityConfigurationImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'Identity' for 'PipelineJob': %+v", err)
+		}
+		s.Identity = impl
 	}
 
 	if v, ok := temp["inputs"]; ok {

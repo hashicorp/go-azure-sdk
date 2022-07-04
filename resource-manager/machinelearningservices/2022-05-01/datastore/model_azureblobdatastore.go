@@ -48,3 +48,37 @@ func (s AzureBlobDatastore) MarshalJSON() ([]byte, error) {
 
 	return encoded, nil
 }
+
+var _ json.Unmarshaler = &AzureBlobDatastore{}
+
+func (s *AzureBlobDatastore) UnmarshalJSON(bytes []byte) error {
+	type alias AzureBlobDatastore
+	var decoded alias
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling into AzureBlobDatastore: %+v", err)
+	}
+
+	s.AccountName = decoded.AccountName
+	s.ContainerName = decoded.ContainerName
+	s.Description = decoded.Description
+	s.Endpoint = decoded.Endpoint
+	s.IsDefault = decoded.IsDefault
+	s.Properties = decoded.Properties
+	s.Protocol = decoded.Protocol
+	s.ServiceDataAccessAuthIdentity = decoded.ServiceDataAccessAuthIdentity
+	s.Tags = decoded.Tags
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling AzureBlobDatastore into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["credentials"]; ok {
+		impl, err := unmarshalDatastoreCredentialsImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'Credentials' for 'AzureBlobDatastore': %+v", err)
+		}
+		s.Credentials = impl
+	}
+	return nil
+}

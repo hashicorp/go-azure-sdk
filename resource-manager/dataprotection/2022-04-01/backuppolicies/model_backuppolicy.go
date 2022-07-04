@@ -44,6 +44,13 @@ func (s BackupPolicy) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &BackupPolicy{}
 
 func (s *BackupPolicy) UnmarshalJSON(bytes []byte) error {
+	type alias BackupPolicy
+	var decoded alias
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling into BackupPolicy: %+v", err)
+	}
+
+	s.DatasourceTypes = decoded.DatasourceTypes
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {

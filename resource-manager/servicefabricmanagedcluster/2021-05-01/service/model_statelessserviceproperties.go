@@ -51,3 +51,56 @@ func (s StatelessServiceProperties) MarshalJSON() ([]byte, error) {
 
 	return encoded, nil
 }
+
+var _ json.Unmarshaler = &StatelessServiceProperties{}
+
+func (s *StatelessServiceProperties) UnmarshalJSON(bytes []byte) error {
+	type alias StatelessServiceProperties
+	var decoded alias
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling into StatelessServiceProperties: %+v", err)
+	}
+
+	s.CorrelationScheme = decoded.CorrelationScheme
+	s.DefaultMoveCost = decoded.DefaultMoveCost
+	s.InstanceCount = decoded.InstanceCount
+	s.MinInstanceCount = decoded.MinInstanceCount
+	s.MinInstancePercentage = decoded.MinInstancePercentage
+	s.PlacementConstraints = decoded.PlacementConstraints
+	s.ProvisioningState = decoded.ProvisioningState
+	s.ScalingPolicies = decoded.ScalingPolicies
+	s.ServiceLoadMetrics = decoded.ServiceLoadMetrics
+	s.ServicePackageActivationMode = decoded.ServicePackageActivationMode
+	s.ServiceTypeName = decoded.ServiceTypeName
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling StatelessServiceProperties into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["partitionDescription"]; ok {
+		impl, err := unmarshalPartitionImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'PartitionDescription' for 'StatelessServiceProperties': %+v", err)
+		}
+		s.PartitionDescription = impl
+	}
+
+	if v, ok := temp["servicePlacementPolicies"]; ok {
+		var listTemp []json.RawMessage
+		if err := json.Unmarshal(v, &listTemp); err != nil {
+			return fmt.Errorf("unmarshaling ServicePlacementPolicies into list []json.RawMessage: %+v", err)
+		}
+
+		output := make([]ServicePlacementPolicy, 0)
+		for i, val := range listTemp {
+			impl, err := unmarshalServicePlacementPolicyImplementation(val)
+			if err != nil {
+				return fmt.Errorf("unmarshaling index %d field 'ServicePlacementPolicies' for 'StatelessServiceProperties': %+v", i, err)
+			}
+			output = append(output, impl)
+		}
+		s.ServicePlacementPolicies = &output
+	}
+	return nil
+}

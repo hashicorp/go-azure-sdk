@@ -66,8 +66,17 @@ func (s *SweepJob) UnmarshalJSON(bytes []byte) error {
 		return fmt.Errorf("unmarshaling into SweepJob: %+v", err)
 	}
 
+	s.ComputeId = decoded.ComputeId
+	s.Description = decoded.Description
+	s.DisplayName = decoded.DisplayName
+	s.ExperimentName = decoded.ExperimentName
+	s.IsArchived = decoded.IsArchived
 	s.Objective = decoded.Objective
+	s.Properties = decoded.Properties
 	s.SearchSpace = decoded.SearchSpace
+	s.Services = decoded.Services
+	s.Status = decoded.Status
+	s.Tags = decoded.Tags
 	s.Trial = decoded.Trial
 
 	var temp map[string]json.RawMessage
@@ -81,6 +90,14 @@ func (s *SweepJob) UnmarshalJSON(bytes []byte) error {
 			return fmt.Errorf("unmarshaling field 'EarlyTermination' for 'SweepJob': %+v", err)
 		}
 		s.EarlyTermination = impl
+	}
+
+	if v, ok := temp["identity"]; ok {
+		impl, err := unmarshalIdentityConfigurationImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'Identity' for 'SweepJob': %+v", err)
+		}
+		s.Identity = impl
 	}
 
 	if v, ok := temp["inputs"]; ok {

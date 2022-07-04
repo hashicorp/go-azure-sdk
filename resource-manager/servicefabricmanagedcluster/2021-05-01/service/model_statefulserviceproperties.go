@@ -55,3 +55,60 @@ func (s StatefulServiceProperties) MarshalJSON() ([]byte, error) {
 
 	return encoded, nil
 }
+
+var _ json.Unmarshaler = &StatefulServiceProperties{}
+
+func (s *StatefulServiceProperties) UnmarshalJSON(bytes []byte) error {
+	type alias StatefulServiceProperties
+	var decoded alias
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling into StatefulServiceProperties: %+v", err)
+	}
+
+	s.CorrelationScheme = decoded.CorrelationScheme
+	s.DefaultMoveCost = decoded.DefaultMoveCost
+	s.HasPersistedState = decoded.HasPersistedState
+	s.MinReplicaSetSize = decoded.MinReplicaSetSize
+	s.PlacementConstraints = decoded.PlacementConstraints
+	s.ProvisioningState = decoded.ProvisioningState
+	s.QuorumLossWaitDuration = decoded.QuorumLossWaitDuration
+	s.ReplicaRestartWaitDuration = decoded.ReplicaRestartWaitDuration
+	s.ScalingPolicies = decoded.ScalingPolicies
+	s.ServiceLoadMetrics = decoded.ServiceLoadMetrics
+	s.ServicePackageActivationMode = decoded.ServicePackageActivationMode
+	s.ServicePlacementTimeLimit = decoded.ServicePlacementTimeLimit
+	s.ServiceTypeName = decoded.ServiceTypeName
+	s.StandByReplicaKeepDuration = decoded.StandByReplicaKeepDuration
+	s.TargetReplicaSetSize = decoded.TargetReplicaSetSize
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling StatefulServiceProperties into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["partitionDescription"]; ok {
+		impl, err := unmarshalPartitionImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'PartitionDescription' for 'StatefulServiceProperties': %+v", err)
+		}
+		s.PartitionDescription = impl
+	}
+
+	if v, ok := temp["servicePlacementPolicies"]; ok {
+		var listTemp []json.RawMessage
+		if err := json.Unmarshal(v, &listTemp); err != nil {
+			return fmt.Errorf("unmarshaling ServicePlacementPolicies into list []json.RawMessage: %+v", err)
+		}
+
+		output := make([]ServicePlacementPolicy, 0)
+		for i, val := range listTemp {
+			impl, err := unmarshalServicePlacementPolicyImplementation(val)
+			if err != nil {
+				return fmt.Errorf("unmarshaling index %d field 'ServicePlacementPolicies' for 'StatefulServiceProperties': %+v", i, err)
+			}
+			output = append(output, impl)
+		}
+		s.ServicePlacementPolicies = &output
+	}
+	return nil
+}
