@@ -56,6 +56,8 @@ func (s *ItemLevelRestoreTargetInfo) UnmarshalJSON(bytes []byte) error {
 
 	s.DatasourceInfo = decoded.DatasourceInfo
 	s.DatasourceSetInfo = decoded.DatasourceSetInfo
+	s.RecoveryOption = decoded.RecoveryOption
+	s.RestoreLocation = decoded.RestoreLocation
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {

@@ -40,3 +40,38 @@ func (s InputFile) MarshalJSON() ([]byte, error) {
 
 	return encoded, nil
 }
+
+var _ json.Unmarshaler = &InputFile{}
+
+func (s *InputFile) UnmarshalJSON(bytes []byte) error {
+	type alias InputFile
+	var decoded alias
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling into InputFile: %+v", err)
+	}
+
+	s.Filename = decoded.Filename
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling InputFile into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["includedTracks"]; ok {
+		var listTemp []json.RawMessage
+		if err := json.Unmarshal(v, &listTemp); err != nil {
+			return fmt.Errorf("unmarshaling IncludedTracks into list []json.RawMessage: %+v", err)
+		}
+
+		output := make([]TrackDescriptor, 0)
+		for i, val := range listTemp {
+			impl, err := unmarshalTrackDescriptorImplementation(val)
+			if err != nil {
+				return fmt.Errorf("unmarshaling index %d field 'IncludedTracks' for 'InputFile': %+v", i, err)
+			}
+			output = append(output, impl)
+		}
+		s.IncludedTracks = &output
+	}
+	return nil
+}

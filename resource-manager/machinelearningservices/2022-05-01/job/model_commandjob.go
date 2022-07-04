@@ -70,10 +70,19 @@ func (s *CommandJob) UnmarshalJSON(bytes []byte) error {
 
 	s.CodeId = decoded.CodeId
 	s.Command = decoded.Command
+	s.ComputeId = decoded.ComputeId
+	s.Description = decoded.Description
+	s.DisplayName = decoded.DisplayName
 	s.EnvironmentId = decoded.EnvironmentId
 	s.EnvironmentVariables = decoded.EnvironmentVariables
+	s.ExperimentName = decoded.ExperimentName
+	s.IsArchived = decoded.IsArchived
 	s.Parameters = decoded.Parameters
+	s.Properties = decoded.Properties
 	s.Resources = decoded.Resources
+	s.Services = decoded.Services
+	s.Status = decoded.Status
+	s.Tags = decoded.Tags
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -86,6 +95,14 @@ func (s *CommandJob) UnmarshalJSON(bytes []byte) error {
 			return fmt.Errorf("unmarshaling field 'Distribution' for 'CommandJob': %+v", err)
 		}
 		s.Distribution = impl
+	}
+
+	if v, ok := temp["identity"]; ok {
+		impl, err := unmarshalIdentityConfigurationImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'Identity' for 'CommandJob': %+v", err)
+		}
+		s.Identity = impl
 	}
 
 	if v, ok := temp["inputs"]; ok {
