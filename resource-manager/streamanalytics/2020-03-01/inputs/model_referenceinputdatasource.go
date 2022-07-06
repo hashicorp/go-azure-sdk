@@ -43,6 +43,14 @@ func unmarshalReferenceInputDataSourceImplementation(input []byte) (ReferenceInp
 		return out, nil
 	}
 
+	if strings.EqualFold(value, "File") {
+		var out FileReferenceInputDataSource
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into FileReferenceInputDataSource: %+v", err)
+		}
+		return out, nil
+	}
+
 	type RawReferenceInputDataSourceImpl struct {
 		Type   string                 `json:"-"`
 		Values map[string]interface{} `json:"-"`
