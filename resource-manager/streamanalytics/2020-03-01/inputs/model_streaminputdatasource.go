@@ -51,6 +51,14 @@ func unmarshalStreamInputDataSourceImplementation(input []byte) (StreamInputData
 		return out, nil
 	}
 
+	if strings.EqualFold(value, "GatewayMessageBus") {
+		var out GatewayMessageBusStreamInputDataSource
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into GatewayMessageBusStreamInputDataSource: %+v", err)
+		}
+		return out, nil
+	}
+
 	if strings.EqualFold(value, "Microsoft.Devices/IotHubs") {
 		var out IoTHubStreamInputDataSource
 		if err := json.Unmarshal(input, &out); err != nil {
