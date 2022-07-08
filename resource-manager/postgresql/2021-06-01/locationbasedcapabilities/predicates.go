@@ -1,0 +1,34 @@
+package locationbasedcapabilities
+
+type CapabilityPropertiesOperationPredicate struct {
+	GeoBackupSupported                   *bool
+	Status                               *string
+	Zone                                 *string
+	ZoneRedundantHaAndGeoBackupSupported *bool
+	ZoneRedundantHaSupported             *bool
+}
+
+func (p CapabilityPropertiesOperationPredicate) Matches(input CapabilityProperties) bool {
+
+	if p.GeoBackupSupported != nil && (input.GeoBackupSupported == nil && *p.GeoBackupSupported != *input.GeoBackupSupported) {
+		return false
+	}
+
+	if p.Status != nil && (input.Status == nil && *p.Status != *input.Status) {
+		return false
+	}
+
+	if p.Zone != nil && (input.Zone == nil && *p.Zone != *input.Zone) {
+		return false
+	}
+
+	if p.ZoneRedundantHaAndGeoBackupSupported != nil && (input.ZoneRedundantHaAndGeoBackupSupported == nil && *p.ZoneRedundantHaAndGeoBackupSupported != *input.ZoneRedundantHaAndGeoBackupSupported) {
+		return false
+	}
+
+	if p.ZoneRedundantHaSupported != nil && (input.ZoneRedundantHaSupported == nil && *p.ZoneRedundantHaSupported != *input.ZoneRedundantHaSupported) {
+		return false
+	}
+
+	return true
+}
