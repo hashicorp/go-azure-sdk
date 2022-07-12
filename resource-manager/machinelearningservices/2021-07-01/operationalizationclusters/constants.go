@@ -452,40 +452,6 @@ func parseRemoteLoginPortPublicAccess(input string) (*RemoteLoginPortPublicAcces
 	return &out, nil
 }
 
-type ResourceIdentityType string
-
-const (
-	ResourceIdentityTypeNone                       ResourceIdentityType = "None"
-	ResourceIdentityTypeSystemAssigned             ResourceIdentityType = "SystemAssigned"
-	ResourceIdentityTypeSystemAssignedUserAssigned ResourceIdentityType = "SystemAssigned,UserAssigned"
-	ResourceIdentityTypeUserAssigned               ResourceIdentityType = "UserAssigned"
-)
-
-func PossibleValuesForResourceIdentityType() []string {
-	return []string{
-		string(ResourceIdentityTypeNone),
-		string(ResourceIdentityTypeSystemAssigned),
-		string(ResourceIdentityTypeSystemAssignedUserAssigned),
-		string(ResourceIdentityTypeUserAssigned),
-	}
-}
-
-func parseResourceIdentityType(input string) (*ResourceIdentityType, error) {
-	vals := map[string]ResourceIdentityType{
-		"none":                        ResourceIdentityTypeNone,
-		"systemassigned":              ResourceIdentityTypeSystemAssigned,
-		"systemassigned,userassigned": ResourceIdentityTypeSystemAssignedUserAssigned,
-		"userassigned":                ResourceIdentityTypeUserAssigned,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ResourceIdentityType(input)
-	return &out, nil
-}
-
 type SshPublicAccess string
 
 const (
