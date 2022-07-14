@@ -277,3 +277,15 @@ if model := read.Model; model != nil {
 	// do something with the model/response object
 }
 ```
+
+
+### Example Usage: `ContainerInstanceClient.SubnetServiceAssociationLinkDelete`
+
+```go
+ctx := context.TODO()
+id := containerinstance.NewSubnetID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualNetworkValue", "subnetValue")
+
+if err := client.SubnetServiceAssociationLinkDeleteThenPoll(ctx, id); err != nil {
+	// handle the error
+}
+```
