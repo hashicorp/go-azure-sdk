@@ -95,7 +95,7 @@ func ValidateServerGroupsv2ID(input interface{}, key string) (warnings []string,
 
 // ID returns the formatted Server Groupsv 2 ID
 func (id ServerGroupsv2Id) ID() string {
-	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.DBForPostgreSql/serverGroupsv2/%s"
+	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.DBForPostgreSQL/serverGroupsv2/%s"
 	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.ServerGroupName)
 }
 
@@ -107,7 +107,7 @@ func (id ServerGroupsv2Id) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticResourceGroups", "resourceGroups", "resourceGroups"),
 		resourceids.ResourceGroupSegment("resourceGroupName", "example-resource-group"),
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
-		resourceids.ResourceProviderSegment("staticMicrosoftDBForPostgreSql", "Microsoft.DBForPostgreSql", "Microsoft.DBForPostgreSql"),
+		resourceids.ResourceProviderSegment("staticMicrosoftDBForPostgreSQL", "Microsoft.DBForPostgreSQL", "Microsoft.DBForPostgreSQL"),
 		resourceids.StaticSegment("staticServerGroupsv2", "serverGroupsv2", "serverGroupsv2"),
 		resourceids.UserSpecifiedSegment("serverGroupName", "serverGroupValue"),
 	}

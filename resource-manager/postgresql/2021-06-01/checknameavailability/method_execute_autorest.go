@@ -51,7 +51,7 @@ func (c CheckNameAvailabilityClient) preparerForExecute(ctx context.Context, id 
 		autorest.AsContentType("application/json; charset=utf-8"),
 		autorest.AsPost(),
 		autorest.WithBaseURL(c.baseUri),
-		autorest.WithPath(fmt.Sprintf("%s/providers/Microsoft.DBForPostgreSql/checkNameAvailability", id.ID())),
+		autorest.WithPath(fmt.Sprintf("%s/providers/Microsoft.DBForPostgreSQL/checkNameAvailability", id.ID())),
 		autorest.WithJSON(input),
 		autorest.WithQueryParameters(queryParameters))
 	return preparer.Prepare((&http.Request{}).WithContext(ctx))
