@@ -12,7 +12,7 @@ type OutputProperties struct {
 	Datasource    OutputDataSource `json:"datasource"`
 	Diagnostics   *Diagnostics     `json:"diagnostics,omitempty"`
 	Etag          *string          `json:"etag,omitempty"`
-	Serialization *Serialization   `json:"serialization,omitempty"`
+	Serialization Serialization    `json:"serialization"`
 	SizeWindow    *float64         `json:"sizeWindow,omitempty"`
 	TimeWindow    *string          `json:"timeWindow,omitempty"`
 }
@@ -28,7 +28,6 @@ func (s *OutputProperties) UnmarshalJSON(bytes []byte) error {
 
 	s.Diagnostics = decoded.Diagnostics
 	s.Etag = decoded.Etag
-	s.Serialization = decoded.Serialization
 	s.SizeWindow = decoded.SizeWindow
 	s.TimeWindow = decoded.TimeWindow
 
@@ -43,6 +42,14 @@ func (s *OutputProperties) UnmarshalJSON(bytes []byte) error {
 			return fmt.Errorf("unmarshaling field 'Datasource' for 'OutputProperties': %+v", err)
 		}
 		s.Datasource = impl
+	}
+
+	if v, ok := temp["serialization"]; ok {
+		impl, err := unmarshalSerializationImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'Serialization' for 'OutputProperties': %+v", err)
+		}
+		s.Serialization = impl
 	}
 	return nil
 }

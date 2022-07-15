@@ -36,6 +36,31 @@ func parseAuthenticationMode(input string) (*AuthenticationMode, error) {
 	return &out, nil
 }
 
+type Encoding string
+
+const (
+	EncodingUTFEight Encoding = "UTF8"
+)
+
+func PossibleValuesForEncoding() []string {
+	return []string{
+		string(EncodingUTFEight),
+	}
+}
+
+func parseEncoding(input string) (*Encoding, error) {
+	vals := map[string]Encoding{
+		"utf8": EncodingUTFEight,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := Encoding(input)
+	return &out, nil
+}
+
 type EventSerializationType string
 
 const (
@@ -67,5 +92,33 @@ func parseEventSerializationType(input string) (*EventSerializationType, error) 
 
 	// otherwise presume it's an undefined value and best-effort it
 	out := EventSerializationType(input)
+	return &out, nil
+}
+
+type JsonOutputSerializationFormat string
+
+const (
+	JsonOutputSerializationFormatArray         JsonOutputSerializationFormat = "Array"
+	JsonOutputSerializationFormatLineSeparated JsonOutputSerializationFormat = "LineSeparated"
+)
+
+func PossibleValuesForJsonOutputSerializationFormat() []string {
+	return []string{
+		string(JsonOutputSerializationFormatArray),
+		string(JsonOutputSerializationFormatLineSeparated),
+	}
+}
+
+func parseJsonOutputSerializationFormat(input string) (*JsonOutputSerializationFormat, error) {
+	vals := map[string]JsonOutputSerializationFormat{
+		"array":         JsonOutputSerializationFormatArray,
+		"lineseparated": JsonOutputSerializationFormatLineSeparated,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := JsonOutputSerializationFormat(input)
 	return &out, nil
 }
