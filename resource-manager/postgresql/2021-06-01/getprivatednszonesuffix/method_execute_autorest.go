@@ -49,7 +49,7 @@ func (c GetPrivateDnsZoneSuffixClient) preparerForExecute(ctx context.Context) (
 		autorest.AsContentType("application/json; charset=utf-8"),
 		autorest.AsPost(),
 		autorest.WithBaseURL(c.baseUri),
-		autorest.WithPath("/providers/Microsoft.DBForPostgreSql/getPrivateDnsZoneSuffix"),
+		autorest.WithPath("/providers/Microsoft.DBForPostgreSQL/getPrivateDnsZoneSuffix"),
 		autorest.WithQueryParameters(queryParameters))
 	return preparer.Prepare((&http.Request{}).WithContext(ctx))
 }
