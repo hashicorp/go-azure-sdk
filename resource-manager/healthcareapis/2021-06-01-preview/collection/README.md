@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := collection.NewSubscriptionID()
+id := collection.NewSubscriptionID("12345678-1234-9876-4563-123456789012")
 
 // alternatively `client.ServicesList(ctx, id)` can be used to do batched pagination
 items, err := client.ServicesListComplete(ctx, id)
@@ -41,7 +41,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := collection.NewResourceGroupID()
+id := collection.NewResourceGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group")
 
 // alternatively `client.ServicesListByResourceGroup(ctx, id)` can be used to do batched pagination
 items, err := client.ServicesListByResourceGroupComplete(ctx, id)

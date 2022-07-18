@@ -109,7 +109,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := connectiongateways.NewSubscriptionID()
+id := connectiongateways.NewSubscriptionID("12345678-1234-9876-4563-123456789012")
 
 read, err := client.ConnectionGatewaysList(ctx, id)
 if err != nil {
@@ -125,7 +125,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := connectiongateways.NewResourceGroupID()
+id := connectiongateways.NewResourceGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group")
 
 read, err := client.ConnectionGatewaysListByResourceGroup(ctx, id)
 if err != nil {

@@ -98,7 +98,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := customapis.NewSubscriptionID()
+id := customapis.NewSubscriptionID("12345678-1234-9876-4563-123456789012")
 
 read, err := client.CustomApisList(ctx, id, customapis.DefaultCustomApisListOperationOptions())
 if err != nil {
@@ -114,7 +114,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := customapis.NewResourceGroupID()
+id := customapis.NewResourceGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group")
 
 read, err := client.CustomApisListByResourceGroup(ctx, id, customapis.DefaultCustomApisListByResourceGroupOperationOptions())
 if err != nil {

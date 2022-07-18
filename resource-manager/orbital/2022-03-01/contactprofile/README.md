@@ -69,7 +69,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := contactprofile.NewResourceGroupID()
+id := contactprofile.NewResourceGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group")
 
 // alternatively `client.ContactProfilesList(ctx, id)` can be used to do batched pagination
 items, err := client.ContactProfilesListComplete(ctx, id)
@@ -86,7 +86,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := contactprofile.NewSubscriptionID()
+id := contactprofile.NewSubscriptionID("12345678-1234-9876-4563-123456789012")
 
 // alternatively `client.ContactProfilesListBySubscription(ctx, id)` can be used to do batched pagination
 items, err := client.ContactProfilesListBySubscriptionComplete(ctx, id)

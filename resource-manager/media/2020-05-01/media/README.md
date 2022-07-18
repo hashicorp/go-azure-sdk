@@ -654,7 +654,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := media.NewResourceGroupID()
+id := media.NewResourceGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group")
 
 // alternatively `client.MediaservicesList(ctx, id)` can be used to do batched pagination
 items, err := client.MediaservicesListComplete(ctx, id)
@@ -671,7 +671,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := media.NewSubscriptionID()
+id := media.NewSubscriptionID("12345678-1234-9876-4563-123456789012")
 
 // alternatively `client.MediaservicesListBySubscription(ctx, id)` can be used to do batched pagination
 items, err := client.MediaservicesListBySubscriptionComplete(ctx, id)

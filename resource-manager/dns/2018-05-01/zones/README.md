@@ -73,7 +73,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := zones.NewSubscriptionID()
+id := zones.NewSubscriptionID("12345678-1234-9876-4563-123456789012")
 
 // alternatively `client.List(ctx, id, zones.DefaultListOperationOptions())` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id, zones.DefaultListOperationOptions())
@@ -90,7 +90,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := zones.NewResourceGroupID()
+id := zones.NewResourceGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group")
 
 // alternatively `client.ListByResourceGroup(ctx, id, zones.DefaultListByResourceGroupOperationOptions())` can be used to do batched pagination
 items, err := client.ListByResourceGroupComplete(ctx, id, zones.DefaultListByResourceGroupOperationOptions())
