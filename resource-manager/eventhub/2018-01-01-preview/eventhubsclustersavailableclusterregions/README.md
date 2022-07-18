@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := eventhubsclustersavailableclusterregions.NewSubscriptionID()
+id := eventhubsclustersavailableclusterregions.NewSubscriptionID("12345678-1234-9876-4563-123456789012")
 
 read, err := client.ClustersListAvailableClusterRegion(ctx, id)
 if err != nil {

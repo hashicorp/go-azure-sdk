@@ -190,7 +190,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := operationalinsights.NewSubscriptionID()
+id := operationalinsights.NewSubscriptionID("12345678-1234-9876-4563-123456789012")
 
 // alternatively `client.QueryPacksList(ctx, id)` can be used to do batched pagination
 items, err := client.QueryPacksListComplete(ctx, id)
@@ -207,7 +207,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := operationalinsights.NewResourceGroupID()
+id := operationalinsights.NewResourceGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group")
 
 // alternatively `client.QueryPacksListByResourceGroup(ctx, id)` can be used to do batched pagination
 items, err := client.QueryPacksListByResourceGroupComplete(ctx, id)

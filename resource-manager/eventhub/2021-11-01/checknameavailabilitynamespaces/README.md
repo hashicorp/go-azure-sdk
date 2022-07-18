@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := checknameavailabilitynamespaces.NewSubscriptionID()
+id := checknameavailabilitynamespaces.NewSubscriptionID("12345678-1234-9876-4563-123456789012")
 
 payload := checknameavailabilitynamespaces.CheckNameAvailabilityParameter{
 	// ...

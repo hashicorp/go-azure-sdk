@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := skus.NewSubscriptionID()
+id := skus.NewSubscriptionID("12345678-1234-9876-4563-123456789012")
 
 // alternatively `client.ResourceSkusList(ctx, id)` can be used to do batched pagination
 items, err := client.ResourceSkusListComplete(ctx, id)

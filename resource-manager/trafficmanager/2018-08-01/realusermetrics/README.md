@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := realusermetrics.NewSubscriptionID()
+id := realusermetrics.NewSubscriptionID("12345678-1234-9876-4563-123456789012")
 
 read, err := client.TrafficManagerUserMetricsKeysCreateOrUpdate(ctx, id)
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := realusermetrics.NewSubscriptionID()
+id := realusermetrics.NewSubscriptionID("12345678-1234-9876-4563-123456789012")
 
 read, err := client.TrafficManagerUserMetricsKeysDelete(ctx, id)
 if err != nil {
@@ -56,7 +56,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := realusermetrics.NewSubscriptionID()
+id := realusermetrics.NewSubscriptionID("12345678-1234-9876-4563-123456789012")
 
 read, err := client.TrafficManagerUserMetricsKeysGet(ctx, id)
 if err != nil {
