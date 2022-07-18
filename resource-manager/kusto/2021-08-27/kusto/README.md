@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := kusto.NewSubscriptionID()
+id := kusto.NewSubscriptionID("12345678-1234-9876-4563-123456789012")
 
 read, err := client.ClustersListSkus(ctx, id)
 if err != nil {

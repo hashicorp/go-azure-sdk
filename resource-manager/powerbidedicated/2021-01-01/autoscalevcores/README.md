@@ -77,7 +77,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := autoscalevcores.NewResourceGroupID()
+id := autoscalevcores.NewResourceGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group")
 
 read, err := client.ListByResourceGroup(ctx, id)
 if err != nil {
@@ -93,7 +93,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := autoscalevcores.NewSubscriptionID()
+id := autoscalevcores.NewSubscriptionID("12345678-1234-9876-4563-123456789012")
 
 read, err := client.ListBySubscription(ctx, id)
 if err != nil {

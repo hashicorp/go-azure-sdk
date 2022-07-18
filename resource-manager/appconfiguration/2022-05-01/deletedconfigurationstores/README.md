@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := deletedconfigurationstores.NewSubscriptionID()
+id := deletedconfigurationstores.NewSubscriptionID("12345678-1234-9876-4563-123456789012")
 
 // alternatively `client.ConfigurationStoresListDeleted(ctx, id)` can be used to do batched pagination
 items, err := client.ConfigurationStoresListDeletedComplete(ctx, id)

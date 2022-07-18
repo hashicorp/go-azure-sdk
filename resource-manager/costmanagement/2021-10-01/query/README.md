@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := query.NewScopeID()
+id := query.NewScopeID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
 
 payload := query.QueryDefinition{
 	// ...
