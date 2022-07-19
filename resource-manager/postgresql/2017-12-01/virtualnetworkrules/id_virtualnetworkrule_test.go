@@ -30,7 +30,7 @@ func TestNewVirtualNetworkRuleID(t *testing.T) {
 
 func TestFormatVirtualNetworkRuleID(t *testing.T) {
 	actual := NewVirtualNetworkRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverValue", "virtualNetworkRuleValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBForPostgreSQL/servers/serverValue/virtualNetworkRules/virtualNetworkRuleValue"
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforPostgreSQL/servers/serverValue/virtualNetworkRules/virtualNetworkRuleValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -74,27 +74,27 @@ func TestParseVirtualNetworkRuleID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBForPostgreSQL",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforPostgreSQL",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBForPostgreSQL/servers",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforPostgreSQL/servers",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBForPostgreSQL/servers/serverValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforPostgreSQL/servers/serverValue",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBForPostgreSQL/servers/serverValue/virtualNetworkRules",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforPostgreSQL/servers/serverValue/virtualNetworkRules",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBForPostgreSQL/servers/serverValue/virtualNetworkRules/virtualNetworkRuleValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforPostgreSQL/servers/serverValue/virtualNetworkRules/virtualNetworkRuleValue",
 			Expected: &VirtualNetworkRuleId{
 				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:      "example-resource-group",
@@ -104,7 +104,7 @@ func TestParseVirtualNetworkRuleID(t *testing.T) {
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBForPostgreSQL/servers/serverValue/virtualNetworkRules/virtualNetworkRuleValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforPostgreSQL/servers/serverValue/virtualNetworkRules/virtualNetworkRuleValue/extra",
 			Error: true,
 		},
 	}
@@ -205,7 +205,7 @@ func TestParseVirtualNetworkRuleIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBForPostgreSQL",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforPostgreSQL",
 			Error: true,
 		},
 		{
@@ -215,7 +215,7 @@ func TestParseVirtualNetworkRuleIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBForPostgreSQL/servers",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforPostgreSQL/servers",
 			Error: true,
 		},
 		{
@@ -225,7 +225,7 @@ func TestParseVirtualNetworkRuleIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBForPostgreSQL/servers/serverValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforPostgreSQL/servers/serverValue",
 			Error: true,
 		},
 		{
@@ -235,7 +235,7 @@ func TestParseVirtualNetworkRuleIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBForPostgreSQL/servers/serverValue/virtualNetworkRules",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforPostgreSQL/servers/serverValue/virtualNetworkRules",
 			Error: true,
 		},
 		{
@@ -245,7 +245,7 @@ func TestParseVirtualNetworkRuleIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBForPostgreSQL/servers/serverValue/virtualNetworkRules/virtualNetworkRuleValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforPostgreSQL/servers/serverValue/virtualNetworkRules/virtualNetworkRuleValue",
 			Expected: &VirtualNetworkRuleId{
 				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:      "example-resource-group",
@@ -255,7 +255,7 @@ func TestParseVirtualNetworkRuleIDInsensitively(t *testing.T) {
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBForPostgreSQL/servers/serverValue/virtualNetworkRules/virtualNetworkRuleValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforPostgreSQL/servers/serverValue/virtualNetworkRules/virtualNetworkRuleValue/extra",
 			Error: true,
 		},
 		{

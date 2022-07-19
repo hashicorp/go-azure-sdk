@@ -22,7 +22,7 @@ func TestNewLocationID(t *testing.T) {
 
 func TestFormatLocationID(t *testing.T) {
 	actual := NewLocationID("12345678-1234-9876-4563-123456789012", "locationValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.DBForPostgreSQL/locations/locationValue"
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.DBforPostgreSQL/locations/locationValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -56,17 +56,17 @@ func TestParseLocationID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.DBForPostgreSQL",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.DBforPostgreSQL",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.DBForPostgreSQL/locations",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.DBforPostgreSQL/locations",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.DBForPostgreSQL/locations/locationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.DBforPostgreSQL/locations/locationValue",
 			Expected: &LocationId{
 				SubscriptionId: "12345678-1234-9876-4563-123456789012",
 				LocationName:   "locationValue",
@@ -74,7 +74,7 @@ func TestParseLocationID(t *testing.T) {
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.DBForPostgreSQL/locations/locationValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.DBforPostgreSQL/locations/locationValue/extra",
 			Error: true,
 		},
 	}
@@ -147,7 +147,7 @@ func TestParseLocationIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.DBForPostgreSQL",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.DBforPostgreSQL",
 			Error: true,
 		},
 		{
@@ -157,7 +157,7 @@ func TestParseLocationIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.DBForPostgreSQL/locations",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.DBforPostgreSQL/locations",
 			Error: true,
 		},
 		{
@@ -167,7 +167,7 @@ func TestParseLocationIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.DBForPostgreSQL/locations/locationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.DBforPostgreSQL/locations/locationValue",
 			Expected: &LocationId{
 				SubscriptionId: "12345678-1234-9876-4563-123456789012",
 				LocationName:   "locationValue",
@@ -175,7 +175,7 @@ func TestParseLocationIDInsensitively(t *testing.T) {
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.DBForPostgreSQL/locations/locationValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.DBforPostgreSQL/locations/locationValue/extra",
 			Error: true,
 		},
 		{
