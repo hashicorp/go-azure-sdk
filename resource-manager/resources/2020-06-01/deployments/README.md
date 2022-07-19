@@ -505,7 +505,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := deployments.NewManagementGroupID()
+id := deployments.NewManagementGroupID("groupIdValue")
 
 // alternatively `client.ListAtManagementGroupScope(ctx, id, deployments.DefaultListAtManagementGroupScopeOperationOptions())` can be used to do batched pagination
 items, err := client.ListAtManagementGroupScopeComplete(ctx, id, deployments.DefaultListAtManagementGroupScopeOperationOptions())
@@ -522,7 +522,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := deployments.NewScopeID()
+id := deployments.NewScopeID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
 
 // alternatively `client.ListAtScope(ctx, id, deployments.DefaultListAtScopeOperationOptions())` can be used to do batched pagination
 items, err := client.ListAtScopeComplete(ctx, id, deployments.DefaultListAtScopeOperationOptions())
@@ -539,7 +539,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := deployments.NewSubscriptionID()
+id := deployments.NewSubscriptionID("12345678-1234-9876-4563-123456789012")
 
 // alternatively `client.ListAtSubscriptionScope(ctx, id, deployments.DefaultListAtSubscriptionScopeOperationOptions())` can be used to do batched pagination
 items, err := client.ListAtSubscriptionScopeComplete(ctx, id, deployments.DefaultListAtSubscriptionScopeOperationOptions())
@@ -573,7 +573,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := deployments.NewResourceGroupID()
+id := deployments.NewResourceGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group")
 
 // alternatively `client.ListByResourceGroup(ctx, id, deployments.DefaultListByResourceGroupOperationOptions())` can be used to do batched pagination
 items, err := client.ListByResourceGroupComplete(ctx, id, deployments.DefaultListByResourceGroupOperationOptions())

@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := resourcegroups.NewResourceGroupID()
+id := resourcegroups.NewResourceGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group")
 
 read, err := client.CheckExistence(ctx, id)
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := resourcegroups.NewResourceGroupID()
+id := resourcegroups.NewResourceGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group")
 
 payload := resourcegroups.ResourceGroup{
 	// ...
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := resourcegroups.NewResourceGroupID()
+id := resourcegroups.NewResourceGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group")
 
 if err := client.DeleteThenPoll(ctx, id, resourcegroups.DefaultDeleteOperationOptions()); err != nil {
 	// handle the error
@@ -73,7 +73,7 @@ if err := client.DeleteThenPoll(ctx, id, resourcegroups.DefaultDeleteOperationOp
 
 ```go
 ctx := context.TODO()
-id := resourcegroups.NewResourceGroupID()
+id := resourcegroups.NewResourceGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group")
 
 payload := resourcegroups.ExportTemplateRequest{
 	// ...
@@ -90,7 +90,7 @@ if err := client.ExportTemplateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := resourcegroups.NewResourceGroupID()
+id := resourcegroups.NewResourceGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -106,7 +106,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := resourcegroups.NewSubscriptionID()
+id := resourcegroups.NewSubscriptionID("12345678-1234-9876-4563-123456789012")
 
 // alternatively `client.List(ctx, id, resourcegroups.DefaultListOperationOptions())` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id, resourcegroups.DefaultListOperationOptions())
@@ -123,7 +123,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := resourcegroups.NewResourceGroupID()
+id := resourcegroups.NewResourceGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group")
 
 // alternatively `client.ResourcesListByResourceGroup(ctx, id, resourcegroups.DefaultResourcesListByResourceGroupOperationOptions())` can be used to do batched pagination
 items, err := client.ResourcesListByResourceGroupComplete(ctx, id, resourcegroups.DefaultResourcesListByResourceGroupOperationOptions())
@@ -140,7 +140,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := resourcegroups.NewResourceGroupID()
+id := resourcegroups.NewResourceGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group")
 
 payload := resourcegroups.ResourceGroupPatchable{
 	// ...
