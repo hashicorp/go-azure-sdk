@@ -85,7 +85,7 @@ func ValidateLocationID(input interface{}, key string) (warnings []string, error
 
 // ID returns the formatted Location ID
 func (id LocationId) ID() string {
-	fmtString := "/subscriptions/%s/providers/Microsoft.DBForPostgreSQL/locations/%s"
+	fmtString := "/subscriptions/%s/providers/Microsoft.DBforPostgreSQL/locations/%s"
 	return fmt.Sprintf(fmtString, id.SubscriptionId, id.LocationName)
 }
 
@@ -95,7 +95,7 @@ func (id LocationId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticSubscriptions", "subscriptions", "subscriptions"),
 		resourceids.SubscriptionIdSegment("subscriptionId", "12345678-1234-9876-4563-123456789012"),
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
-		resourceids.ResourceProviderSegment("staticMicrosoftDBForPostgreSQL", "Microsoft.DBForPostgreSQL", "Microsoft.DBForPostgreSQL"),
+		resourceids.ResourceProviderSegment("staticMicrosoftDBforPostgreSQL", "Microsoft.DBforPostgreSQL", "Microsoft.DBforPostgreSQL"),
 		resourceids.StaticSegment("staticLocations", "locations", "locations"),
 		resourceids.UserSpecifiedSegment("locationName", "locationValue"),
 	}
