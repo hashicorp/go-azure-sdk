@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := resources.NewScopeID()
+id := resources.NewScopeID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
 
 read, err := client.CheckExistenceById(ctx, id)
 if err != nil {
@@ -73,7 +73,7 @@ if err := client.CreateOrUpdateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := resources.NewScopeID()
+id := resources.NewScopeID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
 
 payload := resources.GenericResource{
 	// ...
@@ -102,7 +102,7 @@ if err := client.DeleteThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := resources.NewScopeID()
+id := resources.NewScopeID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
 
 if err := client.DeleteByIdThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -130,7 +130,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := resources.NewScopeID()
+id := resources.NewScopeID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
 
 read, err := client.GetById(ctx, id)
 if err != nil {
@@ -146,7 +146,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := resources.NewSubscriptionID()
+id := resources.NewSubscriptionID("12345678-1234-9876-4563-123456789012")
 
 // alternatively `client.List(ctx, id, resources.DefaultListOperationOptions())` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id, resources.DefaultListOperationOptions())
@@ -197,7 +197,7 @@ if err := client.UpdateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := resources.NewScopeID()
+id := resources.NewScopeID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
 
 payload := resources.GenericResource{
 	// ...
