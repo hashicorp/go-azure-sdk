@@ -3,6 +3,7 @@ package dppfeaturesupport
 import (
 	"encoding/json"
 	"fmt"
+	"strings"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -24,6 +25,14 @@ func unmarshalFeatureValidationResponseBaseImplementation(input []byte) (Feature
 	value, ok := temp["objectType"].(string)
 	if !ok {
 		return nil, nil
+	}
+
+	if strings.EqualFold(value, "FeatureValidationResponse") {
+		var out FeatureValidationResponse
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into FeatureValidationResponse: %+v", err)
+		}
+		return out, nil
 	}
 
 	type RawFeatureValidationResponseBaseImpl struct {
