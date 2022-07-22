@@ -7,15 +7,14 @@ import (
 
 	"github.com/Azure/go-autorest/autorest"
 	"github.com/Azure/go-autorest/autorest/azure"
-	"github.com/hashicorp/go-azure-helpers/polling"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type CancelOperationResponse struct {
-	Poller       polling.LongRunningPoller
 	HttpResponse *http.Response
+	Model        *ExperimentCancelOperationResult
 }
 
 // Cancel ...
@@ -26,27 +25,19 @@ func (c ExperimentsClient) Cancel(ctx context.Context, id ExperimentId) (result 
 		return
 	}
 
-	result, err = c.senderForCancel(ctx, req)
+	result.HttpResponse, err = c.Client.Send(req, azure.DoRetryWithRegistration(c.Client))
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "experiments.ExperimentsClient", "Cancel", result.HttpResponse, "Failure sending request")
 		return
 	}
 
-	return
-}
-
-// CancelThenPoll performs Cancel then polls until it's completed
-func (c ExperimentsClient) CancelThenPoll(ctx context.Context, id ExperimentId) error {
-	result, err := c.Cancel(ctx, id)
+	result, err = c.responderForCancel(result.HttpResponse)
 	if err != nil {
-		return fmt.Errorf("performing Cancel: %+v", err)
+		err = autorest.NewErrorWithError(err, "experiments.ExperimentsClient", "Cancel", result.HttpResponse, "Failure responding to request")
+		return
 	}
 
-	if err := result.Poller.PollUntilDone(); err != nil {
-		return fmt.Errorf("polling after Cancel: %+v", err)
-	}
-
-	return nil
+	return
 }
 
 // preparerForCancel prepares the Cancel request.
@@ -64,15 +55,14 @@ func (c ExperimentsClient) preparerForCancel(ctx context.Context, id ExperimentI
 	return preparer.Prepare((&http.Request{}).WithContext(ctx))
 }
 
-// senderForCancel sends the Cancel request. The method will close the
-// http.Response Body if it receives an error.
-func (c ExperimentsClient) senderForCancel(ctx context.Context, req *http.Request) (future CancelOperationResponse, err error) {
-	var resp *http.Response
-	resp, err = c.Client.Send(req, azure.DoRetryWithRegistration(c.Client))
-	if err != nil {
-		return
-	}
-
-	future.Poller, err = polling.NewPollerFromResponse(ctx, resp, c.Client, req.Method)
+// responderForCancel handles the response to the Cancel request. The method always
+// closes the http.Response Body.
+func (c ExperimentsClient) responderForCancel(resp *http.Response) (result CancelOperationResponse, err error) {
+	err = autorest.Respond(
+		resp,
+		azure.WithErrorUnlessStatusCode(http.StatusAccepted),
+		autorest.ByUnmarshallingJSON(&result.Model),
+		autorest.ByClosing())
+	result.HttpResponse = resp
 	return
 }

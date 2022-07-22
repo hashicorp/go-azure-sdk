@@ -1,12 +1,12 @@
-package v2021_09_15_preview
+package v2022_07_01_preview
 
 import (
 	"github.com/Azure/go-autorest/autorest"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/chaosstudio/2021-09-15-preview/capabilities"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/chaosstudio/2021-09-15-preview/capabilitytypes"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/chaosstudio/2021-09-15-preview/experiments"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/chaosstudio/2021-09-15-preview/targets"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/chaosstudio/2021-09-15-preview/targettypes"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/chaosstudio/2022-07-01-preview/capabilities"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/chaosstudio/2022-07-01-preview/capabilitytypes"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/chaosstudio/2022-07-01-preview/experiments"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/chaosstudio/2022-07-01-preview/targets"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/chaosstudio/2022-07-01-preview/targettypes"
 )
 
 type Client struct {

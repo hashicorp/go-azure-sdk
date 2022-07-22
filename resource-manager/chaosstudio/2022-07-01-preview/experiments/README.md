@@ -1,14 +1,14 @@
 
-## `github.com/hashicorp/go-azure-sdk/resource-manager/chaosstudio/2021-09-15-preview/experiments` Documentation
+## `github.com/hashicorp/go-azure-sdk/resource-manager/chaosstudio/2022-07-01-preview/experiments` Documentation
 
-The `experiments` SDK allows for interaction with the Azure Resource Manager Service `chaosstudio` (API Version `2021-09-15-preview`).
+The `experiments` SDK allows for interaction with the Azure Resource Manager Service `chaosstudio` (API Version `2022-07-01-preview`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
 ### Import Path
 
 ```go
-import "github.com/hashicorp/go-azure-sdk/resource-manager/chaosstudio/2021-09-15-preview/experiments"
+import "github.com/hashicorp/go-azure-sdk/resource-manager/chaosstudio/2022-07-01-preview/experiments"
 ```
 
 
@@ -26,8 +26,12 @@ client.Client.Authorizer = authorizer
 ctx := context.TODO()
 id := experiments.NewExperimentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "experimentValue")
 
-if err := client.CancelThenPoll(ctx, id); err != nil {
+read, err := client.Cancel(ctx, id)
+if err != nil {
 	// handle the error
+}
+if model := read.Model; model != nil {
+	// do something with the model/response object
 }
 ```
 
@@ -43,8 +47,12 @@ payload := experiments.Experiment{
 }
 
 
-if err := client.CreateOrUpdateThenPoll(ctx, id, payload); err != nil {
+read, err := client.CreateOrUpdate(ctx, id, payload)
+if err != nil {
 	// handle the error
+}
+if model := read.Model; model != nil {
+	// do something with the model/response object
 }
 ```
 

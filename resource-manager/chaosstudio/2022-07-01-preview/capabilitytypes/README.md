@@ -1,14 +1,14 @@
 
-## `github.com/hashicorp/go-azure-sdk/resource-manager/chaosstudio/2021-09-15-preview/capabilitytypes` Documentation
+## `github.com/hashicorp/go-azure-sdk/resource-manager/chaosstudio/2022-07-01-preview/capabilitytypes` Documentation
 
-The `capabilitytypes` SDK allows for interaction with the Azure Resource Manager Service `chaosstudio` (API Version `2021-09-15-preview`).
+The `capabilitytypes` SDK allows for interaction with the Azure Resource Manager Service `chaosstudio` (API Version `2022-07-01-preview`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
 ### Import Path
 
 ```go
-import "github.com/hashicorp/go-azure-sdk/resource-manager/chaosstudio/2021-09-15-preview/capabilitytypes"
+import "github.com/hashicorp/go-azure-sdk/resource-manager/chaosstudio/2022-07-01-preview/capabilitytypes"
 ```
 
 
