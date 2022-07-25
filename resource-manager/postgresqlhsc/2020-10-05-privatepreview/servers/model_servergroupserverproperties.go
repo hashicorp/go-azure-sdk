@@ -8,7 +8,7 @@ type ServerGroupServerProperties struct {
 	AvailabilityZone         *string            `json:"availabilityZone,omitempty"`
 	CitusVersion             *CitusVersion      `json:"citusVersion,omitempty"`
 	EnableHa                 *bool              `json:"enableHa,omitempty"`
-	EnablePublicIp           *bool              `json:"enablePublicIp,omitempty"`
+	EnablePublicIP           *bool              `json:"enablePublicIp,omitempty"`
 	FullyQualifiedDomainName *string            `json:"fullyQualifiedDomainName,omitempty"`
 	HaState                  *ServerHaState     `json:"haState,omitempty"`
 	PostgresqlVersion        *PostgreSQLVersion `json:"postgresqlVersion,omitempty"`

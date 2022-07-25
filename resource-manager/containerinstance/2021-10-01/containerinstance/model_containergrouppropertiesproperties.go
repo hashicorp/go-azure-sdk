@@ -8,10 +8,10 @@ type ContainerGroupPropertiesProperties struct {
 	Diagnostics              *ContainerGroupDiagnostics                      `json:"diagnostics,omitempty"`
 	DnsConfig                *DnsConfiguration                               `json:"dnsConfig,omitempty"`
 	EncryptionProperties     *EncryptionProperties                           `json:"encryptionProperties,omitempty"`
+	IPAddress                *IPAddress                                      `json:"ipAddress,omitempty"`
 	ImageRegistryCredentials *[]ImageRegistryCredential                      `json:"imageRegistryCredentials,omitempty"`
 	InitContainers           *[]InitContainerDefinition                      `json:"initContainers,omitempty"`
 	InstanceView             *ContainerGroupPropertiesPropertiesInstanceView `json:"instanceView,omitempty"`
-	IpAddress                *IpAddress                                      `json:"ipAddress,omitempty"`
 	OsType                   OperatingSystemTypes                            `json:"osType"`
 	ProvisioningState        *string                                         `json:"provisioningState,omitempty"`
 	RestartPolicy            *ContainerGroupRestartPolicy                    `json:"restartPolicy,omitempty"`

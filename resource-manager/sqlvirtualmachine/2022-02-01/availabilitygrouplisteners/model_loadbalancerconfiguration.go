@@ -5,8 +5,8 @@ package availabilitygrouplisteners
 
 type LoadBalancerConfiguration struct {
 	LoadBalancerResourceId     *string           `json:"loadBalancerResourceId,omitempty"`
-	PrivateIpAddress           *PrivateIPAddress `json:"privateIpAddress,omitempty"`
+	PrivateIPAddress           *PrivateIPAddress `json:"privateIpAddress,omitempty"`
 	ProbePort                  *int64            `json:"probePort,omitempty"`
-	PublicIpAddressResourceId  *string           `json:"publicIpAddressResourceId,omitempty"`
+	PublicIPAddressResourceId  *string           `json:"publicIpAddressResourceId,omitempty"`
 	SqlVirtualMachineInstances *[]string         `json:"sqlVirtualMachineInstances,omitempty"`
 }

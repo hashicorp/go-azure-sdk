@@ -6,7 +6,7 @@ package accounts
 type UpdateDataLakeAnalyticsAccountProperties struct {
 	ComputePolicies              *[]UpdateComputePolicyWithAccountParameters  `json:"computePolicies,omitempty"`
 	DataLakeStoreAccounts        *[]UpdateDataLakeStoreWithAccountParameters  `json:"dataLakeStoreAccounts,omitempty"`
-	FirewallAllowAzureIps        *FirewallAllowAzureIpsState                  `json:"firewallAllowAzureIps,omitempty"`
+	FirewallAllowAzureIPs        *FirewallAllowAzureIPsState                  `json:"firewallAllowAzureIps,omitempty"`
 	FirewallRules                *[]UpdateFirewallRuleWithAccountParameters   `json:"firewallRules,omitempty"`
 	FirewallState                *FirewallState                               `json:"firewallState,omitempty"`
 	MaxDegreeOfParallelism       *int64                                       `json:"maxDegreeOfParallelism,omitempty"`

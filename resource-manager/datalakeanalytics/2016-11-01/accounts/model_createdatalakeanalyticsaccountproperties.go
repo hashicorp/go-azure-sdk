@@ -7,7 +7,7 @@ type CreateDataLakeAnalyticsAccountProperties struct {
 	ComputePolicies              *[]CreateComputePolicyWithAccountParameters `json:"computePolicies,omitempty"`
 	DataLakeStoreAccounts        []AddDataLakeStoreWithAccountParameters     `json:"dataLakeStoreAccounts"`
 	DefaultDataLakeStoreAccount  string                                      `json:"defaultDataLakeStoreAccount"`
-	FirewallAllowAzureIps        *FirewallAllowAzureIpsState                 `json:"firewallAllowAzureIps,omitempty"`
+	FirewallAllowAzureIPs        *FirewallAllowAzureIPsState                 `json:"firewallAllowAzureIps,omitempty"`
 	FirewallRules                *[]CreateFirewallRuleWithAccountParameters  `json:"firewallRules,omitempty"`
 	FirewallState                *FirewallState                              `json:"firewallState,omitempty"`
 	MaxDegreeOfParallelism       *int64                                      `json:"maxDegreeOfParallelism,omitempty"`

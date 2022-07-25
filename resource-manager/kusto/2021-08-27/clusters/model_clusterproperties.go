@@ -6,7 +6,7 @@ package clusters
 type ClusterProperties struct {
 	AcceptedAudiences             *[]AcceptedAudiences         `json:"acceptedAudiences,omitempty"`
 	AllowedFqdnList               *[]string                    `json:"allowedFqdnList,omitempty"`
-	AllowedIpRangeList            *[]string                    `json:"allowedIpRangeList,omitempty"`
+	AllowedIPRangeList            *[]string                    `json:"allowedIpRangeList,omitempty"`
 	DataIngestionUri              *string                      `json:"dataIngestionUri,omitempty"`
 	EnableAutoStop                *bool                        `json:"enableAutoStop,omitempty"`
 	EnableDiskEncryption          *bool                        `json:"enableDiskEncryption,omitempty"`

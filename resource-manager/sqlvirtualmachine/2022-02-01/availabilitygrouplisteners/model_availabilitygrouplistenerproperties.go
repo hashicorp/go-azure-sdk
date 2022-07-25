@@ -8,7 +8,7 @@ type AvailabilityGroupListenerProperties struct {
 	AvailabilityGroupName                    *string                       `json:"availabilityGroupName,omitempty"`
 	CreateDefaultAvailabilityGroupIfNotExist *bool                         `json:"createDefaultAvailabilityGroupIfNotExist,omitempty"`
 	LoadBalancerConfigurations               *[]LoadBalancerConfiguration  `json:"loadBalancerConfigurations,omitempty"`
-	MultiSubnetIpConfigurations              *[]MultiSubnetIpConfiguration `json:"multiSubnetIpConfigurations,omitempty"`
+	MultiSubnetIPConfigurations              *[]MultiSubnetIPConfiguration `json:"multiSubnetIpConfigurations,omitempty"`
 	Port                                     *int64                        `json:"port,omitempty"`
 	ProvisioningState                        *string                       `json:"provisioningState,omitempty"`
 }

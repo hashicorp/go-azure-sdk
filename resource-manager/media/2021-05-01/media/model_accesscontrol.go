@@ -5,5 +5,5 @@ package media
 
 type AccessControl struct {
 	DefaultAction *DefaultAction `json:"defaultAction,omitempty"`
-	IpAllowList   *[]string      `json:"ipAllowList,omitempty"`
+	IPAllowList   *[]string      `json:"ipAllowList,omitempty"`
 }

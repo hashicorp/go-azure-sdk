@@ -6,7 +6,7 @@ package storageaccounts
 type NetworkRuleSet struct {
 	Bypass              *Bypass               `json:"bypass,omitempty"`
 	DefaultAction       DefaultAction         `json:"defaultAction"`
-	IpRules             *[]IPRule             `json:"ipRules,omitempty"`
+	IPRules             *[]IPRule             `json:"ipRules,omitempty"`
 	ResourceAccessRules *[]ResourceAccessRule `json:"resourceAccessRules,omitempty"`
 	VirtualNetworkRules *[]VirtualNetworkRule `json:"virtualNetworkRules,omitempty"`
 }

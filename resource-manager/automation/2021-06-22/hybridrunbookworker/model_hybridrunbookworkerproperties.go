@@ -10,7 +10,7 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type HybridRunbookWorkerProperties struct {
-	Ip                 *string     `json:"ip,omitempty"`
+	IP                 *string     `json:"ip,omitempty"`
 	LastSeenDateTime   *string     `json:"lastSeenDateTime,omitempty"`
 	RegisteredDateTime *string     `json:"registeredDateTime,omitempty"`
 	VmResourceId       *string     `json:"vmResourceId,omitempty"`

@@ -4,6 +4,6 @@ package contact
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type ContactsPropertiesAntennaConfiguration struct {
-	DestinationIp *string   `json:"destinationIp,omitempty"`
-	SourceIps     *[]string `json:"sourceIps,omitempty"`
+	DestinationIP *string   `json:"destinationIp,omitempty"`
+	SourceIPs     *[]string `json:"sourceIps,omitempty"`
 }

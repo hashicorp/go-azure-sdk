@@ -10,7 +10,7 @@ type ManagedEnvironmentProperties struct {
 	DefaultDomain            *string                       `json:"defaultDomain,omitempty"`
 	DeploymentErrors         *string                       `json:"deploymentErrors,omitempty"`
 	ProvisioningState        *EnvironmentProvisioningState `json:"provisioningState,omitempty"`
-	StaticIp                 *string                       `json:"staticIp,omitempty"`
+	StaticIP                 *string                       `json:"staticIp,omitempty"`
 	VnetConfiguration        *VnetConfiguration            `json:"vnetConfiguration,omitempty"`
 	ZoneRedundant            *bool                         `json:"zoneRedundant,omitempty"`
 }
