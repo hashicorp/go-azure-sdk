@@ -4,6 +4,6 @@ package firewallrules
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type UpdateFirewallRuleProperties struct {
-	EndIpAddress   *string `json:"endIpAddress,omitempty"`
-	StartIpAddress *string `json:"startIpAddress,omitempty"`
+	EndIPAddress   *string `json:"endIpAddress,omitempty"`
+	StartIPAddress *string `json:"startIpAddress,omitempty"`
 }

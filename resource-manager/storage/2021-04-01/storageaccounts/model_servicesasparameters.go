@@ -20,8 +20,8 @@ type ServiceSasParameters struct {
 	Rscl                  *string         `json:"rscl,omitempty"`
 	Rsct                  *string         `json:"rsct,omitempty"`
 	SignedExpiry          *string         `json:"signedExpiry,omitempty"`
+	SignedIP              *string         `json:"signedIp,omitempty"`
 	SignedIdentifier      *string         `json:"signedIdentifier,omitempty"`
-	SignedIp              *string         `json:"signedIp,omitempty"`
 	SignedPermission      *Permissions    `json:"signedPermission,omitempty"`
 	SignedProtocol        *HttpProtocol   `json:"signedProtocol,omitempty"`
 	SignedResource        *SignedResource `json:"signedResource,omitempty"`

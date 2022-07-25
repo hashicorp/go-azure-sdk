@@ -5,5 +5,5 @@ package streamingendpoints
 
 type StreamingEndpointAccessControl struct {
 	Akamai *AkamaiAccessControl `json:"akamai,omitempty"`
-	Ip     *IPAccessControl     `json:"ip,omitempty"`
+	IP     *IPAccessControl     `json:"ip,omitempty"`
 }

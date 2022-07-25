@@ -9,7 +9,7 @@ type VirtualMachineScaleSetUpdateNetworkConfigurationProperties struct {
 	EnableAcceleratedNetworking *bool                                                  `json:"enableAcceleratedNetworking,omitempty"`
 	EnableFpga                  *bool                                                  `json:"enableFpga,omitempty"`
 	EnableIPForwarding          *bool                                                  `json:"enableIPForwarding,omitempty"`
-	IpConfigurations            *[]VirtualMachineScaleSetUpdateIPConfiguration         `json:"ipConfigurations,omitempty"`
+	IPConfigurations            *[]VirtualMachineScaleSetUpdateIPConfiguration         `json:"ipConfigurations,omitempty"`
 	NetworkSecurityGroup        *SubResource                                           `json:"networkSecurityGroup,omitempty"`
 	Primary                     *bool                                                  `json:"primary,omitempty"`
 }

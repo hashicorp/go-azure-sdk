@@ -5,7 +5,7 @@ package servergroups
 
 type ServerRoleGroup struct {
 	EnableHa         *bool             `json:"enableHa,omitempty"`
-	EnablePublicIp   *bool             `json:"enablePublicIp,omitempty"`
+	EnablePublicIP   *bool             `json:"enablePublicIp,omitempty"`
 	Name             *string           `json:"name,omitempty"`
 	Role             *ServerRole       `json:"role,omitempty"`
 	ServerCount      *int64            `json:"serverCount,omitempty"`

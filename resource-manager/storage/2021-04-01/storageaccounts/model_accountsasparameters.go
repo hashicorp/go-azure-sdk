@@ -12,7 +12,7 @@ import (
 type AccountSasParameters struct {
 	KeyToSign           *string             `json:"keyToSign,omitempty"`
 	SignedExpiry        string              `json:"signedExpiry"`
-	SignedIp            *string             `json:"signedIp,omitempty"`
+	SignedIP            *string             `json:"signedIp,omitempty"`
 	SignedPermission    Permissions         `json:"signedPermission"`
 	SignedProtocol      *HttpProtocol       `json:"signedProtocol,omitempty"`
 	SignedResourceTypes SignedResourceTypes `json:"signedResourceTypes"`

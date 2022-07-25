@@ -18,7 +18,7 @@ type DataLakeStoreAccountProperties struct {
 	EncryptionProvisioningState *EncryptionProvisioningState `json:"encryptionProvisioningState,omitempty"`
 	EncryptionState             *EncryptionState             `json:"encryptionState,omitempty"`
 	Endpoint                    *string                      `json:"endpoint,omitempty"`
-	FirewallAllowAzureIps       *FirewallAllowAzureIpsState  `json:"firewallAllowAzureIps,omitempty"`
+	FirewallAllowAzureIPs       *FirewallAllowAzureIPsState  `json:"firewallAllowAzureIps,omitempty"`
 	FirewallRules               *[]FirewallRule              `json:"firewallRules,omitempty"`
 	FirewallState               *FirewallState               `json:"firewallState,omitempty"`
 	LastModifiedTime            *string                      `json:"lastModifiedTime,omitempty"`

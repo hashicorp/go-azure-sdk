@@ -4,6 +4,6 @@ package accounts
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type CreateOrUpdateFirewallRuleProperties struct {
-	EndIpAddress   string `json:"endIpAddress"`
-	StartIpAddress string `json:"startIpAddress"`
+	EndIPAddress   string `json:"endIpAddress"`
+	StartIPAddress string `json:"startIpAddress"`
 }

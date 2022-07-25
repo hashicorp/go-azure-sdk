@@ -172,31 +172,31 @@ func parseEncryptionState(input string) (*EncryptionState, error) {
 	return &out, nil
 }
 
-type FirewallAllowAzureIpsState string
+type FirewallAllowAzureIPsState string
 
 const (
-	FirewallAllowAzureIpsStateDisabled FirewallAllowAzureIpsState = "Disabled"
-	FirewallAllowAzureIpsStateEnabled  FirewallAllowAzureIpsState = "Enabled"
+	FirewallAllowAzureIPsStateDisabled FirewallAllowAzureIPsState = "Disabled"
+	FirewallAllowAzureIPsStateEnabled  FirewallAllowAzureIPsState = "Enabled"
 )
 
-func PossibleValuesForFirewallAllowAzureIpsState() []string {
+func PossibleValuesForFirewallAllowAzureIPsState() []string {
 	return []string{
-		string(FirewallAllowAzureIpsStateDisabled),
-		string(FirewallAllowAzureIpsStateEnabled),
+		string(FirewallAllowAzureIPsStateDisabled),
+		string(FirewallAllowAzureIPsStateEnabled),
 	}
 }
 
-func parseFirewallAllowAzureIpsState(input string) (*FirewallAllowAzureIpsState, error) {
-	vals := map[string]FirewallAllowAzureIpsState{
-		"disabled": FirewallAllowAzureIpsStateDisabled,
-		"enabled":  FirewallAllowAzureIpsStateEnabled,
+func parseFirewallAllowAzureIPsState(input string) (*FirewallAllowAzureIPsState, error) {
+	vals := map[string]FirewallAllowAzureIPsState{
+		"disabled": FirewallAllowAzureIPsStateDisabled,
+		"enabled":  FirewallAllowAzureIPsStateEnabled,
 	}
 	if v, ok := vals[strings.ToLower(input)]; ok {
 		return &v, nil
 	}
 
 	// otherwise presume it's an undefined value and best-effort it
-	out := FirewallAllowAzureIpsState(input)
+	out := FirewallAllowAzureIPsState(input)
 	return &out, nil
 }
 

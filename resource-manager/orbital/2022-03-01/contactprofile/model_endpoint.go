@@ -5,7 +5,7 @@ package contactprofile
 
 type EndPoint struct {
 	EndPointName string   `json:"endPointName"`
-	IpAddress    string   `json:"ipAddress"`
+	IPAddress    string   `json:"ipAddress"`
 	Port         string   `json:"port"`
 	Protocol     Protocol `json:"protocol"`
 }

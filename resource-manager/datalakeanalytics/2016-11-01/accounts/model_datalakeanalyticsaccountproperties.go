@@ -18,7 +18,7 @@ type DataLakeAnalyticsAccountProperties struct {
 	DebugDataAccessLevel         *DebugDataAccessLevel              `json:"debugDataAccessLevel,omitempty"`
 	DefaultDataLakeStoreAccount  *string                            `json:"defaultDataLakeStoreAccount,omitempty"`
 	Endpoint                     *string                            `json:"endpoint,omitempty"`
-	FirewallAllowAzureIps        *FirewallAllowAzureIpsState        `json:"firewallAllowAzureIps,omitempty"`
+	FirewallAllowAzureIPs        *FirewallAllowAzureIPsState        `json:"firewallAllowAzureIps,omitempty"`
 	FirewallRules                *[]FirewallRule                    `json:"firewallRules,omitempty"`
 	FirewallState                *FirewallState                     `json:"firewallState,omitempty"`
 	HiveMetastores               *[]HiveMetastore                   `json:"hiveMetastores,omitempty"`
