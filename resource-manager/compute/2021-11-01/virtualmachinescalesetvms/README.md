@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := virtualmachinescalesetvms.NewVirtualMachineScaleSetVirtualMachineID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vmScaleSetValue", "instanceIdValue")
+id := virtualmachinescalesetvms.NewVirtualMachineScaleSetVirtualMachineID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineScaleSetValue", "instanceIdValue")
 
 if err := client.DeallocateThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -36,7 +36,7 @@ if err := client.DeallocateThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := virtualmachinescalesetvms.NewVirtualMachineScaleSetVirtualMachineID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vmScaleSetValue", "instanceIdValue")
+id := virtualmachinescalesetvms.NewVirtualMachineScaleSetVirtualMachineID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineScaleSetValue", "instanceIdValue")
 
 if err := client.DeleteThenPoll(ctx, id, virtualmachinescalesetvms.DefaultDeleteOperationOptions()); err != nil {
 	// handle the error
@@ -48,7 +48,7 @@ if err := client.DeleteThenPoll(ctx, id, virtualmachinescalesetvms.DefaultDelete
 
 ```go
 ctx := context.TODO()
-id := virtualmachinescalesetvms.NewVirtualMachineScaleSetVirtualMachineID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vmScaleSetValue", "instanceIdValue")
+id := virtualmachinescalesetvms.NewVirtualMachineScaleSetVirtualMachineID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineScaleSetValue", "instanceIdValue")
 
 read, err := client.Get(ctx, id, virtualmachinescalesetvms.DefaultGetOperationOptions())
 if err != nil {
@@ -64,7 +64,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := virtualmachinescalesetvms.NewVirtualMachineScaleSetVirtualMachineID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vmScaleSetValue", "instanceIdValue")
+id := virtualmachinescalesetvms.NewVirtualMachineScaleSetVirtualMachineID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineScaleSetValue", "instanceIdValue")
 
 read, err := client.GetInstanceView(ctx, id)
 if err != nil {
@@ -97,7 +97,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := virtualmachinescalesetvms.NewVirtualMachineScaleSetVirtualMachineID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vmScaleSetValue", "instanceIdValue")
+id := virtualmachinescalesetvms.NewVirtualMachineScaleSetVirtualMachineID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineScaleSetValue", "instanceIdValue")
 
 if err := client.PerformMaintenanceThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -109,7 +109,7 @@ if err := client.PerformMaintenanceThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := virtualmachinescalesetvms.NewVirtualMachineScaleSetVirtualMachineID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vmScaleSetValue", "instanceIdValue")
+id := virtualmachinescalesetvms.NewVirtualMachineScaleSetVirtualMachineID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineScaleSetValue", "instanceIdValue")
 
 if err := client.PowerOffThenPoll(ctx, id, virtualmachinescalesetvms.DefaultPowerOffOperationOptions()); err != nil {
 	// handle the error
@@ -121,7 +121,7 @@ if err := client.PowerOffThenPoll(ctx, id, virtualmachinescalesetvms.DefaultPowe
 
 ```go
 ctx := context.TODO()
-id := virtualmachinescalesetvms.NewVirtualMachineScaleSetVirtualMachineID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vmScaleSetValue", "instanceIdValue")
+id := virtualmachinescalesetvms.NewVirtualMachineScaleSetVirtualMachineID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineScaleSetValue", "instanceIdValue")
 
 if err := client.RedeployThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -133,7 +133,7 @@ if err := client.RedeployThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := virtualmachinescalesetvms.NewVirtualMachineScaleSetVirtualMachineID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vmScaleSetValue", "instanceIdValue")
+id := virtualmachinescalesetvms.NewVirtualMachineScaleSetVirtualMachineID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineScaleSetValue", "instanceIdValue")
 
 payload := virtualmachinescalesetvms.VirtualMachineReimageParameters{
 	// ...
@@ -150,7 +150,7 @@ if err := client.ReimageThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := virtualmachinescalesetvms.NewVirtualMachineScaleSetVirtualMachineID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vmScaleSetValue", "instanceIdValue")
+id := virtualmachinescalesetvms.NewVirtualMachineScaleSetVirtualMachineID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineScaleSetValue", "instanceIdValue")
 
 if err := client.ReimageAllThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -162,7 +162,7 @@ if err := client.ReimageAllThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := virtualmachinescalesetvms.NewVirtualMachineScaleSetVirtualMachineID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vmScaleSetValue", "instanceIdValue")
+id := virtualmachinescalesetvms.NewVirtualMachineScaleSetVirtualMachineID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineScaleSetValue", "instanceIdValue")
 
 if err := client.RestartThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -174,7 +174,7 @@ if err := client.RestartThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := virtualmachinescalesetvms.NewVirtualMachineScaleSetVirtualMachineID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vmScaleSetValue", "instanceIdValue")
+id := virtualmachinescalesetvms.NewVirtualMachineScaleSetVirtualMachineID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineScaleSetValue", "instanceIdValue")
 
 read, err := client.RetrieveBootDiagnosticsData(ctx, id, virtualmachinescalesetvms.DefaultRetrieveBootDiagnosticsDataOperationOptions())
 if err != nil {
@@ -190,7 +190,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := virtualmachinescalesetvms.NewVirtualMachineScaleSetVirtualMachineID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vmScaleSetValue", "instanceIdValue")
+id := virtualmachinescalesetvms.NewVirtualMachineScaleSetVirtualMachineID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineScaleSetValue", "instanceIdValue")
 
 payload := virtualmachinescalesetvms.RunCommandInput{
 	// ...
@@ -207,7 +207,7 @@ if err := client.RunCommandThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := virtualmachinescalesetvms.NewVirtualMachineScaleSetVirtualMachineID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vmScaleSetValue", "instanceIdValue")
+id := virtualmachinescalesetvms.NewVirtualMachineScaleSetVirtualMachineID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineScaleSetValue", "instanceIdValue")
 
 read, err := client.SimulateEviction(ctx, id)
 if err != nil {
@@ -223,7 +223,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := virtualmachinescalesetvms.NewVirtualMachineScaleSetVirtualMachineID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vmScaleSetValue", "instanceIdValue")
+id := virtualmachinescalesetvms.NewVirtualMachineScaleSetVirtualMachineID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineScaleSetValue", "instanceIdValue")
 
 if err := client.StartThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -235,7 +235,7 @@ if err := client.StartThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := virtualmachinescalesetvms.NewVirtualMachineScaleSetVirtualMachineID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vmScaleSetValue", "instanceIdValue")
+id := virtualmachinescalesetvms.NewVirtualMachineScaleSetVirtualMachineID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineScaleSetValue", "instanceIdValue")
 
 payload := virtualmachinescalesetvms.VirtualMachineScaleSetVM{
 	// ...
