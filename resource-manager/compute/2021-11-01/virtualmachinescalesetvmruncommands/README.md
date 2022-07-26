@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := virtualmachinescalesetvmruncommands.NewVirtualMachineScaleSetVirtualMachineRunCommandID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vmScaleSetValue", "instanceIdValue", "runCommandValue")
+id := virtualmachinescalesetvmruncommands.NewVirtualMachineScaleSetVirtualMachineRunCommandID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineScaleSetValue", "instanceIdValue", "runCommandValue")
 
 payload := virtualmachinescalesetvmruncommands.VirtualMachineRunCommand{
 	// ...
@@ -41,7 +41,7 @@ if err := client.CreateOrUpdateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := virtualmachinescalesetvmruncommands.NewVirtualMachineScaleSetVirtualMachineRunCommandID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vmScaleSetValue", "instanceIdValue", "runCommandValue")
+id := virtualmachinescalesetvmruncommands.NewVirtualMachineScaleSetVirtualMachineRunCommandID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineScaleSetValue", "instanceIdValue", "runCommandValue")
 
 if err := client.DeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -53,7 +53,7 @@ if err := client.DeleteThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := virtualmachinescalesetvmruncommands.NewVirtualMachineScaleSetVirtualMachineRunCommandID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vmScaleSetValue", "instanceIdValue", "runCommandValue")
+id := virtualmachinescalesetvmruncommands.NewVirtualMachineScaleSetVirtualMachineRunCommandID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineScaleSetValue", "instanceIdValue", "runCommandValue")
 
 read, err := client.Get(ctx, id, virtualmachinescalesetvmruncommands.DefaultGetOperationOptions())
 if err != nil {
@@ -69,7 +69,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := virtualmachinescalesetvmruncommands.NewVirtualMachineScaleSetVirtualMachineID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vmScaleSetValue", "instanceIdValue")
+id := virtualmachinescalesetvmruncommands.NewVirtualMachineScaleSetVirtualMachineID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineScaleSetValue", "instanceIdValue")
 
 // alternatively `client.List(ctx, id, virtualmachinescalesetvmruncommands.DefaultListOperationOptions())` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id, virtualmachinescalesetvmruncommands.DefaultListOperationOptions())
@@ -86,7 +86,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := virtualmachinescalesetvmruncommands.NewVirtualMachineScaleSetVirtualMachineRunCommandID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vmScaleSetValue", "instanceIdValue", "runCommandValue")
+id := virtualmachinescalesetvmruncommands.NewVirtualMachineScaleSetVirtualMachineRunCommandID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineScaleSetValue", "instanceIdValue", "runCommandValue")
 
 payload := virtualmachinescalesetvmruncommands.VirtualMachineRunCommandUpdate{
 	// ...
