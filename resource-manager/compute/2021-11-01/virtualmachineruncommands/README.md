@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := virtualmachineruncommands.NewVirtualMachineRunCommandID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vmValue", "runCommandValue")
+id := virtualmachineruncommands.NewVirtualMachineRunCommandID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineValue", "runCommandValue")
 
 payload := virtualmachineruncommands.VirtualMachineRunCommand{
 	// ...
@@ -41,7 +41,7 @@ if err := client.CreateOrUpdateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := virtualmachineruncommands.NewVirtualMachineRunCommandID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vmValue", "runCommandValue")
+id := virtualmachineruncommands.NewVirtualMachineRunCommandID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineValue", "runCommandValue")
 
 if err := client.DeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -69,7 +69,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := virtualmachineruncommands.NewVirtualMachineRunCommandID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vmValue", "runCommandValue")
+id := virtualmachineruncommands.NewVirtualMachineRunCommandID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineValue", "runCommandValue")
 
 read, err := client.GetByVirtualMachine(ctx, id, virtualmachineruncommands.DefaultGetByVirtualMachineOperationOptions())
 if err != nil {
@@ -102,7 +102,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := virtualmachineruncommands.NewVirtualMachineID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vmValue")
+id := virtualmachineruncommands.NewVirtualMachineID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineValue")
 
 // alternatively `client.ListByVirtualMachine(ctx, id, virtualmachineruncommands.DefaultListByVirtualMachineOperationOptions())` can be used to do batched pagination
 items, err := client.ListByVirtualMachineComplete(ctx, id, virtualmachineruncommands.DefaultListByVirtualMachineOperationOptions())
@@ -119,7 +119,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := virtualmachineruncommands.NewVirtualMachineRunCommandID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vmValue", "runCommandValue")
+id := virtualmachineruncommands.NewVirtualMachineRunCommandID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineValue", "runCommandValue")
 
 payload := virtualmachineruncommands.VirtualMachineRunCommandUpdate{
 	// ...

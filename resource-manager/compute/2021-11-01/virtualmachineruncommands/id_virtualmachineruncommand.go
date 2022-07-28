@@ -11,19 +11,19 @@ var _ resourceids.ResourceId = VirtualMachineRunCommandId{}
 
 // VirtualMachineRunCommandId is a struct representing the Resource ID for a Virtual Machine Run Command
 type VirtualMachineRunCommandId struct {
-	SubscriptionId    string
-	ResourceGroupName string
-	VmName            string
-	RunCommandName    string
+	SubscriptionId     string
+	ResourceGroupName  string
+	VirtualMachineName string
+	RunCommandName     string
 }
 
 // NewVirtualMachineRunCommandID returns a new VirtualMachineRunCommandId struct
-func NewVirtualMachineRunCommandID(subscriptionId string, resourceGroupName string, vmName string, runCommandName string) VirtualMachineRunCommandId {
+func NewVirtualMachineRunCommandID(subscriptionId string, resourceGroupName string, virtualMachineName string, runCommandName string) VirtualMachineRunCommandId {
 	return VirtualMachineRunCommandId{
-		SubscriptionId:    subscriptionId,
-		ResourceGroupName: resourceGroupName,
-		VmName:            vmName,
-		RunCommandName:    runCommandName,
+		SubscriptionId:     subscriptionId,
+		ResourceGroupName:  resourceGroupName,
+		VirtualMachineName: virtualMachineName,
+		RunCommandName:     runCommandName,
 	}
 }
 
@@ -46,8 +46,8 @@ func ParseVirtualMachineRunCommandID(input string) (*VirtualMachineRunCommandId,
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.VmName, ok = parsed.Parsed["vmName"]; !ok {
-		return nil, fmt.Errorf("the segment 'vmName' was not found in the resource id %q", input)
+	if id.VirtualMachineName, ok = parsed.Parsed["virtualMachineName"]; !ok {
+		return nil, fmt.Errorf("the segment 'virtualMachineName' was not found in the resource id %q", input)
 	}
 
 	if id.RunCommandName, ok = parsed.Parsed["runCommandName"]; !ok {
@@ -77,8 +77,8 @@ func ParseVirtualMachineRunCommandIDInsensitively(input string) (*VirtualMachine
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.VmName, ok = parsed.Parsed["vmName"]; !ok {
-		return nil, fmt.Errorf("the segment 'vmName' was not found in the resource id %q", input)
+	if id.VirtualMachineName, ok = parsed.Parsed["virtualMachineName"]; !ok {
+		return nil, fmt.Errorf("the segment 'virtualMachineName' was not found in the resource id %q", input)
 	}
 
 	if id.RunCommandName, ok = parsed.Parsed["runCommandName"]; !ok {
@@ -106,7 +106,7 @@ func ValidateVirtualMachineRunCommandID(input interface{}, key string) (warnings
 // ID returns the formatted Virtual Machine Run Command ID
 func (id VirtualMachineRunCommandId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.Compute/virtualMachines/%s/runCommands/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.VmName, id.RunCommandName)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.VirtualMachineName, id.RunCommandName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Virtual Machine Run Command ID
@@ -119,7 +119,7 @@ func (id VirtualMachineRunCommandId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftCompute", "Microsoft.Compute", "Microsoft.Compute"),
 		resourceids.StaticSegment("staticVirtualMachines", "virtualMachines", "virtualMachines"),
-		resourceids.UserSpecifiedSegment("vmName", "vmValue"),
+		resourceids.UserSpecifiedSegment("virtualMachineName", "virtualMachineValue"),
 		resourceids.StaticSegment("staticRunCommands", "runCommands", "runCommands"),
 		resourceids.UserSpecifiedSegment("runCommandName", "runCommandValue"),
 	}
@@ -130,7 +130,7 @@ func (id VirtualMachineRunCommandId) String() string {
 	components := []string{
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
-		fmt.Sprintf("Vm Name: %q", id.VmName),
+		fmt.Sprintf("Virtual Machine Name: %q", id.VirtualMachineName),
 		fmt.Sprintf("Run Command Name: %q", id.RunCommandName),
 	}
 	return fmt.Sprintf("Virtual Machine Run Command (%s)", strings.Join(components, "\n"))

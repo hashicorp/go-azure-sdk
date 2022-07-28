@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := virtualmachineextensions.NewExtensionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vmValue", "vmExtensionValue")
+id := virtualmachineextensions.NewExtensionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineValue", "vmExtensionValue")
 
 payload := virtualmachineextensions.VirtualMachineExtension{
 	// ...
@@ -41,7 +41,7 @@ if err := client.CreateOrUpdateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := virtualmachineextensions.NewExtensionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vmValue", "vmExtensionValue")
+id := virtualmachineextensions.NewExtensionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineValue", "vmExtensionValue")
 
 if err := client.DeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -53,7 +53,7 @@ if err := client.DeleteThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := virtualmachineextensions.NewExtensionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vmValue", "vmExtensionValue")
+id := virtualmachineextensions.NewExtensionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineValue", "vmExtensionValue")
 
 read, err := client.Get(ctx, id, virtualmachineextensions.DefaultGetOperationOptions())
 if err != nil {
@@ -69,7 +69,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := virtualmachineextensions.NewVirtualMachineID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vmValue")
+id := virtualmachineextensions.NewVirtualMachineID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineValue")
 
 read, err := client.List(ctx, id, virtualmachineextensions.DefaultListOperationOptions())
 if err != nil {
@@ -85,7 +85,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := virtualmachineextensions.NewExtensionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vmValue", "vmExtensionValue")
+id := virtualmachineextensions.NewExtensionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineValue", "vmExtensionValue")
 
 payload := virtualmachineextensions.VirtualMachineExtensionUpdate{
 	// ...
