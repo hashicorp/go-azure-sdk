@@ -11,17 +11,17 @@ var _ resourceids.ResourceId = VirtualMachineId{}
 
 // VirtualMachineId is a struct representing the Resource ID for a Virtual Machine
 type VirtualMachineId struct {
-	SubscriptionId    string
-	ResourceGroupName string
-	VmName            string
+	SubscriptionId     string
+	ResourceGroupName  string
+	VirtualMachineName string
 }
 
 // NewVirtualMachineID returns a new VirtualMachineId struct
-func NewVirtualMachineID(subscriptionId string, resourceGroupName string, vmName string) VirtualMachineId {
+func NewVirtualMachineID(subscriptionId string, resourceGroupName string, virtualMachineName string) VirtualMachineId {
 	return VirtualMachineId{
-		SubscriptionId:    subscriptionId,
-		ResourceGroupName: resourceGroupName,
-		VmName:            vmName,
+		SubscriptionId:     subscriptionId,
+		ResourceGroupName:  resourceGroupName,
+		VirtualMachineName: virtualMachineName,
 	}
 }
 
@@ -44,8 +44,8 @@ func ParseVirtualMachineID(input string) (*VirtualMachineId, error) {
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.VmName, ok = parsed.Parsed["vmName"]; !ok {
-		return nil, fmt.Errorf("the segment 'vmName' was not found in the resource id %q", input)
+	if id.VirtualMachineName, ok = parsed.Parsed["virtualMachineName"]; !ok {
+		return nil, fmt.Errorf("the segment 'virtualMachineName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -71,8 +71,8 @@ func ParseVirtualMachineIDInsensitively(input string) (*VirtualMachineId, error)
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.VmName, ok = parsed.Parsed["vmName"]; !ok {
-		return nil, fmt.Errorf("the segment 'vmName' was not found in the resource id %q", input)
+	if id.VirtualMachineName, ok = parsed.Parsed["virtualMachineName"]; !ok {
+		return nil, fmt.Errorf("the segment 'virtualMachineName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -96,7 +96,7 @@ func ValidateVirtualMachineID(input interface{}, key string) (warnings []string,
 // ID returns the formatted Virtual Machine ID
 func (id VirtualMachineId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.Compute/virtualMachines/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.VmName)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.VirtualMachineName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Virtual Machine ID
@@ -109,7 +109,7 @@ func (id VirtualMachineId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftCompute", "Microsoft.Compute", "Microsoft.Compute"),
 		resourceids.StaticSegment("staticVirtualMachines", "virtualMachines", "virtualMachines"),
-		resourceids.UserSpecifiedSegment("vmName", "vmValue"),
+		resourceids.UserSpecifiedSegment("virtualMachineName", "virtualMachineValue"),
 	}
 }
 
@@ -118,7 +118,7 @@ func (id VirtualMachineId) String() string {
 	components := []string{
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
-		fmt.Sprintf("Vm Name: %q", id.VmName),
+		fmt.Sprintf("Virtual Machine Name: %q", id.VirtualMachineName),
 	}
 	return fmt.Sprintf("Virtual Machine (%s)", strings.Join(components, "\n"))
 }

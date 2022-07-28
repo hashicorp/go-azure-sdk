@@ -11,19 +11,19 @@ var _ resourceids.ResourceId = ExtensionId{}
 
 // ExtensionId is a struct representing the Resource ID for a Extension
 type ExtensionId struct {
-	SubscriptionId    string
-	ResourceGroupName string
-	VmName            string
-	VmExtensionName   string
+	SubscriptionId     string
+	ResourceGroupName  string
+	VirtualMachineName string
+	VmExtensionName    string
 }
 
 // NewExtensionID returns a new ExtensionId struct
-func NewExtensionID(subscriptionId string, resourceGroupName string, vmName string, vmExtensionName string) ExtensionId {
+func NewExtensionID(subscriptionId string, resourceGroupName string, virtualMachineName string, vmExtensionName string) ExtensionId {
 	return ExtensionId{
-		SubscriptionId:    subscriptionId,
-		ResourceGroupName: resourceGroupName,
-		VmName:            vmName,
-		VmExtensionName:   vmExtensionName,
+		SubscriptionId:     subscriptionId,
+		ResourceGroupName:  resourceGroupName,
+		VirtualMachineName: virtualMachineName,
+		VmExtensionName:    vmExtensionName,
 	}
 }
 
@@ -46,8 +46,8 @@ func ParseExtensionID(input string) (*ExtensionId, error) {
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.VmName, ok = parsed.Parsed["vmName"]; !ok {
-		return nil, fmt.Errorf("the segment 'vmName' was not found in the resource id %q", input)
+	if id.VirtualMachineName, ok = parsed.Parsed["virtualMachineName"]; !ok {
+		return nil, fmt.Errorf("the segment 'virtualMachineName' was not found in the resource id %q", input)
 	}
 
 	if id.VmExtensionName, ok = parsed.Parsed["vmExtensionName"]; !ok {
@@ -77,8 +77,8 @@ func ParseExtensionIDInsensitively(input string) (*ExtensionId, error) {
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.VmName, ok = parsed.Parsed["vmName"]; !ok {
-		return nil, fmt.Errorf("the segment 'vmName' was not found in the resource id %q", input)
+	if id.VirtualMachineName, ok = parsed.Parsed["virtualMachineName"]; !ok {
+		return nil, fmt.Errorf("the segment 'virtualMachineName' was not found in the resource id %q", input)
 	}
 
 	if id.VmExtensionName, ok = parsed.Parsed["vmExtensionName"]; !ok {
@@ -106,7 +106,7 @@ func ValidateExtensionID(input interface{}, key string) (warnings []string, erro
 // ID returns the formatted Extension ID
 func (id ExtensionId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.Compute/virtualMachines/%s/extensions/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.VmName, id.VmExtensionName)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.VirtualMachineName, id.VmExtensionName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Extension ID
@@ -119,7 +119,7 @@ func (id ExtensionId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftCompute", "Microsoft.Compute", "Microsoft.Compute"),
 		resourceids.StaticSegment("staticVirtualMachines", "virtualMachines", "virtualMachines"),
-		resourceids.UserSpecifiedSegment("vmName", "vmValue"),
+		resourceids.UserSpecifiedSegment("virtualMachineName", "virtualMachineValue"),
 		resourceids.StaticSegment("staticExtensions", "extensions", "extensions"),
 		resourceids.UserSpecifiedSegment("vmExtensionName", "vmExtensionValue"),
 	}
@@ -130,7 +130,7 @@ func (id ExtensionId) String() string {
 	components := []string{
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
-		fmt.Sprintf("Vm Name: %q", id.VmName),
+		fmt.Sprintf("Virtual Machine Name: %q", id.VirtualMachineName),
 		fmt.Sprintf("Vm Extension Name: %q", id.VmExtensionName),
 	}
 	return fmt.Sprintf("Extension (%s)", strings.Join(components, "\n"))

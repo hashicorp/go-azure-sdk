@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = VirtualMachineRunCommandId{}
 
 func TestNewVirtualMachineRunCommandID(t *testing.T) {
-	id := NewVirtualMachineRunCommandID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vmValue", "runCommandValue")
+	id := NewVirtualMachineRunCommandID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineValue", "runCommandValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -19,8 +19,8 @@ func TestNewVirtualMachineRunCommandID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.VmName != "vmValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'VmName'", id.VmName, "vmValue")
+	if id.VirtualMachineName != "virtualMachineValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'VirtualMachineName'", id.VirtualMachineName, "virtualMachineValue")
 	}
 
 	if id.RunCommandName != "runCommandValue" {
@@ -29,8 +29,8 @@ func TestNewVirtualMachineRunCommandID(t *testing.T) {
 }
 
 func TestFormatVirtualMachineRunCommandID(t *testing.T) {
-	actual := NewVirtualMachineRunCommandID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vmValue", "runCommandValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/virtualMachines/vmValue/runCommands/runCommandValue"
+	actual := NewVirtualMachineRunCommandID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineValue", "runCommandValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/virtualMachines/virtualMachineValue/runCommands/runCommandValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -84,27 +84,27 @@ func TestParseVirtualMachineRunCommandID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/virtualMachines/vmValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/virtualMachines/virtualMachineValue",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/virtualMachines/vmValue/runCommands",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/virtualMachines/virtualMachineValue/runCommands",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/virtualMachines/vmValue/runCommands/runCommandValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/virtualMachines/virtualMachineValue/runCommands/runCommandValue",
 			Expected: &VirtualMachineRunCommandId{
-				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName: "example-resource-group",
-				VmName:            "vmValue",
-				RunCommandName:    "runCommandValue",
+				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:  "example-resource-group",
+				VirtualMachineName: "virtualMachineValue",
+				RunCommandName:     "runCommandValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/virtualMachines/vmValue/runCommands/runCommandValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/virtualMachines/virtualMachineValue/runCommands/runCommandValue/extra",
 			Error: true,
 		},
 	}
@@ -131,8 +131,8 @@ func TestParseVirtualMachineRunCommandID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.VmName != v.Expected.VmName {
-			t.Fatalf("Expected %q but got %q for VmName", v.Expected.VmName, actual.VmName)
+		if actual.VirtualMachineName != v.Expected.VirtualMachineName {
+			t.Fatalf("Expected %q but got %q for VirtualMachineName", v.Expected.VirtualMachineName, actual.VirtualMachineName)
 		}
 
 		if actual.RunCommandName != v.Expected.RunCommandName {
@@ -225,52 +225,52 @@ func TestParseVirtualMachineRunCommandIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/virtualMachines/vmValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/virtualMachines/virtualMachineValue",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmPuTe/vIrTuAlMaChInEs/vMvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmPuTe/vIrTuAlMaChInEs/vIrTuAlMaChInEvAlUe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/virtualMachines/vmValue/runCommands",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/virtualMachines/virtualMachineValue/runCommands",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmPuTe/vIrTuAlMaChInEs/vMvAlUe/rUnCoMmAnDs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmPuTe/vIrTuAlMaChInEs/vIrTuAlMaChInEvAlUe/rUnCoMmAnDs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/virtualMachines/vmValue/runCommands/runCommandValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/virtualMachines/virtualMachineValue/runCommands/runCommandValue",
 			Expected: &VirtualMachineRunCommandId{
-				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName: "example-resource-group",
-				VmName:            "vmValue",
-				RunCommandName:    "runCommandValue",
+				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:  "example-resource-group",
+				VirtualMachineName: "virtualMachineValue",
+				RunCommandName:     "runCommandValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/virtualMachines/vmValue/runCommands/runCommandValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/virtualMachines/virtualMachineValue/runCommands/runCommandValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmPuTe/vIrTuAlMaChInEs/vMvAlUe/rUnCoMmAnDs/rUnCoMmAnDvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmPuTe/vIrTuAlMaChInEs/vIrTuAlMaChInEvAlUe/rUnCoMmAnDs/rUnCoMmAnDvAlUe",
 			Expected: &VirtualMachineRunCommandId{
-				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				VmName:            "vMvAlUe",
-				RunCommandName:    "rUnCoMmAnDvAlUe",
+				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:  "eXaMpLe-rEsOuRcE-GrOuP",
+				VirtualMachineName: "vIrTuAlMaChInEvAlUe",
+				RunCommandName:     "rUnCoMmAnDvAlUe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmPuTe/vIrTuAlMaChInEs/vMvAlUe/rUnCoMmAnDs/rUnCoMmAnDvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmPuTe/vIrTuAlMaChInEs/vIrTuAlMaChInEvAlUe/rUnCoMmAnDs/rUnCoMmAnDvAlUe/extra",
 			Error: true,
 		},
 	}
@@ -297,8 +297,8 @@ func TestParseVirtualMachineRunCommandIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.VmName != v.Expected.VmName {
-			t.Fatalf("Expected %q but got %q for VmName", v.Expected.VmName, actual.VmName)
+		if actual.VirtualMachineName != v.Expected.VirtualMachineName {
+			t.Fatalf("Expected %q but got %q for VirtualMachineName", v.Expected.VirtualMachineName, actual.VirtualMachineName)
 		}
 
 		if actual.RunCommandName != v.Expected.RunCommandName {
