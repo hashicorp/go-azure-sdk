@@ -93,5 +93,6 @@ func (c StorageAccountsClient) responderForListKeys(resp *http.Response) (result
 		autorest.ByUnmarshallingJSON(&result.Model),
 		autorest.ByClosing())
 	result.HttpResponse = resp
+
 	return
 }

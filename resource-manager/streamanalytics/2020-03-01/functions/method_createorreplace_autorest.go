@@ -98,5 +98,6 @@ func (c FunctionsClient) responderForCreateOrReplace(resp *http.Response) (resul
 		autorest.ByUnmarshallingJSON(&result.Model),
 		autorest.ByClosing())
 	result.HttpResponse = resp
+
 	return
 }

@@ -64,5 +64,6 @@ func (c CheckFrontDoorNameAvailabilityClient) responderForCheckFrontDoorNameAvai
 		autorest.ByUnmarshallingJSON(&result.Model),
 		autorest.ByClosing())
 	result.HttpResponse = resp
+
 	return
 }

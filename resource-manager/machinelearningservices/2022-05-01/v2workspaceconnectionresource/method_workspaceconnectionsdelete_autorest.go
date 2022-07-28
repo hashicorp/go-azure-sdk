@@ -61,5 +61,6 @@ func (c V2WorkspaceConnectionResourceClient) responderForWorkspaceConnectionsDel
 		azure.WithErrorUnlessStatusCode(http.StatusNoContent, http.StatusOK),
 		autorest.ByClosing())
 	result.HttpResponse = resp
+
 	return
 }

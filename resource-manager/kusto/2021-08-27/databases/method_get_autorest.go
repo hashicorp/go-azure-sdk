@@ -2,6 +2,8 @@ package databases
 
 import (
 	"context"
+	"fmt"
+	"io/ioutil"
 	"net/http"
 
 	"github.com/Azure/go-autorest/autorest"
@@ -60,8 +62,16 @@ func (c DatabasesClient) responderForGet(resp *http.Response) (result GetOperati
 	err = autorest.Respond(
 		resp,
 		azure.WithErrorUnlessStatusCode(http.StatusOK),
-		autorest.ByUnmarshallingJSON(&result.Model),
 		autorest.ByClosing())
 	result.HttpResponse = resp
+	b, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		return result, fmt.Errorf("reading response body: Database", err)
+	}
+	model, err := unmarshalDataConnectorImplementation(b)
+	if err != nil {
+		return
+	}
+	result.Model = &model
 	return
 }

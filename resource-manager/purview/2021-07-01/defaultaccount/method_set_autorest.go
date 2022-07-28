@@ -64,5 +64,6 @@ func (c DefaultAccountClient) responderForSet(resp *http.Response) (result SetOp
 		autorest.ByUnmarshallingJSON(&result.Model),
 		autorest.ByClosing())
 	result.HttpResponse = resp
+
 	return
 }

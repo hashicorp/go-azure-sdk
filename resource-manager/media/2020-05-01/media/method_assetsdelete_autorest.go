@@ -61,5 +61,6 @@ func (c MediaClient) responderForAssetsDelete(resp *http.Response) (result Asset
 		azure.WithErrorUnlessStatusCode(http.StatusNoContent, http.StatusOK),
 		autorest.ByClosing())
 	result.HttpResponse = resp
+
 	return
 }

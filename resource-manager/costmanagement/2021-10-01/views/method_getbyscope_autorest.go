@@ -63,5 +63,6 @@ func (c ViewsClient) responderForGetByScope(resp *http.Response) (result GetBySc
 		autorest.ByUnmarshallingJSON(&result.Model),
 		autorest.ByClosing())
 	result.HttpResponse = resp
+
 	return
 }

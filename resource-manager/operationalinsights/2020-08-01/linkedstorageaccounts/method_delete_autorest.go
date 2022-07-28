@@ -61,5 +61,6 @@ func (c LinkedStorageAccountsClient) responderForDelete(resp *http.Response) (re
 		azure.WithErrorUnlessStatusCode(http.StatusOK),
 		autorest.ByClosing())
 	result.HttpResponse = resp
+
 	return
 }

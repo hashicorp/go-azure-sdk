@@ -64,5 +64,6 @@ func (c NamespacesPrivateEndpointConnectionsClient) responderForPrivateEndpointC
 		autorest.ByUnmarshallingJSON(&result.Model),
 		autorest.ByClosing())
 	result.HttpResponse = resp
+
 	return
 }

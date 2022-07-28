@@ -64,5 +64,6 @@ func (c ExportsClient) responderForCreateOrUpdate(resp *http.Response) (result C
 		autorest.ByUnmarshallingJSON(&result.Model),
 		autorest.ByClosing())
 	result.HttpResponse = resp
+
 	return
 }

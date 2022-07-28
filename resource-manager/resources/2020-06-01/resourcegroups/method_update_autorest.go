@@ -65,5 +65,6 @@ func (c ResourceGroupsClient) responderForUpdate(resp *http.Response) (result Up
 		autorest.ByUnmarshallingJSON(&result.Model),
 		autorest.ByClosing())
 	result.HttpResponse = resp
+
 	return
 }

@@ -98,5 +98,6 @@ func (c HeatMapsClient) responderForHeatMapGet(resp *http.Response) (result Heat
 		autorest.ByUnmarshallingJSON(&result.Model),
 		autorest.ByClosing())
 	result.HttpResponse = resp
+
 	return
 }

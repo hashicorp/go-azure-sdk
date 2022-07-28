@@ -92,5 +92,6 @@ func (c ImagesClient) responderForGet(resp *http.Response) (result GetOperationR
 		autorest.ByUnmarshallingJSON(&result.Model),
 		autorest.ByClosing())
 	result.HttpResponse = resp
+
 	return
 }

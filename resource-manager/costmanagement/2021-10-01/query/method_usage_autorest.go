@@ -66,5 +66,6 @@ func (c QueryClient) responderForUsage(resp *http.Response) (result UsageOperati
 		autorest.ByUnmarshallingJSON(&result.Model),
 		autorest.ByClosing())
 	result.HttpResponse = resp
+
 	return
 }

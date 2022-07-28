@@ -64,5 +64,6 @@ func (c ResourcesClient) responderForGetById(resp *http.Response) (result GetByI
 		autorest.ByUnmarshallingJSON(&result.Model),
 		autorest.ByClosing())
 	result.HttpResponse = resp
+
 	return
 }

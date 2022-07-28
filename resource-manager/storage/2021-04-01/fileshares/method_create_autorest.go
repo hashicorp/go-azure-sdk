@@ -93,5 +93,6 @@ func (c FileSharesClient) responderForCreate(resp *http.Response) (result Create
 		autorest.ByUnmarshallingJSON(&result.Model),
 		autorest.ByClosing())
 	result.HttpResponse = resp
+
 	return
 }

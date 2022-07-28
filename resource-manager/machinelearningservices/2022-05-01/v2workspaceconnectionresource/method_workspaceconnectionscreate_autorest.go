@@ -64,5 +64,6 @@ func (c V2WorkspaceConnectionResourceClient) responderForWorkspaceConnectionsCre
 		autorest.ByUnmarshallingJSON(&result.Model),
 		autorest.ByClosing())
 	result.HttpResponse = resp
+
 	return
 }

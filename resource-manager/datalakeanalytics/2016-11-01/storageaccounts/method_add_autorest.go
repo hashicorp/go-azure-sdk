@@ -62,5 +62,6 @@ func (c StorageAccountsClient) responderForAdd(resp *http.Response) (result AddO
 		azure.WithErrorUnlessStatusCode(http.StatusOK),
 		autorest.ByClosing())
 	result.HttpResponse = resp
+
 	return
 }

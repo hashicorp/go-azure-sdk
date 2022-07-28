@@ -3,6 +3,7 @@ package operationalizationclusters
 import (
 	"context"
 	"fmt"
+	"io/ioutil"
 	"net/http"
 
 	"github.com/Azure/go-autorest/autorest"
@@ -61,8 +62,16 @@ func (c OperationalizationClustersClient) responderForComputeListKeys(resp *http
 	err = autorest.Respond(
 		resp,
 		azure.WithErrorUnlessStatusCode(http.StatusOK),
-		autorest.ByUnmarshallingJSON(&result.Model),
 		autorest.ByClosing())
 	result.HttpResponse = resp
+	b, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		return result, fmt.Errorf("reading response body: ComputeSecrets", err)
+	}
+	model, err := unmarshalDataConnectorImplementation(b)
+	if err != nil {
+		return
+	}
+	result.Model = &model
 	return
 }
