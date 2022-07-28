@@ -65,5 +65,6 @@ func (c RealUserMetricsClient) responderForTrafficManagerUserMetricsKeysDelete(r
 		autorest.ByUnmarshallingJSON(&result.Model),
 		autorest.ByClosing())
 	result.HttpResponse = resp
+
 	return
 }

@@ -61,5 +61,6 @@ func (c ComponentVersionClient) responderForDelete(resp *http.Response) (result 
 		azure.WithErrorUnlessStatusCode(http.StatusNoContent, http.StatusOK),
 		autorest.ByClosing())
 	result.HttpResponse = resp
+
 	return
 }

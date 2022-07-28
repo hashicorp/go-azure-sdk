@@ -61,5 +61,6 @@ func (c DeploymentsClient) responderForCheckExistenceAtSubscriptionScope(resp *h
 		azure.WithErrorUnlessStatusCode(http.StatusNoContent),
 		autorest.ByClosing())
 	result.HttpResponse = resp
+
 	return
 }

@@ -63,5 +63,6 @@ func (c FileSharesClient) responderForRestore(resp *http.Response) (result Resto
 		azure.WithErrorUnlessStatusCode(http.StatusOK),
 		autorest.ByClosing())
 	result.HttpResponse = resp
+
 	return
 }

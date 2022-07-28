@@ -63,5 +63,6 @@ func (c MediaClient) responderForMediaservicesSyncStorageKeys(resp *http.Respons
 		azure.WithErrorUnlessStatusCode(http.StatusOK),
 		autorest.ByClosing())
 	result.HttpResponse = resp
+
 	return
 }

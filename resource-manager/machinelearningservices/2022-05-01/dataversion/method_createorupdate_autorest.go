@@ -64,5 +64,6 @@ func (c DataVersionClient) responderForCreateOrUpdate(resp *http.Response) (resu
 		autorest.ByUnmarshallingJSON(&result.Model),
 		autorest.ByClosing())
 	result.HttpResponse = resp
+
 	return
 }

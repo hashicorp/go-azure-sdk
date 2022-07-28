@@ -65,5 +65,6 @@ func (c QueryClient) responderForUsageByExternalCloudProviderType(resp *http.Res
 		autorest.ByUnmarshallingJSON(&result.Model),
 		autorest.ByClosing())
 	result.HttpResponse = resp
+
 	return
 }

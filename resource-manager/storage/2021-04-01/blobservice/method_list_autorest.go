@@ -64,5 +64,6 @@ func (c BlobServiceClient) responderForList(resp *http.Response) (result ListOpe
 		autorest.ByUnmarshallingJSON(&result.Model),
 		autorest.ByClosing())
 	result.HttpResponse = resp
+
 	return
 }

@@ -92,5 +92,6 @@ func (c StorageAccountsClient) responderForGetProperties(resp *http.Response) (r
 		autorest.ByUnmarshallingJSON(&result.Model),
 		autorest.ByClosing())
 	result.HttpResponse = resp
+
 	return
 }

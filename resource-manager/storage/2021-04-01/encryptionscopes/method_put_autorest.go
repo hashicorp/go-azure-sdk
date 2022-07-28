@@ -64,5 +64,6 @@ func (c EncryptionScopesClient) responderForPut(resp *http.Response) (result Put
 		autorest.ByUnmarshallingJSON(&result.Model),
 		autorest.ByClosing())
 	result.HttpResponse = resp
+
 	return
 }

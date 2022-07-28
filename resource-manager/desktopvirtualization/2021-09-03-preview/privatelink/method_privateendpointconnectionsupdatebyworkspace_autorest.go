@@ -64,5 +64,6 @@ func (c PrivateLinkClient) responderForPrivateEndpointConnectionsUpdateByWorkspa
 		autorest.ByUnmarshallingJSON(&result.Model),
 		autorest.ByClosing())
 	result.HttpResponse = resp
+
 	return
 }

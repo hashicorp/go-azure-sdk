@@ -94,5 +94,6 @@ func (c FileSharesClient) responderForLease(resp *http.Response) (result LeaseOp
 		autorest.ByUnmarshallingJSON(&result.Model),
 		autorest.ByClosing())
 	result.HttpResponse = resp
+
 	return
 }

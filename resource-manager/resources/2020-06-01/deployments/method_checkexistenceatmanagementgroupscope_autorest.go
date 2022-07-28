@@ -61,5 +61,6 @@ func (c DeploymentsClient) responderForCheckExistenceAtManagementGroupScope(resp
 		azure.WithErrorUnlessStatusCode(http.StatusNoContent),
 		autorest.ByClosing())
 	result.HttpResponse = resp
+
 	return
 }

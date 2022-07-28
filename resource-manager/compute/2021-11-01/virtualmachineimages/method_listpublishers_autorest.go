@@ -64,5 +64,6 @@ func (c VirtualMachineImagesClient) responderForListPublishers(resp *http.Respon
 		autorest.ByUnmarshallingJSON(&result.Model),
 		autorest.ByClosing())
 	result.HttpResponse = resp
+
 	return
 }

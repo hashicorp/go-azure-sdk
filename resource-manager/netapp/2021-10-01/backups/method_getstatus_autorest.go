@@ -64,5 +64,6 @@ func (c BackupsClient) responderForGetStatus(resp *http.Response) (result GetSta
 		autorest.ByUnmarshallingJSON(&result.Model),
 		autorest.ByClosing())
 	result.HttpResponse = resp
+
 	return
 }

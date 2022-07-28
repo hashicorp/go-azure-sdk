@@ -94,5 +94,6 @@ func (c BlobContainersClient) responderForCreateOrUpdateImmutabilityPolicy(resp 
 		autorest.ByUnmarshallingJSON(&result.Model),
 		autorest.ByClosing())
 	result.HttpResponse = resp
+
 	return
 }

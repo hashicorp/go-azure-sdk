@@ -61,5 +61,6 @@ func (c ResourcesClient) responderForCheckExistence(resp *http.Response) (result
 		azure.WithErrorUnlessStatusCode(http.StatusNoContent),
 		autorest.ByClosing())
 	result.HttpResponse = resp
+
 	return
 }

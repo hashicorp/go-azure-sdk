@@ -62,5 +62,6 @@ func (c ExportsClient) responderForExecute(resp *http.Response) (result ExecuteO
 		azure.WithErrorUnlessStatusCode(http.StatusOK),
 		autorest.ByClosing())
 	result.HttpResponse = resp
+
 	return
 }

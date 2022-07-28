@@ -62,5 +62,6 @@ func (c DeploymentsClient) responderForCancel(resp *http.Response) (result Cance
 		azure.WithErrorUnlessStatusCode(http.StatusNoContent),
 		autorest.ByClosing())
 	result.HttpResponse = resp
+
 	return
 }

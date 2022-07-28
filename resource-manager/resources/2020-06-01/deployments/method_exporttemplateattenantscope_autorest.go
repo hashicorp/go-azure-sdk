@@ -64,5 +64,6 @@ func (c DeploymentsClient) responderForExportTemplateAtTenantScope(resp *http.Re
 		autorest.ByUnmarshallingJSON(&result.Model),
 		autorest.ByClosing())
 	result.HttpResponse = resp
+
 	return
 }

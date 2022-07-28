@@ -64,5 +64,6 @@ func (c AlertsClient) responderForDismiss(resp *http.Response) (result DismissOp
 		autorest.ByUnmarshallingJSON(&result.Model),
 		autorest.ByClosing())
 	result.HttpResponse = resp
+
 	return
 }

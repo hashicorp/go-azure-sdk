@@ -61,5 +61,6 @@ func (c TableServiceClient) responderForTableDelete(resp *http.Response) (result
 		azure.WithErrorUnlessStatusCode(http.StatusNoContent),
 		autorest.ByClosing())
 	result.HttpResponse = resp
+
 	return
 }

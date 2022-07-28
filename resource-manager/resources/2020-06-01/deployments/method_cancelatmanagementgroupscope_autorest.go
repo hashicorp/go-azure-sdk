@@ -62,5 +62,6 @@ func (c DeploymentsClient) responderForCancelAtManagementGroupScope(resp *http.R
 		azure.WithErrorUnlessStatusCode(http.StatusNoContent),
 		autorest.ByClosing())
 	result.HttpResponse = resp
+
 	return
 }

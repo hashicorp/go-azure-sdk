@@ -63,5 +63,6 @@ func (c PrivateLinkClient) responderForPrivateEndpointConnectionsGetByHostPool(r
 		autorest.ByUnmarshallingJSON(&result.Model),
 		autorest.ByClosing())
 	result.HttpResponse = resp
+
 	return
 }

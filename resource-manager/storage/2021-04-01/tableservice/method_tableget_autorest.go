@@ -63,5 +63,6 @@ func (c TableServiceClient) responderForTableGet(resp *http.Response) (result Ta
 		autorest.ByUnmarshallingJSON(&result.Model),
 		autorest.ByClosing())
 	result.HttpResponse = resp
+
 	return
 }

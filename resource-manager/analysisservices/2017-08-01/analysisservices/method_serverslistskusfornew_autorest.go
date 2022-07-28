@@ -65,5 +65,6 @@ func (c AnalysisServicesClient) responderForServersListSkusForNew(resp *http.Res
 		autorest.ByUnmarshallingJSON(&result.Model),
 		autorest.ByClosing())
 	result.HttpResponse = resp
+
 	return
 }

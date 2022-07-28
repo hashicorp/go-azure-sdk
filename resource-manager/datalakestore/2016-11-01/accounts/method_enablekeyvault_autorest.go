@@ -62,5 +62,6 @@ func (c AccountsClient) responderForEnableKeyVault(resp *http.Response) (result 
 		azure.WithErrorUnlessStatusCode(http.StatusOK),
 		autorest.ByClosing())
 	result.HttpResponse = resp
+
 	return
 }
