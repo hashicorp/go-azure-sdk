@@ -64,5 +64,6 @@ func (c TablesClient) responderForListByWorkspace(resp *http.Response) (result L
 		autorest.ByUnmarshallingJSON(&result.Model),
 		autorest.ByClosing())
 	result.HttpResponse = resp
+
 	return
 }

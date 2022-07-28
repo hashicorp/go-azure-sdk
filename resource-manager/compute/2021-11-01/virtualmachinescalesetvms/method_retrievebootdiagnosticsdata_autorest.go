@@ -93,5 +93,6 @@ func (c VirtualMachineScaleSetVMsClient) responderForRetrieveBootDiagnosticsData
 		autorest.ByUnmarshallingJSON(&result.Model),
 		autorest.ByClosing())
 	result.HttpResponse = resp
+
 	return
 }

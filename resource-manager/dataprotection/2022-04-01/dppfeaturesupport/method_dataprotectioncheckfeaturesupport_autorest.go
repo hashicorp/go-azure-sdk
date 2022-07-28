@@ -3,6 +3,7 @@ package dppfeaturesupport
 import (
 	"context"
 	"fmt"
+	"io/ioutil"
 	"net/http"
 
 	"github.com/Azure/go-autorest/autorest"
@@ -62,8 +63,16 @@ func (c DppFeatureSupportClient) responderForDataProtectionCheckFeatureSupport(r
 	err = autorest.Respond(
 		resp,
 		azure.WithErrorUnlessStatusCode(http.StatusOK),
-		autorest.ByUnmarshallingJSON(&result.Model),
 		autorest.ByClosing())
 	result.HttpResponse = resp
+	b, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		return result, fmt.Errorf("reading response body: FeatureValidationResponseBase", err)
+	}
+	model, err := unmarshalFeatureValidationResponseBaseImplementation(b)
+	if err != nil {
+		return
+	}
+	result.Model = &model
 	return
 }

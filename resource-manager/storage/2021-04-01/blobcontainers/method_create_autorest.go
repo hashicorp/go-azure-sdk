@@ -64,5 +64,6 @@ func (c BlobContainersClient) responderForCreate(resp *http.Response) (result Cr
 		autorest.ByUnmarshallingJSON(&result.Model),
 		autorest.ByClosing())
 	result.HttpResponse = resp
+
 	return
 }

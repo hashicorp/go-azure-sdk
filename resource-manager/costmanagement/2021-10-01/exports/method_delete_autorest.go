@@ -61,5 +61,6 @@ func (c ExportsClient) responderForDelete(resp *http.Response) (result DeleteOpe
 		azure.WithErrorUnlessStatusCode(http.StatusOK),
 		autorest.ByClosing())
 	result.HttpResponse = resp
+
 	return
 }

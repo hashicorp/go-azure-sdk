@@ -62,5 +62,6 @@ func (c MediaClient) responderForJobsCancelJob(resp *http.Response) (result Jobs
 		azure.WithErrorUnlessStatusCode(http.StatusOK),
 		autorest.ByClosing())
 	result.HttpResponse = resp
+
 	return
 }

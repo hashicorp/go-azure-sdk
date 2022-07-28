@@ -95,5 +95,6 @@ func (c ForecastClient) responderForUsage(resp *http.Response) (result UsageOper
 		autorest.ByUnmarshallingJSON(&result.Model),
 		autorest.ByClosing())
 	result.HttpResponse = resp
+
 	return
 }

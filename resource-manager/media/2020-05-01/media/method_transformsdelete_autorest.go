@@ -61,5 +61,6 @@ func (c MediaClient) responderForTransformsDelete(resp *http.Response) (result T
 		azure.WithErrorUnlessStatusCode(http.StatusNoContent, http.StatusOK),
 		autorest.ByClosing())
 	result.HttpResponse = resp
+
 	return
 }

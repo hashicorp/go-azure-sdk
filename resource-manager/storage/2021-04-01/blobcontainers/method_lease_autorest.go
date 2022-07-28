@@ -65,5 +65,6 @@ func (c BlobContainersClient) responderForLease(resp *http.Response) (result Lea
 		autorest.ByUnmarshallingJSON(&result.Model),
 		autorest.ByClosing())
 	result.HttpResponse = resp
+
 	return
 }

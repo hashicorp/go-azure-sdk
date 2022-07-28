@@ -61,5 +61,6 @@ func (c DeploymentsClient) responderForCheckExistence(resp *http.Response) (resu
 		azure.WithErrorUnlessStatusCode(http.StatusNoContent),
 		autorest.ByClosing())
 	result.HttpResponse = resp
+
 	return
 }

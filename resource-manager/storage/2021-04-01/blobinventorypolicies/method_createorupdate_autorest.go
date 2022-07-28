@@ -65,5 +65,6 @@ func (c BlobInventoryPoliciesClient) responderForCreateOrUpdate(resp *http.Respo
 		autorest.ByUnmarshallingJSON(&result.Model),
 		autorest.ByClosing())
 	result.HttpResponse = resp
+
 	return
 }

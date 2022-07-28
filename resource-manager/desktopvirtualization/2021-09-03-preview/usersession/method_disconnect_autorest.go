@@ -62,5 +62,6 @@ func (c UserSessionClient) responderForDisconnect(resp *http.Response) (result D
 		azure.WithErrorUnlessStatusCode(http.StatusOK),
 		autorest.ByClosing())
 	result.HttpResponse = resp
+
 	return
 }

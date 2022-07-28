@@ -63,5 +63,6 @@ func (c MediaClient) responderForPrivateEndpointConnectionsGet(resp *http.Respon
 		autorest.ByUnmarshallingJSON(&result.Model),
 		autorest.ByClosing())
 	result.HttpResponse = resp
+
 	return
 }

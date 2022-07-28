@@ -62,5 +62,6 @@ func (c MigrationConfigsClient) responderForRevert(resp *http.Response) (result 
 		azure.WithErrorUnlessStatusCode(http.StatusOK),
 		autorest.ByClosing())
 	result.HttpResponse = resp
+
 	return
 }

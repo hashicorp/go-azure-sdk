@@ -63,5 +63,6 @@ func (c AzureBackupJobClient) responderForJobsGet(resp *http.Response) (result J
 		autorest.ByUnmarshallingJSON(&result.Model),
 		autorest.ByClosing())
 	result.HttpResponse = resp
+
 	return
 }

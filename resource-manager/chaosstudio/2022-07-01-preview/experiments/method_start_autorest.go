@@ -64,5 +64,6 @@ func (c ExperimentsClient) responderForStart(resp *http.Response) (result StartO
 		autorest.ByUnmarshallingJSON(&result.Model),
 		autorest.ByClosing())
 	result.HttpResponse = resp
+
 	return
 }

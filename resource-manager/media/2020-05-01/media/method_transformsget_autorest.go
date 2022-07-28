@@ -63,5 +63,6 @@ func (c MediaClient) responderForTransformsGet(resp *http.Response) (result Tran
 		autorest.ByUnmarshallingJSON(&result.Model),
 		autorest.ByClosing())
 	result.HttpResponse = resp
+
 	return
 }

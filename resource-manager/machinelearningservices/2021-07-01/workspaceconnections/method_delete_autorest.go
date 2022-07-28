@@ -61,5 +61,6 @@ func (c WorkspaceConnectionsClient) responderForDelete(resp *http.Response) (res
 		azure.WithErrorUnlessStatusCode(http.StatusNoContent, http.StatusOK),
 		autorest.ByClosing())
 	result.HttpResponse = resp
+
 	return
 }

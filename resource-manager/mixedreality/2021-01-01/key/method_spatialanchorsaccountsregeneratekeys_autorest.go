@@ -65,5 +65,6 @@ func (c KeyClient) responderForSpatialAnchorsAccountsRegenerateKeys(resp *http.R
 		autorest.ByUnmarshallingJSON(&result.Model),
 		autorest.ByClosing())
 	result.HttpResponse = resp
+
 	return
 }

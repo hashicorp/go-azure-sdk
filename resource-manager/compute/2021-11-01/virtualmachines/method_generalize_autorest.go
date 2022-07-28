@@ -62,5 +62,6 @@ func (c VirtualMachinesClient) responderForGeneralize(resp *http.Response) (resu
 		azure.WithErrorUnlessStatusCode(http.StatusOK),
 		autorest.ByClosing())
 	result.HttpResponse = resp
+
 	return
 }

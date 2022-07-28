@@ -61,5 +61,6 @@ func (c StorageAccountsClient) responderForDelete(resp *http.Response) (result D
 		azure.WithErrorUnlessStatusCode(http.StatusOK),
 		autorest.ByClosing())
 	result.HttpResponse = resp
+
 	return
 }

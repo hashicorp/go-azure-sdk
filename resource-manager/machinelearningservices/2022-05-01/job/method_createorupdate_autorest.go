@@ -64,5 +64,6 @@ func (c JobClient) responderForCreateOrUpdate(resp *http.Response) (result Creat
 		autorest.ByUnmarshallingJSON(&result.Model),
 		autorest.ByClosing())
 	result.HttpResponse = resp
+
 	return
 }

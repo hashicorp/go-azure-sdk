@@ -65,5 +65,6 @@ func (c AlertsClient) responderForList(resp *http.Response) (result ListOperatio
 		autorest.ByUnmarshallingJSON(&result.Model),
 		autorest.ByClosing())
 	result.HttpResponse = resp
+
 	return
 }

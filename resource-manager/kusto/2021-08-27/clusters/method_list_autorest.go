@@ -65,5 +65,6 @@ func (c ClustersClient) responderForList(resp *http.Response) (result ListOperat
 		autorest.ByUnmarshallingJSON(&result.Model),
 		autorest.ByClosing())
 	result.HttpResponse = resp
+
 	return
 }

@@ -61,5 +61,6 @@ func (c ConnectionGatewaysClient) responderForConnectionGatewaysDelete(resp *htt
 		azure.WithErrorUnlessStatusCode(http.StatusNoContent, http.StatusOK),
 		autorest.ByClosing())
 	result.HttpResponse = resp
+
 	return
 }

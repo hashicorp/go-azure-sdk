@@ -92,5 +92,6 @@ func (c VirtualMachineScaleSetVMExtensionsClient) responderForGet(resp *http.Res
 		autorest.ByUnmarshallingJSON(&result.Model),
 		autorest.ByClosing())
 	result.HttpResponse = resp
+
 	return
 }
