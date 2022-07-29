@@ -63,5 +63,6 @@ func (c UserClient) responderForGet(resp *http.Response) (result GetOperationRes
 		autorest.ByUnmarshallingJSON(&result.Model),
 		autorest.ByClosing())
 	result.HttpResponse = resp
+
 	return
 }

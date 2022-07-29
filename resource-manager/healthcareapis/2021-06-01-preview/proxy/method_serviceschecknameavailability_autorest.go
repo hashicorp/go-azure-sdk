@@ -66,5 +66,6 @@ func (c ProxyClient) responderForServicesCheckNameAvailability(resp *http.Respon
 		autorest.ByUnmarshallingJSON(&result.Model),
 		autorest.ByClosing())
 	result.HttpResponse = resp
+
 	return
 }

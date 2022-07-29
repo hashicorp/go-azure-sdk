@@ -65,5 +65,6 @@ func (c SkusClient) responderForList(resp *http.Response) (result ListOperationR
 		autorest.ByUnmarshallingJSON(&result.Model),
 		autorest.ByClosing())
 	result.HttpResponse = resp
+
 	return
 }

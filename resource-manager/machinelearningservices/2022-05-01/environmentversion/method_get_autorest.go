@@ -63,5 +63,6 @@ func (c EnvironmentVersionClient) responderForGet(resp *http.Response) (result G
 		autorest.ByUnmarshallingJSON(&result.Model),
 		autorest.ByClosing())
 	result.HttpResponse = resp
+
 	return
 }

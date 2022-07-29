@@ -64,5 +64,6 @@ func (c AvailableServiceTiersClient) responderForListByWorkspace(resp *http.Resp
 		autorest.ByUnmarshallingJSON(&result.Model),
 		autorest.ByClosing())
 	result.HttpResponse = resp
+
 	return
 }

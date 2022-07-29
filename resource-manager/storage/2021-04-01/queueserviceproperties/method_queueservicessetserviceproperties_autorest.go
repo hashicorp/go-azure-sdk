@@ -65,5 +65,6 @@ func (c QueueServicePropertiesClient) responderForQueueServicesSetServicePropert
 		autorest.ByUnmarshallingJSON(&result.Model),
 		autorest.ByClosing())
 	result.HttpResponse = resp
+
 	return
 }

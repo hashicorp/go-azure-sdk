@@ -63,5 +63,6 @@ func (c QueueServiceClient) responderForQueueGet(resp *http.Response) (result Qu
 		autorest.ByUnmarshallingJSON(&result.Model),
 		autorest.ByClosing())
 	result.HttpResponse = resp
+
 	return
 }

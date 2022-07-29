@@ -62,5 +62,6 @@ func (c DataLakeStoreAccountsClient) responderForAdd(resp *http.Response) (resul
 		azure.WithErrorUnlessStatusCode(http.StatusOK),
 		autorest.ByClosing())
 	result.HttpResponse = resp
+
 	return
 }

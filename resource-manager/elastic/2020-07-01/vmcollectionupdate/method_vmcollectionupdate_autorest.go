@@ -63,5 +63,6 @@ func (c VMCollectionUpdateClient) responderForVMCollectionUpdate(resp *http.Resp
 		azure.WithErrorUnlessStatusCode(http.StatusOK),
 		autorest.ByClosing())
 	result.HttpResponse = resp
+
 	return
 }

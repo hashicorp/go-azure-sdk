@@ -64,5 +64,6 @@ func (c BackupsClient) responderForList(resp *http.Response) (result ListOperati
 		autorest.ByUnmarshallingJSON(&result.Model),
 		autorest.ByClosing())
 	result.HttpResponse = resp
+
 	return
 }

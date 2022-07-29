@@ -63,5 +63,6 @@ func (c MediaClient) responderForJobsGet(resp *http.Response) (result JobsGetOpe
 		autorest.ByUnmarshallingJSON(&result.Model),
 		autorest.ByClosing())
 	result.HttpResponse = resp
+
 	return
 }

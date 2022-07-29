@@ -61,5 +61,6 @@ func (c TrustedIdProvidersClient) responderForDelete(resp *http.Response) (resul
 		azure.WithErrorUnlessStatusCode(http.StatusNoContent, http.StatusOK),
 		autorest.ByClosing())
 	result.HttpResponse = resp
+
 	return
 }

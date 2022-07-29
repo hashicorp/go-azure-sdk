@@ -64,5 +64,6 @@ func (c NamespacesNetworkSecurityPerimeterConfigurationsClient) responderForNetw
 		autorest.ByUnmarshallingJSON(&result.Model),
 		autorest.ByClosing())
 	result.HttpResponse = resp
+
 	return
 }

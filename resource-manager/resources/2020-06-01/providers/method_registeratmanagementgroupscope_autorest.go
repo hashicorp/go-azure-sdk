@@ -62,5 +62,6 @@ func (c ProvidersClient) responderForRegisterAtManagementGroupScope(resp *http.R
 		azure.WithErrorUnlessStatusCode(http.StatusOK),
 		autorest.ByClosing())
 	result.HttpResponse = resp
+
 	return
 }

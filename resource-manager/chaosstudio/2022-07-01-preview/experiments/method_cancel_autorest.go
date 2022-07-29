@@ -64,5 +64,6 @@ func (c ExperimentsClient) responderForCancel(resp *http.Response) (result Cance
 		autorest.ByUnmarshallingJSON(&result.Model),
 		autorest.ByClosing())
 	result.HttpResponse = resp
+
 	return
 }

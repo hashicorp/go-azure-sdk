@@ -93,5 +93,6 @@ func (c StreamingJobsClient) responderForUpdate(resp *http.Response) (result Upd
 		autorest.ByUnmarshallingJSON(&result.Model),
 		autorest.ByClosing())
 	result.HttpResponse = resp
+
 	return
 }

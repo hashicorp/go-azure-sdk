@@ -63,5 +63,6 @@ func (c JobClient) responderForGet(resp *http.Response) (result GetOperationResp
 		autorest.ByUnmarshallingJSON(&result.Model),
 		autorest.ByClosing())
 	result.HttpResponse = resp
+
 	return
 }

@@ -61,5 +61,6 @@ func (c DataLakeStoreAccountsClient) responderForDelete(resp *http.Response) (re
 		azure.WithErrorUnlessStatusCode(http.StatusNoContent, http.StatusOK),
 		autorest.ByClosing())
 	result.HttpResponse = resp
+
 	return
 }

@@ -61,5 +61,6 @@ func (c MediaClient) responderForPrivateEndpointConnectionsDelete(resp *http.Res
 		azure.WithErrorUnlessStatusCode(http.StatusOK),
 		autorest.ByClosing())
 	result.HttpResponse = resp
+
 	return
 }

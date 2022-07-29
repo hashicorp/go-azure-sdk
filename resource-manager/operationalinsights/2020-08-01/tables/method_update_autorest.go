@@ -64,5 +64,6 @@ func (c TablesClient) responderForUpdate(resp *http.Response) (result UpdateOper
 		autorest.ByUnmarshallingJSON(&result.Model),
 		autorest.ByClosing())
 	result.HttpResponse = resp
+
 	return
 }

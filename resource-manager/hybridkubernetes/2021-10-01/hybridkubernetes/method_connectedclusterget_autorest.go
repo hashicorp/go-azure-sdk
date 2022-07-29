@@ -63,5 +63,6 @@ func (c HybridKubernetesClient) responderForConnectedClusterGet(resp *http.Respo
 		autorest.ByUnmarshallingJSON(&result.Model),
 		autorest.ByClosing())
 	result.HttpResponse = resp
+
 	return
 }

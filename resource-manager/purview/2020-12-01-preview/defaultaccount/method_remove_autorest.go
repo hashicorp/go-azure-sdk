@@ -100,5 +100,6 @@ func (c DefaultAccountClient) responderForRemove(resp *http.Response) (result Re
 		azure.WithErrorUnlessStatusCode(http.StatusNoContent, http.StatusOK),
 		autorest.ByClosing())
 	result.HttpResponse = resp
+
 	return
 }

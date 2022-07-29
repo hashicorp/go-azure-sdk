@@ -92,5 +92,6 @@ func (c VirtualMachinesClient) responderForGet(resp *http.Response) (result GetO
 		autorest.ByUnmarshallingJSON(&result.Model),
 		autorest.ByClosing())
 	result.HttpResponse = resp
+
 	return
 }

@@ -61,5 +61,6 @@ func (c SavedSearchesClient) responderForDelete(resp *http.Response) (result Del
 		azure.WithErrorUnlessStatusCode(http.StatusOK),
 		autorest.ByClosing())
 	result.HttpResponse = resp
+
 	return
 }

@@ -63,5 +63,6 @@ func (c MediaClient) responderForAssetsGet(resp *http.Response) (result AssetsGe
 		autorest.ByUnmarshallingJSON(&result.Model),
 		autorest.ByClosing())
 	result.HttpResponse = resp
+
 	return
 }
