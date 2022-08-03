@@ -9,14 +9,16 @@ import (
 	"github.com/Azure/go-autorest/autorest"
 	"github.com/Azure/go-autorest/autorest/azure"
 	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
+	"github.com/hashicorp/go-azure-sdk/client/base"
+	"github.com/hashicorp/go-azure-sdk/odata"
 )
 
-// Copyright (c) Microsoft Corporation. All rights reserved.
-// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+// Copyright (c) TODO, Inc.
 
 type ListBySubscriptionOperationResponse struct {
 	HttpResponse *http.Response
 	Model        *[]SshPublicKeyResource
+	OData        *odata.OData
 
 	nextLink     *string
 	nextPageFunc func(ctx context.Context, nextLink string) (ListBySubscriptionOperationResponse, error)
@@ -39,33 +41,39 @@ func (r ListBySubscriptionOperationResponse) LoadMore(ctx context.Context) (resp
 }
 
 // ListBySubscription ...
-func (c SshPublicKeysClient) ListBySubscription(ctx context.Context, id commonids.SubscriptionId) (resp ListBySubscriptionOperationResponse, err error) {
-	req, err := c.preparerForListBySubscription(ctx, id)
+func (c SshPublicKeysClient) ListBySubscription(ctx context.Context, id commonids.SubscriptionId) (result ListBySubscriptionOperationResponse, err error) {
+	req, err := c.Client2.NewGetRequest(ctx, fmt.Sprintf("%s/providers/Microsoft.Compute/sshPublicKeys", id.ID()), defaultApiVersion, odata.Query{})
 	if err != nil {
-		err = autorest.NewErrorWithError(err, "sshpublickeys.SshPublicKeysClient", "ListBySubscription", nil, "Failure preparing request")
 		return
 	}
 
-	resp.HttpResponse, err = c.Client.Send(req, azure.DoRetryWithRegistration(c.Client))
+	var resp *base.Response
+	resp, err = req.Execute()
+	if resp != nil {
+		result.OData = resp.OData
+		result.HttpResponse = resp.Response
+	}
 	if err != nil {
-		err = autorest.NewErrorWithError(err, "sshpublickeys.SshPublicKeysClient", "ListBySubscription", resp.HttpResponse, "Failure sending request")
 		return
 	}
 
-	resp, err = c.responderForListBySubscription(resp.HttpResponse)
-	if err != nil {
-		err = autorest.NewErrorWithError(err, "sshpublickeys.SshPublicKeysClient", "ListBySubscription", resp.HttpResponse, "Failure responding to request")
+	values := &struct {
+		Values *[]SshPublicKeyResource `json:"value"`
+	}{}
+	if err = resp.Unmarshal(values); err != nil {
 		return
 	}
+	result.Model = values.Values
+
 	return
 }
 
-// ListBySubscriptionComplete retrieves all of the results into a single object
+// ListBySubscriptionComplete retrieves all the results into a single object
 func (c SshPublicKeysClient) ListBySubscriptionComplete(ctx context.Context, id commonids.SubscriptionId) (ListBySubscriptionCompleteResult, error) {
 	return c.ListBySubscriptionCompleteMatchingPredicate(ctx, id, SshPublicKeyResourceOperationPredicate{})
 }
 
-// ListBySubscriptionCompleteMatchingPredicate retrieves all of the results and then applied the predicate
+// ListBySubscriptionCompleteMatchingPredicate retrieves all the results and then applies the predicate
 func (c SshPublicKeysClient) ListBySubscriptionCompleteMatchingPredicate(ctx context.Context, id commonids.SubscriptionId, predicate SshPublicKeyResourceOperationPredicate) (resp ListBySubscriptionCompleteResult, err error) {
 	items := make([]SshPublicKeyResource, 0)
 

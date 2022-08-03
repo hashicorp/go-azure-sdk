@@ -2,7 +2,7 @@ package sshpublickeys
 
 import (
 	"github.com/Azure/go-autorest/autorest"
-	"github.com/hashicorp/go-azure-sdk/client"
+	"github.com/hashicorp/go-azure-sdk/client/resourcemanager"
 	"github.com/hashicorp/go-azure-sdk/environments"
 )
 
@@ -11,14 +11,14 @@ import (
 
 type SshPublicKeysClient struct {
 	Client  autorest.Client
-	Client2 *client.ResourceManagerClient
+	Client2 *resourcemanager.Client
 	baseUri string
 }
 
 func NewSshPublicKeysClientWithBaseURI(endpoint string) SshPublicKeysClient {
 	return SshPublicKeysClient{
 		Client:  autorest.NewClientWithUserAgent(userAgent()),
-		Client2: client.NewResourceManagerClient(environments.ApiEndpoint(endpoint), ""),
+		Client2: resourcemanager.NewResourceManagerClient(environments.ApiEndpoint(endpoint)),
 		baseUri: endpoint,
 	}
 }

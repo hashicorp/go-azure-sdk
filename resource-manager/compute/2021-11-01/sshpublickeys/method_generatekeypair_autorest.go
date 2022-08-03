@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/hashicorp/go-azure-sdk/client"
+	"github.com/hashicorp/go-azure-sdk/client/base"
 	"github.com/hashicorp/go-azure-sdk/odata"
 )
 
@@ -24,9 +24,12 @@ func (c SshPublicKeysClient) GenerateKeyPair(ctx context.Context, id SshPublicKe
 		return
 	}
 
-	var resp *client.Response
-	resp, result.OData, _, err = req.Execute()
-	result.HttpResponse = resp.Response
+	var resp *base.Response
+	resp, err = req.Execute()
+	if resp != nil {
+		result.OData = resp.OData
+		result.HttpResponse = resp.Response
+	}
 	if err != nil {
 		return
 	}

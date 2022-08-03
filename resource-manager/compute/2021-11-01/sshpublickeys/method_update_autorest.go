@@ -4,7 +4,7 @@ import (
 	"context"
 	"net/http"
 
-	"github.com/hashicorp/go-azure-sdk/client"
+	"github.com/hashicorp/go-azure-sdk/client/base"
 	"github.com/hashicorp/go-azure-sdk/odata"
 )
 
@@ -23,9 +23,10 @@ func (c SshPublicKeysClient) Update(ctx context.Context, id SshPublicKeyId, inpu
 		return
 	}
 
-	var resp *client.Response
-	resp, result.OData, _, err = req.Execute()
+	var resp *base.Response
+	resp, err = req.Execute()
 	result.HttpResponse = resp.Response
+	result.OData = resp.OData
 	if err != nil {
 		return
 	}

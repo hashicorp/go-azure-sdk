@@ -3,32 +3,40 @@ package virtualmachines
 import (
 	"context"
 	"fmt"
+	"github.com/hashicorp/go-azure-sdk/client/base"
 	"net/http"
 
-	"github.com/Azure/go-autorest/autorest"
-	"github.com/Azure/go-autorest/autorest/azure"
-	"github.com/hashicorp/go-azure-helpers/polling"
+	"github.com/hashicorp/go-azure-sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/odata"
 )
 
-// Copyright (c) Microsoft Corporation. All rights reserved.
-// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+// Copyright (c) TODO, Inc.
 
 type CreateOrUpdateOperationResponse struct {
-	Poller       polling.LongRunningPoller
+	Poller       *resourcemanager.LongRunningPoller
 	HttpResponse *http.Response
+	OData        *odata.OData
 }
 
 // CreateOrUpdate ...
 func (c VirtualMachinesClient) CreateOrUpdate(ctx context.Context, id VirtualMachineId, input VirtualMachine) (result CreateOrUpdateOperationResponse, err error) {
-	req, err := c.preparerForCreateOrUpdate(ctx, id, input)
+	req, err := c.Client2.NewPutRequest(ctx, id.ID(), defaultApiVersion, odata.Query{}, input)
 	if err != nil {
-		err = autorest.NewErrorWithError(err, "virtualmachines.VirtualMachinesClient", "CreateOrUpdate", nil, "Failure preparing request")
 		return
 	}
 
-	result, err = c.senderForCreateOrUpdate(ctx, req)
+	var resp *base.Response
+	resp, err = req.Execute()
+	if resp != nil {
+		result.OData = resp.OData
+		result.HttpResponse = resp.Response
+	}
 	if err != nil {
-		err = autorest.NewErrorWithError(err, "virtualmachines.VirtualMachinesClient", "CreateOrUpdate", result.HttpResponse, "Failure sending request")
+		return
+	}
+
+	result.Poller, err = resourcemanager.NewPollerFromResponse(ctx, resp, c.Client2)
+	if err != nil {
 		return
 	}
 
@@ -47,33 +55,4 @@ func (c VirtualMachinesClient) CreateOrUpdateThenPoll(ctx context.Context, id Vi
 	}
 
 	return nil
-}
-
-// preparerForCreateOrUpdate prepares the CreateOrUpdate request.
-func (c VirtualMachinesClient) preparerForCreateOrUpdate(ctx context.Context, id VirtualMachineId, input VirtualMachine) (*http.Request, error) {
-	queryParameters := map[string]interface{}{
-		"api-version": defaultApiVersion,
-	}
-
-	preparer := autorest.CreatePreparer(
-		autorest.AsContentType("application/json; charset=utf-8"),
-		autorest.AsPut(),
-		autorest.WithBaseURL(c.baseUri),
-		autorest.WithPath(id.ID()),
-		autorest.WithJSON(input),
-		autorest.WithQueryParameters(queryParameters))
-	return preparer.Prepare((&http.Request{}).WithContext(ctx))
-}
-
-// senderForCreateOrUpdate sends the CreateOrUpdate request. The method will close the
-// http.Response Body if it receives an error.
-func (c VirtualMachinesClient) senderForCreateOrUpdate(ctx context.Context, req *http.Request) (future CreateOrUpdateOperationResponse, err error) {
-	var resp *http.Response
-	resp, err = c.Client.Send(req, azure.DoRetryWithRegistration(c.Client))
-	if err != nil {
-		return
-	}
-
-	future.Poller, err = polling.NewPollerFromResponse(ctx, resp, c.Client, req.Method)
-	return
 }

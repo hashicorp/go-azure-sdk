@@ -2,9 +2,9 @@ package zones
 
 import (
 	"context"
+	"github.com/hashicorp/go-azure-sdk/client/base"
 	"net/http"
 
-	"github.com/hashicorp/go-azure-sdk/client"
 	"github.com/hashicorp/go-azure-sdk/odata"
 )
 
@@ -23,14 +23,15 @@ func (c ZonesClient) Get(ctx context.Context, id DnsZoneId) (result GetOperation
 		return
 	}
 
-	var resp *client.Response
-	resp, result.OData, _, err = req.Execute()
+	var resp *base.Response
+	resp, err = req.Execute()
 	result.HttpResponse = resp.Response
+	result.OData = resp.OData
 	if err != nil {
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil { // TODO: pointer to a pointer needed?
+	if err = resp.Unmarshal(&result.Model); err != nil {
 		return
 	}
 
