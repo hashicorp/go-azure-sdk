@@ -60,50 +60,6 @@ func (c ViewsClient) ListByScope(ctx context.Context, id commonids.ScopeId) (res
 	return
 }
 
-// ListByScopeComplete retrieves all of the results into a single object
-func (c ViewsClient) ListByScopeComplete(ctx context.Context, id commonids.ScopeId) (ListByScopeCompleteResult, error) {
-	return c.ListByScopeCompleteMatchingPredicate(ctx, id, ViewOperationPredicate{})
-}
-
-// ListByScopeCompleteMatchingPredicate retrieves all of the results and then applied the predicate
-func (c ViewsClient) ListByScopeCompleteMatchingPredicate(ctx context.Context, id commonids.ScopeId, predicate ViewOperationPredicate) (resp ListByScopeCompleteResult, err error) {
-	items := make([]View, 0)
-
-	page, err := c.ListByScope(ctx, id)
-	if err != nil {
-		err = fmt.Errorf("loading the initial page: %+v", err)
-		return
-	}
-	if page.Model != nil {
-		for _, v := range *page.Model {
-			if predicate.Matches(v) {
-				items = append(items, v)
-			}
-		}
-	}
-
-	for page.HasMore() {
-		page, err = page.LoadMore(ctx)
-		if err != nil {
-			err = fmt.Errorf("loading the next page: %+v", err)
-			return
-		}
-
-		if page.Model != nil {
-			for _, v := range *page.Model {
-				if predicate.Matches(v) {
-					items = append(items, v)
-				}
-			}
-		}
-	}
-
-	out := ListByScopeCompleteResult{
-		Items: items,
-	}
-	return out, nil
-}
-
 // preparerForListByScope prepares the ListByScope request.
 func (c ViewsClient) preparerForListByScope(ctx context.Context, id commonids.ScopeId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
@@ -184,4 +140,48 @@ func (c ViewsClient) responderForListByScope(resp *http.Response) (result ListBy
 		}
 	}
 	return
+}
+
+// ListByScopeComplete retrieves all of the results into a single object
+func (c ViewsClient) ListByScopeComplete(ctx context.Context, id commonids.ScopeId) (ListByScopeCompleteResult, error) {
+	return c.ListByScopeCompleteMatchingPredicate(ctx, id, ViewOperationPredicate{})
+}
+
+// ListByScopeCompleteMatchingPredicate retrieves all of the results and then applied the predicate
+func (c ViewsClient) ListByScopeCompleteMatchingPredicate(ctx context.Context, id commonids.ScopeId, predicate ViewOperationPredicate) (resp ListByScopeCompleteResult, err error) {
+	items := make([]View, 0)
+
+	page, err := c.ListByScope(ctx, id)
+	if err != nil {
+		err = fmt.Errorf("loading the initial page: %+v", err)
+		return
+	}
+	if page.Model != nil {
+		for _, v := range *page.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	for page.HasMore() {
+		page, err = page.LoadMore(ctx)
+		if err != nil {
+			err = fmt.Errorf("loading the next page: %+v", err)
+			return
+		}
+
+		if page.Model != nil {
+			for _, v := range *page.Model {
+				if predicate.Matches(v) {
+					items = append(items, v)
+				}
+			}
+		}
+	}
+
+	out := ListByScopeCompleteResult{
+		Items: items,
+	}
+	return out, nil
 }

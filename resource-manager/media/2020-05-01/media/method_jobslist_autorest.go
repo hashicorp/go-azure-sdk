@@ -88,50 +88,6 @@ func (c MediaClient) JobsList(ctx context.Context, id TransformId, options JobsL
 	return
 }
 
-// JobsListComplete retrieves all of the results into a single object
-func (c MediaClient) JobsListComplete(ctx context.Context, id TransformId, options JobsListOperationOptions) (JobsListCompleteResult, error) {
-	return c.JobsListCompleteMatchingPredicate(ctx, id, options, JobOperationPredicate{})
-}
-
-// JobsListCompleteMatchingPredicate retrieves all of the results and then applied the predicate
-func (c MediaClient) JobsListCompleteMatchingPredicate(ctx context.Context, id TransformId, options JobsListOperationOptions, predicate JobOperationPredicate) (resp JobsListCompleteResult, err error) {
-	items := make([]Job, 0)
-
-	page, err := c.JobsList(ctx, id, options)
-	if err != nil {
-		err = fmt.Errorf("loading the initial page: %+v", err)
-		return
-	}
-	if page.Model != nil {
-		for _, v := range *page.Model {
-			if predicate.Matches(v) {
-				items = append(items, v)
-			}
-		}
-	}
-
-	for page.HasMore() {
-		page, err = page.LoadMore(ctx)
-		if err != nil {
-			err = fmt.Errorf("loading the next page: %+v", err)
-			return
-		}
-
-		if page.Model != nil {
-			for _, v := range *page.Model {
-				if predicate.Matches(v) {
-					items = append(items, v)
-				}
-			}
-		}
-	}
-
-	out := JobsListCompleteResult{
-		Items: items,
-	}
-	return out, nil
-}
-
 // preparerForJobsList prepares the JobsList request.
 func (c MediaClient) preparerForJobsList(ctx context.Context, id TransformId, options JobsListOperationOptions) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
@@ -217,4 +173,48 @@ func (c MediaClient) responderForJobsList(resp *http.Response) (result JobsListO
 		}
 	}
 	return
+}
+
+// JobsListComplete retrieves all of the results into a single object
+func (c MediaClient) JobsListComplete(ctx context.Context, id TransformId, options JobsListOperationOptions) (JobsListCompleteResult, error) {
+	return c.JobsListCompleteMatchingPredicate(ctx, id, options, JobOperationPredicate{})
+}
+
+// JobsListCompleteMatchingPredicate retrieves all of the results and then applied the predicate
+func (c MediaClient) JobsListCompleteMatchingPredicate(ctx context.Context, id TransformId, options JobsListOperationOptions, predicate JobOperationPredicate) (resp JobsListCompleteResult, err error) {
+	items := make([]Job, 0)
+
+	page, err := c.JobsList(ctx, id, options)
+	if err != nil {
+		err = fmt.Errorf("loading the initial page: %+v", err)
+		return
+	}
+	if page.Model != nil {
+		for _, v := range *page.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	for page.HasMore() {
+		page, err = page.LoadMore(ctx)
+		if err != nil {
+			err = fmt.Errorf("loading the next page: %+v", err)
+			return
+		}
+
+		if page.Model != nil {
+			for _, v := range *page.Model {
+				if predicate.Matches(v) {
+					items = append(items, v)
+				}
+			}
+		}
+	}
+
+	out := JobsListCompleteResult{
+		Items: items,
+	}
+	return out, nil
 }

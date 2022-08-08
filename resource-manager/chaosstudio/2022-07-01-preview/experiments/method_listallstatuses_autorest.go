@@ -59,50 +59,6 @@ func (c ExperimentsClient) ListAllStatuses(ctx context.Context, id ExperimentId)
 	return
 }
 
-// ListAllStatusesComplete retrieves all of the results into a single object
-func (c ExperimentsClient) ListAllStatusesComplete(ctx context.Context, id ExperimentId) (ListAllStatusesCompleteResult, error) {
-	return c.ListAllStatusesCompleteMatchingPredicate(ctx, id, ExperimentStatusOperationPredicate{})
-}
-
-// ListAllStatusesCompleteMatchingPredicate retrieves all of the results and then applied the predicate
-func (c ExperimentsClient) ListAllStatusesCompleteMatchingPredicate(ctx context.Context, id ExperimentId, predicate ExperimentStatusOperationPredicate) (resp ListAllStatusesCompleteResult, err error) {
-	items := make([]ExperimentStatus, 0)
-
-	page, err := c.ListAllStatuses(ctx, id)
-	if err != nil {
-		err = fmt.Errorf("loading the initial page: %+v", err)
-		return
-	}
-	if page.Model != nil {
-		for _, v := range *page.Model {
-			if predicate.Matches(v) {
-				items = append(items, v)
-			}
-		}
-	}
-
-	for page.HasMore() {
-		page, err = page.LoadMore(ctx)
-		if err != nil {
-			err = fmt.Errorf("loading the next page: %+v", err)
-			return
-		}
-
-		if page.Model != nil {
-			for _, v := range *page.Model {
-				if predicate.Matches(v) {
-					items = append(items, v)
-				}
-			}
-		}
-	}
-
-	out := ListAllStatusesCompleteResult{
-		Items: items,
-	}
-	return out, nil
-}
-
 // preparerForListAllStatuses prepares the ListAllStatuses request.
 func (c ExperimentsClient) preparerForListAllStatuses(ctx context.Context, id ExperimentId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
@@ -183,4 +139,48 @@ func (c ExperimentsClient) responderForListAllStatuses(resp *http.Response) (res
 		}
 	}
 	return
+}
+
+// ListAllStatusesComplete retrieves all of the results into a single object
+func (c ExperimentsClient) ListAllStatusesComplete(ctx context.Context, id ExperimentId) (ListAllStatusesCompleteResult, error) {
+	return c.ListAllStatusesCompleteMatchingPredicate(ctx, id, ExperimentStatusOperationPredicate{})
+}
+
+// ListAllStatusesCompleteMatchingPredicate retrieves all of the results and then applied the predicate
+func (c ExperimentsClient) ListAllStatusesCompleteMatchingPredicate(ctx context.Context, id ExperimentId, predicate ExperimentStatusOperationPredicate) (resp ListAllStatusesCompleteResult, err error) {
+	items := make([]ExperimentStatus, 0)
+
+	page, err := c.ListAllStatuses(ctx, id)
+	if err != nil {
+		err = fmt.Errorf("loading the initial page: %+v", err)
+		return
+	}
+	if page.Model != nil {
+		for _, v := range *page.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	for page.HasMore() {
+		page, err = page.LoadMore(ctx)
+		if err != nil {
+			err = fmt.Errorf("loading the next page: %+v", err)
+			return
+		}
+
+		if page.Model != nil {
+			for _, v := range *page.Model {
+				if predicate.Matches(v) {
+					items = append(items, v)
+				}
+			}
+		}
+	}
+
+	out := ListAllStatusesCompleteResult{
+		Items: items,
+	}
+	return out, nil
 }

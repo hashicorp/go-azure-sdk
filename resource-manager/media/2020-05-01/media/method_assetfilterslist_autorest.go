@@ -59,50 +59,6 @@ func (c MediaClient) AssetFiltersList(ctx context.Context, id AssetId) (resp Ass
 	return
 }
 
-// AssetFiltersListComplete retrieves all of the results into a single object
-func (c MediaClient) AssetFiltersListComplete(ctx context.Context, id AssetId) (AssetFiltersListCompleteResult, error) {
-	return c.AssetFiltersListCompleteMatchingPredicate(ctx, id, AssetFilterOperationPredicate{})
-}
-
-// AssetFiltersListCompleteMatchingPredicate retrieves all of the results and then applied the predicate
-func (c MediaClient) AssetFiltersListCompleteMatchingPredicate(ctx context.Context, id AssetId, predicate AssetFilterOperationPredicate) (resp AssetFiltersListCompleteResult, err error) {
-	items := make([]AssetFilter, 0)
-
-	page, err := c.AssetFiltersList(ctx, id)
-	if err != nil {
-		err = fmt.Errorf("loading the initial page: %+v", err)
-		return
-	}
-	if page.Model != nil {
-		for _, v := range *page.Model {
-			if predicate.Matches(v) {
-				items = append(items, v)
-			}
-		}
-	}
-
-	for page.HasMore() {
-		page, err = page.LoadMore(ctx)
-		if err != nil {
-			err = fmt.Errorf("loading the next page: %+v", err)
-			return
-		}
-
-		if page.Model != nil {
-			for _, v := range *page.Model {
-				if predicate.Matches(v) {
-					items = append(items, v)
-				}
-			}
-		}
-	}
-
-	out := AssetFiltersListCompleteResult{
-		Items: items,
-	}
-	return out, nil
-}
-
 // preparerForAssetFiltersList prepares the AssetFiltersList request.
 func (c MediaClient) preparerForAssetFiltersList(ctx context.Context, id AssetId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
@@ -183,4 +139,48 @@ func (c MediaClient) responderForAssetFiltersList(resp *http.Response) (result A
 		}
 	}
 	return
+}
+
+// AssetFiltersListComplete retrieves all of the results into a single object
+func (c MediaClient) AssetFiltersListComplete(ctx context.Context, id AssetId) (AssetFiltersListCompleteResult, error) {
+	return c.AssetFiltersListCompleteMatchingPredicate(ctx, id, AssetFilterOperationPredicate{})
+}
+
+// AssetFiltersListCompleteMatchingPredicate retrieves all of the results and then applied the predicate
+func (c MediaClient) AssetFiltersListCompleteMatchingPredicate(ctx context.Context, id AssetId, predicate AssetFilterOperationPredicate) (resp AssetFiltersListCompleteResult, err error) {
+	items := make([]AssetFilter, 0)
+
+	page, err := c.AssetFiltersList(ctx, id)
+	if err != nil {
+		err = fmt.Errorf("loading the initial page: %+v", err)
+		return
+	}
+	if page.Model != nil {
+		for _, v := range *page.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	for page.HasMore() {
+		page, err = page.LoadMore(ctx)
+		if err != nil {
+			err = fmt.Errorf("loading the next page: %+v", err)
+			return
+		}
+
+		if page.Model != nil {
+			for _, v := range *page.Model {
+				if predicate.Matches(v) {
+					items = append(items, v)
+				}
+			}
+		}
+	}
+
+	out := AssetFiltersListCompleteResult{
+		Items: items,
+	}
+	return out, nil
 }

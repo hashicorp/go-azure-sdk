@@ -59,50 +59,6 @@ func (c AzureBackupJobsClient) JobsList(ctx context.Context, id BackupVaultId) (
 	return
 }
 
-// JobsListComplete retrieves all of the results into a single object
-func (c AzureBackupJobsClient) JobsListComplete(ctx context.Context, id BackupVaultId) (JobsListCompleteResult, error) {
-	return c.JobsListCompleteMatchingPredicate(ctx, id, AzureBackupJobResourceOperationPredicate{})
-}
-
-// JobsListCompleteMatchingPredicate retrieves all of the results and then applied the predicate
-func (c AzureBackupJobsClient) JobsListCompleteMatchingPredicate(ctx context.Context, id BackupVaultId, predicate AzureBackupJobResourceOperationPredicate) (resp JobsListCompleteResult, err error) {
-	items := make([]AzureBackupJobResource, 0)
-
-	page, err := c.JobsList(ctx, id)
-	if err != nil {
-		err = fmt.Errorf("loading the initial page: %+v", err)
-		return
-	}
-	if page.Model != nil {
-		for _, v := range *page.Model {
-			if predicate.Matches(v) {
-				items = append(items, v)
-			}
-		}
-	}
-
-	for page.HasMore() {
-		page, err = page.LoadMore(ctx)
-		if err != nil {
-			err = fmt.Errorf("loading the next page: %+v", err)
-			return
-		}
-
-		if page.Model != nil {
-			for _, v := range *page.Model {
-				if predicate.Matches(v) {
-					items = append(items, v)
-				}
-			}
-		}
-	}
-
-	out := JobsListCompleteResult{
-		Items: items,
-	}
-	return out, nil
-}
-
 // preparerForJobsList prepares the JobsList request.
 func (c AzureBackupJobsClient) preparerForJobsList(ctx context.Context, id BackupVaultId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
@@ -183,4 +139,48 @@ func (c AzureBackupJobsClient) responderForJobsList(resp *http.Response) (result
 		}
 	}
 	return
+}
+
+// JobsListComplete retrieves all of the results into a single object
+func (c AzureBackupJobsClient) JobsListComplete(ctx context.Context, id BackupVaultId) (JobsListCompleteResult, error) {
+	return c.JobsListCompleteMatchingPredicate(ctx, id, AzureBackupJobResourceOperationPredicate{})
+}
+
+// JobsListCompleteMatchingPredicate retrieves all of the results and then applied the predicate
+func (c AzureBackupJobsClient) JobsListCompleteMatchingPredicate(ctx context.Context, id BackupVaultId, predicate AzureBackupJobResourceOperationPredicate) (resp JobsListCompleteResult, err error) {
+	items := make([]AzureBackupJobResource, 0)
+
+	page, err := c.JobsList(ctx, id)
+	if err != nil {
+		err = fmt.Errorf("loading the initial page: %+v", err)
+		return
+	}
+	if page.Model != nil {
+		for _, v := range *page.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	for page.HasMore() {
+		page, err = page.LoadMore(ctx)
+		if err != nil {
+			err = fmt.Errorf("loading the next page: %+v", err)
+			return
+		}
+
+		if page.Model != nil {
+			for _, v := range *page.Model {
+				if predicate.Matches(v) {
+					items = append(items, v)
+				}
+			}
+		}
+	}
+
+	out := JobsListCompleteResult{
+		Items: items,
+	}
+	return out, nil
 }

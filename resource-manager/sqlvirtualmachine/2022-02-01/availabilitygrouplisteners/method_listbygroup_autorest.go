@@ -59,50 +59,6 @@ func (c AvailabilityGroupListenersClient) ListByGroup(ctx context.Context, id Sq
 	return
 }
 
-// ListByGroupComplete retrieves all of the results into a single object
-func (c AvailabilityGroupListenersClient) ListByGroupComplete(ctx context.Context, id SqlVirtualMachineGroupId) (ListByGroupCompleteResult, error) {
-	return c.ListByGroupCompleteMatchingPredicate(ctx, id, AvailabilityGroupListenerOperationPredicate{})
-}
-
-// ListByGroupCompleteMatchingPredicate retrieves all of the results and then applied the predicate
-func (c AvailabilityGroupListenersClient) ListByGroupCompleteMatchingPredicate(ctx context.Context, id SqlVirtualMachineGroupId, predicate AvailabilityGroupListenerOperationPredicate) (resp ListByGroupCompleteResult, err error) {
-	items := make([]AvailabilityGroupListener, 0)
-
-	page, err := c.ListByGroup(ctx, id)
-	if err != nil {
-		err = fmt.Errorf("loading the initial page: %+v", err)
-		return
-	}
-	if page.Model != nil {
-		for _, v := range *page.Model {
-			if predicate.Matches(v) {
-				items = append(items, v)
-			}
-		}
-	}
-
-	for page.HasMore() {
-		page, err = page.LoadMore(ctx)
-		if err != nil {
-			err = fmt.Errorf("loading the next page: %+v", err)
-			return
-		}
-
-		if page.Model != nil {
-			for _, v := range *page.Model {
-				if predicate.Matches(v) {
-					items = append(items, v)
-				}
-			}
-		}
-	}
-
-	out := ListByGroupCompleteResult{
-		Items: items,
-	}
-	return out, nil
-}
-
 // preparerForListByGroup prepares the ListByGroup request.
 func (c AvailabilityGroupListenersClient) preparerForListByGroup(ctx context.Context, id SqlVirtualMachineGroupId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
@@ -183,4 +139,48 @@ func (c AvailabilityGroupListenersClient) responderForListByGroup(resp *http.Res
 		}
 	}
 	return
+}
+
+// ListByGroupComplete retrieves all of the results into a single object
+func (c AvailabilityGroupListenersClient) ListByGroupComplete(ctx context.Context, id SqlVirtualMachineGroupId) (ListByGroupCompleteResult, error) {
+	return c.ListByGroupCompleteMatchingPredicate(ctx, id, AvailabilityGroupListenerOperationPredicate{})
+}
+
+// ListByGroupCompleteMatchingPredicate retrieves all of the results and then applied the predicate
+func (c AvailabilityGroupListenersClient) ListByGroupCompleteMatchingPredicate(ctx context.Context, id SqlVirtualMachineGroupId, predicate AvailabilityGroupListenerOperationPredicate) (resp ListByGroupCompleteResult, err error) {
+	items := make([]AvailabilityGroupListener, 0)
+
+	page, err := c.ListByGroup(ctx, id)
+	if err != nil {
+		err = fmt.Errorf("loading the initial page: %+v", err)
+		return
+	}
+	if page.Model != nil {
+		for _, v := range *page.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	for page.HasMore() {
+		page, err = page.LoadMore(ctx)
+		if err != nil {
+			err = fmt.Errorf("loading the next page: %+v", err)
+			return
+		}
+
+		if page.Model != nil {
+			for _, v := range *page.Model {
+				if predicate.Matches(v) {
+					items = append(items, v)
+				}
+			}
+		}
+	}
+
+	out := ListByGroupCompleteResult{
+		Items: items,
+	}
+	return out, nil
 }

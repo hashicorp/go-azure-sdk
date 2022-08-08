@@ -59,50 +59,6 @@ func (c IotConnectorsClient) FhirDestinationsListByIotConnector(ctx context.Cont
 	return
 }
 
-// FhirDestinationsListByIotConnectorComplete retrieves all of the results into a single object
-func (c IotConnectorsClient) FhirDestinationsListByIotConnectorComplete(ctx context.Context, id IotConnectorId) (FhirDestinationsListByIotConnectorCompleteResult, error) {
-	return c.FhirDestinationsListByIotConnectorCompleteMatchingPredicate(ctx, id, IotFhirDestinationOperationPredicate{})
-}
-
-// FhirDestinationsListByIotConnectorCompleteMatchingPredicate retrieves all of the results and then applied the predicate
-func (c IotConnectorsClient) FhirDestinationsListByIotConnectorCompleteMatchingPredicate(ctx context.Context, id IotConnectorId, predicate IotFhirDestinationOperationPredicate) (resp FhirDestinationsListByIotConnectorCompleteResult, err error) {
-	items := make([]IotFhirDestination, 0)
-
-	page, err := c.FhirDestinationsListByIotConnector(ctx, id)
-	if err != nil {
-		err = fmt.Errorf("loading the initial page: %+v", err)
-		return
-	}
-	if page.Model != nil {
-		for _, v := range *page.Model {
-			if predicate.Matches(v) {
-				items = append(items, v)
-			}
-		}
-	}
-
-	for page.HasMore() {
-		page, err = page.LoadMore(ctx)
-		if err != nil {
-			err = fmt.Errorf("loading the next page: %+v", err)
-			return
-		}
-
-		if page.Model != nil {
-			for _, v := range *page.Model {
-				if predicate.Matches(v) {
-					items = append(items, v)
-				}
-			}
-		}
-	}
-
-	out := FhirDestinationsListByIotConnectorCompleteResult{
-		Items: items,
-	}
-	return out, nil
-}
-
 // preparerForFhirDestinationsListByIotConnector prepares the FhirDestinationsListByIotConnector request.
 func (c IotConnectorsClient) preparerForFhirDestinationsListByIotConnector(ctx context.Context, id IotConnectorId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
@@ -183,4 +139,48 @@ func (c IotConnectorsClient) responderForFhirDestinationsListByIotConnector(resp
 		}
 	}
 	return
+}
+
+// FhirDestinationsListByIotConnectorComplete retrieves all of the results into a single object
+func (c IotConnectorsClient) FhirDestinationsListByIotConnectorComplete(ctx context.Context, id IotConnectorId) (FhirDestinationsListByIotConnectorCompleteResult, error) {
+	return c.FhirDestinationsListByIotConnectorCompleteMatchingPredicate(ctx, id, IotFhirDestinationOperationPredicate{})
+}
+
+// FhirDestinationsListByIotConnectorCompleteMatchingPredicate retrieves all of the results and then applied the predicate
+func (c IotConnectorsClient) FhirDestinationsListByIotConnectorCompleteMatchingPredicate(ctx context.Context, id IotConnectorId, predicate IotFhirDestinationOperationPredicate) (resp FhirDestinationsListByIotConnectorCompleteResult, err error) {
+	items := make([]IotFhirDestination, 0)
+
+	page, err := c.FhirDestinationsListByIotConnector(ctx, id)
+	if err != nil {
+		err = fmt.Errorf("loading the initial page: %+v", err)
+		return
+	}
+	if page.Model != nil {
+		for _, v := range *page.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	for page.HasMore() {
+		page, err = page.LoadMore(ctx)
+		if err != nil {
+			err = fmt.Errorf("loading the next page: %+v", err)
+			return
+		}
+
+		if page.Model != nil {
+			for _, v := range *page.Model {
+				if predicate.Matches(v) {
+					items = append(items, v)
+				}
+			}
+		}
+	}
+
+	out := FhirDestinationsListByIotConnectorCompleteResult{
+		Items: items,
+	}
+	return out, nil
 }

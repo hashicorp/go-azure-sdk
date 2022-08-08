@@ -59,50 +59,6 @@ func (c OutboundNetworkDependenciesEndpointsClient) ClustersListOutboundNetworkD
 	return
 }
 
-// ClustersListOutboundNetworkDependenciesEndpointsComplete retrieves all of the results into a single object
-func (c OutboundNetworkDependenciesEndpointsClient) ClustersListOutboundNetworkDependenciesEndpointsComplete(ctx context.Context, id ClusterId) (ClustersListOutboundNetworkDependenciesEndpointsCompleteResult, error) {
-	return c.ClustersListOutboundNetworkDependenciesEndpointsCompleteMatchingPredicate(ctx, id, OutboundNetworkDependenciesEndpointOperationPredicate{})
-}
-
-// ClustersListOutboundNetworkDependenciesEndpointsCompleteMatchingPredicate retrieves all of the results and then applied the predicate
-func (c OutboundNetworkDependenciesEndpointsClient) ClustersListOutboundNetworkDependenciesEndpointsCompleteMatchingPredicate(ctx context.Context, id ClusterId, predicate OutboundNetworkDependenciesEndpointOperationPredicate) (resp ClustersListOutboundNetworkDependenciesEndpointsCompleteResult, err error) {
-	items := make([]OutboundNetworkDependenciesEndpoint, 0)
-
-	page, err := c.ClustersListOutboundNetworkDependenciesEndpoints(ctx, id)
-	if err != nil {
-		err = fmt.Errorf("loading the initial page: %+v", err)
-		return
-	}
-	if page.Model != nil {
-		for _, v := range *page.Model {
-			if predicate.Matches(v) {
-				items = append(items, v)
-			}
-		}
-	}
-
-	for page.HasMore() {
-		page, err = page.LoadMore(ctx)
-		if err != nil {
-			err = fmt.Errorf("loading the next page: %+v", err)
-			return
-		}
-
-		if page.Model != nil {
-			for _, v := range *page.Model {
-				if predicate.Matches(v) {
-					items = append(items, v)
-				}
-			}
-		}
-	}
-
-	out := ClustersListOutboundNetworkDependenciesEndpointsCompleteResult{
-		Items: items,
-	}
-	return out, nil
-}
-
 // preparerForClustersListOutboundNetworkDependenciesEndpoints prepares the ClustersListOutboundNetworkDependenciesEndpoints request.
 func (c OutboundNetworkDependenciesEndpointsClient) preparerForClustersListOutboundNetworkDependenciesEndpoints(ctx context.Context, id ClusterId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
@@ -183,4 +139,48 @@ func (c OutboundNetworkDependenciesEndpointsClient) responderForClustersListOutb
 		}
 	}
 	return
+}
+
+// ClustersListOutboundNetworkDependenciesEndpointsComplete retrieves all of the results into a single object
+func (c OutboundNetworkDependenciesEndpointsClient) ClustersListOutboundNetworkDependenciesEndpointsComplete(ctx context.Context, id ClusterId) (ClustersListOutboundNetworkDependenciesEndpointsCompleteResult, error) {
+	return c.ClustersListOutboundNetworkDependenciesEndpointsCompleteMatchingPredicate(ctx, id, OutboundNetworkDependenciesEndpointOperationPredicate{})
+}
+
+// ClustersListOutboundNetworkDependenciesEndpointsCompleteMatchingPredicate retrieves all of the results and then applied the predicate
+func (c OutboundNetworkDependenciesEndpointsClient) ClustersListOutboundNetworkDependenciesEndpointsCompleteMatchingPredicate(ctx context.Context, id ClusterId, predicate OutboundNetworkDependenciesEndpointOperationPredicate) (resp ClustersListOutboundNetworkDependenciesEndpointsCompleteResult, err error) {
+	items := make([]OutboundNetworkDependenciesEndpoint, 0)
+
+	page, err := c.ClustersListOutboundNetworkDependenciesEndpoints(ctx, id)
+	if err != nil {
+		err = fmt.Errorf("loading the initial page: %+v", err)
+		return
+	}
+	if page.Model != nil {
+		for _, v := range *page.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	for page.HasMore() {
+		page, err = page.LoadMore(ctx)
+		if err != nil {
+			err = fmt.Errorf("loading the next page: %+v", err)
+			return
+		}
+
+		if page.Model != nil {
+			for _, v := range *page.Model {
+				if predicate.Matches(v) {
+					items = append(items, v)
+				}
+			}
+		}
+	}
+
+	out := ClustersListOutboundNetworkDependenciesEndpointsCompleteResult{
+		Items: items,
+	}
+	return out, nil
 }

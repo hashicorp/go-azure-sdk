@@ -60,50 +60,6 @@ func (c MediaClient) MediaservicesListBySubscription(ctx context.Context, id com
 	return
 }
 
-// MediaservicesListBySubscriptionComplete retrieves all of the results into a single object
-func (c MediaClient) MediaservicesListBySubscriptionComplete(ctx context.Context, id commonids.SubscriptionId) (MediaservicesListBySubscriptionCompleteResult, error) {
-	return c.MediaservicesListBySubscriptionCompleteMatchingPredicate(ctx, id, MediaServiceOperationPredicate{})
-}
-
-// MediaservicesListBySubscriptionCompleteMatchingPredicate retrieves all of the results and then applied the predicate
-func (c MediaClient) MediaservicesListBySubscriptionCompleteMatchingPredicate(ctx context.Context, id commonids.SubscriptionId, predicate MediaServiceOperationPredicate) (resp MediaservicesListBySubscriptionCompleteResult, err error) {
-	items := make([]MediaService, 0)
-
-	page, err := c.MediaservicesListBySubscription(ctx, id)
-	if err != nil {
-		err = fmt.Errorf("loading the initial page: %+v", err)
-		return
-	}
-	if page.Model != nil {
-		for _, v := range *page.Model {
-			if predicate.Matches(v) {
-				items = append(items, v)
-			}
-		}
-	}
-
-	for page.HasMore() {
-		page, err = page.LoadMore(ctx)
-		if err != nil {
-			err = fmt.Errorf("loading the next page: %+v", err)
-			return
-		}
-
-		if page.Model != nil {
-			for _, v := range *page.Model {
-				if predicate.Matches(v) {
-					items = append(items, v)
-				}
-			}
-		}
-	}
-
-	out := MediaservicesListBySubscriptionCompleteResult{
-		Items: items,
-	}
-	return out, nil
-}
-
 // preparerForMediaservicesListBySubscription prepares the MediaservicesListBySubscription request.
 func (c MediaClient) preparerForMediaservicesListBySubscription(ctx context.Context, id commonids.SubscriptionId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
@@ -184,4 +140,48 @@ func (c MediaClient) responderForMediaservicesListBySubscription(resp *http.Resp
 		}
 	}
 	return
+}
+
+// MediaservicesListBySubscriptionComplete retrieves all of the results into a single object
+func (c MediaClient) MediaservicesListBySubscriptionComplete(ctx context.Context, id commonids.SubscriptionId) (MediaservicesListBySubscriptionCompleteResult, error) {
+	return c.MediaservicesListBySubscriptionCompleteMatchingPredicate(ctx, id, MediaServiceOperationPredicate{})
+}
+
+// MediaservicesListBySubscriptionCompleteMatchingPredicate retrieves all of the results and then applied the predicate
+func (c MediaClient) MediaservicesListBySubscriptionCompleteMatchingPredicate(ctx context.Context, id commonids.SubscriptionId, predicate MediaServiceOperationPredicate) (resp MediaservicesListBySubscriptionCompleteResult, err error) {
+	items := make([]MediaService, 0)
+
+	page, err := c.MediaservicesListBySubscription(ctx, id)
+	if err != nil {
+		err = fmt.Errorf("loading the initial page: %+v", err)
+		return
+	}
+	if page.Model != nil {
+		for _, v := range *page.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	for page.HasMore() {
+		page, err = page.LoadMore(ctx)
+		if err != nil {
+			err = fmt.Errorf("loading the next page: %+v", err)
+			return
+		}
+
+		if page.Model != nil {
+			for _, v := range *page.Model {
+				if predicate.Matches(v) {
+					items = append(items, v)
+				}
+			}
+		}
+	}
+
+	out := MediaservicesListBySubscriptionCompleteResult{
+		Items: items,
+	}
+	return out, nil
 }

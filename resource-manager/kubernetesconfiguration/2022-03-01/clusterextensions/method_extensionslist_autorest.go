@@ -59,50 +59,6 @@ func (c ClusterExtensionsClient) ExtensionsList(ctx context.Context, id Provider
 	return
 }
 
-// ExtensionsListComplete retrieves all of the results into a single object
-func (c ClusterExtensionsClient) ExtensionsListComplete(ctx context.Context, id ProviderId) (ExtensionsListCompleteResult, error) {
-	return c.ExtensionsListCompleteMatchingPredicate(ctx, id, ExtensionOperationPredicate{})
-}
-
-// ExtensionsListCompleteMatchingPredicate retrieves all of the results and then applied the predicate
-func (c ClusterExtensionsClient) ExtensionsListCompleteMatchingPredicate(ctx context.Context, id ProviderId, predicate ExtensionOperationPredicate) (resp ExtensionsListCompleteResult, err error) {
-	items := make([]Extension, 0)
-
-	page, err := c.ExtensionsList(ctx, id)
-	if err != nil {
-		err = fmt.Errorf("loading the initial page: %+v", err)
-		return
-	}
-	if page.Model != nil {
-		for _, v := range *page.Model {
-			if predicate.Matches(v) {
-				items = append(items, v)
-			}
-		}
-	}
-
-	for page.HasMore() {
-		page, err = page.LoadMore(ctx)
-		if err != nil {
-			err = fmt.Errorf("loading the next page: %+v", err)
-			return
-		}
-
-		if page.Model != nil {
-			for _, v := range *page.Model {
-				if predicate.Matches(v) {
-					items = append(items, v)
-				}
-			}
-		}
-	}
-
-	out := ExtensionsListCompleteResult{
-		Items: items,
-	}
-	return out, nil
-}
-
 // preparerForExtensionsList prepares the ExtensionsList request.
 func (c ClusterExtensionsClient) preparerForExtensionsList(ctx context.Context, id ProviderId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
@@ -183,4 +139,48 @@ func (c ClusterExtensionsClient) responderForExtensionsList(resp *http.Response)
 		}
 	}
 	return
+}
+
+// ExtensionsListComplete retrieves all of the results into a single object
+func (c ClusterExtensionsClient) ExtensionsListComplete(ctx context.Context, id ProviderId) (ExtensionsListCompleteResult, error) {
+	return c.ExtensionsListCompleteMatchingPredicate(ctx, id, ExtensionOperationPredicate{})
+}
+
+// ExtensionsListCompleteMatchingPredicate retrieves all of the results and then applied the predicate
+func (c ClusterExtensionsClient) ExtensionsListCompleteMatchingPredicate(ctx context.Context, id ProviderId, predicate ExtensionOperationPredicate) (resp ExtensionsListCompleteResult, err error) {
+	items := make([]Extension, 0)
+
+	page, err := c.ExtensionsList(ctx, id)
+	if err != nil {
+		err = fmt.Errorf("loading the initial page: %+v", err)
+		return
+	}
+	if page.Model != nil {
+		for _, v := range *page.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	for page.HasMore() {
+		page, err = page.LoadMore(ctx)
+		if err != nil {
+			err = fmt.Errorf("loading the next page: %+v", err)
+			return
+		}
+
+		if page.Model != nil {
+			for _, v := range *page.Model {
+				if predicate.Matches(v) {
+					items = append(items, v)
+				}
+			}
+		}
+	}
+
+	out := ExtensionsListCompleteResult{
+		Items: items,
+	}
+	return out, nil
 }

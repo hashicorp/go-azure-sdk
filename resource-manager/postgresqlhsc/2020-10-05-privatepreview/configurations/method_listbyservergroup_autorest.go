@@ -59,50 +59,6 @@ func (c ConfigurationsClient) ListByServerGroup(ctx context.Context, id ServerGr
 	return
 }
 
-// ListByServerGroupComplete retrieves all of the results into a single object
-func (c ConfigurationsClient) ListByServerGroupComplete(ctx context.Context, id ServerGroupsv2Id) (ListByServerGroupCompleteResult, error) {
-	return c.ListByServerGroupCompleteMatchingPredicate(ctx, id, ServerGroupConfigurationOperationPredicate{})
-}
-
-// ListByServerGroupCompleteMatchingPredicate retrieves all of the results and then applied the predicate
-func (c ConfigurationsClient) ListByServerGroupCompleteMatchingPredicate(ctx context.Context, id ServerGroupsv2Id, predicate ServerGroupConfigurationOperationPredicate) (resp ListByServerGroupCompleteResult, err error) {
-	items := make([]ServerGroupConfiguration, 0)
-
-	page, err := c.ListByServerGroup(ctx, id)
-	if err != nil {
-		err = fmt.Errorf("loading the initial page: %+v", err)
-		return
-	}
-	if page.Model != nil {
-		for _, v := range *page.Model {
-			if predicate.Matches(v) {
-				items = append(items, v)
-			}
-		}
-	}
-
-	for page.HasMore() {
-		page, err = page.LoadMore(ctx)
-		if err != nil {
-			err = fmt.Errorf("loading the next page: %+v", err)
-			return
-		}
-
-		if page.Model != nil {
-			for _, v := range *page.Model {
-				if predicate.Matches(v) {
-					items = append(items, v)
-				}
-			}
-		}
-	}
-
-	out := ListByServerGroupCompleteResult{
-		Items: items,
-	}
-	return out, nil
-}
-
 // preparerForListByServerGroup prepares the ListByServerGroup request.
 func (c ConfigurationsClient) preparerForListByServerGroup(ctx context.Context, id ServerGroupsv2Id) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
@@ -183,4 +139,48 @@ func (c ConfigurationsClient) responderForListByServerGroup(resp *http.Response)
 		}
 	}
 	return
+}
+
+// ListByServerGroupComplete retrieves all of the results into a single object
+func (c ConfigurationsClient) ListByServerGroupComplete(ctx context.Context, id ServerGroupsv2Id) (ListByServerGroupCompleteResult, error) {
+	return c.ListByServerGroupCompleteMatchingPredicate(ctx, id, ServerGroupConfigurationOperationPredicate{})
+}
+
+// ListByServerGroupCompleteMatchingPredicate retrieves all of the results and then applied the predicate
+func (c ConfigurationsClient) ListByServerGroupCompleteMatchingPredicate(ctx context.Context, id ServerGroupsv2Id, predicate ServerGroupConfigurationOperationPredicate) (resp ListByServerGroupCompleteResult, err error) {
+	items := make([]ServerGroupConfiguration, 0)
+
+	page, err := c.ListByServerGroup(ctx, id)
+	if err != nil {
+		err = fmt.Errorf("loading the initial page: %+v", err)
+		return
+	}
+	if page.Model != nil {
+		for _, v := range *page.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	for page.HasMore() {
+		page, err = page.LoadMore(ctx)
+		if err != nil {
+			err = fmt.Errorf("loading the next page: %+v", err)
+			return
+		}
+
+		if page.Model != nil {
+			for _, v := range *page.Model {
+				if predicate.Matches(v) {
+					items = append(items, v)
+				}
+			}
+		}
+	}
+
+	out := ListByServerGroupCompleteResult{
+		Items: items,
+	}
+	return out, nil
 }

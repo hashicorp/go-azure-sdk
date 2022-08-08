@@ -60,50 +60,6 @@ func (c DiskPoolsClient) ListBySubscription(ctx context.Context, id commonids.Su
 	return
 }
 
-// ListBySubscriptionComplete retrieves all of the results into a single object
-func (c DiskPoolsClient) ListBySubscriptionComplete(ctx context.Context, id commonids.SubscriptionId) (ListBySubscriptionCompleteResult, error) {
-	return c.ListBySubscriptionCompleteMatchingPredicate(ctx, id, DiskPoolOperationPredicate{})
-}
-
-// ListBySubscriptionCompleteMatchingPredicate retrieves all of the results and then applied the predicate
-func (c DiskPoolsClient) ListBySubscriptionCompleteMatchingPredicate(ctx context.Context, id commonids.SubscriptionId, predicate DiskPoolOperationPredicate) (resp ListBySubscriptionCompleteResult, err error) {
-	items := make([]DiskPool, 0)
-
-	page, err := c.ListBySubscription(ctx, id)
-	if err != nil {
-		err = fmt.Errorf("loading the initial page: %+v", err)
-		return
-	}
-	if page.Model != nil {
-		for _, v := range *page.Model {
-			if predicate.Matches(v) {
-				items = append(items, v)
-			}
-		}
-	}
-
-	for page.HasMore() {
-		page, err = page.LoadMore(ctx)
-		if err != nil {
-			err = fmt.Errorf("loading the next page: %+v", err)
-			return
-		}
-
-		if page.Model != nil {
-			for _, v := range *page.Model {
-				if predicate.Matches(v) {
-					items = append(items, v)
-				}
-			}
-		}
-	}
-
-	out := ListBySubscriptionCompleteResult{
-		Items: items,
-	}
-	return out, nil
-}
-
 // preparerForListBySubscription prepares the ListBySubscription request.
 func (c DiskPoolsClient) preparerForListBySubscription(ctx context.Context, id commonids.SubscriptionId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
@@ -184,4 +140,48 @@ func (c DiskPoolsClient) responderForListBySubscription(resp *http.Response) (re
 		}
 	}
 	return
+}
+
+// ListBySubscriptionComplete retrieves all of the results into a single object
+func (c DiskPoolsClient) ListBySubscriptionComplete(ctx context.Context, id commonids.SubscriptionId) (ListBySubscriptionCompleteResult, error) {
+	return c.ListBySubscriptionCompleteMatchingPredicate(ctx, id, DiskPoolOperationPredicate{})
+}
+
+// ListBySubscriptionCompleteMatchingPredicate retrieves all of the results and then applied the predicate
+func (c DiskPoolsClient) ListBySubscriptionCompleteMatchingPredicate(ctx context.Context, id commonids.SubscriptionId, predicate DiskPoolOperationPredicate) (resp ListBySubscriptionCompleteResult, err error) {
+	items := make([]DiskPool, 0)
+
+	page, err := c.ListBySubscription(ctx, id)
+	if err != nil {
+		err = fmt.Errorf("loading the initial page: %+v", err)
+		return
+	}
+	if page.Model != nil {
+		for _, v := range *page.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	for page.HasMore() {
+		page, err = page.LoadMore(ctx)
+		if err != nil {
+			err = fmt.Errorf("loading the next page: %+v", err)
+			return
+		}
+
+		if page.Model != nil {
+			for _, v := range *page.Model {
+				if predicate.Matches(v) {
+					items = append(items, v)
+				}
+			}
+		}
+	}
+
+	out := ListBySubscriptionCompleteResult{
+		Items: items,
+	}
+	return out, nil
 }

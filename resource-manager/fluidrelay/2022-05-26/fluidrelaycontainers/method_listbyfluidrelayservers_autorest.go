@@ -59,50 +59,6 @@ func (c FluidRelayContainersClient) ListByFluidRelayServers(ctx context.Context,
 	return
 }
 
-// ListByFluidRelayServersComplete retrieves all of the results into a single object
-func (c FluidRelayContainersClient) ListByFluidRelayServersComplete(ctx context.Context, id FluidRelayServerId) (ListByFluidRelayServersCompleteResult, error) {
-	return c.ListByFluidRelayServersCompleteMatchingPredicate(ctx, id, FluidRelayContainerOperationPredicate{})
-}
-
-// ListByFluidRelayServersCompleteMatchingPredicate retrieves all of the results and then applied the predicate
-func (c FluidRelayContainersClient) ListByFluidRelayServersCompleteMatchingPredicate(ctx context.Context, id FluidRelayServerId, predicate FluidRelayContainerOperationPredicate) (resp ListByFluidRelayServersCompleteResult, err error) {
-	items := make([]FluidRelayContainer, 0)
-
-	page, err := c.ListByFluidRelayServers(ctx, id)
-	if err != nil {
-		err = fmt.Errorf("loading the initial page: %+v", err)
-		return
-	}
-	if page.Model != nil {
-		for _, v := range *page.Model {
-			if predicate.Matches(v) {
-				items = append(items, v)
-			}
-		}
-	}
-
-	for page.HasMore() {
-		page, err = page.LoadMore(ctx)
-		if err != nil {
-			err = fmt.Errorf("loading the next page: %+v", err)
-			return
-		}
-
-		if page.Model != nil {
-			for _, v := range *page.Model {
-				if predicate.Matches(v) {
-					items = append(items, v)
-				}
-			}
-		}
-	}
-
-	out := ListByFluidRelayServersCompleteResult{
-		Items: items,
-	}
-	return out, nil
-}
-
 // preparerForListByFluidRelayServers prepares the ListByFluidRelayServers request.
 func (c FluidRelayContainersClient) preparerForListByFluidRelayServers(ctx context.Context, id FluidRelayServerId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
@@ -183,4 +139,48 @@ func (c FluidRelayContainersClient) responderForListByFluidRelayServers(resp *ht
 		}
 	}
 	return
+}
+
+// ListByFluidRelayServersComplete retrieves all of the results into a single object
+func (c FluidRelayContainersClient) ListByFluidRelayServersComplete(ctx context.Context, id FluidRelayServerId) (ListByFluidRelayServersCompleteResult, error) {
+	return c.ListByFluidRelayServersCompleteMatchingPredicate(ctx, id, FluidRelayContainerOperationPredicate{})
+}
+
+// ListByFluidRelayServersCompleteMatchingPredicate retrieves all of the results and then applied the predicate
+func (c FluidRelayContainersClient) ListByFluidRelayServersCompleteMatchingPredicate(ctx context.Context, id FluidRelayServerId, predicate FluidRelayContainerOperationPredicate) (resp ListByFluidRelayServersCompleteResult, err error) {
+	items := make([]FluidRelayContainer, 0)
+
+	page, err := c.ListByFluidRelayServers(ctx, id)
+	if err != nil {
+		err = fmt.Errorf("loading the initial page: %+v", err)
+		return
+	}
+	if page.Model != nil {
+		for _, v := range *page.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	for page.HasMore() {
+		page, err = page.LoadMore(ctx)
+		if err != nil {
+			err = fmt.Errorf("loading the next page: %+v", err)
+			return
+		}
+
+		if page.Model != nil {
+			for _, v := range *page.Model {
+				if predicate.Matches(v) {
+					items = append(items, v)
+				}
+			}
+		}
+	}
+
+	out := ListByFluidRelayServersCompleteResult{
+		Items: items,
+	}
+	return out, nil
 }

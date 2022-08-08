@@ -59,50 +59,6 @@ func (c VMHHostListClient) VMHostList(ctx context.Context, id MonitorId) (resp V
 	return
 }
 
-// VMHostListComplete retrieves all of the results into a single object
-func (c VMHHostListClient) VMHostListComplete(ctx context.Context, id MonitorId) (VMHostListCompleteResult, error) {
-	return c.VMHostListCompleteMatchingPredicate(ctx, id, VMResourcesOperationPredicate{})
-}
-
-// VMHostListCompleteMatchingPredicate retrieves all of the results and then applied the predicate
-func (c VMHHostListClient) VMHostListCompleteMatchingPredicate(ctx context.Context, id MonitorId, predicate VMResourcesOperationPredicate) (resp VMHostListCompleteResult, err error) {
-	items := make([]VMResources, 0)
-
-	page, err := c.VMHostList(ctx, id)
-	if err != nil {
-		err = fmt.Errorf("loading the initial page: %+v", err)
-		return
-	}
-	if page.Model != nil {
-		for _, v := range *page.Model {
-			if predicate.Matches(v) {
-				items = append(items, v)
-			}
-		}
-	}
-
-	for page.HasMore() {
-		page, err = page.LoadMore(ctx)
-		if err != nil {
-			err = fmt.Errorf("loading the next page: %+v", err)
-			return
-		}
-
-		if page.Model != nil {
-			for _, v := range *page.Model {
-				if predicate.Matches(v) {
-					items = append(items, v)
-				}
-			}
-		}
-	}
-
-	out := VMHostListCompleteResult{
-		Items: items,
-	}
-	return out, nil
-}
-
 // preparerForVMHostList prepares the VMHostList request.
 func (c VMHHostListClient) preparerForVMHostList(ctx context.Context, id MonitorId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
@@ -183,4 +139,48 @@ func (c VMHHostListClient) responderForVMHostList(resp *http.Response) (result V
 		}
 	}
 	return
+}
+
+// VMHostListComplete retrieves all of the results into a single object
+func (c VMHHostListClient) VMHostListComplete(ctx context.Context, id MonitorId) (VMHostListCompleteResult, error) {
+	return c.VMHostListCompleteMatchingPredicate(ctx, id, VMResourcesOperationPredicate{})
+}
+
+// VMHostListCompleteMatchingPredicate retrieves all of the results and then applied the predicate
+func (c VMHHostListClient) VMHostListCompleteMatchingPredicate(ctx context.Context, id MonitorId, predicate VMResourcesOperationPredicate) (resp VMHostListCompleteResult, err error) {
+	items := make([]VMResources, 0)
+
+	page, err := c.VMHostList(ctx, id)
+	if err != nil {
+		err = fmt.Errorf("loading the initial page: %+v", err)
+		return
+	}
+	if page.Model != nil {
+		for _, v := range *page.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	for page.HasMore() {
+		page, err = page.LoadMore(ctx)
+		if err != nil {
+			err = fmt.Errorf("loading the next page: %+v", err)
+			return
+		}
+
+		if page.Model != nil {
+			for _, v := range *page.Model {
+				if predicate.Matches(v) {
+					items = append(items, v)
+				}
+			}
+		}
+	}
+
+	out := VMHostListCompleteResult{
+		Items: items,
+	}
+	return out, nil
 }

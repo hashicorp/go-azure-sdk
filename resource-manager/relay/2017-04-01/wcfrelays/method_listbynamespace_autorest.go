@@ -59,50 +59,6 @@ func (c WCFRelaysClient) ListByNamespace(ctx context.Context, id NamespaceId) (r
 	return
 }
 
-// ListByNamespaceComplete retrieves all of the results into a single object
-func (c WCFRelaysClient) ListByNamespaceComplete(ctx context.Context, id NamespaceId) (ListByNamespaceCompleteResult, error) {
-	return c.ListByNamespaceCompleteMatchingPredicate(ctx, id, WcfRelayOperationPredicate{})
-}
-
-// ListByNamespaceCompleteMatchingPredicate retrieves all of the results and then applied the predicate
-func (c WCFRelaysClient) ListByNamespaceCompleteMatchingPredicate(ctx context.Context, id NamespaceId, predicate WcfRelayOperationPredicate) (resp ListByNamespaceCompleteResult, err error) {
-	items := make([]WcfRelay, 0)
-
-	page, err := c.ListByNamespace(ctx, id)
-	if err != nil {
-		err = fmt.Errorf("loading the initial page: %+v", err)
-		return
-	}
-	if page.Model != nil {
-		for _, v := range *page.Model {
-			if predicate.Matches(v) {
-				items = append(items, v)
-			}
-		}
-	}
-
-	for page.HasMore() {
-		page, err = page.LoadMore(ctx)
-		if err != nil {
-			err = fmt.Errorf("loading the next page: %+v", err)
-			return
-		}
-
-		if page.Model != nil {
-			for _, v := range *page.Model {
-				if predicate.Matches(v) {
-					items = append(items, v)
-				}
-			}
-		}
-	}
-
-	out := ListByNamespaceCompleteResult{
-		Items: items,
-	}
-	return out, nil
-}
-
 // preparerForListByNamespace prepares the ListByNamespace request.
 func (c WCFRelaysClient) preparerForListByNamespace(ctx context.Context, id NamespaceId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
@@ -183,4 +139,48 @@ func (c WCFRelaysClient) responderForListByNamespace(resp *http.Response) (resul
 		}
 	}
 	return
+}
+
+// ListByNamespaceComplete retrieves all of the results into a single object
+func (c WCFRelaysClient) ListByNamespaceComplete(ctx context.Context, id NamespaceId) (ListByNamespaceCompleteResult, error) {
+	return c.ListByNamespaceCompleteMatchingPredicate(ctx, id, WcfRelayOperationPredicate{})
+}
+
+// ListByNamespaceCompleteMatchingPredicate retrieves all of the results and then applied the predicate
+func (c WCFRelaysClient) ListByNamespaceCompleteMatchingPredicate(ctx context.Context, id NamespaceId, predicate WcfRelayOperationPredicate) (resp ListByNamespaceCompleteResult, err error) {
+	items := make([]WcfRelay, 0)
+
+	page, err := c.ListByNamespace(ctx, id)
+	if err != nil {
+		err = fmt.Errorf("loading the initial page: %+v", err)
+		return
+	}
+	if page.Model != nil {
+		for _, v := range *page.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	for page.HasMore() {
+		page, err = page.LoadMore(ctx)
+		if err != nil {
+			err = fmt.Errorf("loading the next page: %+v", err)
+			return
+		}
+
+		if page.Model != nil {
+			for _, v := range *page.Model {
+				if predicate.Matches(v) {
+					items = append(items, v)
+				}
+			}
+		}
+	}
+
+	out := ListByNamespaceCompleteResult{
+		Items: items,
+	}
+	return out, nil
 }

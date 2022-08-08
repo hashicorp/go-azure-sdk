@@ -88,50 +88,6 @@ func (c V2WorkspaceConnectionResourceClient) WorkspaceConnectionsList(ctx contex
 	return
 }
 
-// WorkspaceConnectionsListComplete retrieves all of the results into a single object
-func (c V2WorkspaceConnectionResourceClient) WorkspaceConnectionsListComplete(ctx context.Context, id WorkspaceId, options WorkspaceConnectionsListOperationOptions) (WorkspaceConnectionsListCompleteResult, error) {
-	return c.WorkspaceConnectionsListCompleteMatchingPredicate(ctx, id, options, WorkspaceConnectionPropertiesV2BasicResourceOperationPredicate{})
-}
-
-// WorkspaceConnectionsListCompleteMatchingPredicate retrieves all of the results and then applied the predicate
-func (c V2WorkspaceConnectionResourceClient) WorkspaceConnectionsListCompleteMatchingPredicate(ctx context.Context, id WorkspaceId, options WorkspaceConnectionsListOperationOptions, predicate WorkspaceConnectionPropertiesV2BasicResourceOperationPredicate) (resp WorkspaceConnectionsListCompleteResult, err error) {
-	items := make([]WorkspaceConnectionPropertiesV2BasicResource, 0)
-
-	page, err := c.WorkspaceConnectionsList(ctx, id, options)
-	if err != nil {
-		err = fmt.Errorf("loading the initial page: %+v", err)
-		return
-	}
-	if page.Model != nil {
-		for _, v := range *page.Model {
-			if predicate.Matches(v) {
-				items = append(items, v)
-			}
-		}
-	}
-
-	for page.HasMore() {
-		page, err = page.LoadMore(ctx)
-		if err != nil {
-			err = fmt.Errorf("loading the next page: %+v", err)
-			return
-		}
-
-		if page.Model != nil {
-			for _, v := range *page.Model {
-				if predicate.Matches(v) {
-					items = append(items, v)
-				}
-			}
-		}
-	}
-
-	out := WorkspaceConnectionsListCompleteResult{
-		Items: items,
-	}
-	return out, nil
-}
-
 // preparerForWorkspaceConnectionsList prepares the WorkspaceConnectionsList request.
 func (c V2WorkspaceConnectionResourceClient) preparerForWorkspaceConnectionsList(ctx context.Context, id WorkspaceId, options WorkspaceConnectionsListOperationOptions) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
@@ -217,4 +173,48 @@ func (c V2WorkspaceConnectionResourceClient) responderForWorkspaceConnectionsLis
 		}
 	}
 	return
+}
+
+// WorkspaceConnectionsListComplete retrieves all of the results into a single object
+func (c V2WorkspaceConnectionResourceClient) WorkspaceConnectionsListComplete(ctx context.Context, id WorkspaceId, options WorkspaceConnectionsListOperationOptions) (WorkspaceConnectionsListCompleteResult, error) {
+	return c.WorkspaceConnectionsListCompleteMatchingPredicate(ctx, id, options, WorkspaceConnectionPropertiesV2BasicResourceOperationPredicate{})
+}
+
+// WorkspaceConnectionsListCompleteMatchingPredicate retrieves all of the results and then applied the predicate
+func (c V2WorkspaceConnectionResourceClient) WorkspaceConnectionsListCompleteMatchingPredicate(ctx context.Context, id WorkspaceId, options WorkspaceConnectionsListOperationOptions, predicate WorkspaceConnectionPropertiesV2BasicResourceOperationPredicate) (resp WorkspaceConnectionsListCompleteResult, err error) {
+	items := make([]WorkspaceConnectionPropertiesV2BasicResource, 0)
+
+	page, err := c.WorkspaceConnectionsList(ctx, id, options)
+	if err != nil {
+		err = fmt.Errorf("loading the initial page: %+v", err)
+		return
+	}
+	if page.Model != nil {
+		for _, v := range *page.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	for page.HasMore() {
+		page, err = page.LoadMore(ctx)
+		if err != nil {
+			err = fmt.Errorf("loading the next page: %+v", err)
+			return
+		}
+
+		if page.Model != nil {
+			for _, v := range *page.Model {
+				if predicate.Matches(v) {
+					items = append(items, v)
+				}
+			}
+		}
+	}
+
+	out := WorkspaceConnectionsListCompleteResult{
+		Items: items,
+	}
+	return out, nil
 }

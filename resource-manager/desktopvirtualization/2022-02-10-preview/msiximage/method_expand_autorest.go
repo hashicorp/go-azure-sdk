@@ -59,50 +59,6 @@ func (c MsixImageClient) Expand(ctx context.Context, id HostPoolId, input MSIXIm
 	return
 }
 
-// ExpandComplete retrieves all of the results into a single object
-func (c MsixImageClient) ExpandComplete(ctx context.Context, id HostPoolId, input MSIXImageURI) (ExpandCompleteResult, error) {
-	return c.ExpandCompleteMatchingPredicate(ctx, id, input, ExpandMsixImageOperationPredicate{})
-}
-
-// ExpandCompleteMatchingPredicate retrieves all of the results and then applied the predicate
-func (c MsixImageClient) ExpandCompleteMatchingPredicate(ctx context.Context, id HostPoolId, input MSIXImageURI, predicate ExpandMsixImageOperationPredicate) (resp ExpandCompleteResult, err error) {
-	items := make([]ExpandMsixImage, 0)
-
-	page, err := c.Expand(ctx, id, input)
-	if err != nil {
-		err = fmt.Errorf("loading the initial page: %+v", err)
-		return
-	}
-	if page.Model != nil {
-		for _, v := range *page.Model {
-			if predicate.Matches(v) {
-				items = append(items, v)
-			}
-		}
-	}
-
-	for page.HasMore() {
-		page, err = page.LoadMore(ctx)
-		if err != nil {
-			err = fmt.Errorf("loading the next page: %+v", err)
-			return
-		}
-
-		if page.Model != nil {
-			for _, v := range *page.Model {
-				if predicate.Matches(v) {
-					items = append(items, v)
-				}
-			}
-		}
-	}
-
-	out := ExpandCompleteResult{
-		Items: items,
-	}
-	return out, nil
-}
-
 // preparerForExpand prepares the Expand request.
 func (c MsixImageClient) preparerForExpand(ctx context.Context, id HostPoolId, input MSIXImageURI) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
@@ -184,4 +140,48 @@ func (c MsixImageClient) responderForExpand(resp *http.Response) (result ExpandO
 		}
 	}
 	return
+}
+
+// ExpandComplete retrieves all of the results into a single object
+func (c MsixImageClient) ExpandComplete(ctx context.Context, id HostPoolId, input MSIXImageURI) (ExpandCompleteResult, error) {
+	return c.ExpandCompleteMatchingPredicate(ctx, id, input, ExpandMsixImageOperationPredicate{})
+}
+
+// ExpandCompleteMatchingPredicate retrieves all of the results and then applied the predicate
+func (c MsixImageClient) ExpandCompleteMatchingPredicate(ctx context.Context, id HostPoolId, input MSIXImageURI, predicate ExpandMsixImageOperationPredicate) (resp ExpandCompleteResult, err error) {
+	items := make([]ExpandMsixImage, 0)
+
+	page, err := c.Expand(ctx, id, input)
+	if err != nil {
+		err = fmt.Errorf("loading the initial page: %+v", err)
+		return
+	}
+	if page.Model != nil {
+		for _, v := range *page.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	for page.HasMore() {
+		page, err = page.LoadMore(ctx)
+		if err != nil {
+			err = fmt.Errorf("loading the next page: %+v", err)
+			return
+		}
+
+		if page.Model != nil {
+			for _, v := range *page.Model {
+				if predicate.Matches(v) {
+					items = append(items, v)
+				}
+			}
+		}
+	}
+
+	out := ExpandCompleteResult{
+		Items: items,
+	}
+	return out, nil
 }

@@ -59,50 +59,6 @@ func (c ImageClient) ListByLabPlan(ctx context.Context, id LabPlanId) (resp List
 	return
 }
 
-// ListByLabPlanComplete retrieves all of the results into a single object
-func (c ImageClient) ListByLabPlanComplete(ctx context.Context, id LabPlanId) (ListByLabPlanCompleteResult, error) {
-	return c.ListByLabPlanCompleteMatchingPredicate(ctx, id, ImageOperationPredicate{})
-}
-
-// ListByLabPlanCompleteMatchingPredicate retrieves all of the results and then applied the predicate
-func (c ImageClient) ListByLabPlanCompleteMatchingPredicate(ctx context.Context, id LabPlanId, predicate ImageOperationPredicate) (resp ListByLabPlanCompleteResult, err error) {
-	items := make([]Image, 0)
-
-	page, err := c.ListByLabPlan(ctx, id)
-	if err != nil {
-		err = fmt.Errorf("loading the initial page: %+v", err)
-		return
-	}
-	if page.Model != nil {
-		for _, v := range *page.Model {
-			if predicate.Matches(v) {
-				items = append(items, v)
-			}
-		}
-	}
-
-	for page.HasMore() {
-		page, err = page.LoadMore(ctx)
-		if err != nil {
-			err = fmt.Errorf("loading the next page: %+v", err)
-			return
-		}
-
-		if page.Model != nil {
-			for _, v := range *page.Model {
-				if predicate.Matches(v) {
-					items = append(items, v)
-				}
-			}
-		}
-	}
-
-	out := ListByLabPlanCompleteResult{
-		Items: items,
-	}
-	return out, nil
-}
-
 // preparerForListByLabPlan prepares the ListByLabPlan request.
 func (c ImageClient) preparerForListByLabPlan(ctx context.Context, id LabPlanId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
@@ -183,4 +139,48 @@ func (c ImageClient) responderForListByLabPlan(resp *http.Response) (result List
 		}
 	}
 	return
+}
+
+// ListByLabPlanComplete retrieves all of the results into a single object
+func (c ImageClient) ListByLabPlanComplete(ctx context.Context, id LabPlanId) (ListByLabPlanCompleteResult, error) {
+	return c.ListByLabPlanCompleteMatchingPredicate(ctx, id, ImageOperationPredicate{})
+}
+
+// ListByLabPlanCompleteMatchingPredicate retrieves all of the results and then applied the predicate
+func (c ImageClient) ListByLabPlanCompleteMatchingPredicate(ctx context.Context, id LabPlanId, predicate ImageOperationPredicate) (resp ListByLabPlanCompleteResult, err error) {
+	items := make([]Image, 0)
+
+	page, err := c.ListByLabPlan(ctx, id)
+	if err != nil {
+		err = fmt.Errorf("loading the initial page: %+v", err)
+		return
+	}
+	if page.Model != nil {
+		for _, v := range *page.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	for page.HasMore() {
+		page, err = page.LoadMore(ctx)
+		if err != nil {
+			err = fmt.Errorf("loading the next page: %+v", err)
+			return
+		}
+
+		if page.Model != nil {
+			for _, v := range *page.Model {
+				if predicate.Matches(v) {
+					items = append(items, v)
+				}
+			}
+		}
+	}
+
+	out := ListByLabPlanCompleteResult{
+		Items: items,
+	}
+	return out, nil
 }

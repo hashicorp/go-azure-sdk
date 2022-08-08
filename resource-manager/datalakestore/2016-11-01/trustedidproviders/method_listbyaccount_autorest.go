@@ -59,50 +59,6 @@ func (c TrustedIdProvidersClient) ListByAccount(ctx context.Context, id AccountI
 	return
 }
 
-// ListByAccountComplete retrieves all of the results into a single object
-func (c TrustedIdProvidersClient) ListByAccountComplete(ctx context.Context, id AccountId) (ListByAccountCompleteResult, error) {
-	return c.ListByAccountCompleteMatchingPredicate(ctx, id, TrustedIdProviderOperationPredicate{})
-}
-
-// ListByAccountCompleteMatchingPredicate retrieves all of the results and then applied the predicate
-func (c TrustedIdProvidersClient) ListByAccountCompleteMatchingPredicate(ctx context.Context, id AccountId, predicate TrustedIdProviderOperationPredicate) (resp ListByAccountCompleteResult, err error) {
-	items := make([]TrustedIdProvider, 0)
-
-	page, err := c.ListByAccount(ctx, id)
-	if err != nil {
-		err = fmt.Errorf("loading the initial page: %+v", err)
-		return
-	}
-	if page.Model != nil {
-		for _, v := range *page.Model {
-			if predicate.Matches(v) {
-				items = append(items, v)
-			}
-		}
-	}
-
-	for page.HasMore() {
-		page, err = page.LoadMore(ctx)
-		if err != nil {
-			err = fmt.Errorf("loading the next page: %+v", err)
-			return
-		}
-
-		if page.Model != nil {
-			for _, v := range *page.Model {
-				if predicate.Matches(v) {
-					items = append(items, v)
-				}
-			}
-		}
-	}
-
-	out := ListByAccountCompleteResult{
-		Items: items,
-	}
-	return out, nil
-}
-
 // preparerForListByAccount prepares the ListByAccount request.
 func (c TrustedIdProvidersClient) preparerForListByAccount(ctx context.Context, id AccountId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
@@ -183,4 +139,48 @@ func (c TrustedIdProvidersClient) responderForListByAccount(resp *http.Response)
 		}
 	}
 	return
+}
+
+// ListByAccountComplete retrieves all of the results into a single object
+func (c TrustedIdProvidersClient) ListByAccountComplete(ctx context.Context, id AccountId) (ListByAccountCompleteResult, error) {
+	return c.ListByAccountCompleteMatchingPredicate(ctx, id, TrustedIdProviderOperationPredicate{})
+}
+
+// ListByAccountCompleteMatchingPredicate retrieves all of the results and then applied the predicate
+func (c TrustedIdProvidersClient) ListByAccountCompleteMatchingPredicate(ctx context.Context, id AccountId, predicate TrustedIdProviderOperationPredicate) (resp ListByAccountCompleteResult, err error) {
+	items := make([]TrustedIdProvider, 0)
+
+	page, err := c.ListByAccount(ctx, id)
+	if err != nil {
+		err = fmt.Errorf("loading the initial page: %+v", err)
+		return
+	}
+	if page.Model != nil {
+		for _, v := range *page.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	for page.HasMore() {
+		page, err = page.LoadMore(ctx)
+		if err != nil {
+			err = fmt.Errorf("loading the next page: %+v", err)
+			return
+		}
+
+		if page.Model != nil {
+			for _, v := range *page.Model {
+				if predicate.Matches(v) {
+					items = append(items, v)
+				}
+			}
+		}
+	}
+
+	out := ListByAccountCompleteResult{
+		Items: items,
+	}
+	return out, nil
 }

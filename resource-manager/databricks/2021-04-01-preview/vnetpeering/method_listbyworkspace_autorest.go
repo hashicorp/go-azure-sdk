@@ -59,50 +59,6 @@ func (c VNetPeeringClient) ListByWorkspace(ctx context.Context, id WorkspaceId) 
 	return
 }
 
-// ListByWorkspaceComplete retrieves all of the results into a single object
-func (c VNetPeeringClient) ListByWorkspaceComplete(ctx context.Context, id WorkspaceId) (ListByWorkspaceCompleteResult, error) {
-	return c.ListByWorkspaceCompleteMatchingPredicate(ctx, id, VirtualNetworkPeeringOperationPredicate{})
-}
-
-// ListByWorkspaceCompleteMatchingPredicate retrieves all of the results and then applied the predicate
-func (c VNetPeeringClient) ListByWorkspaceCompleteMatchingPredicate(ctx context.Context, id WorkspaceId, predicate VirtualNetworkPeeringOperationPredicate) (resp ListByWorkspaceCompleteResult, err error) {
-	items := make([]VirtualNetworkPeering, 0)
-
-	page, err := c.ListByWorkspace(ctx, id)
-	if err != nil {
-		err = fmt.Errorf("loading the initial page: %+v", err)
-		return
-	}
-	if page.Model != nil {
-		for _, v := range *page.Model {
-			if predicate.Matches(v) {
-				items = append(items, v)
-			}
-		}
-	}
-
-	for page.HasMore() {
-		page, err = page.LoadMore(ctx)
-		if err != nil {
-			err = fmt.Errorf("loading the next page: %+v", err)
-			return
-		}
-
-		if page.Model != nil {
-			for _, v := range *page.Model {
-				if predicate.Matches(v) {
-					items = append(items, v)
-				}
-			}
-		}
-	}
-
-	out := ListByWorkspaceCompleteResult{
-		Items: items,
-	}
-	return out, nil
-}
-
 // preparerForListByWorkspace prepares the ListByWorkspace request.
 func (c VNetPeeringClient) preparerForListByWorkspace(ctx context.Context, id WorkspaceId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
@@ -183,4 +139,48 @@ func (c VNetPeeringClient) responderForListByWorkspace(resp *http.Response) (res
 		}
 	}
 	return
+}
+
+// ListByWorkspaceComplete retrieves all of the results into a single object
+func (c VNetPeeringClient) ListByWorkspaceComplete(ctx context.Context, id WorkspaceId) (ListByWorkspaceCompleteResult, error) {
+	return c.ListByWorkspaceCompleteMatchingPredicate(ctx, id, VirtualNetworkPeeringOperationPredicate{})
+}
+
+// ListByWorkspaceCompleteMatchingPredicate retrieves all of the results and then applied the predicate
+func (c VNetPeeringClient) ListByWorkspaceCompleteMatchingPredicate(ctx context.Context, id WorkspaceId, predicate VirtualNetworkPeeringOperationPredicate) (resp ListByWorkspaceCompleteResult, err error) {
+	items := make([]VirtualNetworkPeering, 0)
+
+	page, err := c.ListByWorkspace(ctx, id)
+	if err != nil {
+		err = fmt.Errorf("loading the initial page: %+v", err)
+		return
+	}
+	if page.Model != nil {
+		for _, v := range *page.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	for page.HasMore() {
+		page, err = page.LoadMore(ctx)
+		if err != nil {
+			err = fmt.Errorf("loading the next page: %+v", err)
+			return
+		}
+
+		if page.Model != nil {
+			for _, v := range *page.Model {
+				if predicate.Matches(v) {
+					items = append(items, v)
+				}
+			}
+		}
+	}
+
+	out := ListByWorkspaceCompleteResult{
+		Items: items,
+	}
+	return out, nil
 }

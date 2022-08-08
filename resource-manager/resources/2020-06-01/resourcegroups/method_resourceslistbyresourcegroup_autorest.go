@@ -94,50 +94,6 @@ func (c ResourceGroupsClient) ResourcesListByResourceGroup(ctx context.Context, 
 	return
 }
 
-// ResourcesListByResourceGroupComplete retrieves all of the results into a single object
-func (c ResourceGroupsClient) ResourcesListByResourceGroupComplete(ctx context.Context, id commonids.ResourceGroupId, options ResourcesListByResourceGroupOperationOptions) (ResourcesListByResourceGroupCompleteResult, error) {
-	return c.ResourcesListByResourceGroupCompleteMatchingPredicate(ctx, id, options, GenericResourceExpandedOperationPredicate{})
-}
-
-// ResourcesListByResourceGroupCompleteMatchingPredicate retrieves all of the results and then applied the predicate
-func (c ResourceGroupsClient) ResourcesListByResourceGroupCompleteMatchingPredicate(ctx context.Context, id commonids.ResourceGroupId, options ResourcesListByResourceGroupOperationOptions, predicate GenericResourceExpandedOperationPredicate) (resp ResourcesListByResourceGroupCompleteResult, err error) {
-	items := make([]GenericResourceExpanded, 0)
-
-	page, err := c.ResourcesListByResourceGroup(ctx, id, options)
-	if err != nil {
-		err = fmt.Errorf("loading the initial page: %+v", err)
-		return
-	}
-	if page.Model != nil {
-		for _, v := range *page.Model {
-			if predicate.Matches(v) {
-				items = append(items, v)
-			}
-		}
-	}
-
-	for page.HasMore() {
-		page, err = page.LoadMore(ctx)
-		if err != nil {
-			err = fmt.Errorf("loading the next page: %+v", err)
-			return
-		}
-
-		if page.Model != nil {
-			for _, v := range *page.Model {
-				if predicate.Matches(v) {
-					items = append(items, v)
-				}
-			}
-		}
-	}
-
-	out := ResourcesListByResourceGroupCompleteResult{
-		Items: items,
-	}
-	return out, nil
-}
-
 // preparerForResourcesListByResourceGroup prepares the ResourcesListByResourceGroup request.
 func (c ResourceGroupsClient) preparerForResourcesListByResourceGroup(ctx context.Context, id commonids.ResourceGroupId, options ResourcesListByResourceGroupOperationOptions) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
@@ -223,4 +179,48 @@ func (c ResourceGroupsClient) responderForResourcesListByResourceGroup(resp *htt
 		}
 	}
 	return
+}
+
+// ResourcesListByResourceGroupComplete retrieves all of the results into a single object
+func (c ResourceGroupsClient) ResourcesListByResourceGroupComplete(ctx context.Context, id commonids.ResourceGroupId, options ResourcesListByResourceGroupOperationOptions) (ResourcesListByResourceGroupCompleteResult, error) {
+	return c.ResourcesListByResourceGroupCompleteMatchingPredicate(ctx, id, options, GenericResourceExpandedOperationPredicate{})
+}
+
+// ResourcesListByResourceGroupCompleteMatchingPredicate retrieves all of the results and then applied the predicate
+func (c ResourceGroupsClient) ResourcesListByResourceGroupCompleteMatchingPredicate(ctx context.Context, id commonids.ResourceGroupId, options ResourcesListByResourceGroupOperationOptions, predicate GenericResourceExpandedOperationPredicate) (resp ResourcesListByResourceGroupCompleteResult, err error) {
+	items := make([]GenericResourceExpanded, 0)
+
+	page, err := c.ResourcesListByResourceGroup(ctx, id, options)
+	if err != nil {
+		err = fmt.Errorf("loading the initial page: %+v", err)
+		return
+	}
+	if page.Model != nil {
+		for _, v := range *page.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	for page.HasMore() {
+		page, err = page.LoadMore(ctx)
+		if err != nil {
+			err = fmt.Errorf("loading the next page: %+v", err)
+			return
+		}
+
+		if page.Model != nil {
+			for _, v := range *page.Model {
+				if predicate.Matches(v) {
+					items = append(items, v)
+				}
+			}
+		}
+	}
+
+	out := ResourcesListByResourceGroupCompleteResult{
+		Items: items,
+	}
+	return out, nil
 }

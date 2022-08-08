@@ -59,50 +59,6 @@ func (c VirtualMachineScaleSetsClient) ListByLocation(ctx context.Context, id Lo
 	return
 }
 
-// ListByLocationComplete retrieves all of the results into a single object
-func (c VirtualMachineScaleSetsClient) ListByLocationComplete(ctx context.Context, id LocationId) (ListByLocationCompleteResult, error) {
-	return c.ListByLocationCompleteMatchingPredicate(ctx, id, VirtualMachineScaleSetOperationPredicate{})
-}
-
-// ListByLocationCompleteMatchingPredicate retrieves all of the results and then applied the predicate
-func (c VirtualMachineScaleSetsClient) ListByLocationCompleteMatchingPredicate(ctx context.Context, id LocationId, predicate VirtualMachineScaleSetOperationPredicate) (resp ListByLocationCompleteResult, err error) {
-	items := make([]VirtualMachineScaleSet, 0)
-
-	page, err := c.ListByLocation(ctx, id)
-	if err != nil {
-		err = fmt.Errorf("loading the initial page: %+v", err)
-		return
-	}
-	if page.Model != nil {
-		for _, v := range *page.Model {
-			if predicate.Matches(v) {
-				items = append(items, v)
-			}
-		}
-	}
-
-	for page.HasMore() {
-		page, err = page.LoadMore(ctx)
-		if err != nil {
-			err = fmt.Errorf("loading the next page: %+v", err)
-			return
-		}
-
-		if page.Model != nil {
-			for _, v := range *page.Model {
-				if predicate.Matches(v) {
-					items = append(items, v)
-				}
-			}
-		}
-	}
-
-	out := ListByLocationCompleteResult{
-		Items: items,
-	}
-	return out, nil
-}
-
 // preparerForListByLocation prepares the ListByLocation request.
 func (c VirtualMachineScaleSetsClient) preparerForListByLocation(ctx context.Context, id LocationId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
@@ -183,4 +139,48 @@ func (c VirtualMachineScaleSetsClient) responderForListByLocation(resp *http.Res
 		}
 	}
 	return
+}
+
+// ListByLocationComplete retrieves all of the results into a single object
+func (c VirtualMachineScaleSetsClient) ListByLocationComplete(ctx context.Context, id LocationId) (ListByLocationCompleteResult, error) {
+	return c.ListByLocationCompleteMatchingPredicate(ctx, id, VirtualMachineScaleSetOperationPredicate{})
+}
+
+// ListByLocationCompleteMatchingPredicate retrieves all of the results and then applied the predicate
+func (c VirtualMachineScaleSetsClient) ListByLocationCompleteMatchingPredicate(ctx context.Context, id LocationId, predicate VirtualMachineScaleSetOperationPredicate) (resp ListByLocationCompleteResult, err error) {
+	items := make([]VirtualMachineScaleSet, 0)
+
+	page, err := c.ListByLocation(ctx, id)
+	if err != nil {
+		err = fmt.Errorf("loading the initial page: %+v", err)
+		return
+	}
+	if page.Model != nil {
+		for _, v := range *page.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	for page.HasMore() {
+		page, err = page.LoadMore(ctx)
+		if err != nil {
+			err = fmt.Errorf("loading the next page: %+v", err)
+			return
+		}
+
+		if page.Model != nil {
+			for _, v := range *page.Model {
+				if predicate.Matches(v) {
+					items = append(items, v)
+				}
+			}
+		}
+	}
+
+	out := ListByLocationCompleteResult{
+		Items: items,
+	}
+	return out, nil
 }

@@ -59,50 +59,6 @@ func (c VirtualMachineClient) ListByLab(ctx context.Context, id LabId) (resp Lis
 	return
 }
 
-// ListByLabComplete retrieves all of the results into a single object
-func (c VirtualMachineClient) ListByLabComplete(ctx context.Context, id LabId) (ListByLabCompleteResult, error) {
-	return c.ListByLabCompleteMatchingPredicate(ctx, id, VirtualMachineOperationPredicate{})
-}
-
-// ListByLabCompleteMatchingPredicate retrieves all of the results and then applied the predicate
-func (c VirtualMachineClient) ListByLabCompleteMatchingPredicate(ctx context.Context, id LabId, predicate VirtualMachineOperationPredicate) (resp ListByLabCompleteResult, err error) {
-	items := make([]VirtualMachine, 0)
-
-	page, err := c.ListByLab(ctx, id)
-	if err != nil {
-		err = fmt.Errorf("loading the initial page: %+v", err)
-		return
-	}
-	if page.Model != nil {
-		for _, v := range *page.Model {
-			if predicate.Matches(v) {
-				items = append(items, v)
-			}
-		}
-	}
-
-	for page.HasMore() {
-		page, err = page.LoadMore(ctx)
-		if err != nil {
-			err = fmt.Errorf("loading the next page: %+v", err)
-			return
-		}
-
-		if page.Model != nil {
-			for _, v := range *page.Model {
-				if predicate.Matches(v) {
-					items = append(items, v)
-				}
-			}
-		}
-	}
-
-	out := ListByLabCompleteResult{
-		Items: items,
-	}
-	return out, nil
-}
-
 // preparerForListByLab prepares the ListByLab request.
 func (c VirtualMachineClient) preparerForListByLab(ctx context.Context, id LabId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
@@ -183,4 +139,48 @@ func (c VirtualMachineClient) responderForListByLab(resp *http.Response) (result
 		}
 	}
 	return
+}
+
+// ListByLabComplete retrieves all of the results into a single object
+func (c VirtualMachineClient) ListByLabComplete(ctx context.Context, id LabId) (ListByLabCompleteResult, error) {
+	return c.ListByLabCompleteMatchingPredicate(ctx, id, VirtualMachineOperationPredicate{})
+}
+
+// ListByLabCompleteMatchingPredicate retrieves all of the results and then applied the predicate
+func (c VirtualMachineClient) ListByLabCompleteMatchingPredicate(ctx context.Context, id LabId, predicate VirtualMachineOperationPredicate) (resp ListByLabCompleteResult, err error) {
+	items := make([]VirtualMachine, 0)
+
+	page, err := c.ListByLab(ctx, id)
+	if err != nil {
+		err = fmt.Errorf("loading the initial page: %+v", err)
+		return
+	}
+	if page.Model != nil {
+		for _, v := range *page.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	for page.HasMore() {
+		page, err = page.LoadMore(ctx)
+		if err != nil {
+			err = fmt.Errorf("loading the next page: %+v", err)
+			return
+		}
+
+		if page.Model != nil {
+			for _, v := range *page.Model {
+				if predicate.Matches(v) {
+					items = append(items, v)
+				}
+			}
+		}
+	}
+
+	out := ListByLabCompleteResult{
+		Items: items,
+	}
+	return out, nil
 }

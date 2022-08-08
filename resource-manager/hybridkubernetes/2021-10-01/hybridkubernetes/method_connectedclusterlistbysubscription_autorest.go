@@ -60,50 +60,6 @@ func (c HybridKubernetesClient) ConnectedClusterListBySubscription(ctx context.C
 	return
 }
 
-// ConnectedClusterListBySubscriptionComplete retrieves all of the results into a single object
-func (c HybridKubernetesClient) ConnectedClusterListBySubscriptionComplete(ctx context.Context, id commonids.SubscriptionId) (ConnectedClusterListBySubscriptionCompleteResult, error) {
-	return c.ConnectedClusterListBySubscriptionCompleteMatchingPredicate(ctx, id, ConnectedClusterOperationPredicate{})
-}
-
-// ConnectedClusterListBySubscriptionCompleteMatchingPredicate retrieves all of the results and then applied the predicate
-func (c HybridKubernetesClient) ConnectedClusterListBySubscriptionCompleteMatchingPredicate(ctx context.Context, id commonids.SubscriptionId, predicate ConnectedClusterOperationPredicate) (resp ConnectedClusterListBySubscriptionCompleteResult, err error) {
-	items := make([]ConnectedCluster, 0)
-
-	page, err := c.ConnectedClusterListBySubscription(ctx, id)
-	if err != nil {
-		err = fmt.Errorf("loading the initial page: %+v", err)
-		return
-	}
-	if page.Model != nil {
-		for _, v := range *page.Model {
-			if predicate.Matches(v) {
-				items = append(items, v)
-			}
-		}
-	}
-
-	for page.HasMore() {
-		page, err = page.LoadMore(ctx)
-		if err != nil {
-			err = fmt.Errorf("loading the next page: %+v", err)
-			return
-		}
-
-		if page.Model != nil {
-			for _, v := range *page.Model {
-				if predicate.Matches(v) {
-					items = append(items, v)
-				}
-			}
-		}
-	}
-
-	out := ConnectedClusterListBySubscriptionCompleteResult{
-		Items: items,
-	}
-	return out, nil
-}
-
 // preparerForConnectedClusterListBySubscription prepares the ConnectedClusterListBySubscription request.
 func (c HybridKubernetesClient) preparerForConnectedClusterListBySubscription(ctx context.Context, id commonids.SubscriptionId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
@@ -184,4 +140,48 @@ func (c HybridKubernetesClient) responderForConnectedClusterListBySubscription(r
 		}
 	}
 	return
+}
+
+// ConnectedClusterListBySubscriptionComplete retrieves all of the results into a single object
+func (c HybridKubernetesClient) ConnectedClusterListBySubscriptionComplete(ctx context.Context, id commonids.SubscriptionId) (ConnectedClusterListBySubscriptionCompleteResult, error) {
+	return c.ConnectedClusterListBySubscriptionCompleteMatchingPredicate(ctx, id, ConnectedClusterOperationPredicate{})
+}
+
+// ConnectedClusterListBySubscriptionCompleteMatchingPredicate retrieves all of the results and then applied the predicate
+func (c HybridKubernetesClient) ConnectedClusterListBySubscriptionCompleteMatchingPredicate(ctx context.Context, id commonids.SubscriptionId, predicate ConnectedClusterOperationPredicate) (resp ConnectedClusterListBySubscriptionCompleteResult, err error) {
+	items := make([]ConnectedCluster, 0)
+
+	page, err := c.ConnectedClusterListBySubscription(ctx, id)
+	if err != nil {
+		err = fmt.Errorf("loading the initial page: %+v", err)
+		return
+	}
+	if page.Model != nil {
+		for _, v := range *page.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	for page.HasMore() {
+		page, err = page.LoadMore(ctx)
+		if err != nil {
+			err = fmt.Errorf("loading the next page: %+v", err)
+			return
+		}
+
+		if page.Model != nil {
+			for _, v := range *page.Model {
+				if predicate.Matches(v) {
+					items = append(items, v)
+				}
+			}
+		}
+	}
+
+	out := ConnectedClusterListBySubscriptionCompleteResult{
+		Items: items,
+	}
+	return out, nil
 }

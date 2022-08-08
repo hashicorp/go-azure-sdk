@@ -83,50 +83,6 @@ func (c PrivateEndpointConnectionsClient) ListByService(ctx context.Context, id 
 	return
 }
 
-// ListByServiceComplete retrieves all of the results into a single object
-func (c PrivateEndpointConnectionsClient) ListByServiceComplete(ctx context.Context, id SearchServiceId, options ListByServiceOperationOptions) (ListByServiceCompleteResult, error) {
-	return c.ListByServiceCompleteMatchingPredicate(ctx, id, options, PrivateEndpointConnectionOperationPredicate{})
-}
-
-// ListByServiceCompleteMatchingPredicate retrieves all of the results and then applied the predicate
-func (c PrivateEndpointConnectionsClient) ListByServiceCompleteMatchingPredicate(ctx context.Context, id SearchServiceId, options ListByServiceOperationOptions, predicate PrivateEndpointConnectionOperationPredicate) (resp ListByServiceCompleteResult, err error) {
-	items := make([]PrivateEndpointConnection, 0)
-
-	page, err := c.ListByService(ctx, id, options)
-	if err != nil {
-		err = fmt.Errorf("loading the initial page: %+v", err)
-		return
-	}
-	if page.Model != nil {
-		for _, v := range *page.Model {
-			if predicate.Matches(v) {
-				items = append(items, v)
-			}
-		}
-	}
-
-	for page.HasMore() {
-		page, err = page.LoadMore(ctx)
-		if err != nil {
-			err = fmt.Errorf("loading the next page: %+v", err)
-			return
-		}
-
-		if page.Model != nil {
-			for _, v := range *page.Model {
-				if predicate.Matches(v) {
-					items = append(items, v)
-				}
-			}
-		}
-	}
-
-	out := ListByServiceCompleteResult{
-		Items: items,
-	}
-	return out, nil
-}
-
 // preparerForListByService prepares the ListByService request.
 func (c PrivateEndpointConnectionsClient) preparerForListByService(ctx context.Context, id SearchServiceId, options ListByServiceOperationOptions) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
@@ -212,4 +168,48 @@ func (c PrivateEndpointConnectionsClient) responderForListByService(resp *http.R
 		}
 	}
 	return
+}
+
+// ListByServiceComplete retrieves all of the results into a single object
+func (c PrivateEndpointConnectionsClient) ListByServiceComplete(ctx context.Context, id SearchServiceId, options ListByServiceOperationOptions) (ListByServiceCompleteResult, error) {
+	return c.ListByServiceCompleteMatchingPredicate(ctx, id, options, PrivateEndpointConnectionOperationPredicate{})
+}
+
+// ListByServiceCompleteMatchingPredicate retrieves all of the results and then applied the predicate
+func (c PrivateEndpointConnectionsClient) ListByServiceCompleteMatchingPredicate(ctx context.Context, id SearchServiceId, options ListByServiceOperationOptions, predicate PrivateEndpointConnectionOperationPredicate) (resp ListByServiceCompleteResult, err error) {
+	items := make([]PrivateEndpointConnection, 0)
+
+	page, err := c.ListByService(ctx, id, options)
+	if err != nil {
+		err = fmt.Errorf("loading the initial page: %+v", err)
+		return
+	}
+	if page.Model != nil {
+		for _, v := range *page.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	for page.HasMore() {
+		page, err = page.LoadMore(ctx)
+		if err != nil {
+			err = fmt.Errorf("loading the next page: %+v", err)
+			return
+		}
+
+		if page.Model != nil {
+			for _, v := range *page.Model {
+				if predicate.Matches(v) {
+					items = append(items, v)
+				}
+			}
+		}
+	}
+
+	out := ListByServiceCompleteResult{
+		Items: items,
+	}
+	return out, nil
 }

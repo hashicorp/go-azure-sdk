@@ -89,50 +89,6 @@ func (c DeploymentsClient) ListAtScope(ctx context.Context, id commonids.ScopeId
 	return
 }
 
-// ListAtScopeComplete retrieves all of the results into a single object
-func (c DeploymentsClient) ListAtScopeComplete(ctx context.Context, id commonids.ScopeId, options ListAtScopeOperationOptions) (ListAtScopeCompleteResult, error) {
-	return c.ListAtScopeCompleteMatchingPredicate(ctx, id, options, DeploymentExtendedOperationPredicate{})
-}
-
-// ListAtScopeCompleteMatchingPredicate retrieves all of the results and then applied the predicate
-func (c DeploymentsClient) ListAtScopeCompleteMatchingPredicate(ctx context.Context, id commonids.ScopeId, options ListAtScopeOperationOptions, predicate DeploymentExtendedOperationPredicate) (resp ListAtScopeCompleteResult, err error) {
-	items := make([]DeploymentExtended, 0)
-
-	page, err := c.ListAtScope(ctx, id, options)
-	if err != nil {
-		err = fmt.Errorf("loading the initial page: %+v", err)
-		return
-	}
-	if page.Model != nil {
-		for _, v := range *page.Model {
-			if predicate.Matches(v) {
-				items = append(items, v)
-			}
-		}
-	}
-
-	for page.HasMore() {
-		page, err = page.LoadMore(ctx)
-		if err != nil {
-			err = fmt.Errorf("loading the next page: %+v", err)
-			return
-		}
-
-		if page.Model != nil {
-			for _, v := range *page.Model {
-				if predicate.Matches(v) {
-					items = append(items, v)
-				}
-			}
-		}
-	}
-
-	out := ListAtScopeCompleteResult{
-		Items: items,
-	}
-	return out, nil
-}
-
 // preparerForListAtScope prepares the ListAtScope request.
 func (c DeploymentsClient) preparerForListAtScope(ctx context.Context, id commonids.ScopeId, options ListAtScopeOperationOptions) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
@@ -218,4 +174,48 @@ func (c DeploymentsClient) responderForListAtScope(resp *http.Response) (result 
 		}
 	}
 	return
+}
+
+// ListAtScopeComplete retrieves all of the results into a single object
+func (c DeploymentsClient) ListAtScopeComplete(ctx context.Context, id commonids.ScopeId, options ListAtScopeOperationOptions) (ListAtScopeCompleteResult, error) {
+	return c.ListAtScopeCompleteMatchingPredicate(ctx, id, options, DeploymentExtendedOperationPredicate{})
+}
+
+// ListAtScopeCompleteMatchingPredicate retrieves all of the results and then applied the predicate
+func (c DeploymentsClient) ListAtScopeCompleteMatchingPredicate(ctx context.Context, id commonids.ScopeId, options ListAtScopeOperationOptions, predicate DeploymentExtendedOperationPredicate) (resp ListAtScopeCompleteResult, err error) {
+	items := make([]DeploymentExtended, 0)
+
+	page, err := c.ListAtScope(ctx, id, options)
+	if err != nil {
+		err = fmt.Errorf("loading the initial page: %+v", err)
+		return
+	}
+	if page.Model != nil {
+		for _, v := range *page.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	for page.HasMore() {
+		page, err = page.LoadMore(ctx)
+		if err != nil {
+			err = fmt.Errorf("loading the next page: %+v", err)
+			return
+		}
+
+		if page.Model != nil {
+			for _, v := range *page.Model {
+				if predicate.Matches(v) {
+					items = append(items, v)
+				}
+			}
+		}
+	}
+
+	out := ListAtScopeCompleteResult{
+		Items: items,
+	}
+	return out, nil
 }

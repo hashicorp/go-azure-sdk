@@ -59,50 +59,6 @@ func (c PrivateLinkClient) ResourcesListByWorkspace(ctx context.Context, id Work
 	return
 }
 
-// ResourcesListByWorkspaceComplete retrieves all of the results into a single object
-func (c PrivateLinkClient) ResourcesListByWorkspaceComplete(ctx context.Context, id WorkspaceId) (ResourcesListByWorkspaceCompleteResult, error) {
-	return c.ResourcesListByWorkspaceCompleteMatchingPredicate(ctx, id, PrivateLinkResourceOperationPredicate{})
-}
-
-// ResourcesListByWorkspaceCompleteMatchingPredicate retrieves all of the results and then applied the predicate
-func (c PrivateLinkClient) ResourcesListByWorkspaceCompleteMatchingPredicate(ctx context.Context, id WorkspaceId, predicate PrivateLinkResourceOperationPredicate) (resp ResourcesListByWorkspaceCompleteResult, err error) {
-	items := make([]PrivateLinkResource, 0)
-
-	page, err := c.ResourcesListByWorkspace(ctx, id)
-	if err != nil {
-		err = fmt.Errorf("loading the initial page: %+v", err)
-		return
-	}
-	if page.Model != nil {
-		for _, v := range *page.Model {
-			if predicate.Matches(v) {
-				items = append(items, v)
-			}
-		}
-	}
-
-	for page.HasMore() {
-		page, err = page.LoadMore(ctx)
-		if err != nil {
-			err = fmt.Errorf("loading the next page: %+v", err)
-			return
-		}
-
-		if page.Model != nil {
-			for _, v := range *page.Model {
-				if predicate.Matches(v) {
-					items = append(items, v)
-				}
-			}
-		}
-	}
-
-	out := ResourcesListByWorkspaceCompleteResult{
-		Items: items,
-	}
-	return out, nil
-}
-
 // preparerForResourcesListByWorkspace prepares the ResourcesListByWorkspace request.
 func (c PrivateLinkClient) preparerForResourcesListByWorkspace(ctx context.Context, id WorkspaceId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
@@ -183,4 +139,48 @@ func (c PrivateLinkClient) responderForResourcesListByWorkspace(resp *http.Respo
 		}
 	}
 	return
+}
+
+// ResourcesListByWorkspaceComplete retrieves all of the results into a single object
+func (c PrivateLinkClient) ResourcesListByWorkspaceComplete(ctx context.Context, id WorkspaceId) (ResourcesListByWorkspaceCompleteResult, error) {
+	return c.ResourcesListByWorkspaceCompleteMatchingPredicate(ctx, id, PrivateLinkResourceOperationPredicate{})
+}
+
+// ResourcesListByWorkspaceCompleteMatchingPredicate retrieves all of the results and then applied the predicate
+func (c PrivateLinkClient) ResourcesListByWorkspaceCompleteMatchingPredicate(ctx context.Context, id WorkspaceId, predicate PrivateLinkResourceOperationPredicate) (resp ResourcesListByWorkspaceCompleteResult, err error) {
+	items := make([]PrivateLinkResource, 0)
+
+	page, err := c.ResourcesListByWorkspace(ctx, id)
+	if err != nil {
+		err = fmt.Errorf("loading the initial page: %+v", err)
+		return
+	}
+	if page.Model != nil {
+		for _, v := range *page.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	for page.HasMore() {
+		page, err = page.LoadMore(ctx)
+		if err != nil {
+			err = fmt.Errorf("loading the next page: %+v", err)
+			return
+		}
+
+		if page.Model != nil {
+			for _, v := range *page.Model {
+				if predicate.Matches(v) {
+					items = append(items, v)
+				}
+			}
+		}
+	}
+
+	out := ResourcesListByWorkspaceCompleteResult{
+		Items: items,
+	}
+	return out, nil
 }

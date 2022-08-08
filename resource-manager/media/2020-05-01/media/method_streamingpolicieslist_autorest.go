@@ -93,50 +93,6 @@ func (c MediaClient) StreamingPoliciesList(ctx context.Context, id MediaServiceI
 	return
 }
 
-// StreamingPoliciesListComplete retrieves all of the results into a single object
-func (c MediaClient) StreamingPoliciesListComplete(ctx context.Context, id MediaServiceId, options StreamingPoliciesListOperationOptions) (StreamingPoliciesListCompleteResult, error) {
-	return c.StreamingPoliciesListCompleteMatchingPredicate(ctx, id, options, StreamingPolicyOperationPredicate{})
-}
-
-// StreamingPoliciesListCompleteMatchingPredicate retrieves all of the results and then applied the predicate
-func (c MediaClient) StreamingPoliciesListCompleteMatchingPredicate(ctx context.Context, id MediaServiceId, options StreamingPoliciesListOperationOptions, predicate StreamingPolicyOperationPredicate) (resp StreamingPoliciesListCompleteResult, err error) {
-	items := make([]StreamingPolicy, 0)
-
-	page, err := c.StreamingPoliciesList(ctx, id, options)
-	if err != nil {
-		err = fmt.Errorf("loading the initial page: %+v", err)
-		return
-	}
-	if page.Model != nil {
-		for _, v := range *page.Model {
-			if predicate.Matches(v) {
-				items = append(items, v)
-			}
-		}
-	}
-
-	for page.HasMore() {
-		page, err = page.LoadMore(ctx)
-		if err != nil {
-			err = fmt.Errorf("loading the next page: %+v", err)
-			return
-		}
-
-		if page.Model != nil {
-			for _, v := range *page.Model {
-				if predicate.Matches(v) {
-					items = append(items, v)
-				}
-			}
-		}
-	}
-
-	out := StreamingPoliciesListCompleteResult{
-		Items: items,
-	}
-	return out, nil
-}
-
 // preparerForStreamingPoliciesList prepares the StreamingPoliciesList request.
 func (c MediaClient) preparerForStreamingPoliciesList(ctx context.Context, id MediaServiceId, options StreamingPoliciesListOperationOptions) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
@@ -222,4 +178,48 @@ func (c MediaClient) responderForStreamingPoliciesList(resp *http.Response) (res
 		}
 	}
 	return
+}
+
+// StreamingPoliciesListComplete retrieves all of the results into a single object
+func (c MediaClient) StreamingPoliciesListComplete(ctx context.Context, id MediaServiceId, options StreamingPoliciesListOperationOptions) (StreamingPoliciesListCompleteResult, error) {
+	return c.StreamingPoliciesListCompleteMatchingPredicate(ctx, id, options, StreamingPolicyOperationPredicate{})
+}
+
+// StreamingPoliciesListCompleteMatchingPredicate retrieves all of the results and then applied the predicate
+func (c MediaClient) StreamingPoliciesListCompleteMatchingPredicate(ctx context.Context, id MediaServiceId, options StreamingPoliciesListOperationOptions, predicate StreamingPolicyOperationPredicate) (resp StreamingPoliciesListCompleteResult, err error) {
+	items := make([]StreamingPolicy, 0)
+
+	page, err := c.StreamingPoliciesList(ctx, id, options)
+	if err != nil {
+		err = fmt.Errorf("loading the initial page: %+v", err)
+		return
+	}
+	if page.Model != nil {
+		for _, v := range *page.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	for page.HasMore() {
+		page, err = page.LoadMore(ctx)
+		if err != nil {
+			err = fmt.Errorf("loading the next page: %+v", err)
+			return
+		}
+
+		if page.Model != nil {
+			for _, v := range *page.Model {
+				if predicate.Matches(v) {
+					items = append(items, v)
+				}
+			}
+		}
+	}
+
+	out := StreamingPoliciesListCompleteResult{
+		Items: items,
+	}
+	return out, nil
 }

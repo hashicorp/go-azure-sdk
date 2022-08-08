@@ -59,50 +59,6 @@ func (c PrivateEndpointConnectionsClient) ListByServer(ctx context.Context, id S
 	return
 }
 
-// ListByServerComplete retrieves all of the results into a single object
-func (c PrivateEndpointConnectionsClient) ListByServerComplete(ctx context.Context, id ServerId) (ListByServerCompleteResult, error) {
-	return c.ListByServerCompleteMatchingPredicate(ctx, id, PrivateEndpointConnectionOperationPredicate{})
-}
-
-// ListByServerCompleteMatchingPredicate retrieves all of the results and then applied the predicate
-func (c PrivateEndpointConnectionsClient) ListByServerCompleteMatchingPredicate(ctx context.Context, id ServerId, predicate PrivateEndpointConnectionOperationPredicate) (resp ListByServerCompleteResult, err error) {
-	items := make([]PrivateEndpointConnection, 0)
-
-	page, err := c.ListByServer(ctx, id)
-	if err != nil {
-		err = fmt.Errorf("loading the initial page: %+v", err)
-		return
-	}
-	if page.Model != nil {
-		for _, v := range *page.Model {
-			if predicate.Matches(v) {
-				items = append(items, v)
-			}
-		}
-	}
-
-	for page.HasMore() {
-		page, err = page.LoadMore(ctx)
-		if err != nil {
-			err = fmt.Errorf("loading the next page: %+v", err)
-			return
-		}
-
-		if page.Model != nil {
-			for _, v := range *page.Model {
-				if predicate.Matches(v) {
-					items = append(items, v)
-				}
-			}
-		}
-	}
-
-	out := ListByServerCompleteResult{
-		Items: items,
-	}
-	return out, nil
-}
-
 // preparerForListByServer prepares the ListByServer request.
 func (c PrivateEndpointConnectionsClient) preparerForListByServer(ctx context.Context, id ServerId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
@@ -183,4 +139,48 @@ func (c PrivateEndpointConnectionsClient) responderForListByServer(resp *http.Re
 		}
 	}
 	return
+}
+
+// ListByServerComplete retrieves all of the results into a single object
+func (c PrivateEndpointConnectionsClient) ListByServerComplete(ctx context.Context, id ServerId) (ListByServerCompleteResult, error) {
+	return c.ListByServerCompleteMatchingPredicate(ctx, id, PrivateEndpointConnectionOperationPredicate{})
+}
+
+// ListByServerCompleteMatchingPredicate retrieves all of the results and then applied the predicate
+func (c PrivateEndpointConnectionsClient) ListByServerCompleteMatchingPredicate(ctx context.Context, id ServerId, predicate PrivateEndpointConnectionOperationPredicate) (resp ListByServerCompleteResult, err error) {
+	items := make([]PrivateEndpointConnection, 0)
+
+	page, err := c.ListByServer(ctx, id)
+	if err != nil {
+		err = fmt.Errorf("loading the initial page: %+v", err)
+		return
+	}
+	if page.Model != nil {
+		for _, v := range *page.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	for page.HasMore() {
+		page, err = page.LoadMore(ctx)
+		if err != nil {
+			err = fmt.Errorf("loading the next page: %+v", err)
+			return
+		}
+
+		if page.Model != nil {
+			for _, v := range *page.Model {
+				if predicate.Matches(v) {
+					items = append(items, v)
+				}
+			}
+		}
+	}
+
+	out := ListByServerCompleteResult{
+		Items: items,
+	}
+	return out, nil
 }

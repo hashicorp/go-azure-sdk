@@ -59,50 +59,6 @@ func (c LocationBasedCapabilitiesClient) Execute(ctx context.Context, id Locatio
 	return
 }
 
-// ExecuteComplete retrieves all of the results into a single object
-func (c LocationBasedCapabilitiesClient) ExecuteComplete(ctx context.Context, id LocationId) (ExecuteCompleteResult, error) {
-	return c.ExecuteCompleteMatchingPredicate(ctx, id, CapabilityPropertiesOperationPredicate{})
-}
-
-// ExecuteCompleteMatchingPredicate retrieves all of the results and then applied the predicate
-func (c LocationBasedCapabilitiesClient) ExecuteCompleteMatchingPredicate(ctx context.Context, id LocationId, predicate CapabilityPropertiesOperationPredicate) (resp ExecuteCompleteResult, err error) {
-	items := make([]CapabilityProperties, 0)
-
-	page, err := c.Execute(ctx, id)
-	if err != nil {
-		err = fmt.Errorf("loading the initial page: %+v", err)
-		return
-	}
-	if page.Model != nil {
-		for _, v := range *page.Model {
-			if predicate.Matches(v) {
-				items = append(items, v)
-			}
-		}
-	}
-
-	for page.HasMore() {
-		page, err = page.LoadMore(ctx)
-		if err != nil {
-			err = fmt.Errorf("loading the next page: %+v", err)
-			return
-		}
-
-		if page.Model != nil {
-			for _, v := range *page.Model {
-				if predicate.Matches(v) {
-					items = append(items, v)
-				}
-			}
-		}
-	}
-
-	out := ExecuteCompleteResult{
-		Items: items,
-	}
-	return out, nil
-}
-
 // preparerForExecute prepares the Execute request.
 func (c LocationBasedCapabilitiesClient) preparerForExecute(ctx context.Context, id LocationId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
@@ -183,4 +139,48 @@ func (c LocationBasedCapabilitiesClient) responderForExecute(resp *http.Response
 		}
 	}
 	return
+}
+
+// ExecuteComplete retrieves all of the results into a single object
+func (c LocationBasedCapabilitiesClient) ExecuteComplete(ctx context.Context, id LocationId) (ExecuteCompleteResult, error) {
+	return c.ExecuteCompleteMatchingPredicate(ctx, id, CapabilityPropertiesOperationPredicate{})
+}
+
+// ExecuteCompleteMatchingPredicate retrieves all of the results and then applied the predicate
+func (c LocationBasedCapabilitiesClient) ExecuteCompleteMatchingPredicate(ctx context.Context, id LocationId, predicate CapabilityPropertiesOperationPredicate) (resp ExecuteCompleteResult, err error) {
+	items := make([]CapabilityProperties, 0)
+
+	page, err := c.Execute(ctx, id)
+	if err != nil {
+		err = fmt.Errorf("loading the initial page: %+v", err)
+		return
+	}
+	if page.Model != nil {
+		for _, v := range *page.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	for page.HasMore() {
+		page, err = page.LoadMore(ctx)
+		if err != nil {
+			err = fmt.Errorf("loading the next page: %+v", err)
+			return
+		}
+
+		if page.Model != nil {
+			for _, v := range *page.Model {
+				if predicate.Matches(v) {
+					items = append(items, v)
+				}
+			}
+		}
+	}
+
+	out := ExecuteCompleteResult{
+		Items: items,
+	}
+	return out, nil
 }

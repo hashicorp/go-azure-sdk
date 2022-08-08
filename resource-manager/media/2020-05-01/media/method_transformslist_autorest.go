@@ -88,50 +88,6 @@ func (c MediaClient) TransformsList(ctx context.Context, id MediaServiceId, opti
 	return
 }
 
-// TransformsListComplete retrieves all of the results into a single object
-func (c MediaClient) TransformsListComplete(ctx context.Context, id MediaServiceId, options TransformsListOperationOptions) (TransformsListCompleteResult, error) {
-	return c.TransformsListCompleteMatchingPredicate(ctx, id, options, TransformOperationPredicate{})
-}
-
-// TransformsListCompleteMatchingPredicate retrieves all of the results and then applied the predicate
-func (c MediaClient) TransformsListCompleteMatchingPredicate(ctx context.Context, id MediaServiceId, options TransformsListOperationOptions, predicate TransformOperationPredicate) (resp TransformsListCompleteResult, err error) {
-	items := make([]Transform, 0)
-
-	page, err := c.TransformsList(ctx, id, options)
-	if err != nil {
-		err = fmt.Errorf("loading the initial page: %+v", err)
-		return
-	}
-	if page.Model != nil {
-		for _, v := range *page.Model {
-			if predicate.Matches(v) {
-				items = append(items, v)
-			}
-		}
-	}
-
-	for page.HasMore() {
-		page, err = page.LoadMore(ctx)
-		if err != nil {
-			err = fmt.Errorf("loading the next page: %+v", err)
-			return
-		}
-
-		if page.Model != nil {
-			for _, v := range *page.Model {
-				if predicate.Matches(v) {
-					items = append(items, v)
-				}
-			}
-		}
-	}
-
-	out := TransformsListCompleteResult{
-		Items: items,
-	}
-	return out, nil
-}
-
 // preparerForTransformsList prepares the TransformsList request.
 func (c MediaClient) preparerForTransformsList(ctx context.Context, id MediaServiceId, options TransformsListOperationOptions) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
@@ -217,4 +173,48 @@ func (c MediaClient) responderForTransformsList(resp *http.Response) (result Tra
 		}
 	}
 	return
+}
+
+// TransformsListComplete retrieves all of the results into a single object
+func (c MediaClient) TransformsListComplete(ctx context.Context, id MediaServiceId, options TransformsListOperationOptions) (TransformsListCompleteResult, error) {
+	return c.TransformsListCompleteMatchingPredicate(ctx, id, options, TransformOperationPredicate{})
+}
+
+// TransformsListCompleteMatchingPredicate retrieves all of the results and then applied the predicate
+func (c MediaClient) TransformsListCompleteMatchingPredicate(ctx context.Context, id MediaServiceId, options TransformsListOperationOptions, predicate TransformOperationPredicate) (resp TransformsListCompleteResult, err error) {
+	items := make([]Transform, 0)
+
+	page, err := c.TransformsList(ctx, id, options)
+	if err != nil {
+		err = fmt.Errorf("loading the initial page: %+v", err)
+		return
+	}
+	if page.Model != nil {
+		for _, v := range *page.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	for page.HasMore() {
+		page, err = page.LoadMore(ctx)
+		if err != nil {
+			err = fmt.Errorf("loading the next page: %+v", err)
+			return
+		}
+
+		if page.Model != nil {
+			for _, v := range *page.Model {
+				if predicate.Matches(v) {
+					items = append(items, v)
+				}
+			}
+		}
+	}
+
+	out := TransformsListCompleteResult{
+		Items: items,
+	}
+	return out, nil
 }

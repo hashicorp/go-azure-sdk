@@ -59,50 +59,6 @@ func (c NamespacesPrivateEndpointConnectionsClient) PrivateEndpointConnectionsLi
 	return
 }
 
-// PrivateEndpointConnectionsListComplete retrieves all of the results into a single object
-func (c NamespacesPrivateEndpointConnectionsClient) PrivateEndpointConnectionsListComplete(ctx context.Context, id NamespaceId) (PrivateEndpointConnectionsListCompleteResult, error) {
-	return c.PrivateEndpointConnectionsListCompleteMatchingPredicate(ctx, id, PrivateEndpointConnectionOperationPredicate{})
-}
-
-// PrivateEndpointConnectionsListCompleteMatchingPredicate retrieves all of the results and then applied the predicate
-func (c NamespacesPrivateEndpointConnectionsClient) PrivateEndpointConnectionsListCompleteMatchingPredicate(ctx context.Context, id NamespaceId, predicate PrivateEndpointConnectionOperationPredicate) (resp PrivateEndpointConnectionsListCompleteResult, err error) {
-	items := make([]PrivateEndpointConnection, 0)
-
-	page, err := c.PrivateEndpointConnectionsList(ctx, id)
-	if err != nil {
-		err = fmt.Errorf("loading the initial page: %+v", err)
-		return
-	}
-	if page.Model != nil {
-		for _, v := range *page.Model {
-			if predicate.Matches(v) {
-				items = append(items, v)
-			}
-		}
-	}
-
-	for page.HasMore() {
-		page, err = page.LoadMore(ctx)
-		if err != nil {
-			err = fmt.Errorf("loading the next page: %+v", err)
-			return
-		}
-
-		if page.Model != nil {
-			for _, v := range *page.Model {
-				if predicate.Matches(v) {
-					items = append(items, v)
-				}
-			}
-		}
-	}
-
-	out := PrivateEndpointConnectionsListCompleteResult{
-		Items: items,
-	}
-	return out, nil
-}
-
 // preparerForPrivateEndpointConnectionsList prepares the PrivateEndpointConnectionsList request.
 func (c NamespacesPrivateEndpointConnectionsClient) preparerForPrivateEndpointConnectionsList(ctx context.Context, id NamespaceId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
@@ -183,4 +139,48 @@ func (c NamespacesPrivateEndpointConnectionsClient) responderForPrivateEndpointC
 		}
 	}
 	return
+}
+
+// PrivateEndpointConnectionsListComplete retrieves all of the results into a single object
+func (c NamespacesPrivateEndpointConnectionsClient) PrivateEndpointConnectionsListComplete(ctx context.Context, id NamespaceId) (PrivateEndpointConnectionsListCompleteResult, error) {
+	return c.PrivateEndpointConnectionsListCompleteMatchingPredicate(ctx, id, PrivateEndpointConnectionOperationPredicate{})
+}
+
+// PrivateEndpointConnectionsListCompleteMatchingPredicate retrieves all of the results and then applied the predicate
+func (c NamespacesPrivateEndpointConnectionsClient) PrivateEndpointConnectionsListCompleteMatchingPredicate(ctx context.Context, id NamespaceId, predicate PrivateEndpointConnectionOperationPredicate) (resp PrivateEndpointConnectionsListCompleteResult, err error) {
+	items := make([]PrivateEndpointConnection, 0)
+
+	page, err := c.PrivateEndpointConnectionsList(ctx, id)
+	if err != nil {
+		err = fmt.Errorf("loading the initial page: %+v", err)
+		return
+	}
+	if page.Model != nil {
+		for _, v := range *page.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	for page.HasMore() {
+		page, err = page.LoadMore(ctx)
+		if err != nil {
+			err = fmt.Errorf("loading the next page: %+v", err)
+			return
+		}
+
+		if page.Model != nil {
+			for _, v := range *page.Model {
+				if predicate.Matches(v) {
+					items = append(items, v)
+				}
+			}
+		}
+	}
+
+	out := PrivateEndpointConnectionsListCompleteResult{
+		Items: items,
+	}
+	return out, nil
 }

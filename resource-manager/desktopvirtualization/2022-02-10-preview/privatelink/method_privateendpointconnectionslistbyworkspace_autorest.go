@@ -59,50 +59,6 @@ func (c PrivateLinkClient) PrivateEndpointConnectionsListByWorkspace(ctx context
 	return
 }
 
-// PrivateEndpointConnectionsListByWorkspaceComplete retrieves all of the results into a single object
-func (c PrivateLinkClient) PrivateEndpointConnectionsListByWorkspaceComplete(ctx context.Context, id WorkspaceId) (PrivateEndpointConnectionsListByWorkspaceCompleteResult, error) {
-	return c.PrivateEndpointConnectionsListByWorkspaceCompleteMatchingPredicate(ctx, id, PrivateEndpointConnectionWithSystemDataOperationPredicate{})
-}
-
-// PrivateEndpointConnectionsListByWorkspaceCompleteMatchingPredicate retrieves all of the results and then applied the predicate
-func (c PrivateLinkClient) PrivateEndpointConnectionsListByWorkspaceCompleteMatchingPredicate(ctx context.Context, id WorkspaceId, predicate PrivateEndpointConnectionWithSystemDataOperationPredicate) (resp PrivateEndpointConnectionsListByWorkspaceCompleteResult, err error) {
-	items := make([]PrivateEndpointConnectionWithSystemData, 0)
-
-	page, err := c.PrivateEndpointConnectionsListByWorkspace(ctx, id)
-	if err != nil {
-		err = fmt.Errorf("loading the initial page: %+v", err)
-		return
-	}
-	if page.Model != nil {
-		for _, v := range *page.Model {
-			if predicate.Matches(v) {
-				items = append(items, v)
-			}
-		}
-	}
-
-	for page.HasMore() {
-		page, err = page.LoadMore(ctx)
-		if err != nil {
-			err = fmt.Errorf("loading the next page: %+v", err)
-			return
-		}
-
-		if page.Model != nil {
-			for _, v := range *page.Model {
-				if predicate.Matches(v) {
-					items = append(items, v)
-				}
-			}
-		}
-	}
-
-	out := PrivateEndpointConnectionsListByWorkspaceCompleteResult{
-		Items: items,
-	}
-	return out, nil
-}
-
 // preparerForPrivateEndpointConnectionsListByWorkspace prepares the PrivateEndpointConnectionsListByWorkspace request.
 func (c PrivateLinkClient) preparerForPrivateEndpointConnectionsListByWorkspace(ctx context.Context, id WorkspaceId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
@@ -183,4 +139,48 @@ func (c PrivateLinkClient) responderForPrivateEndpointConnectionsListByWorkspace
 		}
 	}
 	return
+}
+
+// PrivateEndpointConnectionsListByWorkspaceComplete retrieves all of the results into a single object
+func (c PrivateLinkClient) PrivateEndpointConnectionsListByWorkspaceComplete(ctx context.Context, id WorkspaceId) (PrivateEndpointConnectionsListByWorkspaceCompleteResult, error) {
+	return c.PrivateEndpointConnectionsListByWorkspaceCompleteMatchingPredicate(ctx, id, PrivateEndpointConnectionWithSystemDataOperationPredicate{})
+}
+
+// PrivateEndpointConnectionsListByWorkspaceCompleteMatchingPredicate retrieves all of the results and then applied the predicate
+func (c PrivateLinkClient) PrivateEndpointConnectionsListByWorkspaceCompleteMatchingPredicate(ctx context.Context, id WorkspaceId, predicate PrivateEndpointConnectionWithSystemDataOperationPredicate) (resp PrivateEndpointConnectionsListByWorkspaceCompleteResult, err error) {
+	items := make([]PrivateEndpointConnectionWithSystemData, 0)
+
+	page, err := c.PrivateEndpointConnectionsListByWorkspace(ctx, id)
+	if err != nil {
+		err = fmt.Errorf("loading the initial page: %+v", err)
+		return
+	}
+	if page.Model != nil {
+		for _, v := range *page.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	for page.HasMore() {
+		page, err = page.LoadMore(ctx)
+		if err != nil {
+			err = fmt.Errorf("loading the next page: %+v", err)
+			return
+		}
+
+		if page.Model != nil {
+			for _, v := range *page.Model {
+				if predicate.Matches(v) {
+					items = append(items, v)
+				}
+			}
+		}
+	}
+
+	out := PrivateEndpointConnectionsListByWorkspaceCompleteResult{
+		Items: items,
+	}
+	return out, nil
 }

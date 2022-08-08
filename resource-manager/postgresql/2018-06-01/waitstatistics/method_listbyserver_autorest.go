@@ -59,50 +59,6 @@ func (c WaitStatisticsClient) ListByServer(ctx context.Context, id ServerId, inp
 	return
 }
 
-// ListByServerComplete retrieves all of the results into a single object
-func (c WaitStatisticsClient) ListByServerComplete(ctx context.Context, id ServerId, input WaitStatisticsInput) (ListByServerCompleteResult, error) {
-	return c.ListByServerCompleteMatchingPredicate(ctx, id, input, WaitStatisticOperationPredicate{})
-}
-
-// ListByServerCompleteMatchingPredicate retrieves all of the results and then applied the predicate
-func (c WaitStatisticsClient) ListByServerCompleteMatchingPredicate(ctx context.Context, id ServerId, input WaitStatisticsInput, predicate WaitStatisticOperationPredicate) (resp ListByServerCompleteResult, err error) {
-	items := make([]WaitStatistic, 0)
-
-	page, err := c.ListByServer(ctx, id, input)
-	if err != nil {
-		err = fmt.Errorf("loading the initial page: %+v", err)
-		return
-	}
-	if page.Model != nil {
-		for _, v := range *page.Model {
-			if predicate.Matches(v) {
-				items = append(items, v)
-			}
-		}
-	}
-
-	for page.HasMore() {
-		page, err = page.LoadMore(ctx)
-		if err != nil {
-			err = fmt.Errorf("loading the next page: %+v", err)
-			return
-		}
-
-		if page.Model != nil {
-			for _, v := range *page.Model {
-				if predicate.Matches(v) {
-					items = append(items, v)
-				}
-			}
-		}
-	}
-
-	out := ListByServerCompleteResult{
-		Items: items,
-	}
-	return out, nil
-}
-
 // preparerForListByServer prepares the ListByServer request.
 func (c WaitStatisticsClient) preparerForListByServer(ctx context.Context, id ServerId, input WaitStatisticsInput) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
@@ -184,4 +140,48 @@ func (c WaitStatisticsClient) responderForListByServer(resp *http.Response) (res
 		}
 	}
 	return
+}
+
+// ListByServerComplete retrieves all of the results into a single object
+func (c WaitStatisticsClient) ListByServerComplete(ctx context.Context, id ServerId, input WaitStatisticsInput) (ListByServerCompleteResult, error) {
+	return c.ListByServerCompleteMatchingPredicate(ctx, id, input, WaitStatisticOperationPredicate{})
+}
+
+// ListByServerCompleteMatchingPredicate retrieves all of the results and then applied the predicate
+func (c WaitStatisticsClient) ListByServerCompleteMatchingPredicate(ctx context.Context, id ServerId, input WaitStatisticsInput, predicate WaitStatisticOperationPredicate) (resp ListByServerCompleteResult, err error) {
+	items := make([]WaitStatistic, 0)
+
+	page, err := c.ListByServer(ctx, id, input)
+	if err != nil {
+		err = fmt.Errorf("loading the initial page: %+v", err)
+		return
+	}
+	if page.Model != nil {
+		for _, v := range *page.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	for page.HasMore() {
+		page, err = page.LoadMore(ctx)
+		if err != nil {
+			err = fmt.Errorf("loading the next page: %+v", err)
+			return
+		}
+
+		if page.Model != nil {
+			for _, v := range *page.Model {
+				if predicate.Matches(v) {
+					items = append(items, v)
+				}
+			}
+		}
+	}
+
+	out := ListByServerCompleteResult{
+		Items: items,
+	}
+	return out, nil
 }

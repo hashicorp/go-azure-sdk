@@ -89,50 +89,6 @@ func (c DeploymentsClient) ListAtManagementGroupScope(ctx context.Context, id co
 	return
 }
 
-// ListAtManagementGroupScopeComplete retrieves all of the results into a single object
-func (c DeploymentsClient) ListAtManagementGroupScopeComplete(ctx context.Context, id commonids.ManagementGroupId, options ListAtManagementGroupScopeOperationOptions) (ListAtManagementGroupScopeCompleteResult, error) {
-	return c.ListAtManagementGroupScopeCompleteMatchingPredicate(ctx, id, options, DeploymentExtendedOperationPredicate{})
-}
-
-// ListAtManagementGroupScopeCompleteMatchingPredicate retrieves all of the results and then applied the predicate
-func (c DeploymentsClient) ListAtManagementGroupScopeCompleteMatchingPredicate(ctx context.Context, id commonids.ManagementGroupId, options ListAtManagementGroupScopeOperationOptions, predicate DeploymentExtendedOperationPredicate) (resp ListAtManagementGroupScopeCompleteResult, err error) {
-	items := make([]DeploymentExtended, 0)
-
-	page, err := c.ListAtManagementGroupScope(ctx, id, options)
-	if err != nil {
-		err = fmt.Errorf("loading the initial page: %+v", err)
-		return
-	}
-	if page.Model != nil {
-		for _, v := range *page.Model {
-			if predicate.Matches(v) {
-				items = append(items, v)
-			}
-		}
-	}
-
-	for page.HasMore() {
-		page, err = page.LoadMore(ctx)
-		if err != nil {
-			err = fmt.Errorf("loading the next page: %+v", err)
-			return
-		}
-
-		if page.Model != nil {
-			for _, v := range *page.Model {
-				if predicate.Matches(v) {
-					items = append(items, v)
-				}
-			}
-		}
-	}
-
-	out := ListAtManagementGroupScopeCompleteResult{
-		Items: items,
-	}
-	return out, nil
-}
-
 // preparerForListAtManagementGroupScope prepares the ListAtManagementGroupScope request.
 func (c DeploymentsClient) preparerForListAtManagementGroupScope(ctx context.Context, id commonids.ManagementGroupId, options ListAtManagementGroupScopeOperationOptions) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
@@ -218,4 +174,48 @@ func (c DeploymentsClient) responderForListAtManagementGroupScope(resp *http.Res
 		}
 	}
 	return
+}
+
+// ListAtManagementGroupScopeComplete retrieves all of the results into a single object
+func (c DeploymentsClient) ListAtManagementGroupScopeComplete(ctx context.Context, id commonids.ManagementGroupId, options ListAtManagementGroupScopeOperationOptions) (ListAtManagementGroupScopeCompleteResult, error) {
+	return c.ListAtManagementGroupScopeCompleteMatchingPredicate(ctx, id, options, DeploymentExtendedOperationPredicate{})
+}
+
+// ListAtManagementGroupScopeCompleteMatchingPredicate retrieves all of the results and then applied the predicate
+func (c DeploymentsClient) ListAtManagementGroupScopeCompleteMatchingPredicate(ctx context.Context, id commonids.ManagementGroupId, options ListAtManagementGroupScopeOperationOptions, predicate DeploymentExtendedOperationPredicate) (resp ListAtManagementGroupScopeCompleteResult, err error) {
+	items := make([]DeploymentExtended, 0)
+
+	page, err := c.ListAtManagementGroupScope(ctx, id, options)
+	if err != nil {
+		err = fmt.Errorf("loading the initial page: %+v", err)
+		return
+	}
+	if page.Model != nil {
+		for _, v := range *page.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	for page.HasMore() {
+		page, err = page.LoadMore(ctx)
+		if err != nil {
+			err = fmt.Errorf("loading the next page: %+v", err)
+			return
+		}
+
+		if page.Model != nil {
+			for _, v := range *page.Model {
+				if predicate.Matches(v) {
+					items = append(items, v)
+				}
+			}
+		}
+	}
+
+	out := ListAtManagementGroupScopeCompleteResult{
+		Items: items,
+	}
+	return out, nil
 }

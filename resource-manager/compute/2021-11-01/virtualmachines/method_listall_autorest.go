@@ -89,50 +89,6 @@ func (c VirtualMachinesClient) ListAll(ctx context.Context, id commonids.Subscri
 	return
 }
 
-// ListAllComplete retrieves all of the results into a single object
-func (c VirtualMachinesClient) ListAllComplete(ctx context.Context, id commonids.SubscriptionId, options ListAllOperationOptions) (ListAllCompleteResult, error) {
-	return c.ListAllCompleteMatchingPredicate(ctx, id, options, VirtualMachineOperationPredicate{})
-}
-
-// ListAllCompleteMatchingPredicate retrieves all of the results and then applied the predicate
-func (c VirtualMachinesClient) ListAllCompleteMatchingPredicate(ctx context.Context, id commonids.SubscriptionId, options ListAllOperationOptions, predicate VirtualMachineOperationPredicate) (resp ListAllCompleteResult, err error) {
-	items := make([]VirtualMachine, 0)
-
-	page, err := c.ListAll(ctx, id, options)
-	if err != nil {
-		err = fmt.Errorf("loading the initial page: %+v", err)
-		return
-	}
-	if page.Model != nil {
-		for _, v := range *page.Model {
-			if predicate.Matches(v) {
-				items = append(items, v)
-			}
-		}
-	}
-
-	for page.HasMore() {
-		page, err = page.LoadMore(ctx)
-		if err != nil {
-			err = fmt.Errorf("loading the next page: %+v", err)
-			return
-		}
-
-		if page.Model != nil {
-			for _, v := range *page.Model {
-				if predicate.Matches(v) {
-					items = append(items, v)
-				}
-			}
-		}
-	}
-
-	out := ListAllCompleteResult{
-		Items: items,
-	}
-	return out, nil
-}
-
 // preparerForListAll prepares the ListAll request.
 func (c VirtualMachinesClient) preparerForListAll(ctx context.Context, id commonids.SubscriptionId, options ListAllOperationOptions) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
@@ -218,4 +174,48 @@ func (c VirtualMachinesClient) responderForListAll(resp *http.Response) (result 
 		}
 	}
 	return
+}
+
+// ListAllComplete retrieves all of the results into a single object
+func (c VirtualMachinesClient) ListAllComplete(ctx context.Context, id commonids.SubscriptionId, options ListAllOperationOptions) (ListAllCompleteResult, error) {
+	return c.ListAllCompleteMatchingPredicate(ctx, id, options, VirtualMachineOperationPredicate{})
+}
+
+// ListAllCompleteMatchingPredicate retrieves all of the results and then applied the predicate
+func (c VirtualMachinesClient) ListAllCompleteMatchingPredicate(ctx context.Context, id commonids.SubscriptionId, options ListAllOperationOptions, predicate VirtualMachineOperationPredicate) (resp ListAllCompleteResult, err error) {
+	items := make([]VirtualMachine, 0)
+
+	page, err := c.ListAll(ctx, id, options)
+	if err != nil {
+		err = fmt.Errorf("loading the initial page: %+v", err)
+		return
+	}
+	if page.Model != nil {
+		for _, v := range *page.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	for page.HasMore() {
+		page, err = page.LoadMore(ctx)
+		if err != nil {
+			err = fmt.Errorf("loading the next page: %+v", err)
+			return
+		}
+
+		if page.Model != nil {
+			for _, v := range *page.Model {
+				if predicate.Matches(v) {
+					items = append(items, v)
+				}
+			}
+		}
+	}
+
+	out := ListAllCompleteResult{
+		Items: items,
+	}
+	return out, nil
 }

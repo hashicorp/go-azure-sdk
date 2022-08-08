@@ -59,50 +59,6 @@ func (c DedicatedHostClient) ListByHostGroup(ctx context.Context, id HostGroupId
 	return
 }
 
-// ListByHostGroupComplete retrieves all of the results into a single object
-func (c DedicatedHostClient) ListByHostGroupComplete(ctx context.Context, id HostGroupId) (ListByHostGroupCompleteResult, error) {
-	return c.ListByHostGroupCompleteMatchingPredicate(ctx, id, DedicatedHostOperationPredicate{})
-}
-
-// ListByHostGroupCompleteMatchingPredicate retrieves all of the results and then applied the predicate
-func (c DedicatedHostClient) ListByHostGroupCompleteMatchingPredicate(ctx context.Context, id HostGroupId, predicate DedicatedHostOperationPredicate) (resp ListByHostGroupCompleteResult, err error) {
-	items := make([]DedicatedHost, 0)
-
-	page, err := c.ListByHostGroup(ctx, id)
-	if err != nil {
-		err = fmt.Errorf("loading the initial page: %+v", err)
-		return
-	}
-	if page.Model != nil {
-		for _, v := range *page.Model {
-			if predicate.Matches(v) {
-				items = append(items, v)
-			}
-		}
-	}
-
-	for page.HasMore() {
-		page, err = page.LoadMore(ctx)
-		if err != nil {
-			err = fmt.Errorf("loading the next page: %+v", err)
-			return
-		}
-
-		if page.Model != nil {
-			for _, v := range *page.Model {
-				if predicate.Matches(v) {
-					items = append(items, v)
-				}
-			}
-		}
-	}
-
-	out := ListByHostGroupCompleteResult{
-		Items: items,
-	}
-	return out, nil
-}
-
 // preparerForListByHostGroup prepares the ListByHostGroup request.
 func (c DedicatedHostClient) preparerForListByHostGroup(ctx context.Context, id HostGroupId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
@@ -183,4 +139,48 @@ func (c DedicatedHostClient) responderForListByHostGroup(resp *http.Response) (r
 		}
 	}
 	return
+}
+
+// ListByHostGroupComplete retrieves all of the results into a single object
+func (c DedicatedHostClient) ListByHostGroupComplete(ctx context.Context, id HostGroupId) (ListByHostGroupCompleteResult, error) {
+	return c.ListByHostGroupCompleteMatchingPredicate(ctx, id, DedicatedHostOperationPredicate{})
+}
+
+// ListByHostGroupCompleteMatchingPredicate retrieves all of the results and then applied the predicate
+func (c DedicatedHostClient) ListByHostGroupCompleteMatchingPredicate(ctx context.Context, id HostGroupId, predicate DedicatedHostOperationPredicate) (resp ListByHostGroupCompleteResult, err error) {
+	items := make([]DedicatedHost, 0)
+
+	page, err := c.ListByHostGroup(ctx, id)
+	if err != nil {
+		err = fmt.Errorf("loading the initial page: %+v", err)
+		return
+	}
+	if page.Model != nil {
+		for _, v := range *page.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	for page.HasMore() {
+		page, err = page.LoadMore(ctx)
+		if err != nil {
+			err = fmt.Errorf("loading the next page: %+v", err)
+			return
+		}
+
+		if page.Model != nil {
+			for _, v := range *page.Model {
+				if predicate.Matches(v) {
+					items = append(items, v)
+				}
+			}
+		}
+	}
+
+	out := ListByHostGroupCompleteResult{
+		Items: items,
+	}
+	return out, nil
 }
