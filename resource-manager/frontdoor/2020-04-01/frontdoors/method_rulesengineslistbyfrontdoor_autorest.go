@@ -59,50 +59,6 @@ func (c FrontDoorsClient) RulesEnginesListByFrontDoor(ctx context.Context, id Fr
 	return
 }
 
-// RulesEnginesListByFrontDoorComplete retrieves all of the results into a single object
-func (c FrontDoorsClient) RulesEnginesListByFrontDoorComplete(ctx context.Context, id FrontDoorId) (RulesEnginesListByFrontDoorCompleteResult, error) {
-	return c.RulesEnginesListByFrontDoorCompleteMatchingPredicate(ctx, id, RulesEngineOperationPredicate{})
-}
-
-// RulesEnginesListByFrontDoorCompleteMatchingPredicate retrieves all of the results and then applied the predicate
-func (c FrontDoorsClient) RulesEnginesListByFrontDoorCompleteMatchingPredicate(ctx context.Context, id FrontDoorId, predicate RulesEngineOperationPredicate) (resp RulesEnginesListByFrontDoorCompleteResult, err error) {
-	items := make([]RulesEngine, 0)
-
-	page, err := c.RulesEnginesListByFrontDoor(ctx, id)
-	if err != nil {
-		err = fmt.Errorf("loading the initial page: %+v", err)
-		return
-	}
-	if page.Model != nil {
-		for _, v := range *page.Model {
-			if predicate.Matches(v) {
-				items = append(items, v)
-			}
-		}
-	}
-
-	for page.HasMore() {
-		page, err = page.LoadMore(ctx)
-		if err != nil {
-			err = fmt.Errorf("loading the next page: %+v", err)
-			return
-		}
-
-		if page.Model != nil {
-			for _, v := range *page.Model {
-				if predicate.Matches(v) {
-					items = append(items, v)
-				}
-			}
-		}
-	}
-
-	out := RulesEnginesListByFrontDoorCompleteResult{
-		Items: items,
-	}
-	return out, nil
-}
-
 // preparerForRulesEnginesListByFrontDoor prepares the RulesEnginesListByFrontDoor request.
 func (c FrontDoorsClient) preparerForRulesEnginesListByFrontDoor(ctx context.Context, id FrontDoorId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
@@ -183,4 +139,48 @@ func (c FrontDoorsClient) responderForRulesEnginesListByFrontDoor(resp *http.Res
 		}
 	}
 	return
+}
+
+// RulesEnginesListByFrontDoorComplete retrieves all of the results into a single object
+func (c FrontDoorsClient) RulesEnginesListByFrontDoorComplete(ctx context.Context, id FrontDoorId) (RulesEnginesListByFrontDoorCompleteResult, error) {
+	return c.RulesEnginesListByFrontDoorCompleteMatchingPredicate(ctx, id, RulesEngineOperationPredicate{})
+}
+
+// RulesEnginesListByFrontDoorCompleteMatchingPredicate retrieves all of the results and then applied the predicate
+func (c FrontDoorsClient) RulesEnginesListByFrontDoorCompleteMatchingPredicate(ctx context.Context, id FrontDoorId, predicate RulesEngineOperationPredicate) (resp RulesEnginesListByFrontDoorCompleteResult, err error) {
+	items := make([]RulesEngine, 0)
+
+	page, err := c.RulesEnginesListByFrontDoor(ctx, id)
+	if err != nil {
+		err = fmt.Errorf("loading the initial page: %+v", err)
+		return
+	}
+	if page.Model != nil {
+		for _, v := range *page.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	for page.HasMore() {
+		page, err = page.LoadMore(ctx)
+		if err != nil {
+			err = fmt.Errorf("loading the next page: %+v", err)
+			return
+		}
+
+		if page.Model != nil {
+			for _, v := range *page.Model {
+				if predicate.Matches(v) {
+					items = append(items, v)
+				}
+			}
+		}
+	}
+
+	out := RulesEnginesListByFrontDoorCompleteResult{
+		Items: items,
+	}
+	return out, nil
 }

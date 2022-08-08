@@ -59,50 +59,6 @@ func (c PrivateLinkClient) ResourcesListByHostPool(ctx context.Context, id HostP
 	return
 }
 
-// ResourcesListByHostPoolComplete retrieves all of the results into a single object
-func (c PrivateLinkClient) ResourcesListByHostPoolComplete(ctx context.Context, id HostPoolId) (ResourcesListByHostPoolCompleteResult, error) {
-	return c.ResourcesListByHostPoolCompleteMatchingPredicate(ctx, id, PrivateLinkResourceOperationPredicate{})
-}
-
-// ResourcesListByHostPoolCompleteMatchingPredicate retrieves all of the results and then applied the predicate
-func (c PrivateLinkClient) ResourcesListByHostPoolCompleteMatchingPredicate(ctx context.Context, id HostPoolId, predicate PrivateLinkResourceOperationPredicate) (resp ResourcesListByHostPoolCompleteResult, err error) {
-	items := make([]PrivateLinkResource, 0)
-
-	page, err := c.ResourcesListByHostPool(ctx, id)
-	if err != nil {
-		err = fmt.Errorf("loading the initial page: %+v", err)
-		return
-	}
-	if page.Model != nil {
-		for _, v := range *page.Model {
-			if predicate.Matches(v) {
-				items = append(items, v)
-			}
-		}
-	}
-
-	for page.HasMore() {
-		page, err = page.LoadMore(ctx)
-		if err != nil {
-			err = fmt.Errorf("loading the next page: %+v", err)
-			return
-		}
-
-		if page.Model != nil {
-			for _, v := range *page.Model {
-				if predicate.Matches(v) {
-					items = append(items, v)
-				}
-			}
-		}
-	}
-
-	out := ResourcesListByHostPoolCompleteResult{
-		Items: items,
-	}
-	return out, nil
-}
-
 // preparerForResourcesListByHostPool prepares the ResourcesListByHostPool request.
 func (c PrivateLinkClient) preparerForResourcesListByHostPool(ctx context.Context, id HostPoolId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
@@ -183,4 +139,48 @@ func (c PrivateLinkClient) responderForResourcesListByHostPool(resp *http.Respon
 		}
 	}
 	return
+}
+
+// ResourcesListByHostPoolComplete retrieves all of the results into a single object
+func (c PrivateLinkClient) ResourcesListByHostPoolComplete(ctx context.Context, id HostPoolId) (ResourcesListByHostPoolCompleteResult, error) {
+	return c.ResourcesListByHostPoolCompleteMatchingPredicate(ctx, id, PrivateLinkResourceOperationPredicate{})
+}
+
+// ResourcesListByHostPoolCompleteMatchingPredicate retrieves all of the results and then applied the predicate
+func (c PrivateLinkClient) ResourcesListByHostPoolCompleteMatchingPredicate(ctx context.Context, id HostPoolId, predicate PrivateLinkResourceOperationPredicate) (resp ResourcesListByHostPoolCompleteResult, err error) {
+	items := make([]PrivateLinkResource, 0)
+
+	page, err := c.ResourcesListByHostPool(ctx, id)
+	if err != nil {
+		err = fmt.Errorf("loading the initial page: %+v", err)
+		return
+	}
+	if page.Model != nil {
+		for _, v := range *page.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	for page.HasMore() {
+		page, err = page.LoadMore(ctx)
+		if err != nil {
+			err = fmt.Errorf("loading the next page: %+v", err)
+			return
+		}
+
+		if page.Model != nil {
+			for _, v := range *page.Model {
+				if predicate.Matches(v) {
+					items = append(items, v)
+				}
+			}
+		}
+	}
+
+	out := ResourcesListByHostPoolCompleteResult{
+		Items: items,
+	}
+	return out, nil
 }

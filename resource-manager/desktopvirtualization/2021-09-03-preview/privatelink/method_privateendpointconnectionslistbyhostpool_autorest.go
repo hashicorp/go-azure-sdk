@@ -59,50 +59,6 @@ func (c PrivateLinkClient) PrivateEndpointConnectionsListByHostPool(ctx context.
 	return
 }
 
-// PrivateEndpointConnectionsListByHostPoolComplete retrieves all of the results into a single object
-func (c PrivateLinkClient) PrivateEndpointConnectionsListByHostPoolComplete(ctx context.Context, id HostPoolId) (PrivateEndpointConnectionsListByHostPoolCompleteResult, error) {
-	return c.PrivateEndpointConnectionsListByHostPoolCompleteMatchingPredicate(ctx, id, PrivateEndpointConnectionWithSystemDataOperationPredicate{})
-}
-
-// PrivateEndpointConnectionsListByHostPoolCompleteMatchingPredicate retrieves all of the results and then applied the predicate
-func (c PrivateLinkClient) PrivateEndpointConnectionsListByHostPoolCompleteMatchingPredicate(ctx context.Context, id HostPoolId, predicate PrivateEndpointConnectionWithSystemDataOperationPredicate) (resp PrivateEndpointConnectionsListByHostPoolCompleteResult, err error) {
-	items := make([]PrivateEndpointConnectionWithSystemData, 0)
-
-	page, err := c.PrivateEndpointConnectionsListByHostPool(ctx, id)
-	if err != nil {
-		err = fmt.Errorf("loading the initial page: %+v", err)
-		return
-	}
-	if page.Model != nil {
-		for _, v := range *page.Model {
-			if predicate.Matches(v) {
-				items = append(items, v)
-			}
-		}
-	}
-
-	for page.HasMore() {
-		page, err = page.LoadMore(ctx)
-		if err != nil {
-			err = fmt.Errorf("loading the next page: %+v", err)
-			return
-		}
-
-		if page.Model != nil {
-			for _, v := range *page.Model {
-				if predicate.Matches(v) {
-					items = append(items, v)
-				}
-			}
-		}
-	}
-
-	out := PrivateEndpointConnectionsListByHostPoolCompleteResult{
-		Items: items,
-	}
-	return out, nil
-}
-
 // preparerForPrivateEndpointConnectionsListByHostPool prepares the PrivateEndpointConnectionsListByHostPool request.
 func (c PrivateLinkClient) preparerForPrivateEndpointConnectionsListByHostPool(ctx context.Context, id HostPoolId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
@@ -183,4 +139,48 @@ func (c PrivateLinkClient) responderForPrivateEndpointConnectionsListByHostPool(
 		}
 	}
 	return
+}
+
+// PrivateEndpointConnectionsListByHostPoolComplete retrieves all of the results into a single object
+func (c PrivateLinkClient) PrivateEndpointConnectionsListByHostPoolComplete(ctx context.Context, id HostPoolId) (PrivateEndpointConnectionsListByHostPoolCompleteResult, error) {
+	return c.PrivateEndpointConnectionsListByHostPoolCompleteMatchingPredicate(ctx, id, PrivateEndpointConnectionWithSystemDataOperationPredicate{})
+}
+
+// PrivateEndpointConnectionsListByHostPoolCompleteMatchingPredicate retrieves all of the results and then applied the predicate
+func (c PrivateLinkClient) PrivateEndpointConnectionsListByHostPoolCompleteMatchingPredicate(ctx context.Context, id HostPoolId, predicate PrivateEndpointConnectionWithSystemDataOperationPredicate) (resp PrivateEndpointConnectionsListByHostPoolCompleteResult, err error) {
+	items := make([]PrivateEndpointConnectionWithSystemData, 0)
+
+	page, err := c.PrivateEndpointConnectionsListByHostPool(ctx, id)
+	if err != nil {
+		err = fmt.Errorf("loading the initial page: %+v", err)
+		return
+	}
+	if page.Model != nil {
+		for _, v := range *page.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	for page.HasMore() {
+		page, err = page.LoadMore(ctx)
+		if err != nil {
+			err = fmt.Errorf("loading the next page: %+v", err)
+			return
+		}
+
+		if page.Model != nil {
+			for _, v := range *page.Model {
+				if predicate.Matches(v) {
+					items = append(items, v)
+				}
+			}
+		}
+	}
+
+	out := PrivateEndpointConnectionsListByHostPoolCompleteResult{
+		Items: items,
+	}
+	return out, nil
 }

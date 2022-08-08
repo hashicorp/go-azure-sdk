@@ -59,50 +59,6 @@ func (c VirtualMachineScaleSetsClient) GetOSUpgradeHistory(ctx context.Context, 
 	return
 }
 
-// GetOSUpgradeHistoryComplete retrieves all of the results into a single object
-func (c VirtualMachineScaleSetsClient) GetOSUpgradeHistoryComplete(ctx context.Context, id VirtualMachineScaleSetId) (GetOSUpgradeHistoryCompleteResult, error) {
-	return c.GetOSUpgradeHistoryCompleteMatchingPredicate(ctx, id, UpgradeOperationHistoricalStatusInfoOperationPredicate{})
-}
-
-// GetOSUpgradeHistoryCompleteMatchingPredicate retrieves all of the results and then applied the predicate
-func (c VirtualMachineScaleSetsClient) GetOSUpgradeHistoryCompleteMatchingPredicate(ctx context.Context, id VirtualMachineScaleSetId, predicate UpgradeOperationHistoricalStatusInfoOperationPredicate) (resp GetOSUpgradeHistoryCompleteResult, err error) {
-	items := make([]UpgradeOperationHistoricalStatusInfo, 0)
-
-	page, err := c.GetOSUpgradeHistory(ctx, id)
-	if err != nil {
-		err = fmt.Errorf("loading the initial page: %+v", err)
-		return
-	}
-	if page.Model != nil {
-		for _, v := range *page.Model {
-			if predicate.Matches(v) {
-				items = append(items, v)
-			}
-		}
-	}
-
-	for page.HasMore() {
-		page, err = page.LoadMore(ctx)
-		if err != nil {
-			err = fmt.Errorf("loading the next page: %+v", err)
-			return
-		}
-
-		if page.Model != nil {
-			for _, v := range *page.Model {
-				if predicate.Matches(v) {
-					items = append(items, v)
-				}
-			}
-		}
-	}
-
-	out := GetOSUpgradeHistoryCompleteResult{
-		Items: items,
-	}
-	return out, nil
-}
-
 // preparerForGetOSUpgradeHistory prepares the GetOSUpgradeHistory request.
 func (c VirtualMachineScaleSetsClient) preparerForGetOSUpgradeHistory(ctx context.Context, id VirtualMachineScaleSetId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
@@ -183,4 +139,48 @@ func (c VirtualMachineScaleSetsClient) responderForGetOSUpgradeHistory(resp *htt
 		}
 	}
 	return
+}
+
+// GetOSUpgradeHistoryComplete retrieves all of the results into a single object
+func (c VirtualMachineScaleSetsClient) GetOSUpgradeHistoryComplete(ctx context.Context, id VirtualMachineScaleSetId) (GetOSUpgradeHistoryCompleteResult, error) {
+	return c.GetOSUpgradeHistoryCompleteMatchingPredicate(ctx, id, UpgradeOperationHistoricalStatusInfoOperationPredicate{})
+}
+
+// GetOSUpgradeHistoryCompleteMatchingPredicate retrieves all of the results and then applied the predicate
+func (c VirtualMachineScaleSetsClient) GetOSUpgradeHistoryCompleteMatchingPredicate(ctx context.Context, id VirtualMachineScaleSetId, predicate UpgradeOperationHistoricalStatusInfoOperationPredicate) (resp GetOSUpgradeHistoryCompleteResult, err error) {
+	items := make([]UpgradeOperationHistoricalStatusInfo, 0)
+
+	page, err := c.GetOSUpgradeHistory(ctx, id)
+	if err != nil {
+		err = fmt.Errorf("loading the initial page: %+v", err)
+		return
+	}
+	if page.Model != nil {
+		for _, v := range *page.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	for page.HasMore() {
+		page, err = page.LoadMore(ctx)
+		if err != nil {
+			err = fmt.Errorf("loading the next page: %+v", err)
+			return
+		}
+
+		if page.Model != nil {
+			for _, v := range *page.Model {
+				if predicate.Matches(v) {
+					items = append(items, v)
+				}
+			}
+		}
+	}
+
+	out := GetOSUpgradeHistoryCompleteResult{
+		Items: items,
+	}
+	return out, nil
 }

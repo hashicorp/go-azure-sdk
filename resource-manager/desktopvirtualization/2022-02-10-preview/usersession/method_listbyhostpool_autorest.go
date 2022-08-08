@@ -83,50 +83,6 @@ func (c UserSessionClient) ListByHostPool(ctx context.Context, id HostPoolId, op
 	return
 }
 
-// ListByHostPoolComplete retrieves all of the results into a single object
-func (c UserSessionClient) ListByHostPoolComplete(ctx context.Context, id HostPoolId, options ListByHostPoolOperationOptions) (ListByHostPoolCompleteResult, error) {
-	return c.ListByHostPoolCompleteMatchingPredicate(ctx, id, options, UserSessionOperationPredicate{})
-}
-
-// ListByHostPoolCompleteMatchingPredicate retrieves all of the results and then applied the predicate
-func (c UserSessionClient) ListByHostPoolCompleteMatchingPredicate(ctx context.Context, id HostPoolId, options ListByHostPoolOperationOptions, predicate UserSessionOperationPredicate) (resp ListByHostPoolCompleteResult, err error) {
-	items := make([]UserSession, 0)
-
-	page, err := c.ListByHostPool(ctx, id, options)
-	if err != nil {
-		err = fmt.Errorf("loading the initial page: %+v", err)
-		return
-	}
-	if page.Model != nil {
-		for _, v := range *page.Model {
-			if predicate.Matches(v) {
-				items = append(items, v)
-			}
-		}
-	}
-
-	for page.HasMore() {
-		page, err = page.LoadMore(ctx)
-		if err != nil {
-			err = fmt.Errorf("loading the next page: %+v", err)
-			return
-		}
-
-		if page.Model != nil {
-			for _, v := range *page.Model {
-				if predicate.Matches(v) {
-					items = append(items, v)
-				}
-			}
-		}
-	}
-
-	out := ListByHostPoolCompleteResult{
-		Items: items,
-	}
-	return out, nil
-}
-
 // preparerForListByHostPool prepares the ListByHostPool request.
 func (c UserSessionClient) preparerForListByHostPool(ctx context.Context, id HostPoolId, options ListByHostPoolOperationOptions) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
@@ -212,4 +168,48 @@ func (c UserSessionClient) responderForListByHostPool(resp *http.Response) (resu
 		}
 	}
 	return
+}
+
+// ListByHostPoolComplete retrieves all of the results into a single object
+func (c UserSessionClient) ListByHostPoolComplete(ctx context.Context, id HostPoolId, options ListByHostPoolOperationOptions) (ListByHostPoolCompleteResult, error) {
+	return c.ListByHostPoolCompleteMatchingPredicate(ctx, id, options, UserSessionOperationPredicate{})
+}
+
+// ListByHostPoolCompleteMatchingPredicate retrieves all of the results and then applied the predicate
+func (c UserSessionClient) ListByHostPoolCompleteMatchingPredicate(ctx context.Context, id HostPoolId, options ListByHostPoolOperationOptions, predicate UserSessionOperationPredicate) (resp ListByHostPoolCompleteResult, err error) {
+	items := make([]UserSession, 0)
+
+	page, err := c.ListByHostPool(ctx, id, options)
+	if err != nil {
+		err = fmt.Errorf("loading the initial page: %+v", err)
+		return
+	}
+	if page.Model != nil {
+		for _, v := range *page.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	for page.HasMore() {
+		page, err = page.LoadMore(ctx)
+		if err != nil {
+			err = fmt.Errorf("loading the next page: %+v", err)
+			return
+		}
+
+		if page.Model != nil {
+			for _, v := range *page.Model {
+				if predicate.Matches(v) {
+					items = append(items, v)
+				}
+			}
+		}
+	}
+
+	out := ListByHostPoolCompleteResult{
+		Items: items,
+	}
+	return out, nil
 }

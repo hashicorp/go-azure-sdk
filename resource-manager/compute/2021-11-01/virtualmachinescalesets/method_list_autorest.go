@@ -60,50 +60,6 @@ func (c VirtualMachineScaleSetsClient) List(ctx context.Context, id commonids.Re
 	return
 }
 
-// ListComplete retrieves all of the results into a single object
-func (c VirtualMachineScaleSetsClient) ListComplete(ctx context.Context, id commonids.ResourceGroupId) (ListCompleteResult, error) {
-	return c.ListCompleteMatchingPredicate(ctx, id, VirtualMachineScaleSetOperationPredicate{})
-}
-
-// ListCompleteMatchingPredicate retrieves all of the results and then applied the predicate
-func (c VirtualMachineScaleSetsClient) ListCompleteMatchingPredicate(ctx context.Context, id commonids.ResourceGroupId, predicate VirtualMachineScaleSetOperationPredicate) (resp ListCompleteResult, err error) {
-	items := make([]VirtualMachineScaleSet, 0)
-
-	page, err := c.List(ctx, id)
-	if err != nil {
-		err = fmt.Errorf("loading the initial page: %+v", err)
-		return
-	}
-	if page.Model != nil {
-		for _, v := range *page.Model {
-			if predicate.Matches(v) {
-				items = append(items, v)
-			}
-		}
-	}
-
-	for page.HasMore() {
-		page, err = page.LoadMore(ctx)
-		if err != nil {
-			err = fmt.Errorf("loading the next page: %+v", err)
-			return
-		}
-
-		if page.Model != nil {
-			for _, v := range *page.Model {
-				if predicate.Matches(v) {
-					items = append(items, v)
-				}
-			}
-		}
-	}
-
-	out := ListCompleteResult{
-		Items: items,
-	}
-	return out, nil
-}
-
 // preparerForList prepares the List request.
 func (c VirtualMachineScaleSetsClient) preparerForList(ctx context.Context, id commonids.ResourceGroupId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
@@ -184,4 +140,48 @@ func (c VirtualMachineScaleSetsClient) responderForList(resp *http.Response) (re
 		}
 	}
 	return
+}
+
+// ListComplete retrieves all of the results into a single object
+func (c VirtualMachineScaleSetsClient) ListComplete(ctx context.Context, id commonids.ResourceGroupId) (ListCompleteResult, error) {
+	return c.ListCompleteMatchingPredicate(ctx, id, VirtualMachineScaleSetOperationPredicate{})
+}
+
+// ListCompleteMatchingPredicate retrieves all of the results and then applied the predicate
+func (c VirtualMachineScaleSetsClient) ListCompleteMatchingPredicate(ctx context.Context, id commonids.ResourceGroupId, predicate VirtualMachineScaleSetOperationPredicate) (resp ListCompleteResult, err error) {
+	items := make([]VirtualMachineScaleSet, 0)
+
+	page, err := c.List(ctx, id)
+	if err != nil {
+		err = fmt.Errorf("loading the initial page: %+v", err)
+		return
+	}
+	if page.Model != nil {
+		for _, v := range *page.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	for page.HasMore() {
+		page, err = page.LoadMore(ctx)
+		if err != nil {
+			err = fmt.Errorf("loading the next page: %+v", err)
+			return
+		}
+
+		if page.Model != nil {
+			for _, v := range *page.Model {
+				if predicate.Matches(v) {
+					items = append(items, v)
+				}
+			}
+		}
+	}
+
+	out := ListCompleteResult{
+		Items: items,
+	}
+	return out, nil
 }

@@ -59,50 +59,6 @@ func (c SubVolumesClient) ListByVolume(ctx context.Context, id VolumeId) (resp L
 	return
 }
 
-// ListByVolumeComplete retrieves all of the results into a single object
-func (c SubVolumesClient) ListByVolumeComplete(ctx context.Context, id VolumeId) (ListByVolumeCompleteResult, error) {
-	return c.ListByVolumeCompleteMatchingPredicate(ctx, id, SubvolumeInfoOperationPredicate{})
-}
-
-// ListByVolumeCompleteMatchingPredicate retrieves all of the results and then applied the predicate
-func (c SubVolumesClient) ListByVolumeCompleteMatchingPredicate(ctx context.Context, id VolumeId, predicate SubvolumeInfoOperationPredicate) (resp ListByVolumeCompleteResult, err error) {
-	items := make([]SubvolumeInfo, 0)
-
-	page, err := c.ListByVolume(ctx, id)
-	if err != nil {
-		err = fmt.Errorf("loading the initial page: %+v", err)
-		return
-	}
-	if page.Model != nil {
-		for _, v := range *page.Model {
-			if predicate.Matches(v) {
-				items = append(items, v)
-			}
-		}
-	}
-
-	for page.HasMore() {
-		page, err = page.LoadMore(ctx)
-		if err != nil {
-			err = fmt.Errorf("loading the next page: %+v", err)
-			return
-		}
-
-		if page.Model != nil {
-			for _, v := range *page.Model {
-				if predicate.Matches(v) {
-					items = append(items, v)
-				}
-			}
-		}
-	}
-
-	out := ListByVolumeCompleteResult{
-		Items: items,
-	}
-	return out, nil
-}
-
 // preparerForListByVolume prepares the ListByVolume request.
 func (c SubVolumesClient) preparerForListByVolume(ctx context.Context, id VolumeId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
@@ -183,4 +139,48 @@ func (c SubVolumesClient) responderForListByVolume(resp *http.Response) (result 
 		}
 	}
 	return
+}
+
+// ListByVolumeComplete retrieves all of the results into a single object
+func (c SubVolumesClient) ListByVolumeComplete(ctx context.Context, id VolumeId) (ListByVolumeCompleteResult, error) {
+	return c.ListByVolumeCompleteMatchingPredicate(ctx, id, SubvolumeInfoOperationPredicate{})
+}
+
+// ListByVolumeCompleteMatchingPredicate retrieves all of the results and then applied the predicate
+func (c SubVolumesClient) ListByVolumeCompleteMatchingPredicate(ctx context.Context, id VolumeId, predicate SubvolumeInfoOperationPredicate) (resp ListByVolumeCompleteResult, err error) {
+	items := make([]SubvolumeInfo, 0)
+
+	page, err := c.ListByVolume(ctx, id)
+	if err != nil {
+		err = fmt.Errorf("loading the initial page: %+v", err)
+		return
+	}
+	if page.Model != nil {
+		for _, v := range *page.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	for page.HasMore() {
+		page, err = page.LoadMore(ctx)
+		if err != nil {
+			err = fmt.Errorf("loading the next page: %+v", err)
+			return
+		}
+
+		if page.Model != nil {
+			for _, v := range *page.Model {
+				if predicate.Matches(v) {
+					items = append(items, v)
+				}
+			}
+		}
+	}
+
+	out := ListByVolumeCompleteResult{
+		Items: items,
+	}
+	return out, nil
 }

@@ -59,50 +59,6 @@ func (c AuthorizationRulesDisasterRecoveryConfigsClient) DisasterRecoveryConfigs
 	return
 }
 
-// DisasterRecoveryConfigsListAuthorizationRulesComplete retrieves all of the results into a single object
-func (c AuthorizationRulesDisasterRecoveryConfigsClient) DisasterRecoveryConfigsListAuthorizationRulesComplete(ctx context.Context, id DisasterRecoveryConfigId) (DisasterRecoveryConfigsListAuthorizationRulesCompleteResult, error) {
-	return c.DisasterRecoveryConfigsListAuthorizationRulesCompleteMatchingPredicate(ctx, id, AuthorizationRuleOperationPredicate{})
-}
-
-// DisasterRecoveryConfigsListAuthorizationRulesCompleteMatchingPredicate retrieves all of the results and then applied the predicate
-func (c AuthorizationRulesDisasterRecoveryConfigsClient) DisasterRecoveryConfigsListAuthorizationRulesCompleteMatchingPredicate(ctx context.Context, id DisasterRecoveryConfigId, predicate AuthorizationRuleOperationPredicate) (resp DisasterRecoveryConfigsListAuthorizationRulesCompleteResult, err error) {
-	items := make([]AuthorizationRule, 0)
-
-	page, err := c.DisasterRecoveryConfigsListAuthorizationRules(ctx, id)
-	if err != nil {
-		err = fmt.Errorf("loading the initial page: %+v", err)
-		return
-	}
-	if page.Model != nil {
-		for _, v := range *page.Model {
-			if predicate.Matches(v) {
-				items = append(items, v)
-			}
-		}
-	}
-
-	for page.HasMore() {
-		page, err = page.LoadMore(ctx)
-		if err != nil {
-			err = fmt.Errorf("loading the next page: %+v", err)
-			return
-		}
-
-		if page.Model != nil {
-			for _, v := range *page.Model {
-				if predicate.Matches(v) {
-					items = append(items, v)
-				}
-			}
-		}
-	}
-
-	out := DisasterRecoveryConfigsListAuthorizationRulesCompleteResult{
-		Items: items,
-	}
-	return out, nil
-}
-
 // preparerForDisasterRecoveryConfigsListAuthorizationRules prepares the DisasterRecoveryConfigsListAuthorizationRules request.
 func (c AuthorizationRulesDisasterRecoveryConfigsClient) preparerForDisasterRecoveryConfigsListAuthorizationRules(ctx context.Context, id DisasterRecoveryConfigId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
@@ -183,4 +139,48 @@ func (c AuthorizationRulesDisasterRecoveryConfigsClient) responderForDisasterRec
 		}
 	}
 	return
+}
+
+// DisasterRecoveryConfigsListAuthorizationRulesComplete retrieves all of the results into a single object
+func (c AuthorizationRulesDisasterRecoveryConfigsClient) DisasterRecoveryConfigsListAuthorizationRulesComplete(ctx context.Context, id DisasterRecoveryConfigId) (DisasterRecoveryConfigsListAuthorizationRulesCompleteResult, error) {
+	return c.DisasterRecoveryConfigsListAuthorizationRulesCompleteMatchingPredicate(ctx, id, AuthorizationRuleOperationPredicate{})
+}
+
+// DisasterRecoveryConfigsListAuthorizationRulesCompleteMatchingPredicate retrieves all of the results and then applied the predicate
+func (c AuthorizationRulesDisasterRecoveryConfigsClient) DisasterRecoveryConfigsListAuthorizationRulesCompleteMatchingPredicate(ctx context.Context, id DisasterRecoveryConfigId, predicate AuthorizationRuleOperationPredicate) (resp DisasterRecoveryConfigsListAuthorizationRulesCompleteResult, err error) {
+	items := make([]AuthorizationRule, 0)
+
+	page, err := c.DisasterRecoveryConfigsListAuthorizationRules(ctx, id)
+	if err != nil {
+		err = fmt.Errorf("loading the initial page: %+v", err)
+		return
+	}
+	if page.Model != nil {
+		for _, v := range *page.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	for page.HasMore() {
+		page, err = page.LoadMore(ctx)
+		if err != nil {
+			err = fmt.Errorf("loading the next page: %+v", err)
+			return
+		}
+
+		if page.Model != nil {
+			for _, v := range *page.Model {
+				if predicate.Matches(v) {
+					items = append(items, v)
+				}
+			}
+		}
+	}
+
+	out := DisasterRecoveryConfigsListAuthorizationRulesCompleteResult{
+		Items: items,
+	}
+	return out, nil
 }

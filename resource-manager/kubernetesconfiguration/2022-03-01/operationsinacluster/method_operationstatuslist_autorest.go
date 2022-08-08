@@ -59,50 +59,6 @@ func (c OperationsInAClusterClient) OperationStatusList(ctx context.Context, id 
 	return
 }
 
-// OperationStatusListComplete retrieves all of the results into a single object
-func (c OperationsInAClusterClient) OperationStatusListComplete(ctx context.Context, id ProviderId) (OperationStatusListCompleteResult, error) {
-	return c.OperationStatusListCompleteMatchingPredicate(ctx, id, OperationStatusResultOperationPredicate{})
-}
-
-// OperationStatusListCompleteMatchingPredicate retrieves all of the results and then applied the predicate
-func (c OperationsInAClusterClient) OperationStatusListCompleteMatchingPredicate(ctx context.Context, id ProviderId, predicate OperationStatusResultOperationPredicate) (resp OperationStatusListCompleteResult, err error) {
-	items := make([]OperationStatusResult, 0)
-
-	page, err := c.OperationStatusList(ctx, id)
-	if err != nil {
-		err = fmt.Errorf("loading the initial page: %+v", err)
-		return
-	}
-	if page.Model != nil {
-		for _, v := range *page.Model {
-			if predicate.Matches(v) {
-				items = append(items, v)
-			}
-		}
-	}
-
-	for page.HasMore() {
-		page, err = page.LoadMore(ctx)
-		if err != nil {
-			err = fmt.Errorf("loading the next page: %+v", err)
-			return
-		}
-
-		if page.Model != nil {
-			for _, v := range *page.Model {
-				if predicate.Matches(v) {
-					items = append(items, v)
-				}
-			}
-		}
-	}
-
-	out := OperationStatusListCompleteResult{
-		Items: items,
-	}
-	return out, nil
-}
-
 // preparerForOperationStatusList prepares the OperationStatusList request.
 func (c OperationsInAClusterClient) preparerForOperationStatusList(ctx context.Context, id ProviderId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
@@ -183,4 +139,48 @@ func (c OperationsInAClusterClient) responderForOperationStatusList(resp *http.R
 		}
 	}
 	return
+}
+
+// OperationStatusListComplete retrieves all of the results into a single object
+func (c OperationsInAClusterClient) OperationStatusListComplete(ctx context.Context, id ProviderId) (OperationStatusListCompleteResult, error) {
+	return c.OperationStatusListCompleteMatchingPredicate(ctx, id, OperationStatusResultOperationPredicate{})
+}
+
+// OperationStatusListCompleteMatchingPredicate retrieves all of the results and then applied the predicate
+func (c OperationsInAClusterClient) OperationStatusListCompleteMatchingPredicate(ctx context.Context, id ProviderId, predicate OperationStatusResultOperationPredicate) (resp OperationStatusListCompleteResult, err error) {
+	items := make([]OperationStatusResult, 0)
+
+	page, err := c.OperationStatusList(ctx, id)
+	if err != nil {
+		err = fmt.Errorf("loading the initial page: %+v", err)
+		return
+	}
+	if page.Model != nil {
+		for _, v := range *page.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	for page.HasMore() {
+		page, err = page.LoadMore(ctx)
+		if err != nil {
+			err = fmt.Errorf("loading the next page: %+v", err)
+			return
+		}
+
+		if page.Model != nil {
+			for _, v := range *page.Model {
+				if predicate.Matches(v) {
+					items = append(items, v)
+				}
+			}
+		}
+	}
+
+	out := OperationStatusListCompleteResult{
+		Items: items,
+	}
+	return out, nil
 }

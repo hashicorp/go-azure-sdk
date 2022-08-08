@@ -59,50 +59,6 @@ func (c ApplicationTypeVersionClient) ListByApplicationTypes(ctx context.Context
 	return
 }
 
-// ListByApplicationTypesComplete retrieves all of the results into a single object
-func (c ApplicationTypeVersionClient) ListByApplicationTypesComplete(ctx context.Context, id ApplicationTypeId) (ListByApplicationTypesCompleteResult, error) {
-	return c.ListByApplicationTypesCompleteMatchingPredicate(ctx, id, ApplicationTypeVersionResourceOperationPredicate{})
-}
-
-// ListByApplicationTypesCompleteMatchingPredicate retrieves all of the results and then applied the predicate
-func (c ApplicationTypeVersionClient) ListByApplicationTypesCompleteMatchingPredicate(ctx context.Context, id ApplicationTypeId, predicate ApplicationTypeVersionResourceOperationPredicate) (resp ListByApplicationTypesCompleteResult, err error) {
-	items := make([]ApplicationTypeVersionResource, 0)
-
-	page, err := c.ListByApplicationTypes(ctx, id)
-	if err != nil {
-		err = fmt.Errorf("loading the initial page: %+v", err)
-		return
-	}
-	if page.Model != nil {
-		for _, v := range *page.Model {
-			if predicate.Matches(v) {
-				items = append(items, v)
-			}
-		}
-	}
-
-	for page.HasMore() {
-		page, err = page.LoadMore(ctx)
-		if err != nil {
-			err = fmt.Errorf("loading the next page: %+v", err)
-			return
-		}
-
-		if page.Model != nil {
-			for _, v := range *page.Model {
-				if predicate.Matches(v) {
-					items = append(items, v)
-				}
-			}
-		}
-	}
-
-	out := ListByApplicationTypesCompleteResult{
-		Items: items,
-	}
-	return out, nil
-}
-
 // preparerForListByApplicationTypes prepares the ListByApplicationTypes request.
 func (c ApplicationTypeVersionClient) preparerForListByApplicationTypes(ctx context.Context, id ApplicationTypeId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
@@ -183,4 +139,48 @@ func (c ApplicationTypeVersionClient) responderForListByApplicationTypes(resp *h
 		}
 	}
 	return
+}
+
+// ListByApplicationTypesComplete retrieves all of the results into a single object
+func (c ApplicationTypeVersionClient) ListByApplicationTypesComplete(ctx context.Context, id ApplicationTypeId) (ListByApplicationTypesCompleteResult, error) {
+	return c.ListByApplicationTypesCompleteMatchingPredicate(ctx, id, ApplicationTypeVersionResourceOperationPredicate{})
+}
+
+// ListByApplicationTypesCompleteMatchingPredicate retrieves all of the results and then applied the predicate
+func (c ApplicationTypeVersionClient) ListByApplicationTypesCompleteMatchingPredicate(ctx context.Context, id ApplicationTypeId, predicate ApplicationTypeVersionResourceOperationPredicate) (resp ListByApplicationTypesCompleteResult, err error) {
+	items := make([]ApplicationTypeVersionResource, 0)
+
+	page, err := c.ListByApplicationTypes(ctx, id)
+	if err != nil {
+		err = fmt.Errorf("loading the initial page: %+v", err)
+		return
+	}
+	if page.Model != nil {
+		for _, v := range *page.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	for page.HasMore() {
+		page, err = page.LoadMore(ctx)
+		if err != nil {
+			err = fmt.Errorf("loading the next page: %+v", err)
+			return
+		}
+
+		if page.Model != nil {
+			for _, v := range *page.Model {
+				if predicate.Matches(v) {
+					items = append(items, v)
+				}
+			}
+		}
+	}
+
+	out := ListByApplicationTypesCompleteResult{
+		Items: items,
+	}
+	return out, nil
 }

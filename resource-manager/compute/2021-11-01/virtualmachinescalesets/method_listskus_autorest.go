@@ -59,50 +59,6 @@ func (c VirtualMachineScaleSetsClient) ListSkus(ctx context.Context, id VirtualM
 	return
 }
 
-// ListSkusComplete retrieves all of the results into a single object
-func (c VirtualMachineScaleSetsClient) ListSkusComplete(ctx context.Context, id VirtualMachineScaleSetId) (ListSkusCompleteResult, error) {
-	return c.ListSkusCompleteMatchingPredicate(ctx, id, VirtualMachineScaleSetSkuOperationPredicate{})
-}
-
-// ListSkusCompleteMatchingPredicate retrieves all of the results and then applied the predicate
-func (c VirtualMachineScaleSetsClient) ListSkusCompleteMatchingPredicate(ctx context.Context, id VirtualMachineScaleSetId, predicate VirtualMachineScaleSetSkuOperationPredicate) (resp ListSkusCompleteResult, err error) {
-	items := make([]VirtualMachineScaleSetSku, 0)
-
-	page, err := c.ListSkus(ctx, id)
-	if err != nil {
-		err = fmt.Errorf("loading the initial page: %+v", err)
-		return
-	}
-	if page.Model != nil {
-		for _, v := range *page.Model {
-			if predicate.Matches(v) {
-				items = append(items, v)
-			}
-		}
-	}
-
-	for page.HasMore() {
-		page, err = page.LoadMore(ctx)
-		if err != nil {
-			err = fmt.Errorf("loading the next page: %+v", err)
-			return
-		}
-
-		if page.Model != nil {
-			for _, v := range *page.Model {
-				if predicate.Matches(v) {
-					items = append(items, v)
-				}
-			}
-		}
-	}
-
-	out := ListSkusCompleteResult{
-		Items: items,
-	}
-	return out, nil
-}
-
 // preparerForListSkus prepares the ListSkus request.
 func (c VirtualMachineScaleSetsClient) preparerForListSkus(ctx context.Context, id VirtualMachineScaleSetId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
@@ -183,4 +139,48 @@ func (c VirtualMachineScaleSetsClient) responderForListSkus(resp *http.Response)
 		}
 	}
 	return
+}
+
+// ListSkusComplete retrieves all of the results into a single object
+func (c VirtualMachineScaleSetsClient) ListSkusComplete(ctx context.Context, id VirtualMachineScaleSetId) (ListSkusCompleteResult, error) {
+	return c.ListSkusCompleteMatchingPredicate(ctx, id, VirtualMachineScaleSetSkuOperationPredicate{})
+}
+
+// ListSkusCompleteMatchingPredicate retrieves all of the results and then applied the predicate
+func (c VirtualMachineScaleSetsClient) ListSkusCompleteMatchingPredicate(ctx context.Context, id VirtualMachineScaleSetId, predicate VirtualMachineScaleSetSkuOperationPredicate) (resp ListSkusCompleteResult, err error) {
+	items := make([]VirtualMachineScaleSetSku, 0)
+
+	page, err := c.ListSkus(ctx, id)
+	if err != nil {
+		err = fmt.Errorf("loading the initial page: %+v", err)
+		return
+	}
+	if page.Model != nil {
+		for _, v := range *page.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	for page.HasMore() {
+		page, err = page.LoadMore(ctx)
+		if err != nil {
+			err = fmt.Errorf("loading the next page: %+v", err)
+			return
+		}
+
+		if page.Model != nil {
+			for _, v := range *page.Model {
+				if predicate.Matches(v) {
+					items = append(items, v)
+				}
+			}
+		}
+	}
+
+	out := ListSkusCompleteResult{
+		Items: items,
+	}
+	return out, nil
 }

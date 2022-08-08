@@ -59,50 +59,6 @@ func (c IotConnectorsClient) ListByWorkspace(ctx context.Context, id WorkspaceId
 	return
 }
 
-// ListByWorkspaceComplete retrieves all of the results into a single object
-func (c IotConnectorsClient) ListByWorkspaceComplete(ctx context.Context, id WorkspaceId) (ListByWorkspaceCompleteResult, error) {
-	return c.ListByWorkspaceCompleteMatchingPredicate(ctx, id, IotConnectorOperationPredicate{})
-}
-
-// ListByWorkspaceCompleteMatchingPredicate retrieves all of the results and then applied the predicate
-func (c IotConnectorsClient) ListByWorkspaceCompleteMatchingPredicate(ctx context.Context, id WorkspaceId, predicate IotConnectorOperationPredicate) (resp ListByWorkspaceCompleteResult, err error) {
-	items := make([]IotConnector, 0)
-
-	page, err := c.ListByWorkspace(ctx, id)
-	if err != nil {
-		err = fmt.Errorf("loading the initial page: %+v", err)
-		return
-	}
-	if page.Model != nil {
-		for _, v := range *page.Model {
-			if predicate.Matches(v) {
-				items = append(items, v)
-			}
-		}
-	}
-
-	for page.HasMore() {
-		page, err = page.LoadMore(ctx)
-		if err != nil {
-			err = fmt.Errorf("loading the next page: %+v", err)
-			return
-		}
-
-		if page.Model != nil {
-			for _, v := range *page.Model {
-				if predicate.Matches(v) {
-					items = append(items, v)
-				}
-			}
-		}
-	}
-
-	out := ListByWorkspaceCompleteResult{
-		Items: items,
-	}
-	return out, nil
-}
-
 // preparerForListByWorkspace prepares the ListByWorkspace request.
 func (c IotConnectorsClient) preparerForListByWorkspace(ctx context.Context, id WorkspaceId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
@@ -183,4 +139,48 @@ func (c IotConnectorsClient) responderForListByWorkspace(resp *http.Response) (r
 		}
 	}
 	return
+}
+
+// ListByWorkspaceComplete retrieves all of the results into a single object
+func (c IotConnectorsClient) ListByWorkspaceComplete(ctx context.Context, id WorkspaceId) (ListByWorkspaceCompleteResult, error) {
+	return c.ListByWorkspaceCompleteMatchingPredicate(ctx, id, IotConnectorOperationPredicate{})
+}
+
+// ListByWorkspaceCompleteMatchingPredicate retrieves all of the results and then applied the predicate
+func (c IotConnectorsClient) ListByWorkspaceCompleteMatchingPredicate(ctx context.Context, id WorkspaceId, predicate IotConnectorOperationPredicate) (resp ListByWorkspaceCompleteResult, err error) {
+	items := make([]IotConnector, 0)
+
+	page, err := c.ListByWorkspace(ctx, id)
+	if err != nil {
+		err = fmt.Errorf("loading the initial page: %+v", err)
+		return
+	}
+	if page.Model != nil {
+		for _, v := range *page.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	for page.HasMore() {
+		page, err = page.LoadMore(ctx)
+		if err != nil {
+			err = fmt.Errorf("loading the next page: %+v", err)
+			return
+		}
+
+		if page.Model != nil {
+			for _, v := range *page.Model {
+				if predicate.Matches(v) {
+					items = append(items, v)
+				}
+			}
+		}
+	}
+
+	out := ListByWorkspaceCompleteResult{
+		Items: items,
+	}
+	return out, nil
 }

@@ -88,50 +88,6 @@ func (c QueueServiceClient) QueueList(ctx context.Context, id StorageAccountId, 
 	return
 }
 
-// QueueListComplete retrieves all of the results into a single object
-func (c QueueServiceClient) QueueListComplete(ctx context.Context, id StorageAccountId, options QueueListOperationOptions) (QueueListCompleteResult, error) {
-	return c.QueueListCompleteMatchingPredicate(ctx, id, options, ListQueueOperationPredicate{})
-}
-
-// QueueListCompleteMatchingPredicate retrieves all of the results and then applied the predicate
-func (c QueueServiceClient) QueueListCompleteMatchingPredicate(ctx context.Context, id StorageAccountId, options QueueListOperationOptions, predicate ListQueueOperationPredicate) (resp QueueListCompleteResult, err error) {
-	items := make([]ListQueue, 0)
-
-	page, err := c.QueueList(ctx, id, options)
-	if err != nil {
-		err = fmt.Errorf("loading the initial page: %+v", err)
-		return
-	}
-	if page.Model != nil {
-		for _, v := range *page.Model {
-			if predicate.Matches(v) {
-				items = append(items, v)
-			}
-		}
-	}
-
-	for page.HasMore() {
-		page, err = page.LoadMore(ctx)
-		if err != nil {
-			err = fmt.Errorf("loading the next page: %+v", err)
-			return
-		}
-
-		if page.Model != nil {
-			for _, v := range *page.Model {
-				if predicate.Matches(v) {
-					items = append(items, v)
-				}
-			}
-		}
-	}
-
-	out := QueueListCompleteResult{
-		Items: items,
-	}
-	return out, nil
-}
-
 // preparerForQueueList prepares the QueueList request.
 func (c QueueServiceClient) preparerForQueueList(ctx context.Context, id StorageAccountId, options QueueListOperationOptions) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
@@ -217,4 +173,48 @@ func (c QueueServiceClient) responderForQueueList(resp *http.Response) (result Q
 		}
 	}
 	return
+}
+
+// QueueListComplete retrieves all of the results into a single object
+func (c QueueServiceClient) QueueListComplete(ctx context.Context, id StorageAccountId, options QueueListOperationOptions) (QueueListCompleteResult, error) {
+	return c.QueueListCompleteMatchingPredicate(ctx, id, options, ListQueueOperationPredicate{})
+}
+
+// QueueListCompleteMatchingPredicate retrieves all of the results and then applied the predicate
+func (c QueueServiceClient) QueueListCompleteMatchingPredicate(ctx context.Context, id StorageAccountId, options QueueListOperationOptions, predicate ListQueueOperationPredicate) (resp QueueListCompleteResult, err error) {
+	items := make([]ListQueue, 0)
+
+	page, err := c.QueueList(ctx, id, options)
+	if err != nil {
+		err = fmt.Errorf("loading the initial page: %+v", err)
+		return
+	}
+	if page.Model != nil {
+		for _, v := range *page.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	for page.HasMore() {
+		page, err = page.LoadMore(ctx)
+		if err != nil {
+			err = fmt.Errorf("loading the next page: %+v", err)
+			return
+		}
+
+		if page.Model != nil {
+			for _, v := range *page.Model {
+				if predicate.Matches(v) {
+					items = append(items, v)
+				}
+			}
+		}
+	}
+
+	out := QueueListCompleteResult{
+		Items: items,
+	}
+	return out, nil
 }

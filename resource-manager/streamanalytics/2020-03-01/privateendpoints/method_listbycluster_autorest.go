@@ -59,50 +59,6 @@ func (c PrivateEndpointsClient) ListByCluster(ctx context.Context, id ClusterId)
 	return
 }
 
-// ListByClusterComplete retrieves all of the results into a single object
-func (c PrivateEndpointsClient) ListByClusterComplete(ctx context.Context, id ClusterId) (ListByClusterCompleteResult, error) {
-	return c.ListByClusterCompleteMatchingPredicate(ctx, id, PrivateEndpointOperationPredicate{})
-}
-
-// ListByClusterCompleteMatchingPredicate retrieves all of the results and then applied the predicate
-func (c PrivateEndpointsClient) ListByClusterCompleteMatchingPredicate(ctx context.Context, id ClusterId, predicate PrivateEndpointOperationPredicate) (resp ListByClusterCompleteResult, err error) {
-	items := make([]PrivateEndpoint, 0)
-
-	page, err := c.ListByCluster(ctx, id)
-	if err != nil {
-		err = fmt.Errorf("loading the initial page: %+v", err)
-		return
-	}
-	if page.Model != nil {
-		for _, v := range *page.Model {
-			if predicate.Matches(v) {
-				items = append(items, v)
-			}
-		}
-	}
-
-	for page.HasMore() {
-		page, err = page.LoadMore(ctx)
-		if err != nil {
-			err = fmt.Errorf("loading the next page: %+v", err)
-			return
-		}
-
-		if page.Model != nil {
-			for _, v := range *page.Model {
-				if predicate.Matches(v) {
-					items = append(items, v)
-				}
-			}
-		}
-	}
-
-	out := ListByClusterCompleteResult{
-		Items: items,
-	}
-	return out, nil
-}
-
 // preparerForListByCluster prepares the ListByCluster request.
 func (c PrivateEndpointsClient) preparerForListByCluster(ctx context.Context, id ClusterId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
@@ -183,4 +139,48 @@ func (c PrivateEndpointsClient) responderForListByCluster(resp *http.Response) (
 		}
 	}
 	return
+}
+
+// ListByClusterComplete retrieves all of the results into a single object
+func (c PrivateEndpointsClient) ListByClusterComplete(ctx context.Context, id ClusterId) (ListByClusterCompleteResult, error) {
+	return c.ListByClusterCompleteMatchingPredicate(ctx, id, PrivateEndpointOperationPredicate{})
+}
+
+// ListByClusterCompleteMatchingPredicate retrieves all of the results and then applied the predicate
+func (c PrivateEndpointsClient) ListByClusterCompleteMatchingPredicate(ctx context.Context, id ClusterId, predicate PrivateEndpointOperationPredicate) (resp ListByClusterCompleteResult, err error) {
+	items := make([]PrivateEndpoint, 0)
+
+	page, err := c.ListByCluster(ctx, id)
+	if err != nil {
+		err = fmt.Errorf("loading the initial page: %+v", err)
+		return
+	}
+	if page.Model != nil {
+		for _, v := range *page.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	for page.HasMore() {
+		page, err = page.LoadMore(ctx)
+		if err != nil {
+			err = fmt.Errorf("loading the next page: %+v", err)
+			return
+		}
+
+		if page.Model != nil {
+			for _, v := range *page.Model {
+				if predicate.Matches(v) {
+					items = append(items, v)
+				}
+			}
+		}
+	}
+
+	out := ListByClusterCompleteResult{
+		Items: items,
+	}
+	return out, nil
 }

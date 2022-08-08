@@ -59,50 +59,6 @@ func (c HcxEnterpriseSitesClient) List(ctx context.Context, id PrivateCloudId) (
 	return
 }
 
-// ListComplete retrieves all of the results into a single object
-func (c HcxEnterpriseSitesClient) ListComplete(ctx context.Context, id PrivateCloudId) (ListCompleteResult, error) {
-	return c.ListCompleteMatchingPredicate(ctx, id, HcxEnterpriseSiteOperationPredicate{})
-}
-
-// ListCompleteMatchingPredicate retrieves all of the results and then applied the predicate
-func (c HcxEnterpriseSitesClient) ListCompleteMatchingPredicate(ctx context.Context, id PrivateCloudId, predicate HcxEnterpriseSiteOperationPredicate) (resp ListCompleteResult, err error) {
-	items := make([]HcxEnterpriseSite, 0)
-
-	page, err := c.List(ctx, id)
-	if err != nil {
-		err = fmt.Errorf("loading the initial page: %+v", err)
-		return
-	}
-	if page.Model != nil {
-		for _, v := range *page.Model {
-			if predicate.Matches(v) {
-				items = append(items, v)
-			}
-		}
-	}
-
-	for page.HasMore() {
-		page, err = page.LoadMore(ctx)
-		if err != nil {
-			err = fmt.Errorf("loading the next page: %+v", err)
-			return
-		}
-
-		if page.Model != nil {
-			for _, v := range *page.Model {
-				if predicate.Matches(v) {
-					items = append(items, v)
-				}
-			}
-		}
-	}
-
-	out := ListCompleteResult{
-		Items: items,
-	}
-	return out, nil
-}
-
 // preparerForList prepares the List request.
 func (c HcxEnterpriseSitesClient) preparerForList(ctx context.Context, id PrivateCloudId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
@@ -183,4 +139,48 @@ func (c HcxEnterpriseSitesClient) responderForList(resp *http.Response) (result 
 		}
 	}
 	return
+}
+
+// ListComplete retrieves all of the results into a single object
+func (c HcxEnterpriseSitesClient) ListComplete(ctx context.Context, id PrivateCloudId) (ListCompleteResult, error) {
+	return c.ListCompleteMatchingPredicate(ctx, id, HcxEnterpriseSiteOperationPredicate{})
+}
+
+// ListCompleteMatchingPredicate retrieves all of the results and then applied the predicate
+func (c HcxEnterpriseSitesClient) ListCompleteMatchingPredicate(ctx context.Context, id PrivateCloudId, predicate HcxEnterpriseSiteOperationPredicate) (resp ListCompleteResult, err error) {
+	items := make([]HcxEnterpriseSite, 0)
+
+	page, err := c.List(ctx, id)
+	if err != nil {
+		err = fmt.Errorf("loading the initial page: %+v", err)
+		return
+	}
+	if page.Model != nil {
+		for _, v := range *page.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	for page.HasMore() {
+		page, err = page.LoadMore(ctx)
+		if err != nil {
+			err = fmt.Errorf("loading the next page: %+v", err)
+			return
+		}
+
+		if page.Model != nil {
+			for _, v := range *page.Model {
+				if predicate.Matches(v) {
+					items = append(items, v)
+				}
+			}
+		}
+	}
+
+	out := ListCompleteResult{
+		Items: items,
+	}
+	return out, nil
 }

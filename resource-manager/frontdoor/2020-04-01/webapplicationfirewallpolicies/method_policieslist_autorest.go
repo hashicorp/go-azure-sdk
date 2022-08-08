@@ -60,50 +60,6 @@ func (c WebApplicationFirewallPoliciesClient) PoliciesList(ctx context.Context, 
 	return
 }
 
-// PoliciesListComplete retrieves all of the results into a single object
-func (c WebApplicationFirewallPoliciesClient) PoliciesListComplete(ctx context.Context, id commonids.ResourceGroupId) (PoliciesListCompleteResult, error) {
-	return c.PoliciesListCompleteMatchingPredicate(ctx, id, WebApplicationFirewallPolicyOperationPredicate{})
-}
-
-// PoliciesListCompleteMatchingPredicate retrieves all of the results and then applied the predicate
-func (c WebApplicationFirewallPoliciesClient) PoliciesListCompleteMatchingPredicate(ctx context.Context, id commonids.ResourceGroupId, predicate WebApplicationFirewallPolicyOperationPredicate) (resp PoliciesListCompleteResult, err error) {
-	items := make([]WebApplicationFirewallPolicy, 0)
-
-	page, err := c.PoliciesList(ctx, id)
-	if err != nil {
-		err = fmt.Errorf("loading the initial page: %+v", err)
-		return
-	}
-	if page.Model != nil {
-		for _, v := range *page.Model {
-			if predicate.Matches(v) {
-				items = append(items, v)
-			}
-		}
-	}
-
-	for page.HasMore() {
-		page, err = page.LoadMore(ctx)
-		if err != nil {
-			err = fmt.Errorf("loading the next page: %+v", err)
-			return
-		}
-
-		if page.Model != nil {
-			for _, v := range *page.Model {
-				if predicate.Matches(v) {
-					items = append(items, v)
-				}
-			}
-		}
-	}
-
-	out := PoliciesListCompleteResult{
-		Items: items,
-	}
-	return out, nil
-}
-
 // preparerForPoliciesList prepares the PoliciesList request.
 func (c WebApplicationFirewallPoliciesClient) preparerForPoliciesList(ctx context.Context, id commonids.ResourceGroupId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
@@ -184,4 +140,48 @@ func (c WebApplicationFirewallPoliciesClient) responderForPoliciesList(resp *htt
 		}
 	}
 	return
+}
+
+// PoliciesListComplete retrieves all of the results into a single object
+func (c WebApplicationFirewallPoliciesClient) PoliciesListComplete(ctx context.Context, id commonids.ResourceGroupId) (PoliciesListCompleteResult, error) {
+	return c.PoliciesListCompleteMatchingPredicate(ctx, id, WebApplicationFirewallPolicyOperationPredicate{})
+}
+
+// PoliciesListCompleteMatchingPredicate retrieves all of the results and then applied the predicate
+func (c WebApplicationFirewallPoliciesClient) PoliciesListCompleteMatchingPredicate(ctx context.Context, id commonids.ResourceGroupId, predicate WebApplicationFirewallPolicyOperationPredicate) (resp PoliciesListCompleteResult, err error) {
+	items := make([]WebApplicationFirewallPolicy, 0)
+
+	page, err := c.PoliciesList(ctx, id)
+	if err != nil {
+		err = fmt.Errorf("loading the initial page: %+v", err)
+		return
+	}
+	if page.Model != nil {
+		for _, v := range *page.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	for page.HasMore() {
+		page, err = page.LoadMore(ctx)
+		if err != nil {
+			err = fmt.Errorf("loading the next page: %+v", err)
+			return
+		}
+
+		if page.Model != nil {
+			for _, v := range *page.Model {
+				if predicate.Matches(v) {
+					items = append(items, v)
+				}
+			}
+		}
+	}
+
+	out := PoliciesListCompleteResult{
+		Items: items,
+	}
+	return out, nil
 }

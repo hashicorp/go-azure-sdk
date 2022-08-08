@@ -59,50 +59,6 @@ func (c ServiceClient) ListByApplications(ctx context.Context, id ApplicationId)
 	return
 }
 
-// ListByApplicationsComplete retrieves all of the results into a single object
-func (c ServiceClient) ListByApplicationsComplete(ctx context.Context, id ApplicationId) (ListByApplicationsCompleteResult, error) {
-	return c.ListByApplicationsCompleteMatchingPredicate(ctx, id, ServiceResourceOperationPredicate{})
-}
-
-// ListByApplicationsCompleteMatchingPredicate retrieves all of the results and then applied the predicate
-func (c ServiceClient) ListByApplicationsCompleteMatchingPredicate(ctx context.Context, id ApplicationId, predicate ServiceResourceOperationPredicate) (resp ListByApplicationsCompleteResult, err error) {
-	items := make([]ServiceResource, 0)
-
-	page, err := c.ListByApplications(ctx, id)
-	if err != nil {
-		err = fmt.Errorf("loading the initial page: %+v", err)
-		return
-	}
-	if page.Model != nil {
-		for _, v := range *page.Model {
-			if predicate.Matches(v) {
-				items = append(items, v)
-			}
-		}
-	}
-
-	for page.HasMore() {
-		page, err = page.LoadMore(ctx)
-		if err != nil {
-			err = fmt.Errorf("loading the next page: %+v", err)
-			return
-		}
-
-		if page.Model != nil {
-			for _, v := range *page.Model {
-				if predicate.Matches(v) {
-					items = append(items, v)
-				}
-			}
-		}
-	}
-
-	out := ListByApplicationsCompleteResult{
-		Items: items,
-	}
-	return out, nil
-}
-
 // preparerForListByApplications prepares the ListByApplications request.
 func (c ServiceClient) preparerForListByApplications(ctx context.Context, id ApplicationId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
@@ -183,4 +139,48 @@ func (c ServiceClient) responderForListByApplications(resp *http.Response) (resu
 		}
 	}
 	return
+}
+
+// ListByApplicationsComplete retrieves all of the results into a single object
+func (c ServiceClient) ListByApplicationsComplete(ctx context.Context, id ApplicationId) (ListByApplicationsCompleteResult, error) {
+	return c.ListByApplicationsCompleteMatchingPredicate(ctx, id, ServiceResourceOperationPredicate{})
+}
+
+// ListByApplicationsCompleteMatchingPredicate retrieves all of the results and then applied the predicate
+func (c ServiceClient) ListByApplicationsCompleteMatchingPredicate(ctx context.Context, id ApplicationId, predicate ServiceResourceOperationPredicate) (resp ListByApplicationsCompleteResult, err error) {
+	items := make([]ServiceResource, 0)
+
+	page, err := c.ListByApplications(ctx, id)
+	if err != nil {
+		err = fmt.Errorf("loading the initial page: %+v", err)
+		return
+	}
+	if page.Model != nil {
+		for _, v := range *page.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	for page.HasMore() {
+		page, err = page.LoadMore(ctx)
+		if err != nil {
+			err = fmt.Errorf("loading the next page: %+v", err)
+			return
+		}
+
+		if page.Model != nil {
+			for _, v := range *page.Model {
+				if predicate.Matches(v) {
+					items = append(items, v)
+				}
+			}
+		}
+	}
+
+	out := ListByApplicationsCompleteResult{
+		Items: items,
+	}
+	return out, nil
 }

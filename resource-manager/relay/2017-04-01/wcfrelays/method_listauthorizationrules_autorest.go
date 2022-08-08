@@ -59,50 +59,6 @@ func (c WCFRelaysClient) ListAuthorizationRules(ctx context.Context, id WcfRelay
 	return
 }
 
-// ListAuthorizationRulesComplete retrieves all of the results into a single object
-func (c WCFRelaysClient) ListAuthorizationRulesComplete(ctx context.Context, id WcfRelayId) (ListAuthorizationRulesCompleteResult, error) {
-	return c.ListAuthorizationRulesCompleteMatchingPredicate(ctx, id, AuthorizationRuleOperationPredicate{})
-}
-
-// ListAuthorizationRulesCompleteMatchingPredicate retrieves all of the results and then applied the predicate
-func (c WCFRelaysClient) ListAuthorizationRulesCompleteMatchingPredicate(ctx context.Context, id WcfRelayId, predicate AuthorizationRuleOperationPredicate) (resp ListAuthorizationRulesCompleteResult, err error) {
-	items := make([]AuthorizationRule, 0)
-
-	page, err := c.ListAuthorizationRules(ctx, id)
-	if err != nil {
-		err = fmt.Errorf("loading the initial page: %+v", err)
-		return
-	}
-	if page.Model != nil {
-		for _, v := range *page.Model {
-			if predicate.Matches(v) {
-				items = append(items, v)
-			}
-		}
-	}
-
-	for page.HasMore() {
-		page, err = page.LoadMore(ctx)
-		if err != nil {
-			err = fmt.Errorf("loading the next page: %+v", err)
-			return
-		}
-
-		if page.Model != nil {
-			for _, v := range *page.Model {
-				if predicate.Matches(v) {
-					items = append(items, v)
-				}
-			}
-		}
-	}
-
-	out := ListAuthorizationRulesCompleteResult{
-		Items: items,
-	}
-	return out, nil
-}
-
 // preparerForListAuthorizationRules prepares the ListAuthorizationRules request.
 func (c WCFRelaysClient) preparerForListAuthorizationRules(ctx context.Context, id WcfRelayId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
@@ -183,4 +139,48 @@ func (c WCFRelaysClient) responderForListAuthorizationRules(resp *http.Response)
 		}
 	}
 	return
+}
+
+// ListAuthorizationRulesComplete retrieves all of the results into a single object
+func (c WCFRelaysClient) ListAuthorizationRulesComplete(ctx context.Context, id WcfRelayId) (ListAuthorizationRulesCompleteResult, error) {
+	return c.ListAuthorizationRulesCompleteMatchingPredicate(ctx, id, AuthorizationRuleOperationPredicate{})
+}
+
+// ListAuthorizationRulesCompleteMatchingPredicate retrieves all of the results and then applied the predicate
+func (c WCFRelaysClient) ListAuthorizationRulesCompleteMatchingPredicate(ctx context.Context, id WcfRelayId, predicate AuthorizationRuleOperationPredicate) (resp ListAuthorizationRulesCompleteResult, err error) {
+	items := make([]AuthorizationRule, 0)
+
+	page, err := c.ListAuthorizationRules(ctx, id)
+	if err != nil {
+		err = fmt.Errorf("loading the initial page: %+v", err)
+		return
+	}
+	if page.Model != nil {
+		for _, v := range *page.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	for page.HasMore() {
+		page, err = page.LoadMore(ctx)
+		if err != nil {
+			err = fmt.Errorf("loading the next page: %+v", err)
+			return
+		}
+
+		if page.Model != nil {
+			for _, v := range *page.Model {
+				if predicate.Matches(v) {
+					items = append(items, v)
+				}
+			}
+		}
+	}
+
+	out := ListAuthorizationRulesCompleteResult{
+		Items: items,
+	}
+	return out, nil
 }

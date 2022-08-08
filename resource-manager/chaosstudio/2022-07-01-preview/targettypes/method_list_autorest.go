@@ -83,50 +83,6 @@ func (c TargetTypesClient) List(ctx context.Context, id LocationId, options List
 	return
 }
 
-// ListComplete retrieves all of the results into a single object
-func (c TargetTypesClient) ListComplete(ctx context.Context, id LocationId, options ListOperationOptions) (ListCompleteResult, error) {
-	return c.ListCompleteMatchingPredicate(ctx, id, options, TargetTypeOperationPredicate{})
-}
-
-// ListCompleteMatchingPredicate retrieves all of the results and then applied the predicate
-func (c TargetTypesClient) ListCompleteMatchingPredicate(ctx context.Context, id LocationId, options ListOperationOptions, predicate TargetTypeOperationPredicate) (resp ListCompleteResult, err error) {
-	items := make([]TargetType, 0)
-
-	page, err := c.List(ctx, id, options)
-	if err != nil {
-		err = fmt.Errorf("loading the initial page: %+v", err)
-		return
-	}
-	if page.Model != nil {
-		for _, v := range *page.Model {
-			if predicate.Matches(v) {
-				items = append(items, v)
-			}
-		}
-	}
-
-	for page.HasMore() {
-		page, err = page.LoadMore(ctx)
-		if err != nil {
-			err = fmt.Errorf("loading the next page: %+v", err)
-			return
-		}
-
-		if page.Model != nil {
-			for _, v := range *page.Model {
-				if predicate.Matches(v) {
-					items = append(items, v)
-				}
-			}
-		}
-	}
-
-	out := ListCompleteResult{
-		Items: items,
-	}
-	return out, nil
-}
-
 // preparerForList prepares the List request.
 func (c TargetTypesClient) preparerForList(ctx context.Context, id LocationId, options ListOperationOptions) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
@@ -212,4 +168,48 @@ func (c TargetTypesClient) responderForList(resp *http.Response) (result ListOpe
 		}
 	}
 	return
+}
+
+// ListComplete retrieves all of the results into a single object
+func (c TargetTypesClient) ListComplete(ctx context.Context, id LocationId, options ListOperationOptions) (ListCompleteResult, error) {
+	return c.ListCompleteMatchingPredicate(ctx, id, options, TargetTypeOperationPredicate{})
+}
+
+// ListCompleteMatchingPredicate retrieves all of the results and then applied the predicate
+func (c TargetTypesClient) ListCompleteMatchingPredicate(ctx context.Context, id LocationId, options ListOperationOptions, predicate TargetTypeOperationPredicate) (resp ListCompleteResult, err error) {
+	items := make([]TargetType, 0)
+
+	page, err := c.List(ctx, id, options)
+	if err != nil {
+		err = fmt.Errorf("loading the initial page: %+v", err)
+		return
+	}
+	if page.Model != nil {
+		for _, v := range *page.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	for page.HasMore() {
+		page, err = page.LoadMore(ctx)
+		if err != nil {
+			err = fmt.Errorf("loading the next page: %+v", err)
+			return
+		}
+
+		if page.Model != nil {
+			for _, v := range *page.Model {
+				if predicate.Matches(v) {
+					items = append(items, v)
+				}
+			}
+		}
+	}
+
+	out := ListCompleteResult{
+		Items: items,
+	}
+	return out, nil
 }

@@ -59,50 +59,6 @@ func (c DiskPoolsClient) ListOutboundNetworkDependenciesEndpoints(ctx context.Co
 	return
 }
 
-// ListOutboundNetworkDependenciesEndpointsComplete retrieves all of the results into a single object
-func (c DiskPoolsClient) ListOutboundNetworkDependenciesEndpointsComplete(ctx context.Context, id DiskPoolId) (ListOutboundNetworkDependenciesEndpointsCompleteResult, error) {
-	return c.ListOutboundNetworkDependenciesEndpointsCompleteMatchingPredicate(ctx, id, OutboundEnvironmentEndpointOperationPredicate{})
-}
-
-// ListOutboundNetworkDependenciesEndpointsCompleteMatchingPredicate retrieves all of the results and then applied the predicate
-func (c DiskPoolsClient) ListOutboundNetworkDependenciesEndpointsCompleteMatchingPredicate(ctx context.Context, id DiskPoolId, predicate OutboundEnvironmentEndpointOperationPredicate) (resp ListOutboundNetworkDependenciesEndpointsCompleteResult, err error) {
-	items := make([]OutboundEnvironmentEndpoint, 0)
-
-	page, err := c.ListOutboundNetworkDependenciesEndpoints(ctx, id)
-	if err != nil {
-		err = fmt.Errorf("loading the initial page: %+v", err)
-		return
-	}
-	if page.Model != nil {
-		for _, v := range *page.Model {
-			if predicate.Matches(v) {
-				items = append(items, v)
-			}
-		}
-	}
-
-	for page.HasMore() {
-		page, err = page.LoadMore(ctx)
-		if err != nil {
-			err = fmt.Errorf("loading the next page: %+v", err)
-			return
-		}
-
-		if page.Model != nil {
-			for _, v := range *page.Model {
-				if predicate.Matches(v) {
-					items = append(items, v)
-				}
-			}
-		}
-	}
-
-	out := ListOutboundNetworkDependenciesEndpointsCompleteResult{
-		Items: items,
-	}
-	return out, nil
-}
-
 // preparerForListOutboundNetworkDependenciesEndpoints prepares the ListOutboundNetworkDependenciesEndpoints request.
 func (c DiskPoolsClient) preparerForListOutboundNetworkDependenciesEndpoints(ctx context.Context, id DiskPoolId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
@@ -183,4 +139,48 @@ func (c DiskPoolsClient) responderForListOutboundNetworkDependenciesEndpoints(re
 		}
 	}
 	return
+}
+
+// ListOutboundNetworkDependenciesEndpointsComplete retrieves all of the results into a single object
+func (c DiskPoolsClient) ListOutboundNetworkDependenciesEndpointsComplete(ctx context.Context, id DiskPoolId) (ListOutboundNetworkDependenciesEndpointsCompleteResult, error) {
+	return c.ListOutboundNetworkDependenciesEndpointsCompleteMatchingPredicate(ctx, id, OutboundEnvironmentEndpointOperationPredicate{})
+}
+
+// ListOutboundNetworkDependenciesEndpointsCompleteMatchingPredicate retrieves all of the results and then applied the predicate
+func (c DiskPoolsClient) ListOutboundNetworkDependenciesEndpointsCompleteMatchingPredicate(ctx context.Context, id DiskPoolId, predicate OutboundEnvironmentEndpointOperationPredicate) (resp ListOutboundNetworkDependenciesEndpointsCompleteResult, err error) {
+	items := make([]OutboundEnvironmentEndpoint, 0)
+
+	page, err := c.ListOutboundNetworkDependenciesEndpoints(ctx, id)
+	if err != nil {
+		err = fmt.Errorf("loading the initial page: %+v", err)
+		return
+	}
+	if page.Model != nil {
+		for _, v := range *page.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	for page.HasMore() {
+		page, err = page.LoadMore(ctx)
+		if err != nil {
+			err = fmt.Errorf("loading the next page: %+v", err)
+			return
+		}
+
+		if page.Model != nil {
+			for _, v := range *page.Model {
+				if predicate.Matches(v) {
+					items = append(items, v)
+				}
+			}
+		}
+	}
+
+	out := ListOutboundNetworkDependenciesEndpointsCompleteResult{
+		Items: items,
+	}
+	return out, nil
 }

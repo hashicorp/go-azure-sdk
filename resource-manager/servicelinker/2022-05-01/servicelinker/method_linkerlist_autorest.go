@@ -60,50 +60,6 @@ func (c ServiceLinkerClient) LinkerList(ctx context.Context, id commonids.ScopeI
 	return
 }
 
-// LinkerListComplete retrieves all of the results into a single object
-func (c ServiceLinkerClient) LinkerListComplete(ctx context.Context, id commonids.ScopeId) (LinkerListCompleteResult, error) {
-	return c.LinkerListCompleteMatchingPredicate(ctx, id, LinkerResourceOperationPredicate{})
-}
-
-// LinkerListCompleteMatchingPredicate retrieves all of the results and then applied the predicate
-func (c ServiceLinkerClient) LinkerListCompleteMatchingPredicate(ctx context.Context, id commonids.ScopeId, predicate LinkerResourceOperationPredicate) (resp LinkerListCompleteResult, err error) {
-	items := make([]LinkerResource, 0)
-
-	page, err := c.LinkerList(ctx, id)
-	if err != nil {
-		err = fmt.Errorf("loading the initial page: %+v", err)
-		return
-	}
-	if page.Model != nil {
-		for _, v := range *page.Model {
-			if predicate.Matches(v) {
-				items = append(items, v)
-			}
-		}
-	}
-
-	for page.HasMore() {
-		page, err = page.LoadMore(ctx)
-		if err != nil {
-			err = fmt.Errorf("loading the next page: %+v", err)
-			return
-		}
-
-		if page.Model != nil {
-			for _, v := range *page.Model {
-				if predicate.Matches(v) {
-					items = append(items, v)
-				}
-			}
-		}
-	}
-
-	out := LinkerListCompleteResult{
-		Items: items,
-	}
-	return out, nil
-}
-
 // preparerForLinkerList prepares the LinkerList request.
 func (c ServiceLinkerClient) preparerForLinkerList(ctx context.Context, id commonids.ScopeId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
@@ -184,4 +140,48 @@ func (c ServiceLinkerClient) responderForLinkerList(resp *http.Response) (result
 		}
 	}
 	return
+}
+
+// LinkerListComplete retrieves all of the results into a single object
+func (c ServiceLinkerClient) LinkerListComplete(ctx context.Context, id commonids.ScopeId) (LinkerListCompleteResult, error) {
+	return c.LinkerListCompleteMatchingPredicate(ctx, id, LinkerResourceOperationPredicate{})
+}
+
+// LinkerListCompleteMatchingPredicate retrieves all of the results and then applied the predicate
+func (c ServiceLinkerClient) LinkerListCompleteMatchingPredicate(ctx context.Context, id commonids.ScopeId, predicate LinkerResourceOperationPredicate) (resp LinkerListCompleteResult, err error) {
+	items := make([]LinkerResource, 0)
+
+	page, err := c.LinkerList(ctx, id)
+	if err != nil {
+		err = fmt.Errorf("loading the initial page: %+v", err)
+		return
+	}
+	if page.Model != nil {
+		for _, v := range *page.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	for page.HasMore() {
+		page, err = page.LoadMore(ctx)
+		if err != nil {
+			err = fmt.Errorf("loading the next page: %+v", err)
+			return
+		}
+
+		if page.Model != nil {
+			for _, v := range *page.Model {
+				if predicate.Matches(v) {
+					items = append(items, v)
+				}
+			}
+		}
+	}
+
+	out := LinkerListCompleteResult{
+		Items: items,
+	}
+	return out, nil
 }

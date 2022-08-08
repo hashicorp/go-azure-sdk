@@ -88,50 +88,6 @@ func (c OnlineDeploymentClient) ListSkus(ctx context.Context, id OnlineEndpointD
 	return
 }
 
-// ListSkusComplete retrieves all of the results into a single object
-func (c OnlineDeploymentClient) ListSkusComplete(ctx context.Context, id OnlineEndpointDeploymentId, options ListSkusOperationOptions) (ListSkusCompleteResult, error) {
-	return c.ListSkusCompleteMatchingPredicate(ctx, id, options, SkuResourceOperationPredicate{})
-}
-
-// ListSkusCompleteMatchingPredicate retrieves all of the results and then applied the predicate
-func (c OnlineDeploymentClient) ListSkusCompleteMatchingPredicate(ctx context.Context, id OnlineEndpointDeploymentId, options ListSkusOperationOptions, predicate SkuResourceOperationPredicate) (resp ListSkusCompleteResult, err error) {
-	items := make([]SkuResource, 0)
-
-	page, err := c.ListSkus(ctx, id, options)
-	if err != nil {
-		err = fmt.Errorf("loading the initial page: %+v", err)
-		return
-	}
-	if page.Model != nil {
-		for _, v := range *page.Model {
-			if predicate.Matches(v) {
-				items = append(items, v)
-			}
-		}
-	}
-
-	for page.HasMore() {
-		page, err = page.LoadMore(ctx)
-		if err != nil {
-			err = fmt.Errorf("loading the next page: %+v", err)
-			return
-		}
-
-		if page.Model != nil {
-			for _, v := range *page.Model {
-				if predicate.Matches(v) {
-					items = append(items, v)
-				}
-			}
-		}
-	}
-
-	out := ListSkusCompleteResult{
-		Items: items,
-	}
-	return out, nil
-}
-
 // preparerForListSkus prepares the ListSkus request.
 func (c OnlineDeploymentClient) preparerForListSkus(ctx context.Context, id OnlineEndpointDeploymentId, options ListSkusOperationOptions) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
@@ -217,4 +173,48 @@ func (c OnlineDeploymentClient) responderForListSkus(resp *http.Response) (resul
 		}
 	}
 	return
+}
+
+// ListSkusComplete retrieves all of the results into a single object
+func (c OnlineDeploymentClient) ListSkusComplete(ctx context.Context, id OnlineEndpointDeploymentId, options ListSkusOperationOptions) (ListSkusCompleteResult, error) {
+	return c.ListSkusCompleteMatchingPredicate(ctx, id, options, SkuResourceOperationPredicate{})
+}
+
+// ListSkusCompleteMatchingPredicate retrieves all of the results and then applied the predicate
+func (c OnlineDeploymentClient) ListSkusCompleteMatchingPredicate(ctx context.Context, id OnlineEndpointDeploymentId, options ListSkusOperationOptions, predicate SkuResourceOperationPredicate) (resp ListSkusCompleteResult, err error) {
+	items := make([]SkuResource, 0)
+
+	page, err := c.ListSkus(ctx, id, options)
+	if err != nil {
+		err = fmt.Errorf("loading the initial page: %+v", err)
+		return
+	}
+	if page.Model != nil {
+		for _, v := range *page.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	for page.HasMore() {
+		page, err = page.LoadMore(ctx)
+		if err != nil {
+			err = fmt.Errorf("loading the next page: %+v", err)
+			return
+		}
+
+		if page.Model != nil {
+			for _, v := range *page.Model {
+				if predicate.Matches(v) {
+					items = append(items, v)
+				}
+			}
+		}
+	}
+
+	out := ListSkusCompleteResult{
+		Items: items,
+	}
+	return out, nil
 }

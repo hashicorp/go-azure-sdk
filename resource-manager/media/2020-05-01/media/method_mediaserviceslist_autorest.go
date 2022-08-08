@@ -60,50 +60,6 @@ func (c MediaClient) MediaservicesList(ctx context.Context, id commonids.Resourc
 	return
 }
 
-// MediaservicesListComplete retrieves all of the results into a single object
-func (c MediaClient) MediaservicesListComplete(ctx context.Context, id commonids.ResourceGroupId) (MediaservicesListCompleteResult, error) {
-	return c.MediaservicesListCompleteMatchingPredicate(ctx, id, MediaServiceOperationPredicate{})
-}
-
-// MediaservicesListCompleteMatchingPredicate retrieves all of the results and then applied the predicate
-func (c MediaClient) MediaservicesListCompleteMatchingPredicate(ctx context.Context, id commonids.ResourceGroupId, predicate MediaServiceOperationPredicate) (resp MediaservicesListCompleteResult, err error) {
-	items := make([]MediaService, 0)
-
-	page, err := c.MediaservicesList(ctx, id)
-	if err != nil {
-		err = fmt.Errorf("loading the initial page: %+v", err)
-		return
-	}
-	if page.Model != nil {
-		for _, v := range *page.Model {
-			if predicate.Matches(v) {
-				items = append(items, v)
-			}
-		}
-	}
-
-	for page.HasMore() {
-		page, err = page.LoadMore(ctx)
-		if err != nil {
-			err = fmt.Errorf("loading the next page: %+v", err)
-			return
-		}
-
-		if page.Model != nil {
-			for _, v := range *page.Model {
-				if predicate.Matches(v) {
-					items = append(items, v)
-				}
-			}
-		}
-	}
-
-	out := MediaservicesListCompleteResult{
-		Items: items,
-	}
-	return out, nil
-}
-
 // preparerForMediaservicesList prepares the MediaservicesList request.
 func (c MediaClient) preparerForMediaservicesList(ctx context.Context, id commonids.ResourceGroupId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
@@ -184,4 +140,48 @@ func (c MediaClient) responderForMediaservicesList(resp *http.Response) (result 
 		}
 	}
 	return
+}
+
+// MediaservicesListComplete retrieves all of the results into a single object
+func (c MediaClient) MediaservicesListComplete(ctx context.Context, id commonids.ResourceGroupId) (MediaservicesListCompleteResult, error) {
+	return c.MediaservicesListCompleteMatchingPredicate(ctx, id, MediaServiceOperationPredicate{})
+}
+
+// MediaservicesListCompleteMatchingPredicate retrieves all of the results and then applied the predicate
+func (c MediaClient) MediaservicesListCompleteMatchingPredicate(ctx context.Context, id commonids.ResourceGroupId, predicate MediaServiceOperationPredicate) (resp MediaservicesListCompleteResult, err error) {
+	items := make([]MediaService, 0)
+
+	page, err := c.MediaservicesList(ctx, id)
+	if err != nil {
+		err = fmt.Errorf("loading the initial page: %+v", err)
+		return
+	}
+	if page.Model != nil {
+		for _, v := range *page.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	for page.HasMore() {
+		page, err = page.LoadMore(ctx)
+		if err != nil {
+			err = fmt.Errorf("loading the next page: %+v", err)
+			return
+		}
+
+		if page.Model != nil {
+			for _, v := range *page.Model {
+				if predicate.Matches(v) {
+					items = append(items, v)
+				}
+			}
+		}
+	}
+
+	out := MediaservicesListCompleteResult{
+		Items: items,
+	}
+	return out, nil
 }

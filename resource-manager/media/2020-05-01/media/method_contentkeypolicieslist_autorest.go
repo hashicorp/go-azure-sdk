@@ -93,50 +93,6 @@ func (c MediaClient) ContentKeyPoliciesList(ctx context.Context, id MediaService
 	return
 }
 
-// ContentKeyPoliciesListComplete retrieves all of the results into a single object
-func (c MediaClient) ContentKeyPoliciesListComplete(ctx context.Context, id MediaServiceId, options ContentKeyPoliciesListOperationOptions) (ContentKeyPoliciesListCompleteResult, error) {
-	return c.ContentKeyPoliciesListCompleteMatchingPredicate(ctx, id, options, ContentKeyPolicyOperationPredicate{})
-}
-
-// ContentKeyPoliciesListCompleteMatchingPredicate retrieves all of the results and then applied the predicate
-func (c MediaClient) ContentKeyPoliciesListCompleteMatchingPredicate(ctx context.Context, id MediaServiceId, options ContentKeyPoliciesListOperationOptions, predicate ContentKeyPolicyOperationPredicate) (resp ContentKeyPoliciesListCompleteResult, err error) {
-	items := make([]ContentKeyPolicy, 0)
-
-	page, err := c.ContentKeyPoliciesList(ctx, id, options)
-	if err != nil {
-		err = fmt.Errorf("loading the initial page: %+v", err)
-		return
-	}
-	if page.Model != nil {
-		for _, v := range *page.Model {
-			if predicate.Matches(v) {
-				items = append(items, v)
-			}
-		}
-	}
-
-	for page.HasMore() {
-		page, err = page.LoadMore(ctx)
-		if err != nil {
-			err = fmt.Errorf("loading the next page: %+v", err)
-			return
-		}
-
-		if page.Model != nil {
-			for _, v := range *page.Model {
-				if predicate.Matches(v) {
-					items = append(items, v)
-				}
-			}
-		}
-	}
-
-	out := ContentKeyPoliciesListCompleteResult{
-		Items: items,
-	}
-	return out, nil
-}
-
 // preparerForContentKeyPoliciesList prepares the ContentKeyPoliciesList request.
 func (c MediaClient) preparerForContentKeyPoliciesList(ctx context.Context, id MediaServiceId, options ContentKeyPoliciesListOperationOptions) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
@@ -222,4 +178,48 @@ func (c MediaClient) responderForContentKeyPoliciesList(resp *http.Response) (re
 		}
 	}
 	return
+}
+
+// ContentKeyPoliciesListComplete retrieves all of the results into a single object
+func (c MediaClient) ContentKeyPoliciesListComplete(ctx context.Context, id MediaServiceId, options ContentKeyPoliciesListOperationOptions) (ContentKeyPoliciesListCompleteResult, error) {
+	return c.ContentKeyPoliciesListCompleteMatchingPredicate(ctx, id, options, ContentKeyPolicyOperationPredicate{})
+}
+
+// ContentKeyPoliciesListCompleteMatchingPredicate retrieves all of the results and then applied the predicate
+func (c MediaClient) ContentKeyPoliciesListCompleteMatchingPredicate(ctx context.Context, id MediaServiceId, options ContentKeyPoliciesListOperationOptions, predicate ContentKeyPolicyOperationPredicate) (resp ContentKeyPoliciesListCompleteResult, err error) {
+	items := make([]ContentKeyPolicy, 0)
+
+	page, err := c.ContentKeyPoliciesList(ctx, id, options)
+	if err != nil {
+		err = fmt.Errorf("loading the initial page: %+v", err)
+		return
+	}
+	if page.Model != nil {
+		for _, v := range *page.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	for page.HasMore() {
+		page, err = page.LoadMore(ctx)
+		if err != nil {
+			err = fmt.Errorf("loading the next page: %+v", err)
+			return
+		}
+
+		if page.Model != nil {
+			for _, v := range *page.Model {
+				if predicate.Matches(v) {
+					items = append(items, v)
+				}
+			}
+		}
+	}
+
+	out := ContentKeyPoliciesListCompleteResult{
+		Items: items,
+	}
+	return out, nil
 }

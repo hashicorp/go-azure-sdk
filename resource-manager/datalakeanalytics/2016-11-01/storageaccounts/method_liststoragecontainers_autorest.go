@@ -59,50 +59,6 @@ func (c StorageAccountsClient) ListStorageContainers(ctx context.Context, id Sto
 	return
 }
 
-// ListStorageContainersComplete retrieves all of the results into a single object
-func (c StorageAccountsClient) ListStorageContainersComplete(ctx context.Context, id StorageAccountId) (ListStorageContainersCompleteResult, error) {
-	return c.ListStorageContainersCompleteMatchingPredicate(ctx, id, StorageContainerOperationPredicate{})
-}
-
-// ListStorageContainersCompleteMatchingPredicate retrieves all of the results and then applied the predicate
-func (c StorageAccountsClient) ListStorageContainersCompleteMatchingPredicate(ctx context.Context, id StorageAccountId, predicate StorageContainerOperationPredicate) (resp ListStorageContainersCompleteResult, err error) {
-	items := make([]StorageContainer, 0)
-
-	page, err := c.ListStorageContainers(ctx, id)
-	if err != nil {
-		err = fmt.Errorf("loading the initial page: %+v", err)
-		return
-	}
-	if page.Model != nil {
-		for _, v := range *page.Model {
-			if predicate.Matches(v) {
-				items = append(items, v)
-			}
-		}
-	}
-
-	for page.HasMore() {
-		page, err = page.LoadMore(ctx)
-		if err != nil {
-			err = fmt.Errorf("loading the next page: %+v", err)
-			return
-		}
-
-		if page.Model != nil {
-			for _, v := range *page.Model {
-				if predicate.Matches(v) {
-					items = append(items, v)
-				}
-			}
-		}
-	}
-
-	out := ListStorageContainersCompleteResult{
-		Items: items,
-	}
-	return out, nil
-}
-
 // preparerForListStorageContainers prepares the ListStorageContainers request.
 func (c StorageAccountsClient) preparerForListStorageContainers(ctx context.Context, id StorageAccountId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
@@ -183,4 +139,48 @@ func (c StorageAccountsClient) responderForListStorageContainers(resp *http.Resp
 		}
 	}
 	return
+}
+
+// ListStorageContainersComplete retrieves all of the results into a single object
+func (c StorageAccountsClient) ListStorageContainersComplete(ctx context.Context, id StorageAccountId) (ListStorageContainersCompleteResult, error) {
+	return c.ListStorageContainersCompleteMatchingPredicate(ctx, id, StorageContainerOperationPredicate{})
+}
+
+// ListStorageContainersCompleteMatchingPredicate retrieves all of the results and then applied the predicate
+func (c StorageAccountsClient) ListStorageContainersCompleteMatchingPredicate(ctx context.Context, id StorageAccountId, predicate StorageContainerOperationPredicate) (resp ListStorageContainersCompleteResult, err error) {
+	items := make([]StorageContainer, 0)
+
+	page, err := c.ListStorageContainers(ctx, id)
+	if err != nil {
+		err = fmt.Errorf("loading the initial page: %+v", err)
+		return
+	}
+	if page.Model != nil {
+		for _, v := range *page.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	for page.HasMore() {
+		page, err = page.LoadMore(ctx)
+		if err != nil {
+			err = fmt.Errorf("loading the next page: %+v", err)
+			return
+		}
+
+		if page.Model != nil {
+			for _, v := range *page.Model {
+				if predicate.Matches(v) {
+					items = append(items, v)
+				}
+			}
+		}
+	}
+
+	out := ListStorageContainersCompleteResult{
+		Items: items,
+	}
+	return out, nil
 }

@@ -59,50 +59,6 @@ func (c StorageAccountsClient) ListSasTokens(ctx context.Context, id ContainerId
 	return
 }
 
-// ListSasTokensComplete retrieves all of the results into a single object
-func (c StorageAccountsClient) ListSasTokensComplete(ctx context.Context, id ContainerId) (ListSasTokensCompleteResult, error) {
-	return c.ListSasTokensCompleteMatchingPredicate(ctx, id, SasTokenInformationOperationPredicate{})
-}
-
-// ListSasTokensCompleteMatchingPredicate retrieves all of the results and then applied the predicate
-func (c StorageAccountsClient) ListSasTokensCompleteMatchingPredicate(ctx context.Context, id ContainerId, predicate SasTokenInformationOperationPredicate) (resp ListSasTokensCompleteResult, err error) {
-	items := make([]SasTokenInformation, 0)
-
-	page, err := c.ListSasTokens(ctx, id)
-	if err != nil {
-		err = fmt.Errorf("loading the initial page: %+v", err)
-		return
-	}
-	if page.Model != nil {
-		for _, v := range *page.Model {
-			if predicate.Matches(v) {
-				items = append(items, v)
-			}
-		}
-	}
-
-	for page.HasMore() {
-		page, err = page.LoadMore(ctx)
-		if err != nil {
-			err = fmt.Errorf("loading the next page: %+v", err)
-			return
-		}
-
-		if page.Model != nil {
-			for _, v := range *page.Model {
-				if predicate.Matches(v) {
-					items = append(items, v)
-				}
-			}
-		}
-	}
-
-	out := ListSasTokensCompleteResult{
-		Items: items,
-	}
-	return out, nil
-}
-
 // preparerForListSasTokens prepares the ListSasTokens request.
 func (c StorageAccountsClient) preparerForListSasTokens(ctx context.Context, id ContainerId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
@@ -183,4 +139,48 @@ func (c StorageAccountsClient) responderForListSasTokens(resp *http.Response) (r
 		}
 	}
 	return
+}
+
+// ListSasTokensComplete retrieves all of the results into a single object
+func (c StorageAccountsClient) ListSasTokensComplete(ctx context.Context, id ContainerId) (ListSasTokensCompleteResult, error) {
+	return c.ListSasTokensCompleteMatchingPredicate(ctx, id, SasTokenInformationOperationPredicate{})
+}
+
+// ListSasTokensCompleteMatchingPredicate retrieves all of the results and then applied the predicate
+func (c StorageAccountsClient) ListSasTokensCompleteMatchingPredicate(ctx context.Context, id ContainerId, predicate SasTokenInformationOperationPredicate) (resp ListSasTokensCompleteResult, err error) {
+	items := make([]SasTokenInformation, 0)
+
+	page, err := c.ListSasTokens(ctx, id)
+	if err != nil {
+		err = fmt.Errorf("loading the initial page: %+v", err)
+		return
+	}
+	if page.Model != nil {
+		for _, v := range *page.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	for page.HasMore() {
+		page, err = page.LoadMore(ctx)
+		if err != nil {
+			err = fmt.Errorf("loading the next page: %+v", err)
+			return
+		}
+
+		if page.Model != nil {
+			for _, v := range *page.Model {
+				if predicate.Matches(v) {
+					items = append(items, v)
+				}
+			}
+		}
+	}
+
+	out := ListSasTokensCompleteResult{
+		Items: items,
+	}
+	return out, nil
 }

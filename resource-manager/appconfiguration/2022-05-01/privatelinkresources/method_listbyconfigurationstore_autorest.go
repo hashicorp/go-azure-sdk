@@ -59,50 +59,6 @@ func (c PrivateLinkResourcesClient) ListByConfigurationStore(ctx context.Context
 	return
 }
 
-// ListByConfigurationStoreComplete retrieves all of the results into a single object
-func (c PrivateLinkResourcesClient) ListByConfigurationStoreComplete(ctx context.Context, id ConfigurationStoreId) (ListByConfigurationStoreCompleteResult, error) {
-	return c.ListByConfigurationStoreCompleteMatchingPredicate(ctx, id, PrivateLinkResourceOperationPredicate{})
-}
-
-// ListByConfigurationStoreCompleteMatchingPredicate retrieves all of the results and then applied the predicate
-func (c PrivateLinkResourcesClient) ListByConfigurationStoreCompleteMatchingPredicate(ctx context.Context, id ConfigurationStoreId, predicate PrivateLinkResourceOperationPredicate) (resp ListByConfigurationStoreCompleteResult, err error) {
-	items := make([]PrivateLinkResource, 0)
-
-	page, err := c.ListByConfigurationStore(ctx, id)
-	if err != nil {
-		err = fmt.Errorf("loading the initial page: %+v", err)
-		return
-	}
-	if page.Model != nil {
-		for _, v := range *page.Model {
-			if predicate.Matches(v) {
-				items = append(items, v)
-			}
-		}
-	}
-
-	for page.HasMore() {
-		page, err = page.LoadMore(ctx)
-		if err != nil {
-			err = fmt.Errorf("loading the next page: %+v", err)
-			return
-		}
-
-		if page.Model != nil {
-			for _, v := range *page.Model {
-				if predicate.Matches(v) {
-					items = append(items, v)
-				}
-			}
-		}
-	}
-
-	out := ListByConfigurationStoreCompleteResult{
-		Items: items,
-	}
-	return out, nil
-}
-
 // preparerForListByConfigurationStore prepares the ListByConfigurationStore request.
 func (c PrivateLinkResourcesClient) preparerForListByConfigurationStore(ctx context.Context, id ConfigurationStoreId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
@@ -183,4 +139,48 @@ func (c PrivateLinkResourcesClient) responderForListByConfigurationStore(resp *h
 		}
 	}
 	return
+}
+
+// ListByConfigurationStoreComplete retrieves all of the results into a single object
+func (c PrivateLinkResourcesClient) ListByConfigurationStoreComplete(ctx context.Context, id ConfigurationStoreId) (ListByConfigurationStoreCompleteResult, error) {
+	return c.ListByConfigurationStoreCompleteMatchingPredicate(ctx, id, PrivateLinkResourceOperationPredicate{})
+}
+
+// ListByConfigurationStoreCompleteMatchingPredicate retrieves all of the results and then applied the predicate
+func (c PrivateLinkResourcesClient) ListByConfigurationStoreCompleteMatchingPredicate(ctx context.Context, id ConfigurationStoreId, predicate PrivateLinkResourceOperationPredicate) (resp ListByConfigurationStoreCompleteResult, err error) {
+	items := make([]PrivateLinkResource, 0)
+
+	page, err := c.ListByConfigurationStore(ctx, id)
+	if err != nil {
+		err = fmt.Errorf("loading the initial page: %+v", err)
+		return
+	}
+	if page.Model != nil {
+		for _, v := range *page.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	for page.HasMore() {
+		page, err = page.LoadMore(ctx)
+		if err != nil {
+			err = fmt.Errorf("loading the next page: %+v", err)
+			return
+		}
+
+		if page.Model != nil {
+			for _, v := range *page.Model {
+				if predicate.Matches(v) {
+					items = append(items, v)
+				}
+			}
+		}
+	}
+
+	out := ListByConfigurationStoreCompleteResult{
+		Items: items,
+	}
+	return out, nil
 }

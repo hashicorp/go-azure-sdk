@@ -83,50 +83,6 @@ func (c QueryTextsClient) ListByServer(ctx context.Context, id ServerId, options
 	return
 }
 
-// ListByServerComplete retrieves all of the results into a single object
-func (c QueryTextsClient) ListByServerComplete(ctx context.Context, id ServerId, options ListByServerOperationOptions) (ListByServerCompleteResult, error) {
-	return c.ListByServerCompleteMatchingPredicate(ctx, id, options, QueryTextOperationPredicate{})
-}
-
-// ListByServerCompleteMatchingPredicate retrieves all of the results and then applied the predicate
-func (c QueryTextsClient) ListByServerCompleteMatchingPredicate(ctx context.Context, id ServerId, options ListByServerOperationOptions, predicate QueryTextOperationPredicate) (resp ListByServerCompleteResult, err error) {
-	items := make([]QueryText, 0)
-
-	page, err := c.ListByServer(ctx, id, options)
-	if err != nil {
-		err = fmt.Errorf("loading the initial page: %+v", err)
-		return
-	}
-	if page.Model != nil {
-		for _, v := range *page.Model {
-			if predicate.Matches(v) {
-				items = append(items, v)
-			}
-		}
-	}
-
-	for page.HasMore() {
-		page, err = page.LoadMore(ctx)
-		if err != nil {
-			err = fmt.Errorf("loading the next page: %+v", err)
-			return
-		}
-
-		if page.Model != nil {
-			for _, v := range *page.Model {
-				if predicate.Matches(v) {
-					items = append(items, v)
-				}
-			}
-		}
-	}
-
-	out := ListByServerCompleteResult{
-		Items: items,
-	}
-	return out, nil
-}
-
 // preparerForListByServer prepares the ListByServer request.
 func (c QueryTextsClient) preparerForListByServer(ctx context.Context, id ServerId, options ListByServerOperationOptions) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
@@ -212,4 +168,48 @@ func (c QueryTextsClient) responderForListByServer(resp *http.Response) (result 
 		}
 	}
 	return
+}
+
+// ListByServerComplete retrieves all of the results into a single object
+func (c QueryTextsClient) ListByServerComplete(ctx context.Context, id ServerId, options ListByServerOperationOptions) (ListByServerCompleteResult, error) {
+	return c.ListByServerCompleteMatchingPredicate(ctx, id, options, QueryTextOperationPredicate{})
+}
+
+// ListByServerCompleteMatchingPredicate retrieves all of the results and then applied the predicate
+func (c QueryTextsClient) ListByServerCompleteMatchingPredicate(ctx context.Context, id ServerId, options ListByServerOperationOptions, predicate QueryTextOperationPredicate) (resp ListByServerCompleteResult, err error) {
+	items := make([]QueryText, 0)
+
+	page, err := c.ListByServer(ctx, id, options)
+	if err != nil {
+		err = fmt.Errorf("loading the initial page: %+v", err)
+		return
+	}
+	if page.Model != nil {
+		for _, v := range *page.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	for page.HasMore() {
+		page, err = page.LoadMore(ctx)
+		if err != nil {
+			err = fmt.Errorf("loading the next page: %+v", err)
+			return
+		}
+
+		if page.Model != nil {
+			for _, v := range *page.Model {
+				if predicate.Matches(v) {
+					items = append(items, v)
+				}
+			}
+		}
+	}
+
+	out := ListByServerCompleteResult{
+		Items: items,
+	}
+	return out, nil
 }

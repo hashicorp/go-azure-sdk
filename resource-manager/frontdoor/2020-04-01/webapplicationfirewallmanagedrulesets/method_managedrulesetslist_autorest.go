@@ -60,50 +60,6 @@ func (c WebApplicationFirewallManagedRuleSetsClient) ManagedRuleSetsList(ctx con
 	return
 }
 
-// ManagedRuleSetsListComplete retrieves all of the results into a single object
-func (c WebApplicationFirewallManagedRuleSetsClient) ManagedRuleSetsListComplete(ctx context.Context, id commonids.SubscriptionId) (ManagedRuleSetsListCompleteResult, error) {
-	return c.ManagedRuleSetsListCompleteMatchingPredicate(ctx, id, ManagedRuleSetDefinitionOperationPredicate{})
-}
-
-// ManagedRuleSetsListCompleteMatchingPredicate retrieves all of the results and then applied the predicate
-func (c WebApplicationFirewallManagedRuleSetsClient) ManagedRuleSetsListCompleteMatchingPredicate(ctx context.Context, id commonids.SubscriptionId, predicate ManagedRuleSetDefinitionOperationPredicate) (resp ManagedRuleSetsListCompleteResult, err error) {
-	items := make([]ManagedRuleSetDefinition, 0)
-
-	page, err := c.ManagedRuleSetsList(ctx, id)
-	if err != nil {
-		err = fmt.Errorf("loading the initial page: %+v", err)
-		return
-	}
-	if page.Model != nil {
-		for _, v := range *page.Model {
-			if predicate.Matches(v) {
-				items = append(items, v)
-			}
-		}
-	}
-
-	for page.HasMore() {
-		page, err = page.LoadMore(ctx)
-		if err != nil {
-			err = fmt.Errorf("loading the next page: %+v", err)
-			return
-		}
-
-		if page.Model != nil {
-			for _, v := range *page.Model {
-				if predicate.Matches(v) {
-					items = append(items, v)
-				}
-			}
-		}
-	}
-
-	out := ManagedRuleSetsListCompleteResult{
-		Items: items,
-	}
-	return out, nil
-}
-
 // preparerForManagedRuleSetsList prepares the ManagedRuleSetsList request.
 func (c WebApplicationFirewallManagedRuleSetsClient) preparerForManagedRuleSetsList(ctx context.Context, id commonids.SubscriptionId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
@@ -184,4 +140,48 @@ func (c WebApplicationFirewallManagedRuleSetsClient) responderForManagedRuleSets
 		}
 	}
 	return
+}
+
+// ManagedRuleSetsListComplete retrieves all of the results into a single object
+func (c WebApplicationFirewallManagedRuleSetsClient) ManagedRuleSetsListComplete(ctx context.Context, id commonids.SubscriptionId) (ManagedRuleSetsListCompleteResult, error) {
+	return c.ManagedRuleSetsListCompleteMatchingPredicate(ctx, id, ManagedRuleSetDefinitionOperationPredicate{})
+}
+
+// ManagedRuleSetsListCompleteMatchingPredicate retrieves all of the results and then applied the predicate
+func (c WebApplicationFirewallManagedRuleSetsClient) ManagedRuleSetsListCompleteMatchingPredicate(ctx context.Context, id commonids.SubscriptionId, predicate ManagedRuleSetDefinitionOperationPredicate) (resp ManagedRuleSetsListCompleteResult, err error) {
+	items := make([]ManagedRuleSetDefinition, 0)
+
+	page, err := c.ManagedRuleSetsList(ctx, id)
+	if err != nil {
+		err = fmt.Errorf("loading the initial page: %+v", err)
+		return
+	}
+	if page.Model != nil {
+		for _, v := range *page.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	for page.HasMore() {
+		page, err = page.LoadMore(ctx)
+		if err != nil {
+			err = fmt.Errorf("loading the next page: %+v", err)
+			return
+		}
+
+		if page.Model != nil {
+			for _, v := range *page.Model {
+				if predicate.Matches(v) {
+					items = append(items, v)
+				}
+			}
+		}
+	}
+
+	out := ManagedRuleSetsListCompleteResult{
+		Items: items,
+	}
+	return out, nil
 }

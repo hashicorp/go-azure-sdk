@@ -59,50 +59,6 @@ func (c StorageInsightsClient) StorageInsightConfigsListByWorkspace(ctx context.
 	return
 }
 
-// StorageInsightConfigsListByWorkspaceComplete retrieves all of the results into a single object
-func (c StorageInsightsClient) StorageInsightConfigsListByWorkspaceComplete(ctx context.Context, id WorkspaceId) (StorageInsightConfigsListByWorkspaceCompleteResult, error) {
-	return c.StorageInsightConfigsListByWorkspaceCompleteMatchingPredicate(ctx, id, StorageInsightOperationPredicate{})
-}
-
-// StorageInsightConfigsListByWorkspaceCompleteMatchingPredicate retrieves all of the results and then applied the predicate
-func (c StorageInsightsClient) StorageInsightConfigsListByWorkspaceCompleteMatchingPredicate(ctx context.Context, id WorkspaceId, predicate StorageInsightOperationPredicate) (resp StorageInsightConfigsListByWorkspaceCompleteResult, err error) {
-	items := make([]StorageInsight, 0)
-
-	page, err := c.StorageInsightConfigsListByWorkspace(ctx, id)
-	if err != nil {
-		err = fmt.Errorf("loading the initial page: %+v", err)
-		return
-	}
-	if page.Model != nil {
-		for _, v := range *page.Model {
-			if predicate.Matches(v) {
-				items = append(items, v)
-			}
-		}
-	}
-
-	for page.HasMore() {
-		page, err = page.LoadMore(ctx)
-		if err != nil {
-			err = fmt.Errorf("loading the next page: %+v", err)
-			return
-		}
-
-		if page.Model != nil {
-			for _, v := range *page.Model {
-				if predicate.Matches(v) {
-					items = append(items, v)
-				}
-			}
-		}
-	}
-
-	out := StorageInsightConfigsListByWorkspaceCompleteResult{
-		Items: items,
-	}
-	return out, nil
-}
-
 // preparerForStorageInsightConfigsListByWorkspace prepares the StorageInsightConfigsListByWorkspace request.
 func (c StorageInsightsClient) preparerForStorageInsightConfigsListByWorkspace(ctx context.Context, id WorkspaceId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
@@ -183,4 +139,48 @@ func (c StorageInsightsClient) responderForStorageInsightConfigsListByWorkspace(
 		}
 	}
 	return
+}
+
+// StorageInsightConfigsListByWorkspaceComplete retrieves all of the results into a single object
+func (c StorageInsightsClient) StorageInsightConfigsListByWorkspaceComplete(ctx context.Context, id WorkspaceId) (StorageInsightConfigsListByWorkspaceCompleteResult, error) {
+	return c.StorageInsightConfigsListByWorkspaceCompleteMatchingPredicate(ctx, id, StorageInsightOperationPredicate{})
+}
+
+// StorageInsightConfigsListByWorkspaceCompleteMatchingPredicate retrieves all of the results and then applied the predicate
+func (c StorageInsightsClient) StorageInsightConfigsListByWorkspaceCompleteMatchingPredicate(ctx context.Context, id WorkspaceId, predicate StorageInsightOperationPredicate) (resp StorageInsightConfigsListByWorkspaceCompleteResult, err error) {
+	items := make([]StorageInsight, 0)
+
+	page, err := c.StorageInsightConfigsListByWorkspace(ctx, id)
+	if err != nil {
+		err = fmt.Errorf("loading the initial page: %+v", err)
+		return
+	}
+	if page.Model != nil {
+		for _, v := range *page.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	for page.HasMore() {
+		page, err = page.LoadMore(ctx)
+		if err != nil {
+			err = fmt.Errorf("loading the next page: %+v", err)
+			return
+		}
+
+		if page.Model != nil {
+			for _, v := range *page.Model {
+				if predicate.Matches(v) {
+					items = append(items, v)
+				}
+			}
+		}
+	}
+
+	out := StorageInsightConfigsListByWorkspaceCompleteResult{
+		Items: items,
+	}
+	return out, nil
 }

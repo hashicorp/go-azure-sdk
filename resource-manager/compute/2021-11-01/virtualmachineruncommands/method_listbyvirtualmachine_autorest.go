@@ -83,50 +83,6 @@ func (c VirtualMachineRunCommandsClient) ListByVirtualMachine(ctx context.Contex
 	return
 }
 
-// ListByVirtualMachineComplete retrieves all of the results into a single object
-func (c VirtualMachineRunCommandsClient) ListByVirtualMachineComplete(ctx context.Context, id VirtualMachineId, options ListByVirtualMachineOperationOptions) (ListByVirtualMachineCompleteResult, error) {
-	return c.ListByVirtualMachineCompleteMatchingPredicate(ctx, id, options, VirtualMachineRunCommandOperationPredicate{})
-}
-
-// ListByVirtualMachineCompleteMatchingPredicate retrieves all of the results and then applied the predicate
-func (c VirtualMachineRunCommandsClient) ListByVirtualMachineCompleteMatchingPredicate(ctx context.Context, id VirtualMachineId, options ListByVirtualMachineOperationOptions, predicate VirtualMachineRunCommandOperationPredicate) (resp ListByVirtualMachineCompleteResult, err error) {
-	items := make([]VirtualMachineRunCommand, 0)
-
-	page, err := c.ListByVirtualMachine(ctx, id, options)
-	if err != nil {
-		err = fmt.Errorf("loading the initial page: %+v", err)
-		return
-	}
-	if page.Model != nil {
-		for _, v := range *page.Model {
-			if predicate.Matches(v) {
-				items = append(items, v)
-			}
-		}
-	}
-
-	for page.HasMore() {
-		page, err = page.LoadMore(ctx)
-		if err != nil {
-			err = fmt.Errorf("loading the next page: %+v", err)
-			return
-		}
-
-		if page.Model != nil {
-			for _, v := range *page.Model {
-				if predicate.Matches(v) {
-					items = append(items, v)
-				}
-			}
-		}
-	}
-
-	out := ListByVirtualMachineCompleteResult{
-		Items: items,
-	}
-	return out, nil
-}
-
 // preparerForListByVirtualMachine prepares the ListByVirtualMachine request.
 func (c VirtualMachineRunCommandsClient) preparerForListByVirtualMachine(ctx context.Context, id VirtualMachineId, options ListByVirtualMachineOperationOptions) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
@@ -212,4 +168,48 @@ func (c VirtualMachineRunCommandsClient) responderForListByVirtualMachine(resp *
 		}
 	}
 	return
+}
+
+// ListByVirtualMachineComplete retrieves all of the results into a single object
+func (c VirtualMachineRunCommandsClient) ListByVirtualMachineComplete(ctx context.Context, id VirtualMachineId, options ListByVirtualMachineOperationOptions) (ListByVirtualMachineCompleteResult, error) {
+	return c.ListByVirtualMachineCompleteMatchingPredicate(ctx, id, options, VirtualMachineRunCommandOperationPredicate{})
+}
+
+// ListByVirtualMachineCompleteMatchingPredicate retrieves all of the results and then applied the predicate
+func (c VirtualMachineRunCommandsClient) ListByVirtualMachineCompleteMatchingPredicate(ctx context.Context, id VirtualMachineId, options ListByVirtualMachineOperationOptions, predicate VirtualMachineRunCommandOperationPredicate) (resp ListByVirtualMachineCompleteResult, err error) {
+	items := make([]VirtualMachineRunCommand, 0)
+
+	page, err := c.ListByVirtualMachine(ctx, id, options)
+	if err != nil {
+		err = fmt.Errorf("loading the initial page: %+v", err)
+		return
+	}
+	if page.Model != nil {
+		for _, v := range *page.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	for page.HasMore() {
+		page, err = page.LoadMore(ctx)
+		if err != nil {
+			err = fmt.Errorf("loading the next page: %+v", err)
+			return
+		}
+
+		if page.Model != nil {
+			for _, v := range *page.Model {
+				if predicate.Matches(v) {
+					items = append(items, v)
+				}
+			}
+		}
+	}
+
+	out := ListByVirtualMachineCompleteResult{
+		Items: items,
+	}
+	return out, nil
 }

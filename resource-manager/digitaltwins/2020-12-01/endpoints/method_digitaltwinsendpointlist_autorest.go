@@ -59,50 +59,6 @@ func (c EndpointsClient) DigitalTwinsEndpointList(ctx context.Context, id Digita
 	return
 }
 
-// DigitalTwinsEndpointListComplete retrieves all of the results into a single object
-func (c EndpointsClient) DigitalTwinsEndpointListComplete(ctx context.Context, id DigitalTwinsInstanceId) (DigitalTwinsEndpointListCompleteResult, error) {
-	return c.DigitalTwinsEndpointListCompleteMatchingPredicate(ctx, id, DigitalTwinsEndpointResourceOperationPredicate{})
-}
-
-// DigitalTwinsEndpointListCompleteMatchingPredicate retrieves all of the results and then applied the predicate
-func (c EndpointsClient) DigitalTwinsEndpointListCompleteMatchingPredicate(ctx context.Context, id DigitalTwinsInstanceId, predicate DigitalTwinsEndpointResourceOperationPredicate) (resp DigitalTwinsEndpointListCompleteResult, err error) {
-	items := make([]DigitalTwinsEndpointResource, 0)
-
-	page, err := c.DigitalTwinsEndpointList(ctx, id)
-	if err != nil {
-		err = fmt.Errorf("loading the initial page: %+v", err)
-		return
-	}
-	if page.Model != nil {
-		for _, v := range *page.Model {
-			if predicate.Matches(v) {
-				items = append(items, v)
-			}
-		}
-	}
-
-	for page.HasMore() {
-		page, err = page.LoadMore(ctx)
-		if err != nil {
-			err = fmt.Errorf("loading the next page: %+v", err)
-			return
-		}
-
-		if page.Model != nil {
-			for _, v := range *page.Model {
-				if predicate.Matches(v) {
-					items = append(items, v)
-				}
-			}
-		}
-	}
-
-	out := DigitalTwinsEndpointListCompleteResult{
-		Items: items,
-	}
-	return out, nil
-}
-
 // preparerForDigitalTwinsEndpointList prepares the DigitalTwinsEndpointList request.
 func (c EndpointsClient) preparerForDigitalTwinsEndpointList(ctx context.Context, id DigitalTwinsInstanceId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
@@ -183,4 +139,48 @@ func (c EndpointsClient) responderForDigitalTwinsEndpointList(resp *http.Respons
 		}
 	}
 	return
+}
+
+// DigitalTwinsEndpointListComplete retrieves all of the results into a single object
+func (c EndpointsClient) DigitalTwinsEndpointListComplete(ctx context.Context, id DigitalTwinsInstanceId) (DigitalTwinsEndpointListCompleteResult, error) {
+	return c.DigitalTwinsEndpointListCompleteMatchingPredicate(ctx, id, DigitalTwinsEndpointResourceOperationPredicate{})
+}
+
+// DigitalTwinsEndpointListCompleteMatchingPredicate retrieves all of the results and then applied the predicate
+func (c EndpointsClient) DigitalTwinsEndpointListCompleteMatchingPredicate(ctx context.Context, id DigitalTwinsInstanceId, predicate DigitalTwinsEndpointResourceOperationPredicate) (resp DigitalTwinsEndpointListCompleteResult, err error) {
+	items := make([]DigitalTwinsEndpointResource, 0)
+
+	page, err := c.DigitalTwinsEndpointList(ctx, id)
+	if err != nil {
+		err = fmt.Errorf("loading the initial page: %+v", err)
+		return
+	}
+	if page.Model != nil {
+		for _, v := range *page.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	for page.HasMore() {
+		page, err = page.LoadMore(ctx)
+		if err != nil {
+			err = fmt.Errorf("loading the next page: %+v", err)
+			return
+		}
+
+		if page.Model != nil {
+			for _, v := range *page.Model {
+				if predicate.Matches(v) {
+					items = append(items, v)
+				}
+			}
+		}
+	}
+
+	out := DigitalTwinsEndpointListCompleteResult{
+		Items: items,
+	}
+	return out, nil
 }

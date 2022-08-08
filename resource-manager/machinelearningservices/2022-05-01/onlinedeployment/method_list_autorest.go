@@ -93,50 +93,6 @@ func (c OnlineDeploymentClient) List(ctx context.Context, id OnlineEndpointId, o
 	return
 }
 
-// ListComplete retrieves all of the results into a single object
-func (c OnlineDeploymentClient) ListComplete(ctx context.Context, id OnlineEndpointId, options ListOperationOptions) (ListCompleteResult, error) {
-	return c.ListCompleteMatchingPredicate(ctx, id, options, OnlineDeploymentTrackedResourceOperationPredicate{})
-}
-
-// ListCompleteMatchingPredicate retrieves all of the results and then applied the predicate
-func (c OnlineDeploymentClient) ListCompleteMatchingPredicate(ctx context.Context, id OnlineEndpointId, options ListOperationOptions, predicate OnlineDeploymentTrackedResourceOperationPredicate) (resp ListCompleteResult, err error) {
-	items := make([]OnlineDeploymentTrackedResource, 0)
-
-	page, err := c.List(ctx, id, options)
-	if err != nil {
-		err = fmt.Errorf("loading the initial page: %+v", err)
-		return
-	}
-	if page.Model != nil {
-		for _, v := range *page.Model {
-			if predicate.Matches(v) {
-				items = append(items, v)
-			}
-		}
-	}
-
-	for page.HasMore() {
-		page, err = page.LoadMore(ctx)
-		if err != nil {
-			err = fmt.Errorf("loading the next page: %+v", err)
-			return
-		}
-
-		if page.Model != nil {
-			for _, v := range *page.Model {
-				if predicate.Matches(v) {
-					items = append(items, v)
-				}
-			}
-		}
-	}
-
-	out := ListCompleteResult{
-		Items: items,
-	}
-	return out, nil
-}
-
 // preparerForList prepares the List request.
 func (c OnlineDeploymentClient) preparerForList(ctx context.Context, id OnlineEndpointId, options ListOperationOptions) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
@@ -222,4 +178,48 @@ func (c OnlineDeploymentClient) responderForList(resp *http.Response) (result Li
 		}
 	}
 	return
+}
+
+// ListComplete retrieves all of the results into a single object
+func (c OnlineDeploymentClient) ListComplete(ctx context.Context, id OnlineEndpointId, options ListOperationOptions) (ListCompleteResult, error) {
+	return c.ListCompleteMatchingPredicate(ctx, id, options, OnlineDeploymentTrackedResourceOperationPredicate{})
+}
+
+// ListCompleteMatchingPredicate retrieves all of the results and then applied the predicate
+func (c OnlineDeploymentClient) ListCompleteMatchingPredicate(ctx context.Context, id OnlineEndpointId, options ListOperationOptions, predicate OnlineDeploymentTrackedResourceOperationPredicate) (resp ListCompleteResult, err error) {
+	items := make([]OnlineDeploymentTrackedResource, 0)
+
+	page, err := c.List(ctx, id, options)
+	if err != nil {
+		err = fmt.Errorf("loading the initial page: %+v", err)
+		return
+	}
+	if page.Model != nil {
+		for _, v := range *page.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	for page.HasMore() {
+		page, err = page.LoadMore(ctx)
+		if err != nil {
+			err = fmt.Errorf("loading the next page: %+v", err)
+			return
+		}
+
+		if page.Model != nil {
+			for _, v := range *page.Model {
+				if predicate.Matches(v) {
+					items = append(items, v)
+				}
+			}
+		}
+	}
+
+	out := ListCompleteResult{
+		Items: items,
+	}
+	return out, nil
 }

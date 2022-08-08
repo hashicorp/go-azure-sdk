@@ -59,50 +59,6 @@ func (c UserClient) ListByLab(ctx context.Context, id LabId) (resp ListByLabOper
 	return
 }
 
-// ListByLabComplete retrieves all of the results into a single object
-func (c UserClient) ListByLabComplete(ctx context.Context, id LabId) (ListByLabCompleteResult, error) {
-	return c.ListByLabCompleteMatchingPredicate(ctx, id, UserOperationPredicate{})
-}
-
-// ListByLabCompleteMatchingPredicate retrieves all of the results and then applied the predicate
-func (c UserClient) ListByLabCompleteMatchingPredicate(ctx context.Context, id LabId, predicate UserOperationPredicate) (resp ListByLabCompleteResult, err error) {
-	items := make([]User, 0)
-
-	page, err := c.ListByLab(ctx, id)
-	if err != nil {
-		err = fmt.Errorf("loading the initial page: %+v", err)
-		return
-	}
-	if page.Model != nil {
-		for _, v := range *page.Model {
-			if predicate.Matches(v) {
-				items = append(items, v)
-			}
-		}
-	}
-
-	for page.HasMore() {
-		page, err = page.LoadMore(ctx)
-		if err != nil {
-			err = fmt.Errorf("loading the next page: %+v", err)
-			return
-		}
-
-		if page.Model != nil {
-			for _, v := range *page.Model {
-				if predicate.Matches(v) {
-					items = append(items, v)
-				}
-			}
-		}
-	}
-
-	out := ListByLabCompleteResult{
-		Items: items,
-	}
-	return out, nil
-}
-
 // preparerForListByLab prepares the ListByLab request.
 func (c UserClient) preparerForListByLab(ctx context.Context, id LabId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
@@ -183,4 +139,48 @@ func (c UserClient) responderForListByLab(resp *http.Response) (result ListByLab
 		}
 	}
 	return
+}
+
+// ListByLabComplete retrieves all of the results into a single object
+func (c UserClient) ListByLabComplete(ctx context.Context, id LabId) (ListByLabCompleteResult, error) {
+	return c.ListByLabCompleteMatchingPredicate(ctx, id, UserOperationPredicate{})
+}
+
+// ListByLabCompleteMatchingPredicate retrieves all of the results and then applied the predicate
+func (c UserClient) ListByLabCompleteMatchingPredicate(ctx context.Context, id LabId, predicate UserOperationPredicate) (resp ListByLabCompleteResult, err error) {
+	items := make([]User, 0)
+
+	page, err := c.ListByLab(ctx, id)
+	if err != nil {
+		err = fmt.Errorf("loading the initial page: %+v", err)
+		return
+	}
+	if page.Model != nil {
+		for _, v := range *page.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	for page.HasMore() {
+		page, err = page.LoadMore(ctx)
+		if err != nil {
+			err = fmt.Errorf("loading the next page: %+v", err)
+			return
+		}
+
+		if page.Model != nil {
+			for _, v := range *page.Model {
+				if predicate.Matches(v) {
+					items = append(items, v)
+				}
+			}
+		}
+	}
+
+	out := ListByLabCompleteResult{
+		Items: items,
+	}
+	return out, nil
 }

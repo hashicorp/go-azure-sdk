@@ -60,50 +60,6 @@ func (c CollectionClient) ServicesList(ctx context.Context, id commonids.Subscri
 	return
 }
 
-// ServicesListComplete retrieves all of the results into a single object
-func (c CollectionClient) ServicesListComplete(ctx context.Context, id commonids.SubscriptionId) (ServicesListCompleteResult, error) {
-	return c.ServicesListCompleteMatchingPredicate(ctx, id, ServicesDescriptionOperationPredicate{})
-}
-
-// ServicesListCompleteMatchingPredicate retrieves all of the results and then applied the predicate
-func (c CollectionClient) ServicesListCompleteMatchingPredicate(ctx context.Context, id commonids.SubscriptionId, predicate ServicesDescriptionOperationPredicate) (resp ServicesListCompleteResult, err error) {
-	items := make([]ServicesDescription, 0)
-
-	page, err := c.ServicesList(ctx, id)
-	if err != nil {
-		err = fmt.Errorf("loading the initial page: %+v", err)
-		return
-	}
-	if page.Model != nil {
-		for _, v := range *page.Model {
-			if predicate.Matches(v) {
-				items = append(items, v)
-			}
-		}
-	}
-
-	for page.HasMore() {
-		page, err = page.LoadMore(ctx)
-		if err != nil {
-			err = fmt.Errorf("loading the next page: %+v", err)
-			return
-		}
-
-		if page.Model != nil {
-			for _, v := range *page.Model {
-				if predicate.Matches(v) {
-					items = append(items, v)
-				}
-			}
-		}
-	}
-
-	out := ServicesListCompleteResult{
-		Items: items,
-	}
-	return out, nil
-}
-
 // preparerForServicesList prepares the ServicesList request.
 func (c CollectionClient) preparerForServicesList(ctx context.Context, id commonids.SubscriptionId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
@@ -184,4 +140,48 @@ func (c CollectionClient) responderForServicesList(resp *http.Response) (result 
 		}
 	}
 	return
+}
+
+// ServicesListComplete retrieves all of the results into a single object
+func (c CollectionClient) ServicesListComplete(ctx context.Context, id commonids.SubscriptionId) (ServicesListCompleteResult, error) {
+	return c.ServicesListCompleteMatchingPredicate(ctx, id, ServicesDescriptionOperationPredicate{})
+}
+
+// ServicesListCompleteMatchingPredicate retrieves all of the results and then applied the predicate
+func (c CollectionClient) ServicesListCompleteMatchingPredicate(ctx context.Context, id commonids.SubscriptionId, predicate ServicesDescriptionOperationPredicate) (resp ServicesListCompleteResult, err error) {
+	items := make([]ServicesDescription, 0)
+
+	page, err := c.ServicesList(ctx, id)
+	if err != nil {
+		err = fmt.Errorf("loading the initial page: %+v", err)
+		return
+	}
+	if page.Model != nil {
+		for _, v := range *page.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	for page.HasMore() {
+		page, err = page.LoadMore(ctx)
+		if err != nil {
+			err = fmt.Errorf("loading the next page: %+v", err)
+			return
+		}
+
+		if page.Model != nil {
+			for _, v := range *page.Model {
+				if predicate.Matches(v) {
+					items = append(items, v)
+				}
+			}
+		}
+	}
+
+	out := ServicesListCompleteResult{
+		Items: items,
+	}
+	return out, nil
 }

@@ -60,50 +60,6 @@ func (c DigitalTwinsInstanceClient) DigitalTwinsListByResourceGroup(ctx context.
 	return
 }
 
-// DigitalTwinsListByResourceGroupComplete retrieves all of the results into a single object
-func (c DigitalTwinsInstanceClient) DigitalTwinsListByResourceGroupComplete(ctx context.Context, id commonids.ResourceGroupId) (DigitalTwinsListByResourceGroupCompleteResult, error) {
-	return c.DigitalTwinsListByResourceGroupCompleteMatchingPredicate(ctx, id, DigitalTwinsDescriptionOperationPredicate{})
-}
-
-// DigitalTwinsListByResourceGroupCompleteMatchingPredicate retrieves all of the results and then applied the predicate
-func (c DigitalTwinsInstanceClient) DigitalTwinsListByResourceGroupCompleteMatchingPredicate(ctx context.Context, id commonids.ResourceGroupId, predicate DigitalTwinsDescriptionOperationPredicate) (resp DigitalTwinsListByResourceGroupCompleteResult, err error) {
-	items := make([]DigitalTwinsDescription, 0)
-
-	page, err := c.DigitalTwinsListByResourceGroup(ctx, id)
-	if err != nil {
-		err = fmt.Errorf("loading the initial page: %+v", err)
-		return
-	}
-	if page.Model != nil {
-		for _, v := range *page.Model {
-			if predicate.Matches(v) {
-				items = append(items, v)
-			}
-		}
-	}
-
-	for page.HasMore() {
-		page, err = page.LoadMore(ctx)
-		if err != nil {
-			err = fmt.Errorf("loading the next page: %+v", err)
-			return
-		}
-
-		if page.Model != nil {
-			for _, v := range *page.Model {
-				if predicate.Matches(v) {
-					items = append(items, v)
-				}
-			}
-		}
-	}
-
-	out := DigitalTwinsListByResourceGroupCompleteResult{
-		Items: items,
-	}
-	return out, nil
-}
-
 // preparerForDigitalTwinsListByResourceGroup prepares the DigitalTwinsListByResourceGroup request.
 func (c DigitalTwinsInstanceClient) preparerForDigitalTwinsListByResourceGroup(ctx context.Context, id commonids.ResourceGroupId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
@@ -184,4 +140,48 @@ func (c DigitalTwinsInstanceClient) responderForDigitalTwinsListByResourceGroup(
 		}
 	}
 	return
+}
+
+// DigitalTwinsListByResourceGroupComplete retrieves all of the results into a single object
+func (c DigitalTwinsInstanceClient) DigitalTwinsListByResourceGroupComplete(ctx context.Context, id commonids.ResourceGroupId) (DigitalTwinsListByResourceGroupCompleteResult, error) {
+	return c.DigitalTwinsListByResourceGroupCompleteMatchingPredicate(ctx, id, DigitalTwinsDescriptionOperationPredicate{})
+}
+
+// DigitalTwinsListByResourceGroupCompleteMatchingPredicate retrieves all of the results and then applied the predicate
+func (c DigitalTwinsInstanceClient) DigitalTwinsListByResourceGroupCompleteMatchingPredicate(ctx context.Context, id commonids.ResourceGroupId, predicate DigitalTwinsDescriptionOperationPredicate) (resp DigitalTwinsListByResourceGroupCompleteResult, err error) {
+	items := make([]DigitalTwinsDescription, 0)
+
+	page, err := c.DigitalTwinsListByResourceGroup(ctx, id)
+	if err != nil {
+		err = fmt.Errorf("loading the initial page: %+v", err)
+		return
+	}
+	if page.Model != nil {
+		for _, v := range *page.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	for page.HasMore() {
+		page, err = page.LoadMore(ctx)
+		if err != nil {
+			err = fmt.Errorf("loading the next page: %+v", err)
+			return
+		}
+
+		if page.Model != nil {
+			for _, v := range *page.Model {
+				if predicate.Matches(v) {
+					items = append(items, v)
+				}
+			}
+		}
+	}
+
+	out := DigitalTwinsListByResourceGroupCompleteResult{
+		Items: items,
+	}
+	return out, nil
 }

@@ -59,50 +59,6 @@ func (c FrontDoorsClient) FrontendEndpointsListByFrontDoor(ctx context.Context, 
 	return
 }
 
-// FrontendEndpointsListByFrontDoorComplete retrieves all of the results into a single object
-func (c FrontDoorsClient) FrontendEndpointsListByFrontDoorComplete(ctx context.Context, id FrontDoorId) (FrontendEndpointsListByFrontDoorCompleteResult, error) {
-	return c.FrontendEndpointsListByFrontDoorCompleteMatchingPredicate(ctx, id, FrontendEndpointOperationPredicate{})
-}
-
-// FrontendEndpointsListByFrontDoorCompleteMatchingPredicate retrieves all of the results and then applied the predicate
-func (c FrontDoorsClient) FrontendEndpointsListByFrontDoorCompleteMatchingPredicate(ctx context.Context, id FrontDoorId, predicate FrontendEndpointOperationPredicate) (resp FrontendEndpointsListByFrontDoorCompleteResult, err error) {
-	items := make([]FrontendEndpoint, 0)
-
-	page, err := c.FrontendEndpointsListByFrontDoor(ctx, id)
-	if err != nil {
-		err = fmt.Errorf("loading the initial page: %+v", err)
-		return
-	}
-	if page.Model != nil {
-		for _, v := range *page.Model {
-			if predicate.Matches(v) {
-				items = append(items, v)
-			}
-		}
-	}
-
-	for page.HasMore() {
-		page, err = page.LoadMore(ctx)
-		if err != nil {
-			err = fmt.Errorf("loading the next page: %+v", err)
-			return
-		}
-
-		if page.Model != nil {
-			for _, v := range *page.Model {
-				if predicate.Matches(v) {
-					items = append(items, v)
-				}
-			}
-		}
-	}
-
-	out := FrontendEndpointsListByFrontDoorCompleteResult{
-		Items: items,
-	}
-	return out, nil
-}
-
 // preparerForFrontendEndpointsListByFrontDoor prepares the FrontendEndpointsListByFrontDoor request.
 func (c FrontDoorsClient) preparerForFrontendEndpointsListByFrontDoor(ctx context.Context, id FrontDoorId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
@@ -183,4 +139,48 @@ func (c FrontDoorsClient) responderForFrontendEndpointsListByFrontDoor(resp *htt
 		}
 	}
 	return
+}
+
+// FrontendEndpointsListByFrontDoorComplete retrieves all of the results into a single object
+func (c FrontDoorsClient) FrontendEndpointsListByFrontDoorComplete(ctx context.Context, id FrontDoorId) (FrontendEndpointsListByFrontDoorCompleteResult, error) {
+	return c.FrontendEndpointsListByFrontDoorCompleteMatchingPredicate(ctx, id, FrontendEndpointOperationPredicate{})
+}
+
+// FrontendEndpointsListByFrontDoorCompleteMatchingPredicate retrieves all of the results and then applied the predicate
+func (c FrontDoorsClient) FrontendEndpointsListByFrontDoorCompleteMatchingPredicate(ctx context.Context, id FrontDoorId, predicate FrontendEndpointOperationPredicate) (resp FrontendEndpointsListByFrontDoorCompleteResult, err error) {
+	items := make([]FrontendEndpoint, 0)
+
+	page, err := c.FrontendEndpointsListByFrontDoor(ctx, id)
+	if err != nil {
+		err = fmt.Errorf("loading the initial page: %+v", err)
+		return
+	}
+	if page.Model != nil {
+		for _, v := range *page.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	for page.HasMore() {
+		page, err = page.LoadMore(ctx)
+		if err != nil {
+			err = fmt.Errorf("loading the next page: %+v", err)
+			return
+		}
+
+		if page.Model != nil {
+			for _, v := range *page.Model {
+				if predicate.Matches(v) {
+					items = append(items, v)
+				}
+			}
+		}
+	}
+
+	out := FrontendEndpointsListByFrontDoorCompleteResult{
+		Items: items,
+	}
+	return out, nil
 }

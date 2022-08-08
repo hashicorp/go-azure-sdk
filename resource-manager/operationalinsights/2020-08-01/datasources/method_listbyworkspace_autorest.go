@@ -83,50 +83,6 @@ func (c DataSourcesClient) ListByWorkspace(ctx context.Context, id WorkspaceId, 
 	return
 }
 
-// ListByWorkspaceComplete retrieves all of the results into a single object
-func (c DataSourcesClient) ListByWorkspaceComplete(ctx context.Context, id WorkspaceId, options ListByWorkspaceOperationOptions) (ListByWorkspaceCompleteResult, error) {
-	return c.ListByWorkspaceCompleteMatchingPredicate(ctx, id, options, DataSourceOperationPredicate{})
-}
-
-// ListByWorkspaceCompleteMatchingPredicate retrieves all of the results and then applied the predicate
-func (c DataSourcesClient) ListByWorkspaceCompleteMatchingPredicate(ctx context.Context, id WorkspaceId, options ListByWorkspaceOperationOptions, predicate DataSourceOperationPredicate) (resp ListByWorkspaceCompleteResult, err error) {
-	items := make([]DataSource, 0)
-
-	page, err := c.ListByWorkspace(ctx, id, options)
-	if err != nil {
-		err = fmt.Errorf("loading the initial page: %+v", err)
-		return
-	}
-	if page.Model != nil {
-		for _, v := range *page.Model {
-			if predicate.Matches(v) {
-				items = append(items, v)
-			}
-		}
-	}
-
-	for page.HasMore() {
-		page, err = page.LoadMore(ctx)
-		if err != nil {
-			err = fmt.Errorf("loading the next page: %+v", err)
-			return
-		}
-
-		if page.Model != nil {
-			for _, v := range *page.Model {
-				if predicate.Matches(v) {
-					items = append(items, v)
-				}
-			}
-		}
-	}
-
-	out := ListByWorkspaceCompleteResult{
-		Items: items,
-	}
-	return out, nil
-}
-
 // preparerForListByWorkspace prepares the ListByWorkspace request.
 func (c DataSourcesClient) preparerForListByWorkspace(ctx context.Context, id WorkspaceId, options ListByWorkspaceOperationOptions) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
@@ -212,4 +168,48 @@ func (c DataSourcesClient) responderForListByWorkspace(resp *http.Response) (res
 		}
 	}
 	return
+}
+
+// ListByWorkspaceComplete retrieves all of the results into a single object
+func (c DataSourcesClient) ListByWorkspaceComplete(ctx context.Context, id WorkspaceId, options ListByWorkspaceOperationOptions) (ListByWorkspaceCompleteResult, error) {
+	return c.ListByWorkspaceCompleteMatchingPredicate(ctx, id, options, DataSourceOperationPredicate{})
+}
+
+// ListByWorkspaceCompleteMatchingPredicate retrieves all of the results and then applied the predicate
+func (c DataSourcesClient) ListByWorkspaceCompleteMatchingPredicate(ctx context.Context, id WorkspaceId, options ListByWorkspaceOperationOptions, predicate DataSourceOperationPredicate) (resp ListByWorkspaceCompleteResult, err error) {
+	items := make([]DataSource, 0)
+
+	page, err := c.ListByWorkspace(ctx, id, options)
+	if err != nil {
+		err = fmt.Errorf("loading the initial page: %+v", err)
+		return
+	}
+	if page.Model != nil {
+		for _, v := range *page.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	for page.HasMore() {
+		page, err = page.LoadMore(ctx)
+		if err != nil {
+			err = fmt.Errorf("loading the next page: %+v", err)
+			return
+		}
+
+		if page.Model != nil {
+			for _, v := range *page.Model {
+				if predicate.Matches(v) {
+					items = append(items, v)
+				}
+			}
+		}
+	}
+
+	out := ListByWorkspaceCompleteResult{
+		Items: items,
+	}
+	return out, nil
 }

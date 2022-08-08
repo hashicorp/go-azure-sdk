@@ -59,50 +59,6 @@ func (c ExperimentsClient) ListExecutionDetails(ctx context.Context, id Experime
 	return
 }
 
-// ListExecutionDetailsComplete retrieves all of the results into a single object
-func (c ExperimentsClient) ListExecutionDetailsComplete(ctx context.Context, id ExperimentId) (ListExecutionDetailsCompleteResult, error) {
-	return c.ListExecutionDetailsCompleteMatchingPredicate(ctx, id, ExperimentExecutionDetailsOperationPredicate{})
-}
-
-// ListExecutionDetailsCompleteMatchingPredicate retrieves all of the results and then applied the predicate
-func (c ExperimentsClient) ListExecutionDetailsCompleteMatchingPredicate(ctx context.Context, id ExperimentId, predicate ExperimentExecutionDetailsOperationPredicate) (resp ListExecutionDetailsCompleteResult, err error) {
-	items := make([]ExperimentExecutionDetails, 0)
-
-	page, err := c.ListExecutionDetails(ctx, id)
-	if err != nil {
-		err = fmt.Errorf("loading the initial page: %+v", err)
-		return
-	}
-	if page.Model != nil {
-		for _, v := range *page.Model {
-			if predicate.Matches(v) {
-				items = append(items, v)
-			}
-		}
-	}
-
-	for page.HasMore() {
-		page, err = page.LoadMore(ctx)
-		if err != nil {
-			err = fmt.Errorf("loading the next page: %+v", err)
-			return
-		}
-
-		if page.Model != nil {
-			for _, v := range *page.Model {
-				if predicate.Matches(v) {
-					items = append(items, v)
-				}
-			}
-		}
-	}
-
-	out := ListExecutionDetailsCompleteResult{
-		Items: items,
-	}
-	return out, nil
-}
-
 // preparerForListExecutionDetails prepares the ListExecutionDetails request.
 func (c ExperimentsClient) preparerForListExecutionDetails(ctx context.Context, id ExperimentId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
@@ -183,4 +139,48 @@ func (c ExperimentsClient) responderForListExecutionDetails(resp *http.Response)
 		}
 	}
 	return
+}
+
+// ListExecutionDetailsComplete retrieves all of the results into a single object
+func (c ExperimentsClient) ListExecutionDetailsComplete(ctx context.Context, id ExperimentId) (ListExecutionDetailsCompleteResult, error) {
+	return c.ListExecutionDetailsCompleteMatchingPredicate(ctx, id, ExperimentExecutionDetailsOperationPredicate{})
+}
+
+// ListExecutionDetailsCompleteMatchingPredicate retrieves all of the results and then applied the predicate
+func (c ExperimentsClient) ListExecutionDetailsCompleteMatchingPredicate(ctx context.Context, id ExperimentId, predicate ExperimentExecutionDetailsOperationPredicate) (resp ListExecutionDetailsCompleteResult, err error) {
+	items := make([]ExperimentExecutionDetails, 0)
+
+	page, err := c.ListExecutionDetails(ctx, id)
+	if err != nil {
+		err = fmt.Errorf("loading the initial page: %+v", err)
+		return
+	}
+	if page.Model != nil {
+		for _, v := range *page.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	for page.HasMore() {
+		page, err = page.LoadMore(ctx)
+		if err != nil {
+			err = fmt.Errorf("loading the next page: %+v", err)
+			return
+		}
+
+		if page.Model != nil {
+			for _, v := range *page.Model {
+				if predicate.Matches(v) {
+					items = append(items, v)
+				}
+			}
+		}
+	}
+
+	out := ListExecutionDetailsCompleteResult{
+		Items: items,
+	}
+	return out, nil
 }

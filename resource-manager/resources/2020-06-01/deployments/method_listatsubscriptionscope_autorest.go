@@ -89,50 +89,6 @@ func (c DeploymentsClient) ListAtSubscriptionScope(ctx context.Context, id commo
 	return
 }
 
-// ListAtSubscriptionScopeComplete retrieves all of the results into a single object
-func (c DeploymentsClient) ListAtSubscriptionScopeComplete(ctx context.Context, id commonids.SubscriptionId, options ListAtSubscriptionScopeOperationOptions) (ListAtSubscriptionScopeCompleteResult, error) {
-	return c.ListAtSubscriptionScopeCompleteMatchingPredicate(ctx, id, options, DeploymentExtendedOperationPredicate{})
-}
-
-// ListAtSubscriptionScopeCompleteMatchingPredicate retrieves all of the results and then applied the predicate
-func (c DeploymentsClient) ListAtSubscriptionScopeCompleteMatchingPredicate(ctx context.Context, id commonids.SubscriptionId, options ListAtSubscriptionScopeOperationOptions, predicate DeploymentExtendedOperationPredicate) (resp ListAtSubscriptionScopeCompleteResult, err error) {
-	items := make([]DeploymentExtended, 0)
-
-	page, err := c.ListAtSubscriptionScope(ctx, id, options)
-	if err != nil {
-		err = fmt.Errorf("loading the initial page: %+v", err)
-		return
-	}
-	if page.Model != nil {
-		for _, v := range *page.Model {
-			if predicate.Matches(v) {
-				items = append(items, v)
-			}
-		}
-	}
-
-	for page.HasMore() {
-		page, err = page.LoadMore(ctx)
-		if err != nil {
-			err = fmt.Errorf("loading the next page: %+v", err)
-			return
-		}
-
-		if page.Model != nil {
-			for _, v := range *page.Model {
-				if predicate.Matches(v) {
-					items = append(items, v)
-				}
-			}
-		}
-	}
-
-	out := ListAtSubscriptionScopeCompleteResult{
-		Items: items,
-	}
-	return out, nil
-}
-
 // preparerForListAtSubscriptionScope prepares the ListAtSubscriptionScope request.
 func (c DeploymentsClient) preparerForListAtSubscriptionScope(ctx context.Context, id commonids.SubscriptionId, options ListAtSubscriptionScopeOperationOptions) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
@@ -218,4 +174,48 @@ func (c DeploymentsClient) responderForListAtSubscriptionScope(resp *http.Respon
 		}
 	}
 	return
+}
+
+// ListAtSubscriptionScopeComplete retrieves all of the results into a single object
+func (c DeploymentsClient) ListAtSubscriptionScopeComplete(ctx context.Context, id commonids.SubscriptionId, options ListAtSubscriptionScopeOperationOptions) (ListAtSubscriptionScopeCompleteResult, error) {
+	return c.ListAtSubscriptionScopeCompleteMatchingPredicate(ctx, id, options, DeploymentExtendedOperationPredicate{})
+}
+
+// ListAtSubscriptionScopeCompleteMatchingPredicate retrieves all of the results and then applied the predicate
+func (c DeploymentsClient) ListAtSubscriptionScopeCompleteMatchingPredicate(ctx context.Context, id commonids.SubscriptionId, options ListAtSubscriptionScopeOperationOptions, predicate DeploymentExtendedOperationPredicate) (resp ListAtSubscriptionScopeCompleteResult, err error) {
+	items := make([]DeploymentExtended, 0)
+
+	page, err := c.ListAtSubscriptionScope(ctx, id, options)
+	if err != nil {
+		err = fmt.Errorf("loading the initial page: %+v", err)
+		return
+	}
+	if page.Model != nil {
+		for _, v := range *page.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	for page.HasMore() {
+		page, err = page.LoadMore(ctx)
+		if err != nil {
+			err = fmt.Errorf("loading the next page: %+v", err)
+			return
+		}
+
+		if page.Model != nil {
+			for _, v := range *page.Model {
+				if predicate.Matches(v) {
+					items = append(items, v)
+				}
+			}
+		}
+	}
+
+	out := ListAtSubscriptionScopeCompleteResult{
+		Items: items,
+	}
+	return out, nil
 }

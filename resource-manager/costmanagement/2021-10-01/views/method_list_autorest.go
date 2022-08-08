@@ -59,50 +59,6 @@ func (c ViewsClient) List(ctx context.Context) (resp ListOperationResponse, err 
 	return
 }
 
-// ListComplete retrieves all of the results into a single object
-func (c ViewsClient) ListComplete(ctx context.Context) (ListCompleteResult, error) {
-	return c.ListCompleteMatchingPredicate(ctx, ViewOperationPredicate{})
-}
-
-// ListCompleteMatchingPredicate retrieves all of the results and then applied the predicate
-func (c ViewsClient) ListCompleteMatchingPredicate(ctx context.Context, predicate ViewOperationPredicate) (resp ListCompleteResult, err error) {
-	items := make([]View, 0)
-
-	page, err := c.List(ctx)
-	if err != nil {
-		err = fmt.Errorf("loading the initial page: %+v", err)
-		return
-	}
-	if page.Model != nil {
-		for _, v := range *page.Model {
-			if predicate.Matches(v) {
-				items = append(items, v)
-			}
-		}
-	}
-
-	for page.HasMore() {
-		page, err = page.LoadMore(ctx)
-		if err != nil {
-			err = fmt.Errorf("loading the next page: %+v", err)
-			return
-		}
-
-		if page.Model != nil {
-			for _, v := range *page.Model {
-				if predicate.Matches(v) {
-					items = append(items, v)
-				}
-			}
-		}
-	}
-
-	out := ListCompleteResult{
-		Items: items,
-	}
-	return out, nil
-}
-
 // preparerForList prepares the List request.
 func (c ViewsClient) preparerForList(ctx context.Context) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
@@ -183,4 +139,48 @@ func (c ViewsClient) responderForList(resp *http.Response) (result ListOperation
 		}
 	}
 	return
+}
+
+// ListComplete retrieves all of the results into a single object
+func (c ViewsClient) ListComplete(ctx context.Context) (ListCompleteResult, error) {
+	return c.ListCompleteMatchingPredicate(ctx, ViewOperationPredicate{})
+}
+
+// ListCompleteMatchingPredicate retrieves all of the results and then applied the predicate
+func (c ViewsClient) ListCompleteMatchingPredicate(ctx context.Context, predicate ViewOperationPredicate) (resp ListCompleteResult, err error) {
+	items := make([]View, 0)
+
+	page, err := c.List(ctx)
+	if err != nil {
+		err = fmt.Errorf("loading the initial page: %+v", err)
+		return
+	}
+	if page.Model != nil {
+		for _, v := range *page.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	for page.HasMore() {
+		page, err = page.LoadMore(ctx)
+		if err != nil {
+			err = fmt.Errorf("loading the next page: %+v", err)
+			return
+		}
+
+		if page.Model != nil {
+			for _, v := range *page.Model {
+				if predicate.Matches(v) {
+					items = append(items, v)
+				}
+			}
+		}
+	}
+
+	out := ListCompleteResult{
+		Items: items,
+	}
+	return out, nil
 }

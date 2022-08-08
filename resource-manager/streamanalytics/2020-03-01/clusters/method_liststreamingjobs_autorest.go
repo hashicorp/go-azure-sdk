@@ -59,50 +59,6 @@ func (c ClustersClient) ListStreamingJobs(ctx context.Context, id ClusterId) (re
 	return
 }
 
-// ListStreamingJobsComplete retrieves all of the results into a single object
-func (c ClustersClient) ListStreamingJobsComplete(ctx context.Context, id ClusterId) (ListStreamingJobsCompleteResult, error) {
-	return c.ListStreamingJobsCompleteMatchingPredicate(ctx, id, ClusterJobOperationPredicate{})
-}
-
-// ListStreamingJobsCompleteMatchingPredicate retrieves all of the results and then applied the predicate
-func (c ClustersClient) ListStreamingJobsCompleteMatchingPredicate(ctx context.Context, id ClusterId, predicate ClusterJobOperationPredicate) (resp ListStreamingJobsCompleteResult, err error) {
-	items := make([]ClusterJob, 0)
-
-	page, err := c.ListStreamingJobs(ctx, id)
-	if err != nil {
-		err = fmt.Errorf("loading the initial page: %+v", err)
-		return
-	}
-	if page.Model != nil {
-		for _, v := range *page.Model {
-			if predicate.Matches(v) {
-				items = append(items, v)
-			}
-		}
-	}
-
-	for page.HasMore() {
-		page, err = page.LoadMore(ctx)
-		if err != nil {
-			err = fmt.Errorf("loading the next page: %+v", err)
-			return
-		}
-
-		if page.Model != nil {
-			for _, v := range *page.Model {
-				if predicate.Matches(v) {
-					items = append(items, v)
-				}
-			}
-		}
-	}
-
-	out := ListStreamingJobsCompleteResult{
-		Items: items,
-	}
-	return out, nil
-}
-
 // preparerForListStreamingJobs prepares the ListStreamingJobs request.
 func (c ClustersClient) preparerForListStreamingJobs(ctx context.Context, id ClusterId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
@@ -183,4 +139,48 @@ func (c ClustersClient) responderForListStreamingJobs(resp *http.Response) (resu
 		}
 	}
 	return
+}
+
+// ListStreamingJobsComplete retrieves all of the results into a single object
+func (c ClustersClient) ListStreamingJobsComplete(ctx context.Context, id ClusterId) (ListStreamingJobsCompleteResult, error) {
+	return c.ListStreamingJobsCompleteMatchingPredicate(ctx, id, ClusterJobOperationPredicate{})
+}
+
+// ListStreamingJobsCompleteMatchingPredicate retrieves all of the results and then applied the predicate
+func (c ClustersClient) ListStreamingJobsCompleteMatchingPredicate(ctx context.Context, id ClusterId, predicate ClusterJobOperationPredicate) (resp ListStreamingJobsCompleteResult, err error) {
+	items := make([]ClusterJob, 0)
+
+	page, err := c.ListStreamingJobs(ctx, id)
+	if err != nil {
+		err = fmt.Errorf("loading the initial page: %+v", err)
+		return
+	}
+	if page.Model != nil {
+		for _, v := range *page.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	for page.HasMore() {
+		page, err = page.LoadMore(ctx)
+		if err != nil {
+			err = fmt.Errorf("loading the next page: %+v", err)
+			return
+		}
+
+		if page.Model != nil {
+			for _, v := range *page.Model {
+				if predicate.Matches(v) {
+					items = append(items, v)
+				}
+			}
+		}
+	}
+
+	out := ListStreamingJobsCompleteResult{
+		Items: items,
+	}
+	return out, nil
 }

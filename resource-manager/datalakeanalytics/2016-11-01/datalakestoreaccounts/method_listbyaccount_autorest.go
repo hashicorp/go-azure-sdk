@@ -108,50 +108,6 @@ func (c DataLakeStoreAccountsClient) ListByAccount(ctx context.Context, id Accou
 	return
 }
 
-// ListByAccountComplete retrieves all of the results into a single object
-func (c DataLakeStoreAccountsClient) ListByAccountComplete(ctx context.Context, id AccountId, options ListByAccountOperationOptions) (ListByAccountCompleteResult, error) {
-	return c.ListByAccountCompleteMatchingPredicate(ctx, id, options, DataLakeStoreAccountInformationOperationPredicate{})
-}
-
-// ListByAccountCompleteMatchingPredicate retrieves all of the results and then applied the predicate
-func (c DataLakeStoreAccountsClient) ListByAccountCompleteMatchingPredicate(ctx context.Context, id AccountId, options ListByAccountOperationOptions, predicate DataLakeStoreAccountInformationOperationPredicate) (resp ListByAccountCompleteResult, err error) {
-	items := make([]DataLakeStoreAccountInformation, 0)
-
-	page, err := c.ListByAccount(ctx, id, options)
-	if err != nil {
-		err = fmt.Errorf("loading the initial page: %+v", err)
-		return
-	}
-	if page.Model != nil {
-		for _, v := range *page.Model {
-			if predicate.Matches(v) {
-				items = append(items, v)
-			}
-		}
-	}
-
-	for page.HasMore() {
-		page, err = page.LoadMore(ctx)
-		if err != nil {
-			err = fmt.Errorf("loading the next page: %+v", err)
-			return
-		}
-
-		if page.Model != nil {
-			for _, v := range *page.Model {
-				if predicate.Matches(v) {
-					items = append(items, v)
-				}
-			}
-		}
-	}
-
-	out := ListByAccountCompleteResult{
-		Items: items,
-	}
-	return out, nil
-}
-
 // preparerForListByAccount prepares the ListByAccount request.
 func (c DataLakeStoreAccountsClient) preparerForListByAccount(ctx context.Context, id AccountId, options ListByAccountOperationOptions) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
@@ -237,4 +193,48 @@ func (c DataLakeStoreAccountsClient) responderForListByAccount(resp *http.Respon
 		}
 	}
 	return
+}
+
+// ListByAccountComplete retrieves all of the results into a single object
+func (c DataLakeStoreAccountsClient) ListByAccountComplete(ctx context.Context, id AccountId, options ListByAccountOperationOptions) (ListByAccountCompleteResult, error) {
+	return c.ListByAccountCompleteMatchingPredicate(ctx, id, options, DataLakeStoreAccountInformationOperationPredicate{})
+}
+
+// ListByAccountCompleteMatchingPredicate retrieves all of the results and then applied the predicate
+func (c DataLakeStoreAccountsClient) ListByAccountCompleteMatchingPredicate(ctx context.Context, id AccountId, options ListByAccountOperationOptions, predicate DataLakeStoreAccountInformationOperationPredicate) (resp ListByAccountCompleteResult, err error) {
+	items := make([]DataLakeStoreAccountInformation, 0)
+
+	page, err := c.ListByAccount(ctx, id, options)
+	if err != nil {
+		err = fmt.Errorf("loading the initial page: %+v", err)
+		return
+	}
+	if page.Model != nil {
+		for _, v := range *page.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	for page.HasMore() {
+		page, err = page.LoadMore(ctx)
+		if err != nil {
+			err = fmt.Errorf("loading the next page: %+v", err)
+			return
+		}
+
+		if page.Model != nil {
+			for _, v := range *page.Model {
+				if predicate.Matches(v) {
+					items = append(items, v)
+				}
+			}
+		}
+	}
+
+	out := ListByAccountCompleteResult{
+		Items: items,
+	}
+	return out, nil
 }

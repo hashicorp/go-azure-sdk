@@ -59,50 +59,6 @@ func (c CapacityReservationClient) ListByCapacityReservationGroup(ctx context.Co
 	return
 }
 
-// ListByCapacityReservationGroupComplete retrieves all of the results into a single object
-func (c CapacityReservationClient) ListByCapacityReservationGroupComplete(ctx context.Context, id CapacityReservationGroupId) (ListByCapacityReservationGroupCompleteResult, error) {
-	return c.ListByCapacityReservationGroupCompleteMatchingPredicate(ctx, id, CapacityReservationOperationPredicate{})
-}
-
-// ListByCapacityReservationGroupCompleteMatchingPredicate retrieves all of the results and then applied the predicate
-func (c CapacityReservationClient) ListByCapacityReservationGroupCompleteMatchingPredicate(ctx context.Context, id CapacityReservationGroupId, predicate CapacityReservationOperationPredicate) (resp ListByCapacityReservationGroupCompleteResult, err error) {
-	items := make([]CapacityReservation, 0)
-
-	page, err := c.ListByCapacityReservationGroup(ctx, id)
-	if err != nil {
-		err = fmt.Errorf("loading the initial page: %+v", err)
-		return
-	}
-	if page.Model != nil {
-		for _, v := range *page.Model {
-			if predicate.Matches(v) {
-				items = append(items, v)
-			}
-		}
-	}
-
-	for page.HasMore() {
-		page, err = page.LoadMore(ctx)
-		if err != nil {
-			err = fmt.Errorf("loading the next page: %+v", err)
-			return
-		}
-
-		if page.Model != nil {
-			for _, v := range *page.Model {
-				if predicate.Matches(v) {
-					items = append(items, v)
-				}
-			}
-		}
-	}
-
-	out := ListByCapacityReservationGroupCompleteResult{
-		Items: items,
-	}
-	return out, nil
-}
-
 // preparerForListByCapacityReservationGroup prepares the ListByCapacityReservationGroup request.
 func (c CapacityReservationClient) preparerForListByCapacityReservationGroup(ctx context.Context, id CapacityReservationGroupId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
@@ -183,4 +139,48 @@ func (c CapacityReservationClient) responderForListByCapacityReservationGroup(re
 		}
 	}
 	return
+}
+
+// ListByCapacityReservationGroupComplete retrieves all of the results into a single object
+func (c CapacityReservationClient) ListByCapacityReservationGroupComplete(ctx context.Context, id CapacityReservationGroupId) (ListByCapacityReservationGroupCompleteResult, error) {
+	return c.ListByCapacityReservationGroupCompleteMatchingPredicate(ctx, id, CapacityReservationOperationPredicate{})
+}
+
+// ListByCapacityReservationGroupCompleteMatchingPredicate retrieves all of the results and then applied the predicate
+func (c CapacityReservationClient) ListByCapacityReservationGroupCompleteMatchingPredicate(ctx context.Context, id CapacityReservationGroupId, predicate CapacityReservationOperationPredicate) (resp ListByCapacityReservationGroupCompleteResult, err error) {
+	items := make([]CapacityReservation, 0)
+
+	page, err := c.ListByCapacityReservationGroup(ctx, id)
+	if err != nil {
+		err = fmt.Errorf("loading the initial page: %+v", err)
+		return
+	}
+	if page.Model != nil {
+		for _, v := range *page.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	for page.HasMore() {
+		page, err = page.LoadMore(ctx)
+		if err != nil {
+			err = fmt.Errorf("loading the next page: %+v", err)
+			return
+		}
+
+		if page.Model != nil {
+			for _, v := range *page.Model {
+				if predicate.Matches(v) {
+					items = append(items, v)
+				}
+			}
+		}
+	}
+
+	out := ListByCapacityReservationGroupCompleteResult{
+		Items: items,
+	}
+	return out, nil
 }

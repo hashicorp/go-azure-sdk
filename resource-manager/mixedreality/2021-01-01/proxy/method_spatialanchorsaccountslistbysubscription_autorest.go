@@ -60,50 +60,6 @@ func (c ProxyClient) SpatialAnchorsAccountsListBySubscription(ctx context.Contex
 	return
 }
 
-// SpatialAnchorsAccountsListBySubscriptionComplete retrieves all of the results into a single object
-func (c ProxyClient) SpatialAnchorsAccountsListBySubscriptionComplete(ctx context.Context, id commonids.SubscriptionId) (SpatialAnchorsAccountsListBySubscriptionCompleteResult, error) {
-	return c.SpatialAnchorsAccountsListBySubscriptionCompleteMatchingPredicate(ctx, id, SpatialAnchorsAccountOperationPredicate{})
-}
-
-// SpatialAnchorsAccountsListBySubscriptionCompleteMatchingPredicate retrieves all of the results and then applied the predicate
-func (c ProxyClient) SpatialAnchorsAccountsListBySubscriptionCompleteMatchingPredicate(ctx context.Context, id commonids.SubscriptionId, predicate SpatialAnchorsAccountOperationPredicate) (resp SpatialAnchorsAccountsListBySubscriptionCompleteResult, err error) {
-	items := make([]SpatialAnchorsAccount, 0)
-
-	page, err := c.SpatialAnchorsAccountsListBySubscription(ctx, id)
-	if err != nil {
-		err = fmt.Errorf("loading the initial page: %+v", err)
-		return
-	}
-	if page.Model != nil {
-		for _, v := range *page.Model {
-			if predicate.Matches(v) {
-				items = append(items, v)
-			}
-		}
-	}
-
-	for page.HasMore() {
-		page, err = page.LoadMore(ctx)
-		if err != nil {
-			err = fmt.Errorf("loading the next page: %+v", err)
-			return
-		}
-
-		if page.Model != nil {
-			for _, v := range *page.Model {
-				if predicate.Matches(v) {
-					items = append(items, v)
-				}
-			}
-		}
-	}
-
-	out := SpatialAnchorsAccountsListBySubscriptionCompleteResult{
-		Items: items,
-	}
-	return out, nil
-}
-
 // preparerForSpatialAnchorsAccountsListBySubscription prepares the SpatialAnchorsAccountsListBySubscription request.
 func (c ProxyClient) preparerForSpatialAnchorsAccountsListBySubscription(ctx context.Context, id commonids.SubscriptionId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
@@ -184,4 +140,48 @@ func (c ProxyClient) responderForSpatialAnchorsAccountsListBySubscription(resp *
 		}
 	}
 	return
+}
+
+// SpatialAnchorsAccountsListBySubscriptionComplete retrieves all of the results into a single object
+func (c ProxyClient) SpatialAnchorsAccountsListBySubscriptionComplete(ctx context.Context, id commonids.SubscriptionId) (SpatialAnchorsAccountsListBySubscriptionCompleteResult, error) {
+	return c.SpatialAnchorsAccountsListBySubscriptionCompleteMatchingPredicate(ctx, id, SpatialAnchorsAccountOperationPredicate{})
+}
+
+// SpatialAnchorsAccountsListBySubscriptionCompleteMatchingPredicate retrieves all of the results and then applied the predicate
+func (c ProxyClient) SpatialAnchorsAccountsListBySubscriptionCompleteMatchingPredicate(ctx context.Context, id commonids.SubscriptionId, predicate SpatialAnchorsAccountOperationPredicate) (resp SpatialAnchorsAccountsListBySubscriptionCompleteResult, err error) {
+	items := make([]SpatialAnchorsAccount, 0)
+
+	page, err := c.SpatialAnchorsAccountsListBySubscription(ctx, id)
+	if err != nil {
+		err = fmt.Errorf("loading the initial page: %+v", err)
+		return
+	}
+	if page.Model != nil {
+		for _, v := range *page.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	for page.HasMore() {
+		page, err = page.LoadMore(ctx)
+		if err != nil {
+			err = fmt.Errorf("loading the next page: %+v", err)
+			return
+		}
+
+		if page.Model != nil {
+			for _, v := range *page.Model {
+				if predicate.Matches(v) {
+					items = append(items, v)
+				}
+			}
+		}
+	}
+
+	out := SpatialAnchorsAccountsListBySubscriptionCompleteResult{
+		Items: items,
+	}
+	return out, nil
 }

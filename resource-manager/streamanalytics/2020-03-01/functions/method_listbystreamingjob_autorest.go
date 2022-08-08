@@ -83,50 +83,6 @@ func (c FunctionsClient) ListByStreamingJob(ctx context.Context, id StreamingJob
 	return
 }
 
-// ListByStreamingJobComplete retrieves all of the results into a single object
-func (c FunctionsClient) ListByStreamingJobComplete(ctx context.Context, id StreamingJobId, options ListByStreamingJobOperationOptions) (ListByStreamingJobCompleteResult, error) {
-	return c.ListByStreamingJobCompleteMatchingPredicate(ctx, id, options, FunctionOperationPredicate{})
-}
-
-// ListByStreamingJobCompleteMatchingPredicate retrieves all of the results and then applied the predicate
-func (c FunctionsClient) ListByStreamingJobCompleteMatchingPredicate(ctx context.Context, id StreamingJobId, options ListByStreamingJobOperationOptions, predicate FunctionOperationPredicate) (resp ListByStreamingJobCompleteResult, err error) {
-	items := make([]Function, 0)
-
-	page, err := c.ListByStreamingJob(ctx, id, options)
-	if err != nil {
-		err = fmt.Errorf("loading the initial page: %+v", err)
-		return
-	}
-	if page.Model != nil {
-		for _, v := range *page.Model {
-			if predicate.Matches(v) {
-				items = append(items, v)
-			}
-		}
-	}
-
-	for page.HasMore() {
-		page, err = page.LoadMore(ctx)
-		if err != nil {
-			err = fmt.Errorf("loading the next page: %+v", err)
-			return
-		}
-
-		if page.Model != nil {
-			for _, v := range *page.Model {
-				if predicate.Matches(v) {
-					items = append(items, v)
-				}
-			}
-		}
-	}
-
-	out := ListByStreamingJobCompleteResult{
-		Items: items,
-	}
-	return out, nil
-}
-
 // preparerForListByStreamingJob prepares the ListByStreamingJob request.
 func (c FunctionsClient) preparerForListByStreamingJob(ctx context.Context, id StreamingJobId, options ListByStreamingJobOperationOptions) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
@@ -212,4 +168,48 @@ func (c FunctionsClient) responderForListByStreamingJob(resp *http.Response) (re
 		}
 	}
 	return
+}
+
+// ListByStreamingJobComplete retrieves all of the results into a single object
+func (c FunctionsClient) ListByStreamingJobComplete(ctx context.Context, id StreamingJobId, options ListByStreamingJobOperationOptions) (ListByStreamingJobCompleteResult, error) {
+	return c.ListByStreamingJobCompleteMatchingPredicate(ctx, id, options, FunctionOperationPredicate{})
+}
+
+// ListByStreamingJobCompleteMatchingPredicate retrieves all of the results and then applied the predicate
+func (c FunctionsClient) ListByStreamingJobCompleteMatchingPredicate(ctx context.Context, id StreamingJobId, options ListByStreamingJobOperationOptions, predicate FunctionOperationPredicate) (resp ListByStreamingJobCompleteResult, err error) {
+	items := make([]Function, 0)
+
+	page, err := c.ListByStreamingJob(ctx, id, options)
+	if err != nil {
+		err = fmt.Errorf("loading the initial page: %+v", err)
+		return
+	}
+	if page.Model != nil {
+		for _, v := range *page.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	for page.HasMore() {
+		page, err = page.LoadMore(ctx)
+		if err != nil {
+			err = fmt.Errorf("loading the next page: %+v", err)
+			return
+		}
+
+		if page.Model != nil {
+			for _, v := range *page.Model {
+				if predicate.Matches(v) {
+					items = append(items, v)
+				}
+			}
+		}
+	}
+
+	out := ListByStreamingJobCompleteResult{
+		Items: items,
+	}
+	return out, nil
 }

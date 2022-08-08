@@ -83,50 +83,6 @@ func (c HybridRunbookWorkerClient) ListByHybridRunbookWorkerGroup(ctx context.Co
 	return
 }
 
-// ListByHybridRunbookWorkerGroupComplete retrieves all of the results into a single object
-func (c HybridRunbookWorkerClient) ListByHybridRunbookWorkerGroupComplete(ctx context.Context, id HybridRunbookWorkerGroupId, options ListByHybridRunbookWorkerGroupOperationOptions) (ListByHybridRunbookWorkerGroupCompleteResult, error) {
-	return c.ListByHybridRunbookWorkerGroupCompleteMatchingPredicate(ctx, id, options, HybridRunbookWorkerOperationPredicate{})
-}
-
-// ListByHybridRunbookWorkerGroupCompleteMatchingPredicate retrieves all of the results and then applied the predicate
-func (c HybridRunbookWorkerClient) ListByHybridRunbookWorkerGroupCompleteMatchingPredicate(ctx context.Context, id HybridRunbookWorkerGroupId, options ListByHybridRunbookWorkerGroupOperationOptions, predicate HybridRunbookWorkerOperationPredicate) (resp ListByHybridRunbookWorkerGroupCompleteResult, err error) {
-	items := make([]HybridRunbookWorker, 0)
-
-	page, err := c.ListByHybridRunbookWorkerGroup(ctx, id, options)
-	if err != nil {
-		err = fmt.Errorf("loading the initial page: %+v", err)
-		return
-	}
-	if page.Model != nil {
-		for _, v := range *page.Model {
-			if predicate.Matches(v) {
-				items = append(items, v)
-			}
-		}
-	}
-
-	for page.HasMore() {
-		page, err = page.LoadMore(ctx)
-		if err != nil {
-			err = fmt.Errorf("loading the next page: %+v", err)
-			return
-		}
-
-		if page.Model != nil {
-			for _, v := range *page.Model {
-				if predicate.Matches(v) {
-					items = append(items, v)
-				}
-			}
-		}
-	}
-
-	out := ListByHybridRunbookWorkerGroupCompleteResult{
-		Items: items,
-	}
-	return out, nil
-}
-
 // preparerForListByHybridRunbookWorkerGroup prepares the ListByHybridRunbookWorkerGroup request.
 func (c HybridRunbookWorkerClient) preparerForListByHybridRunbookWorkerGroup(ctx context.Context, id HybridRunbookWorkerGroupId, options ListByHybridRunbookWorkerGroupOperationOptions) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
@@ -212,4 +168,48 @@ func (c HybridRunbookWorkerClient) responderForListByHybridRunbookWorkerGroup(re
 		}
 	}
 	return
+}
+
+// ListByHybridRunbookWorkerGroupComplete retrieves all of the results into a single object
+func (c HybridRunbookWorkerClient) ListByHybridRunbookWorkerGroupComplete(ctx context.Context, id HybridRunbookWorkerGroupId, options ListByHybridRunbookWorkerGroupOperationOptions) (ListByHybridRunbookWorkerGroupCompleteResult, error) {
+	return c.ListByHybridRunbookWorkerGroupCompleteMatchingPredicate(ctx, id, options, HybridRunbookWorkerOperationPredicate{})
+}
+
+// ListByHybridRunbookWorkerGroupCompleteMatchingPredicate retrieves all of the results and then applied the predicate
+func (c HybridRunbookWorkerClient) ListByHybridRunbookWorkerGroupCompleteMatchingPredicate(ctx context.Context, id HybridRunbookWorkerGroupId, options ListByHybridRunbookWorkerGroupOperationOptions, predicate HybridRunbookWorkerOperationPredicate) (resp ListByHybridRunbookWorkerGroupCompleteResult, err error) {
+	items := make([]HybridRunbookWorker, 0)
+
+	page, err := c.ListByHybridRunbookWorkerGroup(ctx, id, options)
+	if err != nil {
+		err = fmt.Errorf("loading the initial page: %+v", err)
+		return
+	}
+	if page.Model != nil {
+		for _, v := range *page.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	for page.HasMore() {
+		page, err = page.LoadMore(ctx)
+		if err != nil {
+			err = fmt.Errorf("loading the next page: %+v", err)
+			return
+		}
+
+		if page.Model != nil {
+			for _, v := range *page.Model {
+				if predicate.Matches(v) {
+					items = append(items, v)
+				}
+			}
+		}
+	}
+
+	out := ListByHybridRunbookWorkerGroupCompleteResult{
+		Items: items,
+	}
+	return out, nil
 }

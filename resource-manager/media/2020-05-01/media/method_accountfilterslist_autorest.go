@@ -59,50 +59,6 @@ func (c MediaClient) AccountFiltersList(ctx context.Context, id MediaServiceId) 
 	return
 }
 
-// AccountFiltersListComplete retrieves all of the results into a single object
-func (c MediaClient) AccountFiltersListComplete(ctx context.Context, id MediaServiceId) (AccountFiltersListCompleteResult, error) {
-	return c.AccountFiltersListCompleteMatchingPredicate(ctx, id, AccountFilterOperationPredicate{})
-}
-
-// AccountFiltersListCompleteMatchingPredicate retrieves all of the results and then applied the predicate
-func (c MediaClient) AccountFiltersListCompleteMatchingPredicate(ctx context.Context, id MediaServiceId, predicate AccountFilterOperationPredicate) (resp AccountFiltersListCompleteResult, err error) {
-	items := make([]AccountFilter, 0)
-
-	page, err := c.AccountFiltersList(ctx, id)
-	if err != nil {
-		err = fmt.Errorf("loading the initial page: %+v", err)
-		return
-	}
-	if page.Model != nil {
-		for _, v := range *page.Model {
-			if predicate.Matches(v) {
-				items = append(items, v)
-			}
-		}
-	}
-
-	for page.HasMore() {
-		page, err = page.LoadMore(ctx)
-		if err != nil {
-			err = fmt.Errorf("loading the next page: %+v", err)
-			return
-		}
-
-		if page.Model != nil {
-			for _, v := range *page.Model {
-				if predicate.Matches(v) {
-					items = append(items, v)
-				}
-			}
-		}
-	}
-
-	out := AccountFiltersListCompleteResult{
-		Items: items,
-	}
-	return out, nil
-}
-
 // preparerForAccountFiltersList prepares the AccountFiltersList request.
 func (c MediaClient) preparerForAccountFiltersList(ctx context.Context, id MediaServiceId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
@@ -183,4 +139,48 @@ func (c MediaClient) responderForAccountFiltersList(resp *http.Response) (result
 		}
 	}
 	return
+}
+
+// AccountFiltersListComplete retrieves all of the results into a single object
+func (c MediaClient) AccountFiltersListComplete(ctx context.Context, id MediaServiceId) (AccountFiltersListCompleteResult, error) {
+	return c.AccountFiltersListCompleteMatchingPredicate(ctx, id, AccountFilterOperationPredicate{})
+}
+
+// AccountFiltersListCompleteMatchingPredicate retrieves all of the results and then applied the predicate
+func (c MediaClient) AccountFiltersListCompleteMatchingPredicate(ctx context.Context, id MediaServiceId, predicate AccountFilterOperationPredicate) (resp AccountFiltersListCompleteResult, err error) {
+	items := make([]AccountFilter, 0)
+
+	page, err := c.AccountFiltersList(ctx, id)
+	if err != nil {
+		err = fmt.Errorf("loading the initial page: %+v", err)
+		return
+	}
+	if page.Model != nil {
+		for _, v := range *page.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	for page.HasMore() {
+		page, err = page.LoadMore(ctx)
+		if err != nil {
+			err = fmt.Errorf("loading the next page: %+v", err)
+			return
+		}
+
+		if page.Model != nil {
+			for _, v := range *page.Model {
+				if predicate.Matches(v) {
+					items = append(items, v)
+				}
+			}
+		}
+	}
+
+	out := AccountFiltersListCompleteResult{
+		Items: items,
+	}
+	return out, nil
 }

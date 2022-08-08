@@ -59,50 +59,6 @@ func (c ContainerAppsSourceControlsClient) ListByContainerApp(ctx context.Contex
 	return
 }
 
-// ListByContainerAppComplete retrieves all of the results into a single object
-func (c ContainerAppsSourceControlsClient) ListByContainerAppComplete(ctx context.Context, id ContainerAppId) (ListByContainerAppCompleteResult, error) {
-	return c.ListByContainerAppCompleteMatchingPredicate(ctx, id, SourceControlOperationPredicate{})
-}
-
-// ListByContainerAppCompleteMatchingPredicate retrieves all of the results and then applied the predicate
-func (c ContainerAppsSourceControlsClient) ListByContainerAppCompleteMatchingPredicate(ctx context.Context, id ContainerAppId, predicate SourceControlOperationPredicate) (resp ListByContainerAppCompleteResult, err error) {
-	items := make([]SourceControl, 0)
-
-	page, err := c.ListByContainerApp(ctx, id)
-	if err != nil {
-		err = fmt.Errorf("loading the initial page: %+v", err)
-		return
-	}
-	if page.Model != nil {
-		for _, v := range *page.Model {
-			if predicate.Matches(v) {
-				items = append(items, v)
-			}
-		}
-	}
-
-	for page.HasMore() {
-		page, err = page.LoadMore(ctx)
-		if err != nil {
-			err = fmt.Errorf("loading the next page: %+v", err)
-			return
-		}
-
-		if page.Model != nil {
-			for _, v := range *page.Model {
-				if predicate.Matches(v) {
-					items = append(items, v)
-				}
-			}
-		}
-	}
-
-	out := ListByContainerAppCompleteResult{
-		Items: items,
-	}
-	return out, nil
-}
-
 // preparerForListByContainerApp prepares the ListByContainerApp request.
 func (c ContainerAppsSourceControlsClient) preparerForListByContainerApp(ctx context.Context, id ContainerAppId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
@@ -183,4 +139,48 @@ func (c ContainerAppsSourceControlsClient) responderForListByContainerApp(resp *
 		}
 	}
 	return
+}
+
+// ListByContainerAppComplete retrieves all of the results into a single object
+func (c ContainerAppsSourceControlsClient) ListByContainerAppComplete(ctx context.Context, id ContainerAppId) (ListByContainerAppCompleteResult, error) {
+	return c.ListByContainerAppCompleteMatchingPredicate(ctx, id, SourceControlOperationPredicate{})
+}
+
+// ListByContainerAppCompleteMatchingPredicate retrieves all of the results and then applied the predicate
+func (c ContainerAppsSourceControlsClient) ListByContainerAppCompleteMatchingPredicate(ctx context.Context, id ContainerAppId, predicate SourceControlOperationPredicate) (resp ListByContainerAppCompleteResult, err error) {
+	items := make([]SourceControl, 0)
+
+	page, err := c.ListByContainerApp(ctx, id)
+	if err != nil {
+		err = fmt.Errorf("loading the initial page: %+v", err)
+		return
+	}
+	if page.Model != nil {
+		for _, v := range *page.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	for page.HasMore() {
+		page, err = page.LoadMore(ctx)
+		if err != nil {
+			err = fmt.Errorf("loading the next page: %+v", err)
+			return
+		}
+
+		if page.Model != nil {
+			for _, v := range *page.Model {
+				if predicate.Matches(v) {
+					items = append(items, v)
+				}
+			}
+		}
+	}
+
+	out := ListByContainerAppCompleteResult{
+		Items: items,
+	}
+	return out, nil
 }
