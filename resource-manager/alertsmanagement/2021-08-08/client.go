@@ -2,19 +2,19 @@ package v2021_08_08
 
 import (
 	"github.com/Azure/go-autorest/autorest"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/alertsmanagement/2021-08-08/alertsmanagement"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/alertsmanagement/2021-08-08/alertprocessingrules"
 )
 
 type Client struct {
-	AlertsManagement *alertsmanagement.AlertsManagementClient
+	AlertProcessingRules *alertprocessingrules.AlertProcessingRulesClient
 }
 
 func NewClientWithBaseURI(endpoint string, configureAuthFunc func(c *autorest.Client)) Client {
 
-	alertsManagementClient := alertsmanagement.NewAlertsManagementClientWithBaseURI(endpoint)
-	configureAuthFunc(&alertsManagementClient.Client)
+	alertProcessingRulesClient := alertprocessingrules.NewAlertProcessingRulesClientWithBaseURI(endpoint)
+	configureAuthFunc(&alertProcessingRulesClient.Client)
 
 	return Client{
-		AlertsManagement: &alertsManagementClient,
+		AlertProcessingRules: &alertProcessingRulesClient,
 	}
 }

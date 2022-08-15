@@ -8,7 +8,7 @@ import (
 
 type Client struct {
 	Links         *links.LinksClient
-	ServiceLinker *servicelinker.ServiceLinkerClient
+	Servicelinker *servicelinker.ServicelinkerClient
 }
 
 func NewClientWithBaseURI(endpoint string, configureAuthFunc func(c *autorest.Client)) Client {
@@ -16,11 +16,11 @@ func NewClientWithBaseURI(endpoint string, configureAuthFunc func(c *autorest.Cl
 	linksClient := links.NewLinksClientWithBaseURI(endpoint)
 	configureAuthFunc(&linksClient.Client)
 
-	serviceLinkerClient := servicelinker.NewServiceLinkerClientWithBaseURI(endpoint)
-	configureAuthFunc(&serviceLinkerClient.Client)
+	servicelinkerClient := servicelinker.NewServicelinkerClientWithBaseURI(endpoint)
+	configureAuthFunc(&servicelinkerClient.Client)
 
 	return Client{
 		Links:         &linksClient,
-		ServiceLinker: &serviceLinkerClient,
+		Servicelinker: &servicelinkerClient,
 	}
 }

@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = ProvisioningServiceId{}
 
 func TestNewProvisioningServiceID(t *testing.T) {
-	id := NewProvisioningServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "provisioningServiceValue")
+	id := NewProvisioningServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -19,14 +19,14 @@ func TestNewProvisioningServiceID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.ProvisioningServiceName != "provisioningServiceValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ProvisioningServiceName'", id.ProvisioningServiceName, "provisioningServiceValue")
+	if id.ResourceName != "resourceValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'ResourceName'", id.ResourceName, "resourceValue")
 	}
 }
 
 func TestFormatProvisioningServiceID(t *testing.T) {
-	actual := NewProvisioningServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "provisioningServiceValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Devices/provisioningServices/provisioningServiceValue"
+	actual := NewProvisioningServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Devices/provisioningServices/resourceValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -80,16 +80,16 @@ func TestParseProvisioningServiceID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Devices/provisioningServices/provisioningServiceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Devices/provisioningServices/resourceValue",
 			Expected: &ProvisioningServiceId{
-				SubscriptionId:          "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName:       "example-resource-group",
-				ProvisioningServiceName: "provisioningServiceValue",
+				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName: "example-resource-group",
+				ResourceName:      "resourceValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Devices/provisioningServices/provisioningServiceValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Devices/provisioningServices/resourceValue/extra",
 			Error: true,
 		},
 	}
@@ -116,8 +116,8 @@ func TestParseProvisioningServiceID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.ProvisioningServiceName != v.Expected.ProvisioningServiceName {
-			t.Fatalf("Expected %q but got %q for ProvisioningServiceName", v.Expected.ProvisioningServiceName, actual.ProvisioningServiceName)
+		if actual.ResourceName != v.Expected.ResourceName {
+			t.Fatalf("Expected %q but got %q for ResourceName", v.Expected.ResourceName, actual.ResourceName)
 		}
 
 	}
@@ -206,30 +206,30 @@ func TestParseProvisioningServiceIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Devices/provisioningServices/provisioningServiceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Devices/provisioningServices/resourceValue",
 			Expected: &ProvisioningServiceId{
-				SubscriptionId:          "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName:       "example-resource-group",
-				ProvisioningServiceName: "provisioningServiceValue",
+				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName: "example-resource-group",
+				ResourceName:      "resourceValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Devices/provisioningServices/provisioningServiceValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Devices/provisioningServices/resourceValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvIcEs/pRoViSiOnInGsErViCeS/pRoViSiOnInGsErViCeVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvIcEs/pRoViSiOnInGsErViCeS/rEsOuRcEvAlUe",
 			Expected: &ProvisioningServiceId{
-				SubscriptionId:          "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName:       "eXaMpLe-rEsOuRcE-GrOuP",
-				ProvisioningServiceName: "pRoViSiOnInGsErViCeVaLuE",
+				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
+				ResourceName:      "rEsOuRcEvAlUe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvIcEs/pRoViSiOnInGsErViCeS/pRoViSiOnInGsErViCeVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvIcEs/pRoViSiOnInGsErViCeS/rEsOuRcEvAlUe/extra",
 			Error: true,
 		},
 	}
@@ -256,8 +256,8 @@ func TestParseProvisioningServiceIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.ProvisioningServiceName != v.Expected.ProvisioningServiceName {
-			t.Fatalf("Expected %q but got %q for ProvisioningServiceName", v.Expected.ProvisioningServiceName, actual.ProvisioningServiceName)
+		if actual.ResourceName != v.Expected.ResourceName {
+			t.Fatalf("Expected %q but got %q for ResourceName", v.Expected.ResourceName, actual.ResourceName)
 		}
 
 	}

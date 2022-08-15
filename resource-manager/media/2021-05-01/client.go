@@ -2,19 +2,19 @@ package v2021_05_01
 
 import (
 	"github.com/Azure/go-autorest/autorest"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/media/2021-05-01/media"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/media/2021-05-01/accounts"
 )
 
 type Client struct {
-	Media *media.MediaClient
+	Accounts *accounts.AccountsClient
 }
 
 func NewClientWithBaseURI(endpoint string, configureAuthFunc func(c *autorest.Client)) Client {
 
-	mediaClient := media.NewMediaClientWithBaseURI(endpoint)
-	configureAuthFunc(&mediaClient.Client)
+	accountsClient := accounts.NewAccountsClientWithBaseURI(endpoint)
+	configureAuthFunc(&accountsClient.Client)
 
 	return Client{
-		Media: &mediaClient,
+		Accounts: &accountsClient,
 	}
 }
