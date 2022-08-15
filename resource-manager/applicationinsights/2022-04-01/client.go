@@ -2,19 +2,19 @@ package v2022_04_01
 
 import (
 	"github.com/Azure/go-autorest/autorest"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/applicationinsights/2022-04-01/applicationinsights"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/applicationinsights/2022-04-01/workbooksapis"
 )
 
 type Client struct {
-	ApplicationInsights *applicationinsights.ApplicationInsightsClient
+	WorkbooksAPIs *workbooksapis.WorkbooksAPIsClient
 }
 
 func NewClientWithBaseURI(endpoint string, configureAuthFunc func(c *autorest.Client)) Client {
 
-	applicationInsightsClient := applicationinsights.NewApplicationInsightsClientWithBaseURI(endpoint)
-	configureAuthFunc(&applicationInsightsClient.Client)
+	workbooksAPIsClient := workbooksapis.NewWorkbooksAPIsClientWithBaseURI(endpoint)
+	configureAuthFunc(&workbooksAPIsClient.Client)
 
 	return Client{
-		ApplicationInsights: &applicationInsightsClient,
+		WorkbooksAPIs: &workbooksAPIsClient,
 	}
 }

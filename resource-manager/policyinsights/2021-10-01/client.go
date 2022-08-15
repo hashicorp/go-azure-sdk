@@ -2,19 +2,19 @@ package v2021_10_01
 
 import (
 	"github.com/Azure/go-autorest/autorest"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/policyinsights/2021-10-01/policyinsights"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/policyinsights/2021-10-01/remediations"
 )
 
 type Client struct {
-	PolicyInsights *policyinsights.PolicyInsightsClient
+	Remediations *remediations.RemediationsClient
 }
 
 func NewClientWithBaseURI(endpoint string, configureAuthFunc func(c *autorest.Client)) Client {
 
-	policyInsightsClient := policyinsights.NewPolicyInsightsClientWithBaseURI(endpoint)
-	configureAuthFunc(&policyInsightsClient.Client)
+	remediationsClient := remediations.NewRemediationsClientWithBaseURI(endpoint)
+	configureAuthFunc(&remediationsClient.Client)
 
 	return Client{
-		PolicyInsights: &policyInsightsClient,
+		Remediations: &remediationsClient,
 	}
 }
