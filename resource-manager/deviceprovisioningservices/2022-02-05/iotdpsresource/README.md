@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := iotdpsresource.NewProvisioningServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "provisioningServiceValue")
+id := iotdpsresource.NewProvisioningServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue")
 
 payload := iotdpsresource.ProvisioningServiceDescription{
 	// ...
@@ -79,7 +79,7 @@ if err := client.CreateOrUpdatePrivateEndpointConnectionThenPoll(ctx, id, payloa
 
 ```go
 ctx := context.TODO()
-id := iotdpsresource.NewProvisioningServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "provisioningServiceValue")
+id := iotdpsresource.NewProvisioningServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue")
 
 if err := client.DeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -103,7 +103,7 @@ if err := client.DeletePrivateEndpointConnectionThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := iotdpsresource.NewProvisioningServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "provisioningServiceValue")
+id := iotdpsresource.NewProvisioningServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -185,7 +185,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := iotdpsresource.NewProvisioningServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "provisioningServiceValue")
+id := iotdpsresource.NewProvisioningServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue")
 
 // alternatively `client.ListKeys(ctx, id)` can be used to do batched pagination
 items, err := client.ListKeysComplete(ctx, id)
@@ -218,7 +218,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := iotdpsresource.NewProvisioningServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "provisioningServiceValue")
+id := iotdpsresource.NewProvisioningServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue")
 
 read, err := client.ListPrivateEndpointConnections(ctx, id)
 if err != nil {
@@ -234,7 +234,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := iotdpsresource.NewProvisioningServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "provisioningServiceValue")
+id := iotdpsresource.NewProvisioningServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue")
 
 read, err := client.ListPrivateLinkResources(ctx, id)
 if err != nil {
@@ -250,7 +250,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := iotdpsresource.NewProvisioningServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "provisioningServiceValue")
+id := iotdpsresource.NewProvisioningServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue")
 
 // alternatively `client.ListValidSkus(ctx, id)` can be used to do batched pagination
 items, err := client.ListValidSkusComplete(ctx, id)
@@ -267,7 +267,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := iotdpsresource.NewProvisioningServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "provisioningServiceValue")
+id := iotdpsresource.NewProvisioningServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue")
 
 payload := iotdpsresource.TagsResource{
 	// ...
