@@ -7,6 +7,7 @@ import (
 
 	"github.com/Azure/go-autorest/autorest"
 	"github.com/Azure/go-autorest/autorest/azure"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -18,7 +19,7 @@ type ListOperationResponse struct {
 }
 
 // List ...
-func (c DpsCertificateClient) List(ctx context.Context, id ProvisioningServiceId) (result ListOperationResponse, err error) {
+func (c DpsCertificateClient) List(ctx context.Context, id commonids.ProvisioningServiceId) (result ListOperationResponse, err error) {
 	req, err := c.preparerForList(ctx, id)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "dpscertificate.DpsCertificateClient", "List", nil, "Failure preparing request")
@@ -41,7 +42,7 @@ func (c DpsCertificateClient) List(ctx context.Context, id ProvisioningServiceId
 }
 
 // preparerForList prepares the List request.
-func (c DpsCertificateClient) preparerForList(ctx context.Context, id ProvisioningServiceId) (*http.Request, error) {
+func (c DpsCertificateClient) preparerForList(ctx context.Context, id commonids.ProvisioningServiceId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

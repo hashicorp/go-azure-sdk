@@ -8,6 +8,7 @@ import (
 	"github.com/Azure/go-autorest/autorest"
 	"github.com/Azure/go-autorest/autorest/azure"
 	"github.com/hashicorp/go-azure-helpers/polling"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -19,7 +20,7 @@ type UpdateOperationResponse struct {
 }
 
 // Update ...
-func (c IotDpsResourceClient) Update(ctx context.Context, id ProvisioningServiceId, input TagsResource) (result UpdateOperationResponse, err error) {
+func (c IotDpsResourceClient) Update(ctx context.Context, id commonids.ProvisioningServiceId, input TagsResource) (result UpdateOperationResponse, err error) {
 	req, err := c.preparerForUpdate(ctx, id, input)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "iotdpsresource.IotDpsResourceClient", "Update", nil, "Failure preparing request")
@@ -36,7 +37,7 @@ func (c IotDpsResourceClient) Update(ctx context.Context, id ProvisioningService
 }
 
 // UpdateThenPoll performs Update then polls until it's completed
-func (c IotDpsResourceClient) UpdateThenPoll(ctx context.Context, id ProvisioningServiceId, input TagsResource) error {
+func (c IotDpsResourceClient) UpdateThenPoll(ctx context.Context, id commonids.ProvisioningServiceId, input TagsResource) error {
 	result, err := c.Update(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing Update: %+v", err)
@@ -50,7 +51,7 @@ func (c IotDpsResourceClient) UpdateThenPoll(ctx context.Context, id Provisionin
 }
 
 // preparerForUpdate prepares the Update request.
-func (c IotDpsResourceClient) preparerForUpdate(ctx context.Context, id ProvisioningServiceId, input TagsResource) (*http.Request, error) {
+func (c IotDpsResourceClient) preparerForUpdate(ctx context.Context, id commonids.ProvisioningServiceId, input TagsResource) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

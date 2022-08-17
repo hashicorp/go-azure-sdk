@@ -8,6 +8,7 @@ import (
 	"github.com/Azure/go-autorest/autorest"
 	"github.com/Azure/go-autorest/autorest/azure"
 	"github.com/hashicorp/go-azure-helpers/polling"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -19,7 +20,7 @@ type CreateOrUpdateOperationResponse struct {
 }
 
 // CreateOrUpdate ...
-func (c IotDpsResourceClient) CreateOrUpdate(ctx context.Context, id ProvisioningServiceId, input ProvisioningServiceDescription) (result CreateOrUpdateOperationResponse, err error) {
+func (c IotDpsResourceClient) CreateOrUpdate(ctx context.Context, id commonids.ProvisioningServiceId, input ProvisioningServiceDescription) (result CreateOrUpdateOperationResponse, err error) {
 	req, err := c.preparerForCreateOrUpdate(ctx, id, input)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "iotdpsresource.IotDpsResourceClient", "CreateOrUpdate", nil, "Failure preparing request")
@@ -36,7 +37,7 @@ func (c IotDpsResourceClient) CreateOrUpdate(ctx context.Context, id Provisionin
 }
 
 // CreateOrUpdateThenPoll performs CreateOrUpdate then polls until it's completed
-func (c IotDpsResourceClient) CreateOrUpdateThenPoll(ctx context.Context, id ProvisioningServiceId, input ProvisioningServiceDescription) error {
+func (c IotDpsResourceClient) CreateOrUpdateThenPoll(ctx context.Context, id commonids.ProvisioningServiceId, input ProvisioningServiceDescription) error {
 	result, err := c.CreateOrUpdate(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing CreateOrUpdate: %+v", err)
@@ -50,7 +51,7 @@ func (c IotDpsResourceClient) CreateOrUpdateThenPoll(ctx context.Context, id Pro
 }
 
 // preparerForCreateOrUpdate prepares the CreateOrUpdate request.
-func (c IotDpsResourceClient) preparerForCreateOrUpdate(ctx context.Context, id ProvisioningServiceId, input ProvisioningServiceDescription) (*http.Request, error) {
+func (c IotDpsResourceClient) preparerForCreateOrUpdate(ctx context.Context, id commonids.ProvisioningServiceId, input ProvisioningServiceDescription) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}
