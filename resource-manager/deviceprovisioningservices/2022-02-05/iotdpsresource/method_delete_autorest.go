@@ -8,6 +8,7 @@ import (
 	"github.com/Azure/go-autorest/autorest"
 	"github.com/Azure/go-autorest/autorest/azure"
 	"github.com/hashicorp/go-azure-helpers/polling"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -19,7 +20,7 @@ type DeleteOperationResponse struct {
 }
 
 // Delete ...
-func (c IotDpsResourceClient) Delete(ctx context.Context, id ProvisioningServiceId) (result DeleteOperationResponse, err error) {
+func (c IotDpsResourceClient) Delete(ctx context.Context, id commonids.ProvisioningServiceId) (result DeleteOperationResponse, err error) {
 	req, err := c.preparerForDelete(ctx, id)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "iotdpsresource.IotDpsResourceClient", "Delete", nil, "Failure preparing request")
@@ -36,7 +37,7 @@ func (c IotDpsResourceClient) Delete(ctx context.Context, id ProvisioningService
 }
 
 // DeleteThenPoll performs Delete then polls until it's completed
-func (c IotDpsResourceClient) DeleteThenPoll(ctx context.Context, id ProvisioningServiceId) error {
+func (c IotDpsResourceClient) DeleteThenPoll(ctx context.Context, id commonids.ProvisioningServiceId) error {
 	result, err := c.Delete(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing Delete: %+v", err)
@@ -50,7 +51,7 @@ func (c IotDpsResourceClient) DeleteThenPoll(ctx context.Context, id Provisionin
 }
 
 // preparerForDelete prepares the Delete request.
-func (c IotDpsResourceClient) preparerForDelete(ctx context.Context, id ProvisioningServiceId) (*http.Request, error) {
+func (c IotDpsResourceClient) preparerForDelete(ctx context.Context, id commonids.ProvisioningServiceId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}
