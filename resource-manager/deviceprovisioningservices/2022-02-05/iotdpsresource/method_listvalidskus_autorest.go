@@ -8,6 +8,7 @@ import (
 
 	"github.com/Azure/go-autorest/autorest"
 	"github.com/Azure/go-autorest/autorest/azure"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -38,7 +39,7 @@ func (r ListValidSkusOperationResponse) LoadMore(ctx context.Context) (resp List
 }
 
 // ListValidSkus ...
-func (c IotDpsResourceClient) ListValidSkus(ctx context.Context, id ProvisioningServiceId) (resp ListValidSkusOperationResponse, err error) {
+func (c IotDpsResourceClient) ListValidSkus(ctx context.Context, id commonids.ProvisioningServiceId) (resp ListValidSkusOperationResponse, err error) {
 	req, err := c.preparerForListValidSkus(ctx, id)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "iotdpsresource.IotDpsResourceClient", "ListValidSkus", nil, "Failure preparing request")
@@ -60,7 +61,7 @@ func (c IotDpsResourceClient) ListValidSkus(ctx context.Context, id Provisioning
 }
 
 // preparerForListValidSkus prepares the ListValidSkus request.
-func (c IotDpsResourceClient) preparerForListValidSkus(ctx context.Context, id ProvisioningServiceId) (*http.Request, error) {
+func (c IotDpsResourceClient) preparerForListValidSkus(ctx context.Context, id commonids.ProvisioningServiceId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}
@@ -142,12 +143,12 @@ func (c IotDpsResourceClient) responderForListValidSkus(resp *http.Response) (re
 }
 
 // ListValidSkusComplete retrieves all of the results into a single object
-func (c IotDpsResourceClient) ListValidSkusComplete(ctx context.Context, id ProvisioningServiceId) (ListValidSkusCompleteResult, error) {
+func (c IotDpsResourceClient) ListValidSkusComplete(ctx context.Context, id commonids.ProvisioningServiceId) (ListValidSkusCompleteResult, error) {
 	return c.ListValidSkusCompleteMatchingPredicate(ctx, id, IotDpsSkuDefinitionOperationPredicate{})
 }
 
 // ListValidSkusCompleteMatchingPredicate retrieves all of the results and then applied the predicate
-func (c IotDpsResourceClient) ListValidSkusCompleteMatchingPredicate(ctx context.Context, id ProvisioningServiceId, predicate IotDpsSkuDefinitionOperationPredicate) (resp ListValidSkusCompleteResult, err error) {
+func (c IotDpsResourceClient) ListValidSkusCompleteMatchingPredicate(ctx context.Context, id commonids.ProvisioningServiceId, predicate IotDpsSkuDefinitionOperationPredicate) (resp ListValidSkusCompleteResult, err error) {
 	items := make([]IotDpsSkuDefinition, 0)
 
 	page, err := c.ListValidSkus(ctx, id)

@@ -8,6 +8,7 @@ import (
 
 	"github.com/Azure/go-autorest/autorest"
 	"github.com/Azure/go-autorest/autorest/azure"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -38,7 +39,7 @@ func (r ListKeysOperationResponse) LoadMore(ctx context.Context) (resp ListKeysO
 }
 
 // ListKeys ...
-func (c IotDpsResourceClient) ListKeys(ctx context.Context, id ProvisioningServiceId) (resp ListKeysOperationResponse, err error) {
+func (c IotDpsResourceClient) ListKeys(ctx context.Context, id commonids.ProvisioningServiceId) (resp ListKeysOperationResponse, err error) {
 	req, err := c.preparerForListKeys(ctx, id)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "iotdpsresource.IotDpsResourceClient", "ListKeys", nil, "Failure preparing request")
@@ -60,7 +61,7 @@ func (c IotDpsResourceClient) ListKeys(ctx context.Context, id ProvisioningServi
 }
 
 // preparerForListKeys prepares the ListKeys request.
-func (c IotDpsResourceClient) preparerForListKeys(ctx context.Context, id ProvisioningServiceId) (*http.Request, error) {
+func (c IotDpsResourceClient) preparerForListKeys(ctx context.Context, id commonids.ProvisioningServiceId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}
@@ -142,12 +143,12 @@ func (c IotDpsResourceClient) responderForListKeys(resp *http.Response) (result 
 }
 
 // ListKeysComplete retrieves all of the results into a single object
-func (c IotDpsResourceClient) ListKeysComplete(ctx context.Context, id ProvisioningServiceId) (ListKeysCompleteResult, error) {
+func (c IotDpsResourceClient) ListKeysComplete(ctx context.Context, id commonids.ProvisioningServiceId) (ListKeysCompleteResult, error) {
 	return c.ListKeysCompleteMatchingPredicate(ctx, id, SharedAccessSignatureAuthorizationRuleAccessRightsDescriptionOperationPredicate{})
 }
 
 // ListKeysCompleteMatchingPredicate retrieves all of the results and then applied the predicate
-func (c IotDpsResourceClient) ListKeysCompleteMatchingPredicate(ctx context.Context, id ProvisioningServiceId, predicate SharedAccessSignatureAuthorizationRuleAccessRightsDescriptionOperationPredicate) (resp ListKeysCompleteResult, err error) {
+func (c IotDpsResourceClient) ListKeysCompleteMatchingPredicate(ctx context.Context, id commonids.ProvisioningServiceId, predicate SharedAccessSignatureAuthorizationRuleAccessRightsDescriptionOperationPredicate) (resp ListKeysCompleteResult, err error) {
 	items := make([]SharedAccessSignatureAuthorizationRuleAccessRightsDescription, 0)
 
 	page, err := c.ListKeys(ctx, id)

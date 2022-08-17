@@ -7,6 +7,7 @@ import (
 
 	"github.com/Azure/go-autorest/autorest"
 	"github.com/Azure/go-autorest/autorest/azure"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -18,7 +19,7 @@ type ListPrivateLinkResourcesOperationResponse struct {
 }
 
 // ListPrivateLinkResources ...
-func (c IotDpsResourceClient) ListPrivateLinkResources(ctx context.Context, id ProvisioningServiceId) (result ListPrivateLinkResourcesOperationResponse, err error) {
+func (c IotDpsResourceClient) ListPrivateLinkResources(ctx context.Context, id commonids.ProvisioningServiceId) (result ListPrivateLinkResourcesOperationResponse, err error) {
 	req, err := c.preparerForListPrivateLinkResources(ctx, id)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "iotdpsresource.IotDpsResourceClient", "ListPrivateLinkResources", nil, "Failure preparing request")
@@ -41,7 +42,7 @@ func (c IotDpsResourceClient) ListPrivateLinkResources(ctx context.Context, id P
 }
 
 // preparerForListPrivateLinkResources prepares the ListPrivateLinkResources request.
-func (c IotDpsResourceClient) preparerForListPrivateLinkResources(ctx context.Context, id ProvisioningServiceId) (*http.Request, error) {
+func (c IotDpsResourceClient) preparerForListPrivateLinkResources(ctx context.Context, id commonids.ProvisioningServiceId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}
