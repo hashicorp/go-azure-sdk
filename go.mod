@@ -4,7 +4,7 @@ go 1.18
 
 require (
 	github.com/Azure/go-autorest/autorest v0.11.27
-	github.com/hashicorp/go-azure-helpers v0.35.0
+	github.com/hashicorp/go-azure-helpers v0.39.1
 )
 
 require (
