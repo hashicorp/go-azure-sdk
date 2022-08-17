@@ -11,17 +11,17 @@ var _ resourceids.ResourceId = ProvisioningServiceId{}
 
 // ProvisioningServiceId is a struct representing the Resource ID for a Provisioning Service
 type ProvisioningServiceId struct {
-	SubscriptionId    string
-	ResourceGroupName string
-	ResourceName      string
+	SubscriptionId          string
+	ResourceGroupName       string
+	ProvisioningServiceName string
 }
 
 // NewProvisioningServiceID returns a new ProvisioningServiceId struct
-func NewProvisioningServiceID(subscriptionId string, resourceGroupName string, resourceName string) ProvisioningServiceId {
+func NewProvisioningServiceID(subscriptionId string, resourceGroupName string, provisioningServiceName string) ProvisioningServiceId {
 	return ProvisioningServiceId{
-		SubscriptionId:    subscriptionId,
-		ResourceGroupName: resourceGroupName,
-		ResourceName:      resourceName,
+		SubscriptionId:          subscriptionId,
+		ResourceGroupName:       resourceGroupName,
+		ProvisioningServiceName: provisioningServiceName,
 	}
 }
 
@@ -44,8 +44,8 @@ func ParseProvisioningServiceID(input string) (*ProvisioningServiceId, error) {
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.ResourceName, ok = parsed.Parsed["resourceName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceName' was not found in the resource id %q", input)
+	if id.ProvisioningServiceName, ok = parsed.Parsed["provisioningServiceName"]; !ok {
+		return nil, fmt.Errorf("the segment 'provisioningServiceName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -71,8 +71,8 @@ func ParseProvisioningServiceIDInsensitively(input string) (*ProvisioningService
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.ResourceName, ok = parsed.Parsed["resourceName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceName' was not found in the resource id %q", input)
+	if id.ProvisioningServiceName, ok = parsed.Parsed["provisioningServiceName"]; !ok {
+		return nil, fmt.Errorf("the segment 'provisioningServiceName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -96,7 +96,7 @@ func ValidateProvisioningServiceID(input interface{}, key string) (warnings []st
 // ID returns the formatted Provisioning Service ID
 func (id ProvisioningServiceId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.Devices/provisioningServices/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.ResourceName)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.ProvisioningServiceName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Provisioning Service ID
@@ -109,7 +109,7 @@ func (id ProvisioningServiceId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftDevices", "Microsoft.Devices", "Microsoft.Devices"),
 		resourceids.StaticSegment("staticProvisioningServices", "provisioningServices", "provisioningServices"),
-		resourceids.UserSpecifiedSegment("resourceName", "resourceValue"),
+		resourceids.UserSpecifiedSegment("provisioningServiceName", "provisioningServiceValue"),
 	}
 }
 
@@ -118,7 +118,7 @@ func (id ProvisioningServiceId) String() string {
 	components := []string{
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
-		fmt.Sprintf("Resource Name: %q", id.ResourceName),
+		fmt.Sprintf("Provisioning Service Name: %q", id.ProvisioningServiceName),
 	}
 	return fmt.Sprintf("Provisioning Service (%s)", strings.Join(components, "\n"))
 }
