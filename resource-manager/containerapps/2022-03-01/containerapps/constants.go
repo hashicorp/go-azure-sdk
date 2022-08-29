@@ -93,6 +93,7 @@ type ContainerAppProvisioningState string
 
 const (
 	ContainerAppProvisioningStateCanceled   ContainerAppProvisioningState = "Canceled"
+	ContainerAppProvisioningStateDeleting   ContainerAppProvisioningState = "Deleting"
 	ContainerAppProvisioningStateFailed     ContainerAppProvisioningState = "Failed"
 	ContainerAppProvisioningStateInProgress ContainerAppProvisioningState = "InProgress"
 	ContainerAppProvisioningStateSucceeded  ContainerAppProvisioningState = "Succeeded"
@@ -101,6 +102,7 @@ const (
 func PossibleValuesForContainerAppProvisioningState() []string {
 	return []string{
 		string(ContainerAppProvisioningStateCanceled),
+		string(ContainerAppProvisioningStateDeleting),
 		string(ContainerAppProvisioningStateFailed),
 		string(ContainerAppProvisioningStateInProgress),
 		string(ContainerAppProvisioningStateSucceeded),
@@ -110,6 +112,7 @@ func PossibleValuesForContainerAppProvisioningState() []string {
 func parseContainerAppProvisioningState(input string) (*ContainerAppProvisioningState, error) {
 	vals := map[string]ContainerAppProvisioningState{
 		"canceled":   ContainerAppProvisioningStateCanceled,
+		"deleting":   ContainerAppProvisioningStateDeleting,
 		"failed":     ContainerAppProvisioningStateFailed,
 		"inprogress": ContainerAppProvisioningStateInProgress,
 		"succeeded":  ContainerAppProvisioningStateSucceeded,
