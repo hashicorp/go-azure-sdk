@@ -14,7 +14,7 @@ type AccountSasParameters struct {
 	SignedExpiry        string              `json:"signedExpiry"`
 	SignedIP            *string             `json:"signedIp,omitempty"`
 	SignedPermission    Permissions         `json:"signedPermission"`
-	SignedProtocol      *HttpProtocol       `json:"signedProtocol,omitempty"`
+	SignedProtocol      *HTTPProtocol       `json:"signedProtocol,omitempty"`
 	SignedResourceTypes SignedResourceTypes `json:"signedResourceTypes"`
 	SignedServices      Services            `json:"signedServices"`
 	SignedStart         *string             `json:"signedStart,omitempty"`

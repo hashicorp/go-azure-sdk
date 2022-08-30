@@ -13,44 +13,44 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-type FrontendEndpointsEnableHttpsOperationResponse struct {
+type FrontendEndpointsEnableHTTPSOperationResponse struct {
 	Poller       polling.LongRunningPoller
 	HttpResponse *http.Response
 }
 
-// FrontendEndpointsEnableHttps ...
-func (c FrontDoorsClient) FrontendEndpointsEnableHttps(ctx context.Context, id FrontendEndpointId, input CustomHttpsConfiguration) (result FrontendEndpointsEnableHttpsOperationResponse, err error) {
-	req, err := c.preparerForFrontendEndpointsEnableHttps(ctx, id, input)
+// FrontendEndpointsEnableHTTPS ...
+func (c FrontDoorsClient) FrontendEndpointsEnableHTTPS(ctx context.Context, id FrontendEndpointId, input CustomHTTPSConfiguration) (result FrontendEndpointsEnableHTTPSOperationResponse, err error) {
+	req, err := c.preparerForFrontendEndpointsEnableHTTPS(ctx, id, input)
 	if err != nil {
-		err = autorest.NewErrorWithError(err, "frontdoors.FrontDoorsClient", "FrontendEndpointsEnableHttps", nil, "Failure preparing request")
+		err = autorest.NewErrorWithError(err, "frontdoors.FrontDoorsClient", "FrontendEndpointsEnableHTTPS", nil, "Failure preparing request")
 		return
 	}
 
-	result, err = c.senderForFrontendEndpointsEnableHttps(ctx, req)
+	result, err = c.senderForFrontendEndpointsEnableHTTPS(ctx, req)
 	if err != nil {
-		err = autorest.NewErrorWithError(err, "frontdoors.FrontDoorsClient", "FrontendEndpointsEnableHttps", result.HttpResponse, "Failure sending request")
+		err = autorest.NewErrorWithError(err, "frontdoors.FrontDoorsClient", "FrontendEndpointsEnableHTTPS", result.HttpResponse, "Failure sending request")
 		return
 	}
 
 	return
 }
 
-// FrontendEndpointsEnableHttpsThenPoll performs FrontendEndpointsEnableHttps then polls until it's completed
-func (c FrontDoorsClient) FrontendEndpointsEnableHttpsThenPoll(ctx context.Context, id FrontendEndpointId, input CustomHttpsConfiguration) error {
-	result, err := c.FrontendEndpointsEnableHttps(ctx, id, input)
+// FrontendEndpointsEnableHTTPSThenPoll performs FrontendEndpointsEnableHTTPS then polls until it's completed
+func (c FrontDoorsClient) FrontendEndpointsEnableHTTPSThenPoll(ctx context.Context, id FrontendEndpointId, input CustomHTTPSConfiguration) error {
+	result, err := c.FrontendEndpointsEnableHTTPS(ctx, id, input)
 	if err != nil {
-		return fmt.Errorf("performing FrontendEndpointsEnableHttps: %+v", err)
+		return fmt.Errorf("performing FrontendEndpointsEnableHTTPS: %+v", err)
 	}
 
 	if err := result.Poller.PollUntilDone(); err != nil {
-		return fmt.Errorf("polling after FrontendEndpointsEnableHttps: %+v", err)
+		return fmt.Errorf("polling after FrontendEndpointsEnableHTTPS: %+v", err)
 	}
 
 	return nil
 }
 
-// preparerForFrontendEndpointsEnableHttps prepares the FrontendEndpointsEnableHttps request.
-func (c FrontDoorsClient) preparerForFrontendEndpointsEnableHttps(ctx context.Context, id FrontendEndpointId, input CustomHttpsConfiguration) (*http.Request, error) {
+// preparerForFrontendEndpointsEnableHTTPS prepares the FrontendEndpointsEnableHTTPS request.
+func (c FrontDoorsClient) preparerForFrontendEndpointsEnableHTTPS(ctx context.Context, id FrontendEndpointId, input CustomHTTPSConfiguration) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}
@@ -65,9 +65,9 @@ func (c FrontDoorsClient) preparerForFrontendEndpointsEnableHttps(ctx context.Co
 	return preparer.Prepare((&http.Request{}).WithContext(ctx))
 }
 
-// senderForFrontendEndpointsEnableHttps sends the FrontendEndpointsEnableHttps request. The method will close the
+// senderForFrontendEndpointsEnableHTTPS sends the FrontendEndpointsEnableHTTPS request. The method will close the
 // http.Response Body if it receives an error.
-func (c FrontDoorsClient) senderForFrontendEndpointsEnableHttps(ctx context.Context, req *http.Request) (future FrontendEndpointsEnableHttpsOperationResponse, err error) {
+func (c FrontDoorsClient) senderForFrontendEndpointsEnableHTTPS(ctx context.Context, req *http.Request) (future FrontendEndpointsEnableHTTPSOperationResponse, err error) {
 	var resp *http.Response
 	resp, err = c.Client.Send(req, azure.DoRetryWithRegistration(c.Client))
 	if err != nil {

@@ -66,30 +66,30 @@ if err := client.EndpointsPurgeContentThenPoll(ctx, id, payload); err != nil {
 ```
 
 
-### Example Usage: `FrontDoorsClient.FrontendEndpointsDisableHttps`
+### Example Usage: `FrontDoorsClient.FrontendEndpointsDisableHTTPS`
 
 ```go
 ctx := context.TODO()
 id := frontdoors.NewFrontendEndpointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "frontDoorValue", "frontendEndpointValue")
 
-if err := client.FrontendEndpointsDisableHttpsThenPoll(ctx, id); err != nil {
+if err := client.FrontendEndpointsDisableHTTPSThenPoll(ctx, id); err != nil {
 	// handle the error
 }
 ```
 
 
-### Example Usage: `FrontDoorsClient.FrontendEndpointsEnableHttps`
+### Example Usage: `FrontDoorsClient.FrontendEndpointsEnableHTTPS`
 
 ```go
 ctx := context.TODO()
 id := frontdoors.NewFrontendEndpointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "frontDoorValue", "frontendEndpointValue")
 
-payload := frontdoors.CustomHttpsConfiguration{
+payload := frontdoors.CustomHTTPSConfiguration{
 	// ...
 }
 
 
-if err := client.FrontendEndpointsEnableHttpsThenPoll(ctx, id, payload); err != nil {
+if err := client.FrontendEndpointsEnableHTTPSThenPoll(ctx, id, payload); err != nil {
 	// handle the error
 }
 ```

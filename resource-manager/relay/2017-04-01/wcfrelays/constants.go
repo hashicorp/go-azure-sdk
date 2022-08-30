@@ -67,20 +67,20 @@ func parseKeyType(input string) (*KeyType, error) {
 type Relaytype string
 
 const (
-	RelaytypeHttp   Relaytype = "Http"
+	RelaytypeHTTP   Relaytype = "Http"
 	RelaytypeNetTcp Relaytype = "NetTcp"
 )
 
 func PossibleValuesForRelaytype() []string {
 	return []string{
-		string(RelaytypeHttp),
+		string(RelaytypeHTTP),
 		string(RelaytypeNetTcp),
 	}
 }
 
 func parseRelaytype(input string) (*Relaytype, error) {
 	vals := map[string]Relaytype{
-		"http":   RelaytypeHttp,
+		"http":   RelaytypeHTTP,
 		"nettcp": RelaytypeNetTcp,
 	}
 	if v, ok := vals[strings.ToLower(input)]; ok {

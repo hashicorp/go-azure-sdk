@@ -303,31 +303,31 @@ func parseGeoReplicationStatus(input string) (*GeoReplicationStatus, error) {
 	return &out, nil
 }
 
-type HttpProtocol string
+type HTTPProtocol string
 
 const (
-	HttpProtocolHttps     HttpProtocol = "https"
-	HttpProtocolHttpsHttp HttpProtocol = "https,http"
+	HTTPProtocolHTTPS     HTTPProtocol = "https"
+	HTTPProtocolHTTPSHttp HTTPProtocol = "https,http"
 )
 
-func PossibleValuesForHttpProtocol() []string {
+func PossibleValuesForHTTPProtocol() []string {
 	return []string{
-		string(HttpProtocolHttps),
-		string(HttpProtocolHttpsHttp),
+		string(HTTPProtocolHTTPS),
+		string(HTTPProtocolHTTPSHttp),
 	}
 }
 
-func parseHttpProtocol(input string) (*HttpProtocol, error) {
-	vals := map[string]HttpProtocol{
-		"https":      HttpProtocolHttps,
-		"https,http": HttpProtocolHttpsHttp,
+func parseHTTPProtocol(input string) (*HTTPProtocol, error) {
+	vals := map[string]HTTPProtocol{
+		"https":      HTTPProtocolHTTPS,
+		"https,http": HTTPProtocolHTTPSHttp,
 	}
 	if v, ok := vals[strings.ToLower(input)]; ok {
 		return &v, nil
 	}
 
 	// otherwise presume it's an undefined value and best-effort it
-	out := HttpProtocol(input)
+	out := HTTPProtocol(input)
 	return &out, nil
 }
 

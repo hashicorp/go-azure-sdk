@@ -17,5 +17,5 @@ type StorageAccountPropertiesUpdateParameters struct {
 	NetworkAcls                           *NetworkRuleSet                        `json:"networkAcls,omitempty"`
 	RoutingPreference                     *RoutingPreference                     `json:"routingPreference,omitempty"`
 	SasPolicy                             *SasPolicy                             `json:"sasPolicy,omitempty"`
-	SupportsHttpsTrafficOnly              *bool                                  `json:"supportsHttpsTrafficOnly,omitempty"`
+	SupportsHTTPSTrafficOnly              *bool                                  `json:"supportsHttpsTrafficOnly,omitempty"`
 }

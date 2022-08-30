@@ -8,20 +8,20 @@ import "strings"
 type BackendProtocol string
 
 const (
-	BackendProtocolHttp BackendProtocol = "http"
+	BackendProtocolHTTP BackendProtocol = "http"
 	BackendProtocolSoap BackendProtocol = "soap"
 )
 
 func PossibleValuesForBackendProtocol() []string {
 	return []string{
-		string(BackendProtocolHttp),
+		string(BackendProtocolHTTP),
 		string(BackendProtocolSoap),
 	}
 }
 
 func parseBackendProtocol(input string) (*BackendProtocol, error) {
 	vals := map[string]BackendProtocol{
-		"http": BackendProtocolHttp,
+		"http": BackendProtocolHTTP,
 		"soap": BackendProtocolSoap,
 	}
 	if v, ok := vals[strings.ToLower(input)]; ok {

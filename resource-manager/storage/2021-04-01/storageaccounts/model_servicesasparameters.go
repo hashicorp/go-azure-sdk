@@ -23,7 +23,7 @@ type ServiceSasParameters struct {
 	SignedIP              *string         `json:"signedIp,omitempty"`
 	SignedIdentifier      *string         `json:"signedIdentifier,omitempty"`
 	SignedPermission      *Permissions    `json:"signedPermission,omitempty"`
-	SignedProtocol        *HttpProtocol   `json:"signedProtocol,omitempty"`
+	SignedProtocol        *HTTPProtocol   `json:"signedProtocol,omitempty"`
 	SignedResource        *SignedResource `json:"signedResource,omitempty"`
 	SignedStart           *string         `json:"signedStart,omitempty"`
 	StartPk               *string         `json:"startPk,omitempty"`

@@ -4,8 +4,8 @@ package fluxconfiguration
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type GitRepositoryPatchDefinition struct {
-	HttpsCACert           *string                  `json:"httpsCACert,omitempty"`
-	HttpsUser             *string                  `json:"httpsUser,omitempty"`
+	HTTPSCACert           *string                  `json:"httpsCACert,omitempty"`
+	HTTPSUser             *string                  `json:"httpsUser,omitempty"`
 	LocalAuthRef          *string                  `json:"localAuthRef,omitempty"`
 	RepositoryRef         *RepositoryRefDefinition `json:"repositoryRef,omitempty"`
 	SshKnownHosts         *string                  `json:"sshKnownHosts,omitempty"`

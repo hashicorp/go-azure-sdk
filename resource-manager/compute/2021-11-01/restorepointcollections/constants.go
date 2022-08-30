@@ -204,21 +204,21 @@ func parsePassNames(input string) (*PassNames, error) {
 type ProtocolTypes string
 
 const (
-	ProtocolTypesHttp  ProtocolTypes = "Http"
-	ProtocolTypesHttps ProtocolTypes = "Https"
+	ProtocolTypesHTTP  ProtocolTypes = "Http"
+	ProtocolTypesHTTPS ProtocolTypes = "Https"
 )
 
 func PossibleValuesForProtocolTypes() []string {
 	return []string{
-		string(ProtocolTypesHttp),
-		string(ProtocolTypesHttps),
+		string(ProtocolTypesHTTP),
+		string(ProtocolTypesHTTPS),
 	}
 }
 
 func parseProtocolTypes(input string) (*ProtocolTypes, error) {
 	vals := map[string]ProtocolTypes{
-		"http":  ProtocolTypesHttp,
-		"https": ProtocolTypesHttps,
+		"http":  ProtocolTypesHTTP,
+		"https": ProtocolTypesHTTPS,
 	}
 	if v, ok := vals[strings.ToLower(input)]; ok {
 		return &v, nil
