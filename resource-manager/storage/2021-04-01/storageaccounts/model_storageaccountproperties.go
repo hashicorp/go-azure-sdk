@@ -39,7 +39,7 @@ type StorageAccountProperties struct {
 	SecondaryLocation                     *string                                `json:"secondaryLocation,omitempty"`
 	StatusOfPrimary                       *AccountStatus                         `json:"statusOfPrimary,omitempty"`
 	StatusOfSecondary                     *AccountStatus                         `json:"statusOfSecondary,omitempty"`
-	SupportsHttpsTrafficOnly              *bool                                  `json:"supportsHttpsTrafficOnly,omitempty"`
+	SupportsHTTPSTrafficOnly              *bool                                  `json:"supportsHttpsTrafficOnly,omitempty"`
 }
 
 func (o *StorageAccountProperties) GetCreationTimeAsTime() (*time.Time, error) {

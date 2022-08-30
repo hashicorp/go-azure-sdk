@@ -33,92 +33,92 @@ func parseBackendEnabledState(input string) (*BackendEnabledState, error) {
 	return &out, nil
 }
 
-type CustomHttpsProvisioningState string
+type CustomHTTPSProvisioningState string
 
 const (
-	CustomHttpsProvisioningStateDisabled  CustomHttpsProvisioningState = "Disabled"
-	CustomHttpsProvisioningStateDisabling CustomHttpsProvisioningState = "Disabling"
-	CustomHttpsProvisioningStateEnabled   CustomHttpsProvisioningState = "Enabled"
-	CustomHttpsProvisioningStateEnabling  CustomHttpsProvisioningState = "Enabling"
-	CustomHttpsProvisioningStateFailed    CustomHttpsProvisioningState = "Failed"
+	CustomHTTPSProvisioningStateDisabled  CustomHTTPSProvisioningState = "Disabled"
+	CustomHTTPSProvisioningStateDisabling CustomHTTPSProvisioningState = "Disabling"
+	CustomHTTPSProvisioningStateEnabled   CustomHTTPSProvisioningState = "Enabled"
+	CustomHTTPSProvisioningStateEnabling  CustomHTTPSProvisioningState = "Enabling"
+	CustomHTTPSProvisioningStateFailed    CustomHTTPSProvisioningState = "Failed"
 )
 
-func PossibleValuesForCustomHttpsProvisioningState() []string {
+func PossibleValuesForCustomHTTPSProvisioningState() []string {
 	return []string{
-		string(CustomHttpsProvisioningStateDisabled),
-		string(CustomHttpsProvisioningStateDisabling),
-		string(CustomHttpsProvisioningStateEnabled),
-		string(CustomHttpsProvisioningStateEnabling),
-		string(CustomHttpsProvisioningStateFailed),
+		string(CustomHTTPSProvisioningStateDisabled),
+		string(CustomHTTPSProvisioningStateDisabling),
+		string(CustomHTTPSProvisioningStateEnabled),
+		string(CustomHTTPSProvisioningStateEnabling),
+		string(CustomHTTPSProvisioningStateFailed),
 	}
 }
 
-func parseCustomHttpsProvisioningState(input string) (*CustomHttpsProvisioningState, error) {
-	vals := map[string]CustomHttpsProvisioningState{
-		"disabled":  CustomHttpsProvisioningStateDisabled,
-		"disabling": CustomHttpsProvisioningStateDisabling,
-		"enabled":   CustomHttpsProvisioningStateEnabled,
-		"enabling":  CustomHttpsProvisioningStateEnabling,
-		"failed":    CustomHttpsProvisioningStateFailed,
+func parseCustomHTTPSProvisioningState(input string) (*CustomHTTPSProvisioningState, error) {
+	vals := map[string]CustomHTTPSProvisioningState{
+		"disabled":  CustomHTTPSProvisioningStateDisabled,
+		"disabling": CustomHTTPSProvisioningStateDisabling,
+		"enabled":   CustomHTTPSProvisioningStateEnabled,
+		"enabling":  CustomHTTPSProvisioningStateEnabling,
+		"failed":    CustomHTTPSProvisioningStateFailed,
 	}
 	if v, ok := vals[strings.ToLower(input)]; ok {
 		return &v, nil
 	}
 
 	// otherwise presume it's an undefined value and best-effort it
-	out := CustomHttpsProvisioningState(input)
+	out := CustomHTTPSProvisioningState(input)
 	return &out, nil
 }
 
-type CustomHttpsProvisioningSubstate string
+type CustomHTTPSProvisioningSubstate string
 
 const (
-	CustomHttpsProvisioningSubstateCertificateDeleted                            CustomHttpsProvisioningSubstate = "CertificateDeleted"
-	CustomHttpsProvisioningSubstateCertificateDeployed                           CustomHttpsProvisioningSubstate = "CertificateDeployed"
-	CustomHttpsProvisioningSubstateDeletingCertificate                           CustomHttpsProvisioningSubstate = "DeletingCertificate"
-	CustomHttpsProvisioningSubstateDeployingCertificate                          CustomHttpsProvisioningSubstate = "DeployingCertificate"
-	CustomHttpsProvisioningSubstateDomainControlValidationRequestApproved        CustomHttpsProvisioningSubstate = "DomainControlValidationRequestApproved"
-	CustomHttpsProvisioningSubstateDomainControlValidationRequestRejected        CustomHttpsProvisioningSubstate = "DomainControlValidationRequestRejected"
-	CustomHttpsProvisioningSubstateDomainControlValidationRequestTimedOut        CustomHttpsProvisioningSubstate = "DomainControlValidationRequestTimedOut"
-	CustomHttpsProvisioningSubstateIssuingCertificate                            CustomHttpsProvisioningSubstate = "IssuingCertificate"
-	CustomHttpsProvisioningSubstatePendingDomainControlValidationREquestApproval CustomHttpsProvisioningSubstate = "PendingDomainControlValidationREquestApproval"
-	CustomHttpsProvisioningSubstateSubmittingDomainControlValidationRequest      CustomHttpsProvisioningSubstate = "SubmittingDomainControlValidationRequest"
+	CustomHTTPSProvisioningSubstateCertificateDeleted                            CustomHTTPSProvisioningSubstate = "CertificateDeleted"
+	CustomHTTPSProvisioningSubstateCertificateDeployed                           CustomHTTPSProvisioningSubstate = "CertificateDeployed"
+	CustomHTTPSProvisioningSubstateDeletingCertificate                           CustomHTTPSProvisioningSubstate = "DeletingCertificate"
+	CustomHTTPSProvisioningSubstateDeployingCertificate                          CustomHTTPSProvisioningSubstate = "DeployingCertificate"
+	CustomHTTPSProvisioningSubstateDomainControlValidationRequestApproved        CustomHTTPSProvisioningSubstate = "DomainControlValidationRequestApproved"
+	CustomHTTPSProvisioningSubstateDomainControlValidationRequestRejected        CustomHTTPSProvisioningSubstate = "DomainControlValidationRequestRejected"
+	CustomHTTPSProvisioningSubstateDomainControlValidationRequestTimedOut        CustomHTTPSProvisioningSubstate = "DomainControlValidationRequestTimedOut"
+	CustomHTTPSProvisioningSubstateIssuingCertificate                            CustomHTTPSProvisioningSubstate = "IssuingCertificate"
+	CustomHTTPSProvisioningSubstatePendingDomainControlValidationREquestApproval CustomHTTPSProvisioningSubstate = "PendingDomainControlValidationREquestApproval"
+	CustomHTTPSProvisioningSubstateSubmittingDomainControlValidationRequest      CustomHTTPSProvisioningSubstate = "SubmittingDomainControlValidationRequest"
 )
 
-func PossibleValuesForCustomHttpsProvisioningSubstate() []string {
+func PossibleValuesForCustomHTTPSProvisioningSubstate() []string {
 	return []string{
-		string(CustomHttpsProvisioningSubstateCertificateDeleted),
-		string(CustomHttpsProvisioningSubstateCertificateDeployed),
-		string(CustomHttpsProvisioningSubstateDeletingCertificate),
-		string(CustomHttpsProvisioningSubstateDeployingCertificate),
-		string(CustomHttpsProvisioningSubstateDomainControlValidationRequestApproved),
-		string(CustomHttpsProvisioningSubstateDomainControlValidationRequestRejected),
-		string(CustomHttpsProvisioningSubstateDomainControlValidationRequestTimedOut),
-		string(CustomHttpsProvisioningSubstateIssuingCertificate),
-		string(CustomHttpsProvisioningSubstatePendingDomainControlValidationREquestApproval),
-		string(CustomHttpsProvisioningSubstateSubmittingDomainControlValidationRequest),
+		string(CustomHTTPSProvisioningSubstateCertificateDeleted),
+		string(CustomHTTPSProvisioningSubstateCertificateDeployed),
+		string(CustomHTTPSProvisioningSubstateDeletingCertificate),
+		string(CustomHTTPSProvisioningSubstateDeployingCertificate),
+		string(CustomHTTPSProvisioningSubstateDomainControlValidationRequestApproved),
+		string(CustomHTTPSProvisioningSubstateDomainControlValidationRequestRejected),
+		string(CustomHTTPSProvisioningSubstateDomainControlValidationRequestTimedOut),
+		string(CustomHTTPSProvisioningSubstateIssuingCertificate),
+		string(CustomHTTPSProvisioningSubstatePendingDomainControlValidationREquestApproval),
+		string(CustomHTTPSProvisioningSubstateSubmittingDomainControlValidationRequest),
 	}
 }
 
-func parseCustomHttpsProvisioningSubstate(input string) (*CustomHttpsProvisioningSubstate, error) {
-	vals := map[string]CustomHttpsProvisioningSubstate{
-		"certificatedeleted":                            CustomHttpsProvisioningSubstateCertificateDeleted,
-		"certificatedeployed":                           CustomHttpsProvisioningSubstateCertificateDeployed,
-		"deletingcertificate":                           CustomHttpsProvisioningSubstateDeletingCertificate,
-		"deployingcertificate":                          CustomHttpsProvisioningSubstateDeployingCertificate,
-		"domaincontrolvalidationrequestapproved":        CustomHttpsProvisioningSubstateDomainControlValidationRequestApproved,
-		"domaincontrolvalidationrequestrejected":        CustomHttpsProvisioningSubstateDomainControlValidationRequestRejected,
-		"domaincontrolvalidationrequesttimedout":        CustomHttpsProvisioningSubstateDomainControlValidationRequestTimedOut,
-		"issuingcertificate":                            CustomHttpsProvisioningSubstateIssuingCertificate,
-		"pendingdomaincontrolvalidationrequestapproval": CustomHttpsProvisioningSubstatePendingDomainControlValidationREquestApproval,
-		"submittingdomaincontrolvalidationrequest":      CustomHttpsProvisioningSubstateSubmittingDomainControlValidationRequest,
+func parseCustomHTTPSProvisioningSubstate(input string) (*CustomHTTPSProvisioningSubstate, error) {
+	vals := map[string]CustomHTTPSProvisioningSubstate{
+		"certificatedeleted":                            CustomHTTPSProvisioningSubstateCertificateDeleted,
+		"certificatedeployed":                           CustomHTTPSProvisioningSubstateCertificateDeployed,
+		"deletingcertificate":                           CustomHTTPSProvisioningSubstateDeletingCertificate,
+		"deployingcertificate":                          CustomHTTPSProvisioningSubstateDeployingCertificate,
+		"domaincontrolvalidationrequestapproved":        CustomHTTPSProvisioningSubstateDomainControlValidationRequestApproved,
+		"domaincontrolvalidationrequestrejected":        CustomHTTPSProvisioningSubstateDomainControlValidationRequestRejected,
+		"domaincontrolvalidationrequesttimedout":        CustomHTTPSProvisioningSubstateDomainControlValidationRequestTimedOut,
+		"issuingcertificate":                            CustomHTTPSProvisioningSubstateIssuingCertificate,
+		"pendingdomaincontrolvalidationrequestapproval": CustomHTTPSProvisioningSubstatePendingDomainControlValidationREquestApproval,
+		"submittingdomaincontrolvalidationrequest":      CustomHTTPSProvisioningSubstateSubmittingDomainControlValidationRequest,
 	}
 	if v, ok := vals[strings.ToLower(input)]; ok {
 		return &v, nil
 	}
 
 	// otherwise presume it's an undefined value and best-effort it
-	out := CustomHttpsProvisioningSubstate(input)
+	out := CustomHTTPSProvisioningSubstate(input)
 	return &out, nil
 }
 
@@ -262,23 +262,23 @@ func parseFrontDoorEnabledState(input string) (*FrontDoorEnabledState, error) {
 type FrontDoorForwardingProtocol string
 
 const (
-	FrontDoorForwardingProtocolHttpOnly     FrontDoorForwardingProtocol = "HttpOnly"
-	FrontDoorForwardingProtocolHttpsOnly    FrontDoorForwardingProtocol = "HttpsOnly"
+	FrontDoorForwardingProtocolHTTPOnly     FrontDoorForwardingProtocol = "HttpOnly"
+	FrontDoorForwardingProtocolHTTPSOnly    FrontDoorForwardingProtocol = "HttpsOnly"
 	FrontDoorForwardingProtocolMatchRequest FrontDoorForwardingProtocol = "MatchRequest"
 )
 
 func PossibleValuesForFrontDoorForwardingProtocol() []string {
 	return []string{
-		string(FrontDoorForwardingProtocolHttpOnly),
-		string(FrontDoorForwardingProtocolHttpsOnly),
+		string(FrontDoorForwardingProtocolHTTPOnly),
+		string(FrontDoorForwardingProtocolHTTPSOnly),
 		string(FrontDoorForwardingProtocolMatchRequest),
 	}
 }
 
 func parseFrontDoorForwardingProtocol(input string) (*FrontDoorForwardingProtocol, error) {
 	vals := map[string]FrontDoorForwardingProtocol{
-		"httponly":     FrontDoorForwardingProtocolHttpOnly,
-		"httpsonly":    FrontDoorForwardingProtocolHttpsOnly,
+		"httponly":     FrontDoorForwardingProtocolHTTPOnly,
+		"httpsonly":    FrontDoorForwardingProtocolHTTPSOnly,
 		"matchrequest": FrontDoorForwardingProtocolMatchRequest,
 	}
 	if v, ok := vals[strings.ToLower(input)]; ok {
@@ -321,21 +321,21 @@ func parseFrontDoorHealthProbeMethod(input string) (*FrontDoorHealthProbeMethod,
 type FrontDoorProtocol string
 
 const (
-	FrontDoorProtocolHttp  FrontDoorProtocol = "Http"
-	FrontDoorProtocolHttps FrontDoorProtocol = "Https"
+	FrontDoorProtocolHTTP  FrontDoorProtocol = "Http"
+	FrontDoorProtocolHTTPS FrontDoorProtocol = "Https"
 )
 
 func PossibleValuesForFrontDoorProtocol() []string {
 	return []string{
-		string(FrontDoorProtocolHttp),
-		string(FrontDoorProtocolHttps),
+		string(FrontDoorProtocolHTTP),
+		string(FrontDoorProtocolHTTPS),
 	}
 }
 
 func parseFrontDoorProtocol(input string) (*FrontDoorProtocol, error) {
 	vals := map[string]FrontDoorProtocol{
-		"http":  FrontDoorProtocolHttp,
-		"https": FrontDoorProtocolHttps,
+		"http":  FrontDoorProtocolHTTP,
+		"https": FrontDoorProtocolHTTPS,
 	}
 	if v, ok := vals[strings.ToLower(input)]; ok {
 		return &v, nil
@@ -383,23 +383,23 @@ func parseFrontDoorQuery(input string) (*FrontDoorQuery, error) {
 type FrontDoorRedirectProtocol string
 
 const (
-	FrontDoorRedirectProtocolHttpOnly     FrontDoorRedirectProtocol = "HttpOnly"
-	FrontDoorRedirectProtocolHttpsOnly    FrontDoorRedirectProtocol = "HttpsOnly"
+	FrontDoorRedirectProtocolHTTPOnly     FrontDoorRedirectProtocol = "HttpOnly"
+	FrontDoorRedirectProtocolHTTPSOnly    FrontDoorRedirectProtocol = "HttpsOnly"
 	FrontDoorRedirectProtocolMatchRequest FrontDoorRedirectProtocol = "MatchRequest"
 )
 
 func PossibleValuesForFrontDoorRedirectProtocol() []string {
 	return []string{
-		string(FrontDoorRedirectProtocolHttpOnly),
-		string(FrontDoorRedirectProtocolHttpsOnly),
+		string(FrontDoorRedirectProtocolHTTPOnly),
+		string(FrontDoorRedirectProtocolHTTPSOnly),
 		string(FrontDoorRedirectProtocolMatchRequest),
 	}
 }
 
 func parseFrontDoorRedirectProtocol(input string) (*FrontDoorRedirectProtocol, error) {
 	vals := map[string]FrontDoorRedirectProtocol{
-		"httponly":     FrontDoorRedirectProtocolHttpOnly,
-		"httpsonly":    FrontDoorRedirectProtocolHttpsOnly,
+		"httponly":     FrontDoorRedirectProtocolHTTPOnly,
+		"httpsonly":    FrontDoorRedirectProtocolHTTPSOnly,
 		"matchrequest": FrontDoorRedirectProtocolMatchRequest,
 	}
 	if v, ok := vals[strings.ToLower(input)]; ok {

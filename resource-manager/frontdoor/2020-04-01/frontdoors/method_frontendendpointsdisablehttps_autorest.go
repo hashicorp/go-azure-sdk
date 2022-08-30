@@ -13,44 +13,44 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-type FrontendEndpointsDisableHttpsOperationResponse struct {
+type FrontendEndpointsDisableHTTPSOperationResponse struct {
 	Poller       polling.LongRunningPoller
 	HttpResponse *http.Response
 }
 
-// FrontendEndpointsDisableHttps ...
-func (c FrontDoorsClient) FrontendEndpointsDisableHttps(ctx context.Context, id FrontendEndpointId) (result FrontendEndpointsDisableHttpsOperationResponse, err error) {
-	req, err := c.preparerForFrontendEndpointsDisableHttps(ctx, id)
+// FrontendEndpointsDisableHTTPS ...
+func (c FrontDoorsClient) FrontendEndpointsDisableHTTPS(ctx context.Context, id FrontendEndpointId) (result FrontendEndpointsDisableHTTPSOperationResponse, err error) {
+	req, err := c.preparerForFrontendEndpointsDisableHTTPS(ctx, id)
 	if err != nil {
-		err = autorest.NewErrorWithError(err, "frontdoors.FrontDoorsClient", "FrontendEndpointsDisableHttps", nil, "Failure preparing request")
+		err = autorest.NewErrorWithError(err, "frontdoors.FrontDoorsClient", "FrontendEndpointsDisableHTTPS", nil, "Failure preparing request")
 		return
 	}
 
-	result, err = c.senderForFrontendEndpointsDisableHttps(ctx, req)
+	result, err = c.senderForFrontendEndpointsDisableHTTPS(ctx, req)
 	if err != nil {
-		err = autorest.NewErrorWithError(err, "frontdoors.FrontDoorsClient", "FrontendEndpointsDisableHttps", result.HttpResponse, "Failure sending request")
+		err = autorest.NewErrorWithError(err, "frontdoors.FrontDoorsClient", "FrontendEndpointsDisableHTTPS", result.HttpResponse, "Failure sending request")
 		return
 	}
 
 	return
 }
 
-// FrontendEndpointsDisableHttpsThenPoll performs FrontendEndpointsDisableHttps then polls until it's completed
-func (c FrontDoorsClient) FrontendEndpointsDisableHttpsThenPoll(ctx context.Context, id FrontendEndpointId) error {
-	result, err := c.FrontendEndpointsDisableHttps(ctx, id)
+// FrontendEndpointsDisableHTTPSThenPoll performs FrontendEndpointsDisableHTTPS then polls until it's completed
+func (c FrontDoorsClient) FrontendEndpointsDisableHTTPSThenPoll(ctx context.Context, id FrontendEndpointId) error {
+	result, err := c.FrontendEndpointsDisableHTTPS(ctx, id)
 	if err != nil {
-		return fmt.Errorf("performing FrontendEndpointsDisableHttps: %+v", err)
+		return fmt.Errorf("performing FrontendEndpointsDisableHTTPS: %+v", err)
 	}
 
 	if err := result.Poller.PollUntilDone(); err != nil {
-		return fmt.Errorf("polling after FrontendEndpointsDisableHttps: %+v", err)
+		return fmt.Errorf("polling after FrontendEndpointsDisableHTTPS: %+v", err)
 	}
 
 	return nil
 }
 
-// preparerForFrontendEndpointsDisableHttps prepares the FrontendEndpointsDisableHttps request.
-func (c FrontDoorsClient) preparerForFrontendEndpointsDisableHttps(ctx context.Context, id FrontendEndpointId) (*http.Request, error) {
+// preparerForFrontendEndpointsDisableHTTPS prepares the FrontendEndpointsDisableHTTPS request.
+func (c FrontDoorsClient) preparerForFrontendEndpointsDisableHTTPS(ctx context.Context, id FrontendEndpointId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}
@@ -64,9 +64,9 @@ func (c FrontDoorsClient) preparerForFrontendEndpointsDisableHttps(ctx context.C
 	return preparer.Prepare((&http.Request{}).WithContext(ctx))
 }
 
-// senderForFrontendEndpointsDisableHttps sends the FrontendEndpointsDisableHttps request. The method will close the
+// senderForFrontendEndpointsDisableHTTPS sends the FrontendEndpointsDisableHTTPS request. The method will close the
 // http.Response Body if it receives an error.
-func (c FrontDoorsClient) senderForFrontendEndpointsDisableHttps(ctx context.Context, req *http.Request) (future FrontendEndpointsDisableHttpsOperationResponse, err error) {
+func (c FrontDoorsClient) senderForFrontendEndpointsDisableHTTPS(ctx context.Context, req *http.Request) (future FrontendEndpointsDisableHTTPSOperationResponse, err error) {
 	var resp *http.Response
 	resp, err = c.Client.Send(req, azure.DoRetryWithRegistration(c.Client))
 	if err != nil {

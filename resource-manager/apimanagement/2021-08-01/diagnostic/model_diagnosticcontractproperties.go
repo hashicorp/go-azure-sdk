@@ -7,7 +7,7 @@ type DiagnosticContractProperties struct {
 	AlwaysLog               *AlwaysLog                  `json:"alwaysLog,omitempty"`
 	Backend                 *PipelineDiagnosticSettings `json:"backend,omitempty"`
 	Frontend                *PipelineDiagnosticSettings `json:"frontend,omitempty"`
-	HttpCorrelationProtocol *HttpCorrelationProtocol    `json:"httpCorrelationProtocol,omitempty"`
+	HTTPCorrelationProtocol *HTTPCorrelationProtocol    `json:"httpCorrelationProtocol,omitempty"`
 	LogClientIP             *bool                       `json:"logClientIp,omitempty"`
 	LoggerId                string                      `json:"loggerId"`
 	Metrics                 *bool                       `json:"metrics,omitempty"`

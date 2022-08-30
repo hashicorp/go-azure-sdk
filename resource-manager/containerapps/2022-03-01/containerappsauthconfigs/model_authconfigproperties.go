@@ -5,7 +5,7 @@ package containerappsauthconfigs
 
 type AuthConfigProperties struct {
 	GlobalValidation  *GlobalValidation  `json:"globalValidation,omitempty"`
-	HttpSettings      *HttpSettings      `json:"httpSettings,omitempty"`
+	HTTPSettings      *HTTPSettings      `json:"httpSettings,omitempty"`
 	IdentityProviders *IdentityProviders `json:"identityProviders,omitempty"`
 	Login             *Login             `json:"login,omitempty"`
 	Platform          *AuthPlatform      `json:"platform,omitempty"`

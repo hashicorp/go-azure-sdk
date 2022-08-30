@@ -9,7 +9,7 @@ type ApiType string
 
 const (
 	ApiTypeGraphql   ApiType = "graphql"
-	ApiTypeHttp      ApiType = "http"
+	ApiTypeHTTP      ApiType = "http"
 	ApiTypeSoap      ApiType = "soap"
 	ApiTypeWebsocket ApiType = "websocket"
 )
@@ -17,7 +17,7 @@ const (
 func PossibleValuesForApiType() []string {
 	return []string{
 		string(ApiTypeGraphql),
-		string(ApiTypeHttp),
+		string(ApiTypeHTTP),
 		string(ApiTypeSoap),
 		string(ApiTypeWebsocket),
 	}
@@ -26,7 +26,7 @@ func PossibleValuesForApiType() []string {
 func parseApiType(input string) (*ApiType, error) {
 	vals := map[string]ApiType{
 		"graphql":   ApiTypeGraphql,
-		"http":      ApiTypeHttp,
+		"http":      ApiTypeHTTP,
 		"soap":      ApiTypeSoap,
 		"websocket": ApiTypeWebsocket,
 	}
@@ -70,16 +70,16 @@ func parseBearerTokenSendingMethods(input string) (*BearerTokenSendingMethods, e
 type Protocol string
 
 const (
-	ProtocolHttp  Protocol = "http"
-	ProtocolHttps Protocol = "https"
+	ProtocolHTTP  Protocol = "http"
+	ProtocolHTTPS Protocol = "https"
 	ProtocolWs    Protocol = "ws"
 	ProtocolWss   Protocol = "wss"
 )
 
 func PossibleValuesForProtocol() []string {
 	return []string{
-		string(ProtocolHttp),
-		string(ProtocolHttps),
+		string(ProtocolHTTP),
+		string(ProtocolHTTPS),
 		string(ProtocolWs),
 		string(ProtocolWss),
 	}
@@ -87,8 +87,8 @@ func PossibleValuesForProtocol() []string {
 
 func parseProtocol(input string) (*Protocol, error) {
 	vals := map[string]Protocol{
-		"http":  ProtocolHttp,
-		"https": ProtocolHttps,
+		"http":  ProtocolHTTP,
+		"https": ProtocolHTTPS,
 		"ws":    ProtocolWs,
 		"wss":   ProtocolWss,
 	}

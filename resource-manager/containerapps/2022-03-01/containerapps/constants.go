@@ -37,20 +37,20 @@ type AppProtocol string
 
 const (
 	AppProtocolGrpc AppProtocol = "grpc"
-	AppProtocolHttp AppProtocol = "http"
+	AppProtocolHTTP AppProtocol = "http"
 )
 
 func PossibleValuesForAppProtocol() []string {
 	return []string{
 		string(AppProtocolGrpc),
-		string(AppProtocolHttp),
+		string(AppProtocolHTTP),
 	}
 }
 
 func parseAppProtocol(input string) (*AppProtocol, error) {
 	vals := map[string]AppProtocol{
 		"grpc": AppProtocolGrpc,
-		"http": AppProtocolHttp,
+		"http": AppProtocolHTTP,
 	}
 	if v, ok := vals[strings.ToLower(input)]; ok {
 		return &v, nil
@@ -161,23 +161,23 @@ type IngressTransportMethod string
 
 const (
 	IngressTransportMethodAuto    IngressTransportMethod = "auto"
-	IngressTransportMethodHttp    IngressTransportMethod = "http"
-	IngressTransportMethodHttpTwo IngressTransportMethod = "http2"
+	IngressTransportMethodHTTP    IngressTransportMethod = "http"
+	IngressTransportMethodHTTPTwo IngressTransportMethod = "http2"
 )
 
 func PossibleValuesForIngressTransportMethod() []string {
 	return []string{
 		string(IngressTransportMethodAuto),
-		string(IngressTransportMethodHttp),
-		string(IngressTransportMethodHttpTwo),
+		string(IngressTransportMethodHTTP),
+		string(IngressTransportMethodHTTPTwo),
 	}
 }
 
 func parseIngressTransportMethod(input string) (*IngressTransportMethod, error) {
 	vals := map[string]IngressTransportMethod{
 		"auto":  IngressTransportMethodAuto,
-		"http":  IngressTransportMethodHttp,
-		"http2": IngressTransportMethodHttpTwo,
+		"http":  IngressTransportMethodHTTP,
+		"http2": IngressTransportMethodHTTPTwo,
 	}
 	if v, ok := vals[strings.ToLower(input)]; ok {
 		return &v, nil

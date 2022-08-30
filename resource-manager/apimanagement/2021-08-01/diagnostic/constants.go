@@ -58,34 +58,34 @@ func parseDataMaskingMode(input string) (*DataMaskingMode, error) {
 	return &out, nil
 }
 
-type HttpCorrelationProtocol string
+type HTTPCorrelationProtocol string
 
 const (
-	HttpCorrelationProtocolLegacy  HttpCorrelationProtocol = "Legacy"
-	HttpCorrelationProtocolNone    HttpCorrelationProtocol = "None"
-	HttpCorrelationProtocolWThreeC HttpCorrelationProtocol = "W3C"
+	HTTPCorrelationProtocolLegacy  HTTPCorrelationProtocol = "Legacy"
+	HTTPCorrelationProtocolNone    HTTPCorrelationProtocol = "None"
+	HTTPCorrelationProtocolWThreeC HTTPCorrelationProtocol = "W3C"
 )
 
-func PossibleValuesForHttpCorrelationProtocol() []string {
+func PossibleValuesForHTTPCorrelationProtocol() []string {
 	return []string{
-		string(HttpCorrelationProtocolLegacy),
-		string(HttpCorrelationProtocolNone),
-		string(HttpCorrelationProtocolWThreeC),
+		string(HTTPCorrelationProtocolLegacy),
+		string(HTTPCorrelationProtocolNone),
+		string(HTTPCorrelationProtocolWThreeC),
 	}
 }
 
-func parseHttpCorrelationProtocol(input string) (*HttpCorrelationProtocol, error) {
-	vals := map[string]HttpCorrelationProtocol{
-		"legacy": HttpCorrelationProtocolLegacy,
-		"none":   HttpCorrelationProtocolNone,
-		"w3c":    HttpCorrelationProtocolWThreeC,
+func parseHTTPCorrelationProtocol(input string) (*HTTPCorrelationProtocol, error) {
+	vals := map[string]HTTPCorrelationProtocol{
+		"legacy": HTTPCorrelationProtocolLegacy,
+		"none":   HTTPCorrelationProtocolNone,
+		"w3c":    HTTPCorrelationProtocolWThreeC,
 	}
 	if v, ok := vals[strings.ToLower(input)]; ok {
 		return &v, nil
 	}
 
 	// otherwise presume it's an undefined value and best-effort it
-	out := HttpCorrelationProtocol(input)
+	out := HTTPCorrelationProtocol(input)
 	return &out, nil
 }
 
