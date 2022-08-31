@@ -3,10 +3,10 @@ package client
 import (
 	"context"
 	"fmt"
-	"github.com/hashicorp/go-azure-sdk/auth"
-	"github.com/hashicorp/go-azure-sdk/environments"
 	"github.com/hashicorp/go-azure-sdk/internal/utils"
-	"github.com/hashicorp/go-azure-sdk/odata"
+	auth2 "github.com/hashicorp/go-azure-sdk/sdk/auth"
+	environments2 "github.com/hashicorp/go-azure-sdk/sdk/environments"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 	"log"
 	"os"
 	"testing"
@@ -34,19 +34,19 @@ var (
 )
 
 type Connection struct {
-	AuthConfig *auth.Config
-	Authorizer auth.Authorizer
+	AuthConfig *auth2.Config
+	Authorizer auth2.Authorizer
 }
 
 // NewConnection configures and returns a Connection for use in tests.
-func NewConnection(tokenVersion auth.TokenVersion) *Connection {
-	env, err := environments.EnvironmentFromString(environment)
+func NewConnection(tokenVersion auth2.TokenVersion) *Connection {
+	env, err := environments2.EnvironmentFromString(environment)
 	if err != nil {
 		log.Fatal(err)
 	}
 
 	t := Connection{
-		AuthConfig: &auth.Config{
+		AuthConfig: &auth2.Config{
 			Environment:            env,
 			Version:                tokenVersion,
 			TenantID:               tenantId,
@@ -68,7 +68,7 @@ func NewConnection(tokenVersion auth.TokenVersion) *Connection {
 }
 
 // Authorize configures an Authorizer for the Connection
-func (c *Connection) Authorize(ctx context.Context, api environments.Api) {
+func (c *Connection) Authorize(ctx context.Context, api environments2.Api) {
 	var err error
 	c.Authorizer, err = c.AuthConfig.NewAuthorizer(ctx, api)
 	if err != nil {
@@ -77,10 +77,10 @@ func (c *Connection) Authorize(ctx context.Context, api environments.Api) {
 }
 
 func TestClient(t *testing.T) {
-	conn := NewConnection(auth.TokenVersion2)
+	conn := NewConnection(auth2.TokenVersion2)
 	conn.Authorize(context.TODO(), conn.AuthConfig.Environment.MsGraph)
 
-	c := NewClient(environments.MsGraphGlobalEndpoint)
+	c := NewClient(environments2.MsGraphGlobalEndpoint)
 	c.Authorizer = conn.Authorizer
 
 	req, err := c.NewGetRequest(context.TODO(), "/v1.0/servicePrincipals", odata.Query{})

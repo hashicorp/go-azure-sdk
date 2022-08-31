@@ -5,15 +5,14 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 	"io"
 	"net/http"
 	"net/url"
 	"strconv"
 	"strings"
 	"time"
-
-	"github.com/hashicorp/go-azure-sdk/client"
-	"github.com/hashicorp/go-azure-sdk/odata"
 )
 
 type Operation struct {

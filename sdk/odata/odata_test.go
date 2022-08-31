@@ -2,11 +2,11 @@ package odata_test
 
 import (
 	"encoding/json"
+	odata2 "github.com/hashicorp/go-azure-sdk/sdk/odata"
 	"reflect"
 	"testing"
 
 	"github.com/hashicorp/go-azure-sdk/internal/utils"
-	"github.com/hashicorp/go-azure-sdk/odata"
 )
 
 // Copyright (c) HashiCorp Inc. All rights reserved.
@@ -14,38 +14,38 @@ import (
 
 func TestODataId(t *testing.T) {
 	type testCase struct {
-		input    odata.Id
+		input    odata2.Id
 		expected []byte
 	}
 
 	testCases := []testCase{
 		{
 			expected: []byte(`"https://graph.microsoft.com/v1.0/00000000-0000-0000-0000-000000000000/directoryObjects/11111111-1111-1111-1111-111111111111"`),
-			input:    odata.Id(`https://graph.microsoft.com/v1.0/00000000-0000-0000-0000-000000000000/directoryObjects/11111111-1111-1111-1111-111111111111`),
+			input:    odata2.Id(`https://graph.microsoft.com/v1.0/00000000-0000-0000-0000-000000000000/directoryObjects/11111111-1111-1111-1111-111111111111`),
 		},
 		{
 			expected: []byte(`"https://graph.microsoft.com/v1.0/00000000-0000-0000-0000-000000000000/directoryObjects/11111111-1111-1111-1111-111111111111"`),
-			input:    odata.Id(`https://graph.microsoft.com/v2/00000000-0000-0000-0000-000000000000/directoryObjects/11111111-1111-1111-1111-111111111111`),
+			input:    odata2.Id(`https://graph.microsoft.com/v2/00000000-0000-0000-0000-000000000000/directoryObjects/11111111-1111-1111-1111-111111111111`),
 		},
 		{
 			expected: []byte(`"https://graph.microsoft.com/v1.0/directoryObjects/11111111-1111-1111-1111-111111111111"`),
-			input:    odata.Id(`https://graph.microsoft.com/v1.0/directoryObjects/11111111-1111-1111-1111-111111111111`),
+			input:    odata2.Id(`https://graph.microsoft.com/v1.0/directoryObjects/11111111-1111-1111-1111-111111111111`),
 		},
 		{
 			expected: []byte(`"https://graph.microsoft.com/v1.0/directoryObjects/11111111-1111-1111-1111-111111111111"`),
-			input:    odata.Id(`https://graph.microsoft.com/v2/directoryObjects/11111111-1111-1111-1111-111111111111`),
+			input:    odata2.Id(`https://graph.microsoft.com/v2/directoryObjects/11111111-1111-1111-1111-111111111111`),
 		},
 		{
 			expected: []byte(`"https://graph.microsoft.com/v1.0/directoryObjects/11111111-1111-1111-1111-111111111111"`),
-			input:    odata.Id(`directoryObjects('11111111-1111-1111-1111-111111111111')`),
+			input:    odata2.Id(`directoryObjects('11111111-1111-1111-1111-111111111111')`),
 		},
 		{
 			expected: []byte(`"https://graph.microsoft.com/v1.0/users/11111111-1111-1111-1111-111111111111"`),
-			input:    odata.Id(`users('11111111-1111-1111-1111-111111111111')`),
+			input:    odata2.Id(`users('11111111-1111-1111-1111-111111111111')`),
 		},
 		{
 			expected: []byte(`"https://graph.microsoft.com/v1.0/policies/claimsMappingPolicies/11111111-1111-1111-1111-111111111111"`),
-			input:    odata.Id(`policies/claimsMappingPolicies('11111111-1111-1111-1111-111111111111')`),
+			input:    odata2.Id(`policies/claimsMappingPolicies('11111111-1111-1111-1111-111111111111')`),
 		},
 	}
 
@@ -64,7 +64,7 @@ func TestODataId(t *testing.T) {
 func TestOData(t *testing.T) {
 	type testCase struct {
 		response string
-		expected odata.OData
+		expected odata2.OData
 	}
 
 	testCases := []testCase{
@@ -81,7 +81,7 @@ func TestOData(t *testing.T) {
     }
   ]
 }`,
-			expected: odata.OData{
+			expected: odata2.OData{
 				Context:  utils.StringPtr("https://graph.microsoft.com/beta/$metadata#servicePrincipals"),
 				NextLink: utils.StringPtr("https://graph.microsoft.com/beta/1564a4be-0377-4d9b-8aff-5a2b564e177c/servicePrincipals?$skiptoken=X%274453707402000100000035536572766963655072696E636970616C5F31326430653134382D663634382D343233382D383566312D34336331643937353963313035536572766963655072696E636970616C5F31326430653134382D663634382D343233382D383566312D3433633164393735396331300000000000000000000000%27"),
 				Value: []interface{}{map[string]interface{}{
@@ -112,7 +112,7 @@ func TestOData(t *testing.T) {
         }
     ]
 }`,
-			expected: odata.OData{
+			expected: odata2.OData{
 				Context: utils.StringPtr("https://graph.microsoft.us/beta/$metadata#identityGovernance/accessReviews/definitions"),
 				Count:   utils.IntPtr(4),
 				Value: []interface{}{map[string]interface{}{
@@ -138,17 +138,17 @@ func TestOData(t *testing.T) {
   "@odata.editLink": "https://graph.microsoft.com/v2/1564a4be-0377-4d9b-8aff-5a2b564e177c/directoryObjects/11111111-0000-0000-0000-000000000000/Microsoft.DirectoryServices.ServicePrincipal",
   "id": "11111111-0000-0000-0000-000000000000"
 }`,
-			expected: odata.OData{
+			expected: odata2.OData{
 				Context:  utils.StringPtr("https://graph.microsoft.com/v1.0/$metadata#directoryObjects/$entity"),
-				Type:     utils.StringPtr(odata.TypeServicePrincipal),
-				Id:       (*odata.Id)(utils.StringPtr("https://graph.microsoft.com/v1.0/1564a4be-0377-4d9b-8aff-5a2b564e177c/directoryObjects/11111111-0000-0000-0000-000000000000/Microsoft.DirectoryServices.ServicePrincipal")),
-				EditLink: (*odata.Link)(utils.StringPtr("https://graph.microsoft.com/v1.0/1564a4be-0377-4d9b-8aff-5a2b564e177c/directoryObjects/11111111-0000-0000-0000-000000000000/Microsoft.DirectoryServices.ServicePrincipal")),
+				Type:     utils.StringPtr(odata2.TypeServicePrincipal),
+				Id:       (*odata2.Id)(utils.StringPtr("https://graph.microsoft.com/v1.0/1564a4be-0377-4d9b-8aff-5a2b564e177c/directoryObjects/11111111-0000-0000-0000-000000000000/Microsoft.DirectoryServices.ServicePrincipal")),
+				EditLink: (*odata2.Link)(utils.StringPtr("https://graph.microsoft.com/v1.0/1564a4be-0377-4d9b-8aff-5a2b564e177c/directoryObjects/11111111-0000-0000-0000-000000000000/Microsoft.DirectoryServices.ServicePrincipal")),
 			},
 		},
 	}
 
 	for n, c := range testCases {
-		var o odata.OData
+		var o odata2.OData
 		err := json.Unmarshal([]byte(c.response), &o)
 		if err != nil {
 			t.Errorf("test case %d: JSON unmarshaling failed: %v", n, err)
@@ -213,7 +213,7 @@ func TestError(t *testing.T) {
 	}
 
 	for n, c := range testCases {
-		var o odata.OData
+		var o odata2.OData
 		err := json.Unmarshal([]byte(c.response), &o)
 		if err != nil {
 			t.Errorf("test case %d: JSON unmarshaling failed: %v", n, err)

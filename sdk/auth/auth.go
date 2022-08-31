@@ -5,10 +5,10 @@ import (
 	"crypto/rsa"
 	"crypto/x509"
 	"fmt"
+	environments2 "github.com/hashicorp/go-azure-sdk/sdk/environments"
 	"io/ioutil"
 	"strings"
 
-	"github.com/hashicorp/go-azure-sdk/environments"
 	"golang.org/x/crypto/pkcs12"
 	"golang.org/x/oauth2"
 )
@@ -42,7 +42,7 @@ type Authorizer interface {
 // It's recommended to only enable the mechanisms you have configured and are known to work in the execution
 // environment. If any authentication mechanism fails due to misconfiguration or some other error, the function
 // will return (nil, error) and later mechanisms will not be attempted.
-func (c *Config) NewAuthorizer(ctx context.Context, api environments.Api) (Authorizer, error) {
+func (c *Config) NewAuthorizer(ctx context.Context, api environments2.Api) (Authorizer, error) {
 	if c.EnableClientCertAuth && strings.TrimSpace(c.TenantID) != "" && strings.TrimSpace(c.ClientID) != "" && (len(c.ClientCertData) > 0 || strings.TrimSpace(c.ClientCertPath) != "") {
 		a, err := NewClientCertificateAuthorizer(ctx, c.Environment, api, c.Version, c.TenantID, c.AuxiliaryTenantIDs, c.ClientID, c.ClientCertData, c.ClientCertPath, c.ClientCertPassword)
 		if err != nil {
@@ -107,7 +107,7 @@ func (c *Config) NewAuthorizer(ctx context.Context, api environments.Api) (Autho
 }
 
 // NewAzureCliAuthorizer returns an Authorizer which authenticates using the Azure CLI.
-func NewAzureCliAuthorizer(ctx context.Context, api environments.Api, tenantId string) (Authorizer, error) {
+func NewAzureCliAuthorizer(ctx context.Context, api environments2.Api, tenantId string) (Authorizer, error) {
 	conf, err := NewAzureCliConfig(api, tenantId)
 	if err != nil {
 		return nil, err
@@ -116,7 +116,7 @@ func NewAzureCliAuthorizer(ctx context.Context, api environments.Api, tenantId s
 }
 
 // NewMsiAuthorizer returns an authorizer which uses managed service identity to for authentication.
-func NewMsiAuthorizer(ctx context.Context, api environments.Api, msiEndpoint, clientId string) (Authorizer, error) {
+func NewMsiAuthorizer(ctx context.Context, api environments2.Api, msiEndpoint, clientId string) (Authorizer, error) {
 	conf, err := NewMsiConfig(api.Resource(), msiEndpoint, clientId)
 	if err != nil {
 		return nil, err
@@ -125,7 +125,7 @@ func NewMsiAuthorizer(ctx context.Context, api environments.Api, msiEndpoint, cl
 }
 
 // NewClientCertificateAuthorizer returns an authorizer which uses client certificate authentication.
-func NewClientCertificateAuthorizer(ctx context.Context, environment environments.Environment, api environments.Api, tokenVersion TokenVersion, tenantId string, auxTenantIds []string, clientId string, pfxData []byte, pfxPath, pfxPass string) (Authorizer, error) {
+func NewClientCertificateAuthorizer(ctx context.Context, environment environments2.Environment, api environments2.Api, tokenVersion TokenVersion, tenantId string, auxTenantIds []string, clientId string, pfxData []byte, pfxPath, pfxPass string) (Authorizer, error) {
 	if len(pfxData) == 0 {
 		var err error
 		pfxData, err = ioutil.ReadFile(pfxPath)
@@ -160,7 +160,7 @@ func NewClientCertificateAuthorizer(ctx context.Context, environment environment
 }
 
 // NewClientSecretAuthorizer returns an authorizer which uses client secret authentication.
-func NewClientSecretAuthorizer(ctx context.Context, environment environments.Environment, api environments.Api, tokenVersion TokenVersion, tenantId string, auxTenantIds []string, clientId, clientSecret string) (Authorizer, error) {
+func NewClientSecretAuthorizer(ctx context.Context, environment environments2.Environment, api environments2.Api, tokenVersion TokenVersion, tenantId string, auxTenantIds []string, clientId, clientSecret string) (Authorizer, error) {
 	conf := ClientCredentialsConfig{
 		Environment:        environment,
 		TenantID:           tenantId,
@@ -176,7 +176,7 @@ func NewClientSecretAuthorizer(ctx context.Context, environment environments.Env
 }
 
 // NewClientSecretAuthorizer returns an authorizer which uses client secret authentication.
-func NewClientFederatedAuthorizer(ctx context.Context, environment environments.Environment, api environments.Api, tokenVersion TokenVersion, tenantId string, auxTenantIds []string, clientId, federatedAssertion string) (Authorizer, error) {
+func NewClientFederatedAuthorizer(ctx context.Context, environment environments2.Environment, api environments2.Api, tokenVersion TokenVersion, tenantId string, auxTenantIds []string, clientId, federatedAssertion string) (Authorizer, error) {
 	conf := ClientCredentialsConfig{
 		Environment:        environment,
 		TenantID:           tenantId,
@@ -192,7 +192,7 @@ func NewClientFederatedAuthorizer(ctx context.Context, environment environments.
 }
 
 // NewGitHubOIDCAuthorizer returns an authorizer which acquires a client assertion from a GitHub endpoint, then uses client assertion authentication to obtain an access token.
-func NewGitHubOIDCAuthorizer(ctx context.Context, environment environments.Environment, api environments.Api, tenantId string, auxTenantIds []string, clientId, idTokenRequestUrl, idTokenRequestToken string) (Authorizer, error) {
+func NewGitHubOIDCAuthorizer(ctx context.Context, environment environments2.Environment, api environments2.Api, tenantId string, auxTenantIds []string, clientId, idTokenRequestUrl, idTokenRequestToken string) (Authorizer, error) {
 	conf := GitHubOIDCConfig{
 		Environment:         environment,
 		TenantID:            tenantId,
@@ -206,7 +206,7 @@ func NewGitHubOIDCAuthorizer(ctx context.Context, environment environments.Envir
 	return conf.TokenSource(ctx), nil
 }
 
-func TokenEndpoint(endpoint environments.AzureADEndpoint, tenant string, version TokenVersion) (e string) {
+func TokenEndpoint(endpoint environments2.AzureADEndpoint, tenant string, version TokenVersion) (e string) {
 	if tenant == "" {
 		tenant = "common"
 	}

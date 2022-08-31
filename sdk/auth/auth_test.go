@@ -2,11 +2,11 @@ package auth_test
 
 import (
 	"context"
+	auth2 "github.com/hashicorp/go-azure-sdk/sdk/auth"
+	"github.com/hashicorp/go-azure-sdk/sdk/environments"
 	"os"
 	"testing"
 
-	"github.com/hashicorp/go-azure-sdk/auth"
-	"github.com/hashicorp/go-azure-sdk/environments"
 	"github.com/hashicorp/go-azure-sdk/internal/test"
 	"github.com/hashicorp/go-azure-sdk/internal/utils"
 	"golang.org/x/oauth2"
@@ -32,15 +32,15 @@ var (
 
 func TestClientCertificateAuthorizerV1(t *testing.T) {
 	ctx := context.Background()
-	testClientCertificateAuthorizer(ctx, t, auth.TokenVersion1)
+	testClientCertificateAuthorizer(ctx, t, auth2.TokenVersion1)
 }
 
 func TestClientCertificateAuthorizerV2(t *testing.T) {
 	ctx := context.Background()
-	testClientCertificateAuthorizer(ctx, t, auth.TokenVersion2)
+	testClientCertificateAuthorizer(ctx, t, auth2.TokenVersion2)
 }
 
-func testClientCertificateAuthorizer(ctx context.Context, t *testing.T, tokenVersion auth.TokenVersion) (token *oauth2.Token) {
+func testClientCertificateAuthorizer(ctx context.Context, t *testing.T, tokenVersion auth2.TokenVersion) (token *oauth2.Token) {
 	env, err := environments.EnvironmentFromString(environment)
 	if err != nil {
 		t.Fatal(err)
@@ -48,7 +48,7 @@ func testClientCertificateAuthorizer(ctx context.Context, t *testing.T, tokenVer
 
 	pfx := utils.Base64DecodeCertificate(clientCertificate)
 
-	auth, err := auth.NewClientCertificateAuthorizer(ctx, env, env.MsGraph, tokenVersion, tenantId, []string{}, clientId, pfx, clientCertificatePath, clientCertPassword)
+	auth, err := auth2.NewClientCertificateAuthorizer(ctx, env, env.MsGraph, tokenVersion, tenantId, []string{}, clientId, pfx, clientCertificatePath, clientCertPassword)
 	if err != nil {
 		t.Fatalf("NewClientCertificateAuthorizer(): %v", err)
 	}
@@ -72,21 +72,21 @@ func testClientCertificateAuthorizer(ctx context.Context, t *testing.T, tokenVer
 
 func TestClientSecretAuthorizerV1(t *testing.T) {
 	ctx := context.Background()
-	testClientSecretAuthorizer(ctx, t, auth.TokenVersion1)
+	testClientSecretAuthorizer(ctx, t, auth2.TokenVersion1)
 }
 
 func TestClientSecretAuthorizerV2(t *testing.T) {
 	ctx := context.Background()
-	testClientSecretAuthorizer(ctx, t, auth.TokenVersion2)
+	testClientSecretAuthorizer(ctx, t, auth2.TokenVersion2)
 }
 
-func testClientSecretAuthorizer(ctx context.Context, t *testing.T, tokenVersion auth.TokenVersion) (token *oauth2.Token) {
+func testClientSecretAuthorizer(ctx context.Context, t *testing.T, tokenVersion auth2.TokenVersion) (token *oauth2.Token) {
 	env, err := environments.EnvironmentFromString(environment)
 	if err != nil {
 		t.Fatal(err)
 	}
 
-	auth, err := auth.NewClientSecretAuthorizer(ctx, env, env.MsGraph, tokenVersion, tenantId, []string{}, clientId, clientSecret)
+	auth, err := auth2.NewClientSecretAuthorizer(ctx, env, env.MsGraph, tokenVersion, tenantId, []string{}, clientId, clientSecret)
 	if err != nil {
 		t.Fatalf("NewClientSecretAuthorizer(): %v", err)
 	}
@@ -119,7 +119,7 @@ func testAzureCliAuthorizer(ctx context.Context, t *testing.T) (token *oauth2.To
 		t.Fatal(err)
 	}
 
-	auth, err := auth.NewAzureCliAuthorizer(ctx, env.MsGraph, tenantId)
+	auth, err := auth2.NewAzureCliAuthorizer(ctx, env.MsGraph, tenantId)
 	if err != nil {
 		t.Fatalf("NewAzureCliAuthorizer(): %v", err)
 	}
@@ -156,7 +156,7 @@ func TestMsiAuthorizer(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	auth, err := auth.NewMsiAuthorizer(ctx, env.MsGraph, msiEndpoint, clientId)
+	auth, err := auth2.NewMsiAuthorizer(ctx, env.MsGraph, msiEndpoint, clientId)
 	if err != nil {
 		t.Fatalf("NewMsiAuthorizer(): %v", err)
 	}
@@ -189,7 +189,7 @@ func TestGitHubOIDCAuthorizer(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	auth, err := auth.NewGitHubOIDCAuthorizer(context.Background(), env, env.MsGraph, tenantId, []string{}, clientId, gitHubTokenURL, gitHubToken)
+	auth, err := auth2.NewGitHubOIDCAuthorizer(context.Background(), env, env.MsGraph, tenantId, []string{}, clientId, gitHubTokenURL, gitHubToken)
 	if err != nil {
 		t.Fatalf("NewGitHubOIDCAuthorizer(): %v", err)
 	}

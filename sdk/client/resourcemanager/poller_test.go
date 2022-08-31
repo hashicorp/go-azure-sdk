@@ -3,8 +3,8 @@ package resourcemanager_test
 import (
 	"context"
 	"fmt"
-	"github.com/hashicorp/go-azure-sdk/client"
-	"github.com/hashicorp/go-azure-sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	resourcemanager2 "github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
 	"net/http"
 	"testing"
 )
@@ -26,7 +26,7 @@ func TestNewPoller(t *testing.T) {
 		},
 	}
 
-	poller, err := resourcemanager.NewPollerFromResponse(context.TODO(), resp, resourcemanager.NewResourceManagerClient(""))
+	poller, err := resourcemanager2.NewPollerFromResponse(context.TODO(), resp, resourcemanager2.NewResourceManagerClient(""))
 	if err != nil {
 		t.Fatal(err)
 	}

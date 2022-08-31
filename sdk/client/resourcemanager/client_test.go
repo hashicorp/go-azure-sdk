@@ -3,10 +3,9 @@ package resourcemanager_test
 import (
 	"context"
 	"fmt"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 	"testing"
-
-	"github.com/hashicorp/go-azure-sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/odata"
 )
 
 type options struct{}

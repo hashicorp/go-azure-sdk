@@ -1,6 +1,8 @@
 package auth
 
-import "github.com/hashicorp/go-azure-sdk/environments"
+import (
+	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
 
 // Copyright (c) HashiCorp Inc. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.

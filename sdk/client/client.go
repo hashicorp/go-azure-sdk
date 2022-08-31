@@ -5,6 +5,9 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"github.com/hashicorp/go-azure-sdk/sdk/auth"
+	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	odata2 "github.com/hashicorp/go-azure-sdk/sdk/odata"
 	"io"
 	"io/ioutil"
 	"math"
@@ -16,9 +19,6 @@ import (
 	"strings"
 	"time"
 
-	"github.com/hashicorp/go-azure-sdk/auth"
-	"github.com/hashicorp/go-azure-sdk/environments"
-	"github.com/hashicorp/go-azure-sdk/odata"
 	"github.com/hashicorp/go-retryablehttp"
 	"github.com/miekg/dns"
 )
@@ -30,7 +30,7 @@ type BaseClient interface {
 }
 
 // RequestRetryFunc is a function that determines whether an HTTP request has failed due to eventual consistency and should be retried
-type RequestRetryFunc func(*http.Response, *odata.OData) (bool, error)
+type RequestRetryFunc func(*http.Response, *odata2.OData) (bool, error)
 
 // RequestMiddleware can manipulate or log a request before it is sent
 type RequestMiddleware func(*http.Request) (*http.Request, error)
@@ -39,13 +39,13 @@ type RequestMiddleware func(*http.Request) (*http.Request, error)
 type ResponseMiddleware func(*http.Request, *http.Response) (*http.Response, error)
 
 // RetryOn404ConsistencyFailureFunc can be used to retry a request when a 404 response is received
-func RetryOn404ConsistencyFailureFunc(resp *http.Response, _ *odata.OData) (bool, error) {
+func RetryOn404ConsistencyFailureFunc(resp *http.Response, _ *odata2.OData) (bool, error) {
 	return resp != nil && resp.StatusCode == http.StatusNotFound, nil
 }
 
 // RequestRetryAny wraps multiple RequestRetryFuncs and calls them in turn, returning true if any func returns true
-func RequestRetryAny(retryFuncs ...RequestRetryFunc) func(resp *http.Response, o *odata.OData) (bool, error) {
-	return func(resp *http.Response, o *odata.OData) (retry bool, err error) {
+func RequestRetryAny(retryFuncs ...RequestRetryFunc) func(resp *http.Response, o *odata2.OData) (bool, error) {
+	return func(resp *http.Response, o *odata2.OData) (retry bool, err error) {
 		for _, retryFunc := range retryFuncs {
 			if retryFunc != nil {
 				retry, err = retryFunc(resp, o)
@@ -62,8 +62,8 @@ func RequestRetryAny(retryFuncs ...RequestRetryFunc) func(resp *http.Response, o
 }
 
 // RequestRetryAll wraps multiple RequestRetryFuncs and calls them in turn, only returning true if all funcs return true
-func RequestRetryAll(retryFuncs ...RequestRetryFunc) func(resp *http.Response, o *odata.OData) (bool, error) {
-	return func(resp *http.Response, o *odata.OData) (retry bool, err error) {
+func RequestRetryAll(retryFuncs ...RequestRetryFunc) func(resp *http.Response, o *odata2.OData) (bool, error) {
+	return func(resp *http.Response, o *odata2.OData) (retry bool, err error) {
 		for _, retryFunc := range retryFuncs {
 			if retryFunc != nil {
 				retry, err = retryFunc(resp, o)
@@ -80,7 +80,7 @@ func RequestRetryAll(retryFuncs ...RequestRetryFunc) func(resp *http.Response, o
 }
 
 // ValidStatusFunc is a function that tests whether an HTTP response is considered valid for the particular request.
-type ValidStatusFunc func(*http.Response, *odata.OData) bool
+type ValidStatusFunc func(*http.Response, *odata2.OData) bool
 
 // RetryableErrorHandler ensures that the response is returned after exhausting retries for a request
 // We mustn't return an error here, or net/http will not return the response
@@ -168,7 +168,7 @@ func (r *Request) ExecutePaged() (*Response, error) {
 
 // Response embeds *http.Response and adds useful methods
 type Response struct {
-	OData *odata.OData
+	OData *odata2.OData
 
 	// Embed *http.Response
 	*http.Response
@@ -261,7 +261,7 @@ func (c *Client) Execute(req *Request) (*Response, error) {
 				return true, nil
 			}
 
-			o, err := odata.FromResponse(r)
+			o, err := odata2.FromResponse(r)
 			if err != nil {
 				return false, err
 			}
@@ -314,8 +314,8 @@ func (c *Client) Execute(req *Request) (*Response, error) {
 	}
 
 	// Extract OData from response
-	var o *odata.OData
-	resp.OData, err = odata.FromResponse(resp.Response)
+	var o *odata2.OData
+	resp.OData, err = odata2.FromResponse(resp.Response)
 	if err != nil {
 		return resp, err
 	}
@@ -374,7 +374,7 @@ func (c *Client) ExecutePaged(req *Request) (*Response, error) {
 		resp.Body.Close()
 
 		// Unmarshal firstOdata
-		var firstOdata odata.OData
+		var firstOdata odata2.OData
 		if err := json.Unmarshal(respBody, &firstOdata); err != nil {
 			return resp, err
 		}
@@ -407,7 +407,7 @@ func (c *Client) ExecutePaged(req *Request) (*Response, error) {
 		nextResp.Body.Close()
 
 		// Unmarshal nextOdata from the next page
-		var nextOdata odata.OData
+		var nextOdata odata2.OData
 		if err := json.Unmarshal(nextRespBody, &nextOdata); err != nil {
 			return nextResp, err
 		}

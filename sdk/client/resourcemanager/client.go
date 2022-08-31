@@ -3,18 +3,17 @@ package resourcemanager
 import (
 	"context"
 	"fmt"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	odata2 "github.com/hashicorp/go-azure-sdk/sdk/odata"
 	"net/http"
 	"net/url"
 	"time"
-
-	"github.com/hashicorp/go-azure-sdk/client"
-	"github.com/hashicorp/go-azure-sdk/environments"
-	"github.com/hashicorp/go-azure-sdk/odata"
 )
 
 type Options interface {
 	ToHeaders() *Headers
-	ToOData() *odata.Query
+	ToOData() *odata2.Query
 	ToQuery() *QueryParams
 }
 
@@ -172,7 +171,7 @@ func (c *Client) NewPutRequest(ctx context.Context, path string, apiVersion stri
 	return
 }
 
-func retryWithRegistration(r *http.Response, o *odata.OData) (bool, error) {
+func retryWithRegistration(r *http.Response, o *odata2.OData) (bool, error) {
 	if o.Error != nil && o.Error.Code != nil && *o.Error.Code == "MissingSubscriptionRegistration" {
 		if err := register(); err != nil {
 			return false, err

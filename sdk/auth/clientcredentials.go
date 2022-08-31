@@ -14,6 +14,7 @@ import (
 	"encoding/pem"
 	"errors"
 	"fmt"
+	"github.com/hashicorp/go-azure-sdk/sdk/environments"
 	"io"
 	"io/ioutil"
 	"net/http"
@@ -22,7 +23,6 @@ import (
 	"strings"
 	"time"
 
-	"github.com/hashicorp/go-azure-sdk/environments"
 	"github.com/hashicorp/go-uuid"
 	"golang.org/x/oauth2"
 )

@@ -6,12 +6,12 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	environments2 "github.com/hashicorp/go-azure-sdk/sdk/environments"
 	"os"
 	"os/exec"
 	"regexp"
 	"strings"
 
-	"github.com/hashicorp/go-azure-sdk/environments"
 	"github.com/hashicorp/go-version"
 	"golang.org/x/oauth2"
 )
@@ -26,7 +26,7 @@ const (
 
 // AzureCliConfig configures an AzureCliAuthorizer.
 type AzureCliConfig struct {
-	Endpoint environments.ApiEndpoint
+	Endpoint environments2.ApiEndpoint
 
 	// TenantID is the required tenant ID for the primary token
 	TenantID string
@@ -36,7 +36,7 @@ type AzureCliConfig struct {
 }
 
 // NewAzureCliConfig validates the supplied tenant ID and returns a new AzureCliConfig.
-func NewAzureCliConfig(api environments.Api, tenantId string) (*AzureCliConfig, error) {
+func NewAzureCliConfig(api environments2.Api, tenantId string) (*AzureCliConfig, error) {
 	var err error
 
 	// check az-cli version
