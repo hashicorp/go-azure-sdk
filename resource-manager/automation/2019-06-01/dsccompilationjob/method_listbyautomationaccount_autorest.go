@@ -98,7 +98,7 @@ func (c DscCompilationJobClient) preparerForListByAutomationAccount(ctx context.
 		autorest.AsGet(),
 		autorest.WithBaseURL(c.baseUri),
 		autorest.WithHeaders(options.toHeaders()),
-		autorest.WithPath(fmt.Sprintf("%s/compilationjobs", id.ID())),
+		autorest.WithPath(fmt.Sprintf("%s/compilationJobs", id.ID())),
 		autorest.WithQueryParameters(queryParameters))
 	return preparer.Prepare((&http.Request{}).WithContext(ctx))
 }

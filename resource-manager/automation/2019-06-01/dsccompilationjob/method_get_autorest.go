@@ -17,7 +17,7 @@ type GetOperationResponse struct {
 }
 
 // Get ...
-func (c DscCompilationJobClient) Get(ctx context.Context, id CompilationjobId) (result GetOperationResponse, err error) {
+func (c DscCompilationJobClient) Get(ctx context.Context, id CompilationJobId) (result GetOperationResponse, err error) {
 	req, err := c.preparerForGet(ctx, id)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "dsccompilationjob.DscCompilationJobClient", "Get", nil, "Failure preparing request")
@@ -40,7 +40,7 @@ func (c DscCompilationJobClient) Get(ctx context.Context, id CompilationjobId) (
 }
 
 // preparerForGet prepares the Get request.
-func (c DscCompilationJobClient) preparerForGet(ctx context.Context, id CompilationjobId) (*http.Request, error) {
+func (c DscCompilationJobClient) preparerForGet(ctx context.Context, id CompilationJobId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

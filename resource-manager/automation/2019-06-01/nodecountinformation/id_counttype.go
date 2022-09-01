@@ -121,7 +121,7 @@ func ValidateCountTypeID(input interface{}, key string) (warnings []string, erro
 
 // ID returns the formatted Count Type ID
 func (id CountTypeId) ID() string {
-	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.Automation/automationAccounts/%s/nodecounts/%s"
+	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.Automation/automationAccounts/%s/nodeCounts/%s"
 	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.AutomationAccountName, string(id.CountType))
 }
 
@@ -136,7 +136,7 @@ func (id CountTypeId) Segments() []resourceids.Segment {
 		resourceids.ResourceProviderSegment("staticMicrosoftAutomation", "Microsoft.Automation", "Microsoft.Automation"),
 		resourceids.StaticSegment("staticAutomationAccounts", "automationAccounts", "automationAccounts"),
 		resourceids.UserSpecifiedSegment("automationAccountName", "automationAccountValue"),
-		resourceids.StaticSegment("staticNodecounts", "nodecounts", "nodecounts"),
+		resourceids.StaticSegment("staticNodeCounts", "nodeCounts", "nodeCounts"),
 		resourceids.ConstantSegment("countType", PossibleValuesForCountType(), "nodeconfiguration"),
 	}
 }
