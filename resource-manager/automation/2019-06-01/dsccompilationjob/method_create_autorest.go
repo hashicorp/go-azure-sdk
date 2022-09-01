@@ -19,7 +19,7 @@ type CreateOperationResponse struct {
 }
 
 // Create ...
-func (c DscCompilationJobClient) Create(ctx context.Context, id CompilationjobId, input DscCompilationJobCreateParameters) (result CreateOperationResponse, err error) {
+func (c DscCompilationJobClient) Create(ctx context.Context, id CompilationJobId, input DscCompilationJobCreateParameters) (result CreateOperationResponse, err error) {
 	req, err := c.preparerForCreate(ctx, id, input)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "dsccompilationjob.DscCompilationJobClient", "Create", nil, "Failure preparing request")
@@ -36,7 +36,7 @@ func (c DscCompilationJobClient) Create(ctx context.Context, id CompilationjobId
 }
 
 // CreateThenPoll performs Create then polls until it's completed
-func (c DscCompilationJobClient) CreateThenPoll(ctx context.Context, id CompilationjobId, input DscCompilationJobCreateParameters) error {
+func (c DscCompilationJobClient) CreateThenPoll(ctx context.Context, id CompilationJobId, input DscCompilationJobCreateParameters) error {
 	result, err := c.Create(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing Create: %+v", err)
@@ -50,7 +50,7 @@ func (c DscCompilationJobClient) CreateThenPoll(ctx context.Context, id Compilat
 }
 
 // preparerForCreate prepares the Create request.
-func (c DscCompilationJobClient) preparerForCreate(ctx context.Context, id CompilationjobId, input DscCompilationJobCreateParameters) (*http.Request, error) {
+func (c DscCompilationJobClient) preparerForCreate(ctx context.Context, id CompilationJobId, input DscCompilationJobCreateParameters) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

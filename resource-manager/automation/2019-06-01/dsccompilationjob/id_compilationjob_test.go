@@ -6,10 +6,10 @@ import (
 	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
 )
 
-var _ resourceids.ResourceId = CompilationjobId{}
+var _ resourceids.ResourceId = CompilationJobId{}
 
-func TestNewCompilationjobID(t *testing.T) {
-	id := NewCompilationjobID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountValue", "compilationJobValue")
+func TestNewCompilationJobID(t *testing.T) {
+	id := NewCompilationJobID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountValue", "compilationJobValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -28,19 +28,19 @@ func TestNewCompilationjobID(t *testing.T) {
 	}
 }
 
-func TestFormatCompilationjobID(t *testing.T) {
-	actual := NewCompilationjobID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountValue", "compilationJobValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue/compilationjobs/compilationJobValue"
+func TestFormatCompilationJobID(t *testing.T) {
+	actual := NewCompilationJobID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountValue", "compilationJobValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue/compilationJobs/compilationJobValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
 }
 
-func TestParseCompilationjobID(t *testing.T) {
+func TestParseCompilationJobID(t *testing.T) {
 	testData := []struct {
 		Input    string
 		Error    bool
-		Expected *CompilationjobId
+		Expected *CompilationJobId
 	}{
 		{
 			// Incomplete URI
@@ -89,13 +89,13 @@ func TestParseCompilationjobID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue/compilationjobs",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue/compilationJobs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue/compilationjobs/compilationJobValue",
-			Expected: &CompilationjobId{
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue/compilationJobs/compilationJobValue",
+			Expected: &CompilationJobId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:     "example-resource-group",
 				AutomationAccountName: "automationAccountValue",
@@ -104,14 +104,14 @@ func TestParseCompilationjobID(t *testing.T) {
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue/compilationjobs/compilationJobValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue/compilationJobs/compilationJobValue/extra",
 			Error: true,
 		},
 	}
 	for _, v := range testData {
 		t.Logf("[DEBUG] Testing %q", v.Input)
 
-		actual, err := ParseCompilationjobID(v.Input)
+		actual, err := ParseCompilationJobID(v.Input)
 		if err != nil {
 			if v.Error {
 				continue
@@ -142,11 +142,11 @@ func TestParseCompilationjobID(t *testing.T) {
 	}
 }
 
-func TestParseCompilationjobIDInsensitively(t *testing.T) {
+func TestParseCompilationJobIDInsensitively(t *testing.T) {
 	testData := []struct {
 		Input    string
 		Error    bool
-		Expected *CompilationjobId
+		Expected *CompilationJobId
 	}{
 		{
 			// Incomplete URI
@@ -235,7 +235,7 @@ func TestParseCompilationjobIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue/compilationjobs",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue/compilationJobs",
 			Error: true,
 		},
 		{
@@ -245,8 +245,8 @@ func TestParseCompilationjobIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue/compilationjobs/compilationJobValue",
-			Expected: &CompilationjobId{
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue/compilationJobs/compilationJobValue",
+			Expected: &CompilationJobId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:     "example-resource-group",
 				AutomationAccountName: "automationAccountValue",
@@ -255,13 +255,13 @@ func TestParseCompilationjobIDInsensitively(t *testing.T) {
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue/compilationjobs/compilationJobValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue/compilationJobs/compilationJobValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
 			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aUtOmAtIoN/aUtOmAtIoNaCcOuNtS/aUtOmAtIoNaCcOuNtVaLuE/cOmPiLaTiOnJoBs/cOmPiLaTiOnJoBvAlUe",
-			Expected: &CompilationjobId{
+			Expected: &CompilationJobId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:     "eXaMpLe-rEsOuRcE-GrOuP",
 				AutomationAccountName: "aUtOmAtIoNaCcOuNtVaLuE",
@@ -277,7 +277,7 @@ func TestParseCompilationjobIDInsensitively(t *testing.T) {
 	for _, v := range testData {
 		t.Logf("[DEBUG] Testing %q", v.Input)
 
-		actual, err := ParseCompilationjobIDInsensitively(v.Input)
+		actual, err := ParseCompilationJobIDInsensitively(v.Input)
 		if err != nil {
 			if v.Error {
 				continue
@@ -308,10 +308,10 @@ func TestParseCompilationjobIDInsensitively(t *testing.T) {
 	}
 }
 
-func TestSegmentsForCompilationjobId(t *testing.T) {
-	segments := CompilationjobId{}.Segments()
+func TestSegmentsForCompilationJobId(t *testing.T) {
+	segments := CompilationJobId{}.Segments()
 	if len(segments) == 0 {
-		t.Fatalf("CompilationjobId has no segments")
+		t.Fatalf("CompilationJobId has no segments")
 	}
 
 	uniqueNames := make(map[string]struct{}, 0)
