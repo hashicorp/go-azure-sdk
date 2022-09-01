@@ -17,6 +17,7 @@ prepare:
 
 test: fmt
 	go test -v ./resource-manager/...
+	go test -v ./sdk/...
 
 tools:
 	@echo "==> installing required tooling..."
