@@ -2,13 +2,15 @@ package auth_test
 
 import (
 	"context"
-	auth2 "github.com/hashicorp/go-azure-sdk/sdk/auth"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	"fmt"
+	"math/rand"
 	"os"
 	"testing"
 
 	"github.com/hashicorp/go-azure-sdk/internal/test"
 	"github.com/hashicorp/go-azure-sdk/internal/utils"
+	"github.com/hashicorp/go-azure-sdk/sdk/auth"
+	"github.com/hashicorp/go-azure-sdk/sdk/environments"
 	"golang.org/x/oauth2"
 )
 
@@ -22,25 +24,33 @@ var (
 	clientCertificatePath = os.Getenv("ARM_CLIENT_CERTIFICATE_PATH")
 	clientCertPassword    = os.Getenv("ARM_CLIENT_CERTIFICATE_PASSWORD")
 	clientSecret          = os.Getenv("ARM_CLIENT_SECRET")
-	environment           = os.Getenv("ARM_ENVIRONMENT")
+	environment           = envDefault("ARM_ENVIRONMENT", "global")
+	gitHubTokenURL        = os.Getenv("ACTIONS_ID_TOKEN_REQUEST_URL")
+	gitHubToken           = os.Getenv("ACTIONS_ID_TOKEN_REQUEST_TOKEN")
+	idToken               = os.Getenv("ARM_OIDC_TOKEN")
 	msiEndpoint           = os.Getenv("ARM_MSI_ENDPOINT")
 	msiToken              = os.Getenv("ARM_MSI_TOKEN")
-
-	gitHubTokenURL = os.Getenv("ACTIONS_ID_TOKEN_REQUEST_URL")
-	gitHubToken    = os.Getenv("ACTIONS_ID_TOKEN_REQUEST_TOKEN")
 )
+
+func envDefault(key, def string) (ret string) {
+	ret = os.Getenv(key)
+	if ret == "" {
+		ret = def
+	}
+	return
+}
 
 func TestClientCertificateAuthorizerV1(t *testing.T) {
 	ctx := context.Background()
-	testClientCertificateAuthorizer(ctx, t, auth2.TokenVersion1)
+	testClientCertificateAuthorizer(ctx, t, auth.TokenVersion1)
 }
 
 func TestClientCertificateAuthorizerV2(t *testing.T) {
 	ctx := context.Background()
-	testClientCertificateAuthorizer(ctx, t, auth2.TokenVersion2)
+	testClientCertificateAuthorizer(ctx, t, auth.TokenVersion2)
 }
 
-func testClientCertificateAuthorizer(ctx context.Context, t *testing.T, tokenVersion auth2.TokenVersion) (token *oauth2.Token) {
+func testClientCertificateAuthorizer(ctx context.Context, t *testing.T, tokenVersion auth.TokenVersion) (token *oauth2.Token) {
 	env, err := environments.EnvironmentFromString(environment)
 	if err != nil {
 		t.Fatal(err)
@@ -48,17 +58,17 @@ func testClientCertificateAuthorizer(ctx context.Context, t *testing.T, tokenVer
 
 	pfx := utils.Base64DecodeCertificate(clientCertificate)
 
-	auth, err := auth2.NewClientCertificateAuthorizer(ctx, env, env.MsGraph, tokenVersion, tenantId, []string{}, clientId, pfx, clientCertificatePath, clientCertPassword)
+	authorizer, err := auth.NewClientCertificateAuthorizer(ctx, env, env.MsGraph, tokenVersion, tenantId, []string{}, clientId, pfx, clientCertificatePath, clientCertPassword)
 	if err != nil {
 		t.Fatalf("NewClientCertificateAuthorizer(): %v", err)
 	}
-	if auth == nil {
-		t.Fatal("auth is nil, expected Authorizer")
+	if authorizer == nil {
+		t.Fatal("authorizer is nil, expected Authorizer")
 	}
 
-	token, err = auth.Token()
+	token, err = authorizer.Token()
 	if err != nil {
-		t.Fatalf("auth.Token(): %v", err)
+		t.Fatalf("authorizer.Token(): %v", err)
 	}
 	if token == nil {
 		t.Fatalf("token was nil")
@@ -72,31 +82,31 @@ func testClientCertificateAuthorizer(ctx context.Context, t *testing.T, tokenVer
 
 func TestClientSecretAuthorizerV1(t *testing.T) {
 	ctx := context.Background()
-	testClientSecretAuthorizer(ctx, t, auth2.TokenVersion1)
+	testClientSecretAuthorizer(ctx, t, auth.TokenVersion1)
 }
 
 func TestClientSecretAuthorizerV2(t *testing.T) {
 	ctx := context.Background()
-	testClientSecretAuthorizer(ctx, t, auth2.TokenVersion2)
+	testClientSecretAuthorizer(ctx, t, auth.TokenVersion2)
 }
 
-func testClientSecretAuthorizer(ctx context.Context, t *testing.T, tokenVersion auth2.TokenVersion) (token *oauth2.Token) {
+func testClientSecretAuthorizer(ctx context.Context, t *testing.T, tokenVersion auth.TokenVersion) (token *oauth2.Token) {
 	env, err := environments.EnvironmentFromString(environment)
 	if err != nil {
 		t.Fatal(err)
 	}
 
-	auth, err := auth2.NewClientSecretAuthorizer(ctx, env, env.MsGraph, tokenVersion, tenantId, []string{}, clientId, clientSecret)
+	authorizer, err := auth.NewClientSecretAuthorizer(ctx, env, env.MsGraph, tokenVersion, tenantId, []string{}, clientId, clientSecret)
 	if err != nil {
 		t.Fatalf("NewClientSecretAuthorizer(): %v", err)
 	}
-	if auth == nil {
-		t.Fatal("auth is nil, expected Authorizer")
+	if authorizer == nil {
+		t.Fatal("authorizer is nil, expected Authorizer")
 	}
 
-	token, err = auth.Token()
+	token, err = authorizer.Token()
 	if err != nil {
-		t.Fatalf("auth.Token(): %v", err)
+		t.Fatalf("authorizer.Token(): %v", err)
 	}
 	if token == nil {
 		t.Fatalf("token was nil")
@@ -119,17 +129,17 @@ func testAzureCliAuthorizer(ctx context.Context, t *testing.T) (token *oauth2.To
 		t.Fatal(err)
 	}
 
-	auth, err := auth2.NewAzureCliAuthorizer(ctx, env.MsGraph, tenantId)
+	authorizer, err := auth.NewAzureCliAuthorizer(ctx, env.MsGraph, tenantId)
 	if err != nil {
 		t.Fatalf("NewAzureCliAuthorizer(): %v", err)
 	}
-	if auth == nil {
-		t.Fatal("auth is nil, expected Authorizer")
+	if authorizer == nil {
+		t.Fatal("authorizer is nil, expected Authorizer")
 	}
 
-	token, err = auth.Token()
+	token, err = authorizer.Token()
 	if err != nil {
-		t.Fatalf("auth.Token(): %v", err)
+		t.Fatalf("authorizer.Token(): %v", err)
 	}
 	if token == nil {
 		t.Fatalf("token was nil")
@@ -143,9 +153,10 @@ func testAzureCliAuthorizer(ctx context.Context, t *testing.T) (token *oauth2.To
 
 func TestMsiAuthorizer(t *testing.T) {
 	ctx := context.Background()
+	port := 8000 + rand.Intn(999)
 	if msiToken != "" {
-		msiEndpoint = "http://localhost:8080/metadata/identity/oauth2/token"
-		done := test.MsiStubServer(ctx, 8080, msiToken)
+		msiEndpoint = fmt.Sprintf("http://localhost:%d/metadata/identity/oauth2/token", port)
+		done := test.MsiStubServer(ctx, port, msiToken)
 		defer func() {
 			done <- true
 		}()
@@ -156,7 +167,7 @@ func TestMsiAuthorizer(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	auth, err := auth2.NewMsiAuthorizer(ctx, env.MsGraph, msiEndpoint, clientId)
+	auth, err := auth.NewMsiAuthorizer(ctx, env.MsGraph, msiEndpoint, clientId)
 	if err != nil {
 		t.Fatalf("NewMsiAuthorizer(): %v", err)
 	}
@@ -167,6 +178,36 @@ func TestMsiAuthorizer(t *testing.T) {
 	token, err := auth.Token()
 	if err != nil {
 		t.Fatalf("auth.Token(): %v", err)
+	}
+	if token == nil {
+		t.Fatal("token was nil")
+	}
+	if token.AccessToken == "" {
+		t.Fatal("token.AccessToken was empty")
+	}
+}
+
+func TestOIDCAuthorizer(t *testing.T) {
+	if idToken == "" {
+		t.Skip("idToken was empty")
+	}
+
+	env, err := environments.EnvironmentFromString(environment)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	authorizer, err := auth.NewOIDCAuthorizer(context.Background(), env, env.MsGraph, tenantId, []string{}, clientId, idToken)
+	if err != nil {
+		t.Fatalf("NewOIDCAuthorizer(): %v", err)
+	}
+	if authorizer == nil {
+		t.Fatal("authorizer is nil, expected Authorizer")
+	}
+
+	token, err := authorizer.Token()
+	if err != nil {
+		t.Fatalf("authorizer.Token(): %v", err)
 	}
 	if token == nil {
 		t.Fatal("token was nil")
@@ -189,17 +230,17 @@ func TestGitHubOIDCAuthorizer(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	auth, err := auth2.NewGitHubOIDCAuthorizer(context.Background(), env, env.MsGraph, tenantId, []string{}, clientId, gitHubTokenURL, gitHubToken)
+	authorizer, err := auth.NewGitHubOIDCAuthorizer(context.Background(), env, env.MsGraph, tenantId, []string{}, clientId, gitHubTokenURL, gitHubToken)
 	if err != nil {
 		t.Fatalf("NewGitHubOIDCAuthorizer(): %v", err)
 	}
-	if auth == nil {
-		t.Fatal("auth is nil, expected Authorizer")
+	if authorizer == nil {
+		t.Fatal("authorizer is nil, expected Authorizer")
 	}
 
-	token, err := auth.Token()
+	token, err := authorizer.Token()
 	if err != nil {
-		t.Fatalf("auth.Token(): %v", err)
+		t.Fatalf("authorizer.Token(): %v", err)
 	}
 	if token == nil {
 		t.Fatal("token was nil")

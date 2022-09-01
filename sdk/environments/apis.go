@@ -23,7 +23,7 @@ func (a Api) DefaultScope() string {
 	return fmt.Sprintf("%s/.default", a.Endpoint)
 }
 
-func (a Api) Resource() string {
+func (a Api) ResourceUrl() string {
 	return fmt.Sprintf("%s/", a.Endpoint)
 }
 

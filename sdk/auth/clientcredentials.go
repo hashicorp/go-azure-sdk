@@ -4,15 +4,13 @@ import (
 	"bytes"
 	"context"
 	"crypto"
+	"crypto/ecdsa"
 	"crypto/rand"
 	"crypto/rsa"
 	"crypto/sha1"
-	"crypto/sha256"
 	"crypto/x509"
 	"encoding/base64"
 	"encoding/json"
-	"encoding/pem"
-	"errors"
 	"fmt"
 	"github.com/hashicorp/go-azure-sdk/sdk/environments"
 	"io"
@@ -66,11 +64,11 @@ type ClientCredentialsConfig struct {
 	//
 	//    $ openssl pkcs12 -in key.p12 -out key.pem -nodes
 	//
-	PrivateKey []byte
+	PrivateKey crypto.PrivateKey
 
 	// Certificate contains the (optionally PEM encoded) X509 certificate registered
 	// for the application with which you are authenticating. Used when FederatedAssertion is empty.
-	Certificate []byte
+	Certificate *x509.Certificate
 
 	// FederatedAssertion contains a JWT provided by a trusted third-party vendor
 	// for obtaining an access token with a federated credential. When empty, an
@@ -78,7 +76,7 @@ type ClientCredentialsConfig struct {
 	FederatedAssertion string
 
 	// Resource specifies an API resource for which to request access (used for v1 tokens)
-	Resource string
+	ResourceUrl string
 
 	// Scopes specifies a list of requested permission scopes (used for v2 tokens)
 	Scopes []string
@@ -144,45 +142,57 @@ type clientAssertionToken struct {
 	claims clientAssertionTokenClaims
 }
 
-func (c *clientAssertionToken) encode(key *rsa.PrivateKey) (string, error) {
+func (c *clientAssertionToken) encode(key crypto.PrivateKey) (*string, error) {
 	var err error
 
 	c.claims.NotBefore = time.Now().Unix()
 	c.claims.Expiry = time.Now().Add(time.Hour).Unix()
 	c.claims.JwtId, err = uuid.GenerateUUID()
 	if err != nil {
-		return "", err
+		return nil, err
 	}
 
-	sign := func(data []byte) (sig []byte, err error) {
-		h := sha256.New()
-		_, err = h.Write(data)
-		if err != nil {
-			return
+	var hash = crypto.SHA256
+	var sign func([]byte, []byte) ([]byte, error)
+
+	// determine algorithm and signing function, fail for unsupported keys
+	if k, ok := key.(*ecdsa.PrivateKey); ok {
+		c.header.Algorithm = "ES256"
+		sign = func(data []byte, sum []byte) ([]byte, error) {
+			return ecdsa.SignASN1(rand.Reader, k, sum)
 		}
-		return rsa.SignPKCS1v15(rand.Reader, key, crypto.SHA256, h.Sum(nil))
+	} else if k, ok := key.(*rsa.PrivateKey); ok {
+		c.header.Algorithm = "RS256"
+		sign = func(data []byte, sum []byte) ([]byte, error) {
+			return rsa.SignPKCS1v15(rand.Reader, k, hash, sum)
+		}
+	} else {
+		return nil, fmt.Errorf("unrecognized/unsupported key type: %T", key)
 	}
 
 	// encode the header
 	hs, err := c.header.encode()
 	if err != nil {
-		return "", err
+		return nil, err
 	}
 
 	// encode the claims
 	cs, err := c.claims.encode()
 	if err != nil {
-		return "", err
+		return nil, err
 	}
 
 	// sign the token
 	ss := fmt.Sprintf("%s.%s", hs, cs)
-	sig, err := sign([]byte(ss))
+	h := hash.New()
+	h.Write([]byte(ss))
+	sig, err := sign([]byte(ss), h.Sum(nil))
 	if err != nil {
-		return "", err
+		return nil, err
 	}
 
-	return fmt.Sprintf("%s.%s", ss, base64.RawURLEncoding.EncodeToString(sig)), nil
+	ret := fmt.Sprintf("%s.%s", ss, base64.RawURLEncoding.EncodeToString(sig))
+	return &ret, nil
 }
 
 type clientAssertionAuthorizer struct {
@@ -191,23 +201,8 @@ type clientAssertionAuthorizer struct {
 }
 
 func (a *clientAssertionAuthorizer) assertion(tokenUrl string) (*string, error) {
-	crt := a.conf.Certificate
-	if der, _ := pem.Decode(a.conf.Certificate); der != nil {
-		crt = der.Bytes
-	}
-
-	cert, err := x509.ParseCertificate(crt)
-	if err != nil {
-		return nil, fmt.Errorf("clientAssertionAuthorizer: cannot parse certificate: %v", err)
-	}
-
-	keySig := sha1.Sum(cert.Raw)
+	keySig := sha1.Sum(a.conf.Certificate.Raw)
 	keyId := base64.URLEncoding.EncodeToString(keySig[:])
-
-	privKey, err := parseKey(a.conf.PrivateKey)
-	if err != nil {
-		return nil, fmt.Errorf("clientAssertionAuthorizer: cannot parse private key: %v", err)
-	}
 
 	audience := a.conf.Audience
 	if audience == "" {
@@ -216,9 +211,8 @@ func (a *clientAssertionAuthorizer) assertion(tokenUrl string) (*string, error) 
 
 	t := clientAssertionToken{
 		header: clientAssertionTokenHeader{
-			Algorithm: "RS256",
-			Type:      "JWT",
-			KeyId:     keyId,
+			Type:  "JWT",
+			KeyId: keyId,
 		},
 		claims: clientAssertionTokenClaims{
 			Audience: audience,
@@ -226,12 +220,12 @@ func (a *clientAssertionAuthorizer) assertion(tokenUrl string) (*string, error) 
 			Subject:  a.conf.ClientID,
 		},
 	}
-	assertion, err := t.encode(privKey)
+	assertion, err := t.encode(a.conf.PrivateKey)
 	if err != nil {
-		return nil, fmt.Errorf("clientAssertionAuthorizer: failed to encode and sign JWT assertion")
+		return nil, fmt.Errorf("clientAssertionAuthorizer: failed to encode and sign JWT assertion: %v", err)
 	}
 
-	return &assertion, nil
+	return assertion, nil
 }
 
 func (a *clientAssertionAuthorizer) token(tokenUrl string) (*oauth2.Token, error) {
@@ -255,7 +249,7 @@ func (a *clientAssertionAuthorizer) token(tokenUrl string) (*oauth2.Token, error
 	}
 
 	if a.conf.TokenVersion == TokenVersion1 {
-		v["resource"] = []string{a.conf.Resource}
+		v["resource"] = []string{a.conf.ResourceUrl}
 	} else {
 		v["scope"] = []string{strings.Join(a.conf.Scopes, " ")}
 	}
@@ -305,27 +299,6 @@ func (a *clientAssertionAuthorizer) AuxiliaryTokens() ([]*oauth2.Token, error) {
 	return tokens, nil
 }
 
-// parseKey returns an rsa.PrivateKey containing the provided binary key data.
-// If the provided key is PEM encoded, it is decoded first.
-func parseKey(key []byte) (*rsa.PrivateKey, error) {
-	block, _ := pem.Decode(key)
-	if block != nil {
-		key = block.Bytes
-	}
-	parsedKey, err := x509.ParsePKCS8PrivateKey(key)
-	if err != nil {
-		parsedKey, err = x509.ParsePKCS1PrivateKey(key)
-		if err != nil {
-			return nil, fmt.Errorf("private key should be a PEM or plain PKCS1 or PKCS8; parse error: %v", err)
-		}
-	}
-	parsed, ok := parsedKey.(*rsa.PrivateKey)
-	if !ok {
-		return nil, errors.New("private key is invalid")
-	}
-	return parsed, nil
-}
-
 type clientSecretAuthorizer struct {
 	ctx  context.Context
 	conf *ClientCredentialsConfig
@@ -343,7 +316,7 @@ func (a *clientSecretAuthorizer) Token() (*oauth2.Token, error) {
 	}
 
 	if a.conf.TokenVersion == TokenVersion1 {
-		v["resource"] = []string{a.conf.Resource}
+		v["resource"] = []string{a.conf.ResourceUrl}
 	} else {
 		v["scope"] = []string{strings.Join(a.conf.Scopes, " ")}
 	}
@@ -376,7 +349,7 @@ func (a *clientSecretAuthorizer) AuxiliaryTokens() ([]*oauth2.Token, error) {
 		}
 
 		if a.conf.TokenVersion == TokenVersion1 {
-			v["resource"] = []string{a.conf.Resource}
+			v["resource"] = []string{a.conf.ResourceUrl}
 		} else {
 			v["scope"] = []string{strings.Join(a.conf.Scopes, " ")}
 		}

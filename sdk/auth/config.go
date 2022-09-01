@@ -19,8 +19,8 @@ type Config struct {
 	// Specifies the national cloud environment to use
 	Environment environments.Environment
 
-	// Version specifies the token version  to acquire from Microsoft Identity Platform.
-	// Ignored when using Azure CLI or Managed Identity authentication.
+	// Version specifies the token version to acquire from Microsoft Identity Platform.
+	// Ignored when using OIDC, GitHub OIDC, Azure CLI or Managed Identity authentication
 	Version TokenVersion
 
 	// Azure Active Directory tenant to connect to, should be a valid UUID
@@ -59,11 +59,11 @@ type Config struct {
 	// Specifies the password to authenticate with using client secret authentication
 	ClientSecret string
 
-	// Enables OIDC Federated authentication
-	EnableClientFederatedAuth bool
+	// Enables OIDC authentication (federated client credentials)
+	EnableOIDCAuth bool
 
-	// Specifies the federated assertion to authenticate using client credentials
-	FederatedAssertion string
+	// Specifies the OIDC token (assertion) to authenticate using client credentials
+	IDToken string
 
 	// Enables GitHub OIDC authentication
 	EnableGitHubOIDCAuth bool

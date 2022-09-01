@@ -40,7 +40,7 @@ func MsiStubServer(ctx context.Context, port int, token string) chan bool {
 	}()
 
 	go func() {
-		log.Println("MSI Stub Service listening on 127.0.0.1:8080")
+		log.Printf("MSI Stub Service listening on 127.0.0.1:%d\n", port)
 		err := server.ListenAndServe()
 		if err != nil && err != http.ErrServerClosed {
 			log.Fatalf("server.ListenAndServe: %v", err)

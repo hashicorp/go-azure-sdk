@@ -3,6 +3,7 @@ package auth
 import (
 	"encoding/base64"
 	"encoding/json"
+	"errors"
 	"golang.org/x/oauth2"
 	"strings"
 )
@@ -29,15 +30,22 @@ type Claims struct {
 }
 
 // ParseClaims retrieves and parses the claims from a JWT issued by the Microsoft Identity Platform.
-func ParseClaims(token *oauth2.Token) (claims Claims, err error) {
+func ParseClaims(token *oauth2.Token) (*Claims, error) {
 	if token == nil {
-		return
+		return nil, errors.New("token is nil")
 	}
+
 	jwt := strings.Split(token.AccessToken, ".")
+	if len(jwt) != 3 {
+		return nil, errors.New("unexpected token format: does not have 3 parts")
+	}
+
 	payload, err := base64.RawURLEncoding.DecodeString(jwt[1])
 	if err != nil {
-		return
+		return nil, err
 	}
-	err = json.Unmarshal(payload, &claims)
-	return
+
+	var claims *Claims
+	err = json.Unmarshal(payload, claims)
+	return claims, err
 }
