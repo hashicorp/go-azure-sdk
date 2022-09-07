@@ -17,7 +17,7 @@ type StreamingPoliciesGetOperationResponse struct {
 }
 
 // StreamingPoliciesGet ...
-func (c StreamingPoliciesAndStreamingLocatorsClient) StreamingPoliciesGet(ctx context.Context, id StreamingPoliciesId) (result StreamingPoliciesGetOperationResponse, err error) {
+func (c StreamingPoliciesAndStreamingLocatorsClient) StreamingPoliciesGet(ctx context.Context, id StreamingPolicyId) (result StreamingPoliciesGetOperationResponse, err error) {
 	req, err := c.preparerForStreamingPoliciesGet(ctx, id)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "streamingpoliciesandstreaminglocators.StreamingPoliciesAndStreamingLocatorsClient", "StreamingPoliciesGet", nil, "Failure preparing request")
@@ -40,7 +40,7 @@ func (c StreamingPoliciesAndStreamingLocatorsClient) StreamingPoliciesGet(ctx co
 }
 
 // preparerForStreamingPoliciesGet prepares the StreamingPoliciesGet request.
-func (c StreamingPoliciesAndStreamingLocatorsClient) preparerForStreamingPoliciesGet(ctx context.Context, id StreamingPoliciesId) (*http.Request, error) {
+func (c StreamingPoliciesAndStreamingLocatorsClient) preparerForStreamingPoliciesGet(ctx context.Context, id StreamingPolicyId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

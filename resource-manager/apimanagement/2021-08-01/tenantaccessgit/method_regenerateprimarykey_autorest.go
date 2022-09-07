@@ -17,7 +17,7 @@ type RegeneratePrimaryKeyOperationResponse struct {
 }
 
 // RegeneratePrimaryKey ...
-func (c TenantAccessGitClient) RegeneratePrimaryKey(ctx context.Context, id AccesId) (result RegeneratePrimaryKeyOperationResponse, err error) {
+func (c TenantAccessGitClient) RegeneratePrimaryKey(ctx context.Context, id AccessId) (result RegeneratePrimaryKeyOperationResponse, err error) {
 	req, err := c.preparerForRegeneratePrimaryKey(ctx, id)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "tenantaccessgit.TenantAccessGitClient", "RegeneratePrimaryKey", nil, "Failure preparing request")
@@ -40,7 +40,7 @@ func (c TenantAccessGitClient) RegeneratePrimaryKey(ctx context.Context, id Acce
 }
 
 // preparerForRegeneratePrimaryKey prepares the RegeneratePrimaryKey request.
-func (c TenantAccessGitClient) preparerForRegeneratePrimaryKey(ctx context.Context, id AccesId) (*http.Request, error) {
+func (c TenantAccessGitClient) preparerForRegeneratePrimaryKey(ctx context.Context, id AccessId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

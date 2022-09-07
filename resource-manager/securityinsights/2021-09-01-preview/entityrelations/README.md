@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := entityrelations.NewEntitiesID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "entityIdValue")
+id := entityrelations.NewEntityID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "entityIdValue")
 
 // alternatively `client.EntitiesRelationsList(ctx, id, entityrelations.DefaultEntitiesRelationsListOperationOptions())` can be used to do batched pagination
 items, err := client.EntitiesRelationsListComplete(ctx, id, entityrelations.DefaultEntitiesRelationsListOperationOptions())

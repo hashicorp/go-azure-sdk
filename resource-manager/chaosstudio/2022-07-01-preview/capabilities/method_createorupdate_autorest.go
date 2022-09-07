@@ -17,7 +17,7 @@ type CreateOrUpdateOperationResponse struct {
 }
 
 // CreateOrUpdate ...
-func (c CapabilitiesClient) CreateOrUpdate(ctx context.Context, id CapabilitiesId, input Capability) (result CreateOrUpdateOperationResponse, err error) {
+func (c CapabilitiesClient) CreateOrUpdate(ctx context.Context, id CapabilityId, input Capability) (result CreateOrUpdateOperationResponse, err error) {
 	req, err := c.preparerForCreateOrUpdate(ctx, id, input)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "capabilities.CapabilitiesClient", "CreateOrUpdate", nil, "Failure preparing request")
@@ -40,7 +40,7 @@ func (c CapabilitiesClient) CreateOrUpdate(ctx context.Context, id CapabilitiesI
 }
 
 // preparerForCreateOrUpdate prepares the CreateOrUpdate request.
-func (c CapabilitiesClient) preparerForCreateOrUpdate(ctx context.Context, id CapabilitiesId, input Capability) (*http.Request, error) {
+func (c CapabilitiesClient) preparerForCreateOrUpdate(ctx context.Context, id CapabilityId, input Capability) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

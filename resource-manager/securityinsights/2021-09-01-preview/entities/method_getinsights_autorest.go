@@ -18,7 +18,7 @@ type GetInsightsOperationResponse struct {
 }
 
 // GetInsights ...
-func (c EntitiesClient) GetInsights(ctx context.Context, id EntitiesId, input EntityGetInsightsParameters) (result GetInsightsOperationResponse, err error) {
+func (c EntitiesClient) GetInsights(ctx context.Context, id EntityId, input EntityGetInsightsParameters) (result GetInsightsOperationResponse, err error) {
 	req, err := c.preparerForGetInsights(ctx, id, input)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "entities.EntitiesClient", "GetInsights", nil, "Failure preparing request")
@@ -41,7 +41,7 @@ func (c EntitiesClient) GetInsights(ctx context.Context, id EntitiesId, input En
 }
 
 // preparerForGetInsights prepares the GetInsights request.
-func (c EntitiesClient) preparerForGetInsights(ctx context.Context, id EntitiesId, input EntityGetInsightsParameters) (*http.Request, error) {
+func (c EntitiesClient) preparerForGetInsights(ctx context.Context, id EntityId, input EntityGetInsightsParameters) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

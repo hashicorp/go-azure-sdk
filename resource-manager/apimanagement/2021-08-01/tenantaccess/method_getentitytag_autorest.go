@@ -16,7 +16,7 @@ type GetEntityTagOperationResponse struct {
 }
 
 // GetEntityTag ...
-func (c TenantAccessClient) GetEntityTag(ctx context.Context, id AccesId) (result GetEntityTagOperationResponse, err error) {
+func (c TenantAccessClient) GetEntityTag(ctx context.Context, id AccessId) (result GetEntityTagOperationResponse, err error) {
 	req, err := c.preparerForGetEntityTag(ctx, id)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "tenantaccess.TenantAccessClient", "GetEntityTag", nil, "Failure preparing request")
@@ -39,7 +39,7 @@ func (c TenantAccessClient) GetEntityTag(ctx context.Context, id AccesId) (resul
 }
 
 // preparerForGetEntityTag prepares the GetEntityTag request.
-func (c TenantAccessClient) preparerForGetEntityTag(ctx context.Context, id AccesId) (*http.Request, error) {
+func (c TenantAccessClient) preparerForGetEntityTag(ctx context.Context, id AccessId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

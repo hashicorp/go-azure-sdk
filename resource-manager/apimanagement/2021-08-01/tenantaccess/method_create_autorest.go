@@ -41,7 +41,7 @@ func (o CreateOperationOptions) toQueryString() map[string]interface{} {
 }
 
 // Create ...
-func (c TenantAccessClient) Create(ctx context.Context, id AccesId, input AccessInformationCreateParameters, options CreateOperationOptions) (result CreateOperationResponse, err error) {
+func (c TenantAccessClient) Create(ctx context.Context, id AccessId, input AccessInformationCreateParameters, options CreateOperationOptions) (result CreateOperationResponse, err error) {
 	req, err := c.preparerForCreate(ctx, id, input, options)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "tenantaccess.TenantAccessClient", "Create", nil, "Failure preparing request")
@@ -64,7 +64,7 @@ func (c TenantAccessClient) Create(ctx context.Context, id AccesId, input Access
 }
 
 // preparerForCreate prepares the Create request.
-func (c TenantAccessClient) preparerForCreate(ctx context.Context, id AccesId, input AccessInformationCreateParameters, options CreateOperationOptions) (*http.Request, error) {
+func (c TenantAccessClient) preparerForCreate(ctx context.Context, id AccessId, input AccessInformationCreateParameters, options CreateOperationOptions) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

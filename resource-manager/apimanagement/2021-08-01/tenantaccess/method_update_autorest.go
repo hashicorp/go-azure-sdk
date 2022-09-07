@@ -41,7 +41,7 @@ func (o UpdateOperationOptions) toQueryString() map[string]interface{} {
 }
 
 // Update ...
-func (c TenantAccessClient) Update(ctx context.Context, id AccesId, input AccessInformationUpdateParameters, options UpdateOperationOptions) (result UpdateOperationResponse, err error) {
+func (c TenantAccessClient) Update(ctx context.Context, id AccessId, input AccessInformationUpdateParameters, options UpdateOperationOptions) (result UpdateOperationResponse, err error) {
 	req, err := c.preparerForUpdate(ctx, id, input, options)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "tenantaccess.TenantAccessClient", "Update", nil, "Failure preparing request")
@@ -64,7 +64,7 @@ func (c TenantAccessClient) Update(ctx context.Context, id AccesId, input Access
 }
 
 // preparerForUpdate prepares the Update request.
-func (c TenantAccessClient) preparerForUpdate(ctx context.Context, id AccesId, input AccessInformationUpdateParameters, options UpdateOperationOptions) (*http.Request, error) {
+func (c TenantAccessClient) preparerForUpdate(ctx context.Context, id AccessId, input AccessInformationUpdateParameters, options UpdateOperationOptions) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

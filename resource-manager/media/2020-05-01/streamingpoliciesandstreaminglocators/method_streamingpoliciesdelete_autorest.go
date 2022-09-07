@@ -16,7 +16,7 @@ type StreamingPoliciesDeleteOperationResponse struct {
 }
 
 // StreamingPoliciesDelete ...
-func (c StreamingPoliciesAndStreamingLocatorsClient) StreamingPoliciesDelete(ctx context.Context, id StreamingPoliciesId) (result StreamingPoliciesDeleteOperationResponse, err error) {
+func (c StreamingPoliciesAndStreamingLocatorsClient) StreamingPoliciesDelete(ctx context.Context, id StreamingPolicyId) (result StreamingPoliciesDeleteOperationResponse, err error) {
 	req, err := c.preparerForStreamingPoliciesDelete(ctx, id)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "streamingpoliciesandstreaminglocators.StreamingPoliciesAndStreamingLocatorsClient", "StreamingPoliciesDelete", nil, "Failure preparing request")
@@ -39,7 +39,7 @@ func (c StreamingPoliciesAndStreamingLocatorsClient) StreamingPoliciesDelete(ctx
 }
 
 // preparerForStreamingPoliciesDelete prepares the StreamingPoliciesDelete request.
-func (c StreamingPoliciesAndStreamingLocatorsClient) preparerForStreamingPoliciesDelete(ctx context.Context, id StreamingPoliciesId) (*http.Request, error) {
+func (c StreamingPoliciesAndStreamingLocatorsClient) preparerForStreamingPoliciesDelete(ctx context.Context, id StreamingPolicyId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

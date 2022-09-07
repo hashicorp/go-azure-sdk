@@ -42,7 +42,7 @@ func (o QueriesOperationOptions) toQueryString() map[string]interface{} {
 }
 
 // Queries ...
-func (c EntitiesClient) Queries(ctx context.Context, id EntitiesId, options QueriesOperationOptions) (result QueriesOperationResponse, err error) {
+func (c EntitiesClient) Queries(ctx context.Context, id EntityId, options QueriesOperationOptions) (result QueriesOperationResponse, err error) {
 	req, err := c.preparerForQueries(ctx, id, options)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "entities.EntitiesClient", "Queries", nil, "Failure preparing request")
@@ -65,7 +65,7 @@ func (c EntitiesClient) Queries(ctx context.Context, id EntitiesId, options Quer
 }
 
 // preparerForQueries prepares the Queries request.
-func (c EntitiesClient) preparerForQueries(ctx context.Context, id EntitiesId, options QueriesOperationOptions) (*http.Request, error) {
+func (c EntitiesClient) preparerForQueries(ctx context.Context, id EntityId, options QueriesOperationOptions) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

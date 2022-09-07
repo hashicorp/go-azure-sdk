@@ -109,7 +109,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := experiments.NewStatuseID("12345678-1234-9876-4563-123456789012", "example-resource-group", "experimentValue", "statusIdValue")
+id := experiments.NewStatusID("12345678-1234-9876-4563-123456789012", "example-resource-group", "experimentValue", "statusIdValue")
 
 read, err := client.GetStatus(ctx, id)
 if err != nil {

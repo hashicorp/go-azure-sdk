@@ -17,7 +17,7 @@ type StreamingPoliciesCreateOperationResponse struct {
 }
 
 // StreamingPoliciesCreate ...
-func (c StreamingPoliciesAndStreamingLocatorsClient) StreamingPoliciesCreate(ctx context.Context, id StreamingPoliciesId, input StreamingPolicy) (result StreamingPoliciesCreateOperationResponse, err error) {
+func (c StreamingPoliciesAndStreamingLocatorsClient) StreamingPoliciesCreate(ctx context.Context, id StreamingPolicyId, input StreamingPolicy) (result StreamingPoliciesCreateOperationResponse, err error) {
 	req, err := c.preparerForStreamingPoliciesCreate(ctx, id, input)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "streamingpoliciesandstreaminglocators.StreamingPoliciesAndStreamingLocatorsClient", "StreamingPoliciesCreate", nil, "Failure preparing request")
@@ -40,7 +40,7 @@ func (c StreamingPoliciesAndStreamingLocatorsClient) StreamingPoliciesCreate(ctx
 }
 
 // preparerForStreamingPoliciesCreate prepares the StreamingPoliciesCreate request.
-func (c StreamingPoliciesAndStreamingLocatorsClient) preparerForStreamingPoliciesCreate(ctx context.Context, id StreamingPoliciesId, input StreamingPolicy) (*http.Request, error) {
+func (c StreamingPoliciesAndStreamingLocatorsClient) preparerForStreamingPoliciesCreate(ctx context.Context, id StreamingPolicyId, input StreamingPolicy) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := contentkeypolicies.NewContentKeyPoliciesID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "contentKeyPolicyValue")
+id := contentkeypolicies.NewContentKeyPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "contentKeyPolicyValue")
 
 payload := contentkeypolicies.ContentKeyPolicy{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := contentkeypolicies.NewContentKeyPoliciesID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "contentKeyPolicyValue")
+id := contentkeypolicies.NewContentKeyPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "contentKeyPolicyValue")
 
 read, err := client.ContentKeyPoliciesDelete(ctx, id)
 if err != nil {
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := contentkeypolicies.NewContentKeyPoliciesID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "contentKeyPolicyValue")
+id := contentkeypolicies.NewContentKeyPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "contentKeyPolicyValue")
 
 read, err := client.ContentKeyPoliciesGet(ctx, id)
 if err != nil {
@@ -77,7 +77,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := contentkeypolicies.NewContentKeyPoliciesID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "contentKeyPolicyValue")
+id := contentkeypolicies.NewContentKeyPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "contentKeyPolicyValue")
 
 read, err := client.ContentKeyPoliciesGetPolicyPropertiesWithSecrets(ctx, id)
 if err != nil {
@@ -110,7 +110,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := contentkeypolicies.NewContentKeyPoliciesID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "contentKeyPolicyValue")
+id := contentkeypolicies.NewContentKeyPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "contentKeyPolicyValue")
 
 payload := contentkeypolicies.ContentKeyPolicy{
 	// ...

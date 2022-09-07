@@ -19,7 +19,7 @@ type BackupPoliciesCreateOperationResponse struct {
 }
 
 // BackupPoliciesCreate ...
-func (c BackupPolicyClient) BackupPoliciesCreate(ctx context.Context, id BackupPoliciesId, input BackupPolicy) (result BackupPoliciesCreateOperationResponse, err error) {
+func (c BackupPolicyClient) BackupPoliciesCreate(ctx context.Context, id BackupPolicyId, input BackupPolicy) (result BackupPoliciesCreateOperationResponse, err error) {
 	req, err := c.preparerForBackupPoliciesCreate(ctx, id, input)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "backuppolicy.BackupPolicyClient", "BackupPoliciesCreate", nil, "Failure preparing request")
@@ -36,7 +36,7 @@ func (c BackupPolicyClient) BackupPoliciesCreate(ctx context.Context, id BackupP
 }
 
 // BackupPoliciesCreateThenPoll performs BackupPoliciesCreate then polls until it's completed
-func (c BackupPolicyClient) BackupPoliciesCreateThenPoll(ctx context.Context, id BackupPoliciesId, input BackupPolicy) error {
+func (c BackupPolicyClient) BackupPoliciesCreateThenPoll(ctx context.Context, id BackupPolicyId, input BackupPolicy) error {
 	result, err := c.BackupPoliciesCreate(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing BackupPoliciesCreate: %+v", err)
@@ -50,7 +50,7 @@ func (c BackupPolicyClient) BackupPoliciesCreateThenPoll(ctx context.Context, id
 }
 
 // preparerForBackupPoliciesCreate prepares the BackupPoliciesCreate request.
-func (c BackupPolicyClient) preparerForBackupPoliciesCreate(ctx context.Context, id BackupPoliciesId, input BackupPolicy) (*http.Request, error) {
+func (c BackupPolicyClient) preparerForBackupPoliciesCreate(ctx context.Context, id BackupPolicyId, input BackupPolicy) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

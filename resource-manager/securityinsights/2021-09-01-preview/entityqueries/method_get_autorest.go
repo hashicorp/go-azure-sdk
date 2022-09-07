@@ -19,7 +19,7 @@ type GetOperationResponse struct {
 }
 
 // Get ...
-func (c EntityQueriesClient) Get(ctx context.Context, id EntityQueriesId) (result GetOperationResponse, err error) {
+func (c EntityQueriesClient) Get(ctx context.Context, id EntityQueryId) (result GetOperationResponse, err error) {
 	req, err := c.preparerForGet(ctx, id)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "entityqueries.EntityQueriesClient", "Get", nil, "Failure preparing request")
@@ -42,7 +42,7 @@ func (c EntityQueriesClient) Get(ctx context.Context, id EntityQueriesId) (resul
 }
 
 // preparerForGet prepares the Get request.
-func (c EntityQueriesClient) preparerForGet(ctx context.Context, id EntityQueriesId) (*http.Request, error) {
+func (c EntityQueriesClient) preparerForGet(ctx context.Context, id EntityQueryId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

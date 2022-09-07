@@ -17,7 +17,7 @@ type AccessPoliciesCreateOrUpdateOperationResponse struct {
 }
 
 // AccessPoliciesCreateOrUpdate ...
-func (c VideosClient) AccessPoliciesCreateOrUpdate(ctx context.Context, id AccessPoliciesId, input AccessPolicyEntity) (result AccessPoliciesCreateOrUpdateOperationResponse, err error) {
+func (c VideosClient) AccessPoliciesCreateOrUpdate(ctx context.Context, id AccessPolicyId, input AccessPolicyEntity) (result AccessPoliciesCreateOrUpdateOperationResponse, err error) {
 	req, err := c.preparerForAccessPoliciesCreateOrUpdate(ctx, id, input)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "videos.VideosClient", "AccessPoliciesCreateOrUpdate", nil, "Failure preparing request")
@@ -40,7 +40,7 @@ func (c VideosClient) AccessPoliciesCreateOrUpdate(ctx context.Context, id Acces
 }
 
 // preparerForAccessPoliciesCreateOrUpdate prepares the AccessPoliciesCreateOrUpdate request.
-func (c VideosClient) preparerForAccessPoliciesCreateOrUpdate(ctx context.Context, id AccessPoliciesId, input AccessPolicyEntity) (*http.Request, error) {
+func (c VideosClient) preparerForAccessPoliciesCreateOrUpdate(ctx context.Context, id AccessPolicyId, input AccessPolicyEntity) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

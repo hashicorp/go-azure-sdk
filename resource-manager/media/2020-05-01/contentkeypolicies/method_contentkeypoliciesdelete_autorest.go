@@ -16,7 +16,7 @@ type ContentKeyPoliciesDeleteOperationResponse struct {
 }
 
 // ContentKeyPoliciesDelete ...
-func (c ContentKeyPoliciesClient) ContentKeyPoliciesDelete(ctx context.Context, id ContentKeyPoliciesId) (result ContentKeyPoliciesDeleteOperationResponse, err error) {
+func (c ContentKeyPoliciesClient) ContentKeyPoliciesDelete(ctx context.Context, id ContentKeyPolicyId) (result ContentKeyPoliciesDeleteOperationResponse, err error) {
 	req, err := c.preparerForContentKeyPoliciesDelete(ctx, id)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "contentkeypolicies.ContentKeyPoliciesClient", "ContentKeyPoliciesDelete", nil, "Failure preparing request")
@@ -39,7 +39,7 @@ func (c ContentKeyPoliciesClient) ContentKeyPoliciesDelete(ctx context.Context, 
 }
 
 // preparerForContentKeyPoliciesDelete prepares the ContentKeyPoliciesDelete request.
-func (c ContentKeyPoliciesClient) preparerForContentKeyPoliciesDelete(ctx context.Context, id ContentKeyPoliciesId) (*http.Request, error) {
+func (c ContentKeyPoliciesClient) preparerForContentKeyPoliciesDelete(ctx context.Context, id ContentKeyPolicyId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

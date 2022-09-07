@@ -16,7 +16,7 @@ type AccessPoliciesDeleteOperationResponse struct {
 }
 
 // AccessPoliciesDelete ...
-func (c VideosClient) AccessPoliciesDelete(ctx context.Context, id AccessPoliciesId) (result AccessPoliciesDeleteOperationResponse, err error) {
+func (c VideosClient) AccessPoliciesDelete(ctx context.Context, id AccessPolicyId) (result AccessPoliciesDeleteOperationResponse, err error) {
 	req, err := c.preparerForAccessPoliciesDelete(ctx, id)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "videos.VideosClient", "AccessPoliciesDelete", nil, "Failure preparing request")
@@ -39,7 +39,7 @@ func (c VideosClient) AccessPoliciesDelete(ctx context.Context, id AccessPolicie
 }
 
 // preparerForAccessPoliciesDelete prepares the AccessPoliciesDelete request.
-func (c VideosClient) preparerForAccessPoliciesDelete(ctx context.Context, id AccessPoliciesId) (*http.Request, error) {
+func (c VideosClient) preparerForAccessPoliciesDelete(ctx context.Context, id AccessPolicyId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

@@ -19,7 +19,7 @@ type PoliciesCreateOrUpdateOperationResponse struct {
 }
 
 // PoliciesCreateOrUpdate ...
-func (c WebApplicationFirewallPoliciesClient) PoliciesCreateOrUpdate(ctx context.Context, id FrontDoorWebApplicationFirewallPoliciesId, input WebApplicationFirewallPolicy) (result PoliciesCreateOrUpdateOperationResponse, err error) {
+func (c WebApplicationFirewallPoliciesClient) PoliciesCreateOrUpdate(ctx context.Context, id FrontDoorWebApplicationFirewallPolicyId, input WebApplicationFirewallPolicy) (result PoliciesCreateOrUpdateOperationResponse, err error) {
 	req, err := c.preparerForPoliciesCreateOrUpdate(ctx, id, input)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "webapplicationfirewallpolicies.WebApplicationFirewallPoliciesClient", "PoliciesCreateOrUpdate", nil, "Failure preparing request")
@@ -36,7 +36,7 @@ func (c WebApplicationFirewallPoliciesClient) PoliciesCreateOrUpdate(ctx context
 }
 
 // PoliciesCreateOrUpdateThenPoll performs PoliciesCreateOrUpdate then polls until it's completed
-func (c WebApplicationFirewallPoliciesClient) PoliciesCreateOrUpdateThenPoll(ctx context.Context, id FrontDoorWebApplicationFirewallPoliciesId, input WebApplicationFirewallPolicy) error {
+func (c WebApplicationFirewallPoliciesClient) PoliciesCreateOrUpdateThenPoll(ctx context.Context, id FrontDoorWebApplicationFirewallPolicyId, input WebApplicationFirewallPolicy) error {
 	result, err := c.PoliciesCreateOrUpdate(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing PoliciesCreateOrUpdate: %+v", err)
@@ -50,7 +50,7 @@ func (c WebApplicationFirewallPoliciesClient) PoliciesCreateOrUpdateThenPoll(ctx
 }
 
 // preparerForPoliciesCreateOrUpdate prepares the PoliciesCreateOrUpdate request.
-func (c WebApplicationFirewallPoliciesClient) preparerForPoliciesCreateOrUpdate(ctx context.Context, id FrontDoorWebApplicationFirewallPoliciesId, input WebApplicationFirewallPolicy) (*http.Request, error) {
+func (c WebApplicationFirewallPoliciesClient) preparerForPoliciesCreateOrUpdate(ctx context.Context, id FrontDoorWebApplicationFirewallPolicyId, input WebApplicationFirewallPolicy) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

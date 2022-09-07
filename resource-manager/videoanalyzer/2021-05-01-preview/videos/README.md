@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := videos.NewAccessPoliciesID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "accessPolicyValue")
+id := videos.NewAccessPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "accessPolicyValue")
 
 payload := videos.AccessPolicyEntity{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := videos.NewAccessPoliciesID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "accessPolicyValue")
+id := videos.NewAccessPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "accessPolicyValue")
 
 read, err := client.AccessPoliciesDelete(ctx, id)
 if err != nil {
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := videos.NewAccessPoliciesID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "accessPolicyValue")
+id := videos.NewAccessPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "accessPolicyValue")
 
 read, err := client.AccessPoliciesGet(ctx, id)
 if err != nil {
@@ -94,7 +94,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := videos.NewAccessPoliciesID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "accessPolicyValue")
+id := videos.NewAccessPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "accessPolicyValue")
 
 payload := videos.AccessPolicyEntity{
 	// ...

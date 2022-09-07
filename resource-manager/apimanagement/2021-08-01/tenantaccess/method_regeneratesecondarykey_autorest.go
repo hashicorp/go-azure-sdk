@@ -17,7 +17,7 @@ type RegenerateSecondaryKeyOperationResponse struct {
 }
 
 // RegenerateSecondaryKey ...
-func (c TenantAccessClient) RegenerateSecondaryKey(ctx context.Context, id AccesId) (result RegenerateSecondaryKeyOperationResponse, err error) {
+func (c TenantAccessClient) RegenerateSecondaryKey(ctx context.Context, id AccessId) (result RegenerateSecondaryKeyOperationResponse, err error) {
 	req, err := c.preparerForRegenerateSecondaryKey(ctx, id)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "tenantaccess.TenantAccessClient", "RegenerateSecondaryKey", nil, "Failure preparing request")
@@ -40,7 +40,7 @@ func (c TenantAccessClient) RegenerateSecondaryKey(ctx context.Context, id Acces
 }
 
 // preparerForRegenerateSecondaryKey prepares the RegenerateSecondaryKey request.
-func (c TenantAccessClient) preparerForRegenerateSecondaryKey(ctx context.Context, id AccesId) (*http.Request, error) {
+func (c TenantAccessClient) preparerForRegenerateSecondaryKey(ctx context.Context, id AccessId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

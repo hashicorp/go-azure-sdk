@@ -18,7 +18,7 @@ type ListSecretsOperationResponse struct {
 }
 
 // ListSecrets ...
-func (c TenantAccessClient) ListSecrets(ctx context.Context, id AccesId) (result ListSecretsOperationResponse, err error) {
+func (c TenantAccessClient) ListSecrets(ctx context.Context, id AccessId) (result ListSecretsOperationResponse, err error) {
 	req, err := c.preparerForListSecrets(ctx, id)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "tenantaccess.TenantAccessClient", "ListSecrets", nil, "Failure preparing request")
@@ -41,7 +41,7 @@ func (c TenantAccessClient) ListSecrets(ctx context.Context, id AccesId) (result
 }
 
 // preparerForListSecrets prepares the ListSecrets request.
-func (c TenantAccessClient) preparerForListSecrets(ctx context.Context, id AccesId) (*http.Request, error) {
+func (c TenantAccessClient) preparerForListSecrets(ctx context.Context, id AccessId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

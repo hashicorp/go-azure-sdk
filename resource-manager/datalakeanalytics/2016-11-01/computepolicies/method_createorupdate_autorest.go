@@ -17,7 +17,7 @@ type CreateOrUpdateOperationResponse struct {
 }
 
 // CreateOrUpdate ...
-func (c ComputePoliciesClient) CreateOrUpdate(ctx context.Context, id ComputePoliciesId, input CreateOrUpdateComputePolicyParameters) (result CreateOrUpdateOperationResponse, err error) {
+func (c ComputePoliciesClient) CreateOrUpdate(ctx context.Context, id ComputePolicyId, input CreateOrUpdateComputePolicyParameters) (result CreateOrUpdateOperationResponse, err error) {
 	req, err := c.preparerForCreateOrUpdate(ctx, id, input)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "computepolicies.ComputePoliciesClient", "CreateOrUpdate", nil, "Failure preparing request")
@@ -40,7 +40,7 @@ func (c ComputePoliciesClient) CreateOrUpdate(ctx context.Context, id ComputePol
 }
 
 // preparerForCreateOrUpdate prepares the CreateOrUpdate request.
-func (c ComputePoliciesClient) preparerForCreateOrUpdate(ctx context.Context, id ComputePoliciesId, input CreateOrUpdateComputePolicyParameters) (*http.Request, error) {
+func (c ComputePoliciesClient) preparerForCreateOrUpdate(ctx context.Context, id ComputePolicyId, input CreateOrUpdateComputePolicyParameters) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

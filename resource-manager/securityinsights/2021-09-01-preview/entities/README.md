@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := entities.NewEntitiesID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "entityIdValue")
+id := entities.NewEntityID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "entityIdValue")
 
 payload := entities.EntityExpandParameters{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := entities.NewEntitiesID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "entityIdValue")
+id := entities.NewEntityID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "entityIdValue")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := entities.NewEntitiesID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "entityIdValue")
+id := entities.NewEntityID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "entityIdValue")
 
 payload := entities.EntityGetInsightsParameters{
 	// ...
@@ -82,7 +82,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := entities.NewEntitiesID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "entityIdValue")
+id := entities.NewEntityID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "entityIdValue")
 
 payload := entities.EntityTimelineParameters{
 	// ...
@@ -120,7 +120,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := entities.NewEntitiesID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "entityIdValue")
+id := entities.NewEntityID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "entityIdValue")
 
 read, err := client.Queries(ctx, id, entities.DefaultQueriesOperationOptions())
 if err != nil {

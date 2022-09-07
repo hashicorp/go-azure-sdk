@@ -19,7 +19,7 @@ type CreateOrUpdateOperationResponse struct {
 }
 
 // CreateOrUpdate ...
-func (c EntityQueriesClient) CreateOrUpdate(ctx context.Context, id EntityQueriesId, input CustomEntityQuery) (result CreateOrUpdateOperationResponse, err error) {
+func (c EntityQueriesClient) CreateOrUpdate(ctx context.Context, id EntityQueryId, input CustomEntityQuery) (result CreateOrUpdateOperationResponse, err error) {
 	req, err := c.preparerForCreateOrUpdate(ctx, id, input)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "entityqueries.EntityQueriesClient", "CreateOrUpdate", nil, "Failure preparing request")
@@ -42,7 +42,7 @@ func (c EntityQueriesClient) CreateOrUpdate(ctx context.Context, id EntityQuerie
 }
 
 // preparerForCreateOrUpdate prepares the CreateOrUpdate request.
-func (c EntityQueriesClient) preparerForCreateOrUpdate(ctx context.Context, id EntityQueriesId, input CustomEntityQuery) (*http.Request, error) {
+func (c EntityQueriesClient) preparerForCreateOrUpdate(ctx context.Context, id EntityQueryId, input CustomEntityQuery) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

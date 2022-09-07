@@ -18,7 +18,7 @@ type ExpandOperationResponse struct {
 }
 
 // Expand ...
-func (c EntitiesClient) Expand(ctx context.Context, id EntitiesId, input EntityExpandParameters) (result ExpandOperationResponse, err error) {
+func (c EntitiesClient) Expand(ctx context.Context, id EntityId, input EntityExpandParameters) (result ExpandOperationResponse, err error) {
 	req, err := c.preparerForExpand(ctx, id, input)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "entities.EntitiesClient", "Expand", nil, "Failure preparing request")
@@ -41,7 +41,7 @@ func (c EntitiesClient) Expand(ctx context.Context, id EntitiesId, input EntityE
 }
 
 // preparerForExpand prepares the Expand request.
-func (c EntitiesClient) preparerForExpand(ctx context.Context, id EntitiesId, input EntityExpandParameters) (*http.Request, error) {
+func (c EntitiesClient) preparerForExpand(ctx context.Context, id EntityId, input EntityExpandParameters) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}
