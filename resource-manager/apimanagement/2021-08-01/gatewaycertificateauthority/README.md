@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := gatewaycertificateauthority.NewCertificateAuthoritiesID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "gatewayIdValue", "certificateIdValue")
+id := gatewaycertificateauthority.NewCertificateAuthorityID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "gatewayIdValue", "certificateIdValue")
 
 payload := gatewaycertificateauthority.GatewayCertificateAuthorityContract{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := gatewaycertificateauthority.NewCertificateAuthoritiesID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "gatewayIdValue", "certificateIdValue")
+id := gatewaycertificateauthority.NewCertificateAuthorityID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "gatewayIdValue", "certificateIdValue")
 
 read, err := client.Delete(ctx, id, gatewaycertificateauthority.DefaultDeleteOperationOptions())
 if err != nil {
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := gatewaycertificateauthority.NewCertificateAuthoritiesID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "gatewayIdValue", "certificateIdValue")
+id := gatewaycertificateauthority.NewCertificateAuthorityID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "gatewayIdValue", "certificateIdValue")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -77,7 +77,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := gatewaycertificateauthority.NewCertificateAuthoritiesID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "gatewayIdValue", "certificateIdValue")
+id := gatewaycertificateauthority.NewCertificateAuthorityID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "gatewayIdValue", "certificateIdValue")
 
 read, err := client.GetEntityTag(ctx, id)
 if err != nil {

@@ -18,7 +18,7 @@ type ContentKeyPoliciesGetPolicyPropertiesWithSecretsOperationResponse struct {
 }
 
 // ContentKeyPoliciesGetPolicyPropertiesWithSecrets ...
-func (c ContentKeyPoliciesClient) ContentKeyPoliciesGetPolicyPropertiesWithSecrets(ctx context.Context, id ContentKeyPoliciesId) (result ContentKeyPoliciesGetPolicyPropertiesWithSecretsOperationResponse, err error) {
+func (c ContentKeyPoliciesClient) ContentKeyPoliciesGetPolicyPropertiesWithSecrets(ctx context.Context, id ContentKeyPolicyId) (result ContentKeyPoliciesGetPolicyPropertiesWithSecretsOperationResponse, err error) {
 	req, err := c.preparerForContentKeyPoliciesGetPolicyPropertiesWithSecrets(ctx, id)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "contentkeypolicies.ContentKeyPoliciesClient", "ContentKeyPoliciesGetPolicyPropertiesWithSecrets", nil, "Failure preparing request")
@@ -41,7 +41,7 @@ func (c ContentKeyPoliciesClient) ContentKeyPoliciesGetPolicyPropertiesWithSecre
 }
 
 // preparerForContentKeyPoliciesGetPolicyPropertiesWithSecrets prepares the ContentKeyPoliciesGetPolicyPropertiesWithSecrets request.
-func (c ContentKeyPoliciesClient) preparerForContentKeyPoliciesGetPolicyPropertiesWithSecrets(ctx context.Context, id ContentKeyPoliciesId) (*http.Request, error) {
+func (c ContentKeyPoliciesClient) preparerForContentKeyPoliciesGetPolicyPropertiesWithSecrets(ctx context.Context, id ContentKeyPolicyId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

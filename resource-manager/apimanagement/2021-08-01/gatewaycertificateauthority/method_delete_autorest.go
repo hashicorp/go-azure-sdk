@@ -40,7 +40,7 @@ func (o DeleteOperationOptions) toQueryString() map[string]interface{} {
 }
 
 // Delete ...
-func (c GatewayCertificateAuthorityClient) Delete(ctx context.Context, id CertificateAuthoritiesId, options DeleteOperationOptions) (result DeleteOperationResponse, err error) {
+func (c GatewayCertificateAuthorityClient) Delete(ctx context.Context, id CertificateAuthorityId, options DeleteOperationOptions) (result DeleteOperationResponse, err error) {
 	req, err := c.preparerForDelete(ctx, id, options)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "gatewaycertificateauthority.GatewayCertificateAuthorityClient", "Delete", nil, "Failure preparing request")
@@ -63,7 +63,7 @@ func (c GatewayCertificateAuthorityClient) Delete(ctx context.Context, id Certif
 }
 
 // preparerForDelete prepares the Delete request.
-func (c GatewayCertificateAuthorityClient) preparerForDelete(ctx context.Context, id CertificateAuthoritiesId, options DeleteOperationOptions) (*http.Request, error) {
+func (c GatewayCertificateAuthorityClient) preparerForDelete(ctx context.Context, id CertificateAuthorityId, options DeleteOperationOptions) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

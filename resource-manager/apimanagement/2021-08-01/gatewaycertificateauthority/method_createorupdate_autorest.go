@@ -41,7 +41,7 @@ func (o CreateOrUpdateOperationOptions) toQueryString() map[string]interface{} {
 }
 
 // CreateOrUpdate ...
-func (c GatewayCertificateAuthorityClient) CreateOrUpdate(ctx context.Context, id CertificateAuthoritiesId, input GatewayCertificateAuthorityContract, options CreateOrUpdateOperationOptions) (result CreateOrUpdateOperationResponse, err error) {
+func (c GatewayCertificateAuthorityClient) CreateOrUpdate(ctx context.Context, id CertificateAuthorityId, input GatewayCertificateAuthorityContract, options CreateOrUpdateOperationOptions) (result CreateOrUpdateOperationResponse, err error) {
 	req, err := c.preparerForCreateOrUpdate(ctx, id, input, options)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "gatewaycertificateauthority.GatewayCertificateAuthorityClient", "CreateOrUpdate", nil, "Failure preparing request")
@@ -64,7 +64,7 @@ func (c GatewayCertificateAuthorityClient) CreateOrUpdate(ctx context.Context, i
 }
 
 // preparerForCreateOrUpdate prepares the CreateOrUpdate request.
-func (c GatewayCertificateAuthorityClient) preparerForCreateOrUpdate(ctx context.Context, id CertificateAuthoritiesId, input GatewayCertificateAuthorityContract, options CreateOrUpdateOperationOptions) (*http.Request, error) {
+func (c GatewayCertificateAuthorityClient) preparerForCreateOrUpdate(ctx context.Context, id CertificateAuthorityId, input GatewayCertificateAuthorityContract, options CreateOrUpdateOperationOptions) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

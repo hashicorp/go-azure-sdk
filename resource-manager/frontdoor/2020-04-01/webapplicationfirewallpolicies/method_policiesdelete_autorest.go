@@ -19,7 +19,7 @@ type PoliciesDeleteOperationResponse struct {
 }
 
 // PoliciesDelete ...
-func (c WebApplicationFirewallPoliciesClient) PoliciesDelete(ctx context.Context, id FrontDoorWebApplicationFirewallPoliciesId) (result PoliciesDeleteOperationResponse, err error) {
+func (c WebApplicationFirewallPoliciesClient) PoliciesDelete(ctx context.Context, id FrontDoorWebApplicationFirewallPolicyId) (result PoliciesDeleteOperationResponse, err error) {
 	req, err := c.preparerForPoliciesDelete(ctx, id)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "webapplicationfirewallpolicies.WebApplicationFirewallPoliciesClient", "PoliciesDelete", nil, "Failure preparing request")
@@ -36,7 +36,7 @@ func (c WebApplicationFirewallPoliciesClient) PoliciesDelete(ctx context.Context
 }
 
 // PoliciesDeleteThenPoll performs PoliciesDelete then polls until it's completed
-func (c WebApplicationFirewallPoliciesClient) PoliciesDeleteThenPoll(ctx context.Context, id FrontDoorWebApplicationFirewallPoliciesId) error {
+func (c WebApplicationFirewallPoliciesClient) PoliciesDeleteThenPoll(ctx context.Context, id FrontDoorWebApplicationFirewallPolicyId) error {
 	result, err := c.PoliciesDelete(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing PoliciesDelete: %+v", err)
@@ -50,7 +50,7 @@ func (c WebApplicationFirewallPoliciesClient) PoliciesDeleteThenPoll(ctx context
 }
 
 // preparerForPoliciesDelete prepares the PoliciesDelete request.
-func (c WebApplicationFirewallPoliciesClient) preparerForPoliciesDelete(ctx context.Context, id FrontDoorWebApplicationFirewallPoliciesId) (*http.Request, error) {
+func (c WebApplicationFirewallPoliciesClient) preparerForPoliciesDelete(ctx context.Context, id FrontDoorWebApplicationFirewallPolicyId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

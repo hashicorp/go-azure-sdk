@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := entityqueries.NewEntityQueriesID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "entityQueryIdValue")
+id := entityqueries.NewEntityQueryID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "entityQueryIdValue")
 
 payload := entityqueries.CustomEntityQuery{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := entityqueries.NewEntityQueriesID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "entityQueryIdValue")
+id := entityqueries.NewEntityQueryID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "entityQueryIdValue")
 
 read, err := client.Delete(ctx, id)
 if err != nil {
@@ -94,7 +94,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := entityqueries.NewEntityQueriesID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "entityQueryIdValue")
+id := entityqueries.NewEntityQueryID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "entityQueryIdValue")
 
 read, err := client.Get(ctx, id)
 if err != nil {

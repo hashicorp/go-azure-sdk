@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := webapplicationfirewallpolicies.NewFrontDoorWebApplicationFirewallPoliciesID("12345678-1234-9876-4563-123456789012", "example-resource-group", "policyValue")
+id := webapplicationfirewallpolicies.NewFrontDoorWebApplicationFirewallPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "policyValue")
 
 payload := webapplicationfirewallpolicies.WebApplicationFirewallPolicy{
 	// ...
@@ -41,7 +41,7 @@ if err := client.PoliciesCreateOrUpdateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := webapplicationfirewallpolicies.NewFrontDoorWebApplicationFirewallPoliciesID("12345678-1234-9876-4563-123456789012", "example-resource-group", "policyValue")
+id := webapplicationfirewallpolicies.NewFrontDoorWebApplicationFirewallPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "policyValue")
 
 if err := client.PoliciesDeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -53,7 +53,7 @@ if err := client.PoliciesDeleteThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := webapplicationfirewallpolicies.NewFrontDoorWebApplicationFirewallPoliciesID("12345678-1234-9876-4563-123456789012", "example-resource-group", "policyValue")
+id := webapplicationfirewallpolicies.NewFrontDoorWebApplicationFirewallPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "policyValue")
 
 read, err := client.PoliciesGet(ctx, id)
 if err != nil {

@@ -16,7 +16,7 @@ type GetEntityTagOperationResponse struct {
 }
 
 // GetEntityTag ...
-func (c GatewayCertificateAuthorityClient) GetEntityTag(ctx context.Context, id CertificateAuthoritiesId) (result GetEntityTagOperationResponse, err error) {
+func (c GatewayCertificateAuthorityClient) GetEntityTag(ctx context.Context, id CertificateAuthorityId) (result GetEntityTagOperationResponse, err error) {
 	req, err := c.preparerForGetEntityTag(ctx, id)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "gatewaycertificateauthority.GatewayCertificateAuthorityClient", "GetEntityTag", nil, "Failure preparing request")
@@ -39,7 +39,7 @@ func (c GatewayCertificateAuthorityClient) GetEntityTag(ctx context.Context, id 
 }
 
 // preparerForGetEntityTag prepares the GetEntityTag request.
-func (c GatewayCertificateAuthorityClient) preparerForGetEntityTag(ctx context.Context, id CertificateAuthoritiesId) (*http.Request, error) {
+func (c GatewayCertificateAuthorityClient) preparerForGetEntityTag(ctx context.Context, id CertificateAuthorityId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

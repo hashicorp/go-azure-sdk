@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := capabilities.NewCapabilitiesID("12345678-1234-9876-4563-123456789012", "example-resource-group", "parentProviderNamespaceValue", "parentResourceTypeValue", "parentResourceValue", "targetValue", "capabilityValue")
+id := capabilities.NewCapabilityID("12345678-1234-9876-4563-123456789012", "example-resource-group", "parentProviderNamespaceValue", "parentResourceTypeValue", "parentResourceValue", "targetValue", "capabilityValue")
 
 payload := capabilities.Capability{
 	// ...
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := capabilities.NewCapabilitiesID("12345678-1234-9876-4563-123456789012", "example-resource-group", "parentProviderNamespaceValue", "parentResourceTypeValue", "parentResourceValue", "targetValue", "capabilityValue")
+id := capabilities.NewCapabilityID("12345678-1234-9876-4563-123456789012", "example-resource-group", "parentProviderNamespaceValue", "parentResourceTypeValue", "parentResourceValue", "targetValue", "capabilityValue")
 
 read, err := client.Delete(ctx, id)
 if err != nil {
@@ -77,7 +77,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := capabilities.NewCapabilitiesID("12345678-1234-9876-4563-123456789012", "example-resource-group", "parentProviderNamespaceValue", "parentResourceTypeValue", "parentResourceValue", "targetValue", "capabilityValue")
+id := capabilities.NewCapabilityID("12345678-1234-9876-4563-123456789012", "example-resource-group", "parentProviderNamespaceValue", "parentResourceTypeValue", "parentResourceValue", "targetValue", "capabilityValue")
 
 read, err := client.Get(ctx, id)
 if err != nil {

@@ -17,7 +17,7 @@ type GetOperationResponse struct {
 }
 
 // Get ...
-func (c TenantAccessClient) Get(ctx context.Context, id AccesId) (result GetOperationResponse, err error) {
+func (c TenantAccessClient) Get(ctx context.Context, id AccessId) (result GetOperationResponse, err error) {
 	req, err := c.preparerForGet(ctx, id)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "tenantaccess.TenantAccessClient", "Get", nil, "Failure preparing request")
@@ -40,7 +40,7 @@ func (c TenantAccessClient) Get(ctx context.Context, id AccesId) (result GetOper
 }
 
 // preparerForGet prepares the Get request.
-func (c TenantAccessClient) preparerForGet(ctx context.Context, id AccesId) (*http.Request, error) {
+func (c TenantAccessClient) preparerForGet(ctx context.Context, id AccessId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

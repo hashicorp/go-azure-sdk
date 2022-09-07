@@ -18,7 +18,7 @@ type GetTimelinelistOperationResponse struct {
 }
 
 // GetTimelinelist ...
-func (c EntitiesClient) GetTimelinelist(ctx context.Context, id EntitiesId, input EntityTimelineParameters) (result GetTimelinelistOperationResponse, err error) {
+func (c EntitiesClient) GetTimelinelist(ctx context.Context, id EntityId, input EntityTimelineParameters) (result GetTimelinelistOperationResponse, err error) {
 	req, err := c.preparerForGetTimelinelist(ctx, id, input)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "entities.EntitiesClient", "GetTimelinelist", nil, "Failure preparing request")
@@ -41,7 +41,7 @@ func (c EntitiesClient) GetTimelinelist(ctx context.Context, id EntitiesId, inpu
 }
 
 // preparerForGetTimelinelist prepares the GetTimelinelist request.
-func (c EntitiesClient) preparerForGetTimelinelist(ctx context.Context, id EntitiesId, input EntityTimelineParameters) (*http.Request, error) {
+func (c EntitiesClient) preparerForGetTimelinelist(ctx context.Context, id EntityId, input EntityTimelineParameters) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

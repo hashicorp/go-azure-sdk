@@ -17,7 +17,7 @@ type GetOperationResponse struct {
 }
 
 // Get ...
-func (c GatewayCertificateAuthorityClient) Get(ctx context.Context, id CertificateAuthoritiesId) (result GetOperationResponse, err error) {
+func (c GatewayCertificateAuthorityClient) Get(ctx context.Context, id CertificateAuthorityId) (result GetOperationResponse, err error) {
 	req, err := c.preparerForGet(ctx, id)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "gatewaycertificateauthority.GatewayCertificateAuthorityClient", "Get", nil, "Failure preparing request")
@@ -40,7 +40,7 @@ func (c GatewayCertificateAuthorityClient) Get(ctx context.Context, id Certifica
 }
 
 // preparerForGet prepares the Get request.
-func (c GatewayCertificateAuthorityClient) preparerForGet(ctx context.Context, id CertificateAuthoritiesId) (*http.Request, error) {
+func (c GatewayCertificateAuthorityClient) preparerForGet(ctx context.Context, id CertificateAuthorityId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

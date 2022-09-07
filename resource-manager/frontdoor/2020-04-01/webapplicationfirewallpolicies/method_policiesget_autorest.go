@@ -17,7 +17,7 @@ type PoliciesGetOperationResponse struct {
 }
 
 // PoliciesGet ...
-func (c WebApplicationFirewallPoliciesClient) PoliciesGet(ctx context.Context, id FrontDoorWebApplicationFirewallPoliciesId) (result PoliciesGetOperationResponse, err error) {
+func (c WebApplicationFirewallPoliciesClient) PoliciesGet(ctx context.Context, id FrontDoorWebApplicationFirewallPolicyId) (result PoliciesGetOperationResponse, err error) {
 	req, err := c.preparerForPoliciesGet(ctx, id)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "webapplicationfirewallpolicies.WebApplicationFirewallPoliciesClient", "PoliciesGet", nil, "Failure preparing request")
@@ -40,7 +40,7 @@ func (c WebApplicationFirewallPoliciesClient) PoliciesGet(ctx context.Context, i
 }
 
 // preparerForPoliciesGet prepares the PoliciesGet request.
-func (c WebApplicationFirewallPoliciesClient) preparerForPoliciesGet(ctx context.Context, id FrontDoorWebApplicationFirewallPoliciesId) (*http.Request, error) {
+func (c WebApplicationFirewallPoliciesClient) preparerForPoliciesGet(ctx context.Context, id FrontDoorWebApplicationFirewallPolicyId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

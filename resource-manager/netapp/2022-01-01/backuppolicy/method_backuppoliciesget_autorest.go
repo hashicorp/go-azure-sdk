@@ -17,7 +17,7 @@ type BackupPoliciesGetOperationResponse struct {
 }
 
 // BackupPoliciesGet ...
-func (c BackupPolicyClient) BackupPoliciesGet(ctx context.Context, id BackupPoliciesId) (result BackupPoliciesGetOperationResponse, err error) {
+func (c BackupPolicyClient) BackupPoliciesGet(ctx context.Context, id BackupPolicyId) (result BackupPoliciesGetOperationResponse, err error) {
 	req, err := c.preparerForBackupPoliciesGet(ctx, id)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "backuppolicy.BackupPolicyClient", "BackupPoliciesGet", nil, "Failure preparing request")
@@ -40,7 +40,7 @@ func (c BackupPolicyClient) BackupPoliciesGet(ctx context.Context, id BackupPoli
 }
 
 // preparerForBackupPoliciesGet prepares the BackupPoliciesGet request.
-func (c BackupPolicyClient) preparerForBackupPoliciesGet(ctx context.Context, id BackupPoliciesId) (*http.Request, error) {
+func (c BackupPolicyClient) preparerForBackupPoliciesGet(ctx context.Context, id BackupPolicyId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

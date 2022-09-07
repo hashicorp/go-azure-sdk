@@ -19,7 +19,7 @@ type BackupPoliciesDeleteOperationResponse struct {
 }
 
 // BackupPoliciesDelete ...
-func (c BackupPolicyClient) BackupPoliciesDelete(ctx context.Context, id BackupPoliciesId) (result BackupPoliciesDeleteOperationResponse, err error) {
+func (c BackupPolicyClient) BackupPoliciesDelete(ctx context.Context, id BackupPolicyId) (result BackupPoliciesDeleteOperationResponse, err error) {
 	req, err := c.preparerForBackupPoliciesDelete(ctx, id)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "backuppolicy.BackupPolicyClient", "BackupPoliciesDelete", nil, "Failure preparing request")
@@ -36,7 +36,7 @@ func (c BackupPolicyClient) BackupPoliciesDelete(ctx context.Context, id BackupP
 }
 
 // BackupPoliciesDeleteThenPoll performs BackupPoliciesDelete then polls until it's completed
-func (c BackupPolicyClient) BackupPoliciesDeleteThenPoll(ctx context.Context, id BackupPoliciesId) error {
+func (c BackupPolicyClient) BackupPoliciesDeleteThenPoll(ctx context.Context, id BackupPolicyId) error {
 	result, err := c.BackupPoliciesDelete(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing BackupPoliciesDelete: %+v", err)
@@ -50,7 +50,7 @@ func (c BackupPolicyClient) BackupPoliciesDeleteThenPoll(ctx context.Context, id
 }
 
 // preparerForBackupPoliciesDelete prepares the BackupPoliciesDelete request.
-func (c BackupPolicyClient) preparerForBackupPoliciesDelete(ctx context.Context, id BackupPoliciesId) (*http.Request, error) {
+func (c BackupPolicyClient) preparerForBackupPoliciesDelete(ctx context.Context, id BackupPolicyId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

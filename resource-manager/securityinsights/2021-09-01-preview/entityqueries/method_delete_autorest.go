@@ -16,7 +16,7 @@ type DeleteOperationResponse struct {
 }
 
 // Delete ...
-func (c EntityQueriesClient) Delete(ctx context.Context, id EntityQueriesId) (result DeleteOperationResponse, err error) {
+func (c EntityQueriesClient) Delete(ctx context.Context, id EntityQueryId) (result DeleteOperationResponse, err error) {
 	req, err := c.preparerForDelete(ctx, id)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "entityqueries.EntityQueriesClient", "Delete", nil, "Failure preparing request")
@@ -39,7 +39,7 @@ func (c EntityQueriesClient) Delete(ctx context.Context, id EntityQueriesId) (re
 }
 
 // preparerForDelete prepares the Delete request.
-func (c EntityQueriesClient) preparerForDelete(ctx context.Context, id EntityQueriesId) (*http.Request, error) {
+func (c EntityQueriesClient) preparerForDelete(ctx context.Context, id EntityQueryId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

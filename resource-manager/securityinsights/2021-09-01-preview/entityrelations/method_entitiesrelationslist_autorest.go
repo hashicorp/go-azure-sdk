@@ -72,7 +72,7 @@ func (o EntitiesRelationsListOperationOptions) toQueryString() map[string]interf
 }
 
 // EntitiesRelationsList ...
-func (c EntityRelationsClient) EntitiesRelationsList(ctx context.Context, id EntitiesId, options EntitiesRelationsListOperationOptions) (resp EntitiesRelationsListOperationResponse, err error) {
+func (c EntityRelationsClient) EntitiesRelationsList(ctx context.Context, id EntityId, options EntitiesRelationsListOperationOptions) (resp EntitiesRelationsListOperationResponse, err error) {
 	req, err := c.preparerForEntitiesRelationsList(ctx, id, options)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "entityrelations.EntityRelationsClient", "EntitiesRelationsList", nil, "Failure preparing request")
@@ -94,7 +94,7 @@ func (c EntityRelationsClient) EntitiesRelationsList(ctx context.Context, id Ent
 }
 
 // preparerForEntitiesRelationsList prepares the EntitiesRelationsList request.
-func (c EntityRelationsClient) preparerForEntitiesRelationsList(ctx context.Context, id EntitiesId, options EntitiesRelationsListOperationOptions) (*http.Request, error) {
+func (c EntityRelationsClient) preparerForEntitiesRelationsList(ctx context.Context, id EntityId, options EntitiesRelationsListOperationOptions) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}
@@ -181,12 +181,12 @@ func (c EntityRelationsClient) responderForEntitiesRelationsList(resp *http.Resp
 }
 
 // EntitiesRelationsListComplete retrieves all of the results into a single object
-func (c EntityRelationsClient) EntitiesRelationsListComplete(ctx context.Context, id EntitiesId, options EntitiesRelationsListOperationOptions) (EntitiesRelationsListCompleteResult, error) {
+func (c EntityRelationsClient) EntitiesRelationsListComplete(ctx context.Context, id EntityId, options EntitiesRelationsListOperationOptions) (EntitiesRelationsListCompleteResult, error) {
 	return c.EntitiesRelationsListCompleteMatchingPredicate(ctx, id, options, RelationOperationPredicate{})
 }
 
 // EntitiesRelationsListCompleteMatchingPredicate retrieves all of the results and then applied the predicate
-func (c EntityRelationsClient) EntitiesRelationsListCompleteMatchingPredicate(ctx context.Context, id EntitiesId, options EntitiesRelationsListOperationOptions, predicate RelationOperationPredicate) (resp EntitiesRelationsListCompleteResult, err error) {
+func (c EntityRelationsClient) EntitiesRelationsListCompleteMatchingPredicate(ctx context.Context, id EntityId, options EntitiesRelationsListOperationOptions, predicate RelationOperationPredicate) (resp EntitiesRelationsListCompleteResult, err error) {
 	items := make([]Relation, 0)
 
 	page, err := c.EntitiesRelationsList(ctx, id, options)
