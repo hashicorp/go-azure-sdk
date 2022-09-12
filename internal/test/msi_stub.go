@@ -15,6 +15,13 @@ func MsiStubServer(ctx context.Context, port int, token string) chan bool {
 		clientId := q.Get("client_id")
 		resource := q.Get("resource")
 		w.Header().Set("Content-Type", "application/json; charset=utf-8")
+
+		if r.Header.Get("Metadata") != "true" {
+			w.WriteHeader(http.StatusBadRequest)
+			fmt.Fprint(w, `{}`)
+			return
+		}
+
 		fmt.Fprintf(w, `{"access_token":"%s","client_id":"%s","expires_in":"86391","expires_on":"1611701390","ext_expires_in":"86399","not_before":"1611614690","resource":"%s","token_type":"Bearer"}`,
 			token, clientId, resource)
 	})
