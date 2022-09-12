@@ -4,8 +4,9 @@ import (
 	"encoding/base64"
 	"encoding/json"
 	"errors"
-	"golang.org/x/oauth2"
 	"strings"
+
+	"golang.org/x/oauth2"
 )
 
 // Copyright (c) HashiCorp Inc. All rights reserved.

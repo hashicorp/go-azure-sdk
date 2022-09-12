@@ -12,7 +12,6 @@ import (
 	"encoding/base64"
 	"encoding/json"
 	"fmt"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
 	"io"
 	"io/ioutil"
 	"net/http"
@@ -21,6 +20,7 @@ import (
 	"strings"
 	"time"
 
+	"github.com/hashicorp/go-azure-sdk/sdk/environments"
 	"github.com/hashicorp/go-uuid"
 	"golang.org/x/oauth2"
 )

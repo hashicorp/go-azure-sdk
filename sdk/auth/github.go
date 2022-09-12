@@ -4,12 +4,12 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
 	"io"
 	"io/ioutil"
 	"net/http"
 	"net/url"
 
+	"github.com/hashicorp/go-azure-sdk/sdk/environments"
 	"golang.org/x/oauth2"
 )
 

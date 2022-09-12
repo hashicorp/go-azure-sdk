@@ -10,9 +10,9 @@ type Environment struct {
 	// The Azure AD endpoint for acquiring access tokens.
 	AzureADEndpoint AzureADEndpoint
 
-	// Management plane API definitions
-	MsGraph             Api
-	AadGraph            Api
+	// API definitions
+	MSGraph             Api
+	AADGraph            Api
 	ResourceManager     Api
 	BatchManagement     Api
 	DataLake            Api
@@ -29,8 +29,8 @@ type Environment struct {
 var (
 	Global = Environment{
 		AzureADEndpoint:     AzureADGlobal,
-		MsGraph:             MsGraphGlobal,
-		AadGraph:            AadGraphGlobal,
+		MSGraph:             MsGraphGlobal,
+		AADGraph:            AadGraphGlobal,
 		ResourceManager:     ResourceManagerPublic,
 		BatchManagement:     BatchManagementPublic,
 		DataLake:            DataLakePublic,
@@ -48,8 +48,8 @@ var (
 
 	China = Environment{
 		AzureADEndpoint:     AzureADChina,
-		MsGraph:             MsGraphChina,
-		AadGraph:            AadGraphChina,
+		MSGraph:             MsGraphChina,
+		AADGraph:            AadGraphChina,
 		ResourceManager:     ResourceManagerChina,
 		BatchManagement:     BatchManagementChina,
 		KeyVault:            KeyVaultChina,
@@ -64,8 +64,8 @@ var (
 
 	USGovernmentL4 = Environment{
 		AzureADEndpoint:     AzureADUSGov,
-		MsGraph:             MsGraphUSGovL4,
-		AadGraph:            AadGraphUSGov,
+		MSGraph:             MsGraphUSGovL4,
+		AADGraph:            AadGraphUSGov,
 		ResourceManager:     ResourceManagerUSGov,
 		BatchManagement:     BatchManagementUSGov,
 		DataLake:            ApiUnavailable,
@@ -81,8 +81,8 @@ var (
 
 	USGovernmentL5 = Environment{
 		AzureADEndpoint:     AzureADUSGov,
-		MsGraph:             MsGraphUSGovL5,
-		AadGraph:            AadGraphUSGov,
+		MSGraph:             MsGraphUSGovL5,
+		AADGraph:            AadGraphUSGov,
 		ResourceManager:     ResourceManagerUSGov,
 		BatchManagement:     BatchManagementUSGov,
 		DataLake:            ApiUnavailable,
@@ -98,16 +98,11 @@ var (
 
 	Canary = Environment{
 		AzureADEndpoint: AzureADGlobal,
-		MsGraph:         MsGraphCanary,
+		MSGraph:         MsGraphCanary,
 	}
 )
 
-func EnvironmentFromEndpoint(env, metadataHost string) (Environment, error) {
-	// TODO: implement
-	return Environment{}, fmt.Errorf("not implemented")
-}
-
-func EnvironmentFromString(env string) (Environment, error) {
+func FromNamed(env string) (Environment, error) {
 	switch strings.ToLower(env) {
 	case "public", "global":
 		return Global, nil

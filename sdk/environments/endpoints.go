@@ -1,6 +1,14 @@
 package environments
 
+import (
+	"strings"
+)
+
 type AzureADEndpoint string
+
+func azureAdEndpoint(uri string) AzureADEndpoint {
+	return AzureADEndpoint(strings.TrimSuffix(uri, "/"))
+}
 
 const (
 	AzureADGlobal AzureADEndpoint = "https://login.microsoftonline.com"
@@ -9,6 +17,10 @@ const (
 )
 
 type ApiEndpoint string
+
+func apiEndpoint(uri string) ApiEndpoint {
+	return ApiEndpoint(strings.TrimSuffix(uri, "/"))
+}
 
 const (
 	MsGraphGlobalEndpoint  ApiEndpoint = "https://graph.microsoft.com"

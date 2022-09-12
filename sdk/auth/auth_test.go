@@ -51,14 +51,14 @@ func TestClientCertificateAuthorizerV2(t *testing.T) {
 }
 
 func testClientCertificateAuthorizer(ctx context.Context, t *testing.T, tokenVersion auth.TokenVersion) (token *oauth2.Token) {
-	env, err := environments.EnvironmentFromString(environment)
+	env, err := environments.FromNamed(environment)
 	if err != nil {
 		t.Fatal(err)
 	}
 
 	pfx := utils.Base64DecodeCertificate(clientCertificate)
 
-	authorizer, err := auth.NewClientCertificateAuthorizer(ctx, env, env.MsGraph, tokenVersion, tenantId, []string{}, clientId, pfx, clientCertificatePath, clientCertPassword)
+	authorizer, err := auth.NewClientCertificateAuthorizer(ctx, env, env.MSGraph, tokenVersion, tenantId, []string{}, clientId, pfx, clientCertificatePath, clientCertPassword)
 	if err != nil {
 		t.Fatalf("NewClientCertificateAuthorizer(): %v", err)
 	}
@@ -91,12 +91,12 @@ func TestClientSecretAuthorizerV2(t *testing.T) {
 }
 
 func testClientSecretAuthorizer(ctx context.Context, t *testing.T, tokenVersion auth.TokenVersion) (token *oauth2.Token) {
-	env, err := environments.EnvironmentFromString(environment)
+	env, err := environments.FromNamed(environment)
 	if err != nil {
 		t.Fatal(err)
 	}
 
-	authorizer, err := auth.NewClientSecretAuthorizer(ctx, env, env.MsGraph, tokenVersion, tenantId, []string{}, clientId, clientSecret)
+	authorizer, err := auth.NewClientSecretAuthorizer(ctx, env, env.MSGraph, tokenVersion, tenantId, []string{}, clientId, clientSecret)
 	if err != nil {
 		t.Fatalf("NewClientSecretAuthorizer(): %v", err)
 	}
@@ -124,12 +124,12 @@ func TestAzureCliAuthorizer(t *testing.T) {
 }
 
 func testAzureCliAuthorizer(ctx context.Context, t *testing.T) (token *oauth2.Token) {
-	env, err := environments.EnvironmentFromString(environment)
+	env, err := environments.FromNamed(environment)
 	if err != nil {
 		t.Fatal(err)
 	}
 
-	authorizer, err := auth.NewAzureCliAuthorizer(ctx, env.MsGraph, tenantId)
+	authorizer, err := auth.NewAzureCliAuthorizer(ctx, env.MSGraph, tenantId)
 	if err != nil {
 		t.Fatalf("NewAzureCliAuthorizer(): %v", err)
 	}
@@ -162,12 +162,12 @@ func TestMsiAuthorizer(t *testing.T) {
 		}()
 	}
 
-	env, err := environments.EnvironmentFromString(environment)
+	env, err := environments.FromNamed(environment)
 	if err != nil {
 		t.Fatal(err)
 	}
 
-	auth, err := auth.NewMsiAuthorizer(ctx, env.MsGraph, msiEndpoint, clientId)
+	auth, err := auth.NewMsiAuthorizer(ctx, env.MSGraph, msiEndpoint, clientId)
 	if err != nil {
 		t.Fatalf("NewMsiAuthorizer(): %v", err)
 	}
@@ -192,12 +192,12 @@ func TestOIDCAuthorizer(t *testing.T) {
 		t.Skip("idToken was empty")
 	}
 
-	env, err := environments.EnvironmentFromString(environment)
+	env, err := environments.FromNamed(environment)
 	if err != nil {
 		t.Fatal(err)
 	}
 
-	authorizer, err := auth.NewOIDCAuthorizer(context.Background(), env, env.MsGraph, tenantId, []string{}, clientId, idToken)
+	authorizer, err := auth.NewOIDCAuthorizer(context.Background(), env, env.MSGraph, tenantId, []string{}, clientId, idToken)
 	if err != nil {
 		t.Fatalf("NewOIDCAuthorizer(): %v", err)
 	}
@@ -225,12 +225,12 @@ func TestGitHubOIDCAuthorizer(t *testing.T) {
 		t.Skip("gitHubToken was empty")
 	}
 
-	env, err := environments.EnvironmentFromString(environment)
+	env, err := environments.FromNamed(environment)
 	if err != nil {
 		t.Fatal(err)
 	}
 
-	authorizer, err := auth.NewGitHubOIDCAuthorizer(context.Background(), env, env.MsGraph, tenantId, []string{}, clientId, gitHubTokenURL, gitHubToken)
+	authorizer, err := auth.NewGitHubOIDCAuthorizer(context.Background(), env, env.MSGraph, tenantId, []string{}, clientId, gitHubTokenURL, gitHubToken)
 	if err != nil {
 		t.Fatalf("NewGitHubOIDCAuthorizer(): %v", err)
 	}
