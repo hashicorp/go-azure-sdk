@@ -6,7 +6,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
-	"io/ioutil"
 	"math"
 	"net"
 	"net/http"
@@ -103,7 +102,7 @@ func (r *Request) Marshal(model interface{}) error {
 	body, err := json.Marshal(model)
 	if err == nil {
 		r.ContentLength = int64(len(body))
-		r.Body = ioutil.NopCloser(bytes.NewReader(body))
+		r.Body = io.NopCloser(bytes.NewReader(body))
 	}
 	return nil
 }

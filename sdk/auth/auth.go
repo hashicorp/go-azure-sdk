@@ -3,7 +3,7 @@ package auth
 import (
 	"context"
 	"fmt"
-	"io/ioutil"
+	"os"
 	"strings"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/environments"
@@ -133,7 +133,7 @@ func NewMsiAuthorizer(ctx context.Context, api environments.Api, msiEndpoint, cl
 func NewClientCertificateAuthorizer(ctx context.Context, environment environments.Environment, api environments.Api, tokenVersion TokenVersion, tenantId string, auxTenantIds []string, clientId string, pkcs12Data []byte, pkcs12Path, pkcs12Pass string) (Authorizer, error) {
 	if len(pkcs12Data) == 0 {
 		var err error
-		pkcs12Data, err = ioutil.ReadFile(pkcs12Path)
+		pkcs12Data, err = os.ReadFile(pkcs12Path)
 		if err != nil {
 			return nil, fmt.Errorf("could not read PKCS#12 archive at %q: %s", pkcs12Path, err)
 		}
