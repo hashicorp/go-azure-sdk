@@ -5,9 +5,6 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"github.com/hashicorp/go-azure-sdk/sdk/auth"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
-	odata2 "github.com/hashicorp/go-azure-sdk/sdk/odata"
 	"io"
 	"io/ioutil"
 	"math"
@@ -19,8 +16,10 @@ import (
 	"strings"
 	"time"
 
+	"github.com/hashicorp/go-azure-sdk/sdk/auth"
+	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 	"github.com/hashicorp/go-retryablehttp"
-	"github.com/miekg/dns"
 )
 
 type BaseClient interface {
@@ -30,7 +29,7 @@ type BaseClient interface {
 }
 
 // RequestRetryFunc is a function that determines whether an HTTP request has failed due to eventual consistency and should be retried
-type RequestRetryFunc func(*http.Response, *odata2.OData) (bool, error)
+type RequestRetryFunc func(*http.Response, *odata.OData) (bool, error)
 
 // RequestMiddleware can manipulate or log a request before it is sent
 type RequestMiddleware func(*http.Request) (*http.Request, error)
@@ -39,13 +38,13 @@ type RequestMiddleware func(*http.Request) (*http.Request, error)
 type ResponseMiddleware func(*http.Request, *http.Response) (*http.Response, error)
 
 // RetryOn404ConsistencyFailureFunc can be used to retry a request when a 404 response is received
-func RetryOn404ConsistencyFailureFunc(resp *http.Response, _ *odata2.OData) (bool, error) {
+func RetryOn404ConsistencyFailureFunc(resp *http.Response, _ *odata.OData) (bool, error) {
 	return resp != nil && resp.StatusCode == http.StatusNotFound, nil
 }
 
 // RequestRetryAny wraps multiple RequestRetryFuncs and calls them in turn, returning true if any func returns true
-func RequestRetryAny(retryFuncs ...RequestRetryFunc) func(resp *http.Response, o *odata2.OData) (bool, error) {
-	return func(resp *http.Response, o *odata2.OData) (retry bool, err error) {
+func RequestRetryAny(retryFuncs ...RequestRetryFunc) func(resp *http.Response, o *odata.OData) (bool, error) {
+	return func(resp *http.Response, o *odata.OData) (retry bool, err error) {
 		for _, retryFunc := range retryFuncs {
 			if retryFunc != nil {
 				retry, err = retryFunc(resp, o)
@@ -62,8 +61,8 @@ func RequestRetryAny(retryFuncs ...RequestRetryFunc) func(resp *http.Response, o
 }
 
 // RequestRetryAll wraps multiple RequestRetryFuncs and calls them in turn, only returning true if all funcs return true
-func RequestRetryAll(retryFuncs ...RequestRetryFunc) func(resp *http.Response, o *odata2.OData) (bool, error) {
-	return func(resp *http.Response, o *odata2.OData) (retry bool, err error) {
+func RequestRetryAll(retryFuncs ...RequestRetryFunc) func(resp *http.Response, o *odata.OData) (bool, error) {
+	return func(resp *http.Response, o *odata.OData) (retry bool, err error) {
 		for _, retryFunc := range retryFuncs {
 			if retryFunc != nil {
 				retry, err = retryFunc(resp, o)
@@ -80,7 +79,7 @@ func RequestRetryAll(retryFuncs ...RequestRetryFunc) func(resp *http.Response, o
 }
 
 // ValidStatusFunc is a function that tests whether an HTTP response is considered valid for the particular request.
-type ValidStatusFunc func(*http.Response, *odata2.OData) bool
+type ValidStatusFunc func(*http.Response, *odata.OData) bool
 
 // RetryableErrorHandler ensures that the response is returned after exhausting retries for a request
 // We mustn't return an error here, or net/http will not return the response
@@ -100,55 +99,6 @@ type Request struct {
 	*http.Request
 }
 
-// NewRequest configures a new *Request
-func (c *Client) NewRequest(ctx context.Context, method string, contentType string, path string) (*Request, error) {
-	req := (&http.Request{}).WithContext(ctx)
-
-	req.Method = method
-
-	req.Header = make(http.Header)
-	req.Header.Add("Content-Type", contentType)
-
-	if c.UserAgent != "" {
-		req.Header.Add("User-Agent", c.UserAgent)
-	}
-
-	if c.Authorizer != nil {
-		token, err := c.Authorizer.Token()
-		if err != nil {
-			return nil, err
-		}
-		token.SetAuthHeader(req)
-	}
-
-	path = strings.TrimPrefix(path, "/")
-	u, err := url.ParseRequestURI(fmt.Sprintf("%s/%s", c.Endpoint, path))
-	if err != nil {
-		return nil, err
-	}
-
-	// TODO: experiment with own DNS and tweaking the request
-	//host := u.Hostname()
-	//port := u.Port()
-	//
-	//ip, err := lookup(host)
-	//if err != nil {
-	//	return nil, err
-	//}
-	//
-	//req.Host = u.Host
-	//u.Host = *ip
-	////u.Host = "10.11.12.251"
-	//if len(port) > 0 {
-	//	u.Host += ":" + port
-	//}
-
-	req.Host = u.Host
-	req.URL = u
-
-	return &Request{Client: c, Request: req}, nil
-}
-
 func (r *Request) Marshal(model interface{}) error {
 	body, err := json.Marshal(model)
 	if err == nil {
@@ -166,9 +116,19 @@ func (r *Request) ExecutePaged() (*Response, error) {
 	return r.Client.ExecutePaged(r)
 }
 
+func (r *Request) IsIdempotent() bool {
+	switch strings.ToUpper(r.Method) {
+	case http.MethodGet, http.MethodHead, http.MethodOptions:
+		return true
+	case http.MethodDelete, http.MethodPatch, http.MethodPut:
+		return true
+	}
+	return false
+}
+
 // Response embeds *http.Response and adds useful methods
 type Response struct {
-	OData *odata2.OData
+	OData *odata.OData
 
 	// Embed *http.Response
 	*http.Response
@@ -203,10 +163,9 @@ func (r *Response) Unmarshal(model interface{}) error {
 	return nil
 }
 
-// Client is a base client to be used by clients for specific entities.
-// It can send GET, POST, PUT, PATCH and DELETE requests to Microsoft Graph and is API version and tenant aware.
+// Client is a base client to be used by API-specific clients. It satisfies the BaseClient interface.
 type Client struct {
-	// Endpoint is the base endpoint for Microsoft Graph, usually "https://graph.microsoft.com".
+	// Endpoint is the base endpoint for the API.
 	Endpoint environments.ApiEndpoint
 
 	// UserAgent is the HTTP user agent string to send in requests.
@@ -234,8 +193,51 @@ func NewClient(endpoint environments.ApiEndpoint) *Client {
 	}
 }
 
+// NewRequest configures a new *Request
+func (c *Client) NewRequest(ctx context.Context, method string, contentType string, path string) (*Request, error) {
+	req := (&http.Request{}).WithContext(ctx)
+
+	req.Method = method
+
+	req.Header = make(http.Header)
+	req.Header.Add("Content-Type", contentType)
+
+	if c.UserAgent != "" {
+		req.Header.Add("User-Agent", c.UserAgent)
+	}
+
+	if c.Authorizer != nil {
+		token, err := c.Authorizer.Token()
+		if err != nil {
+			return nil, err
+		}
+		token.SetAuthHeader(req)
+	}
+
+	path = strings.TrimPrefix(path, "/")
+	u, err := url.ParseRequestURI(fmt.Sprintf("%s/%s", c.Endpoint, path))
+	if err != nil {
+		return nil, err
+	}
+
+	req.Host = u.Host
+	req.URL = u
+
+	ret := Request{
+		Client:           c,
+		Request:          req,
+		ValidStatusCodes: []int{http.StatusOK},
+	}
+
+	return &ret, nil
+}
+
 // Execute is used by the package to send an HTTP request to the API
 func (c *Client) Execute(req *Request) (*Response, error) {
+	if req.Request == nil {
+		return nil, fmt.Errorf("req.Request was nil")
+	}
+
 	var err error
 
 	// Check we can read the request body and set a default empty body
@@ -252,6 +254,9 @@ func (c *Client) Execute(req *Request) (*Response, error) {
 	r := c.retryableClient(func(ctx context.Context, r *http.Response, err error) (bool, error) {
 		// First check for badly malformed responses
 		if r == nil {
+			if req.IsIdempotent() {
+				return true, nil
+			}
 			return false, fmt.Errorf("HTTP response was nil; connection may have been reset")
 		}
 
@@ -261,7 +266,7 @@ func (c *Client) Execute(req *Request) (*Response, error) {
 				return true, nil
 			}
 
-			o, err := odata2.FromResponse(r)
+			o, err := odata.FromResponse(r)
 			if err != nil {
 				return false, err
 			}
@@ -269,7 +274,7 @@ func (c *Client) Execute(req *Request) (*Response, error) {
 			if f := req.RetryFunc; f != nil {
 				shouldRetry, err := f(r, o)
 				if err != nil || shouldRetry {
-					return true, err
+					return shouldRetry, err
 				}
 			}
 		}
@@ -314,8 +319,8 @@ func (c *Client) Execute(req *Request) (*Response, error) {
 	}
 
 	// Extract OData from response
-	var o *odata2.OData
-	resp.OData, err = odata2.FromResponse(resp.Response)
+	var o *odata.OData
+	resp.OData, err = odata.FromResponse(resp.Response)
 	if err != nil {
 		return resp, err
 	}
@@ -365,121 +370,72 @@ func (c *Client) ExecutePaged(req *Request) (*Response, error) {
 
 	// Check for json content before handling pagination
 	contentType := strings.ToLower(resp.Header.Get("Content-Type"))
-	if strings.HasPrefix(contentType, "application/json") {
-		// Read the response body and close it
-		respBody, err := io.ReadAll(resp.Body)
-		if err != nil {
-			return resp, fmt.Errorf("could not parse response body")
-		}
-		resp.Body.Close()
-
-		// Unmarshal firstOdata
-		var firstOdata odata2.OData
-		if err := json.Unmarshal(respBody, &firstOdata); err != nil {
-			return resp, err
-		}
-
-		firstValue, ok := firstOdata.Value.([]interface{})
-		if firstOdata.NextLink == nil || firstValue == nil || !ok {
-			// No more pages, reassign response body and return
-			resp.Body = io.NopCloser(bytes.NewBuffer(respBody))
-			return resp, nil
-		}
-
-		// Get the next page, recursively
-		// TODO: may have to accommodate APIs with nonstandard paging
-		nextReq := req
-		u, err := url.Parse(string(*firstOdata.NextLink))
-		if err != nil {
-			return resp, err
-		}
-		nextReq.URL = u
-		nextResp, err := c.ExecutePaged(req)
-		if err != nil {
-			return resp, err
-		}
-
-		// Read the next page response body and close it
-		nextRespBody, err := io.ReadAll(nextResp.Body)
-		if err != nil {
-			return resp, fmt.Errorf("could not parse response body")
-		}
-		nextResp.Body.Close()
-
-		// Unmarshal nextOdata from the next page
-		var nextOdata odata2.OData
-		if err := json.Unmarshal(nextRespBody, &nextOdata); err != nil {
-			return nextResp, err
-		}
-
-		// When next page has results, append to current page
-		if nextValue, ok := nextOdata.Value.([]interface{}); ok {
-			value := append(firstValue, nextValue...)
-			nextOdata.Value = &value
-		}
-
-		// Marshal the entire result, along with fields from the final page
-		newJson, err := json.Marshal(nextOdata)
-		if err != nil {
-			return nextResp, err
-		}
-
-		// Reassign the response body
-		resp.Body = io.NopCloser(bytes.NewBuffer(newJson))
+	if !strings.HasPrefix(contentType, "application/json") {
+		return resp, fmt.Errorf("unsupported content-type %q received, only application/json is supported for paged results", contentType)
 	}
+
+	// Read the response body and close it
+	respBody, err := io.ReadAll(resp.Body)
+	if err != nil {
+		return resp, fmt.Errorf("could not parse response body")
+	}
+	resp.Body.Close()
+
+	// Unmarshal firstOdata
+	var firstOdata odata.OData
+	if err := json.Unmarshal(respBody, &firstOdata); err != nil {
+		return resp, err
+	}
+
+	firstValue, ok := firstOdata.Value.([]interface{})
+	if firstOdata.NextLink == nil || firstValue == nil || !ok {
+		// No more pages, reassign response body and return
+		resp.Body = io.NopCloser(bytes.NewBuffer(respBody))
+		return resp, nil
+	}
+
+	// Get the next page, recursively
+	// TODO: may have to accommodate APIs with nonstandard paging
+	nextReq := req
+	u, err := url.Parse(string(*firstOdata.NextLink))
+	if err != nil {
+		return resp, err
+	}
+	nextReq.URL = u
+	nextResp, err := c.ExecutePaged(req)
+	if err != nil {
+		return resp, err
+	}
+
+	// Read the next page response body and close it
+	nextRespBody, err := io.ReadAll(nextResp.Body)
+	if err != nil {
+		return resp, fmt.Errorf("could not parse response body")
+	}
+	nextResp.Body.Close()
+
+	// Unmarshal nextOdata from the next page
+	var nextOdata odata.OData
+	if err := json.Unmarshal(nextRespBody, &nextOdata); err != nil {
+		return nextResp, err
+	}
+
+	// When next page has results, append to current page
+	if nextValue, ok := nextOdata.Value.([]interface{}); ok {
+		value := append(firstValue, nextValue...)
+		nextOdata.Value = &value
+	}
+
+	// Marshal the entire result, along with fields from the final page
+	newJson, err := json.Marshal(nextOdata)
+	if err != nil {
+		return nextResp, err
+	}
+
+	// Reassign the response body
+	resp.Body = io.NopCloser(bytes.NewBuffer(newJson))
 
 	return resp, nil
-}
-
-// containsStatusCode determines whether the returned status code is in the []int of expected status codes.
-func containsStatusCode(expected []int, actual int) bool {
-	for _, v := range expected {
-		if actual == v {
-			return true
-		}
-	}
-
-	return false
-}
-
-// lookup provides a go implementation of a DNS resolver
-// TODO: determine viability of handling own DNS
-func lookup(host string) (*string, error) {
-	m := &dns.Msg{}
-	m.SetQuestion(dns.Fqdn(host), dns.TypeA)
-	d := &dns.Client{
-		Dialer: &net.Dialer{
-			Timeout: 2000 * time.Millisecond,
-		},
-		SingleInflight: true,
-	}
-
-	in, _, err := d.Exchange(m, "1.1.1.1:53")
-	if err != nil {
-		return nil, err
-	}
-
-	var ips, cnames []string
-
-	for _, rr := range in.Answer {
-		if v, ok := rr.(*dns.A); ok {
-			ips = append(ips, v.A.String())
-		} else if v, ok := rr.(*dns.CNAME); ok {
-			cnames = append(cnames, v.Target)
-		}
-	}
-
-	if len(ips) > 0 {
-		return &ips[0], nil
-	}
-
-	for _, cname := range cnames {
-		if ip, err := lookup(cname); err != nil {
-			return ip, nil
-		}
-	}
-
-	return nil, fmt.Errorf("host not found: %s", host)
 }
 
 // retryableClient instantiates a new *retryablehttp.Client having the provided checkRetry func
@@ -509,17 +465,9 @@ func (c *Client) retryableClient(checkRetry retryablehttp.CheckRetry) (r *retrya
 	r.ErrorHandler = RetryableErrorHandler
 	r.Logger = nil
 
-	proxy := http.ProxyFromEnvironment
-
-	// TODO: consider implementing custom DNS
-	//customDns := false
-	//if u, e := proxy(&http.Request{}); u == nil && e == nil {
-	//	customDns = true
-	//}
-
 	r.HTTPClient = &http.Client{
 		Transport: &http.Transport{
-			Proxy: proxy,
+			Proxy: http.ProxyFromEnvironment,
 			DialContext: func(ctx context.Context, network, addr string) (net.Conn, error) {
 				d := &net.Dialer{Resolver: &net.Resolver{}}
 				return d.DialContext(ctx, network, addr)
@@ -534,4 +482,15 @@ func (c *Client) retryableClient(checkRetry retryablehttp.CheckRetry) (r *retrya
 	}
 
 	return
+}
+
+// containsStatusCode determines whether the returned status code is in the []int of expected status codes.
+func containsStatusCode(expected []int, actual int) bool {
+	for _, v := range expected {
+		if actual == v {
+			return true
+		}
+	}
+
+	return false
 }

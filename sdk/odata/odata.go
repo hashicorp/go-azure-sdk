@@ -3,9 +3,10 @@ package odata
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/hashicorp/go-uuid"
 	"net/url"
 	"regexp"
+
+	"github.com/hashicorp/go-uuid"
 )
 
 // Copyright (c) HashiCorp Inc. All rights reserved.

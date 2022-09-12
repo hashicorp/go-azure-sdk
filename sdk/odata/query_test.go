@@ -1,11 +1,12 @@
 package odata_test
 
 import (
-	odata2 "github.com/hashicorp/go-azure-sdk/sdk/odata"
 	"net/http"
 	"net/url"
 	"reflect"
 	"testing"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
 
 // Copyright (c) HashiCorp Inc. All rights reserved.
@@ -13,28 +14,28 @@ import (
 
 func TestQueryHeaders(t *testing.T) {
 	type testCase struct {
-		query    odata2.Query
+		query    odata.Query
 		expected http.Header
 	}
 	testCases := []testCase{
 		{
-			query: odata2.Query{},
+			query: odata.Query{},
 			expected: http.Header{
 				"Accept":           []string{"application/json; charset=utf-8; IEEE754Compatible=false"},
-				"Odata-Maxversion": []string{odata2.ODataVersion},
-				"Odata-Version":    []string{odata2.ODataVersion},
+				"Odata-Maxversion": []string{odata.ODataVersion},
+				"Odata-Version":    []string{odata.ODataVersion},
 			},
 		},
 		{
-			query: odata2.Query{
-				ConsistencyLevel: odata2.ConsistencyLevelEventual,
-				Metadata:         odata2.MetadataMinimal,
+			query: odata.Query{
+				ConsistencyLevel: odata.ConsistencyLevelEventual,
+				Metadata:         odata.MetadataMinimal,
 			},
 			expected: http.Header{
 				"Accept":           []string{"application/json; charset=utf-8; IEEE754Compatible=false; odata.metadata=minimal"},
 				"Consistencylevel": []string{"eventual"},
-				"Odata-Maxversion": []string{odata2.ODataVersion},
-				"Odata-Version":    []string{odata2.ODataVersion},
+				"Odata-Maxversion": []string{odata.ODataVersion},
+				"Odata-Version":    []string{odata.ODataVersion},
 			},
 		},
 	}
@@ -53,18 +54,18 @@ func TestQueryHeaders(t *testing.T) {
 
 func TestQueryValues(t *testing.T) {
 	type testCase struct {
-		query    odata2.Query
+		query    odata.Query
 		expected url.Values
 	}
 	testCases := []testCase{
 		{
-			query:    odata2.Query{},
+			query:    odata.Query{},
 			expected: url.Values{},
 		},
 		{
-			query: odata2.Query{
+			query: odata.Query{
 				Count:  true,
-				Format: odata2.FormatAtom,
+				Format: odata.FormatAtom,
 				Skip:   20,
 				Top:    10,
 			},
@@ -76,8 +77,8 @@ func TestQueryValues(t *testing.T) {
 			},
 		},
 		{
-			query: odata2.Query{
-				OrderBy: odata2.OrderBy{
+			query: odata.Query{
+				OrderBy: odata.OrderBy{
 					Field:     "displayName",
 					Direction: "desc",
 				},
@@ -87,8 +88,8 @@ func TestQueryValues(t *testing.T) {
 			},
 		},
 		{
-			query: odata2.Query{
-				Expand: odata2.Expand{
+			query: odata.Query{
+				Expand: odata.Expand{
 					Relationship: "children",
 					Select:       []string{"id", "childName"},
 				},
@@ -98,7 +99,7 @@ func TestQueryValues(t *testing.T) {
 			},
 		},
 		{
-			query: odata2.Query{
+			query: odata.Query{
 				Filter: "startsWith(displayName,'Widgets')",
 			},
 			expected: url.Values{
@@ -106,7 +107,7 @@ func TestQueryValues(t *testing.T) {
 			},
 		},
 		{
-			query: odata2.Query{
+			query: odata.Query{
 				Search: "displayName:Astley",
 			},
 			expected: url.Values{
@@ -114,7 +115,7 @@ func TestQueryValues(t *testing.T) {
 			},
 		},
 		{
-			query: odata2.Query{
+			query: odata.Query{
 				Select: []string{"id", "userPrincipalName"},
 			},
 			expected: url.Values{

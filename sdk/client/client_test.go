@@ -3,13 +3,14 @@ package client
 import (
 	"context"
 	"fmt"
-	"github.com/hashicorp/go-azure-sdk/internal/utils"
-	auth2 "github.com/hashicorp/go-azure-sdk/sdk/auth"
-	environments2 "github.com/hashicorp/go-azure-sdk/sdk/environments"
-	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 	"log"
+	"net/http"
 	"os"
 	"testing"
+
+	"github.com/hashicorp/go-azure-sdk/internal/utils"
+	"github.com/hashicorp/go-azure-sdk/sdk/auth"
+	"github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 func envDefault(envVarName, defaultValue string) string {
@@ -27,26 +28,26 @@ var (
 	clientCertificatePath = os.Getenv("CLIENT_CERTIFICATE_PATH")
 	clientCertPassword    = os.Getenv("CLIENT_CERTIFICATE_PASSWORD")
 	clientSecret          = os.Getenv("CLIENT_SECRET")
-	environment           = os.Getenv("AZURE_ENVIRONMENT")
+	environment           = envDefault("AZURE_ENVIRONMENT", "global")
 	idTokenRequestUrl     = os.Getenv("ACTIONS_ID_TOKEN_REQUEST_URL")
 	idTokenRequestToken   = os.Getenv("ACTIONS_ID_TOKEN_REQUEST_TOKEN")
 	retryMax              = envDefault("RETRY_MAX", "14")
 )
 
 type Connection struct {
-	AuthConfig *auth2.Config
-	Authorizer auth2.Authorizer
+	AuthConfig *auth.Config
+	Authorizer auth.Authorizer
 }
 
 // NewConnection configures and returns a Connection for use in tests.
-func NewConnection(tokenVersion auth2.TokenVersion) *Connection {
-	env, err := environments2.EnvironmentFromString(environment)
+func NewConnection(tokenVersion auth.TokenVersion) *Connection {
+	env, err := environments.FromNamed(environment)
 	if err != nil {
 		log.Fatal(err)
 	}
 
 	t := Connection{
-		AuthConfig: &auth2.Config{
+		AuthConfig: &auth.Config{
 			Environment:            env,
 			Version:                tokenVersion,
 			TenantID:               tenantId,
@@ -68,7 +69,7 @@ func NewConnection(tokenVersion auth2.TokenVersion) *Connection {
 }
 
 // Authorize configures an Authorizer for the Connection
-func (c *Connection) Authorize(ctx context.Context, api environments2.Api) {
+func (c *Connection) Authorize(ctx context.Context, api environments.Api) {
 	var err error
 	c.Authorizer, err = c.AuthConfig.NewAuthorizer(ctx, api)
 	if err != nil {
@@ -77,23 +78,21 @@ func (c *Connection) Authorize(ctx context.Context, api environments2.Api) {
 }
 
 func TestClient(t *testing.T) {
-	conn := NewConnection(auth2.TokenVersion2)
-	conn.Authorize(context.TODO(), conn.AuthConfig.Environment.MsGraph)
+	conn := NewConnection(auth.TokenVersion2)
+	conn.Authorize(context.TODO(), conn.AuthConfig.Environment.MSGraph)
 
-	c := NewClient(environments2.MsGraphGlobalEndpoint)
+	c := NewClient(environments.MsGraphGlobalEndpoint)
 	c.Authorizer = conn.Authorizer
 
-	req, err := c.NewGetRequest(context.TODO(), "/v1.0/servicePrincipals", odata.Query{})
+	req, err := c.NewRequest(context.TODO(), http.MethodGet, "application/json", "/v1.0/servicePrincipals")
 	if err != nil {
 		t.Fatal(err)
 	}
 
-	resp, o, status, err := req.ExecutePaged()
+	resp, err := req.ExecutePaged()
 	if err != nil {
 		t.Fatal(err)
 	}
 
 	fmt.Printf("%#v\n\n", resp)
-	fmt.Printf("%#v\n\n", o)
-	fmt.Printf("%d\n\n", status)
 }
