@@ -33,43 +33,53 @@ func parseExternalCloudProviderType(input string) (*ExternalCloudProviderType, e
 	return &out, nil
 }
 
-type ForecastTimeframeType string
+type ForecastOperatorType string
 
 const (
-	ForecastTimeframeTypeBillingMonthToDate  ForecastTimeframeType = "BillingMonthToDate"
-	ForecastTimeframeTypeCustom              ForecastTimeframeType = "Custom"
-	ForecastTimeframeTypeMonthToDate         ForecastTimeframeType = "MonthToDate"
-	ForecastTimeframeTypeTheLastBillingMonth ForecastTimeframeType = "TheLastBillingMonth"
-	ForecastTimeframeTypeTheLastMonth        ForecastTimeframeType = "TheLastMonth"
-	ForecastTimeframeTypeWeekToDate          ForecastTimeframeType = "WeekToDate"
+	ForecastOperatorTypeIn ForecastOperatorType = "In"
 )
 
-func PossibleValuesForForecastTimeframeType() []string {
+func PossibleValuesForForecastOperatorType() []string {
 	return []string{
-		string(ForecastTimeframeTypeBillingMonthToDate),
-		string(ForecastTimeframeTypeCustom),
-		string(ForecastTimeframeTypeMonthToDate),
-		string(ForecastTimeframeTypeTheLastBillingMonth),
-		string(ForecastTimeframeTypeTheLastMonth),
-		string(ForecastTimeframeTypeWeekToDate),
+		string(ForecastOperatorTypeIn),
 	}
 }
 
-func parseForecastTimeframeType(input string) (*ForecastTimeframeType, error) {
-	vals := map[string]ForecastTimeframeType{
-		"billingmonthtodate":  ForecastTimeframeTypeBillingMonthToDate,
-		"custom":              ForecastTimeframeTypeCustom,
-		"monthtodate":         ForecastTimeframeTypeMonthToDate,
-		"thelastbillingmonth": ForecastTimeframeTypeTheLastBillingMonth,
-		"thelastmonth":        ForecastTimeframeTypeTheLastMonth,
-		"weektodate":          ForecastTimeframeTypeWeekToDate,
+func parseForecastOperatorType(input string) (*ForecastOperatorType, error) {
+	vals := map[string]ForecastOperatorType{
+		"in": ForecastOperatorTypeIn,
 	}
 	if v, ok := vals[strings.ToLower(input)]; ok {
 		return &v, nil
 	}
 
 	// otherwise presume it's an undefined value and best-effort it
-	out := ForecastTimeframeType(input)
+	out := ForecastOperatorType(input)
+	return &out, nil
+}
+
+type ForecastTimeframe string
+
+const (
+	ForecastTimeframeCustom ForecastTimeframe = "Custom"
+)
+
+func PossibleValuesForForecastTimeframe() []string {
+	return []string{
+		string(ForecastTimeframeCustom),
+	}
+}
+
+func parseForecastTimeframe(input string) (*ForecastTimeframe, error) {
+	vals := map[string]ForecastTimeframe{
+		"custom": ForecastTimeframeCustom,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ForecastTimeframe(input)
 	return &out, nil
 }
 
@@ -101,6 +111,40 @@ func parseForecastType(input string) (*ForecastType, error) {
 
 	// otherwise presume it's an undefined value and best-effort it
 	out := ForecastType(input)
+	return &out, nil
+}
+
+type FunctionName string
+
+const (
+	FunctionNameCost          FunctionName = "Cost"
+	FunctionNameCostUSD       FunctionName = "CostUSD"
+	FunctionNamePreTaxCost    FunctionName = "PreTaxCost"
+	FunctionNamePreTaxCostUSD FunctionName = "PreTaxCostUSD"
+)
+
+func PossibleValuesForFunctionName() []string {
+	return []string{
+		string(FunctionNameCost),
+		string(FunctionNameCostUSD),
+		string(FunctionNamePreTaxCost),
+		string(FunctionNamePreTaxCostUSD),
+	}
+}
+
+func parseFunctionName(input string) (*FunctionName, error) {
+	vals := map[string]FunctionName{
+		"cost":          FunctionNameCost,
+		"costusd":       FunctionNameCostUSD,
+		"pretaxcost":    FunctionNamePreTaxCost,
+		"pretaxcostusd": FunctionNamePreTaxCostUSD,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := FunctionName(input)
 	return &out, nil
 }
 
@@ -151,30 +195,5 @@ func parseGranularityType(input string) (*GranularityType, error) {
 
 	// otherwise presume it's an undefined value and best-effort it
 	out := GranularityType(input)
-	return &out, nil
-}
-
-type QueryOperatorType string
-
-const (
-	QueryOperatorTypeIn QueryOperatorType = "In"
-)
-
-func PossibleValuesForQueryOperatorType() []string {
-	return []string{
-		string(QueryOperatorTypeIn),
-	}
-}
-
-func parseQueryOperatorType(input string) (*QueryOperatorType, error) {
-	vals := map[string]QueryOperatorType{
-		"in": QueryOperatorTypeIn,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := QueryOperatorType(input)
 	return &out, nil
 }

@@ -4,8 +4,8 @@ package forecast
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type ForecastDataset struct {
-	Aggregation   *map[string]QueryAggregation `json:"aggregation,omitempty"`
-	Configuration *QueryDatasetConfiguration   `json:"configuration,omitempty"`
-	Filter        *QueryFilter                 `json:"filter,omitempty"`
-	Granularity   *GranularityType             `json:"granularity,omitempty"`
+	Aggregation   map[string]ForecastAggregation `json:"aggregation"`
+	Configuration *ForecastDatasetConfiguration  `json:"configuration,omitempty"`
+	Filter        *ForecastFilter                `json:"filter,omitempty"`
+	Granularity   *GranularityType               `json:"granularity,omitempty"`
 }

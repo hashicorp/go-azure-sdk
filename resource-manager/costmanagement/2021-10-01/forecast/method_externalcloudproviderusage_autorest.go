@@ -14,7 +14,7 @@ import (
 
 type ExternalCloudProviderUsageOperationResponse struct {
 	HttpResponse *http.Response
-	Model        *QueryResult
+	Model        *ForecastResult
 }
 
 type ExternalCloudProviderUsageOperationOptions struct {

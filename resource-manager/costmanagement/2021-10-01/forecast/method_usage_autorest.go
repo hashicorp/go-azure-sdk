@@ -15,7 +15,7 @@ import (
 
 type UsageOperationResponse struct {
 	HttpResponse *http.Response
-	Model        *QueryResult
+	Model        *ForecastResult
 }
 
 type UsageOperationOptions struct {
