@@ -4,10 +4,10 @@ package forecast
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type ForecastDefinition struct {
-	Dataset                 ForecastDataset       `json:"dataset"`
-	IncludeActualCost       *bool                 `json:"includeActualCost,omitempty"`
-	IncludeFreshPartialCost *bool                 `json:"includeFreshPartialCost,omitempty"`
-	TimePeriod              *QueryTimePeriod      `json:"timePeriod,omitempty"`
-	Timeframe               ForecastTimeframeType `json:"timeframe"`
-	Type                    ForecastType          `json:"type"`
+	Dataset                 ForecastDataset     `json:"dataset"`
+	IncludeActualCost       *bool               `json:"includeActualCost,omitempty"`
+	IncludeFreshPartialCost *bool               `json:"includeFreshPartialCost,omitempty"`
+	TimePeriod              *ForecastTimePeriod `json:"timePeriod,omitempty"`
+	Timeframe               ForecastTimeframe   `json:"timeframe"`
+	Type                    ForecastType        `json:"type"`
 }
