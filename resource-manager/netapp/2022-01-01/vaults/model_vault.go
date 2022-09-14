@@ -5,7 +5,6 @@ package vaults
 
 type Vault struct {
 	Id         *string         `json:"id,omitempty"`
-	Location   string          `json:"location"`
 	Name       *string         `json:"name,omitempty"`
 	Properties VaultProperties `json:"properties"`
 	Type       *string         `json:"type,omitempty"`
