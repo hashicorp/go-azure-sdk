@@ -24,9 +24,9 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
+id := elasticsanskus.NewSubscriptionID("12345678-1234-9876-4563-123456789012")
 
-
-read, err := client.SkusList(ctx, elasticsanskus.DefaultSkusListOperationOptions())
+read, err := client.SkusList(ctx, id, elasticsanskus.DefaultSkusListOperationOptions())
 if err != nil {
 	// handle the error
 }
