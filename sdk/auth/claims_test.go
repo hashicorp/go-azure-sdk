@@ -10,7 +10,7 @@ import (
 // Copyright (c) HashiCorp Inc. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-func TestParseClaims_azureCli(t *testing.T) {
+func TestAccParseClaims_azureCli(t *testing.T) {
 	ctx := context.Background()
 	token := testAzureCliAuthorizer(ctx, t)
 	claims, err := auth.ParseClaims(token)
@@ -20,7 +20,7 @@ func TestParseClaims_azureCli(t *testing.T) {
 	checkClaims(t, claims)
 }
 
-func TestParseClaims_clientCertificate(t *testing.T) {
+func TestAccParseClaims_clientCertificate(t *testing.T) {
 	ctx := context.Background()
 	token := testClientCertificateAuthorizer(ctx, t, auth.TokenVersion2)
 	claims, err := auth.ParseClaims(token)
@@ -30,7 +30,7 @@ func TestParseClaims_clientCertificate(t *testing.T) {
 	checkClaims(t, claims)
 }
 
-func TestParseClaims_clientSecret(t *testing.T) {
+func TestAccParseClaims_clientSecret(t *testing.T) {
 	ctx := context.Background()
 	token := testClientSecretAuthorizer(ctx, t, auth.TokenVersion2)
 	claims, err := auth.ParseClaims(token)

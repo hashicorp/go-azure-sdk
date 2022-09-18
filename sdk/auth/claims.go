@@ -46,7 +46,7 @@ func ParseClaims(token *oauth2.Token) (*Claims, error) {
 		return nil, err
 	}
 
-	var claims *Claims
-	err = json.Unmarshal(payload, claims)
-	return claims, err
+	var claims Claims
+	err = json.Unmarshal(payload, &claims)
+	return &claims, err
 }

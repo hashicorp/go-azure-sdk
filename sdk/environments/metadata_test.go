@@ -20,10 +20,8 @@ func TestFromMetadataEndpoint(t *testing.T) {
 	}()
 
 	envName := "AzureCloud"
-	env, err := environments.FromMetadataEndpoint(ctx, metadataHost, &envName)
+	_, err := environments.FromMetadataEndpoint(ctx, metadataHost, &envName)
 	if err != nil {
 		t.Fatal(err)
 	}
-
-	fmt.Printf("%#v", *env)
 }

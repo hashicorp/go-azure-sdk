@@ -5,6 +5,7 @@ import (
 	"reflect"
 	"testing"
 
+	"github.com/davecgh/go-spew/spew"
 	"github.com/hashicorp/go-azure-sdk/internal/utils"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -74,20 +75,20 @@ func TestOData(t *testing.T) {
 	testCases := []testCase{
 		{
 			response: `{
-  "@odata.context": "https://graph.microsoft.com/beta/$metadata#servicePrincipals",
-  "@odata.nextLink": "https://graph.microsoft.com/beta/1564a4be-0377-4d9b-8aff-5a2b564e177c/servicePrincipals?$skiptoken=X%274453707402000100000035536572766963655072696E636970616C5F31326430653134382D663634382D343233382D383566312D34336331643937353963313035536572766963655072696E636970616C5F31326430653134382D663634382D343233382D383566312D3433633164393735396331300000000000000000000000%27",
-  "value": [
-    {
-      "id": "00000000-0000-0000-0000-000000000000",
-      "deletedDateTime": null,
-      "accountEnabled": true,
-      "createdDateTime": "2020-07-08T01:22:29Z"
-    }
-  ]
-}`,
+				"@odata.context": "https://graph.microsoft.com/beta/$metadata#servicePrincipals",
+				"@odata.nextLink": "https://graph.microsoft.com/beta/1564a4be-0377-4d9b-8aff-5a2b564e177c/servicePrincipals?$skiptoken=X%274453707402000100000035536572766963655072696E636970616C5F31326430653134382D663634382D343233382D383566312D34336331643937353963313035536572766963655072696E636970616C5F31326430653134382D663634382D343233382D383566312D3433633164393735396331300000000000000000000000%27",
+				"value": [
+					{
+						"id": "00000000-0000-0000-0000-000000000000",
+						"deletedDateTime": null,
+						"accountEnabled": true,
+						"createdDateTime": "2020-07-08T01:22:29Z"
+					}
+				]
+			}`,
 			expected: odata.OData{
 				Context:  utils.StringPtr("https://graph.microsoft.com/beta/$metadata#servicePrincipals"),
-				NextLink: linkPtr("https://graph.microsoft.com/beta/1564a4be-0377-4d9b-8aff-5a2b564e177c/servicePrincipals?$skiptoken=X%274453707402000100000035536572766963655072696E636970616C5F31326430653134382D663634382D343233382D383566312D34336331643937353963313035536572766963655072696E636970616C5F31326430653134382D663634382D343233382D383566312D3433633164393735396331300000000000000000000000%27"),
+				NextLink: linkPtr("https://graph.microsoft.com/beta/1564a4be-0377-4d9b-8aff-5a2b564e177c/servicePrincipals?%24skiptoken=X%274453707402000100000035536572766963655072696E636970616C5F31326430653134382D663634382D343233382D383566312D34336331643937353963313035536572766963655072696E636970616C5F31326430653134382D663634382D343233382D383566312D3433633164393735396331300000000000000000000000%27"),
 				Value: []interface{}{map[string]interface{}{
 					"id":              "00000000-0000-0000-0000-000000000000",
 					"deletedDateTime": nil,
@@ -98,24 +99,24 @@ func TestOData(t *testing.T) {
 		},
 		{
 			response: `{
-    "@odata.context": "https://graph.microsoft.us/beta/$metadata#identityGovernance/accessReviews/definitions",
-    "@odata.count": 4,
-    "value": [
-        {
-            "id": "00000000-0000-0000-0000-000000000000",
-            "displayName": "test",
-            "createdDateTime": "2020-07-08T01:22:29",
-            "lastModifiedDateTime": "2020-07-08T01:22:29",
-            "status": "InProgress",
-            "createdBy": {
-                "id": "11111111-0000-0000-0000-000000000000",
-                "displayName": "tester",
-                "type": null,
-                "userPrincipalName": "tester@contoso.us"
-            }
-        }
-    ]
-}`,
+				"@odata.context": "https://graph.microsoft.us/beta/$metadata#identityGovernance/accessReviews/definitions",
+				"@odata.count": 4,
+				"value": [
+					{
+						"id": "00000000-0000-0000-0000-000000000000",
+						"displayName": "test",
+						"createdDateTime": "2020-07-08T01:22:29",
+						"lastModifiedDateTime": "2020-07-08T01:22:29",
+						"status": "InProgress",
+						"createdBy": {
+							"id": "11111111-0000-0000-0000-000000000000",
+							"displayName": "tester",
+							"type": null,
+							"userPrincipalName": "tester@contoso.us"
+						}
+					}
+				]
+			}`,
 			expected: odata.OData{
 				Context: utils.StringPtr("https://graph.microsoft.us/beta/$metadata#identityGovernance/accessReviews/definitions"),
 				Count:   utils.IntPtr(4),
@@ -136,12 +137,12 @@ func TestOData(t *testing.T) {
 		},
 		{
 			response: `{
-  "@odata.context": "https://graph.microsoft.com/v1.0/$metadata#directoryObjects/$entity",
-  "@odata.type": "#microsoft.graph.servicePrincipal",
-  "@odata.id": "https://graph.microsoft.com/v2/1564a4be-0377-4d9b-8aff-5a2b564e177c/directoryObjects/11111111-0000-0000-0000-000000000000/Microsoft.DirectoryServices.ServicePrincipal",
-  "@odata.editLink": "https://graph.microsoft.com/v2/1564a4be-0377-4d9b-8aff-5a2b564e177c/directoryObjects/11111111-0000-0000-0000-000000000000/Microsoft.DirectoryServices.ServicePrincipal",
-  "id": "11111111-0000-0000-0000-000000000000"
-}`,
+				"@odata.context": "https://graph.microsoft.com/v1.0/$metadata#directoryObjects/$entity",
+				"@odata.type": "#microsoft.graph.servicePrincipal",
+				"@odata.id": "https://graph.microsoft.com/v2/1564a4be-0377-4d9b-8aff-5a2b564e177c/directoryObjects/11111111-0000-0000-0000-000000000000/Microsoft.DirectoryServices.ServicePrincipal",
+				"@odata.editLink": "https://graph.microsoft.com/v2/1564a4be-0377-4d9b-8aff-5a2b564e177c/directoryObjects/11111111-0000-0000-0000-000000000000/Microsoft.DirectoryServices.ServicePrincipal",
+				"id": "11111111-0000-0000-0000-000000000000"
+			}`,
 			expected: odata.OData{
 				Context:  utils.StringPtr("https://graph.microsoft.com/v1.0/$metadata#directoryObjects/$entity"),
 				Type:     utils.StringPtr(odata.TypeServicePrincipal),
@@ -155,11 +156,11 @@ func TestOData(t *testing.T) {
 		var o odata.OData
 		err := json.Unmarshal([]byte(c.response), &o)
 		if err != nil {
-			t.Errorf("test case %d: JSON unmarshaling failed: %v", n, err)
+			t.Errorf("test case %d: failed to unmarshal JSON: %v", n, err)
 			continue
 		}
 		if !reflect.DeepEqual(o, c.expected) {
-			t.Errorf("test case %d: expected %#v, got %#v", n, c.expected, o)
+			t.Error(spew.Sprintf("test case %d:\nexpected:\n  %#v\ngot:\n  %#v\n", n, c.expected, o))
 		}
 	}
 }

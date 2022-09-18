@@ -1,0 +1,55 @@
+---
+name: Acceptance Tests
+on:
+  pull_request:
+    types: ["opened", "synchronize"]
+    paths:
+      - ".github/workflows/pr-acceptance-tests.yml"
+      - "sdk/**.go"
+
+
+permissions:
+  contents: 'read'
+  id-token: 'write'
+
+jobs:
+  azure-cli-test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+    steps:
+      - name: Azure CLI login with OIDC
+        uses: azure/login@v1
+        with:
+          client-id: ${{ secrets.ARM_CLIENT_ID }}
+          tenant-id: ${{ secrets.ARM_TENANT_ID }}
+          allow-no-subscriptions: true
+
+  acceptance-tests:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: true
+    steps:
+      - name: Azure CLI login
+        run: az login --allow-no-subscriptions --output none --service-principal --tenant="${{ secrets.ARM_TENANT_ID }}" --username="${{ secrets.ARM_CLIENT_ID }}" --password="${{ secrets.ARM_CLIENT_SECRET }}"
+
+      - name: Install Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: '1.18.1'
+
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Run acceptance tests
+        env:
+          ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
+          ARM_CLIENT_CERTIFICATE: ${{ secrets.ARM_CLIENT_CERTIFICATE }}
+          ARM_CLIENT_CERTIFICATE_PASSWORD: ${{ secrets.ARM_CLIENT_CERTIFICATE_PASSWORD }}
+          ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
+          ARM_OIDC_TOKEN: ${{ secrets.ARM_OIDC_TOKEN }}
+          ARM_MSI_TOKEN: ${{ secrets.ARM_MSI_TOKEN }}
+          ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
+        run: make acctest
+
+# vim: set ts=2 sts=2 sw=2 et:

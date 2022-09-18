@@ -2,7 +2,6 @@ package resourcemanager_test
 
 import (
 	"context"
-	"fmt"
 	"testing"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
@@ -25,9 +24,8 @@ func (o options) ToQuery() *resourcemanager.QueryParams {
 
 func TestNewGetRequest(t *testing.T) {
 	client := resourcemanager.NewResourceManagerClient("http://localhost")
-	req, err := client.NewGetRequest(context.TODO(), "/", "2022-02-22", options{})
+	_, err := client.NewGetRequest(context.TODO(), "/", "2022-02-22", options{})
 	if err != nil {
 		t.Fatal(err)
 	}
-	fmt.Printf("%#v", *req)
 }

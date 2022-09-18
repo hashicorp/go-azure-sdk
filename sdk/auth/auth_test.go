@@ -40,17 +40,19 @@ func envDefault(key, def string) (ret string) {
 	return
 }
 
-func TestClientCertificateAuthorizerV1(t *testing.T) {
+func TestAccClientCertificateAuthorizerV1(t *testing.T) {
 	ctx := context.Background()
 	testClientCertificateAuthorizer(ctx, t, auth.TokenVersion1)
 }
 
-func TestClientCertificateAuthorizerV2(t *testing.T) {
+func TestAccClientCertificateAuthorizerV2(t *testing.T) {
 	ctx := context.Background()
 	testClientCertificateAuthorizer(ctx, t, auth.TokenVersion2)
 }
 
 func testClientCertificateAuthorizer(ctx context.Context, t *testing.T, tokenVersion auth.TokenVersion) (token *oauth2.Token) {
+	test.AccTest(t)
+
 	env, err := environments.FromNamed(environment)
 	if err != nil {
 		t.Fatal(err)
@@ -80,17 +82,19 @@ func testClientCertificateAuthorizer(ctx context.Context, t *testing.T, tokenVer
 	return
 }
 
-func TestClientSecretAuthorizerV1(t *testing.T) {
+func TestAccClientSecretAuthorizerV1(t *testing.T) {
 	ctx := context.Background()
 	testClientSecretAuthorizer(ctx, t, auth.TokenVersion1)
 }
 
-func TestClientSecretAuthorizerV2(t *testing.T) {
+func TestAccClientSecretAuthorizerV2(t *testing.T) {
 	ctx := context.Background()
 	testClientSecretAuthorizer(ctx, t, auth.TokenVersion2)
 }
 
 func testClientSecretAuthorizer(ctx context.Context, t *testing.T, tokenVersion auth.TokenVersion) (token *oauth2.Token) {
+	test.AccTest(t)
+
 	env, err := environments.FromNamed(environment)
 	if err != nil {
 		t.Fatal(err)
@@ -118,12 +122,14 @@ func testClientSecretAuthorizer(ctx context.Context, t *testing.T, tokenVersion 
 	return
 }
 
-func TestAzureCliAuthorizer(t *testing.T) {
+func TestAccAzureCliAuthorizer(t *testing.T) {
 	ctx := context.Background()
 	testAzureCliAuthorizer(ctx, t)
 }
 
 func testAzureCliAuthorizer(ctx context.Context, t *testing.T) (token *oauth2.Token) {
+	test.AccTest(t)
+
 	env, err := environments.FromNamed(environment)
 	if err != nil {
 		t.Fatal(err)
@@ -151,7 +157,9 @@ func testAzureCliAuthorizer(ctx context.Context, t *testing.T) (token *oauth2.To
 	return
 }
 
-func TestMsiAuthorizer(t *testing.T) {
+func TestAccMsiAuthorizer(t *testing.T) {
+	test.AccTest(t)
+
 	ctx := context.Background()
 	port := 8000 + rand.Intn(999)
 	if msiToken != "" {
@@ -187,7 +195,9 @@ func TestMsiAuthorizer(t *testing.T) {
 	}
 }
 
-func TestOIDCAuthorizer(t *testing.T) {
+func TestAccOIDCAuthorizer(t *testing.T) {
+	test.AccTest(t)
+
 	if idToken == "" {
 		t.Skip("idToken was empty")
 	}
@@ -217,7 +227,9 @@ func TestOIDCAuthorizer(t *testing.T) {
 	}
 }
 
-func TestGitHubOIDCAuthorizer(t *testing.T) {
+func TestAccGitHubOIDCAuthorizer(t *testing.T) {
+	test.AccTest(t)
+
 	if gitHubTokenURL == "" {
 		t.Skip("gitHubTokenURL was empty")
 	}

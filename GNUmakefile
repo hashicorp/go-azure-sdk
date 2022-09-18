@@ -1,5 +1,8 @@
 default: test
 
+acctest: fmt
+	ACCTEST=1 go test -count=1 -race -v ./sdk/... -run '^TestAcc'
+
 fmt: tools
 	@echo "==> Fixing source code with gofmt..."
 	find . -name '*.go' | grep -v vendor | xargs gofmt -s -w
@@ -17,7 +20,7 @@ prepare:
 
 test: fmt
 	go test -v ./resource-manager/...
-	go test -v ./sdk/...
+	go test -short -v ./sdk/...
 
 tools:
 	@echo "==> installing required tooling..."

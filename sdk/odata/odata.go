@@ -43,8 +43,12 @@ func (id Id) MarshalJSON() ([]byte, error) {
 }
 
 func (id *Id) UnmarshalJSON(data []byte) error {
+	if id == nil {
+		return nil
+	}
+
 	var id2 string
-	if err := json.Unmarshal(data, &id); err != nil {
+	if err := json.Unmarshal(data, &id2); err != nil {
 		return err
 	}
 	*id = Id(regexp.MustCompile(`/v2/`).ReplaceAllString(id2, `/v1.0/`))
@@ -55,6 +59,10 @@ func (id *Id) UnmarshalJSON(data []byte) error {
 type Link string
 
 func (l *Link) UnmarshalJSON(data []byte) error {
+	if l == nil {
+		return nil
+	}
+
 	var link string
 	if err := json.Unmarshal(data, &link); err != nil {
 		return err
@@ -67,7 +75,7 @@ func (l *Link) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	u.RawQuery = u.Query().Encode()
-	*l = Link(u.String())
+	*l = Link(regexp.MustCompile(`/v2/`).ReplaceAllString(u.String(), `/v1.0/`))
 
 	return nil
 }
