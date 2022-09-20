@@ -26,6 +26,7 @@ type status string
 
 const (
 	statusCanceled   status = "Canceled"
+	statusCancelled  status = "Cancelled"
 	statusFailed     status = "Failed"
 	statusInProgress status = "InProgress"
 	statusSucceeded  status = "Succeeded"
@@ -127,7 +128,7 @@ func (p *LongRunningPoller) PollUntilDone() error {
 			}
 
 			switch op.Status {
-			case statusCanceled, statusFailed:
+			case statusCanceled, statusCancelled, statusFailed:
 				return false, fmt.Errorf("async operation cancelled")
 			case statusSucceeded:
 				return false, nil
