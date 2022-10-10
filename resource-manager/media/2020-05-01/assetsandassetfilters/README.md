@@ -184,7 +184,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := assetsandassetfilters.NewMediaServiceID("12345678-1234-9876-4563-123456789012", "accountValue")
+id := assetsandassetfilters.NewMediaServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue")
 
 // alternatively `client.AssetsList(ctx, id, assetsandassetfilters.DefaultAssetsListOperationOptions())` can be used to do batched pagination
 items, err := client.AssetsListComplete(ctx, id, assetsandassetfilters.DefaultAssetsListOperationOptions())

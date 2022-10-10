@@ -11,15 +11,17 @@ var _ resourceids.ResourceId = MediaServiceId{}
 
 // MediaServiceId is a struct representing the Resource ID for a Media Service
 type MediaServiceId struct {
-	SubscriptionId string
-	AccountName    string
+	SubscriptionId    string
+	ResourceGroupName string
+	AccountName       string
 }
 
 // NewMediaServiceID returns a new MediaServiceId struct
-func NewMediaServiceID(subscriptionId string, accountName string) MediaServiceId {
+func NewMediaServiceID(subscriptionId string, resourceGroupName string, accountName string) MediaServiceId {
 	return MediaServiceId{
-		SubscriptionId: subscriptionId,
-		AccountName:    accountName,
+		SubscriptionId:    subscriptionId,
+		ResourceGroupName: resourceGroupName,
+		AccountName:       accountName,
 	}
 }
 
@@ -36,6 +38,10 @@ func ParseMediaServiceID(input string) (*MediaServiceId, error) {
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
 		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+	}
+
+	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
+		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
 	if id.AccountName, ok = parsed.Parsed["accountName"]; !ok {
@@ -59,6 +65,10 @@ func ParseMediaServiceIDInsensitively(input string) (*MediaServiceId, error) {
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
 		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+	}
+
+	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
+		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
 	if id.AccountName, ok = parsed.Parsed["accountName"]; !ok {
@@ -85,8 +95,8 @@ func ValidateMediaServiceID(input interface{}, key string) (warnings []string, e
 
 // ID returns the formatted Media Service ID
 func (id MediaServiceId) ID() string {
-	fmtString := "/subscriptions/%s/providers/Microsoft.Media/mediaServices/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.AccountName)
+	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.Media/mediaServices/%s"
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.AccountName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Media Service ID
@@ -94,6 +104,8 @@ func (id MediaServiceId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
 		resourceids.StaticSegment("staticSubscriptions", "subscriptions", "subscriptions"),
 		resourceids.SubscriptionIdSegment("subscriptionId", "12345678-1234-9876-4563-123456789012"),
+		resourceids.StaticSegment("staticResourceGroups", "resourceGroups", "resourceGroups"),
+		resourceids.ResourceGroupSegment("resourceGroupName", "example-resource-group"),
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftMedia", "Microsoft.Media", "Microsoft.Media"),
 		resourceids.StaticSegment("staticMediaServices", "mediaServices", "mediaServices"),
@@ -105,6 +117,7 @@ func (id MediaServiceId) Segments() []resourceids.Segment {
 func (id MediaServiceId) String() string {
 	components := []string{
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
+		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
 		fmt.Sprintf("Account Name: %q", id.AccountName),
 	}
 	return fmt.Sprintf("Media Service (%s)", strings.Join(components, "\n"))
