@@ -93,7 +93,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := contentkeypolicies.NewMediaServiceID("12345678-1234-9876-4563-123456789012", "accountValue")
+id := contentkeypolicies.NewMediaServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue")
 
 // alternatively `client.ContentKeyPoliciesList(ctx, id, contentkeypolicies.DefaultContentKeyPoliciesListOperationOptions())` can be used to do batched pagination
 items, err := client.ContentKeyPoliciesListComplete(ctx, id, contentkeypolicies.DefaultContentKeyPoliciesListOperationOptions())

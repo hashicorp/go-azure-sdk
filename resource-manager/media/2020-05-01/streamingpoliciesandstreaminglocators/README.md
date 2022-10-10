@@ -77,7 +77,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := streamingpoliciesandstreaminglocators.NewMediaServiceID("12345678-1234-9876-4563-123456789012", "accountValue")
+id := streamingpoliciesandstreaminglocators.NewMediaServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue")
 
 // alternatively `client.StreamingLocatorsList(ctx, id, streamingpoliciesandstreaminglocators.DefaultStreamingLocatorsListOperationOptions())` can be used to do batched pagination
 items, err := client.StreamingLocatorsListComplete(ctx, id, streamingpoliciesandstreaminglocators.DefaultStreamingLocatorsListOperationOptions())
@@ -179,7 +179,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := streamingpoliciesandstreaminglocators.NewMediaServiceID("12345678-1234-9876-4563-123456789012", "accountValue")
+id := streamingpoliciesandstreaminglocators.NewMediaServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue")
 
 // alternatively `client.StreamingPoliciesList(ctx, id, streamingpoliciesandstreaminglocators.DefaultStreamingPoliciesListOperationOptions())` can be used to do batched pagination
 items, err := client.StreamingPoliciesListComplete(ctx, id, streamingpoliciesandstreaminglocators.DefaultStreamingPoliciesListOperationOptions())
