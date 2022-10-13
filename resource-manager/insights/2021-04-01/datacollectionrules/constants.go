@@ -78,6 +78,7 @@ const (
 	KnownDataFlowStreamsMicrosoftNegativePerf            KnownDataFlowStreams = "Microsoft-Perf"
 	KnownDataFlowStreamsMicrosoftNegativeSyslog          KnownDataFlowStreams = "Microsoft-Syslog"
 	KnownDataFlowStreamsMicrosoftNegativeWindowsEvent    KnownDataFlowStreams = "Microsoft-WindowsEvent"
+	KnownDataFlowStreamsMicrosoftNegativeSecurityEvent   KnownDataFlowStreams = "Microsoft-SecurityEvent"
 )
 
 func PossibleValuesForKnownDataFlowStreams() []string {
@@ -87,6 +88,7 @@ func PossibleValuesForKnownDataFlowStreams() []string {
 		string(KnownDataFlowStreamsMicrosoftNegativePerf),
 		string(KnownDataFlowStreamsMicrosoftNegativeSyslog),
 		string(KnownDataFlowStreamsMicrosoftNegativeWindowsEvent),
+		string(KnownDataFlowStreamsMicrosoftNegativeSecurityEvent),
 	}
 }
 
@@ -97,6 +99,7 @@ func parseKnownDataFlowStreams(input string) (*KnownDataFlowStreams, error) {
 		"microsoft-perf":            KnownDataFlowStreamsMicrosoftNegativePerf,
 		"microsoft-syslog":          KnownDataFlowStreamsMicrosoftNegativeSyslog,
 		"microsoft-windowsevent":    KnownDataFlowStreamsMicrosoftNegativeWindowsEvent,
+		"microsoft-securityevent":	 KnownDataFlowStreamsMicrosoftNegativeSecurityEvent,
 	}
 	if v, ok := vals[strings.ToLower(input)]; ok {
 		return &v, nil
@@ -115,6 +118,7 @@ const (
 	KnownExtensionDataSourceStreamsMicrosoftNegativePerf            KnownExtensionDataSourceStreams = "Microsoft-Perf"
 	KnownExtensionDataSourceStreamsMicrosoftNegativeSyslog          KnownExtensionDataSourceStreams = "Microsoft-Syslog"
 	KnownExtensionDataSourceStreamsMicrosoftNegativeWindowsEvent    KnownExtensionDataSourceStreams = "Microsoft-WindowsEvent"
+	KnownExtensionDataSourceStreamsMicrosoftNegativeSecurityEvent   KnownExtensionDataSourceStreams = "Microsoft-SecurityEvent"
 )
 
 func PossibleValuesForKnownExtensionDataSourceStreams() []string {
@@ -124,6 +128,7 @@ func PossibleValuesForKnownExtensionDataSourceStreams() []string {
 		string(KnownExtensionDataSourceStreamsMicrosoftNegativePerf),
 		string(KnownExtensionDataSourceStreamsMicrosoftNegativeSyslog),
 		string(KnownExtensionDataSourceStreamsMicrosoftNegativeWindowsEvent),
+		string(KnownExtensionDataSourceStreamsMicrosoftNegativeSecurityEvent),
 	}
 }
 
@@ -134,6 +139,7 @@ func parseKnownExtensionDataSourceStreams(input string) (*KnownExtensionDataSour
 		"microsoft-perf":            KnownExtensionDataSourceStreamsMicrosoftNegativePerf,
 		"microsoft-syslog":          KnownExtensionDataSourceStreamsMicrosoftNegativeSyslog,
 		"microsoft-windowsevent":    KnownExtensionDataSourceStreamsMicrosoftNegativeWindowsEvent,
+		"microsoft-securityevent":	 KnownExtensionDataSourceStreamsMicrosoftNegativeSecurityEvent,
 	}
 	if v, ok := vals[strings.ToLower(input)]; ok {
 		return &v, nil
@@ -336,12 +342,14 @@ type KnownWindowsEventLogDataSourceStreams string
 const (
 	KnownWindowsEventLogDataSourceStreamsMicrosoftNegativeEvent        KnownWindowsEventLogDataSourceStreams = "Microsoft-Event"
 	KnownWindowsEventLogDataSourceStreamsMicrosoftNegativeWindowsEvent KnownWindowsEventLogDataSourceStreams = "Microsoft-WindowsEvent"
+	KnownWindowsEventLogDataSourceStreamsMicrosoftNegativeSecurityEvent KnownWindowsEventLogDataSourceStreams = "Microsoft-SecurityEvent"
 )
 
 func PossibleValuesForKnownWindowsEventLogDataSourceStreams() []string {
 	return []string{
 		string(KnownWindowsEventLogDataSourceStreamsMicrosoftNegativeEvent),
 		string(KnownWindowsEventLogDataSourceStreamsMicrosoftNegativeWindowsEvent),
+		string(KnownWindowsEventLogDataSourceStreamsMicrosoftNegativeSecurityEvent),
 	}
 }
 
@@ -349,6 +357,7 @@ func parseKnownWindowsEventLogDataSourceStreams(input string) (*KnownWindowsEven
 	vals := map[string]KnownWindowsEventLogDataSourceStreams{
 		"microsoft-event":        KnownWindowsEventLogDataSourceStreamsMicrosoftNegativeEvent,
 		"microsoft-windowsevent": KnownWindowsEventLogDataSourceStreamsMicrosoftNegativeWindowsEvent,
+		"microsoft-securityevent": KnownWindowsEventLogDataSourceStreamsMicrosoftNegativeSecurityEvent,
 	}
 	if v, ok := vals[strings.ToLower(input)]; ok {
 		return &v, nil
