@@ -1,0 +1,79 @@
+package appplatform
+
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/Azure/go-autorest/autorest"
+	"github.com/Azure/go-autorest/autorest/azure"
+	"github.com/hashicorp/go-azure-helpers/polling"
+)
+
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type AppsSetActiveDeploymentsOperationResponse struct {
+	Poller       polling.LongRunningPoller
+	HttpResponse *http.Response
+}
+
+// AppsSetActiveDeployments ...
+func (c AppPlatformClient) AppsSetActiveDeployments(ctx context.Context, id AppId, input ActiveDeploymentCollection) (result AppsSetActiveDeploymentsOperationResponse, err error) {
+	req, err := c.preparerForAppsSetActiveDeployments(ctx, id, input)
+	if err != nil {
+		err = autorest.NewErrorWithError(err, "appplatform.AppPlatformClient", "AppsSetActiveDeployments", nil, "Failure preparing request")
+		return
+	}
+
+	result, err = c.senderForAppsSetActiveDeployments(ctx, req)
+	if err != nil {
+		err = autorest.NewErrorWithError(err, "appplatform.AppPlatformClient", "AppsSetActiveDeployments", result.HttpResponse, "Failure sending request")
+		return
+	}
+
+	return
+}
+
+// AppsSetActiveDeploymentsThenPoll performs AppsSetActiveDeployments then polls until it's completed
+func (c AppPlatformClient) AppsSetActiveDeploymentsThenPoll(ctx context.Context, id AppId, input ActiveDeploymentCollection) error {
+	result, err := c.AppsSetActiveDeployments(ctx, id, input)
+	if err != nil {
+		return fmt.Errorf("performing AppsSetActiveDeployments: %+v", err)
+	}
+
+	if err := result.Poller.PollUntilDone(); err != nil {
+		return fmt.Errorf("polling after AppsSetActiveDeployments: %+v", err)
+	}
+
+	return nil
+}
+
+// preparerForAppsSetActiveDeployments prepares the AppsSetActiveDeployments request.
+func (c AppPlatformClient) preparerForAppsSetActiveDeployments(ctx context.Context, id AppId, input ActiveDeploymentCollection) (*http.Request, error) {
+	queryParameters := map[string]interface{}{
+		"api-version": defaultApiVersion,
+	}
+
+	preparer := autorest.CreatePreparer(
+		autorest.AsContentType("application/json; charset=utf-8"),
+		autorest.AsPost(),
+		autorest.WithBaseURL(c.baseUri),
+		autorest.WithPath(fmt.Sprintf("%s/setActiveDeployments", id.ID())),
+		autorest.WithJSON(input),
+		autorest.WithQueryParameters(queryParameters))
+	return preparer.Prepare((&http.Request{}).WithContext(ctx))
+}
+
+// senderForAppsSetActiveDeployments sends the AppsSetActiveDeployments request. The method will close the
+// http.Response Body if it receives an error.
+func (c AppPlatformClient) senderForAppsSetActiveDeployments(ctx context.Context, req *http.Request) (future AppsSetActiveDeploymentsOperationResponse, err error) {
+	var resp *http.Response
+	resp, err = c.Client.Send(req, azure.DoRetryWithRegistration(c.Client))
+	if err != nil {
+		return
+	}
+
+	future.Poller, err = polling.NewPollerFromResponse(ctx, resp, c.Client, req.Method)
+	return
+}
