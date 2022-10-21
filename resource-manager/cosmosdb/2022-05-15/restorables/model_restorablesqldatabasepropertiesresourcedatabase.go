@@ -4,7 +4,11 @@ package restorables
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type RestorableSqlDatabasePropertiesResourceDatabase struct {
-	Colls *string `json:"_colls,omitempty"`
-	Self  *string `json:"_self,omitempty"`
-	Users *string `json:"_users,omitempty"`
+	Colls *string  `json:"_colls,omitempty"`
+	Etag  *string  `json:"_etag,omitempty"`
+	Id    *string  `json:"id,omitempty"`
+	Rid   *string  `json:"_rid,omitempty"`
+	Self  *string  `json:"_self,omitempty"`
+	Ts    *float64 `json:"_ts,omitempty"`
+	Users *string  `json:"_users,omitempty"`
 }
