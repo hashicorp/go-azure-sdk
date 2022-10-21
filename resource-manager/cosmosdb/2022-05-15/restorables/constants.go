@@ -45,6 +45,164 @@ func parseApiType(input string) (*ApiType, error) {
 	return &out, nil
 }
 
+type CompositePathSortOrder string
+
+const (
+	CompositePathSortOrderAscending  CompositePathSortOrder = "ascending"
+	CompositePathSortOrderDescending CompositePathSortOrder = "descending"
+)
+
+func PossibleValuesForCompositePathSortOrder() []string {
+	return []string{
+		string(CompositePathSortOrderAscending),
+		string(CompositePathSortOrderDescending),
+	}
+}
+
+func parseCompositePathSortOrder(input string) (*CompositePathSortOrder, error) {
+	vals := map[string]CompositePathSortOrder{
+		"ascending":  CompositePathSortOrderAscending,
+		"descending": CompositePathSortOrderDescending,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := CompositePathSortOrder(input)
+	return &out, nil
+}
+
+type ConflictResolutionMode string
+
+const (
+	ConflictResolutionModeCustom         ConflictResolutionMode = "Custom"
+	ConflictResolutionModeLastWriterWins ConflictResolutionMode = "LastWriterWins"
+)
+
+func PossibleValuesForConflictResolutionMode() []string {
+	return []string{
+		string(ConflictResolutionModeCustom),
+		string(ConflictResolutionModeLastWriterWins),
+	}
+}
+
+func parseConflictResolutionMode(input string) (*ConflictResolutionMode, error) {
+	vals := map[string]ConflictResolutionMode{
+		"custom":         ConflictResolutionModeCustom,
+		"lastwriterwins": ConflictResolutionModeLastWriterWins,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ConflictResolutionMode(input)
+	return &out, nil
+}
+
+type DataType string
+
+const (
+	DataTypeLineString   DataType = "LineString"
+	DataTypeMultiPolygon DataType = "MultiPolygon"
+	DataTypeNumber       DataType = "Number"
+	DataTypePoint        DataType = "Point"
+	DataTypePolygon      DataType = "Polygon"
+	DataTypeString       DataType = "String"
+)
+
+func PossibleValuesForDataType() []string {
+	return []string{
+		string(DataTypeLineString),
+		string(DataTypeMultiPolygon),
+		string(DataTypeNumber),
+		string(DataTypePoint),
+		string(DataTypePolygon),
+		string(DataTypeString),
+	}
+}
+
+func parseDataType(input string) (*DataType, error) {
+	vals := map[string]DataType{
+		"linestring":   DataTypeLineString,
+		"multipolygon": DataTypeMultiPolygon,
+		"number":       DataTypeNumber,
+		"point":        DataTypePoint,
+		"polygon":      DataTypePolygon,
+		"string":       DataTypeString,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DataType(input)
+	return &out, nil
+}
+
+type IndexKind string
+
+const (
+	IndexKindHash    IndexKind = "Hash"
+	IndexKindRange   IndexKind = "Range"
+	IndexKindSpatial IndexKind = "Spatial"
+)
+
+func PossibleValuesForIndexKind() []string {
+	return []string{
+		string(IndexKindHash),
+		string(IndexKindRange),
+		string(IndexKindSpatial),
+	}
+}
+
+func parseIndexKind(input string) (*IndexKind, error) {
+	vals := map[string]IndexKind{
+		"hash":    IndexKindHash,
+		"range":   IndexKindRange,
+		"spatial": IndexKindSpatial,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := IndexKind(input)
+	return &out, nil
+}
+
+type IndexingMode string
+
+const (
+	IndexingModeConsistent IndexingMode = "consistent"
+	IndexingModeLazy       IndexingMode = "lazy"
+	IndexingModeNone       IndexingMode = "none"
+)
+
+func PossibleValuesForIndexingMode() []string {
+	return []string{
+		string(IndexingModeConsistent),
+		string(IndexingModeLazy),
+		string(IndexingModeNone),
+	}
+}
+
+func parseIndexingMode(input string) (*IndexingMode, error) {
+	vals := map[string]IndexingMode{
+		"consistent": IndexingModeConsistent,
+		"lazy":       IndexingModeLazy,
+		"none":       IndexingModeNone,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := IndexingMode(input)
+	return &out, nil
+}
+
 type OperationType string
 
 const (
@@ -76,5 +234,70 @@ func parseOperationType(input string) (*OperationType, error) {
 
 	// otherwise presume it's an undefined value and best-effort it
 	out := OperationType(input)
+	return &out, nil
+}
+
+type PartitionKind string
+
+const (
+	PartitionKindHash      PartitionKind = "Hash"
+	PartitionKindMultiHash PartitionKind = "MultiHash"
+	PartitionKindRange     PartitionKind = "Range"
+)
+
+func PossibleValuesForPartitionKind() []string {
+	return []string{
+		string(PartitionKindHash),
+		string(PartitionKindMultiHash),
+		string(PartitionKindRange),
+	}
+}
+
+func parsePartitionKind(input string) (*PartitionKind, error) {
+	vals := map[string]PartitionKind{
+		"hash":      PartitionKindHash,
+		"multihash": PartitionKindMultiHash,
+		"range":     PartitionKindRange,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := PartitionKind(input)
+	return &out, nil
+}
+
+type SpatialType string
+
+const (
+	SpatialTypeLineString   SpatialType = "LineString"
+	SpatialTypeMultiPolygon SpatialType = "MultiPolygon"
+	SpatialTypePoint        SpatialType = "Point"
+	SpatialTypePolygon      SpatialType = "Polygon"
+)
+
+func PossibleValuesForSpatialType() []string {
+	return []string{
+		string(SpatialTypeLineString),
+		string(SpatialTypeMultiPolygon),
+		string(SpatialTypePoint),
+		string(SpatialTypePolygon),
+	}
+}
+
+func parseSpatialType(input string) (*SpatialType, error) {
+	vals := map[string]SpatialType{
+		"linestring":   SpatialTypeLineString,
+		"multipolygon": SpatialTypeMultiPolygon,
+		"point":        SpatialTypePoint,
+		"polygon":      SpatialTypePolygon,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SpatialType(input)
 	return &out, nil
 }
