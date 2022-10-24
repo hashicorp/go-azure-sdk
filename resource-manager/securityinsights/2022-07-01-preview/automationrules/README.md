@@ -20,7 +20,7 @@ client.Client.Authorizer = authorizer
 ```
 
 
-### Example Usage: `AutomationRulesClient.AutomationRulesCreateOrUpdate`
+### Example Usage: `AutomationRulesClient.CreateOrUpdate`
 
 ```go
 ctx := context.TODO()
@@ -31,7 +31,7 @@ payload := automationrules.AutomationRule{
 }
 
 
-read, err := client.AutomationRulesCreateOrUpdate(ctx, id, payload)
+read, err := client.CreateOrUpdate(ctx, id, payload)
 if err != nil {
 	// handle the error
 }
@@ -41,13 +41,13 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `AutomationRulesClient.AutomationRulesDelete`
+### Example Usage: `AutomationRulesClient.Delete`
 
 ```go
 ctx := context.TODO()
 id := automationrules.NewAutomationRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "automationRuleIdValue")
 
-read, err := client.AutomationRulesDelete(ctx, id)
+read, err := client.Delete(ctx, id)
 if err != nil {
 	// handle the error
 }
@@ -57,13 +57,13 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `AutomationRulesClient.AutomationRulesGet`
+### Example Usage: `AutomationRulesClient.Get`
 
 ```go
 ctx := context.TODO()
 id := automationrules.NewAutomationRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "automationRuleIdValue")
 
-read, err := client.AutomationRulesGet(ctx, id)
+read, err := client.Get(ctx, id)
 if err != nil {
 	// handle the error
 }
@@ -73,14 +73,14 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `AutomationRulesClient.AutomationRulesList`
+### Example Usage: `AutomationRulesClient.List`
 
 ```go
 ctx := context.TODO()
 id := automationrules.NewWorkspaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue")
 
-// alternatively `client.AutomationRulesList(ctx, id)` can be used to do batched pagination
-items, err := client.AutomationRulesListComplete(ctx, id)
+// alternatively `client.List(ctx, id)` can be used to do batched pagination
+items, err := client.ListComplete(ctx, id)
 if err != nil {
 	// handle the error
 }
