@@ -20,13 +20,13 @@ client.Client.Authorizer = authorizer
 ```
 
 
-### Example Usage: `PrivateLinkResourcesClient.PrivateLinkResourcesList`
+### Example Usage: `PrivateLinkResourcesClient.List`
 
 ```go
 ctx := context.TODO()
 id := privatelinkresources.NewManagedClusterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue")
 
-read, err := client.PrivateLinkResourcesList(ctx, id)
+read, err := client.List(ctx, id)
 if err != nil {
 	// handle the error
 }

@@ -20,7 +20,7 @@ client.Client.Authorizer = authorizer
 ```
 
 
-### Example Usage: `ResolvePrivateLinkServiceIdClient.ResolvePrivateLinkServiceIdPOST`
+### Example Usage: `ResolvePrivateLinkServiceIdClient.POST`
 
 ```go
 ctx := context.TODO()
@@ -31,7 +31,7 @@ payload := resolveprivatelinkserviceid.PrivateLinkResource{
 }
 
 
-read, err := client.ResolvePrivateLinkServiceIdPOST(ctx, id, payload)
+read, err := client.POST(ctx, id, payload)
 if err != nil {
 	// handle the error
 }

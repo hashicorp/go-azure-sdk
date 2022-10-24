@@ -20,7 +20,7 @@ client.Client.Authorizer = authorizer
 ```
 
 
-### Example Usage: `MachinesClient.MachinesCreateOrUpdate`
+### Example Usage: `MachinesClient.CreateOrUpdate`
 
 ```go
 ctx := context.TODO()
@@ -31,7 +31,7 @@ payload := machines.Machine{
 }
 
 
-read, err := client.MachinesCreateOrUpdate(ctx, id, payload)
+read, err := client.CreateOrUpdate(ctx, id, payload)
 if err != nil {
 	// handle the error
 }
@@ -41,13 +41,13 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `MachinesClient.MachinesDelete`
+### Example Usage: `MachinesClient.Delete`
 
 ```go
 ctx := context.TODO()
 id := machines.NewMachineID("12345678-1234-9876-4563-123456789012", "example-resource-group", "machineValue")
 
-read, err := client.MachinesDelete(ctx, id)
+read, err := client.Delete(ctx, id)
 if err != nil {
 	// handle the error
 }
@@ -57,13 +57,13 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `MachinesClient.MachinesGet`
+### Example Usage: `MachinesClient.Get`
 
 ```go
 ctx := context.TODO()
 id := machines.NewMachineID("12345678-1234-9876-4563-123456789012", "example-resource-group", "machineValue")
 
-read, err := client.MachinesGet(ctx, id, machines.DefaultMachinesGetOperationOptions())
+read, err := client.Get(ctx, id, machines.DefaultGetOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -73,14 +73,14 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `MachinesClient.MachinesListByResourceGroup`
+### Example Usage: `MachinesClient.ListByResourceGroup`
 
 ```go
 ctx := context.TODO()
 id := machines.NewResourceGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group")
 
-// alternatively `client.MachinesListByResourceGroup(ctx, id)` can be used to do batched pagination
-items, err := client.MachinesListByResourceGroupComplete(ctx, id)
+// alternatively `client.ListByResourceGroup(ctx, id)` can be used to do batched pagination
+items, err := client.ListByResourceGroupComplete(ctx, id)
 if err != nil {
 	// handle the error
 }
@@ -90,14 +90,14 @@ for _, item := range items {
 ```
 
 
-### Example Usage: `MachinesClient.MachinesListBySubscription`
+### Example Usage: `MachinesClient.ListBySubscription`
 
 ```go
 ctx := context.TODO()
 id := machines.NewSubscriptionID("12345678-1234-9876-4563-123456789012")
 
-// alternatively `client.MachinesListBySubscription(ctx, id)` can be used to do batched pagination
-items, err := client.MachinesListBySubscriptionComplete(ctx, id)
+// alternatively `client.ListBySubscription(ctx, id)` can be used to do batched pagination
+items, err := client.ListBySubscriptionComplete(ctx, id)
 if err != nil {
 	// handle the error
 }
@@ -107,7 +107,7 @@ for _, item := range items {
 ```
 
 
-### Example Usage: `MachinesClient.MachinesUpdate`
+### Example Usage: `MachinesClient.Update`
 
 ```go
 ctx := context.TODO()
@@ -118,7 +118,7 @@ payload := machines.MachineUpdate{
 }
 
 
-read, err := client.MachinesUpdate(ctx, id, payload)
+read, err := client.Update(ctx, id, payload)
 if err != nil {
 	// handle the error
 }
