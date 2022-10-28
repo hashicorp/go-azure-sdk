@@ -3,6 +3,7 @@ package virtualmachinescalesets
 import (
 	"github.com/hashicorp/go-azure-helpers/resourcemanager/edgezones"
 	"github.com/hashicorp/go-azure-helpers/resourcemanager/identity"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/zones"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -19,5 +20,5 @@ type VirtualMachineScaleSet struct {
 	Sku              *Sku                               `json:"sku,omitempty"`
 	Tags             *map[string]string                 `json:"tags,omitempty"`
 	Type             *string                            `json:"type,omitempty"`
-	Zones            *[]string                          `json:"zones,omitempty"`
+	Zones            *zones.Schema                      `json:"zones,omitempty"`
 }
