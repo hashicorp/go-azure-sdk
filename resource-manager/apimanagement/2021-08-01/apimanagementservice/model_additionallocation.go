@@ -1,5 +1,9 @@
 package apimanagementservice
 
+import (
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/zones"
+)
+
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -13,5 +17,5 @@ type AdditionalLocation struct {
 	PublicIPAddresses           *[]string                         `json:"publicIPAddresses,omitempty"`
 	Sku                         ApiManagementServiceSkuProperties `json:"sku"`
 	VirtualNetworkConfiguration *VirtualNetworkConfiguration      `json:"virtualNetworkConfiguration,omitempty"`
-	Zones                       *[]string                         `json:"zones,omitempty"`
+	Zones                       *zones.Schema                     `json:"zones,omitempty"`
 }

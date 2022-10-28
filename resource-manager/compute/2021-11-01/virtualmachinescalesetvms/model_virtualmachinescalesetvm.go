@@ -1,5 +1,9 @@
 package virtualmachinescalesetvms
 
+import (
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/zones"
+)
+
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -14,5 +18,5 @@ type VirtualMachineScaleSetVM struct {
 	Sku        *Sku                                `json:"sku,omitempty"`
 	Tags       *map[string]string                  `json:"tags,omitempty"`
 	Type       *string                             `json:"type,omitempty"`
-	Zones      *[]string                           `json:"zones,omitempty"`
+	Zones      *zones.Schema                       `json:"zones,omitempty"`
 }
