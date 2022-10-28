@@ -6,5 +6,5 @@ package dedicatedhostgroups
 type DedicatedHostGroupUpdate struct {
 	Properties *DedicatedHostGroupProperties `json:"properties,omitempty"`
 	Tags       *map[string]string            `json:"tags,omitempty"`
-	Zones      *[]string                     `json:"zones,omitempty"`
+	Zones      *Zones                        `json:"zones,omitempty"`
 }

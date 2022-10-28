@@ -12,7 +12,7 @@ import (
 type ServerGroupProperties struct {
 	AdministratorLogin         *string                                        `json:"administratorLogin,omitempty"`
 	AdministratorLoginPassword *string                                        `json:"administratorLoginPassword,omitempty"`
-	AvailabilityZone           *string                                        `json:"availabilityZone,omitempty"`
+	AvailabilityZone           *Zone                                          `json:"availabilityZone,omitempty"`
 	BackupRetentionDays        *int64                                         `json:"backupRetentionDays,omitempty"`
 	CitusVersion               *CitusVersion                                  `json:"citusVersion,omitempty"`
 	CreateMode                 *CreateMode                                    `json:"createMode,omitempty"`

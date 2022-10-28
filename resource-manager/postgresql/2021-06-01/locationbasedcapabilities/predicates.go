@@ -3,7 +3,6 @@ package locationbasedcapabilities
 type CapabilityPropertiesOperationPredicate struct {
 	GeoBackupSupported                   *bool
 	Status                               *string
-	Zone                                 *string
 	ZoneRedundantHaAndGeoBackupSupported *bool
 	ZoneRedundantHaSupported             *bool
 }
@@ -15,10 +14,6 @@ func (p CapabilityPropertiesOperationPredicate) Matches(input CapabilityProperti
 	}
 
 	if p.Status != nil && (input.Status == nil && *p.Status != *input.Status) {
-		return false
-	}
-
-	if p.Zone != nil && (input.Zone == nil && *p.Zone != *input.Zone) {
 		return false
 	}
 

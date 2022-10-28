@@ -12,5 +12,5 @@ type VirtualMachineUpdate struct {
 	Plan       *Plan                              `json:"plan,omitempty"`
 	Properties *VirtualMachineProperties          `json:"properties,omitempty"`
 	Tags       *map[string]string                 `json:"tags,omitempty"`
-	Zones      *[]string                          `json:"zones,omitempty"`
+	Zones      *Zones                             `json:"zones,omitempty"`
 }

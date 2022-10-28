@@ -19,5 +19,5 @@ type VirtualMachine struct {
 	Resources        *[]VirtualMachineExtension         `json:"resources,omitempty"`
 	Tags             *map[string]string                 `json:"tags,omitempty"`
 	Type             *string                            `json:"type,omitempty"`
-	Zones            *[]string                          `json:"zones,omitempty"`
+	Zones            *Zones                             `json:"zones,omitempty"`
 }

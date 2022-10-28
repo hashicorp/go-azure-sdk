@@ -6,5 +6,5 @@ package skus
 type ApiManagementSkuLocationInfo struct {
 	Location    *string                        `json:"location,omitempty"`
 	ZoneDetails *[]ApiManagementSkuZoneDetails `json:"zoneDetails,omitempty"`
-	Zones       *[]string                      `json:"zones,omitempty"`
+	Zones       *Zones                         `json:"zones,omitempty"`
 }

@@ -13,5 +13,5 @@ type AdditionalLocation struct {
 	PublicIPAddresses           *[]string                         `json:"publicIPAddresses,omitempty"`
 	Sku                         ApiManagementServiceSkuProperties `json:"sku"`
 	VirtualNetworkConfiguration *VirtualNetworkConfiguration      `json:"virtualNetworkConfiguration,omitempty"`
-	Zones                       *[]string                         `json:"zones,omitempty"`
+	Zones                       *Zones                            `json:"zones,omitempty"`
 }

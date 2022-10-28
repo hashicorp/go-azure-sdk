@@ -4,7 +4,7 @@ package elasticsans
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type ElasticSanProperties struct {
-	AvailabilityZones       *[]string           `json:"availabilityZones,omitempty"`
+	AvailabilityZones       *Zones              `json:"availabilityZones,omitempty"`
 	BaseSizeTiB             int64               `json:"baseSizeTiB"`
 	ExtendedCapacitySizeTiB int64               `json:"extendedCapacitySizeTiB"`
 	ProvisioningState       *ProvisioningStates `json:"provisioningState,omitempty"`

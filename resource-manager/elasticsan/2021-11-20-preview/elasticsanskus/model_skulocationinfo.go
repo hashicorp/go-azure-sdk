@@ -4,6 +4,6 @@ package elasticsanskus
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type SkuLocationInfo struct {
-	Location *string   `json:"location,omitempty"`
-	Zones    *[]string `json:"zones,omitempty"`
+	Location *string `json:"location,omitempty"`
+	Zones    *Zones  `json:"zones,omitempty"`
 }

@@ -4,7 +4,7 @@ package agentpools
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type ManagedClusterAgentPoolProfileProperties struct {
-	AvailabilityZones          *[]string                 `json:"availabilityZones,omitempty"`
+	AvailabilityZones          *Zones                    `json:"availabilityZones,omitempty"`
 	CapacityReservationGroupID *string                   `json:"capacityReservationGroupID,omitempty"`
 	Count                      *int64                    `json:"count,omitempty"`
 	CreationData               *CreationData             `json:"creationData,omitempty"`

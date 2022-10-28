@@ -18,5 +18,5 @@ type Disk struct {
 	Sku               *DiskSku           `json:"sku,omitempty"`
 	Tags              *map[string]string `json:"tags,omitempty"`
 	Type              *string            `json:"type,omitempty"`
-	Zones             *[]string          `json:"zones,omitempty"`
+	Zones             *Zones             `json:"zones,omitempty"`
 }

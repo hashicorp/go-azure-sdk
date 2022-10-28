@@ -5,7 +5,7 @@ package servergroups
 
 type ServerGroupPropertiesForUpdate struct {
 	AdministratorLoginPassword *string            `json:"administratorLoginPassword,omitempty"`
-	AvailabilityZone           *string            `json:"availabilityZone,omitempty"`
+	AvailabilityZone           *Zone              `json:"availabilityZone,omitempty"`
 	BackupRetentionDays        *int64             `json:"backupRetentionDays,omitempty"`
 	CitusVersion               *CitusVersion      `json:"citusVersion,omitempty"`
 	EnableShardsOnCoordinator  *bool              `json:"enableShardsOnCoordinator,omitempty"`

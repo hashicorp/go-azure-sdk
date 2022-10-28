@@ -12,7 +12,7 @@ import (
 type ServerProperties struct {
 	AdministratorLogin         *string            `json:"administratorLogin,omitempty"`
 	AdministratorLoginPassword *string            `json:"administratorLoginPassword,omitempty"`
-	AvailabilityZone           *string            `json:"availabilityZone,omitempty"`
+	AvailabilityZone           *Zone              `json:"availabilityZone,omitempty"`
 	Backup                     *Backup            `json:"backup,omitempty"`
 	CreateMode                 *CreateMode        `json:"createMode,omitempty"`
 	FullyQualifiedDomainName   *string            `json:"fullyQualifiedDomainName,omitempty"`

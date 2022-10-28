@@ -9,7 +9,7 @@ type CapabilityProperties struct {
 	SupportedFlexibleServerEditions      *[]FlexibleServerEditionCapability `json:"supportedFlexibleServerEditions,omitempty"`
 	SupportedHAMode                      *[]string                          `json:"supportedHAMode,omitempty"`
 	SupportedHyperscaleNodeEditions      *[]HyperscaleNodeEditionCapability `json:"supportedHyperscaleNodeEditions,omitempty"`
-	Zone                                 *string                            `json:"zone,omitempty"`
+	Zone                                 *Zone                              `json:"zone,omitempty"`
 	ZoneRedundantHaAndGeoBackupSupported *bool                              `json:"zoneRedundantHaAndGeoBackupSupported,omitempty"`
 	ZoneRedundantHaSupported             *bool                              `json:"zoneRedundantHaSupported,omitempty"`
 }

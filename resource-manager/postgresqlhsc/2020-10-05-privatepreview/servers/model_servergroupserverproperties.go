@@ -5,7 +5,7 @@ package servers
 
 type ServerGroupServerProperties struct {
 	AdministratorLogin       *string            `json:"administratorLogin,omitempty"`
-	AvailabilityZone         *string            `json:"availabilityZone,omitempty"`
+	AvailabilityZone         *Zone              `json:"availabilityZone,omitempty"`
 	CitusVersion             *CitusVersion      `json:"citusVersion,omitempty"`
 	EnableHa                 *bool              `json:"enableHa,omitempty"`
 	EnablePublicIP           *bool              `json:"enablePublicIp,omitempty"`

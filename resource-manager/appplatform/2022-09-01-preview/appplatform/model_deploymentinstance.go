@@ -9,5 +9,5 @@ type DeploymentInstance struct {
 	Reason          *string `json:"reason,omitempty"`
 	StartTime       *string `json:"startTime,omitempty"`
 	Status          *string `json:"status,omitempty"`
-	Zone            *string `json:"zone,omitempty"`
+	Zone            *Zone   `json:"zone,omitempty"`
 }
