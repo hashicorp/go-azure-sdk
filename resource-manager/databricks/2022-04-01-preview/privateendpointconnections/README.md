@@ -20,6 +20,35 @@ client.Client.Authorizer = authorizer
 ```
 
 
+### Example Usage: `PrivateEndpointConnectionsClient.Create`
+
+```go
+ctx := context.TODO()
+id := privateendpointconnections.NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "privateEndpointConnectionValue")
+
+payload := privateendpointconnections.PrivateEndpointConnection{
+	// ...
+}
+
+
+if err := client.CreateThenPoll(ctx, id, payload); err != nil {
+	// handle the error
+}
+```
+
+
+### Example Usage: `PrivateEndpointConnectionsClient.Delete`
+
+```go
+ctx := context.TODO()
+id := privateendpointconnections.NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "privateEndpointConnectionValue")
+
+if err := client.DeleteThenPoll(ctx, id); err != nil {
+	// handle the error
+}
+```
+
+
 ### Example Usage: `PrivateEndpointConnectionsClient.Get`
 
 ```go
