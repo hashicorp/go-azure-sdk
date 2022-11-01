@@ -5,7 +5,7 @@ package containerappssourcecontrols
 
 type SourceControlProperties struct {
 	Branch                    *string                      `json:"branch,omitempty"`
-	GithubActionConfiguration *GithubActionConfiguration   `json:"githubActionConfiguration,omitempty"`
+	GitHubActionConfiguration *GithubActionConfiguration   `json:"githubActionConfiguration,omitempty"`
 	OperationState            *SourceControlOperationState `json:"operationState,omitempty"`
 	RepoUrl                   *string                      `json:"repoUrl,omitempty"`
 }
