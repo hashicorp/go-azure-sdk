@@ -119,34 +119,6 @@ func parseProvisioningStateEnum(input string) (*ProvisioningStateEnum, error) {
 	return &out, nil
 }
 
-type RetentionInDaysAsDefault string
-
-const (
-	RetentionInDaysAsDefaultFalse RetentionInDaysAsDefault = "False"
-	RetentionInDaysAsDefaultTrue  RetentionInDaysAsDefault = "True"
-)
-
-func PossibleValuesForRetentionInDaysAsDefault() []string {
-	return []string{
-		string(RetentionInDaysAsDefaultFalse),
-		string(RetentionInDaysAsDefaultTrue),
-	}
-}
-
-func parseRetentionInDaysAsDefault(input string) (*RetentionInDaysAsDefault, error) {
-	vals := map[string]RetentionInDaysAsDefault{
-		"false": RetentionInDaysAsDefaultFalse,
-		"true":  RetentionInDaysAsDefaultTrue,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := RetentionInDaysAsDefault(input)
-	return &out, nil
-}
-
 type SourceEnum string
 
 const (
@@ -265,33 +237,5 @@ func parseTableTypeEnum(input string) (*TableTypeEnum, error) {
 
 	// otherwise presume it's an undefined value and best-effort it
 	out := TableTypeEnum(input)
-	return &out, nil
-}
-
-type TotalRetentionInDaysAsDefault string
-
-const (
-	TotalRetentionInDaysAsDefaultFalse TotalRetentionInDaysAsDefault = "False"
-	TotalRetentionInDaysAsDefaultTrue  TotalRetentionInDaysAsDefault = "True"
-)
-
-func PossibleValuesForTotalRetentionInDaysAsDefault() []string {
-	return []string{
-		string(TotalRetentionInDaysAsDefaultFalse),
-		string(TotalRetentionInDaysAsDefaultTrue),
-	}
-}
-
-func parseTotalRetentionInDaysAsDefault(input string) (*TotalRetentionInDaysAsDefault, error) {
-	vals := map[string]TotalRetentionInDaysAsDefault{
-		"false": TotalRetentionInDaysAsDefaultFalse,
-		"true":  TotalRetentionInDaysAsDefaultTrue,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := TotalRetentionInDaysAsDefault(input)
 	return &out, nil
 }
