@@ -1,4 +1,4 @@
-package resources
+package providers
 
 import (
 	"testing"
@@ -6,33 +6,33 @@ import (
 	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
 )
 
-var _ resourceids.ResourceId = SubscriptionResourceGroupId{}
+var _ resourceids.ResourceId = SubscriptionProviderId{}
 
-func TestNewSubscriptionResourceGroupID(t *testing.T) {
-	id := NewSubscriptionResourceGroupID("12345678-1234-9876-4563-123456789012", "sourceResourceGroupValue")
+func TestNewSubscriptionProviderID(t *testing.T) {
+	id := NewSubscriptionProviderID("12345678-1234-9876-4563-123456789012", "resourceProviderNamespaceValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
 	}
 
-	if id.SourceResourceGroupName != "sourceResourceGroupValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'SourceResourceGroupName'", id.SourceResourceGroupName, "sourceResourceGroupValue")
+	if id.ResourceProviderNamespace != "resourceProviderNamespaceValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'ResourceProviderNamespace'", id.ResourceProviderNamespace, "resourceProviderNamespaceValue")
 	}
 }
 
-func TestFormatSubscriptionResourceGroupID(t *testing.T) {
-	actual := NewSubscriptionResourceGroupID("12345678-1234-9876-4563-123456789012", "sourceResourceGroupValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/sourceResourceGroupValue"
+func TestFormatSubscriptionProviderID(t *testing.T) {
+	actual := NewSubscriptionProviderID("12345678-1234-9876-4563-123456789012", "resourceProviderNamespaceValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/resourceProviderNamespaceValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
 }
 
-func TestParseSubscriptionResourceGroupID(t *testing.T) {
+func TestParseSubscriptionProviderID(t *testing.T) {
 	testData := []struct {
 		Input    string
 		Error    bool
-		Expected *SubscriptionResourceGroupId
+		Expected *SubscriptionProviderId
 	}{
 		{
 			// Incomplete URI
@@ -51,27 +51,27 @@ func TestParseSubscriptionResourceGroupID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/sourceResourceGroupValue",
-			Expected: &SubscriptionResourceGroupId{
-				SubscriptionId:          "12345678-1234-9876-4563-123456789012",
-				SourceResourceGroupName: "sourceResourceGroupValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/resourceProviderNamespaceValue",
+			Expected: &SubscriptionProviderId{
+				SubscriptionId:            "12345678-1234-9876-4563-123456789012",
+				ResourceProviderNamespace: "resourceProviderNamespaceValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/sourceResourceGroupValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/resourceProviderNamespaceValue/extra",
 			Error: true,
 		},
 	}
 	for _, v := range testData {
 		t.Logf("[DEBUG] Testing %q", v.Input)
 
-		actual, err := ParseSubscriptionResourceGroupID(v.Input)
+		actual, err := ParseSubscriptionProviderID(v.Input)
 		if err != nil {
 			if v.Error {
 				continue
@@ -87,18 +87,18 @@ func TestParseSubscriptionResourceGroupID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for SubscriptionId", v.Expected.SubscriptionId, actual.SubscriptionId)
 		}
 
-		if actual.SourceResourceGroupName != v.Expected.SourceResourceGroupName {
-			t.Fatalf("Expected %q but got %q for SourceResourceGroupName", v.Expected.SourceResourceGroupName, actual.SourceResourceGroupName)
+		if actual.ResourceProviderNamespace != v.Expected.ResourceProviderNamespace {
+			t.Fatalf("Expected %q but got %q for ResourceProviderNamespace", v.Expected.ResourceProviderNamespace, actual.ResourceProviderNamespace)
 		}
 
 	}
 }
 
-func TestParseSubscriptionResourceGroupIDInsensitively(t *testing.T) {
+func TestParseSubscriptionProviderIDInsensitively(t *testing.T) {
 	testData := []struct {
 		Input    string
 		Error    bool
-		Expected *SubscriptionResourceGroupId
+		Expected *SubscriptionProviderId
 	}{
 		{
 			// Incomplete URI
@@ -127,45 +127,45 @@ func TestParseSubscriptionResourceGroupIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/sourceResourceGroupValue",
-			Expected: &SubscriptionResourceGroupId{
-				SubscriptionId:          "12345678-1234-9876-4563-123456789012",
-				SourceResourceGroupName: "sourceResourceGroupValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/resourceProviderNamespaceValue",
+			Expected: &SubscriptionProviderId{
+				SubscriptionId:            "12345678-1234-9876-4563-123456789012",
+				ResourceProviderNamespace: "resourceProviderNamespaceValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/sourceResourceGroupValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/resourceProviderNamespaceValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOuRcErEsOuRcEgRoUpVaLuE",
-			Expected: &SubscriptionResourceGroupId{
-				SubscriptionId:          "12345678-1234-9876-4563-123456789012",
-				SourceResourceGroupName: "sOuRcErEsOuRcEgRoUpVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/rEsOuRcEpRoViDeRnAmEsPaCeVaLuE",
+			Expected: &SubscriptionProviderId{
+				SubscriptionId:            "12345678-1234-9876-4563-123456789012",
+				ResourceProviderNamespace: "rEsOuRcEpRoViDeRnAmEsPaCeVaLuE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOuRcErEsOuRcEgRoUpVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/rEsOuRcEpRoViDeRnAmEsPaCeVaLuE/extra",
 			Error: true,
 		},
 	}
 	for _, v := range testData {
 		t.Logf("[DEBUG] Testing %q", v.Input)
 
-		actual, err := ParseSubscriptionResourceGroupIDInsensitively(v.Input)
+		actual, err := ParseSubscriptionProviderIDInsensitively(v.Input)
 		if err != nil {
 			if v.Error {
 				continue
@@ -181,17 +181,17 @@ func TestParseSubscriptionResourceGroupIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for SubscriptionId", v.Expected.SubscriptionId, actual.SubscriptionId)
 		}
 
-		if actual.SourceResourceGroupName != v.Expected.SourceResourceGroupName {
-			t.Fatalf("Expected %q but got %q for SourceResourceGroupName", v.Expected.SourceResourceGroupName, actual.SourceResourceGroupName)
+		if actual.ResourceProviderNamespace != v.Expected.ResourceProviderNamespace {
+			t.Fatalf("Expected %q but got %q for ResourceProviderNamespace", v.Expected.ResourceProviderNamespace, actual.ResourceProviderNamespace)
 		}
 
 	}
 }
 
-func TestSegmentsForSubscriptionResourceGroupId(t *testing.T) {
-	segments := SubscriptionResourceGroupId{}.Segments()
+func TestSegmentsForSubscriptionProviderId(t *testing.T) {
+	segments := SubscriptionProviderId{}.Segments()
 	if len(segments) == 0 {
-		t.Fatalf("SubscriptionResourceGroupId has no segments")
+		t.Fatalf("SubscriptionProviderId has no segments")
 	}
 
 	uniqueNames := make(map[string]struct{}, 0)
