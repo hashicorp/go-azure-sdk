@@ -1,14 +1,14 @@
 
-## `github.com/hashicorp/go-azure-sdk/resource-manager/resources/2020-06-01/resources` Documentation
+## `github.com/hashicorp/go-azure-sdk/resource-manager/resources/2020-10-01/resources` Documentation
 
-The `resources` SDK allows for interaction with the Azure Resource Manager Service `resources` (API Version `2020-06-01`).
+The `resources` SDK allows for interaction with the Azure Resource Manager Service `resources` (API Version `2020-10-01`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
 ### Import Path
 
 ```go
-import "github.com/hashicorp/go-azure-sdk/resource-manager/resources/2020-06-01/resources"
+import "github.com/hashicorp/go-azure-sdk/resource-manager/resources/2020-10-01/resources"
 ```
 
 
