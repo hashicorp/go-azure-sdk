@@ -3,11 +3,11 @@ package auth_test
 import (
 	"context"
 	"fmt"
+	test2 "github.com/hashicorp/go-azure-sdk/sdk/internal/test"
 	"math/rand"
 	"os"
 	"testing"
 
-	"github.com/hashicorp/go-azure-sdk/internal/test"
 	"github.com/hashicorp/go-azure-sdk/sdk/auth"
 	"github.com/hashicorp/go-azure-sdk/sdk/environments"
 	"golang.org/x/oauth2"
@@ -50,14 +50,14 @@ func TestAccClientCertificateAuthorizerV2(t *testing.T) {
 }
 
 func testClientCertificateAuthorizer(ctx context.Context, t *testing.T, tokenVersion auth.TokenVersion) (token *oauth2.Token) {
-	test.AccTest(t)
+	test2.AccTest(t)
 
 	env, err := environments.FromNamed(environment)
 	if err != nil {
 		t.Fatal(err)
 	}
 
-	pfx := test.Base64DecodeCertificate(t, clientCertificate)
+	pfx := test2.Base64DecodeCertificate(t, clientCertificate)
 
 	authorizer, err := auth.NewClientCertificateAuthorizer(ctx, env, env.MSGraph, tokenVersion, tenantId, []string{}, clientId, pfx, clientCertificatePath, clientCertPassword)
 	if err != nil {
@@ -92,7 +92,7 @@ func TestAccClientSecretAuthorizerV2(t *testing.T) {
 }
 
 func testClientSecretAuthorizer(ctx context.Context, t *testing.T, tokenVersion auth.TokenVersion) (token *oauth2.Token) {
-	test.AccTest(t)
+	test2.AccTest(t)
 
 	env, err := environments.FromNamed(environment)
 	if err != nil {
@@ -127,7 +127,7 @@ func TestAccAzureCliAuthorizer(t *testing.T) {
 }
 
 func testAzureCliAuthorizer(ctx context.Context, t *testing.T) (token *oauth2.Token) {
-	test.AccTest(t)
+	test2.AccTest(t)
 
 	env, err := environments.FromNamed(environment)
 	if err != nil {
@@ -157,13 +157,13 @@ func testAzureCliAuthorizer(ctx context.Context, t *testing.T) (token *oauth2.To
 }
 
 func TestAccMsiAuthorizer(t *testing.T) {
-	test.AccTest(t)
+	test2.AccTest(t)
 
 	ctx := context.Background()
 	port := 8000 + rand.Intn(999)
 	if msiToken != "" {
 		msiEndpoint = fmt.Sprintf("http://localhost:%d/metadata/identity/oauth2/token", port)
-		done := test.MsiStubServer(ctx, port, msiToken)
+		done := test2.MsiStubServer(ctx, port, msiToken)
 		defer func() {
 			done <- true
 		}()
@@ -195,7 +195,7 @@ func TestAccMsiAuthorizer(t *testing.T) {
 }
 
 func TestAccOIDCAuthorizer(t *testing.T) {
-	test.AccTest(t)
+	test2.AccTest(t)
 
 	if idToken == "" {
 		t.Skip("idToken was empty")
@@ -227,7 +227,7 @@ func TestAccOIDCAuthorizer(t *testing.T) {
 }
 
 func TestAccGitHubOIDCAuthorizer(t *testing.T) {
-	test.AccTest(t)
+	test2.AccTest(t)
 
 	if gitHubTokenURL == "" {
 		t.Skip("gitHubTokenURL was empty")

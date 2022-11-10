@@ -3,10 +3,10 @@ package client
 import (
 	"context"
 	"fmt"
+	"github.com/hashicorp/go-azure-sdk/sdk/internal/test"
 	"net/http"
 	"testing"
 
-	"github.com/hashicorp/go-azure-sdk/internal/test"
 	"github.com/hashicorp/go-azure-sdk/sdk/auth"
 )
 

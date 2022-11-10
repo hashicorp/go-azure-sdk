@@ -3,8 +3,8 @@ package environments_test
 import (
 	"context"
 	"fmt"
-	"github.com/hashicorp/go-azure-sdk/internal/test"
 	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	"github.com/hashicorp/go-azure-sdk/sdk/internal/test"
 	"math/rand"
 	"testing"
 )
