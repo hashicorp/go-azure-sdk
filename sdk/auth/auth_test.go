@@ -8,7 +8,6 @@ import (
 	"testing"
 
 	"github.com/hashicorp/go-azure-sdk/internal/test"
-	"github.com/hashicorp/go-azure-sdk/internal/utils"
 	"github.com/hashicorp/go-azure-sdk/sdk/auth"
 	"github.com/hashicorp/go-azure-sdk/sdk/environments"
 	"golang.org/x/oauth2"
@@ -58,7 +57,7 @@ func testClientCertificateAuthorizer(ctx context.Context, t *testing.T, tokenVer
 		t.Fatal(err)
 	}
 
-	pfx := utils.Base64DecodeCertificate(clientCertificate)
+	pfx := test.Base64DecodeCertificate(t, clientCertificate)
 
 	authorizer, err := auth.NewClientCertificateAuthorizer(ctx, env, env.MSGraph, tokenVersion, tenantId, []string{}, clientId, pfx, clientCertificatePath, clientCertPassword)
 	if err != nil {

@@ -13,7 +13,7 @@ import (
 func TestAccClient(t *testing.T) {
 	test.AccTest(t)
 
-	conn := test.NewConnection(auth.TokenVersion2)
+	conn := test.NewConnection(t, auth.TokenVersion2)
 	conn.Authorize(context.TODO(), conn.AuthConfig.Environment.MSGraph)
 
 	c := NewClient(conn.AuthConfig.Environment.MSGraph.Endpoint)

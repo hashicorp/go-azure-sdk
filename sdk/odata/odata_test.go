@@ -2,11 +2,11 @@ package odata_test
 
 import (
 	"encoding/json"
+	"github.com/hashicorp/go-azure-helpers/lang/pointer"
 	"reflect"
 	"testing"
 
 	"github.com/davecgh/go-spew/spew"
-	"github.com/hashicorp/go-azure-sdk/internal/utils"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
 
@@ -87,7 +87,7 @@ func TestOData(t *testing.T) {
 				]
 			}`,
 			expected: odata.OData{
-				Context:  utils.StringPtr("https://graph.microsoft.com/beta/$metadata#servicePrincipals"),
+				Context:  pointer.To("https://graph.microsoft.com/beta/$metadata#servicePrincipals"),
 				NextLink: linkPtr("https://graph.microsoft.com/beta/1564a4be-0377-4d9b-8aff-5a2b564e177c/servicePrincipals?%24skiptoken=X%274453707402000100000035536572766963655072696E636970616C5F31326430653134382D663634382D343233382D383566312D34336331643937353963313035536572766963655072696E636970616C5F31326430653134382D663634382D343233382D383566312D3433633164393735396331300000000000000000000000%27"),
 				Value: []interface{}{map[string]interface{}{
 					"id":              "00000000-0000-0000-0000-000000000000",
@@ -118,8 +118,8 @@ func TestOData(t *testing.T) {
 				]
 			}`,
 			expected: odata.OData{
-				Context: utils.StringPtr("https://graph.microsoft.us/beta/$metadata#identityGovernance/accessReviews/definitions"),
-				Count:   utils.IntPtr(4),
+				Context: pointer.To("https://graph.microsoft.us/beta/$metadata#identityGovernance/accessReviews/definitions"),
+				Count:   pointer.To(4),
 				Value: []interface{}{map[string]interface{}{
 					"id":                   "00000000-0000-0000-0000-000000000000",
 					"displayName":          "test",
@@ -144,10 +144,10 @@ func TestOData(t *testing.T) {
 				"id": "11111111-0000-0000-0000-000000000000"
 			}`,
 			expected: odata.OData{
-				Context:  utils.StringPtr("https://graph.microsoft.com/v1.0/$metadata#directoryObjects/$entity"),
-				Type:     utils.StringPtr(odata.TypeServicePrincipal),
-				Id:       (*odata.Id)(utils.StringPtr("https://graph.microsoft.com/v1.0/1564a4be-0377-4d9b-8aff-5a2b564e177c/directoryObjects/11111111-0000-0000-0000-000000000000/Microsoft.DirectoryServices.ServicePrincipal")),
-				EditLink: (*odata.Link)(utils.StringPtr("https://graph.microsoft.com/v1.0/1564a4be-0377-4d9b-8aff-5a2b564e177c/directoryObjects/11111111-0000-0000-0000-000000000000/Microsoft.DirectoryServices.ServicePrincipal")),
+				Context:  pointer.To("https://graph.microsoft.com/v1.0/$metadata#directoryObjects/$entity"),
+				Type:     pointer.To(odata.TypeServicePrincipal),
+				Id:       (*odata.Id)(pointer.To("https://graph.microsoft.com/v1.0/1564a4be-0377-4d9b-8aff-5a2b564e177c/directoryObjects/11111111-0000-0000-0000-000000000000/Microsoft.DirectoryServices.ServicePrincipal")),
+				EditLink: (*odata.Link)(pointer.To("https://graph.microsoft.com/v1.0/1564a4be-0377-4d9b-8aff-5a2b564e177c/directoryObjects/11111111-0000-0000-0000-000000000000/Microsoft.DirectoryServices.ServicePrincipal")),
 			},
 		},
 	}

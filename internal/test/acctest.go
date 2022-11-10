@@ -6,7 +6,6 @@ import (
 	"os"
 	"testing"
 
-	"github.com/hashicorp/go-azure-sdk/internal/utils"
 	"github.com/hashicorp/go-azure-sdk/sdk/auth"
 	"github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
@@ -49,19 +48,19 @@ type Connection struct {
 }
 
 // NewConnection configures and returns a Connection for use in tests.
-func NewConnection(tokenVersion auth.TokenVersion) *Connection {
+func NewConnection(t *testing.T, tokenVersion auth.TokenVersion) *Connection {
 	env, err := environments.FromNamed(environment)
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	t := Connection{
+	connection := Connection{
 		AuthConfig: &auth.Config{
 			Environment:            env,
 			Version:                tokenVersion,
 			TenantID:               tenantId,
 			ClientID:               clientId,
-			ClientCertData:         utils.Base64DecodeCertificate(clientCertificate),
+			ClientCertData:         Base64DecodeCertificate(t, clientCertificate),
 			ClientCertPath:         clientCertificatePath,
 			ClientCertPassword:     clientCertPassword,
 			ClientSecret:           clientSecret,
@@ -75,7 +74,7 @@ func NewConnection(tokenVersion auth.TokenVersion) *Connection {
 		},
 	}
 
-	return &t
+	return &connection
 }
 
 // Authorize configures an Authorizer for the Connection
