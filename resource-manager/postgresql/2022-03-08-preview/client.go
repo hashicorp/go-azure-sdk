@@ -10,6 +10,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/postgresql/2022-03-08-preview/firewallrules"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/postgresql/2022-03-08-preview/getprivatednszonesuffix"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/postgresql/2022-03-08-preview/locationbasedcapabilities"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/postgresql/2022-03-08-preview/replicas"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/postgresql/2022-03-08-preview/serverrestart"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/postgresql/2022-03-08-preview/servers"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/postgresql/2022-03-08-preview/serverstart"
@@ -25,6 +26,7 @@ type Client struct {
 	FirewallRules             *firewallrules.FirewallRulesClient
 	GetPrivateDnsZoneSuffix   *getprivatednszonesuffix.GetPrivateDnsZoneSuffixClient
 	LocationBasedCapabilities *locationbasedcapabilities.LocationBasedCapabilitiesClient
+	Replicas                  *replicas.ReplicasClient
 	ServerRestart             *serverrestart.ServerRestartClient
 	ServerStart               *serverstart.ServerStartClient
 	ServerStop                *serverstop.ServerStopClient
@@ -57,6 +59,9 @@ func NewClientWithBaseURI(endpoint string, configureAuthFunc func(c *autorest.Cl
 	locationBasedCapabilitiesClient := locationbasedcapabilities.NewLocationBasedCapabilitiesClientWithBaseURI(endpoint)
 	configureAuthFunc(&locationBasedCapabilitiesClient.Client)
 
+	replicasClient := replicas.NewReplicasClientWithBaseURI(endpoint)
+	configureAuthFunc(&replicasClient.Client)
+
 	serverRestartClient := serverrestart.NewServerRestartClientWithBaseURI(endpoint)
 	configureAuthFunc(&serverRestartClient.Client)
 
@@ -78,6 +83,7 @@ func NewClientWithBaseURI(endpoint string, configureAuthFunc func(c *autorest.Cl
 		FirewallRules:             &firewallRulesClient,
 		GetPrivateDnsZoneSuffix:   &getPrivateDnsZoneSuffixClient,
 		LocationBasedCapabilities: &locationBasedCapabilitiesClient,
+		Replicas:                  &replicasClient,
 		ServerRestart:             &serverRestartClient,
 		ServerStart:               &serverStartClient,
 		ServerStop:                &serverStopClient,

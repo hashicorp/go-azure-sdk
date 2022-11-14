@@ -1,4 +1,4 @@
-package servers
+package replicas
 
 import "strings"
 
@@ -70,34 +70,6 @@ func parseCreateMode(input string) (*CreateMode, error) {
 
 	// otherwise presume it's an undefined value and best-effort it
 	out := CreateMode(input)
-	return &out, nil
-}
-
-type CreateModeForUpdate string
-
-const (
-	CreateModeForUpdateDefault CreateModeForUpdate = "Default"
-	CreateModeForUpdateUpdate  CreateModeForUpdate = "Update"
-)
-
-func PossibleValuesForCreateModeForUpdate() []string {
-	return []string{
-		string(CreateModeForUpdateDefault),
-		string(CreateModeForUpdateUpdate),
-	}
-}
-
-func parseCreateModeForUpdate(input string) (*CreateModeForUpdate, error) {
-	vals := map[string]CreateModeForUpdate{
-		"default": CreateModeForUpdateDefault,
-		"update":  CreateModeForUpdateUpdate,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := CreateModeForUpdate(input)
 	return &out, nil
 }
 
