@@ -47,7 +47,7 @@ func (c RunbookDraftClient) preparerForGetContent(ctx context.Context, id Runboo
 	}
 
 	preparer := autorest.CreatePreparer(
-		autorest.AsContentType("application/json; charset=utf-8"),
+		autorest.AsContentType("text/powershell"),
 		autorest.AsGet(),
 		autorest.WithBaseURL(c.baseUri),
 		autorest.WithPath(fmt.Sprintf("%s/draft/content", id.ID())),

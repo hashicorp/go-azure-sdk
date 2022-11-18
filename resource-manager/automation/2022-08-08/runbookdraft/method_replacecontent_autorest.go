@@ -56,7 +56,7 @@ func (c RunbookDraftClient) preparerForReplaceContent(ctx context.Context, id Ru
 	}
 
 	preparer := autorest.CreatePreparer(
-		autorest.AsContentType("application/json; charset=utf-8"),
+		autorest.AsContentType("text/powershell"),
 		autorest.AsPut(),
 		autorest.WithBaseURL(c.baseUri),
 		autorest.WithPath(fmt.Sprintf("%s/draft/content", id.ID())),

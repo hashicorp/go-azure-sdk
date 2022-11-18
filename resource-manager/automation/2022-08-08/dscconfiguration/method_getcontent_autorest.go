@@ -47,7 +47,7 @@ func (c DscConfigurationClient) preparerForGetContent(ctx context.Context, id Co
 	}
 
 	preparer := autorest.CreatePreparer(
-		autorest.AsContentType("application/json; charset=utf-8"),
+		autorest.AsContentType("text/powershell"),
 		autorest.AsGet(),
 		autorest.WithBaseURL(c.baseUri),
 		autorest.WithPath(fmt.Sprintf("%s/content", id.ID())),
