@@ -75,7 +75,7 @@ func (c JobClient) preparerForGetOutput(ctx context.Context, id JobId, options G
 	}
 
 	preparer := autorest.CreatePreparer(
-		autorest.AsContentType("application/json; charset=utf-8"),
+		autorest.AsContentType("text/plain"),
 		autorest.AsGet(),
 		autorest.WithBaseURL(c.baseUri),
 		autorest.WithHeaders(options.toHeaders()),

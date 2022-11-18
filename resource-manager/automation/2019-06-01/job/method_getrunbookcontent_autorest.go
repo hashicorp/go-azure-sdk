@@ -75,7 +75,7 @@ func (c JobClient) preparerForGetRunbookContent(ctx context.Context, id JobId, o
 	}
 
 	preparer := autorest.CreatePreparer(
-		autorest.AsContentType("application/json; charset=utf-8"),
+		autorest.AsContentType("text/powershell"),
 		autorest.AsGet(),
 		autorest.WithBaseURL(c.baseUri),
 		autorest.WithHeaders(options.toHeaders()),
