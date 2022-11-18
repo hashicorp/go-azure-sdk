@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := reservationrecommendationdetails.NewBillingScopeID("billingScopeValue")
+id := reservationrecommendationdetails.NewScopeID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
 
 read, err := client.Get(ctx, id, reservationrecommendationdetails.DefaultGetOperationOptions())
 if err != nil {

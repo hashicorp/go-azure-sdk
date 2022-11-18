@@ -1,0 +1,80 @@
+package resources
+
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/Azure/go-autorest/autorest"
+	"github.com/Azure/go-autorest/autorest/azure"
+	"github.com/hashicorp/go-azure-helpers/polling"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
+)
+
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type ValidateMoveResourcesOperationResponse struct {
+	Poller       polling.LongRunningPoller
+	HttpResponse *http.Response
+}
+
+// ValidateMoveResources ...
+func (c ResourcesClient) ValidateMoveResources(ctx context.Context, id commonids.ResourceGroupId, input ResourcesMoveInfo) (result ValidateMoveResourcesOperationResponse, err error) {
+	req, err := c.preparerForValidateMoveResources(ctx, id, input)
+	if err != nil {
+		err = autorest.NewErrorWithError(err, "resources.ResourcesClient", "ValidateMoveResources", nil, "Failure preparing request")
+		return
+	}
+
+	result, err = c.senderForValidateMoveResources(ctx, req)
+	if err != nil {
+		err = autorest.NewErrorWithError(err, "resources.ResourcesClient", "ValidateMoveResources", result.HttpResponse, "Failure sending request")
+		return
+	}
+
+	return
+}
+
+// ValidateMoveResourcesThenPoll performs ValidateMoveResources then polls until it's completed
+func (c ResourcesClient) ValidateMoveResourcesThenPoll(ctx context.Context, id commonids.ResourceGroupId, input ResourcesMoveInfo) error {
+	result, err := c.ValidateMoveResources(ctx, id, input)
+	if err != nil {
+		return fmt.Errorf("performing ValidateMoveResources: %+v", err)
+	}
+
+	if err := result.Poller.PollUntilDone(); err != nil {
+		return fmt.Errorf("polling after ValidateMoveResources: %+v", err)
+	}
+
+	return nil
+}
+
+// preparerForValidateMoveResources prepares the ValidateMoveResources request.
+func (c ResourcesClient) preparerForValidateMoveResources(ctx context.Context, id commonids.ResourceGroupId, input ResourcesMoveInfo) (*http.Request, error) {
+	queryParameters := map[string]interface{}{
+		"api-version": defaultApiVersion,
+	}
+
+	preparer := autorest.CreatePreparer(
+		autorest.AsContentType("application/json; charset=utf-8"),
+		autorest.AsPost(),
+		autorest.WithBaseURL(c.baseUri),
+		autorest.WithPath(fmt.Sprintf("%s/validateMoveResources", id.ID())),
+		autorest.WithJSON(input),
+		autorest.WithQueryParameters(queryParameters))
+	return preparer.Prepare((&http.Request{}).WithContext(ctx))
+}
+
+// senderForValidateMoveResources sends the ValidateMoveResources request. The method will close the
+// http.Response Body if it receives an error.
+func (c ResourcesClient) senderForValidateMoveResources(ctx context.Context, req *http.Request) (future ValidateMoveResourcesOperationResponse, err error) {
+	var resp *http.Response
+	resp, err = c.Client.Send(req, azure.DoRetryWithRegistration(c.Client))
+	if err != nil {
+		return
+	}
+
+	future.Poller, err = polling.NewPollerFromResponse(ctx, resp, c.Client, req.Method)
+	return
+}
