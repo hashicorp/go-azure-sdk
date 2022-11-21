@@ -114,7 +114,7 @@ func (a *GitHubOIDCAuthorizer) tokenSource() (Authorizer, error) {
 		Audience:           a.conf.Audience,
 	}
 
-	source := conf.TokenSource(a.ctx, ClientCredentialsAssertionType)
+	source := conf.TokenSource(a.ctx, clientCredentialsAssertionType)
 	if source == nil {
 		return nil, fmt.Errorf("GitHubOIDCAuthorizer: nil Authorizer returned from clientCredentialsConfig")
 	}

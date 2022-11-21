@@ -27,11 +27,11 @@ import (
 // Copyright (c) HashiCorp Inc. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-type ClientCredentialsType int
+type clientCredentialsType int
 
 const (
-	ClientCredentialsAssertionType ClientCredentialsType = iota
-	ClientCredentialsSecretType
+	clientCredentialsAssertionType clientCredentialsType = iota
+	clientCredentialsSecretType
 )
 
 // clientCredentialsConfig is the configuration for using client credentials flow.
@@ -93,11 +93,11 @@ type clientCredentialsConfig struct {
 }
 
 // TokenSource provides a source for obtaining access tokens using clientAssertionAuthorizer or clientSecretAuthorizer.
-func (c *clientCredentialsConfig) TokenSource(ctx context.Context, authType ClientCredentialsType) (source Authorizer) {
+func (c *clientCredentialsConfig) TokenSource(ctx context.Context, authType clientCredentialsType) (source Authorizer) {
 	switch authType {
-	case ClientCredentialsAssertionType:
+	case clientCredentialsAssertionType:
 		source = NewCachedAuthorizer(&clientAssertionAuthorizer{ctx, c})
-	case ClientCredentialsSecretType:
+	case clientCredentialsSecretType:
 		source = NewCachedAuthorizer(&clientSecretAuthorizer{ctx, c})
 	}
 	return
@@ -288,77 +288,6 @@ func (a *clientAssertionAuthorizer) AuxiliaryTokens() ([]*oauth2.Token, error) {
 		}
 
 		token, err := a.token(tokenUrl)
-		if err != nil {
-			return tokens, err
-		}
-
-		tokens = append(tokens, token)
-	}
-
-	return tokens, nil
-}
-
-type clientSecretAuthorizer struct {
-	ctx  context.Context
-	conf *clientCredentialsConfig
-}
-
-func (a *clientSecretAuthorizer) Token() (*oauth2.Token, error) {
-	if a.conf == nil {
-		return nil, fmt.Errorf("could not request token: conf is nil")
-	}
-
-	v := url.Values{
-		"client_id":     {a.conf.ClientID},
-		"client_secret": {a.conf.ClientSecret},
-		"grant_type":    {"client_credentials"},
-	}
-
-	if a.conf.TokenVersion == TokenVersion1 {
-		v["resource"] = []string{a.conf.ResourceUrl}
-	} else {
-		v["scope"] = []string{strings.Join(a.conf.Scopes, " ")}
-	}
-
-	tokenUrl := a.conf.TokenURL
-	if tokenUrl == "" {
-		tokenUrl = tokenEndpoint(a.conf.Environment.AzureADEndpoint, a.conf.TenantID, a.conf.TokenVersion)
-	}
-
-	return clientCredentialsToken(a.ctx, tokenUrl, &v)
-}
-
-// AuxiliaryTokens returns additional tokens for auxiliary tenant IDs, for use in multi-tenant scenarios
-func (a *clientSecretAuthorizer) AuxiliaryTokens() ([]*oauth2.Token, error) {
-	if a.conf == nil {
-		return nil, fmt.Errorf("could not request token: conf is nil")
-	}
-
-	tokens := make([]*oauth2.Token, 0)
-
-	if len(a.conf.AuxiliaryTenantIDs) == 0 {
-		return tokens, nil
-	}
-
-	for _, tenantId := range a.conf.AuxiliaryTenantIDs {
-		v := url.Values{
-			"client_id":     {a.conf.ClientID},
-			"client_secret": {a.conf.ClientSecret},
-			"grant_type":    {"client_credentials"},
-		}
-
-		if a.conf.TokenVersion == TokenVersion1 {
-			v["resource"] = []string{a.conf.ResourceUrl}
-		} else {
-			v["scope"] = []string{strings.Join(a.conf.Scopes, " ")}
-		}
-
-		tokenUrl := a.conf.TokenURL
-		if tokenUrl == "" {
-			tokenUrl = tokenEndpoint(a.conf.Environment.AzureADEndpoint, tenantId, a.conf.TokenVersion)
-		}
-
-		token, err := clientCredentialsToken(a.ctx, tokenUrl, &v)
 		if err != nil {
 			return tokens, err
 		}

@@ -30,5 +30,5 @@ func NewOIDCAuthorizer(ctx context.Context, options OIDCAuthorizerOptions) (Auth
 		TokenVersion:       TokenVersion2,
 	}
 
-	return conf.TokenSource(ctx, ClientCredentialsAssertionType), nil
+	return conf.TokenSource(ctx, clientCredentialsAssertionType), nil
 }
