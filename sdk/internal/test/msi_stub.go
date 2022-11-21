@@ -7,7 +7,7 @@ import (
 	"net/http"
 )
 
-func MsiStubServer(ctx context.Context, port int, token string) chan bool {
+func ManagedIdentityStubServer(ctx context.Context, port int, token string) chan bool {
 	handler := http.NewServeMux()
 
 	handler.HandleFunc("/metadata/identity/oauth2/token", func(w http.ResponseWriter, r *http.Request) {

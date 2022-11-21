@@ -51,12 +51,12 @@ type Connection struct {
 func NewConnection(t *testing.T, tokenVersion auth.TokenVersion) *Connection {
 	env, err := environments.FromNamed(environment)
 	if err != nil {
-		log.Fatal(err)
+		t.Fatal(err)
 	}
 
 	connection := Connection{
 		AuthConfig: &auth.Config{
-			Environment:            env,
+			Environment:            *env,
 			Version:                tokenVersion,
 			TenantID:               tenantId,
 			ClientID:               clientId,

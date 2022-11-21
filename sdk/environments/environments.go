@@ -102,19 +102,19 @@ var (
 	}
 )
 
-func FromNamed(env string) (Environment, error) {
+func FromNamed(env string) (*Environment, error) {
 	switch strings.ToLower(env) {
 	case "public", "global":
-		return Global, nil
+		return &Global, nil
 	case "usgovernment", "usgovernmentl4":
-		return USGovernmentL4, nil
+		return &USGovernmentL4, nil
 	case "dod", "usgovernmentl5":
-		return USGovernmentL5, nil
+		return &USGovernmentL5, nil
 	case "canary":
-		return Canary, nil
+		return &Canary, nil
 	case "china":
-		return China, nil
+		return &China, nil
 	}
 
-	return Environment{}, fmt.Errorf("invalid environment specified: %s", env)
+	return nil, fmt.Errorf("invalid environment specified: %s", env)
 }

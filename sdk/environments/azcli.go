@@ -2,7 +2,7 @@ package environments
 
 import (
 	"fmt"
-	"github.com/hashicorp/go-azure-sdk/sdk/azurecli"
+	"github.com/hashicorp/go-azure-sdk/sdk/internal/azurecli"
 )
 
 const azureCliMinimumVersion = "2.0.21"
