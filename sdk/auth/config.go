@@ -39,7 +39,7 @@ type Config struct {
 	EnableMsiAuth bool
 
 	// Specifies a custom MSI endpoint to connect to
-	MsiEndpoint string
+	MsiEndpoint string // TODO: rename to `CustomManagedIdentityEndpoint`
 
 	// Enables client certificate authentication using client assertions
 	EnableClientCertAuth bool

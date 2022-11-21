@@ -21,8 +21,8 @@ const (
 	azureCliNextMajorVersion = "3.0.0"
 )
 
-// AzureCliConfig configures an AzureCliAuthorizer.
-type AzureCliConfig struct {
+// azureCliConfig configures an AzureCliAuthorizer.
+type azureCliConfig struct {
 	Api environments.Api
 
 	// TenantID is the required tenant ID for the primary token
@@ -32,8 +32,8 @@ type AzureCliConfig struct {
 	AuxiliaryTenantIDs []string
 }
 
-// NewAzureCliConfig validates the supplied tenant ID and returns a new AzureCliConfig.
-func NewAzureCliConfig(api environments.Api, tenantId string) (*AzureCliConfig, error) {
+// newAzureCliConfig validates the supplied tenant ID and returns a new azureCliConfig.
+func newAzureCliConfig(api environments.Api, tenantId string) (*azureCliConfig, error) {
 	var err error
 
 	// check az-cli version
@@ -51,16 +51,15 @@ func NewAzureCliConfig(api environments.Api, tenantId string) (*AzureCliConfig, 
 		return nil, errors.New("invalid tenantId or unable to determine tenantId")
 	}
 
-	return &AzureCliConfig{Api: api, TenantID: tenantId}, nil
+	return &azureCliConfig{Api: api, TenantID: tenantId}, nil
 }
 
 // TokenSource provides a source for obtaining access tokens using AzureCliAuthorizer.
-func (c *AzureCliConfig) TokenSource(ctx context.Context) Authorizer {
+func (c *azureCliConfig) TokenSource(ctx context.Context) Authorizer {
 	// Cache access tokens internally to avoid unnecessary `az` invocations
 	return NewCachedAuthorizer(&AzureCliAuthorizer{
-		TenantID: c.TenantID,
-		ctx:      ctx,
-		conf:     c,
+		ctx:  ctx,
+		conf: c,
 	})
 }
 
@@ -73,11 +72,8 @@ type azureCliToken struct {
 
 // AzureCliAuthorizer is an Authorizer which supports the Azure CLI.
 type AzureCliAuthorizer struct {
-	// TenantID is optional and forces selection of the specified tenant. Must be a valid UUID.
-	TenantID string
-
 	ctx  context.Context
-	conf *AzureCliConfig
+	conf *azureCliConfig
 }
 
 // Token returns an access token using the Azure CLI as an authentication mechanism.

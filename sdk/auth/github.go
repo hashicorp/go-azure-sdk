@@ -110,7 +110,7 @@ func (a *GitHubOIDCAuthorizer) tokenSource() (Authorizer, error) {
 		return nil, fmt.Errorf("GitHubOIDCAuthorizer: nil JWT assertion received from GitHub")
 	}
 
-	conf := ClientCredentialsConfig{
+	conf := clientCredentialsConfig{
 		Environment:        a.conf.Environment,
 		TenantID:           a.conf.TenantID,
 		AuxiliaryTenantIDs: a.conf.AuxiliaryTenantIDs,
@@ -124,7 +124,7 @@ func (a *GitHubOIDCAuthorizer) tokenSource() (Authorizer, error) {
 
 	source := conf.TokenSource(a.ctx, ClientCredentialsAssertionType)
 	if source == nil {
-		return nil, fmt.Errorf("GitHubOIDCAuthorizer: nil Authorizer returned from ClientCredentialsConfig")
+		return nil, fmt.Errorf("GitHubOIDCAuthorizer: nil Authorizer returned from clientCredentialsConfig")
 	}
 
 	return source, nil

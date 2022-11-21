@@ -22,14 +22,14 @@ const (
 	msiDefaultTimeout    = 10 * time.Second
 )
 
-// MsiAuthorizer is an Authorizer which supports managed service identity.
-type MsiAuthorizer struct {
+// ManagedIdentityAuthorizer is an Authorizer which supports managed service identity.
+type ManagedIdentityAuthorizer struct {
 	ctx  context.Context
-	conf *MsiConfig
+	conf *ManagedIdentityConfig
 }
 
 // Token returns an access token acquired from the metadata endpoint.
-func (a *MsiAuthorizer) Token() (*oauth2.Token, error) {
+func (a *ManagedIdentityAuthorizer) Token() (*oauth2.Token, error) {
 	if a.conf == nil {
 		return nil, fmt.Errorf("could not request token: conf is nil")
 	}
@@ -47,7 +47,7 @@ func (a *MsiAuthorizer) Token() (*oauth2.Token, error) {
 
 	body, err := azureMetadata(a.ctx, url)
 	if err != nil {
-		return nil, fmt.Errorf("MsiAuthorizer: failed to request token from metadata endpoint: %v", err)
+		return nil, fmt.Errorf("ManagedIdentityAuthorizer: failed to request token from metadata endpoint: %v", err)
 	}
 
 	var tokenRes struct {
@@ -60,7 +60,7 @@ func (a *MsiAuthorizer) Token() (*oauth2.Token, error) {
 		ExtExpiresIn interface{} `json:"ext_expires_in"` // relative seconds from now
 	}
 	if err := json.Unmarshal(body, &tokenRes); err != nil {
-		return nil, fmt.Errorf("MsiAuthorizer: failed to unmarshal token: %v", err)
+		return nil, fmt.Errorf("ManagedIdentityAuthorizer: failed to unmarshal token: %v", err)
 	}
 
 	token := &oauth2.Token{
@@ -86,12 +86,12 @@ func (a *MsiAuthorizer) Token() (*oauth2.Token, error) {
 }
 
 // AuxiliaryTokens returns additional tokens for auxiliary tenant IDs, for use in multi-tenant scenarios
-func (a *MsiAuthorizer) AuxiliaryTokens() ([]*oauth2.Token, error) {
+func (a *ManagedIdentityAuthorizer) AuxiliaryTokens() ([]*oauth2.Token, error) {
 	return nil, fmt.Errorf("auxiliary tokens are not supported with MSI authentication")
 }
 
-// MsiConfig configures an MsiAuthorizer.
-type MsiConfig struct {
+// ManagedIdentityConfig configures an ManagedIdentityAuthorizer.
+type ManagedIdentityConfig struct {
 	// ClientID is optionally used to determine which application to assume when a resource has multiple managed identities
 	ClientID string
 
@@ -105,15 +105,15 @@ type MsiConfig struct {
 	Resource string
 }
 
-// NewMsiConfig returns a new MsiConfig with a configured metadata endpoint and resource.
+// NewManagedIdentityConfig returns a new ManagedIdentityConfig with a configured metadata endpoint and resource.
 // clientId and objectId can be left blank when a single managed identity is available
-func NewMsiConfig(resource, msiEndpoint, clientId string) (*MsiConfig, error) {
+func NewManagedIdentityConfig(resource, clientId, customManagedIdentityEndpoint string) (*ManagedIdentityConfig, error) {
 	endpoint := msiDefaultEndpoint
-	if msiEndpoint != "" {
-		endpoint = msiEndpoint
+	if customManagedIdentityEndpoint != "" {
+		endpoint = customManagedIdentityEndpoint
 	}
 
-	return &MsiConfig{
+	return &ManagedIdentityConfig{
 		ClientID:      clientId,
 		Resource:      resource,
 		MsiApiVersion: msiDefaultApiVersion,
@@ -121,9 +121,9 @@ func NewMsiConfig(resource, msiEndpoint, clientId string) (*MsiConfig, error) {
 	}, nil
 }
 
-// TokenSource provides a source for obtaining access tokens using MsiAuthorizer.
-func (c *MsiConfig) TokenSource(ctx context.Context) Authorizer {
-	return NewCachedAuthorizer(&MsiAuthorizer{ctx: ctx, conf: c})
+// TokenSource provides a source for obtaining access tokens using ManagedIdentityAuthorizer.
+func (c *ManagedIdentityConfig) TokenSource(ctx context.Context) Authorizer {
+	return NewCachedAuthorizer(&ManagedIdentityAuthorizer{ctx: ctx, conf: c})
 }
 
 func azureMetadata(ctx context.Context, url string) (body []byte, err error) {

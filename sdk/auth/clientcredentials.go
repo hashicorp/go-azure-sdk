@@ -34,12 +34,12 @@ const (
 	ClientCredentialsSecretType
 )
 
-// ClientCredentialsConfig is the configuration for using client credentials flow.
+// clientCredentialsConfig is the configuration for using client credentials flow.
 //
 // For more information see:
 // https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-client-creds-grant-flow#get-a-token
 // https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-certificate-credentials
-type ClientCredentialsConfig struct {
+type clientCredentialsConfig struct {
 	// Environment is the national cloud environment to use
 	Environment environments.Environment
 
@@ -93,7 +93,7 @@ type ClientCredentialsConfig struct {
 }
 
 // TokenSource provides a source for obtaining access tokens using clientAssertionAuthorizer or clientSecretAuthorizer.
-func (c *ClientCredentialsConfig) TokenSource(ctx context.Context, authType ClientCredentialsType) (source Authorizer) {
+func (c *clientCredentialsConfig) TokenSource(ctx context.Context, authType ClientCredentialsType) (source Authorizer) {
 	switch authType {
 	case ClientCredentialsAssertionType:
 		source = NewCachedAuthorizer(&clientAssertionAuthorizer{ctx, c})
@@ -196,7 +196,7 @@ func (c *clientAssertionToken) encode(key crypto.PrivateKey) (*string, error) {
 
 type clientAssertionAuthorizer struct {
 	ctx  context.Context
-	conf *ClientCredentialsConfig
+	conf *clientCredentialsConfig
 }
 
 func (a *clientAssertionAuthorizer) assertion(tokenUrl string) (*string, error) {
@@ -263,7 +263,7 @@ func (a *clientAssertionAuthorizer) Token() (*oauth2.Token, error) {
 
 	tokenUrl := a.conf.TokenURL
 	if tokenUrl == "" {
-		tokenUrl = TokenEndpoint(a.conf.Environment.AzureADEndpoint, a.conf.TenantID, a.conf.TokenVersion)
+		tokenUrl = tokenEndpoint(a.conf.Environment.AzureADEndpoint, a.conf.TenantID, a.conf.TokenVersion)
 	}
 
 	return a.token(tokenUrl)
@@ -284,7 +284,7 @@ func (a *clientAssertionAuthorizer) AuxiliaryTokens() ([]*oauth2.Token, error) {
 	for _, tenantId := range a.conf.AuxiliaryTenantIDs {
 		tokenUrl := a.conf.TokenURL
 		if tokenUrl == "" {
-			tokenUrl = TokenEndpoint(a.conf.Environment.AzureADEndpoint, tenantId, a.conf.TokenVersion)
+			tokenUrl = tokenEndpoint(a.conf.Environment.AzureADEndpoint, tenantId, a.conf.TokenVersion)
 		}
 
 		token, err := a.token(tokenUrl)
@@ -300,7 +300,7 @@ func (a *clientAssertionAuthorizer) AuxiliaryTokens() ([]*oauth2.Token, error) {
 
 type clientSecretAuthorizer struct {
 	ctx  context.Context
-	conf *ClientCredentialsConfig
+	conf *clientCredentialsConfig
 }
 
 func (a *clientSecretAuthorizer) Token() (*oauth2.Token, error) {
@@ -322,7 +322,7 @@ func (a *clientSecretAuthorizer) Token() (*oauth2.Token, error) {
 
 	tokenUrl := a.conf.TokenURL
 	if tokenUrl == "" {
-		tokenUrl = TokenEndpoint(a.conf.Environment.AzureADEndpoint, a.conf.TenantID, a.conf.TokenVersion)
+		tokenUrl = tokenEndpoint(a.conf.Environment.AzureADEndpoint, a.conf.TenantID, a.conf.TokenVersion)
 	}
 
 	return clientCredentialsToken(a.ctx, tokenUrl, &v)
@@ -355,7 +355,7 @@ func (a *clientSecretAuthorizer) AuxiliaryTokens() ([]*oauth2.Token, error) {
 
 		tokenUrl := a.conf.TokenURL
 		if tokenUrl == "" {
-			tokenUrl = TokenEndpoint(a.conf.Environment.AzureADEndpoint, tenantId, a.conf.TokenVersion)
+			tokenUrl = tokenEndpoint(a.conf.Environment.AzureADEndpoint, tenantId, a.conf.TokenVersion)
 		}
 
 		token, err := clientCredentialsToken(a.ctx, tokenUrl, &v)
@@ -426,4 +426,16 @@ func clientCredentialsToken(ctx context.Context, endpoint string, params *url.Va
 	}
 
 	return token, nil
+}
+
+func tokenEndpoint(endpoint environments.AzureADEndpoint, tenant string, version TokenVersion) (e string) {
+	if tenant == "" {
+		tenant = "common"
+	}
+	e = fmt.Sprintf("%s/%s/oauth2", endpoint, tenant)
+	if version == TokenVersion2 {
+		e = fmt.Sprintf("%s/%s", e, "v2.0")
+	}
+	e = fmt.Sprintf("%s/token", e)
+	return
 }
