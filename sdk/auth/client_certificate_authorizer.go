@@ -17,7 +17,6 @@ type ClientCertificateAuthorizerOptions struct {
 
 	// Api describes the Azure API being used
 	Api          environments.Api
-	TokenVersion TokenVersion
 	TenantId     string
 	AuxTenantIds []string
 	ClientId     string
@@ -50,7 +49,6 @@ func NewClientCertificateAuthorizer(ctx context.Context, options ClientCertifica
 		Certificate:        cert,
 		ResourceUrl:        options.Api.ResourceUrl(),
 		Scopes:             []string{options.Api.DefaultScope()},
-		TokenVersion:       options.TokenVersion,
 	}
 	return conf.TokenSource(ctx, clientCredentialsAssertionType), nil
 }

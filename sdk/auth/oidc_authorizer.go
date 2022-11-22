@@ -27,7 +27,6 @@ func NewOIDCAuthorizer(ctx context.Context, options OIDCAuthorizerOptions) (Auth
 		FederatedAssertion: options.FederatedAssertion,
 		ResourceUrl:        options.Api.ResourceUrl(),
 		Scopes:             []string{options.Api.DefaultScope()},
-		TokenVersion:       TokenVersion2,
 	}
 
 	return conf.TokenSource(ctx, clientCredentialsAssertionType), nil

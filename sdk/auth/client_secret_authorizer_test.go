@@ -7,20 +7,9 @@ import (
 	"github.com/hashicorp/go-azure-sdk/sdk/auth"
 	"github.com/hashicorp/go-azure-sdk/sdk/environments"
 	"github.com/hashicorp/go-azure-sdk/sdk/internal/test"
-	"golang.org/x/oauth2"
 )
 
 func TestAccClientSecretAuthorizerV1(t *testing.T) {
-	ctx := context.Background()
-	testClientSecretAuthorizer(ctx, t, auth.TokenVersion1)
-}
-
-func TestAccClientSecretAuthorizerV2(t *testing.T) {
-	ctx := context.Background()
-	testClientSecretAuthorizer(ctx, t, auth.TokenVersion2)
-}
-
-func testClientSecretAuthorizer(ctx context.Context, t *testing.T, tokenVersion auth.TokenVersion) (token *oauth2.Token) {
 	test.AccTest(t)
 
 	env, err := environments.FromNamed(test.Environment)
@@ -31,13 +20,12 @@ func testClientSecretAuthorizer(ctx context.Context, t *testing.T, tokenVersion 
 	opts := auth.ClientSecretAuthorizerOptions{
 		Environment:  *env,
 		Api:          env.MSGraph,
-		TokenVersion: tokenVersion,
 		TenantId:     test.TenantId,
 		AuxTenantIds: []string{},
 		ClientId:     test.ClientId,
 		ClientSecret: test.ClientSecret,
 	}
-	authorizer, err := auth.NewClientSecretAuthorizer(ctx, opts)
+	authorizer, err := auth.NewClientSecretAuthorizer(context.Background(), opts)
 	if err != nil {
 		t.Fatalf("NewClientSecretAuthorizer(): %v", err)
 	}
@@ -45,7 +33,7 @@ func testClientSecretAuthorizer(ctx context.Context, t *testing.T, tokenVersion 
 		t.Fatal("authorizer is nil, expected Authorizer")
 	}
 
-	token, err = authorizer.Token()
+	token, err := authorizer.Token()
 	if err != nil {
 		t.Fatalf("authorizer.Token(): %v", err)
 	}
@@ -55,6 +43,4 @@ func testClientSecretAuthorizer(ctx context.Context, t *testing.T, tokenVersion 
 	if token.AccessToken == "" {
 		t.Fatalf("token.AccessToken was empty")
 	}
-
-	return
 }

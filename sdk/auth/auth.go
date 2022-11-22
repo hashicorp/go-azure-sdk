@@ -34,16 +34,10 @@ import (
 // environment. If any authentication mechanism fails due to misconfiguration or some other error, the function
 // will return (nil, error) and later mechanisms will not be attempted.
 func NewAuthorizerFromCredentials(ctx context.Context, c *Config, api environments.Api) (Authorizer, error) {
-	// Default token version should be v2
-	if c.Version == 0 {
-		c.Version = TokenVersion2
-	}
-
 	if c.EnableClientCertificateAuth && strings.TrimSpace(c.TenantID) != "" && strings.TrimSpace(c.ClientID) != "" && (len(c.ClientCertificateData) > 0 || strings.TrimSpace(c.ClientCertificatePath) != "") {
 		opts := ClientCertificateAuthorizerOptions{
 			Environment:  c.Environment,
 			Api:          api,
-			TokenVersion: c.Version,
 			TenantId:     c.TenantID,
 			AuxTenantIds: c.AuxiliaryTenantIDs,
 			ClientId:     c.ClientID,
@@ -64,7 +58,6 @@ func NewAuthorizerFromCredentials(ctx context.Context, c *Config, api environmen
 		opts := ClientSecretAuthorizerOptions{
 			Environment:  c.Environment,
 			Api:          api,
-			TokenVersion: c.Version,
 			TenantId:     c.TenantID,
 			AuxTenantIds: c.AuxiliaryTenantIDs,
 			ClientId:     c.ClientID,

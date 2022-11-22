@@ -83,9 +83,6 @@ type clientCredentialsConfig struct {
 	// TokenURL is the clientCredentialsToken endpoint, which overrides the default endpoint constructed from a tenant ID
 	TokenURL string
 
-	// TokenVersion is the auth token version to acquire
-	TokenVersion TokenVersion
-
 	// Audience optionally specifies the intended audience of the
 	// request.  If empty, the value of TokenURL is used as the
 	// intended audience.
@@ -245,12 +242,10 @@ func (a *clientAssertionAuthorizer) token(tokenUrl string) (*oauth2.Token, error
 		"client_assertion_type": {"urn:ietf:params:oauth:client-assertion-type:jwt-bearer"},
 		"client_id":             {a.conf.ClientID},
 		"grant_type":            {"client_credentials"},
-	}
-
-	if a.conf.TokenVersion == TokenVersion1 {
-		v["resource"] = []string{a.conf.ResourceUrl}
-	} else {
-		v["scope"] = []string{strings.Join(a.conf.Scopes, " ")}
+		// NOTE: we intentionally only support v2 (MSAL) Tokens at this time since v1 (ADAL) is EOL
+		"scope": []string{
+			strings.Join(a.conf.Scopes, " "),
+		},
 	}
 
 	return clientCredentialsToken(a.ctx, tokenUrl, &v)
@@ -263,7 +258,7 @@ func (a *clientAssertionAuthorizer) Token() (*oauth2.Token, error) {
 
 	tokenUrl := a.conf.TokenURL
 	if tokenUrl == "" {
-		tokenUrl = tokenEndpoint(a.conf.Environment.AzureADEndpoint, a.conf.TenantID, a.conf.TokenVersion)
+		tokenUrl = tokenEndpoint(a.conf.Environment.AzureADEndpoint, a.conf.TenantID)
 	}
 
 	return a.token(tokenUrl)
@@ -284,7 +279,7 @@ func (a *clientAssertionAuthorizer) AuxiliaryTokens() ([]*oauth2.Token, error) {
 	for _, tenantId := range a.conf.AuxiliaryTenantIDs {
 		tokenUrl := a.conf.TokenURL
 		if tokenUrl == "" {
-			tokenUrl = tokenEndpoint(a.conf.Environment.AzureADEndpoint, tenantId, a.conf.TokenVersion)
+			tokenUrl = tokenEndpoint(a.conf.Environment.AzureADEndpoint, tenantId)
 		}
 
 		token, err := a.token(tokenUrl)
@@ -357,14 +352,9 @@ func clientCredentialsToken(ctx context.Context, endpoint string, params *url.Va
 	return token, nil
 }
 
-func tokenEndpoint(endpoint environments.AzureADEndpoint, tenant string, version TokenVersion) (e string) {
+func tokenEndpoint(endpoint environments.AzureADEndpoint, tenant string) (e string) {
 	if tenant == "" {
 		tenant = "common"
 	}
-	e = fmt.Sprintf("%s/%s/oauth2", endpoint, tenant)
-	if version == TokenVersion2 {
-		e = fmt.Sprintf("%s/%s", e, "v2.0")
-	}
-	e = fmt.Sprintf("%s/token", e)
-	return
+	return fmt.Sprintf("%s/%s/oauth2/v2.0/token", endpoint, tenant)
 }

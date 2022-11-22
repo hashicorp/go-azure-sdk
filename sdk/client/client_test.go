@@ -6,14 +6,12 @@ import (
 	"github.com/hashicorp/go-azure-sdk/sdk/internal/test"
 	"net/http"
 	"testing"
-
-	"github.com/hashicorp/go-azure-sdk/sdk/auth"
 )
 
 func TestAccClient(t *testing.T) {
 	test.AccTest(t)
 
-	conn := test.NewConnection(t, auth.TokenVersion2)
+	conn := test.NewConnection(t)
 	conn.Authorize(context.TODO(), conn.AuthConfig.Environment.MSGraph)
 
 	c := NewClient(conn.AuthConfig.Environment.MSGraph.Endpoint)

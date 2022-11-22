@@ -28,7 +28,7 @@ type Connection struct {
 }
 
 // NewConnection configures and returns a Connection for use in tests.
-func NewConnection(t *testing.T, tokenVersion auth.TokenVersion) *Connection {
+func NewConnection(t *testing.T) *Connection {
 	env, err := environments.FromNamed(Environment)
 	if err != nil {
 		t.Fatal(err)
@@ -37,7 +37,6 @@ func NewConnection(t *testing.T, tokenVersion auth.TokenVersion) *Connection {
 	connection := Connection{
 		AuthConfig: &auth.Config{
 			Environment:                           *env,
-			Version:                               tokenVersion,
 			TenantID:                              TenantId,
 			ClientID:                              ClientId,
 			ClientCertificateData:                 Base64DecodeCertificate(t, ClientCertificate),
@@ -60,7 +59,7 @@ func NewConnection(t *testing.T, tokenVersion auth.TokenVersion) *Connection {
 // Authorize configures an Authorizer for the Connection
 func (c *Connection) Authorize(ctx context.Context, api environments.Api) {
 	var err error
-	c.Authorizer, err = c.AuthConfig.NewAuthorizer(ctx, api)
+	c.Authorizer, err = auth.NewAuthorizerFromCredentials(ctx, c.AuthConfig, api)
 	if err != nil {
 		log.Fatal(err)
 	}

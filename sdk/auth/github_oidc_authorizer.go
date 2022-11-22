@@ -110,7 +110,6 @@ func (a *GitHubOIDCAuthorizer) tokenSource() (Authorizer, error) {
 		FederatedAssertion: *assertion,
 		Scopes:             a.conf.Scopes,
 		TokenURL:           a.conf.TokenURL,
-		TokenVersion:       TokenVersion2,
 		Audience:           a.conf.Audience,
 	}
 

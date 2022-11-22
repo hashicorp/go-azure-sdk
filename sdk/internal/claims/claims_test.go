@@ -67,7 +67,6 @@ func TestAccParseClaims_clientCertificate(t *testing.T) {
 	opts := auth.ClientCertificateAuthorizerOptions{
 		Environment:  *env,
 		Api:          env.MSGraph,
-		TokenVersion: auth.TokenVersion2,
 		TenantId:     test.TenantId,
 		AuxTenantIds: []string{},
 		ClientId:     test.ClientId,
@@ -113,7 +112,6 @@ func TestAccParseClaims_clientSecret(t *testing.T) {
 	opts := auth.ClientSecretAuthorizerOptions{
 		Environment:  *env,
 		Api:          env.MSGraph,
-		TokenVersion: auth.TokenVersion2,
 		TenantId:     test.TenantId,
 		AuxTenantIds: []string{},
 		ClientId:     test.ClientId,

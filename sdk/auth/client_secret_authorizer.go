@@ -15,7 +15,6 @@ type ClientSecretAuthorizerOptions struct {
 
 	Environment  environments.Environment
 	Api          environments.Api
-	TokenVersion TokenVersion
 	TenantId     string
 	AuxTenantIds []string
 	ClientId     string
@@ -32,7 +31,6 @@ func NewClientSecretAuthorizer(ctx context.Context, options ClientSecretAuthoriz
 		ClientSecret:       options.ClientSecret,
 		ResourceUrl:        options.Api.ResourceUrl(),
 		Scopes:             []string{options.Api.DefaultScope()},
-		TokenVersion:       options.TokenVersion,
 	}
 
 	return conf.TokenSource(ctx, clientCredentialsSecretType), nil
@@ -52,17 +50,15 @@ func (a *clientSecretAuthorizer) Token() (*oauth2.Token, error) {
 		"client_id":     {a.conf.ClientID},
 		"client_secret": {a.conf.ClientSecret},
 		"grant_type":    {"client_credentials"},
-	}
-
-	if a.conf.TokenVersion == TokenVersion1 {
-		v["resource"] = []string{a.conf.ResourceUrl}
-	} else {
-		v["scope"] = []string{strings.Join(a.conf.Scopes, " ")}
+		// NOTE: at this time we only support v2 (MSAL) Tokens since v1 (ADAL) is EOL.
+		"scope": []string{
+			strings.Join(a.conf.Scopes, " "),
+		},
 	}
 
 	tokenUrl := a.conf.TokenURL
 	if tokenUrl == "" {
-		tokenUrl = tokenEndpoint(a.conf.Environment.AzureADEndpoint, a.conf.TenantID, a.conf.TokenVersion)
+		tokenUrl = tokenEndpoint(a.conf.Environment.AzureADEndpoint, a.conf.TenantID)
 	}
 
 	return clientCredentialsToken(a.ctx, tokenUrl, &v)
@@ -85,17 +81,15 @@ func (a *clientSecretAuthorizer) AuxiliaryTokens() ([]*oauth2.Token, error) {
 			"client_id":     {a.conf.ClientID},
 			"client_secret": {a.conf.ClientSecret},
 			"grant_type":    {"client_credentials"},
-		}
-
-		if a.conf.TokenVersion == TokenVersion1 {
-			v["resource"] = []string{a.conf.ResourceUrl}
-		} else {
-			v["scope"] = []string{strings.Join(a.conf.Scopes, " ")}
+			// NOTE: at this time we only support v2 (MSAL) Tokens since v1 (ADAL) is EOL.
+			"scope": []string{
+				strings.Join(a.conf.Scopes, " "),
+			},
 		}
 
 		tokenUrl := a.conf.TokenURL
 		if tokenUrl == "" {
-			tokenUrl = tokenEndpoint(a.conf.Environment.AzureADEndpoint, tenantId, a.conf.TokenVersion)
+			tokenUrl = tokenEndpoint(a.conf.Environment.AzureADEndpoint, tenantId)
 		}
 
 		token, err := clientCredentialsToken(a.ctx, tokenUrl, &v)

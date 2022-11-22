@@ -7,21 +7,10 @@ import (
 // Copyright (c) HashiCorp Inc. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-type TokenVersion int
-
-const (
-	TokenVersion2 TokenVersion = iota
-	TokenVersion1
-)
-
 // Config sets up NewAuthorizer to return an Authorizer based on the provided configuration.
 type Config struct {
 	// Specifies the national cloud environment to use
 	Environment environments.Environment
-
-	// Version specifies the token version to acquire from Microsoft Identity Platform.
-	// Ignored when using OIDC, GitHub OIDC, Azure CLI or Managed Identity authentication
-	Version TokenVersion
 
 	// AuxiliaryTenantIDs specifies the Auxiliary Tenant IDs for which to obtain tokens in a multi-tenant scenario.
 	AuxiliaryTenantIDs []string
