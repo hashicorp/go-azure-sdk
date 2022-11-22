@@ -38,7 +38,7 @@ var (
 	gitHubTokenURL        = os.Getenv("ACTIONS_ID_TOKEN_REQUEST_URL")
 	gitHubToken           = os.Getenv("ACTIONS_ID_TOKEN_REQUEST_TOKEN")
 	idToken               = os.Getenv("ARM_OIDC_TOKEN")
-	msiEndpoint           = os.Getenv("ARM_MSI_ENDPOINT")
+	customMsiEndpoint     = os.Getenv("ARM_MSI_ENDPOINT")
 )
 
 type Connection struct {
@@ -56,21 +56,21 @@ func NewConnection(t *testing.T, tokenVersion auth.TokenVersion) *Connection {
 
 	connection := Connection{
 		AuthConfig: &auth.Config{
-			Environment:            *env,
-			Version:                tokenVersion,
-			TenantID:               tenantId,
-			ClientID:               clientId,
-			ClientCertData:         Base64DecodeCertificate(t, clientCertificate),
-			ClientCertPath:         clientCertificatePath,
-			ClientCertPassword:     clientCertPassword,
-			ClientSecret:           clientSecret,
-			IDTokenRequestURL:      gitHubTokenURL,
-			IDTokenRequestToken:    gitHubToken,
-			IDToken:                idToken,
-			MsiEndpoint:            msiEndpoint,
-			EnableClientCertAuth:   true,
-			EnableClientSecretAuth: true,
-			EnableGitHubOIDCAuth:   true,
+			Environment:                   *env,
+			Version:                       tokenVersion,
+			TenantID:                      tenantId,
+			ClientID:                      clientId,
+			ClientCertData:                Base64DecodeCertificate(t, clientCertificate),
+			ClientCertPath:                clientCertificatePath,
+			ClientCertPassword:            clientCertPassword,
+			ClientSecret:                  clientSecret,
+			IDTokenRequestURL:             gitHubTokenURL,
+			IDTokenRequestToken:           gitHubToken,
+			IDToken:                       idToken,
+			CustomManagedIdentityEndpoint: customMsiEndpoint,
+			EnableClientCertAuth:          true,
+			EnableClientSecretAuth:        true,
+			EnableGitHubOIDCAuth:          true,
 		},
 	}
 

@@ -173,6 +173,7 @@ func (c *Client) NewPutRequest(ctx context.Context, path string, apiVersion stri
 }
 
 func retryWithRegistration(r *http.Response, o *odata.OData) (bool, error) {
+	// TODO: remove/replace this with something that better explains the error
 	if o.Error != nil && o.Error.Code != nil && *o.Error.Code == "MissingSubscriptionRegistration" {
 		if err := register(); err != nil {
 			return false, err

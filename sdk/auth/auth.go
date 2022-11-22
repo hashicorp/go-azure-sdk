@@ -127,7 +127,7 @@ func (c *Config) NewAuthorizer(ctx context.Context, api environments.Api) (Autho
 		opts := ManagedIdentityAuthorizerOptions{
 			Api:                           api,
 			ClientId:                      c.ClientID,
-			CustomManagedIdentityEndpoint: c.MsiEndpoint,
+			CustomManagedIdentityEndpoint: c.CustomManagedIdentityEndpoint,
 		}
 		a, err := NewManagedIdentityAuthorizer(ctx, opts)
 		if err != nil {
