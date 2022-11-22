@@ -23,10 +23,10 @@ import (
 // Whether one of these is returned depends on whether it is enabled in the Config, and whether sufficient
 // configuration fields are set to enable that authentication method.
 //
-// For client certificate authentication, specify TenantID, ClientID and ClientCertData / ClientCertPath.
+// For client certificate authentication, specify TenantID, ClientID and ClientCertificateData / ClientCertificatePath.
 // For client secret authentication, specify TenantID, ClientID and ClientSecret.
-// For OIDC authentication, specify TenantID, ClientID and IDToken.
-// For GitHub OIDC authentication, specify TenantID, ClientID, IDTokenRequestURL and IDTokenRequestToken.
+// For OIDC authentication, specify TenantID, ClientID and OIDCAssertionToken.
+// For GitHub OIDC authentication, specify TenantID, ClientID, GitHubOIDCTokenRequestURL and GitHubOIDCTokenRequestToken.
 // MSI authentication (if enabled) using the Azure Metadata Service is then attempted
 // Azure CLI authentication (if enabled) is attempted last
 //
@@ -39,7 +39,7 @@ func NewAuthorizerFromCredentials(ctx context.Context, c *Config, api environmen
 		c.Version = TokenVersion2
 	}
 
-	if c.EnableClientCertAuth && strings.TrimSpace(c.TenantID) != "" && strings.TrimSpace(c.ClientID) != "" && (len(c.ClientCertData) > 0 || strings.TrimSpace(c.ClientCertPath) != "") {
+	if c.EnableClientCertificateAuth && strings.TrimSpace(c.TenantID) != "" && strings.TrimSpace(c.ClientID) != "" && (len(c.ClientCertificateData) > 0 || strings.TrimSpace(c.ClientCertificatePath) != "") {
 		opts := ClientCertificateAuthorizerOptions{
 			Environment:  c.Environment,
 			Api:          api,
@@ -47,9 +47,9 @@ func NewAuthorizerFromCredentials(ctx context.Context, c *Config, api environmen
 			TenantId:     c.TenantID,
 			AuxTenantIds: c.AuxiliaryTenantIDs,
 			ClientId:     c.ClientID,
-			Pkcs12Data:   c.ClientCertData,
-			Pkcs12Path:   c.ClientCertPath,
-			Pkcs12Pass:   c.ClientCertPassword,
+			Pkcs12Data:   c.ClientCertificateData,
+			Pkcs12Path:   c.ClientCertificatePath,
+			Pkcs12Pass:   c.ClientCertificatePassword,
 		}
 		a, err := NewClientCertificateAuthorizer(ctx, opts)
 		if err != nil {
@@ -60,7 +60,7 @@ func NewAuthorizerFromCredentials(ctx context.Context, c *Config, api environmen
 		}
 	}
 
-	if c.EnableClientSecretAuth && strings.TrimSpace(c.TenantID) != "" && strings.TrimSpace(c.ClientID) != "" && strings.TrimSpace(c.ClientSecret) != "" {
+	if c.EnableAuthenticatingUsingClientSecret && strings.TrimSpace(c.TenantID) != "" && strings.TrimSpace(c.ClientID) != "" && strings.TrimSpace(c.ClientSecret) != "" {
 		opts := ClientSecretAuthorizerOptions{
 			Environment:  c.Environment,
 			Api:          api,
@@ -79,14 +79,14 @@ func NewAuthorizerFromCredentials(ctx context.Context, c *Config, api environmen
 		}
 	}
 
-	if c.EnableOIDCAuth && strings.TrimSpace(c.TenantID) != "" && strings.TrimSpace(c.ClientID) != "" && strings.TrimSpace(c.IDToken) != "" {
+	if c.EnableAuthenticationUsingOIDC && strings.TrimSpace(c.TenantID) != "" && strings.TrimSpace(c.ClientID) != "" && strings.TrimSpace(c.OIDCAssertionToken) != "" {
 		opts := OIDCAuthorizerOptions{
 			Environment:        c.Environment,
 			Api:                api,
 			TenantId:           c.TenantID,
 			AuxiliaryTenantIds: c.AuxiliaryTenantIDs,
 			ClientId:           c.ClientID,
-			FederatedAssertion: c.IDToken,
+			FederatedAssertion: c.OIDCAssertionToken,
 		}
 		a, err := NewOIDCAuthorizer(ctx, opts)
 		if err != nil {
@@ -97,14 +97,14 @@ func NewAuthorizerFromCredentials(ctx context.Context, c *Config, api environmen
 		}
 	}
 
-	if c.EnableGitHubOIDCAuth && strings.TrimSpace(c.TenantID) != "" && strings.TrimSpace(c.ClientID) != "" && strings.TrimSpace(c.IDTokenRequestURL) != "" && strings.TrimSpace(c.IDTokenRequestToken) != "" {
+	if c.EnableAuthenticationUsingGitHubOIDC && strings.TrimSpace(c.TenantID) != "" && strings.TrimSpace(c.ClientID) != "" && strings.TrimSpace(c.GitHubOIDCTokenRequestURL) != "" && strings.TrimSpace(c.GitHubOIDCTokenRequestToken) != "" {
 		opts := GitHubOIDCAuthorizerOptions{
 			Api:                 api,
 			AuxiliaryTenantIds:  c.AuxiliaryTenantIDs,
 			ClientId:            c.TenantID,
 			Environment:         c.Environment,
-			IdTokenRequestUrl:   c.IDTokenRequestURL,
-			IdTokenRequestToken: c.IDTokenRequestToken,
+			IdTokenRequestUrl:   c.GitHubOIDCTokenRequestURL,
+			IdTokenRequestToken: c.GitHubOIDCTokenRequestToken,
 			TenantId:            c.TenantID,
 		}
 		a, err := NewGitHubOIDCAuthorizer(context.Background(), opts)
@@ -116,7 +116,7 @@ func NewAuthorizerFromCredentials(ctx context.Context, c *Config, api environmen
 		}
 	}
 
-	if c.EnableMsiAuth {
+	if c.EnableAuthenticatingUsingManagedIdentity {
 		opts := ManagedIdentityAuthorizerOptions{
 			Api:                           api,
 			ClientId:                      c.ClientID,
@@ -131,7 +131,7 @@ func NewAuthorizerFromCredentials(ctx context.Context, c *Config, api environmen
 		}
 	}
 
-	if c.EnableAzureCliToken {
+	if c.EnableAuthenticatingUsingAzureCLI {
 		opts := AzureCliAuthorizerOptions{
 			Api:      api,
 			TenantId: c.TenantID,

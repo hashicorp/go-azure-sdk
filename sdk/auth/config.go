@@ -23,54 +23,44 @@ type Config struct {
 	// Ignored when using OIDC, GitHub OIDC, Azure CLI or Managed Identity authentication
 	Version TokenVersion
 
-	// Azure Active Directory tenant to connect to, should be a valid UUID
+	// AuxiliaryTenantIDs specifies the Auxiliary Tenant IDs for which to obtain tokens in a multi-tenant scenario.
+	AuxiliaryTenantIDs []string
+	// ClientID specifies the Client ID for the application used to authenticate the connection
+	ClientID string
+	// TenantID specifies the Azure Active Directory Tenant to connect to, which must be a valid UUID.
 	TenantID string
 
-	// Auxiliary tenant IDs for which to obtain tokens in a multi-tenant scenario
-	AuxiliaryTenantIDs []string
+	// EnableAuthenticatingUsingAzureCLI specifies whether Azure CLI authentication should be checked.
+	EnableAuthenticatingUsingAzureCLI bool
 
-	// Client ID for the application used to authenticate the connection
-	ClientID string
+	// EnableClientCertificateAuth specifies whether Client Certificate authentication should be checked.
+	EnableClientCertificateAuth bool
+	// ClientCertificateData specifies the contents of a Client Certificate PKCS#12 bundle.
+	ClientCertificateData []byte
+	// ClientCertificatePath specifies the path to a Client Certificate PKCS#12 bundle (.pfx file)
+	ClientCertificatePath string
+	// ClientCertificatePassword specifies the encryption password to unlock a Client Certificate.
+	ClientCertificatePassword string
 
-	// Enables authentication using Azure CLI
-	EnableAzureCliToken bool
-
-	// Enables authentication using managed service identity.
-	EnableMsiAuth bool
-
-	// Specifies a custom MSI endpoint to connect to
-	CustomManagedIdentityEndpoint string
-
-	// Enables client certificate authentication using client assertions
-	EnableClientCertAuth bool
-
-	// Specifies the contents of a client certificate PKCS#12 bundle
-	ClientCertData []byte
-
-	// Specifies the path to a client certificate PKCS#12 bundle (.pfx file)
-	ClientCertPath string
-
-	// Specifies the encryption password to unlock a client certificate
-	ClientCertPassword string
-
-	// Enables client secret authentication using client credentials
-	EnableClientSecretAuth bool
-
-	// Specifies the password to authenticate with using client secret authentication
+	// EnableAuthenticatingUsingClientSecret specifies whether Client Secret authentication should be used.
+	EnableAuthenticatingUsingClientSecret bool
+	// ClientSecret specifies the Secret used authenticate using Client Secret authentication.
 	ClientSecret string
 
-	// Enables OIDC authentication (federated client credentials)
-	EnableOIDCAuth bool
+	// EnableAuthenticatingUsingManagedIdentity specifies whether Managed Identity authentication should be checked.
+	EnableAuthenticatingUsingManagedIdentity bool
+	// CustomManagedIdentityEndpoint specifies a custom endpoint which should be used for Managed Identity.
+	CustomManagedIdentityEndpoint string
 
-	// Specifies the OIDC token (assertion) to authenticate using client credentials
-	IDToken string
+	// Enables OIDC authentication (federated client credentials).
+	EnableAuthenticationUsingOIDC bool
+	// OIDCAssertionToken specifies the OIDC Assertion Token to authenticate using Client Credentials.
+	OIDCAssertionToken string
 
-	// Enables GitHub OIDC authentication
-	EnableGitHubOIDCAuth bool
-
-	// The URL for GitHub's OIDC provider
-	IDTokenRequestURL string
-
-	// The bearer token for the request to GitHub's OIDC provider
-	IDTokenRequestToken string
+	// EnableAuthenticationUsingGitHubOIDC specifies whether GitHub OIDC
+	EnableAuthenticationUsingGitHubOIDC bool
+	// GitHubOIDCTokenRequestURL specifies the URL for GitHub's OIDC provider
+	GitHubOIDCTokenRequestURL string
+	// GitHubOIDCTokenRequestToken specifies the bearer token for the request to GitHub's OIDC provider
+	GitHubOIDCTokenRequestToken string
 }
