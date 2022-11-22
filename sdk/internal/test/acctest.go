@@ -22,7 +22,7 @@ func AccTest(t *testing.T) {
 }
 
 type Connection struct {
-	AuthConfig *auth.Credentials
+	AuthConfig auth.Credentials
 	Authorizer auth.Authorizer
 	Claims     *claims.Claims
 }
@@ -34,26 +34,24 @@ func NewConnection(t *testing.T) *Connection {
 		t.Fatal(err)
 	}
 
-	connection := Connection{
-		AuthConfig: &auth.Credentials{
-			Environment:                           *env,
-			TenantID:                              TenantId,
-			ClientID:                              ClientId,
-			ClientCertificateData:                 Base64DecodeCertificate(t, ClientCertificate),
-			ClientCertificatePath:                 ClientCertificatePath,
-			ClientCertificatePassword:             ClientCertPassword,
-			ClientSecret:                          ClientSecret,
-			GitHubOIDCTokenRequestURL:             GitHubTokenURL,
-			GitHubOIDCTokenRequestToken:           GitHubToken,
-			OIDCAssertionToken:                    IdToken,
-			CustomManagedIdentityEndpoint:         CustomManagedIdentityEndpoint,
-			EnableClientCertificateAuth:           true,
-			EnableAuthenticatingUsingClientSecret: true,
-			EnableAuthenticationUsingGitHubOIDC:   true,
+	return &Connection{
+		AuthConfig: auth.Credentials{
+			Environment:                                *env,
+			TenantID:                                   TenantId,
+			ClientID:                                   ClientId,
+			ClientCertificateData:                      Base64DecodeCertificate(t, ClientCertificate),
+			ClientCertificatePath:                      ClientCertificatePath,
+			ClientCertificatePassword:                  ClientCertPassword,
+			ClientSecret:                               ClientSecret,
+			GitHubOIDCTokenRequestURL:                  GitHubTokenURL,
+			GitHubOIDCTokenRequestToken:                GitHubToken,
+			OIDCAssertionToken:                         IdToken,
+			CustomManagedIdentityEndpoint:              CustomManagedIdentityEndpoint,
+			EnableAuthenticatingUsingClientCertificate: true,
+			EnableAuthenticatingUsingClientSecret:      true,
+			EnableAuthenticationUsingGitHubOIDC:        true,
 		},
 	}
-
-	return &connection
 }
 
 // Authorize configures an Authorizer for the Connection

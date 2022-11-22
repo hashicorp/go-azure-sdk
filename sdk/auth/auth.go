@@ -33,8 +33,8 @@ import (
 // It's recommended to only enable the mechanisms you have configured and are known to work in the execution
 // environment. If any authentication mechanism fails due to misconfiguration or some other error, the function
 // will return (nil, error) and later mechanisms will not be attempted.
-func NewAuthorizerFromCredentials(ctx context.Context, c *Credentials, api environments.Api) (Authorizer, error) {
-	if c.EnableClientCertificateAuth && strings.TrimSpace(c.TenantID) != "" && strings.TrimSpace(c.ClientID) != "" && (len(c.ClientCertificateData) > 0 || strings.TrimSpace(c.ClientCertificatePath) != "") {
+func NewAuthorizerFromCredentials(ctx context.Context, c Credentials, api environments.Api) (Authorizer, error) {
+	if c.EnableAuthenticatingUsingClientCertificate && strings.TrimSpace(c.TenantID) != "" && strings.TrimSpace(c.ClientID) != "" && (len(c.ClientCertificateData) > 0 || strings.TrimSpace(c.ClientCertificatePath) != "") {
 		opts := ClientCertificateAuthorizerOptions{
 			Environment:  c.Environment,
 			Api:          api,
