@@ -22,7 +22,7 @@ func AccTest(t *testing.T) {
 }
 
 type Connection struct {
-	AuthConfig *auth.Config
+	AuthConfig *auth.Credentials
 	Authorizer auth.Authorizer
 	Claims     *claims.Claims
 }
@@ -35,7 +35,7 @@ func NewConnection(t *testing.T) *Connection {
 	}
 
 	connection := Connection{
-		AuthConfig: &auth.Config{
+		AuthConfig: &auth.Credentials{
 			Environment:                           *env,
 			TenantID:                              TenantId,
 			ClientID:                              ClientId,

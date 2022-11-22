@@ -7,8 +7,8 @@ import (
 // Copyright (c) HashiCorp Inc. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-// Config sets up NewAuthorizer to return an Authorizer based on the provided configuration.
-type Config struct {
+// Credentials sets up NewAuthorizer to return an Authorizer based on the provided credentails.
+type Credentials struct {
 	// Specifies the national cloud environment to use
 	Environment environments.Environment
 

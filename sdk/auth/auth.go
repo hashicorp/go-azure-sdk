@@ -11,7 +11,7 @@ import (
 // Copyright (c) HashiCorp Inc. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-// NewAuthorizerFromCredentials returns a suitable Authorizer depending on what is defined in the Config
+// NewAuthorizerFromCredentials returns a suitable Authorizer depending on what is defined in the Credentials
 // Authorizers are selected for authentication methods in the following preferential order:
 // - Client certificate authentication
 // - Client secret authentication
@@ -20,7 +20,7 @@ import (
 // - MSI authentication
 // - Azure CLI authentication
 //
-// Whether one of these is returned depends on whether it is enabled in the Config, and whether sufficient
+// Whether one of these is returned depends on whether it is enabled in the Credentials, and whether sufficient
 // configuration fields are set to enable that authentication method.
 //
 // For client certificate authentication, specify TenantID, ClientID and ClientCertificateData / ClientCertificatePath.
@@ -33,7 +33,7 @@ import (
 // It's recommended to only enable the mechanisms you have configured and are known to work in the execution
 // environment. If any authentication mechanism fails due to misconfiguration or some other error, the function
 // will return (nil, error) and later mechanisms will not be attempted.
-func NewAuthorizerFromCredentials(ctx context.Context, c *Config, api environments.Api) (Authorizer, error) {
+func NewAuthorizerFromCredentials(ctx context.Context, c *Credentials, api environments.Api) (Authorizer, error) {
 	if c.EnableClientCertificateAuth && strings.TrimSpace(c.TenantID) != "" && strings.TrimSpace(c.ClientID) != "" && (len(c.ClientCertificateData) > 0 || strings.TrimSpace(c.ClientCertificatePath) != "") {
 		opts := ClientCertificateAuthorizerOptions{
 			Environment:  c.Environment,
