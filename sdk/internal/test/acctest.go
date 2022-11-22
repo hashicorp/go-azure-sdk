@@ -8,6 +8,7 @@ import (
 
 	"github.com/hashicorp/go-azure-sdk/sdk/auth"
 	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	"github.com/hashicorp/go-azure-sdk/sdk/internal/claims"
 )
 
 func AccTest(t *testing.T) {
@@ -20,36 +21,15 @@ func AccTest(t *testing.T) {
 	}
 }
 
-func envDefault(envVarName, defaultValue string) string {
-	if v := os.Getenv(envVarName); v != "" {
-		return v
-	}
-	return defaultValue
-}
-
-var (
-	tenantId              = os.Getenv("ARM_TENANT_ID")
-	clientId              = os.Getenv("ARM_CLIENT_ID")
-	clientCertificate     = os.Getenv("ARM_CLIENT_CERTIFICATE")
-	clientCertificatePath = os.Getenv("ARM_CLIENT_CERTIFICATE_PATH")
-	clientCertPassword    = os.Getenv("ARM_CLIENT_CERTIFICATE_PASSWORD")
-	clientSecret          = os.Getenv("ARM_CLIENT_SECRET")
-	environment           = envDefault("ARM_ENVIRONMENT", "global")
-	gitHubTokenURL        = os.Getenv("ACTIONS_ID_TOKEN_REQUEST_URL")
-	gitHubToken           = os.Getenv("ACTIONS_ID_TOKEN_REQUEST_TOKEN")
-	idToken               = os.Getenv("ARM_OIDC_TOKEN")
-	customMsiEndpoint     = os.Getenv("ARM_MSI_ENDPOINT")
-)
-
 type Connection struct {
 	AuthConfig *auth.Config
 	Authorizer auth.Authorizer
-	Claims     *auth.Claims
+	Claims     *claims.Claims
 }
 
 // NewConnection configures and returns a Connection for use in tests.
 func NewConnection(t *testing.T, tokenVersion auth.TokenVersion) *Connection {
-	env, err := environments.FromNamed(environment)
+	env, err := environments.FromNamed(Environment)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -58,16 +38,16 @@ func NewConnection(t *testing.T, tokenVersion auth.TokenVersion) *Connection {
 		AuthConfig: &auth.Config{
 			Environment:                   *env,
 			Version:                       tokenVersion,
-			TenantID:                      tenantId,
-			ClientID:                      clientId,
-			ClientCertData:                Base64DecodeCertificate(t, clientCertificate),
-			ClientCertPath:                clientCertificatePath,
-			ClientCertPassword:            clientCertPassword,
-			ClientSecret:                  clientSecret,
-			IDTokenRequestURL:             gitHubTokenURL,
-			IDTokenRequestToken:           gitHubToken,
-			IDToken:                       idToken,
-			CustomManagedIdentityEndpoint: customMsiEndpoint,
+			TenantID:                      TenantId,
+			ClientID:                      ClientId,
+			ClientCertData:                Base64DecodeCertificate(t, ClientCertificate),
+			ClientCertPath:                ClientCertificatePath,
+			ClientCertPassword:            ClientCertPassword,
+			ClientSecret:                  ClientSecret,
+			IDTokenRequestURL:             GitHubTokenURL,
+			IDTokenRequestToken:           GitHubToken,
+			IDToken:                       IdToken,
+			CustomManagedIdentityEndpoint: CustomManagedIdentityEndpoint,
 			EnableClientCertAuth:          true,
 			EnableClientSecretAuth:        true,
 			EnableGitHubOIDCAuth:          true,
@@ -88,7 +68,7 @@ func (c *Connection) Authorize(ctx context.Context, api environments.Api) {
 	if err != nil {
 		log.Fatalf("acquiring access token: %v", err)
 	}
-	c.Claims, err = auth.ParseClaims(token)
+	c.Claims, err = claims.ParseClaims(token)
 	if err != nil {
 		log.Fatalf("parsing token claims: %v", err)
 	}
