@@ -6,19 +6,12 @@ import (
 	"strings"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/environments"
-	"golang.org/x/oauth2"
 )
 
 // Copyright (c) HashiCorp Inc. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-// Authorizer is anything that can return an access token for authorizing API connections
-type Authorizer interface {
-	Token() (*oauth2.Token, error)
-	AuxiliaryTokens() ([]*oauth2.Token, error)
-}
-
-// NewAuthorizer returns a suitable Authorizer depending on what is defined in the Config
+// NewAuthorizerFromCredentials returns a suitable Authorizer depending on what is defined in the Config
 // Authorizers are selected for authentication methods in the following preferential order:
 // - Client certificate authentication
 // - Client secret authentication
@@ -40,7 +33,7 @@ type Authorizer interface {
 // It's recommended to only enable the mechanisms you have configured and are known to work in the execution
 // environment. If any authentication mechanism fails due to misconfiguration or some other error, the function
 // will return (nil, error) and later mechanisms will not be attempted.
-func (c *Config) NewAuthorizer(ctx context.Context, api environments.Api) (Authorizer, error) {
+func NewAuthorizerFromCredentials(ctx context.Context, c *Config, api environments.Api) (Authorizer, error) {
 	// Default token version should be v2
 	if c.Version == 0 {
 		c.Version = TokenVersion2
