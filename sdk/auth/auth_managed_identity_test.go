@@ -16,23 +16,24 @@ func TestAccManagedIdentityAuthorizer(t *testing.T) {
 
 	ctx := context.Background()
 	port := 8000 + rand.Intn(999)
-	if msiToken != "" {
-		msiEndpoint = fmt.Sprintf("http://localhost:%d/metadata/identity/oauth2/token", port)
-		done := test.ManagedIdentityStubServer(ctx, port, msiToken)
+	managedIdentityEndpoint := test.CustomManagedIdentityEndpoint
+	if test.ManagedIdentityToken != "" {
+		managedIdentityEndpoint = fmt.Sprintf("http://localhost:%d/metadata/identity/oauth2/token", port)
+		done := test.ManagedIdentityStubServer(ctx, port, test.ManagedIdentityToken)
 		defer func() {
 			done <- true
 		}()
 	}
 
-	env, err := environments.FromNamed(environment)
+	env, err := environments.FromNamed(test.Environment)
 	if err != nil {
 		t.Fatal(err)
 	}
 
 	opts := auth.ManagedIdentityAuthorizerOptions{
 		Api:                           env.MSGraph,
-		ClientId:                      clientId,
-		CustomManagedIdentityEndpoint: msiEndpoint,
+		ClientId:                      test.ClientId,
+		CustomManagedIdentityEndpoint: managedIdentityEndpoint,
 	}
 	auth, err := auth.NewManagedIdentityAuthorizer(ctx, opts)
 	if err != nil {

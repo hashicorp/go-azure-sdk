@@ -18,14 +18,14 @@ func TestAccAzureCliAuthorizer(t *testing.T) {
 func testAzureCliAuthorizer(ctx context.Context, t *testing.T) (token *oauth2.Token) {
 	test.AccTest(t)
 
-	env, err := environments.FromNamed(environment)
+	env, err := environments.FromNamed(test.Environment)
 	if err != nil {
 		t.Fatal(err)
 	}
 
 	opts := auth.AzureCliAuthorizerOptions{
 		Api:      env.MSGraph,
-		TenantId: tenantId,
+		TenantId: test.TenantId,
 	}
 	authorizer, err := auth.NewAzureCliAuthorizer(ctx, opts)
 	if err != nil {

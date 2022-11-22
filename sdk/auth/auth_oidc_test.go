@@ -12,11 +12,11 @@ import (
 func TestAccOIDCAuthorizer(t *testing.T) {
 	test.AccTest(t)
 
-	if idToken == "" {
-		t.Skip("idToken was empty")
+	if test.IdToken == "" {
+		t.Skip("test.IdToken was empty")
 	}
 
-	env, err := environments.FromNamed(environment)
+	env, err := environments.FromNamed(test.Environment)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -24,10 +24,10 @@ func TestAccOIDCAuthorizer(t *testing.T) {
 	opts := auth.OIDCAuthorizerOptions{
 		Environment:        *env,
 		Api:                env.MSGraph,
-		TenantId:           tenantId,
+		TenantId:           test.TenantId,
 		AuxiliaryTenantIds: []string{},
-		ClientId:           clientId,
-		FederatedAssertion: idToken,
+		ClientId:           test.ClientId,
+		FederatedAssertion: test.IdToken,
 	}
 	authorizer, err := auth.NewOIDCAuthorizer(context.Background(), opts)
 	if err != nil {

@@ -23,23 +23,23 @@ func TestAccClientCertificateAuthorizerV2(t *testing.T) {
 func testClientCertificateAuthorizer(ctx context.Context, t *testing.T, tokenVersion auth.TokenVersion) (token *oauth2.Token) {
 	test.AccTest(t)
 
-	env, err := environments.FromNamed(environment)
+	env, err := environments.FromNamed(test.Environment)
 	if err != nil {
 		t.Fatal(err)
 	}
 
-	pfx := test.Base64DecodeCertificate(t, clientCertificate)
+	pfx := test.Base64DecodeCertificate(t, test.ClientCertificate)
 
 	opts := auth.ClientCertificateAuthorizerOptions{
 		Environment:  *env,
 		Api:          env.MSGraph,
 		TokenVersion: tokenVersion,
-		TenantId:     tenantId,
+		TenantId:     test.TenantId,
 		AuxTenantIds: []string{},
-		ClientId:     clientId,
+		ClientId:     test.ClientId,
 		Pkcs12Data:   pfx,
-		Pkcs12Path:   clientCertPassword,
-		Pkcs12Pass:   clientCertificatePath,
+		Pkcs12Path:   test.ClientCertPassword,
+		Pkcs12Pass:   test.ClientCertificatePath,
 	}
 	authorizer, err := auth.NewClientCertificateAuthorizer(ctx, opts)
 	if err != nil {

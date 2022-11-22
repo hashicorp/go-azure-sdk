@@ -23,7 +23,7 @@ func TestAccClientSecretAuthorizerV2(t *testing.T) {
 func testClientSecretAuthorizer(ctx context.Context, t *testing.T, tokenVersion auth.TokenVersion) (token *oauth2.Token) {
 	test.AccTest(t)
 
-	env, err := environments.FromNamed(environment)
+	env, err := environments.FromNamed(test.Environment)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -32,10 +32,10 @@ func testClientSecretAuthorizer(ctx context.Context, t *testing.T, tokenVersion 
 		Environment:  *env,
 		Api:          env.MSGraph,
 		TokenVersion: tokenVersion,
-		TenantId:     tenantId,
+		TenantId:     test.TenantId,
 		AuxTenantIds: []string{},
-		ClientId:     clientId,
-		ClientSecret: clientSecret,
+		ClientId:     test.ClientId,
+		ClientSecret: test.ClientSecret,
 	}
 	authorizer, err := auth.NewClientSecretAuthorizer(ctx, opts)
 	if err != nil {

@@ -12,14 +12,14 @@ import (
 func TestAccGitHubOIDCAuthorizer(t *testing.T) {
 	test.AccTest(t)
 
-	if gitHubTokenURL == "" {
-		t.Skip("gitHubTokenURL was empty")
+	if test.GitHubTokenURL == "" {
+		t.Skip("test.GitHubTokenURL was empty")
 	}
-	if gitHubToken == "" {
-		t.Skip("gitHubToken was empty")
+	if test.GitHubToken == "" {
+		t.Skip("test.GitHubToken was empty")
 	}
 
-	env, err := environments.FromNamed(environment)
+	env, err := environments.FromNamed(test.Environment)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -27,11 +27,11 @@ func TestAccGitHubOIDCAuthorizer(t *testing.T) {
 	opts := auth.GitHubOIDCAuthorizerOptions{
 		Api:                 env.MSGraph,
 		AuxiliaryTenantIds:  nil,
-		ClientId:            clientId,
+		ClientId:            test.ClientId,
 		Environment:         *env,
-		TenantId:            tenantId,
-		IdTokenRequestUrl:   gitHubTokenURL,
-		IdTokenRequestToken: gitHubToken,
+		TenantId:            test.TenantId,
+		IdTokenRequestUrl:   test.GitHubTokenURL,
+		IdTokenRequestToken: test.GitHubToken,
 	}
 	authorizer, err := auth.NewGitHubOIDCAuthorizer(context.Background(), opts)
 	if err != nil {
