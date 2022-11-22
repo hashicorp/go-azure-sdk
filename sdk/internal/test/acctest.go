@@ -61,7 +61,7 @@ func (c *Connection) Authorize(ctx context.Context, api environments.Api) {
 	if err != nil {
 		log.Fatal(err)
 	}
-	token, err := c.Authorizer.Token()
+	token, err := c.Authorizer.Token(ctx)
 	if err != nil {
 		log.Fatalf("acquiring access token: %v", err)
 	}

@@ -24,6 +24,7 @@ func TestAccGitHubOIDCAuthorizer(t *testing.T) {
 		t.Fatal(err)
 	}
 
+	ctx := context.Background()
 	opts := auth.GitHubOIDCAuthorizerOptions{
 		Api:                 env.MSGraph,
 		AuxiliaryTenantIds:  nil,
@@ -33,7 +34,7 @@ func TestAccGitHubOIDCAuthorizer(t *testing.T) {
 		IdTokenRequestUrl:   test.GitHubTokenURL,
 		IdTokenRequestToken: test.GitHubToken,
 	}
-	authorizer, err := auth.NewGitHubOIDCAuthorizer(context.Background(), opts)
+	authorizer, err := auth.NewGitHubOIDCAuthorizer(ctx, opts)
 	if err != nil {
 		t.Fatalf("NewGitHubOIDCAuthorizer(): %v", err)
 	}
@@ -41,7 +42,7 @@ func TestAccGitHubOIDCAuthorizer(t *testing.T) {
 		t.Fatal("authorizer is nil, expected Authorizer")
 	}
 
-	token, err := authorizer.Token()
+	token, err := authorizer.Token(ctx)
 	if err != nil {
 		t.Fatalf("authorizer.Token(): %v", err)
 	}

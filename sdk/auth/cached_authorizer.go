@@ -1,12 +1,15 @@
 package auth
 
 import (
+	"context"
 	"golang.org/x/oauth2"
 	"sync"
 )
 
 // Copyright (c) HashiCorp Inc. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+var _ Authorizer = &CachedAuthorizer{}
 
 // CachedAuthorizer caches a token until it expires, then acquires a new token from Source
 type CachedAuthorizer struct {
@@ -19,7 +22,7 @@ type CachedAuthorizer struct {
 }
 
 // Token returns the current token if it's still valid, else will acquire a new token
-func (c *CachedAuthorizer) Token() (*oauth2.Token, error) {
+func (c *CachedAuthorizer) Token(ctx context.Context) (*oauth2.Token, error) {
 	c.mutex.RLock()
 	valid := c.token != nil && c.token.Valid()
 	c.mutex.RUnlock()
@@ -28,7 +31,7 @@ func (c *CachedAuthorizer) Token() (*oauth2.Token, error) {
 		c.mutex.Lock()
 		defer c.mutex.Unlock()
 		var err error
-		c.token, err = c.Source.Token()
+		c.token, err = c.Source.Token(ctx)
 		if err != nil {
 			return nil, err
 		}
@@ -38,7 +41,7 @@ func (c *CachedAuthorizer) Token() (*oauth2.Token, error) {
 }
 
 // AuxiliaryTokens returns additional tokens for auxiliary tenant IDs, for use in multi-tenant scenarios
-func (c *CachedAuthorizer) AuxiliaryTokens() ([]*oauth2.Token, error) {
+func (c *CachedAuthorizer) AuxiliaryTokens(ctx context.Context) ([]*oauth2.Token, error) {
 	c.mutex.RLock()
 	var valid bool
 	for _, token := range c.auxTokens {
@@ -53,7 +56,7 @@ func (c *CachedAuthorizer) AuxiliaryTokens() ([]*oauth2.Token, error) {
 		c.mutex.Lock()
 		defer c.mutex.Unlock()
 		var err error
-		c.auxTokens, err = c.Source.AuxiliaryTokens()
+		c.auxTokens, err = c.Source.AuxiliaryTokens(ctx)
 		if err != nil {
 			return nil, err
 		}

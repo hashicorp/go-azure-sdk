@@ -17,6 +17,7 @@ func TestAccClientSecretAuthorizerV1(t *testing.T) {
 		t.Fatal(err)
 	}
 
+	ctx := context.Background()
 	opts := auth.ClientSecretAuthorizerOptions{
 		Environment:  *env,
 		Api:          env.MSGraph,
@@ -25,7 +26,7 @@ func TestAccClientSecretAuthorizerV1(t *testing.T) {
 		ClientId:     test.ClientId,
 		ClientSecret: test.ClientSecret,
 	}
-	authorizer, err := auth.NewClientSecretAuthorizer(context.Background(), opts)
+	authorizer, err := auth.NewClientSecretAuthorizer(ctx, opts)
 	if err != nil {
 		t.Fatalf("NewClientSecretAuthorizer(): %v", err)
 	}
@@ -33,7 +34,7 @@ func TestAccClientSecretAuthorizerV1(t *testing.T) {
 		t.Fatal("authorizer is nil, expected Authorizer")
 	}
 
-	token, err := authorizer.Token()
+	token, err := authorizer.Token(ctx)
 	if err != nil {
 		t.Fatalf("authorizer.Token(): %v", err)
 	}

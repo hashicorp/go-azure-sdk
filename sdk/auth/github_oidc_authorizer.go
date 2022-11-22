@@ -42,13 +42,14 @@ func NewGitHubOIDCAuthorizer(ctx context.Context, options GitHubOIDCAuthorizerOp
 	return conf.TokenSource(ctx), nil
 }
 
+var _ Authorizer = &GitHubOIDCAuthorizer{}
+
 type GitHubOIDCAuthorizer struct {
-	ctx  context.Context
 	conf *gitHubOIDCConfig
 }
 
-func (a *GitHubOIDCAuthorizer) githubAssertion() (*string, error) {
-	req, err := http.NewRequestWithContext(a.ctx, http.MethodGet, a.conf.IDTokenRequestURL, http.NoBody)
+func (a *GitHubOIDCAuthorizer) githubAssertion(ctx context.Context) (*string, error) {
+	req, err := http.NewRequestWithContext(ctx, http.MethodGet, a.conf.IDTokenRequestURL, http.NoBody)
 	if err != nil {
 		return nil, fmt.Errorf("githubAssertion: failed to build request")
 	}
@@ -93,8 +94,8 @@ func (a *GitHubOIDCAuthorizer) githubAssertion() (*string, error) {
 	return tokenRes.Value, nil
 }
 
-func (a *GitHubOIDCAuthorizer) tokenSource() (Authorizer, error) {
-	assertion, err := a.githubAssertion()
+func (a *GitHubOIDCAuthorizer) tokenSource(ctx context.Context) (Authorizer, error) {
+	assertion, err := a.githubAssertion(ctx)
 	if err != nil {
 		return nil, err
 	}
@@ -113,7 +114,7 @@ func (a *GitHubOIDCAuthorizer) tokenSource() (Authorizer, error) {
 		Audience:           a.conf.Audience,
 	}
 
-	source := conf.TokenSource(a.ctx, clientCredentialsAssertionType)
+	source := conf.TokenSource(ctx, clientCredentialsAssertionType)
 	if source == nil {
 		return nil, fmt.Errorf("GitHubOIDCAuthorizer: nil Authorizer returned from clientCredentialsConfig")
 	}
@@ -121,20 +122,20 @@ func (a *GitHubOIDCAuthorizer) tokenSource() (Authorizer, error) {
 	return source, nil
 }
 
-func (a *GitHubOIDCAuthorizer) Token() (*oauth2.Token, error) {
-	source, err := a.tokenSource()
+func (a *GitHubOIDCAuthorizer) Token(ctx context.Context) (*oauth2.Token, error) {
+	source, err := a.tokenSource(ctx)
 	if err != nil {
 		return nil, err
 	}
-	return source.Token()
+	return source.Token(ctx)
 }
 
-func (a *GitHubOIDCAuthorizer) AuxiliaryTokens() ([]*oauth2.Token, error) {
-	source, err := a.tokenSource()
+func (a *GitHubOIDCAuthorizer) AuxiliaryTokens(ctx context.Context) ([]*oauth2.Token, error) {
+	source, err := a.tokenSource(ctx)
 	if err != nil {
 		return nil, err
 	}
-	return source.AuxiliaryTokens()
+	return source.AuxiliaryTokens(ctx)
 }
 
 type gitHubOIDCConfig struct {
@@ -169,5 +170,7 @@ type gitHubOIDCConfig struct {
 }
 
 func (c *gitHubOIDCConfig) TokenSource(ctx context.Context) Authorizer {
-	return NewCachedAuthorizer(&GitHubOIDCAuthorizer{ctx, c})
+	return NewCachedAuthorizer(&GitHubOIDCAuthorizer{
+		conf: c,
+	})
 }

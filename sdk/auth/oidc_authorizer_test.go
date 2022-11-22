@@ -21,6 +21,7 @@ func TestAccOIDCAuthorizer(t *testing.T) {
 		t.Fatal(err)
 	}
 
+	ctx := context.Background()
 	opts := auth.OIDCAuthorizerOptions{
 		Environment:        *env,
 		Api:                env.MSGraph,
@@ -29,7 +30,7 @@ func TestAccOIDCAuthorizer(t *testing.T) {
 		ClientId:           test.ClientId,
 		FederatedAssertion: test.IdToken,
 	}
-	authorizer, err := auth.NewOIDCAuthorizer(context.Background(), opts)
+	authorizer, err := auth.NewOIDCAuthorizer(ctx, opts)
 	if err != nil {
 		t.Fatalf("NewOIDCAuthorizer(): %v", err)
 	}
@@ -37,7 +38,7 @@ func TestAccOIDCAuthorizer(t *testing.T) {
 		t.Fatal("authorizer is nil, expected Authorizer")
 	}
 
-	token, err := authorizer.Token()
+	token, err := authorizer.Token(ctx)
 	if err != nil {
 		t.Fatalf("authorizer.Token(): %v", err)
 	}

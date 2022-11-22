@@ -93,9 +93,13 @@ type clientCredentialsConfig struct {
 func (c *clientCredentialsConfig) TokenSource(ctx context.Context, authType clientCredentialsType) (source Authorizer) {
 	switch authType {
 	case clientCredentialsAssertionType:
-		source = NewCachedAuthorizer(&clientAssertionAuthorizer{ctx, c})
+		source = NewCachedAuthorizer(&clientAssertionAuthorizer{
+			conf: c,
+		})
 	case clientCredentialsSecretType:
-		source = NewCachedAuthorizer(&clientSecretAuthorizer{ctx, c})
+		source = NewCachedAuthorizer(&clientSecretAuthorizer{
+			conf: c,
+		})
 	}
 	return
 }
@@ -191,8 +195,9 @@ func (c *clientAssertionToken) encode(key crypto.PrivateKey) (*string, error) {
 	return &ret, nil
 }
 
+var _ Authorizer = &clientAssertionAuthorizer{}
+
 type clientAssertionAuthorizer struct {
-	ctx  context.Context
 	conf *clientCredentialsConfig
 }
 
@@ -224,7 +229,7 @@ func (a *clientAssertionAuthorizer) assertion(tokenUrl string) (*string, error) 
 	return assertion, nil
 }
 
-func (a *clientAssertionAuthorizer) token(tokenUrl string) (*oauth2.Token, error) {
+func (a *clientAssertionAuthorizer) token(ctx context.Context, tokenUrl string) (*oauth2.Token, error) {
 	assertion := a.conf.FederatedAssertion
 	if assertion == "" {
 		a, err := a.assertion(tokenUrl)
@@ -248,10 +253,10 @@ func (a *clientAssertionAuthorizer) token(tokenUrl string) (*oauth2.Token, error
 		},
 	}
 
-	return clientCredentialsToken(a.ctx, tokenUrl, &v)
+	return clientCredentialsToken(ctx, tokenUrl, &v)
 }
 
-func (a *clientAssertionAuthorizer) Token() (*oauth2.Token, error) {
+func (a *clientAssertionAuthorizer) Token(ctx context.Context) (*oauth2.Token, error) {
 	if a.conf == nil {
 		return nil, fmt.Errorf("could not request token: conf is nil")
 	}
@@ -261,11 +266,11 @@ func (a *clientAssertionAuthorizer) Token() (*oauth2.Token, error) {
 		tokenUrl = tokenEndpoint(a.conf.Environment.AzureADEndpoint, a.conf.TenantID)
 	}
 
-	return a.token(tokenUrl)
+	return a.token(ctx, tokenUrl)
 }
 
 // AuxiliaryTokens returns additional tokens for auxiliary tenant IDs, for use in multi-tenant scenarios
-func (a *clientAssertionAuthorizer) AuxiliaryTokens() ([]*oauth2.Token, error) {
+func (a *clientAssertionAuthorizer) AuxiliaryTokens(ctx context.Context) ([]*oauth2.Token, error) {
 	if a.conf == nil {
 		return nil, fmt.Errorf("could not request token: conf is nil")
 	}
@@ -282,7 +287,7 @@ func (a *clientAssertionAuthorizer) AuxiliaryTokens() ([]*oauth2.Token, error) {
 			tokenUrl = tokenEndpoint(a.conf.Environment.AzureADEndpoint, tenantId)
 		}
 
-		token, err := a.token(tokenUrl)
+		token, err := a.token(ctx, tokenUrl)
 		if err != nil {
 			return tokens, err
 		}

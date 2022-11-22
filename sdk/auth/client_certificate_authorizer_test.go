@@ -19,6 +19,7 @@ func TestAccClientCertificateAuthorizerV2(t *testing.T) {
 
 	pfx := test.Base64DecodeCertificate(t, test.ClientCertificate)
 
+	ctx := context.Background()
 	opts := auth.ClientCertificateAuthorizerOptions{
 		Environment:  *env,
 		Api:          env.MSGraph,
@@ -29,7 +30,7 @@ func TestAccClientCertificateAuthorizerV2(t *testing.T) {
 		Pkcs12Path:   test.ClientCertPassword,
 		Pkcs12Pass:   test.ClientCertificatePath,
 	}
-	authorizer, err := auth.NewClientCertificateAuthorizer(context.Background(), opts)
+	authorizer, err := auth.NewClientCertificateAuthorizer(ctx, opts)
 	if err != nil {
 		t.Fatalf("NewClientCertificateAuthorizer(): %v", err)
 	}
@@ -37,7 +38,7 @@ func TestAccClientCertificateAuthorizerV2(t *testing.T) {
 		t.Fatal("authorizer is nil, expected Authorizer")
 	}
 
-	token, err := authorizer.Token()
+	token, err := authorizer.Token(ctx)
 	if err != nil {
 		t.Fatalf("authorizer.Token(): %v", err)
 	}

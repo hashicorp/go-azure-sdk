@@ -36,12 +36,13 @@ func NewClientSecretAuthorizer(ctx context.Context, options ClientSecretAuthoriz
 	return conf.TokenSource(ctx, clientCredentialsSecretType), nil
 }
 
+var _ Authorizer = &clientSecretAuthorizer{}
+
 type clientSecretAuthorizer struct {
-	ctx  context.Context
 	conf *clientCredentialsConfig
 }
 
-func (a *clientSecretAuthorizer) Token() (*oauth2.Token, error) {
+func (a *clientSecretAuthorizer) Token(ctx context.Context) (*oauth2.Token, error) {
 	if a.conf == nil {
 		return nil, fmt.Errorf("could not request token: conf is nil")
 	}
@@ -61,11 +62,11 @@ func (a *clientSecretAuthorizer) Token() (*oauth2.Token, error) {
 		tokenUrl = tokenEndpoint(a.conf.Environment.AzureADEndpoint, a.conf.TenantID)
 	}
 
-	return clientCredentialsToken(a.ctx, tokenUrl, &v)
+	return clientCredentialsToken(ctx, tokenUrl, &v)
 }
 
 // AuxiliaryTokens returns additional tokens for auxiliary tenant IDs, for use in multi-tenant scenarios
-func (a *clientSecretAuthorizer) AuxiliaryTokens() ([]*oauth2.Token, error) {
+func (a *clientSecretAuthorizer) AuxiliaryTokens(ctx context.Context) ([]*oauth2.Token, error) {
 	if a.conf == nil {
 		return nil, fmt.Errorf("could not request token: conf is nil")
 	}
@@ -92,7 +93,7 @@ func (a *clientSecretAuthorizer) AuxiliaryTokens() ([]*oauth2.Token, error) {
 			tokenUrl = tokenEndpoint(a.conf.Environment.AzureADEndpoint, tenantId)
 		}
 
-		token, err := clientCredentialsToken(a.ctx, tokenUrl, &v)
+		token, err := clientCredentialsToken(ctx, tokenUrl, &v)
 		if err != nil {
 			return tokens, err
 		}

@@ -43,7 +43,7 @@ func TestAccManagedIdentityAuthorizer(t *testing.T) {
 		t.Fatal("auth is nil, expected Authorizer")
 	}
 
-	token, err := auth.Token()
+	token, err := auth.Token(ctx)
 	if err != nil {
 		t.Fatalf("auth.Token(): %v", err)
 	}

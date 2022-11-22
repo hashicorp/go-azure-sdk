@@ -31,14 +31,15 @@ func NewAzureCliAuthorizer(ctx context.Context, options AzureCliAuthorizerOption
 	return conf.TokenSource(ctx), nil
 }
 
+var _ Authorizer = &AzureCliAuthorizer{}
+
 // AzureCliAuthorizer is an Authorizer which supports the Azure CLI.
 type AzureCliAuthorizer struct {
-	ctx  context.Context
 	conf *azureCliConfig
 }
 
 // Token returns an access token using the Azure CLI as an authentication mechanism.
-func (a *AzureCliAuthorizer) Token() (*oauth2.Token, error) {
+func (a *AzureCliAuthorizer) Token(_ context.Context) (*oauth2.Token, error) {
 	if a.conf == nil {
 		return nil, fmt.Errorf("could not request token: conf is nil")
 	}
@@ -70,7 +71,7 @@ func (a *AzureCliAuthorizer) Token() (*oauth2.Token, error) {
 }
 
 // AuxiliaryTokens returns additional tokens for auxiliary tenant IDs, for use in multi-tenant scenarios
-func (a *AzureCliAuthorizer) AuxiliaryTokens() ([]*oauth2.Token, error) {
+func (a *AzureCliAuthorizer) AuxiliaryTokens(_ context.Context) ([]*oauth2.Token, error) {
 	if a.conf == nil {
 		return nil, fmt.Errorf("could not request token: conf is nil")
 	}
@@ -150,7 +151,6 @@ func newAzureCliConfig(api environments.Api, tenantId string) (*azureCliConfig, 
 func (c *azureCliConfig) TokenSource(ctx context.Context) Authorizer {
 	// Cache access tokens internally to avoid unnecessary `az` invocations
 	return NewCachedAuthorizer(&AzureCliAuthorizer{
-		ctx:  ctx,
 		conf: c,
 	})
 }

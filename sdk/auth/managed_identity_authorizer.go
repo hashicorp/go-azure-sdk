@@ -40,14 +40,15 @@ const (
 	msiDefaultTimeout    = 10 * time.Second
 )
 
+var _ Authorizer = &ManagedIdentityAuthorizer{}
+
 // ManagedIdentityAuthorizer is an Authorizer which supports managed service identity.
 type ManagedIdentityAuthorizer struct {
-	ctx  context.Context
 	conf *managedIdentityConfig
 }
 
 // Token returns an access token acquired from the metadata endpoint.
-func (a *ManagedIdentityAuthorizer) Token() (*oauth2.Token, error) {
+func (a *ManagedIdentityAuthorizer) Token(ctx context.Context) (*oauth2.Token, error) {
 	if a.conf == nil {
 		return nil, fmt.Errorf("could not request token: conf is nil")
 	}
@@ -63,7 +64,7 @@ func (a *ManagedIdentityAuthorizer) Token() (*oauth2.Token, error) {
 
 	url := fmt.Sprintf("%s?%s", a.conf.MsiEndpoint, query.Encode())
 
-	body, err := azureMetadata(a.ctx, url)
+	body, err := azureMetadata(ctx, url)
 	if err != nil {
 		return nil, fmt.Errorf("ManagedIdentityAuthorizer: failed to request token from metadata endpoint: %v", err)
 	}
@@ -104,7 +105,7 @@ func (a *ManagedIdentityAuthorizer) Token() (*oauth2.Token, error) {
 }
 
 // AuxiliaryTokens returns additional tokens for auxiliary tenant IDs, for use in multi-tenant scenarios
-func (a *ManagedIdentityAuthorizer) AuxiliaryTokens() ([]*oauth2.Token, error) {
+func (a *ManagedIdentityAuthorizer) AuxiliaryTokens(ctx context.Context) ([]*oauth2.Token, error) {
 	return nil, fmt.Errorf("auxiliary tokens are not supported with MSI authentication")
 }
 
@@ -141,7 +142,9 @@ func newManagedIdentityConfig(resource, clientId, customManagedIdentityEndpoint 
 
 // TokenSource provides a source for obtaining access tokens using ManagedIdentityAuthorizer.
 func (c *managedIdentityConfig) TokenSource(ctx context.Context) Authorizer {
-	return NewCachedAuthorizer(&ManagedIdentityAuthorizer{ctx: ctx, conf: c})
+	return NewCachedAuthorizer(&ManagedIdentityAuthorizer{
+		conf: c,
+	})
 }
 
 func azureMetadata(ctx context.Context, url string) (body []byte, err error) {
