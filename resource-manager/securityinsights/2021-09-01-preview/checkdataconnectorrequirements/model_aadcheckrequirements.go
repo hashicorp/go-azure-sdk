@@ -11,7 +11,7 @@ import (
 var _ DataConnectorsCheckRequirements = AADCheckRequirements{}
 
 type AADCheckRequirements struct {
-	Properties *DataConnectorTenantId `json:"properties,omitempty"`
+	Properties *DataConnectorTenantId `json:"properties"`
 
 	// Fields inherited from DataConnectorsCheckRequirements
 }

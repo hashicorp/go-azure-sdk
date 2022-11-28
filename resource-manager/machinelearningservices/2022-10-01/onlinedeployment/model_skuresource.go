@@ -4,7 +4,7 @@ package onlinedeployment
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type SkuResource struct {
-	Capacity     *SkuCapacity `json:"capacity,omitempty"`
+	Capacity     *SkuCapacity `json:"capacity"`
 	ResourceType *string      `json:"resourceType,omitempty"`
-	Sku          *SkuSetting  `json:"sku,omitempty"`
+	Sku          *SkuSetting  `json:"sku"`
 }

@@ -5,5 +5,5 @@ package galleryapplicationversions
 
 type EncryptionImages struct {
 	DataDiskImages *[]DataDiskImageEncryption `json:"dataDiskImages,omitempty"`
-	OsDiskImage    *DiskImageEncryption       `json:"osDiskImage,omitempty"`
+	OsDiskImage    *DiskImageEncryption       `json:"osDiskImage"`
 }

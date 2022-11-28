@@ -8,7 +8,7 @@ type AutomationRuleModifyPropertiesActionActionConfiguration struct {
 	ClassificationComment *string                       `json:"classificationComment,omitempty"`
 	ClassificationReason  *IncidentClassificationReason `json:"classificationReason,omitempty"`
 	Labels                *[]IncidentLabel              `json:"labels,omitempty"`
-	Owner                 *IncidentOwnerInfo            `json:"owner,omitempty"`
+	Owner                 *IncidentOwnerInfo            `json:"owner"`
 	Severity              *IncidentSeverity             `json:"severity,omitempty"`
 	Status                *IncidentStatus               `json:"status,omitempty"`
 }

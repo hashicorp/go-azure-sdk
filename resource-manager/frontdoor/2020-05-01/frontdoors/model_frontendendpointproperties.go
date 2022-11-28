@@ -4,12 +4,12 @@ package frontdoors
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type FrontendEndpointProperties struct {
-	CustomHTTPSConfiguration         *CustomHTTPSConfiguration                                         `json:"customHttpsConfiguration,omitempty"`
+	CustomHTTPSConfiguration         *CustomHTTPSConfiguration                                         `json:"customHttpsConfiguration"`
 	CustomHTTPSProvisioningState     *CustomHTTPSProvisioningState                                     `json:"customHttpsProvisioningState,omitempty"`
 	CustomHTTPSProvisioningSubstate  *CustomHTTPSProvisioningSubstate                                  `json:"customHttpsProvisioningSubstate,omitempty"`
 	HostName                         *string                                                           `json:"hostName,omitempty"`
 	ResourceState                    *FrontDoorResourceState                                           `json:"resourceState,omitempty"`
 	SessionAffinityEnabledState      *SessionAffinityEnabledState                                      `json:"sessionAffinityEnabledState,omitempty"`
 	SessionAffinityTtlSeconds        *int64                                                            `json:"sessionAffinityTtlSeconds,omitempty"`
-	WebApplicationFirewallPolicyLink *FrontendEndpointUpdateParametersWebApplicationFirewallPolicyLink `json:"webApplicationFirewallPolicyLink,omitempty"`
+	WebApplicationFirewallPolicyLink *FrontendEndpointUpdateParametersWebApplicationFirewallPolicyLink `json:"webApplicationFirewallPolicyLink"`
 }

@@ -5,15 +5,15 @@ package virtualmachinescalesetvms
 
 type VirtualMachineScaleSetVMInstanceView struct {
 	AssignedHost              *string                                `json:"assignedHost,omitempty"`
-	BootDiagnostics           *BootDiagnosticsInstanceView           `json:"bootDiagnostics,omitempty"`
+	BootDiagnostics           *BootDiagnosticsInstanceView           `json:"bootDiagnostics"`
 	Disks                     *[]DiskInstanceView                    `json:"disks,omitempty"`
 	Extensions                *[]VirtualMachineExtensionInstanceView `json:"extensions,omitempty"`
-	MaintenanceRedeployStatus *MaintenanceRedeployStatus             `json:"maintenanceRedeployStatus,omitempty"`
+	MaintenanceRedeployStatus *MaintenanceRedeployStatus             `json:"maintenanceRedeployStatus"`
 	PlacementGroupId          *string                                `json:"placementGroupId,omitempty"`
 	PlatformFaultDomain       *int64                                 `json:"platformFaultDomain,omitempty"`
 	PlatformUpdateDomain      *int64                                 `json:"platformUpdateDomain,omitempty"`
 	RdpThumbPrint             *string                                `json:"rdpThumbPrint,omitempty"`
 	Statuses                  *[]InstanceViewStatus                  `json:"statuses,omitempty"`
-	VmAgent                   *VirtualMachineAgentInstanceView       `json:"vmAgent,omitempty"`
-	VmHealth                  *VirtualMachineHealthStatus            `json:"vmHealth,omitempty"`
+	VmAgent                   *VirtualMachineAgentInstanceView       `json:"vmAgent"`
+	VmHealth                  *VirtualMachineHealthStatus            `json:"vmHealth"`
 }

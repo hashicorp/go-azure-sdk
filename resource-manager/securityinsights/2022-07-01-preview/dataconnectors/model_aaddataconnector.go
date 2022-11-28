@@ -13,7 +13,7 @@ import (
 var _ DataConnector = AADDataConnector{}
 
 type AADDataConnector struct {
-	Properties *AADDataConnectorProperties `json:"properties,omitempty"`
+	Properties *AADDataConnectorProperties `json:"properties"`
 
 	// Fields inherited from DataConnector
 	Etag       *string                `json:"etag,omitempty"`

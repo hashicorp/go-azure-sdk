@@ -4,7 +4,7 @@ package apidiagnostic
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type HTTPMessageDiagnostic struct {
-	Body        *BodyDiagnosticSettings `json:"body,omitempty"`
-	DataMasking *DataMasking            `json:"dataMasking,omitempty"`
+	Body        *BodyDiagnosticSettings `json:"body"`
+	DataMasking *DataMasking            `json:"dataMasking"`
 	Headers     *[]string               `json:"headers,omitempty"`
 }

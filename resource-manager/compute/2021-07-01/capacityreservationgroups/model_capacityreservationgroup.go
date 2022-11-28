@@ -11,7 +11,7 @@ type CapacityReservationGroup struct {
 	Id         *string                             `json:"id,omitempty"`
 	Location   string                              `json:"location"`
 	Name       *string                             `json:"name,omitempty"`
-	Properties *CapacityReservationGroupProperties `json:"properties,omitempty"`
+	Properties *CapacityReservationGroupProperties `json:"properties"`
 	Tags       *map[string]string                  `json:"tags,omitempty"`
 	Type       *string                             `json:"type,omitempty"`
 	Zones      *zones.Schema                       `json:"zones,omitempty"`

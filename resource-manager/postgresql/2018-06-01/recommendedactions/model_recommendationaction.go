@@ -6,6 +6,6 @@ package recommendedactions
 type RecommendationAction struct {
 	Id         *string                         `json:"id,omitempty"`
 	Name       *string                         `json:"name,omitempty"`
-	Properties *RecommendationActionProperties `json:"properties,omitempty"`
+	Properties *RecommendationActionProperties `json:"properties"`
 	Type       *string                         `json:"type,omitempty"`
 }

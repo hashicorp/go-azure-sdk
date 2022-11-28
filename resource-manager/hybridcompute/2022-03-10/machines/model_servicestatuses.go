@@ -4,6 +4,6 @@ package machines
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type ServiceStatuses struct {
-	ExtensionService          *ServiceStatus `json:"extensionService,omitempty"`
-	GuestConfigurationService *ServiceStatus `json:"guestConfigurationService,omitempty"`
+	ExtensionService          *ServiceStatus `json:"extensionService"`
+	GuestConfigurationService *ServiceStatus `json:"guestConfigurationService"`
 }

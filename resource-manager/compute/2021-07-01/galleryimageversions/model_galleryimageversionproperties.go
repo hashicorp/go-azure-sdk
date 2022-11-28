@@ -5,7 +5,7 @@ package galleryimageversions
 
 type GalleryImageVersionProperties struct {
 	ProvisioningState *ProvisioningState                    `json:"provisioningState,omitempty"`
-	PublishingProfile *GalleryArtifactPublishingProfileBase `json:"publishingProfile,omitempty"`
-	ReplicationStatus *ReplicationStatus                    `json:"replicationStatus,omitempty"`
+	PublishingProfile *GalleryArtifactPublishingProfileBase `json:"publishingProfile"`
+	ReplicationStatus *ReplicationStatus                    `json:"replicationStatus"`
 	StorageProfile    GalleryImageVersionStorageProfile     `json:"storageProfile"`
 }

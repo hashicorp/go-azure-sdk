@@ -11,7 +11,7 @@ import (
 var _ UserSourceInfo = CustomContainerUserSourceInfo{}
 
 type CustomContainerUserSourceInfo struct {
-	CustomContainer *CustomContainer `json:"customContainer,omitempty"`
+	CustomContainer *CustomContainer `json:"customContainer"`
 
 	// Fields inherited from UserSourceInfo
 	Version *string `json:"version,omitempty"`

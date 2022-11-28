@@ -6,5 +6,5 @@ package threatintelligence
 type ThreatIntelligenceIndicatorModelForRequestBody struct {
 	Etag       *string                                `json:"etag,omitempty"`
 	Kind       ThreatIntelligenceResourceKindEnum     `json:"kind"`
-	Properties *ThreatIntelligenceIndicatorProperties `json:"properties,omitempty"`
+	Properties *ThreatIntelligenceIndicatorProperties `json:"properties"`
 }

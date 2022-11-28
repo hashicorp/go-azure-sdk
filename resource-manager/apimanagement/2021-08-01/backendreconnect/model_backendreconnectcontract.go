@@ -6,6 +6,6 @@ package backendreconnect
 type BackendReconnectContract struct {
 	Id         *string                     `json:"id,omitempty"`
 	Name       *string                     `json:"name,omitempty"`
-	Properties *BackendReconnectProperties `json:"properties,omitempty"`
+	Properties *BackendReconnectProperties `json:"properties"`
 	Type       *string                     `json:"type,omitempty"`
 }

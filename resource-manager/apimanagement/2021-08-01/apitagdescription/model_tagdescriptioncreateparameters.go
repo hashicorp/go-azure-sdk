@@ -4,5 +4,5 @@ package apitagdescription
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type TagDescriptionCreateParameters struct {
-	Properties *TagDescriptionBaseProperties `json:"properties,omitempty"`
+	Properties *TagDescriptionBaseProperties `json:"properties"`
 }

@@ -11,7 +11,7 @@ import (
 
 type CertificateContractProperties struct {
 	ExpirationDate string                      `json:"expirationDate"`
-	KeyVault       *KeyVaultContractProperties `json:"keyVault,omitempty"`
+	KeyVault       *KeyVaultContractProperties `json:"keyVault"`
 	Subject        string                      `json:"subject"`
 	Thumbprint     string                      `json:"thumbprint"`
 }

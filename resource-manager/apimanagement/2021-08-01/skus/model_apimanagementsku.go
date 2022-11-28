@@ -6,7 +6,7 @@ package skus
 type ApiManagementSku struct {
 	ApiVersions  *[]string                       `json:"apiVersions,omitempty"`
 	Capabilities *[]ApiManagementSkuCapabilities `json:"capabilities,omitempty"`
-	Capacity     *ApiManagementSkuCapacity       `json:"capacity,omitempty"`
+	Capacity     *ApiManagementSkuCapacity       `json:"capacity"`
 	Costs        *[]ApiManagementSkuCosts        `json:"costs,omitempty"`
 	Family       *string                         `json:"family,omitempty"`
 	Kind         *string                         `json:"kind,omitempty"`

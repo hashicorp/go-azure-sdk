@@ -10,15 +10,15 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type CommunityGalleryImageProperties struct {
-	Disallowed       *Disallowed                      `json:"disallowed,omitempty"`
+	Disallowed       *Disallowed                      `json:"disallowed"`
 	EndOfLifeDate    *string                          `json:"endOfLifeDate,omitempty"`
 	Features         *[]GalleryImageFeature           `json:"features,omitempty"`
 	HyperVGeneration *HyperVGeneration                `json:"hyperVGeneration,omitempty"`
 	Identifier       GalleryImageIdentifier           `json:"identifier"`
 	OsState          OperatingSystemStateTypes        `json:"osState"`
 	OsType           OperatingSystemTypes             `json:"osType"`
-	PurchasePlan     *ImagePurchasePlan               `json:"purchasePlan,omitempty"`
-	Recommended      *RecommendedMachineConfiguration `json:"recommended,omitempty"`
+	PurchasePlan     *ImagePurchasePlan               `json:"purchasePlan"`
+	Recommended      *RecommendedMachineConfiguration `json:"recommended"`
 }
 
 func (o *CommunityGalleryImageProperties) GetEndOfLifeDateAsTime() (*time.Time, error) {

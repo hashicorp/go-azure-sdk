@@ -5,7 +5,7 @@ package connectiongateways
 
 type ConnectionGatewayInstallationDefinitionProperties struct {
 	BackendUri         *string                     `json:"backendUri,omitempty"`
-	ConnectionGateway  *ConnectionGatewayReference `json:"connectionGateway,omitempty"`
+	ConnectionGateway  *ConnectionGatewayReference `json:"connectionGateway"`
 	ContactInformation *[]string                   `json:"contactInformation,omitempty"`
 	Description        *string                     `json:"description,omitempty"`
 	DisplayName        *string                     `json:"displayName,omitempty"`

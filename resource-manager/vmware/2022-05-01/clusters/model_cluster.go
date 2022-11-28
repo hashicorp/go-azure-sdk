@@ -6,7 +6,7 @@ package clusters
 type Cluster struct {
 	Id         *string                  `json:"id,omitempty"`
 	Name       *string                  `json:"name,omitempty"`
-	Properties *CommonClusterProperties `json:"properties,omitempty"`
+	Properties *CommonClusterProperties `json:"properties"`
 	Sku        Sku                      `json:"sku"`
 	Type       *string                  `json:"type,omitempty"`
 }

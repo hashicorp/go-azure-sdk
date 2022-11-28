@@ -6,7 +6,7 @@ package replicationrecoveryservicesproviders
 type AddRecoveryServicesProviderInputProperties struct {
 	AuthenticationIdentityInput          IdentityProviderInput  `json:"authenticationIdentityInput"`
 	BiosId                               *string                `json:"biosId,omitempty"`
-	DataPlaneAuthenticationIdentityInput *IdentityProviderInput `json:"dataPlaneAuthenticationIdentityInput,omitempty"`
+	DataPlaneAuthenticationIdentityInput *IdentityProviderInput `json:"dataPlaneAuthenticationIdentityInput"`
 	MachineId                            *string                `json:"machineId,omitempty"`
 	MachineName                          string                 `json:"machineName"`
 	ResourceAccessIdentityInput          IdentityProviderInput  `json:"resourceAccessIdentityInput"`

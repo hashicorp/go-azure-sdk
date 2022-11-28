@@ -4,6 +4,6 @@ package loadtests
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type EncryptionProperties struct {
-	Identity *EncryptionPropertiesIdentity `json:"identity,omitempty"`
+	Identity *EncryptionPropertiesIdentity `json:"identity"`
 	KeyUrl   *string                       `json:"keyUrl,omitempty"`
 }

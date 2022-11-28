@@ -11,7 +11,7 @@ import (
 var _ WorkspaceConnectionPropertiesV2 = PATAuthTypeWorkspaceConnectionProperties{}
 
 type PATAuthTypeWorkspaceConnectionProperties struct {
-	Credentials *WorkspaceConnectionPersonalAccessToken `json:"credentials,omitempty"`
+	Credentials *WorkspaceConnectionPersonalAccessToken `json:"credentials"`
 
 	// Fields inherited from WorkspaceConnectionPropertiesV2
 	Category    *ConnectionCategory `json:"category,omitempty"`

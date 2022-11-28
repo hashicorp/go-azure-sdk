@@ -5,5 +5,5 @@ package dataconnectors
 
 type MCASDataConnectorDataTypes struct {
 	Alerts        DataConnectorDataTypeCommon  `json:"alerts"`
-	DiscoveryLogs *DataConnectorDataTypeCommon `json:"discoveryLogs,omitempty"`
+	DiscoveryLogs *DataConnectorDataTypeCommon `json:"discoveryLogs"`
 }

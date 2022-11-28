@@ -13,7 +13,7 @@ import (
 var _ DataConnector = AwsS3DataConnector{}
 
 type AwsS3DataConnector struct {
-	Properties *AwsS3DataConnectorProperties `json:"properties,omitempty"`
+	Properties *AwsS3DataConnectorProperties `json:"properties"`
 
 	// Fields inherited from DataConnector
 	Etag       *string                `json:"etag,omitempty"`

@@ -12,10 +12,10 @@ type VirtualMachineScaleSetVM struct {
 	InstanceId *string                             `json:"instanceId,omitempty"`
 	Location   string                              `json:"location"`
 	Name       *string                             `json:"name,omitempty"`
-	Plan       *Plan                               `json:"plan,omitempty"`
-	Properties *VirtualMachineScaleSetVMProperties `json:"properties,omitempty"`
+	Plan       *Plan                               `json:"plan"`
+	Properties *VirtualMachineScaleSetVMProperties `json:"properties"`
 	Resources  *[]VirtualMachineExtension          `json:"resources,omitempty"`
-	Sku        *Sku                                `json:"sku,omitempty"`
+	Sku        *Sku                                `json:"sku"`
 	Tags       *map[string]string                  `json:"tags,omitempty"`
 	Type       *string                             `json:"type,omitempty"`
 	Zones      *zones.Schema                       `json:"zones,omitempty"`

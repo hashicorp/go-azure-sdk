@@ -5,5 +5,5 @@ package jobstream
 
 type JobStream struct {
 	Id         *string              `json:"id,omitempty"`
-	Properties *JobStreamProperties `json:"properties,omitempty"`
+	Properties *JobStreamProperties `json:"properties"`
 }

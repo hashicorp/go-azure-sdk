@@ -8,20 +8,20 @@ type ApiContractProperties struct {
 	ApiRevisionDescription        *string                                `json:"apiRevisionDescription,omitempty"`
 	ApiVersion                    *string                                `json:"apiVersion,omitempty"`
 	ApiVersionDescription         *string                                `json:"apiVersionDescription,omitempty"`
-	ApiVersionSet                 *ApiVersionSetContractDetails          `json:"apiVersionSet,omitempty"`
+	ApiVersionSet                 *ApiVersionSetContractDetails          `json:"apiVersionSet"`
 	ApiVersionSetId               *string                                `json:"apiVersionSetId,omitempty"`
-	AuthenticationSettings        *AuthenticationSettingsContract        `json:"authenticationSettings,omitempty"`
-	Contact                       *ApiContactInformation                 `json:"contact,omitempty"`
+	AuthenticationSettings        *AuthenticationSettingsContract        `json:"authenticationSettings"`
+	Contact                       *ApiContactInformation                 `json:"contact"`
 	Description                   *string                                `json:"description,omitempty"`
 	DisplayName                   *string                                `json:"displayName,omitempty"`
 	IsCurrent                     *bool                                  `json:"isCurrent,omitempty"`
 	IsOnline                      *bool                                  `json:"isOnline,omitempty"`
-	License                       *ApiLicenseInformation                 `json:"license,omitempty"`
+	License                       *ApiLicenseInformation                 `json:"license"`
 	Path                          string                                 `json:"path"`
 	Protocols                     *[]Protocol                            `json:"protocols,omitempty"`
 	ServiceUrl                    *string                                `json:"serviceUrl,omitempty"`
 	SourceApiId                   *string                                `json:"sourceApiId,omitempty"`
-	SubscriptionKeyParameterNames *SubscriptionKeyParameterNamesContract `json:"subscriptionKeyParameterNames,omitempty"`
+	SubscriptionKeyParameterNames *SubscriptionKeyParameterNamesContract `json:"subscriptionKeyParameterNames"`
 	SubscriptionRequired          *bool                                  `json:"subscriptionRequired,omitempty"`
 	TermsOfServiceUrl             *string                                `json:"termsOfServiceUrl,omitempty"`
 	Type                          *ApiType                               `json:"type,omitempty"`

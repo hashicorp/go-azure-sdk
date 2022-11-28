@@ -4,5 +4,5 @@ package subscriptions
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type AcceptOwnershipRequest struct {
-	Properties *AcceptOwnershipRequestProperties `json:"properties,omitempty"`
+	Properties *AcceptOwnershipRequestProperties `json:"properties"`
 }

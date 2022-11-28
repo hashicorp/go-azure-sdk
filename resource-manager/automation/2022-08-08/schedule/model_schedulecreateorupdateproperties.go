@@ -10,7 +10,7 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type ScheduleCreateOrUpdateProperties struct {
-	AdvancedSchedule *AdvancedSchedule `json:"advancedSchedule,omitempty"`
+	AdvancedSchedule *AdvancedSchedule `json:"advancedSchedule"`
 	Description      *string           `json:"description,omitempty"`
 	ExpiryTime       *string           `json:"expiryTime,omitempty"`
 	Frequency        ScheduleFrequency `json:"frequency"`

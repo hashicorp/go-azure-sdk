@@ -24,7 +24,7 @@ type EventHub struct {
 	CreatedTime        *string                    `json:"createdTime,omitempty"`
 	DeadLetterSecret   *string                    `json:"deadLetterSecret,omitempty"`
 	DeadLetterUri      *string                    `json:"deadLetterUri,omitempty"`
-	Identity           *ManagedIdentityReference  `json:"identity,omitempty"`
+	Identity           *ManagedIdentityReference  `json:"identity"`
 	ProvisioningState  *EndpointProvisioningState `json:"provisioningState,omitempty"`
 }
 

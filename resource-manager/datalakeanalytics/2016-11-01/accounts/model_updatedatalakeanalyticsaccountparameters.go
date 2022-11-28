@@ -4,6 +4,6 @@ package accounts
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type UpdateDataLakeAnalyticsAccountParameters struct {
-	Properties *UpdateDataLakeAnalyticsAccountProperties `json:"properties,omitempty"`
+	Properties *UpdateDataLakeAnalyticsAccountProperties `json:"properties"`
 	Tags       *map[string]string                        `json:"tags,omitempty"`
 }

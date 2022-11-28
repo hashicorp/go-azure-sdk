@@ -4,10 +4,10 @@ package deployments
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type DeploymentProperties struct {
-	CallRateLimit     *CallRateLimit               `json:"callRateLimit,omitempty"`
+	CallRateLimit     *CallRateLimit               `json:"callRateLimit"`
 	Capabilities      *map[string]string           `json:"capabilities,omitempty"`
-	Model             *DeploymentModel             `json:"model,omitempty"`
+	Model             *DeploymentModel             `json:"model"`
 	ProvisioningState *DeploymentProvisioningState `json:"provisioningState,omitempty"`
 	RaiPolicyName     *string                      `json:"raiPolicyName,omitempty"`
-	ScaleSettings     *DeploymentScaleSettings     `json:"scaleSettings,omitempty"`
+	ScaleSettings     *DeploymentScaleSettings     `json:"scaleSettings"`
 }

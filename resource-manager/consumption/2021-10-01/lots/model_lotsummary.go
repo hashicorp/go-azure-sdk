@@ -7,6 +7,6 @@ type LotSummary struct {
 	ETag       *string        `json:"eTag,omitempty"`
 	Id         *string        `json:"id,omitempty"`
 	Name       *string        `json:"name,omitempty"`
-	Properties *LotProperties `json:"properties,omitempty"`
+	Properties *LotProperties `json:"properties"`
 	Type       *string        `json:"type,omitempty"`
 }

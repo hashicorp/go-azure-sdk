@@ -4,7 +4,7 @@ package customlocations
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type CustomLocationProperties struct {
-	Authentication      *CustomLocationPropertiesAuthentication `json:"authentication,omitempty"`
+	Authentication      *CustomLocationPropertiesAuthentication `json:"authentication"`
 	ClusterExtensionIds *[]string                               `json:"clusterExtensionIds,omitempty"`
 	DisplayName         *string                                 `json:"displayName,omitempty"`
 	HostResourceId      *string                                 `json:"hostResourceId,omitempty"`

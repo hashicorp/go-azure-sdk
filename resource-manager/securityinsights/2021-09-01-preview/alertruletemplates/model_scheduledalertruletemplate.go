@@ -13,7 +13,7 @@ import (
 var _ AlertRuleTemplate = ScheduledAlertRuleTemplate{}
 
 type ScheduledAlertRuleTemplate struct {
-	Properties *ScheduledAlertRuleTemplateProperties `json:"properties,omitempty"`
+	Properties *ScheduledAlertRuleTemplateProperties `json:"properties"`
 
 	// Fields inherited from AlertRuleTemplate
 	Id         *string                `json:"id,omitempty"`

@@ -12,19 +12,19 @@ import (
 type DiskRestorePointProperties struct {
 	CompletionPercent      *float64               `json:"completionPercent,omitempty"`
 	DiskAccessId           *string                `json:"diskAccessId,omitempty"`
-	Encryption             *Encryption            `json:"encryption,omitempty"`
+	Encryption             *Encryption            `json:"encryption"`
 	FamilyId               *string                `json:"familyId,omitempty"`
 	HyperVGeneration       *HyperVGeneration      `json:"hyperVGeneration,omitempty"`
 	NetworkAccessPolicy    *NetworkAccessPolicy   `json:"networkAccessPolicy,omitempty"`
 	OsType                 *OperatingSystemTypes  `json:"osType,omitempty"`
 	PublicNetworkAccess    *PublicNetworkAccess   `json:"publicNetworkAccess,omitempty"`
-	PurchasePlan           *PurchasePlan          `json:"purchasePlan,omitempty"`
+	PurchasePlan           *PurchasePlan          `json:"purchasePlan"`
 	ReplicationState       *string                `json:"replicationState,omitempty"`
-	SecurityProfile        *DiskSecurityProfile   `json:"securityProfile,omitempty"`
+	SecurityProfile        *DiskSecurityProfile   `json:"securityProfile"`
 	SourceResourceId       *string                `json:"sourceResourceId,omitempty"`
 	SourceResourceLocation *string                `json:"sourceResourceLocation,omitempty"`
 	SourceUniqueId         *string                `json:"sourceUniqueId,omitempty"`
-	SupportedCapabilities  *SupportedCapabilities `json:"supportedCapabilities,omitempty"`
+	SupportedCapabilities  *SupportedCapabilities `json:"supportedCapabilities"`
 	SupportsHibernation    *bool                  `json:"supportsHibernation,omitempty"`
 	TimeCreated            *string                `json:"timeCreated,omitempty"`
 }

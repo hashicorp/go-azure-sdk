@@ -5,5 +5,5 @@ package variable
 
 type VariableUpdateParameters struct {
 	Name       *string                   `json:"name,omitempty"`
-	Properties *VariableUpdateProperties `json:"properties,omitempty"`
+	Properties *VariableUpdateProperties `json:"properties"`
 }

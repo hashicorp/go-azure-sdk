@@ -5,6 +5,6 @@ package dscnodeconfiguration
 
 type DscNodeConfigurationCreateOrUpdateParameters struct {
 	Name       *string                                                 `json:"name,omitempty"`
-	Properties *DscNodeConfigurationCreateOrUpdateParametersProperties `json:"properties,omitempty"`
+	Properties *DscNodeConfigurationCreateOrUpdateParametersProperties `json:"properties"`
 	Tags       *map[string]string                                      `json:"tags,omitempty"`
 }

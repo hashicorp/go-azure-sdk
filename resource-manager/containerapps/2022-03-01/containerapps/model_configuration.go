@@ -5,8 +5,8 @@ package containerapps
 
 type Configuration struct {
 	ActiveRevisionsMode *ActiveRevisionsMode   `json:"activeRevisionsMode,omitempty"`
-	Dapr                *Dapr                  `json:"dapr,omitempty"`
-	Ingress             *Ingress               `json:"ingress,omitempty"`
+	Dapr                *Dapr                  `json:"dapr"`
+	Ingress             *Ingress               `json:"ingress"`
 	Registries          *[]RegistryCredentials `json:"registries,omitempty"`
 	Secrets             *[]Secret              `json:"secrets,omitempty"`
 }

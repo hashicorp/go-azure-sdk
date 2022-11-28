@@ -10,6 +10,6 @@ type SourceControlCreateOrUpdateProperties struct {
 	FolderPath     *string                               `json:"folderPath,omitempty"`
 	PublishRunbook *bool                                 `json:"publishRunbook,omitempty"`
 	RepoUrl        *string                               `json:"repoUrl,omitempty"`
-	SecurityToken  *SourceControlSecurityTokenProperties `json:"securityToken,omitempty"`
+	SecurityToken  *SourceControlSecurityTokenProperties `json:"securityToken"`
 	SourceType     *SourceType                           `json:"sourceType,omitempty"`
 }

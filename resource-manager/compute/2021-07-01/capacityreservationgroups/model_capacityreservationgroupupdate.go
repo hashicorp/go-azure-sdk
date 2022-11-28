@@ -4,6 +4,6 @@ package capacityreservationgroups
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type CapacityReservationGroupUpdate struct {
-	Properties *CapacityReservationGroupProperties `json:"properties,omitempty"`
+	Properties *CapacityReservationGroupProperties `json:"properties"`
 	Tags       *map[string]string                  `json:"tags,omitempty"`
 }

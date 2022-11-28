@@ -7,9 +7,9 @@ type AzureBlobDefinition struct {
 	AccountKey            *string                     `json:"accountKey,omitempty"`
 	ContainerName         *string                     `json:"containerName,omitempty"`
 	LocalAuthRef          *string                     `json:"localAuthRef,omitempty"`
-	ManagedIdentity       *ManagedIdentityDefinition  `json:"managedIdentity,omitempty"`
+	ManagedIdentity       *ManagedIdentityDefinition  `json:"managedIdentity"`
 	SasToken              *string                     `json:"sasToken,omitempty"`
-	ServicePrincipal      *ServicePrincipalDefinition `json:"servicePrincipal,omitempty"`
+	ServicePrincipal      *ServicePrincipalDefinition `json:"servicePrincipal"`
 	SyncIntervalInSeconds *int64                      `json:"syncIntervalInSeconds,omitempty"`
 	TimeoutInSeconds      *int64                      `json:"timeoutInSeconds,omitempty"`
 	Url                   *string                     `json:"url,omitempty"`

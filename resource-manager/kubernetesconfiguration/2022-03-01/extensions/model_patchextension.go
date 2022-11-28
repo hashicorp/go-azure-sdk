@@ -4,5 +4,5 @@ package extensions
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type PatchExtension struct {
-	Properties *PatchExtensionProperties `json:"properties,omitempty"`
+	Properties *PatchExtensionProperties `json:"properties"`
 }

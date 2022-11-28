@@ -6,6 +6,6 @@ package schedule
 type Schedule struct {
 	Id         *string             `json:"id,omitempty"`
 	Name       *string             `json:"name,omitempty"`
-	Properties *ScheduleProperties `json:"properties,omitempty"`
+	Properties *ScheduleProperties `json:"properties"`
 	Type       *string             `json:"type,omitempty"`
 }

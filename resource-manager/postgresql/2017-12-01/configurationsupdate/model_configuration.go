@@ -6,6 +6,6 @@ package configurationsupdate
 type Configuration struct {
 	Id         *string                  `json:"id,omitempty"`
 	Name       *string                  `json:"name,omitempty"`
-	Properties *ConfigurationProperties `json:"properties,omitempty"`
+	Properties *ConfigurationProperties `json:"properties"`
 	Type       *string                  `json:"type,omitempty"`
 }

@@ -6,6 +6,6 @@ package topquerystatistics
 type QueryStatistic struct {
 	Id         *string                   `json:"id,omitempty"`
 	Name       *string                   `json:"name,omitempty"`
-	Properties *QueryStatisticProperties `json:"properties,omitempty"`
+	Properties *QueryStatisticProperties `json:"properties"`
 	Type       *string                   `json:"type,omitempty"`
 }

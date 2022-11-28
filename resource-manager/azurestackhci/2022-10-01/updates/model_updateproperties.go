@@ -23,7 +23,7 @@ type UpdateProperties struct {
 	Publisher             *string                `json:"publisher,omitempty"`
 	ReleaseLink           *string                `json:"releaseLink,omitempty"`
 	State                 *State                 `json:"state,omitempty"`
-	UpdateStateProperties *UpdateStateProperties `json:"updateStateProperties,omitempty"`
+	UpdateStateProperties *UpdateStateProperties `json:"updateStateProperties"`
 	Version               *string                `json:"version,omitempty"`
 }
 

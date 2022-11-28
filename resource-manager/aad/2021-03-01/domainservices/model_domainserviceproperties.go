@@ -7,14 +7,14 @@ type DomainServiceProperties struct {
 	DeploymentId            *string                 `json:"deploymentId,omitempty"`
 	DomainConfigurationType *string                 `json:"domainConfigurationType,omitempty"`
 	DomainName              *string                 `json:"domainName,omitempty"`
-	DomainSecuritySettings  *DomainSecuritySettings `json:"domainSecuritySettings,omitempty"`
+	DomainSecuritySettings  *DomainSecuritySettings `json:"domainSecuritySettings"`
 	FilteredSync            *FilteredSync           `json:"filteredSync,omitempty"`
-	LdapsSettings           *LdapsSettings          `json:"ldapsSettings,omitempty"`
-	MigrationProperties     *MigrationProperties    `json:"migrationProperties,omitempty"`
-	NotificationSettings    *NotificationSettings   `json:"notificationSettings,omitempty"`
+	LdapsSettings           *LdapsSettings          `json:"ldapsSettings"`
+	MigrationProperties     *MigrationProperties    `json:"migrationProperties"`
+	NotificationSettings    *NotificationSettings   `json:"notificationSettings"`
 	ProvisioningState       *string                 `json:"provisioningState,omitempty"`
 	ReplicaSets             *[]ReplicaSet           `json:"replicaSets,omitempty"`
-	ResourceForestSettings  *ResourceForestSettings `json:"resourceForestSettings,omitempty"`
+	ResourceForestSettings  *ResourceForestSettings `json:"resourceForestSettings"`
 	Sku                     *string                 `json:"sku,omitempty"`
 	SyncOwner               *string                 `json:"syncOwner,omitempty"`
 	TenantId                *string                 `json:"tenantId,omitempty"`

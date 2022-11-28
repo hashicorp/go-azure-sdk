@@ -6,6 +6,6 @@ package startmenuitem
 type StartMenuItem struct {
 	Id         *string                  `json:"id,omitempty"`
 	Name       *string                  `json:"name,omitempty"`
-	Properties *StartMenuItemProperties `json:"properties,omitempty"`
+	Properties *StartMenuItemProperties `json:"properties"`
 	Type       *string                  `json:"type,omitempty"`
 }

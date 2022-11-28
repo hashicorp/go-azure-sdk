@@ -13,7 +13,7 @@ import (
 var _ DataConnector = Office365ProjectDataConnector{}
 
 type Office365ProjectDataConnector struct {
-	Properties *Office365ProjectDataConnectorProperties `json:"properties,omitempty"`
+	Properties *Office365ProjectDataConnectorProperties `json:"properties"`
 
 	// Fields inherited from DataConnector
 	Etag       *string                `json:"etag,omitempty"`

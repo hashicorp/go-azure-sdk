@@ -6,6 +6,6 @@ package authorizationserver
 type AuthorizationServerContract struct {
 	Id         *string                                `json:"id,omitempty"`
 	Name       *string                                `json:"name,omitempty"`
-	Properties *AuthorizationServerContractProperties `json:"properties,omitempty"`
+	Properties *AuthorizationServerContractProperties `json:"properties"`
 	Type       *string                                `json:"type,omitempty"`
 }

@@ -4,12 +4,12 @@ package containerappssourcecontrols
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type GithubActionConfiguration struct {
-	AzureCredentials *AzureCredentials `json:"azureCredentials,omitempty"`
+	AzureCredentials *AzureCredentials `json:"azureCredentials"`
 	ContextPath      *string           `json:"contextPath,omitempty"`
 	Image            *string           `json:"image,omitempty"`
 	Os               *string           `json:"os,omitempty"`
 	PublishType      *string           `json:"publishType,omitempty"`
-	RegistryInfo     *RegistryInfo     `json:"registryInfo,omitempty"`
+	RegistryInfo     *RegistryInfo     `json:"registryInfo"`
 	RuntimeStack     *string           `json:"runtimeStack,omitempty"`
 	RuntimeVersion   *string           `json:"runtimeVersion,omitempty"`
 }

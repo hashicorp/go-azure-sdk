@@ -11,7 +11,7 @@ import (
 var _ Setting = DataExportSettings{}
 
 type DataExportSettings struct {
-	Properties *DataExportSettingProperties `json:"properties,omitempty"`
+	Properties *DataExportSettingProperties `json:"properties"`
 
 	// Fields inherited from Setting
 	Id   *string `json:"id,omitempty"`

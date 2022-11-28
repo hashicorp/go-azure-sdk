@@ -7,5 +7,5 @@ type AgentRegistration struct {
 	DscMetaConfiguration *string                `json:"dscMetaConfiguration,omitempty"`
 	Endpoint             *string                `json:"endpoint,omitempty"`
 	Id                   *string                `json:"id,omitempty"`
-	Keys                 *AgentRegistrationKeys `json:"keys,omitempty"`
+	Keys                 *AgentRegistrationKeys `json:"keys"`
 }

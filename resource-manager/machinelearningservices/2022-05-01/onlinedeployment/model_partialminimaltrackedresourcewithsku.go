@@ -4,6 +4,6 @@ package onlinedeployment
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type PartialMinimalTrackedResourceWithSku struct {
-	Sku  *PartialSku        `json:"sku,omitempty"`
+	Sku  *PartialSku        `json:"sku"`
 	Tags *map[string]string `json:"tags,omitempty"`
 }

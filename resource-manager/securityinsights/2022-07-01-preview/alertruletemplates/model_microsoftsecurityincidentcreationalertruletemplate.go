@@ -13,7 +13,7 @@ import (
 var _ AlertRuleTemplate = MicrosoftSecurityIncidentCreationAlertRuleTemplate{}
 
 type MicrosoftSecurityIncidentCreationAlertRuleTemplate struct {
-	Properties *MicrosoftSecurityIncidentCreationAlertRuleTemplateProperties `json:"properties,omitempty"`
+	Properties *MicrosoftSecurityIncidentCreationAlertRuleTemplateProperties `json:"properties"`
 
 	// Fields inherited from AlertRuleTemplate
 	Id         *string                `json:"id,omitempty"`

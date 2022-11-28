@@ -4,7 +4,7 @@ package virtualmachinescalesets
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type UpgradePolicy struct {
-	AutomaticOSUpgradePolicy *AutomaticOSUpgradePolicy `json:"automaticOSUpgradePolicy,omitempty"`
+	AutomaticOSUpgradePolicy *AutomaticOSUpgradePolicy `json:"automaticOSUpgradePolicy"`
 	Mode                     *UpgradeMode              `json:"mode,omitempty"`
-	RollingUpgradePolicy     *RollingUpgradePolicy     `json:"rollingUpgradePolicy,omitempty"`
+	RollingUpgradePolicy     *RollingUpgradePolicy     `json:"rollingUpgradePolicy"`
 }

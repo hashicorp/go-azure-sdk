@@ -5,7 +5,7 @@ package namedvalue
 
 type NamedValueContractProperties struct {
 	DisplayName string                      `json:"displayName"`
-	KeyVault    *KeyVaultContractProperties `json:"keyVault,omitempty"`
+	KeyVault    *KeyVaultContractProperties `json:"keyVault"`
 	Secret      *bool                       `json:"secret,omitempty"`
 	Tags        *[]string                   `json:"tags,omitempty"`
 	Value       *string                     `json:"value,omitempty"`

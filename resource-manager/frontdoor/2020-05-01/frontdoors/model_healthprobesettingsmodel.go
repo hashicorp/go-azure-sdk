@@ -6,6 +6,6 @@ package frontdoors
 type HealthProbeSettingsModel struct {
 	Id         *string                        `json:"id,omitempty"`
 	Name       *string                        `json:"name,omitempty"`
-	Properties *HealthProbeSettingsProperties `json:"properties,omitempty"`
+	Properties *HealthProbeSettingsProperties `json:"properties"`
 	Type       *string                        `json:"type,omitempty"`
 }

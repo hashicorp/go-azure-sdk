@@ -4,5 +4,5 @@ package usertoken
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type UserTokenParameters struct {
-	Properties *UserTokenParameterProperties `json:"properties,omitempty"`
+	Properties *UserTokenParameterProperties `json:"properties"`
 }

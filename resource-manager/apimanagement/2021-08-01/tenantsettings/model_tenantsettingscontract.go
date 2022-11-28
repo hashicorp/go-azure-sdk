@@ -6,6 +6,6 @@ package tenantsettings
 type TenantSettingsContract struct {
 	Id         *string                           `json:"id,omitempty"`
 	Name       *string                           `json:"name,omitempty"`
-	Properties *TenantSettingsContractProperties `json:"properties,omitempty"`
+	Properties *TenantSettingsContractProperties `json:"properties"`
 	Type       *string                           `json:"type,omitempty"`
 }

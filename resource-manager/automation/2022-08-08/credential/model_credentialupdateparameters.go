@@ -5,5 +5,5 @@ package credential
 
 type CredentialUpdateParameters struct {
 	Name       *string                     `json:"name,omitempty"`
-	Properties *CredentialUpdateProperties `json:"properties,omitempty"`
+	Properties *CredentialUpdateProperties `json:"properties"`
 }

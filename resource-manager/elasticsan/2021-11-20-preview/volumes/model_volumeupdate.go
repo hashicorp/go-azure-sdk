@@ -4,6 +4,6 @@ package volumes
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type VolumeUpdate struct {
-	Properties *VolumeUpdateProperties `json:"properties,omitempty"`
+	Properties *VolumeUpdateProperties `json:"properties"`
 	Tags       *map[string]string      `json:"tags,omitempty"`
 }

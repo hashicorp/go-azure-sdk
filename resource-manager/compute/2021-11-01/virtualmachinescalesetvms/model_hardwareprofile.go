@@ -5,5 +5,5 @@ package virtualmachinescalesetvms
 
 type HardwareProfile struct {
 	VmSize           *VirtualMachineSizeTypes `json:"vmSize,omitempty"`
-	VmSizeProperties *VMSizeProperties        `json:"vmSizeProperties,omitempty"`
+	VmSizeProperties *VMSizeProperties        `json:"vmSizeProperties"`
 }

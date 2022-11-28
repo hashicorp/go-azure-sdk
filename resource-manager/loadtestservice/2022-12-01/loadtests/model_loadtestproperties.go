@@ -6,6 +6,6 @@ package loadtests
 type LoadTestProperties struct {
 	DataPlaneURI      *string               `json:"dataPlaneURI,omitempty"`
 	Description       *string               `json:"description,omitempty"`
-	Encryption        *EncryptionProperties `json:"encryption,omitempty"`
+	Encryption        *EncryptionProperties `json:"encryption"`
 	ProvisioningState *ResourceState        `json:"provisioningState,omitempty"`
 }

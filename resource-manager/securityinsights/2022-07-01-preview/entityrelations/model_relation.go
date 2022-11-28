@@ -11,7 +11,7 @@ type Relation struct {
 	Etag       *string                `json:"etag,omitempty"`
 	Id         *string                `json:"id,omitempty"`
 	Name       *string                `json:"name,omitempty"`
-	Properties *RelationProperties    `json:"properties,omitempty"`
+	Properties *RelationProperties    `json:"properties"`
 	SystemData *systemdata.SystemData `json:"systemData,omitempty"`
 	Type       *string                `json:"type,omitempty"`
 }

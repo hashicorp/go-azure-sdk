@@ -6,7 +6,7 @@ package galleryapplicationversions
 type GalleryApplicationVersionUpdate struct {
 	Id         *string                              `json:"id,omitempty"`
 	Name       *string                              `json:"name,omitempty"`
-	Properties *GalleryApplicationVersionProperties `json:"properties,omitempty"`
+	Properties *GalleryApplicationVersionProperties `json:"properties"`
 	Tags       *map[string]string                   `json:"tags,omitempty"`
 	Type       *string                              `json:"type,omitempty"`
 }

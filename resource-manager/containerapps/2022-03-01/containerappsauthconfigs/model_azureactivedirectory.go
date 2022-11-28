@@ -6,7 +6,7 @@ package containerappsauthconfigs
 type AzureActiveDirectory struct {
 	Enabled           *bool                             `json:"enabled,omitempty"`
 	IsAutoProvisioned *bool                             `json:"isAutoProvisioned,omitempty"`
-	Login             *AzureActiveDirectoryLogin        `json:"login,omitempty"`
-	Registration      *AzureActiveDirectoryRegistration `json:"registration,omitempty"`
-	Validation        *AzureActiveDirectoryValidation   `json:"validation,omitempty"`
+	Login             *AzureActiveDirectoryLogin        `json:"login"`
+	Registration      *AzureActiveDirectoryRegistration `json:"registration"`
+	Validation        *AzureActiveDirectoryValidation   `json:"validation"`
 }

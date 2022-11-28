@@ -6,6 +6,6 @@ package tenantconfiguration
 type OperationResultContract struct {
 	Id         *string                            `json:"id,omitempty"`
 	Name       *string                            `json:"name,omitempty"`
-	Properties *OperationResultContractProperties `json:"properties,omitempty"`
+	Properties *OperationResultContractProperties `json:"properties"`
 	Type       *string                            `json:"type,omitempty"`
 }

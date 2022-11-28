@@ -14,7 +14,7 @@ import (
 type MigrationItemProperties struct {
 	AllowedOperations           *[]MigrationItemOperation         `json:"allowedOperations,omitempty"`
 	CriticalJobHistory          *[]CriticalJobHistoryDetails      `json:"criticalJobHistory,omitempty"`
-	CurrentJob                  *CurrentJobDetails                `json:"currentJob,omitempty"`
+	CurrentJob                  *CurrentJobDetails                `json:"currentJob"`
 	EventCorrelationId          *string                           `json:"eventCorrelationId,omitempty"`
 	Health                      *ProtectionHealth                 `json:"health,omitempty"`
 	HealthErrors                *[]HealthError                    `json:"healthErrors,omitempty"`

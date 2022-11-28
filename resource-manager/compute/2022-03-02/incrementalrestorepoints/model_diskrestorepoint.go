@@ -6,6 +6,6 @@ package incrementalrestorepoints
 type DiskRestorePoint struct {
 	Id         *string                     `json:"id,omitempty"`
 	Name       *string                     `json:"name,omitempty"`
-	Properties *DiskRestorePointProperties `json:"properties,omitempty"`
+	Properties *DiskRestorePointProperties `json:"properties"`
 	Type       *string                     `json:"type,omitempty"`
 }

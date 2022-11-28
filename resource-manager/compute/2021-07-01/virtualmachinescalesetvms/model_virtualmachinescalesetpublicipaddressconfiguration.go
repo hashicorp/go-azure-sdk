@@ -5,6 +5,6 @@ package virtualmachinescalesetvms
 
 type VirtualMachineScaleSetPublicIPAddressConfiguration struct {
 	Name       string                                                        `json:"name"`
-	Properties *VirtualMachineScaleSetPublicIPAddressConfigurationProperties `json:"properties,omitempty"`
-	Sku        *PublicIPAddressSku                                           `json:"sku,omitempty"`
+	Properties *VirtualMachineScaleSetPublicIPAddressConfigurationProperties `json:"properties"`
+	Sku        *PublicIPAddressSku                                           `json:"sku"`
 }

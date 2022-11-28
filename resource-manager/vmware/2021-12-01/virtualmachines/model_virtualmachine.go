@@ -6,6 +6,6 @@ package virtualmachines
 type VirtualMachine struct {
 	Id         *string                   `json:"id,omitempty"`
 	Name       *string                   `json:"name,omitempty"`
-	Properties *VirtualMachineProperties `json:"properties,omitempty"`
+	Properties *VirtualMachineProperties `json:"properties"`
 	Type       *string                   `json:"type,omitempty"`
 }

@@ -4,8 +4,8 @@ package monitors
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type DynatraceEnvironmentProperties struct {
-	AccountInfo            *AccountInfo                     `json:"accountInfo,omitempty"`
-	EnvironmentInfo        *EnvironmentInfo                 `json:"environmentInfo,omitempty"`
-	SingleSignOnProperties *DynatraceSingleSignOnProperties `json:"singleSignOnProperties,omitempty"`
+	AccountInfo            *AccountInfo                     `json:"accountInfo"`
+	EnvironmentInfo        *EnvironmentInfo                 `json:"environmentInfo"`
+	SingleSignOnProperties *DynatraceSingleSignOnProperties `json:"singleSignOnProperties"`
 	UserId                 *string                          `json:"userId,omitempty"`
 }

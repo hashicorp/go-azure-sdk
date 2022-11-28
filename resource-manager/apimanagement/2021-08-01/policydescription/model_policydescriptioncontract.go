@@ -6,6 +6,6 @@ package policydescription
 type PolicyDescriptionContract struct {
 	Id         *string                              `json:"id,omitempty"`
 	Name       *string                              `json:"name,omitempty"`
-	Properties *PolicyDescriptionContractProperties `json:"properties,omitempty"`
+	Properties *PolicyDescriptionContractProperties `json:"properties"`
 	Type       *string                              `json:"type,omitempty"`
 }

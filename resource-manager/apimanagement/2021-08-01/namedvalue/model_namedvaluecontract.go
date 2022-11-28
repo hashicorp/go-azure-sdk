@@ -6,6 +6,6 @@ package namedvalue
 type NamedValueContract struct {
 	Id         *string                       `json:"id,omitempty"`
 	Name       *string                       `json:"name,omitempty"`
-	Properties *NamedValueContractProperties `json:"properties,omitempty"`
+	Properties *NamedValueContractProperties `json:"properties"`
 	Type       *string                       `json:"type,omitempty"`
 }

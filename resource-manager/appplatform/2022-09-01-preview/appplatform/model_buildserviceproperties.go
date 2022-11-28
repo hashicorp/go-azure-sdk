@@ -6,5 +6,5 @@ package appplatform
 type BuildServiceProperties struct {
 	KPackVersion      *string                                 `json:"kPackVersion,omitempty"`
 	ProvisioningState *BuildServiceProvisioningState          `json:"provisioningState,omitempty"`
-	ResourceRequests  *BuildServicePropertiesResourceRequests `json:"resourceRequests,omitempty"`
+	ResourceRequests  *BuildServicePropertiesResourceRequests `json:"resourceRequests"`
 }

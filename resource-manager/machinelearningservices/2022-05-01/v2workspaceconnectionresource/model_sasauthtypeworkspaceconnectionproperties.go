@@ -11,7 +11,7 @@ import (
 var _ WorkspaceConnectionPropertiesV2 = SASAuthTypeWorkspaceConnectionProperties{}
 
 type SASAuthTypeWorkspaceConnectionProperties struct {
-	Credentials *WorkspaceConnectionSharedAccessSignature `json:"credentials,omitempty"`
+	Credentials *WorkspaceConnectionSharedAccessSignature `json:"credentials"`
 
 	// Fields inherited from WorkspaceConnectionPropertiesV2
 	Category    *ConnectionCategory `json:"category,omitempty"`

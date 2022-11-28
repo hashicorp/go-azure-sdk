@@ -4,7 +4,7 @@ package backend
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type BackendCredentialsContract struct {
-	Authorization  *BackendAuthorizationHeaderCredentials `json:"authorization,omitempty"`
+	Authorization  *BackendAuthorizationHeaderCredentials `json:"authorization"`
 	Certificate    *[]string                              `json:"certificate,omitempty"`
 	CertificateIds *[]string                              `json:"certificateIds,omitempty"`
 	Header         *map[string][]string                   `json:"header,omitempty"`

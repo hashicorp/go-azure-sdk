@@ -20,7 +20,7 @@ type CommandJob struct {
 	Limits               JobLimits                 `json:"limits"`
 	Outputs              *map[string]JobOutput     `json:"outputs,omitempty"`
 	Parameters           *interface{}              `json:"parameters,omitempty"`
-	Resources            *ResourceConfiguration    `json:"resources,omitempty"`
+	Resources            *ResourceConfiguration    `json:"resources"`
 
 	// Fields inherited from JobBase
 	ComputeId      *string                `json:"computeId,omitempty"`

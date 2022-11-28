@@ -8,7 +8,7 @@ type OuContainer struct {
 	Id         *string                `json:"id,omitempty"`
 	Location   *string                `json:"location,omitempty"`
 	Name       *string                `json:"name,omitempty"`
-	Properties *OuContainerProperties `json:"properties,omitempty"`
+	Properties *OuContainerProperties `json:"properties"`
 	Tags       *map[string]string     `json:"tags,omitempty"`
 	Type       *string                `json:"type,omitempty"`
 }

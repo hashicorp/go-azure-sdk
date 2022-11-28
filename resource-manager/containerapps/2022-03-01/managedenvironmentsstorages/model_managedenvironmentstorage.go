@@ -10,7 +10,7 @@ import (
 type ManagedEnvironmentStorage struct {
 	Id         *string                              `json:"id,omitempty"`
 	Name       *string                              `json:"name,omitempty"`
-	Properties *ManagedEnvironmentStorageProperties `json:"properties,omitempty"`
+	Properties *ManagedEnvironmentStorageProperties `json:"properties"`
 	SystemData *systemdata.SystemData               `json:"systemData,omitempty"`
 	Type       *string                              `json:"type,omitempty"`
 }

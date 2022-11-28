@@ -4,7 +4,7 @@ package hostpool
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type HostPoolProperties struct {
-	AgentUpdate                   *AgentUpdateProperties         `json:"agentUpdate,omitempty"`
+	AgentUpdate                   *AgentUpdateProperties         `json:"agentUpdate"`
 	ApplicationGroupReferences    *[]string                      `json:"applicationGroupReferences,omitempty"`
 	CloudPcResource               *bool                          `json:"cloudPcResource,omitempty"`
 	CustomRdpProperty             *string                        `json:"customRdpProperty,omitempty"`
@@ -16,7 +16,7 @@ type HostPoolProperties struct {
 	ObjectId                      *string                        `json:"objectId,omitempty"`
 	PersonalDesktopAssignmentType *PersonalDesktopAssignmentType `json:"personalDesktopAssignmentType,omitempty"`
 	PreferredAppGroupType         PreferredAppGroupType          `json:"preferredAppGroupType"`
-	RegistrationInfo              *RegistrationInfo              `json:"registrationInfo,omitempty"`
+	RegistrationInfo              *RegistrationInfo              `json:"registrationInfo"`
 	Ring                          *int64                         `json:"ring,omitempty"`
 	SsoClientId                   *string                        `json:"ssoClientId,omitempty"`
 	SsoClientSecretKeyVaultPath   *string                        `json:"ssoClientSecretKeyVaultPath,omitempty"`

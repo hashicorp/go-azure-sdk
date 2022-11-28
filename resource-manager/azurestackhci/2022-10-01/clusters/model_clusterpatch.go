@@ -9,6 +9,6 @@ import (
 
 type ClusterPatch struct {
 	Identity   *identity.SystemAndUserAssignedMap `json:"identity,omitempty"`
-	Properties *ClusterPatchProperties            `json:"properties,omitempty"`
+	Properties *ClusterPatchProperties            `json:"properties"`
 	Tags       *map[string]string                 `json:"tags,omitempty"`
 }

@@ -11,8 +11,8 @@ import (
 var _ AutoMLVertical = TextNer{}
 
 type TextNer struct {
-	FeaturizationSettings *FeaturizationSettings        `json:"featurizationSettings,omitempty"`
-	LimitSettings         *NlpVerticalLimitSettings     `json:"limitSettings,omitempty"`
+	FeaturizationSettings *FeaturizationSettings        `json:"featurizationSettings"`
+	LimitSettings         *NlpVerticalLimitSettings     `json:"limitSettings"`
 	PrimaryMetric         *ClassificationPrimaryMetrics `json:"primaryMetric,omitempty"`
 	ValidationData        JobInput                      `json:"validationData"`
 

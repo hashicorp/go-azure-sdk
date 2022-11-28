@@ -12,13 +12,13 @@ var _ AutoMLVertical = Regression{}
 
 type Regression struct {
 	CvSplitColumnNames    *[]string                           `json:"cvSplitColumnNames,omitempty"`
-	FeaturizationSettings *TableVerticalFeaturizationSettings `json:"featurizationSettings,omitempty"`
-	LimitSettings         *TableVerticalLimitSettings         `json:"limitSettings,omitempty"`
+	FeaturizationSettings *TableVerticalFeaturizationSettings `json:"featurizationSettings"`
+	LimitSettings         *TableVerticalLimitSettings         `json:"limitSettings"`
 	NCrossValidations     NCrossValidations                   `json:"nCrossValidations"`
 	PrimaryMetric         *RegressionPrimaryMetrics           `json:"primaryMetric,omitempty"`
 	TestData              JobInput                            `json:"testData"`
 	TestDataSize          *float64                            `json:"testDataSize,omitempty"`
-	TrainingSettings      *RegressionTrainingSettings         `json:"trainingSettings,omitempty"`
+	TrainingSettings      *RegressionTrainingSettings         `json:"trainingSettings"`
 	ValidationData        JobInput                            `json:"validationData"`
 	ValidationDataSize    *float64                            `json:"validationDataSize,omitempty"`
 	WeightColumnName      *string                             `json:"weightColumnName,omitempty"`

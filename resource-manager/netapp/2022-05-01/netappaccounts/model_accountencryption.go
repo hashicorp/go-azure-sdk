@@ -4,7 +4,7 @@ package netappaccounts
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type AccountEncryption struct {
-	Identity           *EncryptionIdentity `json:"identity,omitempty"`
+	Identity           *EncryptionIdentity `json:"identity"`
 	KeySource          *KeySource          `json:"keySource,omitempty"`
-	KeyVaultProperties *KeyVaultProperties `json:"keyVaultProperties,omitempty"`
+	KeyVaultProperties *KeyVaultProperties `json:"keyVaultProperties"`
 }

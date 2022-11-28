@@ -10,7 +10,7 @@ import (
 type ServiceRegistryResource struct {
 	Id         *string                    `json:"id,omitempty"`
 	Name       *string                    `json:"name,omitempty"`
-	Properties *ServiceRegistryProperties `json:"properties,omitempty"`
+	Properties *ServiceRegistryProperties `json:"properties"`
 	SystemData *systemdata.SystemData     `json:"systemData,omitempty"`
 	Type       *string                    `json:"type,omitempty"`
 }

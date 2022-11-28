@@ -5,6 +5,6 @@ package servergroups
 
 type ServerGroupForUpdate struct {
 	Location   *string                         `json:"location,omitempty"`
-	Properties *ServerGroupPropertiesForUpdate `json:"properties,omitempty"`
+	Properties *ServerGroupPropertiesForUpdate `json:"properties"`
 	Tags       *map[string]string              `json:"tags,omitempty"`
 }

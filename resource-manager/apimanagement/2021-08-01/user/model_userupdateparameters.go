@@ -4,5 +4,5 @@ package user
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type UserUpdateParameters struct {
-	Properties *UserUpdateParametersProperties `json:"properties,omitempty"`
+	Properties *UserUpdateParametersProperties `json:"properties"`
 }

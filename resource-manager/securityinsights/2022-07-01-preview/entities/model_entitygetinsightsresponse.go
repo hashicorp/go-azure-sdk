@@ -4,6 +4,6 @@ package entities
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type EntityGetInsightsResponse struct {
-	MetaData *GetInsightsResultsMetadata `json:"metaData,omitempty"`
+	MetaData *GetInsightsResultsMetadata `json:"metaData"`
 	Value    *[]EntityInsightItem        `json:"value,omitempty"`
 }

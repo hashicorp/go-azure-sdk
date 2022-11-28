@@ -4,5 +4,5 @@ package outboundnetworkdependenciesendpoints
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type FQDNEndpoints struct {
-	Properties *FQDNEndpointsProperties `json:"properties,omitempty"`
+	Properties *FQDNEndpointsProperties `json:"properties"`
 }

@@ -4,5 +4,5 @@ package trustedidproviders
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type UpdateTrustedIdProviderParameters struct {
-	Properties *UpdateTrustedIdProviderProperties `json:"properties,omitempty"`
+	Properties *UpdateTrustedIdProviderProperties `json:"properties"`
 }

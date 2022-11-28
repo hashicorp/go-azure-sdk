@@ -4,5 +4,5 @@ package quotabycounterkeys
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type QuotaCounterValueUpdateContract struct {
-	Properties *QuotaCounterValueContractProperties `json:"properties,omitempty"`
+	Properties *QuotaCounterValueContractProperties `json:"properties"`
 }

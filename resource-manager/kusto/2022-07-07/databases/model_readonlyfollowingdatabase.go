@@ -11,7 +11,7 @@ import (
 var _ Database = ReadOnlyFollowingDatabase{}
 
 type ReadOnlyFollowingDatabase struct {
-	Properties *ReadOnlyFollowingDatabaseProperties `json:"properties,omitempty"`
+	Properties *ReadOnlyFollowingDatabaseProperties `json:"properties"`
 
 	// Fields inherited from Database
 	Id       *string `json:"id,omitempty"`

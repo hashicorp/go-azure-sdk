@@ -7,6 +7,6 @@ type ApplicationResourceProperties struct {
 	ManagedIdentities *[]ApplicationUserAssignedIdentity `json:"managedIdentities,omitempty"`
 	Parameters        *map[string]string                 `json:"parameters,omitempty"`
 	ProvisioningState *string                            `json:"provisioningState,omitempty"`
-	UpgradePolicy     *ApplicationUpgradePolicy          `json:"upgradePolicy,omitempty"`
+	UpgradePolicy     *ApplicationUpgradePolicy          `json:"upgradePolicy"`
 	Version           *string                            `json:"version,omitempty"`
 }

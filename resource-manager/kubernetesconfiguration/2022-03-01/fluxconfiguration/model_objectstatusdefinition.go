@@ -4,9 +4,9 @@ package fluxconfiguration
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type ObjectStatusDefinition struct {
-	AppliedBy             *ObjectReferenceDefinition         `json:"appliedBy,omitempty"`
+	AppliedBy             *ObjectReferenceDefinition         `json:"appliedBy"`
 	ComplianceState       *FluxComplianceState               `json:"complianceState,omitempty"`
-	HelmReleaseProperties *HelmReleasePropertiesDefinition   `json:"helmReleaseProperties,omitempty"`
+	HelmReleaseProperties *HelmReleasePropertiesDefinition   `json:"helmReleaseProperties"`
 	Kind                  *string                            `json:"kind,omitempty"`
 	Name                  *string                            `json:"name,omitempty"`
 	Namespace             *string                            `json:"namespace,omitempty"`

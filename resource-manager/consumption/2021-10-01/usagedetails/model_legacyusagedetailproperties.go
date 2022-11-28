@@ -31,7 +31,7 @@ type LegacyUsageDetailProperties struct {
 	Frequency              *string               `json:"frequency,omitempty"`
 	InvoiceSection         *string               `json:"invoiceSection,omitempty"`
 	IsAzureCreditEligible  *bool                 `json:"isAzureCreditEligible,omitempty"`
-	MeterDetails           *MeterDetailsResponse `json:"meterDetails,omitempty"`
+	MeterDetails           *MeterDetailsResponse `json:"meterDetails"`
 	MeterId                *string               `json:"meterId,omitempty"`
 	OfferId                *string               `json:"offerId,omitempty"`
 	PartNumber             *string               `json:"partNumber,omitempty"`

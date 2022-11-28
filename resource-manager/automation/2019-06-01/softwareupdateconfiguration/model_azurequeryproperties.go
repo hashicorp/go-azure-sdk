@@ -6,5 +6,5 @@ package softwareupdateconfiguration
 type AzureQueryProperties struct {
 	Locations   *[]string              `json:"locations,omitempty"`
 	Scope       *[]string              `json:"scope,omitempty"`
-	TagSettings *TagSettingsProperties `json:"tagSettings,omitempty"`
+	TagSettings *TagSettingsProperties `json:"tagSettings"`
 }

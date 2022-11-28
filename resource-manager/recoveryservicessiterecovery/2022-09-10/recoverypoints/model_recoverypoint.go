@@ -7,6 +7,6 @@ type RecoveryPoint struct {
 	Id         *string                  `json:"id,omitempty"`
 	Location   *string                  `json:"location,omitempty"`
 	Name       *string                  `json:"name,omitempty"`
-	Properties *RecoveryPointProperties `json:"properties,omitempty"`
+	Properties *RecoveryPointProperties `json:"properties"`
 	Type       *string                  `json:"type,omitempty"`
 }

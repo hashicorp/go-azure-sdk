@@ -13,7 +13,7 @@ type GalleryApplicationVersionPublishingProfile struct {
 	EnableHealthCheck  *bool               `json:"enableHealthCheck,omitempty"`
 	EndOfLifeDate      *string             `json:"endOfLifeDate,omitempty"`
 	ExcludeFromLatest  *bool               `json:"excludeFromLatest,omitempty"`
-	ManageActions      *UserArtifactManage `json:"manageActions,omitempty"`
+	ManageActions      *UserArtifactManage `json:"manageActions"`
 	PublishedDate      *string             `json:"publishedDate,omitempty"`
 	ReplicaCount       *int64              `json:"replicaCount,omitempty"`
 	ReplicationMode    *ReplicationMode    `json:"replicationMode,omitempty"`

@@ -5,8 +5,8 @@ package galleries
 
 type GalleryProperties struct {
 	Description       *string            `json:"description,omitempty"`
-	Identifier        *GalleryIdentifier `json:"identifier,omitempty"`
+	Identifier        *GalleryIdentifier `json:"identifier"`
 	ProvisioningState *ProvisioningState `json:"provisioningState,omitempty"`
-	SharingProfile    *SharingProfile    `json:"sharingProfile,omitempty"`
-	SoftDeletePolicy  *SoftDeletePolicy  `json:"softDeletePolicy,omitempty"`
+	SharingProfile    *SharingProfile    `json:"sharingProfile"`
+	SoftDeletePolicy  *SoftDeletePolicy  `json:"softDeletePolicy"`
 }

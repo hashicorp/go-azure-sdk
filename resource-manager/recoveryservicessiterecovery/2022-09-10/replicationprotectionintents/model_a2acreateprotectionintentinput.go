@@ -15,7 +15,7 @@ type A2ACreateProtectionIntentInput struct {
 	AutoProtectionOfDataDisk                   *AutoProtectionOfDataDisk                     `json:"autoProtectionOfDataDisk,omitempty"`
 	AutomationAccountArmId                     *string                                       `json:"automationAccountArmId,omitempty"`
 	AutomationAccountAuthenticationType        *AutomationAccountAuthenticationType          `json:"automationAccountAuthenticationType,omitempty"`
-	DiskEncryptionInfo                         *DiskEncryptionInfo                           `json:"diskEncryptionInfo,omitempty"`
+	DiskEncryptionInfo                         *DiskEncryptionInfo                           `json:"diskEncryptionInfo"`
 	FabricObjectId                             string                                        `json:"fabricObjectId"`
 	MultiVmGroupId                             *string                                       `json:"multiVmGroupId,omitempty"`
 	MultiVmGroupName                           *string                                       `json:"multiVmGroupName,omitempty"`

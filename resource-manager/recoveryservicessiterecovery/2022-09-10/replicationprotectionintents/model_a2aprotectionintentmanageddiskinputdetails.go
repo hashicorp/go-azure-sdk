@@ -9,7 +9,7 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type A2AProtectionIntentManagedDiskInputDetails struct {
-	DiskEncryptionInfo                      *DiskEncryptionInfo                `json:"diskEncryptionInfo,omitempty"`
+	DiskEncryptionInfo                      *DiskEncryptionInfo                `json:"diskEncryptionInfo"`
 	DiskId                                  string                             `json:"diskId"`
 	PrimaryStagingStorageAccountCustomInput StorageAccountCustomDetails        `json:"primaryStagingStorageAccountCustomInput"`
 	RecoveryDiskEncryptionSetId             *string                            `json:"recoveryDiskEncryptionSetId,omitempty"`

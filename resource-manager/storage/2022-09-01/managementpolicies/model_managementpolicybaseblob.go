@@ -4,10 +4,10 @@ package managementpolicies
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type ManagementPolicyBaseBlob struct {
-	Delete                      *DateAfterModification `json:"delete,omitempty"`
+	Delete                      *DateAfterModification `json:"delete"`
 	EnableAutoTierToHotFromCool *bool                  `json:"enableAutoTierToHotFromCool,omitempty"`
-	TierToArchive               *DateAfterModification `json:"tierToArchive,omitempty"`
-	TierToCold                  *DateAfterModification `json:"tierToCold,omitempty"`
-	TierToCool                  *DateAfterModification `json:"tierToCool,omitempty"`
-	TierToHot                   *DateAfterModification `json:"tierToHot,omitempty"`
+	TierToArchive               *DateAfterModification `json:"tierToArchive"`
+	TierToCold                  *DateAfterModification `json:"tierToCold"`
+	TierToCool                  *DateAfterModification `json:"tierToCool"`
+	TierToHot                   *DateAfterModification `json:"tierToHot"`
 }

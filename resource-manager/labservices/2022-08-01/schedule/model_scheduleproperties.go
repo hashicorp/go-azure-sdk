@@ -12,7 +12,7 @@ import (
 type ScheduleProperties struct {
 	Notes             *string            `json:"notes,omitempty"`
 	ProvisioningState *ProvisioningState `json:"provisioningState,omitempty"`
-	RecurrencePattern *RecurrencePattern `json:"recurrencePattern,omitempty"`
+	RecurrencePattern *RecurrencePattern `json:"recurrencePattern"`
 	StartAt           *string            `json:"startAt,omitempty"`
 	StopAt            string             `json:"stopAt"`
 	TimeZoneId        string             `json:"timeZoneId"`

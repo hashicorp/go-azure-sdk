@@ -6,8 +6,8 @@ package appplatform
 type NetworkProfile struct {
 	AppNetworkResourceGroup            *string                    `json:"appNetworkResourceGroup,omitempty"`
 	AppSubnetId                        *string                    `json:"appSubnetId,omitempty"`
-	IngressConfig                      *IngressConfig             `json:"ingressConfig,omitempty"`
-	OutboundIPs                        *NetworkProfileOutboundIPs `json:"outboundIPs,omitempty"`
+	IngressConfig                      *IngressConfig             `json:"ingressConfig"`
+	OutboundIPs                        *NetworkProfileOutboundIPs `json:"outboundIPs"`
 	OutboundType                       *string                    `json:"outboundType,omitempty"`
 	RequiredTraffics                   *[]RequiredTraffic         `json:"requiredTraffics,omitempty"`
 	ServiceCidr                        *string                    `json:"serviceCidr,omitempty"`

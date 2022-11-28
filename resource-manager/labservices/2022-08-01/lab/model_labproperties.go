@@ -8,9 +8,9 @@ type LabProperties struct {
 	ConnectionProfile     ConnectionProfile     `json:"connectionProfile"`
 	Description           *string               `json:"description,omitempty"`
 	LabPlanId             *string               `json:"labPlanId,omitempty"`
-	NetworkProfile        *LabNetworkProfile    `json:"networkProfile,omitempty"`
+	NetworkProfile        *LabNetworkProfile    `json:"networkProfile"`
 	ProvisioningState     *ProvisioningState    `json:"provisioningState,omitempty"`
-	RosterProfile         *RosterProfile        `json:"rosterProfile,omitempty"`
+	RosterProfile         *RosterProfile        `json:"rosterProfile"`
 	SecurityProfile       SecurityProfile       `json:"securityProfile"`
 	State                 *LabState             `json:"state,omitempty"`
 	Title                 *string               `json:"title,omitempty"`

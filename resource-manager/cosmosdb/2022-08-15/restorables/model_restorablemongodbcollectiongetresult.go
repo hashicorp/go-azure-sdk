@@ -6,6 +6,6 @@ package restorables
 type RestorableMongodbCollectionGetResult struct {
 	Id         *string                                `json:"id,omitempty"`
 	Name       *string                                `json:"name,omitempty"`
-	Properties *RestorableMongodbCollectionProperties `json:"properties,omitempty"`
+	Properties *RestorableMongodbCollectionProperties `json:"properties"`
 	Type       *string                                `json:"type,omitempty"`
 }

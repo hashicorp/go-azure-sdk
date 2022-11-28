@@ -10,7 +10,7 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type AutoScaleRun struct {
-	Error          *AutoScaleRunError `json:"error,omitempty"`
+	Error          *AutoScaleRunError `json:"error"`
 	EvaluationTime string             `json:"evaluationTime"`
 	Results        *string            `json:"results,omitempty"`
 }

@@ -4,7 +4,7 @@ package registrationdefinitions
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type EligibleAuthorization struct {
-	JustInTimeAccessPolicy *JustInTimeAccessPolicy `json:"justInTimeAccessPolicy,omitempty"`
+	JustInTimeAccessPolicy *JustInTimeAccessPolicy `json:"justInTimeAccessPolicy"`
 	PrincipalId            string                  `json:"principalId"`
 	PrincipalIdDisplayName *string                 `json:"principalIdDisplayName,omitempty"`
 	RoleDefinitionId       string                  `json:"roleDefinitionId"`

@@ -13,7 +13,7 @@ import (
 var _ DataConnector = CodelessApiPollingDataConnector{}
 
 type CodelessApiPollingDataConnector struct {
-	Properties *ApiPollingParameters `json:"properties,omitempty"`
+	Properties *ApiPollingParameters `json:"properties"`
 
 	// Fields inherited from DataConnector
 	Etag       *string                `json:"etag,omitempty"`

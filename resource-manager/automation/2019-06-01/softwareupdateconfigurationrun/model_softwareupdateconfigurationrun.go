@@ -6,5 +6,5 @@ package softwareupdateconfigurationrun
 type SoftwareUpdateConfigurationRun struct {
 	Id         *string                                   `json:"id,omitempty"`
 	Name       *string                                   `json:"name,omitempty"`
-	Properties *SoftwareUpdateConfigurationRunProperties `json:"properties,omitempty"`
+	Properties *SoftwareUpdateConfigurationRunProperties `json:"properties"`
 }

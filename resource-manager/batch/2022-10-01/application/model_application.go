@@ -7,6 +7,6 @@ type Application struct {
 	Etag       *string                `json:"etag,omitempty"`
 	Id         *string                `json:"id,omitempty"`
 	Name       *string                `json:"name,omitempty"`
-	Properties *ApplicationProperties `json:"properties,omitempty"`
+	Properties *ApplicationProperties `json:"properties"`
 	Type       *string                `json:"type,omitempty"`
 }

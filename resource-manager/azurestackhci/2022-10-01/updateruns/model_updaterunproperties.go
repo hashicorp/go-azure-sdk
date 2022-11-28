@@ -5,7 +5,7 @@ package updateruns
 
 type UpdateRunProperties struct {
 	Duration          *string                   `json:"duration,omitempty"`
-	Progress          *Step                     `json:"progress,omitempty"`
+	Progress          *Step                     `json:"progress"`
 	ProvisioningState *ProvisioningState        `json:"provisioningState,omitempty"`
 	State             *UpdateRunPropertiesState `json:"state,omitempty"`
 }

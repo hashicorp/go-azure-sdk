@@ -4,12 +4,12 @@ package metadata
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type MetadataPropertiesPatch struct {
-	Author                   *MetadataAuthor       `json:"author,omitempty"`
-	Categories               *MetadataCategories   `json:"categories,omitempty"`
+	Author                   *MetadataAuthor       `json:"author"`
+	Categories               *MetadataCategories   `json:"categories"`
 	ContentId                *string               `json:"contentId,omitempty"`
 	ContentSchemaVersion     *string               `json:"contentSchemaVersion,omitempty"`
 	CustomVersion            *string               `json:"customVersion,omitempty"`
-	Dependencies             *MetadataDependencies `json:"dependencies,omitempty"`
+	Dependencies             *MetadataDependencies `json:"dependencies"`
 	FirstPublishDate         *string               `json:"firstPublishDate,omitempty"`
 	Icon                     *string               `json:"icon,omitempty"`
 	Kind                     *Kind                 `json:"kind,omitempty"`
@@ -18,8 +18,8 @@ type MetadataPropertiesPatch struct {
 	PreviewImages            *[]string             `json:"previewImages,omitempty"`
 	PreviewImagesDark        *[]string             `json:"previewImagesDark,omitempty"`
 	Providers                *[]string             `json:"providers,omitempty"`
-	Source                   *MetadataSource       `json:"source,omitempty"`
-	Support                  *MetadataSupport      `json:"support,omitempty"`
+	Source                   *MetadataSource       `json:"source"`
+	Support                  *MetadataSupport      `json:"support"`
 	ThreatAnalysisTactics    *[]string             `json:"threatAnalysisTactics,omitempty"`
 	ThreatAnalysisTechniques *[]string             `json:"threatAnalysisTechniques,omitempty"`
 	Version                  *string               `json:"version,omitempty"`

@@ -6,7 +6,7 @@ package marketplaceregistrationdefinitions
 type MarketplaceRegistrationDefinition struct {
 	Id         *string                                      `json:"id,omitempty"`
 	Name       *string                                      `json:"name,omitempty"`
-	Plan       *Plan                                        `json:"plan,omitempty"`
-	Properties *MarketplaceRegistrationDefinitionProperties `json:"properties,omitempty"`
+	Plan       *Plan                                        `json:"plan"`
+	Properties *MarketplaceRegistrationDefinitionProperties `json:"properties"`
 	Type       *string                                      `json:"type,omitempty"`
 }

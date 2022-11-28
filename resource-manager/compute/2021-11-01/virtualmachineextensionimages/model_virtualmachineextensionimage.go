@@ -7,7 +7,7 @@ type VirtualMachineExtensionImage struct {
 	Id         *string                                 `json:"id,omitempty"`
 	Location   string                                  `json:"location"`
 	Name       string                                  `json:"name"`
-	Properties *VirtualMachineExtensionImageProperties `json:"properties,omitempty"`
+	Properties *VirtualMachineExtensionImageProperties `json:"properties"`
 	Tags       *map[string]string                      `json:"tags,omitempty"`
 	Type       *string                                 `json:"type,omitempty"`
 }

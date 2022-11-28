@@ -4,14 +4,14 @@ package virtualmachinescalesets
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type VirtualMachineScaleSetUpdateVMProfile struct {
-	BillingProfile         *BillingProfile                             `json:"billingProfile,omitempty"`
-	DiagnosticsProfile     *DiagnosticsProfile                         `json:"diagnosticsProfile,omitempty"`
-	ExtensionProfile       *VirtualMachineScaleSetExtensionProfile     `json:"extensionProfile,omitempty"`
+	BillingProfile         *BillingProfile                             `json:"billingProfile"`
+	DiagnosticsProfile     *DiagnosticsProfile                         `json:"diagnosticsProfile"`
+	ExtensionProfile       *VirtualMachineScaleSetExtensionProfile     `json:"extensionProfile"`
 	LicenseType            *string                                     `json:"licenseType,omitempty"`
-	NetworkProfile         *VirtualMachineScaleSetUpdateNetworkProfile `json:"networkProfile,omitempty"`
-	OsProfile              *VirtualMachineScaleSetUpdateOSProfile      `json:"osProfile,omitempty"`
-	ScheduledEventsProfile *ScheduledEventsProfile                     `json:"scheduledEventsProfile,omitempty"`
-	SecurityProfile        *SecurityProfile                            `json:"securityProfile,omitempty"`
-	StorageProfile         *VirtualMachineScaleSetUpdateStorageProfile `json:"storageProfile,omitempty"`
+	NetworkProfile         *VirtualMachineScaleSetUpdateNetworkProfile `json:"networkProfile"`
+	OsProfile              *VirtualMachineScaleSetUpdateOSProfile      `json:"osProfile"`
+	ScheduledEventsProfile *ScheduledEventsProfile                     `json:"scheduledEventsProfile"`
+	SecurityProfile        *SecurityProfile                            `json:"securityProfile"`
+	StorageProfile         *VirtualMachineScaleSetUpdateStorageProfile `json:"storageProfile"`
 	UserData               *string                                     `json:"userData,omitempty"`
 }

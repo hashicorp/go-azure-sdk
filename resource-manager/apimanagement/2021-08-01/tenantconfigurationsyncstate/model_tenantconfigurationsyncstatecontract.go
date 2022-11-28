@@ -6,6 +6,6 @@ package tenantconfigurationsyncstate
 type TenantConfigurationSyncStateContract struct {
 	Id         *string                                         `json:"id,omitempty"`
 	Name       *string                                         `json:"name,omitempty"`
-	Properties *TenantConfigurationSyncStateContractProperties `json:"properties,omitempty"`
+	Properties *TenantConfigurationSyncStateContractProperties `json:"properties"`
 	Type       *string                                         `json:"type,omitempty"`
 }

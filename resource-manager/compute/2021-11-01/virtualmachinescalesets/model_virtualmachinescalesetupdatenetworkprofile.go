@@ -4,7 +4,7 @@ package virtualmachinescalesets
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type VirtualMachineScaleSetUpdateNetworkProfile struct {
-	HealthProbe                    *ApiEntityReference                                 `json:"healthProbe,omitempty"`
+	HealthProbe                    *ApiEntityReference                                 `json:"healthProbe"`
 	NetworkApiVersion              *NetworkApiVersion                                  `json:"networkApiVersion,omitempty"`
 	NetworkInterfaceConfigurations *[]VirtualMachineScaleSetUpdateNetworkConfiguration `json:"networkInterfaceConfigurations,omitempty"`
 }

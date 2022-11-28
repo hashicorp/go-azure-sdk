@@ -7,9 +7,9 @@ type AlertProperties struct {
 	CloseTime                  *string                    `json:"closeTime,omitempty"`
 	CostEntityId               *string                    `json:"costEntityId,omitempty"`
 	CreationTime               *string                    `json:"creationTime,omitempty"`
-	Definition                 *AlertPropertiesDefinition `json:"definition,omitempty"`
+	Definition                 *AlertPropertiesDefinition `json:"definition"`
 	Description                *string                    `json:"description,omitempty"`
-	Details                    *AlertPropertiesDetails    `json:"details,omitempty"`
+	Details                    *AlertPropertiesDetails    `json:"details"`
 	ModificationTime           *string                    `json:"modificationTime,omitempty"`
 	Source                     *AlertSource               `json:"source,omitempty"`
 	Status                     *AlertStatus               `json:"status,omitempty"`

@@ -4,5 +4,5 @@ package logger
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type LoggerUpdateContract struct {
-	Properties *LoggerUpdateParameters `json:"properties,omitempty"`
+	Properties *LoggerUpdateParameters `json:"properties"`
 }

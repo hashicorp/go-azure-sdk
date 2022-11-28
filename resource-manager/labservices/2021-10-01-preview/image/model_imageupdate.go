@@ -4,5 +4,5 @@ package image
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type ImageUpdate struct {
-	Properties *ImageUpdateProperties `json:"properties,omitempty"`
+	Properties *ImageUpdateProperties `json:"properties"`
 }

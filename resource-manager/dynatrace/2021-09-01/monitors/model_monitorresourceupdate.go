@@ -4,10 +4,10 @@ package monitors
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type MonitorResourceUpdate struct {
-	DynatraceEnvironmentProperties *DynatraceEnvironmentProperties `json:"dynatraceEnvironmentProperties,omitempty"`
+	DynatraceEnvironmentProperties *DynatraceEnvironmentProperties `json:"dynatraceEnvironmentProperties"`
 	MarketplaceSubscriptionStatus  *MarketplaceSubscriptionStatus  `json:"marketplaceSubscriptionStatus,omitempty"`
 	MonitoringStatus               *MonitoringStatus               `json:"monitoringStatus,omitempty"`
-	PlanData                       *PlanData                       `json:"planData,omitempty"`
+	PlanData                       *PlanData                       `json:"planData"`
 	Tags                           *map[string]string              `json:"tags,omitempty"`
-	UserInfo                       *UserInfo                       `json:"userInfo,omitempty"`
+	UserInfo                       *UserInfo                       `json:"userInfo"`
 }

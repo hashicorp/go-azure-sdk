@@ -4,5 +4,5 @@ package operationalizationclusters
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type ClusterUpdateParameters struct {
-	Properties *ClusterUpdateProperties `json:"properties,omitempty"`
+	Properties *ClusterUpdateProperties `json:"properties"`
 }

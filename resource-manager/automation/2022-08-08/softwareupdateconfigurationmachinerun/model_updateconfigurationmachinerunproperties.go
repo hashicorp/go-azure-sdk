@@ -15,12 +15,12 @@ type UpdateConfigurationMachineRunProperties struct {
 	CreatedBy                   *string                        `json:"createdBy,omitempty"`
 	CreationTime                *string                        `json:"creationTime,omitempty"`
 	EndTime                     *string                        `json:"endTime,omitempty"`
-	Error                       *ErrorResponse                 `json:"error,omitempty"`
-	Job                         *JobNavigation                 `json:"job,omitempty"`
+	Error                       *ErrorResponse                 `json:"error"`
+	Job                         *JobNavigation                 `json:"job"`
 	LastModifiedBy              *string                        `json:"lastModifiedBy,omitempty"`
 	LastModifiedTime            *string                        `json:"lastModifiedTime,omitempty"`
 	OsType                      *string                        `json:"osType,omitempty"`
-	SoftwareUpdateConfiguration *UpdateConfigurationNavigation `json:"softwareUpdateConfiguration,omitempty"`
+	SoftwareUpdateConfiguration *UpdateConfigurationNavigation `json:"softwareUpdateConfiguration"`
 	SourceComputerId            *string                        `json:"sourceComputerId,omitempty"`
 	StartTime                   *string                        `json:"startTime,omitempty"`
 	Status                      *string                        `json:"status,omitempty"`

@@ -5,5 +5,5 @@ package nodecountinformation
 
 type NodeCount struct {
 	Name       *string              `json:"name,omitempty"`
-	Properties *NodeCountProperties `json:"properties,omitempty"`
+	Properties *NodeCountProperties `json:"properties"`
 }

@@ -12,10 +12,10 @@ import (
 type RestorePointProperties struct {
 	ConsistencyMode    *ConsistencyModeTypes       `json:"consistencyMode,omitempty"`
 	ExcludeDisks       *[]ApiEntityReference       `json:"excludeDisks,omitempty"`
-	InstanceView       *RestorePointInstanceView   `json:"instanceView,omitempty"`
+	InstanceView       *RestorePointInstanceView   `json:"instanceView"`
 	ProvisioningState  *string                     `json:"provisioningState,omitempty"`
-	SourceMetadata     *RestorePointSourceMetadata `json:"sourceMetadata,omitempty"`
-	SourceRestorePoint *ApiEntityReference         `json:"sourceRestorePoint,omitempty"`
+	SourceMetadata     *RestorePointSourceMetadata `json:"sourceMetadata"`
+	SourceRestorePoint *ApiEntityReference         `json:"sourceRestorePoint"`
 	TimeCreated        *string                     `json:"timeCreated,omitempty"`
 }
 

@@ -4,5 +4,5 @@ package replicationprotectionintents
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type CreateProtectionIntentInput struct {
-	Properties *CreateProtectionIntentProperties `json:"properties,omitempty"`
+	Properties *CreateProtectionIntentProperties `json:"properties"`
 }

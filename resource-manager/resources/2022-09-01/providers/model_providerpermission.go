@@ -5,7 +5,7 @@ package providers
 
 type ProviderPermission struct {
 	ApplicationId                     *string                            `json:"applicationId,omitempty"`
-	ManagedByRoleDefinition           *RoleDefinition                    `json:"managedByRoleDefinition,omitempty"`
+	ManagedByRoleDefinition           *RoleDefinition                    `json:"managedByRoleDefinition"`
 	ProviderAuthorizationConsentState *ProviderAuthorizationConsentState `json:"providerAuthorizationConsentState,omitempty"`
-	RoleDefinition                    *RoleDefinition                    `json:"roleDefinition,omitempty"`
+	RoleDefinition                    *RoleDefinition                    `json:"roleDefinition"`
 }

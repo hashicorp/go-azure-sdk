@@ -4,7 +4,7 @@ package virtualmachinesizes
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type VirtualMachineSize struct {
-	EstimatedVMPrices     *EstimatedVMPrices `json:"estimatedVMPrices,omitempty"`
+	EstimatedVMPrices     *EstimatedVMPrices `json:"estimatedVMPrices"`
 	Family                *string            `json:"family,omitempty"`
 	Gpus                  *int64             `json:"gpus,omitempty"`
 	LowPriorityCapable    *bool              `json:"lowPriorityCapable,omitempty"`

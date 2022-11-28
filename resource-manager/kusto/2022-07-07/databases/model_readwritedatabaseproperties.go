@@ -8,5 +8,5 @@ type ReadWriteDatabaseProperties struct {
 	IsFollowed        *bool               `json:"isFollowed,omitempty"`
 	ProvisioningState *ProvisioningState  `json:"provisioningState,omitempty"`
 	SoftDeletePeriod  *string             `json:"softDeletePeriod,omitempty"`
-	Statistics        *DatabaseStatistics `json:"statistics,omitempty"`
+	Statistics        *DatabaseStatistics `json:"statistics"`
 }

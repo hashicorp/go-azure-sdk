@@ -5,11 +5,11 @@ package appplatform
 
 type DeploymentSettings struct {
 	AddonConfigs                  *map[string]map[string]interface{} `json:"addonConfigs,omitempty"`
-	ContainerProbeSettings        *ContainerProbeSettings            `json:"containerProbeSettings,omitempty"`
+	ContainerProbeSettings        *ContainerProbeSettings            `json:"containerProbeSettings"`
 	EnvironmentVariables          *map[string]string                 `json:"environmentVariables,omitempty"`
-	LivenessProbe                 *Probe                             `json:"livenessProbe,omitempty"`
-	ReadinessProbe                *Probe                             `json:"readinessProbe,omitempty"`
-	ResourceRequests              *ResourceRequests                  `json:"resourceRequests,omitempty"`
-	StartupProbe                  *Probe                             `json:"startupProbe,omitempty"`
+	LivenessProbe                 *Probe                             `json:"livenessProbe"`
+	ReadinessProbe                *Probe                             `json:"readinessProbe"`
+	ResourceRequests              *ResourceRequests                  `json:"resourceRequests"`
+	StartupProbe                  *Probe                             `json:"startupProbe"`
 	TerminationGracePeriodSeconds *int64                             `json:"terminationGracePeriodSeconds,omitempty"`
 }

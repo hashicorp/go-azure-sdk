@@ -6,6 +6,6 @@ package apiissue
 type IssueContract struct {
 	Id         *string                  `json:"id,omitempty"`
 	Name       *string                  `json:"name,omitempty"`
-	Properties *IssueContractProperties `json:"properties,omitempty"`
+	Properties *IssueContractProperties `json:"properties"`
 	Type       *string                  `json:"type,omitempty"`
 }

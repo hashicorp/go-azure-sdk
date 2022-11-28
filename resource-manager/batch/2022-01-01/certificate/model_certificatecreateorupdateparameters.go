@@ -7,6 +7,6 @@ type CertificateCreateOrUpdateParameters struct {
 	Etag       *string                              `json:"etag,omitempty"`
 	Id         *string                              `json:"id,omitempty"`
 	Name       *string                              `json:"name,omitempty"`
-	Properties *CertificateCreateOrUpdateProperties `json:"properties,omitempty"`
+	Properties *CertificateCreateOrUpdateProperties `json:"properties"`
 	Type       *string                              `json:"type,omitempty"`
 }

@@ -16,15 +16,15 @@ type ServerGroupProperties struct {
 	BackupRetentionDays        *int64                                         `json:"backupRetentionDays,omitempty"`
 	CitusVersion               *CitusVersion                                  `json:"citusVersion,omitempty"`
 	CreateMode                 *CreateMode                                    `json:"createMode,omitempty"`
-	DelegatedSubnetArguments   *ServerGroupPropertiesDelegatedSubnetArguments `json:"delegatedSubnetArguments,omitempty"`
+	DelegatedSubnetArguments   *ServerGroupPropertiesDelegatedSubnetArguments `json:"delegatedSubnetArguments"`
 	EarliestRestoreTime        *string                                        `json:"earliestRestoreTime,omitempty"`
 	EnableMx                   *bool                                          `json:"enableMx,omitempty"`
 	EnableShardsOnCoordinator  *bool                                          `json:"enableShardsOnCoordinator,omitempty"`
 	EnableZfs                  *bool                                          `json:"enableZfs,omitempty"`
-	MaintenanceWindow          *MaintenanceWindow                             `json:"maintenanceWindow,omitempty"`
+	MaintenanceWindow          *MaintenanceWindow                             `json:"maintenanceWindow"`
 	PointInTimeUTC             *string                                        `json:"pointInTimeUTC,omitempty"`
 	PostgresqlVersion          *PostgreSQLVersion                             `json:"postgresqlVersion,omitempty"`
-	PrivateDnsZoneArguments    *ServerGroupPropertiesPrivateDnsZoneArguments  `json:"privateDnsZoneArguments,omitempty"`
+	PrivateDnsZoneArguments    *ServerGroupPropertiesPrivateDnsZoneArguments  `json:"privateDnsZoneArguments"`
 	ReadReplicas               *[]string                                      `json:"readReplicas,omitempty"`
 	ResourceProviderType       *ResourceProviderType                          `json:"resourceProviderType,omitempty"`
 	ServerRoleGroups           *[]ServerRoleGroup                             `json:"serverRoleGroups,omitempty"`

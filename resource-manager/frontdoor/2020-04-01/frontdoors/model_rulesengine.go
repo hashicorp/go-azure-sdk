@@ -6,6 +6,6 @@ package frontdoors
 type RulesEngine struct {
 	Id         *string                `json:"id,omitempty"`
 	Name       *string                `json:"name,omitempty"`
-	Properties *RulesEngineProperties `json:"properties,omitempty"`
+	Properties *RulesEngineProperties `json:"properties"`
 	Type       *string                `json:"type,omitempty"`
 }

@@ -6,11 +6,11 @@ package images
 type ImageOSDisk struct {
 	BlobUri            *string                   `json:"blobUri,omitempty"`
 	Caching            *CachingTypes             `json:"caching,omitempty"`
-	DiskEncryptionSet  *SubResource              `json:"diskEncryptionSet,omitempty"`
+	DiskEncryptionSet  *SubResource              `json:"diskEncryptionSet"`
 	DiskSizeGB         *int64                    `json:"diskSizeGB,omitempty"`
-	ManagedDisk        *SubResource              `json:"managedDisk,omitempty"`
+	ManagedDisk        *SubResource              `json:"managedDisk"`
 	OsState            OperatingSystemStateTypes `json:"osState"`
 	OsType             OperatingSystemTypes      `json:"osType"`
-	Snapshot           *SubResource              `json:"snapshot,omitempty"`
+	Snapshot           *SubResource              `json:"snapshot"`
 	StorageAccountType *StorageAccountTypes      `json:"storageAccountType,omitempty"`
 }

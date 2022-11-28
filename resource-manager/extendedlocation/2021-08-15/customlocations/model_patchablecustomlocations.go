@@ -9,6 +9,6 @@ import (
 
 type PatchableCustomLocations struct {
 	Identity   *identity.SystemAssigned  `json:"identity,omitempty"`
-	Properties *CustomLocationProperties `json:"properties,omitempty"`
+	Properties *CustomLocationProperties `json:"properties"`
 	Tags       *map[string]string        `json:"tags,omitempty"`
 }

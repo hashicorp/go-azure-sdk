@@ -7,7 +7,7 @@ type MachineExtensionProperties struct {
 	AutoUpgradeMinorVersion *bool                         `json:"autoUpgradeMinorVersion,omitempty"`
 	EnableAutomaticUpgrade  *bool                         `json:"enableAutomaticUpgrade,omitempty"`
 	ForceUpdateTag          *string                       `json:"forceUpdateTag,omitempty"`
-	InstanceView            *MachineExtensionInstanceView `json:"instanceView,omitempty"`
+	InstanceView            *MachineExtensionInstanceView `json:"instanceView"`
 	ProtectedSettings       *interface{}                  `json:"protectedSettings,omitempty"`
 	ProvisioningState       *string                       `json:"provisioningState,omitempty"`
 	Publisher               *string                       `json:"publisher,omitempty"`

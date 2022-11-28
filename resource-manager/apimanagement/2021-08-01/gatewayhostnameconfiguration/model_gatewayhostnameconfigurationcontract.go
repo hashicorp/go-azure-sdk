@@ -6,6 +6,6 @@ package gatewayhostnameconfiguration
 type GatewayHostnameConfigurationContract struct {
 	Id         *string                                         `json:"id,omitempty"`
 	Name       *string                                         `json:"name,omitempty"`
-	Properties *GatewayHostnameConfigurationContractProperties `json:"properties,omitempty"`
+	Properties *GatewayHostnameConfigurationContractProperties `json:"properties"`
 	Type       *string                                         `json:"type,omitempty"`
 }

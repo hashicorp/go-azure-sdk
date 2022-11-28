@@ -5,8 +5,8 @@ package pool
 
 type UserAccount struct {
 	ElevationLevel           *ElevationLevel           `json:"elevationLevel,omitempty"`
-	LinuxUserConfiguration   *LinuxUserConfiguration   `json:"linuxUserConfiguration,omitempty"`
+	LinuxUserConfiguration   *LinuxUserConfiguration   `json:"linuxUserConfiguration"`
 	Name                     string                    `json:"name"`
 	Password                 string                    `json:"password"`
-	WindowsUserConfiguration *WindowsUserConfiguration `json:"windowsUserConfiguration,omitempty"`
+	WindowsUserConfiguration *WindowsUserConfiguration `json:"windowsUserConfiguration"`
 }

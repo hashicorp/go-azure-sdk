@@ -4,5 +4,5 @@ package cache
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type CacheUpdateParameters struct {
-	Properties *CacheUpdateProperties `json:"properties,omitempty"`
+	Properties *CacheUpdateProperties `json:"properties"`
 }

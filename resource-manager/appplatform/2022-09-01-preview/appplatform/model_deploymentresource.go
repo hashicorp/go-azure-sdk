@@ -10,8 +10,8 @@ import (
 type DeploymentResource struct {
 	Id         *string                       `json:"id,omitempty"`
 	Name       *string                       `json:"name,omitempty"`
-	Properties *DeploymentResourceProperties `json:"properties,omitempty"`
-	Sku        *Sku                          `json:"sku,omitempty"`
+	Properties *DeploymentResourceProperties `json:"properties"`
+	Sku        *Sku                          `json:"sku"`
 	SystemData *systemdata.SystemData        `json:"systemData,omitempty"`
 	Type       *string                       `json:"type,omitempty"`
 }

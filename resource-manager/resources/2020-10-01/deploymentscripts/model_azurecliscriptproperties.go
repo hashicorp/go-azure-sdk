@@ -7,7 +7,7 @@ type AzureCliScriptProperties struct {
 	Arguments              *string                      `json:"arguments,omitempty"`
 	AzCliVersion           string                       `json:"azCliVersion"`
 	CleanupPreference      *CleanupOptions              `json:"cleanupPreference,omitempty"`
-	ContainerSettings      *ContainerConfiguration      `json:"containerSettings,omitempty"`
+	ContainerSettings      *ContainerConfiguration      `json:"containerSettings"`
 	EnvironmentVariables   *[]EnvironmentVariable       `json:"environmentVariables,omitempty"`
 	ForceUpdateTag         *string                      `json:"forceUpdateTag,omitempty"`
 	Outputs                *map[string]interface{}      `json:"outputs,omitempty"`
@@ -15,8 +15,8 @@ type AzureCliScriptProperties struct {
 	ProvisioningState      *ScriptProvisioningState     `json:"provisioningState,omitempty"`
 	RetentionInterval      string                       `json:"retentionInterval"`
 	ScriptContent          *string                      `json:"scriptContent,omitempty"`
-	Status                 *ScriptStatus                `json:"status,omitempty"`
-	StorageAccountSettings *StorageAccountConfiguration `json:"storageAccountSettings,omitempty"`
+	Status                 *ScriptStatus                `json:"status"`
+	StorageAccountSettings *StorageAccountConfiguration `json:"storageAccountSettings"`
 	SupportingScriptUris   *[]string                    `json:"supportingScriptUris,omitempty"`
 	Timeout                *string                      `json:"timeout,omitempty"`
 }

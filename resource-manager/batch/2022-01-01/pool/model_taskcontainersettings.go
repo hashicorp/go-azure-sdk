@@ -6,6 +6,6 @@ package pool
 type TaskContainerSettings struct {
 	ContainerRunOptions *string                    `json:"containerRunOptions,omitempty"`
 	ImageName           string                     `json:"imageName"`
-	Registry            *ContainerRegistry         `json:"registry,omitempty"`
+	Registry            *ContainerRegistry         `json:"registry"`
 	WorkingDirectory    *ContainerWorkingDirectory `json:"workingDirectory,omitempty"`
 }

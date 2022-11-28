@@ -12,12 +12,12 @@ import (
 type SoftwareUpdateConfigurationProperties struct {
 	CreatedBy           *string                           `json:"createdBy,omitempty"`
 	CreationTime        *string                           `json:"creationTime,omitempty"`
-	Error               *ErrorResponse                    `json:"error,omitempty"`
+	Error               *ErrorResponse                    `json:"error"`
 	LastModifiedBy      *string                           `json:"lastModifiedBy,omitempty"`
 	LastModifiedTime    *string                           `json:"lastModifiedTime,omitempty"`
 	ProvisioningState   *string                           `json:"provisioningState,omitempty"`
 	ScheduleInfo        SUCScheduleProperties             `json:"scheduleInfo"`
-	Tasks               *SoftwareUpdateConfigurationTasks `json:"tasks,omitempty"`
+	Tasks               *SoftwareUpdateConfigurationTasks `json:"tasks"`
 	UpdateConfiguration UpdateConfiguration               `json:"updateConfiguration"`
 }
 

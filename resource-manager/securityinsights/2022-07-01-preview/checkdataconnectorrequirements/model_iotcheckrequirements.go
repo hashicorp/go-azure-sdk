@@ -11,7 +11,7 @@ import (
 var _ DataConnectorsCheckRequirements = IoTCheckRequirements{}
 
 type IoTCheckRequirements struct {
-	Properties *IoTCheckRequirementsProperties `json:"properties,omitempty"`
+	Properties *IoTCheckRequirementsProperties `json:"properties"`
 
 	// Fields inherited from DataConnectorsCheckRequirements
 }

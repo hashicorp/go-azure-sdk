@@ -9,7 +9,7 @@ import (
 
 type MonitorResource struct {
 	Id         *string                `json:"id,omitempty"`
-	Identity   *IdentityProperties    `json:"identity,omitempty"`
+	Identity   *IdentityProperties    `json:"identity"`
 	Location   string                 `json:"location"`
 	Name       *string                `json:"name,omitempty"`
 	Properties MonitorProperties      `json:"properties"`

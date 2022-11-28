@@ -11,8 +11,8 @@ import (
 var _ AutoMLVertical = TextClassificationMultilabel{}
 
 type TextClassificationMultilabel struct {
-	FeaturizationSettings *FeaturizationSettings                  `json:"featurizationSettings,omitempty"`
-	LimitSettings         *NlpVerticalLimitSettings               `json:"limitSettings,omitempty"`
+	FeaturizationSettings *FeaturizationSettings                  `json:"featurizationSettings"`
+	LimitSettings         *NlpVerticalLimitSettings               `json:"limitSettings"`
 	PrimaryMetric         *ClassificationMultilabelPrimaryMetrics `json:"primaryMetric,omitempty"`
 	ValidationData        JobInput                                `json:"validationData"`
 

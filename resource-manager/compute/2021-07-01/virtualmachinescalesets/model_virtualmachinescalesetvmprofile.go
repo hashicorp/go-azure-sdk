@@ -4,18 +4,18 @@ package virtualmachinescalesets
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type VirtualMachineScaleSetVMProfile struct {
-	ApplicationProfile     *ApplicationProfile                     `json:"applicationProfile,omitempty"`
-	BillingProfile         *BillingProfile                         `json:"billingProfile,omitempty"`
-	CapacityReservation    *CapacityReservationProfile             `json:"capacityReservation,omitempty"`
-	DiagnosticsProfile     *DiagnosticsProfile                     `json:"diagnosticsProfile,omitempty"`
+	ApplicationProfile     *ApplicationProfile                     `json:"applicationProfile"`
+	BillingProfile         *BillingProfile                         `json:"billingProfile"`
+	CapacityReservation    *CapacityReservationProfile             `json:"capacityReservation"`
+	DiagnosticsProfile     *DiagnosticsProfile                     `json:"diagnosticsProfile"`
 	EvictionPolicy         *VirtualMachineEvictionPolicyTypes      `json:"evictionPolicy,omitempty"`
-	ExtensionProfile       *VirtualMachineScaleSetExtensionProfile `json:"extensionProfile,omitempty"`
+	ExtensionProfile       *VirtualMachineScaleSetExtensionProfile `json:"extensionProfile"`
 	LicenseType            *string                                 `json:"licenseType,omitempty"`
-	NetworkProfile         *VirtualMachineScaleSetNetworkProfile   `json:"networkProfile,omitempty"`
-	OsProfile              *VirtualMachineScaleSetOSProfile        `json:"osProfile,omitempty"`
+	NetworkProfile         *VirtualMachineScaleSetNetworkProfile   `json:"networkProfile"`
+	OsProfile              *VirtualMachineScaleSetOSProfile        `json:"osProfile"`
 	Priority               *VirtualMachinePriorityTypes            `json:"priority,omitempty"`
-	ScheduledEventsProfile *ScheduledEventsProfile                 `json:"scheduledEventsProfile,omitempty"`
-	SecurityProfile        *SecurityProfile                        `json:"securityProfile,omitempty"`
-	StorageProfile         *VirtualMachineScaleSetStorageProfile   `json:"storageProfile,omitempty"`
+	ScheduledEventsProfile *ScheduledEventsProfile                 `json:"scheduledEventsProfile"`
+	SecurityProfile        *SecurityProfile                        `json:"securityProfile"`
+	StorageProfile         *VirtualMachineScaleSetStorageProfile   `json:"storageProfile"`
 	UserData               *string                                 `json:"userData,omitempty"`
 }

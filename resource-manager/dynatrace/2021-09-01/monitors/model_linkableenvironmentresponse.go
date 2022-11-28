@@ -6,5 +6,5 @@ package monitors
 type LinkableEnvironmentResponse struct {
 	EnvironmentId   *string   `json:"environmentId,omitempty"`
 	EnvironmentName *string   `json:"environmentName,omitempty"`
-	PlanData        *PlanData `json:"planData,omitempty"`
+	PlanData        *PlanData `json:"planData"`
 }

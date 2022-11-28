@@ -9,6 +9,6 @@ import (
 
 type PrivateCloudUpdate struct {
 	Identity   *identity.SystemAssigned      `json:"identity,omitempty"`
-	Properties *PrivateCloudUpdateProperties `json:"properties,omitempty"`
+	Properties *PrivateCloudUpdateProperties `json:"properties"`
 	Tags       *map[string]string            `json:"tags,omitempty"`
 }

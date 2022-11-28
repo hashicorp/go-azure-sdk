@@ -15,7 +15,7 @@ type VirtualMachineTaskDetails struct {
 	SkippedReasonString *string `json:"skippedReasonString,omitempty"`
 
 	// Fields inherited from JobTaskDetails
-	JobTask *JobEntity `json:"jobTask,omitempty"`
+	JobTask *JobEntity `json:"jobTask"`
 }
 
 var _ json.Marshaler = VirtualMachineTaskDetails{}

@@ -4,7 +4,7 @@ package iotconnectors
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type IotConnectorProperties struct {
-	DeviceMapping                  *IotMappingProperties                      `json:"deviceMapping,omitempty"`
-	IngestionEndpointConfiguration *IotEventHubIngestionEndpointConfiguration `json:"ingestionEndpointConfiguration,omitempty"`
+	DeviceMapping                  *IotMappingProperties                      `json:"deviceMapping"`
+	IngestionEndpointConfiguration *IotEventHubIngestionEndpointConfiguration `json:"ingestionEndpointConfiguration"`
 	ProvisioningState              *ProvisioningState                         `json:"provisioningState,omitempty"`
 }

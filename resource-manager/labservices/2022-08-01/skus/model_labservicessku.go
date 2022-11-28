@@ -5,7 +5,7 @@ package skus
 
 type LabServicesSku struct {
 	Capabilities *[]LabServicesSkuCapabilities `json:"capabilities,omitempty"`
-	Capacity     *LabServicesSkuCapacity       `json:"capacity,omitempty"`
+	Capacity     *LabServicesSkuCapacity       `json:"capacity"`
 	Costs        *[]LabServicesSkuCost         `json:"costs,omitempty"`
 	Family       *string                       `json:"family,omitempty"`
 	Locations    *[]string                     `json:"locations,omitempty"`

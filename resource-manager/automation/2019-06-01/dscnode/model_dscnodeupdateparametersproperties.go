@@ -4,5 +4,5 @@ package dscnode
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type DscNodeUpdateParametersProperties struct {
-	NodeConfiguration *DscNodeConfigurationAssociationProperty `json:"nodeConfiguration,omitempty"`
+	NodeConfiguration *DscNodeConfigurationAssociationProperty `json:"nodeConfiguration"`
 }

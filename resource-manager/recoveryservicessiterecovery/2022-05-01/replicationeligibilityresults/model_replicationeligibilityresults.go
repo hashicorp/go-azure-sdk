@@ -6,6 +6,6 @@ package replicationeligibilityresults
 type ReplicationEligibilityResults struct {
 	Id         *string                                  `json:"id,omitempty"`
 	Name       *string                                  `json:"name,omitempty"`
-	Properties *ReplicationEligibilityResultsProperties `json:"properties,omitempty"`
+	Properties *ReplicationEligibilityResultsProperties `json:"properties"`
 	Type       *string                                  `json:"type,omitempty"`
 }

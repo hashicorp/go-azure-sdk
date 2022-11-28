@@ -5,14 +5,14 @@ package fhirservices
 
 type FhirServiceProperties struct {
 	AccessPolicies                     *[]FhirServiceAccessPolicyEntry         `json:"accessPolicies,omitempty"`
-	AcrConfiguration                   *FhirServiceAcrConfiguration            `json:"acrConfiguration,omitempty"`
-	AuthenticationConfiguration        *FhirServiceAuthenticationConfiguration `json:"authenticationConfiguration,omitempty"`
-	CorsConfiguration                  *FhirServiceCorsConfiguration           `json:"corsConfiguration,omitempty"`
+	AcrConfiguration                   *FhirServiceAcrConfiguration            `json:"acrConfiguration"`
+	AuthenticationConfiguration        *FhirServiceAuthenticationConfiguration `json:"authenticationConfiguration"`
+	CorsConfiguration                  *FhirServiceCorsConfiguration           `json:"corsConfiguration"`
 	EventState                         *ServiceEventState                      `json:"eventState,omitempty"`
-	ExportConfiguration                *FhirServiceExportConfiguration         `json:"exportConfiguration,omitempty"`
-	ImportConfiguration                *FhirServiceImportConfiguration         `json:"importConfiguration,omitempty"`
+	ExportConfiguration                *FhirServiceExportConfiguration         `json:"exportConfiguration"`
+	ImportConfiguration                *FhirServiceImportConfiguration         `json:"importConfiguration"`
 	PrivateEndpointConnections         *[]PrivateEndpointConnection            `json:"privateEndpointConnections,omitempty"`
 	ProvisioningState                  *ProvisioningState                      `json:"provisioningState,omitempty"`
 	PublicNetworkAccess                *PublicNetworkAccess                    `json:"publicNetworkAccess,omitempty"`
-	ResourceVersionPolicyConfiguration *ResourceVersionPolicyConfiguration     `json:"resourceVersionPolicyConfiguration,omitempty"`
+	ResourceVersionPolicyConfiguration *ResourceVersionPolicyConfiguration     `json:"resourceVersionPolicyConfiguration"`
 }

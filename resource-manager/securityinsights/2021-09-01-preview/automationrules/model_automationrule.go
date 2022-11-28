@@ -11,7 +11,7 @@ type AutomationRule struct {
 	Etag       *string                   `json:"etag,omitempty"`
 	Id         *string                   `json:"id,omitempty"`
 	Name       *string                   `json:"name,omitempty"`
-	Properties *AutomationRuleProperties `json:"properties,omitempty"`
+	Properties *AutomationRuleProperties `json:"properties"`
 	SystemData *systemdata.SystemData    `json:"systemData,omitempty"`
 	Type       *string                   `json:"type,omitempty"`
 }

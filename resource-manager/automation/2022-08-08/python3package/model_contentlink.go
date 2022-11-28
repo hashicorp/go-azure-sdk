@@ -4,7 +4,7 @@ package python3package
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type ContentLink struct {
-	ContentHash *ContentHash `json:"contentHash,omitempty"`
+	ContentHash *ContentHash `json:"contentHash"`
 	Uri         *string      `json:"uri,omitempty"`
 	Version     *string      `json:"version,omitempty"`
 }

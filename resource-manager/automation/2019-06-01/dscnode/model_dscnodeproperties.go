@@ -15,7 +15,7 @@ type DscNodeProperties struct {
 	ExtensionHandler  *[]DscNodeExtensionHandlerAssociationProperty `json:"extensionHandler,omitempty"`
 	IP                *string                                       `json:"ip,omitempty"`
 	LastSeen          *string                                       `json:"lastSeen,omitempty"`
-	NodeConfiguration *DscNodeConfigurationAssociationProperty      `json:"nodeConfiguration,omitempty"`
+	NodeConfiguration *DscNodeConfigurationAssociationProperty      `json:"nodeConfiguration"`
 	NodeId            *string                                       `json:"nodeId,omitempty"`
 	RegistrationTime  *string                                       `json:"registrationTime,omitempty"`
 	Status            *string                                       `json:"status,omitempty"`

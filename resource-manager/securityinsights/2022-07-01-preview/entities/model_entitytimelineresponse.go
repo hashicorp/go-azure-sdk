@@ -9,7 +9,7 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type EntityTimelineResponse struct {
-	MetaData *TimelineResultsMetadata `json:"metaData,omitempty"`
+	MetaData *TimelineResultsMetadata `json:"metaData"`
 	Value    *[]EntityTimelineItem    `json:"value,omitempty"`
 }
 

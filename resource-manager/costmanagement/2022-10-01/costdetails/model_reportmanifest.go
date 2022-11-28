@@ -10,5 +10,5 @@ type ReportManifest struct {
 	CompressData    *bool                  `json:"compressData,omitempty"`
 	DataFormat      *CostDetailsDataFormat `json:"dataFormat,omitempty"`
 	ManifestVersion *string                `json:"manifestVersion,omitempty"`
-	RequestContext  *RequestContext        `json:"requestContext,omitempty"`
+	RequestContext  *RequestContext        `json:"requestContext"`
 }

@@ -6,6 +6,6 @@ package globalreachconnections
 type GlobalReachConnection struct {
 	Id         *string                          `json:"id,omitempty"`
 	Name       *string                          `json:"name,omitempty"`
-	Properties *GlobalReachConnectionProperties `json:"properties,omitempty"`
+	Properties *GlobalReachConnectionProperties `json:"properties"`
 	Type       *string                          `json:"type,omitempty"`
 }

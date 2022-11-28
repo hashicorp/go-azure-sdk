@@ -4,5 +4,5 @@ package identityprovider
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type IdentityProviderUpdateParameters struct {
-	Properties *IdentityProviderUpdateProperties `json:"properties,omitempty"`
+	Properties *IdentityProviderUpdateProperties `json:"properties"`
 }

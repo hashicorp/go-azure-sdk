@@ -6,6 +6,6 @@ package appplatform
 type ConfigurationServiceProperties struct {
 	Instances         *[]ConfigurationServiceInstance        `json:"instances,omitempty"`
 	ProvisioningState *ConfigurationServiceProvisioningState `json:"provisioningState,omitempty"`
-	ResourceRequests  *ConfigurationServiceResourceRequests  `json:"resourceRequests,omitempty"`
-	Settings          *ConfigurationServiceSettings          `json:"settings,omitempty"`
+	ResourceRequests  *ConfigurationServiceResourceRequests  `json:"resourceRequests"`
+	Settings          *ConfigurationServiceSettings          `json:"settings"`
 }

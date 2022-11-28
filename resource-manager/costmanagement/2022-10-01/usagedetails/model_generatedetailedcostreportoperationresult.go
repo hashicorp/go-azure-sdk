@@ -6,6 +6,6 @@ package usagedetails
 type GenerateDetailedCostReportOperationResult struct {
 	Id         *string      `json:"id,omitempty"`
 	Name       *string      `json:"name,omitempty"`
-	Properties *DownloadUrl `json:"properties,omitempty"`
+	Properties *DownloadUrl `json:"properties"`
 	Type       *string      `json:"type,omitempty"`
 }

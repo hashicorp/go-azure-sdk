@@ -5,5 +5,5 @@ package sourcecontrolsyncjobstreams
 
 type SourceControlSyncJobStreamById struct {
 	Id         *string                                   `json:"id,omitempty"`
-	Properties *SourceControlSyncJobStreamByIdProperties `json:"properties,omitempty"`
+	Properties *SourceControlSyncJobStreamByIdProperties `json:"properties"`
 }

@@ -4,5 +4,5 @@ package module
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type ModuleUpdateProperties struct {
-	ContentLink *ContentLink `json:"contentLink,omitempty"`
+	ContentLink *ContentLink `json:"contentLink"`
 }

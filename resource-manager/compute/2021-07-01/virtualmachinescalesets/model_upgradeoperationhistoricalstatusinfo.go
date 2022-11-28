@@ -5,6 +5,6 @@ package virtualmachinescalesets
 
 type UpgradeOperationHistoricalStatusInfo struct {
 	Location   *string                                         `json:"location,omitempty"`
-	Properties *UpgradeOperationHistoricalStatusInfoProperties `json:"properties,omitempty"`
+	Properties *UpgradeOperationHistoricalStatusInfoProperties `json:"properties"`
 	Type       *string                                         `json:"type,omitempty"`
 }

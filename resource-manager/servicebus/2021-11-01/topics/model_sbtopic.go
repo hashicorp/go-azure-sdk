@@ -11,7 +11,7 @@ type SBTopic struct {
 	Id         *string                `json:"id,omitempty"`
 	Location   *string                `json:"location,omitempty"`
 	Name       *string                `json:"name,omitempty"`
-	Properties *SBTopicProperties     `json:"properties,omitempty"`
+	Properties *SBTopicProperties     `json:"properties"`
 	SystemData *systemdata.SystemData `json:"systemData,omitempty"`
 	Type       *string                `json:"type,omitempty"`
 }

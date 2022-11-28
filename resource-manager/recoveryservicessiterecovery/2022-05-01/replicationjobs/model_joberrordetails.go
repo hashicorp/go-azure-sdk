@@ -12,8 +12,8 @@ import (
 type JobErrorDetails struct {
 	CreationTime         *string        `json:"creationTime,omitempty"`
 	ErrorLevel           *string        `json:"errorLevel,omitempty"`
-	ProviderErrorDetails *ProviderError `json:"providerErrorDetails,omitempty"`
-	ServiceErrorDetails  *ServiceError  `json:"serviceErrorDetails,omitempty"`
+	ProviderErrorDetails *ProviderError `json:"providerErrorDetails"`
+	ServiceErrorDetails  *ServiceError  `json:"serviceErrorDetails"`
 	TaskId               *string        `json:"taskId,omitempty"`
 }
 

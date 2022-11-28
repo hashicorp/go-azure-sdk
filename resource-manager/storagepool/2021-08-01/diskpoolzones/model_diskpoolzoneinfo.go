@@ -10,5 +10,5 @@ import (
 type DiskPoolZoneInfo struct {
 	AdditionalCapabilities *[]string     `json:"additionalCapabilities,omitempty"`
 	AvailabilityZones      *zones.Schema `json:"availabilityZones,omitempty"`
-	Sku                    *Sku          `json:"sku,omitempty"`
+	Sku                    *Sku          `json:"sku"`
 }

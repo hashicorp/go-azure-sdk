@@ -6,6 +6,6 @@ package tenantaccess
 type AccessInformationContract struct {
 	Id         *string                              `json:"id,omitempty"`
 	Name       *string                              `json:"name,omitempty"`
-	Properties *AccessInformationContractProperties `json:"properties,omitempty"`
+	Properties *AccessInformationContractProperties `json:"properties"`
 	Type       *string                              `json:"type,omitempty"`
 }

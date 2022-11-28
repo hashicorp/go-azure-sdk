@@ -6,6 +6,6 @@ package rbacs
 type SqlRoleDefinitionGetResults struct {
 	Id         *string                    `json:"id,omitempty"`
 	Name       *string                    `json:"name,omitempty"`
-	Properties *SqlRoleDefinitionResource `json:"properties,omitempty"`
+	Properties *SqlRoleDefinitionResource `json:"properties"`
 	Type       *string                    `json:"type,omitempty"`
 }

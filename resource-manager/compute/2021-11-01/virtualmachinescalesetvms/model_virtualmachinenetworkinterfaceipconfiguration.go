@@ -5,5 +5,5 @@ package virtualmachinescalesetvms
 
 type VirtualMachineNetworkInterfaceIPConfiguration struct {
 	Name       string                                                   `json:"name"`
-	Properties *VirtualMachineNetworkInterfaceIPConfigurationProperties `json:"properties,omitempty"`
+	Properties *VirtualMachineNetworkInterfaceIPConfigurationProperties `json:"properties"`
 }

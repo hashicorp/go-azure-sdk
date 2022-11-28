@@ -7,6 +7,6 @@ type ConnectivityCheckRequest struct {
 	Destination           ConnectivityCheckRequestDestination            `json:"destination"`
 	PreferredIPVersion    *PreferredIPVersion                            `json:"preferredIPVersion,omitempty"`
 	Protocol              *ConnectivityCheckProtocol                     `json:"protocol,omitempty"`
-	ProtocolConfiguration *ConnectivityCheckRequestProtocolConfiguration `json:"protocolConfiguration,omitempty"`
+	ProtocolConfiguration *ConnectivityCheckRequestProtocolConfiguration `json:"protocolConfiguration"`
 	Source                ConnectivityCheckRequestSource                 `json:"source"`
 }

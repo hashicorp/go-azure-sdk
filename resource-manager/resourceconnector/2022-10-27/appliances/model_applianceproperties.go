@@ -5,7 +5,7 @@ package appliances
 
 type ApplianceProperties struct {
 	Distro               *Distro                                  `json:"distro,omitempty"`
-	InfrastructureConfig *AppliancePropertiesInfrastructureConfig `json:"infrastructureConfig,omitempty"`
+	InfrastructureConfig *AppliancePropertiesInfrastructureConfig `json:"infrastructureConfig"`
 	ProvisioningState    *string                                  `json:"provisioningState,omitempty"`
 	PublicKey            *string                                  `json:"publicKey,omitempty"`
 	Status               *Status                                  `json:"status,omitempty"`

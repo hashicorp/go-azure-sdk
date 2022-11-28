@@ -4,12 +4,12 @@ package environmentversion
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type EnvironmentVersion struct {
-	Build           *BuildContext                 `json:"build,omitempty"`
+	Build           *BuildContext                 `json:"build"`
 	CondaFile       *string                       `json:"condaFile,omitempty"`
 	Description     *string                       `json:"description,omitempty"`
 	EnvironmentType *EnvironmentType              `json:"environmentType,omitempty"`
 	Image           *string                       `json:"image,omitempty"`
-	InferenceConfig *InferenceContainerProperties `json:"inferenceConfig,omitempty"`
+	InferenceConfig *InferenceContainerProperties `json:"inferenceConfig"`
 	IsAnonymous     *bool                         `json:"isAnonymous,omitempty"`
 	IsArchived      *bool                         `json:"isArchived,omitempty"`
 	OsType          *OperatingSystemType          `json:"osType,omitempty"`

@@ -5,5 +5,5 @@ package appplatform
 
 type GatewayOperatorProperties struct {
 	Instances        *[]GatewayInstance               `json:"instances,omitempty"`
-	ResourceRequests *GatewayOperatorResourceRequests `json:"resourceRequests,omitempty"`
+	ResourceRequests *GatewayOperatorResourceRequests `json:"resourceRequests"`
 }

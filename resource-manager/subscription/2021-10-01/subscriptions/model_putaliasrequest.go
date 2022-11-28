@@ -4,5 +4,5 @@ package subscriptions
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type PutAliasRequest struct {
-	Properties *PutAliasRequestProperties `json:"properties,omitempty"`
+	Properties *PutAliasRequestProperties `json:"properties"`
 }

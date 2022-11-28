@@ -17,7 +17,7 @@ type AzureCliScript struct {
 
 	// Fields inherited from DeploymentScript
 	Id         *string                 `json:"id,omitempty"`
-	Identity   *ManagedServiceIdentity `json:"identity,omitempty"`
+	Identity   *ManagedServiceIdentity `json:"identity"`
 	Location   string                  `json:"location"`
 	Name       *string                 `json:"name,omitempty"`
 	SystemData *systemdata.SystemData  `json:"systemData,omitempty"`

@@ -10,7 +10,7 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type DscNodeConfigurationProperties struct {
-	Configuration                   *DscConfigurationAssociationProperty `json:"configuration,omitempty"`
+	Configuration                   *DscConfigurationAssociationProperty `json:"configuration"`
 	CreationTime                    *string                              `json:"creationTime,omitempty"`
 	IncrementNodeConfigurationBuild *bool                                `json:"incrementNodeConfigurationBuild,omitempty"`
 	LastModifiedTime                *string                              `json:"lastModifiedTime,omitempty"`

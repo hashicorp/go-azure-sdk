@@ -13,10 +13,10 @@ import (
 
 type AutomationRuleProperties struct {
 	Actions             []AutomationRuleAction        `json:"actions"`
-	CreatedBy           *ClientInfo                   `json:"createdBy,omitempty"`
+	CreatedBy           *ClientInfo                   `json:"createdBy"`
 	CreatedTimeUtc      *string                       `json:"createdTimeUtc,omitempty"`
 	DisplayName         string                        `json:"displayName"`
-	LastModifiedBy      *ClientInfo                   `json:"lastModifiedBy,omitempty"`
+	LastModifiedBy      *ClientInfo                   `json:"lastModifiedBy"`
 	LastModifiedTimeUtc *string                       `json:"lastModifiedTimeUtc,omitempty"`
 	Order               int64                         `json:"order"`
 	TriggeringLogic     AutomationRuleTriggeringLogic `json:"triggeringLogic"`

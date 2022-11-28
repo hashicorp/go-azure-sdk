@@ -6,6 +6,6 @@ package virtualmachinescalesetvmextensions
 type VirtualMachineScaleSetVMExtension struct {
 	Id         *string                            `json:"id,omitempty"`
 	Name       *string                            `json:"name,omitempty"`
-	Properties *VirtualMachineExtensionProperties `json:"properties,omitempty"`
+	Properties *VirtualMachineExtensionProperties `json:"properties"`
 	Type       *string                            `json:"type,omitempty"`
 }

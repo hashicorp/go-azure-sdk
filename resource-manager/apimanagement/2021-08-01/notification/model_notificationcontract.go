@@ -6,6 +6,6 @@ package notification
 type NotificationContract struct {
 	Id         *string                         `json:"id,omitempty"`
 	Name       *string                         `json:"name,omitempty"`
-	Properties *NotificationContractProperties `json:"properties,omitempty"`
+	Properties *NotificationContractProperties `json:"properties"`
 	Type       *string                         `json:"type,omitempty"`
 }

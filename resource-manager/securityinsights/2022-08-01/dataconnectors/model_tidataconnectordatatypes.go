@@ -4,5 +4,5 @@ package dataconnectors
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type TIDataConnectorDataTypes struct {
-	Indicators *DataConnectorDataTypeCommon `json:"indicators,omitempty"`
+	Indicators *DataConnectorDataTypeCommon `json:"indicators"`
 }

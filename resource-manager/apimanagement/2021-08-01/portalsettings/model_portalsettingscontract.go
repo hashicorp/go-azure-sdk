@@ -6,6 +6,6 @@ package portalsettings
 type PortalSettingsContract struct {
 	Id         *string                           `json:"id,omitempty"`
 	Name       *string                           `json:"name,omitempty"`
-	Properties *PortalSettingsContractProperties `json:"properties,omitempty"`
+	Properties *PortalSettingsContractProperties `json:"properties"`
 	Type       *string                           `json:"type,omitempty"`
 }

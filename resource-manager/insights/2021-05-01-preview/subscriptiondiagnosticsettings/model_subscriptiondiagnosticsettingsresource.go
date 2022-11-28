@@ -10,7 +10,7 @@ import (
 type SubscriptionDiagnosticSettingsResource struct {
 	Id         *string                         `json:"id,omitempty"`
 	Name       *string                         `json:"name,omitempty"`
-	Properties *SubscriptionDiagnosticSettings `json:"properties,omitempty"`
+	Properties *SubscriptionDiagnosticSettings `json:"properties"`
 	SystemData *systemdata.SystemData          `json:"systemData,omitempty"`
 	Type       *string                         `json:"type,omitempty"`
 }

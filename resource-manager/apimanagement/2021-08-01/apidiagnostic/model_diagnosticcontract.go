@@ -6,6 +6,6 @@ package apidiagnostic
 type DiagnosticContract struct {
 	Id         *string                       `json:"id,omitempty"`
 	Name       *string                       `json:"name,omitempty"`
-	Properties *DiagnosticContractProperties `json:"properties,omitempty"`
+	Properties *DiagnosticContractProperties `json:"properties"`
 	Type       *string                       `json:"type,omitempty"`
 }

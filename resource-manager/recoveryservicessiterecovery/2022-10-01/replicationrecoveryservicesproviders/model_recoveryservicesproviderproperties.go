@@ -11,10 +11,10 @@ import (
 
 type RecoveryServicesProviderProperties struct {
 	AllowedScenarios                       *[]string                `json:"allowedScenarios,omitempty"`
-	AuthenticationIdentityDetails          *IdentityProviderDetails `json:"authenticationIdentityDetails,omitempty"`
+	AuthenticationIdentityDetails          *IdentityProviderDetails `json:"authenticationIdentityDetails"`
 	BiosId                                 *string                  `json:"biosId,omitempty"`
 	ConnectionStatus                       *string                  `json:"connectionStatus,omitempty"`
-	DataPlaneAuthenticationIdentityDetails *IdentityProviderDetails `json:"dataPlaneAuthenticationIdentityDetails,omitempty"`
+	DataPlaneAuthenticationIdentityDetails *IdentityProviderDetails `json:"dataPlaneAuthenticationIdentityDetails"`
 	DraIdentifier                          *string                  `json:"draIdentifier,omitempty"`
 	FabricFriendlyName                     *string                  `json:"fabricFriendlyName,omitempty"`
 	FabricType                             *string                  `json:"fabricType,omitempty"`
@@ -25,10 +25,10 @@ type RecoveryServicesProviderProperties struct {
 	MachineName                            *string                  `json:"machineName,omitempty"`
 	ProtectedItemCount                     *int64                   `json:"protectedItemCount,omitempty"`
 	ProviderVersion                        *string                  `json:"providerVersion,omitempty"`
-	ProviderVersionDetails                 *VersionDetails          `json:"providerVersionDetails,omitempty"`
+	ProviderVersionDetails                 *VersionDetails          `json:"providerVersionDetails"`
 	ProviderVersionExpiryDate              *string                  `json:"providerVersionExpiryDate,omitempty"`
 	ProviderVersionState                   *string                  `json:"providerVersionState,omitempty"`
-	ResourceAccessIdentityDetails          *IdentityProviderDetails `json:"resourceAccessIdentityDetails,omitempty"`
+	ResourceAccessIdentityDetails          *IdentityProviderDetails `json:"resourceAccessIdentityDetails"`
 	ServerVersion                          *string                  `json:"serverVersion,omitempty"`
 }
 

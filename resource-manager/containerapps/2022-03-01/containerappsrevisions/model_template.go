@@ -6,6 +6,6 @@ package containerappsrevisions
 type Template struct {
 	Containers     *[]Container `json:"containers,omitempty"`
 	RevisionSuffix *string      `json:"revisionSuffix,omitempty"`
-	Scale          *Scale       `json:"scale,omitempty"`
+	Scale          *Scale       `json:"scale"`
 	Volumes        *[]Volume    `json:"volumes,omitempty"`
 }

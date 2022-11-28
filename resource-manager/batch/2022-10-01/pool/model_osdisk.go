@@ -4,5 +4,5 @@ package pool
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type OSDisk struct {
-	EphemeralOSDiskSettings *DiffDiskSettings `json:"ephemeralOSDiskSettings,omitempty"`
+	EphemeralOSDiskSettings *DiffDiskSettings `json:"ephemeralOSDiskSettings"`
 }

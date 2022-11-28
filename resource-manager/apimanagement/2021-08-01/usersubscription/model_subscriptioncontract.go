@@ -6,6 +6,6 @@ package usersubscription
 type SubscriptionContract struct {
 	Id         *string                         `json:"id,omitempty"`
 	Name       *string                         `json:"name,omitempty"`
-	Properties *SubscriptionContractProperties `json:"properties,omitempty"`
+	Properties *SubscriptionContractProperties `json:"properties"`
 	Type       *string                         `json:"type,omitempty"`
 }

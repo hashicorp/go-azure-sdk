@@ -6,6 +6,6 @@ package trustedidproviders
 type TrustedIdProvider struct {
 	Id         *string                      `json:"id,omitempty"`
 	Name       *string                      `json:"name,omitempty"`
-	Properties *TrustedIdProviderProperties `json:"properties,omitempty"`
+	Properties *TrustedIdProviderProperties `json:"properties"`
 	Type       *string                      `json:"type,omitempty"`
 }

@@ -10,8 +10,8 @@ import (
 type RegistrationAssignmentPropertiesRegistrationDefinition struct {
 	Id         *string                                                           `json:"id,omitempty"`
 	Name       *string                                                           `json:"name,omitempty"`
-	Plan       *Plan                                                             `json:"plan,omitempty"`
-	Properties *RegistrationAssignmentPropertiesRegistrationDefinitionProperties `json:"properties,omitempty"`
+	Plan       *Plan                                                             `json:"plan"`
+	Properties *RegistrationAssignmentPropertiesRegistrationDefinitionProperties `json:"properties"`
 	SystemData *systemdata.SystemData                                            `json:"systemData,omitempty"`
 	Type       *string                                                           `json:"type,omitempty"`
 }

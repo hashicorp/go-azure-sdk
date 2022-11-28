@@ -7,6 +7,6 @@ type EventSummary struct {
 	ETag       *string          `json:"eTag,omitempty"`
 	Id         *string          `json:"id,omitempty"`
 	Name       *string          `json:"name,omitempty"`
-	Properties *EventProperties `json:"properties,omitempty"`
+	Properties *EventProperties `json:"properties"`
 	Type       *string          `json:"type,omitempty"`
 }

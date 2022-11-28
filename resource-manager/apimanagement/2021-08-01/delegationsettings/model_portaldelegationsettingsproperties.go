@@ -4,8 +4,8 @@ package delegationsettings
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type PortalDelegationSettingsProperties struct {
-	Subscriptions    *SubscriptionsDelegationSettingsProperties `json:"subscriptions,omitempty"`
+	Subscriptions    *SubscriptionsDelegationSettingsProperties `json:"subscriptions"`
 	Url              *string                                    `json:"url,omitempty"`
-	UserRegistration *RegistrationDelegationSettingsProperties  `json:"userRegistration,omitempty"`
+	UserRegistration *RegistrationDelegationSettingsProperties  `json:"userRegistration"`
 	ValidationKey    *string                                    `json:"validationKey,omitempty"`
 }
