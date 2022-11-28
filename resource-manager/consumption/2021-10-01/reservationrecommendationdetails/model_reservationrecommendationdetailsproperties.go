@@ -5,9 +5,9 @@ package reservationrecommendationdetails
 
 type ReservationRecommendationDetailsProperties struct {
 	Currency      *string                                             `json:"currency,omitempty"`
-	Resource      *ReservationRecommendationDetailsResourceProperties `json:"resource,omitempty"`
+	Resource      *ReservationRecommendationDetailsResourceProperties `json:"resource"`
 	ResourceGroup *string                                             `json:"resourceGroup,omitempty"`
-	Savings       *ReservationRecommendationDetailsSavingsProperties  `json:"savings,omitempty"`
+	Savings       *ReservationRecommendationDetailsSavingsProperties  `json:"savings"`
 	Scope         *string                                             `json:"scope,omitempty"`
-	Usage         *ReservationRecommendationDetailsUsageProperties    `json:"usage,omitempty"`
+	Usage         *ReservationRecommendationDetailsUsageProperties    `json:"usage"`
 }

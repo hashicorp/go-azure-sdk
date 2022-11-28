@@ -4,5 +4,5 @@ package replicationappliances
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type ReplicationAppliance struct {
-	Properties *ReplicationApplianceProperties `json:"properties,omitempty"`
+	Properties *ReplicationApplianceProperties `json:"properties"`
 }

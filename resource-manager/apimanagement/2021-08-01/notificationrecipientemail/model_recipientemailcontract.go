@@ -6,6 +6,6 @@ package notificationrecipientemail
 type RecipientEmailContract struct {
 	Id         *string                           `json:"id,omitempty"`
 	Name       *string                           `json:"name,omitempty"`
-	Properties *RecipientEmailContractProperties `json:"properties,omitempty"`
+	Properties *RecipientEmailContractProperties `json:"properties"`
 	Type       *string                           `json:"type,omitempty"`
 }

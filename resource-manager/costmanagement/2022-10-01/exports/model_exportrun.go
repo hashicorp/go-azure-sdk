@@ -7,6 +7,6 @@ type ExportRun struct {
 	ETag       *string              `json:"eTag,omitempty"`
 	Id         *string              `json:"id,omitempty"`
 	Name       *string              `json:"name,omitempty"`
-	Properties *ExportRunProperties `json:"properties,omitempty"`
+	Properties *ExportRunProperties `json:"properties"`
 	Type       *string              `json:"type,omitempty"`
 }

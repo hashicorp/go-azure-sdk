@@ -6,9 +6,9 @@ package nodetype
 type NodeType struct {
 	Id         *string             `json:"id,omitempty"`
 	Name       *string             `json:"name,omitempty"`
-	Properties *NodeTypeProperties `json:"properties,omitempty"`
-	Sku        *NodeTypeSku        `json:"sku,omitempty"`
-	SystemData *SystemData         `json:"systemData,omitempty"`
+	Properties *NodeTypeProperties `json:"properties"`
+	Sku        *NodeTypeSku        `json:"sku"`
+	SystemData *SystemData         `json:"systemData"`
 	Tags       *map[string]string  `json:"tags,omitempty"`
 	Type       *string             `json:"type,omitempty"`
 }

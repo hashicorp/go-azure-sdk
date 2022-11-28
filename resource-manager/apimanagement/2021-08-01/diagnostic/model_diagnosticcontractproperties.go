@@ -5,13 +5,13 @@ package diagnostic
 
 type DiagnosticContractProperties struct {
 	AlwaysLog               *AlwaysLog                  `json:"alwaysLog,omitempty"`
-	Backend                 *PipelineDiagnosticSettings `json:"backend,omitempty"`
-	Frontend                *PipelineDiagnosticSettings `json:"frontend,omitempty"`
+	Backend                 *PipelineDiagnosticSettings `json:"backend"`
+	Frontend                *PipelineDiagnosticSettings `json:"frontend"`
 	HTTPCorrelationProtocol *HTTPCorrelationProtocol    `json:"httpCorrelationProtocol,omitempty"`
 	LogClientIP             *bool                       `json:"logClientIp,omitempty"`
 	LoggerId                string                      `json:"loggerId"`
 	Metrics                 *bool                       `json:"metrics,omitempty"`
 	OperationNameFormat     *OperationNameFormat        `json:"operationNameFormat,omitempty"`
-	Sampling                *SamplingSettings           `json:"sampling,omitempty"`
+	Sampling                *SamplingSettings           `json:"sampling"`
 	Verbosity               *Verbosity                  `json:"verbosity,omitempty"`
 }

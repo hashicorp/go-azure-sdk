@@ -11,7 +11,7 @@ import (
 var _ BenefitUtilizationSummary = IncludedQuantityUtilizationSummary{}
 
 type IncludedQuantityUtilizationSummary struct {
-	Properties *IncludedQuantityUtilizationSummaryProperties `json:"properties,omitempty"`
+	Properties *IncludedQuantityUtilizationSummaryProperties `json:"properties"`
 
 	// Fields inherited from BenefitUtilizationSummary
 	Id   *string `json:"id,omitempty"`

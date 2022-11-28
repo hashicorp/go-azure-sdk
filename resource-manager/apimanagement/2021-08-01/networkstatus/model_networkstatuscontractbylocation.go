@@ -5,5 +5,5 @@ package networkstatus
 
 type NetworkStatusContractByLocation struct {
 	Location      *string                `json:"location,omitempty"`
-	NetworkStatus *NetworkStatusContract `json:"networkStatus,omitempty"`
+	NetworkStatus *NetworkStatusContract `json:"networkStatus"`
 }

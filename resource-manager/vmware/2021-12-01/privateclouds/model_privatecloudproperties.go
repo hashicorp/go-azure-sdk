@@ -4,10 +4,10 @@ package privateclouds
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type PrivateCloudProperties struct {
-	Availability                 *AvailabilityProperties        `json:"availability,omitempty"`
-	Circuit                      *Circuit                       `json:"circuit,omitempty"`
-	Encryption                   *Encryption                    `json:"encryption,omitempty"`
-	Endpoints                    *Endpoints                     `json:"endpoints,omitempty"`
+	Availability                 *AvailabilityProperties        `json:"availability"`
+	Circuit                      *Circuit                       `json:"circuit"`
+	Encryption                   *Encryption                    `json:"encryption"`
+	Endpoints                    *Endpoints                     `json:"endpoints"`
 	ExternalCloudLinks           *[]string                      `json:"externalCloudLinks,omitempty"`
 	IdentitySources              *[]IdentitySource              `json:"identitySources,omitempty"`
 	Internet                     *InternetEnum                  `json:"internet,omitempty"`
@@ -18,7 +18,7 @@ type PrivateCloudProperties struct {
 	NsxtPassword                 *string                        `json:"nsxtPassword,omitempty"`
 	ProvisioningNetwork          *string                        `json:"provisioningNetwork,omitempty"`
 	ProvisioningState            *PrivateCloudProvisioningState `json:"provisioningState,omitempty"`
-	SecondaryCircuit             *Circuit                       `json:"secondaryCircuit,omitempty"`
+	SecondaryCircuit             *Circuit                       `json:"secondaryCircuit"`
 	VcenterCertificateThumbprint *string                        `json:"vcenterCertificateThumbprint,omitempty"`
 	VcenterPassword              *string                        `json:"vcenterPassword,omitempty"`
 	VmotionNetwork               *string                        `json:"vmotionNetwork,omitempty"`

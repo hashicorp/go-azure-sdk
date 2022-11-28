@@ -7,7 +7,7 @@ type ManagementGroupAggregatedCostResult struct {
 	Etag       *string                                  `json:"etag,omitempty"`
 	Id         *string                                  `json:"id,omitempty"`
 	Name       *string                                  `json:"name,omitempty"`
-	Properties *ManagementGroupAggregatedCostProperties `json:"properties,omitempty"`
+	Properties *ManagementGroupAggregatedCostProperties `json:"properties"`
 	Tags       *map[string]string                       `json:"tags,omitempty"`
 	Type       *string                                  `json:"type,omitempty"`
 }

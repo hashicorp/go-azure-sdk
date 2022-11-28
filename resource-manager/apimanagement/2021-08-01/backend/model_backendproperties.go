@@ -4,5 +4,5 @@ package backend
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type BackendProperties struct {
-	ServiceFabricCluster *BackendServiceFabricClusterProperties `json:"serviceFabricCluster,omitempty"`
+	ServiceFabricCluster *BackendServiceFabricClusterProperties `json:"serviceFabricCluster"`
 }

@@ -5,10 +5,10 @@ package restorepointcollections
 
 type RestorePointSourceVMOSDisk struct {
 	Caching            *CachingTypes           `json:"caching,omitempty"`
-	DiskRestorePoint   *ApiEntityReference     `json:"diskRestorePoint,omitempty"`
+	DiskRestorePoint   *ApiEntityReference     `json:"diskRestorePoint"`
 	DiskSizeGB         *int64                  `json:"diskSizeGB,omitempty"`
-	EncryptionSettings *DiskEncryptionSettings `json:"encryptionSettings,omitempty"`
-	ManagedDisk        *ManagedDiskParameters  `json:"managedDisk,omitempty"`
+	EncryptionSettings *DiskEncryptionSettings `json:"encryptionSettings"`
+	ManagedDisk        *ManagedDiskParameters  `json:"managedDisk"`
 	Name               *string                 `json:"name,omitempty"`
 	OsType             *OperatingSystemType    `json:"osType,omitempty"`
 }

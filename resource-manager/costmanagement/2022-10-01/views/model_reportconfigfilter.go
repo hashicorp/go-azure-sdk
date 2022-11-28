@@ -5,7 +5,7 @@ package views
 
 type ReportConfigFilter struct {
 	And        *[]ReportConfigFilter             `json:"and,omitempty"`
-	Dimensions *ReportConfigComparisonExpression `json:"dimensions,omitempty"`
+	Dimensions *ReportConfigComparisonExpression `json:"dimensions"`
 	Or         *[]ReportConfigFilter             `json:"or,omitempty"`
-	Tags       *ReportConfigComparisonExpression `json:"tags,omitempty"`
+	Tags       *ReportConfigComparisonExpression `json:"tags"`
 }

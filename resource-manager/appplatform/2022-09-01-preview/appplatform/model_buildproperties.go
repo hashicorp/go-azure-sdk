@@ -9,6 +9,6 @@ type BuildProperties struct {
 	Env                  *map[string]string      `json:"env,omitempty"`
 	ProvisioningState    *BuildProvisioningState `json:"provisioningState,omitempty"`
 	RelativePath         *string                 `json:"relativePath,omitempty"`
-	ResourceRequests     *BuildResourceRequests  `json:"resourceRequests,omitempty"`
-	TriggeredBuildResult *TriggeredBuildResult   `json:"triggeredBuildResult,omitempty"`
+	ResourceRequests     *BuildResourceRequests  `json:"resourceRequests"`
+	TriggeredBuildResult *TriggeredBuildResult   `json:"triggeredBuildResult"`
 }

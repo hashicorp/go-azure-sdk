@@ -10,7 +10,7 @@ import (
 type SupportedStackResource struct {
 	Id         *string                           `json:"id,omitempty"`
 	Name       *string                           `json:"name,omitempty"`
-	Properties *SupportedStackResourceProperties `json:"properties,omitempty"`
+	Properties *SupportedStackResourceProperties `json:"properties"`
 	SystemData *systemdata.SystemData            `json:"systemData,omitempty"`
 	Type       *string                           `json:"type,omitempty"`
 }

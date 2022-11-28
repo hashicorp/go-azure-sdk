@@ -9,6 +9,6 @@ import (
 
 type MachineUpdate struct {
 	Identity   *identity.SystemAssigned `json:"identity,omitempty"`
-	Properties *MachineUpdateProperties `json:"properties,omitempty"`
+	Properties *MachineUpdateProperties `json:"properties"`
 	Tags       *map[string]string       `json:"tags,omitempty"`
 }

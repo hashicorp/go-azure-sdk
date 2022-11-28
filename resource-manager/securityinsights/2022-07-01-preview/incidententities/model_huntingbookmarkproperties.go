@@ -12,17 +12,17 @@ import (
 type HuntingBookmarkProperties struct {
 	AdditionalData *map[string]interface{} `json:"additionalData,omitempty"`
 	Created        *string                 `json:"created,omitempty"`
-	CreatedBy      *UserInfo               `json:"createdBy,omitempty"`
+	CreatedBy      *UserInfo               `json:"createdBy"`
 	DisplayName    string                  `json:"displayName"`
 	EventTime      *string                 `json:"eventTime,omitempty"`
 	FriendlyName   *string                 `json:"friendlyName,omitempty"`
-	IncidentInfo   *IncidentInfo           `json:"incidentInfo,omitempty"`
+	IncidentInfo   *IncidentInfo           `json:"incidentInfo"`
 	Labels         *[]string               `json:"labels,omitempty"`
 	Notes          *string                 `json:"notes,omitempty"`
 	Query          string                  `json:"query"`
 	QueryResult    *string                 `json:"queryResult,omitempty"`
 	Updated        *string                 `json:"updated,omitempty"`
-	UpdatedBy      *UserInfo               `json:"updatedBy,omitempty"`
+	UpdatedBy      *UserInfo               `json:"updatedBy"`
 }
 
 func (o *HuntingBookmarkProperties) GetCreatedAsTime() (*time.Time, error) {

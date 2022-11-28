@@ -5,6 +5,6 @@ package volumegroups
 
 type VolumeGroupUpdateProperties struct {
 	Encryption   *EncryptionType    `json:"encryption,omitempty"`
-	NetworkAcls  *NetworkRuleSet    `json:"networkAcls,omitempty"`
+	NetworkAcls  *NetworkRuleSet    `json:"networkAcls"`
 	ProtocolType *StorageTargetType `json:"protocolType,omitempty"`
 }

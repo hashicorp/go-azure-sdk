@@ -7,9 +7,9 @@ type AzureBlobPatchDefinition struct {
 	AccountKey            *string                          `json:"accountKey,omitempty"`
 	ContainerName         *string                          `json:"containerName,omitempty"`
 	LocalAuthRef          *string                          `json:"localAuthRef,omitempty"`
-	ManagedIdentity       *ManagedIdentityPatchDefinition  `json:"managedIdentity,omitempty"`
+	ManagedIdentity       *ManagedIdentityPatchDefinition  `json:"managedIdentity"`
 	SasToken              *string                          `json:"sasToken,omitempty"`
-	ServicePrincipal      *ServicePrincipalPatchDefinition `json:"servicePrincipal,omitempty"`
+	ServicePrincipal      *ServicePrincipalPatchDefinition `json:"servicePrincipal"`
 	SyncIntervalInSeconds *int64                           `json:"syncIntervalInSeconds,omitempty"`
 	TimeoutInSeconds      *int64                           `json:"timeoutInSeconds,omitempty"`
 	Url                   *string                          `json:"url,omitempty"`

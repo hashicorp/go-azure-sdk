@@ -6,6 +6,6 @@ package signinsettings
 type PortalSigninSettings struct {
 	Id         *string                        `json:"id,omitempty"`
 	Name       *string                        `json:"name,omitempty"`
-	Properties *PortalSigninSettingProperties `json:"properties,omitempty"`
+	Properties *PortalSigninSettingProperties `json:"properties"`
 	Type       *string                        `json:"type,omitempty"`
 }

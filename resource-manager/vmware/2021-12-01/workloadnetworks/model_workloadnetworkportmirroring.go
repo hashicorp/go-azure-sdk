@@ -6,6 +6,6 @@ package workloadnetworks
 type WorkloadNetworkPortMirroring struct {
 	Id         *string                                 `json:"id,omitempty"`
 	Name       *string                                 `json:"name,omitempty"`
-	Properties *WorkloadNetworkPortMirroringProperties `json:"properties,omitempty"`
+	Properties *WorkloadNetworkPortMirroringProperties `json:"properties"`
 	Type       *string                                 `json:"type,omitempty"`
 }

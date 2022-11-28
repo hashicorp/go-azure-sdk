@@ -6,6 +6,6 @@ package frontdoors
 type RoutingRule struct {
 	Id         *string                `json:"id,omitempty"`
 	Name       *string                `json:"name,omitempty"`
-	Properties *RoutingRuleProperties `json:"properties,omitempty"`
+	Properties *RoutingRuleProperties `json:"properties"`
 	Type       *string                `json:"type,omitempty"`
 }

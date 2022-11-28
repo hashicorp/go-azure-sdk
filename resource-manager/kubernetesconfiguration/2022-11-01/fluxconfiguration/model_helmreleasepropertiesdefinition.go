@@ -5,7 +5,7 @@ package fluxconfiguration
 
 type HelmReleasePropertiesDefinition struct {
 	FailureCount        *int64                     `json:"failureCount,omitempty"`
-	HelmChartRef        *ObjectReferenceDefinition `json:"helmChartRef,omitempty"`
+	HelmChartRef        *ObjectReferenceDefinition `json:"helmChartRef"`
 	InstallFailureCount *int64                     `json:"installFailureCount,omitempty"`
 	LastRevisionApplied *int64                     `json:"lastRevisionApplied,omitempty"`
 	UpgradeFailureCount *int64                     `json:"upgradeFailureCount,omitempty"`

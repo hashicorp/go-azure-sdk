@@ -13,7 +13,7 @@ import (
 var _ AlertRuleTemplate = FusionAlertRuleTemplate{}
 
 type FusionAlertRuleTemplate struct {
-	Properties *FusionAlertRuleTemplateProperties `json:"properties,omitempty"`
+	Properties *FusionAlertRuleTemplateProperties `json:"properties"`
 
 	// Fields inherited from AlertRuleTemplate
 	Id         *string                `json:"id,omitempty"`

@@ -10,7 +10,7 @@ import (
 type CustomDomainResource struct {
 	Id         *string                 `json:"id,omitempty"`
 	Name       *string                 `json:"name,omitempty"`
-	Properties *CustomDomainProperties `json:"properties,omitempty"`
+	Properties *CustomDomainProperties `json:"properties"`
 	SystemData *systemdata.SystemData  `json:"systemData,omitempty"`
 	Type       *string                 `json:"type,omitempty"`
 }

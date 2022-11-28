@@ -4,6 +4,6 @@ package fhirservices
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type FhirServicePatchResource struct {
-	Identity *ServiceManagedIdentityIdentity `json:"identity,omitempty"`
+	Identity *ServiceManagedIdentityIdentity `json:"identity"`
 	Tags     *map[string]string              `json:"tags,omitempty"`
 }

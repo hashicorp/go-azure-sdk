@@ -6,5 +6,5 @@ package appliances
 type UpgradeGraph struct {
 	Id         *string                 `json:"id,omitempty"`
 	Name       *string                 `json:"name,omitempty"`
-	Properties *UpgradeGraphProperties `json:"properties,omitempty"`
+	Properties *UpgradeGraphProperties `json:"properties"`
 }

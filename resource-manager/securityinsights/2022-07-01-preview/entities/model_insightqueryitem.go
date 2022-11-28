@@ -11,7 +11,7 @@ import (
 var _ EntityQueryItem = InsightQueryItem{}
 
 type InsightQueryItem struct {
-	Properties *InsightQueryItemProperties `json:"properties,omitempty"`
+	Properties *InsightQueryItemProperties `json:"properties"`
 
 	// Fields inherited from EntityQueryItem
 	Id   *string `json:"id,omitempty"`

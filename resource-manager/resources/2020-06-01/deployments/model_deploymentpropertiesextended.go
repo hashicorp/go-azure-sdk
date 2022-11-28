@@ -11,20 +11,20 @@ import (
 
 type DeploymentPropertiesExtended struct {
 	CorrelationId      *string                    `json:"correlationId,omitempty"`
-	DebugSetting       *DebugSetting              `json:"debugSetting,omitempty"`
+	DebugSetting       *DebugSetting              `json:"debugSetting"`
 	Dependencies       *[]Dependency              `json:"dependencies,omitempty"`
 	Duration           *string                    `json:"duration,omitempty"`
-	Error              *ErrorResponse             `json:"error,omitempty"`
+	Error              *ErrorResponse             `json:"error"`
 	Mode               *DeploymentMode            `json:"mode,omitempty"`
-	OnErrorDeployment  *OnErrorDeploymentExtended `json:"onErrorDeployment,omitempty"`
+	OnErrorDeployment  *OnErrorDeploymentExtended `json:"onErrorDeployment"`
 	OutputResources    *[]ResourceReference       `json:"outputResources,omitempty"`
 	Outputs            *interface{}               `json:"outputs,omitempty"`
 	Parameters         *interface{}               `json:"parameters,omitempty"`
-	ParametersLink     *ParametersLink            `json:"parametersLink,omitempty"`
+	ParametersLink     *ParametersLink            `json:"parametersLink"`
 	Providers          *[]Provider                `json:"providers,omitempty"`
 	ProvisioningState  *ProvisioningState         `json:"provisioningState,omitempty"`
 	TemplateHash       *string                    `json:"templateHash,omitempty"`
-	TemplateLink       *TemplateLink              `json:"templateLink,omitempty"`
+	TemplateLink       *TemplateLink              `json:"templateLink"`
 	Timestamp          *string                    `json:"timestamp,omitempty"`
 	ValidatedResources *[]ResourceReference       `json:"validatedResources,omitempty"`
 }

@@ -5,6 +5,6 @@ package vaults
 
 type VaultPropertiesEncryption struct {
 	InfrastructureEncryption *InfrastructureEncryptionState `json:"infrastructureEncryption,omitempty"`
-	KekIdentity              *CmkKekIdentity                `json:"kekIdentity,omitempty"`
-	KeyVaultProperties       *CmkKeyVaultProperties         `json:"keyVaultProperties,omitempty"`
+	KekIdentity              *CmkKekIdentity                `json:"kekIdentity"`
+	KeyVaultProperties       *CmkKeyVaultProperties         `json:"keyVaultProperties"`
 }

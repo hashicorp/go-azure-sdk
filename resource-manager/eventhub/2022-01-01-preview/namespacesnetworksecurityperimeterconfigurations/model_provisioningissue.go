@@ -5,5 +5,5 @@ package namespacesnetworksecurityperimeterconfigurations
 
 type ProvisioningIssue struct {
 	Name       *string                      `json:"name,omitempty"`
-	Properties *ProvisioningIssueProperties `json:"properties,omitempty"`
+	Properties *ProvisioningIssueProperties `json:"properties"`
 }

@@ -5,6 +5,6 @@ package healthbots
 
 type HealthBotProperties struct {
 	BotManagementPortalLink *string             `json:"botManagementPortalLink,omitempty"`
-	KeyVaultProperties      *KeyVaultProperties `json:"keyVaultProperties,omitempty"`
+	KeyVaultProperties      *KeyVaultProperties `json:"keyVaultProperties"`
 	ProvisioningState       *string             `json:"provisioningState,omitempty"`
 }

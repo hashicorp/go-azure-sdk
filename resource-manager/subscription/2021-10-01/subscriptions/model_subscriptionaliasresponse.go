@@ -10,7 +10,7 @@ import (
 type SubscriptionAliasResponse struct {
 	Id         *string                              `json:"id,omitempty"`
 	Name       *string                              `json:"name,omitempty"`
-	Properties *SubscriptionAliasResponseProperties `json:"properties,omitempty"`
+	Properties *SubscriptionAliasResponseProperties `json:"properties"`
 	SystemData *systemdata.SystemData               `json:"systemData,omitempty"`
 	Type       *string                              `json:"type,omitempty"`
 }

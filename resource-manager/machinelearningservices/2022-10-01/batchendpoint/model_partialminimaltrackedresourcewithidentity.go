@@ -4,6 +4,6 @@ package batchendpoint
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type PartialMinimalTrackedResourceWithIdentity struct {
-	Identity *PartialManagedServiceIdentity `json:"identity,omitempty"`
+	Identity *PartialManagedServiceIdentity `json:"identity"`
 	Tags     *map[string]string             `json:"tags,omitempty"`
 }

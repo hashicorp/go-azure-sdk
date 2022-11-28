@@ -4,6 +4,6 @@ package clusterextensions
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type Scope struct {
-	Cluster   *ScopeCluster   `json:"cluster,omitempty"`
-	Namespace *ScopeNamespace `json:"namespace,omitempty"`
+	Cluster   *ScopeCluster   `json:"cluster"`
+	Namespace *ScopeNamespace `json:"namespace"`
 }

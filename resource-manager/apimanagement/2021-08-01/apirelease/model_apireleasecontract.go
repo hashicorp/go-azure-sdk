@@ -6,6 +6,6 @@ package apirelease
 type ApiReleaseContract struct {
 	Id         *string                       `json:"id,omitempty"`
 	Name       *string                       `json:"name,omitempty"`
-	Properties *ApiReleaseContractProperties `json:"properties,omitempty"`
+	Properties *ApiReleaseContractProperties `json:"properties"`
 	Type       *string                       `json:"type,omitempty"`
 }

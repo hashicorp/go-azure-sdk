@@ -5,10 +5,10 @@ package pool
 
 type StartTask struct {
 	CommandLine         *string                `json:"commandLine,omitempty"`
-	ContainerSettings   *TaskContainerSettings `json:"containerSettings,omitempty"`
+	ContainerSettings   *TaskContainerSettings `json:"containerSettings"`
 	EnvironmentSettings *[]EnvironmentSetting  `json:"environmentSettings,omitempty"`
 	MaxTaskRetryCount   *int64                 `json:"maxTaskRetryCount,omitempty"`
 	ResourceFiles       *[]ResourceFile        `json:"resourceFiles,omitempty"`
-	UserIdentity        *UserIdentity          `json:"userIdentity,omitempty"`
+	UserIdentity        *UserIdentity          `json:"userIdentity"`
 	WaitForSuccess      *bool                  `json:"waitForSuccess,omitempty"`
 }

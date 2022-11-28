@@ -12,5 +12,5 @@ type ForecastingTrainingSettings struct {
 	EnableStackEnsemble          *bool                  `json:"enableStackEnsemble,omitempty"`
 	EnableVoteEnsemble           *bool                  `json:"enableVoteEnsemble,omitempty"`
 	EnsembleModelDownloadTimeout *string                `json:"ensembleModelDownloadTimeout,omitempty"`
-	StackEnsembleSettings        *StackEnsembleSettings `json:"stackEnsembleSettings,omitempty"`
+	StackEnsembleSettings        *StackEnsembleSettings `json:"stackEnsembleSettings"`
 }

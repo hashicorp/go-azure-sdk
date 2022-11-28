@@ -6,5 +6,5 @@ package galleryimageversions
 type GalleryDiskImage struct {
 	HostCaching *HostCaching                  `json:"hostCaching,omitempty"`
 	SizeInGB    *int64                        `json:"sizeInGB,omitempty"`
-	Source      *GalleryArtifactVersionSource `json:"source,omitempty"`
+	Source      *GalleryArtifactVersionSource `json:"source"`
 }

@@ -6,6 +6,6 @@ package delegationsettings
 type PortalDelegationSettings struct {
 	Id         *string                             `json:"id,omitempty"`
 	Name       *string                             `json:"name,omitempty"`
-	Properties *PortalDelegationSettingsProperties `json:"properties,omitempty"`
+	Properties *PortalDelegationSettingsProperties `json:"properties"`
 	Type       *string                             `json:"type,omitempty"`
 }

@@ -4,5 +4,5 @@ package replicationalertsettings
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type ConfigureAlertRequest struct {
-	Properties *ConfigureAlertRequestProperties `json:"properties,omitempty"`
+	Properties *ConfigureAlertRequestProperties `json:"properties"`
 }

@@ -6,6 +6,6 @@ package quotas
 type QuotaBucketRequestProperties struct {
 	CurrentQuota *int64                                  `json:"currentQuota,omitempty"`
 	CurrentUsage *int64                                  `json:"currentUsage,omitempty"`
-	Dimensions   *QuotaBucketRequestPropertiesDimensions `json:"dimensions,omitempty"`
+	Dimensions   *QuotaBucketRequestPropertiesDimensions `json:"dimensions"`
 	NewQuota     *int64                                  `json:"newQuota,omitempty"`
 }

@@ -6,7 +6,7 @@ package dataconnectors
 type CodelessConnectorPollingConfigProperties struct {
 	Auth     CodelessConnectorPollingAuthProperties      `json:"auth"`
 	IsActive *bool                                       `json:"isActive,omitempty"`
-	Paging   *CodelessConnectorPollingPagingProperties   `json:"paging,omitempty"`
+	Paging   *CodelessConnectorPollingPagingProperties   `json:"paging"`
 	Request  CodelessConnectorPollingRequestProperties   `json:"request"`
-	Response *CodelessConnectorPollingResponseProperties `json:"response,omitempty"`
+	Response *CodelessConnectorPollingResponseProperties `json:"response"`
 }

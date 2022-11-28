@@ -13,7 +13,7 @@ import (
 var _ EntityQuery = ActivityEntityQuery{}
 
 type ActivityEntityQuery struct {
-	Properties *ActivityEntityQueriesProperties `json:"properties,omitempty"`
+	Properties *ActivityEntityQueriesProperties `json:"properties"`
 
 	// Fields inherited from EntityQuery
 	Etag       *string                `json:"etag,omitempty"`

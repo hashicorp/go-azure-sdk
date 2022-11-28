@@ -19,7 +19,7 @@ type VmmVirtualMachineDetails struct {
 	HasPhysicalDisk        *PresenceStatus `json:"hasPhysicalDisk,omitempty"`
 	HasSharedVhd           *PresenceStatus `json:"hasSharedVhd,omitempty"`
 	HyperVHostId           *string         `json:"hyperVHostId,omitempty"`
-	OsDetails              *OSDetails      `json:"osDetails,omitempty"`
+	OsDetails              *OSDetails      `json:"osDetails"`
 	SourceItemId           *string         `json:"sourceItemId,omitempty"`
 }
 

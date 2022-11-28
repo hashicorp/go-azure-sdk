@@ -5,5 +5,5 @@ package mongorbacs
 
 type Privilege struct {
 	Actions  *[]string          `json:"actions,omitempty"`
-	Resource *PrivilegeResource `json:"resource,omitempty"`
+	Resource *PrivilegeResource `json:"resource"`
 }

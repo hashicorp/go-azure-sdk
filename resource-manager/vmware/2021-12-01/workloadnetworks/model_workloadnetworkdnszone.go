@@ -6,6 +6,6 @@ package workloadnetworks
 type WorkloadNetworkDnsZone struct {
 	Id         *string                           `json:"id,omitempty"`
 	Name       *string                           `json:"name,omitempty"`
-	Properties *WorkloadNetworkDnsZoneProperties `json:"properties,omitempty"`
+	Properties *WorkloadNetworkDnsZoneProperties `json:"properties"`
 	Type       *string                           `json:"type,omitempty"`
 }

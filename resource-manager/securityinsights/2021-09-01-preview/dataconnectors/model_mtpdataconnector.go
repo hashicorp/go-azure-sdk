@@ -13,7 +13,7 @@ import (
 var _ DataConnector = MTPDataConnector{}
 
 type MTPDataConnector struct {
-	Properties *MTPDataConnectorProperties `json:"properties,omitempty"`
+	Properties *MTPDataConnectorProperties `json:"properties"`
 
 	// Fields inherited from DataConnector
 	Etag       *string                `json:"etag,omitempty"`

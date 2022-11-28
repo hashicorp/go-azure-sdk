@@ -6,5 +6,5 @@ package virtualmachinescalesets
 type VirtualMachineScaleSetUpdateNetworkConfiguration struct {
 	Id         *string                                                     `json:"id,omitempty"`
 	Name       *string                                                     `json:"name,omitempty"`
-	Properties *VirtualMachineScaleSetUpdateNetworkConfigurationProperties `json:"properties,omitempty"`
+	Properties *VirtualMachineScaleSetUpdateNetworkConfigurationProperties `json:"properties"`
 }

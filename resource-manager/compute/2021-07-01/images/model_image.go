@@ -12,7 +12,7 @@ type Image struct {
 	Id               *string            `json:"id,omitempty"`
 	Location         string             `json:"location"`
 	Name             *string            `json:"name,omitempty"`
-	Properties       *ImageProperties   `json:"properties,omitempty"`
+	Properties       *ImageProperties   `json:"properties"`
 	Tags             *map[string]string `json:"tags,omitempty"`
 	Type             *string            `json:"type,omitempty"`
 }

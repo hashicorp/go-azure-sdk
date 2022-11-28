@@ -6,6 +6,6 @@ package apioperation
 type OperationContract struct {
 	Id         *string                      `json:"id,omitempty"`
 	Name       *string                      `json:"name,omitempty"`
-	Properties *OperationContractProperties `json:"properties,omitempty"`
+	Properties *OperationContractProperties `json:"properties"`
 	Type       *string                      `json:"type,omitempty"`
 }

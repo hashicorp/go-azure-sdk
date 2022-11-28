@@ -10,6 +10,6 @@ type VirtualMachineScaleSetUpdateIPConfigurationProperties struct {
 	LoadBalancerInboundNatPools           *[]SubResource                                            `json:"loadBalancerInboundNatPools,omitempty"`
 	Primary                               *bool                                                     `json:"primary,omitempty"`
 	PrivateIPAddressVersion               *IPVersion                                                `json:"privateIPAddressVersion,omitempty"`
-	PublicIPAddressConfiguration          *VirtualMachineScaleSetUpdatePublicIPAddressConfiguration `json:"publicIPAddressConfiguration,omitempty"`
-	Subnet                                *ApiEntityReference                                       `json:"subnet,omitempty"`
+	PublicIPAddressConfiguration          *VirtualMachineScaleSetUpdatePublicIPAddressConfiguration `json:"publicIPAddressConfiguration"`
+	Subnet                                *ApiEntityReference                                       `json:"subnet"`
 }

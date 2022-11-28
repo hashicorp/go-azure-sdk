@@ -11,7 +11,7 @@ import (
 
 type ApiManagementServiceUpdateProperties struct {
 	AdditionalLocations         *[]AdditionalLocation                     `json:"additionalLocations,omitempty"`
-	ApiVersionConstraint        *ApiVersionConstraint                     `json:"apiVersionConstraint,omitempty"`
+	ApiVersionConstraint        *ApiVersionConstraint                     `json:"apiVersionConstraint"`
 	Certificates                *[]CertificateConfiguration               `json:"certificates,omitempty"`
 	CreatedAtUtc                *string                                   `json:"createdAtUtc,omitempty"`
 	CustomProperties            *map[string]string                        `json:"customProperties,omitempty"`
@@ -36,7 +36,7 @@ type ApiManagementServiceUpdateProperties struct {
 	Restore                     *bool                                     `json:"restore,omitempty"`
 	ScmUrl                      *string                                   `json:"scmUrl,omitempty"`
 	TargetProvisioningState     *string                                   `json:"targetProvisioningState,omitempty"`
-	VirtualNetworkConfiguration *VirtualNetworkConfiguration              `json:"virtualNetworkConfiguration,omitempty"`
+	VirtualNetworkConfiguration *VirtualNetworkConfiguration              `json:"virtualNetworkConfiguration"`
 	VirtualNetworkType          *VirtualNetworkType                       `json:"virtualNetworkType,omitempty"`
 }
 

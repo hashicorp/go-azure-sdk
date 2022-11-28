@@ -6,6 +6,6 @@ package compute
 type RestorePoint struct {
 	Id         *string                 `json:"id,omitempty"`
 	Name       *string                 `json:"name,omitempty"`
-	Properties *RestorePointProperties `json:"properties,omitempty"`
+	Properties *RestorePointProperties `json:"properties"`
 	Type       *string                 `json:"type,omitempty"`
 }

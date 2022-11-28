@@ -7,7 +7,7 @@ type CustomContainer struct {
 	Args                    *[]string                `json:"args,omitempty"`
 	Command                 *[]string                `json:"command,omitempty"`
 	ContainerImage          *string                  `json:"containerImage,omitempty"`
-	ImageRegistryCredential *ImageRegistryCredential `json:"imageRegistryCredential,omitempty"`
+	ImageRegistryCredential *ImageRegistryCredential `json:"imageRegistryCredential"`
 	LanguageFramework       *string                  `json:"languageFramework,omitempty"`
 	Server                  *string                  `json:"server,omitempty"`
 }

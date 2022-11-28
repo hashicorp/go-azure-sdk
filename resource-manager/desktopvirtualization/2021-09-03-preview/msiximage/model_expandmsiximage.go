@@ -6,6 +6,6 @@ package msiximage
 type ExpandMsixImage struct {
 	Id         *string                    `json:"id,omitempty"`
 	Name       *string                    `json:"name,omitempty"`
-	Properties *ExpandMsixImageProperties `json:"properties,omitempty"`
+	Properties *ExpandMsixImageProperties `json:"properties"`
 	Type       *string                    `json:"type,omitempty"`
 }

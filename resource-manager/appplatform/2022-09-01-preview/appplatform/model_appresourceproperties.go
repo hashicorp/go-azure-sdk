@@ -9,12 +9,12 @@ type AppResourceProperties struct {
 	EnableEndToEndTLS     *bool                              `json:"enableEndToEndTLS,omitempty"`
 	Fqdn                  *string                            `json:"fqdn,omitempty"`
 	HTTPSOnly             *bool                              `json:"httpsOnly,omitempty"`
-	IngressSettings       *IngressSettings                   `json:"ingressSettings,omitempty"`
+	IngressSettings       *IngressSettings                   `json:"ingressSettings"`
 	LoadedCertificates    *[]LoadedCertificate               `json:"loadedCertificates,omitempty"`
-	PersistentDisk        *PersistentDisk                    `json:"persistentDisk,omitempty"`
+	PersistentDisk        *PersistentDisk                    `json:"persistentDisk"`
 	ProvisioningState     *AppResourceProvisioningState      `json:"provisioningState,omitempty"`
 	Public                *bool                              `json:"public,omitempty"`
-	TemporaryDisk         *TemporaryDisk                     `json:"temporaryDisk,omitempty"`
+	TemporaryDisk         *TemporaryDisk                     `json:"temporaryDisk"`
 	Url                   *string                            `json:"url,omitempty"`
-	VnetAddons            *AppVNetAddons                     `json:"vnetAddons,omitempty"`
+	VnetAddons            *AppVNetAddons                     `json:"vnetAddons"`
 }

@@ -10,7 +10,7 @@ import (
 type SubvolumeInfo struct {
 	Id         *string                `json:"id,omitempty"`
 	Name       *string                `json:"name,omitempty"`
-	Properties *SubvolumeProperties   `json:"properties,omitempty"`
+	Properties *SubvolumeProperties   `json:"properties"`
 	SystemData *systemdata.SystemData `json:"systemData,omitempty"`
 	Type       *string                `json:"type,omitempty"`
 }

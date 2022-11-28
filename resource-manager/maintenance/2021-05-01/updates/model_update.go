@@ -14,7 +14,7 @@ type Update struct {
 	ImpactType          *ImpactType       `json:"impactType,omitempty"`
 	MaintenanceScope    *MaintenanceScope `json:"maintenanceScope,omitempty"`
 	NotBefore           *string           `json:"notBefore,omitempty"`
-	Properties          *UpdateProperties `json:"properties,omitempty"`
+	Properties          *UpdateProperties `json:"properties"`
 	Status              *UpdateStatus     `json:"status,omitempty"`
 }
 

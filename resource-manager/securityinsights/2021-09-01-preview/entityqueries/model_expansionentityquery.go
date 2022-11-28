@@ -13,7 +13,7 @@ import (
 var _ EntityQuery = ExpansionEntityQuery{}
 
 type ExpansionEntityQuery struct {
-	Properties *ExpansionEntityQueriesProperties `json:"properties,omitempty"`
+	Properties *ExpansionEntityQueriesProperties `json:"properties"`
 
 	// Fields inherited from EntityQuery
 	Etag       *string                `json:"etag,omitempty"`

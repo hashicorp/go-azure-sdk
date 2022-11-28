@@ -6,6 +6,6 @@ package targetcomputesizes
 type TargetComputeSize struct {
 	Id         *string                      `json:"id,omitempty"`
 	Name       *string                      `json:"name,omitempty"`
-	Properties *TargetComputeSizeProperties `json:"properties,omitempty"`
+	Properties *TargetComputeSizeProperties `json:"properties"`
 	Type       *string                      `json:"type,omitempty"`
 }

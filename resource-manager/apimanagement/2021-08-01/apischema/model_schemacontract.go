@@ -6,6 +6,6 @@ package apischema
 type SchemaContract struct {
 	Id         *string                   `json:"id,omitempty"`
 	Name       *string                   `json:"name,omitempty"`
-	Properties *SchemaContractProperties `json:"properties,omitempty"`
+	Properties *SchemaContractProperties `json:"properties"`
 	Type       *string                   `json:"type,omitempty"`
 }

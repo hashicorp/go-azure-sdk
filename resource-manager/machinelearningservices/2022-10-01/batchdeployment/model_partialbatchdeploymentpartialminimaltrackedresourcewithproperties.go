@@ -4,6 +4,6 @@ package batchdeployment
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type PartialBatchDeploymentPartialMinimalTrackedResourceWithProperties struct {
-	Properties *PartialBatchDeployment `json:"properties,omitempty"`
+	Properties *PartialBatchDeployment `json:"properties"`
 	Tags       *map[string]string      `json:"tags,omitempty"`
 }

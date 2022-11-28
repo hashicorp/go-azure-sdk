@@ -13,7 +13,7 @@ import (
 var _ DataConnector = CodelessUiDataConnector{}
 
 type CodelessUiDataConnector struct {
-	Properties *CodelessParameters `json:"properties,omitempty"`
+	Properties *CodelessParameters `json:"properties"`
 
 	// Fields inherited from DataConnector
 	Etag       *string                `json:"etag,omitempty"`

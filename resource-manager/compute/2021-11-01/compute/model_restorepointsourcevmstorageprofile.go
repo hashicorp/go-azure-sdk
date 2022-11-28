@@ -5,5 +5,5 @@ package compute
 
 type RestorePointSourceVMStorageProfile struct {
 	DataDisks *[]RestorePointSourceVMDataDisk `json:"dataDisks,omitempty"`
-	OsDisk    *RestorePointSourceVMOSDisk     `json:"osDisk,omitempty"`
+	OsDisk    *RestorePointSourceVMOSDisk     `json:"osDisk"`
 }

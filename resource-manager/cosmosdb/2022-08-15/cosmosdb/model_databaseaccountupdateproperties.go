@@ -9,13 +9,13 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type DatabaseAccountUpdateProperties struct {
-	AnalyticalStorageConfiguration     *AnalyticalStorageConfiguration `json:"analyticalStorageConfiguration,omitempty"`
-	ApiProperties                      *ApiProperties                  `json:"apiProperties,omitempty"`
+	AnalyticalStorageConfiguration     *AnalyticalStorageConfiguration `json:"analyticalStorageConfiguration"`
+	ApiProperties                      *ApiProperties                  `json:"apiProperties"`
 	BackupPolicy                       BackupPolicy                    `json:"backupPolicy"`
 	Capabilities                       *[]Capability                   `json:"capabilities,omitempty"`
-	Capacity                           *Capacity                       `json:"capacity,omitempty"`
+	Capacity                           *Capacity                       `json:"capacity"`
 	ConnectorOffer                     *ConnectorOffer                 `json:"connectorOffer,omitempty"`
-	ConsistencyPolicy                  *ConsistencyPolicy              `json:"consistencyPolicy,omitempty"`
+	ConsistencyPolicy                  *ConsistencyPolicy              `json:"consistencyPolicy"`
 	Cors                               *[]CorsPolicy                   `json:"cors,omitempty"`
 	DefaultIdentity                    *string                         `json:"defaultIdentity,omitempty"`
 	DisableKeyBasedMetadataWriteAccess *bool                           `json:"disableKeyBasedMetadataWriteAccess,omitempty"`
@@ -29,7 +29,7 @@ type DatabaseAccountUpdateProperties struct {
 	IPRules                            *[]IPAddressOrRange             `json:"ipRules,omitempty"`
 	IsVirtualNetworkFilterEnabled      *bool                           `json:"isVirtualNetworkFilterEnabled,omitempty"`
 	KeyVaultKeyUri                     *string                         `json:"keyVaultKeyUri,omitempty"`
-	KeysMetadata                       *DatabaseAccountKeysMetadata    `json:"keysMetadata,omitempty"`
+	KeysMetadata                       *DatabaseAccountKeysMetadata    `json:"keysMetadata"`
 	Locations                          *[]Location                     `json:"locations,omitempty"`
 	NetworkAclBypass                   *NetworkAclBypass               `json:"networkAclBypass,omitempty"`
 	NetworkAclBypassResourceIds        *[]string                       `json:"networkAclBypassResourceIds,omitempty"`

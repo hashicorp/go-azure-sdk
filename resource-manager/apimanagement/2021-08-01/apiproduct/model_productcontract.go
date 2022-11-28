@@ -6,6 +6,6 @@ package apiproduct
 type ProductContract struct {
 	Id         *string                    `json:"id,omitempty"`
 	Name       *string                    `json:"name,omitempty"`
-	Properties *ProductContractProperties `json:"properties,omitempty"`
+	Properties *ProductContractProperties `json:"properties"`
 	Type       *string                    `json:"type,omitempty"`
 }

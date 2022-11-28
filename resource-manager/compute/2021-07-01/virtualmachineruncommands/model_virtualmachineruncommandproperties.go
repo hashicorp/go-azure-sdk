@@ -6,13 +6,13 @@ package virtualmachineruncommands
 type VirtualMachineRunCommandProperties struct {
 	AsyncExecution      *bool                                 `json:"asyncExecution,omitempty"`
 	ErrorBlobUri        *string                               `json:"errorBlobUri,omitempty"`
-	InstanceView        *VirtualMachineRunCommandInstanceView `json:"instanceView,omitempty"`
+	InstanceView        *VirtualMachineRunCommandInstanceView `json:"instanceView"`
 	OutputBlobUri       *string                               `json:"outputBlobUri,omitempty"`
 	Parameters          *[]RunCommandInputParameter           `json:"parameters,omitempty"`
 	ProtectedParameters *[]RunCommandInputParameter           `json:"protectedParameters,omitempty"`
 	ProvisioningState   *string                               `json:"provisioningState,omitempty"`
 	RunAsPassword       *string                               `json:"runAsPassword,omitempty"`
 	RunAsUser           *string                               `json:"runAsUser,omitempty"`
-	Source              *VirtualMachineRunCommandScriptSource `json:"source,omitempty"`
+	Source              *VirtualMachineRunCommandScriptSource `json:"source"`
 	TimeoutInSeconds    *int64                                `json:"timeoutInSeconds,omitempty"`
 }

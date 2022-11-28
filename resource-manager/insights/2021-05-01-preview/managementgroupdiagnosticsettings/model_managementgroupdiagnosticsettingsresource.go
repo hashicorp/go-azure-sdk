@@ -10,7 +10,7 @@ import (
 type ManagementGroupDiagnosticSettingsResource struct {
 	Id         *string                            `json:"id,omitempty"`
 	Name       *string                            `json:"name,omitempty"`
-	Properties *ManagementGroupDiagnosticSettings `json:"properties,omitempty"`
+	Properties *ManagementGroupDiagnosticSettings `json:"properties"`
 	SystemData *systemdata.SystemData             `json:"systemData,omitempty"`
 	Type       *string                            `json:"type,omitempty"`
 }

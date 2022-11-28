@@ -5,6 +5,6 @@ package appplatform
 
 type BuildpackBindingProperties struct {
 	BindingType       *BindingType                       `json:"bindingType,omitempty"`
-	LaunchProperties  *BuildpackBindingLaunchProperties  `json:"launchProperties,omitempty"`
+	LaunchProperties  *BuildpackBindingLaunchProperties  `json:"launchProperties"`
 	ProvisioningState *BuildpackBindingProvisioningState `json:"provisioningState,omitempty"`
 }

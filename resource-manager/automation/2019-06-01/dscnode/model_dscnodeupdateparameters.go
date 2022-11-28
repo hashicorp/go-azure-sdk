@@ -5,5 +5,5 @@ package dscnode
 
 type DscNodeUpdateParameters struct {
 	NodeId     *string                            `json:"nodeId,omitempty"`
-	Properties *DscNodeUpdateParametersProperties `json:"properties,omitempty"`
+	Properties *DscNodeUpdateParametersProperties `json:"properties"`
 }

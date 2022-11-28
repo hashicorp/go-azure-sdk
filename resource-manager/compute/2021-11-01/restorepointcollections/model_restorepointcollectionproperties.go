@@ -7,5 +7,5 @@ type RestorePointCollectionProperties struct {
 	ProvisioningState        *string                                 `json:"provisioningState,omitempty"`
 	RestorePointCollectionId *string                                 `json:"restorePointCollectionId,omitempty"`
 	RestorePoints            *[]RestorePoint                         `json:"restorePoints,omitempty"`
-	Source                   *RestorePointCollectionSourceProperties `json:"source,omitempty"`
+	Source                   *RestorePointCollectionSourceProperties `json:"source"`
 }

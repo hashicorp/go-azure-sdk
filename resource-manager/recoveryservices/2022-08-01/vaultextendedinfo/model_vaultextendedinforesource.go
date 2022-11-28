@@ -7,6 +7,6 @@ type VaultExtendedInfoResource struct {
 	Etag       *string            `json:"etag,omitempty"`
 	Id         *string            `json:"id,omitempty"`
 	Name       *string            `json:"name,omitempty"`
-	Properties *VaultExtendedInfo `json:"properties,omitempty"`
+	Properties *VaultExtendedInfo `json:"properties"`
 	Type       *string            `json:"type,omitempty"`
 }

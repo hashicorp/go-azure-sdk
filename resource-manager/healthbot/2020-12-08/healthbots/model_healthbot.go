@@ -11,7 +11,7 @@ type HealthBot struct {
 	Id         *string                `json:"id,omitempty"`
 	Location   string                 `json:"location"`
 	Name       *string                `json:"name,omitempty"`
-	Properties *HealthBotProperties   `json:"properties,omitempty"`
+	Properties *HealthBotProperties   `json:"properties"`
 	Sku        Sku                    `json:"sku"`
 	SystemData *systemdata.SystemData `json:"systemData,omitempty"`
 	Tags       *map[string]string     `json:"tags,omitempty"`

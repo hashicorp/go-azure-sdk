@@ -6,6 +6,6 @@ package apimanagementservice
 type RemotePrivateEndpointConnectionWrapper struct {
 	Id         *string                                     `json:"id,omitempty"`
 	Name       *string                                     `json:"name,omitempty"`
-	Properties *PrivateEndpointConnectionWrapperProperties `json:"properties,omitempty"`
+	Properties *PrivateEndpointConnectionWrapperProperties `json:"properties"`
 	Type       *string                                     `json:"type,omitempty"`
 }

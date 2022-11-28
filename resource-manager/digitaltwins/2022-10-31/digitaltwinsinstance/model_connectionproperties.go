@@ -5,7 +5,7 @@ package digitaltwinsinstance
 
 type ConnectionProperties struct {
 	GroupIds                          *[]string                              `json:"groupIds,omitempty"`
-	PrivateEndpoint                   *PrivateEndpoint                       `json:"privateEndpoint,omitempty"`
-	PrivateLinkServiceConnectionState *ConnectionState                       `json:"privateLinkServiceConnectionState,omitempty"`
+	PrivateEndpoint                   *PrivateEndpoint                       `json:"privateEndpoint"`
+	PrivateLinkServiceConnectionState *ConnectionState                       `json:"privateLinkServiceConnectionState"`
 	ProvisioningState                 *ConnectionPropertiesProvisioningState `json:"provisioningState,omitempty"`
 }

@@ -5,11 +5,11 @@ package virtualmachinescalesetvms
 
 type VirtualMachineScaleSetNetworkConfigurationProperties struct {
 	DeleteOption                *DeleteOptions                                         `json:"deleteOption,omitempty"`
-	DnsSettings                 *VirtualMachineScaleSetNetworkConfigurationDnsSettings `json:"dnsSettings,omitempty"`
+	DnsSettings                 *VirtualMachineScaleSetNetworkConfigurationDnsSettings `json:"dnsSettings"`
 	EnableAcceleratedNetworking *bool                                                  `json:"enableAcceleratedNetworking,omitempty"`
 	EnableFpga                  *bool                                                  `json:"enableFpga,omitempty"`
 	EnableIPForwarding          *bool                                                  `json:"enableIPForwarding,omitempty"`
 	IPConfigurations            []VirtualMachineScaleSetIPConfiguration                `json:"ipConfigurations"`
-	NetworkSecurityGroup        *SubResource                                           `json:"networkSecurityGroup,omitempty"`
+	NetworkSecurityGroup        *SubResource                                           `json:"networkSecurityGroup"`
 	Primary                     *bool                                                  `json:"primary,omitempty"`
 }

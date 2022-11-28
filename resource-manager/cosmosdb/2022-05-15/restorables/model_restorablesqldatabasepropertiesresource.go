@@ -4,7 +4,7 @@ package restorables
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type RestorableSqlDatabasePropertiesResource struct {
-	Database        *RestorableSqlDatabasePropertiesResourceDatabase `json:"database,omitempty"`
+	Database        *RestorableSqlDatabasePropertiesResourceDatabase `json:"database"`
 	EventTimestamp  *string                                          `json:"eventTimestamp,omitempty"`
 	OperationType   *OperationType                                   `json:"operationType,omitempty"`
 	OwnerId         *string                                          `json:"ownerId,omitempty"`

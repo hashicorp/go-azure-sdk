@@ -4,8 +4,8 @@ package dicomservices
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type DicomServiceProperties struct {
-	AuthenticationConfiguration *DicomServiceAuthenticationConfiguration `json:"authenticationConfiguration,omitempty"`
-	CorsConfiguration           *CorsConfiguration                       `json:"corsConfiguration,omitempty"`
+	AuthenticationConfiguration *DicomServiceAuthenticationConfiguration `json:"authenticationConfiguration"`
+	CorsConfiguration           *CorsConfiguration                       `json:"corsConfiguration"`
 	PrivateEndpointConnections  *[]PrivateEndpointConnection             `json:"privateEndpointConnections,omitempty"`
 	ProvisioningState           *ProvisioningState                       `json:"provisioningState,omitempty"`
 	PublicNetworkAccess         *PublicNetworkAccess                     `json:"publicNetworkAccess,omitempty"`

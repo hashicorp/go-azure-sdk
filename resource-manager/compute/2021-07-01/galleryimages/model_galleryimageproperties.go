@@ -11,7 +11,7 @@ import (
 
 type GalleryImageProperties struct {
 	Description         *string                          `json:"description,omitempty"`
-	Disallowed          *Disallowed                      `json:"disallowed,omitempty"`
+	Disallowed          *Disallowed                      `json:"disallowed"`
 	EndOfLifeDate       *string                          `json:"endOfLifeDate,omitempty"`
 	Eula                *string                          `json:"eula,omitempty"`
 	Features            *[]GalleryImageFeature           `json:"features,omitempty"`
@@ -21,8 +21,8 @@ type GalleryImageProperties struct {
 	OsType              OperatingSystemTypes             `json:"osType"`
 	PrivacyStatementUri *string                          `json:"privacyStatementUri,omitempty"`
 	ProvisioningState   *ProvisioningState               `json:"provisioningState,omitempty"`
-	PurchasePlan        *ImagePurchasePlan               `json:"purchasePlan,omitempty"`
-	Recommended         *RecommendedMachineConfiguration `json:"recommended,omitempty"`
+	PurchasePlan        *ImagePurchasePlan               `json:"purchasePlan"`
+	Recommended         *RecommendedMachineConfiguration `json:"recommended"`
 	ReleaseNoteUri      *string                          `json:"releaseNoteUri,omitempty"`
 }
 

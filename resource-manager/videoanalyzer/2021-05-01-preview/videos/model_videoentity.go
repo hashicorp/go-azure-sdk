@@ -10,7 +10,7 @@ import (
 type VideoEntity struct {
 	Id         *string                `json:"id,omitempty"`
 	Name       *string                `json:"name,omitempty"`
-	Properties *VideoProperties       `json:"properties,omitempty"`
+	Properties *VideoProperties       `json:"properties"`
 	SystemData *systemdata.SystemData `json:"systemData,omitempty"`
 	Type       *string                `json:"type,omitempty"`
 }

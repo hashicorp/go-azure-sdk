@@ -6,6 +6,6 @@ package mongorbacs
 type MongoRoleDefinitionGetResults struct {
 	Id         *string                      `json:"id,omitempty"`
 	Name       *string                      `json:"name,omitempty"`
-	Properties *MongoRoleDefinitionResource `json:"properties,omitempty"`
+	Properties *MongoRoleDefinitionResource `json:"properties"`
 	Type       *string                      `json:"type,omitempty"`
 }

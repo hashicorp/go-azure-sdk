@@ -4,5 +4,5 @@ package api
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type ApiCreateOrUpdateParameter struct {
-	Properties *ApiCreateOrUpdateProperties `json:"properties,omitempty"`
+	Properties *ApiCreateOrUpdateProperties `json:"properties"`
 }

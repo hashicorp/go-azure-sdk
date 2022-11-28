@@ -14,18 +14,18 @@ type ManagedOnlineDeployment struct {
 
 	// Fields inherited from OnlineDeployment
 	AppInsightsEnabled   *bool                        `json:"appInsightsEnabled,omitempty"`
-	CodeConfiguration    *CodeConfiguration           `json:"codeConfiguration,omitempty"`
+	CodeConfiguration    *CodeConfiguration           `json:"codeConfiguration"`
 	Description          *string                      `json:"description,omitempty"`
 	EnvironmentId        *string                      `json:"environmentId,omitempty"`
 	EnvironmentVariables *map[string]string           `json:"environmentVariables,omitempty"`
 	InstanceType         *string                      `json:"instanceType,omitempty"`
-	LivenessProbe        *ProbeSettings               `json:"livenessProbe,omitempty"`
+	LivenessProbe        *ProbeSettings               `json:"livenessProbe"`
 	Model                *string                      `json:"model,omitempty"`
 	ModelMountPath       *string                      `json:"modelMountPath,omitempty"`
 	Properties           *map[string]string           `json:"properties,omitempty"`
 	ProvisioningState    *DeploymentProvisioningState `json:"provisioningState,omitempty"`
-	ReadinessProbe       *ProbeSettings               `json:"readinessProbe,omitempty"`
-	RequestSettings      *OnlineRequestSettings       `json:"requestSettings,omitempty"`
+	ReadinessProbe       *ProbeSettings               `json:"readinessProbe"`
+	RequestSettings      *OnlineRequestSettings       `json:"requestSettings"`
 	ScaleSettings        OnlineScaleSettings          `json:"scaleSettings"`
 }
 

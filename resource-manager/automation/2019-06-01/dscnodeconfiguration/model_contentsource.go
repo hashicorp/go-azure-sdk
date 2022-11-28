@@ -4,7 +4,7 @@ package dscnodeconfiguration
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type ContentSource struct {
-	Hash    *ContentHash       `json:"hash,omitempty"`
+	Hash    *ContentHash       `json:"hash"`
 	Type    *ContentSourceType `json:"type,omitempty"`
 	Value   *string            `json:"value,omitempty"`
 	Version *string            `json:"version,omitempty"`

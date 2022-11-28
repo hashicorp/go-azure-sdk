@@ -11,23 +11,23 @@ import (
 var _ OnlineDeployment = KubernetesOnlineDeployment{}
 
 type KubernetesOnlineDeployment struct {
-	ContainerResourceRequirements *ContainerResourceRequirements `json:"containerResourceRequirements,omitempty"`
+	ContainerResourceRequirements *ContainerResourceRequirements `json:"containerResourceRequirements"`
 
 	// Fields inherited from OnlineDeployment
 	AppInsightsEnabled        *bool                          `json:"appInsightsEnabled,omitempty"`
-	CodeConfiguration         *CodeConfiguration             `json:"codeConfiguration,omitempty"`
+	CodeConfiguration         *CodeConfiguration             `json:"codeConfiguration"`
 	Description               *string                        `json:"description,omitempty"`
 	EgressPublicNetworkAccess *EgressPublicNetworkAccessType `json:"egressPublicNetworkAccess,omitempty"`
 	EnvironmentId             *string                        `json:"environmentId,omitempty"`
 	EnvironmentVariables      *map[string]string             `json:"environmentVariables,omitempty"`
 	InstanceType              *string                        `json:"instanceType,omitempty"`
-	LivenessProbe             *ProbeSettings                 `json:"livenessProbe,omitempty"`
+	LivenessProbe             *ProbeSettings                 `json:"livenessProbe"`
 	Model                     *string                        `json:"model,omitempty"`
 	ModelMountPath            *string                        `json:"modelMountPath,omitempty"`
 	Properties                *map[string]string             `json:"properties,omitempty"`
 	ProvisioningState         *DeploymentProvisioningState   `json:"provisioningState,omitempty"`
-	ReadinessProbe            *ProbeSettings                 `json:"readinessProbe,omitempty"`
-	RequestSettings           *OnlineRequestSettings         `json:"requestSettings,omitempty"`
+	ReadinessProbe            *ProbeSettings                 `json:"readinessProbe"`
+	RequestSettings           *OnlineRequestSettings         `json:"requestSettings"`
 	ScaleSettings             OnlineScaleSettings            `json:"scaleSettings"`
 }
 

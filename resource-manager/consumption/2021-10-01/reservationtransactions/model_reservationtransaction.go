@@ -6,7 +6,7 @@ package reservationtransactions
 type ReservationTransaction struct {
 	Id         *string                                 `json:"id,omitempty"`
 	Name       *string                                 `json:"name,omitempty"`
-	Properties *LegacyReservationTransactionProperties `json:"properties,omitempty"`
+	Properties *LegacyReservationTransactionProperties `json:"properties"`
 	Tags       *[]string                               `json:"tags,omitempty"`
 	Type       *string                                 `json:"type,omitempty"`
 }

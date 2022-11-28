@@ -4,7 +4,7 @@ package apimanagementservice
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type HostnameConfiguration struct {
-	Certificate                *CertificateInformation `json:"certificate,omitempty"`
+	Certificate                *CertificateInformation `json:"certificate"`
 	CertificatePassword        *string                 `json:"certificatePassword,omitempty"`
 	CertificateSource          *CertificateSource      `json:"certificateSource,omitempty"`
 	CertificateStatus          *CertificateStatus      `json:"certificateStatus,omitempty"`

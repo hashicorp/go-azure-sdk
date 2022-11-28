@@ -4,5 +4,5 @@ package machines
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type OSProfileLinuxConfiguration struct {
-	PatchSettings *PatchSettings `json:"patchSettings,omitempty"`
+	PatchSettings *PatchSettings `json:"patchSettings"`
 }

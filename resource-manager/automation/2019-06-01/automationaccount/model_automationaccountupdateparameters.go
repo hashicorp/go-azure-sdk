@@ -6,6 +6,6 @@ package automationaccount
 type AutomationAccountUpdateParameters struct {
 	Location   *string                            `json:"location,omitempty"`
 	Name       *string                            `json:"name,omitempty"`
-	Properties *AutomationAccountUpdateProperties `json:"properties,omitempty"`
+	Properties *AutomationAccountUpdateProperties `json:"properties"`
 	Tags       *map[string]string                 `json:"tags,omitempty"`
 }

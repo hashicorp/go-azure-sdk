@@ -20,7 +20,7 @@ type ViewProperties struct {
 	Metric      *MetricType             `json:"metric,omitempty"`
 	ModifiedOn  *string                 `json:"modifiedOn,omitempty"`
 	Pivots      *[]PivotProperties      `json:"pivots,omitempty"`
-	Query       *ReportConfigDefinition `json:"query,omitempty"`
+	Query       *ReportConfigDefinition `json:"query"`
 	Scope       *string                 `json:"scope,omitempty"`
 }
 

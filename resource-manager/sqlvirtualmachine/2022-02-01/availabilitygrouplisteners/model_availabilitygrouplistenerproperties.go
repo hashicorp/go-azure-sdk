@@ -4,7 +4,7 @@ package availabilitygrouplisteners
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type AvailabilityGroupListenerProperties struct {
-	AvailabilityGroupConfiguration           *AgConfiguration              `json:"availabilityGroupConfiguration,omitempty"`
+	AvailabilityGroupConfiguration           *AgConfiguration              `json:"availabilityGroupConfiguration"`
 	AvailabilityGroupName                    *string                       `json:"availabilityGroupName,omitempty"`
 	CreateDefaultAvailabilityGroupIfNotExist *bool                         `json:"createDefaultAvailabilityGroupIfNotExist,omitempty"`
 	LoadBalancerConfigurations               *[]LoadBalancerConfiguration  `json:"loadBalancerConfigurations,omitempty"`

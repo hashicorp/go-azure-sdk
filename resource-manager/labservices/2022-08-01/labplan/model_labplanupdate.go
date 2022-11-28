@@ -9,6 +9,6 @@ import (
 
 type LabPlanUpdate struct {
 	Identity   *identity.SystemAssigned `json:"identity,omitempty"`
-	Properties *LabPlanUpdateProperties `json:"properties,omitempty"`
+	Properties *LabPlanUpdateProperties `json:"properties"`
 	Tags       *[]string                `json:"tags,omitempty"`
 }

@@ -4,6 +4,6 @@ package costdetails
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type RequestContext struct {
-	RequestBody  *GenerateCostDetailsReportRequestDefinition `json:"requestBody,omitempty"`
+	RequestBody  *GenerateCostDetailsReportRequestDefinition `json:"requestBody"`
 	RequestScope *string                                     `json:"requestScope,omitempty"`
 }

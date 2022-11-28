@@ -5,7 +5,7 @@ package pool
 
 type NetworkConfiguration struct {
 	DynamicVnetAssignmentScope   *DynamicVNetAssignmentScope   `json:"dynamicVnetAssignmentScope,omitempty"`
-	EndpointConfiguration        *PoolEndpointConfiguration    `json:"endpointConfiguration,omitempty"`
-	PublicIPAddressConfiguration *PublicIPAddressConfiguration `json:"publicIPAddressConfiguration,omitempty"`
+	EndpointConfiguration        *PoolEndpointConfiguration    `json:"endpointConfiguration"`
+	PublicIPAddressConfiguration *PublicIPAddressConfiguration `json:"publicIPAddressConfiguration"`
 	SubnetId                     *string                       `json:"subnetId,omitempty"`
 }

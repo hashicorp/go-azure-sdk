@@ -11,8 +11,8 @@ import (
 var _ RouteConfiguration = ForwardingConfiguration{}
 
 type ForwardingConfiguration struct {
-	BackendPool          *SubResource                 `json:"backendPool,omitempty"`
-	CacheConfiguration   *CacheConfiguration          `json:"cacheConfiguration,omitempty"`
+	BackendPool          *SubResource                 `json:"backendPool"`
+	CacheConfiguration   *CacheConfiguration          `json:"cacheConfiguration"`
 	CustomForwardingPath *string                      `json:"customForwardingPath,omitempty"`
 	ForwardingProtocol   *FrontDoorForwardingProtocol `json:"forwardingProtocol,omitempty"`
 

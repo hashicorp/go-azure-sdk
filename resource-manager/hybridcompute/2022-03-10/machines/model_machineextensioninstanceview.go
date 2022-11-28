@@ -5,7 +5,7 @@ package machines
 
 type MachineExtensionInstanceView struct {
 	Name               *string                             `json:"name,omitempty"`
-	Status             *MachineExtensionInstanceViewStatus `json:"status,omitempty"`
+	Status             *MachineExtensionInstanceViewStatus `json:"status"`
 	Type               *string                             `json:"type,omitempty"`
 	TypeHandlerVersion *string                             `json:"typeHandlerVersion,omitempty"`
 }

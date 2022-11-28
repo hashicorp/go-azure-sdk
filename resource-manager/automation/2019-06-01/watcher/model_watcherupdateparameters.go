@@ -5,5 +5,5 @@ package watcher
 
 type WatcherUpdateParameters struct {
 	Name       *string                  `json:"name,omitempty"`
-	Properties *WatcherUpdateProperties `json:"properties,omitempty"`
+	Properties *WatcherUpdateProperties `json:"properties"`
 }

@@ -5,6 +5,6 @@ package galleryimageversions
 
 type GalleryImageVersionStorageProfile struct {
 	DataDiskImages *[]GalleryDataDiskImage       `json:"dataDiskImages,omitempty"`
-	OsDiskImage    *GalleryDiskImage             `json:"osDiskImage,omitempty"`
-	Source         *GalleryArtifactVersionSource `json:"source,omitempty"`
+	OsDiskImage    *GalleryDiskImage             `json:"osDiskImage"`
+	Source         *GalleryArtifactVersionSource `json:"source"`
 }

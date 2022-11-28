@@ -5,5 +5,5 @@ package containerinstance
 
 type DeploymentExtensionSpec struct {
 	Name       string                             `json:"name"`
-	Properties *DeploymentExtensionSpecProperties `json:"properties,omitempty"`
+	Properties *DeploymentExtensionSpecProperties `json:"properties"`
 }

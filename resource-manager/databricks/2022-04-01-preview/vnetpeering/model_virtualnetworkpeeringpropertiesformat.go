@@ -7,11 +7,11 @@ type VirtualNetworkPeeringPropertiesFormat struct {
 	AllowForwardedTraffic     *bool                                                          `json:"allowForwardedTraffic,omitempty"`
 	AllowGatewayTransit       *bool                                                          `json:"allowGatewayTransit,omitempty"`
 	AllowVirtualNetworkAccess *bool                                                          `json:"allowVirtualNetworkAccess,omitempty"`
-	DatabricksAddressSpace    *AddressSpace                                                  `json:"databricksAddressSpace,omitempty"`
-	DatabricksVirtualNetwork  *VirtualNetworkPeeringPropertiesFormatDatabricksVirtualNetwork `json:"databricksVirtualNetwork,omitempty"`
+	DatabricksAddressSpace    *AddressSpace                                                  `json:"databricksAddressSpace"`
+	DatabricksVirtualNetwork  *VirtualNetworkPeeringPropertiesFormatDatabricksVirtualNetwork `json:"databricksVirtualNetwork"`
 	PeeringState              *PeeringState                                                  `json:"peeringState,omitempty"`
 	ProvisioningState         *PeeringProvisioningState                                      `json:"provisioningState,omitempty"`
-	RemoteAddressSpace        *AddressSpace                                                  `json:"remoteAddressSpace,omitempty"`
+	RemoteAddressSpace        *AddressSpace                                                  `json:"remoteAddressSpace"`
 	RemoteVirtualNetwork      VirtualNetworkPeeringPropertiesFormatRemoteVirtualNetwork      `json:"remoteVirtualNetwork"`
 	UseRemoteGateways         *bool                                                          `json:"useRemoteGateways,omitempty"`
 }

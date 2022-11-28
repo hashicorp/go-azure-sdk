@@ -5,5 +5,5 @@ package managedenvironments
 
 type AppLogsConfiguration struct {
 	Destination               *string                    `json:"destination,omitempty"`
-	LogAnalyticsConfiguration *LogAnalyticsConfiguration `json:"logAnalyticsConfiguration,omitempty"`
+	LogAnalyticsConfiguration *LogAnalyticsConfiguration `json:"logAnalyticsConfiguration"`
 }

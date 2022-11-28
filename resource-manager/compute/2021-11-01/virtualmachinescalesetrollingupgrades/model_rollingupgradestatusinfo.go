@@ -7,7 +7,7 @@ type RollingUpgradeStatusInfo struct {
 	Id         *string                             `json:"id,omitempty"`
 	Location   string                              `json:"location"`
 	Name       *string                             `json:"name,omitempty"`
-	Properties *RollingUpgradeStatusInfoProperties `json:"properties,omitempty"`
+	Properties *RollingUpgradeStatusInfoProperties `json:"properties"`
 	Tags       *map[string]string                  `json:"tags,omitempty"`
 	Type       *string                             `json:"type,omitempty"`
 }

@@ -17,7 +17,7 @@ type ActivityEntityQueriesProperties struct {
 	EntitiesFilter          *map[string][]string                             `json:"entitiesFilter,omitempty"`
 	InputEntityType         *EntityType                                      `json:"inputEntityType,omitempty"`
 	LastModifiedTimeUtc     *string                                          `json:"lastModifiedTimeUtc,omitempty"`
-	QueryDefinitions        *ActivityEntityQueriesPropertiesQueryDefinitions `json:"queryDefinitions,omitempty"`
+	QueryDefinitions        *ActivityEntityQueriesPropertiesQueryDefinitions `json:"queryDefinitions"`
 	RequiredInputFieldsSets *[][]string                                      `json:"requiredInputFieldsSets,omitempty"`
 	TemplateName            *string                                          `json:"templateName,omitempty"`
 	Title                   *string                                          `json:"title,omitempty"`

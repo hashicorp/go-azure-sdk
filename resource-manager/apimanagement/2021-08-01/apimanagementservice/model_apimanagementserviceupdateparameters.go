@@ -13,8 +13,8 @@ type ApiManagementServiceUpdateParameters struct {
 	Id         *string                               `json:"id,omitempty"`
 	Identity   *identity.SystemAndUserAssignedMap    `json:"identity,omitempty"`
 	Name       *string                               `json:"name,omitempty"`
-	Properties *ApiManagementServiceUpdateProperties `json:"properties,omitempty"`
-	Sku        *ApiManagementServiceSkuProperties    `json:"sku,omitempty"`
+	Properties *ApiManagementServiceUpdateProperties `json:"properties"`
+	Sku        *ApiManagementServiceSkuProperties    `json:"sku"`
 	Tags       *map[string]string                    `json:"tags,omitempty"`
 	Type       *string                               `json:"type,omitempty"`
 	Zones      *zones.Schema                         `json:"zones,omitempty"`

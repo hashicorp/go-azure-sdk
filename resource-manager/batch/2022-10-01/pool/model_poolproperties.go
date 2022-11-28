@@ -14,26 +14,26 @@ type PoolProperties struct {
 	AllocationStateTransitionTime   *string                        `json:"allocationStateTransitionTime,omitempty"`
 	ApplicationLicenses             *[]string                      `json:"applicationLicenses,omitempty"`
 	ApplicationPackages             *[]ApplicationPackageReference `json:"applicationPackages,omitempty"`
-	AutoScaleRun                    *AutoScaleRun                  `json:"autoScaleRun,omitempty"`
+	AutoScaleRun                    *AutoScaleRun                  `json:"autoScaleRun"`
 	Certificates                    *[]CertificateReference        `json:"certificates,omitempty"`
 	CreationTime                    *string                        `json:"creationTime,omitempty"`
 	CurrentDedicatedNodes           *int64                         `json:"currentDedicatedNodes,omitempty"`
 	CurrentLowPriorityNodes         *int64                         `json:"currentLowPriorityNodes,omitempty"`
 	CurrentNodeCommunicationMode    *NodeCommunicationMode         `json:"currentNodeCommunicationMode,omitempty"`
-	DeploymentConfiguration         *DeploymentConfiguration       `json:"deploymentConfiguration,omitempty"`
+	DeploymentConfiguration         *DeploymentConfiguration       `json:"deploymentConfiguration"`
 	DisplayName                     *string                        `json:"displayName,omitempty"`
 	InterNodeCommunication          *InterNodeCommunicationState   `json:"interNodeCommunication,omitempty"`
 	LastModified                    *string                        `json:"lastModified,omitempty"`
 	Metadata                        *[]MetadataItem                `json:"metadata,omitempty"`
 	MountConfiguration              *[]MountConfiguration          `json:"mountConfiguration,omitempty"`
-	NetworkConfiguration            *NetworkConfiguration          `json:"networkConfiguration,omitempty"`
+	NetworkConfiguration            *NetworkConfiguration          `json:"networkConfiguration"`
 	ProvisioningState               *PoolProvisioningState         `json:"provisioningState,omitempty"`
 	ProvisioningStateTransitionTime *string                        `json:"provisioningStateTransitionTime,omitempty"`
-	ResizeOperationStatus           *ResizeOperationStatus         `json:"resizeOperationStatus,omitempty"`
-	ScaleSettings                   *ScaleSettings                 `json:"scaleSettings,omitempty"`
-	StartTask                       *StartTask                     `json:"startTask,omitempty"`
+	ResizeOperationStatus           *ResizeOperationStatus         `json:"resizeOperationStatus"`
+	ScaleSettings                   *ScaleSettings                 `json:"scaleSettings"`
+	StartTask                       *StartTask                     `json:"startTask"`
 	TargetNodeCommunicationMode     *NodeCommunicationMode         `json:"targetNodeCommunicationMode,omitempty"`
-	TaskSchedulingPolicy            *TaskSchedulingPolicy          `json:"taskSchedulingPolicy,omitempty"`
+	TaskSchedulingPolicy            *TaskSchedulingPolicy          `json:"taskSchedulingPolicy"`
 	TaskSlotsPerNode                *int64                         `json:"taskSlotsPerNode,omitempty"`
 	UserAccounts                    *[]UserAccount                 `json:"userAccounts,omitempty"`
 	VmSize                          *string                        `json:"vmSize,omitempty"`

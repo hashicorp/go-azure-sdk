@@ -5,5 +5,5 @@ package dataconnectors
 
 type AwsCloudTrailDataConnectorProperties struct {
 	AwsRoleArn *string                              `json:"awsRoleArn,omitempty"`
-	DataTypes  *AwsCloudTrailDataConnectorDataTypes `json:"dataTypes,omitempty"`
+	DataTypes  *AwsCloudTrailDataConnectorDataTypes `json:"dataTypes"`
 }

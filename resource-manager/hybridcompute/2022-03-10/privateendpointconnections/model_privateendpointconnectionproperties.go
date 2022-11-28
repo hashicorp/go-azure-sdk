@@ -5,7 +5,7 @@ package privateendpointconnections
 
 type PrivateEndpointConnectionProperties struct {
 	GroupIds                          *[]string                                  `json:"groupIds,omitempty"`
-	PrivateEndpoint                   *PrivateEndpointProperty                   `json:"privateEndpoint,omitempty"`
-	PrivateLinkServiceConnectionState *PrivateLinkServiceConnectionStateProperty `json:"privateLinkServiceConnectionState,omitempty"`
+	PrivateEndpoint                   *PrivateEndpointProperty                   `json:"privateEndpoint"`
+	PrivateLinkServiceConnectionState *PrivateLinkServiceConnectionStateProperty `json:"privateLinkServiceConnectionState"`
 	ProvisioningState                 *string                                    `json:"provisioningState,omitempty"`
 }

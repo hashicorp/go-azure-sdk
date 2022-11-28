@@ -5,9 +5,9 @@ package restorepointcollections
 
 type RestorePointSourceVMDataDisk struct {
 	Caching          *CachingTypes          `json:"caching,omitempty"`
-	DiskRestorePoint *ApiEntityReference    `json:"diskRestorePoint,omitempty"`
+	DiskRestorePoint *ApiEntityReference    `json:"diskRestorePoint"`
 	DiskSizeGB       *int64                 `json:"diskSizeGB,omitempty"`
 	Lun              *int64                 `json:"lun,omitempty"`
-	ManagedDisk      *ManagedDiskParameters `json:"managedDisk,omitempty"`
+	ManagedDisk      *ManagedDiskParameters `json:"managedDisk"`
 	Name             *string                `json:"name,omitempty"`
 }

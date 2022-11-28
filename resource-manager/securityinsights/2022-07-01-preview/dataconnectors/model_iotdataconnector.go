@@ -13,7 +13,7 @@ import (
 var _ DataConnector = IoTDataConnector{}
 
 type IoTDataConnector struct {
-	Properties *IoTDataConnectorProperties `json:"properties,omitempty"`
+	Properties *IoTDataConnectorProperties `json:"properties"`
 
 	// Fields inherited from DataConnector
 	Etag       *string                `json:"etag,omitempty"`

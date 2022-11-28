@@ -13,7 +13,7 @@ import (
 var _ DataConnector = AATPDataConnector{}
 
 type AATPDataConnector struct {
-	Properties *AATPDataConnectorProperties `json:"properties,omitempty"`
+	Properties *AATPDataConnectorProperties `json:"properties"`
 
 	// Fields inherited from DataConnector
 	Etag       *string                `json:"etag,omitempty"`

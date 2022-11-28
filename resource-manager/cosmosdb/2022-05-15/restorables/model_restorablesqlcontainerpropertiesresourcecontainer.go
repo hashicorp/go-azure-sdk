@@ -5,14 +5,14 @@ package restorables
 
 type RestorableSqlContainerPropertiesResourceContainer struct {
 	AnalyticalStorageTtl     *int64                    `json:"analyticalStorageTtl,omitempty"`
-	ConflictResolutionPolicy *ConflictResolutionPolicy `json:"conflictResolutionPolicy,omitempty"`
+	ConflictResolutionPolicy *ConflictResolutionPolicy `json:"conflictResolutionPolicy"`
 	DefaultTtl               *int64                    `json:"defaultTtl,omitempty"`
 	Etag                     *string                   `json:"_etag,omitempty"`
 	Id                       *string                   `json:"id,omitempty"`
-	IndexingPolicy           *IndexingPolicy           `json:"indexingPolicy,omitempty"`
-	PartitionKey             *ContainerPartitionKey    `json:"partitionKey,omitempty"`
+	IndexingPolicy           *IndexingPolicy           `json:"indexingPolicy"`
+	PartitionKey             *ContainerPartitionKey    `json:"partitionKey"`
 	Rid                      *string                   `json:"_rid,omitempty"`
 	Self                     *string                   `json:"_self,omitempty"`
 	Ts                       *float64                  `json:"_ts,omitempty"`
-	UniqueKeyPolicy          *UniqueKeyPolicy          `json:"uniqueKeyPolicy,omitempty"`
+	UniqueKeyPolicy          *UniqueKeyPolicy          `json:"uniqueKeyPolicy"`
 }

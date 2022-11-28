@@ -8,7 +8,7 @@ type WebApplicationFirewallPolicy struct {
 	Id         *string                                 `json:"id,omitempty"`
 	Location   *string                                 `json:"location,omitempty"`
 	Name       *string                                 `json:"name,omitempty"`
-	Properties *WebApplicationFirewallPolicyProperties `json:"properties,omitempty"`
+	Properties *WebApplicationFirewallPolicyProperties `json:"properties"`
 	Tags       *map[string]string                      `json:"tags,omitempty"`
 	Type       *string                                 `json:"type,omitempty"`
 }

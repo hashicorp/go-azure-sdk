@@ -10,5 +10,5 @@ type SqlVirtualMachineGroupProperties struct {
 	ScaleType            *ScaleType            `json:"scaleType,omitempty"`
 	SqlImageOffer        *string               `json:"sqlImageOffer,omitempty"`
 	SqlImageSku          *SqlVmGroupImageSku   `json:"sqlImageSku,omitempty"`
-	WsfcDomainProfile    *WsfcDomainProfile    `json:"wsfcDomainProfile,omitempty"`
+	WsfcDomainProfile    *WsfcDomainProfile    `json:"wsfcDomainProfile"`
 }

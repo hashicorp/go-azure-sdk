@@ -11,7 +11,7 @@ import (
 var _ Setting = AlertSyncSettings{}
 
 type AlertSyncSettings struct {
-	Properties *AlertSyncSettingProperties `json:"properties,omitempty"`
+	Properties *AlertSyncSettingProperties `json:"properties"`
 
 	// Fields inherited from Setting
 	Id   *string `json:"id,omitempty"`

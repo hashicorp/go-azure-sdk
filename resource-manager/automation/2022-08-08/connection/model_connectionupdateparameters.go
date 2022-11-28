@@ -5,5 +5,5 @@ package connection
 
 type ConnectionUpdateParameters struct {
 	Name       *string                     `json:"name,omitempty"`
-	Properties *ConnectionUpdateProperties `json:"properties,omitempty"`
+	Properties *ConnectionUpdateProperties `json:"properties"`
 }

@@ -5,6 +5,6 @@ package machines
 
 type OSProfile struct {
 	ComputerName         *string                        `json:"computerName,omitempty"`
-	LinuxConfiguration   *OSProfileLinuxConfiguration   `json:"linuxConfiguration,omitempty"`
-	WindowsConfiguration *OSProfileWindowsConfiguration `json:"windowsConfiguration,omitempty"`
+	LinuxConfiguration   *OSProfileLinuxConfiguration   `json:"linuxConfiguration"`
+	WindowsConfiguration *OSProfileWindowsConfiguration `json:"windowsConfiguration"`
 }

@@ -10,12 +10,12 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type FluxConfigurationProperties struct {
-	AzureBlob                      *AzureBlobDefinition                `json:"azureBlob,omitempty"`
-	Bucket                         *BucketDefinition                   `json:"bucket,omitempty"`
+	AzureBlob                      *AzureBlobDefinition                `json:"azureBlob"`
+	Bucket                         *BucketDefinition                   `json:"bucket"`
 	ComplianceState                *FluxComplianceState                `json:"complianceState,omitempty"`
 	ConfigurationProtectedSettings *map[string]string                  `json:"configurationProtectedSettings,omitempty"`
 	ErrorMessage                   *string                             `json:"errorMessage,omitempty"`
-	GitRepository                  *GitRepositoryDefinition            `json:"gitRepository,omitempty"`
+	GitRepository                  *GitRepositoryDefinition            `json:"gitRepository"`
 	Kustomizations                 *map[string]KustomizationDefinition `json:"kustomizations,omitempty"`
 	Namespace                      *string                             `json:"namespace,omitempty"`
 	ProvisioningState              *ProvisioningState                  `json:"provisioningState,omitempty"`

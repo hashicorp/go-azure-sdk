@@ -13,7 +13,7 @@ import (
 var _ Entity = HuntingBookmark{}
 
 type HuntingBookmark struct {
-	Properties *HuntingBookmarkProperties `json:"properties,omitempty"`
+	Properties *HuntingBookmarkProperties `json:"properties"`
 
 	// Fields inherited from Entity
 	Id         *string                `json:"id,omitempty"`

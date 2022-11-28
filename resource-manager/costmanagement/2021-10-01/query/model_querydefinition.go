@@ -5,7 +5,7 @@ package query
 
 type QueryDefinition struct {
 	Dataset    QueryDataset     `json:"dataset"`
-	TimePeriod *QueryTimePeriod `json:"timePeriod,omitempty"`
+	TimePeriod *QueryTimePeriod `json:"timePeriod"`
 	Timeframe  TimeframeType    `json:"timeframe"`
 	Type       ExportType       `json:"type"`
 }

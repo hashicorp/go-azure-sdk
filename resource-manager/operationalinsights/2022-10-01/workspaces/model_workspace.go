@@ -14,7 +14,7 @@ type Workspace struct {
 	Identity   *identity.SystemOrUserAssignedMap `json:"identity,omitempty"`
 	Location   string                            `json:"location"`
 	Name       *string                           `json:"name,omitempty"`
-	Properties *WorkspaceProperties              `json:"properties,omitempty"`
+	Properties *WorkspaceProperties              `json:"properties"`
 	SystemData *systemdata.SystemData            `json:"systemData,omitempty"`
 	Tags       *map[string]string                `json:"tags,omitempty"`
 	Type       *string                           `json:"type,omitempty"`

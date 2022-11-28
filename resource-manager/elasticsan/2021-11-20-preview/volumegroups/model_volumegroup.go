@@ -10,7 +10,7 @@ import (
 type VolumeGroup struct {
 	Id         *string                `json:"id,omitempty"`
 	Name       *string                `json:"name,omitempty"`
-	Properties *VolumeGroupProperties `json:"properties,omitempty"`
+	Properties *VolumeGroupProperties `json:"properties"`
 	SystemData *systemdata.SystemData `json:"systemData,omitempty"`
 	Tags       *map[string]string     `json:"tags,omitempty"`
 	Type       *string                `json:"type,omitempty"`

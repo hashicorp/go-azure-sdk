@@ -7,6 +7,6 @@ type Usage struct {
 	CurrentValue *int64     `json:"currentValue,omitempty"`
 	Id           *string    `json:"id,omitempty"`
 	Limit        *int64     `json:"limit,omitempty"`
-	Name         *UsageName `json:"name,omitempty"`
+	Name         *UsageName `json:"name"`
 	Unit         *UsageUnit `json:"unit,omitempty"`
 }

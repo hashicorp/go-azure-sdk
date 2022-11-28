@@ -6,6 +6,6 @@ package containerappsauthconfigs
 type Facebook struct {
 	Enabled         *bool            `json:"enabled,omitempty"`
 	GraphApiVersion *string          `json:"graphApiVersion,omitempty"`
-	Login           *LoginScopes     `json:"login,omitempty"`
-	Registration    *AppRegistration `json:"registration,omitempty"`
+	Login           *LoginScopes     `json:"login"`
+	Registration    *AppRegistration `json:"registration"`
 }

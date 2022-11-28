@@ -4,6 +4,6 @@ package healthbots
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type HealthBotUpdateParameters struct {
-	Sku  *Sku               `json:"sku,omitempty"`
+	Sku  *Sku               `json:"sku"`
 	Tags *map[string]string `json:"tags,omitempty"`
 }

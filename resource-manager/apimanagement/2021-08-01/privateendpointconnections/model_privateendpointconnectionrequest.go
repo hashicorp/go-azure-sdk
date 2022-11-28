@@ -5,5 +5,5 @@ package privateendpointconnections
 
 type PrivateEndpointConnectionRequest struct {
 	Id         *string                                     `json:"id,omitempty"`
-	Properties *PrivateEndpointConnectionRequestProperties `json:"properties,omitempty"`
+	Properties *PrivateEndpointConnectionRequestProperties `json:"properties"`
 }

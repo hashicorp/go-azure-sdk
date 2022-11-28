@@ -10,7 +10,7 @@ import (
 type Script struct {
 	Id         *string                `json:"id,omitempty"`
 	Name       *string                `json:"name,omitempty"`
-	Properties *ScriptProperties      `json:"properties,omitempty"`
+	Properties *ScriptProperties      `json:"properties"`
 	SystemData *systemdata.SystemData `json:"systemData,omitempty"`
 	Type       *string                `json:"type,omitempty"`
 }

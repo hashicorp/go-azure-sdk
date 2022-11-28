@@ -4,7 +4,7 @@ package containerappsauthconfigs
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type HTTPSettings struct {
-	ForwardProxy *ForwardProxy       `json:"forwardProxy,omitempty"`
+	ForwardProxy *ForwardProxy       `json:"forwardProxy"`
 	RequireHTTPS *bool               `json:"requireHttps,omitempty"`
-	Routes       *HTTPSettingsRoutes `json:"routes,omitempty"`
+	Routes       *HTTPSettingsRoutes `json:"routes"`
 }

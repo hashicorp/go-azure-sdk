@@ -11,7 +11,7 @@ type CommitmentPlan struct {
 	Etag       *string                   `json:"etag,omitempty"`
 	Id         *string                   `json:"id,omitempty"`
 	Name       *string                   `json:"name,omitempty"`
-	Properties *CommitmentPlanProperties `json:"properties,omitempty"`
+	Properties *CommitmentPlanProperties `json:"properties"`
 	SystemData *systemdata.SystemData    `json:"systemData,omitempty"`
 	Type       *string                   `json:"type,omitempty"`
 }

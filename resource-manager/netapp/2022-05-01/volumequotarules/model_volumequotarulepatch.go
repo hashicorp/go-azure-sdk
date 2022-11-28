@@ -4,5 +4,5 @@ package volumequotarules
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type VolumeQuotaRulePatch struct {
-	Properties *VolumeQuotaRulesProperties `json:"properties,omitempty"`
+	Properties *VolumeQuotaRulesProperties `json:"properties"`
 }

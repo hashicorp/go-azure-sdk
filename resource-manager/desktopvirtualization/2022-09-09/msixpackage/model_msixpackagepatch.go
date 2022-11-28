@@ -6,6 +6,6 @@ package msixpackage
 type MSIXPackagePatch struct {
 	Id         *string                     `json:"id,omitempty"`
 	Name       *string                     `json:"name,omitempty"`
-	Properties *MSIXPackagePatchProperties `json:"properties,omitempty"`
+	Properties *MSIXPackagePatchProperties `json:"properties"`
 	Type       *string                     `json:"type,omitempty"`
 }

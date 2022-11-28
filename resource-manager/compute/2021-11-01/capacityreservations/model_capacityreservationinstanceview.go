@@ -5,5 +5,5 @@ package capacityreservations
 
 type CapacityReservationInstanceView struct {
 	Statuses        *[]InstanceViewStatus           `json:"statuses,omitempty"`
-	UtilizationInfo *CapacityReservationUtilization `json:"utilizationInfo,omitempty"`
+	UtilizationInfo *CapacityReservationUtilization `json:"utilizationInfo"`
 }

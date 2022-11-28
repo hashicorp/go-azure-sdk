@@ -9,8 +9,8 @@ import (
 
 type VirtualMachineScaleSetUpdate struct {
 	Identity   *identity.SystemAndUserAssignedMap      `json:"identity,omitempty"`
-	Plan       *Plan                                   `json:"plan,omitempty"`
-	Properties *VirtualMachineScaleSetUpdateProperties `json:"properties,omitempty"`
-	Sku        *Sku                                    `json:"sku,omitempty"`
+	Plan       *Plan                                   `json:"plan"`
+	Properties *VirtualMachineScaleSetUpdateProperties `json:"properties"`
+	Sku        *Sku                                    `json:"sku"`
 	Tags       *map[string]string                      `json:"tags,omitempty"`
 }

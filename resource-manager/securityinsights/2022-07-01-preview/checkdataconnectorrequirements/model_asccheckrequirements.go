@@ -11,7 +11,7 @@ import (
 var _ DataConnectorsCheckRequirements = ASCCheckRequirements{}
 
 type ASCCheckRequirements struct {
-	Properties *ASCCheckRequirementsProperties `json:"properties,omitempty"`
+	Properties *ASCCheckRequirementsProperties `json:"properties"`
 
 	// Fields inherited from DataConnectorsCheckRequirements
 }

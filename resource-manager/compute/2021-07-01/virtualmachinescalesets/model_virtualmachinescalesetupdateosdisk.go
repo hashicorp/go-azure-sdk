@@ -6,8 +6,8 @@ package virtualmachinescalesets
 type VirtualMachineScaleSetUpdateOSDisk struct {
 	Caching                 *CachingTypes                                `json:"caching,omitempty"`
 	DiskSizeGB              *int64                                       `json:"diskSizeGB,omitempty"`
-	Image                   *VirtualHardDisk                             `json:"image,omitempty"`
-	ManagedDisk             *VirtualMachineScaleSetManagedDiskParameters `json:"managedDisk,omitempty"`
+	Image                   *VirtualHardDisk                             `json:"image"`
+	ManagedDisk             *VirtualMachineScaleSetManagedDiskParameters `json:"managedDisk"`
 	VhdContainers           *[]string                                    `json:"vhdContainers,omitempty"`
 	WriteAcceleratorEnabled *bool                                        `json:"writeAcceleratorEnabled,omitempty"`
 }

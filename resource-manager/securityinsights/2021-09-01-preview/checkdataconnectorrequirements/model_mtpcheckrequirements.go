@@ -11,7 +11,7 @@ import (
 var _ DataConnectorsCheckRequirements = MtpCheckRequirements{}
 
 type MtpCheckRequirements struct {
-	Properties *DataConnectorTenantId `json:"properties,omitempty"`
+	Properties *DataConnectorTenantId `json:"properties"`
 
 	// Fields inherited from DataConnectorsCheckRequirements
 }

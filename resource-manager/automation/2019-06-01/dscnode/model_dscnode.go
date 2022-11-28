@@ -6,6 +6,6 @@ package dscnode
 type DscNode struct {
 	Id         *string            `json:"id,omitempty"`
 	Name       *string            `json:"name,omitempty"`
-	Properties *DscNodeProperties `json:"properties,omitempty"`
+	Properties *DscNodeProperties `json:"properties"`
 	Type       *string            `json:"type,omitempty"`
 }

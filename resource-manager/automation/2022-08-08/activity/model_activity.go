@@ -6,5 +6,5 @@ package activity
 type Activity struct {
 	Id         *string             `json:"id,omitempty"`
 	Name       *string             `json:"name,omitempty"`
-	Properties *ActivityProperties `json:"properties,omitempty"`
+	Properties *ActivityProperties `json:"properties"`
 }

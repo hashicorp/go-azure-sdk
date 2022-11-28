@@ -15,9 +15,9 @@ type VirtualMachineScaleSet struct {
 	Identity         *identity.SystemAndUserAssignedMap `json:"identity,omitempty"`
 	Location         string                             `json:"location"`
 	Name             *string                            `json:"name,omitempty"`
-	Plan             *Plan                              `json:"plan,omitempty"`
-	Properties       *VirtualMachineScaleSetProperties  `json:"properties,omitempty"`
-	Sku              *Sku                               `json:"sku,omitempty"`
+	Plan             *Plan                              `json:"plan"`
+	Properties       *VirtualMachineScaleSetProperties  `json:"properties"`
+	Sku              *Sku                               `json:"sku"`
 	Tags             *map[string]string                 `json:"tags,omitempty"`
 	Type             *string                            `json:"type,omitempty"`
 	Zones            *zones.Schema                      `json:"zones,omitempty"`

@@ -4,5 +4,5 @@ package tenantconfiguration
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type SaveConfigurationParameter struct {
-	Properties *SaveConfigurationParameterProperties `json:"properties,omitempty"`
+	Properties *SaveConfigurationParameterProperties `json:"properties"`
 }

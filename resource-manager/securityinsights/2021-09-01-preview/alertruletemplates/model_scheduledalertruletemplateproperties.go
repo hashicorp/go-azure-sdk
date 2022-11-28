@@ -10,14 +10,14 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type ScheduledAlertRuleTemplateProperties struct {
-	AlertDetailsOverride             *AlertDetailsOverride          `json:"alertDetailsOverride,omitempty"`
+	AlertDetailsOverride             *AlertDetailsOverride          `json:"alertDetailsOverride"`
 	AlertRulesCreatedByTemplateCount int64                          `json:"alertRulesCreatedByTemplateCount"`
 	CreatedDateUTC                   *string                        `json:"createdDateUTC,omitempty"`
 	CustomDetails                    *map[string]string             `json:"customDetails,omitempty"`
 	Description                      string                         `json:"description"`
 	DisplayName                      string                         `json:"displayName"`
 	EntityMappings                   *[]EntityMapping               `json:"entityMappings,omitempty"`
-	EventGroupingSettings            *EventGroupingSettings         `json:"eventGroupingSettings,omitempty"`
+	EventGroupingSettings            *EventGroupingSettings         `json:"eventGroupingSettings"`
 	LastUpdatedDateUTC               *string                        `json:"lastUpdatedDateUTC,omitempty"`
 	Query                            string                         `json:"query"`
 	QueryFrequency                   string                         `json:"queryFrequency"`

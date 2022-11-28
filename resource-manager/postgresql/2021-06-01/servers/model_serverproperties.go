@@ -13,17 +13,17 @@ type ServerProperties struct {
 	AdministratorLogin         *string            `json:"administratorLogin,omitempty"`
 	AdministratorLoginPassword *string            `json:"administratorLoginPassword,omitempty"`
 	AvailabilityZone           *string            `json:"availabilityZone,omitempty"`
-	Backup                     *Backup            `json:"backup,omitempty"`
+	Backup                     *Backup            `json:"backup"`
 	CreateMode                 *CreateMode        `json:"createMode,omitempty"`
 	FullyQualifiedDomainName   *string            `json:"fullyQualifiedDomainName,omitempty"`
-	HighAvailability           *HighAvailability  `json:"highAvailability,omitempty"`
-	MaintenanceWindow          *MaintenanceWindow `json:"maintenanceWindow,omitempty"`
+	HighAvailability           *HighAvailability  `json:"highAvailability"`
+	MaintenanceWindow          *MaintenanceWindow `json:"maintenanceWindow"`
 	MinorVersion               *string            `json:"minorVersion,omitempty"`
-	Network                    *Network           `json:"network,omitempty"`
+	Network                    *Network           `json:"network"`
 	PointInTimeUTC             *string            `json:"pointInTimeUTC,omitempty"`
 	SourceServerResourceId     *string            `json:"sourceServerResourceId,omitempty"`
 	State                      *ServerState       `json:"state,omitempty"`
-	Storage                    *Storage           `json:"storage,omitempty"`
+	Storage                    *Storage           `json:"storage"`
 	Version                    *ServerVersion     `json:"version,omitempty"`
 }
 

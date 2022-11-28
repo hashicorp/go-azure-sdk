@@ -6,6 +6,6 @@ package subscriptions
 type SubscriptionQuota struct {
 	Id         *string                      `json:"id,omitempty"`
 	Name       *string                      `json:"name,omitempty"`
-	Properties *SubscriptionQuotaProperties `json:"properties,omitempty"`
+	Properties *SubscriptionQuotaProperties `json:"properties"`
 	Type       *string                      `json:"type,omitempty"`
 }

@@ -4,5 +4,5 @@ package tag
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type TagCreateUpdateParameters struct {
-	Properties *TagContractProperties `json:"properties,omitempty"`
+	Properties *TagContractProperties `json:"properties"`
 }

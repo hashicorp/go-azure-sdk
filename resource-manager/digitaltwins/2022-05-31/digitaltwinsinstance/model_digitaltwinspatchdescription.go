@@ -9,6 +9,6 @@ import (
 
 type DigitalTwinsPatchDescription struct {
 	Identity   *identity.SystemAssigned     `json:"identity,omitempty"`
-	Properties *DigitalTwinsPatchProperties `json:"properties,omitempty"`
+	Properties *DigitalTwinsPatchProperties `json:"properties"`
 	Tags       *map[string]string           `json:"tags,omitempty"`
 }

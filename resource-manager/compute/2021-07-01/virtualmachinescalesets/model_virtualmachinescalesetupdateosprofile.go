@@ -5,7 +5,7 @@ package virtualmachinescalesets
 
 type VirtualMachineScaleSetUpdateOSProfile struct {
 	CustomData           *string               `json:"customData,omitempty"`
-	LinuxConfiguration   *LinuxConfiguration   `json:"linuxConfiguration,omitempty"`
+	LinuxConfiguration   *LinuxConfiguration   `json:"linuxConfiguration"`
 	Secrets              *[]VaultSecretGroup   `json:"secrets,omitempty"`
-	WindowsConfiguration *WindowsConfiguration `json:"windowsConfiguration,omitempty"`
+	WindowsConfiguration *WindowsConfiguration `json:"windowsConfiguration"`
 }

@@ -7,6 +7,6 @@ type VCenter struct {
 	Id         *string            `json:"id,omitempty"`
 	Location   *string            `json:"location,omitempty"`
 	Name       *string            `json:"name,omitempty"`
-	Properties *VCenterProperties `json:"properties,omitempty"`
+	Properties *VCenterProperties `json:"properties"`
 	Type       *string            `json:"type,omitempty"`
 }

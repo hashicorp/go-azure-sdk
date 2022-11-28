@@ -6,6 +6,6 @@ package contenttype
 type ContentTypeContract struct {
 	Id         *string                        `json:"id,omitempty"`
 	Name       *string                        `json:"name,omitempty"`
-	Properties *ContentTypeContractProperties `json:"properties,omitempty"`
+	Properties *ContentTypeContractProperties `json:"properties"`
 	Type       *string                        `json:"type,omitempty"`
 }

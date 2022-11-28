@@ -10,7 +10,7 @@ import (
 type Role struct {
 	Id         *string                `json:"id,omitempty"`
 	Name       *string                `json:"name,omitempty"`
-	Properties *RoleProperties        `json:"properties,omitempty"`
+	Properties *RoleProperties        `json:"properties"`
 	SystemData *systemdata.SystemData `json:"systemData,omitempty"`
 	Type       *string                `json:"type,omitempty"`
 }

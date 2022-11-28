@@ -10,7 +10,7 @@ import (
 type HealthBotUpdateParameters struct {
 	Identity   *identity.SystemAndUserAssignedMap `json:"identity,omitempty"`
 	Location   *string                            `json:"location,omitempty"`
-	Properties *HealthBotProperties               `json:"properties,omitempty"`
-	Sku        *Sku                               `json:"sku,omitempty"`
+	Properties *HealthBotProperties               `json:"properties"`
+	Sku        *Sku                               `json:"sku"`
 	Tags       *map[string]string                 `json:"tags,omitempty"`
 }

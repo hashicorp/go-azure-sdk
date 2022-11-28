@@ -10,7 +10,7 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type CapacityReservationProperties struct {
-	InstanceView              *CapacityReservationInstanceView `json:"instanceView,omitempty"`
+	InstanceView              *CapacityReservationInstanceView `json:"instanceView"`
 	ProvisioningState         *string                          `json:"provisioningState,omitempty"`
 	ProvisioningTime          *string                          `json:"provisioningTime,omitempty"`
 	ReservationId             *string                          `json:"reservationId,omitempty"`

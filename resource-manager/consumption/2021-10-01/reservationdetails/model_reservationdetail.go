@@ -7,7 +7,7 @@ type ReservationDetail struct {
 	Etag       *string                      `json:"etag,omitempty"`
 	Id         *string                      `json:"id,omitempty"`
 	Name       *string                      `json:"name,omitempty"`
-	Properties *ReservationDetailProperties `json:"properties,omitempty"`
+	Properties *ReservationDetailProperties `json:"properties"`
 	Tags       *map[string]string           `json:"tags,omitempty"`
 	Type       *string                      `json:"type,omitempty"`
 }

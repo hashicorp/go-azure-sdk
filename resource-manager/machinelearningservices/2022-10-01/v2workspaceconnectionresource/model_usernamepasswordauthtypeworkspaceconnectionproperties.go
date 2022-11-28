@@ -11,7 +11,7 @@ import (
 var _ WorkspaceConnectionPropertiesV2 = UsernamePasswordAuthTypeWorkspaceConnectionProperties{}
 
 type UsernamePasswordAuthTypeWorkspaceConnectionProperties struct {
-	Credentials *WorkspaceConnectionUsernamePassword `json:"credentials,omitempty"`
+	Credentials *WorkspaceConnectionUsernamePassword `json:"credentials"`
 
 	// Fields inherited from WorkspaceConnectionPropertiesV2
 	Category    *ConnectionCategory `json:"category,omitempty"`

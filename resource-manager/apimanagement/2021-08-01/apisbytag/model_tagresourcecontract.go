@@ -4,8 +4,8 @@ package apisbytag
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type TagResourceContract struct {
-	Api       *ApiTagResourceContractProperties       `json:"api,omitempty"`
-	Operation *OperationTagResourceContractProperties `json:"operation,omitempty"`
-	Product   *ProductTagResourceContractProperties   `json:"product,omitempty"`
+	Api       *ApiTagResourceContractProperties       `json:"api"`
+	Operation *OperationTagResourceContractProperties `json:"operation"`
+	Product   *ProductTagResourceContractProperties   `json:"product"`
 	Tag       TagTagResourceContractProperties        `json:"tag"`
 }

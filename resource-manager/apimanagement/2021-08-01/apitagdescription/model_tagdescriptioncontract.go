@@ -6,6 +6,6 @@ package apitagdescription
 type TagDescriptionContract struct {
 	Id         *string                           `json:"id,omitempty"`
 	Name       *string                           `json:"name,omitempty"`
-	Properties *TagDescriptionContractProperties `json:"properties,omitempty"`
+	Properties *TagDescriptionContractProperties `json:"properties"`
 	Type       *string                           `json:"type,omitempty"`
 }

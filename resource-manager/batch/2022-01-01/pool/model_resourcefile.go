@@ -9,6 +9,6 @@ type ResourceFile struct {
 	FileMode                 *string                       `json:"fileMode,omitempty"`
 	FilePath                 *string                       `json:"filePath,omitempty"`
 	HTTPUrl                  *string                       `json:"httpUrl,omitempty"`
-	IdentityReference        *ComputeNodeIdentityReference `json:"identityReference,omitempty"`
+	IdentityReference        *ComputeNodeIdentityReference `json:"identityReference"`
 	StorageContainerUrl      *string                       `json:"storageContainerUrl,omitempty"`
 }

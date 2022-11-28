@@ -5,6 +5,6 @@ package capacityreservationgroups
 
 type CapacityReservationGroupProperties struct {
 	CapacityReservations      *[]SubResourceReadOnly                `json:"capacityReservations,omitempty"`
-	InstanceView              *CapacityReservationGroupInstanceView `json:"instanceView,omitempty"`
+	InstanceView              *CapacityReservationGroupInstanceView `json:"instanceView"`
 	VirtualMachinesAssociated *[]SubResourceReadOnly                `json:"virtualMachinesAssociated,omitempty"`
 }

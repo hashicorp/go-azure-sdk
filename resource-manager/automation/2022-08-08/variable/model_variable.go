@@ -6,6 +6,6 @@ package variable
 type Variable struct {
 	Id         *string             `json:"id,omitempty"`
 	Name       *string             `json:"name,omitempty"`
-	Properties *VariableProperties `json:"properties,omitempty"`
+	Properties *VariableProperties `json:"properties"`
 	Type       *string             `json:"type,omitempty"`
 }

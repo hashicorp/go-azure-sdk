@@ -10,7 +10,7 @@ import (
 type ServerGroupConfiguration struct {
 	Id         *string                             `json:"id,omitempty"`
 	Name       *string                             `json:"name,omitempty"`
-	Properties *ServerGroupConfigurationProperties `json:"properties,omitempty"`
+	Properties *ServerGroupConfigurationProperties `json:"properties"`
 	SystemData *systemdata.SystemData              `json:"systemData,omitempty"`
 	Type       *string                             `json:"type,omitempty"`
 }

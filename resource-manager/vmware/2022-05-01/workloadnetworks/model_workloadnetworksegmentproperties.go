@@ -10,5 +10,5 @@ type WorkloadNetworkSegmentProperties struct {
 	ProvisioningState *WorkloadNetworkSegmentProvisioningState `json:"provisioningState,omitempty"`
 	Revision          *int64                                   `json:"revision,omitempty"`
 	Status            *SegmentStatusEnum                       `json:"status,omitempty"`
-	Subnet            *WorkloadNetworkSegmentSubnet            `json:"subnet,omitempty"`
+	Subnet            *WorkloadNetworkSegmentSubnet            `json:"subnet"`
 }

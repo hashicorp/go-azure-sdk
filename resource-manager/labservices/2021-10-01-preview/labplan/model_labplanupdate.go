@@ -4,6 +4,6 @@ package labplan
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type LabPlanUpdate struct {
-	Properties *LabPlanUpdateProperties `json:"properties,omitempty"`
+	Properties *LabPlanUpdateProperties `json:"properties"`
 	Tags       *[]string                `json:"tags,omitempty"`
 }

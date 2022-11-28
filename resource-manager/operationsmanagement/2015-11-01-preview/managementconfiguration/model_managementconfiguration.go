@@ -7,6 +7,6 @@ type ManagementConfiguration struct {
 	Id         *string                            `json:"id,omitempty"`
 	Location   *string                            `json:"location,omitempty"`
 	Name       *string                            `json:"name,omitempty"`
-	Properties *ManagementConfigurationProperties `json:"properties,omitempty"`
+	Properties *ManagementConfigurationProperties `json:"properties"`
 	Type       *string                            `json:"type,omitempty"`
 }

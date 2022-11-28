@@ -5,7 +5,7 @@ package frontdoors
 
 type FrontDoorProperties struct {
 	BackendPools          *[]BackendPool                `json:"backendPools,omitempty"`
-	BackendPoolsSettings  *BackendPoolsSettings         `json:"backendPoolsSettings,omitempty"`
+	BackendPoolsSettings  *BackendPoolsSettings         `json:"backendPoolsSettings"`
 	Cname                 *string                       `json:"cname,omitempty"`
 	EnabledState          *FrontDoorEnabledState        `json:"enabledState,omitempty"`
 	FriendlyName          *string                       `json:"friendlyName,omitempty"`

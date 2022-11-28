@@ -6,9 +6,9 @@ package softwareupdateconfiguration
 type UpdateConfiguration struct {
 	AzureVirtualMachines  *[]string           `json:"azureVirtualMachines,omitempty"`
 	Duration              *string             `json:"duration,omitempty"`
-	Linux                 *LinuxProperties    `json:"linux,omitempty"`
+	Linux                 *LinuxProperties    `json:"linux"`
 	NonAzureComputerNames *[]string           `json:"nonAzureComputerNames,omitempty"`
 	OperatingSystem       OperatingSystemType `json:"operatingSystem"`
-	Targets               *TargetProperties   `json:"targets,omitempty"`
-	Windows               *WindowsProperties  `json:"windows,omitempty"`
+	Targets               *TargetProperties   `json:"targets"`
+	Windows               *WindowsProperties  `json:"windows"`
 }

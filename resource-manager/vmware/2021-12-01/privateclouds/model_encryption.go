@@ -4,6 +4,6 @@ package privateclouds
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type Encryption struct {
-	KeyVaultProperties *EncryptionKeyVaultProperties `json:"keyVaultProperties,omitempty"`
+	KeyVaultProperties *EncryptionKeyVaultProperties `json:"keyVaultProperties"`
 	Status             *EncryptionState              `json:"status,omitempty"`
 }

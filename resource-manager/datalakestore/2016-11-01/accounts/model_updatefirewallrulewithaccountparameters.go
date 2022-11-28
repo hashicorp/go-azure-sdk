@@ -5,5 +5,5 @@ package accounts
 
 type UpdateFirewallRuleWithAccountParameters struct {
 	Name       string                        `json:"name"`
-	Properties *UpdateFirewallRuleProperties `json:"properties,omitempty"`
+	Properties *UpdateFirewallRuleProperties `json:"properties"`
 }

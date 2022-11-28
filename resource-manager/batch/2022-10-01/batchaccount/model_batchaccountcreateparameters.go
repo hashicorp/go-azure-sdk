@@ -10,6 +10,6 @@ import (
 type BatchAccountCreateParameters struct {
 	Identity   *identity.SystemOrUserAssignedMap `json:"identity,omitempty"`
 	Location   string                            `json:"location"`
-	Properties *BatchAccountCreateProperties     `json:"properties,omitempty"`
+	Properties *BatchAccountCreateProperties     `json:"properties"`
 	Tags       *map[string]string                `json:"tags,omitempty"`
 }

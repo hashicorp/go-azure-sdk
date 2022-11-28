@@ -8,7 +8,7 @@ type WebTest struct {
 	Kind       *WebTestKind       `json:"kind,omitempty"`
 	Location   string             `json:"location"`
 	Name       *string            `json:"name,omitempty"`
-	Properties *WebTestProperties `json:"properties,omitempty"`
+	Properties *WebTestProperties `json:"properties"`
 	Tags       *map[string]string `json:"tags,omitempty"`
 	Type       *string            `json:"type,omitempty"`
 }

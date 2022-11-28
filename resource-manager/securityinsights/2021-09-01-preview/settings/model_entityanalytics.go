@@ -13,7 +13,7 @@ import (
 var _ Settings = EntityAnalytics{}
 
 type EntityAnalytics struct {
-	Properties *EntityAnalyticsProperties `json:"properties,omitempty"`
+	Properties *EntityAnalyticsProperties `json:"properties"`
 
 	// Fields inherited from Settings
 	Etag       *string                `json:"etag,omitempty"`

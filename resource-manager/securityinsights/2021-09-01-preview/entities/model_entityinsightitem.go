@@ -6,6 +6,6 @@ package entities
 type EntityInsightItem struct {
 	ChartQueryResults *[]InsightsTableResult              `json:"chartQueryResults,omitempty"`
 	QueryId           *string                             `json:"queryId,omitempty"`
-	QueryTimeInterval *EntityInsightItemQueryTimeInterval `json:"queryTimeInterval,omitempty"`
-	TableQueryResults *InsightsTableResult                `json:"tableQueryResults,omitempty"`
+	QueryTimeInterval *EntityInsightItemQueryTimeInterval `json:"queryTimeInterval"`
+	TableQueryResults *InsightsTableResult                `json:"tableQueryResults"`
 }

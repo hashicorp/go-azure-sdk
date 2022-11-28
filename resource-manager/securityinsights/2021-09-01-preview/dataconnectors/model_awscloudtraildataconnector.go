@@ -13,7 +13,7 @@ import (
 var _ DataConnector = AwsCloudTrailDataConnector{}
 
 type AwsCloudTrailDataConnector struct {
-	Properties *AwsCloudTrailDataConnectorProperties `json:"properties,omitempty"`
+	Properties *AwsCloudTrailDataConnectorProperties `json:"properties"`
 
 	// Fields inherited from DataConnector
 	Etag       *string                `json:"etag,omitempty"`

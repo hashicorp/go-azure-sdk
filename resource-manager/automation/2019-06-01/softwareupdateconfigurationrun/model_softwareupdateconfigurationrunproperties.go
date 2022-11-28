@@ -19,10 +19,10 @@ type SoftwareUpdateConfigurationRunProperties struct {
 	LastModifiedBy              *string                              `json:"lastModifiedBy,omitempty"`
 	LastModifiedTime            *string                              `json:"lastModifiedTime,omitempty"`
 	OsType                      *string                              `json:"osType,omitempty"`
-	SoftwareUpdateConfiguration *UpdateConfigurationNavigation       `json:"softwareUpdateConfiguration,omitempty"`
+	SoftwareUpdateConfiguration *UpdateConfigurationNavigation       `json:"softwareUpdateConfiguration"`
 	StartTime                   *string                              `json:"startTime,omitempty"`
 	Status                      *string                              `json:"status,omitempty"`
-	Tasks                       *SoftwareUpdateConfigurationRunTasks `json:"tasks,omitempty"`
+	Tasks                       *SoftwareUpdateConfigurationRunTasks `json:"tasks"`
 }
 
 func (o *SoftwareUpdateConfigurationRunProperties) GetCreationTimeAsTime() (*time.Time, error) {

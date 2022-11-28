@@ -5,7 +5,7 @@ package appplatform
 
 type GatewayRouteConfigProperties struct {
 	AppResourceId     *string                              `json:"appResourceId,omitempty"`
-	OpenApi           *GatewayRouteConfigOpenApiProperties `json:"openApi,omitempty"`
+	OpenApi           *GatewayRouteConfigOpenApiProperties `json:"openApi"`
 	Protocol          *GatewayRouteConfigProtocol          `json:"protocol,omitempty"`
 	ProvisioningState *GatewayProvisioningState            `json:"provisioningState,omitempty"`
 	Routes            *[]GatewayApiRoute                   `json:"routes,omitempty"`

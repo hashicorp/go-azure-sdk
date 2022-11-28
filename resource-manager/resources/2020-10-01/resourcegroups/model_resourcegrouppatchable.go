@@ -6,6 +6,6 @@ package resourcegroups
 type ResourceGroupPatchable struct {
 	ManagedBy  *string                  `json:"managedBy,omitempty"`
 	Name       *string                  `json:"name,omitempty"`
-	Properties *ResourceGroupProperties `json:"properties,omitempty"`
+	Properties *ResourceGroupProperties `json:"properties"`
 	Tags       *map[string]string       `json:"tags,omitempty"`
 }

@@ -12,7 +12,7 @@ import (
 type VaultUsage struct {
 	CurrentValue  *int64      `json:"currentValue,omitempty"`
 	Limit         *int64      `json:"limit,omitempty"`
-	Name          *NameInfo   `json:"name,omitempty"`
+	Name          *NameInfo   `json:"name"`
 	NextResetTime *string     `json:"nextResetTime,omitempty"`
 	QuotaPeriod   *string     `json:"quotaPeriod,omitempty"`
 	Unit          *UsagesUnit `json:"unit,omitempty"`

@@ -5,6 +5,6 @@ package collectorpolicies
 
 type CollectorPolicyPropertiesFormat struct {
 	EmissionPolicies  *[]EmissionPoliciesPropertiesFormat `json:"emissionPolicies,omitempty"`
-	IngestionPolicy   *IngestionPolicyPropertiesFormat    `json:"ingestionPolicy,omitempty"`
+	IngestionPolicy   *IngestionPolicyPropertiesFormat    `json:"ingestionPolicy"`
 	ProvisioningState *ProvisioningState                  `json:"provisioningState,omitempty"`
 }

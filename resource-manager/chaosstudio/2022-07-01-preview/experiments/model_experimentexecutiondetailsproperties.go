@@ -14,7 +14,7 @@ type ExperimentExecutionDetailsProperties struct {
 	ExperimentId       *string                                             `json:"experimentId,omitempty"`
 	FailureReason      *string                                             `json:"failureReason,omitempty"`
 	LastActionDateTime *string                                             `json:"lastActionDateTime,omitempty"`
-	RunInformation     *ExperimentExecutionDetailsPropertiesRunInformation `json:"runInformation,omitempty"`
+	RunInformation     *ExperimentExecutionDetailsPropertiesRunInformation `json:"runInformation"`
 	StartDateTime      *string                                             `json:"startDateTime,omitempty"`
 	Status             *string                                             `json:"status,omitempty"`
 	StopDateTime       *string                                             `json:"stopDateTime,omitempty"`

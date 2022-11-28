@@ -4,7 +4,7 @@ package extensionoperationstatus
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type OperationStatusResult struct {
-	Error      *ErrorDetail       `json:"error,omitempty"`
+	Error      *ErrorDetail       `json:"error"`
 	Id         *string            `json:"id,omitempty"`
 	Name       *string            `json:"name,omitempty"`
 	Properties *map[string]string `json:"properties,omitempty"`

@@ -6,6 +6,6 @@ package scripts
 type ScriptExecution struct {
 	Id         *string                    `json:"id,omitempty"`
 	Name       *string                    `json:"name,omitempty"`
-	Properties *ScriptExecutionProperties `json:"properties,omitempty"`
+	Properties *ScriptExecutionProperties `json:"properties"`
 	Type       *string                    `json:"type,omitempty"`
 }

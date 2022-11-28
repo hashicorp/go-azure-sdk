@@ -7,6 +7,6 @@ type VaultHealthDetails struct {
 	Id         *string                `json:"id,omitempty"`
 	Location   *string                `json:"location,omitempty"`
 	Name       *string                `json:"name,omitempty"`
-	Properties *VaultHealthProperties `json:"properties,omitempty"`
+	Properties *VaultHealthProperties `json:"properties"`
 	Type       *string                `json:"type,omitempty"`
 }

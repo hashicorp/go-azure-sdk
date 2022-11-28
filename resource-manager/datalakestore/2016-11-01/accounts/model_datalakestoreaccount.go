@@ -12,7 +12,7 @@ type DataLakeStoreAccount struct {
 	Identity   *identity.SystemAssigned        `json:"identity,omitempty"`
 	Location   *string                         `json:"location,omitempty"`
 	Name       *string                         `json:"name,omitempty"`
-	Properties *DataLakeStoreAccountProperties `json:"properties,omitempty"`
+	Properties *DataLakeStoreAccountProperties `json:"properties"`
 	Tags       *map[string]string              `json:"tags,omitempty"`
 	Type       *string                         `json:"type,omitempty"`
 }

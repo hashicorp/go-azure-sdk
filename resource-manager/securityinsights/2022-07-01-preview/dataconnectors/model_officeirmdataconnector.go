@@ -13,7 +13,7 @@ import (
 var _ DataConnector = OfficeIRMDataConnector{}
 
 type OfficeIRMDataConnector struct {
-	Properties *OfficeIRMDataConnectorProperties `json:"properties,omitempty"`
+	Properties *OfficeIRMDataConnectorProperties `json:"properties"`
 
 	// Fields inherited from DataConnector
 	Etag       *string                `json:"etag,omitempty"`

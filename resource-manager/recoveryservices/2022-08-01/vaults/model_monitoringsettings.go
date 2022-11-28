@@ -4,6 +4,6 @@ package vaults
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type MonitoringSettings struct {
-	AzureMonitorAlertSettings *AzureMonitorAlertSettings `json:"azureMonitorAlertSettings,omitempty"`
-	ClassicAlertSettings      *ClassicAlertSettings      `json:"classicAlertSettings,omitempty"`
+	AzureMonitorAlertSettings *AzureMonitorAlertSettings `json:"azureMonitorAlertSettings"`
+	ClassicAlertSettings      *ClassicAlertSettings      `json:"classicAlertSettings"`
 }

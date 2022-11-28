@@ -11,7 +11,7 @@ type CapabilityType struct {
 	Id         *string                   `json:"id,omitempty"`
 	Location   *string                   `json:"location,omitempty"`
 	Name       *string                   `json:"name,omitempty"`
-	Properties *CapabilityTypeProperties `json:"properties,omitempty"`
+	Properties *CapabilityTypeProperties `json:"properties"`
 	SystemData *systemdata.SystemData    `json:"systemData,omitempty"`
 	Type       *string                   `json:"type,omitempty"`
 }

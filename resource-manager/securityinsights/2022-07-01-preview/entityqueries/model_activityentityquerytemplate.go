@@ -13,7 +13,7 @@ import (
 var _ EntityQueryTemplate = ActivityEntityQueryTemplate{}
 
 type ActivityEntityQueryTemplate struct {
-	Properties *ActivityEntityQueryTemplateProperties `json:"properties,omitempty"`
+	Properties *ActivityEntityQueryTemplateProperties `json:"properties"`
 
 	// Fields inherited from EntityQueryTemplate
 	Id         *string                `json:"id,omitempty"`

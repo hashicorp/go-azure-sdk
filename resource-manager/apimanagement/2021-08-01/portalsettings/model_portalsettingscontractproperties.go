@@ -5,9 +5,9 @@ package portalsettings
 
 type PortalSettingsContractProperties struct {
 	Enabled          *bool                                      `json:"enabled,omitempty"`
-	Subscriptions    *SubscriptionsDelegationSettingsProperties `json:"subscriptions,omitempty"`
-	TermsOfService   *TermsOfServiceProperties                  `json:"termsOfService,omitempty"`
+	Subscriptions    *SubscriptionsDelegationSettingsProperties `json:"subscriptions"`
+	TermsOfService   *TermsOfServiceProperties                  `json:"termsOfService"`
 	Url              *string                                    `json:"url,omitempty"`
-	UserRegistration *RegistrationDelegationSettingsProperties  `json:"userRegistration,omitempty"`
+	UserRegistration *RegistrationDelegationSettingsProperties  `json:"userRegistration"`
 	ValidationKey    *string                                    `json:"validationKey,omitempty"`
 }
