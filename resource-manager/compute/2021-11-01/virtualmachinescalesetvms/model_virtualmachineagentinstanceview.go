@@ -6,5 +6,5 @@ package virtualmachinescalesetvms
 type VirtualMachineAgentInstanceView struct {
 	ExtensionHandlers *[]VirtualMachineExtensionHandlerInstanceView `json:"extensionHandlers,omitempty"`
 	Statuses          *[]InstanceViewStatus                         `json:"statuses,omitempty"`
-	VmAgentVersion    *string                                       `json:"vmAgentVersion,omitempty"`
+	VMAgentVersion    *string                                       `json:"vmAgentVersion,omitempty"`
 }

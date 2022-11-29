@@ -19,7 +19,7 @@ type PrivateCloudProperties struct {
 	ProvisioningNetwork          *string                        `json:"provisioningNetwork,omitempty"`
 	ProvisioningState            *PrivateCloudProvisioningState `json:"provisioningState,omitempty"`
 	SecondaryCircuit             *Circuit                       `json:"secondaryCircuit,omitempty"`
+	VMotionNetwork               *string                        `json:"vmotionNetwork,omitempty"`
 	VcenterCertificateThumbprint *string                        `json:"vcenterCertificateThumbprint,omitempty"`
 	VcenterPassword              *string                        `json:"vcenterPassword,omitempty"`
-	VmotionNetwork               *string                        `json:"vmotionNetwork,omitempty"`
 }

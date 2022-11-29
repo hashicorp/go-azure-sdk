@@ -27,6 +27,6 @@ type VirtualMachineProperties struct {
 	SecurityProfile         *SecurityProfile                   `json:"securityProfile,omitempty"`
 	StorageProfile          *StorageProfile                    `json:"storageProfile,omitempty"`
 	UserData                *string                            `json:"userData,omitempty"`
+	VMId                    *string                            `json:"vmId,omitempty"`
 	VirtualMachineScaleSet  *SubResource                       `json:"virtualMachineScaleSet,omitempty"`
-	VmId                    *string                            `json:"vmId,omitempty"`
 }

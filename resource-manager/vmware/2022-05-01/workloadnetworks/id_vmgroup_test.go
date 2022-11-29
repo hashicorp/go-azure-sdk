@@ -6,10 +6,10 @@ import (
 	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
 )
 
-var _ resourceids.ResourceId = VmGroupId{}
+var _ resourceids.ResourceId = VMGroupId{}
 
-func TestNewVmGroupID(t *testing.T) {
-	id := NewVmGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudValue", "vmGroupIdValue")
+func TestNewVMGroupID(t *testing.T) {
+	id := NewVMGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudValue", "vmGroupIdValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -28,19 +28,19 @@ func TestNewVmGroupID(t *testing.T) {
 	}
 }
 
-func TestFormatVmGroupID(t *testing.T) {
-	actual := NewVmGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudValue", "vmGroupIdValue").ID()
+func TestFormatVMGroupID(t *testing.T) {
+	actual := NewVMGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudValue", "vmGroupIdValue").ID()
 	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AVS/privateClouds/privateCloudValue/workloadNetworks/default/vmGroups/vmGroupIdValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
 }
 
-func TestParseVmGroupID(t *testing.T) {
+func TestParseVMGroupID(t *testing.T) {
 	testData := []struct {
 		Input    string
 		Error    bool
-		Expected *VmGroupId
+		Expected *VMGroupId
 	}{
 		{
 			// Incomplete URI
@@ -105,7 +105,7 @@ func TestParseVmGroupID(t *testing.T) {
 		{
 			// Valid URI
 			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AVS/privateClouds/privateCloudValue/workloadNetworks/default/vmGroups/vmGroupIdValue",
-			Expected: &VmGroupId{
+			Expected: &VMGroupId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				PrivateCloudName:  "privateCloudValue",
@@ -121,7 +121,7 @@ func TestParseVmGroupID(t *testing.T) {
 	for _, v := range testData {
 		t.Logf("[DEBUG] Testing %q", v.Input)
 
-		actual, err := ParseVmGroupID(v.Input)
+		actual, err := ParseVMGroupID(v.Input)
 		if err != nil {
 			if v.Error {
 				continue
@@ -152,11 +152,11 @@ func TestParseVmGroupID(t *testing.T) {
 	}
 }
 
-func TestParseVmGroupIDInsensitively(t *testing.T) {
+func TestParseVMGroupIDInsensitively(t *testing.T) {
 	testData := []struct {
 		Input    string
 		Error    bool
-		Expected *VmGroupId
+		Expected *VMGroupId
 	}{
 		{
 			// Incomplete URI
@@ -276,7 +276,7 @@ func TestParseVmGroupIDInsensitively(t *testing.T) {
 		{
 			// Valid URI
 			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AVS/privateClouds/privateCloudValue/workloadNetworks/default/vmGroups/vmGroupIdValue",
-			Expected: &VmGroupId{
+			Expected: &VMGroupId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				PrivateCloudName:  "privateCloudValue",
@@ -291,7 +291,7 @@ func TestParseVmGroupIDInsensitively(t *testing.T) {
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
 			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aVs/pRiVaTeClOuDs/pRiVaTeClOuDvAlUe/wOrKlOaDnEtWoRkS/dEfAuLt/vMgRoUpS/vMgRoUpIdVaLuE",
-			Expected: &VmGroupId{
+			Expected: &VMGroupId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
 				PrivateCloudName:  "pRiVaTeClOuDvAlUe",
@@ -307,7 +307,7 @@ func TestParseVmGroupIDInsensitively(t *testing.T) {
 	for _, v := range testData {
 		t.Logf("[DEBUG] Testing %q", v.Input)
 
-		actual, err := ParseVmGroupIDInsensitively(v.Input)
+		actual, err := ParseVMGroupIDInsensitively(v.Input)
 		if err != nil {
 			if v.Error {
 				continue
@@ -338,10 +338,10 @@ func TestParseVmGroupIDInsensitively(t *testing.T) {
 	}
 }
 
-func TestSegmentsForVmGroupId(t *testing.T) {
-	segments := VmGroupId{}.Segments()
+func TestSegmentsForVMGroupId(t *testing.T) {
+	segments := VMGroupId{}.Segments()
 	if len(segments) == 0 {
-		t.Fatalf("VmGroupId has no segments")
+		t.Fatalf("VMGroupId has no segments")
 	}
 
 	uniqueNames := make(map[string]struct{}, 0)

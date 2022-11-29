@@ -4,5 +4,5 @@ package virtualmachineimages
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type DisallowedConfiguration struct {
-	VmDiskType *VmDiskTypes `json:"vmDiskType,omitempty"`
+	VMDiskType *VMDiskTypes `json:"vmDiskType,omitempty"`
 }

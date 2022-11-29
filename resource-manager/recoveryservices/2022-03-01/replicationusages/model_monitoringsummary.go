@@ -8,6 +8,6 @@ type MonitoringSummary struct {
 	EventsCount              *int64 `json:"eventsCount,omitempty"`
 	SupportedProviderCount   *int64 `json:"supportedProviderCount,omitempty"`
 	UnHealthyProviderCount   *int64 `json:"unHealthyProviderCount,omitempty"`
-	UnHealthyVmCount         *int64 `json:"unHealthyVmCount,omitempty"`
+	UnHealthyVMCount         *int64 `json:"unHealthyVmCount,omitempty"`
 	UnsupportedProviderCount *int64 `json:"unsupportedProviderCount,omitempty"`
 }

@@ -17,8 +17,8 @@ type FailoverReplicationProtectedItemDetails struct {
 	RecoveryPointId         *string `json:"recoveryPointId,omitempty"`
 	RecoveryPointTime       *string `json:"recoveryPointTime,omitempty"`
 	Subnet                  *string `json:"subnet,omitempty"`
-	TestVmFriendlyName      *string `json:"testVmFriendlyName,omitempty"`
-	TestVmName              *string `json:"testVmName,omitempty"`
+	TestVMFriendlyName      *string `json:"testVmFriendlyName,omitempty"`
+	TestVMName              *string `json:"testVmName,omitempty"`
 }
 
 func (o *FailoverReplicationProtectedItemDetails) GetRecoveryPointTimeAsTime() (*time.Time, error) {

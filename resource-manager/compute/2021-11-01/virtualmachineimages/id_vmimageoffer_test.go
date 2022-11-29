@@ -6,10 +6,10 @@ import (
 	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
 )
 
-var _ resourceids.ResourceId = VmImageOfferId{}
+var _ resourceids.ResourceId = VMImageOfferId{}
 
-func TestNewVmImageOfferID(t *testing.T) {
-	id := NewVmImageOfferID("12345678-1234-9876-4563-123456789012", "locationValue", "edgeZoneValue", "publisherValue", "offerValue")
+func TestNewVMImageOfferID(t *testing.T) {
+	id := NewVMImageOfferID("12345678-1234-9876-4563-123456789012", "locationValue", "edgeZoneValue", "publisherValue", "offerValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -32,19 +32,19 @@ func TestNewVmImageOfferID(t *testing.T) {
 	}
 }
 
-func TestFormatVmImageOfferID(t *testing.T) {
-	actual := NewVmImageOfferID("12345678-1234-9876-4563-123456789012", "locationValue", "edgeZoneValue", "publisherValue", "offerValue").ID()
+func TestFormatVMImageOfferID(t *testing.T) {
+	actual := NewVMImageOfferID("12345678-1234-9876-4563-123456789012", "locationValue", "edgeZoneValue", "publisherValue", "offerValue").ID()
 	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationValue/edgeZones/edgeZoneValue/publishers/publisherValue/artifactTypes/vmImage/offers/offerValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
 }
 
-func TestParseVmImageOfferID(t *testing.T) {
+func TestParseVMImageOfferID(t *testing.T) {
 	testData := []struct {
 		Input    string
 		Error    bool
-		Expected *VmImageOfferId
+		Expected *VMImageOfferId
 	}{
 		{
 			// Incomplete URI
@@ -119,7 +119,7 @@ func TestParseVmImageOfferID(t *testing.T) {
 		{
 			// Valid URI
 			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationValue/edgeZones/edgeZoneValue/publishers/publisherValue/artifactTypes/vmImage/offers/offerValue",
-			Expected: &VmImageOfferId{
+			Expected: &VMImageOfferId{
 				SubscriptionId: "12345678-1234-9876-4563-123456789012",
 				Location:       "locationValue",
 				EdgeZone:       "edgeZoneValue",
@@ -136,7 +136,7 @@ func TestParseVmImageOfferID(t *testing.T) {
 	for _, v := range testData {
 		t.Logf("[DEBUG] Testing %q", v.Input)
 
-		actual, err := ParseVmImageOfferID(v.Input)
+		actual, err := ParseVMImageOfferID(v.Input)
 		if err != nil {
 			if v.Error {
 				continue
@@ -171,11 +171,11 @@ func TestParseVmImageOfferID(t *testing.T) {
 	}
 }
 
-func TestParseVmImageOfferIDInsensitively(t *testing.T) {
+func TestParseVMImageOfferIDInsensitively(t *testing.T) {
 	testData := []struct {
 		Input    string
 		Error    bool
-		Expected *VmImageOfferId
+		Expected *VMImageOfferId
 	}{
 		{
 			// Incomplete URI
@@ -315,7 +315,7 @@ func TestParseVmImageOfferIDInsensitively(t *testing.T) {
 		{
 			// Valid URI
 			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationValue/edgeZones/edgeZoneValue/publishers/publisherValue/artifactTypes/vmImage/offers/offerValue",
-			Expected: &VmImageOfferId{
+			Expected: &VMImageOfferId{
 				SubscriptionId: "12345678-1234-9876-4563-123456789012",
 				Location:       "locationValue",
 				EdgeZone:       "edgeZoneValue",
@@ -331,7 +331,7 @@ func TestParseVmImageOfferIDInsensitively(t *testing.T) {
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
 			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOmPuTe/lOcAtIoNs/lOcAtIoNvAlUe/eDgEzOnEs/eDgEzOnEvAlUe/pUbLiShErS/pUbLiShErVaLuE/aRtIfAcTtYpEs/vMiMaGe/oFfErS/oFfErVaLuE",
-			Expected: &VmImageOfferId{
+			Expected: &VMImageOfferId{
 				SubscriptionId: "12345678-1234-9876-4563-123456789012",
 				Location:       "lOcAtIoNvAlUe",
 				EdgeZone:       "eDgEzOnEvAlUe",
@@ -348,7 +348,7 @@ func TestParseVmImageOfferIDInsensitively(t *testing.T) {
 	for _, v := range testData {
 		t.Logf("[DEBUG] Testing %q", v.Input)
 
-		actual, err := ParseVmImageOfferIDInsensitively(v.Input)
+		actual, err := ParseVMImageOfferIDInsensitively(v.Input)
 		if err != nil {
 			if v.Error {
 				continue
@@ -383,10 +383,10 @@ func TestParseVmImageOfferIDInsensitively(t *testing.T) {
 	}
 }
 
-func TestSegmentsForVmImageOfferId(t *testing.T) {
-	segments := VmImageOfferId{}.Segments()
+func TestSegmentsForVMImageOfferId(t *testing.T) {
+	segments := VMImageOfferId{}.Segments()
 	if len(segments) == 0 {
-		t.Fatalf("VmImageOfferId has no segments")
+		t.Fatalf("VMImageOfferId has no segments")
 	}
 
 	uniqueNames := make(map[string]struct{}, 0)

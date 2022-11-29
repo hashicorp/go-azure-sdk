@@ -28,12 +28,12 @@ type VMwareCbtEnableMigrationInput struct {
 	TargetProximityPlacementGroupId       *string               `json:"targetProximityPlacementGroupId,omitempty"`
 	TargetResourceGroupId                 string                `json:"targetResourceGroupId"`
 	TargetSubnetName                      *string               `json:"targetSubnetName,omitempty"`
-	TargetVmName                          *string               `json:"targetVmName,omitempty"`
-	TargetVmSize                          *string               `json:"targetVmSize,omitempty"`
-	TargetVmTags                          *map[string]string    `json:"targetVmTags,omitempty"`
+	TargetVMName                          *string               `json:"targetVmName,omitempty"`
+	TargetVMSize                          *string               `json:"targetVmSize,omitempty"`
+	TargetVMTags                          *map[string]string    `json:"targetVmTags,omitempty"`
 	TestNetworkId                         *string               `json:"testNetworkId,omitempty"`
 	TestSubnetName                        *string               `json:"testSubnetName,omitempty"`
-	VmwareMachineId                       string                `json:"vmwareMachineId"`
+	VMwareMachineId                       string                `json:"vmwareMachineId"`
 
 	// Fields inherited from EnableMigrationProviderSpecificInput
 }

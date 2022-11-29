@@ -28,17 +28,17 @@ func unmarshalPlacementPolicyPropertiesImplementation(input []byte) (PlacementPo
 	}
 
 	if strings.EqualFold(value, "VmHost") {
-		var out VmHostPlacementPolicyProperties
+		var out VMHostPlacementPolicyProperties
 		if err := json.Unmarshal(input, &out); err != nil {
-			return nil, fmt.Errorf("unmarshaling into VmHostPlacementPolicyProperties: %+v", err)
+			return nil, fmt.Errorf("unmarshaling into VMHostPlacementPolicyProperties: %+v", err)
 		}
 		return out, nil
 	}
 
 	if strings.EqualFold(value, "VmVm") {
-		var out VmVmPlacementPolicyProperties
+		var out VMVMPlacementPolicyProperties
 		if err := json.Unmarshal(input, &out); err != nil {
-			return nil, fmt.Errorf("unmarshaling into VmVmPlacementPolicyProperties: %+v", err)
+			return nil, fmt.Errorf("unmarshaling into VMVMPlacementPolicyProperties: %+v", err)
 		}
 		return out, nil
 	}

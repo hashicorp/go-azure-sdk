@@ -13,7 +13,7 @@ var _ TestMigrateProviderSpecificInput = VMwareCbtTestMigrateInput{}
 type VMwareCbtTestMigrateInput struct {
 	NetworkId       string               `json:"networkId"`
 	RecoveryPointId string               `json:"recoveryPointId"`
-	VmNics          *[]VMwareCbtNicInput `json:"vmNics,omitempty"`
+	VMNics          *[]VMwareCbtNicInput `json:"vmNics,omitempty"`
 
 	// Fields inherited from TestMigrateProviderSpecificInput
 }

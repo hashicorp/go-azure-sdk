@@ -126,7 +126,7 @@ if err := client.CreateSegmentsThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := workloadnetworks.NewVmGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudValue", "vmGroupIdValue")
+id := workloadnetworks.NewVMGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudValue", "vmGroupIdValue")
 
 payload := workloadnetworks.WorkloadNetworkVMGroup{
 	// ...
@@ -215,7 +215,7 @@ if err := client.DeleteSegmentThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := workloadnetworks.NewVmGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudValue", "vmGroupIdValue")
+id := workloadnetworks.NewVMGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudValue", "vmGroupIdValue")
 
 if err := client.DeleteVMGroupThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -339,7 +339,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := workloadnetworks.NewVmGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudValue", "vmGroupIdValue")
+id := workloadnetworks.NewVMGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudValue", "vmGroupIdValue")
 
 read, err := client.GetVMGroup(ctx, id)
 if err != nil {
@@ -609,7 +609,7 @@ if err := client.UpdateSegmentsThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := workloadnetworks.NewVmGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudValue", "vmGroupIdValue")
+id := workloadnetworks.NewVMGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudValue", "vmGroupIdValue")
 
 payload := workloadnetworks.WorkloadNetworkVMGroup{
 	// ...

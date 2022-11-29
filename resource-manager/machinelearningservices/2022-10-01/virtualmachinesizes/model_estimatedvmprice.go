@@ -6,5 +6,5 @@ package virtualmachinesizes
 type EstimatedVMPrice struct {
 	OsType      VMPriceOSType `json:"osType"`
 	RetailPrice float64       `json:"retailPrice"`
-	VmTier      VMTier        `json:"vmTier"`
+	VMTier      VMTier        `json:"vmTier"`
 }

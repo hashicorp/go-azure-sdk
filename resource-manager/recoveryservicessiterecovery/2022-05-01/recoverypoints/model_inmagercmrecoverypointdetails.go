@@ -11,7 +11,7 @@ import (
 var _ ProviderSpecificRecoveryPointDetails = InMageRcmRecoveryPointDetails{}
 
 type InMageRcmRecoveryPointDetails struct {
-	IsMultiVmSyncPoint *string `json:"isMultiVmSyncPoint,omitempty"`
+	IsMultiVMSyncPoint *string `json:"isMultiVmSyncPoint,omitempty"`
 
 	// Fields inherited from ProviderSpecificRecoveryPointDetails
 }

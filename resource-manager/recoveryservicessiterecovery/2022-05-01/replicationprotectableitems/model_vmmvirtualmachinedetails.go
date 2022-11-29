@@ -8,9 +8,9 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ ConfigurationSettings = VmmVirtualMachineDetails{}
+var _ ConfigurationSettings = VMmVirtualMachineDetails{}
 
-type VmmVirtualMachineDetails struct {
+type VMmVirtualMachineDetails struct {
 
 	// Fields inherited from HyperVVirtualMachineDetails
 	DiskDetails            *[]DiskDetails  `json:"diskDetails,omitempty"`
@@ -23,25 +23,25 @@ type VmmVirtualMachineDetails struct {
 	SourceItemId           *string         `json:"sourceItemId,omitempty"`
 }
 
-var _ json.Marshaler = VmmVirtualMachineDetails{}
+var _ json.Marshaler = VMmVirtualMachineDetails{}
 
-func (s VmmVirtualMachineDetails) MarshalJSON() ([]byte, error) {
-	type wrapper VmmVirtualMachineDetails
+func (s VMmVirtualMachineDetails) MarshalJSON() ([]byte, error) {
+	type wrapper VMmVirtualMachineDetails
 	wrapped := wrapper(s)
 	encoded, err := json.Marshal(wrapped)
 	if err != nil {
-		return nil, fmt.Errorf("marshaling VmmVirtualMachineDetails: %+v", err)
+		return nil, fmt.Errorf("marshaling VMmVirtualMachineDetails: %+v", err)
 	}
 
 	var decoded map[string]interface{}
 	if err := json.Unmarshal(encoded, &decoded); err != nil {
-		return nil, fmt.Errorf("unmarshaling VmmVirtualMachineDetails: %+v", err)
+		return nil, fmt.Errorf("unmarshaling VMmVirtualMachineDetails: %+v", err)
 	}
 	decoded["instanceType"] = "VmmVirtualMachine"
 
 	encoded, err = json.Marshal(decoded)
 	if err != nil {
-		return nil, fmt.Errorf("re-marshaling VmmVirtualMachineDetails: %+v", err)
+		return nil, fmt.Errorf("re-marshaling VMmVirtualMachineDetails: %+v", err)
 	}
 
 	return encoded, nil
