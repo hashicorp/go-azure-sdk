@@ -4,15 +4,15 @@ package charges
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type ModernChargeSummaryProperties struct {
-	AzureCharges            *Amount `json:"azureCharges"`
+	AzureCharges            *Amount `json:"azureCharges,omitempty"`
 	BillingAccountId        *string `json:"billingAccountId,omitempty"`
 	BillingPeriodId         *string `json:"billingPeriodId,omitempty"`
 	BillingProfileId        *string `json:"billingProfileId,omitempty"`
-	ChargesBilledSeparately *Amount `json:"chargesBilledSeparately"`
+	ChargesBilledSeparately *Amount `json:"chargesBilledSeparately,omitempty"`
 	CustomerId              *string `json:"customerId,omitempty"`
 	InvoiceSectionId        *string `json:"invoiceSectionId,omitempty"`
 	IsInvoiced              *bool   `json:"isInvoiced,omitempty"`
-	MarketplaceCharges      *Amount `json:"marketplaceCharges"`
+	MarketplaceCharges      *Amount `json:"marketplaceCharges,omitempty"`
 	UsageEnd                *string `json:"usageEnd,omitempty"`
 	UsageStart              *string `json:"usageStart,omitempty"`
 }

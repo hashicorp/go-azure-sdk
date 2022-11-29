@@ -4,5 +4,5 @@ package tenantaccess
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type AccessInformationUpdateParameters struct {
-	Properties *AccessInformationUpdateParameterProperties `json:"properties"`
+	Properties *AccessInformationUpdateParameterProperties `json:"properties,omitempty"`
 }

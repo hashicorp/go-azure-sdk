@@ -16,6 +16,6 @@ type AdditionalLocation struct {
 	PublicIPAddressId           *string                           `json:"publicIpAddressId,omitempty"`
 	PublicIPAddresses           *[]string                         `json:"publicIPAddresses,omitempty"`
 	Sku                         ApiManagementServiceSkuProperties `json:"sku"`
-	VirtualNetworkConfiguration *VirtualNetworkConfiguration      `json:"virtualNetworkConfiguration"`
+	VirtualNetworkConfiguration *VirtualNetworkConfiguration      `json:"virtualNetworkConfiguration,omitempty"`
 	Zones                       *zones.Schema                     `json:"zones,omitempty"`
 }

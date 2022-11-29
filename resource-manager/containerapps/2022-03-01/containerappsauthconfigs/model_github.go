@@ -5,6 +5,6 @@ package containerappsauthconfigs
 
 type GitHub struct {
 	Enabled      *bool               `json:"enabled,omitempty"`
-	Login        *LoginScopes        `json:"login"`
-	Registration *ClientRegistration `json:"registration"`
+	Login        *LoginScopes        `json:"login,omitempty"`
+	Registration *ClientRegistration `json:"registration,omitempty"`
 }

@@ -9,7 +9,7 @@ type ServerGroupPropertiesForUpdate struct {
 	BackupRetentionDays        *int64             `json:"backupRetentionDays,omitempty"`
 	CitusVersion               *CitusVersion      `json:"citusVersion,omitempty"`
 	EnableShardsOnCoordinator  *bool              `json:"enableShardsOnCoordinator,omitempty"`
-	MaintenanceWindow          *MaintenanceWindow `json:"maintenanceWindow"`
+	MaintenanceWindow          *MaintenanceWindow `json:"maintenanceWindow,omitempty"`
 	PostgresqlVersion          *PostgreSQLVersion `json:"postgresqlVersion,omitempty"`
 	ServerRoleGroups           *[]ServerRoleGroup `json:"serverRoleGroups,omitempty"`
 	StandbyAvailabilityZone    *string            `json:"standbyAvailabilityZone,omitempty"`

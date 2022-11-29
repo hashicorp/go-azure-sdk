@@ -4,6 +4,6 @@ package apidiagnostic
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type PipelineDiagnosticSettings struct {
-	Request  *HTTPMessageDiagnostic `json:"request"`
-	Response *HTTPMessageDiagnostic `json:"response"`
+	Request  *HTTPMessageDiagnostic `json:"request,omitempty"`
+	Response *HTTPMessageDiagnostic `json:"response,omitempty"`
 }

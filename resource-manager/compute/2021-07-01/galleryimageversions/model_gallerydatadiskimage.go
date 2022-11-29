@@ -7,5 +7,5 @@ type GalleryDataDiskImage struct {
 	HostCaching *HostCaching                  `json:"hostCaching,omitempty"`
 	Lun         int64                         `json:"lun"`
 	SizeInGB    *int64                        `json:"sizeInGB,omitempty"`
-	Source      *GalleryArtifactVersionSource `json:"source"`
+	Source      *GalleryArtifactVersionSource `json:"source,omitempty"`
 }

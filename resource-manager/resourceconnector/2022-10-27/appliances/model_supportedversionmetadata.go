@@ -4,5 +4,5 @@ package appliances
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type SupportedVersionMetadata struct {
-	CatalogVersion *SupportedVersionCatalogVersion `json:"catalogVersion"`
+	CatalogVersion *SupportedVersionCatalogVersion `json:"catalogVersion,omitempty"`
 }

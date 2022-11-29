@@ -10,7 +10,7 @@ import (
 type Revision struct {
 	Id         *string                `json:"id,omitempty"`
 	Name       *string                `json:"name,omitempty"`
-	Properties *RevisionProperties    `json:"properties"`
+	Properties *RevisionProperties    `json:"properties,omitempty"`
 	SystemData *systemdata.SystemData `json:"systemData,omitempty"`
 	Type       *string                `json:"type,omitempty"`
 }

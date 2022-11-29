@@ -4,5 +4,5 @@ package appplatform
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type ConfigurationServiceSettingsValidateResult struct {
-	GitPropertyValidationResult *ConfigurationServiceGitPropertyValidateResult `json:"gitPropertyValidationResult"`
+	GitPropertyValidationResult *ConfigurationServiceGitPropertyValidateResult `json:"gitPropertyValidationResult,omitempty"`
 }

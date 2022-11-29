@@ -6,6 +6,6 @@ package netappaccounts
 type AccountProperties struct {
 	ActiveDirectories *[]ActiveDirectory `json:"activeDirectories,omitempty"`
 	DisableShowmount  *bool              `json:"disableShowmount,omitempty"`
-	Encryption        *AccountEncryption `json:"encryption"`
+	Encryption        *AccountEncryption `json:"encryption,omitempty"`
 	ProvisioningState *string            `json:"provisioningState,omitempty"`
 }

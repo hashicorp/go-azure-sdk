@@ -10,7 +10,7 @@ import (
 type AuthConfig struct {
 	Id         *string                `json:"id,omitempty"`
 	Name       *string                `json:"name,omitempty"`
-	Properties *AuthConfigProperties  `json:"properties"`
+	Properties *AuthConfigProperties  `json:"properties,omitempty"`
 	SystemData *systemdata.SystemData `json:"systemData,omitempty"`
 	Type       *string                `json:"type,omitempty"`
 }

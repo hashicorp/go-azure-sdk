@@ -10,7 +10,7 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type ExperimentExecutionActionTargetDetailsProperties struct {
-	Error               *ExperimentExecutionActionTargetDetailsError `json:"error"`
+	Error               *ExperimentExecutionActionTargetDetailsError `json:"error,omitempty"`
 	Status              *string                                      `json:"status,omitempty"`
 	Target              *string                                      `json:"target,omitempty"`
 	TargetCompletedTime *string                                      `json:"targetCompletedTime,omitempty"`

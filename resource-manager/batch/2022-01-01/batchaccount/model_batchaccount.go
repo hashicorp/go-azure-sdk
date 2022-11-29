@@ -12,7 +12,7 @@ type BatchAccount struct {
 	Identity   *identity.SystemOrUserAssignedMap `json:"identity,omitempty"`
 	Location   *string                           `json:"location,omitempty"`
 	Name       *string                           `json:"name,omitempty"`
-	Properties *BatchAccountProperties           `json:"properties"`
+	Properties *BatchAccountProperties           `json:"properties,omitempty"`
 	Tags       *map[string]string                `json:"tags,omitempty"`
 	Type       *string                           `json:"type,omitempty"`
 }

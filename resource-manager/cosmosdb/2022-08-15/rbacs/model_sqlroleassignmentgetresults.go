@@ -6,6 +6,6 @@ package rbacs
 type SqlRoleAssignmentGetResults struct {
 	Id         *string                    `json:"id,omitempty"`
 	Name       *string                    `json:"name,omitempty"`
-	Properties *SqlRoleAssignmentResource `json:"properties"`
+	Properties *SqlRoleAssignmentResource `json:"properties,omitempty"`
 	Type       *string                    `json:"type,omitempty"`
 }

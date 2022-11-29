@@ -6,6 +6,6 @@ package datastores
 type Datastore struct {
 	Id         *string              `json:"id,omitempty"`
 	Name       *string              `json:"name,omitempty"`
-	Properties *DatastoreProperties `json:"properties"`
+	Properties *DatastoreProperties `json:"properties,omitempty"`
 	Type       *string              `json:"type,omitempty"`
 }

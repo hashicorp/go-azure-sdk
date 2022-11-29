@@ -4,6 +4,6 @@ package iotconnectors
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type IotConnectorPatchResource struct {
-	Identity *ServiceManagedIdentityIdentity `json:"identity"`
+	Identity *ServiceManagedIdentityIdentity `json:"identity,omitempty"`
 	Tags     *map[string]string              `json:"tags,omitempty"`
 }

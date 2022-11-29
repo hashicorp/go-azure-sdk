@@ -13,8 +13,8 @@ type PatchVault struct {
 	Identity   *identity.SystemAndUserAssignedMap `json:"identity,omitempty"`
 	Location   *string                            `json:"location,omitempty"`
 	Name       *string                            `json:"name,omitempty"`
-	Properties *VaultProperties                   `json:"properties"`
-	Sku        *Sku                               `json:"sku"`
+	Properties *VaultProperties                   `json:"properties,omitempty"`
+	Sku        *Sku                               `json:"sku,omitempty"`
 	Tags       *map[string]string                 `json:"tags,omitempty"`
 	Type       *string                            `json:"type,omitempty"`
 }

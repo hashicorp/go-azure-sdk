@@ -7,7 +7,7 @@ type Usage struct {
 	CurrentValue   *float64          `json:"currentValue,omitempty"`
 	Id             *string           `json:"id,omitempty"`
 	Limit          *int64            `json:"limit,omitempty"`
-	Name           *UsageCounterName `json:"name"`
+	Name           *UsageCounterName `json:"name,omitempty"`
 	ThrottleStatus *string           `json:"throttleStatus,omitempty"`
 	Unit           *string           `json:"unit,omitempty"`
 }

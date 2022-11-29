@@ -5,7 +5,7 @@ package accounts
 
 type UpdateDataLakeStoreAccountProperties struct {
 	DefaultGroup           *string                                          `json:"defaultGroup,omitempty"`
-	EncryptionConfig       *UpdateEncryptionConfig                          `json:"encryptionConfig"`
+	EncryptionConfig       *UpdateEncryptionConfig                          `json:"encryptionConfig,omitempty"`
 	FirewallAllowAzureIPs  *FirewallAllowAzureIPsState                      `json:"firewallAllowAzureIps,omitempty"`
 	FirewallRules          *[]UpdateFirewallRuleWithAccountParameters       `json:"firewallRules,omitempty"`
 	FirewallState          *FirewallState                                   `json:"firewallState,omitempty"`

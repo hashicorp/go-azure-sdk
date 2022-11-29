@@ -8,8 +8,8 @@ type AzureTrafficCollector struct {
 	Id         *string                                `json:"id,omitempty"`
 	Location   string                                 `json:"location"`
 	Name       *string                                `json:"name,omitempty"`
-	Properties *AzureTrafficCollectorPropertiesFormat `json:"properties"`
-	SystemData *SystemData                            `json:"systemData"`
+	Properties *AzureTrafficCollectorPropertiesFormat `json:"properties,omitempty"`
+	SystemData *SystemData                            `json:"systemData,omitempty"`
 	Tags       *map[string]string                     `json:"tags,omitempty"`
 	Type       *string                                `json:"type,omitempty"`
 }

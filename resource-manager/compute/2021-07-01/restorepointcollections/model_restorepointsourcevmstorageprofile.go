@@ -5,5 +5,5 @@ package restorepointcollections
 
 type RestorePointSourceVMStorageProfile struct {
 	DataDisks *[]RestorePointSourceVMDataDisk `json:"dataDisks,omitempty"`
-	OsDisk    *RestorePointSourceVMOSDisk     `json:"osDisk"`
+	OsDisk    *RestorePointSourceVMOSDisk     `json:"osDisk,omitempty"`
 }

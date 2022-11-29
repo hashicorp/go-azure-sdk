@@ -6,5 +6,5 @@ package azuretrafficcollectors
 type AzureTrafficCollectorPropertiesFormat struct {
 	CollectorPolicies *[]ResourceReference `json:"collectorPolicies,omitempty"`
 	ProvisioningState *ProvisioningState   `json:"provisioningState,omitempty"`
-	VirtualHub        *ResourceReference   `json:"virtualHub"`
+	VirtualHub        *ResourceReference   `json:"virtualHub,omitempty"`
 }

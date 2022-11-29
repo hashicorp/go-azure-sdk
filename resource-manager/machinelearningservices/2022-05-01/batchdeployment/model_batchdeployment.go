@@ -9,7 +9,7 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type BatchDeployment struct {
-	CodeConfiguration         *CodeConfiguration           `json:"codeConfiguration"`
+	CodeConfiguration         *CodeConfiguration           `json:"codeConfiguration,omitempty"`
 	Compute                   *string                      `json:"compute,omitempty"`
 	Description               *string                      `json:"description,omitempty"`
 	EnvironmentId             *string                      `json:"environmentId,omitempty"`
@@ -23,8 +23,8 @@ type BatchDeployment struct {
 	OutputFileName            *string                      `json:"outputFileName,omitempty"`
 	Properties                *map[string]string           `json:"properties,omitempty"`
 	ProvisioningState         *DeploymentProvisioningState `json:"provisioningState,omitempty"`
-	Resources                 *ResourceConfiguration       `json:"resources"`
-	RetrySettings             *BatchRetrySettings          `json:"retrySettings"`
+	Resources                 *ResourceConfiguration       `json:"resources,omitempty"`
+	RetrySettings             *BatchRetrySettings          `json:"retrySettings,omitempty"`
 }
 
 var _ json.Unmarshaler = &BatchDeployment{}

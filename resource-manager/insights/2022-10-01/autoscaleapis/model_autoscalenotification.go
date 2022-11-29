@@ -4,7 +4,7 @@ package autoscaleapis
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type AutoscaleNotification struct {
-	Email     *EmailNotification     `json:"email"`
+	Email     *EmailNotification     `json:"email,omitempty"`
 	Operation OperationType          `json:"operation"`
 	WebHooks  *[]WebhookNotification `json:"webhooks,omitempty"`
 }

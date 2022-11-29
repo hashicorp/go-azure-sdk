@@ -6,6 +6,6 @@ package cache
 type CacheContract struct {
 	Id         *string                  `json:"id,omitempty"`
 	Name       *string                  `json:"name,omitempty"`
-	Properties *CacheContractProperties `json:"properties"`
+	Properties *CacheContractProperties `json:"properties,omitempty"`
 	Type       *string                  `json:"type,omitempty"`
 }

@@ -4,5 +4,5 @@ package sourcecontrol
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type SourceControlUpdateParameters struct {
-	Properties *SourceControlUpdateProperties `json:"properties"`
+	Properties *SourceControlUpdateProperties `json:"properties,omitempty"`
 }

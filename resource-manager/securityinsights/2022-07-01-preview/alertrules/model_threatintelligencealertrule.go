@@ -13,7 +13,7 @@ import (
 var _ AlertRule = ThreatIntelligenceAlertRule{}
 
 type ThreatIntelligenceAlertRule struct {
-	Properties *ThreatIntelligenceAlertRuleProperties `json:"properties"`
+	Properties *ThreatIntelligenceAlertRuleProperties `json:"properties,omitempty"`
 
 	// Fields inherited from AlertRule
 	Etag       *string                `json:"etag,omitempty"`

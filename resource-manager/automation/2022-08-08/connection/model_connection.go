@@ -6,6 +6,6 @@ package connection
 type Connection struct {
 	Id         *string               `json:"id,omitempty"`
 	Name       *string               `json:"name,omitempty"`
-	Properties *ConnectionProperties `json:"properties"`
+	Properties *ConnectionProperties `json:"properties,omitempty"`
 	Type       *string               `json:"type,omitempty"`
 }

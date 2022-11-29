@@ -6,6 +6,6 @@ package managedvmsizes
 type ManagedVMSize struct {
 	Id         *string `json:"id,omitempty"`
 	Name       *string `json:"name,omitempty"`
-	Properties *VMSize `json:"properties"`
+	Properties *VMSize `json:"properties,omitempty"`
 	Type       *string `json:"type,omitempty"`
 }

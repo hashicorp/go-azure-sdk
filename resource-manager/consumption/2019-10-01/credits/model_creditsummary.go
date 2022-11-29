@@ -7,6 +7,6 @@ type CreditSummary struct {
 	ETag       *string                  `json:"eTag,omitempty"`
 	Id         *string                  `json:"id,omitempty"`
 	Name       *string                  `json:"name,omitempty"`
-	Properties *CreditSummaryProperties `json:"properties"`
+	Properties *CreditSummaryProperties `json:"properties,omitempty"`
 	Type       *string                  `json:"type,omitempty"`
 }

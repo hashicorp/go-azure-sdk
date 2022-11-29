@@ -4,5 +4,5 @@ package datalakestoreaccounts
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type AddDataLakeStoreParameters struct {
-	Properties *AddDataLakeStoreProperties `json:"properties"`
+	Properties *AddDataLakeStoreProperties `json:"properties,omitempty"`
 }

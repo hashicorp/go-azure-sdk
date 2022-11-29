@@ -17,7 +17,7 @@ type RevisionProperties struct {
 	ProvisioningError *string                    `json:"provisioningError,omitempty"`
 	ProvisioningState *RevisionProvisioningState `json:"provisioningState,omitempty"`
 	Replicas          *int64                     `json:"replicas,omitempty"`
-	Template          *Template                  `json:"template"`
+	Template          *Template                  `json:"template,omitempty"`
 	TrafficWeight     *int64                     `json:"trafficWeight,omitempty"`
 }
 

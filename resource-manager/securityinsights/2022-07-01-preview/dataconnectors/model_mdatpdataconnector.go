@@ -13,7 +13,7 @@ import (
 var _ DataConnector = MDATPDataConnector{}
 
 type MDATPDataConnector struct {
-	Properties *MDATPDataConnectorProperties `json:"properties"`
+	Properties *MDATPDataConnectorProperties `json:"properties,omitempty"`
 
 	// Fields inherited from DataConnector
 	Etag       *string                `json:"etag,omitempty"`

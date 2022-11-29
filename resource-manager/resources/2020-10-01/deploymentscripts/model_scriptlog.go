@@ -6,6 +6,6 @@ package deploymentscripts
 type ScriptLog struct {
 	Id         *string        `json:"id,omitempty"`
 	Name       *string        `json:"name,omitempty"`
-	Properties *LogProperties `json:"properties"`
+	Properties *LogProperties `json:"properties,omitempty"`
 	Type       *string        `json:"type,omitempty"`
 }

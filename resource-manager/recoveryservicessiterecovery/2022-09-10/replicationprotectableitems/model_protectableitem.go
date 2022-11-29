@@ -7,6 +7,6 @@ type ProtectableItem struct {
 	Id         *string                    `json:"id,omitempty"`
 	Location   *string                    `json:"location,omitempty"`
 	Name       *string                    `json:"name,omitempty"`
-	Properties *ProtectableItemProperties `json:"properties"`
+	Properties *ProtectableItemProperties `json:"properties,omitempty"`
 	Type       *string                    `json:"type,omitempty"`
 }

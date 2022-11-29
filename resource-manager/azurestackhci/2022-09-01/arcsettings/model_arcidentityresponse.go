@@ -4,5 +4,5 @@ package arcsettings
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type ArcIdentityResponse struct {
-	Properties *ArcIdentityResponseProperties `json:"properties"`
+	Properties *ArcIdentityResponseProperties `json:"properties,omitempty"`
 }

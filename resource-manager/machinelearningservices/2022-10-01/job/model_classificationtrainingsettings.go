@@ -12,5 +12,5 @@ type ClassificationTrainingSettings struct {
 	EnableStackEnsemble          *bool                   `json:"enableStackEnsemble,omitempty"`
 	EnableVoteEnsemble           *bool                   `json:"enableVoteEnsemble,omitempty"`
 	EnsembleModelDownloadTimeout *string                 `json:"ensembleModelDownloadTimeout,omitempty"`
-	StackEnsembleSettings        *StackEnsembleSettings  `json:"stackEnsembleSettings"`
+	StackEnsembleSettings        *StackEnsembleSettings  `json:"stackEnsembleSettings,omitempty"`
 }

@@ -11,7 +11,7 @@ import (
 var _ AutomationRuleAction = AutomationRuleRunPlaybookAction{}
 
 type AutomationRuleRunPlaybookAction struct {
-	ActionConfiguration *PlaybookActionProperties `json:"actionConfiguration"`
+	ActionConfiguration *PlaybookActionProperties `json:"actionConfiguration,omitempty"`
 
 	// Fields inherited from AutomationRuleAction
 	Order int64 `json:"order"`

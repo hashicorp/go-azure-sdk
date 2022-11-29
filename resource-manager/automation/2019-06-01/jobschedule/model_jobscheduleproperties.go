@@ -7,6 +7,6 @@ type JobScheduleProperties struct {
 	JobScheduleId *string                      `json:"jobScheduleId,omitempty"`
 	Parameters    *map[string]string           `json:"parameters,omitempty"`
 	RunOn         *string                      `json:"runOn,omitempty"`
-	Runbook       *RunbookAssociationProperty  `json:"runbook"`
-	Schedule      *ScheduleAssociationProperty `json:"schedule"`
+	Runbook       *RunbookAssociationProperty  `json:"runbook,omitempty"`
+	Schedule      *ScheduleAssociationProperty `json:"schedule,omitempty"`
 }

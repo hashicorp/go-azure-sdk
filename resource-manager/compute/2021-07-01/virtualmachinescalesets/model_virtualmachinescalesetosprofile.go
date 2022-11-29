@@ -8,7 +8,7 @@ type VirtualMachineScaleSetOSProfile struct {
 	AdminUsername        *string               `json:"adminUsername,omitempty"`
 	ComputerNamePrefix   *string               `json:"computerNamePrefix,omitempty"`
 	CustomData           *string               `json:"customData,omitempty"`
-	LinuxConfiguration   *LinuxConfiguration   `json:"linuxConfiguration"`
+	LinuxConfiguration   *LinuxConfiguration   `json:"linuxConfiguration,omitempty"`
 	Secrets              *[]VaultSecretGroup   `json:"secrets,omitempty"`
-	WindowsConfiguration *WindowsConfiguration `json:"windowsConfiguration"`
+	WindowsConfiguration *WindowsConfiguration `json:"windowsConfiguration,omitempty"`
 }

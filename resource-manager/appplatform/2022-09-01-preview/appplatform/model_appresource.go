@@ -13,7 +13,7 @@ type AppResource struct {
 	Identity   *identity.LegacySystemAndUserAssignedMap `json:"identity,omitempty"`
 	Location   *string                                  `json:"location,omitempty"`
 	Name       *string                                  `json:"name,omitempty"`
-	Properties *AppResourceProperties                   `json:"properties"`
+	Properties *AppResourceProperties                   `json:"properties,omitempty"`
 	SystemData *systemdata.SystemData                   `json:"systemData,omitempty"`
 	Type       *string                                  `json:"type,omitempty"`
 }

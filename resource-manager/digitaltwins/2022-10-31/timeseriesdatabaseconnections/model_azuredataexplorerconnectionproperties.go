@@ -21,7 +21,7 @@ type AzureDataExplorerConnectionProperties struct {
 	EventHubNamespaceResourceId string  `json:"eventHubNamespaceResourceId"`
 
 	// Fields inherited from TimeSeriesDatabaseConnectionProperties
-	Identity          *ManagedIdentityReference          `json:"identity"`
+	Identity          *ManagedIdentityReference          `json:"identity,omitempty"`
 	ProvisioningState *TimeSeriesDatabaseConnectionState `json:"provisioningState,omitempty"`
 }
 

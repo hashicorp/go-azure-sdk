@@ -4,5 +4,5 @@ package restorables
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type BackupInformation struct {
-	ContinuousBackupInformation *ContinuousBackupInformation `json:"continuousBackupInformation"`
+	ContinuousBackupInformation *ContinuousBackupInformation `json:"continuousBackupInformation,omitempty"`
 }

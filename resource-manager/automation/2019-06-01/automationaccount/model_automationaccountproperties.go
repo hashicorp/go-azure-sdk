@@ -14,7 +14,7 @@ type AutomationAccountProperties struct {
 	Description      *string                 `json:"description,omitempty"`
 	LastModifiedBy   *string                 `json:"lastModifiedBy,omitempty"`
 	LastModifiedTime *string                 `json:"lastModifiedTime,omitempty"`
-	Sku              *Sku                    `json:"sku"`
+	Sku              *Sku                    `json:"sku,omitempty"`
 	State            *AutomationAccountState `json:"state,omitempty"`
 }
 

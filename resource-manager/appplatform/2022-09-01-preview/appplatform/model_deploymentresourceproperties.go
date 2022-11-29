@@ -10,7 +10,7 @@ import (
 
 type DeploymentResourceProperties struct {
 	Active             *bool                                `json:"active,omitempty"`
-	DeploymentSettings *DeploymentSettings                  `json:"deploymentSettings"`
+	DeploymentSettings *DeploymentSettings                  `json:"deploymentSettings,omitempty"`
 	Instances          *[]DeploymentInstance                `json:"instances,omitempty"`
 	ProvisioningState  *DeploymentResourceProvisioningState `json:"provisioningState,omitempty"`
 	Source             UserSourceInfo                       `json:"source"`

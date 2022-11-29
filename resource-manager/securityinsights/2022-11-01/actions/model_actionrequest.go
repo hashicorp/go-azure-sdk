@@ -11,7 +11,7 @@ type ActionRequest struct {
 	Etag       *string                  `json:"etag,omitempty"`
 	Id         *string                  `json:"id,omitempty"`
 	Name       *string                  `json:"name,omitempty"`
-	Properties *ActionRequestProperties `json:"properties"`
+	Properties *ActionRequestProperties `json:"properties,omitempty"`
 	SystemData *systemdata.SystemData   `json:"systemData,omitempty"`
 	Type       *string                  `json:"type,omitempty"`
 }

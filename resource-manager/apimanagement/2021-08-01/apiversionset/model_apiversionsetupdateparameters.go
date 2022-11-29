@@ -4,5 +4,5 @@ package apiversionset
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type ApiVersionSetUpdateParameters struct {
-	Properties *ApiVersionSetUpdateParametersProperties `json:"properties"`
+	Properties *ApiVersionSetUpdateParametersProperties `json:"properties,omitempty"`
 }

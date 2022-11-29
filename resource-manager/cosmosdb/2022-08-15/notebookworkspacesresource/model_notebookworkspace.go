@@ -6,6 +6,6 @@ package notebookworkspacesresource
 type NotebookWorkspace struct {
 	Id         *string                      `json:"id,omitempty"`
 	Name       *string                      `json:"name,omitempty"`
-	Properties *NotebookWorkspaceProperties `json:"properties"`
+	Properties *NotebookWorkspaceProperties `json:"properties,omitempty"`
 	Type       *string                      `json:"type,omitempty"`
 }

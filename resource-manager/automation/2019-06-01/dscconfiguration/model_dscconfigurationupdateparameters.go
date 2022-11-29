@@ -5,6 +5,6 @@ package dscconfiguration
 
 type DscConfigurationUpdateParameters struct {
 	Name       *string                                   `json:"name,omitempty"`
-	Properties *DscConfigurationCreateOrUpdateProperties `json:"properties"`
+	Properties *DscConfigurationCreateOrUpdateProperties `json:"properties,omitempty"`
 	Tags       *map[string]string                        `json:"tags,omitempty"`
 }

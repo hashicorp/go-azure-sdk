@@ -7,7 +7,7 @@ type Balance struct {
 	Etag       *string            `json:"etag,omitempty"`
 	Id         *string            `json:"id,omitempty"`
 	Name       *string            `json:"name,omitempty"`
-	Properties *BalanceProperties `json:"properties"`
+	Properties *BalanceProperties `json:"properties,omitempty"`
 	Tags       *map[string]string `json:"tags,omitempty"`
 	Type       *string            `json:"type,omitempty"`
 }

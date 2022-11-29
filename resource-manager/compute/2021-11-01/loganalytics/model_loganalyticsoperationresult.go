@@ -4,5 +4,5 @@ package loganalytics
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type LogAnalyticsOperationResult struct {
-	Properties *LogAnalyticsOutput `json:"properties"`
+	Properties *LogAnalyticsOutput `json:"properties,omitempty"`
 }

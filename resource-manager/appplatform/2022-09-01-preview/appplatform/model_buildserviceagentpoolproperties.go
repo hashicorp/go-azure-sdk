@@ -4,6 +4,6 @@ package appplatform
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type BuildServiceAgentPoolProperties struct {
-	PoolSize          *BuildServiceAgentPoolSizeProperties `json:"poolSize"`
+	PoolSize          *BuildServiceAgentPoolSizeProperties `json:"poolSize,omitempty"`
 	ProvisioningState *string                              `json:"provisioningState,omitempty"`
 }

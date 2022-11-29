@@ -5,5 +5,5 @@ package gateway
 
 type GatewayContractProperties struct {
 	Description  *string                       `json:"description,omitempty"`
-	LocationData *ResourceLocationDataContract `json:"locationData"`
+	LocationData *ResourceLocationDataContract `json:"locationData,omitempty"`
 }

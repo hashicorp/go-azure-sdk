@@ -13,7 +13,7 @@ import (
 var _ DataConnector = Dynamics365DataConnector{}
 
 type Dynamics365DataConnector struct {
-	Properties *Dynamics365DataConnectorProperties `json:"properties"`
+	Properties *Dynamics365DataConnectorProperties `json:"properties,omitempty"`
 
 	// Fields inherited from DataConnector
 	Etag       *string                `json:"etag,omitempty"`

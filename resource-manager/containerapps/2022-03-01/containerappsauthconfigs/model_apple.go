@@ -5,6 +5,6 @@ package containerappsauthconfigs
 
 type Apple struct {
 	Enabled      *bool              `json:"enabled,omitempty"`
-	Login        *LoginScopes       `json:"login"`
-	Registration *AppleRegistration `json:"registration"`
+	Login        *LoginScopes       `json:"login,omitempty"`
+	Registration *AppleRegistration `json:"registration,omitempty"`
 }

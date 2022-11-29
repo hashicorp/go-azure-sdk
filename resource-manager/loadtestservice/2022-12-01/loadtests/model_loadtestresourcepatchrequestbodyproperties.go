@@ -5,5 +5,5 @@ package loadtests
 
 type LoadTestResourcePatchRequestBodyProperties struct {
 	Description *string               `json:"description,omitempty"`
-	Encryption  *EncryptionProperties `json:"encryption"`
+	Encryption  *EncryptionProperties `json:"encryption,omitempty"`
 }

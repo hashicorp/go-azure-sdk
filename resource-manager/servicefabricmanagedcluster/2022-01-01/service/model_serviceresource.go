@@ -13,7 +13,7 @@ type ServiceResource struct {
 	Location   *string                   `json:"location,omitempty"`
 	Name       *string                   `json:"name,omitempty"`
 	Properties ServiceResourceProperties `json:"properties"`
-	SystemData *SystemData               `json:"systemData"`
+	SystemData *SystemData               `json:"systemData,omitempty"`
 	Tags       *map[string]string        `json:"tags,omitempty"`
 	Type       *string                   `json:"type,omitempty"`
 }

@@ -5,9 +5,9 @@ package backupvaults
 
 type BackupVault struct {
 	IsVaultProtectedByResourceGuard *bool                `json:"isVaultProtectedByResourceGuard,omitempty"`
-	MonitoringSettings              *MonitoringSettings  `json:"monitoringSettings"`
+	MonitoringSettings              *MonitoringSettings  `json:"monitoringSettings,omitempty"`
 	ProvisioningState               *ProvisioningState   `json:"provisioningState,omitempty"`
-	ResourceMoveDetails             *ResourceMoveDetails `json:"resourceMoveDetails"`
+	ResourceMoveDetails             *ResourceMoveDetails `json:"resourceMoveDetails,omitempty"`
 	ResourceMoveState               *ResourceMoveState   `json:"resourceMoveState,omitempty"`
 	StorageSettings                 []StorageSetting     `json:"storageSettings"`
 }

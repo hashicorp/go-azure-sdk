@@ -7,6 +7,6 @@ type OutboundNetworkDependenciesEndpoint struct {
 	Etag       *string                                        `json:"etag,omitempty"`
 	Id         *string                                        `json:"id,omitempty"`
 	Name       *string                                        `json:"name,omitempty"`
-	Properties *OutboundNetworkDependenciesEndpointProperties `json:"properties"`
+	Properties *OutboundNetworkDependenciesEndpointProperties `json:"properties,omitempty"`
 	Type       *string                                        `json:"type,omitempty"`
 }

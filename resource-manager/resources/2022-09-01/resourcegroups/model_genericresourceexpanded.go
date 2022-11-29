@@ -21,10 +21,10 @@ type GenericResourceExpanded struct {
 	Location          *string                            `json:"location,omitempty"`
 	ManagedBy         *string                            `json:"managedBy,omitempty"`
 	Name              *string                            `json:"name,omitempty"`
-	Plan              *Plan                              `json:"plan"`
+	Plan              *Plan                              `json:"plan,omitempty"`
 	Properties        *interface{}                       `json:"properties,omitempty"`
 	ProvisioningState *string                            `json:"provisioningState,omitempty"`
-	Sku               *Sku                               `json:"sku"`
+	Sku               *Sku                               `json:"sku,omitempty"`
 	Tags              *map[string]string                 `json:"tags,omitempty"`
 	Type              *string                            `json:"type,omitempty"`
 }

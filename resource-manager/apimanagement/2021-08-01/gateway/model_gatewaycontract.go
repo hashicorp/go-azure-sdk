@@ -6,6 +6,6 @@ package gateway
 type GatewayContract struct {
 	Id         *string                    `json:"id,omitempty"`
 	Name       *string                    `json:"name,omitempty"`
-	Properties *GatewayContractProperties `json:"properties"`
+	Properties *GatewayContractProperties `json:"properties,omitempty"`
 	Type       *string                    `json:"type,omitempty"`
 }

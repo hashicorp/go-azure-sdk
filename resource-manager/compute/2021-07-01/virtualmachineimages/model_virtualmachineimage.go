@@ -12,6 +12,6 @@ type VirtualMachineImage struct {
 	Id               *string                        `json:"id,omitempty"`
 	Location         string                         `json:"location"`
 	Name             string                         `json:"name"`
-	Properties       *VirtualMachineImageProperties `json:"properties"`
+	Properties       *VirtualMachineImageProperties `json:"properties,omitempty"`
 	Tags             *map[string]string             `json:"tags,omitempty"`
 }

@@ -10,7 +10,7 @@ import (
 type GatewayCustomDomainResource struct {
 	Id         *string                        `json:"id,omitempty"`
 	Name       *string                        `json:"name,omitempty"`
-	Properties *GatewayCustomDomainProperties `json:"properties"`
+	Properties *GatewayCustomDomainProperties `json:"properties,omitempty"`
 	SystemData *systemdata.SystemData         `json:"systemData,omitempty"`
 	Type       *string                        `json:"type,omitempty"`
 }

@@ -6,6 +6,6 @@ package clusterprincipalassignments
 type ClusterPrincipalAssignment struct {
 	Id         *string                     `json:"id,omitempty"`
 	Name       *string                     `json:"name,omitempty"`
-	Properties *ClusterPrincipalProperties `json:"properties"`
+	Properties *ClusterPrincipalProperties `json:"properties,omitempty"`
 	Type       *string                     `json:"type,omitempty"`
 }

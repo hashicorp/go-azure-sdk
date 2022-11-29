@@ -5,5 +5,5 @@ package certificate
 
 type CertificateUpdateParameters struct {
 	Name       *string                      `json:"name,omitempty"`
-	Properties *CertificateUpdateProperties `json:"properties"`
+	Properties *CertificateUpdateProperties `json:"properties,omitempty"`
 }

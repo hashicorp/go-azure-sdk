@@ -4,7 +4,7 @@ package containerappsauthconfigs
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type OpenIdConnectRegistration struct {
-	ClientCredential           *OpenIdConnectClientCredential `json:"clientCredential"`
+	ClientCredential           *OpenIdConnectClientCredential `json:"clientCredential,omitempty"`
 	ClientId                   *string                        `json:"clientId,omitempty"`
-	OpenIdConnectConfiguration *OpenIdConnectConfig           `json:"openIdConnectConfiguration"`
+	OpenIdConnectConfiguration *OpenIdConnectConfig           `json:"openIdConnectConfiguration,omitempty"`
 }

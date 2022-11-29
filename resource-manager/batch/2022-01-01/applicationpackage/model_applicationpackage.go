@@ -7,6 +7,6 @@ type ApplicationPackage struct {
 	Etag       *string                       `json:"etag,omitempty"`
 	Id         *string                       `json:"id,omitempty"`
 	Name       *string                       `json:"name,omitempty"`
-	Properties *ApplicationPackageProperties `json:"properties"`
+	Properties *ApplicationPackageProperties `json:"properties,omitempty"`
 	Type       *string                       `json:"type,omitempty"`
 }

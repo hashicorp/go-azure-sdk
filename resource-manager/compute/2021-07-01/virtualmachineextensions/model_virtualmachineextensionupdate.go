@@ -4,6 +4,6 @@ package virtualmachineextensions
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type VirtualMachineExtensionUpdate struct {
-	Properties *VirtualMachineExtensionUpdateProperties `json:"properties"`
+	Properties *VirtualMachineExtensionUpdateProperties `json:"properties,omitempty"`
 	Tags       *map[string]string                       `json:"tags,omitempty"`
 }

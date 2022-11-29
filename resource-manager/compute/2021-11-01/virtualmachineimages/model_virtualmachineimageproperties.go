@@ -5,11 +5,11 @@ package virtualmachineimages
 
 type VirtualMachineImageProperties struct {
 	Architecture                 *ArchitectureTypes            `json:"architecture,omitempty"`
-	AutomaticOSUpgradeProperties *AutomaticOSUpgradeProperties `json:"automaticOSUpgradeProperties"`
+	AutomaticOSUpgradeProperties *AutomaticOSUpgradeProperties `json:"automaticOSUpgradeProperties,omitempty"`
 	DataDiskImages               *[]DataDiskImage              `json:"dataDiskImages,omitempty"`
-	Disallowed                   *DisallowedConfiguration      `json:"disallowed"`
+	Disallowed                   *DisallowedConfiguration      `json:"disallowed,omitempty"`
 	Features                     *[]VirtualMachineImageFeature `json:"features,omitempty"`
 	HyperVGeneration             *HyperVGenerationTypes        `json:"hyperVGeneration,omitempty"`
-	OsDiskImage                  *OSDiskImage                  `json:"osDiskImage"`
-	Plan                         *PurchasePlan                 `json:"plan"`
+	OsDiskImage                  *OSDiskImage                  `json:"osDiskImage,omitempty"`
+	Plan                         *PurchasePlan                 `json:"plan,omitempty"`
 }

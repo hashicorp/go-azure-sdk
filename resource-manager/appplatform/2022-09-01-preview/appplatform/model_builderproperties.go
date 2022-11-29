@@ -6,5 +6,5 @@ package appplatform
 type BuilderProperties struct {
 	BuildpackGroups   *[]BuildpacksGroupProperties `json:"buildpackGroups,omitempty"`
 	ProvisioningState *BuilderProvisioningState    `json:"provisioningState,omitempty"`
-	Stack             *StackProperties             `json:"stack"`
+	Stack             *StackProperties             `json:"stack,omitempty"`
 }

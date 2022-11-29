@@ -11,7 +11,7 @@ import (
 var _ TaskTypeDetails = JobTaskDetails{}
 
 type JobTaskDetails struct {
-	JobTask *JobEntity `json:"jobTask"`
+	JobTask *JobEntity `json:"jobTask,omitempty"`
 
 	// Fields inherited from TaskTypeDetails
 }

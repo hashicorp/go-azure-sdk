@@ -6,5 +6,5 @@ package appplatform
 type ServiceRegistryProperties struct {
 	Instances         *[]ServiceRegistryInstance        `json:"instances,omitempty"`
 	ProvisioningState *ServiceRegistryProvisioningState `json:"provisioningState,omitempty"`
-	ResourceRequests  *ServiceRegistryResourceRequests  `json:"resourceRequests"`
+	ResourceRequests  *ServiceRegistryResourceRequests  `json:"resourceRequests,omitempty"`
 }

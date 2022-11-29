@@ -6,6 +6,6 @@ package scripts
 type ScriptCmdlet struct {
 	Id         *string                 `json:"id,omitempty"`
 	Name       *string                 `json:"name,omitempty"`
-	Properties *ScriptCmdletProperties `json:"properties"`
+	Properties *ScriptCmdletProperties `json:"properties,omitempty"`
 	Type       *string                 `json:"type,omitempty"`
 }

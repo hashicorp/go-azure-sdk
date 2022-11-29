@@ -4,6 +4,6 @@ package softwareupdateconfigurationrun
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type SoftwareUpdateConfigurationRunTasks struct {
-	PostTask *SoftwareUpdateConfigurationRunTaskProperties `json:"postTask"`
-	PreTask  *SoftwareUpdateConfigurationRunTaskProperties `json:"preTask"`
+	PostTask *SoftwareUpdateConfigurationRunTaskProperties `json:"postTask,omitempty"`
+	PreTask  *SoftwareUpdateConfigurationRunTaskProperties `json:"preTask,omitempty"`
 }

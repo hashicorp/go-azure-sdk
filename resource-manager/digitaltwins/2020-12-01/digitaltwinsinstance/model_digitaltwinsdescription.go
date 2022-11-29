@@ -12,7 +12,7 @@ type DigitalTwinsDescription struct {
 	Identity   *identity.SystemAssigned `json:"identity,omitempty"`
 	Location   string                   `json:"location"`
 	Name       *string                  `json:"name,omitempty"`
-	Properties *DigitalTwinsProperties  `json:"properties"`
+	Properties *DigitalTwinsProperties  `json:"properties,omitempty"`
 	Tags       *map[string]string       `json:"tags,omitempty"`
 	Type       *string                  `json:"type,omitempty"`
 }

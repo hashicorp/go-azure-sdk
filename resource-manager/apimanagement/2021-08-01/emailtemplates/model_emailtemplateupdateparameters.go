@@ -4,5 +4,5 @@ package emailtemplates
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type EmailTemplateUpdateParameters struct {
-	Properties *EmailTemplateUpdateParameterProperties `json:"properties"`
+	Properties *EmailTemplateUpdateParameterProperties `json:"properties,omitempty"`
 }

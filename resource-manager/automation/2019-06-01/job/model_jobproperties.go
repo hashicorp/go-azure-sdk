@@ -19,7 +19,7 @@ type JobProperties struct {
 	Parameters             *map[string]string          `json:"parameters,omitempty"`
 	ProvisioningState      *JobProvisioningState       `json:"provisioningState,omitempty"`
 	RunOn                  *string                     `json:"runOn,omitempty"`
-	Runbook                *RunbookAssociationProperty `json:"runbook"`
+	Runbook                *RunbookAssociationProperty `json:"runbook,omitempty"`
 	StartTime              *string                     `json:"startTime,omitempty"`
 	StartedBy              *string                     `json:"startedBy,omitempty"`
 	Status                 *JobStatus                  `json:"status,omitempty"`

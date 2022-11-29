@@ -8,9 +8,9 @@ type SourceControlProperties struct {
 	Description            *string                 `json:"description,omitempty"`
 	DisplayName            string                  `json:"displayName"`
 	Id                     *string                 `json:"id,omitempty"`
-	LastDeploymentInfo     *DeploymentInfo         `json:"lastDeploymentInfo"`
+	LastDeploymentInfo     *DeploymentInfo         `json:"lastDeploymentInfo,omitempty"`
 	RepoType               RepoType                `json:"repoType"`
 	Repository             Repository              `json:"repository"`
-	RepositoryResourceInfo *RepositoryResourceInfo `json:"repositoryResourceInfo"`
+	RepositoryResourceInfo *RepositoryResourceInfo `json:"repositoryResourceInfo,omitempty"`
 	Version                *Version                `json:"version,omitempty"`
 }

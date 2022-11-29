@@ -13,7 +13,7 @@ type EnrichmentDomainWhois struct {
 	Created     *string                       `json:"created,omitempty"`
 	Domain      *string                       `json:"domain,omitempty"`
 	Expires     *string                       `json:"expires,omitempty"`
-	ParsedWhois *EnrichmentDomainWhoisDetails `json:"parsedWhois"`
+	ParsedWhois *EnrichmentDomainWhoisDetails `json:"parsedWhois,omitempty"`
 	Server      *string                       `json:"server,omitempty"`
 	Updated     *string                       `json:"updated,omitempty"`
 }

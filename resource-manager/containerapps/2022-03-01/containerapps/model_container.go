@@ -10,6 +10,6 @@ type Container struct {
 	Image        *string              `json:"image,omitempty"`
 	Name         *string              `json:"name,omitempty"`
 	Probes       *[]ContainerAppProbe `json:"probes,omitempty"`
-	Resources    *ContainerResources  `json:"resources"`
+	Resources    *ContainerResources  `json:"resources,omitempty"`
 	VolumeMounts *[]VolumeMount       `json:"volumeMounts,omitempty"`
 }

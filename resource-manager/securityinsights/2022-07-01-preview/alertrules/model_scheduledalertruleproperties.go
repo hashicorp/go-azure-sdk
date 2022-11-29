@@ -10,15 +10,15 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type ScheduledAlertRuleProperties struct {
-	AlertDetailsOverride  *AlertDetailsOverride  `json:"alertDetailsOverride"`
+	AlertDetailsOverride  *AlertDetailsOverride  `json:"alertDetailsOverride,omitempty"`
 	AlertRuleTemplateName *string                `json:"alertRuleTemplateName,omitempty"`
 	CustomDetails         *map[string]string     `json:"customDetails,omitempty"`
 	Description           *string                `json:"description,omitempty"`
 	DisplayName           string                 `json:"displayName"`
 	Enabled               bool                   `json:"enabled"`
 	EntityMappings        *[]EntityMapping       `json:"entityMappings,omitempty"`
-	EventGroupingSettings *EventGroupingSettings `json:"eventGroupingSettings"`
-	IncidentConfiguration *IncidentConfiguration `json:"incidentConfiguration"`
+	EventGroupingSettings *EventGroupingSettings `json:"eventGroupingSettings,omitempty"`
+	IncidentConfiguration *IncidentConfiguration `json:"incidentConfiguration,omitempty"`
 	LastModifiedUtc       *string                `json:"lastModifiedUtc,omitempty"`
 	Query                 string                 `json:"query"`
 	QueryFrequency        string                 `json:"queryFrequency"`

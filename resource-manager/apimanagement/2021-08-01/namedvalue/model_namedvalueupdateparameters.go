@@ -4,5 +4,5 @@ package namedvalue
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type NamedValueUpdateParameters struct {
-	Properties *NamedValueUpdateParameterProperties `json:"properties"`
+	Properties *NamedValueUpdateParameterProperties `json:"properties,omitempty"`
 }

@@ -7,6 +7,6 @@ type ResourceProvider struct {
 	PermissionsDisplayText *string                  `json:"permissionsDisplayText,omitempty"`
 	Provider               *ProviderName            `json:"provider,omitempty"`
 	ProviderDisplayName    *string                  `json:"providerDisplayName,omitempty"`
-	RequiredPermissions    *RequiredPermissions     `json:"requiredPermissions"`
+	RequiredPermissions    *RequiredPermissions     `json:"requiredPermissions,omitempty"`
 	Scope                  *PermissionProviderScope `json:"scope,omitempty"`
 }

@@ -13,7 +13,7 @@ var _ TriggerBase = RecurrenceTrigger{}
 type RecurrenceTrigger struct {
 	Frequency RecurrenceFrequency `json:"frequency"`
 	Interval  int64               `json:"interval"`
-	Schedule  *RecurrenceSchedule `json:"schedule"`
+	Schedule  *RecurrenceSchedule `json:"schedule,omitempty"`
 
 	// Fields inherited from TriggerBase
 	EndTime   *string `json:"endTime,omitempty"`

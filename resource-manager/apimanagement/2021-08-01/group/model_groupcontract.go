@@ -6,6 +6,6 @@ package group
 type GroupContract struct {
 	Id         *string                  `json:"id,omitempty"`
 	Name       *string                  `json:"name,omitempty"`
-	Properties *GroupContractProperties `json:"properties"`
+	Properties *GroupContractProperties `json:"properties,omitempty"`
 	Type       *string                  `json:"type,omitempty"`
 }

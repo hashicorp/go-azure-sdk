@@ -5,9 +5,9 @@ package commitmentplans
 
 type CommitmentPlanProperties struct {
 	AutoRenew    *bool             `json:"autoRenew,omitempty"`
-	Current      *CommitmentPeriod `json:"current"`
+	Current      *CommitmentPeriod `json:"current,omitempty"`
 	HostingModel *HostingModel     `json:"hostingModel,omitempty"`
-	Last         *CommitmentPeriod `json:"last"`
-	Next         *CommitmentPeriod `json:"next"`
+	Last         *CommitmentPeriod `json:"last,omitempty"`
+	Next         *CommitmentPeriod `json:"next,omitempty"`
 	PlanType     *string           `json:"planType,omitempty"`
 }

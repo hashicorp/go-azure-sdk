@@ -6,6 +6,6 @@ package apiversionset
 type ApiVersionSetContract struct {
 	Id         *string                          `json:"id,omitempty"`
 	Name       *string                          `json:"name,omitempty"`
-	Properties *ApiVersionSetContractProperties `json:"properties"`
+	Properties *ApiVersionSetContractProperties `json:"properties,omitempty"`
 	Type       *string                          `json:"type,omitempty"`
 }

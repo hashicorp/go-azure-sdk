@@ -5,7 +5,7 @@ package providers
 
 type AliasPath struct {
 	ApiVersions *[]string          `json:"apiVersions,omitempty"`
-	Metadata    *AliasPathMetadata `json:"metadata"`
+	Metadata    *AliasPathMetadata `json:"metadata,omitempty"`
 	Path        *string            `json:"path,omitempty"`
-	Pattern     *AliasPattern      `json:"pattern"`
+	Pattern     *AliasPattern      `json:"pattern,omitempty"`
 }

@@ -10,7 +10,7 @@ import (
 type BuildpackBindingResource struct {
 	Id         *string                     `json:"id,omitempty"`
 	Name       *string                     `json:"name,omitempty"`
-	Properties *BuildpackBindingProperties `json:"properties"`
+	Properties *BuildpackBindingProperties `json:"properties,omitempty"`
 	SystemData *systemdata.SystemData      `json:"systemData,omitempty"`
 	Type       *string                     `json:"type,omitempty"`
 }

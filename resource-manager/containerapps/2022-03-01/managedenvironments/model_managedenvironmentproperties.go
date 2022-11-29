@@ -4,13 +4,13 @@ package managedenvironments
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type ManagedEnvironmentProperties struct {
-	AppLogsConfiguration     *AppLogsConfiguration         `json:"appLogsConfiguration"`
+	AppLogsConfiguration     *AppLogsConfiguration         `json:"appLogsConfiguration,omitempty"`
 	DaprAIConnectionString   *string                       `json:"daprAIConnectionString,omitempty"`
 	DaprAIInstrumentationKey *string                       `json:"daprAIInstrumentationKey,omitempty"`
 	DefaultDomain            *string                       `json:"defaultDomain,omitempty"`
 	DeploymentErrors         *string                       `json:"deploymentErrors,omitempty"`
 	ProvisioningState        *EnvironmentProvisioningState `json:"provisioningState,omitempty"`
 	StaticIP                 *string                       `json:"staticIp,omitempty"`
-	VnetConfiguration        *VnetConfiguration            `json:"vnetConfiguration"`
+	VnetConfiguration        *VnetConfiguration            `json:"vnetConfiguration,omitempty"`
 	ZoneRedundant            *bool                         `json:"zoneRedundant,omitempty"`
 }

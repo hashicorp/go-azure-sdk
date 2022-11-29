@@ -5,5 +5,5 @@ package dsccompilationjob
 
 type JobStream struct {
 	Id         *string              `json:"id,omitempty"`
-	Properties *JobStreamProperties `json:"properties"`
+	Properties *JobStreamProperties `json:"properties,omitempty"`
 }

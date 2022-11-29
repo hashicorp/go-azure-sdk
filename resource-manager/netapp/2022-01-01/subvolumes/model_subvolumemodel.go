@@ -6,6 +6,6 @@ package subvolumes
 type SubvolumeModel struct {
 	Id         *string                   `json:"id,omitempty"`
 	Name       *string                   `json:"name,omitempty"`
-	Properties *SubvolumeModelProperties `json:"properties"`
+	Properties *SubvolumeModelProperties `json:"properties,omitempty"`
 	Type       *string                   `json:"type,omitempty"`
 }

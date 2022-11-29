@@ -8,9 +8,9 @@ type ManagedClusterProperties struct {
 	AdminPassword                        *string                               `json:"adminPassword,omitempty"`
 	AdminUserName                        string                                `json:"adminUserName"`
 	AllowRdpAccess                       *bool                                 `json:"allowRdpAccess,omitempty"`
-	ApplicationTypeVersionsCleanupPolicy *ApplicationTypeVersionsCleanupPolicy `json:"applicationTypeVersionsCleanupPolicy"`
+	ApplicationTypeVersionsCleanupPolicy *ApplicationTypeVersionsCleanupPolicy `json:"applicationTypeVersionsCleanupPolicy,omitempty"`
 	AuxiliarySubnets                     *[]Subnet                             `json:"auxiliarySubnets,omitempty"`
-	AzureActiveDirectory                 *AzureActiveDirectory                 `json:"azureActiveDirectory"`
+	AzureActiveDirectory                 *AzureActiveDirectory                 `json:"azureActiveDirectory,omitempty"`
 	ClientConnectionPort                 *int64                                `json:"clientConnectionPort,omitempty"`
 	Clients                              *[]ClientCertificate                  `json:"clients,omitempty"`
 	ClusterCertificateThumbprints        *[]string                             `json:"clusterCertificateThumbprints,omitempty"`

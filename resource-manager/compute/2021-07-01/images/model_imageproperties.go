@@ -6,6 +6,6 @@ package images
 type ImageProperties struct {
 	HyperVGeneration     *HyperVGenerationTypes `json:"hyperVGeneration,omitempty"`
 	ProvisioningState    *string                `json:"provisioningState,omitempty"`
-	SourceVirtualMachine *SubResource           `json:"sourceVirtualMachine"`
-	StorageProfile       *ImageStorageProfile   `json:"storageProfile"`
+	SourceVirtualMachine *SubResource           `json:"sourceVirtualMachine,omitempty"`
+	StorageProfile       *ImageStorageProfile   `json:"storageProfile,omitempty"`
 }

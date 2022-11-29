@@ -5,6 +5,6 @@ package notification
 
 type NotificationContractProperties struct {
 	Description *string                       `json:"description,omitempty"`
-	Recipients  *RecipientsContractProperties `json:"recipients"`
+	Recipients  *RecipientsContractProperties `json:"recipients,omitempty"`
 	Title       string                        `json:"title"`
 }

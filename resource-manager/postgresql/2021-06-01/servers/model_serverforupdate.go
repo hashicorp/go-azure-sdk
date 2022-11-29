@@ -5,7 +5,7 @@ package servers
 
 type ServerForUpdate struct {
 	Location   *string                    `json:"location,omitempty"`
-	Properties *ServerPropertiesForUpdate `json:"properties"`
-	Sku        *Sku                       `json:"sku"`
+	Properties *ServerPropertiesForUpdate `json:"properties,omitempty"`
+	Sku        *Sku                       `json:"sku,omitempty"`
 	Tags       *map[string]string         `json:"tags,omitempty"`
 }

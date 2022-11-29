@@ -5,5 +5,5 @@ package containerappsauthconfigs
 
 type DefaultAuthorizationPolicy struct {
 	AllowedApplications *[]string          `json:"allowedApplications,omitempty"`
-	AllowedPrincipals   *AllowedPrincipals `json:"allowedPrincipals"`
+	AllowedPrincipals   *AllowedPrincipals `json:"allowedPrincipals,omitempty"`
 }

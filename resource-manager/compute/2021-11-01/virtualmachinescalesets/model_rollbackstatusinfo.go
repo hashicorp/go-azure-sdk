@@ -5,6 +5,6 @@ package virtualmachinescalesets
 
 type RollbackStatusInfo struct {
 	FailedRolledbackInstanceCount       *int64    `json:"failedRolledbackInstanceCount,omitempty"`
-	RollbackError                       *ApiError `json:"rollbackError"`
+	RollbackError                       *ApiError `json:"rollbackError,omitempty"`
 	SuccessfullyRolledbackInstanceCount *int64    `json:"successfullyRolledbackInstanceCount,omitempty"`
 }

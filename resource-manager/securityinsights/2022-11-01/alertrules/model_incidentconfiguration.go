@@ -5,5 +5,5 @@ package alertrules
 
 type IncidentConfiguration struct {
 	CreateIncident        bool                   `json:"createIncident"`
-	GroupingConfiguration *GroupingConfiguration `json:"groupingConfiguration"`
+	GroupingConfiguration *GroupingConfiguration `json:"groupingConfiguration,omitempty"`
 }

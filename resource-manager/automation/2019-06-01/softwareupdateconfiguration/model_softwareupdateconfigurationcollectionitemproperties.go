@@ -16,8 +16,8 @@ type SoftwareUpdateConfigurationCollectionItemProperties struct {
 	NextRun             *string                           `json:"nextRun,omitempty"`
 	ProvisioningState   *string                           `json:"provisioningState,omitempty"`
 	StartTime           *string                           `json:"startTime,omitempty"`
-	Tasks               *SoftwareUpdateConfigurationTasks `json:"tasks"`
-	UpdateConfiguration *UpdateConfiguration              `json:"updateConfiguration"`
+	Tasks               *SoftwareUpdateConfigurationTasks `json:"tasks,omitempty"`
+	UpdateConfiguration *UpdateConfiguration              `json:"updateConfiguration,omitempty"`
 }
 
 func (o *SoftwareUpdateConfigurationCollectionItemProperties) GetCreationTimeAsTime() (*time.Time, error) {

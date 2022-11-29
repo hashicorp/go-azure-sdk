@@ -5,6 +5,6 @@ package containerappsauthconfigs
 
 type CustomOpenIdConnectProvider struct {
 	Enabled      *bool                      `json:"enabled,omitempty"`
-	Login        *OpenIdConnectLogin        `json:"login"`
-	Registration *OpenIdConnectRegistration `json:"registration"`
+	Login        *OpenIdConnectLogin        `json:"login,omitempty"`
+	Registration *OpenIdConnectRegistration `json:"registration,omitempty"`
 }

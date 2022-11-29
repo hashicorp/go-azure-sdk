@@ -7,7 +7,7 @@ type Forecast struct {
 	Etag       *string             `json:"etag,omitempty"`
 	Id         *string             `json:"id,omitempty"`
 	Name       *string             `json:"name,omitempty"`
-	Properties *ForecastProperties `json:"properties"`
+	Properties *ForecastProperties `json:"properties,omitempty"`
 	Tags       *map[string]string  `json:"tags,omitempty"`
 	Type       *string             `json:"type,omitempty"`
 }

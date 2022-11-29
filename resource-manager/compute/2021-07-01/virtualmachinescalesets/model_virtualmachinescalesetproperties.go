@@ -4,20 +4,20 @@ package virtualmachinescalesets
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type VirtualMachineScaleSetProperties struct {
-	AdditionalCapabilities                 *AdditionalCapabilities          `json:"additionalCapabilities"`
-	AutomaticRepairsPolicy                 *AutomaticRepairsPolicy          `json:"automaticRepairsPolicy"`
+	AdditionalCapabilities                 *AdditionalCapabilities          `json:"additionalCapabilities,omitempty"`
+	AutomaticRepairsPolicy                 *AutomaticRepairsPolicy          `json:"automaticRepairsPolicy,omitempty"`
 	DoNotRunExtensionsOnOverprovisionedVMs *bool                            `json:"doNotRunExtensionsOnOverprovisionedVMs,omitempty"`
-	HostGroup                              *SubResource                     `json:"hostGroup"`
+	HostGroup                              *SubResource                     `json:"hostGroup,omitempty"`
 	OrchestrationMode                      *OrchestrationMode               `json:"orchestrationMode,omitempty"`
 	Overprovision                          *bool                            `json:"overprovision,omitempty"`
 	PlatformFaultDomainCount               *int64                           `json:"platformFaultDomainCount,omitempty"`
 	ProvisioningState                      *string                          `json:"provisioningState,omitempty"`
-	ProximityPlacementGroup                *SubResource                     `json:"proximityPlacementGroup"`
-	ScaleInPolicy                          *ScaleInPolicy                   `json:"scaleInPolicy"`
+	ProximityPlacementGroup                *SubResource                     `json:"proximityPlacementGroup,omitempty"`
+	ScaleInPolicy                          *ScaleInPolicy                   `json:"scaleInPolicy,omitempty"`
 	SinglePlacementGroup                   *bool                            `json:"singlePlacementGroup,omitempty"`
-	SpotRestorePolicy                      *SpotRestorePolicy               `json:"spotRestorePolicy"`
+	SpotRestorePolicy                      *SpotRestorePolicy               `json:"spotRestorePolicy,omitempty"`
 	UniqueId                               *string                          `json:"uniqueId,omitempty"`
-	UpgradePolicy                          *UpgradePolicy                   `json:"upgradePolicy"`
-	VirtualMachineProfile                  *VirtualMachineScaleSetVMProfile `json:"virtualMachineProfile"`
+	UpgradePolicy                          *UpgradePolicy                   `json:"upgradePolicy,omitempty"`
+	VirtualMachineProfile                  *VirtualMachineScaleSetVMProfile `json:"virtualMachineProfile,omitempty"`
 	ZoneBalance                            *bool                            `json:"zoneBalance,omitempty"`
 }

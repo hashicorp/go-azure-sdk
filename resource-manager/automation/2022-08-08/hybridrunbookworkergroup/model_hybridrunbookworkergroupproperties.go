@@ -4,6 +4,6 @@ package hybridrunbookworkergroup
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type HybridRunbookWorkerGroupProperties struct {
-	Credential *RunAsCredentialAssociationProperty `json:"credential"`
+	Credential *RunAsCredentialAssociationProperty `json:"credential,omitempty"`
 	GroupType  *GroupTypeEnum                      `json:"groupType,omitempty"`
 }

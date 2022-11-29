@@ -8,7 +8,7 @@ type Module struct {
 	Id         *string            `json:"id,omitempty"`
 	Location   *string            `json:"location,omitempty"`
 	Name       *string            `json:"name,omitempty"`
-	Properties *ModuleProperties  `json:"properties"`
+	Properties *ModuleProperties  `json:"properties,omitempty"`
 	Tags       *map[string]string `json:"tags,omitempty"`
 	Type       *string            `json:"type,omitempty"`
 }

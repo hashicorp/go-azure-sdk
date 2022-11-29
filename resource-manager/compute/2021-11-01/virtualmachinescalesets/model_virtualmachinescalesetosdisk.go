@@ -6,10 +6,10 @@ package virtualmachinescalesets
 type VirtualMachineScaleSetOSDisk struct {
 	Caching                 *CachingTypes                                `json:"caching,omitempty"`
 	CreateOption            DiskCreateOptionTypes                        `json:"createOption"`
-	DiffDiskSettings        *DiffDiskSettings                            `json:"diffDiskSettings"`
+	DiffDiskSettings        *DiffDiskSettings                            `json:"diffDiskSettings,omitempty"`
 	DiskSizeGB              *int64                                       `json:"diskSizeGB,omitempty"`
-	Image                   *VirtualHardDisk                             `json:"image"`
-	ManagedDisk             *VirtualMachineScaleSetManagedDiskParameters `json:"managedDisk"`
+	Image                   *VirtualHardDisk                             `json:"image,omitempty"`
+	ManagedDisk             *VirtualMachineScaleSetManagedDiskParameters `json:"managedDisk,omitempty"`
 	Name                    *string                                      `json:"name,omitempty"`
 	OsType                  *OperatingSystemTypes                        `json:"osType,omitempty"`
 	VhdContainers           *[]string                                    `json:"vhdContainers,omitempty"`

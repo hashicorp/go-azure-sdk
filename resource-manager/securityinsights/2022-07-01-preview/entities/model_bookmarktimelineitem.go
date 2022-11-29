@@ -12,7 +12,7 @@ var _ EntityTimelineItem = BookmarkTimelineItem{}
 
 type BookmarkTimelineItem struct {
 	AzureResourceId string    `json:"azureResourceId"`
-	CreatedBy       *UserInfo `json:"createdBy"`
+	CreatedBy       *UserInfo `json:"createdBy,omitempty"`
 	DisplayName     *string   `json:"displayName,omitempty"`
 	EndTimeUtc      *string   `json:"endTimeUtc,omitempty"`
 	EventTime       *string   `json:"eventTime,omitempty"`

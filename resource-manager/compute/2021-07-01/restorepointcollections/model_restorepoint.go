@@ -6,6 +6,6 @@ package restorepointcollections
 type RestorePoint struct {
 	Id         *string                 `json:"id,omitempty"`
 	Name       *string                 `json:"name,omitempty"`
-	Properties *RestorePointProperties `json:"properties"`
+	Properties *RestorePointProperties `json:"properties,omitempty"`
 	Type       *string                 `json:"type,omitempty"`
 }

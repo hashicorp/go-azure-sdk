@@ -10,7 +10,7 @@ import (
 type BuildServiceAgentPoolResource struct {
 	Id         *string                          `json:"id,omitempty"`
 	Name       *string                          `json:"name,omitempty"`
-	Properties *BuildServiceAgentPoolProperties `json:"properties"`
+	Properties *BuildServiceAgentPoolProperties `json:"properties,omitempty"`
 	SystemData *systemdata.SystemData           `json:"systemData,omitempty"`
 	Type       *string                          `json:"type,omitempty"`
 }

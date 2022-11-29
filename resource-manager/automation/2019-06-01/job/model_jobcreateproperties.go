@@ -6,5 +6,5 @@ package job
 type JobCreateProperties struct {
 	Parameters *map[string]string          `json:"parameters,omitempty"`
 	RunOn      *string                     `json:"runOn,omitempty"`
-	Runbook    *RunbookAssociationProperty `json:"runbook"`
+	Runbook    *RunbookAssociationProperty `json:"runbook,omitempty"`
 }

@@ -13,7 +13,7 @@ import (
 var _ DataConnector = ASCDataConnector{}
 
 type ASCDataConnector struct {
-	Properties *ASCDataConnectorProperties `json:"properties"`
+	Properties *ASCDataConnectorProperties `json:"properties,omitempty"`
 
 	// Fields inherited from DataConnector
 	Etag       *string                `json:"etag,omitempty"`

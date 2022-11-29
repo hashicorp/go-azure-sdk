@@ -6,6 +6,6 @@ package workloadnetworks
 type WorkloadNetworkSegment struct {
 	Id         *string                           `json:"id,omitempty"`
 	Name       *string                           `json:"name,omitempty"`
-	Properties *WorkloadNetworkSegmentProperties `json:"properties"`
+	Properties *WorkloadNetworkSegmentProperties `json:"properties,omitempty"`
 	Type       *string                           `json:"type,omitempty"`
 }

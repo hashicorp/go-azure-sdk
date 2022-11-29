@@ -6,6 +6,6 @@ package logger
 type LoggerContract struct {
 	Id         *string                   `json:"id,omitempty"`
 	Name       *string                   `json:"name,omitempty"`
-	Properties *LoggerContractProperties `json:"properties"`
+	Properties *LoggerContractProperties `json:"properties,omitempty"`
 	Type       *string                   `json:"type,omitempty"`
 }

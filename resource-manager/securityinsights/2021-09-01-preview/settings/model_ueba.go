@@ -13,7 +13,7 @@ import (
 var _ Settings = Ueba{}
 
 type Ueba struct {
-	Properties *UebaProperties `json:"properties"`
+	Properties *UebaProperties `json:"properties,omitempty"`
 
 	// Fields inherited from Settings
 	Etag       *string                `json:"etag,omitempty"`

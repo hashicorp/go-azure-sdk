@@ -11,11 +11,11 @@ import (
 
 type BookmarkProperties struct {
 	Created        *string                   `json:"created,omitempty"`
-	CreatedBy      *UserInfo                 `json:"createdBy"`
+	CreatedBy      *UserInfo                 `json:"createdBy,omitempty"`
 	DisplayName    string                    `json:"displayName"`
 	EntityMappings *[]BookmarkEntityMappings `json:"entityMappings,omitempty"`
 	EventTime      *string                   `json:"eventTime,omitempty"`
-	IncidentInfo   *IncidentInfo             `json:"incidentInfo"`
+	IncidentInfo   *IncidentInfo             `json:"incidentInfo,omitempty"`
 	Labels         *[]string                 `json:"labels,omitempty"`
 	Notes          *string                   `json:"notes,omitempty"`
 	Query          string                    `json:"query"`
@@ -25,7 +25,7 @@ type BookmarkProperties struct {
 	Tactics        *[]AttackTactic           `json:"tactics,omitempty"`
 	Techniques     *[]string                 `json:"techniques,omitempty"`
 	Updated        *string                   `json:"updated,omitempty"`
-	UpdatedBy      *UserInfo                 `json:"updatedBy"`
+	UpdatedBy      *UserInfo                 `json:"updatedBy,omitempty"`
 }
 
 func (o *BookmarkProperties) GetCreatedAsTime() (*time.Time, error) {

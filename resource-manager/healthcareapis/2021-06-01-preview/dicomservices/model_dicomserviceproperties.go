@@ -4,7 +4,7 @@ package dicomservices
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type DicomServiceProperties struct {
-	AuthenticationConfiguration *DicomServiceAuthenticationConfiguration `json:"authenticationConfiguration"`
+	AuthenticationConfiguration *DicomServiceAuthenticationConfiguration `json:"authenticationConfiguration,omitempty"`
 	ProvisioningState           *ProvisioningState                       `json:"provisioningState,omitempty"`
 	ServiceUrl                  *string                                  `json:"serviceUrl,omitempty"`
 }

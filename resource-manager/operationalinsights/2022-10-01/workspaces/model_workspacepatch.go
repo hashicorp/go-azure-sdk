@@ -12,7 +12,7 @@ type WorkspacePatch struct {
 	Id         *string                           `json:"id,omitempty"`
 	Identity   *identity.SystemOrUserAssignedMap `json:"identity,omitempty"`
 	Name       *string                           `json:"name,omitempty"`
-	Properties *WorkspaceProperties              `json:"properties"`
+	Properties *WorkspaceProperties              `json:"properties,omitempty"`
 	Tags       *map[string]string                `json:"tags,omitempty"`
 	Type       *string                           `json:"type,omitempty"`
 }

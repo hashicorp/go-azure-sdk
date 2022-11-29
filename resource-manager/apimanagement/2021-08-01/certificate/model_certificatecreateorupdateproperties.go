@@ -5,6 +5,6 @@ package certificate
 
 type CertificateCreateOrUpdateProperties struct {
 	Data     *string                           `json:"data,omitempty"`
-	KeyVault *KeyVaultContractCreateProperties `json:"keyVault"`
+	KeyVault *KeyVaultContractCreateProperties `json:"keyVault,omitempty"`
 	Password *string                           `json:"password,omitempty"`
 }

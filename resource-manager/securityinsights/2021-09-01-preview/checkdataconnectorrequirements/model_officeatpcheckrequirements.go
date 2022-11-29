@@ -11,7 +11,7 @@ import (
 var _ DataConnectorsCheckRequirements = OfficeATPCheckRequirements{}
 
 type OfficeATPCheckRequirements struct {
-	Properties *DataConnectorTenantId `json:"properties"`
+	Properties *DataConnectorTenantId `json:"properties,omitempty"`
 
 	// Fields inherited from DataConnectorsCheckRequirements
 }

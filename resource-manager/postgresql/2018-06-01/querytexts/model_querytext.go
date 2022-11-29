@@ -6,6 +6,6 @@ package querytexts
 type QueryText struct {
 	Id         *string              `json:"id,omitempty"`
 	Name       *string              `json:"name,omitempty"`
-	Properties *QueryTextProperties `json:"properties"`
+	Properties *QueryTextProperties `json:"properties,omitempty"`
 	Type       *string              `json:"type,omitempty"`
 }

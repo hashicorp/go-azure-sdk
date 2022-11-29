@@ -11,14 +11,14 @@ import (
 
 type LotProperties struct {
 	BillingCurrency                 *string                 `json:"billingCurrency,omitempty"`
-	ClosedBalance                   *Amount                 `json:"closedBalance"`
-	ClosedBalanceInBillingCurrency  *AmountWithExchangeRate `json:"closedBalanceInBillingCurrency"`
+	ClosedBalance                   *Amount                 `json:"closedBalance,omitempty"`
+	ClosedBalanceInBillingCurrency  *AmountWithExchangeRate `json:"closedBalanceInBillingCurrency,omitempty"`
 	CreditCurrency                  *string                 `json:"creditCurrency,omitempty"`
 	ExpirationDate                  *string                 `json:"expirationDate,omitempty"`
-	OriginalAmount                  *Amount                 `json:"originalAmount"`
-	OriginalAmountInBillingCurrency *AmountWithExchangeRate `json:"originalAmountInBillingCurrency"`
+	OriginalAmount                  *Amount                 `json:"originalAmount,omitempty"`
+	OriginalAmountInBillingCurrency *AmountWithExchangeRate `json:"originalAmountInBillingCurrency,omitempty"`
 	PoNumber                        *string                 `json:"poNumber,omitempty"`
-	Reseller                        *Reseller               `json:"reseller"`
+	Reseller                        *Reseller               `json:"reseller,omitempty"`
 	Source                          *LotSource              `json:"source,omitempty"`
 	StartDate                       *string                 `json:"startDate,omitempty"`
 }

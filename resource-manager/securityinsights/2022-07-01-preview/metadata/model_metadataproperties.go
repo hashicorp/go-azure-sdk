@@ -4,12 +4,12 @@ package metadata
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type MetadataProperties struct {
-	Author                   *MetadataAuthor       `json:"author"`
-	Categories               *MetadataCategories   `json:"categories"`
+	Author                   *MetadataAuthor       `json:"author,omitempty"`
+	Categories               *MetadataCategories   `json:"categories,omitempty"`
 	ContentId                *string               `json:"contentId,omitempty"`
 	ContentSchemaVersion     *string               `json:"contentSchemaVersion,omitempty"`
 	CustomVersion            *string               `json:"customVersion,omitempty"`
-	Dependencies             *MetadataDependencies `json:"dependencies"`
+	Dependencies             *MetadataDependencies `json:"dependencies,omitempty"`
 	FirstPublishDate         *string               `json:"firstPublishDate,omitempty"`
 	Icon                     *string               `json:"icon,omitempty"`
 	Kind                     Kind                  `json:"kind"`
@@ -18,8 +18,8 @@ type MetadataProperties struct {
 	PreviewImages            *[]string             `json:"previewImages,omitempty"`
 	PreviewImagesDark        *[]string             `json:"previewImagesDark,omitempty"`
 	Providers                *[]string             `json:"providers,omitempty"`
-	Source                   *MetadataSource       `json:"source"`
-	Support                  *MetadataSupport      `json:"support"`
+	Source                   *MetadataSource       `json:"source,omitempty"`
+	Support                  *MetadataSupport      `json:"support,omitempty"`
 	ThreatAnalysisTactics    *[]string             `json:"threatAnalysisTactics,omitempty"`
 	ThreatAnalysisTechniques *[]string             `json:"threatAnalysisTechniques,omitempty"`
 	Version                  *string               `json:"version,omitempty"`

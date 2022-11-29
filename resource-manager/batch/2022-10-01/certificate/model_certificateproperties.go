@@ -10,7 +10,7 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type CertificateProperties struct {
-	DeleteCertificateError                  *DeleteCertificateError       `json:"deleteCertificateError"`
+	DeleteCertificateError                  *DeleteCertificateError       `json:"deleteCertificateError,omitempty"`
 	Format                                  *CertificateFormat            `json:"format,omitempty"`
 	PreviousProvisioningState               *CertificateProvisioningState `json:"previousProvisioningState,omitempty"`
 	PreviousProvisioningStateTransitionTime *string                       `json:"previousProvisioningStateTransitionTime,omitempty"`

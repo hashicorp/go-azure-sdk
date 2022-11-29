@@ -4,5 +4,5 @@ package firewallrules
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type UpdateFirewallRuleParameters struct {
-	Properties *UpdateFirewallRuleProperties `json:"properties"`
+	Properties *UpdateFirewallRuleProperties `json:"properties,omitempty"`
 }

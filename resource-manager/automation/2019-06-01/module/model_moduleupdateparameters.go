@@ -6,6 +6,6 @@ package module
 type ModuleUpdateParameters struct {
 	Location   *string                 `json:"location,omitempty"`
 	Name       *string                 `json:"name,omitempty"`
-	Properties *ModuleUpdateProperties `json:"properties"`
+	Properties *ModuleUpdateProperties `json:"properties,omitempty"`
 	Tags       *map[string]string      `json:"tags,omitempty"`
 }

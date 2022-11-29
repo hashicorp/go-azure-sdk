@@ -4,5 +4,5 @@ package providers
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type ProviderRegistrationRequest struct {
-	ThirdPartyProviderConsent *ProviderConsentDefinition `json:"thirdPartyProviderConsent"`
+	ThirdPartyProviderConsent *ProviderConsentDefinition `json:"thirdPartyProviderConsent,omitempty"`
 }

@@ -12,6 +12,6 @@ type ReadOnlyFollowingDatabaseProperties struct {
 	PrincipalsModificationKind        *PrincipalsModificationKind  `json:"principalsModificationKind,omitempty"`
 	ProvisioningState                 *ProvisioningState           `json:"provisioningState,omitempty"`
 	SoftDeletePeriod                  *string                      `json:"softDeletePeriod,omitempty"`
-	Statistics                        *DatabaseStatistics          `json:"statistics"`
-	TableLevelSharingProperties       *TableLevelSharingProperties `json:"tableLevelSharingProperties"`
+	Statistics                        *DatabaseStatistics          `json:"statistics,omitempty"`
+	TableLevelSharingProperties       *TableLevelSharingProperties `json:"tableLevelSharingProperties,omitempty"`
 }

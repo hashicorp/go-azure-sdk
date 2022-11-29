@@ -13,7 +13,7 @@ import (
 var _ DataConnector = MSTIDataConnector{}
 
 type MSTIDataConnector struct {
-	Properties *MSTIDataConnectorProperties `json:"properties"`
+	Properties *MSTIDataConnectorProperties `json:"properties,omitempty"`
 
 	// Fields inherited from DataConnector
 	Etag       *string                `json:"etag,omitempty"`

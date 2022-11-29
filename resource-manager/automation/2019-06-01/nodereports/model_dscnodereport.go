@@ -18,7 +18,7 @@ type DscNodeReport struct {
 	IPV6Addresses        *[]string             `json:"iPV6Addresses,omitempty"`
 	Id                   *string               `json:"id,omitempty"`
 	LastModifiedTime     *string               `json:"lastModifiedTime,omitempty"`
-	MetaConfiguration    *DscMetaConfiguration `json:"metaConfiguration"`
+	MetaConfiguration    *DscMetaConfiguration `json:"metaConfiguration,omitempty"`
 	NumberOfResources    *int64                `json:"numberOfResources,omitempty"`
 	RawErrors            *string               `json:"rawErrors,omitempty"`
 	RebootRequested      *string               `json:"rebootRequested,omitempty"`

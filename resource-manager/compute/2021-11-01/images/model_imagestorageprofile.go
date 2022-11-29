@@ -5,6 +5,6 @@ package images
 
 type ImageStorageProfile struct {
 	DataDisks     *[]ImageDataDisk `json:"dataDisks,omitempty"`
-	OsDisk        *ImageOSDisk     `json:"osDisk"`
+	OsDisk        *ImageOSDisk     `json:"osDisk,omitempty"`
 	ZoneResilient *bool            `json:"zoneResilient,omitempty"`
 }

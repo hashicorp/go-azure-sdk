@@ -11,10 +11,10 @@ import (
 
 type ModuleProperties struct {
 	ActivityCount     *int64                   `json:"activityCount,omitempty"`
-	ContentLink       *ContentLink             `json:"contentLink"`
+	ContentLink       *ContentLink             `json:"contentLink,omitempty"`
 	CreationTime      *string                  `json:"creationTime,omitempty"`
 	Description       *string                  `json:"description,omitempty"`
-	Error             *ModuleErrorInfo         `json:"error"`
+	Error             *ModuleErrorInfo         `json:"error,omitempty"`
 	IsComposite       *bool                    `json:"isComposite,omitempty"`
 	IsGlobal          *bool                    `json:"isGlobal,omitempty"`
 	LastModifiedTime  *string                  `json:"lastModifiedTime,omitempty"`

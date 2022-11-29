@@ -5,7 +5,7 @@ package forecast
 
 type ForecastDataset struct {
 	Aggregation   map[string]ForecastAggregation `json:"aggregation"`
-	Configuration *ForecastDatasetConfiguration  `json:"configuration"`
-	Filter        *ForecastFilter                `json:"filter"`
+	Configuration *ForecastDatasetConfiguration  `json:"configuration,omitempty"`
+	Filter        *ForecastFilter                `json:"filter,omitempty"`
 	Granularity   *GranularityType               `json:"granularity,omitempty"`
 }

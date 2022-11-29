@@ -4,5 +4,5 @@ package replicationjobs
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type ResumeJobParams struct {
-	Properties *ResumeJobParamsProperties `json:"properties"`
+	Properties *ResumeJobParamsProperties `json:"properties,omitempty"`
 }

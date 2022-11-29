@@ -5,5 +5,5 @@ package containerappsauthconfigs
 
 type Twitter struct {
 	Enabled      *bool                `json:"enabled,omitempty"`
-	Registration *TwitterRegistration `json:"registration"`
+	Registration *TwitterRegistration `json:"registration,omitempty"`
 }

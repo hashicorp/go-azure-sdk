@@ -11,7 +11,7 @@ import (
 var _ Database = ReadWriteDatabase{}
 
 type ReadWriteDatabase struct {
-	Properties *ReadWriteDatabaseProperties `json:"properties"`
+	Properties *ReadWriteDatabaseProperties `json:"properties,omitempty"`
 
 	// Fields inherited from Database
 	Id       *string `json:"id,omitempty"`

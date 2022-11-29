@@ -5,7 +5,7 @@ package virtualmachinescalesetvms
 
 type LinuxConfiguration struct {
 	DisablePasswordAuthentication *bool               `json:"disablePasswordAuthentication,omitempty"`
-	PatchSettings                 *LinuxPatchSettings `json:"patchSettings"`
+	PatchSettings                 *LinuxPatchSettings `json:"patchSettings,omitempty"`
 	ProvisionVMAgent              *bool               `json:"provisionVMAgent,omitempty"`
-	Ssh                           *SshConfiguration   `json:"ssh"`
+	Ssh                           *SshConfiguration   `json:"ssh,omitempty"`
 }

@@ -5,7 +5,7 @@ package extensions
 
 type ExtensionProperties struct {
 	AggregateState          *ExtensionAggregateState `json:"aggregateState,omitempty"`
-	ExtensionParameters     *ExtensionParameters     `json:"extensionParameters"`
+	ExtensionParameters     *ExtensionParameters     `json:"extensionParameters,omitempty"`
 	PerNodeExtensionDetails *[]PerNodeExtensionState `json:"perNodeExtensionDetails,omitempty"`
 	ProvisioningState       *ProvisioningState       `json:"provisioningState,omitempty"`
 }

@@ -4,7 +4,7 @@ package pricesheet
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type PriceSheetModel struct {
-	Download    *MeterDetails           `json:"download"`
+	Download    *MeterDetails           `json:"download,omitempty"`
 	NextLink    *string                 `json:"nextLink,omitempty"`
 	Pricesheets *[]PriceSheetProperties `json:"pricesheets,omitempty"`
 }

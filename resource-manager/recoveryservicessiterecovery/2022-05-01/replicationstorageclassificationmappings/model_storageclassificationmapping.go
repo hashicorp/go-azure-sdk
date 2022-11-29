@@ -7,6 +7,6 @@ type StorageClassificationMapping struct {
 	Id         *string                                 `json:"id,omitempty"`
 	Location   *string                                 `json:"location,omitempty"`
 	Name       *string                                 `json:"name,omitempty"`
-	Properties *StorageClassificationMappingProperties `json:"properties"`
+	Properties *StorageClassificationMappingProperties `json:"properties,omitempty"`
 	Type       *string                                 `json:"type,omitempty"`
 }

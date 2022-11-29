@@ -10,7 +10,7 @@ import (
 type ApiPortalCustomDomainResource struct {
 	Id         *string                          `json:"id,omitempty"`
 	Name       *string                          `json:"name,omitempty"`
-	Properties *ApiPortalCustomDomainProperties `json:"properties"`
+	Properties *ApiPortalCustomDomainProperties `json:"properties,omitempty"`
 	SystemData *systemdata.SystemData           `json:"systemData,omitempty"`
 	Type       *string                          `json:"type,omitempty"`
 }

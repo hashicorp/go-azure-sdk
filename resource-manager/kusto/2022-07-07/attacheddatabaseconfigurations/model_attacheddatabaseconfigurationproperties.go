@@ -11,5 +11,5 @@ type AttachedDatabaseConfigurationProperties struct {
 	DatabaseNamePrefix                *string                           `json:"databaseNamePrefix,omitempty"`
 	DefaultPrincipalsModificationKind DefaultPrincipalsModificationKind `json:"defaultPrincipalsModificationKind"`
 	ProvisioningState                 *ProvisioningState                `json:"provisioningState,omitempty"`
-	TableLevelSharingProperties       *TableLevelSharingProperties      `json:"tableLevelSharingProperties"`
+	TableLevelSharingProperties       *TableLevelSharingProperties      `json:"tableLevelSharingProperties,omitempty"`
 }

@@ -4,7 +4,7 @@ package nodetype
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type NodeTypeAvailableSku struct {
-	Capacity     *NodeTypeSkuCapacity  `json:"capacity"`
+	Capacity     *NodeTypeSkuCapacity  `json:"capacity,omitempty"`
 	ResourceType *string               `json:"resourceType,omitempty"`
-	Sku          *NodeTypeSupportedSku `json:"sku"`
+	Sku          *NodeTypeSupportedSku `json:"sku,omitempty"`
 }

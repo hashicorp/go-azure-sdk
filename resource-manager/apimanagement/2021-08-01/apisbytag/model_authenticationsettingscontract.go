@@ -4,6 +4,6 @@ package apisbytag
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type AuthenticationSettingsContract struct {
-	OAuth2 *OAuth2AuthenticationSettingsContract `json:"oAuth2"`
-	Openid *OpenIdAuthenticationSettingsContract `json:"openid"`
+	OAuth2 *OAuth2AuthenticationSettingsContract `json:"oAuth2,omitempty"`
+	Openid *OpenIdAuthenticationSettingsContract `json:"openid,omitempty"`
 }

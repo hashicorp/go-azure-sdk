@@ -11,7 +11,7 @@ import (
 var _ AutomationRuleAction = AutomationRuleModifyPropertiesAction{}
 
 type AutomationRuleModifyPropertiesAction struct {
-	ActionConfiguration *IncidentPropertiesAction `json:"actionConfiguration"`
+	ActionConfiguration *IncidentPropertiesAction `json:"actionConfiguration,omitempty"`
 
 	// Fields inherited from AutomationRuleAction
 	Order int64 `json:"order"`

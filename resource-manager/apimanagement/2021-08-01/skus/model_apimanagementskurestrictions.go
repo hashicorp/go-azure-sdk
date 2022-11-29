@@ -5,7 +5,7 @@ package skus
 
 type ApiManagementSkuRestrictions struct {
 	ReasonCode      *ApiManagementSkuRestrictionsReasonCode `json:"reasonCode,omitempty"`
-	RestrictionInfo *ApiManagementSkuRestrictionInfo        `json:"restrictionInfo"`
+	RestrictionInfo *ApiManagementSkuRestrictionInfo        `json:"restrictionInfo,omitempty"`
 	Type            *ApiManagementSkuRestrictionsType       `json:"type,omitempty"`
 	Values          *[]string                               `json:"values,omitempty"`
 }

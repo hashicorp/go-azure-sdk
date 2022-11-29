@@ -4,6 +4,6 @@ package onlinedeployment
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type ContainerResourceRequirements struct {
-	ContainerResourceLimits   *ContainerResourceSettings `json:"containerResourceLimits"`
-	ContainerResourceRequests *ContainerResourceSettings `json:"containerResourceRequests"`
+	ContainerResourceLimits   *ContainerResourceSettings `json:"containerResourceLimits,omitempty"`
+	ContainerResourceRequests *ContainerResourceSettings `json:"containerResourceRequests,omitempty"`
 }

@@ -18,7 +18,7 @@ type OnlineDeploymentTrackedResource struct {
 	Location   string                                   `json:"location"`
 	Name       *string                                  `json:"name,omitempty"`
 	Properties OnlineDeployment                         `json:"properties"`
-	Sku        *Sku                                     `json:"sku"`
+	Sku        *Sku                                     `json:"sku,omitempty"`
 	SystemData *systemdata.SystemData                   `json:"systemData,omitempty"`
 	Tags       *map[string]string                       `json:"tags,omitempty"`
 	Type       *string                                  `json:"type,omitempty"`

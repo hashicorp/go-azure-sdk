@@ -13,7 +13,7 @@ import (
 var _ Settings = EyesOn{}
 
 type EyesOn struct {
-	Properties *EyesOnSettingsProperties `json:"properties"`
+	Properties *EyesOnSettingsProperties `json:"properties,omitempty"`
 
 	// Fields inherited from Settings
 	Etag       *string                `json:"etag,omitempty"`

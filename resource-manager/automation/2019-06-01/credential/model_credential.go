@@ -6,6 +6,6 @@ package credential
 type Credential struct {
 	Id         *string               `json:"id,omitempty"`
 	Name       *string               `json:"name,omitempty"`
-	Properties *CredentialProperties `json:"properties"`
+	Properties *CredentialProperties `json:"properties,omitempty"`
 	Type       *string               `json:"type,omitempty"`
 }

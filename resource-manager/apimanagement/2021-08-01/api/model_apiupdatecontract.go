@@ -4,5 +4,5 @@ package api
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type ApiUpdateContract struct {
-	Properties *ApiContractUpdateProperties `json:"properties"`
+	Properties *ApiContractUpdateProperties `json:"properties,omitempty"`
 }

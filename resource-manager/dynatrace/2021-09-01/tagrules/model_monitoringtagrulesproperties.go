@@ -4,7 +4,7 @@ package tagrules
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type MonitoringTagRulesProperties struct {
-	LogRules          *LogRules          `json:"logRules"`
-	MetricRules       *MetricRules       `json:"metricRules"`
+	LogRules          *LogRules          `json:"logRules,omitempty"`
+	MetricRules       *MetricRules       `json:"metricRules,omitempty"`
 	ProvisioningState *ProvisioningState `json:"provisioningState,omitempty"`
 }

@@ -5,8 +5,8 @@ package frontdoors
 
 type CustomHTTPSConfiguration struct {
 	CertificateSource                    FrontDoorCertificateSource            `json:"certificateSource"`
-	FrontDoorCertificateSourceParameters *FrontDoorCertificateSourceParameters `json:"frontDoorCertificateSourceParameters"`
-	KeyVaultCertificateSourceParameters  *KeyVaultCertificateSourceParameters  `json:"keyVaultCertificateSourceParameters"`
+	FrontDoorCertificateSourceParameters *FrontDoorCertificateSourceParameters `json:"frontDoorCertificateSourceParameters,omitempty"`
+	KeyVaultCertificateSourceParameters  *KeyVaultCertificateSourceParameters  `json:"keyVaultCertificateSourceParameters,omitempty"`
 	MinimumTlsVersion                    MinimumTLSVersion                     `json:"minimumTlsVersion"`
 	ProtocolType                         FrontDoorTlsProtocolType              `json:"protocolType"`
 }

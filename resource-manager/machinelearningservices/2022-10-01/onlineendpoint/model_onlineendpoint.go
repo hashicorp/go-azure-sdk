@@ -7,7 +7,7 @@ type OnlineEndpoint struct {
 	AuthMode            EndpointAuthMode           `json:"authMode"`
 	Compute             *string                    `json:"compute,omitempty"`
 	Description         *string                    `json:"description,omitempty"`
-	Keys                *EndpointAuthKeys          `json:"keys"`
+	Keys                *EndpointAuthKeys          `json:"keys,omitempty"`
 	Properties          *map[string]string         `json:"properties,omitempty"`
 	ProvisioningState   *EndpointProvisioningState `json:"provisioningState,omitempty"`
 	PublicNetworkAccess *PublicNetworkAccessType   `json:"publicNetworkAccess,omitempty"`

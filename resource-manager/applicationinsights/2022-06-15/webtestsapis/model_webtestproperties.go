@@ -4,7 +4,7 @@ package webtestsapis
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type WebTestProperties struct {
-	Configuration      *WebTestPropertiesConfiguration   `json:"Configuration"`
+	Configuration      *WebTestPropertiesConfiguration   `json:"Configuration,omitempty"`
 	Description        *string                           `json:"Description,omitempty"`
 	Enabled            *bool                             `json:"Enabled,omitempty"`
 	Frequency          *int64                            `json:"Frequency,omitempty"`
@@ -12,9 +12,9 @@ type WebTestProperties struct {
 	Locations          []WebTestGeolocation              `json:"Locations"`
 	Name               string                            `json:"Name"`
 	ProvisioningState  *string                           `json:"provisioningState,omitempty"`
-	Request            *WebTestPropertiesRequest         `json:"Request"`
+	Request            *WebTestPropertiesRequest         `json:"Request,omitempty"`
 	RetryEnabled       *bool                             `json:"RetryEnabled,omitempty"`
 	SyntheticMonitorId string                            `json:"SyntheticMonitorId"`
 	Timeout            *int64                            `json:"Timeout,omitempty"`
-	ValidationRules    *WebTestPropertiesValidationRules `json:"ValidationRules"`
+	ValidationRules    *WebTestPropertiesValidationRules `json:"ValidationRules,omitempty"`
 }
