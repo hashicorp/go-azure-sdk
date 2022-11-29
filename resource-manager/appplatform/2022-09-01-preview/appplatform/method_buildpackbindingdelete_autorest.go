@@ -19,7 +19,7 @@ type BuildpackBindingDeleteOperationResponse struct {
 }
 
 // BuildpackBindingDelete ...
-func (c AppPlatformClient) BuildpackBindingDelete(ctx context.Context, id BuildpackBindingId) (result BuildpackBindingDeleteOperationResponse, err error) {
+func (c AppPlatformClient) BuildpackBindingDelete(ctx context.Context, id BuildPackBindingId) (result BuildpackBindingDeleteOperationResponse, err error) {
 	req, err := c.preparerForBuildpackBindingDelete(ctx, id)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "appplatform.AppPlatformClient", "BuildpackBindingDelete", nil, "Failure preparing request")
@@ -36,7 +36,7 @@ func (c AppPlatformClient) BuildpackBindingDelete(ctx context.Context, id Buildp
 }
 
 // BuildpackBindingDeleteThenPoll performs BuildpackBindingDelete then polls until it's completed
-func (c AppPlatformClient) BuildpackBindingDeleteThenPoll(ctx context.Context, id BuildpackBindingId) error {
+func (c AppPlatformClient) BuildpackBindingDeleteThenPoll(ctx context.Context, id BuildPackBindingId) error {
 	result, err := c.BuildpackBindingDelete(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing BuildpackBindingDelete: %+v", err)
@@ -50,7 +50,7 @@ func (c AppPlatformClient) BuildpackBindingDeleteThenPoll(ctx context.Context, i
 }
 
 // preparerForBuildpackBindingDelete prepares the BuildpackBindingDelete request.
-func (c AppPlatformClient) preparerForBuildpackBindingDelete(ctx context.Context, id BuildpackBindingId) (*http.Request, error) {
+func (c AppPlatformClient) preparerForBuildpackBindingDelete(ctx context.Context, id BuildPackBindingId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

@@ -69,7 +69,7 @@ func (c AppPlatformClient) preparerForBuildpackBindingList(ctx context.Context, 
 		autorest.AsContentType("application/json; charset=utf-8"),
 		autorest.AsGet(),
 		autorest.WithBaseURL(c.baseUri),
-		autorest.WithPath(fmt.Sprintf("%s/buildpackBindings", id.ID())),
+		autorest.WithPath(fmt.Sprintf("%s/buildPackBindings", id.ID())),
 		autorest.WithQueryParameters(queryParameters))
 	return preparer.Prepare((&http.Request{}).WithContext(ctx))
 }
