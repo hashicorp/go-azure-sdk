@@ -7,10 +7,10 @@ import (
 	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
 )
 
-var _ resourceids.ResourceId = BuildpackBindingId{}
+var _ resourceids.ResourceId = BuildPackBindingId{}
 
-// BuildpackBindingId is a struct representing the Resource ID for a Buildpack Binding
-type BuildpackBindingId struct {
+// BuildPackBindingId is a struct representing the Resource ID for a Build Pack Binding
+type BuildPackBindingId struct {
 	SubscriptionId       string
 	ResourceGroupName    string
 	ServiceName          string
@@ -19,9 +19,9 @@ type BuildpackBindingId struct {
 	BuildpackBindingName string
 }
 
-// NewBuildpackBindingID returns a new BuildpackBindingId struct
-func NewBuildpackBindingID(subscriptionId string, resourceGroupName string, serviceName string, buildServiceName string, builderName string, buildpackBindingName string) BuildpackBindingId {
-	return BuildpackBindingId{
+// NewBuildPackBindingID returns a new BuildPackBindingId struct
+func NewBuildPackBindingID(subscriptionId string, resourceGroupName string, serviceName string, buildServiceName string, builderName string, buildpackBindingName string) BuildPackBindingId {
+	return BuildPackBindingId{
 		SubscriptionId:       subscriptionId,
 		ResourceGroupName:    resourceGroupName,
 		ServiceName:          serviceName,
@@ -31,16 +31,16 @@ func NewBuildpackBindingID(subscriptionId string, resourceGroupName string, serv
 	}
 }
 
-// ParseBuildpackBindingID parses 'input' into a BuildpackBindingId
-func ParseBuildpackBindingID(input string) (*BuildpackBindingId, error) {
-	parser := resourceids.NewParserFromResourceIdType(BuildpackBindingId{})
+// ParseBuildPackBindingID parses 'input' into a BuildPackBindingId
+func ParseBuildPackBindingID(input string) (*BuildPackBindingId, error) {
+	parser := resourceids.NewParserFromResourceIdType(BuildPackBindingId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
 	var ok bool
-	id := BuildpackBindingId{}
+	id := BuildPackBindingId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
 		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
@@ -69,17 +69,17 @@ func ParseBuildpackBindingID(input string) (*BuildpackBindingId, error) {
 	return &id, nil
 }
 
-// ParseBuildpackBindingIDInsensitively parses 'input' case-insensitively into a BuildpackBindingId
+// ParseBuildPackBindingIDInsensitively parses 'input' case-insensitively into a BuildPackBindingId
 // note: this method should only be used for API response data and not user input
-func ParseBuildpackBindingIDInsensitively(input string) (*BuildpackBindingId, error) {
-	parser := resourceids.NewParserFromResourceIdType(BuildpackBindingId{})
+func ParseBuildPackBindingIDInsensitively(input string) (*BuildPackBindingId, error) {
+	parser := resourceids.NewParserFromResourceIdType(BuildPackBindingId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
 	var ok bool
-	id := BuildpackBindingId{}
+	id := BuildPackBindingId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
 		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
@@ -108,29 +108,29 @@ func ParseBuildpackBindingIDInsensitively(input string) (*BuildpackBindingId, er
 	return &id, nil
 }
 
-// ValidateBuildpackBindingID checks that 'input' can be parsed as a Buildpack Binding ID
-func ValidateBuildpackBindingID(input interface{}, key string) (warnings []string, errors []error) {
+// ValidateBuildPackBindingID checks that 'input' can be parsed as a Build Pack Binding ID
+func ValidateBuildPackBindingID(input interface{}, key string) (warnings []string, errors []error) {
 	v, ok := input.(string)
 	if !ok {
 		errors = append(errors, fmt.Errorf("expected %q to be a string", key))
 		return
 	}
 
-	if _, err := ParseBuildpackBindingID(v); err != nil {
+	if _, err := ParseBuildPackBindingID(v); err != nil {
 		errors = append(errors, err)
 	}
 
 	return
 }
 
-// ID returns the formatted Buildpack Binding ID
-func (id BuildpackBindingId) ID() string {
-	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.AppPlatform/spring/%s/buildServices/%s/builders/%s/buildpackBindings/%s"
+// ID returns the formatted Build Pack Binding ID
+func (id BuildPackBindingId) ID() string {
+	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.AppPlatform/spring/%s/buildServices/%s/builders/%s/buildPackBindings/%s"
 	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.ServiceName, id.BuildServiceName, id.BuilderName, id.BuildpackBindingName)
 }
 
-// Segments returns a slice of Resource ID Segments which comprise this Buildpack Binding ID
-func (id BuildpackBindingId) Segments() []resourceids.Segment {
+// Segments returns a slice of Resource ID Segments which comprise this Build Pack Binding ID
+func (id BuildPackBindingId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
 		resourceids.StaticSegment("staticSubscriptions", "subscriptions", "subscriptions"),
 		resourceids.SubscriptionIdSegment("subscriptionId", "12345678-1234-9876-4563-123456789012"),
@@ -144,13 +144,13 @@ func (id BuildpackBindingId) Segments() []resourceids.Segment {
 		resourceids.UserSpecifiedSegment("buildServiceName", "buildServiceValue"),
 		resourceids.StaticSegment("staticBuilders", "builders", "builders"),
 		resourceids.UserSpecifiedSegment("builderName", "builderValue"),
-		resourceids.StaticSegment("staticBuildpackBindings", "buildpackBindings", "buildpackBindings"),
+		resourceids.StaticSegment("staticBuildPackBindings", "buildPackBindings", "buildPackBindings"),
 		resourceids.UserSpecifiedSegment("buildpackBindingName", "buildpackBindingValue"),
 	}
 }
 
-// String returns a human-readable description of this Buildpack Binding ID
-func (id BuildpackBindingId) String() string {
+// String returns a human-readable description of this Build Pack Binding ID
+func (id BuildPackBindingId) String() string {
 	components := []string{
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
@@ -159,5 +159,5 @@ func (id BuildpackBindingId) String() string {
 		fmt.Sprintf("Builder Name: %q", id.BuilderName),
 		fmt.Sprintf("Buildpack Binding Name: %q", id.BuildpackBindingName),
 	}
-	return fmt.Sprintf("Buildpack Binding (%s)", strings.Join(components, "\n"))
+	return fmt.Sprintf("Build Pack Binding (%s)", strings.Join(components, "\n"))
 }

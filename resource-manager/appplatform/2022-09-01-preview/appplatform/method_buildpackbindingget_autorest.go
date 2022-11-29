@@ -17,7 +17,7 @@ type BuildpackBindingGetOperationResponse struct {
 }
 
 // BuildpackBindingGet ...
-func (c AppPlatformClient) BuildpackBindingGet(ctx context.Context, id BuildpackBindingId) (result BuildpackBindingGetOperationResponse, err error) {
+func (c AppPlatformClient) BuildpackBindingGet(ctx context.Context, id BuildPackBindingId) (result BuildpackBindingGetOperationResponse, err error) {
 	req, err := c.preparerForBuildpackBindingGet(ctx, id)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "appplatform.AppPlatformClient", "BuildpackBindingGet", nil, "Failure preparing request")
@@ -40,7 +40,7 @@ func (c AppPlatformClient) BuildpackBindingGet(ctx context.Context, id Buildpack
 }
 
 // preparerForBuildpackBindingGet prepares the BuildpackBindingGet request.
-func (c AppPlatformClient) preparerForBuildpackBindingGet(ctx context.Context, id BuildpackBindingId) (*http.Request, error) {
+func (c AppPlatformClient) preparerForBuildpackBindingGet(ctx context.Context, id BuildPackBindingId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

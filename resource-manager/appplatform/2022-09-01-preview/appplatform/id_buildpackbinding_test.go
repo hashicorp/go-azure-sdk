@@ -6,10 +6,10 @@ import (
 	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
 )
 
-var _ resourceids.ResourceId = BuildpackBindingId{}
+var _ resourceids.ResourceId = BuildPackBindingId{}
 
-func TestNewBuildpackBindingID(t *testing.T) {
-	id := NewBuildpackBindingID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "buildServiceValue", "builderValue", "buildpackBindingValue")
+func TestNewBuildPackBindingID(t *testing.T) {
+	id := NewBuildPackBindingID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "buildServiceValue", "builderValue", "buildpackBindingValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -36,19 +36,19 @@ func TestNewBuildpackBindingID(t *testing.T) {
 	}
 }
 
-func TestFormatBuildpackBindingID(t *testing.T) {
-	actual := NewBuildpackBindingID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "buildServiceValue", "builderValue", "buildpackBindingValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/serviceValue/buildServices/buildServiceValue/builders/builderValue/buildpackBindings/buildpackBindingValue"
+func TestFormatBuildPackBindingID(t *testing.T) {
+	actual := NewBuildPackBindingID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "buildServiceValue", "builderValue", "buildpackBindingValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/serviceValue/buildServices/buildServiceValue/builders/builderValue/buildPackBindings/buildpackBindingValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
 }
 
-func TestParseBuildpackBindingID(t *testing.T) {
+func TestParseBuildPackBindingID(t *testing.T) {
 	testData := []struct {
 		Input    string
 		Error    bool
-		Expected *BuildpackBindingId
+		Expected *BuildPackBindingId
 	}{
 		{
 			// Incomplete URI
@@ -117,13 +117,13 @@ func TestParseBuildpackBindingID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/serviceValue/buildServices/buildServiceValue/builders/builderValue/buildpackBindings",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/serviceValue/buildServices/buildServiceValue/builders/builderValue/buildPackBindings",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/serviceValue/buildServices/buildServiceValue/builders/builderValue/buildpackBindings/buildpackBindingValue",
-			Expected: &BuildpackBindingId{
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/serviceValue/buildServices/buildServiceValue/builders/builderValue/buildPackBindings/buildpackBindingValue",
+			Expected: &BuildPackBindingId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:    "example-resource-group",
 				ServiceName:          "serviceValue",
@@ -134,14 +134,14 @@ func TestParseBuildpackBindingID(t *testing.T) {
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/serviceValue/buildServices/buildServiceValue/builders/builderValue/buildpackBindings/buildpackBindingValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/serviceValue/buildServices/buildServiceValue/builders/builderValue/buildPackBindings/buildpackBindingValue/extra",
 			Error: true,
 		},
 	}
 	for _, v := range testData {
 		t.Logf("[DEBUG] Testing %q", v.Input)
 
-		actual, err := ParseBuildpackBindingID(v.Input)
+		actual, err := ParseBuildPackBindingID(v.Input)
 		if err != nil {
 			if v.Error {
 				continue
@@ -180,11 +180,11 @@ func TestParseBuildpackBindingID(t *testing.T) {
 	}
 }
 
-func TestParseBuildpackBindingIDInsensitively(t *testing.T) {
+func TestParseBuildPackBindingIDInsensitively(t *testing.T) {
 	testData := []struct {
 		Input    string
 		Error    bool
-		Expected *BuildpackBindingId
+		Expected *BuildPackBindingId
 	}{
 		{
 			// Incomplete URI
@@ -313,7 +313,7 @@ func TestParseBuildpackBindingIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/serviceValue/buildServices/buildServiceValue/builders/builderValue/buildpackBindings",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/serviceValue/buildServices/buildServiceValue/builders/builderValue/buildPackBindings",
 			Error: true,
 		},
 		{
@@ -323,8 +323,8 @@ func TestParseBuildpackBindingIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/serviceValue/buildServices/buildServiceValue/builders/builderValue/buildpackBindings/buildpackBindingValue",
-			Expected: &BuildpackBindingId{
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/serviceValue/buildServices/buildServiceValue/builders/builderValue/buildPackBindings/buildpackBindingValue",
+			Expected: &BuildPackBindingId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:    "example-resource-group",
 				ServiceName:          "serviceValue",
@@ -335,13 +335,13 @@ func TestParseBuildpackBindingIDInsensitively(t *testing.T) {
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/serviceValue/buildServices/buildServiceValue/builders/builderValue/buildpackBindings/buildpackBindingValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/serviceValue/buildServices/buildServiceValue/builders/builderValue/buildPackBindings/buildpackBindingValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
 			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPpPlAtFoRm/sPrInG/sErViCeVaLuE/bUiLdSeRvIcEs/bUiLdSeRvIcEvAlUe/bUiLdErS/bUiLdErVaLuE/bUiLdPaCkBiNdInGs/bUiLdPaCkBiNdInGvAlUe",
-			Expected: &BuildpackBindingId{
+			Expected: &BuildPackBindingId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:    "eXaMpLe-rEsOuRcE-GrOuP",
 				ServiceName:          "sErViCeVaLuE",
@@ -359,7 +359,7 @@ func TestParseBuildpackBindingIDInsensitively(t *testing.T) {
 	for _, v := range testData {
 		t.Logf("[DEBUG] Testing %q", v.Input)
 
-		actual, err := ParseBuildpackBindingIDInsensitively(v.Input)
+		actual, err := ParseBuildPackBindingIDInsensitively(v.Input)
 		if err != nil {
 			if v.Error {
 				continue
@@ -398,10 +398,10 @@ func TestParseBuildpackBindingIDInsensitively(t *testing.T) {
 	}
 }
 
-func TestSegmentsForBuildpackBindingId(t *testing.T) {
-	segments := BuildpackBindingId{}.Segments()
+func TestSegmentsForBuildPackBindingId(t *testing.T) {
+	segments := BuildPackBindingId{}.Segments()
 	if len(segments) == 0 {
-		t.Fatalf("BuildpackBindingId has no segments")
+		t.Fatalf("BuildPackBindingId has no segments")
 	}
 
 	uniqueNames := make(map[string]struct{}, 0)

@@ -19,7 +19,7 @@ type BuildpackBindingCreateOrUpdateOperationResponse struct {
 }
 
 // BuildpackBindingCreateOrUpdate ...
-func (c AppPlatformClient) BuildpackBindingCreateOrUpdate(ctx context.Context, id BuildpackBindingId, input BuildpackBindingResource) (result BuildpackBindingCreateOrUpdateOperationResponse, err error) {
+func (c AppPlatformClient) BuildpackBindingCreateOrUpdate(ctx context.Context, id BuildPackBindingId, input BuildpackBindingResource) (result BuildpackBindingCreateOrUpdateOperationResponse, err error) {
 	req, err := c.preparerForBuildpackBindingCreateOrUpdate(ctx, id, input)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "appplatform.AppPlatformClient", "BuildpackBindingCreateOrUpdate", nil, "Failure preparing request")
@@ -36,7 +36,7 @@ func (c AppPlatformClient) BuildpackBindingCreateOrUpdate(ctx context.Context, i
 }
 
 // BuildpackBindingCreateOrUpdateThenPoll performs BuildpackBindingCreateOrUpdate then polls until it's completed
-func (c AppPlatformClient) BuildpackBindingCreateOrUpdateThenPoll(ctx context.Context, id BuildpackBindingId, input BuildpackBindingResource) error {
+func (c AppPlatformClient) BuildpackBindingCreateOrUpdateThenPoll(ctx context.Context, id BuildPackBindingId, input BuildpackBindingResource) error {
 	result, err := c.BuildpackBindingCreateOrUpdate(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing BuildpackBindingCreateOrUpdate: %+v", err)
@@ -50,7 +50,7 @@ func (c AppPlatformClient) BuildpackBindingCreateOrUpdateThenPoll(ctx context.Co
 }
 
 // preparerForBuildpackBindingCreateOrUpdate prepares the BuildpackBindingCreateOrUpdate request.
-func (c AppPlatformClient) preparerForBuildpackBindingCreateOrUpdate(ctx context.Context, id BuildpackBindingId, input BuildpackBindingResource) (*http.Request, error) {
+func (c AppPlatformClient) preparerForBuildpackBindingCreateOrUpdate(ctx context.Context, id BuildPackBindingId, input BuildpackBindingResource) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}
