@@ -125,24 +125,24 @@ func parseResourceMoveState(input string) (*ResourceMoveState, error) {
 type StorageSettingStoreTypes string
 
 const (
-	StorageSettingStoreTypesArchiveStore  StorageSettingStoreTypes = "ArchiveStore"
-	StorageSettingStoreTypesSnapshotStore StorageSettingStoreTypes = "SnapshotStore"
-	StorageSettingStoreTypesVaultStore    StorageSettingStoreTypes = "VaultStore"
+	StorageSettingStoreTypesArchiveStore     StorageSettingStoreTypes = "ArchiveStore"
+	StorageSettingStoreTypesOperationalStore StorageSettingStoreTypes = "OperationalStore"
+	StorageSettingStoreTypesVaultStore       StorageSettingStoreTypes = "VaultStore"
 )
 
 func PossibleValuesForStorageSettingStoreTypes() []string {
 	return []string{
 		string(StorageSettingStoreTypesArchiveStore),
-		string(StorageSettingStoreTypesSnapshotStore),
+		string(StorageSettingStoreTypesOperationalStore),
 		string(StorageSettingStoreTypesVaultStore),
 	}
 }
 
 func parseStorageSettingStoreTypes(input string) (*StorageSettingStoreTypes, error) {
 	vals := map[string]StorageSettingStoreTypes{
-		"archivestore":  StorageSettingStoreTypesArchiveStore,
-		"snapshotstore": StorageSettingStoreTypesSnapshotStore,
-		"vaultstore":    StorageSettingStoreTypesVaultStore,
+		"archivestore":     StorageSettingStoreTypesArchiveStore,
+		"operationalstore": StorageSettingStoreTypesOperationalStore,
+		"vaultstore":       StorageSettingStoreTypesVaultStore,
 	}
 	if v, ok := vals[strings.ToLower(input)]; ok {
 		return &v, nil
