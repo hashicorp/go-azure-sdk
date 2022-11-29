@@ -6,6 +6,6 @@ package workloadnetworks
 type WorkloadNetworkVMGroup struct {
 	Id         *string                           `json:"id,omitempty"`
 	Name       *string                           `json:"name,omitempty"`
-	Properties *WorkloadNetworkVMGroupProperties `json:"properties"`
+	Properties *WorkloadNetworkVMGroupProperties `json:"properties,omitempty"`
 	Type       *string                           `json:"type,omitempty"`
 }

@@ -4,7 +4,7 @@ package sourcecontrols
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type RepositoryResourceInfo struct {
-	AzureDevOpsResourceInfo *AzureDevOpsResourceInfo `json:"azureDevOpsResourceInfo"`
-	GitHubResourceInfo      *GitHubResourceInfo      `json:"gitHubResourceInfo"`
-	Webhook                 *Webhook                 `json:"webhook"`
+	AzureDevOpsResourceInfo *AzureDevOpsResourceInfo `json:"azureDevOpsResourceInfo,omitempty"`
+	GitHubResourceInfo      *GitHubResourceInfo      `json:"gitHubResourceInfo,omitempty"`
+	Webhook                 *Webhook                 `json:"webhook,omitempty"`
 }

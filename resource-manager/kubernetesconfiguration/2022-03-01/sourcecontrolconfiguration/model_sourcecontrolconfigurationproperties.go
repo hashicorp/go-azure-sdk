@@ -4,10 +4,10 @@ package sourcecontrolconfiguration
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type SourceControlConfigurationProperties struct {
-	ComplianceStatus               *ComplianceStatus       `json:"complianceStatus"`
+	ComplianceStatus               *ComplianceStatus       `json:"complianceStatus,omitempty"`
 	ConfigurationProtectedSettings *map[string]string      `json:"configurationProtectedSettings,omitempty"`
 	EnableHelmOperator             *bool                   `json:"enableHelmOperator,omitempty"`
-	HelmOperatorProperties         *HelmOperatorProperties `json:"helmOperatorProperties"`
+	HelmOperatorProperties         *HelmOperatorProperties `json:"helmOperatorProperties,omitempty"`
 	OperatorInstanceName           *string                 `json:"operatorInstanceName,omitempty"`
 	OperatorNamespace              *string                 `json:"operatorNamespace,omitempty"`
 	OperatorParams                 *string                 `json:"operatorParams,omitempty"`

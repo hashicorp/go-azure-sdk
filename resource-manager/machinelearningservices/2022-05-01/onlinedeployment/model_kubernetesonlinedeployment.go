@@ -11,22 +11,22 @@ import (
 var _ OnlineDeployment = KubernetesOnlineDeployment{}
 
 type KubernetesOnlineDeployment struct {
-	ContainerResourceRequirements *ContainerResourceRequirements `json:"containerResourceRequirements"`
+	ContainerResourceRequirements *ContainerResourceRequirements `json:"containerResourceRequirements,omitempty"`
 
 	// Fields inherited from OnlineDeployment
 	AppInsightsEnabled   *bool                        `json:"appInsightsEnabled,omitempty"`
-	CodeConfiguration    *CodeConfiguration           `json:"codeConfiguration"`
+	CodeConfiguration    *CodeConfiguration           `json:"codeConfiguration,omitempty"`
 	Description          *string                      `json:"description,omitempty"`
 	EnvironmentId        *string                      `json:"environmentId,omitempty"`
 	EnvironmentVariables *map[string]string           `json:"environmentVariables,omitempty"`
 	InstanceType         *string                      `json:"instanceType,omitempty"`
-	LivenessProbe        *ProbeSettings               `json:"livenessProbe"`
+	LivenessProbe        *ProbeSettings               `json:"livenessProbe,omitempty"`
 	Model                *string                      `json:"model,omitempty"`
 	ModelMountPath       *string                      `json:"modelMountPath,omitempty"`
 	Properties           *map[string]string           `json:"properties,omitempty"`
 	ProvisioningState    *DeploymentProvisioningState `json:"provisioningState,omitempty"`
-	ReadinessProbe       *ProbeSettings               `json:"readinessProbe"`
-	RequestSettings      *OnlineRequestSettings       `json:"requestSettings"`
+	ReadinessProbe       *ProbeSettings               `json:"readinessProbe,omitempty"`
+	RequestSettings      *OnlineRequestSettings       `json:"requestSettings,omitempty"`
 	ScaleSettings        OnlineScaleSettings          `json:"scaleSettings"`
 }
 

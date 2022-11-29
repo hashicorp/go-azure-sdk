@@ -7,5 +7,5 @@ type GenerateCostDetailsReportRequestDefinition struct {
 	BillingPeriod *string                `json:"billingPeriod,omitempty"`
 	InvoiceId     *string                `json:"invoiceId,omitempty"`
 	Metric        *CostDetailsMetricType `json:"metric,omitempty"`
-	TimePeriod    *CostDetailsTimePeriod `json:"timePeriod"`
+	TimePeriod    *CostDetailsTimePeriod `json:"timePeriod,omitempty"`
 }

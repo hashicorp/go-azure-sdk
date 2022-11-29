@@ -11,7 +11,7 @@ type SentinelOnboardingState struct {
 	Etag       *string                            `json:"etag,omitempty"`
 	Id         *string                            `json:"id,omitempty"`
 	Name       *string                            `json:"name,omitempty"`
-	Properties *SentinelOnboardingStateProperties `json:"properties"`
+	Properties *SentinelOnboardingStateProperties `json:"properties,omitempty"`
 	SystemData *systemdata.SystemData             `json:"systemData,omitempty"`
 	Type       *string                            `json:"type,omitempty"`
 }

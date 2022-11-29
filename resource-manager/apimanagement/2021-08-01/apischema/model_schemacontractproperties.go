@@ -5,5 +5,5 @@ package apischema
 
 type SchemaContractProperties struct {
 	ContentType string                    `json:"contentType"`
-	Document    *SchemaDocumentProperties `json:"document"`
+	Document    *SchemaDocumentProperties `json:"document,omitempty"`
 }

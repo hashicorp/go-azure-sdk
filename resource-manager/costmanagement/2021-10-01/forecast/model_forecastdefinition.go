@@ -7,7 +7,7 @@ type ForecastDefinition struct {
 	Dataset                 ForecastDataset     `json:"dataset"`
 	IncludeActualCost       *bool               `json:"includeActualCost,omitempty"`
 	IncludeFreshPartialCost *bool               `json:"includeFreshPartialCost,omitempty"`
-	TimePeriod              *ForecastTimePeriod `json:"timePeriod"`
+	TimePeriod              *ForecastTimePeriod `json:"timePeriod,omitempty"`
 	Timeframe               ForecastTimeframe   `json:"timeframe"`
 	Type                    ForecastType        `json:"type"`
 }

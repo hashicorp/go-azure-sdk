@@ -5,5 +5,5 @@ package schedule
 
 type ScheduleUpdateParameters struct {
 	Name       *string                   `json:"name,omitempty"`
-	Properties *ScheduleUpdateProperties `json:"properties"`
+	Properties *ScheduleUpdateProperties `json:"properties,omitempty"`
 }

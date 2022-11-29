@@ -6,6 +6,6 @@ package apiissuecomment
 type IssueCommentContract struct {
 	Id         *string                         `json:"id,omitempty"`
 	Name       *string                         `json:"name,omitempty"`
-	Properties *IssueCommentContractProperties `json:"properties"`
+	Properties *IssueCommentContractProperties `json:"properties,omitempty"`
 	Type       *string                         `json:"type,omitempty"`
 }

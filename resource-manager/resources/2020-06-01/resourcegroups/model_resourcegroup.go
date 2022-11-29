@@ -8,7 +8,7 @@ type ResourceGroup struct {
 	Location   string                   `json:"location"`
 	ManagedBy  *string                  `json:"managedBy,omitempty"`
 	Name       *string                  `json:"name,omitempty"`
-	Properties *ResourceGroupProperties `json:"properties"`
+	Properties *ResourceGroupProperties `json:"properties,omitempty"`
 	Tags       *map[string]string       `json:"tags,omitempty"`
 	Type       *string                  `json:"type,omitempty"`
 }

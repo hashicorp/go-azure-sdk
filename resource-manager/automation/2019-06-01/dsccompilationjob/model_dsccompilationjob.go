@@ -6,6 +6,6 @@ package dsccompilationjob
 type DscCompilationJob struct {
 	Id         *string                      `json:"id,omitempty"`
 	Name       *string                      `json:"name,omitempty"`
-	Properties *DscCompilationJobProperties `json:"properties"`
+	Properties *DscCompilationJobProperties `json:"properties,omitempty"`
 	Type       *string                      `json:"type,omitempty"`
 }

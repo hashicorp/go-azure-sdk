@@ -13,7 +13,7 @@ import (
 var _ DataConnector = TiTaxiiDataConnector{}
 
 type TiTaxiiDataConnector struct {
-	Properties *TiTaxiiDataConnectorProperties `json:"properties"`
+	Properties *TiTaxiiDataConnectorProperties `json:"properties,omitempty"`
 
 	// Fields inherited from DataConnector
 	Etag       *string                `json:"etag,omitempty"`

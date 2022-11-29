@@ -14,7 +14,7 @@ type TrialComponent struct {
 	Distribution         DistributionConfiguration `json:"distribution"`
 	EnvironmentId        string                    `json:"environmentId"`
 	EnvironmentVariables *map[string]string        `json:"environmentVariables,omitempty"`
-	Resources            *JobResourceConfiguration `json:"resources"`
+	Resources            *JobResourceConfiguration `json:"resources,omitempty"`
 }
 
 var _ json.Unmarshaler = &TrialComponent{}

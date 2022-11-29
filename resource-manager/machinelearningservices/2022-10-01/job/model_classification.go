@@ -12,14 +12,14 @@ var _ AutoMLVertical = Classification{}
 
 type Classification struct {
 	CvSplitColumnNames    *[]string                           `json:"cvSplitColumnNames,omitempty"`
-	FeaturizationSettings *TableVerticalFeaturizationSettings `json:"featurizationSettings"`
-	LimitSettings         *TableVerticalLimitSettings         `json:"limitSettings"`
+	FeaturizationSettings *TableVerticalFeaturizationSettings `json:"featurizationSettings,omitempty"`
+	LimitSettings         *TableVerticalLimitSettings         `json:"limitSettings,omitempty"`
 	NCrossValidations     NCrossValidations                   `json:"nCrossValidations"`
 	PositiveLabel         *string                             `json:"positiveLabel,omitempty"`
 	PrimaryMetric         *ClassificationPrimaryMetrics       `json:"primaryMetric,omitempty"`
 	TestData              JobInput                            `json:"testData"`
 	TestDataSize          *float64                            `json:"testDataSize,omitempty"`
-	TrainingSettings      *ClassificationTrainingSettings     `json:"trainingSettings"`
+	TrainingSettings      *ClassificationTrainingSettings     `json:"trainingSettings,omitempty"`
 	ValidationData        JobInput                            `json:"validationData"`
 	ValidationDataSize    *float64                            `json:"validationDataSize,omitempty"`
 	WeightColumnName      *string                             `json:"weightColumnName,omitempty"`

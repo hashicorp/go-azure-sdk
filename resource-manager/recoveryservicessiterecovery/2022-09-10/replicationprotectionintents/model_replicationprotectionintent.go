@@ -7,6 +7,6 @@ type ReplicationProtectionIntent struct {
 	Id         *string                                `json:"id,omitempty"`
 	Location   *string                                `json:"location,omitempty"`
 	Name       *string                                `json:"name,omitempty"`
-	Properties *ReplicationProtectionIntentProperties `json:"properties"`
+	Properties *ReplicationProtectionIntentProperties `json:"properties,omitempty"`
 	Type       *string                                `json:"type,omitempty"`
 }

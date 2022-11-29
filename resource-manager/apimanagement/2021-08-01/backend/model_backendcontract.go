@@ -6,6 +6,6 @@ package backend
 type BackendContract struct {
 	Id         *string                    `json:"id,omitempty"`
 	Name       *string                    `json:"name,omitempty"`
-	Properties *BackendContractProperties `json:"properties"`
+	Properties *BackendContractProperties `json:"properties,omitempty"`
 	Type       *string                    `json:"type,omitempty"`
 }

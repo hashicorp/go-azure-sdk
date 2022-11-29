@@ -10,7 +10,7 @@ type VirtualMachineScaleSetDataDisk struct {
 	DiskMBpsReadWrite       *int64                                       `json:"diskMBpsReadWrite,omitempty"`
 	DiskSizeGB              *int64                                       `json:"diskSizeGB,omitempty"`
 	Lun                     int64                                        `json:"lun"`
-	ManagedDisk             *VirtualMachineScaleSetManagedDiskParameters `json:"managedDisk"`
+	ManagedDisk             *VirtualMachineScaleSetManagedDiskParameters `json:"managedDisk,omitempty"`
 	Name                    *string                                      `json:"name,omitempty"`
 	WriteAcceleratorEnabled *bool                                        `json:"writeAcceleratorEnabled,omitempty"`
 }

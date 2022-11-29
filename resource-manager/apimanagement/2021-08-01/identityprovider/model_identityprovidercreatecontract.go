@@ -6,6 +6,6 @@ package identityprovider
 type IdentityProviderCreateContract struct {
 	Id         *string                                   `json:"id,omitempty"`
 	Name       *string                                   `json:"name,omitempty"`
-	Properties *IdentityProviderCreateContractProperties `json:"properties"`
+	Properties *IdentityProviderCreateContractProperties `json:"properties,omitempty"`
 	Type       *string                                   `json:"type,omitempty"`
 }

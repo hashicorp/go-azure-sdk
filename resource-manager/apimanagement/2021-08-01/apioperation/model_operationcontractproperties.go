@@ -8,7 +8,7 @@ type OperationContractProperties struct {
 	DisplayName        string               `json:"displayName"`
 	Method             string               `json:"method"`
 	Policies           *string              `json:"policies,omitempty"`
-	Request            *RequestContract     `json:"request"`
+	Request            *RequestContract     `json:"request,omitempty"`
 	Responses          *[]ResponseContract  `json:"responses,omitempty"`
 	TemplateParameters *[]ParameterContract `json:"templateParameters,omitempty"`
 	UrlTemplate        string               `json:"urlTemplate"`

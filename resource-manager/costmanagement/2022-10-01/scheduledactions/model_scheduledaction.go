@@ -12,7 +12,7 @@ type ScheduledAction struct {
 	Id         *string                    `json:"id,omitempty"`
 	Kind       *ScheduledActionKind       `json:"kind,omitempty"`
 	Name       *string                    `json:"name,omitempty"`
-	Properties *ScheduledActionProperties `json:"properties"`
+	Properties *ScheduledActionProperties `json:"properties,omitempty"`
 	SystemData *systemdata.SystemData     `json:"systemData,omitempty"`
 	Type       *string                    `json:"type,omitempty"`
 }

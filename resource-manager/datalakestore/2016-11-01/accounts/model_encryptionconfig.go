@@ -4,6 +4,6 @@ package accounts
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type EncryptionConfig struct {
-	KeyVaultMetaInfo *KeyVaultMetaInfo    `json:"keyVaultMetaInfo"`
+	KeyVaultMetaInfo *KeyVaultMetaInfo    `json:"keyVaultMetaInfo,omitempty"`
 	Type             EncryptionConfigType `json:"type"`
 }

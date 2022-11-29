@@ -10,9 +10,9 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type CostDetailsOperationResults struct {
-	Error     *ErrorDetails          `json:"error"`
+	Error     *ErrorDetails          `json:"error,omitempty"`
 	Id        *string                `json:"id,omitempty"`
-	Manifest  *ReportManifest        `json:"manifest"`
+	Manifest  *ReportManifest        `json:"manifest,omitempty"`
 	Name      *string                `json:"name,omitempty"`
 	Status    *CostDetailsStatusType `json:"status,omitempty"`
 	Type      *string                `json:"type,omitempty"`

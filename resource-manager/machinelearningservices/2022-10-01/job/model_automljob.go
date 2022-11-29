@@ -14,7 +14,7 @@ type AutoMLJob struct {
 	EnvironmentId        *string                   `json:"environmentId,omitempty"`
 	EnvironmentVariables *map[string]string        `json:"environmentVariables,omitempty"`
 	Outputs              *map[string]JobOutput     `json:"outputs,omitempty"`
-	Resources            *JobResourceConfiguration `json:"resources"`
+	Resources            *JobResourceConfiguration `json:"resources,omitempty"`
 	TaskDetails          AutoMLVertical            `json:"taskDetails"`
 
 	// Fields inherited from JobBase

@@ -9,7 +9,7 @@ type CapabilityTypeProperties struct {
 	Kind              *string                                    `json:"kind,omitempty"`
 	ParametersSchema  *string                                    `json:"parametersSchema,omitempty"`
 	Publisher         *string                                    `json:"publisher,omitempty"`
-	RuntimeProperties *CapabilityTypePropertiesRuntimeProperties `json:"runtimeProperties"`
+	RuntimeProperties *CapabilityTypePropertiesRuntimeProperties `json:"runtimeProperties,omitempty"`
 	TargetType        *string                                    `json:"targetType,omitempty"`
 	Urn               *string                                    `json:"urn,omitempty"`
 }

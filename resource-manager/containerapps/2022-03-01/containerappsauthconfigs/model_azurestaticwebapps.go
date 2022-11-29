@@ -5,5 +5,5 @@ package containerappsauthconfigs
 
 type AzureStaticWebApps struct {
 	Enabled      *bool                           `json:"enabled,omitempty"`
-	Registration *AzureStaticWebAppsRegistration `json:"registration"`
+	Registration *AzureStaticWebAppsRegistration `json:"registration,omitempty"`
 }

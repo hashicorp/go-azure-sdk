@@ -9,5 +9,5 @@ type SourceControlUpdateProperties struct {
 	Description    *string                               `json:"description,omitempty"`
 	FolderPath     *string                               `json:"folderPath,omitempty"`
 	PublishRunbook *bool                                 `json:"publishRunbook,omitempty"`
-	SecurityToken  *SourceControlSecurityTokenProperties `json:"securityToken"`
+	SecurityToken  *SourceControlSecurityTokenProperties `json:"securityToken,omitempty"`
 }

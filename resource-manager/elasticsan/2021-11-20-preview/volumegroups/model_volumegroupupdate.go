@@ -4,6 +4,6 @@ package volumegroups
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type VolumeGroupUpdate struct {
-	Properties *VolumeGroupUpdateProperties `json:"properties"`
+	Properties *VolumeGroupUpdateProperties `json:"properties,omitempty"`
 	Tags       *map[string]string           `json:"tags,omitempty"`
 }

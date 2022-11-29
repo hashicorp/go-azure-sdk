@@ -6,6 +6,6 @@ package certificate
 type CertificateContract struct {
 	Id         *string                        `json:"id,omitempty"`
 	Name       *string                        `json:"name,omitempty"`
-	Properties *CertificateContractProperties `json:"properties"`
+	Properties *CertificateContractProperties `json:"properties,omitempty"`
 	Type       *string                        `json:"type,omitempty"`
 }

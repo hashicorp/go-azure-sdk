@@ -9,7 +9,7 @@ import (
 
 type NodeTypeProperties struct {
 	AdditionalDataDisks          *[]VmssDataDisk                   `json:"additionalDataDisks,omitempty"`
-	ApplicationPorts             *EndpointRangeDescription         `json:"applicationPorts"`
+	ApplicationPorts             *EndpointRangeDescription         `json:"applicationPorts,omitempty"`
 	Capacities                   *map[string]string                `json:"capacities,omitempty"`
 	DataDiskLetter               *string                           `json:"dataDiskLetter,omitempty"`
 	DataDiskSizeGB               *int64                            `json:"dataDiskSizeGB,omitempty"`
@@ -17,7 +17,7 @@ type NodeTypeProperties struct {
 	EnableAcceleratedNetworking  *bool                             `json:"enableAcceleratedNetworking,omitempty"`
 	EnableEncryptionAtHost       *bool                             `json:"enableEncryptionAtHost,omitempty"`
 	EnableOverProvisioning       *bool                             `json:"enableOverProvisioning,omitempty"`
-	EphemeralPorts               *EndpointRangeDescription         `json:"ephemeralPorts"`
+	EphemeralPorts               *EndpointRangeDescription         `json:"ephemeralPorts,omitempty"`
 	FrontendConfigurations       *[]FrontendConfiguration          `json:"frontendConfigurations,omitempty"`
 	IsPrimary                    bool                              `json:"isPrimary"`
 	IsStateless                  *bool                             `json:"isStateless,omitempty"`

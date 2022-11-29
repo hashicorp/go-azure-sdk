@@ -4,9 +4,9 @@ package privateclouds
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type PrivateCloudUpdateProperties struct {
-	Availability      *AvailabilityProperties  `json:"availability"`
-	Encryption        *Encryption              `json:"encryption"`
+	Availability      *AvailabilityProperties  `json:"availability,omitempty"`
+	Encryption        *Encryption              `json:"encryption,omitempty"`
 	IdentitySources   *[]IdentitySource        `json:"identitySources,omitempty"`
 	Internet          *InternetEnum            `json:"internet,omitempty"`
-	ManagementCluster *CommonClusterProperties `json:"managementCluster"`
+	ManagementCluster *CommonClusterProperties `json:"managementCluster,omitempty"`
 }

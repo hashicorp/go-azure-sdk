@@ -11,7 +11,7 @@ import (
 
 type OperationResultContractProperties struct {
 	ActionLog  *[]OperationResultLogItemContract `json:"actionLog,omitempty"`
-	Error      *ErrorResponseBody                `json:"error"`
+	Error      *ErrorResponseBody                `json:"error,omitempty"`
 	Id         *string                           `json:"id,omitempty"`
 	ResultInfo *string                           `json:"resultInfo,omitempty"`
 	Started    *string                           `json:"started,omitempty"`

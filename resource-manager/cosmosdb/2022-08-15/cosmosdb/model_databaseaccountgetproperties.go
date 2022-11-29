@@ -9,13 +9,13 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type DatabaseAccountGetProperties struct {
-	AnalyticalStorageConfiguration     *AnalyticalStorageConfiguration `json:"analyticalStorageConfiguration"`
-	ApiProperties                      *ApiProperties                  `json:"apiProperties"`
+	AnalyticalStorageConfiguration     *AnalyticalStorageConfiguration `json:"analyticalStorageConfiguration,omitempty"`
+	ApiProperties                      *ApiProperties                  `json:"apiProperties,omitempty"`
 	BackupPolicy                       BackupPolicy                    `json:"backupPolicy"`
 	Capabilities                       *[]Capability                   `json:"capabilities,omitempty"`
-	Capacity                           *Capacity                       `json:"capacity"`
+	Capacity                           *Capacity                       `json:"capacity,omitempty"`
 	ConnectorOffer                     *ConnectorOffer                 `json:"connectorOffer,omitempty"`
-	ConsistencyPolicy                  *ConsistencyPolicy              `json:"consistencyPolicy"`
+	ConsistencyPolicy                  *ConsistencyPolicy              `json:"consistencyPolicy,omitempty"`
 	Cors                               *[]CorsPolicy                   `json:"cors,omitempty"`
 	CreateMode                         *CreateMode                     `json:"createMode,omitempty"`
 	DatabaseAccountOfferType           *DatabaseAccountOfferType       `json:"databaseAccountOfferType,omitempty"`
@@ -34,7 +34,7 @@ type DatabaseAccountGetProperties struct {
 	InstanceId                         *string                         `json:"instanceId,omitempty"`
 	IsVirtualNetworkFilterEnabled      *bool                           `json:"isVirtualNetworkFilterEnabled,omitempty"`
 	KeyVaultKeyUri                     *string                         `json:"keyVaultKeyUri,omitempty"`
-	KeysMetadata                       *DatabaseAccountKeysMetadata    `json:"keysMetadata"`
+	KeysMetadata                       *DatabaseAccountKeysMetadata    `json:"keysMetadata,omitempty"`
 	Locations                          *[]Location                     `json:"locations,omitempty"`
 	NetworkAclBypass                   *NetworkAclBypass               `json:"networkAclBypass,omitempty"`
 	NetworkAclBypassResourceIds        *[]string                       `json:"networkAclBypassResourceIds,omitempty"`
@@ -42,7 +42,7 @@ type DatabaseAccountGetProperties struct {
 	ProvisioningState                  *string                         `json:"provisioningState,omitempty"`
 	PublicNetworkAccess                *PublicNetworkAccess            `json:"publicNetworkAccess,omitempty"`
 	ReadLocations                      *[]Location                     `json:"readLocations,omitempty"`
-	RestoreParameters                  *RestoreParameters              `json:"restoreParameters"`
+	RestoreParameters                  *RestoreParameters              `json:"restoreParameters,omitempty"`
 	VirtualNetworkRules                *[]VirtualNetworkRule           `json:"virtualNetworkRules,omitempty"`
 	WriteLocations                     *[]Location                     `json:"writeLocations,omitempty"`
 }

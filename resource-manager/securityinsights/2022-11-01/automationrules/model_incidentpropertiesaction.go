@@ -8,7 +8,7 @@ type IncidentPropertiesAction struct {
 	ClassificationComment *string                       `json:"classificationComment,omitempty"`
 	ClassificationReason  *IncidentClassificationReason `json:"classificationReason,omitempty"`
 	Labels                *[]IncidentLabel              `json:"labels,omitempty"`
-	Owner                 *IncidentOwnerInfo            `json:"owner"`
+	Owner                 *IncidentOwnerInfo            `json:"owner,omitempty"`
 	Severity              *IncidentSeverity             `json:"severity,omitempty"`
 	Status                *IncidentStatus               `json:"status,omitempty"`
 }

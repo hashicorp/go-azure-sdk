@@ -14,7 +14,7 @@ type DataLakeStoreAccountProperties struct {
 	CreationTime                *string                      `json:"creationTime,omitempty"`
 	CurrentTier                 *TierType                    `json:"currentTier,omitempty"`
 	DefaultGroup                *string                      `json:"defaultGroup,omitempty"`
-	EncryptionConfig            *EncryptionConfig            `json:"encryptionConfig"`
+	EncryptionConfig            *EncryptionConfig            `json:"encryptionConfig,omitempty"`
 	EncryptionProvisioningState *EncryptionProvisioningState `json:"encryptionProvisioningState,omitempty"`
 	EncryptionState             *EncryptionState             `json:"encryptionState,omitempty"`
 	Endpoint                    *string                      `json:"endpoint,omitempty"`

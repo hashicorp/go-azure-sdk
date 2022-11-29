@@ -6,6 +6,6 @@ package openidconnectprovider
 type OpenidConnectProviderContract struct {
 	Id         *string                                  `json:"id,omitempty"`
 	Name       *string                                  `json:"name,omitempty"`
-	Properties *OpenidConnectProviderContractProperties `json:"properties"`
+	Properties *OpenidConnectProviderContractProperties `json:"properties,omitempty"`
 	Type       *string                                  `json:"type,omitempty"`
 }

@@ -11,11 +11,11 @@ import (
 var _ AutoMLVertical = ImageObjectDetection{}
 
 type ImageObjectDetection struct {
-	LimitSettings      *ImageLimitSettings                              `json:"limitSettings"`
-	ModelSettings      *ImageModelSettingsObjectDetection               `json:"modelSettings"`
+	LimitSettings      *ImageLimitSettings                              `json:"limitSettings,omitempty"`
+	ModelSettings      *ImageModelSettingsObjectDetection               `json:"modelSettings,omitempty"`
 	PrimaryMetric      *ObjectDetectionPrimaryMetrics                   `json:"primaryMetric,omitempty"`
 	SearchSpace        *[]ImageModelDistributionSettingsObjectDetection `json:"searchSpace,omitempty"`
-	SweepSettings      *ImageSweepSettings                              `json:"sweepSettings"`
+	SweepSettings      *ImageSweepSettings                              `json:"sweepSettings,omitempty"`
 	ValidationData     JobInput                                         `json:"validationData"`
 	ValidationDataSize *float64                                         `json:"validationDataSize,omitempty"`
 

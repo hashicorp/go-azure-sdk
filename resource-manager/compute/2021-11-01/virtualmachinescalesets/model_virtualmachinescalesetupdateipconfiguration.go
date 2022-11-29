@@ -6,5 +6,5 @@ package virtualmachinescalesets
 type VirtualMachineScaleSetUpdateIPConfiguration struct {
 	Id         *string                                                `json:"id,omitempty"`
 	Name       *string                                                `json:"name,omitempty"`
-	Properties *VirtualMachineScaleSetUpdateIPConfigurationProperties `json:"properties"`
+	Properties *VirtualMachineScaleSetUpdateIPConfigurationProperties `json:"properties,omitempty"`
 }

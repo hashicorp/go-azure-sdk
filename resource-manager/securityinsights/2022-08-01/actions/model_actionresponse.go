@@ -11,7 +11,7 @@ type ActionResponse struct {
 	Etag       *string                   `json:"etag,omitempty"`
 	Id         *string                   `json:"id,omitempty"`
 	Name       *string                   `json:"name,omitempty"`
-	Properties *ActionResponseProperties `json:"properties"`
+	Properties *ActionResponseProperties `json:"properties,omitempty"`
 	SystemData *systemdata.SystemData    `json:"systemData,omitempty"`
 	Type       *string                   `json:"type,omitempty"`
 }

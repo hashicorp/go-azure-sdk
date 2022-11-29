@@ -4,5 +4,5 @@ package virtualmachinescalesets
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type VirtualMachineScaleSetHardwareProfile struct {
-	VmSizeProperties *VMSizeProperties `json:"vmSizeProperties"`
+	VmSizeProperties *VMSizeProperties `json:"vmSizeProperties,omitempty"`
 }

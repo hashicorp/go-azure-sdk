@@ -12,7 +12,7 @@ import (
 type ScriptStatus struct {
 	ContainerInstanceId *string        `json:"containerInstanceId,omitempty"`
 	EndTime             *string        `json:"endTime,omitempty"`
-	Error               *ErrorResponse `json:"error"`
+	Error               *ErrorResponse `json:"error,omitempty"`
 	ExpirationTime      *string        `json:"expirationTime,omitempty"`
 	StartTime           *string        `json:"startTime,omitempty"`
 	StorageAccountId    *string        `json:"storageAccountId,omitempty"`

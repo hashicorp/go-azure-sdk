@@ -10,8 +10,8 @@ import (
 type GatewayResource struct {
 	Id         *string                `json:"id,omitempty"`
 	Name       *string                `json:"name,omitempty"`
-	Properties *GatewayProperties     `json:"properties"`
-	Sku        *Sku                   `json:"sku"`
+	Properties *GatewayProperties     `json:"properties,omitempty"`
+	Sku        *Sku                   `json:"sku,omitempty"`
 	SystemData *systemdata.SystemData `json:"systemData,omitempty"`
 	Type       *string                `json:"type,omitempty"`
 }

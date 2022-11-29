@@ -6,6 +6,6 @@ package mongorbacs
 type MongoUserDefinitionGetResults struct {
 	Id         *string                      `json:"id,omitempty"`
 	Name       *string                      `json:"name,omitempty"`
-	Properties *MongoUserDefinitionResource `json:"properties"`
+	Properties *MongoUserDefinitionResource `json:"properties,omitempty"`
 	Type       *string                      `json:"type,omitempty"`
 }

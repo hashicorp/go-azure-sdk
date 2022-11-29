@@ -7,7 +7,7 @@ type WorkspaceProperties struct {
 	CreatedDate                         *string                      `json:"createdDate,omitempty"`
 	CustomerId                          *string                      `json:"customerId,omitempty"`
 	DefaultDataCollectionRuleResourceId *string                      `json:"defaultDataCollectionRuleResourceId,omitempty"`
-	Features                            *WorkspaceFeatures           `json:"features"`
+	Features                            *WorkspaceFeatures           `json:"features,omitempty"`
 	ForceCmkForQuery                    *bool                        `json:"forceCmkForQuery,omitempty"`
 	ModifiedDate                        *string                      `json:"modifiedDate,omitempty"`
 	PrivateLinkScopedResources          *[]PrivateLinkScopedResource `json:"privateLinkScopedResources,omitempty"`
@@ -15,6 +15,6 @@ type WorkspaceProperties struct {
 	PublicNetworkAccessForIngestion     *PublicNetworkAccessType     `json:"publicNetworkAccessForIngestion,omitempty"`
 	PublicNetworkAccessForQuery         *PublicNetworkAccessType     `json:"publicNetworkAccessForQuery,omitempty"`
 	RetentionInDays                     *int64                       `json:"retentionInDays,omitempty"`
-	Sku                                 *WorkspaceSku                `json:"sku"`
-	WorkspaceCapping                    *WorkspaceCapping            `json:"workspaceCapping"`
+	Sku                                 *WorkspaceSku                `json:"sku,omitempty"`
+	WorkspaceCapping                    *WorkspaceCapping            `json:"workspaceCapping,omitempty"`
 }

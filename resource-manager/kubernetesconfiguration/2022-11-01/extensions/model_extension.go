@@ -12,8 +12,8 @@ type Extension struct {
 	Id         *string                  `json:"id,omitempty"`
 	Identity   *identity.SystemAssigned `json:"identity,omitempty"`
 	Name       *string                  `json:"name,omitempty"`
-	Plan       *Plan                    `json:"plan"`
-	Properties *ExtensionProperties     `json:"properties"`
+	Plan       *Plan                    `json:"plan,omitempty"`
+	Properties *ExtensionProperties     `json:"properties,omitempty"`
 	SystemData *systemdata.SystemData   `json:"systemData,omitempty"`
 	Type       *string                  `json:"type,omitempty"`
 }

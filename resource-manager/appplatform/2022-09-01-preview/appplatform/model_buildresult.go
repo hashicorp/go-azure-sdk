@@ -10,7 +10,7 @@ import (
 type BuildResult struct {
 	Id         *string                `json:"id,omitempty"`
 	Name       *string                `json:"name,omitempty"`
-	Properties *BuildResultProperties `json:"properties"`
+	Properties *BuildResultProperties `json:"properties,omitempty"`
 	SystemData *systemdata.SystemData `json:"systemData,omitempty"`
 	Type       *string                `json:"type,omitempty"`
 }

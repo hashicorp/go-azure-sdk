@@ -5,7 +5,7 @@ package scheduledactions
 
 type ScheduledActionProperties struct {
 	DisplayName       string                 `json:"displayName"`
-	FileDestination   *FileDestination       `json:"fileDestination"`
+	FileDestination   *FileDestination       `json:"fileDestination,omitempty"`
 	Notification      NotificationProperties `json:"notification"`
 	NotificationEmail *string                `json:"notificationEmail,omitempty"`
 	Schedule          ScheduleProperties     `json:"schedule"`

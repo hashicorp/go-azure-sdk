@@ -6,6 +6,6 @@ package recoverableservers
 type RecoverableServerResource struct {
 	Id         *string                      `json:"id,omitempty"`
 	Name       *string                      `json:"name,omitempty"`
-	Properties *RecoverableServerProperties `json:"properties"`
+	Properties *RecoverableServerProperties `json:"properties,omitempty"`
 	Type       *string                      `json:"type,omitempty"`
 }

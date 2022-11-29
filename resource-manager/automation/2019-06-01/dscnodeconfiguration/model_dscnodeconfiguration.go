@@ -6,6 +6,6 @@ package dscnodeconfiguration
 type DscNodeConfiguration struct {
 	Id         *string                         `json:"id,omitempty"`
 	Name       *string                         `json:"name,omitempty"`
-	Properties *DscNodeConfigurationProperties `json:"properties"`
+	Properties *DscNodeConfigurationProperties `json:"properties,omitempty"`
 	Type       *string                         `json:"type,omitempty"`
 }

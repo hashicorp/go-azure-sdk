@@ -4,6 +4,6 @@ package dataconnectors
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type ApiPollingParameters struct {
-	ConnectorUiConfig *CodelessUiConnectorConfigProperties      `json:"connectorUiConfig"`
-	PollingConfig     *CodelessConnectorPollingConfigProperties `json:"pollingConfig"`
+	ConnectorUiConfig *CodelessUiConnectorConfigProperties      `json:"connectorUiConfig,omitempty"`
+	PollingConfig     *CodelessConnectorPollingConfigProperties `json:"pollingConfig,omitempty"`
 }

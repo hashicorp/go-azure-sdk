@@ -8,7 +8,7 @@ type AzureBlobFileSystemConfiguration struct {
 	AccountName       string                        `json:"accountName"`
 	BlobfuseOptions   *string                       `json:"blobfuseOptions,omitempty"`
 	ContainerName     string                        `json:"containerName"`
-	IdentityReference *ComputeNodeIdentityReference `json:"identityReference"`
+	IdentityReference *ComputeNodeIdentityReference `json:"identityReference,omitempty"`
 	RelativeMountPath string                        `json:"relativeMountPath"`
 	SasKey            *string                       `json:"sasKey,omitempty"`
 }

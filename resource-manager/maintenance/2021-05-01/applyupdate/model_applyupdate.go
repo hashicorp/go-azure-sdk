@@ -10,7 +10,7 @@ import (
 type ApplyUpdate struct {
 	Id         *string                `json:"id,omitempty"`
 	Name       *string                `json:"name,omitempty"`
-	Properties *ApplyUpdateProperties `json:"properties"`
+	Properties *ApplyUpdateProperties `json:"properties,omitempty"`
 	SystemData *systemdata.SystemData `json:"systemData,omitempty"`
 	Type       *string                `json:"type,omitempty"`
 }

@@ -5,10 +5,10 @@ package batchaccount
 
 type BatchAccountCreateProperties struct {
 	AllowedAuthenticationModes *[]AuthenticationMode      `json:"allowedAuthenticationModes,omitempty"`
-	AutoStorage                *AutoStorageBaseProperties `json:"autoStorage"`
-	Encryption                 *EncryptionProperties      `json:"encryption"`
-	KeyVaultReference          *KeyVaultReference         `json:"keyVaultReference"`
-	NetworkProfile             *NetworkProfile            `json:"networkProfile"`
+	AutoStorage                *AutoStorageBaseProperties `json:"autoStorage,omitempty"`
+	Encryption                 *EncryptionProperties      `json:"encryption,omitempty"`
+	KeyVaultReference          *KeyVaultReference         `json:"keyVaultReference,omitempty"`
+	NetworkProfile             *NetworkProfile            `json:"networkProfile,omitempty"`
 	PoolAllocationMode         *PoolAllocationMode        `json:"poolAllocationMode,omitempty"`
 	PublicNetworkAccess        *PublicNetworkAccessType   `json:"publicNetworkAccess,omitempty"`
 }

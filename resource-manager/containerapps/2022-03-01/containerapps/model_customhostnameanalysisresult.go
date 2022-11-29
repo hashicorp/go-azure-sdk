@@ -10,7 +10,7 @@ type CustomHostnameAnalysisResult struct {
 	CNameRecords                        *[]string                                                        `json:"cNameRecords,omitempty"`
 	ConflictWithEnvironmentCustomDomain *bool                                                            `json:"conflictWithEnvironmentCustomDomain,omitempty"`
 	ConflictingContainerAppResourceId   *string                                                          `json:"conflictingContainerAppResourceId,omitempty"`
-	CustomDomainVerificationFailureInfo *CustomHostnameAnalysisResultCustomDomainVerificationFailureInfo `json:"customDomainVerificationFailureInfo"`
+	CustomDomainVerificationFailureInfo *CustomHostnameAnalysisResultCustomDomainVerificationFailureInfo `json:"customDomainVerificationFailureInfo,omitempty"`
 	CustomDomainVerificationTest        *DnsVerificationTestResult                                       `json:"customDomainVerificationTest,omitempty"`
 	HasConflictOnManagedEnvironment     *bool                                                            `json:"hasConflictOnManagedEnvironment,omitempty"`
 	HostName                            *string                                                          `json:"hostName,omitempty"`

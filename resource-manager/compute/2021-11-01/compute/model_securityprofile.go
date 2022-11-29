@@ -6,5 +6,5 @@ package compute
 type SecurityProfile struct {
 	EncryptionAtHost *bool          `json:"encryptionAtHost,omitempty"`
 	SecurityType     *SecurityTypes `json:"securityType,omitempty"`
-	UefiSettings     *UefiSettings  `json:"uefiSettings"`
+	UefiSettings     *UefiSettings  `json:"uefiSettings,omitempty"`
 }

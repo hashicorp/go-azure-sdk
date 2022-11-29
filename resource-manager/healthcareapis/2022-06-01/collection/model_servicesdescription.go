@@ -15,7 +15,7 @@ type ServicesDescription struct {
 	Kind       Kind                     `json:"kind"`
 	Location   string                   `json:"location"`
 	Name       *string                  `json:"name,omitempty"`
-	Properties *ServicesProperties      `json:"properties"`
+	Properties *ServicesProperties      `json:"properties,omitempty"`
 	SystemData *systemdata.SystemData   `json:"systemData,omitempty"`
 	Tags       *map[string]string       `json:"tags,omitempty"`
 	Type       *string                  `json:"type,omitempty"`

@@ -14,7 +14,7 @@ type NetAppAccount struct {
 	Identity   *identity.LegacySystemAndUserAssignedMap `json:"identity,omitempty"`
 	Location   string                                   `json:"location"`
 	Name       *string                                  `json:"name,omitempty"`
-	Properties *AccountProperties                       `json:"properties"`
+	Properties *AccountProperties                       `json:"properties,omitempty"`
 	SystemData *systemdata.SystemData                   `json:"systemData,omitempty"`
 	Tags       *map[string]string                       `json:"tags,omitempty"`
 	Type       *string                                  `json:"type,omitempty"`

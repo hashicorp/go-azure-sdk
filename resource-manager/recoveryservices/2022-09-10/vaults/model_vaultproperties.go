@@ -5,15 +5,15 @@ package vaults
 
 type VaultProperties struct {
 	BackupStorageVersion                *BackupStorageVersion                       `json:"backupStorageVersion,omitempty"`
-	Encryption                          *VaultPropertiesEncryption                  `json:"encryption"`
-	MonitoringSettings                  *MonitoringSettings                         `json:"monitoringSettings"`
-	MoveDetails                         *VaultPropertiesMoveDetails                 `json:"moveDetails"`
+	Encryption                          *VaultPropertiesEncryption                  `json:"encryption,omitempty"`
+	MonitoringSettings                  *MonitoringSettings                         `json:"monitoringSettings,omitempty"`
+	MoveDetails                         *VaultPropertiesMoveDetails                 `json:"moveDetails,omitempty"`
 	MoveState                           *ResourceMoveState                          `json:"moveState,omitempty"`
 	PrivateEndpointConnections          *[]PrivateEndpointConnectionVaultProperties `json:"privateEndpointConnections,omitempty"`
 	PrivateEndpointStateForBackup       *VaultPrivateEndpointState                  `json:"privateEndpointStateForBackup,omitempty"`
 	PrivateEndpointStateForSiteRecovery *VaultPrivateEndpointState                  `json:"privateEndpointStateForSiteRecovery,omitempty"`
 	ProvisioningState                   *string                                     `json:"provisioningState,omitempty"`
-	RedundancySettings                  *VaultPropertiesRedundancySettings          `json:"redundancySettings"`
-	SecuritySettings                    *SecuritySettings                           `json:"securitySettings"`
-	UpgradeDetails                      *UpgradeDetails                             `json:"upgradeDetails"`
+	RedundancySettings                  *VaultPropertiesRedundancySettings          `json:"redundancySettings,omitempty"`
+	SecuritySettings                    *SecuritySettings                           `json:"securitySettings,omitempty"`
+	UpgradeDetails                      *UpgradeDetails                             `json:"upgradeDetails,omitempty"`
 }

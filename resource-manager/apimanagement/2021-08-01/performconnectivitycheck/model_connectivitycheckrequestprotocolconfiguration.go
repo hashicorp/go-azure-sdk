@@ -4,5 +4,5 @@ package performconnectivitycheck
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type ConnectivityCheckRequestProtocolConfiguration struct {
-	HTTPConfiguration *ConnectivityCheckRequestProtocolConfigurationHTTPConfiguration `json:"HTTPConfiguration"`
+	HTTPConfiguration *ConnectivityCheckRequestProtocolConfigurationHTTPConfiguration `json:"HTTPConfiguration,omitempty"`
 }

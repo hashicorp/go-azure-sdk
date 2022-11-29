@@ -5,5 +5,5 @@ package signupsettings
 
 type PortalSignupSettingsProperties struct {
 	Enabled        *bool                     `json:"enabled,omitempty"`
-	TermsOfService *TermsOfServiceProperties `json:"termsOfService"`
+	TermsOfService *TermsOfServiceProperties `json:"termsOfService,omitempty"`
 }

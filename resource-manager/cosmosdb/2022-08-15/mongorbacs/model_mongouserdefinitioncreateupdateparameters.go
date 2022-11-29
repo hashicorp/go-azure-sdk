@@ -4,5 +4,5 @@ package mongorbacs
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type MongoUserDefinitionCreateUpdateParameters struct {
-	Properties *MongoUserDefinitionResource `json:"properties"`
+	Properties *MongoUserDefinitionResource `json:"properties,omitempty"`
 }

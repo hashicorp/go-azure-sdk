@@ -12,7 +12,7 @@ import (
 type SBNamespaceProperties struct {
 	CreatedAt                  *string                      `json:"createdAt,omitempty"`
 	DisableLocalAuth           *bool                        `json:"disableLocalAuth,omitempty"`
-	Encryption                 *Encryption                  `json:"encryption"`
+	Encryption                 *Encryption                  `json:"encryption,omitempty"`
 	MetricId                   *string                      `json:"metricId,omitempty"`
 	PrivateEndpointConnections *[]PrivateEndpointConnection `json:"privateEndpointConnections,omitempty"`
 	ProvisioningState          *string                      `json:"provisioningState,omitempty"`

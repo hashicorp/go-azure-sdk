@@ -6,6 +6,6 @@ package locationbasedrecommendedactionsessionsresult
 type RecommendationAction struct {
 	Id         *string                         `json:"id,omitempty"`
 	Name       *string                         `json:"name,omitempty"`
-	Properties *RecommendationActionProperties `json:"properties"`
+	Properties *RecommendationActionProperties `json:"properties,omitempty"`
 	Type       *string                         `json:"type,omitempty"`
 }

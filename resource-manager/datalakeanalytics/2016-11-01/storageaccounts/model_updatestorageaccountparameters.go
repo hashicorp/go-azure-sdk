@@ -4,5 +4,5 @@ package storageaccounts
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type UpdateStorageAccountParameters struct {
-	Properties *UpdateStorageAccountProperties `json:"properties"`
+	Properties *UpdateStorageAccountProperties `json:"properties,omitempty"`
 }

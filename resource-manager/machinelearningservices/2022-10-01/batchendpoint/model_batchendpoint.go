@@ -5,9 +5,9 @@ package batchendpoint
 
 type BatchEndpoint struct {
 	AuthMode          EndpointAuthMode           `json:"authMode"`
-	Defaults          *BatchEndpointDefaults     `json:"defaults"`
+	Defaults          *BatchEndpointDefaults     `json:"defaults,omitempty"`
 	Description       *string                    `json:"description,omitempty"`
-	Keys              *EndpointAuthKeys          `json:"keys"`
+	Keys              *EndpointAuthKeys          `json:"keys,omitempty"`
 	Properties        *map[string]string         `json:"properties,omitempty"`
 	ProvisioningState *EndpointProvisioningState `json:"provisioningState,omitempty"`
 	ScoringUri        *string                    `json:"scoringUri,omitempty"`

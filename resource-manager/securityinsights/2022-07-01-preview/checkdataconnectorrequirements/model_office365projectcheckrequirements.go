@@ -11,7 +11,7 @@ import (
 var _ DataConnectorsCheckRequirements = Office365ProjectCheckRequirements{}
 
 type Office365ProjectCheckRequirements struct {
-	Properties *DataConnectorTenantId `json:"properties"`
+	Properties *DataConnectorTenantId `json:"properties,omitempty"`
 
 	// Fields inherited from DataConnectorsCheckRequirements
 }

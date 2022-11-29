@@ -6,6 +6,6 @@ package gatewayapi
 type AssociationContract struct {
 	Id         *string                        `json:"id,omitempty"`
 	Name       *string                        `json:"name,omitempty"`
-	Properties *AssociationContractProperties `json:"properties"`
+	Properties *AssociationContractProperties `json:"properties,omitempty"`
 	Type       *string                        `json:"type,omitempty"`
 }

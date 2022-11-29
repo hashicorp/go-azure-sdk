@@ -12,6 +12,6 @@ type Pool struct {
 	Id         *string                   `json:"id,omitempty"`
 	Identity   *identity.UserAssignedMap `json:"identity,omitempty"`
 	Name       *string                   `json:"name,omitempty"`
-	Properties *PoolProperties           `json:"properties"`
+	Properties *PoolProperties           `json:"properties,omitempty"`
 	Type       *string                   `json:"type,omitempty"`
 }

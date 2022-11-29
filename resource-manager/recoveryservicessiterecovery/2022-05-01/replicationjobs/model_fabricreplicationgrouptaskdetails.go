@@ -15,7 +15,7 @@ type FabricReplicationGroupTaskDetails struct {
 	SkippedReasonString *string `json:"skippedReasonString,omitempty"`
 
 	// Fields inherited from JobTaskDetails
-	JobTask *JobEntity `json:"jobTask"`
+	JobTask *JobEntity `json:"jobTask,omitempty"`
 }
 
 var _ json.Marshaler = FabricReplicationGroupTaskDetails{}

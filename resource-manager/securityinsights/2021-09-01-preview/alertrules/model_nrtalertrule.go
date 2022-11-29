@@ -13,7 +13,7 @@ import (
 var _ AlertRule = NrtAlertRule{}
 
 type NrtAlertRule struct {
-	Properties *QueryBasedAlertRuleProperties `json:"properties"`
+	Properties *QueryBasedAlertRuleProperties `json:"properties,omitempty"`
 
 	// Fields inherited from AlertRule
 	Etag       *string                `json:"etag,omitempty"`

@@ -4,7 +4,7 @@ package credits
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type CreditBalanceSummary struct {
-	CurrentBalance                    *Amount                 `json:"currentBalance"`
-	EstimatedBalance                  *Amount                 `json:"estimatedBalance"`
-	EstimatedBalanceInBillingCurrency *AmountWithExchangeRate `json:"estimatedBalanceInBillingCurrency"`
+	CurrentBalance                    *Amount                 `json:"currentBalance,omitempty"`
+	EstimatedBalance                  *Amount                 `json:"estimatedBalance,omitempty"`
+	EstimatedBalanceInBillingCurrency *AmountWithExchangeRate `json:"estimatedBalanceInBillingCurrency,omitempty"`
 }

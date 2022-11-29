@@ -7,7 +7,7 @@ type GalleryApplication struct {
 	Id         *string                       `json:"id,omitempty"`
 	Location   string                        `json:"location"`
 	Name       *string                       `json:"name,omitempty"`
-	Properties *GalleryApplicationProperties `json:"properties"`
+	Properties *GalleryApplicationProperties `json:"properties,omitempty"`
 	Tags       *map[string]string            `json:"tags,omitempty"`
 	Type       *string                       `json:"type,omitempty"`
 }

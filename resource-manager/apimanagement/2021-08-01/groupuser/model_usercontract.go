@@ -6,6 +6,6 @@ package groupuser
 type UserContract struct {
 	Id         *string                 `json:"id,omitempty"`
 	Name       *string                 `json:"name,omitempty"`
-	Properties *UserContractProperties `json:"properties"`
+	Properties *UserContractProperties `json:"properties,omitempty"`
 	Type       *string                 `json:"type,omitempty"`
 }

@@ -4,5 +4,5 @@ package replicationvcenters
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type AddVCenterRequest struct {
-	Properties *AddVCenterRequestProperties `json:"properties"`
+	Properties *AddVCenterRequestProperties `json:"properties,omitempty"`
 }

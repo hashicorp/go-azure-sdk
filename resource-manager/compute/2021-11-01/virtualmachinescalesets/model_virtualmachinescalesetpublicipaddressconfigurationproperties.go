@@ -5,9 +5,9 @@ package virtualmachinescalesets
 
 type VirtualMachineScaleSetPublicIPAddressConfigurationProperties struct {
 	DeleteOption           *DeleteOptions                                                 `json:"deleteOption,omitempty"`
-	DnsSettings            *VirtualMachineScaleSetPublicIPAddressConfigurationDnsSettings `json:"dnsSettings"`
+	DnsSettings            *VirtualMachineScaleSetPublicIPAddressConfigurationDnsSettings `json:"dnsSettings,omitempty"`
 	IPTags                 *[]VirtualMachineScaleSetIPTag                                 `json:"ipTags,omitempty"`
 	IdleTimeoutInMinutes   *int64                                                         `json:"idleTimeoutInMinutes,omitempty"`
 	PublicIPAddressVersion *IPVersion                                                     `json:"publicIPAddressVersion,omitempty"`
-	PublicIPPrefix         *SubResource                                                   `json:"publicIPPrefix"`
+	PublicIPPrefix         *SubResource                                                   `json:"publicIPPrefix,omitempty"`
 }

@@ -4,5 +4,5 @@ package subscription
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type SubscriptionUpdateParameters struct {
-	Properties *SubscriptionUpdateParameterProperties `json:"properties"`
+	Properties *SubscriptionUpdateParameterProperties `json:"properties,omitempty"`
 }

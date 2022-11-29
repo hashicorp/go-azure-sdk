@@ -7,7 +7,7 @@ type PriceSheetProperties struct {
 	BillingPeriodId  *string       `json:"billingPeriodId,omitempty"`
 	CurrencyCode     *string       `json:"currencyCode,omitempty"`
 	IncludedQuantity *float64      `json:"includedQuantity,omitempty"`
-	MeterDetails     *MeterDetails `json:"meterDetails"`
+	MeterDetails     *MeterDetails `json:"meterDetails,omitempty"`
 	MeterId          *string       `json:"meterId,omitempty"`
 	OfferId          *string       `json:"offerId,omitempty"`
 	PartNumber       *string       `json:"partNumber,omitempty"`

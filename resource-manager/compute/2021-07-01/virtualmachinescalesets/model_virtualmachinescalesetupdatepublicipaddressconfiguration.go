@@ -5,5 +5,5 @@ package virtualmachinescalesets
 
 type VirtualMachineScaleSetUpdatePublicIPAddressConfiguration struct {
 	Name       *string                                                             `json:"name,omitempty"`
-	Properties *VirtualMachineScaleSetUpdatePublicIPAddressConfigurationProperties `json:"properties"`
+	Properties *VirtualMachineScaleSetUpdatePublicIPAddressConfigurationProperties `json:"properties,omitempty"`
 }

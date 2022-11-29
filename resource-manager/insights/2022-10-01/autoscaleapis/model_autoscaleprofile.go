@@ -5,8 +5,8 @@ package autoscaleapis
 
 type AutoscaleProfile struct {
 	Capacity   ScaleCapacity `json:"capacity"`
-	FixedDate  *TimeWindow   `json:"fixedDate"`
+	FixedDate  *TimeWindow   `json:"fixedDate,omitempty"`
 	Name       string        `json:"name"`
-	Recurrence *Recurrence   `json:"recurrence"`
+	Recurrence *Recurrence   `json:"recurrence,omitempty"`
 	Rules      []ScaleRule   `json:"rules"`
 }

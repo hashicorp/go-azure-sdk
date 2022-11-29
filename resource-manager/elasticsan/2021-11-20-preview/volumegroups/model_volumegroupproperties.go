@@ -5,7 +5,7 @@ package volumegroups
 
 type VolumeGroupProperties struct {
 	Encryption        *EncryptionType     `json:"encryption,omitempty"`
-	NetworkAcls       *NetworkRuleSet     `json:"networkAcls"`
+	NetworkAcls       *NetworkRuleSet     `json:"networkAcls,omitempty"`
 	ProtocolType      *StorageTargetType  `json:"protocolType,omitempty"`
 	ProvisioningState *ProvisioningStates `json:"provisioningState,omitempty"`
 }

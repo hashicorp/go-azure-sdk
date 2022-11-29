@@ -4,6 +4,6 @@ package bookmark
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type BookmarkExpandResponse struct {
-	MetaData *ExpansionResultsMetadata    `json:"metaData"`
-	Value    *BookmarkExpandResponseValue `json:"value"`
+	MetaData *ExpansionResultsMetadata    `json:"metaData,omitempty"`
+	Value    *BookmarkExpandResponseValue `json:"value,omitempty"`
 }

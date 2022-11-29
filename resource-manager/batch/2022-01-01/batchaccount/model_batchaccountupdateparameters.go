@@ -9,6 +9,6 @@ import (
 
 type BatchAccountUpdateParameters struct {
 	Identity   *identity.SystemOrUserAssignedMap `json:"identity,omitempty"`
-	Properties *BatchAccountUpdateProperties     `json:"properties"`
+	Properties *BatchAccountUpdateProperties     `json:"properties,omitempty"`
 	Tags       *map[string]string                `json:"tags,omitempty"`
 }

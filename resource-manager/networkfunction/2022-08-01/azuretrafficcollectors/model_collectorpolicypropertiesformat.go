@@ -5,6 +5,6 @@ package azuretrafficcollectors
 
 type CollectorPolicyPropertiesFormat struct {
 	EmissionPolicies  *[]EmissionPoliciesPropertiesFormat `json:"emissionPolicies,omitempty"`
-	IngestionPolicy   *IngestionPolicyPropertiesFormat    `json:"ingestionPolicy"`
+	IngestionPolicy   *IngestionPolicyPropertiesFormat    `json:"ingestionPolicy,omitempty"`
 	ProvisioningState *ProvisioningState                  `json:"provisioningState,omitempty"`
 }

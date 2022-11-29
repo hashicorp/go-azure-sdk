@@ -7,7 +7,7 @@ type ResourceQuota struct {
 	AmlWorkspaceLocation *string       `json:"amlWorkspaceLocation,omitempty"`
 	Id                   *string       `json:"id,omitempty"`
 	Limit                *int64        `json:"limit,omitempty"`
-	Name                 *ResourceName `json:"name"`
+	Name                 *ResourceName `json:"name,omitempty"`
 	Type                 *string       `json:"type,omitempty"`
 	Unit                 *QuotaUnit    `json:"unit,omitempty"`
 }

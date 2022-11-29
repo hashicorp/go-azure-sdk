@@ -12,7 +12,7 @@ import (
 type WatchlistProperties struct {
 	ContentType         *string     `json:"contentType,omitempty"`
 	Created             *string     `json:"created,omitempty"`
-	CreatedBy           *UserInfo   `json:"createdBy"`
+	CreatedBy           *UserInfo   `json:"createdBy,omitempty"`
 	DefaultDuration     *string     `json:"defaultDuration,omitempty"`
 	Description         *string     `json:"description,omitempty"`
 	DisplayName         string      `json:"displayName"`
@@ -26,7 +26,7 @@ type WatchlistProperties struct {
 	SourceType          *SourceType `json:"sourceType,omitempty"`
 	TenantId            *string     `json:"tenantId,omitempty"`
 	Updated             *string     `json:"updated,omitempty"`
-	UpdatedBy           *UserInfo   `json:"updatedBy"`
+	UpdatedBy           *UserInfo   `json:"updatedBy,omitempty"`
 	UploadStatus        *string     `json:"uploadStatus,omitempty"`
 	WatchlistAlias      *string     `json:"watchlistAlias,omitempty"`
 	WatchlistId         *string     `json:"watchlistId,omitempty"`

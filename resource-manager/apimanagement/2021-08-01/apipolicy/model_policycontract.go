@@ -6,6 +6,6 @@ package apipolicy
 type PolicyContract struct {
 	Id         *string                   `json:"id,omitempty"`
 	Name       *string                   `json:"name,omitempty"`
-	Properties *PolicyContractProperties `json:"properties"`
+	Properties *PolicyContractProperties `json:"properties,omitempty"`
 	Type       *string                   `json:"type,omitempty"`
 }

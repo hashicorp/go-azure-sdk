@@ -5,7 +5,7 @@ package appplatform
 
 type IngressSettings struct {
 	BackendProtocol      *BackendProtocol           `json:"backendProtocol,omitempty"`
-	ClientAuth           *IngressSettingsClientAuth `json:"clientAuth"`
+	ClientAuth           *IngressSettingsClientAuth `json:"clientAuth,omitempty"`
 	ReadTimeoutInSeconds *int64                     `json:"readTimeoutInSeconds,omitempty"`
 	SendTimeoutInSeconds *int64                     `json:"sendTimeoutInSeconds,omitempty"`
 	SessionAffinity      *SessionAffinity           `json:"sessionAffinity,omitempty"`

@@ -6,6 +6,6 @@ package waitstatistics
 type WaitStatistic struct {
 	Id         *string                  `json:"id,omitempty"`
 	Name       *string                  `json:"name,omitempty"`
-	Properties *WaitStatisticProperties `json:"properties"`
+	Properties *WaitStatisticProperties `json:"properties,omitempty"`
 	Type       *string                  `json:"type,omitempty"`
 }

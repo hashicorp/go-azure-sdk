@@ -6,6 +6,6 @@ package gatewayapi
 type ApiContract struct {
 	Id         *string                `json:"id,omitempty"`
 	Name       *string                `json:"name,omitempty"`
-	Properties *ApiContractProperties `json:"properties"`
+	Properties *ApiContractProperties `json:"properties,omitempty"`
 	Type       *string                `json:"type,omitempty"`
 }

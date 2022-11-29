@@ -5,5 +5,5 @@ package operationalizationclusters
 
 type InstanceTypeSchema struct {
 	NodeSelector *map[string]string           `json:"nodeSelector,omitempty"`
-	Resources    *InstanceTypeSchemaResources `json:"resources"`
+	Resources    *InstanceTypeSchemaResources `json:"resources,omitempty"`
 }

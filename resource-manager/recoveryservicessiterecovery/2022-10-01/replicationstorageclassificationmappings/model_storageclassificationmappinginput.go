@@ -4,5 +4,5 @@ package replicationstorageclassificationmappings
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type StorageClassificationMappingInput struct {
-	Properties *StorageMappingInputProperties `json:"properties"`
+	Properties *StorageMappingInputProperties `json:"properties,omitempty"`
 }

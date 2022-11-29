@@ -10,7 +10,7 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type DscCompilationJobProperties struct {
-	Configuration          *DscConfigurationAssociationProperty `json:"configuration"`
+	Configuration          *DscConfigurationAssociationProperty `json:"configuration,omitempty"`
 	CreationTime           *string                              `json:"creationTime,omitempty"`
 	EndTime                *string                              `json:"endTime,omitempty"`
 	Exception              *string                              `json:"exception,omitempty"`

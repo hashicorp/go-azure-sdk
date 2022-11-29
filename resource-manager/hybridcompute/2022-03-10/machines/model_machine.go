@@ -13,7 +13,7 @@ type Machine struct {
 	Identity   *identity.SystemAssigned `json:"identity,omitempty"`
 	Location   string                   `json:"location"`
 	Name       *string                  `json:"name,omitempty"`
-	Properties *MachineProperties       `json:"properties"`
+	Properties *MachineProperties       `json:"properties,omitempty"`
 	SystemData *systemdata.SystemData   `json:"systemData,omitempty"`
 	Tags       *map[string]string       `json:"tags,omitempty"`
 	Type       *string                  `json:"type,omitempty"`

@@ -4,8 +4,8 @@ package virtualmachinescalesetrollingupgrades
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type RollingUpgradeStatusInfoProperties struct {
-	Error         *ApiError                    `json:"error"`
-	Policy        *RollingUpgradePolicy        `json:"policy"`
-	Progress      *RollingUpgradeProgressInfo  `json:"progress"`
-	RunningStatus *RollingUpgradeRunningStatus `json:"runningStatus"`
+	Error         *ApiError                    `json:"error,omitempty"`
+	Policy        *RollingUpgradePolicy        `json:"policy,omitempty"`
+	Progress      *RollingUpgradeProgressInfo  `json:"progress,omitempty"`
+	RunningStatus *RollingUpgradeRunningStatus `json:"runningStatus,omitempty"`
 }

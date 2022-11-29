@@ -15,8 +15,8 @@ type RoutingRuleProperties struct {
 	PatternsToMatch                  *[]string                                                    `json:"patternsToMatch,omitempty"`
 	ResourceState                    *FrontDoorResourceState                                      `json:"resourceState,omitempty"`
 	RouteConfiguration               RouteConfiguration                                           `json:"routeConfiguration"`
-	RulesEngine                      *SubResource                                                 `json:"rulesEngine"`
-	WebApplicationFirewallPolicyLink *RoutingRuleUpdateParametersWebApplicationFirewallPolicyLink `json:"webApplicationFirewallPolicyLink"`
+	RulesEngine                      *SubResource                                                 `json:"rulesEngine,omitempty"`
+	WebApplicationFirewallPolicyLink *RoutingRuleUpdateParametersWebApplicationFirewallPolicyLink `json:"webApplicationFirewallPolicyLink,omitempty"`
 }
 
 var _ json.Unmarshaler = &RoutingRuleProperties{}

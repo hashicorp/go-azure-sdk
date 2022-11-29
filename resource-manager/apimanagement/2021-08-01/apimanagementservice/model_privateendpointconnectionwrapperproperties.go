@@ -5,7 +5,7 @@ package apimanagementservice
 
 type PrivateEndpointConnectionWrapperProperties struct {
 	GroupIds                          *[]string                         `json:"groupIds,omitempty"`
-	PrivateEndpoint                   *ArmIdWrapper                     `json:"privateEndpoint"`
+	PrivateEndpoint                   *ArmIdWrapper                     `json:"privateEndpoint,omitempty"`
 	PrivateLinkServiceConnectionState PrivateLinkServiceConnectionState `json:"privateLinkServiceConnectionState"`
 	ProvisioningState                 *string                           `json:"provisioningState,omitempty"`
 }

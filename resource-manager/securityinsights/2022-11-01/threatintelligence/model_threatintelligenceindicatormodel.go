@@ -13,7 +13,7 @@ import (
 var _ ThreatIntelligenceInformation = ThreatIntelligenceIndicatorModel{}
 
 type ThreatIntelligenceIndicatorModel struct {
-	Properties *ThreatIntelligenceIndicatorProperties `json:"properties"`
+	Properties *ThreatIntelligenceIndicatorProperties `json:"properties,omitempty"`
 
 	// Fields inherited from ThreatIntelligenceInformation
 	Etag       *string                `json:"etag,omitempty"`

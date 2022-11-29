@@ -4,5 +4,5 @@ package cluster
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type ClusterIdentityResponse struct {
-	Properties *ClusterIdentityResponseProperties `json:"properties"`
+	Properties *ClusterIdentityResponseProperties `json:"properties,omitempty"`
 }

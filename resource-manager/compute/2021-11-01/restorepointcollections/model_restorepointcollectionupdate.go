@@ -4,6 +4,6 @@ package restorepointcollections
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type RestorePointCollectionUpdate struct {
-	Properties *RestorePointCollectionProperties `json:"properties"`
+	Properties *RestorePointCollectionProperties `json:"properties,omitempty"`
 	Tags       *map[string]string                `json:"tags,omitempty"`
 }

@@ -4,6 +4,6 @@ package dataconnectors
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type MDATPDataConnectorProperties struct {
-	DataTypes *AlertsDataTypeOfDataConnector `json:"dataTypes"`
+	DataTypes *AlertsDataTypeOfDataConnector `json:"dataTypes,omitempty"`
 	TenantId  string                         `json:"tenantId"`
 }

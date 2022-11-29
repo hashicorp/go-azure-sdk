@@ -24,7 +24,7 @@ type ServiceBus struct {
 	CreatedTime        *string                    `json:"createdTime,omitempty"`
 	DeadLetterSecret   *string                    `json:"deadLetterSecret,omitempty"`
 	DeadLetterUri      *string                    `json:"deadLetterUri,omitempty"`
-	Identity           *ManagedIdentityReference  `json:"identity"`
+	Identity           *ManagedIdentityReference  `json:"identity,omitempty"`
 	ProvisioningState  *EndpointProvisioningState `json:"provisioningState,omitempty"`
 }
 

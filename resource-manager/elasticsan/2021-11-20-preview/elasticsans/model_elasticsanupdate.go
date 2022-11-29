@@ -4,6 +4,6 @@ package elasticsans
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type ElasticSanUpdate struct {
-	Properties *ElasticSanUpdateProperties `json:"properties"`
+	Properties *ElasticSanUpdateProperties `json:"properties,omitempty"`
 	Tags       *map[string]string          `json:"tags,omitempty"`
 }

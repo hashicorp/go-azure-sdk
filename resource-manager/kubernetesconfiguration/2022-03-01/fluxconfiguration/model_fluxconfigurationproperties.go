@@ -10,11 +10,11 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type FluxConfigurationProperties struct {
-	Bucket                         *BucketDefinition                   `json:"bucket"`
+	Bucket                         *BucketDefinition                   `json:"bucket,omitempty"`
 	ComplianceState                *FluxComplianceState                `json:"complianceState,omitempty"`
 	ConfigurationProtectedSettings *map[string]string                  `json:"configurationProtectedSettings,omitempty"`
 	ErrorMessage                   *string                             `json:"errorMessage,omitempty"`
-	GitRepository                  *GitRepositoryDefinition            `json:"gitRepository"`
+	GitRepository                  *GitRepositoryDefinition            `json:"gitRepository,omitempty"`
 	Kustomizations                 *map[string]KustomizationDefinition `json:"kustomizations,omitempty"`
 	Namespace                      *string                             `json:"namespace,omitempty"`
 	ProvisioningState              *ProvisioningState                  `json:"provisioningState,omitempty"`

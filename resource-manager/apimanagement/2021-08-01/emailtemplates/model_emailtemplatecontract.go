@@ -6,6 +6,6 @@ package emailtemplates
 type EmailTemplateContract struct {
 	Id         *string                          `json:"id,omitempty"`
 	Name       *string                          `json:"name,omitempty"`
-	Properties *EmailTemplateContractProperties `json:"properties"`
+	Properties *EmailTemplateContractProperties `json:"properties,omitempty"`
 	Type       *string                          `json:"type,omitempty"`
 }

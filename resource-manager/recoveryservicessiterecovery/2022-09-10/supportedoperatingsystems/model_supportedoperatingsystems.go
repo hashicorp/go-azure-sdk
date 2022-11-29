@@ -7,6 +7,6 @@ type SupportedOperatingSystems struct {
 	Id         *string                `json:"id,omitempty"`
 	Location   *string                `json:"location,omitempty"`
 	Name       *string                `json:"name,omitempty"`
-	Properties *SupportedOSProperties `json:"properties"`
+	Properties *SupportedOSProperties `json:"properties,omitempty"`
 	Type       *string                `json:"type,omitempty"`
 }

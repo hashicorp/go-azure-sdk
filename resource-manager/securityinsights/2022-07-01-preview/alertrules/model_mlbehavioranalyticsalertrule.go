@@ -13,7 +13,7 @@ import (
 var _ AlertRule = MLBehaviorAnalyticsAlertRule{}
 
 type MLBehaviorAnalyticsAlertRule struct {
-	Properties *MLBehaviorAnalyticsAlertRuleProperties `json:"properties"`
+	Properties *MLBehaviorAnalyticsAlertRuleProperties `json:"properties,omitempty"`
 
 	// Fields inherited from AlertRule
 	Etag       *string                `json:"etag,omitempty"`

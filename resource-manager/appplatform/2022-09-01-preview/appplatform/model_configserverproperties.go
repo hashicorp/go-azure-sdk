@@ -4,7 +4,7 @@ package appplatform
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type ConfigServerProperties struct {
-	ConfigServer      *ConfigServerSettings `json:"configServer"`
-	Error             *Error                `json:"error"`
+	ConfigServer      *ConfigServerSettings `json:"configServer,omitempty"`
+	Error             *Error                `json:"error,omitempty"`
 	ProvisioningState *ConfigServerState    `json:"provisioningState,omitempty"`
 }

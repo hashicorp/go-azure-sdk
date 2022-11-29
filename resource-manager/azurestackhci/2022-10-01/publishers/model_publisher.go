@@ -10,7 +10,7 @@ import (
 type Publisher struct {
 	Id         *string                `json:"id,omitempty"`
 	Name       *string                `json:"name,omitempty"`
-	Properties *PublisherProperties   `json:"properties"`
+	Properties *PublisherProperties   `json:"properties,omitempty"`
 	SystemData *systemdata.SystemData `json:"systemData,omitempty"`
 	Type       *string                `json:"type,omitempty"`
 }

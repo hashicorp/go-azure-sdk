@@ -11,11 +11,11 @@ import (
 var _ AutoMLVertical = ImageClassificationMultilabel{}
 
 type ImageClassificationMultilabel struct {
-	LimitSettings      *ImageLimitSettings                             `json:"limitSettings"`
-	ModelSettings      *ImageModelSettingsClassification               `json:"modelSettings"`
+	LimitSettings      *ImageLimitSettings                             `json:"limitSettings,omitempty"`
+	ModelSettings      *ImageModelSettingsClassification               `json:"modelSettings,omitempty"`
 	PrimaryMetric      *ClassificationMultilabelPrimaryMetrics         `json:"primaryMetric,omitempty"`
 	SearchSpace        *[]ImageModelDistributionSettingsClassification `json:"searchSpace,omitempty"`
-	SweepSettings      *ImageSweepSettings                             `json:"sweepSettings"`
+	SweepSettings      *ImageSweepSettings                             `json:"sweepSettings,omitempty"`
 	ValidationData     JobInput                                        `json:"validationData"`
 	ValidationDataSize *float64                                        `json:"validationDataSize,omitempty"`
 

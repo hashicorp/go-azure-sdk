@@ -6,7 +6,7 @@ package commitmentplans
 type CommitmentPeriod struct {
 	Count     *int64           `json:"count,omitempty"`
 	EndDate   *string          `json:"endDate,omitempty"`
-	Quota     *CommitmentQuota `json:"quota"`
+	Quota     *CommitmentQuota `json:"quota,omitempty"`
 	StartDate *string          `json:"startDate,omitempty"`
 	Tier      *string          `json:"tier,omitempty"`
 }

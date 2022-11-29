@@ -6,6 +6,6 @@ package cloudlinks
 type CloudLink struct {
 	Id         *string              `json:"id,omitempty"`
 	Name       *string              `json:"name,omitempty"`
-	Properties *CloudLinkProperties `json:"properties"`
+	Properties *CloudLinkProperties `json:"properties,omitempty"`
 	Type       *string              `json:"type,omitempty"`
 }

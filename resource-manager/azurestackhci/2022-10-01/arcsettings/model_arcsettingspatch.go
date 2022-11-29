@@ -4,6 +4,6 @@ package arcsettings
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type ArcSettingsPatch struct {
-	Properties *ArcSettingsPatchProperties `json:"properties"`
+	Properties *ArcSettingsPatchProperties `json:"properties,omitempty"`
 	Tags       *map[string]string          `json:"tags,omitempty"`
 }

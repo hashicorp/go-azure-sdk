@@ -11,7 +11,7 @@ import (
 var _ DataConnection = EventHubDataConnection{}
 
 type EventHubDataConnection struct {
-	Properties *EventHubConnectionProperties `json:"properties"`
+	Properties *EventHubConnectionProperties `json:"properties,omitempty"`
 
 	// Fields inherited from DataConnection
 	Id       *string `json:"id,omitempty"`

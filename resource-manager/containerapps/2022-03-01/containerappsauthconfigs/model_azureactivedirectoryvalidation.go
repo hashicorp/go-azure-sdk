@@ -5,6 +5,6 @@ package containerappsauthconfigs
 
 type AzureActiveDirectoryValidation struct {
 	AllowedAudiences           *[]string                   `json:"allowedAudiences,omitempty"`
-	DefaultAuthorizationPolicy *DefaultAuthorizationPolicy `json:"defaultAuthorizationPolicy"`
-	JwtClaimChecks             *JwtClaimChecks             `json:"jwtClaimChecks"`
+	DefaultAuthorizationPolicy *DefaultAuthorizationPolicy `json:"defaultAuthorizationPolicy,omitempty"`
+	JwtClaimChecks             *JwtClaimChecks             `json:"jwtClaimChecks,omitempty"`
 }

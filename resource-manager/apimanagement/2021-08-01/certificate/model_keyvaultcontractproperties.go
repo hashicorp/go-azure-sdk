@@ -5,6 +5,6 @@ package certificate
 
 type KeyVaultContractProperties struct {
 	IdentityClientId *string                                     `json:"identityClientId,omitempty"`
-	LastStatus       *KeyVaultLastAccessStatusContractProperties `json:"lastStatus"`
+	LastStatus       *KeyVaultLastAccessStatusContractProperties `json:"lastStatus,omitempty"`
 	SecretIdentifier *string                                     `json:"secretIdentifier,omitempty"`
 }

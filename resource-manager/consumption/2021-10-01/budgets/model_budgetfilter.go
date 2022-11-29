@@ -5,6 +5,6 @@ package budgets
 
 type BudgetFilter struct {
 	And        *[]BudgetFilterProperties   `json:"and,omitempty"`
-	Dimensions *BudgetComparisonExpression `json:"dimensions"`
-	Tags       *BudgetComparisonExpression `json:"tags"`
+	Dimensions *BudgetComparisonExpression `json:"dimensions,omitempty"`
+	Tags       *BudgetComparisonExpression `json:"tags,omitempty"`
 }

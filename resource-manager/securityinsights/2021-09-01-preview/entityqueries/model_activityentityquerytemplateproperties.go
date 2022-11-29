@@ -9,7 +9,7 @@ type ActivityEntityQueryTemplateProperties struct {
 	Description             *string                                                `json:"description,omitempty"`
 	EntitiesFilter          *map[string][]string                                   `json:"entitiesFilter,omitempty"`
 	InputEntityType         *EntityType                                            `json:"inputEntityType,omitempty"`
-	QueryDefinitions        *ActivityEntityQueryTemplatePropertiesQueryDefinitions `json:"queryDefinitions"`
+	QueryDefinitions        *ActivityEntityQueryTemplatePropertiesQueryDefinitions `json:"queryDefinitions,omitempty"`
 	RequiredInputFieldsSets *[][]string                                            `json:"requiredInputFieldsSets,omitempty"`
 	Title                   *string                                                `json:"title,omitempty"`
 }

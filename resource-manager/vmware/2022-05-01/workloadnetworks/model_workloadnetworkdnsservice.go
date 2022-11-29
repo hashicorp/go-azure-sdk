@@ -6,6 +6,6 @@ package workloadnetworks
 type WorkloadNetworkDnsService struct {
 	Id         *string                              `json:"id,omitempty"`
 	Name       *string                              `json:"name,omitempty"`
-	Properties *WorkloadNetworkDnsServiceProperties `json:"properties"`
+	Properties *WorkloadNetworkDnsServiceProperties `json:"properties,omitempty"`
 	Type       *string                              `json:"type,omitempty"`
 }

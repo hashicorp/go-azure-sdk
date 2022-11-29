@@ -18,7 +18,7 @@ type SingleScopeBenefitRecommendationProperties struct {
 	SubscriptionId *string `json:"subscriptionId,omitempty"`
 
 	// Fields inherited from BenefitRecommendationProperties
-	AllRecommendationDetails *AllSavingsList             `json:"allRecommendationDetails"`
+	AllRecommendationDetails *AllSavingsList             `json:"allRecommendationDetails,omitempty"`
 	ArmSkuName               *string                     `json:"armSkuName,omitempty"`
 	CommitmentGranularity    *Grain                      `json:"commitmentGranularity,omitempty"`
 	CostWithoutBenefit       *float64                    `json:"costWithoutBenefit,omitempty"`
@@ -26,10 +26,10 @@ type SingleScopeBenefitRecommendationProperties struct {
 	FirstConsumptionDate     *string                     `json:"firstConsumptionDate,omitempty"`
 	LastConsumptionDate      *string                     `json:"lastConsumptionDate,omitempty"`
 	LookBackPeriod           *LookBackPeriod             `json:"lookBackPeriod,omitempty"`
-	RecommendationDetails    *AllSavingsBenefitDetails   `json:"recommendationDetails"`
+	RecommendationDetails    *AllSavingsBenefitDetails   `json:"recommendationDetails,omitempty"`
 	Term                     *Term                       `json:"term,omitempty"`
 	TotalHours               *int64                      `json:"totalHours,omitempty"`
-	Usage                    *RecommendationUsageDetails `json:"usage"`
+	Usage                    *RecommendationUsageDetails `json:"usage,omitempty"`
 }
 
 func (o *SingleScopeBenefitRecommendationProperties) GetFirstConsumptionDateAsTime() (*time.Time, error) {

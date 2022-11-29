@@ -12,14 +12,14 @@ var _ AutoMLVertical = Forecasting{}
 
 type Forecasting struct {
 	CvSplitColumnNames    *[]string                           `json:"cvSplitColumnNames,omitempty"`
-	FeaturizationSettings *TableVerticalFeaturizationSettings `json:"featurizationSettings"`
-	ForecastingSettings   *ForecastingSettings                `json:"forecastingSettings"`
-	LimitSettings         *TableVerticalLimitSettings         `json:"limitSettings"`
+	FeaturizationSettings *TableVerticalFeaturizationSettings `json:"featurizationSettings,omitempty"`
+	ForecastingSettings   *ForecastingSettings                `json:"forecastingSettings,omitempty"`
+	LimitSettings         *TableVerticalLimitSettings         `json:"limitSettings,omitempty"`
 	NCrossValidations     NCrossValidations                   `json:"nCrossValidations"`
 	PrimaryMetric         *ForecastingPrimaryMetrics          `json:"primaryMetric,omitempty"`
 	TestData              JobInput                            `json:"testData"`
 	TestDataSize          *float64                            `json:"testDataSize,omitempty"`
-	TrainingSettings      *ForecastingTrainingSettings        `json:"trainingSettings"`
+	TrainingSettings      *ForecastingTrainingSettings        `json:"trainingSettings,omitempty"`
 	ValidationData        JobInput                            `json:"validationData"`
 	ValidationDataSize    *float64                            `json:"validationDataSize,omitempty"`
 	WeightColumnName      *string                             `json:"weightColumnName,omitempty"`

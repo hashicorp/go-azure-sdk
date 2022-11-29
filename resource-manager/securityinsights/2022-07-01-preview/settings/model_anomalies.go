@@ -13,7 +13,7 @@ import (
 var _ Settings = Anomalies{}
 
 type Anomalies struct {
-	Properties *AnomaliesSettingsProperties `json:"properties"`
+	Properties *AnomaliesSettingsProperties `json:"properties,omitempty"`
 
 	// Fields inherited from Settings
 	Etag       *string                `json:"etag,omitempty"`

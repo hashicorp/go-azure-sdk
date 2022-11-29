@@ -14,7 +14,7 @@ type QuotaCounterContract struct {
 	PeriodEndTime   string                               `json:"periodEndTime"`
 	PeriodKey       string                               `json:"periodKey"`
 	PeriodStartTime string                               `json:"periodStartTime"`
-	Value           *QuotaCounterValueContractProperties `json:"value"`
+	Value           *QuotaCounterValueContractProperties `json:"value,omitempty"`
 }
 
 func (o *QuotaCounterContract) GetPeriodEndTimeAsTime() (*time.Time, error) {

@@ -7,5 +7,5 @@ type VirtualMachineScaleSetInstanceView struct {
 	Extensions            *[]VirtualMachineScaleSetVMExtensionsSummary       `json:"extensions,omitempty"`
 	OrchestrationServices *[]OrchestrationServiceSummary                     `json:"orchestrationServices,omitempty"`
 	Statuses              *[]InstanceViewStatus                              `json:"statuses,omitempty"`
-	VirtualMachine        *VirtualMachineScaleSetInstanceViewStatusesSummary `json:"virtualMachine"`
+	VirtualMachine        *VirtualMachineScaleSetInstanceViewStatusesSummary `json:"virtualMachine,omitempty"`
 }

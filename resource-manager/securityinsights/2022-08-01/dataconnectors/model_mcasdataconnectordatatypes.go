@@ -4,6 +4,6 @@ package dataconnectors
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type MCASDataConnectorDataTypes struct {
-	Alerts        *DataConnectorDataTypeCommon `json:"alerts"`
-	DiscoveryLogs *DataConnectorDataTypeCommon `json:"discoveryLogs"`
+	Alerts        *DataConnectorDataTypeCommon `json:"alerts,omitempty"`
+	DiscoveryLogs *DataConnectorDataTypeCommon `json:"discoveryLogs,omitempty"`
 }

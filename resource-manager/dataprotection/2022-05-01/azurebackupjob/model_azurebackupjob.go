@@ -23,7 +23,7 @@ type AzureBackupJob struct {
 	EndTime                    *string            `json:"endTime,omitempty"`
 	ErrorDetails               *[]UserFacingError `json:"errorDetails,omitempty"`
 	Etag                       *string            `json:"etag,omitempty"`
-	ExtendedInfo               *JobExtendedInfo   `json:"extendedInfo"`
+	ExtendedInfo               *JobExtendedInfo   `json:"extendedInfo,omitempty"`
 	IsUserTriggered            bool               `json:"isUserTriggered"`
 	Operation                  string             `json:"operation"`
 	OperationCategory          string             `json:"operationCategory"`

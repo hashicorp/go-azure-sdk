@@ -6,5 +6,5 @@ package softwareupdateconfigurationmachinerun
 type SoftwareUpdateConfigurationMachineRun struct {
 	Id         *string                                  `json:"id,omitempty"`
 	Name       *string                                  `json:"name,omitempty"`
-	Properties *UpdateConfigurationMachineRunProperties `json:"properties"`
+	Properties *UpdateConfigurationMachineRunProperties `json:"properties,omitempty"`
 }

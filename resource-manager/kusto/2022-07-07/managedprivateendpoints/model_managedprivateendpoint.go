@@ -10,7 +10,7 @@ import (
 type ManagedPrivateEndpoint struct {
 	Id         *string                           `json:"id,omitempty"`
 	Name       *string                           `json:"name,omitempty"`
-	Properties *ManagedPrivateEndpointProperties `json:"properties"`
+	Properties *ManagedPrivateEndpointProperties `json:"properties,omitempty"`
 	SystemData *systemdata.SystemData            `json:"systemData,omitempty"`
 	Type       *string                           `json:"type,omitempty"`
 }

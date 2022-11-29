@@ -5,9 +5,9 @@ package videos
 
 type VideoProperties struct {
 	Description *string         `json:"description,omitempty"`
-	Flags       *VideoFlags     `json:"flags"`
-	MediaInfo   *VideoMediaInfo `json:"mediaInfo"`
-	Streaming   *VideoStreaming `json:"streaming"`
+	Flags       *VideoFlags     `json:"flags,omitempty"`
+	MediaInfo   *VideoMediaInfo `json:"mediaInfo,omitempty"`
+	Streaming   *VideoStreaming `json:"streaming,omitempty"`
 	Title       *string         `json:"title,omitempty"`
 	Type        *VideoType      `json:"type,omitempty"`
 }

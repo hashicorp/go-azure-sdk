@@ -5,7 +5,7 @@ package forecast
 
 type ForecastFilter struct {
 	And        *[]ForecastFilter             `json:"and,omitempty"`
-	Dimensions *ForecastComparisonExpression `json:"dimensions"`
+	Dimensions *ForecastComparisonExpression `json:"dimensions,omitempty"`
 	Or         *[]ForecastFilter             `json:"or,omitempty"`
-	Tags       *ForecastComparisonExpression `json:"tags"`
+	Tags       *ForecastComparisonExpression `json:"tags,omitempty"`
 }

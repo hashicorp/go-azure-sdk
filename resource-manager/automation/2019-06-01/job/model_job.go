@@ -6,6 +6,6 @@ package job
 type Job struct {
 	Id         *string        `json:"id,omitempty"`
 	Name       *string        `json:"name,omitempty"`
-	Properties *JobProperties `json:"properties"`
+	Properties *JobProperties `json:"properties,omitempty"`
 	Type       *string        `json:"type,omitempty"`
 }

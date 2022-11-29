@@ -6,6 +6,6 @@ package keyvalues
 type KeyValue struct {
 	Id         *string             `json:"id,omitempty"`
 	Name       *string             `json:"name,omitempty"`
-	Properties *KeyValueProperties `json:"properties"`
+	Properties *KeyValueProperties `json:"properties,omitempty"`
 	Type       *string             `json:"type,omitempty"`
 }

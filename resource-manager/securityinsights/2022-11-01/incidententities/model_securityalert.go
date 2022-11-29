@@ -13,7 +13,7 @@ import (
 var _ Entity = SecurityAlert{}
 
 type SecurityAlert struct {
-	Properties *SecurityAlertProperties `json:"properties"`
+	Properties *SecurityAlertProperties `json:"properties,omitempty"`
 
 	// Fields inherited from Entity
 	Id         *string                `json:"id,omitempty"`

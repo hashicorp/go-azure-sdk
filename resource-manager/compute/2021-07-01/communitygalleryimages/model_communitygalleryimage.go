@@ -4,9 +4,9 @@ package communitygalleryimages
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type CommunityGalleryImage struct {
-	Identifier *CommunityGalleryIdentifier      `json:"identifier"`
+	Identifier *CommunityGalleryIdentifier      `json:"identifier,omitempty"`
 	Location   *string                          `json:"location,omitempty"`
 	Name       *string                          `json:"name,omitempty"`
-	Properties *CommunityGalleryImageProperties `json:"properties"`
+	Properties *CommunityGalleryImageProperties `json:"properties,omitempty"`
 	Type       *string                          `json:"type,omitempty"`
 }

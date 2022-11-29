@@ -5,8 +5,8 @@ package containerappsauthconfigs
 
 type Login struct {
 	AllowedExternalRedirectUrls   *[]string         `json:"allowedExternalRedirectUrls,omitempty"`
-	CookieExpiration              *CookieExpiration `json:"cookieExpiration"`
-	Nonce                         *Nonce            `json:"nonce"`
+	CookieExpiration              *CookieExpiration `json:"cookieExpiration,omitempty"`
+	Nonce                         *Nonce            `json:"nonce,omitempty"`
 	PreserveUrlFragmentsForLogins *bool             `json:"preserveUrlFragmentsForLogins,omitempty"`
-	Routes                        *LoginRoutes      `json:"routes"`
+	Routes                        *LoginRoutes      `json:"routes,omitempty"`
 }

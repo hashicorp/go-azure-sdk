@@ -6,6 +6,6 @@ package logfiles
 type LogFile struct {
 	Id         *string            `json:"id,omitempty"`
 	Name       *string            `json:"name,omitempty"`
-	Properties *LogFileProperties `json:"properties"`
+	Properties *LogFileProperties `json:"properties,omitempty"`
 	Type       *string            `json:"type,omitempty"`
 }

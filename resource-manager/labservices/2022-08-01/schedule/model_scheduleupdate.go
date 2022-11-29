@@ -4,5 +4,5 @@ package schedule
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type ScheduleUpdate struct {
-	Properties *ScheduleUpdateProperties `json:"properties"`
+	Properties *ScheduleUpdateProperties `json:"properties,omitempty"`
 }

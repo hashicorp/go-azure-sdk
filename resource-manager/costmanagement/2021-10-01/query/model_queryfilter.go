@@ -5,7 +5,7 @@ package query
 
 type QueryFilter struct {
 	And        *[]QueryFilter             `json:"and,omitempty"`
-	Dimensions *QueryComparisonExpression `json:"dimensions"`
+	Dimensions *QueryComparisonExpression `json:"dimensions,omitempty"`
 	Or         *[]QueryFilter             `json:"or,omitempty"`
-	Tags       *QueryComparisonExpression `json:"tags"`
+	Tags       *QueryComparisonExpression `json:"tags,omitempty"`
 }

@@ -16,7 +16,7 @@ type JobCollectionItemProperties struct {
 	LastModifiedTime  *string                     `json:"lastModifiedTime,omitempty"`
 	ProvisioningState *string                     `json:"provisioningState,omitempty"`
 	RunOn             *string                     `json:"runOn,omitempty"`
-	Runbook           *RunbookAssociationProperty `json:"runbook"`
+	Runbook           *RunbookAssociationProperty `json:"runbook,omitempty"`
 	StartTime         *string                     `json:"startTime,omitempty"`
 	Status            *JobStatus                  `json:"status,omitempty"`
 }

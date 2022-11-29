@@ -10,7 +10,7 @@ import (
 type FluxConfiguration struct {
 	Id         *string                      `json:"id,omitempty"`
 	Name       *string                      `json:"name,omitempty"`
-	Properties *FluxConfigurationProperties `json:"properties"`
+	Properties *FluxConfigurationProperties `json:"properties,omitempty"`
 	SystemData *systemdata.SystemData       `json:"systemData,omitempty"`
 	Type       *string                      `json:"type,omitempty"`
 }

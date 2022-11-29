@@ -10,6 +10,6 @@ import (
 type CreateDataLakeStoreAccountParameters struct {
 	Identity   *identity.SystemAssigned              `json:"identity,omitempty"`
 	Location   string                                `json:"location"`
-	Properties *CreateDataLakeStoreAccountProperties `json:"properties"`
+	Properties *CreateDataLakeStoreAccountProperties `json:"properties,omitempty"`
 	Tags       *map[string]string                    `json:"tags,omitempty"`
 }

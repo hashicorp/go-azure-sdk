@@ -5,7 +5,7 @@ package containerappsauthconfigs
 
 type Google struct {
 	Enabled      *bool                       `json:"enabled,omitempty"`
-	Login        *LoginScopes                `json:"login"`
-	Registration *ClientRegistration         `json:"registration"`
-	Validation   *AllowedAudiencesValidation `json:"validation"`
+	Login        *LoginScopes                `json:"login,omitempty"`
+	Registration *ClientRegistration         `json:"registration,omitempty"`
+	Validation   *AllowedAudiencesValidation `json:"validation,omitempty"`
 }

@@ -4,5 +4,5 @@ package restorables
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type RestorableSqlContainerProperties struct {
-	Resource *RestorableSqlContainerPropertiesResource `json:"resource"`
+	Resource *RestorableSqlContainerPropertiesResource `json:"resource,omitempty"`
 }

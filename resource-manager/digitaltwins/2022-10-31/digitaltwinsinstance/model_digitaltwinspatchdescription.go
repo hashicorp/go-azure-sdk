@@ -9,6 +9,6 @@ import (
 
 type DigitalTwinsPatchDescription struct {
 	Identity   *identity.LegacySystemAndUserAssignedMap `json:"identity,omitempty"`
-	Properties *DigitalTwinsPatchProperties             `json:"properties"`
+	Properties *DigitalTwinsPatchProperties             `json:"properties,omitempty"`
 	Tags       *map[string]string                       `json:"tags,omitempty"`
 }

@@ -6,6 +6,6 @@ package workloadnetworks
 type WorkloadNetworkPublicIP struct {
 	Id         *string                            `json:"id,omitempty"`
 	Name       *string                            `json:"name,omitempty"`
-	Properties *WorkloadNetworkPublicIPProperties `json:"properties"`
+	Properties *WorkloadNetworkPublicIPProperties `json:"properties,omitempty"`
 	Type       *string                            `json:"type,omitempty"`
 }

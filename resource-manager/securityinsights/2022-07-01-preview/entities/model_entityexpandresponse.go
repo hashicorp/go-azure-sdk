@@ -4,6 +4,6 @@ package entities
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type EntityExpandResponse struct {
-	MetaData *ExpansionResultsMetadata  `json:"metaData"`
-	Value    *EntityExpandResponseValue `json:"value"`
+	MetaData *ExpansionResultsMetadata  `json:"metaData,omitempty"`
+	Value    *EntityExpandResponseValue `json:"value,omitempty"`
 }

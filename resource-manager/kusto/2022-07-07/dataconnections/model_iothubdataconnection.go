@@ -11,7 +11,7 @@ import (
 var _ DataConnection = IotHubDataConnection{}
 
 type IotHubDataConnection struct {
-	Properties *IotHubConnectionProperties `json:"properties"`
+	Properties *IotHubConnectionProperties `json:"properties,omitempty"`
 
 	// Fields inherited from DataConnection
 	Id       *string `json:"id,omitempty"`

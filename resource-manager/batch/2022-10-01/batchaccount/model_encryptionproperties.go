@@ -5,5 +5,5 @@ package batchaccount
 
 type EncryptionProperties struct {
 	KeySource          *KeySource          `json:"keySource,omitempty"`
-	KeyVaultProperties *KeyVaultProperties `json:"keyVaultProperties"`
+	KeyVaultProperties *KeyVaultProperties `json:"keyVaultProperties,omitempty"`
 }

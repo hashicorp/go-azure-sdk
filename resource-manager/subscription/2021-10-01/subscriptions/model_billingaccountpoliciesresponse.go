@@ -10,7 +10,7 @@ import (
 type BillingAccountPoliciesResponse struct {
 	Id         *string                                   `json:"id,omitempty"`
 	Name       *string                                   `json:"name,omitempty"`
-	Properties *BillingAccountPoliciesResponseProperties `json:"properties"`
+	Properties *BillingAccountPoliciesResponseProperties `json:"properties,omitempty"`
 	SystemData *systemdata.SystemData                    `json:"systemData,omitempty"`
 	Type       *string                                   `json:"type,omitempty"`
 }

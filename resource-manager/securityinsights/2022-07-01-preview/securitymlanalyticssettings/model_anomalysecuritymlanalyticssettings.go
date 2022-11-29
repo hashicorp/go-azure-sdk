@@ -13,7 +13,7 @@ import (
 var _ SecurityMLAnalyticsSetting = AnomalySecurityMLAnalyticsSettings{}
 
 type AnomalySecurityMLAnalyticsSettings struct {
-	Properties *AnomalySecurityMLAnalyticsSettingsProperties `json:"properties"`
+	Properties *AnomalySecurityMLAnalyticsSettingsProperties `json:"properties,omitempty"`
 
 	// Fields inherited from SecurityMLAnalyticsSetting
 	Etag       *string                `json:"etag,omitempty"`

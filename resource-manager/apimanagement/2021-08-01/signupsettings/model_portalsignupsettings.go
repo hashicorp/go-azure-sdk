@@ -6,6 +6,6 @@ package signupsettings
 type PortalSignupSettings struct {
 	Id         *string                         `json:"id,omitempty"`
 	Name       *string                         `json:"name,omitempty"`
-	Properties *PortalSignupSettingsProperties `json:"properties"`
+	Properties *PortalSignupSettingsProperties `json:"properties,omitempty"`
 	Type       *string                         `json:"type,omitempty"`
 }

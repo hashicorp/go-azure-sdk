@@ -5,7 +5,7 @@ package vaults
 
 type PrivateEndpointConnection struct {
 	GroupIds                          *[]VaultSubResourceType            `json:"groupIds,omitempty"`
-	PrivateEndpoint                   *PrivateEndpoint                   `json:"privateEndpoint"`
-	PrivateLinkServiceConnectionState *PrivateLinkServiceConnectionState `json:"privateLinkServiceConnectionState"`
+	PrivateEndpoint                   *PrivateEndpoint                   `json:"privateEndpoint,omitempty"`
+	PrivateLinkServiceConnectionState *PrivateLinkServiceConnectionState `json:"privateLinkServiceConnectionState,omitempty"`
 	ProvisioningState                 *ProvisioningState                 `json:"provisioningState,omitempty"`
 }

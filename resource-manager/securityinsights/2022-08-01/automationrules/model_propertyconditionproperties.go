@@ -11,7 +11,7 @@ import (
 var _ AutomationRuleCondition = PropertyConditionProperties{}
 
 type PropertyConditionProperties struct {
-	ConditionProperties *AutomationRulePropertyValuesCondition `json:"conditionProperties"`
+	ConditionProperties *AutomationRulePropertyValuesCondition `json:"conditionProperties,omitempty"`
 
 	// Fields inherited from AutomationRuleCondition
 }

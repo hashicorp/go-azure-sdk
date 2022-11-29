@@ -10,7 +10,7 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type IncidentProperties struct {
-	AdditionalData         *IncidentAdditionalData       `json:"additionalData"`
+	AdditionalData         *IncidentAdditionalData       `json:"additionalData,omitempty"`
 	Classification         *IncidentClassification       `json:"classification,omitempty"`
 	ClassificationComment  *string                       `json:"classificationComment,omitempty"`
 	ClassificationReason   *IncidentClassificationReason `json:"classificationReason,omitempty"`
@@ -22,13 +22,13 @@ type IncidentProperties struct {
 	Labels                 *[]IncidentLabel              `json:"labels,omitempty"`
 	LastActivityTimeUtc    *string                       `json:"lastActivityTimeUtc,omitempty"`
 	LastModifiedTimeUtc    *string                       `json:"lastModifiedTimeUtc,omitempty"`
-	Owner                  *IncidentOwnerInfo            `json:"owner"`
+	Owner                  *IncidentOwnerInfo            `json:"owner,omitempty"`
 	ProviderIncidentId     *string                       `json:"providerIncidentId,omitempty"`
 	ProviderName           *string                       `json:"providerName,omitempty"`
 	RelatedAnalyticRuleIds *[]string                     `json:"relatedAnalyticRuleIds,omitempty"`
 	Severity               IncidentSeverity              `json:"severity"`
 	Status                 IncidentStatus                `json:"status"`
-	TeamInformation        *TeamInformation              `json:"teamInformation"`
+	TeamInformation        *TeamInformation              `json:"teamInformation,omitempty"`
 	Title                  string                        `json:"title"`
 }
 

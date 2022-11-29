@@ -12,14 +12,14 @@ type VolumeProperties struct {
 	CoolAccess                        *bool                            `json:"coolAccess,omitempty"`
 	CoolnessPeriod                    *int64                           `json:"coolnessPeriod,omitempty"`
 	CreationToken                     string                           `json:"creationToken"`
-	DataProtection                    *VolumePropertiesDataProtection  `json:"dataProtection"`
+	DataProtection                    *VolumePropertiesDataProtection  `json:"dataProtection,omitempty"`
 	DefaultGroupQuotaInKiBs           *int64                           `json:"defaultGroupQuotaInKiBs,omitempty"`
 	DefaultUserQuotaInKiBs            *int64                           `json:"defaultUserQuotaInKiBs,omitempty"`
 	DeleteBaseSnapshot                *bool                            `json:"deleteBaseSnapshot,omitempty"`
 	EnableSubvolumes                  *EnableSubvolumes                `json:"enableSubvolumes,omitempty"`
 	Encrypted                         *bool                            `json:"encrypted,omitempty"`
 	EncryptionKeySource               *EncryptionKeySource             `json:"encryptionKeySource,omitempty"`
-	ExportPolicy                      *VolumePropertiesExportPolicy    `json:"exportPolicy"`
+	ExportPolicy                      *VolumePropertiesExportPolicy    `json:"exportPolicy,omitempty"`
 	FileSystemId                      *string                          `json:"fileSystemId,omitempty"`
 	IsDefaultQuotaEnabled             *bool                            `json:"isDefaultQuotaEnabled,omitempty"`
 	IsRestoring                       *bool                            `json:"isRestoring,omitempty"`

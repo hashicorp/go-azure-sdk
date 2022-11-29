@@ -5,6 +5,6 @@ package virtualmachinescalesets
 
 type VirtualMachineScaleSetStorageProfile struct {
 	DataDisks      *[]VirtualMachineScaleSetDataDisk `json:"dataDisks,omitempty"`
-	ImageReference *ImageReference                   `json:"imageReference"`
-	OsDisk         *VirtualMachineScaleSetOSDisk     `json:"osDisk"`
+	ImageReference *ImageReference                   `json:"imageReference,omitempty"`
+	OsDisk         *VirtualMachineScaleSetOSDisk     `json:"osDisk,omitempty"`
 }

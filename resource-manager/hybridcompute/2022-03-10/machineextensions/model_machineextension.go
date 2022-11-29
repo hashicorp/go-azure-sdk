@@ -11,7 +11,7 @@ type MachineExtension struct {
 	Id         *string                     `json:"id,omitempty"`
 	Location   string                      `json:"location"`
 	Name       *string                     `json:"name,omitempty"`
-	Properties *MachineExtensionProperties `json:"properties"`
+	Properties *MachineExtensionProperties `json:"properties,omitempty"`
 	SystemData *systemdata.SystemData      `json:"systemData,omitempty"`
 	Tags       *map[string]string          `json:"tags,omitempty"`
 	Type       *string                     `json:"type,omitempty"`

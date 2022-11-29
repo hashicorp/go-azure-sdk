@@ -4,5 +4,5 @@ package rbacs
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type SqlRoleAssignmentCreateUpdateParameters struct {
-	Properties *SqlRoleAssignmentResource `json:"properties"`
+	Properties *SqlRoleAssignmentResource `json:"properties,omitempty"`
 }

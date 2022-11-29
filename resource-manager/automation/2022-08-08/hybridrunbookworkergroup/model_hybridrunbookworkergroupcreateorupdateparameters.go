@@ -5,5 +5,5 @@ package hybridrunbookworkergroup
 
 type HybridRunbookWorkerGroupCreateOrUpdateParameters struct {
 	Name       *string                                           `json:"name,omitempty"`
-	Properties *HybridRunbookWorkerGroupCreateOrUpdateProperties `json:"properties"`
+	Properties *HybridRunbookWorkerGroupCreateOrUpdateProperties `json:"properties,omitempty"`
 }

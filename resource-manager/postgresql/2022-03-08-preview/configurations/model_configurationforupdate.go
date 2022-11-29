@@ -4,5 +4,5 @@ package configurations
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type ConfigurationForUpdate struct {
-	Properties *ConfigurationProperties `json:"properties"`
+	Properties *ConfigurationProperties `json:"properties,omitempty"`
 }

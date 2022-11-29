@@ -4,5 +4,5 @@ package certificate
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type CertificateCreateOrUpdateParameters struct {
-	Properties *CertificateCreateOrUpdateProperties `json:"properties"`
+	Properties *CertificateCreateOrUpdateProperties `json:"properties,omitempty"`
 }

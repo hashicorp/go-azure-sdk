@@ -6,6 +6,6 @@ package restorables
 type RestorableSqlDatabaseGetResult struct {
 	Id         *string                          `json:"id,omitempty"`
 	Name       *string                          `json:"name,omitempty"`
-	Properties *RestorableSqlDatabaseProperties `json:"properties"`
+	Properties *RestorableSqlDatabaseProperties `json:"properties,omitempty"`
 	Type       *string                          `json:"type,omitempty"`
 }
