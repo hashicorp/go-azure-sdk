@@ -8,5 +8,5 @@ type VirtualMachineExtensionImageProperties struct {
 	HandlerSchema              string `json:"handlerSchema"`
 	OperatingSystem            string `json:"operatingSystem"`
 	SupportsMultipleExtensions *bool  `json:"supportsMultipleExtensions,omitempty"`
-	VmScaleSetEnabled          *bool  `json:"vmScaleSetEnabled,omitempty"`
+	VMScaleSetEnabled          *bool  `json:"vmScaleSetEnabled,omitempty"`
 }

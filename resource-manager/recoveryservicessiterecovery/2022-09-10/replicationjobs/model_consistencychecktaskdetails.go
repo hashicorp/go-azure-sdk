@@ -11,7 +11,7 @@ import (
 var _ TaskTypeDetails = ConsistencyCheckTaskDetails{}
 
 type ConsistencyCheckTaskDetails struct {
-	VmDetails *[]InconsistentVmDetails `json:"vmDetails,omitempty"`
+	VMDetails *[]InconsistentVMDetails `json:"vmDetails,omitempty"`
 
 	// Fields inherited from TaskTypeDetails
 }

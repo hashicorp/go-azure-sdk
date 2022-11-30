@@ -9,6 +9,6 @@ type SqlVirtualMachineGroupProperties struct {
 	ProvisioningState    *string               `json:"provisioningState,omitempty"`
 	ScaleType            *ScaleType            `json:"scaleType,omitempty"`
 	SqlImageOffer        *string               `json:"sqlImageOffer,omitempty"`
-	SqlImageSku          *SqlVmGroupImageSku   `json:"sqlImageSku,omitempty"`
+	SqlImageSku          *SqlVMGroupImageSku   `json:"sqlImageSku,omitempty"`
 	WsfcDomainProfile    *WsfcDomainProfile    `json:"wsfcDomainProfile,omitempty"`
 }

@@ -8,21 +8,21 @@ import "strings"
 type RecoveryPointSyncType string
 
 const (
-	RecoveryPointSyncTypeMultiVmSyncRecoveryPoint RecoveryPointSyncType = "MultiVmSyncRecoveryPoint"
-	RecoveryPointSyncTypePerVmRecoveryPoint       RecoveryPointSyncType = "PerVmRecoveryPoint"
+	RecoveryPointSyncTypeMultiVMSyncRecoveryPoint RecoveryPointSyncType = "MultiVmSyncRecoveryPoint"
+	RecoveryPointSyncTypePerVMRecoveryPoint       RecoveryPointSyncType = "PerVmRecoveryPoint"
 )
 
 func PossibleValuesForRecoveryPointSyncType() []string {
 	return []string{
-		string(RecoveryPointSyncTypeMultiVmSyncRecoveryPoint),
-		string(RecoveryPointSyncTypePerVmRecoveryPoint),
+		string(RecoveryPointSyncTypeMultiVMSyncRecoveryPoint),
+		string(RecoveryPointSyncTypePerVMRecoveryPoint),
 	}
 }
 
 func parseRecoveryPointSyncType(input string) (*RecoveryPointSyncType, error) {
 	vals := map[string]RecoveryPointSyncType{
-		"multivmsyncrecoverypoint": RecoveryPointSyncTypeMultiVmSyncRecoveryPoint,
-		"pervmrecoverypoint":       RecoveryPointSyncTypePerVmRecoveryPoint,
+		"multivmsyncrecoverypoint": RecoveryPointSyncTypeMultiVMSyncRecoveryPoint,
+		"pervmrecoverypoint":       RecoveryPointSyncTypePerVMRecoveryPoint,
 	}
 	if v, ok := vals[strings.ToLower(input)]; ok {
 		return &v, nil

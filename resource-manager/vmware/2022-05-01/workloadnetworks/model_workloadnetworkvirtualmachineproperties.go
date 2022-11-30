@@ -5,5 +5,5 @@ package workloadnetworks
 
 type WorkloadNetworkVirtualMachineProperties struct {
 	DisplayName *string     `json:"displayName,omitempty"`
-	VmType      *VMTypeEnum `json:"vmType,omitempty"`
+	VMType      *VMTypeEnum `json:"vmType,omitempty"`
 }

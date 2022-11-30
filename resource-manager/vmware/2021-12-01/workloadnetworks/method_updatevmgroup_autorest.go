@@ -19,7 +19,7 @@ type UpdateVMGroupOperationResponse struct {
 }
 
 // UpdateVMGroup ...
-func (c WorkloadNetworksClient) UpdateVMGroup(ctx context.Context, id VmGroupId, input WorkloadNetworkVMGroup) (result UpdateVMGroupOperationResponse, err error) {
+func (c WorkloadNetworksClient) UpdateVMGroup(ctx context.Context, id VMGroupId, input WorkloadNetworkVMGroup) (result UpdateVMGroupOperationResponse, err error) {
 	req, err := c.preparerForUpdateVMGroup(ctx, id, input)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "workloadnetworks.WorkloadNetworksClient", "UpdateVMGroup", nil, "Failure preparing request")
@@ -36,7 +36,7 @@ func (c WorkloadNetworksClient) UpdateVMGroup(ctx context.Context, id VmGroupId,
 }
 
 // UpdateVMGroupThenPoll performs UpdateVMGroup then polls until it's completed
-func (c WorkloadNetworksClient) UpdateVMGroupThenPoll(ctx context.Context, id VmGroupId, input WorkloadNetworkVMGroup) error {
+func (c WorkloadNetworksClient) UpdateVMGroupThenPoll(ctx context.Context, id VMGroupId, input WorkloadNetworkVMGroup) error {
 	result, err := c.UpdateVMGroup(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing UpdateVMGroup: %+v", err)
@@ -50,7 +50,7 @@ func (c WorkloadNetworksClient) UpdateVMGroupThenPoll(ctx context.Context, id Vm
 }
 
 // preparerForUpdateVMGroup prepares the UpdateVMGroup request.
-func (c WorkloadNetworksClient) preparerForUpdateVMGroup(ctx context.Context, id VmGroupId, input WorkloadNetworkVMGroup) (*http.Request, error) {
+func (c WorkloadNetworksClient) preparerForUpdateVMGroup(ctx context.Context, id VMGroupId, input WorkloadNetworkVMGroup) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

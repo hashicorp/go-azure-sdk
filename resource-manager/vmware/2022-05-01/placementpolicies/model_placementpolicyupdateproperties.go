@@ -8,5 +8,5 @@ type PlacementPolicyUpdateProperties struct {
 	AzureHybridBenefitType *AzureHybridBenefitType `json:"azureHybridBenefitType,omitempty"`
 	HostMembers            *[]string               `json:"hostMembers,omitempty"`
 	State                  *PlacementPolicyState   `json:"state,omitempty"`
-	VmMembers              *[]string               `json:"vmMembers,omitempty"`
+	VMMembers              *[]string               `json:"vmMembers,omitempty"`
 }

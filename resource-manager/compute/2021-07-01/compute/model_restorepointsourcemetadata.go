@@ -11,5 +11,5 @@ type RestorePointSourceMetadata struct {
 	OsProfile          *OSProfile                          `json:"osProfile,omitempty"`
 	SecurityProfile    *SecurityProfile                    `json:"securityProfile,omitempty"`
 	StorageProfile     *RestorePointSourceVMStorageProfile `json:"storageProfile,omitempty"`
-	VmId               *string                             `json:"vmId,omitempty"`
+	VMId               *string                             `json:"vmId,omitempty"`
 }

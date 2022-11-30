@@ -4,5 +4,5 @@ package vmhhostlist
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type VMResources struct {
-	VmResourceId *string `json:"vmResourceId,omitempty"`
+	VMResourceId *string `json:"vmResourceId,omitempty"`
 }

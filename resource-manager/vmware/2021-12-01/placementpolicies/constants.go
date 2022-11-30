@@ -101,21 +101,21 @@ func parsePlacementPolicyState(input string) (*PlacementPolicyState, error) {
 type PlacementPolicyType string
 
 const (
-	PlacementPolicyTypeVmHost PlacementPolicyType = "VmHost"
-	PlacementPolicyTypeVmVm   PlacementPolicyType = "VmVm"
+	PlacementPolicyTypeVMHost PlacementPolicyType = "VmHost"
+	PlacementPolicyTypeVMVM   PlacementPolicyType = "VmVm"
 )
 
 func PossibleValuesForPlacementPolicyType() []string {
 	return []string{
-		string(PlacementPolicyTypeVmHost),
-		string(PlacementPolicyTypeVmVm),
+		string(PlacementPolicyTypeVMHost),
+		string(PlacementPolicyTypeVMVM),
 	}
 }
 
 func parsePlacementPolicyType(input string) (*PlacementPolicyType, error) {
 	vals := map[string]PlacementPolicyType{
-		"vmhost": PlacementPolicyTypeVmHost,
-		"vmvm":   PlacementPolicyTypeVmVm,
+		"vmhost": PlacementPolicyTypeVMHost,
+		"vmvm":   PlacementPolicyTypeVMVM,
 	}
 	if v, ok := vals[strings.ToLower(input)]; ok {
 		return &v, nil

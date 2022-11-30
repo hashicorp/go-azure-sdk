@@ -17,8 +17,8 @@ type A2ACreateProtectionIntentInput struct {
 	AutomationAccountAuthenticationType        *AutomationAccountAuthenticationType          `json:"automationAccountAuthenticationType,omitempty"`
 	DiskEncryptionInfo                         *DiskEncryptionInfo                           `json:"diskEncryptionInfo,omitempty"`
 	FabricObjectId                             string                                        `json:"fabricObjectId"`
-	MultiVmGroupId                             *string                                       `json:"multiVmGroupId,omitempty"`
-	MultiVmGroupName                           *string                                       `json:"multiVmGroupName,omitempty"`
+	MultiVMGroupId                             *string                                       `json:"multiVmGroupId,omitempty"`
+	MultiVMGroupName                           *string                                       `json:"multiVmGroupName,omitempty"`
 	PrimaryLocation                            string                                        `json:"primaryLocation"`
 	PrimaryStagingStorageAccountCustomInput    StorageAccountCustomDetails                   `json:"primaryStagingStorageAccountCustomInput"`
 	ProtectionProfileCustomInput               ProtectionProfileCustomDetails                `json:"protectionProfileCustomInput"`
@@ -31,8 +31,8 @@ type A2ACreateProtectionIntentInput struct {
 	RecoveryResourceGroupId                    string                                        `json:"recoveryResourceGroupId"`
 	RecoverySubscriptionId                     string                                        `json:"recoverySubscriptionId"`
 	RecoveryVirtualNetworkCustomInput          RecoveryVirtualNetworkCustomDetails           `json:"recoveryVirtualNetworkCustomInput"`
-	VmDisks                                    *[]A2AProtectionIntentDiskInputDetails        `json:"vmDisks,omitempty"`
-	VmManagedDisks                             *[]A2AProtectionIntentManagedDiskInputDetails `json:"vmManagedDisks,omitempty"`
+	VMDisks                                    *[]A2AProtectionIntentDiskInputDetails        `json:"vmDisks,omitempty"`
+	VMManagedDisks                             *[]A2AProtectionIntentManagedDiskInputDetails `json:"vmManagedDisks,omitempty"`
 
 	// Fields inherited from CreateProtectionIntentProviderSpecificDetails
 }
@@ -76,16 +76,16 @@ func (s *A2ACreateProtectionIntentInput) UnmarshalJSON(bytes []byte) error {
 	s.AutomationAccountAuthenticationType = decoded.AutomationAccountAuthenticationType
 	s.DiskEncryptionInfo = decoded.DiskEncryptionInfo
 	s.FabricObjectId = decoded.FabricObjectId
-	s.MultiVmGroupId = decoded.MultiVmGroupId
-	s.MultiVmGroupName = decoded.MultiVmGroupName
+	s.MultiVMGroupId = decoded.MultiVMGroupId
+	s.MultiVMGroupName = decoded.MultiVMGroupName
 	s.PrimaryLocation = decoded.PrimaryLocation
 	s.RecoveryAvailabilityType = decoded.RecoveryAvailabilityType
 	s.RecoveryAvailabilityZone = decoded.RecoveryAvailabilityZone
 	s.RecoveryLocation = decoded.RecoveryLocation
 	s.RecoveryResourceGroupId = decoded.RecoveryResourceGroupId
 	s.RecoverySubscriptionId = decoded.RecoverySubscriptionId
-	s.VmDisks = decoded.VmDisks
-	s.VmManagedDisks = decoded.VmManagedDisks
+	s.VMDisks = decoded.VMDisks
+	s.VMManagedDisks = decoded.VMManagedDisks
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {

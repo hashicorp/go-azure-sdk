@@ -68,9 +68,9 @@ func unmarshalTaskTypeDetailsImplementation(input []byte) (TaskTypeDetails, erro
 	}
 
 	if strings.EqualFold(value, "VmNicUpdatesTaskDetails") {
-		var out VmNicUpdatesTaskDetails
+		var out VMNicUpdatesTaskDetails
 		if err := json.Unmarshal(input, &out); err != nil {
-			return nil, fmt.Errorf("unmarshaling into VmNicUpdatesTaskDetails: %+v", err)
+			return nil, fmt.Errorf("unmarshaling into VMNicUpdatesTaskDetails: %+v", err)
 		}
 		return out, nil
 	}

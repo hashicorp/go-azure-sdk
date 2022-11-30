@@ -1,12 +1,12 @@
 package vmhhostlist
 
 type VMResourcesOperationPredicate struct {
-	VmResourceId *string
+	VMResourceId *string
 }
 
 func (p VMResourcesOperationPredicate) Matches(input VMResources) bool {
 
-	if p.VmResourceId != nil && (input.VmResourceId == nil && *p.VmResourceId != *input.VmResourceId) {
+	if p.VMResourceId != nil && (input.VMResourceId == nil && *p.VMResourceId != *input.VMResourceId) {
 		return false
 	}
 

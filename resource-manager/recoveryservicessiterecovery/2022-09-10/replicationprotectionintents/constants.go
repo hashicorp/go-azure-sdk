@@ -120,30 +120,30 @@ func parseAutomationAccountAuthenticationType(input string) (*AutomationAccountA
 	return &out, nil
 }
 
-type SetMultiVmSyncStatus string
+type SetMultiVMSyncStatus string
 
 const (
-	SetMultiVmSyncStatusDisable SetMultiVmSyncStatus = "Disable"
-	SetMultiVmSyncStatusEnable  SetMultiVmSyncStatus = "Enable"
+	SetMultiVMSyncStatusDisable SetMultiVMSyncStatus = "Disable"
+	SetMultiVMSyncStatusEnable  SetMultiVMSyncStatus = "Enable"
 )
 
-func PossibleValuesForSetMultiVmSyncStatus() []string {
+func PossibleValuesForSetMultiVMSyncStatus() []string {
 	return []string{
-		string(SetMultiVmSyncStatusDisable),
-		string(SetMultiVmSyncStatusEnable),
+		string(SetMultiVMSyncStatusDisable),
+		string(SetMultiVMSyncStatusEnable),
 	}
 }
 
-func parseSetMultiVmSyncStatus(input string) (*SetMultiVmSyncStatus, error) {
-	vals := map[string]SetMultiVmSyncStatus{
-		"disable": SetMultiVmSyncStatusDisable,
-		"enable":  SetMultiVmSyncStatusEnable,
+func parseSetMultiVMSyncStatus(input string) (*SetMultiVMSyncStatus, error) {
+	vals := map[string]SetMultiVMSyncStatus{
+		"disable": SetMultiVMSyncStatusDisable,
+		"enable":  SetMultiVMSyncStatusEnable,
 	}
 	if v, ok := vals[strings.ToLower(input)]; ok {
 		return &v, nil
 	}
 
 	// otherwise presume it's an undefined value and best-effort it
-	out := SetMultiVmSyncStatus(input)
+	out := SetMultiVMSyncStatus(input)
 	return &out, nil
 }

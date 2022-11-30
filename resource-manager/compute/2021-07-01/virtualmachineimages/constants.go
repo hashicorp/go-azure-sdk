@@ -61,30 +61,30 @@ func parseOperatingSystemTypes(input string) (*OperatingSystemTypes, error) {
 	return &out, nil
 }
 
-type VmDiskTypes string
+type VMDiskTypes string
 
 const (
-	VmDiskTypesNone      VmDiskTypes = "None"
-	VmDiskTypesUnmanaged VmDiskTypes = "Unmanaged"
+	VMDiskTypesNone      VMDiskTypes = "None"
+	VMDiskTypesUnmanaged VMDiskTypes = "Unmanaged"
 )
 
-func PossibleValuesForVmDiskTypes() []string {
+func PossibleValuesForVMDiskTypes() []string {
 	return []string{
-		string(VmDiskTypesNone),
-		string(VmDiskTypesUnmanaged),
+		string(VMDiskTypesNone),
+		string(VMDiskTypesUnmanaged),
 	}
 }
 
-func parseVmDiskTypes(input string) (*VmDiskTypes, error) {
-	vals := map[string]VmDiskTypes{
-		"none":      VmDiskTypesNone,
-		"unmanaged": VmDiskTypesUnmanaged,
+func parseVMDiskTypes(input string) (*VMDiskTypes, error) {
+	vals := map[string]VMDiskTypes{
+		"none":      VMDiskTypesNone,
+		"unmanaged": VMDiskTypesUnmanaged,
 	}
 	if v, ok := vals[strings.ToLower(input)]; ok {
 		return &v, nil
 	}
 
 	// otherwise presume it's an undefined value and best-effort it
-	out := VmDiskTypes(input)
+	out := VMDiskTypes(input)
 	return &out, nil
 }

@@ -18,7 +18,7 @@ type EdgeZoneListSkusOperationResponse struct {
 }
 
 // EdgeZoneListSkus ...
-func (c VirtualMachineImagesClient) EdgeZoneListSkus(ctx context.Context, id VmImageOfferId) (result EdgeZoneListSkusOperationResponse, err error) {
+func (c VirtualMachineImagesClient) EdgeZoneListSkus(ctx context.Context, id VMImageOfferId) (result EdgeZoneListSkusOperationResponse, err error) {
 	req, err := c.preparerForEdgeZoneListSkus(ctx, id)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "virtualmachineimages.VirtualMachineImagesClient", "EdgeZoneListSkus", nil, "Failure preparing request")
@@ -41,7 +41,7 @@ func (c VirtualMachineImagesClient) EdgeZoneListSkus(ctx context.Context, id VmI
 }
 
 // preparerForEdgeZoneListSkus prepares the EdgeZoneListSkus request.
-func (c VirtualMachineImagesClient) preparerForEdgeZoneListSkus(ctx context.Context, id VmImageOfferId) (*http.Request, error) {
+func (c VirtualMachineImagesClient) preparerForEdgeZoneListSkus(ctx context.Context, id VMImageOfferId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

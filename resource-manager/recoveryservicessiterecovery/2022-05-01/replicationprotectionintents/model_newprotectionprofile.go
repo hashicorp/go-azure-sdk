@@ -13,7 +13,7 @@ var _ ProtectionProfileCustomDetails = NewProtectionProfile{}
 type NewProtectionProfile struct {
 	AppConsistentFrequencyInMinutes   *int64               `json:"appConsistentFrequencyInMinutes,omitempty"`
 	CrashConsistentFrequencyInMinutes *int64               `json:"crashConsistentFrequencyInMinutes,omitempty"`
-	MultiVmSyncStatus                 SetMultiVmSyncStatus `json:"multiVmSyncStatus"`
+	MultiVMSyncStatus                 SetMultiVMSyncStatus `json:"multiVmSyncStatus"`
 	PolicyName                        string               `json:"policyName"`
 	RecoveryPointHistory              *int64               `json:"recoveryPointHistory,omitempty"`
 

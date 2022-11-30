@@ -6,5 +6,5 @@ package placementpolicies
 type PlacementPolicyUpdateProperties struct {
 	HostMembers *[]string             `json:"hostMembers,omitempty"`
 	State       *PlacementPolicyState `json:"state,omitempty"`
-	VmMembers   *[]string             `json:"vmMembers,omitempty"`
+	VMMembers   *[]string             `json:"vmMembers,omitempty"`
 }

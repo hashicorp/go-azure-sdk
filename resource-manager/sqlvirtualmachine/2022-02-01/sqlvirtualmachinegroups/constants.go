@@ -108,30 +108,30 @@ func parseScaleType(input string) (*ScaleType, error) {
 	return &out, nil
 }
 
-type SqlVmGroupImageSku string
+type SqlVMGroupImageSku string
 
 const (
-	SqlVmGroupImageSkuDeveloper  SqlVmGroupImageSku = "Developer"
-	SqlVmGroupImageSkuEnterprise SqlVmGroupImageSku = "Enterprise"
+	SqlVMGroupImageSkuDeveloper  SqlVMGroupImageSku = "Developer"
+	SqlVMGroupImageSkuEnterprise SqlVMGroupImageSku = "Enterprise"
 )
 
-func PossibleValuesForSqlVmGroupImageSku() []string {
+func PossibleValuesForSqlVMGroupImageSku() []string {
 	return []string{
-		string(SqlVmGroupImageSkuDeveloper),
-		string(SqlVmGroupImageSkuEnterprise),
+		string(SqlVMGroupImageSkuDeveloper),
+		string(SqlVMGroupImageSkuEnterprise),
 	}
 }
 
-func parseSqlVmGroupImageSku(input string) (*SqlVmGroupImageSku, error) {
-	vals := map[string]SqlVmGroupImageSku{
-		"developer":  SqlVmGroupImageSkuDeveloper,
-		"enterprise": SqlVmGroupImageSkuEnterprise,
+func parseSqlVMGroupImageSku(input string) (*SqlVMGroupImageSku, error) {
+	vals := map[string]SqlVMGroupImageSku{
+		"developer":  SqlVMGroupImageSkuDeveloper,
+		"enterprise": SqlVMGroupImageSkuEnterprise,
 	}
 	if v, ok := vals[strings.ToLower(input)]; ok {
 		return &v, nil
 	}
 
 	// otherwise presume it's an undefined value and best-effort it
-	out := SqlVmGroupImageSku(input)
+	out := SqlVMGroupImageSku(input)
 	return &out, nil
 }

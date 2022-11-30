@@ -22,12 +22,12 @@ type VMwareCbtUpdateMigrationItemInput struct {
 	TargetNicTags                         *map[string]string          `json:"targetNicTags,omitempty"`
 	TargetProximityPlacementGroupId       *string                     `json:"targetProximityPlacementGroupId,omitempty"`
 	TargetResourceGroupId                 *string                     `json:"targetResourceGroupId,omitempty"`
-	TargetVmName                          *string                     `json:"targetVmName,omitempty"`
-	TargetVmSize                          *string                     `json:"targetVmSize,omitempty"`
-	TargetVmTags                          *map[string]string          `json:"targetVmTags,omitempty"`
+	TargetVMName                          *string                     `json:"targetVmName,omitempty"`
+	TargetVMSize                          *string                     `json:"targetVmSize,omitempty"`
+	TargetVMTags                          *map[string]string          `json:"targetVmTags,omitempty"`
 	TestNetworkId                         *string                     `json:"testNetworkId,omitempty"`
-	VmDisks                               *[]VMwareCbtUpdateDiskInput `json:"vmDisks,omitempty"`
-	VmNics                                *[]VMwareCbtNicInput        `json:"vmNics,omitempty"`
+	VMDisks                               *[]VMwareCbtUpdateDiskInput `json:"vmDisks,omitempty"`
+	VMNics                                *[]VMwareCbtNicInput        `json:"vmNics,omitempty"`
 
 	// Fields inherited from UpdateMigrationItemProviderSpecificInput
 }

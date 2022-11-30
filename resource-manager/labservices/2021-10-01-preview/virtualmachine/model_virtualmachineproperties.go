@@ -8,5 +8,5 @@ type VirtualMachineProperties struct {
 	ConnectionProfile *VirtualMachineConnectionProfile `json:"connectionProfile,omitempty"`
 	ProvisioningState *ProvisioningState               `json:"provisioningState,omitempty"`
 	State             *VirtualMachineState             `json:"state,omitempty"`
-	VmType            *VirtualMachineType              `json:"vmType,omitempty"`
+	VMType            *VirtualMachineType              `json:"vmType,omitempty"`
 }

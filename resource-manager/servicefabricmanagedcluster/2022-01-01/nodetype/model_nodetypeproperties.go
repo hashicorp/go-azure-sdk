@@ -8,7 +8,7 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type NodeTypeProperties struct {
-	AdditionalDataDisks          *[]VmssDataDisk                   `json:"additionalDataDisks,omitempty"`
+	AdditionalDataDisks          *[]VMSSDataDisk                   `json:"additionalDataDisks,omitempty"`
 	ApplicationPorts             *EndpointRangeDescription         `json:"applicationPorts,omitempty"`
 	Capacities                   *map[string]string                `json:"capacities,omitempty"`
 	DataDiskLetter               *string                           `json:"dataDiskLetter,omitempty"`
@@ -27,13 +27,13 @@ type NodeTypeProperties struct {
 	ProvisioningState            *ManagedResourceProvisioningState `json:"provisioningState,omitempty"`
 	UseDefaultPublicLoadBalancer *bool                             `json:"useDefaultPublicLoadBalancer,omitempty"`
 	UseTempDataDisk              *bool                             `json:"useTempDataDisk,omitempty"`
-	VmExtensions                 *[]VMSSExtension                  `json:"vmExtensions,omitempty"`
-	VmImageOffer                 *string                           `json:"vmImageOffer,omitempty"`
-	VmImagePublisher             *string                           `json:"vmImagePublisher,omitempty"`
-	VmImageSku                   *string                           `json:"vmImageSku,omitempty"`
-	VmImageVersion               *string                           `json:"vmImageVersion,omitempty"`
-	VmInstanceCount              int64                             `json:"vmInstanceCount"`
-	VmManagedIdentity            *identity.UserAssignedList        `json:"vmManagedIdentity,omitempty"`
-	VmSecrets                    *[]VaultSecretGroup               `json:"vmSecrets,omitempty"`
-	VmSize                       *string                           `json:"vmSize,omitempty"`
+	VMExtensions                 *[]VMSSExtension                  `json:"vmExtensions,omitempty"`
+	VMImageOffer                 *string                           `json:"vmImageOffer,omitempty"`
+	VMImagePublisher             *string                           `json:"vmImagePublisher,omitempty"`
+	VMImageSku                   *string                           `json:"vmImageSku,omitempty"`
+	VMImageVersion               *string                           `json:"vmImageVersion,omitempty"`
+	VMInstanceCount              int64                             `json:"vmInstanceCount"`
+	VMManagedIdentity            *identity.UserAssignedList        `json:"vmManagedIdentity,omitempty"`
+	VMSecrets                    *[]VaultSecretGroup               `json:"vmSecrets,omitempty"`
+	VMSize                       *string                           `json:"vmSize,omitempty"`
 }

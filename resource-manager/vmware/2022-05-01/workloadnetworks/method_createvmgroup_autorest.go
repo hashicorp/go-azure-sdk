@@ -19,7 +19,7 @@ type CreateVMGroupOperationResponse struct {
 }
 
 // CreateVMGroup ...
-func (c WorkloadNetworksClient) CreateVMGroup(ctx context.Context, id VmGroupId, input WorkloadNetworkVMGroup) (result CreateVMGroupOperationResponse, err error) {
+func (c WorkloadNetworksClient) CreateVMGroup(ctx context.Context, id VMGroupId, input WorkloadNetworkVMGroup) (result CreateVMGroupOperationResponse, err error) {
 	req, err := c.preparerForCreateVMGroup(ctx, id, input)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "workloadnetworks.WorkloadNetworksClient", "CreateVMGroup", nil, "Failure preparing request")
@@ -36,7 +36,7 @@ func (c WorkloadNetworksClient) CreateVMGroup(ctx context.Context, id VmGroupId,
 }
 
 // CreateVMGroupThenPoll performs CreateVMGroup then polls until it's completed
-func (c WorkloadNetworksClient) CreateVMGroupThenPoll(ctx context.Context, id VmGroupId, input WorkloadNetworkVMGroup) error {
+func (c WorkloadNetworksClient) CreateVMGroupThenPoll(ctx context.Context, id VMGroupId, input WorkloadNetworkVMGroup) error {
 	result, err := c.CreateVMGroup(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing CreateVMGroup: %+v", err)
@@ -50,7 +50,7 @@ func (c WorkloadNetworksClient) CreateVMGroupThenPoll(ctx context.Context, id Vm
 }
 
 // preparerForCreateVMGroup prepares the CreateVMGroup request.
-func (c WorkloadNetworksClient) preparerForCreateVMGroup(ctx context.Context, id VmGroupId, input WorkloadNetworkVMGroup) (*http.Request, error) {
+func (c WorkloadNetworksClient) preparerForCreateVMGroup(ctx context.Context, id VMGroupId, input WorkloadNetworkVMGroup) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

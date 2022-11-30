@@ -14,6 +14,6 @@ type VirtualMachineScaleSetVMInstanceView struct {
 	PlatformUpdateDomain      *int64                                 `json:"platformUpdateDomain,omitempty"`
 	RdpThumbPrint             *string                                `json:"rdpThumbPrint,omitempty"`
 	Statuses                  *[]InstanceViewStatus                  `json:"statuses,omitempty"`
-	VmAgent                   *VirtualMachineAgentInstanceView       `json:"vmAgent,omitempty"`
-	VmHealth                  *VirtualMachineHealthStatus            `json:"vmHealth,omitempty"`
+	VMAgent                   *VirtualMachineAgentInstanceView       `json:"vmAgent,omitempty"`
+	VMHealth                  *VirtualMachineHealthStatus            `json:"vmHealth,omitempty"`
 }

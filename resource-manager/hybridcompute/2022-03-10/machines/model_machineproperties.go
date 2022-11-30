@@ -35,8 +35,8 @@ type MachineProperties struct {
 	ProvisioningState          *string                         `json:"provisioningState,omitempty"`
 	ServiceStatuses            *ServiceStatuses                `json:"serviceStatuses,omitempty"`
 	Status                     *StatusTypes                    `json:"status,omitempty"`
-	VmId                       *string                         `json:"vmId,omitempty"`
-	VmUuid                     *string                         `json:"vmUuid,omitempty"`
+	VMId                       *string                         `json:"vmId,omitempty"`
+	VMUuid                     *string                         `json:"vmUuid,omitempty"`
 }
 
 func (o *MachineProperties) GetLastStatusChangeAsTime() (*time.Time, error) {

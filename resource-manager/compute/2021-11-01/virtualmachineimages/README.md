@@ -88,7 +88,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := virtualmachineimages.NewVmImageOfferID("12345678-1234-9876-4563-123456789012", "locationValue", "edgeZoneValue", "publisherValue", "offerValue")
+id := virtualmachineimages.NewVMImageOfferID("12345678-1234-9876-4563-123456789012", "locationValue", "edgeZoneValue", "publisherValue", "offerValue")
 
 read, err := client.EdgeZoneListSkus(ctx, id)
 if err != nil {

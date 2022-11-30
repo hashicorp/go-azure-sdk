@@ -17,7 +17,7 @@ type GetVMGroupOperationResponse struct {
 }
 
 // GetVMGroup ...
-func (c WorkloadNetworksClient) GetVMGroup(ctx context.Context, id VmGroupId) (result GetVMGroupOperationResponse, err error) {
+func (c WorkloadNetworksClient) GetVMGroup(ctx context.Context, id VMGroupId) (result GetVMGroupOperationResponse, err error) {
 	req, err := c.preparerForGetVMGroup(ctx, id)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "workloadnetworks.WorkloadNetworksClient", "GetVMGroup", nil, "Failure preparing request")
@@ -40,7 +40,7 @@ func (c WorkloadNetworksClient) GetVMGroup(ctx context.Context, id VmGroupId) (r
 }
 
 // preparerForGetVMGroup prepares the GetVMGroup request.
-func (c WorkloadNetworksClient) preparerForGetVMGroup(ctx context.Context, id VmGroupId) (*http.Request, error) {
+func (c WorkloadNetworksClient) preparerForGetVMGroup(ctx context.Context, id VMGroupId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

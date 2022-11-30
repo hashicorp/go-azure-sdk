@@ -5,5 +5,5 @@ package replicationvaultsetting
 
 type VaultSettingProperties struct {
 	MigrationSolutionId       *string `json:"migrationSolutionId,omitempty"`
-	VmwareToAzureProviderType *string `json:"vmwareToAzureProviderType,omitempty"`
+	VMwareToAzureProviderType *string `json:"vmwareToAzureProviderType,omitempty"`
 }

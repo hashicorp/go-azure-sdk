@@ -36,7 +36,7 @@ type PoolProperties struct {
 	TaskSchedulingPolicy            *TaskSchedulingPolicy          `json:"taskSchedulingPolicy,omitempty"`
 	TaskSlotsPerNode                *int64                         `json:"taskSlotsPerNode,omitempty"`
 	UserAccounts                    *[]UserAccount                 `json:"userAccounts,omitempty"`
-	VmSize                          *string                        `json:"vmSize,omitempty"`
+	VMSize                          *string                        `json:"vmSize,omitempty"`
 }
 
 func (o *PoolProperties) GetAllocationStateTransitionTimeAsTime() (*time.Time, error) {

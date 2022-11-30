@@ -19,7 +19,7 @@ type DeleteVMGroupOperationResponse struct {
 }
 
 // DeleteVMGroup ...
-func (c WorkloadNetworksClient) DeleteVMGroup(ctx context.Context, id VmGroupId) (result DeleteVMGroupOperationResponse, err error) {
+func (c WorkloadNetworksClient) DeleteVMGroup(ctx context.Context, id VMGroupId) (result DeleteVMGroupOperationResponse, err error) {
 	req, err := c.preparerForDeleteVMGroup(ctx, id)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "workloadnetworks.WorkloadNetworksClient", "DeleteVMGroup", nil, "Failure preparing request")
@@ -36,7 +36,7 @@ func (c WorkloadNetworksClient) DeleteVMGroup(ctx context.Context, id VmGroupId)
 }
 
 // DeleteVMGroupThenPoll performs DeleteVMGroup then polls until it's completed
-func (c WorkloadNetworksClient) DeleteVMGroupThenPoll(ctx context.Context, id VmGroupId) error {
+func (c WorkloadNetworksClient) DeleteVMGroupThenPoll(ctx context.Context, id VMGroupId) error {
 	result, err := c.DeleteVMGroup(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing DeleteVMGroup: %+v", err)
@@ -50,7 +50,7 @@ func (c WorkloadNetworksClient) DeleteVMGroupThenPoll(ctx context.Context, id Vm
 }
 
 // preparerForDeleteVMGroup prepares the DeleteVMGroup request.
-func (c WorkloadNetworksClient) preparerForDeleteVMGroup(ctx context.Context, id VmGroupId) (*http.Request, error) {
+func (c WorkloadNetworksClient) preparerForDeleteVMGroup(ctx context.Context, id VMGroupId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}
