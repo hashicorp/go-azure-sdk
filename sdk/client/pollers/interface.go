@@ -6,6 +6,10 @@ import (
 	"time"
 )
 
+// TODO: return, populate these and default them
+type PollingCancelledError error
+type PollingFailedError error
+
 // PollerType allows custom pollers to be created to determine when a particular Operation has
 // been Completed, Cancelled or Failed.
 type PollerType interface {

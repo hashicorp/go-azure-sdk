@@ -53,9 +53,9 @@ func (p *Poller) PollUntilDone(ctx context.Context) error {
 	if p.poller == nil {
 		return fmt.Errorf("internal-error: `poller` was nil`")
 	}
-
-	endTime := time.Now().Add(p.initialDelayDuration)
-	helpers.SleepUntil(time.Until(endTime), ctx.Done())
+	if _, ok := ctx.Deadline(); !ok {
+		return fmt.Errorf("internal-error: `ctx` should have a deadline")
+	}
 
 	for true {
 		// determine the next retry duration / how long to poll for

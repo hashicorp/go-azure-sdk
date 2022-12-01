@@ -10,9 +10,11 @@ import (
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
 
+// TODO: return a typed error here so that we could potentially change this error/expose this in the Provider
+// TODO: the error should return the default error message shown below
+
 var defaultRetryFunctions = []client.RequestRetryFunc{
 	// NOTE: 429 is handled by the base library
-	client.RetryOn404ConsistencyFailureFunc, // TODO: I think this wants removing?
 	handleResourceProviderNotRegistered,
 }
 
