@@ -1,7 +1,6 @@
 package resourcemanager_test
 
 import (
-	"context"
 	"net/http"
 	"testing"
 
@@ -44,7 +43,7 @@ func TestNewPoller(t *testing.T) {
 	}
 
 	for _, resp := range testCases {
-		_, err := resourcemanager.NewPollerFromResponse(context.TODO(), resp, resourcemanager.NewResourceManagerClient("https://async-url-test.local"))
+		_, err := resourcemanager.PollerFromResponse(resp, resourcemanager.NewResourceManagerClient("https://async-url-test.local", "2020-02-01"))
 		if err != nil {
 			t.Fatal(err)
 		}

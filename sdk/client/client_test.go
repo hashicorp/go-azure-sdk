@@ -18,7 +18,16 @@ func TestAccClient(t *testing.T) {
 	c.Authorizer = conn.Authorizer
 
 	path := fmt.Sprintf("/v1.0/servicePrincipals/%s", conn.Claims.ObjectId)
-	req, err := c.NewRequest(context.TODO(), http.MethodGet, "application/json", path)
+	reqOpts := RequestOptions{
+		ContentType: "application/json",
+		ExpectedStatusCodes: []int{
+			http.StatusOK,
+		},
+		HttpMethod:    http.MethodGet,
+		OptionsObject: nil,
+		Path:          path,
+	}
+	req, err := c.NewRequest(context.TODO(), reqOpts)
 	if err != nil {
 		t.Fatal(err)
 	}

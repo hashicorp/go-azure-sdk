@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"context"
 	"encoding/json"
+	"encoding/xml"
 	"fmt"
 	"io"
 	"math"
@@ -20,21 +21,6 @@ import (
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 	"github.com/hashicorp/go-retryablehttp"
 )
-
-type BaseClient interface {
-	Execute(req *Request) (*Response, error)
-	ExecutePaged(req *Request) (*Response, error)
-	NewRequest(ctx context.Context, method string, contentType string, path string) (*Request, error)
-}
-
-// RequestRetryFunc is a function that determines whether an HTTP request has failed due to eventual consistency and should be retried
-type RequestRetryFunc func(*http.Response, *odata.OData) (bool, error)
-
-// RequestMiddleware can manipulate or log a request before it is sent
-type RequestMiddleware func(*http.Request) (*http.Request, error)
-
-// ResponseMiddleware can manipulate or log a response before it is parsed and returned
-type ResponseMiddleware func(*http.Request, *http.Response) (*http.Response, error)
 
 // RetryOn404ConsistencyFailureFunc can be used to retry a request when a 404 response is received
 func RetryOn404ConsistencyFailureFunc(resp *http.Response, _ *odata.OData) (bool, error) {
@@ -77,9 +63,6 @@ func RequestRetryAll(retryFuncs ...RequestRetryFunc) func(resp *http.Response, o
 	}
 }
 
-// ValidStatusFunc is a function that tests whether an HTTP response is considered valid for the particular request.
-type ValidStatusFunc func(*http.Response, *odata.OData) bool
-
 // RetryableErrorHandler ensures that the response is returned after exhausting retries for a request
 // We mustn't return an error here, or net/http will not return the response
 func RetryableErrorHandler(resp *http.Response, _ error, _ int) (*http.Response, error) {
@@ -98,13 +81,28 @@ type Request struct {
 	*http.Request
 }
 
-func (r *Request) Marshal(model interface{}) error {
-	body, err := json.Marshal(model)
-	if err == nil {
-		r.ContentLength = int64(len(body))
-		r.Body = io.NopCloser(bytes.NewReader(body))
+func (r *Request) Marshal(payload interface{}) error {
+	contentType := r.Header.Get("Content-Type")
+
+	if strings.Contains(strings.ToLower(contentType), "application/json") {
+		body, err := json.Marshal(payload)
+		if err == nil {
+			r.ContentLength = int64(len(body))
+			r.Body = io.NopCloser(bytes.NewReader(body))
+		}
+		return nil
 	}
-	return nil
+
+	if strings.Contains(strings.ToLower(contentType), "application/xml") {
+		body, err := xml.Marshal(payload)
+		if err == nil {
+			r.ContentLength = int64(len(body))
+			r.Body = io.NopCloser(bytes.NewReader(body))
+		}
+		return nil
+	}
+
+	return fmt.Errorf("internal-error: unimplemented marshal function for content type %q", contentType)
 }
 
 func (r *Request) Execute() (*Response, error) {
@@ -118,8 +116,6 @@ func (r *Request) ExecutePaged() (*Response, error) {
 func (r *Request) IsIdempotent() bool {
 	switch strings.ToUpper(r.Method) {
 	case http.MethodGet, http.MethodHead, http.MethodOptions:
-		return true
-	case http.MethodDelete, http.MethodPatch, http.MethodPut:
 		return true
 	}
 	return false
@@ -152,6 +148,26 @@ func (r *Response) Unmarshal(model interface{}) error {
 
 		// Unmarshal into provided model
 		if err := json.Unmarshal(respBody, model); err != nil {
+			return err
+		}
+
+		// Reassign the response body as downstream code may expect it
+		r.Body = io.NopCloser(bytes.NewBuffer(respBody))
+	}
+
+	if strings.HasPrefix(contentType, "application/xml") {
+		// Read the response body and close it
+		respBody, err := io.ReadAll(r.Body)
+		if err != nil {
+			return fmt.Errorf("could not parse response body")
+		}
+		r.Body.Close()
+
+		// Trim away a BOM if present
+		respBody = bytes.TrimPrefix(respBody, []byte("\xef\xbb\xbf"))
+
+		// Unmarshal into provided model
+		if err := xml.Unmarshal(respBody, model); err != nil {
 			return err
 		}
 
@@ -193,27 +209,27 @@ func NewClient(endpoint environments.ApiEndpoint) *Client {
 }
 
 // NewRequest configures a new *Request
-func (c *Client) NewRequest(ctx context.Context, method string, contentType string, path string) (*Request, error) {
+func (c *Client) NewRequest(ctx context.Context, input RequestOptions) (*Request, error) {
 	req := (&http.Request{}).WithContext(ctx)
 
-	req.Method = method
+	req.Method = input.HttpMethod
 
 	req.Header = make(http.Header)
-	req.Header.Add("Content-Type", contentType)
+	req.Header.Add("Content-Type", input.ContentType)
 
 	if c.UserAgent != "" {
 		req.Header.Add("User-Agent", c.UserAgent)
 	}
 
 	if c.Authorizer != nil {
-		token, err := c.Authorizer.Token()
+		token, err := c.Authorizer.Token(ctx)
 		if err != nil {
 			return nil, err
 		}
 		token.SetAuthHeader(req)
 	}
 
-	path = strings.TrimPrefix(path, "/")
+	path := strings.TrimPrefix(input.Path, "/")
 	u, err := url.ParseRequestURI(fmt.Sprintf("%s/%s", c.Endpoint, path))
 	if err != nil {
 		return nil, err
@@ -225,7 +241,7 @@ func (c *Client) NewRequest(ctx context.Context, method string, contentType stri
 	ret := Request{
 		Client:           c,
 		Request:          req,
-		ValidStatusCodes: []int{http.StatusOK},
+		ValidStatusCodes: input.ExpectedStatusCodes,
 	}
 
 	return &ret, nil
