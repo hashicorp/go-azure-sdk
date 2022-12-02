@@ -46,3 +46,35 @@ func (s ModernReservationRecommendation) MarshalJSON() ([]byte, error) {
 
 	return encoded, nil
 }
+
+var _ json.Unmarshaler = &ModernReservationRecommendation{}
+
+func (s *ModernReservationRecommendation) UnmarshalJSON(bytes []byte) error {
+	type alias ModernReservationRecommendation
+	var decoded alias
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling into ModernReservationRecommendation: %+v", err)
+	}
+
+	s.Etag = decoded.Etag
+	s.Id = decoded.Id
+	s.Location = decoded.Location
+	s.Name = decoded.Name
+	s.Sku = decoded.Sku
+	s.Tags = decoded.Tags
+	s.Type = decoded.Type
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling ModernReservationRecommendation into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["properties"]; ok {
+		impl, err := unmarshalModernReservationRecommendationPropertiesImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'Properties' for 'ModernReservationRecommendation': %+v", err)
+		}
+		s.Properties = impl
+	}
+	return nil
+}
