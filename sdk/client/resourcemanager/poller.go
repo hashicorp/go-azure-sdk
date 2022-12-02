@@ -18,5 +18,5 @@ func PollerFromResponse(response *client.Response, client *Client) (poller polle
 	// TODO: polling on the provisioning state based on it being a ResourceID and a PUT/PATCH/POST
 	// response.Request.Method
 
-	return pollers.NewPoller(lroPoller, lroPoller.initialRetryDuration), nil
+	return pollers.NewPoller(lroPoller, lroPoller.initialRetryDuration, pollers.DefaultNumberOfDroppedConnectionsToAllow), nil
 }
