@@ -35,7 +35,7 @@ func TestAccParseClaims_azureCli(t *testing.T) {
 		t.Fatal("authorizer is nil, expected Authorizer")
 	}
 
-	token, err := authorizer.Token()
+	token, err := authorizer.Token(context.Background())
 	if err != nil {
 		t.Fatalf("authorizer.Token(): %v", err)
 	}
@@ -82,7 +82,7 @@ func TestAccParseClaims_clientCertificate(t *testing.T) {
 		t.Fatal("authorizer is nil, expected Authorizer")
 	}
 
-	token, err := authorizer.Token()
+	token, err := authorizer.Token(context.Background())
 	if err != nil {
 		t.Fatalf("authorizer.Token(): %v", err)
 	}
@@ -125,7 +125,7 @@ func TestAccParseClaims_clientSecret(t *testing.T) {
 		t.Fatal("authorizer is nil, expected Authorizer")
 	}
 
-	token, err := authorizer.Token()
+	token, err := authorizer.Token(context.Background())
 	if err != nil {
 		t.Fatalf("authorizer.Token(): %v", err)
 	}
