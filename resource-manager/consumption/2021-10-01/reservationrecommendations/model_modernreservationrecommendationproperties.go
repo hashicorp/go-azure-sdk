@@ -1,43 +1,56 @@
 package reservationrecommendations
 
 import (
-	"time"
-
-	"github.com/hashicorp/go-azure-helpers/lang/dates"
+	"encoding/json"
+	"fmt"
+	"strings"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-type ModernReservationRecommendationProperties struct {
-	CostWithNoReservedInstances    *Amount        `json:"costWithNoReservedInstances,omitempty"`
-	FirstUsageDate                 *string        `json:"firstUsageDate,omitempty"`
-	InstanceFlexibilityGroup       *string        `json:"instanceFlexibilityGroup,omitempty"`
-	InstanceFlexibilityRatio       *float64       `json:"instanceFlexibilityRatio,omitempty"`
-	Location                       *string        `json:"location,omitempty"`
-	LookBackPeriod                 *int64         `json:"lookBackPeriod,omitempty"`
-	MeterId                        *string        `json:"meterId,omitempty"`
-	NetSavings                     *Amount        `json:"netSavings,omitempty"`
-	NormalizedSize                 *string        `json:"normalizedSize,omitempty"`
-	RecommendedQuantity            *float64       `json:"recommendedQuantity,omitempty"`
-	RecommendedQuantityNormalized  *float64       `json:"recommendedQuantityNormalized,omitempty"`
-	ResourceType                   *string        `json:"resourceType,omitempty"`
-	Scope                          *string        `json:"scope,omitempty"`
-	SkuName                        *string        `json:"skuName,omitempty"`
-	SkuProperties                  *[]SkuProperty `json:"skuProperties,omitempty"`
-	SubscriptionId                 *string        `json:"subscriptionId,omitempty"`
-	Term                           *string        `json:"term,omitempty"`
-	TotalCostWithReservedInstances *Amount        `json:"totalCostWithReservedInstances,omitempty"`
+type ModernReservationRecommendationProperties interface {
 }
 
-func (o *ModernReservationRecommendationProperties) GetFirstUsageDateAsTime() (*time.Time, error) {
-	if o.FirstUsageDate == nil {
+func unmarshalModernReservationRecommendationPropertiesImplementation(input []byte) (ModernReservationRecommendationProperties, error) {
+	if input == nil {
 		return nil, nil
 	}
-	return dates.ParseAsFormat(o.FirstUsageDate, "2006-01-02T15:04:05Z07:00")
-}
 
-func (o *ModernReservationRecommendationProperties) SetFirstUsageDateAsTime(input time.Time) {
-	formatted := input.Format("2006-01-02T15:04:05Z07:00")
-	o.FirstUsageDate = &formatted
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling ModernReservationRecommendationProperties into map[string]interface: %+v", err)
+	}
+
+	value, ok := temp["scope"].(string)
+	if !ok {
+		return nil, nil
+	}
+
+	if strings.EqualFold(value, "Shared") {
+		var out ModernSharedScopeReservationRecommendationProperties
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into ModernSharedScopeReservationRecommendationProperties: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "Single") {
+		var out ModernSingleScopeReservationRecommendationProperties
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into ModernSingleScopeReservationRecommendationProperties: %+v", err)
+		}
+		return out, nil
+	}
+
+	type RawModernReservationRecommendationPropertiesImpl struct {
+		Type   string                 `json:"-"`
+		Values map[string]interface{} `json:"-"`
+	}
+	out := RawModernReservationRecommendationPropertiesImpl{
+		Type:   value,
+		Values: temp,
+	}
+	return out, nil
+
 }
