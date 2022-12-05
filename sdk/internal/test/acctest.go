@@ -3,6 +3,7 @@ package test
 import (
 	"context"
 	"log"
+	"net/http"
 	"os"
 	"testing"
 
@@ -61,7 +62,7 @@ func (c *Connection) Authorize(ctx context.Context, api environments.Api) {
 	if err != nil {
 		log.Fatal(err)
 	}
-	token, err := c.Authorizer.Token(ctx)
+	token, err := c.Authorizer.Token(ctx, &http.Request{})
 	if err != nil {
 		log.Fatalf("acquiring access token: %v", err)
 	}

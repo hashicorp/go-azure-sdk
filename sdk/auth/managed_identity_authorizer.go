@@ -4,12 +4,13 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"golang.org/x/oauth2"
 	"io"
 	"net/http"
 	"net/url"
 	"strconv"
 	"time"
+
+	"golang.org/x/oauth2"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
@@ -31,7 +32,7 @@ func NewManagedIdentityAuthorizer(ctx context.Context, options ManagedIdentityAu
 	if err != nil {
 		return nil, err
 	}
-	return conf.TokenSource(ctx), nil
+	return conf.TokenSource(ctx)
 }
 
 const (
@@ -48,7 +49,7 @@ type ManagedIdentityAuthorizer struct {
 }
 
 // Token returns an access token acquired from the metadata endpoint.
-func (a *ManagedIdentityAuthorizer) Token(ctx context.Context) (*oauth2.Token, error) {
+func (a *ManagedIdentityAuthorizer) Token(ctx context.Context, _ *http.Request) (*oauth2.Token, error) {
 	if a.conf == nil {
 		return nil, fmt.Errorf("could not request token: conf is nil")
 	}
@@ -105,7 +106,7 @@ func (a *ManagedIdentityAuthorizer) Token(ctx context.Context) (*oauth2.Token, e
 }
 
 // AuxiliaryTokens returns additional tokens for auxiliary tenant IDs, for use in multi-tenant scenarios
-func (a *ManagedIdentityAuthorizer) AuxiliaryTokens(ctx context.Context) ([]*oauth2.Token, error) {
+func (a *ManagedIdentityAuthorizer) AuxiliaryTokens(_ context.Context, _ *http.Request) ([]*oauth2.Token, error) {
 	return nil, fmt.Errorf("auxiliary tokens are not supported with MSI authentication")
 }
 
@@ -141,7 +142,7 @@ func newManagedIdentityConfig(resource, clientId, customManagedIdentityEndpoint 
 }
 
 // TokenSource provides a source for obtaining access tokens using ManagedIdentityAuthorizer.
-func (c *managedIdentityConfig) TokenSource(ctx context.Context) Authorizer {
+func (c *managedIdentityConfig) TokenSource(ctx context.Context) (Authorizer, error) {
 	return NewCachedAuthorizer(&ManagedIdentityAuthorizer{
 		conf: c,
 	})

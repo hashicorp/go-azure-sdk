@@ -4,13 +4,14 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 	"io"
 	"net/http"
 	"net/url"
 	"strconv"
 	"strings"
 	"time"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
@@ -99,7 +100,7 @@ func (p *longRunningOperationPoller) Poll(ctx context.Context) (result *pollers.
 	// Custom RetryFunc to inspect the operation payload and check the status
 	req.RetryFunc = client.RequestRetryAny(defaultRetryFunctions...)
 
-	result.HttpResponse, err = req.Execute()
+	result.HttpResponse, err = req.Execute(ctx)
 	if err != nil {
 		return nil, err
 	}

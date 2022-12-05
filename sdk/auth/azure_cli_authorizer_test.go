@@ -35,7 +35,7 @@ func testAzureCliAuthorizer(ctx context.Context, t *testing.T) (token *oauth2.To
 		t.Fatal("authorizer is nil, expected Authorizer")
 	}
 
-	token, err = authorizer.Token(ctx)
+	token, err = authorizer.Token(ctx, nil)
 	if err != nil {
 		t.Fatalf("authorizer.Token(): %v", err)
 	}

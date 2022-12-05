@@ -29,5 +29,5 @@ func NewOIDCAuthorizer(ctx context.Context, options OIDCAuthorizerOptions) (Auth
 		Scopes:             []string{options.Api.DefaultScope()},
 	}
 
-	return conf.TokenSource(ctx, clientCredentialsAssertionType), nil
+	return conf.TokenSource(ctx, clientCredentialsAssertionType)
 }

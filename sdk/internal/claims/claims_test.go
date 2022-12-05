@@ -2,6 +2,7 @@ package claims_test
 
 import (
 	"context"
+	"net/http"
 	"testing"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/auth"
@@ -35,7 +36,7 @@ func TestAccParseClaims_azureCli(t *testing.T) {
 		t.Fatal("authorizer is nil, expected Authorizer")
 	}
 
-	token, err := authorizer.Token(context.Background())
+	token, err := authorizer.Token(context.Background(), &http.Request{})
 	if err != nil {
 		t.Fatalf("authorizer.Token(): %v", err)
 	}
@@ -82,7 +83,7 @@ func TestAccParseClaims_clientCertificate(t *testing.T) {
 		t.Fatal("authorizer is nil, expected Authorizer")
 	}
 
-	token, err := authorizer.Token(context.Background())
+	token, err := authorizer.Token(context.Background(), &http.Request{})
 	if err != nil {
 		t.Fatalf("authorizer.Token(): %v", err)
 	}
@@ -125,7 +126,7 @@ func TestAccParseClaims_clientSecret(t *testing.T) {
 		t.Fatal("authorizer is nil, expected Authorizer")
 	}
 
-	token, err := authorizer.Token(context.Background())
+	token, err := authorizer.Token(context.Background(), &http.Request{})
 	if err != nil {
 		t.Fatalf("authorizer.Token(): %v", err)
 	}

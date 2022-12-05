@@ -2,10 +2,11 @@ package resourcemanager_test
 
 import (
 	"context"
-	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"net/http"
 	"testing"
 	"time"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
@@ -38,7 +39,7 @@ func TestNewGetRequest(t *testing.T) {
 		OptionsObject: options{},
 		Path:          "/",
 	}
-	resourceManagerClient := resourcemanager.NewResourceManagerClient("http://localhost", "2020-02-01")
+	resourceManagerClient := resourcemanager.NewResourceManagerClient("http://localhost", "example", "2020-02-01")
 	_, err := resourceManagerClient.NewRequest(ctx, opts)
 	if err != nil {
 		t.Fatal(err)

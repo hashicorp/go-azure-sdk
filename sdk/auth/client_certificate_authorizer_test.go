@@ -2,6 +2,7 @@ package auth_test
 
 import (
 	"context"
+	"net/http"
 	"testing"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/auth"
@@ -38,7 +39,7 @@ func TestAccClientCertificateAuthorizerV2(t *testing.T) {
 		t.Fatal("authorizer is nil, expected Authorizer")
 	}
 
-	token, err := authorizer.Token(ctx)
+	token, err := authorizer.Token(ctx, &http.Request{})
 	if err != nil {
 		t.Fatalf("authorizer.Token(): %v", err)
 	}

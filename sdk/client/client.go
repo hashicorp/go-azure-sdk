@@ -115,12 +115,12 @@ func (r *Request) Marshal(payload interface{}) error {
 	return fmt.Errorf("internal-error: unimplemented marshal function for content type %q", contentType)
 }
 
-func (r *Request) Execute() (*Response, error) {
-	return r.Client.Execute(r)
+func (r *Request) Execute(ctx context.Context) (*Response, error) {
+	return r.Client.Execute(ctx, r)
 }
 
-func (r *Request) ExecutePaged() (*Response, error) {
-	return r.Client.ExecutePaged(r)
+func (r *Request) ExecutePaged(ctx context.Context) (*Response, error) {
+	return r.Client.ExecutePaged(ctx, r)
 }
 
 func (r *Request) IsIdempotent() bool {
@@ -257,14 +257,6 @@ func (c *Client) NewRequest(ctx context.Context, input RequestOptions) (*Request
 		req.Header.Add("User-Agent", c.UserAgent)
 	}
 
-	if c.Authorizer != nil {
-		token, err := c.Authorizer.Token(ctx)
-		if err != nil {
-			return nil, err
-		}
-		token.SetAuthHeader(req)
-	}
-
 	path := strings.TrimPrefix(input.Path, "/")
 	u, err := url.ParseRequestURI(fmt.Sprintf("%s/%s", c.Endpoint, path))
 	if err != nil {
@@ -284,9 +276,19 @@ func (c *Client) NewRequest(ctx context.Context, input RequestOptions) (*Request
 }
 
 // Execute is used by the package to send an HTTP request to the API
-func (c *Client) Execute(req *Request) (*Response, error) {
+func (c *Client) Execute(ctx context.Context, req *Request) (*Response, error) {
 	if req.Request == nil {
 		return nil, fmt.Errorf("req.Request was nil")
+	}
+
+	// at this point we're ready to send the HTTP Request, as such let's get the Authorization token
+	// and add that to the request
+	if c.Authorizer != nil {
+		token, err := c.Authorizer.Token(ctx, req.Request)
+		if err != nil {
+			return nil, err
+		}
+		token.SetAuthHeader(req.Request)
 	}
 
 	var err error
@@ -412,9 +414,9 @@ func (c *Client) Execute(req *Request) (*Response, error) {
 }
 
 // ExecutePaged automatically pages through the results of Execute
-func (c *Client) ExecutePaged(req *Request) (*Response, error) {
+func (c *Client) ExecutePaged(ctx context.Context, req *Request) (*Response, error) {
 	// Perform the request
-	resp, err := c.Execute(req)
+	resp, err := c.Execute(ctx, req)
 	if err != nil {
 		return resp, err
 	}
@@ -453,7 +455,7 @@ func (c *Client) ExecutePaged(req *Request) (*Response, error) {
 		return resp, err
 	}
 	nextReq.URL = u
-	nextResp, err := c.ExecutePaged(req)
+	nextResp, err := c.ExecutePaged(ctx, req)
 	if err != nil {
 		return resp, err
 	}

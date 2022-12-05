@@ -2,6 +2,8 @@ package auth
 
 import (
 	"context"
+	"net/http"
+
 	"golang.org/x/oauth2"
 )
 
@@ -10,7 +12,7 @@ import (
 
 // Authorizer is anything that can return an access token for authorizing API connections
 type Authorizer interface {
-	Token(ctx context.Context) (*oauth2.Token, error)
+	Token(ctx context.Context, request *http.Request) (*oauth2.Token, error)
 
-	AuxiliaryTokens(ctx context.Context) ([]*oauth2.Token, error)
+	AuxiliaryTokens(ctx context.Context, request *http.Request) ([]*oauth2.Token, error)
 }

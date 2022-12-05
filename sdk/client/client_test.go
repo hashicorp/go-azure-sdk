@@ -3,18 +3,20 @@ package client
 import (
 	"context"
 	"fmt"
-	"github.com/hashicorp/go-azure-sdk/sdk/internal/test"
 	"net/http"
 	"testing"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/internal/test"
 )
 
 func TestAccClient(t *testing.T) {
 	test.AccTest(t)
 
+	ctx := context.TODO()
 	conn := test.NewConnection(t)
-	conn.Authorize(context.TODO(), conn.AuthConfig.Environment.MSGraph)
+	conn.Authorize(ctx, conn.AuthConfig.Environment.MSGraph)
 
-	c := NewClient(conn.AuthConfig.Environment.MSGraph.Endpoint)
+	c := NewClient(conn.AuthConfig.Environment.MSGraph.Endpoint, "example", "2020-01-01")
 	c.Authorizer = conn.Authorizer
 
 	path := fmt.Sprintf("/v1.0/servicePrincipals/%s", conn.Claims.ObjectId)
@@ -27,12 +29,12 @@ func TestAccClient(t *testing.T) {
 		OptionsObject: nil,
 		Path:          path,
 	}
-	req, err := c.NewRequest(context.TODO(), reqOpts)
+	req, err := c.NewRequest(ctx, reqOpts)
 	if err != nil {
 		t.Fatal(err)
 	}
 
-	_, err = req.ExecutePaged()
+	_, err = req.ExecutePaged(ctx)
 	if err != nil {
 		t.Fatalf("ExecutePaged(): %v", err)
 	}

@@ -27,11 +27,11 @@ import (
 // Copyright (c) HashiCorp Inc. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-type clientCredentialsType int
+type clientCredentialsType string
 
 const (
-	clientCredentialsAssertionType clientCredentialsType = iota
-	clientCredentialsSecretType
+	clientCredentialsAssertionType clientCredentialsType = "ClientCredentials"
+	clientCredentialsSecretType    clientCredentialsType = "ClientSecret"
 )
 
 // clientCredentialsConfig is the configuration for using client credentials flow.
@@ -90,18 +90,18 @@ type clientCredentialsConfig struct {
 }
 
 // TokenSource provides a source for obtaining access tokens using clientAssertionAuthorizer or clientSecretAuthorizer.
-func (c *clientCredentialsConfig) TokenSource(ctx context.Context, authType clientCredentialsType) (source Authorizer) {
+func (c *clientCredentialsConfig) TokenSource(_ context.Context, authType clientCredentialsType) (Authorizer, error) {
 	switch authType {
 	case clientCredentialsAssertionType:
-		source = NewCachedAuthorizer(&clientAssertionAuthorizer{
+		return NewCachedAuthorizer(&clientAssertionAuthorizer{
 			conf: c,
 		})
 	case clientCredentialsSecretType:
-		source = NewCachedAuthorizer(&clientSecretAuthorizer{
+		return NewCachedAuthorizer(&clientSecretAuthorizer{
 			conf: c,
 		})
 	}
-	return
+	return nil, fmt.Errorf("internal-error: unimplemented authType %q", string(authType))
 }
 
 type clientAssertionTokenHeader struct {
@@ -256,7 +256,7 @@ func (a *clientAssertionAuthorizer) token(ctx context.Context, tokenUrl string) 
 	return clientCredentialsToken(ctx, tokenUrl, &v)
 }
 
-func (a *clientAssertionAuthorizer) Token(ctx context.Context) (*oauth2.Token, error) {
+func (a *clientAssertionAuthorizer) Token(ctx context.Context, _ *http.Request) (*oauth2.Token, error) {
 	if a.conf == nil {
 		return nil, fmt.Errorf("could not request token: conf is nil")
 	}
@@ -270,7 +270,7 @@ func (a *clientAssertionAuthorizer) Token(ctx context.Context) (*oauth2.Token, e
 }
 
 // AuxiliaryTokens returns additional tokens for auxiliary tenant IDs, for use in multi-tenant scenarios
-func (a *clientAssertionAuthorizer) AuxiliaryTokens(ctx context.Context) ([]*oauth2.Token, error) {
+func (a *clientAssertionAuthorizer) AuxiliaryTokens(ctx context.Context, _ *http.Request) ([]*oauth2.Token, error) {
 	if a.conf == nil {
 		return nil, fmt.Errorf("could not request token: conf is nil")
 	}

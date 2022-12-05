@@ -50,5 +50,5 @@ func NewClientCertificateAuthorizer(ctx context.Context, options ClientCertifica
 		ResourceUrl:        options.Api.ResourceUrl(),
 		Scopes:             []string{options.Api.DefaultScope()},
 	}
-	return conf.TokenSource(ctx, clientCredentialsAssertionType), nil
+	return conf.TokenSource(ctx, clientCredentialsAssertionType)
 }

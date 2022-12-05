@@ -4,10 +4,11 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"golang.org/x/oauth2"
 	"io"
 	"net/http"
 	"net/url"
+
+	"golang.org/x/oauth2"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
@@ -39,7 +40,7 @@ func NewGitHubOIDCAuthorizer(ctx context.Context, options GitHubOIDCAuthorizerOp
 		Scopes:              []string{options.Api.DefaultScope()},
 	}
 
-	return conf.TokenSource(ctx), nil
+	return conf.TokenSource(ctx)
 }
 
 var _ Authorizer = &GitHubOIDCAuthorizer{}
@@ -48,7 +49,7 @@ type GitHubOIDCAuthorizer struct {
 	conf *gitHubOIDCConfig
 }
 
-func (a *GitHubOIDCAuthorizer) githubAssertion(ctx context.Context) (*string, error) {
+func (a *GitHubOIDCAuthorizer) githubAssertion(ctx context.Context, _ *http.Request) (*string, error) {
 	req, err := http.NewRequestWithContext(ctx, http.MethodGet, a.conf.IDTokenRequestURL, http.NoBody)
 	if err != nil {
 		return nil, fmt.Errorf("githubAssertion: failed to build request")
@@ -94,8 +95,8 @@ func (a *GitHubOIDCAuthorizer) githubAssertion(ctx context.Context) (*string, er
 	return tokenRes.Value, nil
 }
 
-func (a *GitHubOIDCAuthorizer) tokenSource(ctx context.Context) (Authorizer, error) {
-	assertion, err := a.githubAssertion(ctx)
+func (a *GitHubOIDCAuthorizer) tokenSource(ctx context.Context, req *http.Request) (Authorizer, error) {
+	assertion, err := a.githubAssertion(ctx, req)
 	if err != nil {
 		return nil, err
 	}
@@ -114,28 +115,27 @@ func (a *GitHubOIDCAuthorizer) tokenSource(ctx context.Context) (Authorizer, err
 		Audience:           a.conf.Audience,
 	}
 
-	source := conf.TokenSource(ctx, clientCredentialsAssertionType)
-	if source == nil {
-		return nil, fmt.Errorf("GitHubOIDCAuthorizer: nil Authorizer returned from clientCredentialsConfig")
+	source, err := conf.TokenSource(ctx, clientCredentialsAssertionType)
+	if err != nil {
+		return nil, fmt.Errorf("GitHubOIDCAuthorizer: building Authorizer: %+v", err)
 	}
-
 	return source, nil
 }
 
-func (a *GitHubOIDCAuthorizer) Token(ctx context.Context) (*oauth2.Token, error) {
-	source, err := a.tokenSource(ctx)
+func (a *GitHubOIDCAuthorizer) Token(ctx context.Context, req *http.Request) (*oauth2.Token, error) {
+	source, err := a.tokenSource(ctx, req)
 	if err != nil {
 		return nil, err
 	}
-	return source.Token(ctx)
+	return source.Token(ctx, req)
 }
 
-func (a *GitHubOIDCAuthorizer) AuxiliaryTokens(ctx context.Context) ([]*oauth2.Token, error) {
-	source, err := a.tokenSource(ctx)
+func (a *GitHubOIDCAuthorizer) AuxiliaryTokens(ctx context.Context, req *http.Request) ([]*oauth2.Token, error) {
+	source, err := a.tokenSource(ctx, req)
 	if err != nil {
 		return nil, err
 	}
-	return source.AuxiliaryTokens(ctx)
+	return source.AuxiliaryTokens(ctx, req)
 }
 
 type gitHubOIDCConfig struct {
@@ -169,7 +169,7 @@ type gitHubOIDCConfig struct {
 	Audience string
 }
 
-func (c *gitHubOIDCConfig) TokenSource(ctx context.Context) Authorizer {
+func (c *gitHubOIDCConfig) TokenSource(ctx context.Context) (Authorizer, error) {
 	return NewCachedAuthorizer(&GitHubOIDCAuthorizer{
 		conf: c,
 	})

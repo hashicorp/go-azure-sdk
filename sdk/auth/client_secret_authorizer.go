@@ -3,9 +3,11 @@ package auth
 import (
 	"context"
 	"fmt"
-	"golang.org/x/oauth2"
+	"net/http"
 	"net/url"
 	"strings"
+
+	"golang.org/x/oauth2"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
@@ -33,7 +35,7 @@ func NewClientSecretAuthorizer(ctx context.Context, options ClientSecretAuthoriz
 		Scopes:             []string{options.Api.DefaultScope()},
 	}
 
-	return conf.TokenSource(ctx, clientCredentialsSecretType), nil
+	return conf.TokenSource(ctx, clientCredentialsSecretType)
 }
 
 var _ Authorizer = &clientSecretAuthorizer{}
@@ -42,7 +44,7 @@ type clientSecretAuthorizer struct {
 	conf *clientCredentialsConfig
 }
 
-func (a *clientSecretAuthorizer) Token(ctx context.Context) (*oauth2.Token, error) {
+func (a *clientSecretAuthorizer) Token(ctx context.Context, _ *http.Request) (*oauth2.Token, error) {
 	if a.conf == nil {
 		return nil, fmt.Errorf("could not request token: conf is nil")
 	}
@@ -66,7 +68,7 @@ func (a *clientSecretAuthorizer) Token(ctx context.Context) (*oauth2.Token, erro
 }
 
 // AuxiliaryTokens returns additional tokens for auxiliary tenant IDs, for use in multi-tenant scenarios
-func (a *clientSecretAuthorizer) AuxiliaryTokens(ctx context.Context) ([]*oauth2.Token, error) {
+func (a *clientSecretAuthorizer) AuxiliaryTokens(ctx context.Context, _ *http.Request) ([]*oauth2.Token, error) {
 	if a.conf == nil {
 		return nil, fmt.Errorf("could not request token: conf is nil")
 	}
@@ -84,6 +86,7 @@ func (a *clientSecretAuthorizer) AuxiliaryTokens(ctx context.Context) ([]*oauth2
 			"grant_type":    {"client_credentials"},
 			// NOTE: at this time we only support v2 (MSAL) Tokens since v1 (ADAL) is EOL.
 			"scope": []string{
+				// TODO: given the Request, could we use a dynamic scope?
 				strings.Join(a.conf.Scopes, " "),
 			},
 		}

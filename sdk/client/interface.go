@@ -8,8 +8,8 @@ import (
 )
 
 type BaseClient interface {
-	Execute(req *Request) (*Response, error)
-	ExecutePaged(req *Request) (*Response, error)
+	Execute(ctx context.Context, req *Request) (*Response, error)
+	ExecutePaged(ctx context.Context, req *Request) (*Response, error)
 	NewRequest(ctx context.Context, input RequestOptions) (*Request, error)
 }
 
