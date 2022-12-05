@@ -19,10 +19,10 @@ type Client struct {
 	apiVersion string
 }
 
-func NewResourceManagerClient(endpoint environments.ApiEndpoint, apiVersion string) *Client {
+func NewResourceManagerClient(endpoint environments.ApiEndpoint, serviceName, apiVersion string) *Client {
 	return &Client{
 		// TODO: we need a means of setting additional headers (e.g. the Correlation ID etc)
-		Client:     client.NewClient(endpoint),
+		Client:     client.NewClient(endpoint, serviceName, apiVersion),
 		apiVersion: apiVersion,
 	}
 }

@@ -102,6 +102,16 @@ func (r *Request) Marshal(payload interface{}) error {
 		return nil
 	}
 
+	if strings.Contains(strings.ToLower(contentType), "application/octet-stream") {
+		v, ok := payload.([]byte)
+		if !ok {
+			return fmt.Errorf("internal-error: `payload` must be []byte but got %+v", payload)
+		}
+
+		r.ContentLength = int64(len(v))
+		r.Body = io.NopCloser(bytes.NewReader(v))
+	}
+
 	return fmt.Errorf("internal-error: unimplemented marshal function for content type %q", contentType)
 }
 
@@ -175,6 +185,28 @@ func (r *Response) Unmarshal(model interface{}) error {
 		r.Body = io.NopCloser(bytes.NewBuffer(respBody))
 	}
 
+	if strings.Contains(strings.ToLower(contentType), "application/octet-stream") {
+		if _, ok := model.([]byte); !ok {
+			return fmt.Errorf("internal-error: `model` must be []byte but got %+v", model)
+		}
+
+		// Read the response body and close it
+		respBody, err := io.ReadAll(r.Body)
+		if err != nil {
+			return fmt.Errorf("could not parse response body")
+		}
+		r.Body.Close()
+
+		// Trim away a BOM if present
+		respBody = bytes.TrimPrefix(respBody, []byte("\xef\xbb\xbf"))
+
+		// copy the byte stream across
+		model = respBody
+
+		// Reassign the response body as downstream code may expect it
+		r.Body = io.NopCloser(bytes.NewBuffer(respBody))
+	}
+
 	return nil
 }
 
@@ -201,10 +233,14 @@ type Client struct {
 }
 
 // NewClient returns a new Client configured with sensible defaults
-func NewClient(endpoint environments.ApiEndpoint) *Client {
+func NewClient(endpoint environments.ApiEndpoint, serviceName, apiVersion string) *Client {
+	segments := []string{
+		"Go-http-Client/1.1",
+		fmt.Sprintf("%s/%s", serviceName, apiVersion),
+	}
 	return &Client{
 		Endpoint:  endpoint,
-		UserAgent: "HashiCorp/go-azure-sdk (Go-http-Client/1.1)",
+		UserAgent: fmt.Sprintf("HashiCorp/go-azure-sdk (%s)", strings.Join(segments, " ")),
 	}
 }
 
