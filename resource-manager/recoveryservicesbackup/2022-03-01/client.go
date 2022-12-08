@@ -4,7 +4,6 @@ import (
 	"github.com/Azure/go-autorest/autorest"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2022-03-01/backupengines"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2022-03-01/backupjobs"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2022-03-01/backupoperationresults"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2022-03-01/backuppolicies"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2022-03-01/backupprotectableitems"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2022-03-01/backupprotecteditems"
@@ -24,7 +23,6 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2022-03-01/jobdetails"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2022-03-01/jobs"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2022-03-01/operation"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2022-03-01/privateendpoint"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2022-03-01/privateendpointconnection"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2022-03-01/protectablecontainers"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2022-03-01/protecteditems"
@@ -39,13 +37,11 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2022-03-01/restores"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2022-03-01/securitypins"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2022-03-01/validateoperation"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2022-03-01/validateoperationresults"
 )
 
 type Client struct {
 	BackupEngines                      *backupengines.BackupEnginesClient
 	BackupJobs                         *backupjobs.BackupJobsClient
-	BackupOperationResults             *backupoperationresults.BackupOperationResultsClient
 	BackupPolicies                     *backuppolicies.BackupPoliciesClient
 	BackupProtectableItems             *backupprotectableitems.BackupProtectableItemsClient
 	BackupProtectedItems               *backupprotecteditems.BackupProtectedItemsClient
@@ -65,7 +61,6 @@ type Client struct {
 	JobDetails                         *jobdetails.JobDetailsClient
 	Jobs                               *jobs.JobsClient
 	Operation                          *operation.OperationClient
-	PrivateEndpoint                    *privateendpoint.PrivateEndpointClient
 	PrivateEndpointConnection          *privateendpointconnection.PrivateEndpointConnectionClient
 	ProtectableContainers              *protectablecontainers.ProtectableContainersClient
 	ProtectedItems                     *protecteditems.ProtectedItemsClient
@@ -80,7 +75,6 @@ type Client struct {
 	Restores                           *restores.RestoresClient
 	SecurityPINs                       *securitypins.SecurityPINsClient
 	ValidateOperation                  *validateoperation.ValidateOperationClient
-	ValidateOperationResults           *validateoperationresults.ValidateOperationResultsClient
 }
 
 func NewClientWithBaseURI(endpoint string, configureAuthFunc func(c *autorest.Client)) Client {
@@ -90,9 +84,6 @@ func NewClientWithBaseURI(endpoint string, configureAuthFunc func(c *autorest.Cl
 
 	backupJobsClient := backupjobs.NewBackupJobsClientWithBaseURI(endpoint)
 	configureAuthFunc(&backupJobsClient.Client)
-
-	backupOperationResultsClient := backupoperationresults.NewBackupOperationResultsClientWithBaseURI(endpoint)
-	configureAuthFunc(&backupOperationResultsClient.Client)
 
 	backupPoliciesClient := backuppolicies.NewBackupPoliciesClientWithBaseURI(endpoint)
 	configureAuthFunc(&backupPoliciesClient.Client)
@@ -151,9 +142,6 @@ func NewClientWithBaseURI(endpoint string, configureAuthFunc func(c *autorest.Cl
 	operationClient := operation.NewOperationClientWithBaseURI(endpoint)
 	configureAuthFunc(&operationClient.Client)
 
-	privateEndpointClient := privateendpoint.NewPrivateEndpointClientWithBaseURI(endpoint)
-	configureAuthFunc(&privateEndpointClient.Client)
-
 	privateEndpointConnectionClient := privateendpointconnection.NewPrivateEndpointConnectionClientWithBaseURI(endpoint)
 	configureAuthFunc(&privateEndpointConnectionClient.Client)
 
@@ -196,13 +184,9 @@ func NewClientWithBaseURI(endpoint string, configureAuthFunc func(c *autorest.Cl
 	validateOperationClient := validateoperation.NewValidateOperationClientWithBaseURI(endpoint)
 	configureAuthFunc(&validateOperationClient.Client)
 
-	validateOperationResultsClient := validateoperationresults.NewValidateOperationResultsClientWithBaseURI(endpoint)
-	configureAuthFunc(&validateOperationResultsClient.Client)
-
 	return Client{
 		BackupEngines:                      &backupEnginesClient,
 		BackupJobs:                         &backupJobsClient,
-		BackupOperationResults:             &backupOperationResultsClient,
 		BackupPolicies:                     &backupPoliciesClient,
 		BackupProtectableItems:             &backupProtectableItemsClient,
 		BackupProtectedItems:               &backupProtectedItemsClient,
@@ -222,7 +206,6 @@ func NewClientWithBaseURI(endpoint string, configureAuthFunc func(c *autorest.Cl
 		JobDetails:                         &jobDetailsClient,
 		Jobs:                               &jobsClient,
 		Operation:                          &operationClient,
-		PrivateEndpoint:                    &privateEndpointClient,
 		PrivateEndpointConnection:          &privateEndpointConnectionClient,
 		ProtectableContainers:              &protectableContainersClient,
 		ProtectedItems:                     &protectedItemsClient,
@@ -237,6 +220,5 @@ func NewClientWithBaseURI(endpoint string, configureAuthFunc func(c *autorest.Cl
 		Restores:                           &restoresClient,
 		SecurityPINs:                       &securityPINsClient,
 		ValidateOperation:                  &validateOperationClient,
-		ValidateOperationResults:           &validateOperationResultsClient,
 	}
 }
