@@ -1,8 +1,11 @@
 package resourcemanager_test
 
 import (
+	"fmt"
 	"net/http"
 	"testing"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/environments"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
@@ -43,9 +46,13 @@ func TestNewPoller(t *testing.T) {
 	}
 
 	for _, resp := range testCases {
-		_, err := resourcemanager.PollerFromResponse(resp, resourcemanager.NewResourceManagerClient("https://async-url-test.local", "example", "2020-02-01"))
+		localApi := environments.NewApiEndpoint("Example", "https://async-url-test.local", "1111")
+		client, err := resourcemanager.NewResourceManagerClient(localApi, "example", "2020-02-01")
 		if err != nil {
-			t.Fatal(err)
+			t.Fatalf("building client: %+v", err)
+		}
+		if _, err = resourcemanager.PollerFromResponse(resp, client); err != nil {
+			t.Fatal(fmt.Errorf("building poller from response: %+v", err))
 		}
 	}
 }

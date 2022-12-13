@@ -16,7 +16,7 @@ func TestAccOIDCAuthorizer(t *testing.T) {
 		t.Skip("test.IdToken was empty")
 	}
 
-	env, err := environments.FromNamed(test.Environment)
+	env, err := environments.FromName(test.Environment)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -24,7 +24,7 @@ func TestAccOIDCAuthorizer(t *testing.T) {
 	ctx := context.Background()
 	opts := auth.OIDCAuthorizerOptions{
 		Environment:        *env,
-		Api:                env.MSGraph,
+		Api:                env.MicrosoftGraph,
 		TenantId:           test.TenantId,
 		AuxiliaryTenantIds: []string{},
 		ClientId:           test.ClientId,

@@ -30,6 +30,11 @@ type GitHubOIDCAuthorizerOptions struct {
 
 // NewGitHubOIDCAuthorizer returns an authorizer which acquires a client assertion from a GitHub endpoint, then uses client assertion authentication to obtain an access token.
 func NewGitHubOIDCAuthorizer(ctx context.Context, options GitHubOIDCAuthorizerOptions) (Authorizer, error) {
+	scope, err := environments.Scope(options.Api)
+	if err != nil {
+		return nil, fmt.Errorf("determining scope for %q: %+v", options.Api.Name(), err)
+	}
+
 	conf := gitHubOIDCConfig{
 		Environment:         options.Environment,
 		TenantID:            options.TenantId,
@@ -37,7 +42,9 @@ func NewGitHubOIDCAuthorizer(ctx context.Context, options GitHubOIDCAuthorizerOp
 		ClientID:            options.ClientId,
 		IDTokenRequestURL:   options.IdTokenRequestUrl,
 		IDTokenRequestToken: options.IdTokenRequestToken,
-		Scopes:              []string{options.Api.DefaultScope()},
+		Scopes: []string{
+			*scope,
+		},
 	}
 
 	return conf.TokenSource(ctx)
@@ -52,7 +59,7 @@ type GitHubOIDCAuthorizer struct {
 func (a *GitHubOIDCAuthorizer) githubAssertion(ctx context.Context, _ *http.Request) (*string, error) {
 	req, err := http.NewRequestWithContext(ctx, http.MethodGet, a.conf.IDTokenRequestURL, http.NoBody)
 	if err != nil {
-		return nil, fmt.Errorf("githubAssertion: failed to build request")
+		return nil, fmt.Errorf("githubAssertion: failed to build request: %+v", err)
 	}
 
 	query, err := url.ParseQuery(req.URL.RawQuery)

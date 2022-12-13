@@ -74,9 +74,6 @@ type clientCredentialsConfig struct {
 	// assertion will be created and signed using the specified PrivateKey and Certificate
 	FederatedAssertion string
 
-	// Resource specifies an API resource for which to request access (used for v1 tokens)
-	ResourceUrl string
-
 	// Scopes specifies a list of requested permission scopes (used for v2 tokens)
 	Scopes []string
 
@@ -263,7 +260,10 @@ func (a *clientAssertionAuthorizer) Token(ctx context.Context, _ *http.Request) 
 
 	tokenUrl := a.conf.TokenURL
 	if tokenUrl == "" {
-		tokenUrl = tokenEndpoint(a.conf.Environment.AzureADEndpoint, a.conf.TenantID)
+		if a.conf.Environment.Authorization == nil {
+			return nil, fmt.Errorf("no `authorization` configuration was found for this environment")
+		}
+		tokenUrl = tokenEndpoint(*a.conf.Environment.Authorization, a.conf.TenantID)
 	}
 
 	return a.token(ctx, tokenUrl)
@@ -284,7 +284,10 @@ func (a *clientAssertionAuthorizer) AuxiliaryTokens(ctx context.Context, _ *http
 	for _, tenantId := range a.conf.AuxiliaryTenantIDs {
 		tokenUrl := a.conf.TokenURL
 		if tokenUrl == "" {
-			tokenUrl = tokenEndpoint(a.conf.Environment.AzureADEndpoint, tenantId)
+			if a.conf.Environment.Authorization == nil {
+				return nil, fmt.Errorf("no `authorization` configuration was found for this environment")
+			}
+			tokenUrl = tokenEndpoint(*a.conf.Environment.Authorization, tenantId)
 		}
 
 		token, err := a.token(ctx, tokenUrl)
@@ -301,7 +304,7 @@ func (a *clientAssertionAuthorizer) AuxiliaryTokens(ctx context.Context, _ *http
 func clientCredentialsToken(ctx context.Context, endpoint string, params *url.Values) (*oauth2.Token, error) {
 	req, err := http.NewRequestWithContext(ctx, http.MethodPost, endpoint, bytes.NewBuffer([]byte(params.Encode())))
 	if err != nil {
-		return nil, fmt.Errorf("clientCredentialsToken: failed to build request")
+		return nil, fmt.Errorf("clientCredentialsToken: failed to build request: %+v", err)
 	}
 
 	req.Header.Set("Accept", "application/json")
@@ -357,9 +360,9 @@ func clientCredentialsToken(ctx context.Context, endpoint string, params *url.Va
 	return token, nil
 }
 
-func tokenEndpoint(endpoint environments.AzureADEndpoint, tenant string) (e string) {
+func tokenEndpoint(endpoint environments.Authorization, tenant string) string {
 	if tenant == "" {
 		tenant = "common"
 	}
-	return fmt.Sprintf("%s/%s/oauth2/v2.0/token", endpoint, tenant)
+	return fmt.Sprintf("%s/%s/oauth2/v2.0/token", endpoint.LoginEndpoint, tenant)
 }

@@ -25,14 +25,20 @@ type ClientSecretAuthorizerOptions struct {
 
 // NewClientSecretAuthorizer returns an authorizer which uses client secret authentication.
 func NewClientSecretAuthorizer(ctx context.Context, options ClientSecretAuthorizerOptions) (Authorizer, error) {
+	scope, err := environments.Scope(options.Api)
+	if err != nil {
+		return nil, fmt.Errorf("determining scope for %q: %+v", options.Api.Name(), err)
+	}
+
 	conf := clientCredentialsConfig{
 		Environment:        options.Environment,
 		TenantID:           options.TenantId,
 		AuxiliaryTenantIDs: options.AuxTenantIds,
 		ClientID:           options.ClientId,
 		ClientSecret:       options.ClientSecret,
-		ResourceUrl:        options.Api.ResourceUrl(),
-		Scopes:             []string{options.Api.DefaultScope()},
+		Scopes: []string{
+			*scope,
+		},
 	}
 
 	return conf.TokenSource(ctx, clientCredentialsSecretType)
@@ -61,7 +67,10 @@ func (a *clientSecretAuthorizer) Token(ctx context.Context, _ *http.Request) (*o
 
 	tokenUrl := a.conf.TokenURL
 	if tokenUrl == "" {
-		tokenUrl = tokenEndpoint(a.conf.Environment.AzureADEndpoint, a.conf.TenantID)
+		if a.conf.Environment.Authorization == nil {
+			return nil, fmt.Errorf("no `authorization` configuration was found for this environment")
+		}
+		tokenUrl = tokenEndpoint(*a.conf.Environment.Authorization, a.conf.TenantID)
 	}
 
 	return clientCredentialsToken(ctx, tokenUrl, &v)
@@ -93,7 +102,10 @@ func (a *clientSecretAuthorizer) AuxiliaryTokens(ctx context.Context, _ *http.Re
 
 		tokenUrl := a.conf.TokenURL
 		if tokenUrl == "" {
-			tokenUrl = tokenEndpoint(a.conf.Environment.AzureADEndpoint, tenantId)
+			if a.conf.Environment.Authorization == nil {
+				return nil, fmt.Errorf("no `authorization` configuration was found for this environment")
+			}
+			tokenUrl = tokenEndpoint(*a.conf.Environment.Authorization, tenantId)
 		}
 
 		token, err := clientCredentialsToken(ctx, tokenUrl, &v)

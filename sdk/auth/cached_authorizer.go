@@ -2,6 +2,7 @@ package auth
 
 import (
 	"context"
+	"fmt"
 	"net/http"
 	"sync"
 
@@ -70,6 +71,9 @@ func (c *CachedAuthorizer) AuxiliaryTokens(ctx context.Context, req *http.Reques
 // NewCachedAuthorizer returns an Authorizer that caches an access token for the duration of its validity.
 // If the cached token expires, a new one is acquired and cached.
 func NewCachedAuthorizer(src Authorizer) (Authorizer, error) {
+	if _, ok := src.(*SharedKeyAuthorizer); ok {
+		return nil, fmt.Errorf("internal-error: SharedKeyAuthorizer cannot be cached")
+	}
 	return &CachedAuthorizer{
 		Source: src,
 	}, nil

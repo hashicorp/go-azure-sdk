@@ -6,6 +6,8 @@ import (
 	"testing"
 	"time"
 
+	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
@@ -39,9 +41,12 @@ func TestNewGetRequest(t *testing.T) {
 		OptionsObject: options{},
 		Path:          "/",
 	}
-	resourceManagerClient := resourcemanager.NewResourceManagerClient("http://localhost", "example", "2020-02-01")
-	_, err := resourceManagerClient.NewRequest(ctx, opts)
+	localApi := environments.NewApiEndpoint("Example", "http://localhost", "1111")
+	resourceManagerClient, err := resourcemanager.NewResourceManagerClient(localApi, "example", "2020-02-01")
 	if err != nil {
-		t.Fatal(err)
+		t.Fatalf("building client: %+v", err)
+	}
+	if _, err = resourceManagerClient.NewRequest(ctx, opts); err != nil {
+		t.Fatalf("building new request: %+v", err)
 	}
 }

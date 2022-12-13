@@ -3,9 +3,10 @@ package resourcemanager
 import (
 	"context"
 	"fmt"
+	"net/url"
+
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/environments"
-	"net/url"
 )
 
 var _ client.BaseClient = &Client{}
@@ -19,12 +20,17 @@ type Client struct {
 	apiVersion string
 }
 
-func NewResourceManagerClient(endpoint environments.ApiEndpoint, serviceName, apiVersion string) *Client {
+func NewResourceManagerClient(api environments.Api, serviceName, apiVersion string) (*Client, error) {
+	endpoint, ok := api.Endpoint()
+	if !ok {
+		return nil, fmt.Errorf("no `endpoint` was returned for this environment")
+	}
+	baseClient := client.NewClient(*endpoint, serviceName, apiVersion)
 	return &Client{
 		// TODO: we need a means of setting additional headers (e.g. the Correlation ID etc)
-		Client:     client.NewClient(endpoint, serviceName, apiVersion),
+		Client:     baseClient,
 		apiVersion: apiVersion,
-	}
+	}, nil
 }
 
 func (c *Client) NewRequest(ctx context.Context, input client.RequestOptions) (*client.Request, error) {
@@ -42,15 +48,25 @@ func (c *Client) NewRequest(ctx context.Context, input client.RequestOptions) (*
 
 	req.Client = c
 	query := url.Values{}
-	query.Set("api-version", c.apiVersion)
+
+	// there's a handful of cases (e.g. Network, LRO's) where we want to override this on a per-request basis via the options object
+	if c.apiVersion != "" {
+		query.Set("api-version", c.apiVersion)
+	}
 
 	if input.OptionsObject != nil {
 		if h := input.OptionsObject.ToHeaders(); h != nil {
-			req.Header = h.Append(req.Header)
+			for k, v := range h.Headers() {
+				req.Header[k] = v
+			}
 		}
 
 		if q := input.OptionsObject.ToQuery(); q != nil {
-			query = q.Values()
+			for k, v := range q.Values() {
+				// we intentionally only add one of each type
+				query.Del(k)
+				query.Add(k, v[0])
+			}
 		}
 
 		if o := input.OptionsObject.ToOData(); o != nil {

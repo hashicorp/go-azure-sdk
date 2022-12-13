@@ -28,7 +28,11 @@ type ManagedIdentityAuthorizerOptions struct {
 
 // NewManagedIdentityAuthorizer returns an authorizer using a Managed Identity for authentication.
 func NewManagedIdentityAuthorizer(ctx context.Context, options ManagedIdentityAuthorizerOptions) (Authorizer, error) {
-	conf, err := newManagedIdentityConfig(options.Api.ResourceUrl(), options.ClientId, options.CustomManagedIdentityEndpoint)
+	resource, err := environments.Resource(options.Api)
+	if err != nil {
+		return nil, fmt.Errorf("determining resource for api %q: %+v", options.Api.Name(), err)
+	}
+	conf, err := newManagedIdentityConfig(*resource, options.ClientId, options.CustomManagedIdentityEndpoint)
 	if err != nil {
 		return nil, err
 	}

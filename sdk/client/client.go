@@ -17,7 +17,6 @@ import (
 	"time"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/auth"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 	"github.com/hashicorp/go-retryablehttp"
 )
@@ -82,9 +81,9 @@ type Request struct {
 }
 
 func (r *Request) Marshal(payload interface{}) error {
-	contentType := r.Header.Get("Content-Type")
+	contentType := strings.ToLower(r.Header.Get("Content-Type"))
 
-	if strings.Contains(strings.ToLower(contentType), "application/json") {
+	if strings.Contains(contentType, "application/json") {
 		body, err := json.Marshal(payload)
 		if err == nil {
 			r.ContentLength = int64(len(body))
@@ -93,7 +92,7 @@ func (r *Request) Marshal(payload interface{}) error {
 		return nil
 	}
 
-	if strings.Contains(strings.ToLower(contentType), "application/xml") {
+	if strings.Contains(contentType, "application/xml") || strings.Contains(contentType, "text/xml") {
 		body, err := xml.Marshal(payload)
 		if err == nil {
 			r.ContentLength = int64(len(body))
@@ -102,7 +101,7 @@ func (r *Request) Marshal(payload interface{}) error {
 		return nil
 	}
 
-	if strings.Contains(strings.ToLower(contentType), "application/octet-stream") {
+	if strings.Contains(contentType, "application/octet-stream") {
 		v, ok := payload.([]byte)
 		if !ok {
 			return fmt.Errorf("internal-error: `payload` must be []byte but got %+v", payload)
@@ -145,7 +144,12 @@ func (r *Response) Unmarshal(model interface{}) error {
 	}
 
 	contentType := strings.ToLower(r.Header.Get("Content-Type"))
-	if strings.HasPrefix(contentType, "application/json") {
+	if contentType == "" {
+		// some API's (e.g. Storage Data Plane) don't return a content type.. so I guess we
+		// check the request type?
+		contentType = strings.ToLower(r.Request.Header.Get("Content-Type"))
+	}
+	if strings.Contains(contentType, "application/json") {
 		// Read the response body and close it
 		respBody, err := io.ReadAll(r.Body)
 		if err != nil {
@@ -165,7 +169,7 @@ func (r *Response) Unmarshal(model interface{}) error {
 		r.Body = io.NopCloser(bytes.NewBuffer(respBody))
 	}
 
-	if strings.HasPrefix(contentType, "application/xml") {
+	if strings.Contains(contentType, "application/xml") || strings.Contains(contentType, "text/xml") {
 		// Read the response body and close it
 		respBody, err := io.ReadAll(r.Body)
 		if err != nil {
@@ -185,7 +189,7 @@ func (r *Response) Unmarshal(model interface{}) error {
 		r.Body = io.NopCloser(bytes.NewBuffer(respBody))
 	}
 
-	if strings.Contains(strings.ToLower(contentType), "application/octet-stream") {
+	if strings.Contains(contentType, "application/octet-stream") {
 		if _, ok := model.([]byte); !ok {
 			return fmt.Errorf("internal-error: `model` must be []byte but got %+v", model)
 		}
@@ -212,8 +216,8 @@ func (r *Response) Unmarshal(model interface{}) error {
 
 // Client is a base client to be used by API-specific clients. It satisfies the BaseClient interface.
 type Client struct {
-	// Endpoint is the base endpoint for the API.
-	Endpoint environments.ApiEndpoint
+	// BaseUri is the base endpoint for this API.
+	BaseUri string
 
 	// UserAgent is the HTTP user agent string to send in requests.
 	UserAgent string
@@ -233,13 +237,13 @@ type Client struct {
 }
 
 // NewClient returns a new Client configured with sensible defaults
-func NewClient(endpoint environments.ApiEndpoint, serviceName, apiVersion string) *Client {
+func NewClient(baseUri string, serviceName, apiVersion string) *Client {
 	segments := []string{
 		"Go-http-Client/1.1",
 		fmt.Sprintf("%s/%s", serviceName, apiVersion),
 	}
 	return &Client{
-		Endpoint:  endpoint,
+		BaseUri:   baseUri,
 		UserAgent: fmt.Sprintf("HashiCorp/go-azure-sdk (%s)", strings.Join(segments, " ")),
 	}
 }
@@ -258,7 +262,7 @@ func (c *Client) NewRequest(ctx context.Context, input RequestOptions) (*Request
 	}
 
 	path := strings.TrimPrefix(input.Path, "/")
-	u, err := url.ParseRequestURI(fmt.Sprintf("%s/%s", c.Endpoint, path))
+	u, err := url.ParseRequestURI(fmt.Sprintf("%s/%s", c.BaseUri, path))
 	if err != nil {
 		return nil, err
 	}
@@ -300,8 +304,9 @@ func (c *Client) Execute(ctx context.Context, req *Request) (*Response, error) {
 		if err != nil {
 			return nil, fmt.Errorf("reading request body: %v", err)
 		}
+		req.Body = io.NopCloser(bytes.NewBuffer(reqBody))
+		req.Header.Set("Content-Length", fmt.Sprintf("%d", req.ContentLength))
 	}
-	req.Body = io.NopCloser(bytes.NewBuffer(reqBody))
 
 	// Instantiate a RetryableHttp client and configure its CheckRetry func
 	r := c.retryableClient(func(ctx context.Context, r *http.Response, err error) (bool, error) {

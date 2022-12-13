@@ -19,13 +19,13 @@ func TestAccParseClaims_azureCli(t *testing.T) {
 
 	test.AccTest(t)
 
-	env, err := environments.FromNamed(test.Environment)
+	env, err := environments.FromName(test.Environment)
 	if err != nil {
 		t.Fatal(err)
 	}
 
 	opts := auth.AzureCliAuthorizerOptions{
-		Api:      env.MSGraph,
+		Api:      env.MicrosoftGraph,
 		TenantId: test.TenantId,
 	}
 	authorizer, err := auth.NewAzureCliAuthorizer(ctx, opts)
@@ -58,7 +58,7 @@ func TestAccParseClaims_clientCertificate(t *testing.T) {
 	ctx := context.Background()
 	test.AccTest(t)
 
-	env, err := environments.FromNamed(test.Environment)
+	env, err := environments.FromName(test.Environment)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -67,7 +67,7 @@ func TestAccParseClaims_clientCertificate(t *testing.T) {
 
 	opts := auth.ClientCertificateAuthorizerOptions{
 		Environment:  *env,
-		Api:          env.MSGraph,
+		Api:          env.MicrosoftGraph,
 		TenantId:     test.TenantId,
 		AuxTenantIds: []string{},
 		ClientId:     test.ClientId,
@@ -105,14 +105,14 @@ func TestAccParseClaims_clientSecret(t *testing.T) {
 	ctx := context.Background()
 	test.AccTest(t)
 
-	env, err := environments.FromNamed(test.Environment)
+	env, err := environments.FromName(test.Environment)
 	if err != nil {
 		t.Fatal(err)
 	}
 
 	opts := auth.ClientSecretAuthorizerOptions{
 		Environment:  *env,
-		Api:          env.MSGraph,
+		Api:          env.MicrosoftGraph,
 		TenantId:     test.TenantId,
 		AuxTenantIds: []string{},
 		ClientId:     test.ClientId,

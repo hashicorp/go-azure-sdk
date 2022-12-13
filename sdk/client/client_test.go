@@ -14,9 +14,14 @@ func TestAccClient(t *testing.T) {
 
 	ctx := context.TODO()
 	conn := test.NewConnection(t)
-	conn.Authorize(ctx, conn.AuthConfig.Environment.MSGraph)
+	api := conn.AuthConfig.Environment.MicrosoftGraph
+	endpoint, ok := api.Endpoint()
+	if !ok {
+		t.Fatalf("missing endpoint for microsoft graph for this environment")
+	}
+	conn.Authorize(ctx, t, api)
 
-	c := NewClient(conn.AuthConfig.Environment.MSGraph.Endpoint, "example", "2020-01-01")
+	c := NewClient(*endpoint, "example", "2020-01-01")
 	c.Authorizer = conn.Authorizer
 
 	path := fmt.Sprintf("/v1.0/servicePrincipals/%s", conn.Claims.ObjectId)

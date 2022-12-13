@@ -19,14 +19,14 @@ func TestAccGitHubOIDCAuthorizer(t *testing.T) {
 		t.Skip("test.GitHubToken was empty")
 	}
 
-	env, err := environments.FromNamed(test.Environment)
+	env, err := environments.FromName(test.Environment)
 	if err != nil {
 		t.Fatal(err)
 	}
 
 	ctx := context.Background()
 	opts := auth.GitHubOIDCAuthorizerOptions{
-		Api:                 env.MSGraph,
+		Api:                 env.MicrosoftGraph,
 		AuxiliaryTenantIds:  nil,
 		ClientId:            test.ClientId,
 		Environment:         *env,

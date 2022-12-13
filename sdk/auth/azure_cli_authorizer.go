@@ -48,12 +48,16 @@ func (a *AzureCliAuthorizer) Token(_ context.Context, _ *http.Request) (*oauth2.
 
 	azArgs := []string{"account", "get-access-token"}
 
-	// check for MSAL support
-	if err := azurecli.CheckAzVersion(azureCliMsalVersion, nil); err == nil {
-		azArgs = append(azArgs, "--scope", a.conf.Api.DefaultScope())
-	} else {
-		azArgs = append(azArgs, "--resource", a.conf.Api.ResourceUrl())
+	// verify that the Azure CLI supports MSAL - ADAL is no longer supported
+	err := azurecli.CheckAzVersion(azureCliMsalVersion, nil)
+	if err != nil {
+		return nil, fmt.Errorf("checking the version of the Azure CLI: %+v", err)
 	}
+	scope, err := environments.Scope(a.conf.Api)
+	if err != nil {
+		return nil, fmt.Errorf("determining scope for %q: %+v", a.conf.Api.Name(), err)
+	}
+	azArgs = append(azArgs, "--scope", *scope)
 
 	// Try to detect if we're running in Cloud Shell
 	if cloudShell := os.Getenv("AZUREPS_HOST_ENVIRONMENT"); !strings.HasPrefix(cloudShell, "cloud-shell/") {
@@ -85,12 +89,16 @@ func (a *AzureCliAuthorizer) AuxiliaryTokens(_ context.Context, _ *http.Request)
 
 	azArgs := []string{"account", "get-access-token"}
 
-	// check for MSAL support
-	if err := azurecli.CheckAzVersion(azureCliMsalVersion, nil); err == nil {
-		azArgs = append(azArgs, "--scope", a.conf.Api.DefaultScope())
-	} else {
-		azArgs = append(azArgs, "--resource", a.conf.Api.ResourceUrl())
+	// verify that the Azure CLI supports MSAL - ADAL is no longer supported
+	err := azurecli.CheckAzVersion(azureCliMsalVersion, nil)
+	if err != nil {
+		return nil, fmt.Errorf("checking the version of the Azure CLI: %+v", err)
 	}
+	scope, err := environments.Scope(a.conf.Api)
+	if err != nil {
+		return nil, fmt.Errorf("determining scope for %q: %+v", a.conf.Api.Name(), err)
+	}
+	azArgs = append(azArgs, "--scope", *scope)
 
 	tokens := make([]*oauth2.Token, 0)
 	for _, tenantId := range a.conf.AuxiliaryTenantIDs {

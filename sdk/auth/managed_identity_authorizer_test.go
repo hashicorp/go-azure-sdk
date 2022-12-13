@@ -25,13 +25,13 @@ func TestAccManagedIdentityAuthorizer(t *testing.T) {
 		}()
 	}
 
-	env, err := environments.FromNamed(test.Environment)
+	env, err := environments.FromName(test.Environment)
 	if err != nil {
 		t.Fatal(err)
 	}
 
 	opts := auth.ManagedIdentityAuthorizerOptions{
-		Api:                           env.MSGraph,
+		Api:                           env.MicrosoftGraph,
 		ClientId:                      test.ClientId,
 		CustomManagedIdentityEndpoint: managedIdentityEndpoint,
 	}

@@ -13,7 +13,7 @@ import (
 func TestAccClientCertificateAuthorizerV2(t *testing.T) {
 	test.AccTest(t)
 
-	env, err := environments.FromNamed(test.Environment)
+	env, err := environments.FromName(test.Environment)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -23,7 +23,7 @@ func TestAccClientCertificateAuthorizerV2(t *testing.T) {
 	ctx := context.Background()
 	opts := auth.ClientCertificateAuthorizerOptions{
 		Environment:  *env,
-		Api:          env.MSGraph,
+		Api:          env.MicrosoftGraph,
 		TenantId:     test.TenantId,
 		AuxTenantIds: []string{},
 		ClientId:     test.ClientId,

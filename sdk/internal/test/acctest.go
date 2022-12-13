@@ -2,7 +2,6 @@ package test
 
 import (
 	"context"
-	"log"
 	"net/http"
 	"os"
 	"testing"
@@ -30,7 +29,7 @@ type Connection struct {
 
 // NewConnection configures and returns a Connection for use in tests.
 func NewConnection(t *testing.T) *Connection {
-	env, err := environments.FromNamed(Environment)
+	env, err := environments.FromName(Environment)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -56,18 +55,18 @@ func NewConnection(t *testing.T) *Connection {
 }
 
 // Authorize configures an Authorizer for the Connection
-func (c *Connection) Authorize(ctx context.Context, api environments.Api) {
+func (c *Connection) Authorize(ctx context.Context, t *testing.T, api environments.Api) {
 	var err error
 	c.Authorizer, err = auth.NewAuthorizerFromCredentials(ctx, c.AuthConfig, api)
 	if err != nil {
-		log.Fatal(err)
+		t.Fatalf("building authorizer from credentials: %+v", err)
 	}
 	token, err := c.Authorizer.Token(ctx, &http.Request{})
 	if err != nil {
-		log.Fatalf("acquiring access token: %v", err)
+		t.Fatalf("acquiring access token: %v", err)
 	}
 	c.Claims, err = claims.ParseClaims(token)
 	if err != nil {
-		log.Fatalf("parsing token claims: %v", err)
+		t.Fatalf("parsing token claims: %v", err)
 	}
 }

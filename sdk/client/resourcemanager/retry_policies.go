@@ -19,7 +19,7 @@ var defaultRetryFunctions = []client.RequestRetryFunc{
 }
 
 func handleResourceProviderNotRegistered(r *http.Response, o *odata.OData) (bool, error) {
-	if o.Error != nil && o.Error.Code != nil && strings.EqualFold(*o.Error.Code, "MissingSubscriptionRegistration") {
+	if o != nil && o.Error != nil && o.Error.Code != nil && strings.EqualFold(*o.Error.Code, "MissingSubscriptionRegistration") {
 		return false, resourceProviderNotRegisteredError(*o.Error.Message)
 	}
 

@@ -40,6 +40,11 @@ func NewClientCertificateAuthorizer(ctx context.Context, options ClientCertifica
 		return nil, fmt.Errorf("could not decode PKCS#12 archive: %s", err)
 	}
 
+	scope, err := environments.Scope(options.Api)
+	if err != nil {
+		return nil, fmt.Errorf("determining scope for %q: %+v", options.Api.Name(), err)
+	}
+
 	conf := clientCredentialsConfig{
 		Environment:        options.Environment,
 		TenantID:           options.TenantId,
@@ -47,8 +52,9 @@ func NewClientCertificateAuthorizer(ctx context.Context, options ClientCertifica
 		ClientID:           options.ClientId,
 		PrivateKey:         key,
 		Certificate:        cert,
-		ResourceUrl:        options.Api.ResourceUrl(),
-		Scopes:             []string{options.Api.DefaultScope()},
+		Scopes: []string{
+			*scope,
+		},
 	}
 	return conf.TokenSource(ctx, clientCredentialsAssertionType)
 }
