@@ -156,6 +156,10 @@ func resourceManagerResourcePathFromUri(input string) (*string, error) {
 		parsed.Path = fmt.Sprintf("/%s", strings.Join(segments, "/"))
 	}
 
+	if parsed.Path == "/" {
+		return nil, fmt.Errorf("expected a Resource Manager URI but got %q", parsed.Path)
+	}
+
 	return pointer.To(parsed.Path), nil
 }
 

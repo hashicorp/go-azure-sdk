@@ -3,6 +3,7 @@ package resourcemanager_test
 import (
 	"fmt"
 	"net/http"
+	"net/url"
 	"testing"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/environments"
@@ -11,48 +12,386 @@ import (
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
 )
 
-func TestNewPoller(t *testing.T) {
-	testCases := []*client.Response{
+func TestNewPoller_LongRunningOperation(t *testing.T) {
+	testData := []struct {
+		response *client.Response
+		valid    bool
+	}{
 		{
-			Response: &http.Response{
-				Status:     http.StatusText(http.StatusCreated),
-				StatusCode: http.StatusCreated,
-				Proto:      "HTTP/1.1",
-				ProtoMajor: 1,
-				ProtoMinor: 1,
-
-				Header: http.Header{
-					http.CanonicalHeaderKey("Azure-AsyncOperation"): []string{"https://async-url-test.local/subscriptions/1234/providers/foo/operations/5678"},
+			response: &client.Response{
+				Response: &http.Response{
+					StatusCode: http.StatusCreated,
+					Header: http.Header{
+						http.CanonicalHeaderKey("Location"): []string{"https://async-url-test.local/subscriptions/1234/providers/foo/operations/6789"},
+					},
+					Request: &http.Request{},
 				},
-
-				Request: nil,
 			},
+			valid: true,
 		},
 		{
-			Response: &http.Response{
-				Status:     http.StatusText(http.StatusOK),
-				StatusCode: http.StatusOK,
-				Proto:      "HTTP/1.1",
-				ProtoMajor: 1,
-				ProtoMinor: 1,
-
-				Header: http.Header{
-					http.CanonicalHeaderKey("Location"): []string{"https://async-url-test.local/subscriptions/1234/providers/foo/operations/6789"},
+			response: &client.Response{
+				Response: &http.Response{
+					StatusCode: http.StatusAccepted,
+					Header: http.Header{
+						http.CanonicalHeaderKey("Location"): []string{"https://async-url-test.local/subscriptions/1234/providers/foo/operations/6789"},
+					},
+					Request: &http.Request{},
 				},
-
-				Request: nil,
 			},
+			valid: true,
+		},
+		{
+			// no LRO header, ergo this isn't acceptable
+			response: &client.Response{
+				Response: &http.Response{
+					StatusCode: http.StatusAccepted,
+					Header:     http.Header{},
+					Request:    &http.Request{},
+				},
+			},
+			valid: false,
 		},
 	}
 
-	for _, resp := range testCases {
+	for _, v := range testData {
 		localApi := environments.NewApiEndpoint("Example", "https://async-url-test.local", nil)
 		client, err := resourcemanager.NewResourceManagerClient(localApi, "example", "2020-02-01")
 		if err != nil {
 			t.Fatalf("building client: %+v", err)
 		}
-		if _, err = resourcemanager.PollerFromResponse(resp, client); err != nil {
+		_, err = resourcemanager.PollerFromResponse(v.response, client)
+		if v.valid {
+			if err != nil {
+				t.Fatal(fmt.Errorf("building poller from response: %+v", err))
+			}
+		} else {
+			if err == nil {
+				t.Fatalf("expected an error but didn't get one")
+			}
+		}
+	}
+}
+
+func TestNewPoller_ProvisioningState_ValidResourceManagerResource(t *testing.T) {
+	// validates that a Resource Manager Resource is valid
+	// e.g. `/some/resource`
+	testCases := []struct {
+		Response client.Response
+	}{
+		{
+			Response: client.Response{
+				Response: &http.Response{
+					StatusCode: http.StatusOK,
+					Header: http.Header{
+						http.CanonicalHeaderKey("Content-Type"): []string{"application/json"},
+					},
+					Request: &http.Request{
+						Method: http.MethodPatch,
+						URL: func() *url.URL {
+							u, _ := url.Parse("https://async-url-test.local/example/uri?api-version=2020-01-01")
+							return u
+						}(),
+					},
+				},
+			},
+		},
+		{
+			Response: client.Response{
+				Response: &http.Response{
+					StatusCode: http.StatusOK,
+					Header: http.Header{
+						http.CanonicalHeaderKey("Content-Type"): []string{"application/json"},
+					},
+					Request: &http.Request{
+						Method: http.MethodPost,
+						URL: func() *url.URL {
+							u, _ := url.Parse("https://async-url-test.local/example/uri?api-version=2020-01-01")
+							return u
+						}(),
+					},
+				},
+			},
+		},
+		{
+			Response: client.Response{
+				Response: &http.Response{
+					StatusCode: http.StatusOK,
+					Header: http.Header{
+						http.CanonicalHeaderKey("Content-Type"): []string{"application/json"},
+					},
+					Request: &http.Request{
+						Method: http.MethodPut,
+						URL: func() *url.URL {
+							u, _ := url.Parse("https://async-url-test.local/example/uri?api-version=2020-01-01")
+							return u
+						}(),
+					},
+				},
+			},
+		},
+		{
+			Response: client.Response{
+				Response: &http.Response{
+					StatusCode: http.StatusCreated,
+					Header: http.Header{
+						http.CanonicalHeaderKey("Content-Type"): []string{"application/json"},
+					},
+					Request: &http.Request{
+						Method: http.MethodPatch,
+						URL: func() *url.URL {
+							u, _ := url.Parse("https://async-url-test.local/example/uri?api-version=2020-01-01")
+							return u
+						}(),
+					},
+				},
+			},
+		},
+		{
+			Response: client.Response{
+				Response: &http.Response{
+					StatusCode: http.StatusCreated,
+					Header: http.Header{
+						http.CanonicalHeaderKey("Content-Type"): []string{"application/json"},
+					},
+					Request: &http.Request{
+						Method: http.MethodPost,
+						URL: func() *url.URL {
+							u, _ := url.Parse("https://async-url-test.local/example/uri?api-version=2020-01-01")
+							return u
+						}(),
+					},
+				},
+			},
+		},
+		{
+			Response: client.Response{
+				Response: &http.Response{
+					StatusCode: http.StatusCreated,
+					Header: http.Header{
+						http.CanonicalHeaderKey("Content-Type"): []string{"application/json"},
+					},
+					Request: &http.Request{
+						Method: http.MethodPut,
+						URL: func() *url.URL {
+							u, _ := url.Parse("https://async-url-test.local/example/uri?api-version=2020-01-01")
+							return u
+						}(),
+					},
+				},
+			},
+		},
+	}
+
+	for _, v := range testCases {
+		localApi := environments.NewApiEndpoint("Example", "https://async-url-test.local", nil)
+		client, err := resourcemanager.NewResourceManagerClient(localApi, "example", "2020-02-01")
+		if err != nil {
+			t.Fatalf("building client: %+v", err)
+		}
+
+		if _, err = resourcemanager.PollerFromResponse(&v.Response, client); err != nil {
 			t.Fatal(fmt.Errorf("building poller from response: %+v", err))
+		}
+	}
+}
+
+func TestNewPoller_ProvisioningState_ValidResourceManagerResourceOperation(t *testing.T) {
+	// validates that an Operation on a Resource Manager Resource is valid
+	// e.g. `/some/resource/start`
+	testCases := []struct {
+		Response client.Response
+	}{
+		{
+			Response: client.Response{
+				Response: &http.Response{
+					StatusCode: http.StatusOK,
+					Header: http.Header{
+						http.CanonicalHeaderKey("Content-Type"): []string{"application/json"},
+					},
+					Request: &http.Request{
+						Method: http.MethodPatch,
+						URL: func() *url.URL {
+							u, _ := url.Parse("https://async-url-test.local/example/uri/start?api-version=2020-01-01")
+							return u
+						}(),
+					},
+				},
+			},
+		},
+		{
+			Response: client.Response{
+				Response: &http.Response{
+					StatusCode: http.StatusOK,
+					Header: http.Header{
+						http.CanonicalHeaderKey("Content-Type"): []string{"application/json"},
+					},
+					Request: &http.Request{
+						Method: http.MethodPost,
+						URL: func() *url.URL {
+							u, _ := url.Parse("https://async-url-test.local/example/uri/start?api-version=2020-01-01")
+							return u
+						}(),
+					},
+				},
+			},
+		},
+		{
+			Response: client.Response{
+				Response: &http.Response{
+					StatusCode: http.StatusOK,
+					Header: http.Header{
+						http.CanonicalHeaderKey("Content-Type"): []string{"application/json"},
+					},
+					Request: &http.Request{
+						Method: http.MethodPut,
+						URL: func() *url.URL {
+							u, _ := url.Parse("https://async-url-test.local/example/uri/start?api-version=2020-01-01")
+							return u
+						}(),
+					},
+				},
+			},
+		},
+		{
+			Response: client.Response{
+				Response: &http.Response{
+					StatusCode: http.StatusCreated,
+					Header: http.Header{
+						http.CanonicalHeaderKey("Content-Type"): []string{"application/json"},
+					},
+					Request: &http.Request{
+						Method: http.MethodPatch,
+						URL: func() *url.URL {
+							u, _ := url.Parse("https://async-url-test.local/example/uri/start?api-version=2020-01-01")
+							return u
+						}(),
+					},
+				},
+			},
+		},
+		{
+			Response: client.Response{
+				Response: &http.Response{
+					StatusCode: http.StatusCreated,
+					Header: http.Header{
+						http.CanonicalHeaderKey("Content-Type"): []string{"application/json"},
+					},
+					Request: &http.Request{
+						Method: http.MethodPost,
+						URL: func() *url.URL {
+							u, _ := url.Parse("https://async-url-test.local/example/uri/start?api-version=2020-01-01")
+							return u
+						}(),
+					},
+				},
+			},
+		},
+		{
+			Response: client.Response{
+				Response: &http.Response{
+					StatusCode: http.StatusCreated,
+					Header: http.Header{
+						http.CanonicalHeaderKey("Content-Type"): []string{"application/json"},
+					},
+					Request: &http.Request{
+						Method: http.MethodPut,
+						URL: func() *url.URL {
+							u, _ := url.Parse("https://async-url-test.local/example/uri/start?api-version=2020-01-01")
+							return u
+						}(),
+					},
+				},
+			},
+		},
+	}
+
+	for _, v := range testCases {
+		localApi := environments.NewApiEndpoint("Example", "https://async-url-test.local", nil)
+		client, err := resourcemanager.NewResourceManagerClient(localApi, "example", "2020-02-01")
+		if err != nil {
+			t.Fatalf("building client: %+v", err)
+		}
+
+		if _, err = resourcemanager.PollerFromResponse(&v.Response, client); err != nil {
+			t.Fatal(fmt.Errorf("building poller from response: %+v", err))
+		}
+	}
+}
+
+func TestNewPoller_ProvisioningState_Invalid(t *testing.T) {
+	testCases := []struct {
+		Response *client.Response
+	}{
+		{
+			// Dropped response should raise an error
+			Response: nil,
+		},
+		{
+			Response: &client.Response{
+				Response: &http.Response{
+					StatusCode: http.StatusOK,
+					Header:     http.Header{
+						// no content type header
+					},
+					Request: &http.Request{
+						Method: http.MethodPatch,
+						URL: func() *url.URL {
+							u, _ := url.Parse("https://async-url-test.local/example/uri/start?api-version=2020-01-01")
+							return u
+						}(),
+					},
+				},
+			},
+		},
+		{
+			Response: &client.Response{
+				Response: &http.Response{
+					StatusCode: http.StatusOK,
+					Header: http.Header{
+						// different content types
+						http.CanonicalHeaderKey("Content-Type"): []string{"application/xml"},
+					},
+					Request: &http.Request{
+						Method: http.MethodPatch,
+						URL: func() *url.URL {
+							u, _ := url.Parse("https://async-url-test.local/example/uri/start?api-version=2020-01-01")
+							return u
+						}(),
+					},
+				},
+			},
+		},
+		{
+			Response: &client.Response{
+				Response: &http.Response{
+					StatusCode: http.StatusOK,
+					Header: http.Header{
+						http.CanonicalHeaderKey("Content-Type"): []string{"application/json"},
+					},
+					Request: &http.Request{
+						Method: http.MethodPatch,
+						URL: func() *url.URL {
+							// non-resource manager operations aren't valid
+							u, _ := url.Parse("https://async-url-test.local/example?api-version=2020-01-01")
+							return u
+						}(),
+					},
+				},
+			},
+		},
+	}
+
+	for i, v := range testCases {
+		t.Logf("iteration %d", i)
+		localApi := environments.NewApiEndpoint("Example", "https://async-url-test.local", nil)
+		client, err := resourcemanager.NewResourceManagerClient(localApi, "example", "2020-02-01")
+		if err != nil {
+			t.Fatalf("building client: %+v", err)
+		}
+
+		if _, err = resourcemanager.PollerFromResponse(v.Response, client); err == nil {
+			t.Fatal("expected an error but didn't get one")
 		}
 	}
 }
