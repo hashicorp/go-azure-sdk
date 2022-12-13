@@ -41,7 +41,7 @@ func TestNewGetRequest(t *testing.T) {
 		OptionsObject: options{},
 		Path:          "/",
 	}
-	localApi := environments.NewApiEndpoint("Example", "http://localhost", "1111")
+	localApi := environments.NewApiEndpoint("Example", "http://localhost", nil)
 	resourceManagerClient, err := resourcemanager.NewResourceManagerClient(localApi, "example", "2020-02-01")
 	if err != nil {
 		t.Fatalf("building client: %+v", err)

@@ -46,7 +46,7 @@ func TestNewPoller(t *testing.T) {
 	}
 
 	for _, resp := range testCases {
-		localApi := environments.NewApiEndpoint("Example", "https://async-url-test.local", "1111")
+		localApi := environments.NewApiEndpoint("Example", "https://async-url-test.local", nil)
 		client, err := resourcemanager.NewResourceManagerClient(localApi, "example", "2020-02-01")
 		if err != nil {
 			t.Fatalf("building client: %+v", err)

@@ -131,27 +131,17 @@ var _ Api = &ApiEndpoint{}
 type ApiEndpoint struct {
 	domainSuffix        *string
 	endpoint            *string
-	microsoftGraphAppId string
+	microsoftGraphAppId *string
 	name                string
 	resourceIdentifier  *string
 }
 
-func NewApiEndpoint(name, endpoint, microsoftGraphAppId string) *ApiEndpoint {
+func NewApiEndpoint(name, endpoint string, microsoftGraphAppId *string) *ApiEndpoint {
 	return &ApiEndpoint{
 		endpoint:            pointer.To(endpoint),
 		microsoftGraphAppId: microsoftGraphAppId,
 		name:                name,
 	}
-}
-
-func (e *ApiEndpoint) withDomainSuffix(domainSuffix string) *ApiEndpoint {
-	e.domainSuffix = pointer.To(domainSuffix)
-	return e
-}
-
-func (e *ApiEndpoint) withResourceIdentifier(identifier string) *ApiEndpoint {
-	e.resourceIdentifier = pointer.To(identifier)
-	return e
 }
 
 func (e *ApiEndpoint) DomainSuffix() (*string, bool) {
@@ -169,10 +159,10 @@ func (e *ApiEndpoint) Endpoint() (*string, bool) {
 }
 
 func (e *ApiEndpoint) MicrosoftGraphAppId() (*string, bool) {
-	if e == nil {
+	if e == nil || e.microsoftGraphAppId == nil {
 		return nil, false
 	}
-	return pointer.To(e.microsoftGraphAppId), true
+	return e.microsoftGraphAppId, true
 }
 
 func (e *ApiEndpoint) Name() string {
