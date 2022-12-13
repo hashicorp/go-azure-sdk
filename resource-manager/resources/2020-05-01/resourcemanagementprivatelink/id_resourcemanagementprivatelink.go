@@ -1,0 +1,124 @@
+package resourcemanagementprivatelink
+
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+
+var _ resourceids.ResourceId = ResourceManagementPrivateLinkId{}
+
+// ResourceManagementPrivateLinkId is a struct representing the Resource ID for a Resource Management Private Link
+type ResourceManagementPrivateLinkId struct {
+	SubscriptionId    string
+	ResourceGroupName string
+	RmplName          string
+}
+
+// NewResourceManagementPrivateLinkID returns a new ResourceManagementPrivateLinkId struct
+func NewResourceManagementPrivateLinkID(subscriptionId string, resourceGroupName string, rmplName string) ResourceManagementPrivateLinkId {
+	return ResourceManagementPrivateLinkId{
+		SubscriptionId:    subscriptionId,
+		ResourceGroupName: resourceGroupName,
+		RmplName:          rmplName,
+	}
+}
+
+// ParseResourceManagementPrivateLinkID parses 'input' into a ResourceManagementPrivateLinkId
+func ParseResourceManagementPrivateLinkID(input string) (*ResourceManagementPrivateLinkId, error) {
+	parser := resourceids.NewParserFromResourceIdType(ResourceManagementPrivateLinkId{})
+	parsed, err := parser.Parse(input, false)
+	if err != nil {
+		return nil, fmt.Errorf("parsing %q: %+v", input, err)
+	}
+
+	var ok bool
+	id := ResourceManagementPrivateLinkId{}
+
+	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
+		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+	}
+
+	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
+		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+	}
+
+	if id.RmplName, ok = parsed.Parsed["rmplName"]; !ok {
+		return nil, fmt.Errorf("the segment 'rmplName' was not found in the resource id %q", input)
+	}
+
+	return &id, nil
+}
+
+// ParseResourceManagementPrivateLinkIDInsensitively parses 'input' case-insensitively into a ResourceManagementPrivateLinkId
+// note: this method should only be used for API response data and not user input
+func ParseResourceManagementPrivateLinkIDInsensitively(input string) (*ResourceManagementPrivateLinkId, error) {
+	parser := resourceids.NewParserFromResourceIdType(ResourceManagementPrivateLinkId{})
+	parsed, err := parser.Parse(input, true)
+	if err != nil {
+		return nil, fmt.Errorf("parsing %q: %+v", input, err)
+	}
+
+	var ok bool
+	id := ResourceManagementPrivateLinkId{}
+
+	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
+		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+	}
+
+	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
+		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+	}
+
+	if id.RmplName, ok = parsed.Parsed["rmplName"]; !ok {
+		return nil, fmt.Errorf("the segment 'rmplName' was not found in the resource id %q", input)
+	}
+
+	return &id, nil
+}
+
+// ValidateResourceManagementPrivateLinkID checks that 'input' can be parsed as a Resource Management Private Link ID
+func ValidateResourceManagementPrivateLinkID(input interface{}, key string) (warnings []string, errors []error) {
+	v, ok := input.(string)
+	if !ok {
+		errors = append(errors, fmt.Errorf("expected %q to be a string", key))
+		return
+	}
+
+	if _, err := ParseResourceManagementPrivateLinkID(v); err != nil {
+		errors = append(errors, err)
+	}
+
+	return
+}
+
+// ID returns the formatted Resource Management Private Link ID
+func (id ResourceManagementPrivateLinkId) ID() string {
+	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.Authorization/resourceManagementPrivateLinks/%s"
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.RmplName)
+}
+
+// Segments returns a slice of Resource ID Segments which comprise this Resource Management Private Link ID
+func (id ResourceManagementPrivateLinkId) Segments() []resourceids.Segment {
+	return []resourceids.Segment{
+		resourceids.StaticSegment("staticSubscriptions", "subscriptions", "subscriptions"),
+		resourceids.SubscriptionIdSegment("subscriptionId", "12345678-1234-9876-4563-123456789012"),
+		resourceids.StaticSegment("staticResourceGroups", "resourceGroups", "resourceGroups"),
+		resourceids.ResourceGroupSegment("resourceGroupName", "example-resource-group"),
+		resourceids.StaticSegment("staticProviders", "providers", "providers"),
+		resourceids.ResourceProviderSegment("staticMicrosoftAuthorization", "Microsoft.Authorization", "Microsoft.Authorization"),
+		resourceids.StaticSegment("staticResourceManagementPrivateLinks", "resourceManagementPrivateLinks", "resourceManagementPrivateLinks"),
+		resourceids.UserSpecifiedSegment("rmplName", "rmplValue"),
+	}
+}
+
+// String returns a human-readable description of this Resource Management Private Link ID
+func (id ResourceManagementPrivateLinkId) String() string {
+	components := []string{
+		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
+		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
+		fmt.Sprintf("Rmpl Name: %q", id.RmplName),
+	}
+	return fmt.Sprintf("Resource Management Private Link (%s)", strings.Join(components, "\n"))
+}
