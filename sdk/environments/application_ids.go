@@ -4,6 +4,7 @@ package environments
 // They can be used to acquire access tokens, but are primarily described here for easy inclusion in
 // application manifests and service principal assignments.
 var PublishedApis = map[string]string{
+	"ApiManagement":                     apiManagementAppId,
 	"ApplicationInsights":               applicationInsightsAppId,
 	"AttestationService":                attestationServiceAppId,
 	"AzureAdIdentityGovernanceInsights": azureAdIdentityGovernanceInsightsAppId,
@@ -66,6 +67,7 @@ var PublishedApis = map[string]string{
 	"KustoService":                      kustoServiceAppId,
 	"KustoServiceMFA":                   kustoServiceMFAAppId,
 	"LogAnalytics":                      logAnalyticsAppId,
+	"ManagedHSM":                        managedHSMAppId,
 	"MileIqAdminCenter":                 mileIqAdminCenterAppId,
 	"MileIqDashboard":                   mileIqDashboardAppId,
 	"MileIqRestService":                 mileIqRestServiceAppId,
@@ -97,9 +99,11 @@ var PublishedApis = map[string]string{
 	"Signup":                            signupAppId,
 	"SkypeForBusinessOnline":            skypeForBusinessOnlineAppId,
 	"SpeechRecognition":                 speechRecognitionAppId,
+	"Synapse":                           synapseAppId,
 	"TargetedMessagingService":          targetedMessagingServiceAppId,
 	"TeamsServices":                     teamsServiceAppId,
 	"ThreatProtection":                  threatProtectionAppId,
+	"TrafficManager":                    trafficManagerAppId,
 	"UniversalPrint":                    universalPrintAppId,
 	"WindowsDefenderAtp":                windowsDefenderAtpAppId,
 	"WindowsVirtualDesktop":             windowsVirtualDesktopAppId,

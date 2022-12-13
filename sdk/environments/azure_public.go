@@ -1,7 +1,5 @@
 package environments
 
-import "github.com/hashicorp/go-azure-helpers/lang/pointer"
-
 /*
 	Name:                         "AzurePublicCloud",
 // TODO: we probly need these two as well?!
@@ -48,54 +46,4 @@ func AzurePublic() Environment {
 	env.TrafficManager = TrafficManagerAPI("trafficmanager.net")
 
 	return env
-}
-
-func ContainerRegistryAPI(domainSuffix string) Api {
-	return &ApiEndpoint{
-		domainSuffix:        pointer.To(domainSuffix),
-		endpoint:            nil,
-		microsoftGraphAppId: containerRegistryAppId,
-		name:                "ContainerRegistry",
-		resourceIdentifier:  pointer.To("https://api.loganalytics.io"),
-	}
-}
-
-func OperationalInsightsAPI() Api {
-	return &ApiEndpoint{
-		domainSuffix:        nil,
-		endpoint:            nil,
-		microsoftGraphAppId: "TODO",
-		name:                "OperationalInsights",
-		resourceIdentifier:  pointer.To("https://api.loganalytics.io"),
-	}
-}
-
-func DataLakeAPI(domainSuffix string) Api {
-	return &ApiEndpoint{
-		domainSuffix:        pointer.To(domainSuffix),
-		endpoint:            nil,
-		microsoftGraphAppId: "TODO",
-		name:                "DataLake",
-		resourceIdentifier:  pointer.To("https://datalake.azure.net/"),
-	}
-}
-
-func ApiManagementAPI(domainSuffix string) Api {
-	return &ApiEndpoint{
-		domainSuffix:        pointer.To(domainSuffix),
-		endpoint:            nil,
-		microsoftGraphAppId: "TODO",
-		name:                "ApiManagement",
-		resourceIdentifier:  nil,
-	}
-}
-
-func TrafficManagerAPI(domainSuffix string) Api {
-	return &ApiEndpoint{
-		domainSuffix:        pointer.To(domainSuffix),
-		endpoint:            nil,
-		microsoftGraphAppId: "TODO",
-		name:                "TrafficManager",
-		resourceIdentifier:  nil,
-	}
 }

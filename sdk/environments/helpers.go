@@ -2,14 +2,22 @@ package environments
 
 import "github.com/hashicorp/go-azure-helpers/lang/pointer"
 
-// TODO: ensure all of the `endpoints` are configured as needed
-
 func applicationIdOnly(name, applicationId string) Api {
 	return &ApiEndpoint{
 		domainSuffix:        nil,
 		endpoint:            nil,
 		microsoftGraphAppId: applicationId,
 		name:                name,
+		resourceIdentifier:  nil,
+	}
+}
+
+func ApiManagementAPI(domainSuffix string) Api {
+	return &ApiEndpoint{
+		domainSuffix:        pointer.To(domainSuffix),
+		endpoint:            nil,
+		microsoftGraphAppId: apiManagementAppId,
+		name:                "ApiManagement",
 		resourceIdentifier:  nil,
 	}
 }
@@ -24,6 +32,16 @@ func BatchAPI(endpoint string) Api {
 	}
 }
 
+func ContainerRegistryAPI(domainSuffix string) Api {
+	return &ApiEndpoint{
+		domainSuffix:        pointer.To(domainSuffix),
+		endpoint:            nil,
+		microsoftGraphAppId: containerRegistryAppId,
+		name:                "ContainerRegistry",
+		resourceIdentifier:  pointer.To("https://api.loganalytics.io"),
+	}
+}
+
 func CosmosDBAPI(domainSuffix string) Api {
 	return &ApiEndpoint{
 		domainSuffix:        pointer.To(domainSuffix),
@@ -31,6 +49,16 @@ func CosmosDBAPI(domainSuffix string) Api {
 		microsoftGraphAppId: cosmosDBAppId,
 		name:                "AzureCosmosDb",
 		resourceIdentifier:  pointer.To("https://cosmos.azure.com"),
+	}
+}
+
+func DataLakeAPI(domainSuffix string) Api {
+	return &ApiEndpoint{
+		domainSuffix:        pointer.To(domainSuffix),
+		endpoint:            nil,
+		microsoftGraphAppId: dataLakeAppId,
+		name:                "DataLake",
+		resourceIdentifier:  pointer.To("https://datalake.azure.net/"),
 	}
 }
 
@@ -48,7 +76,7 @@ func ManagedHSMAPI(endpoint, domainSuffix string) Api {
 	return &ApiEndpoint{
 		domainSuffix:        pointer.To(domainSuffix),
 		endpoint:            pointer.To(endpoint),
-		microsoftGraphAppId: "TODO",
+		microsoftGraphAppId: managedHSMAppId,
 		name:                "ManagedHSM",
 		resourceIdentifier:  pointer.To("https://managedhsm.azure.net"),
 	}
@@ -81,6 +109,16 @@ func MySqlAPI(domainSuffix string) Api {
 		microsoftGraphAppId: ossRDBMSAppId,
 		name:                "OssRdbms",
 		resourceIdentifier:  pointer.To("https://ossrdbms-aad.database.windows.net"),
+	}
+}
+
+func OperationalInsightsAPI() Api {
+	return &ApiEndpoint{
+		domainSuffix:        nil,
+		endpoint:            nil,
+		microsoftGraphAppId: logAnalyticsAppId,
+		name:                "OperationalInsights",
+		resourceIdentifier:  pointer.To("https://api.loganalytics.io"),
 	}
 }
 
@@ -138,8 +176,18 @@ func SynapseAPI(domainSuffix string) Api {
 	return &ApiEndpoint{
 		domainSuffix:        pointer.To(domainSuffix),
 		endpoint:            nil,
-		microsoftGraphAppId: "TODO",
+		microsoftGraphAppId: synapseAppId,
 		name:                "Synapse",
 		resourceIdentifier:  pointer.To("https://dev.azuresynapse.net"),
+	}
+}
+
+func TrafficManagerAPI(domainSuffix string) Api {
+	return &ApiEndpoint{
+		domainSuffix:        pointer.To(domainSuffix),
+		endpoint:            nil,
+		microsoftGraphAppId: trafficManagerAppId,
+		name:                "TrafficManager",
+		resourceIdentifier:  nil,
 	}
 }
