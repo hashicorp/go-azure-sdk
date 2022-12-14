@@ -49,7 +49,7 @@ func (a *AzureCliAuthorizer) Token(_ context.Context, _ *http.Request) (*oauth2.
 	azArgs := []string{"account", "get-access-token"}
 
 	// verify that the Azure CLI supports MSAL - ADAL is no longer supported
-	err := azurecli.CheckAzVersion(azureCliMsalVersion, nil)
+	err := azurecli.CheckAzVersion(azurecli.MsalVersion, nil)
 	if err != nil {
 		return nil, fmt.Errorf("checking the version of the Azure CLI: %+v", err)
 	}
@@ -90,7 +90,7 @@ func (a *AzureCliAuthorizer) AuxiliaryTokens(_ context.Context, _ *http.Request)
 	azArgs := []string{"account", "get-access-token"}
 
 	// verify that the Azure CLI supports MSAL - ADAL is no longer supported
-	err := azurecli.CheckAzVersion(azureCliMsalVersion, nil)
+	err := azurecli.CheckAzVersion(AzureCliMsalVersion, nil)
 	if err != nil {
 		return nil, fmt.Errorf("checking the version of the Azure CLI: %+v", err)
 	}
@@ -119,9 +119,9 @@ func (a *AzureCliAuthorizer) AuxiliaryTokens(_ context.Context, _ *http.Request)
 }
 
 const (
-	azureCliMinimumVersion   = "2.0.81"
-	azureCliMsalVersion      = "2.30.0"
-	azureCliNextMajorVersion = "3.0.0"
+	AzureCliMinimumVersion   = "2.0.81"
+	AzureCliMsalVersion      = "2.30.0"
+	AzureCliNextMajorVersion = "3.0.0"
 )
 
 // azureCliConfig configures an AzureCliAuthorizer.
@@ -140,8 +140,8 @@ func newAzureCliConfig(api environments.Api, tenantId string) (*azureCliConfig, 
 	var err error
 
 	// check az-cli version
-	nextMajor := azureCliNextMajorVersion
-	if err = azurecli.CheckAzVersion(azureCliMinimumVersion, &nextMajor); err != nil {
+	nextMajor := azurecli.NextMajorVersion
+	if err = azurecli.CheckAzVersion(azurecli.MinimumVersion, &nextMajor); err != nil {
 		return nil, err
 	}
 
