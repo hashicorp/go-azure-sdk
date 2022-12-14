@@ -1,6 +1,6 @@
 package environments
 
-func AzureGovernment() Environment {
+func AzureUSGovernment() *Environment {
 	env := baseEnvironmentWithName("USGovernment")
 
 	env.Authorization = &Authorization{
@@ -32,12 +32,12 @@ func AzureGovernment() Environment {
 	// CDNFrontDoor doesn't appear to be available
 	// DataLake doesn't appear to be available
 
-	return env
+	return &env
 }
 
-func AzureGovernmentL5() Environment {
+func AzureUSGovernmentL5() *Environment {
 	// L5 is Azure Government with a different Microsoft Graph endpoint
-	env := AzureGovernment()
+	env := AzureUSGovernment()
 	env.Name = "USGovernmentL5"
 	env.MicrosoftGraph = MicrosoftGraphAPI("https://dod-graph.microsoft.us")
 	return env

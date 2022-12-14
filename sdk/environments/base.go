@@ -106,6 +106,7 @@ func baseEnvironmentWithName(name string) Environment {
 		StackHCI:                          applicationIdOnly("AzureStackHciService", stackHciServiceAppId),
 		StreamAnalytics:                   applicationIdOnly("AzureStreamAnalytics", streamAnalyticsAppId),
 		Storage:                           applicationIdOnly("AzureStorage", storageAppId),
+		StorageSync:                       applicationIdOnly("StorageSync", storageSyncAppId),
 		Synapse:                           applicationIdOnly("Synapse", synapseAppId),
 		SynapseGateway:                    applicationIdOnly("AzureSynapseGateway", synapseGatewayAppId),
 		SynapseStudio:                     applicationIdOnly("AzureSynapseStudio", synapseStudioAppId),

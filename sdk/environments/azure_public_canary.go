@@ -1,6 +1,6 @@
 package environments
 
-func AzurePublicCanary() Environment {
+func AzurePublicCanary() *Environment {
 	// Canary is Azure Public with a different Microsoft Graph endpoint
 	env := AzurePublic()
 	env.Name = "Canary"

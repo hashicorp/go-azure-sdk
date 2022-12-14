@@ -3,26 +3,24 @@ package environments
 import (
 	"fmt"
 	"strings"
-
-	"github.com/hashicorp/go-azure-helpers/lang/pointer"
 )
 
 func FromName(name string) (*Environment, error) {
 	switch strings.ToLower(name) {
 	case "china":
-		return pointer.To(AzureChina()), nil
+		return AzureChina(), nil
 
 	case "canary":
-		return pointer.To(AzurePublicCanary()), nil
+		return AzurePublicCanary(), nil
 
 	case "global", "public":
-		return pointer.To(AzurePublic()), nil
+		return AzurePublic(), nil
 
 	case "usgovernment", "usgovernmentl4":
-		return pointer.To(AzureGovernment()), nil
+		return AzureUSGovernment(), nil
 
 	case "dod", "usgovernmentl5":
-		return pointer.To(AzureGovernmentL5()), nil
+		return AzureUSGovernmentL5(), nil
 	}
 
 	return nil, fmt.Errorf("no environment was found with the name %q", name)

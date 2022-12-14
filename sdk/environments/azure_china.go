@@ -1,6 +1,6 @@
 package environments
 
-func AzureChina() Environment {
+func AzureChina() *Environment {
 	env := baseEnvironmentWithName("China")
 
 	env.Authorization = &Authorization{
@@ -36,5 +36,5 @@ func AzureChina() Environment {
 	// presumably this'll be
 	// env.ManagedHSM = ManagedHSMAPI("https://managedhsm.azure.cn", "managedhsm.azure.cn")
 
-	return env
+	return &env
 }

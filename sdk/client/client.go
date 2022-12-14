@@ -153,7 +153,7 @@ func (r *Response) Unmarshal(model interface{}) error {
 		// Read the response body and close it
 		respBody, err := io.ReadAll(r.Body)
 		if err != nil {
-			return fmt.Errorf("could not parse response body")
+			return fmt.Errorf("parsing response body: %+v", err)
 		}
 		r.Body.Close()
 
@@ -162,7 +162,7 @@ func (r *Response) Unmarshal(model interface{}) error {
 
 		// Unmarshal into provided model
 		if err := json.Unmarshal(respBody, model); err != nil {
-			return err
+			return fmt.Errorf("unmarshaling response body: %+v", err)
 		}
 
 		// Reassign the response body as downstream code may expect it

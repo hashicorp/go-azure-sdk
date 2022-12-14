@@ -1,6 +1,6 @@
 package environments
 
-func AzurePublic() Environment {
+func AzurePublic() *Environment {
 	env := baseEnvironmentWithName("Public")
 
 	env.Authorization = &Authorization{
@@ -31,5 +31,5 @@ func AzurePublic() Environment {
 	env.Synapse = SynapseAPI("dev.azuresynapse.net")
 	env.TrafficManager = TrafficManagerAPI("trafficmanager.net")
 
-	return env
+	return &env
 }

@@ -113,6 +113,7 @@ type Environment struct {
 	StackHCI                          Api
 	StreamAnalytics                   Api
 	Storage                           Api
+	StorageSync                       Api
 	Synapse                           Api
 	SynapseGateway                    Api
 	SynapseStudio                     Api

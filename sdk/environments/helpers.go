@@ -182,6 +182,16 @@ func StorageAPI(domainSuffix string) Api {
 	}
 }
 
+func StorageSyncAPI(domainSuffix string) Api {
+	return &ApiEndpoint{
+		domainSuffix:        pointer.To(domainSuffix),
+		endpoint:            nil,
+		microsoftGraphAppId: pointer.To(storageSyncAppId),
+		name:                "StorageSync",
+		resourceIdentifier:  nil,
+	}
+}
+
 func SynapseAPI(domainSuffix string) *ApiEndpoint {
 	return &ApiEndpoint{
 		domainSuffix:        pointer.To(domainSuffix),
