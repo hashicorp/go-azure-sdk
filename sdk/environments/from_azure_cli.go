@@ -1,5 +1,7 @@
 package environments
 
+import "fmt"
+
 /*
 func FromCliName(environmentName string) (*Environment, error) {
 	// check az-cli minimum version
@@ -12,3 +14,7 @@ func FromCliName(environmentName string) (*Environment, error) {
 		return nil, err
 	}
 */
+
+func FromAzureCLI(name string) (*Environment, error) {
+	return nil, fmt.Errorf("TODO: not implemented")
+}
