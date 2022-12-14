@@ -9,8 +9,20 @@ import (
 
 func FromName(name string) (*Environment, error) {
 	switch strings.ToLower(name) {
+	case "china":
+		return pointer.To(AzureChina()), nil
+
+	case "canary":
+		return pointer.To(AzurePublicCanary()), nil
+
 	case "global", "public":
 		return pointer.To(AzurePublic()), nil
+
+	case "usgovernment", "usgovernmentl4":
+		return pointer.To(AzureGovernment()), nil
+
+	case "dod", "usgovernmentl5":
+		return pointer.To(AzureGovernmentL5()), nil
 	}
 
 	return nil, fmt.Errorf("no environment was found with the name %q", name)
@@ -19,16 +31,8 @@ func FromName(name string) (*Environment, error) {
 // TODO: From Name
 //func FromNamed(env string) (*Environment, error) {
 //	switch strings.ToLower(env) {
-//	case "public", "global":
-//		return &Global, nil
-//	case "usgovernment", "usgovernmentl4":
-//		return &USGovernmentL4, nil
-//	case "dod", "usgovernmentl5":
-//		return &USGovernmentL5, nil
 //	case "canary":
 //		return &Canary, nil
-//	case "china":
-//		return &China, nil
 //	}
 //
 //	return nil, fmt.Errorf("invalid environment specified: %s", env)

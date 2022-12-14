@@ -22,13 +22,23 @@ func ApiManagementAPI(domainSuffix string) Api {
 	}
 }
 
-func BatchAPI(endpoint string) Api {
+func BatchAPI(endpoint string) *ApiEndpoint {
 	return &ApiEndpoint{
 		domainSuffix:        nil,
 		endpoint:            pointer.To(endpoint),
 		microsoftGraphAppId: pointer.To(batchAppId),
 		name:                "Batch",
 		resourceIdentifier:  pointer.To("https://batch.core.windows.net/"),
+	}
+}
+
+func CDNFrontDoorAPI(domainSuffix string) Api {
+	return &ApiEndpoint{
+		domainSuffix:        pointer.To(domainSuffix),
+		endpoint:            nil,
+		microsoftGraphAppId: pointer.To(cdnFrontDoorAppId),
+		name:                "CDNFrontDoor",
+		resourceIdentifier:  nil,
 	}
 }
 
@@ -62,7 +72,7 @@ func DataLakeAPI(domainSuffix string) Api {
 	}
 }
 
-func KeyVaultAPI(domainSuffix string) Api {
+func KeyVaultAPI(domainSuffix string) *ApiEndpoint {
 	return &ApiEndpoint{
 		domainSuffix:        pointer.To(domainSuffix),
 		endpoint:            nil,
@@ -82,7 +92,7 @@ func ManagedHSMAPI(endpoint, domainSuffix string) Api {
 	}
 }
 
-func MariaDBAPI(domainSuffix string) Api {
+func MariaDBAPI(domainSuffix string) *ApiEndpoint {
 	return &ApiEndpoint{
 		domainSuffix:        pointer.To(domainSuffix),
 		endpoint:            nil,
@@ -92,7 +102,7 @@ func MariaDBAPI(domainSuffix string) Api {
 	}
 }
 
-func MicrosoftGraphAPI(endpoint string) Api {
+func MicrosoftGraphAPI(endpoint string) *ApiEndpoint {
 	return &ApiEndpoint{
 		domainSuffix:        nil,
 		endpoint:            pointer.To(endpoint),
@@ -102,7 +112,7 @@ func MicrosoftGraphAPI(endpoint string) Api {
 	}
 }
 
-func MySqlAPI(domainSuffix string) Api {
+func MySqlAPI(domainSuffix string) *ApiEndpoint {
 	return &ApiEndpoint{
 		domainSuffix:        pointer.To(domainSuffix),
 		endpoint:            nil,
@@ -112,7 +122,7 @@ func MySqlAPI(domainSuffix string) Api {
 	}
 }
 
-func OperationalInsightsAPI() Api {
+func OperationalInsightsAPI() *ApiEndpoint {
 	return &ApiEndpoint{
 		domainSuffix:        nil,
 		endpoint:            nil,
@@ -122,7 +132,7 @@ func OperationalInsightsAPI() Api {
 	}
 }
 
-func PostgresqlAPI(domainSuffix string) Api {
+func PostgresqlAPI(domainSuffix string) *ApiEndpoint {
 	return &ApiEndpoint{
 		domainSuffix:        pointer.To(domainSuffix),
 		endpoint:            nil,
@@ -142,17 +152,17 @@ func ResourceManagerAPI(endpoint string) Api {
 	}
 }
 
-func ServiceBusAPI(domainSuffix string) Api {
+func ServiceBusAPI(endpoint, domainSuffix string) Api {
 	return &ApiEndpoint{
 		domainSuffix:        pointer.To(domainSuffix),
-		endpoint:            nil,
+		endpoint:            pointer.To(endpoint),
 		microsoftGraphAppId: pointer.To(serviceBusAppId),
 		name:                "ServiceBus",
 		resourceIdentifier:  pointer.To("https://servicebus.azure.net/"),
 	}
 }
 
-func SqlAPI(domainSuffix string) Api {
+func SqlAPI(domainSuffix string) *ApiEndpoint {
 	return &ApiEndpoint{
 		domainSuffix:        pointer.To(domainSuffix),
 		endpoint:            nil,
@@ -172,7 +182,7 @@ func StorageAPI(domainSuffix string) Api {
 	}
 }
 
-func SynapseAPI(domainSuffix string) Api {
+func SynapseAPI(domainSuffix string) *ApiEndpoint {
 	return &ApiEndpoint{
 		domainSuffix:        pointer.To(domainSuffix),
 		endpoint:            nil,

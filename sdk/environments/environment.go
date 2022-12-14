@@ -32,6 +32,7 @@ type Environment struct {
 	Bing                              Api
 	BotFrameworkDevPortal             Api
 	BranchConnectWebService           Api
+	CDNFrontDoor                      Api
 	Cognitive                         Api
 	ComputeRecommendations            Api
 	ContainerRegistry                 Api
@@ -142,6 +143,11 @@ func NewApiEndpoint(name, endpoint string, microsoftGraphAppId *string) *ApiEndp
 		microsoftGraphAppId: microsoftGraphAppId,
 		name:                name,
 	}
+}
+
+func (e *ApiEndpoint) withResourceIdentifier(identifier string) *ApiEndpoint {
+	e.resourceIdentifier = pointer.To(identifier)
+	return e
 }
 
 func (e *ApiEndpoint) DomainSuffix() (*string, bool) {

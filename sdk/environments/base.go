@@ -25,6 +25,7 @@ func baseEnvironmentWithName(name string) Environment {
 		Bing:                              applicationIdOnly("Bing", bingAppId),
 		BotFrameworkDevPortal:             applicationIdOnly("BotFrameworkDevPortal", botFrameworkDevPortalAppId),
 		BranchConnectWebService:           applicationIdOnly("BranchConnectWebService", branchConnectWebServiceAppId),
+		CDNFrontDoor:                      applicationIdOnly("CDNFrontDoor", cdnFrontDoorAppId),
 		Cognitive:                         applicationIdOnly("CognitiveServices", cognitiveServicesAppId),
 		ComputeRecommendations:            applicationIdOnly("ComputeRecommendationService", computeRecommendationServiceAppId),
 		Connections:                       applicationIdOnly("ConnectionsService", connectionsServiceAppId),

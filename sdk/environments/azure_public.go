@@ -1,20 +1,5 @@
 package environments
 
-/*
-	Name:                         "AzurePublicCloud",
-// TODO: we probly need these two as well?!
-		ResourceManagerEndpoint:      "https://management.azure.com/",
-		ActiveDirectoryEndpoint:      "https://login.microsoftonline.com/",
-
-		// TODO: then what about these?
-		TokenAudience:                "https://management.azure.com/",
-		GalleryEndpoint:              "https://gallery.azure.com/",
-		ResourceManagerVMDNSSuffix:   "cloudapp.azure.com",
-
-		KeyVaultEndpoint:             "https://vault.azure.net/",
-		MicrosoftGraphEndpoint:       "https://graph.microsoft.com/",
-*/
-
 func AzurePublic() Environment {
 	env := baseEnvironmentWithName("Public")
 
@@ -30,6 +15,7 @@ func AzurePublic() Environment {
 
 	env.ApiManagement = ApiManagementAPI("azure-api.net")
 	env.Batch = BatchAPI("https://batch.core.windows.net/")
+	env.CDNFrontDoor = CDNFrontDoorAPI("azurefd.net")
 	env.ContainerRegistry = ContainerRegistryAPI("azurecr.io")
 	env.CosmosDB = CosmosDBAPI("documents.azure.com")
 	env.DataLake = DataLakeAPI("azuredatalakestore.net")
@@ -39,7 +25,7 @@ func AzurePublic() Environment {
 	env.MySql = MySqlAPI("mysql.database.azure.com")
 	env.OperationalInsights = OperationalInsightsAPI()
 	env.Postgresql = PostgresqlAPI("postgres.database.azure.com")
-	env.ServiceBus = ServiceBusAPI("servicebus.windows.net")
+	env.ServiceBus = ServiceBusAPI("https://servicebus.windows.net", "servicebus.windows.net")
 	env.Sql = SqlAPI("database.windows.net")
 	env.Storage = StorageAPI("core.windows.net")
 	env.Synapse = SynapseAPI("dev.azuresynapse.net")
