@@ -19,6 +19,14 @@ func (e *Environment) RefreshMetaDataFromEndpoint(ctx context.Context) error {
 		return fmt.Errorf("retrieving MetaData from endpoint: %+v", err)
 	}
 
+	if err := e.updateFromMetaData(config); err != nil {
+		return fmt.Errorf("updating Environment from MetaData: %+v", err)
+	}
+
+	return nil
+}
+
+func (e *Environment) updateFromMetaData(config *metadata.MetaData) error {
 	// Auth Endpoints
 	if e.Authorization == nil {
 		e.Authorization = &Authorization{}

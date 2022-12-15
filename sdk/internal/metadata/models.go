@@ -3,6 +3,7 @@ package metadata
 type MetaData struct {
 	Authentication          Authentication
 	DnsSuffixes             DnsSuffixes
+	Name                    string
 	ResourceIdentifiers     ResourceIdentifiers
 	ResourceManagerEndpoint string
 }

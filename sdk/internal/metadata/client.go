@@ -47,6 +47,7 @@ func (c *Client) GetMetaData(ctx context.Context) (*MetaData, error) {
 			StorageSync: metadata.Suffixes.StorageSyncEndpointSuffix,
 			Synapse:     metadata.Suffixes.SynapseAnalytics,
 		},
+		Name: metadata.Name,
 		ResourceIdentifiers: ResourceIdentifiers{
 			Attestation:    metadata.AttestationResourceId,
 			Batch:          metadata.Batch,
