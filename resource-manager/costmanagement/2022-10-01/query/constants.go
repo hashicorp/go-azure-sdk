@@ -118,20 +118,20 @@ type QueryColumnType string
 
 const (
 	QueryColumnTypeDimension QueryColumnType = "Dimension"
-	QueryColumnTypeTag       QueryColumnType = "Tag"
+	QueryColumnTypeTagKey    QueryColumnType = "TagKey"
 )
 
 func PossibleValuesForQueryColumnType() []string {
 	return []string{
 		string(QueryColumnTypeDimension),
-		string(QueryColumnTypeTag),
+		string(QueryColumnTypeTagKey),
 	}
 }
 
 func parseQueryColumnType(input string) (*QueryColumnType, error) {
 	vals := map[string]QueryColumnType{
 		"dimension": QueryColumnTypeDimension,
-		"tag":       QueryColumnTypeTag,
+		"tagkey":    QueryColumnTypeTagKey,
 	}
 	if v, ok := vals[strings.ToLower(input)]; ok {
 		return &v, nil

@@ -4,6 +4,6 @@ package views
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type ReportConfigGrouping struct {
-	Name string                 `json:"name"`
-	Type ReportConfigColumnType `json:"type"`
+	Name string          `json:"name"`
+	Type QueryColumnType `json:"type"`
 }
