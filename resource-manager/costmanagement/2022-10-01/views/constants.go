@@ -210,31 +210,31 @@ func parsePivotTypeType(input string) (*PivotTypeType, error) {
 	return &out, nil
 }
 
-type ReportConfigColumnType string
+type QueryColumnType string
 
 const (
-	ReportConfigColumnTypeDimension ReportConfigColumnType = "Dimension"
-	ReportConfigColumnTypeTag       ReportConfigColumnType = "Tag"
+	QueryColumnTypeDimension QueryColumnType = "Dimension"
+	QueryColumnTypeTagKey    QueryColumnType = "TagKey"
 )
 
-func PossibleValuesForReportConfigColumnType() []string {
+func PossibleValuesForQueryColumnType() []string {
 	return []string{
-		string(ReportConfigColumnTypeDimension),
-		string(ReportConfigColumnTypeTag),
+		string(QueryColumnTypeDimension),
+		string(QueryColumnTypeTagKey),
 	}
 }
 
-func parseReportConfigColumnType(input string) (*ReportConfigColumnType, error) {
-	vals := map[string]ReportConfigColumnType{
-		"dimension": ReportConfigColumnTypeDimension,
-		"tag":       ReportConfigColumnTypeTag,
+func parseQueryColumnType(input string) (*QueryColumnType, error) {
+	vals := map[string]QueryColumnType{
+		"dimension": QueryColumnTypeDimension,
+		"tagkey":    QueryColumnTypeTagKey,
 	}
 	if v, ok := vals[strings.ToLower(input)]; ok {
 		return &v, nil
 	}
 
 	// otherwise presume it's an undefined value and best-effort it
-	out := ReportConfigColumnType(input)
+	out := QueryColumnType(input)
 	return &out, nil
 }
 
