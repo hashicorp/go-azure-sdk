@@ -8,15 +8,17 @@ import "strings"
 type ActionType string
 
 const (
-	ActionTypeAllow    ActionType = "Allow"
-	ActionTypeBlock    ActionType = "Block"
-	ActionTypeLog      ActionType = "Log"
-	ActionTypeRedirect ActionType = "Redirect"
+	ActionTypeAllow          ActionType = "Allow"
+	ActionTypeAnomalyScoring ActionType = "AnomalyScoring"
+	ActionTypeBlock          ActionType = "Block"
+	ActionTypeLog            ActionType = "Log"
+	ActionTypeRedirect       ActionType = "Redirect"
 )
 
 func PossibleValuesForActionType() []string {
 	return []string{
 		string(ActionTypeAllow),
+		string(ActionTypeAnomalyScoring),
 		string(ActionTypeBlock),
 		string(ActionTypeLog),
 		string(ActionTypeRedirect),
@@ -25,10 +27,11 @@ func PossibleValuesForActionType() []string {
 
 func parseActionType(input string) (*ActionType, error) {
 	vals := map[string]ActionType{
-		"allow":    ActionTypeAllow,
-		"block":    ActionTypeBlock,
-		"log":      ActionTypeLog,
-		"redirect": ActionTypeRedirect,
+		"allow":          ActionTypeAllow,
+		"anomalyscoring": ActionTypeAnomalyScoring,
+		"block":          ActionTypeBlock,
+		"log":            ActionTypeLog,
+		"redirect":       ActionTypeRedirect,
 	}
 	if v, ok := vals[strings.ToLower(input)]; ok {
 		return &v, nil
