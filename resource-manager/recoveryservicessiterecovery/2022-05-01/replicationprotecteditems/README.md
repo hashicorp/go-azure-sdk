@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := replicationprotecteditems.NewReplicationProtectedItemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue", "fabricValue", "protectionContainerValue", "replicatedProtectedItemValue")
+id := replicationprotecteditems.NewReplicationProtectedItemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue", "fabricValue", "protectionContainerValue", "replicationProtectedItemValue")
 
 payload := replicationprotecteditems.AddDisksInput{
 	// ...
@@ -41,7 +41,7 @@ if err := client.AddDisksThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := replicationprotecteditems.NewReplicationProtectedItemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue", "fabricValue", "protectionContainerValue", "replicatedProtectedItemValue")
+id := replicationprotecteditems.NewReplicationProtectedItemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue", "fabricValue", "protectionContainerValue", "replicationProtectedItemValue")
 
 payload := replicationprotecteditems.ApplyRecoveryPointInput{
 	// ...
@@ -58,7 +58,7 @@ if err := client.ApplyRecoveryPointThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := replicationprotecteditems.NewReplicationProtectedItemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue", "fabricValue", "protectionContainerValue", "replicatedProtectedItemValue")
+id := replicationprotecteditems.NewReplicationProtectedItemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue", "fabricValue", "protectionContainerValue", "replicationProtectedItemValue")
 
 payload := replicationprotecteditems.EnableProtectionInput{
 	// ...
@@ -75,7 +75,7 @@ if err := client.CreateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := replicationprotecteditems.NewReplicationProtectedItemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue", "fabricValue", "protectionContainerValue", "replicatedProtectedItemValue")
+id := replicationprotecteditems.NewReplicationProtectedItemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue", "fabricValue", "protectionContainerValue", "replicationProtectedItemValue")
 
 payload := replicationprotecteditems.DisableProtectionInput{
 	// ...
@@ -92,7 +92,7 @@ if err := client.DeleteThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := replicationprotecteditems.NewReplicationProtectedItemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue", "fabricValue", "protectionContainerValue", "replicatedProtectedItemValue")
+id := replicationprotecteditems.NewReplicationProtectedItemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue", "fabricValue", "protectionContainerValue", "replicationProtectedItemValue")
 
 if err := client.FailoverCancelThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -104,7 +104,7 @@ if err := client.FailoverCancelThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := replicationprotecteditems.NewReplicationProtectedItemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue", "fabricValue", "protectionContainerValue", "replicatedProtectedItemValue")
+id := replicationprotecteditems.NewReplicationProtectedItemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue", "fabricValue", "protectionContainerValue", "replicationProtectedItemValue")
 
 if err := client.FailoverCommitThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -116,7 +116,7 @@ if err := client.FailoverCommitThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := replicationprotecteditems.NewReplicationProtectedItemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue", "fabricValue", "protectionContainerValue", "replicatedProtectedItemValue")
+id := replicationprotecteditems.NewReplicationProtectedItemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue", "fabricValue", "protectionContainerValue", "replicationProtectedItemValue")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -166,7 +166,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := replicationprotecteditems.NewReplicationProtectedItemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue", "fabricValue", "protectionContainerValue", "replicatedProtectedItemValue")
+id := replicationprotecteditems.NewReplicationProtectedItemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue", "fabricValue", "protectionContainerValue", "replicationProtectedItemValue")
 
 payload := replicationprotecteditems.PlannedFailoverInput{
 	// ...
@@ -183,7 +183,7 @@ if err := client.PlannedFailoverThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := replicationprotecteditems.NewReplicationProtectedItemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue", "fabricValue", "protectionContainerValue", "replicatedProtectedItemValue")
+id := replicationprotecteditems.NewReplicationProtectedItemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue", "fabricValue", "protectionContainerValue", "replicationProtectedItemValue")
 
 if err := client.PurgeThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -195,7 +195,7 @@ if err := client.PurgeThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := replicationprotecteditems.NewReplicationProtectedItemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue", "fabricValue", "protectionContainerValue", "replicatedProtectedItemValue")
+id := replicationprotecteditems.NewReplicationProtectedItemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue", "fabricValue", "protectionContainerValue", "replicationProtectedItemValue")
 
 payload := replicationprotecteditems.RemoveDisksInput{
 	// ...
@@ -212,7 +212,7 @@ if err := client.RemoveDisksThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := replicationprotecteditems.NewReplicationProtectedItemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue", "fabricValue", "protectionContainerValue", "replicatedProtectedItemValue")
+id := replicationprotecteditems.NewReplicationProtectedItemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue", "fabricValue", "protectionContainerValue", "replicationProtectedItemValue")
 
 if err := client.RepairReplicationThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -224,7 +224,7 @@ if err := client.RepairReplicationThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := replicationprotecteditems.NewReplicationProtectedItemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue", "fabricValue", "protectionContainerValue", "replicatedProtectedItemValue")
+id := replicationprotecteditems.NewReplicationProtectedItemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue", "fabricValue", "protectionContainerValue", "replicationProtectedItemValue")
 
 payload := replicationprotecteditems.ReverseReplicationInput{
 	// ...
@@ -241,7 +241,7 @@ if err := client.ReprotectThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := replicationprotecteditems.NewReplicationProtectedItemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue", "fabricValue", "protectionContainerValue", "replicatedProtectedItemValue")
+id := replicationprotecteditems.NewReplicationProtectedItemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue", "fabricValue", "protectionContainerValue", "replicationProtectedItemValue")
 
 payload := replicationprotecteditems.ResolveHealthInput{
 	// ...
@@ -258,7 +258,7 @@ if err := client.ResolveHealthErrorsThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := replicationprotecteditems.NewReplicationProtectedItemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue", "fabricValue", "protectionContainerValue", "replicatedProtectedItemValue")
+id := replicationprotecteditems.NewReplicationProtectedItemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue", "fabricValue", "protectionContainerValue", "replicationProtectedItemValue")
 
 payload := replicationprotecteditems.SwitchProviderInput{
 	// ...
@@ -275,7 +275,7 @@ if err := client.SwitchProviderThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := replicationprotecteditems.NewReplicationProtectedItemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue", "fabricValue", "protectionContainerValue", "replicatedProtectedItemValue")
+id := replicationprotecteditems.NewReplicationProtectedItemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue", "fabricValue", "protectionContainerValue", "replicationProtectedItemValue")
 
 payload := replicationprotecteditems.TestFailoverInput{
 	// ...
@@ -292,7 +292,7 @@ if err := client.TestFailoverThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := replicationprotecteditems.NewReplicationProtectedItemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue", "fabricValue", "protectionContainerValue", "replicatedProtectedItemValue")
+id := replicationprotecteditems.NewReplicationProtectedItemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue", "fabricValue", "protectionContainerValue", "replicationProtectedItemValue")
 
 payload := replicationprotecteditems.TestFailoverCleanupInput{
 	// ...
@@ -309,7 +309,7 @@ if err := client.TestFailoverCleanupThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := replicationprotecteditems.NewReplicationProtectedItemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue", "fabricValue", "protectionContainerValue", "replicatedProtectedItemValue")
+id := replicationprotecteditems.NewReplicationProtectedItemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue", "fabricValue", "protectionContainerValue", "replicationProtectedItemValue")
 
 payload := replicationprotecteditems.UnplannedFailoverInput{
 	// ...
@@ -326,7 +326,7 @@ if err := client.UnplannedFailoverThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := replicationprotecteditems.NewReplicationProtectedItemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue", "fabricValue", "protectionContainerValue", "replicatedProtectedItemValue")
+id := replicationprotecteditems.NewReplicationProtectedItemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue", "fabricValue", "protectionContainerValue", "replicationProtectedItemValue")
 
 payload := replicationprotecteditems.UpdateReplicationProtectedItemInput{
 	// ...
@@ -343,7 +343,7 @@ if err := client.UpdateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := replicationprotecteditems.NewReplicationProtectedItemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue", "fabricValue", "protectionContainerValue", "replicatedProtectedItemValue")
+id := replicationprotecteditems.NewReplicationProtectedItemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue", "fabricValue", "protectionContainerValue", "replicationProtectedItemValue")
 
 payload := replicationprotecteditems.UpdateApplianceForReplicationProtectedItemInput{
 	// ...
@@ -360,7 +360,7 @@ if err := client.UpdateApplianceThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := replicationprotecteditems.NewReplicationProtectedItemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue", "fabricValue", "protectionContainerValue", "replicatedProtectedItemValue")
+id := replicationprotecteditems.NewReplicationProtectedItemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue", "fabricValue", "protectionContainerValue", "replicationProtectedItemValue")
 
 payload := replicationprotecteditems.UpdateMobilityServiceRequest{
 	// ...
