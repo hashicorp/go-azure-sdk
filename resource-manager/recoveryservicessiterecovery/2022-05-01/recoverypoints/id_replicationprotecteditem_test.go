@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = ReplicationProtectedItemId{}
 
 func TestNewReplicationProtectedItemID(t *testing.T) {
-	id := NewReplicationProtectedItemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue", "fabricValue", "protectionContainerValue", "replicationProtectedItemValue")
+	id := NewReplicationProtectedItemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue", "fabricValue", "protectionContainerValue", "replicatedProtectedItemValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -31,14 +31,14 @@ func TestNewReplicationProtectedItemID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ProtectionContainerName'", id.ProtectionContainerName, "protectionContainerValue")
 	}
 
-	if id.ReplicationProtectedItemName != "replicationProtectedItemValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ReplicationProtectedItemName'", id.ReplicationProtectedItemName, "replicationProtectedItemValue")
+	if id.ReplicatedProtectedItemName != "replicatedProtectedItemValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'ReplicatedProtectedItemName'", id.ReplicatedProtectedItemName, "replicatedProtectedItemValue")
 	}
 }
 
 func TestFormatReplicationProtectedItemID(t *testing.T) {
-	actual := NewReplicationProtectedItemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue", "fabricValue", "protectionContainerValue", "replicationProtectedItemValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/resourceValue/replicationFabrics/fabricValue/replicationProtectionContainers/protectionContainerValue/replicationProtectedItems/replicationProtectedItemValue"
+	actual := NewReplicationProtectedItemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue", "fabricValue", "protectionContainerValue", "replicatedProtectedItemValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/resourceValue/replicationFabrics/fabricValue/replicationProtectionContainers/protectionContainerValue/replicationProtectedItems/replicatedProtectedItemValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -122,19 +122,19 @@ func TestParseReplicationProtectedItemID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/resourceValue/replicationFabrics/fabricValue/replicationProtectionContainers/protectionContainerValue/replicationProtectedItems/replicationProtectedItemValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/resourceValue/replicationFabrics/fabricValue/replicationProtectionContainers/protectionContainerValue/replicationProtectedItems/replicatedProtectedItemValue",
 			Expected: &ReplicationProtectedItemId{
-				SubscriptionId:               "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName:            "example-resource-group",
-				ResourceName:                 "resourceValue",
-				FabricName:                   "fabricValue",
-				ProtectionContainerName:      "protectionContainerValue",
-				ReplicationProtectedItemName: "replicationProtectedItemValue",
+				SubscriptionId:              "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:           "example-resource-group",
+				ResourceName:                "resourceValue",
+				FabricName:                  "fabricValue",
+				ProtectionContainerName:     "protectionContainerValue",
+				ReplicatedProtectedItemName: "replicatedProtectedItemValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/resourceValue/replicationFabrics/fabricValue/replicationProtectionContainers/protectionContainerValue/replicationProtectedItems/replicationProtectedItemValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/resourceValue/replicationFabrics/fabricValue/replicationProtectionContainers/protectionContainerValue/replicationProtectedItems/replicatedProtectedItemValue/extra",
 			Error: true,
 		},
 	}
@@ -173,8 +173,8 @@ func TestParseReplicationProtectedItemID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ProtectionContainerName", v.Expected.ProtectionContainerName, actual.ProtectionContainerName)
 		}
 
-		if actual.ReplicationProtectedItemName != v.Expected.ReplicationProtectedItemName {
-			t.Fatalf("Expected %q but got %q for ReplicationProtectedItemName", v.Expected.ReplicationProtectedItemName, actual.ReplicationProtectedItemName)
+		if actual.ReplicatedProtectedItemName != v.Expected.ReplicatedProtectedItemName {
+			t.Fatalf("Expected %q but got %q for ReplicatedProtectedItemName", v.Expected.ReplicatedProtectedItemName, actual.ReplicatedProtectedItemName)
 		}
 
 	}
@@ -323,36 +323,36 @@ func TestParseReplicationProtectedItemIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/resourceValue/replicationFabrics/fabricValue/replicationProtectionContainers/protectionContainerValue/replicationProtectedItems/replicationProtectedItemValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/resourceValue/replicationFabrics/fabricValue/replicationProtectionContainers/protectionContainerValue/replicationProtectedItems/replicatedProtectedItemValue",
 			Expected: &ReplicationProtectedItemId{
-				SubscriptionId:               "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName:            "example-resource-group",
-				ResourceName:                 "resourceValue",
-				FabricName:                   "fabricValue",
-				ProtectionContainerName:      "protectionContainerValue",
-				ReplicationProtectedItemName: "replicationProtectedItemValue",
+				SubscriptionId:              "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:           "example-resource-group",
+				ResourceName:                "resourceValue",
+				FabricName:                  "fabricValue",
+				ProtectionContainerName:     "protectionContainerValue",
+				ReplicatedProtectedItemName: "replicatedProtectedItemValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/resourceValue/replicationFabrics/fabricValue/replicationProtectionContainers/protectionContainerValue/replicationProtectedItems/replicationProtectedItemValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/resourceValue/replicationFabrics/fabricValue/replicationProtectionContainers/protectionContainerValue/replicationProtectedItems/replicatedProtectedItemValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEcOvErYsErViCeS/vAuLtS/rEsOuRcEvAlUe/rEpLiCaTiOnFaBrIcS/fAbRiCvAlUe/rEpLiCaTiOnPrOtEcTiOnCoNtAiNeRs/pRoTeCtIoNcOnTaInErVaLuE/rEpLiCaTiOnPrOtEcTeDiTeMs/rEpLiCaTiOnPrOtEcTeDiTeMvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEcOvErYsErViCeS/vAuLtS/rEsOuRcEvAlUe/rEpLiCaTiOnFaBrIcS/fAbRiCvAlUe/rEpLiCaTiOnPrOtEcTiOnCoNtAiNeRs/pRoTeCtIoNcOnTaInErVaLuE/rEpLiCaTiOnPrOtEcTeDiTeMs/rEpLiCaTeDpRoTeCtEdItEmVaLuE",
 			Expected: &ReplicationProtectedItemId{
-				SubscriptionId:               "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName:            "eXaMpLe-rEsOuRcE-GrOuP",
-				ResourceName:                 "rEsOuRcEvAlUe",
-				FabricName:                   "fAbRiCvAlUe",
-				ProtectionContainerName:      "pRoTeCtIoNcOnTaInErVaLuE",
-				ReplicationProtectedItemName: "rEpLiCaTiOnPrOtEcTeDiTeMvAlUe",
+				SubscriptionId:              "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:           "eXaMpLe-rEsOuRcE-GrOuP",
+				ResourceName:                "rEsOuRcEvAlUe",
+				FabricName:                  "fAbRiCvAlUe",
+				ProtectionContainerName:     "pRoTeCtIoNcOnTaInErVaLuE",
+				ReplicatedProtectedItemName: "rEpLiCaTeDpRoTeCtEdItEmVaLuE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEcOvErYsErViCeS/vAuLtS/rEsOuRcEvAlUe/rEpLiCaTiOnFaBrIcS/fAbRiCvAlUe/rEpLiCaTiOnPrOtEcTiOnCoNtAiNeRs/pRoTeCtIoNcOnTaInErVaLuE/rEpLiCaTiOnPrOtEcTeDiTeMs/rEpLiCaTiOnPrOtEcTeDiTeMvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEcOvErYsErViCeS/vAuLtS/rEsOuRcEvAlUe/rEpLiCaTiOnFaBrIcS/fAbRiCvAlUe/rEpLiCaTiOnPrOtEcTiOnCoNtAiNeRs/pRoTeCtIoNcOnTaInErVaLuE/rEpLiCaTiOnPrOtEcTeDiTeMs/rEpLiCaTeDpRoTeCtEdItEmVaLuE/extra",
 			Error: true,
 		},
 	}
@@ -391,8 +391,8 @@ func TestParseReplicationProtectedItemIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ProtectionContainerName", v.Expected.ProtectionContainerName, actual.ProtectionContainerName)
 		}
 
-		if actual.ReplicationProtectedItemName != v.Expected.ReplicationProtectedItemName {
-			t.Fatalf("Expected %q but got %q for ReplicationProtectedItemName", v.Expected.ReplicationProtectedItemName, actual.ReplicationProtectedItemName)
+		if actual.ReplicatedProtectedItemName != v.Expected.ReplicatedProtectedItemName {
+			t.Fatalf("Expected %q but got %q for ReplicatedProtectedItemName", v.Expected.ReplicatedProtectedItemName, actual.ReplicatedProtectedItemName)
 		}
 
 	}

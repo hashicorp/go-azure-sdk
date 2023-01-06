@@ -26,7 +26,12 @@ client.Client.Authorizer = authorizer
 ctx := context.TODO()
 id := contenttypecontentitem.NewContentItemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "contentTypeIdValue", "contentItemIdValue")
 
-read, err := client.ContentItemCreateOrUpdate(ctx, id, contenttypecontentitem.DefaultContentItemCreateOrUpdateOperationOptions())
+payload := contenttypecontentitem.ContentItemContract{
+	// ...
+}
+
+
+read, err := client.ContentItemCreateOrUpdate(ctx, id, payload, contenttypecontentitem.DefaultContentItemCreateOrUpdateOperationOptions())
 if err != nil {
 	// handle the error
 }

@@ -20,7 +20,7 @@ client.Client.Authorizer = authorizer
 ```
 
 
-### Example Usage: `PacketCoreControlPlaneCollectDiagnosticsPackageClient.PacketCoreControlPlaneCollectDiagnosticsPackage`
+### Example Usage: `PacketCoreControlPlaneCollectDiagnosticsPackageClient.PacketCoreControlPlanesCollectDiagnosticsPackage`
 
 ```go
 ctx := context.TODO()
@@ -31,7 +31,7 @@ payload := packetcorecontrolplanecollectdiagnosticspackage.PacketCoreControlPlan
 }
 
 
-if err := client.PacketCoreControlPlaneCollectDiagnosticsPackageThenPoll(ctx, id, payload); err != nil {
+if err := client.PacketCoreControlPlanesCollectDiagnosticsPackageThenPoll(ctx, id, payload); err != nil {
 	// handle the error
 }
 ```
