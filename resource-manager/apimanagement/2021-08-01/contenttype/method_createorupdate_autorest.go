@@ -41,8 +41,8 @@ func (o CreateOrUpdateOperationOptions) toQueryString() map[string]interface{} {
 }
 
 // CreateOrUpdate ...
-func (c ContentTypeClient) CreateOrUpdate(ctx context.Context, id ContentTypeId, options CreateOrUpdateOperationOptions) (result CreateOrUpdateOperationResponse, err error) {
-	req, err := c.preparerForCreateOrUpdate(ctx, id, options)
+func (c ContentTypeClient) CreateOrUpdate(ctx context.Context, id ContentTypeId, input ContentTypeContract, options CreateOrUpdateOperationOptions) (result CreateOrUpdateOperationResponse, err error) {
+	req, err := c.preparerForCreateOrUpdate(ctx, id, input, options)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "contenttype.ContentTypeClient", "CreateOrUpdate", nil, "Failure preparing request")
 		return
@@ -64,7 +64,7 @@ func (c ContentTypeClient) CreateOrUpdate(ctx context.Context, id ContentTypeId,
 }
 
 // preparerForCreateOrUpdate prepares the CreateOrUpdate request.
-func (c ContentTypeClient) preparerForCreateOrUpdate(ctx context.Context, id ContentTypeId, options CreateOrUpdateOperationOptions) (*http.Request, error) {
+func (c ContentTypeClient) preparerForCreateOrUpdate(ctx context.Context, id ContentTypeId, input ContentTypeContract, options CreateOrUpdateOperationOptions) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}
@@ -79,6 +79,7 @@ func (c ContentTypeClient) preparerForCreateOrUpdate(ctx context.Context, id Con
 		autorest.WithBaseURL(c.baseUri),
 		autorest.WithHeaders(options.toHeaders()),
 		autorest.WithPath(id.ID()),
+		autorest.WithJSON(input),
 		autorest.WithQueryParameters(queryParameters))
 	return preparer.Prepare((&http.Request{}).WithContext(ctx))
 }

@@ -20,13 +20,13 @@ client.Client.Authorizer = authorizer
 ```
 
 
-### Example Usage: `PacketCoreControlPlaneReinstallClient.PacketCoreControlPlaneReinstall`
+### Example Usage: `PacketCoreControlPlaneReinstallClient.PacketCoreControlPlanesReinstall`
 
 ```go
 ctx := context.TODO()
 id := packetcorecontrolplanereinstall.NewPacketCoreControlPlaneID("12345678-1234-9876-4563-123456789012", "example-resource-group", "packetCoreControlPlaneValue")
 
-if err := client.PacketCoreControlPlaneReinstallThenPoll(ctx, id); err != nil {
+if err := client.PacketCoreControlPlanesReinstallThenPoll(ctx, id); err != nil {
 	// handle the error
 }
 ```

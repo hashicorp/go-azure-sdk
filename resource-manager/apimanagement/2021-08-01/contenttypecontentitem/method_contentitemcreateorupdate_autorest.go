@@ -41,8 +41,8 @@ func (o ContentItemCreateOrUpdateOperationOptions) toQueryString() map[string]in
 }
 
 // ContentItemCreateOrUpdate ...
-func (c ContentTypeContentItemClient) ContentItemCreateOrUpdate(ctx context.Context, id ContentItemId, options ContentItemCreateOrUpdateOperationOptions) (result ContentItemCreateOrUpdateOperationResponse, err error) {
-	req, err := c.preparerForContentItemCreateOrUpdate(ctx, id, options)
+func (c ContentTypeContentItemClient) ContentItemCreateOrUpdate(ctx context.Context, id ContentItemId, input ContentItemContract, options ContentItemCreateOrUpdateOperationOptions) (result ContentItemCreateOrUpdateOperationResponse, err error) {
+	req, err := c.preparerForContentItemCreateOrUpdate(ctx, id, input, options)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "contenttypecontentitem.ContentTypeContentItemClient", "ContentItemCreateOrUpdate", nil, "Failure preparing request")
 		return
@@ -64,7 +64,7 @@ func (c ContentTypeContentItemClient) ContentItemCreateOrUpdate(ctx context.Cont
 }
 
 // preparerForContentItemCreateOrUpdate prepares the ContentItemCreateOrUpdate request.
-func (c ContentTypeContentItemClient) preparerForContentItemCreateOrUpdate(ctx context.Context, id ContentItemId, options ContentItemCreateOrUpdateOperationOptions) (*http.Request, error) {
+func (c ContentTypeContentItemClient) preparerForContentItemCreateOrUpdate(ctx context.Context, id ContentItemId, input ContentItemContract, options ContentItemCreateOrUpdateOperationOptions) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}
@@ -79,6 +79,7 @@ func (c ContentTypeContentItemClient) preparerForContentItemCreateOrUpdate(ctx c
 		autorest.WithBaseURL(c.baseUri),
 		autorest.WithHeaders(options.toHeaders()),
 		autorest.WithPath(id.ID()),
+		autorest.WithJSON(input),
 		autorest.WithQueryParameters(queryParameters))
 	return preparer.Prepare((&http.Request{}).WithContext(ctx))
 }

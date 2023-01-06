@@ -20,13 +20,13 @@ client.Client.Authorizer = authorizer
 ```
 
 
-### Example Usage: `PacketCoreControlPlaneRollbackClient.PacketCoreControlPlaneRollback`
+### Example Usage: `PacketCoreControlPlaneRollbackClient.PacketCoreControlPlanesRollback`
 
 ```go
 ctx := context.TODO()
 id := packetcorecontrolplanerollback.NewPacketCoreControlPlaneID("12345678-1234-9876-4563-123456789012", "example-resource-group", "packetCoreControlPlaneValue")
 
-if err := client.PacketCoreControlPlaneRollbackThenPoll(ctx, id); err != nil {
+if err := client.PacketCoreControlPlanesRollbackThenPoll(ctx, id); err != nil {
 	// handle the error
 }
 ```

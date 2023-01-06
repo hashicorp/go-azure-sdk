@@ -20,6 +20,57 @@ client.Client.Authorizer = authorizer
 ```
 
 
+### Example Usage: `SIMsClient.BulkDelete`
+
+```go
+ctx := context.TODO()
+id := sims.NewSimGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "simGroupValue")
+
+payload := sims.SimDeleteList{
+	// ...
+}
+
+
+if err := client.BulkDeleteThenPoll(ctx, id, payload); err != nil {
+	// handle the error
+}
+```
+
+
+### Example Usage: `SIMsClient.BulkUpload`
+
+```go
+ctx := context.TODO()
+id := sims.NewSimGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "simGroupValue")
+
+payload := sims.SimUploadList{
+	// ...
+}
+
+
+if err := client.BulkUploadThenPoll(ctx, id, payload); err != nil {
+	// handle the error
+}
+```
+
+
+### Example Usage: `SIMsClient.BulkUploadEncrypted`
+
+```go
+ctx := context.TODO()
+id := sims.NewSimGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "simGroupValue")
+
+payload := sims.EncryptedSimUploadList{
+	// ...
+}
+
+
+if err := client.BulkUploadEncryptedThenPoll(ctx, id, payload); err != nil {
+	// handle the error
+}
+```
+
+
 ### Example Usage: `SIMsClient.ListByGroup`
 
 ```go
@@ -33,56 +84,5 @@ if err != nil {
 }
 for _, item := range items {
 	// do something
-}
-```
-
-
-### Example Usage: `SIMsClient.SimBulkDelete`
-
-```go
-ctx := context.TODO()
-id := sims.NewSimGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "simGroupValue")
-
-payload := sims.SimDeleteList{
-	// ...
-}
-
-
-if err := client.SimBulkDeleteThenPoll(ctx, id, payload); err != nil {
-	// handle the error
-}
-```
-
-
-### Example Usage: `SIMsClient.SimBulkUpload`
-
-```go
-ctx := context.TODO()
-id := sims.NewSimGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "simGroupValue")
-
-payload := sims.SimUploadList{
-	// ...
-}
-
-
-if err := client.SimBulkUploadThenPoll(ctx, id, payload); err != nil {
-	// handle the error
-}
-```
-
-
-### Example Usage: `SIMsClient.SimBulkUploadEncrypted`
-
-```go
-ctx := context.TODO()
-id := sims.NewSimGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "simGroupValue")
-
-payload := sims.EncryptedSimUploadList{
-	// ...
-}
-
-
-if err := client.SimBulkUploadEncryptedThenPoll(ctx, id, payload); err != nil {
-	// handle the error
 }
 ```
