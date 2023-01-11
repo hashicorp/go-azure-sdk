@@ -5,7 +5,7 @@ package clusters
 
 type ClusterNode struct {
 	CoreCount                 *float64                   `json:"coreCount,omitempty"`
-	EhcResourceId             *string                    `json:"EhcResourceId,omitempty"`
+	EhcResourceId             *string                    `json:"ehcResourceId,omitempty"`
 	Id                        *float64                   `json:"id,omitempty"`
 	Manufacturer              *string                    `json:"manufacturer,omitempty"`
 	MemoryInGiB               *float64                   `json:"memoryInGiB,omitempty"`
