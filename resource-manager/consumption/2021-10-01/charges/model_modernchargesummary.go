@@ -14,11 +14,10 @@ type ModernChargeSummary struct {
 	Properties ModernChargeSummaryProperties `json:"properties"`
 
 	// Fields inherited from ChargeSummary
-	Etag *string            `json:"etag,omitempty"`
-	Id   *string            `json:"id,omitempty"`
-	Name *string            `json:"name,omitempty"`
-	Tags *map[string]string `json:"tags,omitempty"`
-	Type *string            `json:"type,omitempty"`
+	ETag *string `json:"eTag,omitempty"`
+	Id   *string `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+	Type *string `json:"type,omitempty"`
 }
 
 var _ json.Marshaler = ModernChargeSummary{}

@@ -77,7 +77,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := notificationchannels.NewLabID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue")
+id := notificationchannels.NewLabID("12345678-1234-9876-4563-123456789012", "example-resource-group", "nameValue")
 
 // alternatively `client.List(ctx, id, notificationchannels.DefaultListOperationOptions())` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id, notificationchannels.DefaultListOperationOptions())

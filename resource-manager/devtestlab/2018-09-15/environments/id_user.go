@@ -14,16 +14,16 @@ type UserId struct {
 	SubscriptionId    string
 	ResourceGroupName string
 	LabName           string
-	Name              string
+	UserName          string
 }
 
 // NewUserID returns a new UserId struct
-func NewUserID(subscriptionId string, resourceGroupName string, labName string, name string) UserId {
+func NewUserID(subscriptionId string, resourceGroupName string, labName string, userName string) UserId {
 	return UserId{
 		SubscriptionId:    subscriptionId,
 		ResourceGroupName: resourceGroupName,
 		LabName:           labName,
-		Name:              name,
+		UserName:          userName,
 	}
 }
 
@@ -50,8 +50,8 @@ func ParseUserID(input string) (*UserId, error) {
 		return nil, fmt.Errorf("the segment 'labName' was not found in the resource id %q", input)
 	}
 
-	if id.Name, ok = parsed.Parsed["name"]; !ok {
-		return nil, fmt.Errorf("the segment 'name' was not found in the resource id %q", input)
+	if id.UserName, ok = parsed.Parsed["userName"]; !ok {
+		return nil, fmt.Errorf("the segment 'userName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -81,8 +81,8 @@ func ParseUserIDInsensitively(input string) (*UserId, error) {
 		return nil, fmt.Errorf("the segment 'labName' was not found in the resource id %q", input)
 	}
 
-	if id.Name, ok = parsed.Parsed["name"]; !ok {
-		return nil, fmt.Errorf("the segment 'name' was not found in the resource id %q", input)
+	if id.UserName, ok = parsed.Parsed["userName"]; !ok {
+		return nil, fmt.Errorf("the segment 'userName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -106,7 +106,7 @@ func ValidateUserID(input interface{}, key string) (warnings []string, errors []
 // ID returns the formatted User ID
 func (id UserId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.DevTestLab/labs/%s/users/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.LabName, id.Name)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.LabName, id.UserName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this User ID
@@ -121,7 +121,7 @@ func (id UserId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticLabs", "labs", "labs"),
 		resourceids.UserSpecifiedSegment("labName", "labValue"),
 		resourceids.StaticSegment("staticUsers", "users", "users"),
-		resourceids.UserSpecifiedSegment("name", "nameValue"),
+		resourceids.UserSpecifiedSegment("userName", "userValue"),
 	}
 }
 
@@ -131,7 +131,7 @@ func (id UserId) String() string {
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
 		fmt.Sprintf("Lab Name: %q", id.LabName),
-		fmt.Sprintf("Name: %q", id.Name),
+		fmt.Sprintf("User Name: %q", id.UserName),
 	}
 	return fmt.Sprintf("User (%s)", strings.Join(components, "\n"))
 }

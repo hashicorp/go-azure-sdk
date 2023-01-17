@@ -210,6 +210,7 @@ const (
 	EventSerializationTypeAvro      EventSerializationType = "Avro"
 	EventSerializationTypeCsv       EventSerializationType = "Csv"
 	EventSerializationTypeCustomClr EventSerializationType = "CustomClr"
+	EventSerializationTypeDelta     EventSerializationType = "Delta"
 	EventSerializationTypeJson      EventSerializationType = "Json"
 	EventSerializationTypeParquet   EventSerializationType = "Parquet"
 )
@@ -219,6 +220,7 @@ func PossibleValuesForEventSerializationType() []string {
 		string(EventSerializationTypeAvro),
 		string(EventSerializationTypeCsv),
 		string(EventSerializationTypeCustomClr),
+		string(EventSerializationTypeDelta),
 		string(EventSerializationTypeJson),
 		string(EventSerializationTypeParquet),
 	}
@@ -229,6 +231,7 @@ func parseEventSerializationType(input string) (*EventSerializationType, error) 
 		"avro":      EventSerializationTypeAvro,
 		"csv":       EventSerializationTypeCsv,
 		"customclr": EventSerializationTypeCustomClr,
+		"delta":     EventSerializationTypeDelta,
 		"json":      EventSerializationTypeJson,
 		"parquet":   EventSerializationTypeParquet,
 	}

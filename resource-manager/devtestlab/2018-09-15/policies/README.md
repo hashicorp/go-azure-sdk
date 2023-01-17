@@ -77,7 +77,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := policies.NewPolicySetID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "nameValue")
+id := policies.NewPolicySetID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "policySetValue")
 
 // alternatively `client.List(ctx, id, policies.DefaultListOperationOptions())` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id, policies.DefaultListOperationOptions())

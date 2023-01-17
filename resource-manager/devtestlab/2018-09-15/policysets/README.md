@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := policysets.NewPolicySetID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "nameValue")
+id := policysets.NewPolicySetID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "policySetValue")
 
 payload := policysets.EvaluatePoliciesRequest{
 	// ...
