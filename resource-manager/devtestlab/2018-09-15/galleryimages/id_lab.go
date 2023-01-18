@@ -13,15 +13,15 @@ var _ resourceids.ResourceId = LabId{}
 type LabId struct {
 	SubscriptionId    string
 	ResourceGroupName string
-	LabName           string
+	Name              string
 }
 
 // NewLabID returns a new LabId struct
-func NewLabID(subscriptionId string, resourceGroupName string, labName string) LabId {
+func NewLabID(subscriptionId string, resourceGroupName string, name string) LabId {
 	return LabId{
 		SubscriptionId:    subscriptionId,
 		ResourceGroupName: resourceGroupName,
-		LabName:           labName,
+		Name:              name,
 	}
 }
 
@@ -44,8 +44,8 @@ func ParseLabID(input string) (*LabId, error) {
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.LabName, ok = parsed.Parsed["labName"]; !ok {
-		return nil, fmt.Errorf("the segment 'labName' was not found in the resource id %q", input)
+	if id.Name, ok = parsed.Parsed["name"]; !ok {
+		return nil, fmt.Errorf("the segment 'name' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -71,8 +71,8 @@ func ParseLabIDInsensitively(input string) (*LabId, error) {
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.LabName, ok = parsed.Parsed["labName"]; !ok {
-		return nil, fmt.Errorf("the segment 'labName' was not found in the resource id %q", input)
+	if id.Name, ok = parsed.Parsed["name"]; !ok {
+		return nil, fmt.Errorf("the segment 'name' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -96,7 +96,7 @@ func ValidateLabID(input interface{}, key string) (warnings []string, errors []e
 // ID returns the formatted Lab ID
 func (id LabId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.DevTestLab/labs/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.LabName)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.Name)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Lab ID
@@ -109,7 +109,7 @@ func (id LabId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftDevTestLab", "Microsoft.DevTestLab", "Microsoft.DevTestLab"),
 		resourceids.StaticSegment("staticLabs", "labs", "labs"),
-		resourceids.UserSpecifiedSegment("labName", "labValue"),
+		resourceids.UserSpecifiedSegment("name", "nameValue"),
 	}
 }
 
@@ -118,7 +118,7 @@ func (id LabId) String() string {
 	components := []string{
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
-		fmt.Sprintf("Lab Name: %q", id.LabName),
+		fmt.Sprintf("Name: %q", id.Name),
 	}
 	return fmt.Sprintf("Lab (%s)", strings.Join(components, "\n"))
 }

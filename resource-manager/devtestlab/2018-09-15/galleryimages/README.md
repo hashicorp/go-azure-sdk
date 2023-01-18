@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := galleryimages.NewLabID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue")
+id := galleryimages.NewLabID("12345678-1234-9876-4563-123456789012", "example-resource-group", "nameValue")
 
 // alternatively `client.List(ctx, id, galleryimages.DefaultListOperationOptions())` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id, galleryimages.DefaultListOperationOptions())

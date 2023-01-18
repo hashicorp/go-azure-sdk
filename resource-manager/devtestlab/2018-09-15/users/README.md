@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := users.NewUserID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "nameValue")
+id := users.NewUserID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "userValue")
 
 payload := users.User{
 	// ...
@@ -41,7 +41,7 @@ if err := client.CreateOrUpdateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := users.NewUserID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "nameValue")
+id := users.NewUserID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "userValue")
 
 if err := client.DeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -53,7 +53,7 @@ if err := client.DeleteThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := users.NewUserID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "nameValue")
+id := users.NewUserID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "userValue")
 
 read, err := client.Get(ctx, id, users.DefaultGetOperationOptions())
 if err != nil {
@@ -69,7 +69,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := users.NewLabID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue")
+id := users.NewLabID("12345678-1234-9876-4563-123456789012", "example-resource-group", "nameValue")
 
 // alternatively `client.List(ctx, id, users.DefaultListOperationOptions())` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id, users.DefaultListOperationOptions())
@@ -86,7 +86,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := users.NewUserID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "nameValue")
+id := users.NewUserID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "userValue")
 
 payload := users.UpdateResource{
 	// ...
