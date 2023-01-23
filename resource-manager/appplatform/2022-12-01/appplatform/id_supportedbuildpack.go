@@ -11,21 +11,21 @@ var _ resourceids.ResourceId = SupportedBuildPackId{}
 
 // SupportedBuildPackId is a struct representing the Resource ID for a Supported Build Pack
 type SupportedBuildPackId struct {
-	SubscriptionId    string
-	ResourceGroupName string
-	ServiceName       string
-	BuildServiceName  string
-	BuildpackName     string
+	SubscriptionId         string
+	ResourceGroupName      string
+	SpringName             string
+	BuildServiceName       string
+	SupportedBuildPackName string
 }
 
 // NewSupportedBuildPackID returns a new SupportedBuildPackId struct
-func NewSupportedBuildPackID(subscriptionId string, resourceGroupName string, serviceName string, buildServiceName string, buildpackName string) SupportedBuildPackId {
+func NewSupportedBuildPackID(subscriptionId string, resourceGroupName string, springName string, buildServiceName string, supportedBuildPackName string) SupportedBuildPackId {
 	return SupportedBuildPackId{
-		SubscriptionId:    subscriptionId,
-		ResourceGroupName: resourceGroupName,
-		ServiceName:       serviceName,
-		BuildServiceName:  buildServiceName,
-		BuildpackName:     buildpackName,
+		SubscriptionId:         subscriptionId,
+		ResourceGroupName:      resourceGroupName,
+		SpringName:             springName,
+		BuildServiceName:       buildServiceName,
+		SupportedBuildPackName: supportedBuildPackName,
 	}
 }
 
@@ -48,16 +48,16 @@ func ParseSupportedBuildPackID(input string) (*SupportedBuildPackId, error) {
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.ServiceName, ok = parsed.Parsed["serviceName"]; !ok {
-		return nil, fmt.Errorf("the segment 'serviceName' was not found in the resource id %q", input)
+	if id.SpringName, ok = parsed.Parsed["springName"]; !ok {
+		return nil, fmt.Errorf("the segment 'springName' was not found in the resource id %q", input)
 	}
 
 	if id.BuildServiceName, ok = parsed.Parsed["buildServiceName"]; !ok {
 		return nil, fmt.Errorf("the segment 'buildServiceName' was not found in the resource id %q", input)
 	}
 
-	if id.BuildpackName, ok = parsed.Parsed["buildpackName"]; !ok {
-		return nil, fmt.Errorf("the segment 'buildpackName' was not found in the resource id %q", input)
+	if id.SupportedBuildPackName, ok = parsed.Parsed["supportedBuildPackName"]; !ok {
+		return nil, fmt.Errorf("the segment 'supportedBuildPackName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -83,16 +83,16 @@ func ParseSupportedBuildPackIDInsensitively(input string) (*SupportedBuildPackId
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.ServiceName, ok = parsed.Parsed["serviceName"]; !ok {
-		return nil, fmt.Errorf("the segment 'serviceName' was not found in the resource id %q", input)
+	if id.SpringName, ok = parsed.Parsed["springName"]; !ok {
+		return nil, fmt.Errorf("the segment 'springName' was not found in the resource id %q", input)
 	}
 
 	if id.BuildServiceName, ok = parsed.Parsed["buildServiceName"]; !ok {
 		return nil, fmt.Errorf("the segment 'buildServiceName' was not found in the resource id %q", input)
 	}
 
-	if id.BuildpackName, ok = parsed.Parsed["buildpackName"]; !ok {
-		return nil, fmt.Errorf("the segment 'buildpackName' was not found in the resource id %q", input)
+	if id.SupportedBuildPackName, ok = parsed.Parsed["supportedBuildPackName"]; !ok {
+		return nil, fmt.Errorf("the segment 'supportedBuildPackName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -116,7 +116,7 @@ func ValidateSupportedBuildPackID(input interface{}, key string) (warnings []str
 // ID returns the formatted Supported Build Pack ID
 func (id SupportedBuildPackId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.AppPlatform/spring/%s/buildServices/%s/supportedBuildPacks/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.ServiceName, id.BuildServiceName, id.BuildpackName)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.SpringName, id.BuildServiceName, id.SupportedBuildPackName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Supported Build Pack ID
@@ -129,11 +129,11 @@ func (id SupportedBuildPackId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftAppPlatform", "Microsoft.AppPlatform", "Microsoft.AppPlatform"),
 		resourceids.StaticSegment("staticSpring", "spring", "spring"),
-		resourceids.UserSpecifiedSegment("serviceName", "serviceValue"),
+		resourceids.UserSpecifiedSegment("springName", "springValue"),
 		resourceids.StaticSegment("staticBuildServices", "buildServices", "buildServices"),
 		resourceids.UserSpecifiedSegment("buildServiceName", "buildServiceValue"),
 		resourceids.StaticSegment("staticSupportedBuildPacks", "supportedBuildPacks", "supportedBuildPacks"),
-		resourceids.UserSpecifiedSegment("buildpackName", "buildpackValue"),
+		resourceids.UserSpecifiedSegment("supportedBuildPackName", "supportedBuildPackValue"),
 	}
 }
 
@@ -142,9 +142,9 @@ func (id SupportedBuildPackId) String() string {
 	components := []string{
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
-		fmt.Sprintf("Service Name: %q", id.ServiceName),
+		fmt.Sprintf("Spring Name: %q", id.SpringName),
 		fmt.Sprintf("Build Service Name: %q", id.BuildServiceName),
-		fmt.Sprintf("Buildpack Name: %q", id.BuildpackName),
+		fmt.Sprintf("Supported Build Pack Name: %q", id.SupportedBuildPackName),
 	}
 	return fmt.Sprintf("Supported Build Pack (%s)", strings.Join(components, "\n"))
 }

@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = ModuleObjectDataTypeId{}
 
 func TestNewModuleObjectDataTypeID(t *testing.T) {
-	id := NewModuleObjectDataTypeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountValue", "moduleValue", "typeValue")
+	id := NewModuleObjectDataTypeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountValue", "moduleValue", "objectDataTypeValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -27,14 +27,14 @@ func TestNewModuleObjectDataTypeID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ModuleName'", id.ModuleName, "moduleValue")
 	}
 
-	if id.TypeName != "typeValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'TypeName'", id.TypeName, "typeValue")
+	if id.ObjectDataTypeName != "objectDataTypeValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'ObjectDataTypeName'", id.ObjectDataTypeName, "objectDataTypeValue")
 	}
 }
 
 func TestFormatModuleObjectDataTypeID(t *testing.T) {
-	actual := NewModuleObjectDataTypeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountValue", "moduleValue", "typeValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue/modules/moduleValue/objectDataTypes/typeValue"
+	actual := NewModuleObjectDataTypeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountValue", "moduleValue", "objectDataTypeValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue/modules/moduleValue/objectDataTypes/objectDataTypeValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -108,18 +108,18 @@ func TestParseModuleObjectDataTypeID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue/modules/moduleValue/objectDataTypes/typeValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue/modules/moduleValue/objectDataTypes/objectDataTypeValue",
 			Expected: &ModuleObjectDataTypeId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:     "example-resource-group",
 				AutomationAccountName: "automationAccountValue",
 				ModuleName:            "moduleValue",
-				TypeName:              "typeValue",
+				ObjectDataTypeName:    "objectDataTypeValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue/modules/moduleValue/objectDataTypes/typeValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue/modules/moduleValue/objectDataTypes/objectDataTypeValue/extra",
 			Error: true,
 		},
 	}
@@ -154,8 +154,8 @@ func TestParseModuleObjectDataTypeID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ModuleName", v.Expected.ModuleName, actual.ModuleName)
 		}
 
-		if actual.TypeName != v.Expected.TypeName {
-			t.Fatalf("Expected %q but got %q for TypeName", v.Expected.TypeName, actual.TypeName)
+		if actual.ObjectDataTypeName != v.Expected.ObjectDataTypeName {
+			t.Fatalf("Expected %q but got %q for ObjectDataTypeName", v.Expected.ObjectDataTypeName, actual.ObjectDataTypeName)
 		}
 
 	}
@@ -284,34 +284,34 @@ func TestParseModuleObjectDataTypeIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue/modules/moduleValue/objectDataTypes/typeValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue/modules/moduleValue/objectDataTypes/objectDataTypeValue",
 			Expected: &ModuleObjectDataTypeId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:     "example-resource-group",
 				AutomationAccountName: "automationAccountValue",
 				ModuleName:            "moduleValue",
-				TypeName:              "typeValue",
+				ObjectDataTypeName:    "objectDataTypeValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue/modules/moduleValue/objectDataTypes/typeValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue/modules/moduleValue/objectDataTypes/objectDataTypeValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aUtOmAtIoN/aUtOmAtIoNaCcOuNtS/aUtOmAtIoNaCcOuNtVaLuE/mOdUlEs/mOdUlEvAlUe/oBjEcTdAtAtYpEs/tYpEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aUtOmAtIoN/aUtOmAtIoNaCcOuNtS/aUtOmAtIoNaCcOuNtVaLuE/mOdUlEs/mOdUlEvAlUe/oBjEcTdAtAtYpEs/oBjEcTdAtAtYpEvAlUe",
 			Expected: &ModuleObjectDataTypeId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:     "eXaMpLe-rEsOuRcE-GrOuP",
 				AutomationAccountName: "aUtOmAtIoNaCcOuNtVaLuE",
 				ModuleName:            "mOdUlEvAlUe",
-				TypeName:              "tYpEvAlUe",
+				ObjectDataTypeName:    "oBjEcTdAtAtYpEvAlUe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aUtOmAtIoN/aUtOmAtIoNaCcOuNtS/aUtOmAtIoNaCcOuNtVaLuE/mOdUlEs/mOdUlEvAlUe/oBjEcTdAtAtYpEs/tYpEvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aUtOmAtIoN/aUtOmAtIoNaCcOuNtS/aUtOmAtIoNaCcOuNtVaLuE/mOdUlEs/mOdUlEvAlUe/oBjEcTdAtAtYpEs/oBjEcTdAtAtYpEvAlUe/extra",
 			Error: true,
 		},
 	}
@@ -346,8 +346,8 @@ func TestParseModuleObjectDataTypeIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ModuleName", v.Expected.ModuleName, actual.ModuleName)
 		}
 
-		if actual.TypeName != v.Expected.TypeName {
-			t.Fatalf("Expected %q but got %q for TypeName", v.Expected.TypeName, actual.TypeName)
+		if actual.ObjectDataTypeName != v.Expected.ObjectDataTypeName {
+			t.Fatalf("Expected %q but got %q for ObjectDataTypeName", v.Expected.ObjectDataTypeName, actual.ObjectDataTypeName)
 		}
 
 	}

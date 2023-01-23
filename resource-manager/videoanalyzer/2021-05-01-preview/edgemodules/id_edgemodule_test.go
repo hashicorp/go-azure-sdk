@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = EdgeModuleId{}
 
 func TestNewEdgeModuleID(t *testing.T) {
-	id := NewEdgeModuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "edgeModuleValue")
+	id := NewEdgeModuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "videoAnalyzerValue", "edgeModuleValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -19,8 +19,8 @@ func TestNewEdgeModuleID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.AccountName != "accountValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AccountName'", id.AccountName, "accountValue")
+	if id.VideoAnalyzerName != "videoAnalyzerValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'VideoAnalyzerName'", id.VideoAnalyzerName, "videoAnalyzerValue")
 	}
 
 	if id.EdgeModuleName != "edgeModuleValue" {
@@ -29,8 +29,8 @@ func TestNewEdgeModuleID(t *testing.T) {
 }
 
 func TestFormatEdgeModuleID(t *testing.T) {
-	actual := NewEdgeModuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "edgeModuleValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/videoAnalyzers/accountValue/edgeModules/edgeModuleValue"
+	actual := NewEdgeModuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "videoAnalyzerValue", "edgeModuleValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/videoAnalyzers/videoAnalyzerValue/edgeModules/edgeModuleValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -84,27 +84,27 @@ func TestParseEdgeModuleID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/videoAnalyzers/accountValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/videoAnalyzers/videoAnalyzerValue",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/videoAnalyzers/accountValue/edgeModules",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/videoAnalyzers/videoAnalyzerValue/edgeModules",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/videoAnalyzers/accountValue/edgeModules/edgeModuleValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/videoAnalyzers/videoAnalyzerValue/edgeModules/edgeModuleValue",
 			Expected: &EdgeModuleId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				AccountName:       "accountValue",
+				VideoAnalyzerName: "videoAnalyzerValue",
 				EdgeModuleName:    "edgeModuleValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/videoAnalyzers/accountValue/edgeModules/edgeModuleValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/videoAnalyzers/videoAnalyzerValue/edgeModules/edgeModuleValue/extra",
 			Error: true,
 		},
 	}
@@ -131,8 +131,8 @@ func TestParseEdgeModuleID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.AccountName != v.Expected.AccountName {
-			t.Fatalf("Expected %q but got %q for AccountName", v.Expected.AccountName, actual.AccountName)
+		if actual.VideoAnalyzerName != v.Expected.VideoAnalyzerName {
+			t.Fatalf("Expected %q but got %q for VideoAnalyzerName", v.Expected.VideoAnalyzerName, actual.VideoAnalyzerName)
 		}
 
 		if actual.EdgeModuleName != v.Expected.EdgeModuleName {
@@ -225,52 +225,52 @@ func TestParseEdgeModuleIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/videoAnalyzers/accountValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/videoAnalyzers/videoAnalyzerValue",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mEdIa/vIdEoAnAlYzErS/aCcOuNtVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mEdIa/vIdEoAnAlYzErS/vIdEoAnAlYzErVaLuE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/videoAnalyzers/accountValue/edgeModules",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/videoAnalyzers/videoAnalyzerValue/edgeModules",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mEdIa/vIdEoAnAlYzErS/aCcOuNtVaLuE/eDgEmOdUlEs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mEdIa/vIdEoAnAlYzErS/vIdEoAnAlYzErVaLuE/eDgEmOdUlEs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/videoAnalyzers/accountValue/edgeModules/edgeModuleValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/videoAnalyzers/videoAnalyzerValue/edgeModules/edgeModuleValue",
 			Expected: &EdgeModuleId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				AccountName:       "accountValue",
+				VideoAnalyzerName: "videoAnalyzerValue",
 				EdgeModuleName:    "edgeModuleValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/videoAnalyzers/accountValue/edgeModules/edgeModuleValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/videoAnalyzers/videoAnalyzerValue/edgeModules/edgeModuleValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mEdIa/vIdEoAnAlYzErS/aCcOuNtVaLuE/eDgEmOdUlEs/eDgEmOdUlEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mEdIa/vIdEoAnAlYzErS/vIdEoAnAlYzErVaLuE/eDgEmOdUlEs/eDgEmOdUlEvAlUe",
 			Expected: &EdgeModuleId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				AccountName:       "aCcOuNtVaLuE",
+				VideoAnalyzerName: "vIdEoAnAlYzErVaLuE",
 				EdgeModuleName:    "eDgEmOdUlEvAlUe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mEdIa/vIdEoAnAlYzErS/aCcOuNtVaLuE/eDgEmOdUlEs/eDgEmOdUlEvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mEdIa/vIdEoAnAlYzErS/vIdEoAnAlYzErVaLuE/eDgEmOdUlEs/eDgEmOdUlEvAlUe/extra",
 			Error: true,
 		},
 	}
@@ -297,8 +297,8 @@ func TestParseEdgeModuleIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.AccountName != v.Expected.AccountName {
-			t.Fatalf("Expected %q but got %q for AccountName", v.Expected.AccountName, actual.AccountName)
+		if actual.VideoAnalyzerName != v.Expected.VideoAnalyzerName {
+			t.Fatalf("Expected %q but got %q for VideoAnalyzerName", v.Expected.VideoAnalyzerName, actual.VideoAnalyzerName)
 		}
 
 		if actual.EdgeModuleName != v.Expected.EdgeModuleName {

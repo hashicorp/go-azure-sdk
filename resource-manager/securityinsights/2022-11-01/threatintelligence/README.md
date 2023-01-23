@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := threatintelligence.NewIndicatorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "nameValue")
+id := threatintelligence.NewIndicatorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "indicatorValue")
 
 payload := threatintelligence.ThreatIntelligenceAppendTags{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := threatintelligence.NewIndicatorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "nameValue")
+id := threatintelligence.NewIndicatorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "indicatorValue")
 
 payload := threatintelligence.ThreatIntelligenceIndicatorModel{
 	// ...
@@ -87,7 +87,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := threatintelligence.NewIndicatorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "nameValue")
+id := threatintelligence.NewIndicatorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "indicatorValue")
 
 read, err := client.IndicatorDelete(ctx, id)
 if err != nil {
@@ -103,7 +103,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := threatintelligence.NewIndicatorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "nameValue")
+id := threatintelligence.NewIndicatorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "indicatorValue")
 
 read, err := client.IndicatorGet(ctx, id)
 if err != nil {
@@ -157,7 +157,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := threatintelligence.NewIndicatorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "nameValue")
+id := threatintelligence.NewIndicatorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "indicatorValue")
 
 payload := threatintelligence.ThreatIntelligenceIndicatorModel{
 	// ...

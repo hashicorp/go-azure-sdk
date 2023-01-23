@@ -13,15 +13,15 @@ var _ resourceids.ResourceId = AutoScaleSettingId{}
 type AutoScaleSettingId struct {
 	SubscriptionId       string
 	ResourceGroupName    string
-	AutoscaleSettingName string
+	AutoScaleSettingName string
 }
 
 // NewAutoScaleSettingID returns a new AutoScaleSettingId struct
-func NewAutoScaleSettingID(subscriptionId string, resourceGroupName string, autoscaleSettingName string) AutoScaleSettingId {
+func NewAutoScaleSettingID(subscriptionId string, resourceGroupName string, autoScaleSettingName string) AutoScaleSettingId {
 	return AutoScaleSettingId{
 		SubscriptionId:       subscriptionId,
 		ResourceGroupName:    resourceGroupName,
-		AutoscaleSettingName: autoscaleSettingName,
+		AutoScaleSettingName: autoScaleSettingName,
 	}
 }
 
@@ -44,8 +44,8 @@ func ParseAutoScaleSettingID(input string) (*AutoScaleSettingId, error) {
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.AutoscaleSettingName, ok = parsed.Parsed["autoscaleSettingName"]; !ok {
-		return nil, fmt.Errorf("the segment 'autoscaleSettingName' was not found in the resource id %q", input)
+	if id.AutoScaleSettingName, ok = parsed.Parsed["autoScaleSettingName"]; !ok {
+		return nil, fmt.Errorf("the segment 'autoScaleSettingName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -71,8 +71,8 @@ func ParseAutoScaleSettingIDInsensitively(input string) (*AutoScaleSettingId, er
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.AutoscaleSettingName, ok = parsed.Parsed["autoscaleSettingName"]; !ok {
-		return nil, fmt.Errorf("the segment 'autoscaleSettingName' was not found in the resource id %q", input)
+	if id.AutoScaleSettingName, ok = parsed.Parsed["autoScaleSettingName"]; !ok {
+		return nil, fmt.Errorf("the segment 'autoScaleSettingName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -96,7 +96,7 @@ func ValidateAutoScaleSettingID(input interface{}, key string) (warnings []strin
 // ID returns the formatted Auto Scale Setting ID
 func (id AutoScaleSettingId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.Insights/autoScaleSettings/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.AutoscaleSettingName)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.AutoScaleSettingName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Auto Scale Setting ID
@@ -109,7 +109,7 @@ func (id AutoScaleSettingId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftInsights", "Microsoft.Insights", "Microsoft.Insights"),
 		resourceids.StaticSegment("staticAutoScaleSettings", "autoScaleSettings", "autoScaleSettings"),
-		resourceids.UserSpecifiedSegment("autoscaleSettingName", "autoscaleSettingValue"),
+		resourceids.UserSpecifiedSegment("autoScaleSettingName", "autoScaleSettingValue"),
 	}
 }
 
@@ -118,7 +118,7 @@ func (id AutoScaleSettingId) String() string {
 	components := []string{
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
-		fmt.Sprintf("Autoscale Setting Name: %q", id.AutoscaleSettingName),
+		fmt.Sprintf("Auto Scale Setting Name: %q", id.AutoScaleSettingName),
 	}
 	return fmt.Sprintf("Auto Scale Setting (%s)", strings.Join(components, "\n"))
 }

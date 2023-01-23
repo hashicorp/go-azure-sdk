@@ -14,16 +14,16 @@ type CustomImageId struct {
 	SubscriptionId    string
 	ResourceGroupName string
 	LabName           string
-	Name              string
+	CustomImageName   string
 }
 
 // NewCustomImageID returns a new CustomImageId struct
-func NewCustomImageID(subscriptionId string, resourceGroupName string, labName string, name string) CustomImageId {
+func NewCustomImageID(subscriptionId string, resourceGroupName string, labName string, customImageName string) CustomImageId {
 	return CustomImageId{
 		SubscriptionId:    subscriptionId,
 		ResourceGroupName: resourceGroupName,
 		LabName:           labName,
-		Name:              name,
+		CustomImageName:   customImageName,
 	}
 }
 
@@ -50,8 +50,8 @@ func ParseCustomImageID(input string) (*CustomImageId, error) {
 		return nil, fmt.Errorf("the segment 'labName' was not found in the resource id %q", input)
 	}
 
-	if id.Name, ok = parsed.Parsed["name"]; !ok {
-		return nil, fmt.Errorf("the segment 'name' was not found in the resource id %q", input)
+	if id.CustomImageName, ok = parsed.Parsed["customImageName"]; !ok {
+		return nil, fmt.Errorf("the segment 'customImageName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -81,8 +81,8 @@ func ParseCustomImageIDInsensitively(input string) (*CustomImageId, error) {
 		return nil, fmt.Errorf("the segment 'labName' was not found in the resource id %q", input)
 	}
 
-	if id.Name, ok = parsed.Parsed["name"]; !ok {
-		return nil, fmt.Errorf("the segment 'name' was not found in the resource id %q", input)
+	if id.CustomImageName, ok = parsed.Parsed["customImageName"]; !ok {
+		return nil, fmt.Errorf("the segment 'customImageName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -106,7 +106,7 @@ func ValidateCustomImageID(input interface{}, key string) (warnings []string, er
 // ID returns the formatted Custom Image ID
 func (id CustomImageId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.DevTestLab/labs/%s/customImages/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.LabName, id.Name)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.LabName, id.CustomImageName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Custom Image ID
@@ -121,7 +121,7 @@ func (id CustomImageId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticLabs", "labs", "labs"),
 		resourceids.UserSpecifiedSegment("labName", "labValue"),
 		resourceids.StaticSegment("staticCustomImages", "customImages", "customImages"),
-		resourceids.UserSpecifiedSegment("name", "nameValue"),
+		resourceids.UserSpecifiedSegment("customImageName", "customImageValue"),
 	}
 }
 
@@ -131,7 +131,7 @@ func (id CustomImageId) String() string {
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
 		fmt.Sprintf("Lab Name: %q", id.LabName),
-		fmt.Sprintf("Name: %q", id.Name),
+		fmt.Sprintf("Custom Image Name: %q", id.CustomImageName),
 	}
 	return fmt.Sprintf("Custom Image (%s)", strings.Join(components, "\n"))
 }

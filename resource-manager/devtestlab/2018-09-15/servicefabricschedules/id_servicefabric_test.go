@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = ServiceFabricId{}
 
 func TestNewServiceFabricID(t *testing.T) {
-	id := NewServiceFabricID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "userValue", "nameValue")
+	id := NewServiceFabricID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "userValue", "serviceFabricValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -27,14 +27,14 @@ func TestNewServiceFabricID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'UserName'", id.UserName, "userValue")
 	}
 
-	if id.Name != "nameValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'Name'", id.Name, "nameValue")
+	if id.ServiceFabricName != "serviceFabricValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'ServiceFabricName'", id.ServiceFabricName, "serviceFabricValue")
 	}
 }
 
 func TestFormatServiceFabricID(t *testing.T) {
-	actual := NewServiceFabricID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "userValue", "nameValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labValue/users/userValue/serviceFabrics/nameValue"
+	actual := NewServiceFabricID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "userValue", "serviceFabricValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labValue/users/userValue/serviceFabrics/serviceFabricValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -108,18 +108,18 @@ func TestParseServiceFabricID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labValue/users/userValue/serviceFabrics/nameValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labValue/users/userValue/serviceFabrics/serviceFabricValue",
 			Expected: &ServiceFabricId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				LabName:           "labValue",
 				UserName:          "userValue",
-				Name:              "nameValue",
+				ServiceFabricName: "serviceFabricValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labValue/users/userValue/serviceFabrics/nameValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labValue/users/userValue/serviceFabrics/serviceFabricValue/extra",
 			Error: true,
 		},
 	}
@@ -154,8 +154,8 @@ func TestParseServiceFabricID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for UserName", v.Expected.UserName, actual.UserName)
 		}
 
-		if actual.Name != v.Expected.Name {
-			t.Fatalf("Expected %q but got %q for Name", v.Expected.Name, actual.Name)
+		if actual.ServiceFabricName != v.Expected.ServiceFabricName {
+			t.Fatalf("Expected %q but got %q for ServiceFabricName", v.Expected.ServiceFabricName, actual.ServiceFabricName)
 		}
 
 	}
@@ -284,34 +284,34 @@ func TestParseServiceFabricIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labValue/users/userValue/serviceFabrics/nameValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labValue/users/userValue/serviceFabrics/serviceFabricValue",
 			Expected: &ServiceFabricId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				LabName:           "labValue",
 				UserName:          "userValue",
-				Name:              "nameValue",
+				ServiceFabricName: "serviceFabricValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labValue/users/userValue/serviceFabrics/nameValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labValue/users/userValue/serviceFabrics/serviceFabricValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvTeStLaB/lAbS/lAbVaLuE/uSeRs/uSeRvAlUe/sErViCeFaBrIcS/nAmEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvTeStLaB/lAbS/lAbVaLuE/uSeRs/uSeRvAlUe/sErViCeFaBrIcS/sErViCeFaBrIcVaLuE",
 			Expected: &ServiceFabricId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
 				LabName:           "lAbVaLuE",
 				UserName:          "uSeRvAlUe",
-				Name:              "nAmEvAlUe",
+				ServiceFabricName: "sErViCeFaBrIcVaLuE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvTeStLaB/lAbS/lAbVaLuE/uSeRs/uSeRvAlUe/sErViCeFaBrIcS/nAmEvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvTeStLaB/lAbS/lAbVaLuE/uSeRs/uSeRvAlUe/sErViCeFaBrIcS/sErViCeFaBrIcVaLuE/extra",
 			Error: true,
 		},
 	}
@@ -346,8 +346,8 @@ func TestParseServiceFabricIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for UserName", v.Expected.UserName, actual.UserName)
 		}
 
-		if actual.Name != v.Expected.Name {
-			t.Fatalf("Expected %q but got %q for Name", v.Expected.Name, actual.Name)
+		if actual.ServiceFabricName != v.Expected.ServiceFabricName {
+			t.Fatalf("Expected %q but got %q for ServiceFabricName", v.Expected.ServiceFabricName, actual.ServiceFabricName)
 		}
 
 	}

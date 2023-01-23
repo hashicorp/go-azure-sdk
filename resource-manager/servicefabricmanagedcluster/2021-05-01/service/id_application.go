@@ -11,19 +11,19 @@ var _ resourceids.ResourceId = ApplicationId{}
 
 // ApplicationId is a struct representing the Resource ID for a Application
 type ApplicationId struct {
-	SubscriptionId    string
-	ResourceGroupName string
-	ClusterName       string
-	ApplicationName   string
+	SubscriptionId     string
+	ResourceGroupName  string
+	ManagedClusterName string
+	ApplicationName    string
 }
 
 // NewApplicationID returns a new ApplicationId struct
-func NewApplicationID(subscriptionId string, resourceGroupName string, clusterName string, applicationName string) ApplicationId {
+func NewApplicationID(subscriptionId string, resourceGroupName string, managedClusterName string, applicationName string) ApplicationId {
 	return ApplicationId{
-		SubscriptionId:    subscriptionId,
-		ResourceGroupName: resourceGroupName,
-		ClusterName:       clusterName,
-		ApplicationName:   applicationName,
+		SubscriptionId:     subscriptionId,
+		ResourceGroupName:  resourceGroupName,
+		ManagedClusterName: managedClusterName,
+		ApplicationName:    applicationName,
 	}
 }
 
@@ -46,8 +46,8 @@ func ParseApplicationID(input string) (*ApplicationId, error) {
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.ClusterName, ok = parsed.Parsed["clusterName"]; !ok {
-		return nil, fmt.Errorf("the segment 'clusterName' was not found in the resource id %q", input)
+	if id.ManagedClusterName, ok = parsed.Parsed["managedClusterName"]; !ok {
+		return nil, fmt.Errorf("the segment 'managedClusterName' was not found in the resource id %q", input)
 	}
 
 	if id.ApplicationName, ok = parsed.Parsed["applicationName"]; !ok {
@@ -77,8 +77,8 @@ func ParseApplicationIDInsensitively(input string) (*ApplicationId, error) {
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.ClusterName, ok = parsed.Parsed["clusterName"]; !ok {
-		return nil, fmt.Errorf("the segment 'clusterName' was not found in the resource id %q", input)
+	if id.ManagedClusterName, ok = parsed.Parsed["managedClusterName"]; !ok {
+		return nil, fmt.Errorf("the segment 'managedClusterName' was not found in the resource id %q", input)
 	}
 
 	if id.ApplicationName, ok = parsed.Parsed["applicationName"]; !ok {
@@ -106,7 +106,7 @@ func ValidateApplicationID(input interface{}, key string) (warnings []string, er
 // ID returns the formatted Application ID
 func (id ApplicationId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.ServiceFabric/managedClusters/%s/applications/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.ClusterName, id.ApplicationName)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.ManagedClusterName, id.ApplicationName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Application ID
@@ -119,7 +119,7 @@ func (id ApplicationId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftServiceFabric", "Microsoft.ServiceFabric", "Microsoft.ServiceFabric"),
 		resourceids.StaticSegment("staticManagedClusters", "managedClusters", "managedClusters"),
-		resourceids.UserSpecifiedSegment("clusterName", "clusterValue"),
+		resourceids.UserSpecifiedSegment("managedClusterName", "managedClusterValue"),
 		resourceids.StaticSegment("staticApplications", "applications", "applications"),
 		resourceids.UserSpecifiedSegment("applicationName", "applicationValue"),
 	}
@@ -130,7 +130,7 @@ func (id ApplicationId) String() string {
 	components := []string{
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
-		fmt.Sprintf("Cluster Name: %q", id.ClusterName),
+		fmt.Sprintf("Managed Cluster Name: %q", id.ManagedClusterName),
 		fmt.Sprintf("Application Name: %q", id.ApplicationName),
 	}
 	return fmt.Sprintf("Application (%s)", strings.Join(components, "\n"))

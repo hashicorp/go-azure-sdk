@@ -15,8 +15,8 @@ func TestNewQuotaLimitID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
 	}
 
-	if id.Location != "locationValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'Location'", id.Location, "locationValue")
+	if id.LocationName != "locationValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'LocationName'", id.LocationName, "locationValue")
 	}
 
 	if id.QuotaLimitName != "quotaLimitValue" {
@@ -83,7 +83,7 @@ func TestParseQuotaLimitID(t *testing.T) {
 			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.NetApp/locations/locationValue/quotaLimits/quotaLimitValue",
 			Expected: &QuotaLimitId{
 				SubscriptionId: "12345678-1234-9876-4563-123456789012",
-				Location:       "locationValue",
+				LocationName:   "locationValue",
 				QuotaLimitName: "quotaLimitValue",
 			},
 		},
@@ -112,8 +112,8 @@ func TestParseQuotaLimitID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for SubscriptionId", v.Expected.SubscriptionId, actual.SubscriptionId)
 		}
 
-		if actual.Location != v.Expected.Location {
-			t.Fatalf("Expected %q but got %q for Location", v.Expected.Location, actual.Location)
+		if actual.LocationName != v.Expected.LocationName {
+			t.Fatalf("Expected %q but got %q for LocationName", v.Expected.LocationName, actual.LocationName)
 		}
 
 		if actual.QuotaLimitName != v.Expected.QuotaLimitName {
@@ -209,7 +209,7 @@ func TestParseQuotaLimitIDInsensitively(t *testing.T) {
 			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.NetApp/locations/locationValue/quotaLimits/quotaLimitValue",
 			Expected: &QuotaLimitId{
 				SubscriptionId: "12345678-1234-9876-4563-123456789012",
-				Location:       "locationValue",
+				LocationName:   "locationValue",
 				QuotaLimitName: "quotaLimitValue",
 			},
 		},
@@ -223,7 +223,7 @@ func TestParseQuotaLimitIDInsensitively(t *testing.T) {
 			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.nEtApP/lOcAtIoNs/lOcAtIoNvAlUe/qUoTaLiMiTs/qUoTaLiMiTvAlUe",
 			Expected: &QuotaLimitId{
 				SubscriptionId: "12345678-1234-9876-4563-123456789012",
-				Location:       "lOcAtIoNvAlUe",
+				LocationName:   "lOcAtIoNvAlUe",
 				QuotaLimitName: "qUoTaLiMiTvAlUe",
 			},
 		},
@@ -252,8 +252,8 @@ func TestParseQuotaLimitIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for SubscriptionId", v.Expected.SubscriptionId, actual.SubscriptionId)
 		}
 
-		if actual.Location != v.Expected.Location {
-			t.Fatalf("Expected %q but got %q for Location", v.Expected.Location, actual.Location)
+		if actual.LocationName != v.Expected.LocationName {
+			t.Fatalf("Expected %q but got %q for LocationName", v.Expected.LocationName, actual.LocationName)
 		}
 
 		if actual.QuotaLimitName != v.Expected.QuotaLimitName {

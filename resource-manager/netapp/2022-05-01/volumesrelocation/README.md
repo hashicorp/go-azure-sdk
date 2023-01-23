@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := volumesrelocation.NewVolumeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "poolValue", "volumeValue")
+id := volumesrelocation.NewVolumeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "netAppAccountValue", "capacityPoolValue", "volumeValue")
 
 if err := client.VolumesFinalizeRelocationThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -36,7 +36,7 @@ if err := client.VolumesFinalizeRelocationThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := volumesrelocation.NewVolumeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "poolValue", "volumeValue")
+id := volumesrelocation.NewVolumeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "netAppAccountValue", "capacityPoolValue", "volumeValue")
 
 payload := volumesrelocation.RelocateVolumeRequest{
 	// ...
@@ -53,7 +53,7 @@ if err := client.VolumesRelocateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := volumesrelocation.NewVolumeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "poolValue", "volumeValue")
+id := volumesrelocation.NewVolumeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "netAppAccountValue", "capacityPoolValue", "volumeValue")
 
 if err := client.VolumesRevertRelocationThenPoll(ctx, id); err != nil {
 	// handle the error

@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = AttestationProvidersId{}
 
 func TestNewAttestationProvidersID(t *testing.T) {
-	id := NewAttestationProvidersID("12345678-1234-9876-4563-123456789012", "example-resource-group", "providerValue")
+	id := NewAttestationProvidersID("12345678-1234-9876-4563-123456789012", "example-resource-group", "attestationProviderValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -19,14 +19,14 @@ func TestNewAttestationProvidersID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.ProviderName != "providerValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ProviderName'", id.ProviderName, "providerValue")
+	if id.AttestationProviderName != "attestationProviderValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'AttestationProviderName'", id.AttestationProviderName, "attestationProviderValue")
 	}
 }
 
 func TestFormatAttestationProvidersID(t *testing.T) {
-	actual := NewAttestationProvidersID("12345678-1234-9876-4563-123456789012", "example-resource-group", "providerValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Attestation/attestationProviders/providerValue"
+	actual := NewAttestationProvidersID("12345678-1234-9876-4563-123456789012", "example-resource-group", "attestationProviderValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Attestation/attestationProviders/attestationProviderValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -80,16 +80,16 @@ func TestParseAttestationProvidersID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Attestation/attestationProviders/providerValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Attestation/attestationProviders/attestationProviderValue",
 			Expected: &AttestationProvidersId{
-				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName: "example-resource-group",
-				ProviderName:      "providerValue",
+				SubscriptionId:          "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:       "example-resource-group",
+				AttestationProviderName: "attestationProviderValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Attestation/attestationProviders/providerValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Attestation/attestationProviders/attestationProviderValue/extra",
 			Error: true,
 		},
 	}
@@ -116,8 +116,8 @@ func TestParseAttestationProvidersID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.ProviderName != v.Expected.ProviderName {
-			t.Fatalf("Expected %q but got %q for ProviderName", v.Expected.ProviderName, actual.ProviderName)
+		if actual.AttestationProviderName != v.Expected.AttestationProviderName {
+			t.Fatalf("Expected %q but got %q for AttestationProviderName", v.Expected.AttestationProviderName, actual.AttestationProviderName)
 		}
 
 	}
@@ -206,30 +206,30 @@ func TestParseAttestationProvidersIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Attestation/attestationProviders/providerValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Attestation/attestationProviders/attestationProviderValue",
 			Expected: &AttestationProvidersId{
-				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName: "example-resource-group",
-				ProviderName:      "providerValue",
+				SubscriptionId:          "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:       "example-resource-group",
+				AttestationProviderName: "attestationProviderValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Attestation/attestationProviders/providerValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Attestation/attestationProviders/attestationProviderValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aTtEsTaTiOn/aTtEsTaTiOnPrOvIdErS/pRoViDeRvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aTtEsTaTiOn/aTtEsTaTiOnPrOvIdErS/aTtEsTaTiOnPrOvIdErVaLuE",
 			Expected: &AttestationProvidersId{
-				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				ProviderName:      "pRoViDeRvAlUe",
+				SubscriptionId:          "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:       "eXaMpLe-rEsOuRcE-GrOuP",
+				AttestationProviderName: "aTtEsTaTiOnPrOvIdErVaLuE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aTtEsTaTiOn/aTtEsTaTiOnPrOvIdErS/pRoViDeRvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aTtEsTaTiOn/aTtEsTaTiOnPrOvIdErS/aTtEsTaTiOnPrOvIdErVaLuE/extra",
 			Error: true,
 		},
 	}
@@ -256,8 +256,8 @@ func TestParseAttestationProvidersIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.ProviderName != v.Expected.ProviderName {
-			t.Fatalf("Expected %q but got %q for ProviderName", v.Expected.ProviderName, actual.ProviderName)
+		if actual.AttestationProviderName != v.Expected.AttestationProviderName {
+			t.Fatalf("Expected %q but got %q for AttestationProviderName", v.Expected.AttestationProviderName, actual.AttestationProviderName)
 		}
 
 	}

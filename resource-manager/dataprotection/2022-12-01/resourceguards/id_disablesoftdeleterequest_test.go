@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = DisableSoftDeleteRequestId{}
 
 func TestNewDisableSoftDeleteRequestID(t *testing.T) {
-	id := NewDisableSoftDeleteRequestID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceGuardsValue", "requestValue")
+	id := NewDisableSoftDeleteRequestID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceGuardValue", "disableSoftDeleteRequestValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -19,18 +19,18 @@ func TestNewDisableSoftDeleteRequestID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.ResourceGuardsName != "resourceGuardsValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ResourceGuardsName'", id.ResourceGuardsName, "resourceGuardsValue")
+	if id.ResourceGuardName != "resourceGuardValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'ResourceGuardName'", id.ResourceGuardName, "resourceGuardValue")
 	}
 
-	if id.RequestName != "requestValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'RequestName'", id.RequestName, "requestValue")
+	if id.DisableSoftDeleteRequestName != "disableSoftDeleteRequestValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'DisableSoftDeleteRequestName'", id.DisableSoftDeleteRequestName, "disableSoftDeleteRequestValue")
 	}
 }
 
 func TestFormatDisableSoftDeleteRequestID(t *testing.T) {
-	actual := NewDisableSoftDeleteRequestID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceGuardsValue", "requestValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataProtection/resourceGuards/resourceGuardsValue/disableSoftDeleteRequests/requestValue"
+	actual := NewDisableSoftDeleteRequestID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceGuardValue", "disableSoftDeleteRequestValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataProtection/resourceGuards/resourceGuardValue/disableSoftDeleteRequests/disableSoftDeleteRequestValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -84,27 +84,27 @@ func TestParseDisableSoftDeleteRequestID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataProtection/resourceGuards/resourceGuardsValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataProtection/resourceGuards/resourceGuardValue",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataProtection/resourceGuards/resourceGuardsValue/disableSoftDeleteRequests",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataProtection/resourceGuards/resourceGuardValue/disableSoftDeleteRequests",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataProtection/resourceGuards/resourceGuardsValue/disableSoftDeleteRequests/requestValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataProtection/resourceGuards/resourceGuardValue/disableSoftDeleteRequests/disableSoftDeleteRequestValue",
 			Expected: &DisableSoftDeleteRequestId{
-				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName:  "example-resource-group",
-				ResourceGuardsName: "resourceGuardsValue",
-				RequestName:        "requestValue",
+				SubscriptionId:               "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:            "example-resource-group",
+				ResourceGuardName:            "resourceGuardValue",
+				DisableSoftDeleteRequestName: "disableSoftDeleteRequestValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataProtection/resourceGuards/resourceGuardsValue/disableSoftDeleteRequests/requestValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataProtection/resourceGuards/resourceGuardValue/disableSoftDeleteRequests/disableSoftDeleteRequestValue/extra",
 			Error: true,
 		},
 	}
@@ -131,12 +131,12 @@ func TestParseDisableSoftDeleteRequestID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.ResourceGuardsName != v.Expected.ResourceGuardsName {
-			t.Fatalf("Expected %q but got %q for ResourceGuardsName", v.Expected.ResourceGuardsName, actual.ResourceGuardsName)
+		if actual.ResourceGuardName != v.Expected.ResourceGuardName {
+			t.Fatalf("Expected %q but got %q for ResourceGuardName", v.Expected.ResourceGuardName, actual.ResourceGuardName)
 		}
 
-		if actual.RequestName != v.Expected.RequestName {
-			t.Fatalf("Expected %q but got %q for RequestName", v.Expected.RequestName, actual.RequestName)
+		if actual.DisableSoftDeleteRequestName != v.Expected.DisableSoftDeleteRequestName {
+			t.Fatalf("Expected %q but got %q for DisableSoftDeleteRequestName", v.Expected.DisableSoftDeleteRequestName, actual.DisableSoftDeleteRequestName)
 		}
 
 	}
@@ -225,52 +225,52 @@ func TestParseDisableSoftDeleteRequestIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataProtection/resourceGuards/resourceGuardsValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataProtection/resourceGuards/resourceGuardValue",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtApRoTeCtIoN/rEsOuRcEgUaRdS/rEsOuRcEgUaRdSvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtApRoTeCtIoN/rEsOuRcEgUaRdS/rEsOuRcEgUaRdVaLuE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataProtection/resourceGuards/resourceGuardsValue/disableSoftDeleteRequests",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataProtection/resourceGuards/resourceGuardValue/disableSoftDeleteRequests",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtApRoTeCtIoN/rEsOuRcEgUaRdS/rEsOuRcEgUaRdSvAlUe/dIsAbLeSoFtDeLeTeReQuEsTs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtApRoTeCtIoN/rEsOuRcEgUaRdS/rEsOuRcEgUaRdVaLuE/dIsAbLeSoFtDeLeTeReQuEsTs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataProtection/resourceGuards/resourceGuardsValue/disableSoftDeleteRequests/requestValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataProtection/resourceGuards/resourceGuardValue/disableSoftDeleteRequests/disableSoftDeleteRequestValue",
 			Expected: &DisableSoftDeleteRequestId{
-				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName:  "example-resource-group",
-				ResourceGuardsName: "resourceGuardsValue",
-				RequestName:        "requestValue",
+				SubscriptionId:               "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:            "example-resource-group",
+				ResourceGuardName:            "resourceGuardValue",
+				DisableSoftDeleteRequestName: "disableSoftDeleteRequestValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataProtection/resourceGuards/resourceGuardsValue/disableSoftDeleteRequests/requestValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataProtection/resourceGuards/resourceGuardValue/disableSoftDeleteRequests/disableSoftDeleteRequestValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtApRoTeCtIoN/rEsOuRcEgUaRdS/rEsOuRcEgUaRdSvAlUe/dIsAbLeSoFtDeLeTeReQuEsTs/rEqUeStVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtApRoTeCtIoN/rEsOuRcEgUaRdS/rEsOuRcEgUaRdVaLuE/dIsAbLeSoFtDeLeTeReQuEsTs/dIsAbLeSoFtDeLeTeReQuEsTvAlUe",
 			Expected: &DisableSoftDeleteRequestId{
-				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName:  "eXaMpLe-rEsOuRcE-GrOuP",
-				ResourceGuardsName: "rEsOuRcEgUaRdSvAlUe",
-				RequestName:        "rEqUeStVaLuE",
+				SubscriptionId:               "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:            "eXaMpLe-rEsOuRcE-GrOuP",
+				ResourceGuardName:            "rEsOuRcEgUaRdVaLuE",
+				DisableSoftDeleteRequestName: "dIsAbLeSoFtDeLeTeReQuEsTvAlUe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtApRoTeCtIoN/rEsOuRcEgUaRdS/rEsOuRcEgUaRdSvAlUe/dIsAbLeSoFtDeLeTeReQuEsTs/rEqUeStVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtApRoTeCtIoN/rEsOuRcEgUaRdS/rEsOuRcEgUaRdVaLuE/dIsAbLeSoFtDeLeTeReQuEsTs/dIsAbLeSoFtDeLeTeReQuEsTvAlUe/extra",
 			Error: true,
 		},
 	}
@@ -297,12 +297,12 @@ func TestParseDisableSoftDeleteRequestIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.ResourceGuardsName != v.Expected.ResourceGuardsName {
-			t.Fatalf("Expected %q but got %q for ResourceGuardsName", v.Expected.ResourceGuardsName, actual.ResourceGuardsName)
+		if actual.ResourceGuardName != v.Expected.ResourceGuardName {
+			t.Fatalf("Expected %q but got %q for ResourceGuardName", v.Expected.ResourceGuardName, actual.ResourceGuardName)
 		}
 
-		if actual.RequestName != v.Expected.RequestName {
-			t.Fatalf("Expected %q but got %q for RequestName", v.Expected.RequestName, actual.RequestName)
+		if actual.DisableSoftDeleteRequestName != v.Expected.DisableSoftDeleteRequestName {
+			t.Fatalf("Expected %q but got %q for DisableSoftDeleteRequestName", v.Expected.DisableSoftDeleteRequestName, actual.DisableSoftDeleteRequestName)
 		}
 
 	}

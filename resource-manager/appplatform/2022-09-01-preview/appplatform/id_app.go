@@ -13,16 +13,16 @@ var _ resourceids.ResourceId = AppId{}
 type AppId struct {
 	SubscriptionId    string
 	ResourceGroupName string
-	ServiceName       string
+	SpringName        string
 	AppName           string
 }
 
 // NewAppID returns a new AppId struct
-func NewAppID(subscriptionId string, resourceGroupName string, serviceName string, appName string) AppId {
+func NewAppID(subscriptionId string, resourceGroupName string, springName string, appName string) AppId {
 	return AppId{
 		SubscriptionId:    subscriptionId,
 		ResourceGroupName: resourceGroupName,
-		ServiceName:       serviceName,
+		SpringName:        springName,
 		AppName:           appName,
 	}
 }
@@ -46,8 +46,8 @@ func ParseAppID(input string) (*AppId, error) {
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.ServiceName, ok = parsed.Parsed["serviceName"]; !ok {
-		return nil, fmt.Errorf("the segment 'serviceName' was not found in the resource id %q", input)
+	if id.SpringName, ok = parsed.Parsed["springName"]; !ok {
+		return nil, fmt.Errorf("the segment 'springName' was not found in the resource id %q", input)
 	}
 
 	if id.AppName, ok = parsed.Parsed["appName"]; !ok {
@@ -77,8 +77,8 @@ func ParseAppIDInsensitively(input string) (*AppId, error) {
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.ServiceName, ok = parsed.Parsed["serviceName"]; !ok {
-		return nil, fmt.Errorf("the segment 'serviceName' was not found in the resource id %q", input)
+	if id.SpringName, ok = parsed.Parsed["springName"]; !ok {
+		return nil, fmt.Errorf("the segment 'springName' was not found in the resource id %q", input)
 	}
 
 	if id.AppName, ok = parsed.Parsed["appName"]; !ok {
@@ -106,7 +106,7 @@ func ValidateAppID(input interface{}, key string) (warnings []string, errors []e
 // ID returns the formatted App ID
 func (id AppId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.AppPlatform/spring/%s/apps/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.ServiceName, id.AppName)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.SpringName, id.AppName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this App ID
@@ -119,7 +119,7 @@ func (id AppId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftAppPlatform", "Microsoft.AppPlatform", "Microsoft.AppPlatform"),
 		resourceids.StaticSegment("staticSpring", "spring", "spring"),
-		resourceids.UserSpecifiedSegment("serviceName", "serviceValue"),
+		resourceids.UserSpecifiedSegment("springName", "springValue"),
 		resourceids.StaticSegment("staticApps", "apps", "apps"),
 		resourceids.UserSpecifiedSegment("appName", "appValue"),
 	}
@@ -130,7 +130,7 @@ func (id AppId) String() string {
 	components := []string{
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
-		fmt.Sprintf("Service Name: %q", id.ServiceName),
+		fmt.Sprintf("Spring Name: %q", id.SpringName),
 		fmt.Sprintf("App Name: %q", id.AppName),
 	}
 	return fmt.Sprintf("App (%s)", strings.Join(components, "\n"))

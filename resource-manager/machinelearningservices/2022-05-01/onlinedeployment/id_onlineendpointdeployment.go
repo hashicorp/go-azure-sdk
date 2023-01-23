@@ -11,21 +11,21 @@ var _ resourceids.ResourceId = OnlineEndpointDeploymentId{}
 
 // OnlineEndpointDeploymentId is a struct representing the Resource ID for a Online Endpoint Deployment
 type OnlineEndpointDeploymentId struct {
-	SubscriptionId    string
-	ResourceGroupName string
-	WorkspaceName     string
-	EndpointName      string
-	DeploymentName    string
+	SubscriptionId     string
+	ResourceGroupName  string
+	WorkspaceName      string
+	OnlineEndpointName string
+	DeploymentName     string
 }
 
 // NewOnlineEndpointDeploymentID returns a new OnlineEndpointDeploymentId struct
-func NewOnlineEndpointDeploymentID(subscriptionId string, resourceGroupName string, workspaceName string, endpointName string, deploymentName string) OnlineEndpointDeploymentId {
+func NewOnlineEndpointDeploymentID(subscriptionId string, resourceGroupName string, workspaceName string, onlineEndpointName string, deploymentName string) OnlineEndpointDeploymentId {
 	return OnlineEndpointDeploymentId{
-		SubscriptionId:    subscriptionId,
-		ResourceGroupName: resourceGroupName,
-		WorkspaceName:     workspaceName,
-		EndpointName:      endpointName,
-		DeploymentName:    deploymentName,
+		SubscriptionId:     subscriptionId,
+		ResourceGroupName:  resourceGroupName,
+		WorkspaceName:      workspaceName,
+		OnlineEndpointName: onlineEndpointName,
+		DeploymentName:     deploymentName,
 	}
 }
 
@@ -52,8 +52,8 @@ func ParseOnlineEndpointDeploymentID(input string) (*OnlineEndpointDeploymentId,
 		return nil, fmt.Errorf("the segment 'workspaceName' was not found in the resource id %q", input)
 	}
 
-	if id.EndpointName, ok = parsed.Parsed["endpointName"]; !ok {
-		return nil, fmt.Errorf("the segment 'endpointName' was not found in the resource id %q", input)
+	if id.OnlineEndpointName, ok = parsed.Parsed["onlineEndpointName"]; !ok {
+		return nil, fmt.Errorf("the segment 'onlineEndpointName' was not found in the resource id %q", input)
 	}
 
 	if id.DeploymentName, ok = parsed.Parsed["deploymentName"]; !ok {
@@ -87,8 +87,8 @@ func ParseOnlineEndpointDeploymentIDInsensitively(input string) (*OnlineEndpoint
 		return nil, fmt.Errorf("the segment 'workspaceName' was not found in the resource id %q", input)
 	}
 
-	if id.EndpointName, ok = parsed.Parsed["endpointName"]; !ok {
-		return nil, fmt.Errorf("the segment 'endpointName' was not found in the resource id %q", input)
+	if id.OnlineEndpointName, ok = parsed.Parsed["onlineEndpointName"]; !ok {
+		return nil, fmt.Errorf("the segment 'onlineEndpointName' was not found in the resource id %q", input)
 	}
 
 	if id.DeploymentName, ok = parsed.Parsed["deploymentName"]; !ok {
@@ -116,7 +116,7 @@ func ValidateOnlineEndpointDeploymentID(input interface{}, key string) (warnings
 // ID returns the formatted Online Endpoint Deployment ID
 func (id OnlineEndpointDeploymentId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.MachineLearningServices/workspaces/%s/onlineEndpoints/%s/deployments/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.WorkspaceName, id.EndpointName, id.DeploymentName)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.WorkspaceName, id.OnlineEndpointName, id.DeploymentName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Online Endpoint Deployment ID
@@ -131,7 +131,7 @@ func (id OnlineEndpointDeploymentId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticWorkspaces", "workspaces", "workspaces"),
 		resourceids.UserSpecifiedSegment("workspaceName", "workspaceValue"),
 		resourceids.StaticSegment("staticOnlineEndpoints", "onlineEndpoints", "onlineEndpoints"),
-		resourceids.UserSpecifiedSegment("endpointName", "endpointValue"),
+		resourceids.UserSpecifiedSegment("onlineEndpointName", "onlineEndpointValue"),
 		resourceids.StaticSegment("staticDeployments", "deployments", "deployments"),
 		resourceids.UserSpecifiedSegment("deploymentName", "deploymentValue"),
 	}
@@ -143,7 +143,7 @@ func (id OnlineEndpointDeploymentId) String() string {
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
 		fmt.Sprintf("Workspace Name: %q", id.WorkspaceName),
-		fmt.Sprintf("Endpoint Name: %q", id.EndpointName),
+		fmt.Sprintf("Online Endpoint Name: %q", id.OnlineEndpointName),
 		fmt.Sprintf("Deployment Name: %q", id.DeploymentName),
 	}
 	return fmt.Sprintf("Online Endpoint Deployment (%s)", strings.Join(components, "\n"))

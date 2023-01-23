@@ -15,17 +15,17 @@ type ModuleObjectDataTypeId struct {
 	ResourceGroupName     string
 	AutomationAccountName string
 	ModuleName            string
-	TypeName              string
+	ObjectDataTypeName    string
 }
 
 // NewModuleObjectDataTypeID returns a new ModuleObjectDataTypeId struct
-func NewModuleObjectDataTypeID(subscriptionId string, resourceGroupName string, automationAccountName string, moduleName string, typeName string) ModuleObjectDataTypeId {
+func NewModuleObjectDataTypeID(subscriptionId string, resourceGroupName string, automationAccountName string, moduleName string, objectDataTypeName string) ModuleObjectDataTypeId {
 	return ModuleObjectDataTypeId{
 		SubscriptionId:        subscriptionId,
 		ResourceGroupName:     resourceGroupName,
 		AutomationAccountName: automationAccountName,
 		ModuleName:            moduleName,
-		TypeName:              typeName,
+		ObjectDataTypeName:    objectDataTypeName,
 	}
 }
 
@@ -56,8 +56,8 @@ func ParseModuleObjectDataTypeID(input string) (*ModuleObjectDataTypeId, error) 
 		return nil, fmt.Errorf("the segment 'moduleName' was not found in the resource id %q", input)
 	}
 
-	if id.TypeName, ok = parsed.Parsed["typeName"]; !ok {
-		return nil, fmt.Errorf("the segment 'typeName' was not found in the resource id %q", input)
+	if id.ObjectDataTypeName, ok = parsed.Parsed["objectDataTypeName"]; !ok {
+		return nil, fmt.Errorf("the segment 'objectDataTypeName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -91,8 +91,8 @@ func ParseModuleObjectDataTypeIDInsensitively(input string) (*ModuleObjectDataTy
 		return nil, fmt.Errorf("the segment 'moduleName' was not found in the resource id %q", input)
 	}
 
-	if id.TypeName, ok = parsed.Parsed["typeName"]; !ok {
-		return nil, fmt.Errorf("the segment 'typeName' was not found in the resource id %q", input)
+	if id.ObjectDataTypeName, ok = parsed.Parsed["objectDataTypeName"]; !ok {
+		return nil, fmt.Errorf("the segment 'objectDataTypeName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -116,7 +116,7 @@ func ValidateModuleObjectDataTypeID(input interface{}, key string) (warnings []s
 // ID returns the formatted Module Object Data Type ID
 func (id ModuleObjectDataTypeId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.Automation/automationAccounts/%s/modules/%s/objectDataTypes/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.AutomationAccountName, id.ModuleName, id.TypeName)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.AutomationAccountName, id.ModuleName, id.ObjectDataTypeName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Module Object Data Type ID
@@ -133,7 +133,7 @@ func (id ModuleObjectDataTypeId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticModules", "modules", "modules"),
 		resourceids.UserSpecifiedSegment("moduleName", "moduleValue"),
 		resourceids.StaticSegment("staticObjectDataTypes", "objectDataTypes", "objectDataTypes"),
-		resourceids.UserSpecifiedSegment("typeName", "typeValue"),
+		resourceids.UserSpecifiedSegment("objectDataTypeName", "objectDataTypeValue"),
 	}
 }
 
@@ -144,7 +144,7 @@ func (id ModuleObjectDataTypeId) String() string {
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
 		fmt.Sprintf("Automation Account Name: %q", id.AutomationAccountName),
 		fmt.Sprintf("Module Name: %q", id.ModuleName),
-		fmt.Sprintf("Type Name: %q", id.TypeName),
+		fmt.Sprintf("Object Data Type Name: %q", id.ObjectDataTypeName),
 	}
 	return fmt.Sprintf("Module Object Data Type (%s)", strings.Join(components, "\n"))
 }

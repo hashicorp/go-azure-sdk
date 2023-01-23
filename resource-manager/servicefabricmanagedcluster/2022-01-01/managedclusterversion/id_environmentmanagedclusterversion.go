@@ -11,17 +11,17 @@ var _ resourceids.ResourceId = EnvironmentManagedClusterVersionId{}
 
 // EnvironmentManagedClusterVersionId is a struct representing the Resource ID for a Environment Managed Cluster Version
 type EnvironmentManagedClusterVersionId struct {
-	SubscriptionId string
-	Location       string
-	ClusterVersion string
+	SubscriptionId            string
+	LocationName              string
+	ManagedClusterVersionName string
 }
 
 // NewEnvironmentManagedClusterVersionID returns a new EnvironmentManagedClusterVersionId struct
-func NewEnvironmentManagedClusterVersionID(subscriptionId string, location string, clusterVersion string) EnvironmentManagedClusterVersionId {
+func NewEnvironmentManagedClusterVersionID(subscriptionId string, locationName string, managedClusterVersionName string) EnvironmentManagedClusterVersionId {
 	return EnvironmentManagedClusterVersionId{
-		SubscriptionId: subscriptionId,
-		Location:       location,
-		ClusterVersion: clusterVersion,
+		SubscriptionId:            subscriptionId,
+		LocationName:              locationName,
+		ManagedClusterVersionName: managedClusterVersionName,
 	}
 }
 
@@ -40,12 +40,12 @@ func ParseEnvironmentManagedClusterVersionID(input string) (*EnvironmentManagedC
 		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
 	}
 
-	if id.Location, ok = parsed.Parsed["location"]; !ok {
-		return nil, fmt.Errorf("the segment 'location' was not found in the resource id %q", input)
+	if id.LocationName, ok = parsed.Parsed["locationName"]; !ok {
+		return nil, fmt.Errorf("the segment 'locationName' was not found in the resource id %q", input)
 	}
 
-	if id.ClusterVersion, ok = parsed.Parsed["clusterVersion"]; !ok {
-		return nil, fmt.Errorf("the segment 'clusterVersion' was not found in the resource id %q", input)
+	if id.ManagedClusterVersionName, ok = parsed.Parsed["managedClusterVersionName"]; !ok {
+		return nil, fmt.Errorf("the segment 'managedClusterVersionName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -67,12 +67,12 @@ func ParseEnvironmentManagedClusterVersionIDInsensitively(input string) (*Enviro
 		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
 	}
 
-	if id.Location, ok = parsed.Parsed["location"]; !ok {
-		return nil, fmt.Errorf("the segment 'location' was not found in the resource id %q", input)
+	if id.LocationName, ok = parsed.Parsed["locationName"]; !ok {
+		return nil, fmt.Errorf("the segment 'locationName' was not found in the resource id %q", input)
 	}
 
-	if id.ClusterVersion, ok = parsed.Parsed["clusterVersion"]; !ok {
-		return nil, fmt.Errorf("the segment 'clusterVersion' was not found in the resource id %q", input)
+	if id.ManagedClusterVersionName, ok = parsed.Parsed["managedClusterVersionName"]; !ok {
+		return nil, fmt.Errorf("the segment 'managedClusterVersionName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -96,7 +96,7 @@ func ValidateEnvironmentManagedClusterVersionID(input interface{}, key string) (
 // ID returns the formatted Environment Managed Cluster Version ID
 func (id EnvironmentManagedClusterVersionId) ID() string {
 	fmtString := "/subscriptions/%s/providers/Microsoft.ServiceFabric/locations/%s/environments/Windows/managedClusterVersions/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.Location, id.ClusterVersion)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.LocationName, id.ManagedClusterVersionName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Environment Managed Cluster Version ID
@@ -107,11 +107,11 @@ func (id EnvironmentManagedClusterVersionId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftServiceFabric", "Microsoft.ServiceFabric", "Microsoft.ServiceFabric"),
 		resourceids.StaticSegment("staticLocations", "locations", "locations"),
-		resourceids.UserSpecifiedSegment("location", "locationValue"),
+		resourceids.UserSpecifiedSegment("locationName", "locationValue"),
 		resourceids.StaticSegment("staticEnvironments", "environments", "environments"),
 		resourceids.StaticSegment("environment", "Windows", "Windows"),
 		resourceids.StaticSegment("staticManagedClusterVersions", "managedClusterVersions", "managedClusterVersions"),
-		resourceids.UserSpecifiedSegment("clusterVersion", "clusterVersionValue"),
+		resourceids.UserSpecifiedSegment("managedClusterVersionName", "managedClusterVersionValue"),
 	}
 }
 
@@ -119,8 +119,8 @@ func (id EnvironmentManagedClusterVersionId) Segments() []resourceids.Segment {
 func (id EnvironmentManagedClusterVersionId) String() string {
 	components := []string{
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
-		fmt.Sprintf("Location: %q", id.Location),
-		fmt.Sprintf("Cluster Version: %q", id.ClusterVersion),
+		fmt.Sprintf("Location Name: %q", id.LocationName),
+		fmt.Sprintf("Managed Cluster Version Name: %q", id.ManagedClusterVersionName),
 	}
 	return fmt.Sprintf("Environment Managed Cluster Version (%s)", strings.Join(components, "\n"))
 }

@@ -13,16 +13,16 @@ var _ resourceids.ResourceId = PoolId{}
 type PoolId struct {
 	SubscriptionId    string
 	ResourceGroupName string
-	AccountName       string
+	BatchAccountName  string
 	PoolName          string
 }
 
 // NewPoolID returns a new PoolId struct
-func NewPoolID(subscriptionId string, resourceGroupName string, accountName string, poolName string) PoolId {
+func NewPoolID(subscriptionId string, resourceGroupName string, batchAccountName string, poolName string) PoolId {
 	return PoolId{
 		SubscriptionId:    subscriptionId,
 		ResourceGroupName: resourceGroupName,
-		AccountName:       accountName,
+		BatchAccountName:  batchAccountName,
 		PoolName:          poolName,
 	}
 }
@@ -46,8 +46,8 @@ func ParsePoolID(input string) (*PoolId, error) {
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.AccountName, ok = parsed.Parsed["accountName"]; !ok {
-		return nil, fmt.Errorf("the segment 'accountName' was not found in the resource id %q", input)
+	if id.BatchAccountName, ok = parsed.Parsed["batchAccountName"]; !ok {
+		return nil, fmt.Errorf("the segment 'batchAccountName' was not found in the resource id %q", input)
 	}
 
 	if id.PoolName, ok = parsed.Parsed["poolName"]; !ok {
@@ -77,8 +77,8 @@ func ParsePoolIDInsensitively(input string) (*PoolId, error) {
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.AccountName, ok = parsed.Parsed["accountName"]; !ok {
-		return nil, fmt.Errorf("the segment 'accountName' was not found in the resource id %q", input)
+	if id.BatchAccountName, ok = parsed.Parsed["batchAccountName"]; !ok {
+		return nil, fmt.Errorf("the segment 'batchAccountName' was not found in the resource id %q", input)
 	}
 
 	if id.PoolName, ok = parsed.Parsed["poolName"]; !ok {
@@ -106,7 +106,7 @@ func ValidatePoolID(input interface{}, key string) (warnings []string, errors []
 // ID returns the formatted Pool ID
 func (id PoolId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.Batch/batchAccounts/%s/pools/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.AccountName, id.PoolName)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.BatchAccountName, id.PoolName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Pool ID
@@ -119,7 +119,7 @@ func (id PoolId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftBatch", "Microsoft.Batch", "Microsoft.Batch"),
 		resourceids.StaticSegment("staticBatchAccounts", "batchAccounts", "batchAccounts"),
-		resourceids.UserSpecifiedSegment("accountName", "accountValue"),
+		resourceids.UserSpecifiedSegment("batchAccountName", "batchAccountValue"),
 		resourceids.StaticSegment("staticPools", "pools", "pools"),
 		resourceids.UserSpecifiedSegment("poolName", "poolValue"),
 	}
@@ -130,7 +130,7 @@ func (id PoolId) String() string {
 	components := []string{
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
-		fmt.Sprintf("Account Name: %q", id.AccountName),
+		fmt.Sprintf("Batch Account Name: %q", id.BatchAccountName),
 		fmt.Sprintf("Pool Name: %q", id.PoolName),
 	}
 	return fmt.Sprintf("Pool (%s)", strings.Join(components, "\n"))

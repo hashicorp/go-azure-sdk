@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = WorkbookTemplateId{}
 
 func TestNewWorkbookTemplateID(t *testing.T) {
-	id := NewWorkbookTemplateID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue")
+	id := NewWorkbookTemplateID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workbookTemplateValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -19,14 +19,14 @@ func TestNewWorkbookTemplateID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.ResourceName != "resourceValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ResourceName'", id.ResourceName, "resourceValue")
+	if id.WorkbookTemplateName != "workbookTemplateValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'WorkbookTemplateName'", id.WorkbookTemplateName, "workbookTemplateValue")
 	}
 }
 
 func TestFormatWorkbookTemplateID(t *testing.T) {
-	actual := NewWorkbookTemplateID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/workbookTemplates/resourceValue"
+	actual := NewWorkbookTemplateID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workbookTemplateValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/workbookTemplates/workbookTemplateValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -80,16 +80,16 @@ func TestParseWorkbookTemplateID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/workbookTemplates/resourceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/workbookTemplates/workbookTemplateValue",
 			Expected: &WorkbookTemplateId{
-				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName: "example-resource-group",
-				ResourceName:      "resourceValue",
+				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:    "example-resource-group",
+				WorkbookTemplateName: "workbookTemplateValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/workbookTemplates/resourceValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/workbookTemplates/workbookTemplateValue/extra",
 			Error: true,
 		},
 	}
@@ -116,8 +116,8 @@ func TestParseWorkbookTemplateID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.ResourceName != v.Expected.ResourceName {
-			t.Fatalf("Expected %q but got %q for ResourceName", v.Expected.ResourceName, actual.ResourceName)
+		if actual.WorkbookTemplateName != v.Expected.WorkbookTemplateName {
+			t.Fatalf("Expected %q but got %q for WorkbookTemplateName", v.Expected.WorkbookTemplateName, actual.WorkbookTemplateName)
 		}
 
 	}
@@ -206,30 +206,30 @@ func TestParseWorkbookTemplateIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/workbookTemplates/resourceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/workbookTemplates/workbookTemplateValue",
 			Expected: &WorkbookTemplateId{
-				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName: "example-resource-group",
-				ResourceName:      "resourceValue",
+				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:    "example-resource-group",
+				WorkbookTemplateName: "workbookTemplateValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/workbookTemplates/resourceValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/workbookTemplates/workbookTemplateValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.iNsIgHtS/wOrKbOoKtEmPlAtEs/rEsOuRcEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.iNsIgHtS/wOrKbOoKtEmPlAtEs/wOrKbOoKtEmPlAtEvAlUe",
 			Expected: &WorkbookTemplateId{
-				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				ResourceName:      "rEsOuRcEvAlUe",
+				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:    "eXaMpLe-rEsOuRcE-GrOuP",
+				WorkbookTemplateName: "wOrKbOoKtEmPlAtEvAlUe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.iNsIgHtS/wOrKbOoKtEmPlAtEs/rEsOuRcEvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.iNsIgHtS/wOrKbOoKtEmPlAtEs/wOrKbOoKtEmPlAtEvAlUe/extra",
 			Error: true,
 		},
 	}
@@ -256,8 +256,8 @@ func TestParseWorkbookTemplateIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.ResourceName != v.Expected.ResourceName {
-			t.Fatalf("Expected %q but got %q for ResourceName", v.Expected.ResourceName, actual.ResourceName)
+		if actual.WorkbookTemplateName != v.Expected.WorkbookTemplateName {
+			t.Fatalf("Expected %q but got %q for WorkbookTemplateName", v.Expected.WorkbookTemplateName, actual.WorkbookTemplateName)
 		}
 
 	}

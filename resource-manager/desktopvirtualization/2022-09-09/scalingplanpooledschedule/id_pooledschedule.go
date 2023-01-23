@@ -11,19 +11,19 @@ var _ resourceids.ResourceId = PooledScheduleId{}
 
 // PooledScheduleId is a struct representing the Resource ID for a Pooled Schedule
 type PooledScheduleId struct {
-	SubscriptionId          string
-	ResourceGroupName       string
-	ScalingPlanName         string
-	ScalingPlanScheduleName string
+	SubscriptionId     string
+	ResourceGroupName  string
+	ScalingPlanName    string
+	PooledScheduleName string
 }
 
 // NewPooledScheduleID returns a new PooledScheduleId struct
-func NewPooledScheduleID(subscriptionId string, resourceGroupName string, scalingPlanName string, scalingPlanScheduleName string) PooledScheduleId {
+func NewPooledScheduleID(subscriptionId string, resourceGroupName string, scalingPlanName string, pooledScheduleName string) PooledScheduleId {
 	return PooledScheduleId{
-		SubscriptionId:          subscriptionId,
-		ResourceGroupName:       resourceGroupName,
-		ScalingPlanName:         scalingPlanName,
-		ScalingPlanScheduleName: scalingPlanScheduleName,
+		SubscriptionId:     subscriptionId,
+		ResourceGroupName:  resourceGroupName,
+		ScalingPlanName:    scalingPlanName,
+		PooledScheduleName: pooledScheduleName,
 	}
 }
 
@@ -50,8 +50,8 @@ func ParsePooledScheduleID(input string) (*PooledScheduleId, error) {
 		return nil, fmt.Errorf("the segment 'scalingPlanName' was not found in the resource id %q", input)
 	}
 
-	if id.ScalingPlanScheduleName, ok = parsed.Parsed["scalingPlanScheduleName"]; !ok {
-		return nil, fmt.Errorf("the segment 'scalingPlanScheduleName' was not found in the resource id %q", input)
+	if id.PooledScheduleName, ok = parsed.Parsed["pooledScheduleName"]; !ok {
+		return nil, fmt.Errorf("the segment 'pooledScheduleName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -81,8 +81,8 @@ func ParsePooledScheduleIDInsensitively(input string) (*PooledScheduleId, error)
 		return nil, fmt.Errorf("the segment 'scalingPlanName' was not found in the resource id %q", input)
 	}
 
-	if id.ScalingPlanScheduleName, ok = parsed.Parsed["scalingPlanScheduleName"]; !ok {
-		return nil, fmt.Errorf("the segment 'scalingPlanScheduleName' was not found in the resource id %q", input)
+	if id.PooledScheduleName, ok = parsed.Parsed["pooledScheduleName"]; !ok {
+		return nil, fmt.Errorf("the segment 'pooledScheduleName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -106,7 +106,7 @@ func ValidatePooledScheduleID(input interface{}, key string) (warnings []string,
 // ID returns the formatted Pooled Schedule ID
 func (id PooledScheduleId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.DesktopVirtualization/scalingPlans/%s/pooledSchedules/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.ScalingPlanName, id.ScalingPlanScheduleName)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.ScalingPlanName, id.PooledScheduleName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Pooled Schedule ID
@@ -121,7 +121,7 @@ func (id PooledScheduleId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticScalingPlans", "scalingPlans", "scalingPlans"),
 		resourceids.UserSpecifiedSegment("scalingPlanName", "scalingPlanValue"),
 		resourceids.StaticSegment("staticPooledSchedules", "pooledSchedules", "pooledSchedules"),
-		resourceids.UserSpecifiedSegment("scalingPlanScheduleName", "scalingPlanScheduleValue"),
+		resourceids.UserSpecifiedSegment("pooledScheduleName", "pooledScheduleValue"),
 	}
 }
 
@@ -131,7 +131,7 @@ func (id PooledScheduleId) String() string {
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
 		fmt.Sprintf("Scaling Plan Name: %q", id.ScalingPlanName),
-		fmt.Sprintf("Scaling Plan Schedule Name: %q", id.ScalingPlanScheduleName),
+		fmt.Sprintf("Pooled Schedule Name: %q", id.PooledScheduleName),
 	}
 	return fmt.Sprintf("Pooled Schedule (%s)", strings.Join(components, "\n"))
 }

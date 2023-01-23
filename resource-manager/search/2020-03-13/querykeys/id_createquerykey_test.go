@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = CreateQueryKeyId{}
 
 func TestNewCreateQueryKeyID(t *testing.T) {
-	id := NewCreateQueryKeyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "searchServiceValue", "nameValue")
+	id := NewCreateQueryKeyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "searchServiceValue", "createQueryKeyValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -23,14 +23,14 @@ func TestNewCreateQueryKeyID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'SearchServiceName'", id.SearchServiceName, "searchServiceValue")
 	}
 
-	if id.Name != "nameValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'Name'", id.Name, "nameValue")
+	if id.CreateQueryKeyName != "createQueryKeyValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'CreateQueryKeyName'", id.CreateQueryKeyName, "createQueryKeyValue")
 	}
 }
 
 func TestFormatCreateQueryKeyID(t *testing.T) {
-	actual := NewCreateQueryKeyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "searchServiceValue", "nameValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Search/searchServices/searchServiceValue/createQueryKey/nameValue"
+	actual := NewCreateQueryKeyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "searchServiceValue", "createQueryKeyValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Search/searchServices/searchServiceValue/createQueryKey/createQueryKeyValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -94,17 +94,17 @@ func TestParseCreateQueryKeyID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Search/searchServices/searchServiceValue/createQueryKey/nameValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Search/searchServices/searchServiceValue/createQueryKey/createQueryKeyValue",
 			Expected: &CreateQueryKeyId{
-				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName: "example-resource-group",
-				SearchServiceName: "searchServiceValue",
-				Name:              "nameValue",
+				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:  "example-resource-group",
+				SearchServiceName:  "searchServiceValue",
+				CreateQueryKeyName: "createQueryKeyValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Search/searchServices/searchServiceValue/createQueryKey/nameValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Search/searchServices/searchServiceValue/createQueryKey/createQueryKeyValue/extra",
 			Error: true,
 		},
 	}
@@ -135,8 +135,8 @@ func TestParseCreateQueryKeyID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for SearchServiceName", v.Expected.SearchServiceName, actual.SearchServiceName)
 		}
 
-		if actual.Name != v.Expected.Name {
-			t.Fatalf("Expected %q but got %q for Name", v.Expected.Name, actual.Name)
+		if actual.CreateQueryKeyName != v.Expected.CreateQueryKeyName {
+			t.Fatalf("Expected %q but got %q for CreateQueryKeyName", v.Expected.CreateQueryKeyName, actual.CreateQueryKeyName)
 		}
 
 	}
@@ -245,32 +245,32 @@ func TestParseCreateQueryKeyIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Search/searchServices/searchServiceValue/createQueryKey/nameValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Search/searchServices/searchServiceValue/createQueryKey/createQueryKeyValue",
 			Expected: &CreateQueryKeyId{
-				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName: "example-resource-group",
-				SearchServiceName: "searchServiceValue",
-				Name:              "nameValue",
+				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:  "example-resource-group",
+				SearchServiceName:  "searchServiceValue",
+				CreateQueryKeyName: "createQueryKeyValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Search/searchServices/searchServiceValue/createQueryKey/nameValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Search/searchServices/searchServiceValue/createQueryKey/createQueryKeyValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sEaRcH/sEaRcHsErViCeS/sEaRcHsErViCeVaLuE/cReAtEqUeRyKeY/nAmEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sEaRcH/sEaRcHsErViCeS/sEaRcHsErViCeVaLuE/cReAtEqUeRyKeY/cReAtEqUeRyKeYvAlUe",
 			Expected: &CreateQueryKeyId{
-				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				SearchServiceName: "sEaRcHsErViCeVaLuE",
-				Name:              "nAmEvAlUe",
+				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:  "eXaMpLe-rEsOuRcE-GrOuP",
+				SearchServiceName:  "sEaRcHsErViCeVaLuE",
+				CreateQueryKeyName: "cReAtEqUeRyKeYvAlUe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sEaRcH/sEaRcHsErViCeS/sEaRcHsErViCeVaLuE/cReAtEqUeRyKeY/nAmEvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sEaRcH/sEaRcHsErViCeS/sEaRcHsErViCeVaLuE/cReAtEqUeRyKeY/cReAtEqUeRyKeYvAlUe/extra",
 			Error: true,
 		},
 	}
@@ -301,8 +301,8 @@ func TestParseCreateQueryKeyIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for SearchServiceName", v.Expected.SearchServiceName, actual.SearchServiceName)
 		}
 
-		if actual.Name != v.Expected.Name {
-			t.Fatalf("Expected %q but got %q for Name", v.Expected.Name, actual.Name)
+		if actual.CreateQueryKeyName != v.Expected.CreateQueryKeyName {
+			t.Fatalf("Expected %q but got %q for CreateQueryKeyName", v.Expected.CreateQueryKeyName, actual.CreateQueryKeyName)
 		}
 
 	}

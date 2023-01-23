@@ -14,16 +14,16 @@ type WcfRelayId struct {
 	SubscriptionId    string
 	ResourceGroupName string
 	NamespaceName     string
-	RelayName         string
+	WcfRelayName      string
 }
 
 // NewWcfRelayID returns a new WcfRelayId struct
-func NewWcfRelayID(subscriptionId string, resourceGroupName string, namespaceName string, relayName string) WcfRelayId {
+func NewWcfRelayID(subscriptionId string, resourceGroupName string, namespaceName string, wcfRelayName string) WcfRelayId {
 	return WcfRelayId{
 		SubscriptionId:    subscriptionId,
 		ResourceGroupName: resourceGroupName,
 		NamespaceName:     namespaceName,
-		RelayName:         relayName,
+		WcfRelayName:      wcfRelayName,
 	}
 }
 
@@ -50,8 +50,8 @@ func ParseWcfRelayID(input string) (*WcfRelayId, error) {
 		return nil, fmt.Errorf("the segment 'namespaceName' was not found in the resource id %q", input)
 	}
 
-	if id.RelayName, ok = parsed.Parsed["relayName"]; !ok {
-		return nil, fmt.Errorf("the segment 'relayName' was not found in the resource id %q", input)
+	if id.WcfRelayName, ok = parsed.Parsed["wcfRelayName"]; !ok {
+		return nil, fmt.Errorf("the segment 'wcfRelayName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -81,8 +81,8 @@ func ParseWcfRelayIDInsensitively(input string) (*WcfRelayId, error) {
 		return nil, fmt.Errorf("the segment 'namespaceName' was not found in the resource id %q", input)
 	}
 
-	if id.RelayName, ok = parsed.Parsed["relayName"]; !ok {
-		return nil, fmt.Errorf("the segment 'relayName' was not found in the resource id %q", input)
+	if id.WcfRelayName, ok = parsed.Parsed["wcfRelayName"]; !ok {
+		return nil, fmt.Errorf("the segment 'wcfRelayName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -106,7 +106,7 @@ func ValidateWcfRelayID(input interface{}, key string) (warnings []string, error
 // ID returns the formatted Wcf Relay ID
 func (id WcfRelayId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.Relay/namespaces/%s/wcfRelays/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.NamespaceName, id.RelayName)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.NamespaceName, id.WcfRelayName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Wcf Relay ID
@@ -121,7 +121,7 @@ func (id WcfRelayId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticNamespaces", "namespaces", "namespaces"),
 		resourceids.UserSpecifiedSegment("namespaceName", "namespaceValue"),
 		resourceids.StaticSegment("staticWcfRelays", "wcfRelays", "wcfRelays"),
-		resourceids.UserSpecifiedSegment("relayName", "relayValue"),
+		resourceids.UserSpecifiedSegment("wcfRelayName", "wcfRelayValue"),
 	}
 }
 
@@ -131,7 +131,7 @@ func (id WcfRelayId) String() string {
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
 		fmt.Sprintf("Namespace Name: %q", id.NamespaceName),
-		fmt.Sprintf("Relay Name: %q", id.RelayName),
+		fmt.Sprintf("Wcf Relay Name: %q", id.WcfRelayName),
 	}
 	return fmt.Sprintf("Wcf Relay (%s)", strings.Join(components, "\n"))
 }

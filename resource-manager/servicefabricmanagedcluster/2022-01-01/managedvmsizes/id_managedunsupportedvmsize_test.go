@@ -9,24 +9,24 @@ import (
 var _ resourceids.ResourceId = ManagedUnsupportedVMSizeId{}
 
 func TestNewManagedUnsupportedVMSizeID(t *testing.T) {
-	id := NewManagedUnsupportedVMSizeID("12345678-1234-9876-4563-123456789012", "locationValue", "vmSizeValue")
+	id := NewManagedUnsupportedVMSizeID("12345678-1234-9876-4563-123456789012", "locationValue", "managedUnsupportedVMSizeValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
 	}
 
-	if id.Location != "locationValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'Location'", id.Location, "locationValue")
+	if id.LocationName != "locationValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'LocationName'", id.LocationName, "locationValue")
 	}
 
-	if id.VmSize != "vmSizeValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'VmSize'", id.VmSize, "vmSizeValue")
+	if id.ManagedUnsupportedVMSizeName != "managedUnsupportedVMSizeValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'ManagedUnsupportedVMSizeName'", id.ManagedUnsupportedVMSizeName, "managedUnsupportedVMSizeValue")
 	}
 }
 
 func TestFormatManagedUnsupportedVMSizeID(t *testing.T) {
-	actual := NewManagedUnsupportedVMSizeID("12345678-1234-9876-4563-123456789012", "locationValue", "vmSizeValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.ServiceFabric/locations/locationValue/managedUnsupportedVMSizes/vmSizeValue"
+	actual := NewManagedUnsupportedVMSizeID("12345678-1234-9876-4563-123456789012", "locationValue", "managedUnsupportedVMSizeValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.ServiceFabric/locations/locationValue/managedUnsupportedVMSizes/managedUnsupportedVMSizeValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -80,16 +80,16 @@ func TestParseManagedUnsupportedVMSizeID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.ServiceFabric/locations/locationValue/managedUnsupportedVMSizes/vmSizeValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.ServiceFabric/locations/locationValue/managedUnsupportedVMSizes/managedUnsupportedVMSizeValue",
 			Expected: &ManagedUnsupportedVMSizeId{
-				SubscriptionId: "12345678-1234-9876-4563-123456789012",
-				Location:       "locationValue",
-				VmSize:         "vmSizeValue",
+				SubscriptionId:               "12345678-1234-9876-4563-123456789012",
+				LocationName:                 "locationValue",
+				ManagedUnsupportedVMSizeName: "managedUnsupportedVMSizeValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.ServiceFabric/locations/locationValue/managedUnsupportedVMSizes/vmSizeValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.ServiceFabric/locations/locationValue/managedUnsupportedVMSizes/managedUnsupportedVMSizeValue/extra",
 			Error: true,
 		},
 	}
@@ -112,12 +112,12 @@ func TestParseManagedUnsupportedVMSizeID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for SubscriptionId", v.Expected.SubscriptionId, actual.SubscriptionId)
 		}
 
-		if actual.Location != v.Expected.Location {
-			t.Fatalf("Expected %q but got %q for Location", v.Expected.Location, actual.Location)
+		if actual.LocationName != v.Expected.LocationName {
+			t.Fatalf("Expected %q but got %q for LocationName", v.Expected.LocationName, actual.LocationName)
 		}
 
-		if actual.VmSize != v.Expected.VmSize {
-			t.Fatalf("Expected %q but got %q for VmSize", v.Expected.VmSize, actual.VmSize)
+		if actual.ManagedUnsupportedVMSizeName != v.Expected.ManagedUnsupportedVMSizeName {
+			t.Fatalf("Expected %q but got %q for ManagedUnsupportedVMSizeName", v.Expected.ManagedUnsupportedVMSizeName, actual.ManagedUnsupportedVMSizeName)
 		}
 
 	}
@@ -206,30 +206,30 @@ func TestParseManagedUnsupportedVMSizeIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.ServiceFabric/locations/locationValue/managedUnsupportedVMSizes/vmSizeValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.ServiceFabric/locations/locationValue/managedUnsupportedVMSizes/managedUnsupportedVMSizeValue",
 			Expected: &ManagedUnsupportedVMSizeId{
-				SubscriptionId: "12345678-1234-9876-4563-123456789012",
-				Location:       "locationValue",
-				VmSize:         "vmSizeValue",
+				SubscriptionId:               "12345678-1234-9876-4563-123456789012",
+				LocationName:                 "locationValue",
+				ManagedUnsupportedVMSizeName: "managedUnsupportedVMSizeValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.ServiceFabric/locations/locationValue/managedUnsupportedVMSizes/vmSizeValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.ServiceFabric/locations/locationValue/managedUnsupportedVMSizes/managedUnsupportedVMSizeValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.sErViCeFaBrIc/lOcAtIoNs/lOcAtIoNvAlUe/mAnAgEdUnSuPpOrTeDvMsIzEs/vMsIzEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.sErViCeFaBrIc/lOcAtIoNs/lOcAtIoNvAlUe/mAnAgEdUnSuPpOrTeDvMsIzEs/mAnAgEdUnSuPpOrTeDvMsIzEvAlUe",
 			Expected: &ManagedUnsupportedVMSizeId{
-				SubscriptionId: "12345678-1234-9876-4563-123456789012",
-				Location:       "lOcAtIoNvAlUe",
-				VmSize:         "vMsIzEvAlUe",
+				SubscriptionId:               "12345678-1234-9876-4563-123456789012",
+				LocationName:                 "lOcAtIoNvAlUe",
+				ManagedUnsupportedVMSizeName: "mAnAgEdUnSuPpOrTeDvMsIzEvAlUe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.sErViCeFaBrIc/lOcAtIoNs/lOcAtIoNvAlUe/mAnAgEdUnSuPpOrTeDvMsIzEs/vMsIzEvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.sErViCeFaBrIc/lOcAtIoNs/lOcAtIoNvAlUe/mAnAgEdUnSuPpOrTeDvMsIzEs/mAnAgEdUnSuPpOrTeDvMsIzEvAlUe/extra",
 			Error: true,
 		},
 	}
@@ -252,12 +252,12 @@ func TestParseManagedUnsupportedVMSizeIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for SubscriptionId", v.Expected.SubscriptionId, actual.SubscriptionId)
 		}
 
-		if actual.Location != v.Expected.Location {
-			t.Fatalf("Expected %q but got %q for Location", v.Expected.Location, actual.Location)
+		if actual.LocationName != v.Expected.LocationName {
+			t.Fatalf("Expected %q but got %q for LocationName", v.Expected.LocationName, actual.LocationName)
 		}
 
-		if actual.VmSize != v.Expected.VmSize {
-			t.Fatalf("Expected %q but got %q for VmSize", v.Expected.VmSize, actual.VmSize)
+		if actual.ManagedUnsupportedVMSizeName != v.Expected.ManagedUnsupportedVMSizeName {
+			t.Fatalf("Expected %q but got %q for ManagedUnsupportedVMSizeName", v.Expected.ManagedUnsupportedVMSizeName, actual.ManagedUnsupportedVMSizeName)
 		}
 
 	}

@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = AutoScaleSettingId{}
 
 func TestNewAutoScaleSettingID(t *testing.T) {
-	id := NewAutoScaleSettingID("12345678-1234-9876-4563-123456789012", "example-resource-group", "autoscaleSettingValue")
+	id := NewAutoScaleSettingID("12345678-1234-9876-4563-123456789012", "example-resource-group", "autoScaleSettingValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -19,14 +19,14 @@ func TestNewAutoScaleSettingID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.AutoscaleSettingName != "autoscaleSettingValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AutoscaleSettingName'", id.AutoscaleSettingName, "autoscaleSettingValue")
+	if id.AutoScaleSettingName != "autoScaleSettingValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'AutoScaleSettingName'", id.AutoScaleSettingName, "autoScaleSettingValue")
 	}
 }
 
 func TestFormatAutoScaleSettingID(t *testing.T) {
-	actual := NewAutoScaleSettingID("12345678-1234-9876-4563-123456789012", "example-resource-group", "autoscaleSettingValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/autoScaleSettings/autoscaleSettingValue"
+	actual := NewAutoScaleSettingID("12345678-1234-9876-4563-123456789012", "example-resource-group", "autoScaleSettingValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/autoScaleSettings/autoScaleSettingValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -80,16 +80,16 @@ func TestParseAutoScaleSettingID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/autoScaleSettings/autoscaleSettingValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/autoScaleSettings/autoScaleSettingValue",
 			Expected: &AutoScaleSettingId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:    "example-resource-group",
-				AutoscaleSettingName: "autoscaleSettingValue",
+				AutoScaleSettingName: "autoScaleSettingValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/autoScaleSettings/autoscaleSettingValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/autoScaleSettings/autoScaleSettingValue/extra",
 			Error: true,
 		},
 	}
@@ -116,8 +116,8 @@ func TestParseAutoScaleSettingID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.AutoscaleSettingName != v.Expected.AutoscaleSettingName {
-			t.Fatalf("Expected %q but got %q for AutoscaleSettingName", v.Expected.AutoscaleSettingName, actual.AutoscaleSettingName)
+		if actual.AutoScaleSettingName != v.Expected.AutoScaleSettingName {
+			t.Fatalf("Expected %q but got %q for AutoScaleSettingName", v.Expected.AutoScaleSettingName, actual.AutoScaleSettingName)
 		}
 
 	}
@@ -206,16 +206,16 @@ func TestParseAutoScaleSettingIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/autoScaleSettings/autoscaleSettingValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/autoScaleSettings/autoScaleSettingValue",
 			Expected: &AutoScaleSettingId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:    "example-resource-group",
-				AutoscaleSettingName: "autoscaleSettingValue",
+				AutoScaleSettingName: "autoScaleSettingValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/autoScaleSettings/autoscaleSettingValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/autoScaleSettings/autoScaleSettingValue/extra",
 			Error: true,
 		},
 		{
@@ -224,7 +224,7 @@ func TestParseAutoScaleSettingIDInsensitively(t *testing.T) {
 			Expected: &AutoScaleSettingId{
 				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:    "eXaMpLe-rEsOuRcE-GrOuP",
-				AutoscaleSettingName: "aUtOsCaLeSeTtInGvAlUe",
+				AutoScaleSettingName: "aUtOsCaLeSeTtInGvAlUe",
 			},
 		},
 		{
@@ -256,8 +256,8 @@ func TestParseAutoScaleSettingIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.AutoscaleSettingName != v.Expected.AutoscaleSettingName {
-			t.Fatalf("Expected %q but got %q for AutoscaleSettingName", v.Expected.AutoscaleSettingName, actual.AutoscaleSettingName)
+		if actual.AutoScaleSettingName != v.Expected.AutoScaleSettingName {
+			t.Fatalf("Expected %q but got %q for AutoScaleSettingName", v.Expected.AutoScaleSettingName, actual.AutoScaleSettingName)
 		}
 
 	}

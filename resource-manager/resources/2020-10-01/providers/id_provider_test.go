@@ -9,16 +9,16 @@ import (
 var _ resourceids.ResourceId = ProviderId{}
 
 func TestNewProviderID(t *testing.T) {
-	id := NewProviderID("resourceProviderNamespaceValue")
+	id := NewProviderID("providerValue")
 
-	if id.ResourceProviderNamespace != "resourceProviderNamespaceValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ResourceProviderNamespace'", id.ResourceProviderNamespace, "resourceProviderNamespaceValue")
+	if id.ProviderName != "providerValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'ProviderName'", id.ProviderName, "providerValue")
 	}
 }
 
 func TestFormatProviderID(t *testing.T) {
-	actual := NewProviderID("resourceProviderNamespaceValue").ID()
-	expected := "/providers/resourceProviderNamespaceValue"
+	actual := NewProviderID("providerValue").ID()
+	expected := "/providers/providerValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -42,14 +42,14 @@ func TestParseProviderID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/providers/resourceProviderNamespaceValue",
+			Input: "/providers/providerValue",
 			Expected: &ProviderId{
-				ResourceProviderNamespace: "resourceProviderNamespaceValue",
+				ProviderName: "providerValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/resourceProviderNamespaceValue/extra",
+			Input: "/providers/providerValue/extra",
 			Error: true,
 		},
 	}
@@ -68,8 +68,8 @@ func TestParseProviderID(t *testing.T) {
 			t.Fatal("Expect an error but didn't get one")
 		}
 
-		if actual.ResourceProviderNamespace != v.Expected.ResourceProviderNamespace {
-			t.Fatalf("Expected %q but got %q for ResourceProviderNamespace", v.Expected.ResourceProviderNamespace, actual.ResourceProviderNamespace)
+		if actual.ProviderName != v.Expected.ProviderName {
+			t.Fatalf("Expected %q but got %q for ProviderName", v.Expected.ProviderName, actual.ProviderName)
 		}
 
 	}
@@ -98,26 +98,26 @@ func TestParseProviderIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/providers/resourceProviderNamespaceValue",
+			Input: "/providers/providerValue",
 			Expected: &ProviderId{
-				ResourceProviderNamespace: "resourceProviderNamespaceValue",
+				ProviderName: "providerValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/resourceProviderNamespaceValue/extra",
+			Input: "/providers/providerValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/rEsOuRcEpRoViDeRnAmEsPaCeVaLuE",
+			Input: "/pRoViDeRs/pRoViDeRvAlUe",
 			Expected: &ProviderId{
-				ResourceProviderNamespace: "rEsOuRcEpRoViDeRnAmEsPaCeVaLuE",
+				ProviderName: "pRoViDeRvAlUe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/rEsOuRcEpRoViDeRnAmEsPaCeVaLuE/extra",
+			Input: "/pRoViDeRs/pRoViDeRvAlUe/extra",
 			Error: true,
 		},
 	}
@@ -136,8 +136,8 @@ func TestParseProviderIDInsensitively(t *testing.T) {
 			t.Fatal("Expect an error but didn't get one")
 		}
 
-		if actual.ResourceProviderNamespace != v.Expected.ResourceProviderNamespace {
-			t.Fatalf("Expected %q but got %q for ResourceProviderNamespace", v.Expected.ResourceProviderNamespace, actual.ResourceProviderNamespace)
+		if actual.ProviderName != v.Expected.ProviderName {
+			t.Fatalf("Expected %q but got %q for ProviderName", v.Expected.ProviderName, actual.ProviderName)
 		}
 
 	}

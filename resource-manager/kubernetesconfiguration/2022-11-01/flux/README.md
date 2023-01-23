@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := flux.NewFluxConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "clusterRpValue", "clusterResourceValue", "clusterValue", "fluxConfigurationValue")
+id := flux.NewFluxConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "providerValue", "clusterResourceValue", "clusterValue", "fluxConfigurationValue")
 
 payload := flux.FluxConfiguration{
 	// ...
@@ -41,7 +41,7 @@ if err := client.ConfigurationsCreateOrUpdateThenPoll(ctx, id, payload); err != 
 
 ```go
 ctx := context.TODO()
-id := flux.NewFluxConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "clusterRpValue", "clusterResourceValue", "clusterValue", "fluxConfigurationValue")
+id := flux.NewFluxConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "providerValue", "clusterResourceValue", "clusterValue", "fluxConfigurationValue")
 
 if err := client.ConfigurationsDeleteThenPoll(ctx, id, flux.DefaultConfigurationsDeleteOperationOptions()); err != nil {
 	// handle the error
@@ -53,7 +53,7 @@ if err := client.ConfigurationsDeleteThenPoll(ctx, id, flux.DefaultConfiguration
 
 ```go
 ctx := context.TODO()
-id := flux.NewFluxConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "clusterRpValue", "clusterResourceValue", "clusterValue", "fluxConfigurationValue")
+id := flux.NewFluxConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "providerValue", "clusterResourceValue", "clusterValue", "fluxConfigurationValue")
 
 read, err := client.ConfigurationsGet(ctx, id)
 if err != nil {
@@ -69,7 +69,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := flux.NewProviderID("12345678-1234-9876-4563-123456789012", "example-resource-group", "clusterRpValue", "clusterResourceValue", "clusterValue")
+id := flux.NewProviderID("12345678-1234-9876-4563-123456789012", "example-resource-group", "providerValue", "clusterResourceValue", "clusterValue")
 
 // alternatively `client.ConfigurationsList(ctx, id)` can be used to do batched pagination
 items, err := client.ConfigurationsListComplete(ctx, id)
@@ -86,7 +86,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := flux.NewFluxConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "clusterRpValue", "clusterResourceValue", "clusterValue", "fluxConfigurationValue")
+id := flux.NewFluxConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "providerValue", "clusterResourceValue", "clusterValue", "fluxConfigurationValue")
 
 payload := flux.FluxConfigurationPatch{
 	// ...

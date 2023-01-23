@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := replicationevents.NewReplicationEventID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue", "eventValue")
+id := replicationevents.NewReplicationEventID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue", "replicationEventValue")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := replicationevents.NewVaultID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue")
+id := replicationevents.NewVaultID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue")
 
 // alternatively `client.List(ctx, id, replicationevents.DefaultListOperationOptions())` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id, replicationevents.DefaultListOperationOptions())

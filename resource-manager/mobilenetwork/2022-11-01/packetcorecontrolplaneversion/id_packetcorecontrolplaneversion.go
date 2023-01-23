@@ -11,13 +11,13 @@ var _ resourceids.ResourceId = PacketCoreControlPlaneVersionId{}
 
 // PacketCoreControlPlaneVersionId is a struct representing the Resource ID for a Packet Core Control Plane Version
 type PacketCoreControlPlaneVersionId struct {
-	VersionName string
+	PacketCoreControlPlaneVersionName string
 }
 
 // NewPacketCoreControlPlaneVersionID returns a new PacketCoreControlPlaneVersionId struct
-func NewPacketCoreControlPlaneVersionID(versionName string) PacketCoreControlPlaneVersionId {
+func NewPacketCoreControlPlaneVersionID(packetCoreControlPlaneVersionName string) PacketCoreControlPlaneVersionId {
 	return PacketCoreControlPlaneVersionId{
-		VersionName: versionName,
+		PacketCoreControlPlaneVersionName: packetCoreControlPlaneVersionName,
 	}
 }
 
@@ -32,8 +32,8 @@ func ParsePacketCoreControlPlaneVersionID(input string) (*PacketCoreControlPlane
 	var ok bool
 	id := PacketCoreControlPlaneVersionId{}
 
-	if id.VersionName, ok = parsed.Parsed["versionName"]; !ok {
-		return nil, fmt.Errorf("the segment 'versionName' was not found in the resource id %q", input)
+	if id.PacketCoreControlPlaneVersionName, ok = parsed.Parsed["packetCoreControlPlaneVersionName"]; !ok {
+		return nil, fmt.Errorf("the segment 'packetCoreControlPlaneVersionName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -51,8 +51,8 @@ func ParsePacketCoreControlPlaneVersionIDInsensitively(input string) (*PacketCor
 	var ok bool
 	id := PacketCoreControlPlaneVersionId{}
 
-	if id.VersionName, ok = parsed.Parsed["versionName"]; !ok {
-		return nil, fmt.Errorf("the segment 'versionName' was not found in the resource id %q", input)
+	if id.PacketCoreControlPlaneVersionName, ok = parsed.Parsed["packetCoreControlPlaneVersionName"]; !ok {
+		return nil, fmt.Errorf("the segment 'packetCoreControlPlaneVersionName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -76,7 +76,7 @@ func ValidatePacketCoreControlPlaneVersionID(input interface{}, key string) (war
 // ID returns the formatted Packet Core Control Plane Version ID
 func (id PacketCoreControlPlaneVersionId) ID() string {
 	fmtString := "/providers/Microsoft.MobileNetwork/packetCoreControlPlaneVersions/%s"
-	return fmt.Sprintf(fmtString, id.VersionName)
+	return fmt.Sprintf(fmtString, id.PacketCoreControlPlaneVersionName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Packet Core Control Plane Version ID
@@ -85,14 +85,14 @@ func (id PacketCoreControlPlaneVersionId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftMobileNetwork", "Microsoft.MobileNetwork", "Microsoft.MobileNetwork"),
 		resourceids.StaticSegment("staticPacketCoreControlPlaneVersions", "packetCoreControlPlaneVersions", "packetCoreControlPlaneVersions"),
-		resourceids.UserSpecifiedSegment("versionName", "versionValue"),
+		resourceids.UserSpecifiedSegment("packetCoreControlPlaneVersionName", "packetCoreControlPlaneVersionValue"),
 	}
 }
 
 // String returns a human-readable description of this Packet Core Control Plane Version ID
 func (id PacketCoreControlPlaneVersionId) String() string {
 	components := []string{
-		fmt.Sprintf("Version Name: %q", id.VersionName),
+		fmt.Sprintf("Packet Core Control Plane Version Name: %q", id.PacketCoreControlPlaneVersionName),
 	}
 	return fmt.Sprintf("Packet Core Control Plane Version (%s)", strings.Join(components, "\n"))
 }

@@ -11,19 +11,19 @@ var _ resourceids.ResourceId = OnlineEndpointId{}
 
 // OnlineEndpointId is a struct representing the Resource ID for a Online Endpoint
 type OnlineEndpointId struct {
-	SubscriptionId    string
-	ResourceGroupName string
-	WorkspaceName     string
-	EndpointName      string
+	SubscriptionId     string
+	ResourceGroupName  string
+	WorkspaceName      string
+	OnlineEndpointName string
 }
 
 // NewOnlineEndpointID returns a new OnlineEndpointId struct
-func NewOnlineEndpointID(subscriptionId string, resourceGroupName string, workspaceName string, endpointName string) OnlineEndpointId {
+func NewOnlineEndpointID(subscriptionId string, resourceGroupName string, workspaceName string, onlineEndpointName string) OnlineEndpointId {
 	return OnlineEndpointId{
-		SubscriptionId:    subscriptionId,
-		ResourceGroupName: resourceGroupName,
-		WorkspaceName:     workspaceName,
-		EndpointName:      endpointName,
+		SubscriptionId:     subscriptionId,
+		ResourceGroupName:  resourceGroupName,
+		WorkspaceName:      workspaceName,
+		OnlineEndpointName: onlineEndpointName,
 	}
 }
 
@@ -50,8 +50,8 @@ func ParseOnlineEndpointID(input string) (*OnlineEndpointId, error) {
 		return nil, fmt.Errorf("the segment 'workspaceName' was not found in the resource id %q", input)
 	}
 
-	if id.EndpointName, ok = parsed.Parsed["endpointName"]; !ok {
-		return nil, fmt.Errorf("the segment 'endpointName' was not found in the resource id %q", input)
+	if id.OnlineEndpointName, ok = parsed.Parsed["onlineEndpointName"]; !ok {
+		return nil, fmt.Errorf("the segment 'onlineEndpointName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -81,8 +81,8 @@ func ParseOnlineEndpointIDInsensitively(input string) (*OnlineEndpointId, error)
 		return nil, fmt.Errorf("the segment 'workspaceName' was not found in the resource id %q", input)
 	}
 
-	if id.EndpointName, ok = parsed.Parsed["endpointName"]; !ok {
-		return nil, fmt.Errorf("the segment 'endpointName' was not found in the resource id %q", input)
+	if id.OnlineEndpointName, ok = parsed.Parsed["onlineEndpointName"]; !ok {
+		return nil, fmt.Errorf("the segment 'onlineEndpointName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -106,7 +106,7 @@ func ValidateOnlineEndpointID(input interface{}, key string) (warnings []string,
 // ID returns the formatted Online Endpoint ID
 func (id OnlineEndpointId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.MachineLearningServices/workspaces/%s/onlineEndpoints/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.WorkspaceName, id.EndpointName)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.WorkspaceName, id.OnlineEndpointName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Online Endpoint ID
@@ -121,7 +121,7 @@ func (id OnlineEndpointId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticWorkspaces", "workspaces", "workspaces"),
 		resourceids.UserSpecifiedSegment("workspaceName", "workspaceValue"),
 		resourceids.StaticSegment("staticOnlineEndpoints", "onlineEndpoints", "onlineEndpoints"),
-		resourceids.UserSpecifiedSegment("endpointName", "endpointValue"),
+		resourceids.UserSpecifiedSegment("onlineEndpointName", "onlineEndpointValue"),
 	}
 }
 
@@ -131,7 +131,7 @@ func (id OnlineEndpointId) String() string {
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
 		fmt.Sprintf("Workspace Name: %q", id.WorkspaceName),
-		fmt.Sprintf("Endpoint Name: %q", id.EndpointName),
+		fmt.Sprintf("Online Endpoint Name: %q", id.OnlineEndpointName),
 	}
 	return fmt.Sprintf("Online Endpoint (%s)", strings.Join(components, "\n"))
 }

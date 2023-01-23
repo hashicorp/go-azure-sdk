@@ -11,25 +11,25 @@ var _ resourceids.ResourceId = CapabilityId{}
 
 // CapabilityId is a struct representing the Resource ID for a Capability
 type CapabilityId struct {
-	SubscriptionId          string
-	ResourceGroupName       string
-	ParentProviderNamespace string
-	ParentResourceType      string
-	ParentResourceName      string
-	TargetName              string
-	CapabilityName          string
+	SubscriptionId     string
+	ResourceGroupName  string
+	ProviderName       string
+	ParentResourceType string
+	ParentResourceName string
+	TargetName         string
+	CapabilityName     string
 }
 
 // NewCapabilityID returns a new CapabilityId struct
-func NewCapabilityID(subscriptionId string, resourceGroupName string, parentProviderNamespace string, parentResourceType string, parentResourceName string, targetName string, capabilityName string) CapabilityId {
+func NewCapabilityID(subscriptionId string, resourceGroupName string, providerName string, parentResourceType string, parentResourceName string, targetName string, capabilityName string) CapabilityId {
 	return CapabilityId{
-		SubscriptionId:          subscriptionId,
-		ResourceGroupName:       resourceGroupName,
-		ParentProviderNamespace: parentProviderNamespace,
-		ParentResourceType:      parentResourceType,
-		ParentResourceName:      parentResourceName,
-		TargetName:              targetName,
-		CapabilityName:          capabilityName,
+		SubscriptionId:     subscriptionId,
+		ResourceGroupName:  resourceGroupName,
+		ProviderName:       providerName,
+		ParentResourceType: parentResourceType,
+		ParentResourceName: parentResourceName,
+		TargetName:         targetName,
+		CapabilityName:     capabilityName,
 	}
 }
 
@@ -52,8 +52,8 @@ func ParseCapabilityID(input string) (*CapabilityId, error) {
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.ParentProviderNamespace, ok = parsed.Parsed["parentProviderNamespace"]; !ok {
-		return nil, fmt.Errorf("the segment 'parentProviderNamespace' was not found in the resource id %q", input)
+	if id.ProviderName, ok = parsed.Parsed["providerName"]; !ok {
+		return nil, fmt.Errorf("the segment 'providerName' was not found in the resource id %q", input)
 	}
 
 	if id.ParentResourceType, ok = parsed.Parsed["parentResourceType"]; !ok {
@@ -95,8 +95,8 @@ func ParseCapabilityIDInsensitively(input string) (*CapabilityId, error) {
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.ParentProviderNamespace, ok = parsed.Parsed["parentProviderNamespace"]; !ok {
-		return nil, fmt.Errorf("the segment 'parentProviderNamespace' was not found in the resource id %q", input)
+	if id.ProviderName, ok = parsed.Parsed["providerName"]; !ok {
+		return nil, fmt.Errorf("the segment 'providerName' was not found in the resource id %q", input)
 	}
 
 	if id.ParentResourceType, ok = parsed.Parsed["parentResourceType"]; !ok {
@@ -136,7 +136,7 @@ func ValidateCapabilityID(input interface{}, key string) (warnings []string, err
 // ID returns the formatted Capability ID
 func (id CapabilityId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/%s/%s/%s/providers/Microsoft.Chaos/targets/%s/capabilities/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.ParentProviderNamespace, id.ParentResourceType, id.ParentResourceName, id.TargetName, id.CapabilityName)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.ProviderName, id.ParentResourceType, id.ParentResourceName, id.TargetName, id.CapabilityName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Capability ID
@@ -147,7 +147,7 @@ func (id CapabilityId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticResourceGroups", "resourceGroups", "resourceGroups"),
 		resourceids.ResourceGroupSegment("resourceGroupName", "example-resource-group"),
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
-		resourceids.UserSpecifiedSegment("parentProviderNamespace", "parentProviderNamespaceValue"),
+		resourceids.UserSpecifiedSegment("providerName", "providerValue"),
 		resourceids.UserSpecifiedSegment("parentResourceType", "parentResourceTypeValue"),
 		resourceids.UserSpecifiedSegment("parentResourceName", "parentResourceValue"),
 		resourceids.StaticSegment("staticProviders2", "providers", "providers"),
@@ -164,7 +164,7 @@ func (id CapabilityId) String() string {
 	components := []string{
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
-		fmt.Sprintf("Parent Provider Namespace: %q", id.ParentProviderNamespace),
+		fmt.Sprintf("Provider Name: %q", id.ProviderName),
 		fmt.Sprintf("Parent Resource Type: %q", id.ParentResourceType),
 		fmt.Sprintf("Parent Resource Name: %q", id.ParentResourceName),
 		fmt.Sprintf("Target Name: %q", id.TargetName),

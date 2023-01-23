@@ -11,19 +11,19 @@ var _ resourceids.ResourceId = SqlRoleAssignmentId{}
 
 // SqlRoleAssignmentId is a struct representing the Resource ID for a Sql Role Assignment
 type SqlRoleAssignmentId struct {
-	SubscriptionId    string
-	ResourceGroupName string
-	AccountName       string
-	RoleAssignmentId  string
+	SubscriptionId      string
+	ResourceGroupName   string
+	DatabaseAccountName string
+	RoleAssignmentId    string
 }
 
 // NewSqlRoleAssignmentID returns a new SqlRoleAssignmentId struct
-func NewSqlRoleAssignmentID(subscriptionId string, resourceGroupName string, accountName string, roleAssignmentId string) SqlRoleAssignmentId {
+func NewSqlRoleAssignmentID(subscriptionId string, resourceGroupName string, databaseAccountName string, roleAssignmentId string) SqlRoleAssignmentId {
 	return SqlRoleAssignmentId{
-		SubscriptionId:    subscriptionId,
-		ResourceGroupName: resourceGroupName,
-		AccountName:       accountName,
-		RoleAssignmentId:  roleAssignmentId,
+		SubscriptionId:      subscriptionId,
+		ResourceGroupName:   resourceGroupName,
+		DatabaseAccountName: databaseAccountName,
+		RoleAssignmentId:    roleAssignmentId,
 	}
 }
 
@@ -46,8 +46,8 @@ func ParseSqlRoleAssignmentID(input string) (*SqlRoleAssignmentId, error) {
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.AccountName, ok = parsed.Parsed["accountName"]; !ok {
-		return nil, fmt.Errorf("the segment 'accountName' was not found in the resource id %q", input)
+	if id.DatabaseAccountName, ok = parsed.Parsed["databaseAccountName"]; !ok {
+		return nil, fmt.Errorf("the segment 'databaseAccountName' was not found in the resource id %q", input)
 	}
 
 	if id.RoleAssignmentId, ok = parsed.Parsed["roleAssignmentId"]; !ok {
@@ -77,8 +77,8 @@ func ParseSqlRoleAssignmentIDInsensitively(input string) (*SqlRoleAssignmentId, 
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.AccountName, ok = parsed.Parsed["accountName"]; !ok {
-		return nil, fmt.Errorf("the segment 'accountName' was not found in the resource id %q", input)
+	if id.DatabaseAccountName, ok = parsed.Parsed["databaseAccountName"]; !ok {
+		return nil, fmt.Errorf("the segment 'databaseAccountName' was not found in the resource id %q", input)
 	}
 
 	if id.RoleAssignmentId, ok = parsed.Parsed["roleAssignmentId"]; !ok {
@@ -106,7 +106,7 @@ func ValidateSqlRoleAssignmentID(input interface{}, key string) (warnings []stri
 // ID returns the formatted Sql Role Assignment ID
 func (id SqlRoleAssignmentId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.DocumentDB/databaseAccounts/%s/sqlRoleAssignments/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.AccountName, id.RoleAssignmentId)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.DatabaseAccountName, id.RoleAssignmentId)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Sql Role Assignment ID
@@ -119,7 +119,7 @@ func (id SqlRoleAssignmentId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftDocumentDB", "Microsoft.DocumentDB", "Microsoft.DocumentDB"),
 		resourceids.StaticSegment("staticDatabaseAccounts", "databaseAccounts", "databaseAccounts"),
-		resourceids.UserSpecifiedSegment("accountName", "accountValue"),
+		resourceids.UserSpecifiedSegment("databaseAccountName", "databaseAccountValue"),
 		resourceids.StaticSegment("staticSqlRoleAssignments", "sqlRoleAssignments", "sqlRoleAssignments"),
 		resourceids.UserSpecifiedSegment("roleAssignmentId", "roleAssignmentIdValue"),
 	}
@@ -130,7 +130,7 @@ func (id SqlRoleAssignmentId) String() string {
 	components := []string{
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
-		fmt.Sprintf("Account Name: %q", id.AccountName),
+		fmt.Sprintf("Database Account Name: %q", id.DatabaseAccountName),
 		fmt.Sprintf("Role Assignment: %q", id.RoleAssignmentId),
 	}
 	return fmt.Sprintf("Sql Role Assignment (%s)", strings.Join(components, "\n"))

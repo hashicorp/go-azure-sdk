@@ -14,18 +14,18 @@ type VersionId struct {
 	SubscriptionId    string
 	ResourceGroupName string
 	WorkspaceName     string
-	Name              string
-	Version           string
+	DataName          string
+	VersionName       string
 }
 
 // NewVersionID returns a new VersionId struct
-func NewVersionID(subscriptionId string, resourceGroupName string, workspaceName string, name string, version string) VersionId {
+func NewVersionID(subscriptionId string, resourceGroupName string, workspaceName string, dataName string, versionName string) VersionId {
 	return VersionId{
 		SubscriptionId:    subscriptionId,
 		ResourceGroupName: resourceGroupName,
 		WorkspaceName:     workspaceName,
-		Name:              name,
-		Version:           version,
+		DataName:          dataName,
+		VersionName:       versionName,
 	}
 }
 
@@ -52,12 +52,12 @@ func ParseVersionID(input string) (*VersionId, error) {
 		return nil, fmt.Errorf("the segment 'workspaceName' was not found in the resource id %q", input)
 	}
 
-	if id.Name, ok = parsed.Parsed["name"]; !ok {
-		return nil, fmt.Errorf("the segment 'name' was not found in the resource id %q", input)
+	if id.DataName, ok = parsed.Parsed["dataName"]; !ok {
+		return nil, fmt.Errorf("the segment 'dataName' was not found in the resource id %q", input)
 	}
 
-	if id.Version, ok = parsed.Parsed["version"]; !ok {
-		return nil, fmt.Errorf("the segment 'version' was not found in the resource id %q", input)
+	if id.VersionName, ok = parsed.Parsed["versionName"]; !ok {
+		return nil, fmt.Errorf("the segment 'versionName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -87,12 +87,12 @@ func ParseVersionIDInsensitively(input string) (*VersionId, error) {
 		return nil, fmt.Errorf("the segment 'workspaceName' was not found in the resource id %q", input)
 	}
 
-	if id.Name, ok = parsed.Parsed["name"]; !ok {
-		return nil, fmt.Errorf("the segment 'name' was not found in the resource id %q", input)
+	if id.DataName, ok = parsed.Parsed["dataName"]; !ok {
+		return nil, fmt.Errorf("the segment 'dataName' was not found in the resource id %q", input)
 	}
 
-	if id.Version, ok = parsed.Parsed["version"]; !ok {
-		return nil, fmt.Errorf("the segment 'version' was not found in the resource id %q", input)
+	if id.VersionName, ok = parsed.Parsed["versionName"]; !ok {
+		return nil, fmt.Errorf("the segment 'versionName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -116,7 +116,7 @@ func ValidateVersionID(input interface{}, key string) (warnings []string, errors
 // ID returns the formatted Version ID
 func (id VersionId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.MachineLearningServices/workspaces/%s/data/%s/versions/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.WorkspaceName, id.Name, id.Version)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.WorkspaceName, id.DataName, id.VersionName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Version ID
@@ -131,9 +131,9 @@ func (id VersionId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticWorkspaces", "workspaces", "workspaces"),
 		resourceids.UserSpecifiedSegment("workspaceName", "workspaceValue"),
 		resourceids.StaticSegment("staticData", "data", "data"),
-		resourceids.UserSpecifiedSegment("name", "nameValue"),
+		resourceids.UserSpecifiedSegment("dataName", "dataValue"),
 		resourceids.StaticSegment("staticVersions", "versions", "versions"),
-		resourceids.UserSpecifiedSegment("version", "versionValue"),
+		resourceids.UserSpecifiedSegment("versionName", "versionValue"),
 	}
 }
 
@@ -143,8 +143,8 @@ func (id VersionId) String() string {
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
 		fmt.Sprintf("Workspace Name: %q", id.WorkspaceName),
-		fmt.Sprintf("Name: %q", id.Name),
-		fmt.Sprintf("Version: %q", id.Version),
+		fmt.Sprintf("Data Name: %q", id.DataName),
+		fmt.Sprintf("Version Name: %q", id.VersionName),
 	}
 	return fmt.Sprintf("Version (%s)", strings.Join(components, "\n"))
 }

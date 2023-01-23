@@ -11,19 +11,19 @@ var _ resourceids.ResourceId = NotificationChannelId{}
 
 // NotificationChannelId is a struct representing the Resource ID for a Notification Channel
 type NotificationChannelId struct {
-	SubscriptionId    string
-	ResourceGroupName string
-	LabName           string
-	Name              string
+	SubscriptionId          string
+	ResourceGroupName       string
+	LabName                 string
+	NotificationChannelName string
 }
 
 // NewNotificationChannelID returns a new NotificationChannelId struct
-func NewNotificationChannelID(subscriptionId string, resourceGroupName string, labName string, name string) NotificationChannelId {
+func NewNotificationChannelID(subscriptionId string, resourceGroupName string, labName string, notificationChannelName string) NotificationChannelId {
 	return NotificationChannelId{
-		SubscriptionId:    subscriptionId,
-		ResourceGroupName: resourceGroupName,
-		LabName:           labName,
-		Name:              name,
+		SubscriptionId:          subscriptionId,
+		ResourceGroupName:       resourceGroupName,
+		LabName:                 labName,
+		NotificationChannelName: notificationChannelName,
 	}
 }
 
@@ -50,8 +50,8 @@ func ParseNotificationChannelID(input string) (*NotificationChannelId, error) {
 		return nil, fmt.Errorf("the segment 'labName' was not found in the resource id %q", input)
 	}
 
-	if id.Name, ok = parsed.Parsed["name"]; !ok {
-		return nil, fmt.Errorf("the segment 'name' was not found in the resource id %q", input)
+	if id.NotificationChannelName, ok = parsed.Parsed["notificationChannelName"]; !ok {
+		return nil, fmt.Errorf("the segment 'notificationChannelName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -81,8 +81,8 @@ func ParseNotificationChannelIDInsensitively(input string) (*NotificationChannel
 		return nil, fmt.Errorf("the segment 'labName' was not found in the resource id %q", input)
 	}
 
-	if id.Name, ok = parsed.Parsed["name"]; !ok {
-		return nil, fmt.Errorf("the segment 'name' was not found in the resource id %q", input)
+	if id.NotificationChannelName, ok = parsed.Parsed["notificationChannelName"]; !ok {
+		return nil, fmt.Errorf("the segment 'notificationChannelName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -106,7 +106,7 @@ func ValidateNotificationChannelID(input interface{}, key string) (warnings []st
 // ID returns the formatted Notification Channel ID
 func (id NotificationChannelId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.DevTestLab/labs/%s/notificationChannels/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.LabName, id.Name)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.LabName, id.NotificationChannelName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Notification Channel ID
@@ -121,7 +121,7 @@ func (id NotificationChannelId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticLabs", "labs", "labs"),
 		resourceids.UserSpecifiedSegment("labName", "labValue"),
 		resourceids.StaticSegment("staticNotificationChannels", "notificationChannels", "notificationChannels"),
-		resourceids.UserSpecifiedSegment("name", "nameValue"),
+		resourceids.UserSpecifiedSegment("notificationChannelName", "notificationChannelValue"),
 	}
 }
 
@@ -131,7 +131,7 @@ func (id NotificationChannelId) String() string {
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
 		fmt.Sprintf("Lab Name: %q", id.LabName),
-		fmt.Sprintf("Name: %q", id.Name),
+		fmt.Sprintf("Notification Channel Name: %q", id.NotificationChannelName),
 	}
 	return fmt.Sprintf("Notification Channel (%s)", strings.Join(components, "\n"))
 }

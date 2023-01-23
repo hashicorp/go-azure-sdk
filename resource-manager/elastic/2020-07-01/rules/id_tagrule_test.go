@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = TagRuleId{}
 
 func TestNewTagRuleID(t *testing.T) {
-	id := NewTagRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorValue", "ruleSetValue")
+	id := NewTagRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorValue", "tagRuleValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -23,14 +23,14 @@ func TestNewTagRuleID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'MonitorName'", id.MonitorName, "monitorValue")
 	}
 
-	if id.RuleSetName != "ruleSetValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'RuleSetName'", id.RuleSetName, "ruleSetValue")
+	if id.TagRuleName != "tagRuleValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'TagRuleName'", id.TagRuleName, "tagRuleValue")
 	}
 }
 
 func TestFormatTagRuleID(t *testing.T) {
-	actual := NewTagRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorValue", "ruleSetValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Elastic/monitors/monitorValue/tagRules/ruleSetValue"
+	actual := NewTagRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorValue", "tagRuleValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Elastic/monitors/monitorValue/tagRules/tagRuleValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -94,17 +94,17 @@ func TestParseTagRuleID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Elastic/monitors/monitorValue/tagRules/ruleSetValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Elastic/monitors/monitorValue/tagRules/tagRuleValue",
 			Expected: &TagRuleId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				MonitorName:       "monitorValue",
-				RuleSetName:       "ruleSetValue",
+				TagRuleName:       "tagRuleValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Elastic/monitors/monitorValue/tagRules/ruleSetValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Elastic/monitors/monitorValue/tagRules/tagRuleValue/extra",
 			Error: true,
 		},
 	}
@@ -135,8 +135,8 @@ func TestParseTagRuleID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for MonitorName", v.Expected.MonitorName, actual.MonitorName)
 		}
 
-		if actual.RuleSetName != v.Expected.RuleSetName {
-			t.Fatalf("Expected %q but got %q for RuleSetName", v.Expected.RuleSetName, actual.RuleSetName)
+		if actual.TagRuleName != v.Expected.TagRuleName {
+			t.Fatalf("Expected %q but got %q for TagRuleName", v.Expected.TagRuleName, actual.TagRuleName)
 		}
 
 	}
@@ -245,32 +245,32 @@ func TestParseTagRuleIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Elastic/monitors/monitorValue/tagRules/ruleSetValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Elastic/monitors/monitorValue/tagRules/tagRuleValue",
 			Expected: &TagRuleId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				MonitorName:       "monitorValue",
-				RuleSetName:       "ruleSetValue",
+				TagRuleName:       "tagRuleValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Elastic/monitors/monitorValue/tagRules/ruleSetValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Elastic/monitors/monitorValue/tagRules/tagRuleValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eLaStIc/mOnItOrS/mOnItOrVaLuE/tAgRuLeS/rUlEsEtVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eLaStIc/mOnItOrS/mOnItOrVaLuE/tAgRuLeS/tAgRuLeVaLuE",
 			Expected: &TagRuleId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
 				MonitorName:       "mOnItOrVaLuE",
-				RuleSetName:       "rUlEsEtVaLuE",
+				TagRuleName:       "tAgRuLeVaLuE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eLaStIc/mOnItOrS/mOnItOrVaLuE/tAgRuLeS/rUlEsEtVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eLaStIc/mOnItOrS/mOnItOrVaLuE/tAgRuLeS/tAgRuLeVaLuE/extra",
 			Error: true,
 		},
 	}
@@ -301,8 +301,8 @@ func TestParseTagRuleIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for MonitorName", v.Expected.MonitorName, actual.MonitorName)
 		}
 
-		if actual.RuleSetName != v.Expected.RuleSetName {
-			t.Fatalf("Expected %q but got %q for RuleSetName", v.Expected.RuleSetName, actual.RuleSetName)
+		if actual.TagRuleName != v.Expected.TagRuleName {
+			t.Fatalf("Expected %q but got %q for TagRuleName", v.Expected.TagRuleName, actual.TagRuleName)
 		}
 
 	}

@@ -9,20 +9,20 @@ import (
 var _ resourceids.ResourceId = ScopedDiagnosticSettingId{}
 
 func TestNewScopedDiagnosticSettingID(t *testing.T) {
-	id := NewScopedDiagnosticSettingID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "nameValue")
+	id := NewScopedDiagnosticSettingID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "diagnosticSettingValue")
 
 	if id.ResourceUri != "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group" {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceUri'", id.ResourceUri, "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
 	}
 
-	if id.Name != "nameValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'Name'", id.Name, "nameValue")
+	if id.DiagnosticSettingName != "diagnosticSettingValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'DiagnosticSettingName'", id.DiagnosticSettingName, "diagnosticSettingValue")
 	}
 }
 
 func TestFormatScopedDiagnosticSettingID(t *testing.T) {
-	actual := NewScopedDiagnosticSettingID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "nameValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Insights/diagnosticSettings/nameValue"
+	actual := NewScopedDiagnosticSettingID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "diagnosticSettingValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Insights/diagnosticSettings/diagnosticSettingValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -61,15 +61,15 @@ func TestParseScopedDiagnosticSettingID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Insights/diagnosticSettings/nameValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Insights/diagnosticSettings/diagnosticSettingValue",
 			Expected: &ScopedDiagnosticSettingId{
-				ResourceUri: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group",
-				Name:        "nameValue",
+				ResourceUri:           "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group",
+				DiagnosticSettingName: "diagnosticSettingValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Insights/diagnosticSettings/nameValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Insights/diagnosticSettings/diagnosticSettingValue/extra",
 			Error: true,
 		},
 	}
@@ -92,8 +92,8 @@ func TestParseScopedDiagnosticSettingID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceUri", v.Expected.ResourceUri, actual.ResourceUri)
 		}
 
-		if actual.Name != v.Expected.Name {
-			t.Fatalf("Expected %q but got %q for Name", v.Expected.Name, actual.Name)
+		if actual.DiagnosticSettingName != v.Expected.DiagnosticSettingName {
+			t.Fatalf("Expected %q but got %q for DiagnosticSettingName", v.Expected.DiagnosticSettingName, actual.DiagnosticSettingName)
 		}
 
 	}
@@ -152,28 +152,28 @@ func TestParseScopedDiagnosticSettingIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Insights/diagnosticSettings/nameValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Insights/diagnosticSettings/diagnosticSettingValue",
 			Expected: &ScopedDiagnosticSettingId{
-				ResourceUri: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group",
-				Name:        "nameValue",
+				ResourceUri:           "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group",
+				DiagnosticSettingName: "diagnosticSettingValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Insights/diagnosticSettings/nameValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Insights/diagnosticSettings/diagnosticSettingValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.iNsIgHtS/dIaGnOsTiCsEtTiNgS/nAmEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.iNsIgHtS/dIaGnOsTiCsEtTiNgS/dIaGnOsTiCsEtTiNgVaLuE",
 			Expected: &ScopedDiagnosticSettingId{
-				ResourceUri: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp",
-				Name:        "nAmEvAlUe",
+				ResourceUri:           "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp",
+				DiagnosticSettingName: "dIaGnOsTiCsEtTiNgVaLuE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.iNsIgHtS/dIaGnOsTiCsEtTiNgS/nAmEvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.iNsIgHtS/dIaGnOsTiCsEtTiNgS/dIaGnOsTiCsEtTiNgVaLuE/extra",
 			Error: true,
 		},
 	}
@@ -196,8 +196,8 @@ func TestParseScopedDiagnosticSettingIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceUri", v.Expected.ResourceUri, actual.ResourceUri)
 		}
 
-		if actual.Name != v.Expected.Name {
-			t.Fatalf("Expected %q but got %q for Name", v.Expected.Name, actual.Name)
+		if actual.DiagnosticSettingName != v.Expected.DiagnosticSettingName {
+			t.Fatalf("Expected %q but got %q for DiagnosticSettingName", v.Expected.DiagnosticSettingName, actual.DiagnosticSettingName)
 		}
 
 	}

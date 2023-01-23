@@ -15,8 +15,8 @@ func TestNewPrivateLinkScopeID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
 	}
 
-	if id.Location != "locationValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'Location'", id.Location, "locationValue")
+	if id.LocationName != "locationValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'LocationName'", id.LocationName, "locationValue")
 	}
 
 	if id.PrivateLinkScopeId != "privateLinkScopeIdValue" {
@@ -83,7 +83,7 @@ func TestParsePrivateLinkScopeID(t *testing.T) {
 			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.HybridCompute/locations/locationValue/privateLinkScopes/privateLinkScopeIdValue",
 			Expected: &PrivateLinkScopeId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
-				Location:           "locationValue",
+				LocationName:       "locationValue",
 				PrivateLinkScopeId: "privateLinkScopeIdValue",
 			},
 		},
@@ -112,8 +112,8 @@ func TestParsePrivateLinkScopeID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for SubscriptionId", v.Expected.SubscriptionId, actual.SubscriptionId)
 		}
 
-		if actual.Location != v.Expected.Location {
-			t.Fatalf("Expected %q but got %q for Location", v.Expected.Location, actual.Location)
+		if actual.LocationName != v.Expected.LocationName {
+			t.Fatalf("Expected %q but got %q for LocationName", v.Expected.LocationName, actual.LocationName)
 		}
 
 		if actual.PrivateLinkScopeId != v.Expected.PrivateLinkScopeId {
@@ -209,7 +209,7 @@ func TestParsePrivateLinkScopeIDInsensitively(t *testing.T) {
 			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.HybridCompute/locations/locationValue/privateLinkScopes/privateLinkScopeIdValue",
 			Expected: &PrivateLinkScopeId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
-				Location:           "locationValue",
+				LocationName:       "locationValue",
 				PrivateLinkScopeId: "privateLinkScopeIdValue",
 			},
 		},
@@ -223,7 +223,7 @@ func TestParsePrivateLinkScopeIDInsensitively(t *testing.T) {
 			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.hYbRiDcOmPuTe/lOcAtIoNs/lOcAtIoNvAlUe/pRiVaTeLiNkScOpEs/pRiVaTeLiNkScOpEiDvAlUe",
 			Expected: &PrivateLinkScopeId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
-				Location:           "lOcAtIoNvAlUe",
+				LocationName:       "lOcAtIoNvAlUe",
 				PrivateLinkScopeId: "pRiVaTeLiNkScOpEiDvAlUe",
 			},
 		},
@@ -252,8 +252,8 @@ func TestParsePrivateLinkScopeIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for SubscriptionId", v.Expected.SubscriptionId, actual.SubscriptionId)
 		}
 
-		if actual.Location != v.Expected.Location {
-			t.Fatalf("Expected %q but got %q for Location", v.Expected.Location, actual.Location)
+		if actual.LocationName != v.Expected.LocationName {
+			t.Fatalf("Expected %q but got %q for LocationName", v.Expected.LocationName, actual.LocationName)
 		}
 
 		if actual.PrivateLinkScopeId != v.Expected.PrivateLinkScopeId {

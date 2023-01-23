@@ -19,8 +19,8 @@ func TestNewLocationWorkflowID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.Location != "locationValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'Location'", id.Location, "locationValue")
+	if id.LocationName != "locationValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'LocationName'", id.LocationName, "locationValue")
 	}
 
 	if id.WorkflowName != "workflowValue" {
@@ -98,7 +98,7 @@ func TestParseLocationWorkflowID(t *testing.T) {
 			Expected: &LocationWorkflowId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				Location:          "locationValue",
+				LocationName:      "locationValue",
 				WorkflowName:      "workflowValue",
 			},
 		},
@@ -131,8 +131,8 @@ func TestParseLocationWorkflowID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.Location != v.Expected.Location {
-			t.Fatalf("Expected %q but got %q for Location", v.Expected.Location, actual.Location)
+		if actual.LocationName != v.Expected.LocationName {
+			t.Fatalf("Expected %q but got %q for LocationName", v.Expected.LocationName, actual.LocationName)
 		}
 
 		if actual.WorkflowName != v.Expected.WorkflowName {
@@ -249,7 +249,7 @@ func TestParseLocationWorkflowIDInsensitively(t *testing.T) {
 			Expected: &LocationWorkflowId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				Location:          "locationValue",
+				LocationName:      "locationValue",
 				WorkflowName:      "workflowValue",
 			},
 		},
@@ -264,7 +264,7 @@ func TestParseLocationWorkflowIDInsensitively(t *testing.T) {
 			Expected: &LocationWorkflowId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				Location:          "lOcAtIoNvAlUe",
+				LocationName:      "lOcAtIoNvAlUe",
 				WorkflowName:      "wOrKfLoWvAlUe",
 			},
 		},
@@ -297,8 +297,8 @@ func TestParseLocationWorkflowIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.Location != v.Expected.Location {
-			t.Fatalf("Expected %q but got %q for Location", v.Expected.Location, actual.Location)
+		if actual.LocationName != v.Expected.LocationName {
+			t.Fatalf("Expected %q but got %q for LocationName", v.Expected.LocationName, actual.LocationName)
 		}
 
 		if actual.WorkflowName != v.Expected.WorkflowName {

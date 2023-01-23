@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = ObjectDataTypeId{}
 
 func TestNewObjectDataTypeID(t *testing.T) {
-	id := NewObjectDataTypeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountValue", "typeValue")
+	id := NewObjectDataTypeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountValue", "objectDataTypeValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -23,14 +23,14 @@ func TestNewObjectDataTypeID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'AutomationAccountName'", id.AutomationAccountName, "automationAccountValue")
 	}
 
-	if id.TypeName != "typeValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'TypeName'", id.TypeName, "typeValue")
+	if id.ObjectDataTypeName != "objectDataTypeValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'ObjectDataTypeName'", id.ObjectDataTypeName, "objectDataTypeValue")
 	}
 }
 
 func TestFormatObjectDataTypeID(t *testing.T) {
-	actual := NewObjectDataTypeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountValue", "typeValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue/objectDataTypes/typeValue"
+	actual := NewObjectDataTypeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountValue", "objectDataTypeValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue/objectDataTypes/objectDataTypeValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -94,17 +94,17 @@ func TestParseObjectDataTypeID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue/objectDataTypes/typeValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue/objectDataTypes/objectDataTypeValue",
 			Expected: &ObjectDataTypeId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:     "example-resource-group",
 				AutomationAccountName: "automationAccountValue",
-				TypeName:              "typeValue",
+				ObjectDataTypeName:    "objectDataTypeValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue/objectDataTypes/typeValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue/objectDataTypes/objectDataTypeValue/extra",
 			Error: true,
 		},
 	}
@@ -135,8 +135,8 @@ func TestParseObjectDataTypeID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for AutomationAccountName", v.Expected.AutomationAccountName, actual.AutomationAccountName)
 		}
 
-		if actual.TypeName != v.Expected.TypeName {
-			t.Fatalf("Expected %q but got %q for TypeName", v.Expected.TypeName, actual.TypeName)
+		if actual.ObjectDataTypeName != v.Expected.ObjectDataTypeName {
+			t.Fatalf("Expected %q but got %q for ObjectDataTypeName", v.Expected.ObjectDataTypeName, actual.ObjectDataTypeName)
 		}
 
 	}
@@ -245,32 +245,32 @@ func TestParseObjectDataTypeIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue/objectDataTypes/typeValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue/objectDataTypes/objectDataTypeValue",
 			Expected: &ObjectDataTypeId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:     "example-resource-group",
 				AutomationAccountName: "automationAccountValue",
-				TypeName:              "typeValue",
+				ObjectDataTypeName:    "objectDataTypeValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue/objectDataTypes/typeValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue/objectDataTypes/objectDataTypeValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aUtOmAtIoN/aUtOmAtIoNaCcOuNtS/aUtOmAtIoNaCcOuNtVaLuE/oBjEcTdAtAtYpEs/tYpEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aUtOmAtIoN/aUtOmAtIoNaCcOuNtS/aUtOmAtIoNaCcOuNtVaLuE/oBjEcTdAtAtYpEs/oBjEcTdAtAtYpEvAlUe",
 			Expected: &ObjectDataTypeId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:     "eXaMpLe-rEsOuRcE-GrOuP",
 				AutomationAccountName: "aUtOmAtIoNaCcOuNtVaLuE",
-				TypeName:              "tYpEvAlUe",
+				ObjectDataTypeName:    "oBjEcTdAtAtYpEvAlUe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aUtOmAtIoN/aUtOmAtIoNaCcOuNtS/aUtOmAtIoNaCcOuNtVaLuE/oBjEcTdAtAtYpEs/tYpEvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aUtOmAtIoN/aUtOmAtIoNaCcOuNtS/aUtOmAtIoNaCcOuNtVaLuE/oBjEcTdAtAtYpEs/oBjEcTdAtAtYpEvAlUe/extra",
 			Error: true,
 		},
 	}
@@ -301,8 +301,8 @@ func TestParseObjectDataTypeIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for AutomationAccountName", v.Expected.AutomationAccountName, actual.AutomationAccountName)
 		}
 
-		if actual.TypeName != v.Expected.TypeName {
-			t.Fatalf("Expected %q but got %q for TypeName", v.Expected.TypeName, actual.TypeName)
+		if actual.ObjectDataTypeName != v.Expected.ObjectDataTypeName {
+			t.Fatalf("Expected %q but got %q for ObjectDataTypeName", v.Expected.ObjectDataTypeName, actual.ObjectDataTypeName)
 		}
 
 	}

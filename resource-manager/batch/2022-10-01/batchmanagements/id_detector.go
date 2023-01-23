@@ -13,16 +13,16 @@ var _ resourceids.ResourceId = DetectorId{}
 type DetectorId struct {
 	SubscriptionId    string
 	ResourceGroupName string
-	AccountName       string
+	BatchAccountName  string
 	DetectorId        string
 }
 
 // NewDetectorID returns a new DetectorId struct
-func NewDetectorID(subscriptionId string, resourceGroupName string, accountName string, detectorId string) DetectorId {
+func NewDetectorID(subscriptionId string, resourceGroupName string, batchAccountName string, detectorId string) DetectorId {
 	return DetectorId{
 		SubscriptionId:    subscriptionId,
 		ResourceGroupName: resourceGroupName,
-		AccountName:       accountName,
+		BatchAccountName:  batchAccountName,
 		DetectorId:        detectorId,
 	}
 }
@@ -46,8 +46,8 @@ func ParseDetectorID(input string) (*DetectorId, error) {
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.AccountName, ok = parsed.Parsed["accountName"]; !ok {
-		return nil, fmt.Errorf("the segment 'accountName' was not found in the resource id %q", input)
+	if id.BatchAccountName, ok = parsed.Parsed["batchAccountName"]; !ok {
+		return nil, fmt.Errorf("the segment 'batchAccountName' was not found in the resource id %q", input)
 	}
 
 	if id.DetectorId, ok = parsed.Parsed["detectorId"]; !ok {
@@ -77,8 +77,8 @@ func ParseDetectorIDInsensitively(input string) (*DetectorId, error) {
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.AccountName, ok = parsed.Parsed["accountName"]; !ok {
-		return nil, fmt.Errorf("the segment 'accountName' was not found in the resource id %q", input)
+	if id.BatchAccountName, ok = parsed.Parsed["batchAccountName"]; !ok {
+		return nil, fmt.Errorf("the segment 'batchAccountName' was not found in the resource id %q", input)
 	}
 
 	if id.DetectorId, ok = parsed.Parsed["detectorId"]; !ok {
@@ -106,7 +106,7 @@ func ValidateDetectorID(input interface{}, key string) (warnings []string, error
 // ID returns the formatted Detector ID
 func (id DetectorId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.Batch/batchAccounts/%s/detectors/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.AccountName, id.DetectorId)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.BatchAccountName, id.DetectorId)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Detector ID
@@ -119,7 +119,7 @@ func (id DetectorId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftBatch", "Microsoft.Batch", "Microsoft.Batch"),
 		resourceids.StaticSegment("staticBatchAccounts", "batchAccounts", "batchAccounts"),
-		resourceids.UserSpecifiedSegment("accountName", "accountValue"),
+		resourceids.UserSpecifiedSegment("batchAccountName", "batchAccountValue"),
 		resourceids.StaticSegment("staticDetectors", "detectors", "detectors"),
 		resourceids.UserSpecifiedSegment("detectorId", "detectorIdValue"),
 	}
@@ -130,7 +130,7 @@ func (id DetectorId) String() string {
 	components := []string{
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
-		fmt.Sprintf("Account Name: %q", id.AccountName),
+		fmt.Sprintf("Batch Account Name: %q", id.BatchAccountName),
 		fmt.Sprintf("Detector: %q", id.DetectorId),
 	}
 	return fmt.Sprintf("Detector (%s)", strings.Join(components, "\n"))

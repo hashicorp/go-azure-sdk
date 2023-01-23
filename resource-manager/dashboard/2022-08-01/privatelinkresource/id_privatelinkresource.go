@@ -13,16 +13,16 @@ var _ resourceids.ResourceId = PrivateLinkResourceId{}
 type PrivateLinkResourceId struct {
 	SubscriptionId          string
 	ResourceGroupName       string
-	WorkspaceName           string
+	GrafanaName             string
 	PrivateLinkResourceName string
 }
 
 // NewPrivateLinkResourceID returns a new PrivateLinkResourceId struct
-func NewPrivateLinkResourceID(subscriptionId string, resourceGroupName string, workspaceName string, privateLinkResourceName string) PrivateLinkResourceId {
+func NewPrivateLinkResourceID(subscriptionId string, resourceGroupName string, grafanaName string, privateLinkResourceName string) PrivateLinkResourceId {
 	return PrivateLinkResourceId{
 		SubscriptionId:          subscriptionId,
 		ResourceGroupName:       resourceGroupName,
-		WorkspaceName:           workspaceName,
+		GrafanaName:             grafanaName,
 		PrivateLinkResourceName: privateLinkResourceName,
 	}
 }
@@ -46,8 +46,8 @@ func ParsePrivateLinkResourceID(input string) (*PrivateLinkResourceId, error) {
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.WorkspaceName, ok = parsed.Parsed["workspaceName"]; !ok {
-		return nil, fmt.Errorf("the segment 'workspaceName' was not found in the resource id %q", input)
+	if id.GrafanaName, ok = parsed.Parsed["grafanaName"]; !ok {
+		return nil, fmt.Errorf("the segment 'grafanaName' was not found in the resource id %q", input)
 	}
 
 	if id.PrivateLinkResourceName, ok = parsed.Parsed["privateLinkResourceName"]; !ok {
@@ -77,8 +77,8 @@ func ParsePrivateLinkResourceIDInsensitively(input string) (*PrivateLinkResource
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.WorkspaceName, ok = parsed.Parsed["workspaceName"]; !ok {
-		return nil, fmt.Errorf("the segment 'workspaceName' was not found in the resource id %q", input)
+	if id.GrafanaName, ok = parsed.Parsed["grafanaName"]; !ok {
+		return nil, fmt.Errorf("the segment 'grafanaName' was not found in the resource id %q", input)
 	}
 
 	if id.PrivateLinkResourceName, ok = parsed.Parsed["privateLinkResourceName"]; !ok {
@@ -106,7 +106,7 @@ func ValidatePrivateLinkResourceID(input interface{}, key string) (warnings []st
 // ID returns the formatted Private Link Resource ID
 func (id PrivateLinkResourceId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.Dashboard/grafana/%s/privateLinkResources/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.WorkspaceName, id.PrivateLinkResourceName)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.GrafanaName, id.PrivateLinkResourceName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Private Link Resource ID
@@ -119,7 +119,7 @@ func (id PrivateLinkResourceId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftDashboard", "Microsoft.Dashboard", "Microsoft.Dashboard"),
 		resourceids.StaticSegment("staticGrafana", "grafana", "grafana"),
-		resourceids.UserSpecifiedSegment("workspaceName", "workspaceValue"),
+		resourceids.UserSpecifiedSegment("grafanaName", "grafanaValue"),
 		resourceids.StaticSegment("staticPrivateLinkResources", "privateLinkResources", "privateLinkResources"),
 		resourceids.UserSpecifiedSegment("privateLinkResourceName", "privateLinkResourceValue"),
 	}
@@ -130,7 +130,7 @@ func (id PrivateLinkResourceId) String() string {
 	components := []string{
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
-		fmt.Sprintf("Workspace Name: %q", id.WorkspaceName),
+		fmt.Sprintf("Grafana Name: %q", id.GrafanaName),
 		fmt.Sprintf("Private Link Resource Name: %q", id.PrivateLinkResourceName),
 	}
 	return fmt.Sprintf("Private Link Resource (%s)", strings.Join(components, "\n"))

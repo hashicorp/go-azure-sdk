@@ -9,24 +9,24 @@ import (
 var _ resourceids.ResourceId = QuotaId{}
 
 func TestNewQuotaID(t *testing.T) {
-	id := NewQuotaID("12345678-1234-9876-4563-123456789012", "locationValue", "quotaBucketValue")
+	id := NewQuotaID("12345678-1234-9876-4563-123456789012", "locationValue", "quotaValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
 	}
 
-	if id.Location != "locationValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'Location'", id.Location, "locationValue")
+	if id.LocationName != "locationValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'LocationName'", id.LocationName, "locationValue")
 	}
 
-	if id.QuotaBucketName != "quotaBucketValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'QuotaBucketName'", id.QuotaBucketName, "quotaBucketValue")
+	if id.QuotaName != "quotaValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'QuotaName'", id.QuotaName, "quotaValue")
 	}
 }
 
 func TestFormatQuotaID(t *testing.T) {
-	actual := NewQuotaID("12345678-1234-9876-4563-123456789012", "locationValue", "quotaBucketValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.LoadTestService/locations/locationValue/quotas/quotaBucketValue"
+	actual := NewQuotaID("12345678-1234-9876-4563-123456789012", "locationValue", "quotaValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.LoadTestService/locations/locationValue/quotas/quotaValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -80,16 +80,16 @@ func TestParseQuotaID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.LoadTestService/locations/locationValue/quotas/quotaBucketValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.LoadTestService/locations/locationValue/quotas/quotaValue",
 			Expected: &QuotaId{
-				SubscriptionId:  "12345678-1234-9876-4563-123456789012",
-				Location:        "locationValue",
-				QuotaBucketName: "quotaBucketValue",
+				SubscriptionId: "12345678-1234-9876-4563-123456789012",
+				LocationName:   "locationValue",
+				QuotaName:      "quotaValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.LoadTestService/locations/locationValue/quotas/quotaBucketValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.LoadTestService/locations/locationValue/quotas/quotaValue/extra",
 			Error: true,
 		},
 	}
@@ -112,12 +112,12 @@ func TestParseQuotaID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for SubscriptionId", v.Expected.SubscriptionId, actual.SubscriptionId)
 		}
 
-		if actual.Location != v.Expected.Location {
-			t.Fatalf("Expected %q but got %q for Location", v.Expected.Location, actual.Location)
+		if actual.LocationName != v.Expected.LocationName {
+			t.Fatalf("Expected %q but got %q for LocationName", v.Expected.LocationName, actual.LocationName)
 		}
 
-		if actual.QuotaBucketName != v.Expected.QuotaBucketName {
-			t.Fatalf("Expected %q but got %q for QuotaBucketName", v.Expected.QuotaBucketName, actual.QuotaBucketName)
+		if actual.QuotaName != v.Expected.QuotaName {
+			t.Fatalf("Expected %q but got %q for QuotaName", v.Expected.QuotaName, actual.QuotaName)
 		}
 
 	}
@@ -206,30 +206,30 @@ func TestParseQuotaIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.LoadTestService/locations/locationValue/quotas/quotaBucketValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.LoadTestService/locations/locationValue/quotas/quotaValue",
 			Expected: &QuotaId{
-				SubscriptionId:  "12345678-1234-9876-4563-123456789012",
-				Location:        "locationValue",
-				QuotaBucketName: "quotaBucketValue",
+				SubscriptionId: "12345678-1234-9876-4563-123456789012",
+				LocationName:   "locationValue",
+				QuotaName:      "quotaValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.LoadTestService/locations/locationValue/quotas/quotaBucketValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.LoadTestService/locations/locationValue/quotas/quotaValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.lOaDtEsTsErViCe/lOcAtIoNs/lOcAtIoNvAlUe/qUoTaS/qUoTaBuCkEtVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.lOaDtEsTsErViCe/lOcAtIoNs/lOcAtIoNvAlUe/qUoTaS/qUoTaVaLuE",
 			Expected: &QuotaId{
-				SubscriptionId:  "12345678-1234-9876-4563-123456789012",
-				Location:        "lOcAtIoNvAlUe",
-				QuotaBucketName: "qUoTaBuCkEtVaLuE",
+				SubscriptionId: "12345678-1234-9876-4563-123456789012",
+				LocationName:   "lOcAtIoNvAlUe",
+				QuotaName:      "qUoTaVaLuE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.lOaDtEsTsErViCe/lOcAtIoNs/lOcAtIoNvAlUe/qUoTaS/qUoTaBuCkEtVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.lOaDtEsTsErViCe/lOcAtIoNs/lOcAtIoNvAlUe/qUoTaS/qUoTaVaLuE/extra",
 			Error: true,
 		},
 	}
@@ -252,12 +252,12 @@ func TestParseQuotaIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for SubscriptionId", v.Expected.SubscriptionId, actual.SubscriptionId)
 		}
 
-		if actual.Location != v.Expected.Location {
-			t.Fatalf("Expected %q but got %q for Location", v.Expected.Location, actual.Location)
+		if actual.LocationName != v.Expected.LocationName {
+			t.Fatalf("Expected %q but got %q for LocationName", v.Expected.LocationName, actual.LocationName)
 		}
 
-		if actual.QuotaBucketName != v.Expected.QuotaBucketName {
-			t.Fatalf("Expected %q but got %q for QuotaBucketName", v.Expected.QuotaBucketName, actual.QuotaBucketName)
+		if actual.QuotaName != v.Expected.QuotaName {
+			t.Fatalf("Expected %q but got %q for QuotaName", v.Expected.QuotaName, actual.QuotaName)
 		}
 
 	}

@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = UpgradeGraphId{}
 
 func TestNewUpgradeGraphID(t *testing.T) {
-	id := NewUpgradeGraphID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue", "upgradeGraphValue")
+	id := NewUpgradeGraphID("12345678-1234-9876-4563-123456789012", "example-resource-group", "applianceValue", "upgradeGraphValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -19,18 +19,18 @@ func TestNewUpgradeGraphID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.ResourceName != "resourceValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ResourceName'", id.ResourceName, "resourceValue")
+	if id.ApplianceName != "applianceValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'ApplianceName'", id.ApplianceName, "applianceValue")
 	}
 
-	if id.UpgradeGraph != "upgradeGraphValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UpgradeGraph'", id.UpgradeGraph, "upgradeGraphValue")
+	if id.UpgradeGraphName != "upgradeGraphValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'UpgradeGraphName'", id.UpgradeGraphName, "upgradeGraphValue")
 	}
 }
 
 func TestFormatUpgradeGraphID(t *testing.T) {
-	actual := NewUpgradeGraphID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue", "upgradeGraphValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ResourceConnector/appliances/resourceValue/upgradeGraphs/upgradeGraphValue"
+	actual := NewUpgradeGraphID("12345678-1234-9876-4563-123456789012", "example-resource-group", "applianceValue", "upgradeGraphValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ResourceConnector/appliances/applianceValue/upgradeGraphs/upgradeGraphValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -84,27 +84,27 @@ func TestParseUpgradeGraphID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ResourceConnector/appliances/resourceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ResourceConnector/appliances/applianceValue",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ResourceConnector/appliances/resourceValue/upgradeGraphs",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ResourceConnector/appliances/applianceValue/upgradeGraphs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ResourceConnector/appliances/resourceValue/upgradeGraphs/upgradeGraphValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ResourceConnector/appliances/applianceValue/upgradeGraphs/upgradeGraphValue",
 			Expected: &UpgradeGraphId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				ResourceName:      "resourceValue",
-				UpgradeGraph:      "upgradeGraphValue",
+				ApplianceName:     "applianceValue",
+				UpgradeGraphName:  "upgradeGraphValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ResourceConnector/appliances/resourceValue/upgradeGraphs/upgradeGraphValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ResourceConnector/appliances/applianceValue/upgradeGraphs/upgradeGraphValue/extra",
 			Error: true,
 		},
 	}
@@ -131,12 +131,12 @@ func TestParseUpgradeGraphID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.ResourceName != v.Expected.ResourceName {
-			t.Fatalf("Expected %q but got %q for ResourceName", v.Expected.ResourceName, actual.ResourceName)
+		if actual.ApplianceName != v.Expected.ApplianceName {
+			t.Fatalf("Expected %q but got %q for ApplianceName", v.Expected.ApplianceName, actual.ApplianceName)
 		}
 
-		if actual.UpgradeGraph != v.Expected.UpgradeGraph {
-			t.Fatalf("Expected %q but got %q for UpgradeGraph", v.Expected.UpgradeGraph, actual.UpgradeGraph)
+		if actual.UpgradeGraphName != v.Expected.UpgradeGraphName {
+			t.Fatalf("Expected %q but got %q for UpgradeGraphName", v.Expected.UpgradeGraphName, actual.UpgradeGraphName)
 		}
 
 	}
@@ -225,52 +225,52 @@ func TestParseUpgradeGraphIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ResourceConnector/appliances/resourceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ResourceConnector/appliances/applianceValue",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEsOuRcEcOnNeCtOr/aPpLiAnCeS/rEsOuRcEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEsOuRcEcOnNeCtOr/aPpLiAnCeS/aPpLiAnCeVaLuE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ResourceConnector/appliances/resourceValue/upgradeGraphs",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ResourceConnector/appliances/applianceValue/upgradeGraphs",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEsOuRcEcOnNeCtOr/aPpLiAnCeS/rEsOuRcEvAlUe/uPgRaDeGrApHs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEsOuRcEcOnNeCtOr/aPpLiAnCeS/aPpLiAnCeVaLuE/uPgRaDeGrApHs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ResourceConnector/appliances/resourceValue/upgradeGraphs/upgradeGraphValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ResourceConnector/appliances/applianceValue/upgradeGraphs/upgradeGraphValue",
 			Expected: &UpgradeGraphId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				ResourceName:      "resourceValue",
-				UpgradeGraph:      "upgradeGraphValue",
+				ApplianceName:     "applianceValue",
+				UpgradeGraphName:  "upgradeGraphValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ResourceConnector/appliances/resourceValue/upgradeGraphs/upgradeGraphValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ResourceConnector/appliances/applianceValue/upgradeGraphs/upgradeGraphValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEsOuRcEcOnNeCtOr/aPpLiAnCeS/rEsOuRcEvAlUe/uPgRaDeGrApHs/uPgRaDeGrApHvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEsOuRcEcOnNeCtOr/aPpLiAnCeS/aPpLiAnCeVaLuE/uPgRaDeGrApHs/uPgRaDeGrApHvAlUe",
 			Expected: &UpgradeGraphId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				ResourceName:      "rEsOuRcEvAlUe",
-				UpgradeGraph:      "uPgRaDeGrApHvAlUe",
+				ApplianceName:     "aPpLiAnCeVaLuE",
+				UpgradeGraphName:  "uPgRaDeGrApHvAlUe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEsOuRcEcOnNeCtOr/aPpLiAnCeS/rEsOuRcEvAlUe/uPgRaDeGrApHs/uPgRaDeGrApHvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEsOuRcEcOnNeCtOr/aPpLiAnCeS/aPpLiAnCeVaLuE/uPgRaDeGrApHs/uPgRaDeGrApHvAlUe/extra",
 			Error: true,
 		},
 	}
@@ -297,12 +297,12 @@ func TestParseUpgradeGraphIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.ResourceName != v.Expected.ResourceName {
-			t.Fatalf("Expected %q but got %q for ResourceName", v.Expected.ResourceName, actual.ResourceName)
+		if actual.ApplianceName != v.Expected.ApplianceName {
+			t.Fatalf("Expected %q but got %q for ApplianceName", v.Expected.ApplianceName, actual.ApplianceName)
 		}
 
-		if actual.UpgradeGraph != v.Expected.UpgradeGraph {
-			t.Fatalf("Expected %q but got %q for UpgradeGraph", v.Expected.UpgradeGraph, actual.UpgradeGraph)
+		if actual.UpgradeGraphName != v.Expected.UpgradeGraphName {
+			t.Fatalf("Expected %q but got %q for UpgradeGraphName", v.Expected.UpgradeGraphName, actual.UpgradeGraphName)
 		}
 
 	}

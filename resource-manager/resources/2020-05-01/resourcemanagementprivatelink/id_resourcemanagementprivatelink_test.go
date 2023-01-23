@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = ResourceManagementPrivateLinkId{}
 
 func TestNewResourceManagementPrivateLinkID(t *testing.T) {
-	id := NewResourceManagementPrivateLinkID("12345678-1234-9876-4563-123456789012", "example-resource-group", "rmplValue")
+	id := NewResourceManagementPrivateLinkID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceManagementPrivateLinkValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -19,14 +19,14 @@ func TestNewResourceManagementPrivateLinkID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.RmplName != "rmplValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'RmplName'", id.RmplName, "rmplValue")
+	if id.ResourceManagementPrivateLinkName != "resourceManagementPrivateLinkValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'ResourceManagementPrivateLinkName'", id.ResourceManagementPrivateLinkName, "resourceManagementPrivateLinkValue")
 	}
 }
 
 func TestFormatResourceManagementPrivateLinkID(t *testing.T) {
-	actual := NewResourceManagementPrivateLinkID("12345678-1234-9876-4563-123456789012", "example-resource-group", "rmplValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Authorization/resourceManagementPrivateLinks/rmplValue"
+	actual := NewResourceManagementPrivateLinkID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceManagementPrivateLinkValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Authorization/resourceManagementPrivateLinks/resourceManagementPrivateLinkValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -80,16 +80,16 @@ func TestParseResourceManagementPrivateLinkID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Authorization/resourceManagementPrivateLinks/rmplValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Authorization/resourceManagementPrivateLinks/resourceManagementPrivateLinkValue",
 			Expected: &ResourceManagementPrivateLinkId{
-				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName: "example-resource-group",
-				RmplName:          "rmplValue",
+				SubscriptionId:                    "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:                 "example-resource-group",
+				ResourceManagementPrivateLinkName: "resourceManagementPrivateLinkValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Authorization/resourceManagementPrivateLinks/rmplValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Authorization/resourceManagementPrivateLinks/resourceManagementPrivateLinkValue/extra",
 			Error: true,
 		},
 	}
@@ -116,8 +116,8 @@ func TestParseResourceManagementPrivateLinkID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.RmplName != v.Expected.RmplName {
-			t.Fatalf("Expected %q but got %q for RmplName", v.Expected.RmplName, actual.RmplName)
+		if actual.ResourceManagementPrivateLinkName != v.Expected.ResourceManagementPrivateLinkName {
+			t.Fatalf("Expected %q but got %q for ResourceManagementPrivateLinkName", v.Expected.ResourceManagementPrivateLinkName, actual.ResourceManagementPrivateLinkName)
 		}
 
 	}
@@ -206,30 +206,30 @@ func TestParseResourceManagementPrivateLinkIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Authorization/resourceManagementPrivateLinks/rmplValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Authorization/resourceManagementPrivateLinks/resourceManagementPrivateLinkValue",
 			Expected: &ResourceManagementPrivateLinkId{
-				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName: "example-resource-group",
-				RmplName:          "rmplValue",
+				SubscriptionId:                    "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:                 "example-resource-group",
+				ResourceManagementPrivateLinkName: "resourceManagementPrivateLinkValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Authorization/resourceManagementPrivateLinks/rmplValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Authorization/resourceManagementPrivateLinks/resourceManagementPrivateLinkValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aUtHoRiZaTiOn/rEsOuRcEmAnAgEmEnTpRiVaTeLiNkS/rMpLvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aUtHoRiZaTiOn/rEsOuRcEmAnAgEmEnTpRiVaTeLiNkS/rEsOuRcEmAnAgEmEnTpRiVaTeLiNkVaLuE",
 			Expected: &ResourceManagementPrivateLinkId{
-				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				RmplName:          "rMpLvAlUe",
+				SubscriptionId:                    "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:                 "eXaMpLe-rEsOuRcE-GrOuP",
+				ResourceManagementPrivateLinkName: "rEsOuRcEmAnAgEmEnTpRiVaTeLiNkVaLuE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aUtHoRiZaTiOn/rEsOuRcEmAnAgEmEnTpRiVaTeLiNkS/rMpLvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aUtHoRiZaTiOn/rEsOuRcEmAnAgEmEnTpRiVaTeLiNkS/rEsOuRcEmAnAgEmEnTpRiVaTeLiNkVaLuE/extra",
 			Error: true,
 		},
 	}
@@ -256,8 +256,8 @@ func TestParseResourceManagementPrivateLinkIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.RmplName != v.Expected.RmplName {
-			t.Fatalf("Expected %q but got %q for RmplName", v.Expected.RmplName, actual.RmplName)
+		if actual.ResourceManagementPrivateLinkName != v.Expected.ResourceManagementPrivateLinkName {
+			t.Fatalf("Expected %q but got %q for ResourceManagementPrivateLinkName", v.Expected.ResourceManagementPrivateLinkName, actual.ResourceManagementPrivateLinkName)
 		}
 
 	}

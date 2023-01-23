@@ -11,21 +11,21 @@ var _ resourceids.ResourceId = VersionId{}
 
 // VersionId is a struct representing the Resource ID for a Version
 type VersionId struct {
-	SubscriptionId          string
-	Location                string
-	GalleryUniqueName       string
-	GalleryImageName        string
-	GalleryImageVersionName string
+	SubscriptionId    string
+	LocationName      string
+	SharedGalleryName string
+	ImageName         string
+	VersionName       string
 }
 
 // NewVersionID returns a new VersionId struct
-func NewVersionID(subscriptionId string, location string, galleryUniqueName string, galleryImageName string, galleryImageVersionName string) VersionId {
+func NewVersionID(subscriptionId string, locationName string, sharedGalleryName string, imageName string, versionName string) VersionId {
 	return VersionId{
-		SubscriptionId:          subscriptionId,
-		Location:                location,
-		GalleryUniqueName:       galleryUniqueName,
-		GalleryImageName:        galleryImageName,
-		GalleryImageVersionName: galleryImageVersionName,
+		SubscriptionId:    subscriptionId,
+		LocationName:      locationName,
+		SharedGalleryName: sharedGalleryName,
+		ImageName:         imageName,
+		VersionName:       versionName,
 	}
 }
 
@@ -44,20 +44,20 @@ func ParseVersionID(input string) (*VersionId, error) {
 		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
 	}
 
-	if id.Location, ok = parsed.Parsed["location"]; !ok {
-		return nil, fmt.Errorf("the segment 'location' was not found in the resource id %q", input)
+	if id.LocationName, ok = parsed.Parsed["locationName"]; !ok {
+		return nil, fmt.Errorf("the segment 'locationName' was not found in the resource id %q", input)
 	}
 
-	if id.GalleryUniqueName, ok = parsed.Parsed["galleryUniqueName"]; !ok {
-		return nil, fmt.Errorf("the segment 'galleryUniqueName' was not found in the resource id %q", input)
+	if id.SharedGalleryName, ok = parsed.Parsed["sharedGalleryName"]; !ok {
+		return nil, fmt.Errorf("the segment 'sharedGalleryName' was not found in the resource id %q", input)
 	}
 
-	if id.GalleryImageName, ok = parsed.Parsed["galleryImageName"]; !ok {
-		return nil, fmt.Errorf("the segment 'galleryImageName' was not found in the resource id %q", input)
+	if id.ImageName, ok = parsed.Parsed["imageName"]; !ok {
+		return nil, fmt.Errorf("the segment 'imageName' was not found in the resource id %q", input)
 	}
 
-	if id.GalleryImageVersionName, ok = parsed.Parsed["galleryImageVersionName"]; !ok {
-		return nil, fmt.Errorf("the segment 'galleryImageVersionName' was not found in the resource id %q", input)
+	if id.VersionName, ok = parsed.Parsed["versionName"]; !ok {
+		return nil, fmt.Errorf("the segment 'versionName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -79,20 +79,20 @@ func ParseVersionIDInsensitively(input string) (*VersionId, error) {
 		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
 	}
 
-	if id.Location, ok = parsed.Parsed["location"]; !ok {
-		return nil, fmt.Errorf("the segment 'location' was not found in the resource id %q", input)
+	if id.LocationName, ok = parsed.Parsed["locationName"]; !ok {
+		return nil, fmt.Errorf("the segment 'locationName' was not found in the resource id %q", input)
 	}
 
-	if id.GalleryUniqueName, ok = parsed.Parsed["galleryUniqueName"]; !ok {
-		return nil, fmt.Errorf("the segment 'galleryUniqueName' was not found in the resource id %q", input)
+	if id.SharedGalleryName, ok = parsed.Parsed["sharedGalleryName"]; !ok {
+		return nil, fmt.Errorf("the segment 'sharedGalleryName' was not found in the resource id %q", input)
 	}
 
-	if id.GalleryImageName, ok = parsed.Parsed["galleryImageName"]; !ok {
-		return nil, fmt.Errorf("the segment 'galleryImageName' was not found in the resource id %q", input)
+	if id.ImageName, ok = parsed.Parsed["imageName"]; !ok {
+		return nil, fmt.Errorf("the segment 'imageName' was not found in the resource id %q", input)
 	}
 
-	if id.GalleryImageVersionName, ok = parsed.Parsed["galleryImageVersionName"]; !ok {
-		return nil, fmt.Errorf("the segment 'galleryImageVersionName' was not found in the resource id %q", input)
+	if id.VersionName, ok = parsed.Parsed["versionName"]; !ok {
+		return nil, fmt.Errorf("the segment 'versionName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -116,7 +116,7 @@ func ValidateVersionID(input interface{}, key string) (warnings []string, errors
 // ID returns the formatted Version ID
 func (id VersionId) ID() string {
 	fmtString := "/subscriptions/%s/providers/Microsoft.Compute/locations/%s/sharedGalleries/%s/images/%s/versions/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.Location, id.GalleryUniqueName, id.GalleryImageName, id.GalleryImageVersionName)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.LocationName, id.SharedGalleryName, id.ImageName, id.VersionName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Version ID
@@ -127,13 +127,13 @@ func (id VersionId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftCompute", "Microsoft.Compute", "Microsoft.Compute"),
 		resourceids.StaticSegment("staticLocations", "locations", "locations"),
-		resourceids.UserSpecifiedSegment("location", "locationValue"),
+		resourceids.UserSpecifiedSegment("locationName", "locationValue"),
 		resourceids.StaticSegment("staticSharedGalleries", "sharedGalleries", "sharedGalleries"),
-		resourceids.UserSpecifiedSegment("galleryUniqueName", "galleryUniqueValue"),
+		resourceids.UserSpecifiedSegment("sharedGalleryName", "sharedGalleryValue"),
 		resourceids.StaticSegment("staticImages", "images", "images"),
-		resourceids.UserSpecifiedSegment("galleryImageName", "galleryImageValue"),
+		resourceids.UserSpecifiedSegment("imageName", "imageValue"),
 		resourceids.StaticSegment("staticVersions", "versions", "versions"),
-		resourceids.UserSpecifiedSegment("galleryImageVersionName", "galleryImageVersionValue"),
+		resourceids.UserSpecifiedSegment("versionName", "versionValue"),
 	}
 }
 
@@ -141,10 +141,10 @@ func (id VersionId) Segments() []resourceids.Segment {
 func (id VersionId) String() string {
 	components := []string{
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
-		fmt.Sprintf("Location: %q", id.Location),
-		fmt.Sprintf("Gallery Unique Name: %q", id.GalleryUniqueName),
-		fmt.Sprintf("Gallery Image Name: %q", id.GalleryImageName),
-		fmt.Sprintf("Gallery Image Version Name: %q", id.GalleryImageVersionName),
+		fmt.Sprintf("Location Name: %q", id.LocationName),
+		fmt.Sprintf("Shared Gallery Name: %q", id.SharedGalleryName),
+		fmt.Sprintf("Image Name: %q", id.ImageName),
+		fmt.Sprintf("Version Name: %q", id.VersionName),
 	}
 	return fmt.Sprintf("Version (%s)", strings.Join(components, "\n"))
 }

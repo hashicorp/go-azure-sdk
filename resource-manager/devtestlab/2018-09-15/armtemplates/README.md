@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := armtemplates.NewArmTemplateID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "artifactSourceValue", "nameValue")
+id := armtemplates.NewArmTemplateID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "artifactSourceValue", "armTemplateValue")
 
 read, err := client.Get(ctx, id, armtemplates.DefaultGetOperationOptions())
 if err != nil {

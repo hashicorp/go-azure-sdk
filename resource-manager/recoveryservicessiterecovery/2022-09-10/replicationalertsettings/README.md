@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := replicationalertsettings.NewReplicationAlertSettingID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue", "alertSettingValue")
+id := replicationalertsettings.NewReplicationAlertSettingID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue", "replicationAlertSettingValue")
 
 payload := replicationalertsettings.ConfigureAlertRequest{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := replicationalertsettings.NewReplicationAlertSettingID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue", "alertSettingValue")
+id := replicationalertsettings.NewReplicationAlertSettingID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue", "replicationAlertSettingValue")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := replicationalertsettings.NewVaultID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue")
+id := replicationalertsettings.NewVaultID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue")
 
 // alternatively `client.List(ctx, id)` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id)

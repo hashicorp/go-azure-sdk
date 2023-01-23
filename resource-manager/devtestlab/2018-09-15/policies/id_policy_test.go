@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = PolicyId{}
 
 func TestNewPolicyID(t *testing.T) {
-	id := NewPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "policySetValue", "nameValue")
+	id := NewPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "policySetValue", "policyValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -27,14 +27,14 @@ func TestNewPolicyID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'PolicySetName'", id.PolicySetName, "policySetValue")
 	}
 
-	if id.Name != "nameValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'Name'", id.Name, "nameValue")
+	if id.PolicyName != "policyValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'PolicyName'", id.PolicyName, "policyValue")
 	}
 }
 
 func TestFormatPolicyID(t *testing.T) {
-	actual := NewPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "policySetValue", "nameValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labValue/policySets/policySetValue/policies/nameValue"
+	actual := NewPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "policySetValue", "policyValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labValue/policySets/policySetValue/policies/policyValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -108,18 +108,18 @@ func TestParsePolicyID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labValue/policySets/policySetValue/policies/nameValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labValue/policySets/policySetValue/policies/policyValue",
 			Expected: &PolicyId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				LabName:           "labValue",
 				PolicySetName:     "policySetValue",
-				Name:              "nameValue",
+				PolicyName:        "policyValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labValue/policySets/policySetValue/policies/nameValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labValue/policySets/policySetValue/policies/policyValue/extra",
 			Error: true,
 		},
 	}
@@ -154,8 +154,8 @@ func TestParsePolicyID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for PolicySetName", v.Expected.PolicySetName, actual.PolicySetName)
 		}
 
-		if actual.Name != v.Expected.Name {
-			t.Fatalf("Expected %q but got %q for Name", v.Expected.Name, actual.Name)
+		if actual.PolicyName != v.Expected.PolicyName {
+			t.Fatalf("Expected %q but got %q for PolicyName", v.Expected.PolicyName, actual.PolicyName)
 		}
 
 	}
@@ -284,34 +284,34 @@ func TestParsePolicyIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labValue/policySets/policySetValue/policies/nameValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labValue/policySets/policySetValue/policies/policyValue",
 			Expected: &PolicyId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				LabName:           "labValue",
 				PolicySetName:     "policySetValue",
-				Name:              "nameValue",
+				PolicyName:        "policyValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labValue/policySets/policySetValue/policies/nameValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labValue/policySets/policySetValue/policies/policyValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvTeStLaB/lAbS/lAbVaLuE/pOlIcYsEtS/pOlIcYsEtVaLuE/pOlIcIeS/nAmEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvTeStLaB/lAbS/lAbVaLuE/pOlIcYsEtS/pOlIcYsEtVaLuE/pOlIcIeS/pOlIcYvAlUe",
 			Expected: &PolicyId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
 				LabName:           "lAbVaLuE",
 				PolicySetName:     "pOlIcYsEtVaLuE",
-				Name:              "nAmEvAlUe",
+				PolicyName:        "pOlIcYvAlUe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvTeStLaB/lAbS/lAbVaLuE/pOlIcYsEtS/pOlIcYsEtVaLuE/pOlIcIeS/nAmEvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvTeStLaB/lAbS/lAbVaLuE/pOlIcYsEtS/pOlIcYsEtVaLuE/pOlIcIeS/pOlIcYvAlUe/extra",
 			Error: true,
 		},
 	}
@@ -346,8 +346,8 @@ func TestParsePolicyIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for PolicySetName", v.Expected.PolicySetName, actual.PolicySetName)
 		}
 
-		if actual.Name != v.Expected.Name {
-			t.Fatalf("Expected %q but got %q for Name", v.Expected.Name, actual.Name)
+		if actual.PolicyName != v.Expected.PolicyName {
+			t.Fatalf("Expected %q but got %q for PolicyName", v.Expected.PolicyName, actual.PolicyName)
 		}
 
 	}

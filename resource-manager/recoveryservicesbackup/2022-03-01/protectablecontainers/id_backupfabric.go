@@ -14,16 +14,16 @@ type BackupFabricId struct {
 	SubscriptionId    string
 	ResourceGroupName string
 	VaultName         string
-	FabricName        string
+	BackupFabricName  string
 }
 
 // NewBackupFabricID returns a new BackupFabricId struct
-func NewBackupFabricID(subscriptionId string, resourceGroupName string, vaultName string, fabricName string) BackupFabricId {
+func NewBackupFabricID(subscriptionId string, resourceGroupName string, vaultName string, backupFabricName string) BackupFabricId {
 	return BackupFabricId{
 		SubscriptionId:    subscriptionId,
 		ResourceGroupName: resourceGroupName,
 		VaultName:         vaultName,
-		FabricName:        fabricName,
+		BackupFabricName:  backupFabricName,
 	}
 }
 
@@ -50,8 +50,8 @@ func ParseBackupFabricID(input string) (*BackupFabricId, error) {
 		return nil, fmt.Errorf("the segment 'vaultName' was not found in the resource id %q", input)
 	}
 
-	if id.FabricName, ok = parsed.Parsed["fabricName"]; !ok {
-		return nil, fmt.Errorf("the segment 'fabricName' was not found in the resource id %q", input)
+	if id.BackupFabricName, ok = parsed.Parsed["backupFabricName"]; !ok {
+		return nil, fmt.Errorf("the segment 'backupFabricName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -81,8 +81,8 @@ func ParseBackupFabricIDInsensitively(input string) (*BackupFabricId, error) {
 		return nil, fmt.Errorf("the segment 'vaultName' was not found in the resource id %q", input)
 	}
 
-	if id.FabricName, ok = parsed.Parsed["fabricName"]; !ok {
-		return nil, fmt.Errorf("the segment 'fabricName' was not found in the resource id %q", input)
+	if id.BackupFabricName, ok = parsed.Parsed["backupFabricName"]; !ok {
+		return nil, fmt.Errorf("the segment 'backupFabricName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -106,7 +106,7 @@ func ValidateBackupFabricID(input interface{}, key string) (warnings []string, e
 // ID returns the formatted Backup Fabric ID
 func (id BackupFabricId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.RecoveryServices/vaults/%s/backupFabrics/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.VaultName, id.FabricName)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.VaultName, id.BackupFabricName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Backup Fabric ID
@@ -121,7 +121,7 @@ func (id BackupFabricId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticVaults", "vaults", "vaults"),
 		resourceids.UserSpecifiedSegment("vaultName", "vaultValue"),
 		resourceids.StaticSegment("staticBackupFabrics", "backupFabrics", "backupFabrics"),
-		resourceids.UserSpecifiedSegment("fabricName", "fabricValue"),
+		resourceids.UserSpecifiedSegment("backupFabricName", "backupFabricValue"),
 	}
 }
 
@@ -131,7 +131,7 @@ func (id BackupFabricId) String() string {
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
 		fmt.Sprintf("Vault Name: %q", id.VaultName),
-		fmt.Sprintf("Fabric Name: %q", id.FabricName),
+		fmt.Sprintf("Backup Fabric Name: %q", id.BackupFabricName),
 	}
 	return fmt.Sprintf("Backup Fabric (%s)", strings.Join(components, "\n"))
 }

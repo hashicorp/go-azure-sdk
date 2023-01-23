@@ -13,17 +13,17 @@ var _ resourceids.ResourceId = AgentPoolId{}
 type AgentPoolId struct {
 	SubscriptionId    string
 	ResourceGroupName string
-	ServiceName       string
+	SpringName        string
 	BuildServiceName  string
 	AgentPoolName     string
 }
 
 // NewAgentPoolID returns a new AgentPoolId struct
-func NewAgentPoolID(subscriptionId string, resourceGroupName string, serviceName string, buildServiceName string, agentPoolName string) AgentPoolId {
+func NewAgentPoolID(subscriptionId string, resourceGroupName string, springName string, buildServiceName string, agentPoolName string) AgentPoolId {
 	return AgentPoolId{
 		SubscriptionId:    subscriptionId,
 		ResourceGroupName: resourceGroupName,
-		ServiceName:       serviceName,
+		SpringName:        springName,
 		BuildServiceName:  buildServiceName,
 		AgentPoolName:     agentPoolName,
 	}
@@ -48,8 +48,8 @@ func ParseAgentPoolID(input string) (*AgentPoolId, error) {
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.ServiceName, ok = parsed.Parsed["serviceName"]; !ok {
-		return nil, fmt.Errorf("the segment 'serviceName' was not found in the resource id %q", input)
+	if id.SpringName, ok = parsed.Parsed["springName"]; !ok {
+		return nil, fmt.Errorf("the segment 'springName' was not found in the resource id %q", input)
 	}
 
 	if id.BuildServiceName, ok = parsed.Parsed["buildServiceName"]; !ok {
@@ -83,8 +83,8 @@ func ParseAgentPoolIDInsensitively(input string) (*AgentPoolId, error) {
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.ServiceName, ok = parsed.Parsed["serviceName"]; !ok {
-		return nil, fmt.Errorf("the segment 'serviceName' was not found in the resource id %q", input)
+	if id.SpringName, ok = parsed.Parsed["springName"]; !ok {
+		return nil, fmt.Errorf("the segment 'springName' was not found in the resource id %q", input)
 	}
 
 	if id.BuildServiceName, ok = parsed.Parsed["buildServiceName"]; !ok {
@@ -116,7 +116,7 @@ func ValidateAgentPoolID(input interface{}, key string) (warnings []string, erro
 // ID returns the formatted Agent Pool ID
 func (id AgentPoolId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.AppPlatform/spring/%s/buildServices/%s/agentPools/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.ServiceName, id.BuildServiceName, id.AgentPoolName)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.SpringName, id.BuildServiceName, id.AgentPoolName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Agent Pool ID
@@ -129,7 +129,7 @@ func (id AgentPoolId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftAppPlatform", "Microsoft.AppPlatform", "Microsoft.AppPlatform"),
 		resourceids.StaticSegment("staticSpring", "spring", "spring"),
-		resourceids.UserSpecifiedSegment("serviceName", "serviceValue"),
+		resourceids.UserSpecifiedSegment("springName", "springValue"),
 		resourceids.StaticSegment("staticBuildServices", "buildServices", "buildServices"),
 		resourceids.UserSpecifiedSegment("buildServiceName", "buildServiceValue"),
 		resourceids.StaticSegment("staticAgentPools", "agentPools", "agentPools"),
@@ -142,7 +142,7 @@ func (id AgentPoolId) String() string {
 	components := []string{
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
-		fmt.Sprintf("Service Name: %q", id.ServiceName),
+		fmt.Sprintf("Spring Name: %q", id.SpringName),
 		fmt.Sprintf("Build Service Name: %q", id.BuildServiceName),
 		fmt.Sprintf("Agent Pool Name: %q", id.AgentPoolName),
 	}

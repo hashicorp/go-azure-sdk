@@ -15,17 +15,17 @@ type ArtifactId struct {
 	ResourceGroupName  string
 	LabName            string
 	ArtifactSourceName string
-	Name               string
+	ArtifactName       string
 }
 
 // NewArtifactID returns a new ArtifactId struct
-func NewArtifactID(subscriptionId string, resourceGroupName string, labName string, artifactSourceName string, name string) ArtifactId {
+func NewArtifactID(subscriptionId string, resourceGroupName string, labName string, artifactSourceName string, artifactName string) ArtifactId {
 	return ArtifactId{
 		SubscriptionId:     subscriptionId,
 		ResourceGroupName:  resourceGroupName,
 		LabName:            labName,
 		ArtifactSourceName: artifactSourceName,
-		Name:               name,
+		ArtifactName:       artifactName,
 	}
 }
 
@@ -56,8 +56,8 @@ func ParseArtifactID(input string) (*ArtifactId, error) {
 		return nil, fmt.Errorf("the segment 'artifactSourceName' was not found in the resource id %q", input)
 	}
 
-	if id.Name, ok = parsed.Parsed["name"]; !ok {
-		return nil, fmt.Errorf("the segment 'name' was not found in the resource id %q", input)
+	if id.ArtifactName, ok = parsed.Parsed["artifactName"]; !ok {
+		return nil, fmt.Errorf("the segment 'artifactName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -91,8 +91,8 @@ func ParseArtifactIDInsensitively(input string) (*ArtifactId, error) {
 		return nil, fmt.Errorf("the segment 'artifactSourceName' was not found in the resource id %q", input)
 	}
 
-	if id.Name, ok = parsed.Parsed["name"]; !ok {
-		return nil, fmt.Errorf("the segment 'name' was not found in the resource id %q", input)
+	if id.ArtifactName, ok = parsed.Parsed["artifactName"]; !ok {
+		return nil, fmt.Errorf("the segment 'artifactName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -116,7 +116,7 @@ func ValidateArtifactID(input interface{}, key string) (warnings []string, error
 // ID returns the formatted Artifact ID
 func (id ArtifactId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.DevTestLab/labs/%s/artifactSources/%s/artifacts/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.LabName, id.ArtifactSourceName, id.Name)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.LabName, id.ArtifactSourceName, id.ArtifactName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Artifact ID
@@ -133,7 +133,7 @@ func (id ArtifactId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticArtifactSources", "artifactSources", "artifactSources"),
 		resourceids.UserSpecifiedSegment("artifactSourceName", "artifactSourceValue"),
 		resourceids.StaticSegment("staticArtifacts", "artifacts", "artifacts"),
-		resourceids.UserSpecifiedSegment("name", "nameValue"),
+		resourceids.UserSpecifiedSegment("artifactName", "artifactValue"),
 	}
 }
 
@@ -144,7 +144,7 @@ func (id ArtifactId) String() string {
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
 		fmt.Sprintf("Lab Name: %q", id.LabName),
 		fmt.Sprintf("Artifact Source Name: %q", id.ArtifactSourceName),
-		fmt.Sprintf("Name: %q", id.Name),
+		fmt.Sprintf("Artifact Name: %q", id.ArtifactName),
 	}
 	return fmt.Sprintf("Artifact (%s)", strings.Join(components, "\n"))
 }

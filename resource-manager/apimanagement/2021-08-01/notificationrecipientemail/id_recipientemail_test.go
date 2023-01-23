@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = RecipientEmailId{}
 
 func TestNewRecipientEmailID(t *testing.T) {
-	id := NewRecipientEmailID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "AccountClosedPublisher", "emailValue")
+	id := NewRecipientEmailID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "AccountClosedPublisher", "recipientEmailValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -27,14 +27,14 @@ func TestNewRecipientEmailID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'NotificationName'", id.NotificationName, "AccountClosedPublisher")
 	}
 
-	if id.Email != "emailValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'Email'", id.Email, "emailValue")
+	if id.RecipientEmailName != "recipientEmailValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'RecipientEmailName'", id.RecipientEmailName, "recipientEmailValue")
 	}
 }
 
 func TestFormatRecipientEmailID(t *testing.T) {
-	actual := NewRecipientEmailID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "AccountClosedPublisher", "emailValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceValue/notifications/AccountClosedPublisher/recipientEmails/emailValue"
+	actual := NewRecipientEmailID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "AccountClosedPublisher", "recipientEmailValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceValue/notifications/AccountClosedPublisher/recipientEmails/recipientEmailValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -108,18 +108,18 @@ func TestParseRecipientEmailID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceValue/notifications/AccountClosedPublisher/recipientEmails/emailValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceValue/notifications/AccountClosedPublisher/recipientEmails/recipientEmailValue",
 			Expected: &RecipientEmailId{
-				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName: "example-resource-group",
-				ServiceName:       "serviceValue",
-				NotificationName:  "AccountClosedPublisher",
-				Email:             "emailValue",
+				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:  "example-resource-group",
+				ServiceName:        "serviceValue",
+				NotificationName:   "AccountClosedPublisher",
+				RecipientEmailName: "recipientEmailValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceValue/notifications/AccountClosedPublisher/recipientEmails/emailValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceValue/notifications/AccountClosedPublisher/recipientEmails/recipientEmailValue/extra",
 			Error: true,
 		},
 	}
@@ -154,8 +154,8 @@ func TestParseRecipientEmailID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for NotificationName", v.Expected.NotificationName, actual.NotificationName)
 		}
 
-		if actual.Email != v.Expected.Email {
-			t.Fatalf("Expected %q but got %q for Email", v.Expected.Email, actual.Email)
+		if actual.RecipientEmailName != v.Expected.RecipientEmailName {
+			t.Fatalf("Expected %q but got %q for RecipientEmailName", v.Expected.RecipientEmailName, actual.RecipientEmailName)
 		}
 
 	}
@@ -284,34 +284,34 @@ func TestParseRecipientEmailIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceValue/notifications/AccountClosedPublisher/recipientEmails/emailValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceValue/notifications/AccountClosedPublisher/recipientEmails/recipientEmailValue",
 			Expected: &RecipientEmailId{
-				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName: "example-resource-group",
-				ServiceName:       "serviceValue",
-				NotificationName:  "AccountClosedPublisher",
-				Email:             "emailValue",
+				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:  "example-resource-group",
+				ServiceName:        "serviceValue",
+				NotificationName:   "AccountClosedPublisher",
+				RecipientEmailName: "recipientEmailValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceValue/notifications/AccountClosedPublisher/recipientEmails/emailValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceValue/notifications/AccountClosedPublisher/recipientEmails/recipientEmailValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPiMaNaGeMeNt/sErViCe/sErViCeVaLuE/nOtIfIcAtIoNs/aCcOuNtClOsEdPuBlIsHeR/rEcIpIeNtEmAiLs/eMaIlVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPiMaNaGeMeNt/sErViCe/sErViCeVaLuE/nOtIfIcAtIoNs/aCcOuNtClOsEdPuBlIsHeR/rEcIpIeNtEmAiLs/rEcIpIeNtEmAiLvAlUe",
 			Expected: &RecipientEmailId{
-				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				ServiceName:       "sErViCeVaLuE",
-				NotificationName:  "AccountClosedPublisher",
-				Email:             "eMaIlVaLuE",
+				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:  "eXaMpLe-rEsOuRcE-GrOuP",
+				ServiceName:        "sErViCeVaLuE",
+				NotificationName:   "AccountClosedPublisher",
+				RecipientEmailName: "rEcIpIeNtEmAiLvAlUe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPiMaNaGeMeNt/sErViCe/sErViCeVaLuE/nOtIfIcAtIoNs/aCcOuNtClOsEdPuBlIsHeR/rEcIpIeNtEmAiLs/eMaIlVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPiMaNaGeMeNt/sErViCe/sErViCeVaLuE/nOtIfIcAtIoNs/aCcOuNtClOsEdPuBlIsHeR/rEcIpIeNtEmAiLs/rEcIpIeNtEmAiLvAlUe/extra",
 			Error: true,
 		},
 	}
@@ -346,8 +346,8 @@ func TestParseRecipientEmailIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for NotificationName", v.Expected.NotificationName, actual.NotificationName)
 		}
 
-		if actual.Email != v.Expected.Email {
-			t.Fatalf("Expected %q but got %q for Email", v.Expected.Email, actual.Email)
+		if actual.RecipientEmailName != v.Expected.RecipientEmailName {
+			t.Fatalf("Expected %q but got %q for RecipientEmailName", v.Expected.RecipientEmailName, actual.RecipientEmailName)
 		}
 
 	}

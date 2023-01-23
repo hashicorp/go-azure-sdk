@@ -14,16 +14,16 @@ type DataId struct {
 	SubscriptionId    string
 	ResourceGroupName string
 	WorkspaceName     string
-	Name              string
+	DataName          string
 }
 
 // NewDataID returns a new DataId struct
-func NewDataID(subscriptionId string, resourceGroupName string, workspaceName string, name string) DataId {
+func NewDataID(subscriptionId string, resourceGroupName string, workspaceName string, dataName string) DataId {
 	return DataId{
 		SubscriptionId:    subscriptionId,
 		ResourceGroupName: resourceGroupName,
 		WorkspaceName:     workspaceName,
-		Name:              name,
+		DataName:          dataName,
 	}
 }
 
@@ -50,8 +50,8 @@ func ParseDataID(input string) (*DataId, error) {
 		return nil, fmt.Errorf("the segment 'workspaceName' was not found in the resource id %q", input)
 	}
 
-	if id.Name, ok = parsed.Parsed["name"]; !ok {
-		return nil, fmt.Errorf("the segment 'name' was not found in the resource id %q", input)
+	if id.DataName, ok = parsed.Parsed["dataName"]; !ok {
+		return nil, fmt.Errorf("the segment 'dataName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -81,8 +81,8 @@ func ParseDataIDInsensitively(input string) (*DataId, error) {
 		return nil, fmt.Errorf("the segment 'workspaceName' was not found in the resource id %q", input)
 	}
 
-	if id.Name, ok = parsed.Parsed["name"]; !ok {
-		return nil, fmt.Errorf("the segment 'name' was not found in the resource id %q", input)
+	if id.DataName, ok = parsed.Parsed["dataName"]; !ok {
+		return nil, fmt.Errorf("the segment 'dataName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -106,7 +106,7 @@ func ValidateDataID(input interface{}, key string) (warnings []string, errors []
 // ID returns the formatted Data ID
 func (id DataId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.MachineLearningServices/workspaces/%s/data/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.WorkspaceName, id.Name)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.WorkspaceName, id.DataName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Data ID
@@ -121,7 +121,7 @@ func (id DataId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticWorkspaces", "workspaces", "workspaces"),
 		resourceids.UserSpecifiedSegment("workspaceName", "workspaceValue"),
 		resourceids.StaticSegment("staticData", "data", "data"),
-		resourceids.UserSpecifiedSegment("name", "nameValue"),
+		resourceids.UserSpecifiedSegment("dataName", "dataValue"),
 	}
 }
 
@@ -131,7 +131,7 @@ func (id DataId) String() string {
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
 		fmt.Sprintf("Workspace Name: %q", id.WorkspaceName),
-		fmt.Sprintf("Name: %q", id.Name),
+		fmt.Sprintf("Data Name: %q", id.DataName),
 	}
 	return fmt.Sprintf("Data (%s)", strings.Join(components, "\n"))
 }

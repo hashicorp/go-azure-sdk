@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := job.NewJobID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "idValue")
+id := job.NewJobID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "jobValue")
 
 if err := client.CancelThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -36,7 +36,7 @@ if err := client.CancelThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := job.NewJobID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "idValue")
+id := job.NewJobID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "jobValue")
 
 payload := job.JobBaseResource{
 	// ...
@@ -57,7 +57,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := job.NewJobID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "idValue")
+id := job.NewJobID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "jobValue")
 
 if err := client.DeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -69,7 +69,7 @@ if err := client.DeleteThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := job.NewJobID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "idValue")
+id := job.NewJobID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "jobValue")
 
 read, err := client.Get(ctx, id)
 if err != nil {

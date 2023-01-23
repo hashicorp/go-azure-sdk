@@ -11,19 +11,19 @@ var _ resourceids.ResourceId = ApplicationId{}
 
 // ApplicationId is a struct representing the Resource ID for a Application
 type ApplicationId struct {
-	SubscriptionId         string
-	ResourceGroupName      string
-	GalleryName            string
-	GalleryApplicationName string
+	SubscriptionId    string
+	ResourceGroupName string
+	GalleryName       string
+	ApplicationName   string
 }
 
 // NewApplicationID returns a new ApplicationId struct
-func NewApplicationID(subscriptionId string, resourceGroupName string, galleryName string, galleryApplicationName string) ApplicationId {
+func NewApplicationID(subscriptionId string, resourceGroupName string, galleryName string, applicationName string) ApplicationId {
 	return ApplicationId{
-		SubscriptionId:         subscriptionId,
-		ResourceGroupName:      resourceGroupName,
-		GalleryName:            galleryName,
-		GalleryApplicationName: galleryApplicationName,
+		SubscriptionId:    subscriptionId,
+		ResourceGroupName: resourceGroupName,
+		GalleryName:       galleryName,
+		ApplicationName:   applicationName,
 	}
 }
 
@@ -50,8 +50,8 @@ func ParseApplicationID(input string) (*ApplicationId, error) {
 		return nil, fmt.Errorf("the segment 'galleryName' was not found in the resource id %q", input)
 	}
 
-	if id.GalleryApplicationName, ok = parsed.Parsed["galleryApplicationName"]; !ok {
-		return nil, fmt.Errorf("the segment 'galleryApplicationName' was not found in the resource id %q", input)
+	if id.ApplicationName, ok = parsed.Parsed["applicationName"]; !ok {
+		return nil, fmt.Errorf("the segment 'applicationName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -81,8 +81,8 @@ func ParseApplicationIDInsensitively(input string) (*ApplicationId, error) {
 		return nil, fmt.Errorf("the segment 'galleryName' was not found in the resource id %q", input)
 	}
 
-	if id.GalleryApplicationName, ok = parsed.Parsed["galleryApplicationName"]; !ok {
-		return nil, fmt.Errorf("the segment 'galleryApplicationName' was not found in the resource id %q", input)
+	if id.ApplicationName, ok = parsed.Parsed["applicationName"]; !ok {
+		return nil, fmt.Errorf("the segment 'applicationName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -106,7 +106,7 @@ func ValidateApplicationID(input interface{}, key string) (warnings []string, er
 // ID returns the formatted Application ID
 func (id ApplicationId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.Compute/galleries/%s/applications/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.GalleryName, id.GalleryApplicationName)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.GalleryName, id.ApplicationName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Application ID
@@ -121,7 +121,7 @@ func (id ApplicationId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticGalleries", "galleries", "galleries"),
 		resourceids.UserSpecifiedSegment("galleryName", "galleryValue"),
 		resourceids.StaticSegment("staticApplications", "applications", "applications"),
-		resourceids.UserSpecifiedSegment("galleryApplicationName", "galleryApplicationValue"),
+		resourceids.UserSpecifiedSegment("applicationName", "applicationValue"),
 	}
 }
 
@@ -131,7 +131,7 @@ func (id ApplicationId) String() string {
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
 		fmt.Sprintf("Gallery Name: %q", id.GalleryName),
-		fmt.Sprintf("Gallery Application Name: %q", id.GalleryApplicationName),
+		fmt.Sprintf("Application Name: %q", id.ApplicationName),
 	}
 	return fmt.Sprintf("Application (%s)", strings.Join(components, "\n"))
 }

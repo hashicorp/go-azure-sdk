@@ -9,20 +9,20 @@ import (
 var _ resourceids.ResourceId = ScopedScheduledActionId{}
 
 func TestNewScopedScheduledActionID(t *testing.T) {
-	id := NewScopedScheduledActionID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "nameValue")
+	id := NewScopedScheduledActionID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "scheduledActionValue")
 
 	if id.Scope != "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group" {
 		t.Fatalf("Expected %q but got %q for Segment 'Scope'", id.Scope, "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
 	}
 
-	if id.Name != "nameValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'Name'", id.Name, "nameValue")
+	if id.ScheduledActionName != "scheduledActionValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'ScheduledActionName'", id.ScheduledActionName, "scheduledActionValue")
 	}
 }
 
 func TestFormatScopedScheduledActionID(t *testing.T) {
-	actual := NewScopedScheduledActionID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "nameValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.CostManagement/scheduledActions/nameValue"
+	actual := NewScopedScheduledActionID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "scheduledActionValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.CostManagement/scheduledActions/scheduledActionValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -61,15 +61,15 @@ func TestParseScopedScheduledActionID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.CostManagement/scheduledActions/nameValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.CostManagement/scheduledActions/scheduledActionValue",
 			Expected: &ScopedScheduledActionId{
-				Scope: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group",
-				Name:  "nameValue",
+				Scope:               "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group",
+				ScheduledActionName: "scheduledActionValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.CostManagement/scheduledActions/nameValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.CostManagement/scheduledActions/scheduledActionValue/extra",
 			Error: true,
 		},
 	}
@@ -92,8 +92,8 @@ func TestParseScopedScheduledActionID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for Scope", v.Expected.Scope, actual.Scope)
 		}
 
-		if actual.Name != v.Expected.Name {
-			t.Fatalf("Expected %q but got %q for Name", v.Expected.Name, actual.Name)
+		if actual.ScheduledActionName != v.Expected.ScheduledActionName {
+			t.Fatalf("Expected %q but got %q for ScheduledActionName", v.Expected.ScheduledActionName, actual.ScheduledActionName)
 		}
 
 	}
@@ -152,28 +152,28 @@ func TestParseScopedScheduledActionIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.CostManagement/scheduledActions/nameValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.CostManagement/scheduledActions/scheduledActionValue",
 			Expected: &ScopedScheduledActionId{
-				Scope: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group",
-				Name:  "nameValue",
+				Scope:               "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group",
+				ScheduledActionName: "scheduledActionValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.CostManagement/scheduledActions/nameValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.CostManagement/scheduledActions/scheduledActionValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.cOsTmAnAgEmEnT/sChEdUlEdAcTiOnS/nAmEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.cOsTmAnAgEmEnT/sChEdUlEdAcTiOnS/sChEdUlEdAcTiOnVaLuE",
 			Expected: &ScopedScheduledActionId{
-				Scope: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp",
-				Name:  "nAmEvAlUe",
+				Scope:               "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp",
+				ScheduledActionName: "sChEdUlEdAcTiOnVaLuE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.cOsTmAnAgEmEnT/sChEdUlEdAcTiOnS/nAmEvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.cOsTmAnAgEmEnT/sChEdUlEdAcTiOnS/sChEdUlEdAcTiOnVaLuE/extra",
 			Error: true,
 		},
 	}
@@ -196,8 +196,8 @@ func TestParseScopedScheduledActionIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for Scope", v.Expected.Scope, actual.Scope)
 		}
 
-		if actual.Name != v.Expected.Name {
-			t.Fatalf("Expected %q but got %q for Name", v.Expected.Name, actual.Name)
+		if actual.ScheduledActionName != v.Expected.ScheduledActionName {
+			t.Fatalf("Expected %q but got %q for ScheduledActionName", v.Expected.ScheduledActionName, actual.ScheduledActionName)
 		}
 
 	}

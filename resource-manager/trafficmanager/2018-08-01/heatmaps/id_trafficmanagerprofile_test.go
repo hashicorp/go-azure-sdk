@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = TrafficManagerProfileId{}
 
 func TestNewTrafficManagerProfileID(t *testing.T) {
-	id := NewTrafficManagerProfileID("12345678-1234-9876-4563-123456789012", "example-resource-group", "profileValue")
+	id := NewTrafficManagerProfileID("12345678-1234-9876-4563-123456789012", "example-resource-group", "trafficManagerProfileValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -19,14 +19,14 @@ func TestNewTrafficManagerProfileID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.ProfileName != "profileValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ProfileName'", id.ProfileName, "profileValue")
+	if id.TrafficManagerProfileName != "trafficManagerProfileValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'TrafficManagerProfileName'", id.TrafficManagerProfileName, "trafficManagerProfileValue")
 	}
 }
 
 func TestFormatTrafficManagerProfileID(t *testing.T) {
-	actual := NewTrafficManagerProfileID("12345678-1234-9876-4563-123456789012", "example-resource-group", "profileValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/trafficManagerProfiles/profileValue"
+	actual := NewTrafficManagerProfileID("12345678-1234-9876-4563-123456789012", "example-resource-group", "trafficManagerProfileValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/trafficManagerProfiles/trafficManagerProfileValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -80,16 +80,16 @@ func TestParseTrafficManagerProfileID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/trafficManagerProfiles/profileValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/trafficManagerProfiles/trafficManagerProfileValue",
 			Expected: &TrafficManagerProfileId{
-				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName: "example-resource-group",
-				ProfileName:       "profileValue",
+				SubscriptionId:            "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:         "example-resource-group",
+				TrafficManagerProfileName: "trafficManagerProfileValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/trafficManagerProfiles/profileValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/trafficManagerProfiles/trafficManagerProfileValue/extra",
 			Error: true,
 		},
 	}
@@ -116,8 +116,8 @@ func TestParseTrafficManagerProfileID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.ProfileName != v.Expected.ProfileName {
-			t.Fatalf("Expected %q but got %q for ProfileName", v.Expected.ProfileName, actual.ProfileName)
+		if actual.TrafficManagerProfileName != v.Expected.TrafficManagerProfileName {
+			t.Fatalf("Expected %q but got %q for TrafficManagerProfileName", v.Expected.TrafficManagerProfileName, actual.TrafficManagerProfileName)
 		}
 
 	}
@@ -206,30 +206,30 @@ func TestParseTrafficManagerProfileIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/trafficManagerProfiles/profileValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/trafficManagerProfiles/trafficManagerProfileValue",
 			Expected: &TrafficManagerProfileId{
-				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName: "example-resource-group",
-				ProfileName:       "profileValue",
+				SubscriptionId:            "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:         "example-resource-group",
+				TrafficManagerProfileName: "trafficManagerProfileValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/trafficManagerProfiles/profileValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/trafficManagerProfiles/trafficManagerProfileValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/tRaFfIcMaNaGeRpRoFiLeS/pRoFiLeVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/tRaFfIcMaNaGeRpRoFiLeS/tRaFfIcMaNaGeRpRoFiLeVaLuE",
 			Expected: &TrafficManagerProfileId{
-				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				ProfileName:       "pRoFiLeVaLuE",
+				SubscriptionId:            "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:         "eXaMpLe-rEsOuRcE-GrOuP",
+				TrafficManagerProfileName: "tRaFfIcMaNaGeRpRoFiLeVaLuE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/tRaFfIcMaNaGeRpRoFiLeS/pRoFiLeVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/tRaFfIcMaNaGeRpRoFiLeS/tRaFfIcMaNaGeRpRoFiLeVaLuE/extra",
 			Error: true,
 		},
 	}
@@ -256,8 +256,8 @@ func TestParseTrafficManagerProfileIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.ProfileName != v.Expected.ProfileName {
-			t.Fatalf("Expected %q but got %q for ProfileName", v.Expected.ProfileName, actual.ProfileName)
+		if actual.TrafficManagerProfileName != v.Expected.TrafficManagerProfileName {
+			t.Fatalf("Expected %q but got %q for TrafficManagerProfileName", v.Expected.TrafficManagerProfileName, actual.TrafficManagerProfileName)
 		}
 
 	}

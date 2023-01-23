@@ -12,18 +12,18 @@ var _ resourceids.ResourceId = OfferId{}
 // OfferId is a struct representing the Resource ID for a Offer
 type OfferId struct {
 	SubscriptionId string
-	Location       string
+	LocationName   string
 	PublisherName  string
-	Offer          string
+	OfferName      string
 }
 
 // NewOfferID returns a new OfferId struct
-func NewOfferID(subscriptionId string, location string, publisherName string, offer string) OfferId {
+func NewOfferID(subscriptionId string, locationName string, publisherName string, offerName string) OfferId {
 	return OfferId{
 		SubscriptionId: subscriptionId,
-		Location:       location,
+		LocationName:   locationName,
 		PublisherName:  publisherName,
-		Offer:          offer,
+		OfferName:      offerName,
 	}
 }
 
@@ -42,16 +42,16 @@ func ParseOfferID(input string) (*OfferId, error) {
 		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
 	}
 
-	if id.Location, ok = parsed.Parsed["location"]; !ok {
-		return nil, fmt.Errorf("the segment 'location' was not found in the resource id %q", input)
+	if id.LocationName, ok = parsed.Parsed["locationName"]; !ok {
+		return nil, fmt.Errorf("the segment 'locationName' was not found in the resource id %q", input)
 	}
 
 	if id.PublisherName, ok = parsed.Parsed["publisherName"]; !ok {
 		return nil, fmt.Errorf("the segment 'publisherName' was not found in the resource id %q", input)
 	}
 
-	if id.Offer, ok = parsed.Parsed["offer"]; !ok {
-		return nil, fmt.Errorf("the segment 'offer' was not found in the resource id %q", input)
+	if id.OfferName, ok = parsed.Parsed["offerName"]; !ok {
+		return nil, fmt.Errorf("the segment 'offerName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -73,16 +73,16 @@ func ParseOfferIDInsensitively(input string) (*OfferId, error) {
 		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
 	}
 
-	if id.Location, ok = parsed.Parsed["location"]; !ok {
-		return nil, fmt.Errorf("the segment 'location' was not found in the resource id %q", input)
+	if id.LocationName, ok = parsed.Parsed["locationName"]; !ok {
+		return nil, fmt.Errorf("the segment 'locationName' was not found in the resource id %q", input)
 	}
 
 	if id.PublisherName, ok = parsed.Parsed["publisherName"]; !ok {
 		return nil, fmt.Errorf("the segment 'publisherName' was not found in the resource id %q", input)
 	}
 
-	if id.Offer, ok = parsed.Parsed["offer"]; !ok {
-		return nil, fmt.Errorf("the segment 'offer' was not found in the resource id %q", input)
+	if id.OfferName, ok = parsed.Parsed["offerName"]; !ok {
+		return nil, fmt.Errorf("the segment 'offerName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -106,7 +106,7 @@ func ValidateOfferID(input interface{}, key string) (warnings []string, errors [
 // ID returns the formatted Offer ID
 func (id OfferId) ID() string {
 	fmtString := "/subscriptions/%s/providers/Microsoft.Compute/locations/%s/publishers/%s/artifactTypes/vmImage/offers/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.Location, id.PublisherName, id.Offer)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.LocationName, id.PublisherName, id.OfferName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Offer ID
@@ -117,13 +117,13 @@ func (id OfferId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftCompute", "Microsoft.Compute", "Microsoft.Compute"),
 		resourceids.StaticSegment("staticLocations", "locations", "locations"),
-		resourceids.UserSpecifiedSegment("location", "locationValue"),
+		resourceids.UserSpecifiedSegment("locationName", "locationValue"),
 		resourceids.StaticSegment("staticPublishers", "publishers", "publishers"),
 		resourceids.UserSpecifiedSegment("publisherName", "publisherValue"),
 		resourceids.StaticSegment("staticArtifactTypes", "artifactTypes", "artifactTypes"),
 		resourceids.StaticSegment("staticVmImage", "vmImage", "vmImage"),
 		resourceids.StaticSegment("staticOffers", "offers", "offers"),
-		resourceids.UserSpecifiedSegment("offer", "offerValue"),
+		resourceids.UserSpecifiedSegment("offerName", "offerValue"),
 	}
 }
 
@@ -131,9 +131,9 @@ func (id OfferId) Segments() []resourceids.Segment {
 func (id OfferId) String() string {
 	components := []string{
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
-		fmt.Sprintf("Location: %q", id.Location),
+		fmt.Sprintf("Location Name: %q", id.LocationName),
 		fmt.Sprintf("Publisher Name: %q", id.PublisherName),
-		fmt.Sprintf("Offer: %q", id.Offer),
+		fmt.Sprintf("Offer Name: %q", id.OfferName),
 	}
 	return fmt.Sprintf("Offer (%s)", strings.Join(components, "\n"))
 }

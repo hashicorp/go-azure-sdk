@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = AccessConnectorId{}
 
 func TestNewAccessConnectorID(t *testing.T) {
-	id := NewAccessConnectorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "connectorValue")
+	id := NewAccessConnectorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accessConnectorValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -19,14 +19,14 @@ func TestNewAccessConnectorID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.ConnectorName != "connectorValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ConnectorName'", id.ConnectorName, "connectorValue")
+	if id.AccessConnectorName != "accessConnectorValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'AccessConnectorName'", id.AccessConnectorName, "accessConnectorValue")
 	}
 }
 
 func TestFormatAccessConnectorID(t *testing.T) {
-	actual := NewAccessConnectorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "connectorValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Databricks/accessConnectors/connectorValue"
+	actual := NewAccessConnectorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accessConnectorValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Databricks/accessConnectors/accessConnectorValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -80,16 +80,16 @@ func TestParseAccessConnectorID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Databricks/accessConnectors/connectorValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Databricks/accessConnectors/accessConnectorValue",
 			Expected: &AccessConnectorId{
-				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName: "example-resource-group",
-				ConnectorName:     "connectorValue",
+				SubscriptionId:      "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:   "example-resource-group",
+				AccessConnectorName: "accessConnectorValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Databricks/accessConnectors/connectorValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Databricks/accessConnectors/accessConnectorValue/extra",
 			Error: true,
 		},
 	}
@@ -116,8 +116,8 @@ func TestParseAccessConnectorID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.ConnectorName != v.Expected.ConnectorName {
-			t.Fatalf("Expected %q but got %q for ConnectorName", v.Expected.ConnectorName, actual.ConnectorName)
+		if actual.AccessConnectorName != v.Expected.AccessConnectorName {
+			t.Fatalf("Expected %q but got %q for AccessConnectorName", v.Expected.AccessConnectorName, actual.AccessConnectorName)
 		}
 
 	}
@@ -206,30 +206,30 @@ func TestParseAccessConnectorIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Databricks/accessConnectors/connectorValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Databricks/accessConnectors/accessConnectorValue",
 			Expected: &AccessConnectorId{
-				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName: "example-resource-group",
-				ConnectorName:     "connectorValue",
+				SubscriptionId:      "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:   "example-resource-group",
+				AccessConnectorName: "accessConnectorValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Databricks/accessConnectors/connectorValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Databricks/accessConnectors/accessConnectorValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAbRiCkS/aCcEsScOnNeCtOrS/cOnNeCtOrVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAbRiCkS/aCcEsScOnNeCtOrS/aCcEsScOnNeCtOrVaLuE",
 			Expected: &AccessConnectorId{
-				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				ConnectorName:     "cOnNeCtOrVaLuE",
+				SubscriptionId:      "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:   "eXaMpLe-rEsOuRcE-GrOuP",
+				AccessConnectorName: "aCcEsScOnNeCtOrVaLuE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAbRiCkS/aCcEsScOnNeCtOrS/cOnNeCtOrVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAbRiCkS/aCcEsScOnNeCtOrS/aCcEsScOnNeCtOrVaLuE/extra",
 			Error: true,
 		},
 	}
@@ -256,8 +256,8 @@ func TestParseAccessConnectorIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.ConnectorName != v.Expected.ConnectorName {
-			t.Fatalf("Expected %q but got %q for ConnectorName", v.Expected.ConnectorName, actual.ConnectorName)
+		if actual.AccessConnectorName != v.Expected.AccessConnectorName {
+			t.Fatalf("Expected %q but got %q for AccessConnectorName", v.Expected.AccessConnectorName, actual.AccessConnectorName)
 		}
 
 	}

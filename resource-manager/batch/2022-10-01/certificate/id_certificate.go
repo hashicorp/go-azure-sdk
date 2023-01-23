@@ -13,16 +13,16 @@ var _ resourceids.ResourceId = CertificateId{}
 type CertificateId struct {
 	SubscriptionId    string
 	ResourceGroupName string
-	AccountName       string
+	BatchAccountName  string
 	CertificateName   string
 }
 
 // NewCertificateID returns a new CertificateId struct
-func NewCertificateID(subscriptionId string, resourceGroupName string, accountName string, certificateName string) CertificateId {
+func NewCertificateID(subscriptionId string, resourceGroupName string, batchAccountName string, certificateName string) CertificateId {
 	return CertificateId{
 		SubscriptionId:    subscriptionId,
 		ResourceGroupName: resourceGroupName,
-		AccountName:       accountName,
+		BatchAccountName:  batchAccountName,
 		CertificateName:   certificateName,
 	}
 }
@@ -46,8 +46,8 @@ func ParseCertificateID(input string) (*CertificateId, error) {
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.AccountName, ok = parsed.Parsed["accountName"]; !ok {
-		return nil, fmt.Errorf("the segment 'accountName' was not found in the resource id %q", input)
+	if id.BatchAccountName, ok = parsed.Parsed["batchAccountName"]; !ok {
+		return nil, fmt.Errorf("the segment 'batchAccountName' was not found in the resource id %q", input)
 	}
 
 	if id.CertificateName, ok = parsed.Parsed["certificateName"]; !ok {
@@ -77,8 +77,8 @@ func ParseCertificateIDInsensitively(input string) (*CertificateId, error) {
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.AccountName, ok = parsed.Parsed["accountName"]; !ok {
-		return nil, fmt.Errorf("the segment 'accountName' was not found in the resource id %q", input)
+	if id.BatchAccountName, ok = parsed.Parsed["batchAccountName"]; !ok {
+		return nil, fmt.Errorf("the segment 'batchAccountName' was not found in the resource id %q", input)
 	}
 
 	if id.CertificateName, ok = parsed.Parsed["certificateName"]; !ok {
@@ -106,7 +106,7 @@ func ValidateCertificateID(input interface{}, key string) (warnings []string, er
 // ID returns the formatted Certificate ID
 func (id CertificateId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.Batch/batchAccounts/%s/certificates/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.AccountName, id.CertificateName)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.BatchAccountName, id.CertificateName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Certificate ID
@@ -119,7 +119,7 @@ func (id CertificateId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftBatch", "Microsoft.Batch", "Microsoft.Batch"),
 		resourceids.StaticSegment("staticBatchAccounts", "batchAccounts", "batchAccounts"),
-		resourceids.UserSpecifiedSegment("accountName", "accountValue"),
+		resourceids.UserSpecifiedSegment("batchAccountName", "batchAccountValue"),
 		resourceids.StaticSegment("staticCertificates", "certificates", "certificates"),
 		resourceids.UserSpecifiedSegment("certificateName", "certificateValue"),
 	}
@@ -130,7 +130,7 @@ func (id CertificateId) String() string {
 	components := []string{
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
-		fmt.Sprintf("Account Name: %q", id.AccountName),
+		fmt.Sprintf("Batch Account Name: %q", id.BatchAccountName),
 		fmt.Sprintf("Certificate Name: %q", id.CertificateName),
 	}
 	return fmt.Sprintf("Certificate (%s)", strings.Join(components, "\n"))

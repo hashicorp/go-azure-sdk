@@ -13,17 +13,17 @@ var _ resourceids.ResourceId = UpgradeGraphId{}
 type UpgradeGraphId struct {
 	SubscriptionId    string
 	ResourceGroupName string
-	ResourceName      string
-	UpgradeGraph      string
+	ApplianceName     string
+	UpgradeGraphName  string
 }
 
 // NewUpgradeGraphID returns a new UpgradeGraphId struct
-func NewUpgradeGraphID(subscriptionId string, resourceGroupName string, resourceName string, upgradeGraph string) UpgradeGraphId {
+func NewUpgradeGraphID(subscriptionId string, resourceGroupName string, applianceName string, upgradeGraphName string) UpgradeGraphId {
 	return UpgradeGraphId{
 		SubscriptionId:    subscriptionId,
 		ResourceGroupName: resourceGroupName,
-		ResourceName:      resourceName,
-		UpgradeGraph:      upgradeGraph,
+		ApplianceName:     applianceName,
+		UpgradeGraphName:  upgradeGraphName,
 	}
 }
 
@@ -46,12 +46,12 @@ func ParseUpgradeGraphID(input string) (*UpgradeGraphId, error) {
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.ResourceName, ok = parsed.Parsed["resourceName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceName' was not found in the resource id %q", input)
+	if id.ApplianceName, ok = parsed.Parsed["applianceName"]; !ok {
+		return nil, fmt.Errorf("the segment 'applianceName' was not found in the resource id %q", input)
 	}
 
-	if id.UpgradeGraph, ok = parsed.Parsed["upgradeGraph"]; !ok {
-		return nil, fmt.Errorf("the segment 'upgradeGraph' was not found in the resource id %q", input)
+	if id.UpgradeGraphName, ok = parsed.Parsed["upgradeGraphName"]; !ok {
+		return nil, fmt.Errorf("the segment 'upgradeGraphName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -77,12 +77,12 @@ func ParseUpgradeGraphIDInsensitively(input string) (*UpgradeGraphId, error) {
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.ResourceName, ok = parsed.Parsed["resourceName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceName' was not found in the resource id %q", input)
+	if id.ApplianceName, ok = parsed.Parsed["applianceName"]; !ok {
+		return nil, fmt.Errorf("the segment 'applianceName' was not found in the resource id %q", input)
 	}
 
-	if id.UpgradeGraph, ok = parsed.Parsed["upgradeGraph"]; !ok {
-		return nil, fmt.Errorf("the segment 'upgradeGraph' was not found in the resource id %q", input)
+	if id.UpgradeGraphName, ok = parsed.Parsed["upgradeGraphName"]; !ok {
+		return nil, fmt.Errorf("the segment 'upgradeGraphName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -106,7 +106,7 @@ func ValidateUpgradeGraphID(input interface{}, key string) (warnings []string, e
 // ID returns the formatted Upgrade Graph ID
 func (id UpgradeGraphId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.ResourceConnector/appliances/%s/upgradeGraphs/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.ResourceName, id.UpgradeGraph)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.ApplianceName, id.UpgradeGraphName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Upgrade Graph ID
@@ -119,9 +119,9 @@ func (id UpgradeGraphId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftResourceConnector", "Microsoft.ResourceConnector", "Microsoft.ResourceConnector"),
 		resourceids.StaticSegment("staticAppliances", "appliances", "appliances"),
-		resourceids.UserSpecifiedSegment("resourceName", "resourceValue"),
+		resourceids.UserSpecifiedSegment("applianceName", "applianceValue"),
 		resourceids.StaticSegment("staticUpgradeGraphs", "upgradeGraphs", "upgradeGraphs"),
-		resourceids.UserSpecifiedSegment("upgradeGraph", "upgradeGraphValue"),
+		resourceids.UserSpecifiedSegment("upgradeGraphName", "upgradeGraphValue"),
 	}
 }
 
@@ -130,8 +130,8 @@ func (id UpgradeGraphId) String() string {
 	components := []string{
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
-		fmt.Sprintf("Resource Name: %q", id.ResourceName),
-		fmt.Sprintf("Upgrade Graph: %q", id.UpgradeGraph),
+		fmt.Sprintf("Appliance Name: %q", id.ApplianceName),
+		fmt.Sprintf("Upgrade Graph Name: %q", id.UpgradeGraphName),
 	}
 	return fmt.Sprintf("Upgrade Graph (%s)", strings.Join(components, "\n"))
 }

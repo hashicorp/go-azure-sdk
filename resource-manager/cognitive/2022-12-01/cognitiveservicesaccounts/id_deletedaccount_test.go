@@ -9,28 +9,28 @@ import (
 var _ resourceids.ResourceId = DeletedAccountId{}
 
 func TestNewDeletedAccountID(t *testing.T) {
-	id := NewDeletedAccountID("12345678-1234-9876-4563-123456789012", "locationValue", "example-resource-group", "accountValue")
+	id := NewDeletedAccountID("12345678-1234-9876-4563-123456789012", "locationValue", "example-resource-group", "deletedAccountValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
 	}
 
-	if id.Location != "locationValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'Location'", id.Location, "locationValue")
+	if id.LocationName != "locationValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'LocationName'", id.LocationName, "locationValue")
 	}
 
 	if id.ResourceGroupName != "example-resource-group" {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.AccountName != "accountValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AccountName'", id.AccountName, "accountValue")
+	if id.DeletedAccountName != "deletedAccountValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'DeletedAccountName'", id.DeletedAccountName, "deletedAccountValue")
 	}
 }
 
 func TestFormatDeletedAccountID(t *testing.T) {
-	actual := NewDeletedAccountID("12345678-1234-9876-4563-123456789012", "locationValue", "example-resource-group", "accountValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.CognitiveServices/locations/locationValue/resourceGroups/example-resource-group/deletedAccounts/accountValue"
+	actual := NewDeletedAccountID("12345678-1234-9876-4563-123456789012", "locationValue", "example-resource-group", "deletedAccountValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.CognitiveServices/locations/locationValue/resourceGroups/example-resource-group/deletedAccounts/deletedAccountValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -94,17 +94,17 @@ func TestParseDeletedAccountID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.CognitiveServices/locations/locationValue/resourceGroups/example-resource-group/deletedAccounts/accountValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.CognitiveServices/locations/locationValue/resourceGroups/example-resource-group/deletedAccounts/deletedAccountValue",
 			Expected: &DeletedAccountId{
-				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				Location:          "locationValue",
-				ResourceGroupName: "example-resource-group",
-				AccountName:       "accountValue",
+				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
+				LocationName:       "locationValue",
+				ResourceGroupName:  "example-resource-group",
+				DeletedAccountName: "deletedAccountValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.CognitiveServices/locations/locationValue/resourceGroups/example-resource-group/deletedAccounts/accountValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.CognitiveServices/locations/locationValue/resourceGroups/example-resource-group/deletedAccounts/deletedAccountValue/extra",
 			Error: true,
 		},
 	}
@@ -127,16 +127,16 @@ func TestParseDeletedAccountID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for SubscriptionId", v.Expected.SubscriptionId, actual.SubscriptionId)
 		}
 
-		if actual.Location != v.Expected.Location {
-			t.Fatalf("Expected %q but got %q for Location", v.Expected.Location, actual.Location)
+		if actual.LocationName != v.Expected.LocationName {
+			t.Fatalf("Expected %q but got %q for LocationName", v.Expected.LocationName, actual.LocationName)
 		}
 
 		if actual.ResourceGroupName != v.Expected.ResourceGroupName {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.AccountName != v.Expected.AccountName {
-			t.Fatalf("Expected %q but got %q for AccountName", v.Expected.AccountName, actual.AccountName)
+		if actual.DeletedAccountName != v.Expected.DeletedAccountName {
+			t.Fatalf("Expected %q but got %q for DeletedAccountName", v.Expected.DeletedAccountName, actual.DeletedAccountName)
 		}
 
 	}
@@ -245,32 +245,32 @@ func TestParseDeletedAccountIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.CognitiveServices/locations/locationValue/resourceGroups/example-resource-group/deletedAccounts/accountValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.CognitiveServices/locations/locationValue/resourceGroups/example-resource-group/deletedAccounts/deletedAccountValue",
 			Expected: &DeletedAccountId{
-				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				Location:          "locationValue",
-				ResourceGroupName: "example-resource-group",
-				AccountName:       "accountValue",
+				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
+				LocationName:       "locationValue",
+				ResourceGroupName:  "example-resource-group",
+				DeletedAccountName: "deletedAccountValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.CognitiveServices/locations/locationValue/resourceGroups/example-resource-group/deletedAccounts/accountValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.CognitiveServices/locations/locationValue/resourceGroups/example-resource-group/deletedAccounts/deletedAccountValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOgNiTiVeSeRvIcEs/lOcAtIoNs/lOcAtIoNvAlUe/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/dElEtEdAcCoUnTs/aCcOuNtVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOgNiTiVeSeRvIcEs/lOcAtIoNs/lOcAtIoNvAlUe/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/dElEtEdAcCoUnTs/dElEtEdAcCoUnTvAlUe",
 			Expected: &DeletedAccountId{
-				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				Location:          "lOcAtIoNvAlUe",
-				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				AccountName:       "aCcOuNtVaLuE",
+				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
+				LocationName:       "lOcAtIoNvAlUe",
+				ResourceGroupName:  "eXaMpLe-rEsOuRcE-GrOuP",
+				DeletedAccountName: "dElEtEdAcCoUnTvAlUe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOgNiTiVeSeRvIcEs/lOcAtIoNs/lOcAtIoNvAlUe/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/dElEtEdAcCoUnTs/aCcOuNtVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOgNiTiVeSeRvIcEs/lOcAtIoNs/lOcAtIoNvAlUe/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/dElEtEdAcCoUnTs/dElEtEdAcCoUnTvAlUe/extra",
 			Error: true,
 		},
 	}
@@ -293,16 +293,16 @@ func TestParseDeletedAccountIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for SubscriptionId", v.Expected.SubscriptionId, actual.SubscriptionId)
 		}
 
-		if actual.Location != v.Expected.Location {
-			t.Fatalf("Expected %q but got %q for Location", v.Expected.Location, actual.Location)
+		if actual.LocationName != v.Expected.LocationName {
+			t.Fatalf("Expected %q but got %q for LocationName", v.Expected.LocationName, actual.LocationName)
 		}
 
 		if actual.ResourceGroupName != v.Expected.ResourceGroupName {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.AccountName != v.Expected.AccountName {
-			t.Fatalf("Expected %q but got %q for AccountName", v.Expected.AccountName, actual.AccountName)
+		if actual.DeletedAccountName != v.Expected.DeletedAccountName {
+			t.Fatalf("Expected %q but got %q for DeletedAccountName", v.Expected.DeletedAccountName, actual.DeletedAccountName)
 		}
 
 	}

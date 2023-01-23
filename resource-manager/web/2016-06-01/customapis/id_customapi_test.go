@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = CustomApiId{}
 
 func TestNewCustomApiID(t *testing.T) {
-	id := NewCustomApiID("12345678-1234-9876-4563-123456789012", "example-resource-group", "apiValue")
+	id := NewCustomApiID("12345678-1234-9876-4563-123456789012", "example-resource-group", "customApiValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -19,14 +19,14 @@ func TestNewCustomApiID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.ApiName != "apiValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ApiName'", id.ApiName, "apiValue")
+	if id.CustomApiName != "customApiValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'CustomApiName'", id.CustomApiName, "customApiValue")
 	}
 }
 
 func TestFormatCustomApiID(t *testing.T) {
-	actual := NewCustomApiID("12345678-1234-9876-4563-123456789012", "example-resource-group", "apiValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/customApis/apiValue"
+	actual := NewCustomApiID("12345678-1234-9876-4563-123456789012", "example-resource-group", "customApiValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/customApis/customApiValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -80,16 +80,16 @@ func TestParseCustomApiID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/customApis/apiValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/customApis/customApiValue",
 			Expected: &CustomApiId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				ApiName:           "apiValue",
+				CustomApiName:     "customApiValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/customApis/apiValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/customApis/customApiValue/extra",
 			Error: true,
 		},
 	}
@@ -116,8 +116,8 @@ func TestParseCustomApiID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.ApiName != v.Expected.ApiName {
-			t.Fatalf("Expected %q but got %q for ApiName", v.Expected.ApiName, actual.ApiName)
+		if actual.CustomApiName != v.Expected.CustomApiName {
+			t.Fatalf("Expected %q but got %q for CustomApiName", v.Expected.CustomApiName, actual.CustomApiName)
 		}
 
 	}
@@ -206,30 +206,30 @@ func TestParseCustomApiIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/customApis/apiValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/customApis/customApiValue",
 			Expected: &CustomApiId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				ApiName:           "apiValue",
+				CustomApiName:     "customApiValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/customApis/apiValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Web/customApis/customApiValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/cUsToMaPiS/aPiVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/cUsToMaPiS/cUsToMaPiVaLuE",
 			Expected: &CustomApiId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				ApiName:           "aPiVaLuE",
+				CustomApiName:     "cUsToMaPiVaLuE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/cUsToMaPiS/aPiVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.wEb/cUsToMaPiS/cUsToMaPiVaLuE/extra",
 			Error: true,
 		},
 	}
@@ -256,8 +256,8 @@ func TestParseCustomApiIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.ApiName != v.Expected.ApiName {
-			t.Fatalf("Expected %q but got %q for ApiName", v.Expected.ApiName, actual.ApiName)
+		if actual.CustomApiName != v.Expected.CustomApiName {
+			t.Fatalf("Expected %q but got %q for CustomApiName", v.Expected.CustomApiName, actual.CustomApiName)
 		}
 
 	}

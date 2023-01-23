@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := applicationtypeversion.NewVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "clusterValue", "applicationTypeValue", "versionValue")
+id := applicationtypeversion.NewVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedClusterValue", "applicationTypeValue", "versionValue")
 
 payload := applicationtypeversion.ApplicationTypeVersionResource{
 	// ...
@@ -41,7 +41,7 @@ if err := client.CreateOrUpdateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := applicationtypeversion.NewVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "clusterValue", "applicationTypeValue", "versionValue")
+id := applicationtypeversion.NewVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedClusterValue", "applicationTypeValue", "versionValue")
 
 if err := client.DeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -53,7 +53,7 @@ if err := client.DeleteThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := applicationtypeversion.NewVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "clusterValue", "applicationTypeValue", "versionValue")
+id := applicationtypeversion.NewVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedClusterValue", "applicationTypeValue", "versionValue")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -69,7 +69,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := applicationtypeversion.NewApplicationTypeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "clusterValue", "applicationTypeValue")
+id := applicationtypeversion.NewApplicationTypeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedClusterValue", "applicationTypeValue")
 
 // alternatively `client.ListByApplicationTypes(ctx, id)` can be used to do batched pagination
 items, err := client.ListByApplicationTypesComplete(ctx, id)
@@ -86,7 +86,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := applicationtypeversion.NewVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "clusterValue", "applicationTypeValue", "versionValue")
+id := applicationtypeversion.NewVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedClusterValue", "applicationTypeValue", "versionValue")
 
 payload := applicationtypeversion.ApplicationTypeVersionUpdateParameters{
 	// ...

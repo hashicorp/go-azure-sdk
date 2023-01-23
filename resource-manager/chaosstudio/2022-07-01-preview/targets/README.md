@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := targets.NewTargetID("12345678-1234-9876-4563-123456789012", "example-resource-group", "parentProviderNamespaceValue", "parentResourceTypeValue", "parentResourceValue", "targetValue")
+id := targets.NewTargetID("12345678-1234-9876-4563-123456789012", "example-resource-group", "providerValue", "parentResourceTypeValue", "parentResourceValue", "targetValue")
 
 payload := targets.Target{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := targets.NewTargetID("12345678-1234-9876-4563-123456789012", "example-resource-group", "parentProviderNamespaceValue", "parentResourceTypeValue", "parentResourceValue", "targetValue")
+id := targets.NewTargetID("12345678-1234-9876-4563-123456789012", "example-resource-group", "providerValue", "parentResourceTypeValue", "parentResourceValue", "targetValue")
 
 read, err := client.Delete(ctx, id)
 if err != nil {
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := targets.NewTargetID("12345678-1234-9876-4563-123456789012", "example-resource-group", "parentProviderNamespaceValue", "parentResourceTypeValue", "parentResourceValue", "targetValue")
+id := targets.NewTargetID("12345678-1234-9876-4563-123456789012", "example-resource-group", "providerValue", "parentResourceTypeValue", "parentResourceValue", "targetValue")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -77,7 +77,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := targets.NewProviderID("12345678-1234-9876-4563-123456789012", "example-resource-group", "parentProviderNamespaceValue", "parentResourceTypeValue", "parentResourceValue")
+id := targets.NewProviderID("12345678-1234-9876-4563-123456789012", "example-resource-group", "providerValue", "parentResourceTypeValue", "parentResourceValue")
 
 // alternatively `client.List(ctx, id, targets.DefaultListOperationOptions())` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id, targets.DefaultListOperationOptions())

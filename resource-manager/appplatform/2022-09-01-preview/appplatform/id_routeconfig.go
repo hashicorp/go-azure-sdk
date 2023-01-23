@@ -13,17 +13,17 @@ var _ resourceids.ResourceId = RouteConfigId{}
 type RouteConfigId struct {
 	SubscriptionId    string
 	ResourceGroupName string
-	ServiceName       string
+	SpringName        string
 	GatewayName       string
 	RouteConfigName   string
 }
 
 // NewRouteConfigID returns a new RouteConfigId struct
-func NewRouteConfigID(subscriptionId string, resourceGroupName string, serviceName string, gatewayName string, routeConfigName string) RouteConfigId {
+func NewRouteConfigID(subscriptionId string, resourceGroupName string, springName string, gatewayName string, routeConfigName string) RouteConfigId {
 	return RouteConfigId{
 		SubscriptionId:    subscriptionId,
 		ResourceGroupName: resourceGroupName,
-		ServiceName:       serviceName,
+		SpringName:        springName,
 		GatewayName:       gatewayName,
 		RouteConfigName:   routeConfigName,
 	}
@@ -48,8 +48,8 @@ func ParseRouteConfigID(input string) (*RouteConfigId, error) {
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.ServiceName, ok = parsed.Parsed["serviceName"]; !ok {
-		return nil, fmt.Errorf("the segment 'serviceName' was not found in the resource id %q", input)
+	if id.SpringName, ok = parsed.Parsed["springName"]; !ok {
+		return nil, fmt.Errorf("the segment 'springName' was not found in the resource id %q", input)
 	}
 
 	if id.GatewayName, ok = parsed.Parsed["gatewayName"]; !ok {
@@ -83,8 +83,8 @@ func ParseRouteConfigIDInsensitively(input string) (*RouteConfigId, error) {
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.ServiceName, ok = parsed.Parsed["serviceName"]; !ok {
-		return nil, fmt.Errorf("the segment 'serviceName' was not found in the resource id %q", input)
+	if id.SpringName, ok = parsed.Parsed["springName"]; !ok {
+		return nil, fmt.Errorf("the segment 'springName' was not found in the resource id %q", input)
 	}
 
 	if id.GatewayName, ok = parsed.Parsed["gatewayName"]; !ok {
@@ -116,7 +116,7 @@ func ValidateRouteConfigID(input interface{}, key string) (warnings []string, er
 // ID returns the formatted Route Config ID
 func (id RouteConfigId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.AppPlatform/spring/%s/gateways/%s/routeConfigs/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.ServiceName, id.GatewayName, id.RouteConfigName)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.SpringName, id.GatewayName, id.RouteConfigName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Route Config ID
@@ -129,7 +129,7 @@ func (id RouteConfigId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftAppPlatform", "Microsoft.AppPlatform", "Microsoft.AppPlatform"),
 		resourceids.StaticSegment("staticSpring", "spring", "spring"),
-		resourceids.UserSpecifiedSegment("serviceName", "serviceValue"),
+		resourceids.UserSpecifiedSegment("springName", "springValue"),
 		resourceids.StaticSegment("staticGateways", "gateways", "gateways"),
 		resourceids.UserSpecifiedSegment("gatewayName", "gatewayValue"),
 		resourceids.StaticSegment("staticRouteConfigs", "routeConfigs", "routeConfigs"),
@@ -142,7 +142,7 @@ func (id RouteConfigId) String() string {
 	components := []string{
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
-		fmt.Sprintf("Service Name: %q", id.ServiceName),
+		fmt.Sprintf("Spring Name: %q", id.SpringName),
 		fmt.Sprintf("Gateway Name: %q", id.GatewayName),
 		fmt.Sprintf("Route Config Name: %q", id.RouteConfigName),
 	}

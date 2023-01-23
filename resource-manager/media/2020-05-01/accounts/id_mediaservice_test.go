@@ -9,20 +9,20 @@ import (
 var _ resourceids.ResourceId = MediaServiceId{}
 
 func TestNewMediaServiceID(t *testing.T) {
-	id := NewMediaServiceID("12345678-1234-9876-4563-123456789012", "accountValue")
+	id := NewMediaServiceID("12345678-1234-9876-4563-123456789012", "mediaServiceValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
 	}
 
-	if id.AccountName != "accountValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AccountName'", id.AccountName, "accountValue")
+	if id.MediaServiceName != "mediaServiceValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'MediaServiceName'", id.MediaServiceName, "mediaServiceValue")
 	}
 }
 
 func TestFormatMediaServiceID(t *testing.T) {
-	actual := NewMediaServiceID("12345678-1234-9876-4563-123456789012", "accountValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Media/mediaServices/accountValue"
+	actual := NewMediaServiceID("12345678-1234-9876-4563-123456789012", "mediaServiceValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Media/mediaServices/mediaServiceValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -66,15 +66,15 @@ func TestParseMediaServiceID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Media/mediaServices/accountValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Media/mediaServices/mediaServiceValue",
 			Expected: &MediaServiceId{
-				SubscriptionId: "12345678-1234-9876-4563-123456789012",
-				AccountName:    "accountValue",
+				SubscriptionId:   "12345678-1234-9876-4563-123456789012",
+				MediaServiceName: "mediaServiceValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Media/mediaServices/accountValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Media/mediaServices/mediaServiceValue/extra",
 			Error: true,
 		},
 	}
@@ -97,8 +97,8 @@ func TestParseMediaServiceID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for SubscriptionId", v.Expected.SubscriptionId, actual.SubscriptionId)
 		}
 
-		if actual.AccountName != v.Expected.AccountName {
-			t.Fatalf("Expected %q but got %q for AccountName", v.Expected.AccountName, actual.AccountName)
+		if actual.MediaServiceName != v.Expected.MediaServiceName {
+			t.Fatalf("Expected %q but got %q for MediaServiceName", v.Expected.MediaServiceName, actual.MediaServiceName)
 		}
 
 	}
@@ -167,28 +167,28 @@ func TestParseMediaServiceIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Media/mediaServices/accountValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Media/mediaServices/mediaServiceValue",
 			Expected: &MediaServiceId{
-				SubscriptionId: "12345678-1234-9876-4563-123456789012",
-				AccountName:    "accountValue",
+				SubscriptionId:   "12345678-1234-9876-4563-123456789012",
+				MediaServiceName: "mediaServiceValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Media/mediaServices/accountValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Media/mediaServices/mediaServiceValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.mEdIa/mEdIaSeRvIcEs/aCcOuNtVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.mEdIa/mEdIaSeRvIcEs/mEdIaSeRvIcEvAlUe",
 			Expected: &MediaServiceId{
-				SubscriptionId: "12345678-1234-9876-4563-123456789012",
-				AccountName:    "aCcOuNtVaLuE",
+				SubscriptionId:   "12345678-1234-9876-4563-123456789012",
+				MediaServiceName: "mEdIaSeRvIcEvAlUe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.mEdIa/mEdIaSeRvIcEs/aCcOuNtVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.mEdIa/mEdIaSeRvIcEs/mEdIaSeRvIcEvAlUe/extra",
 			Error: true,
 		},
 	}
@@ -211,8 +211,8 @@ func TestParseMediaServiceIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for SubscriptionId", v.Expected.SubscriptionId, actual.SubscriptionId)
 		}
 
-		if actual.AccountName != v.Expected.AccountName {
-			t.Fatalf("Expected %q but got %q for AccountName", v.Expected.AccountName, actual.AccountName)
+		if actual.MediaServiceName != v.Expected.MediaServiceName {
+			t.Fatalf("Expected %q but got %q for MediaServiceName", v.Expected.MediaServiceName, actual.MediaServiceName)
 		}
 
 	}

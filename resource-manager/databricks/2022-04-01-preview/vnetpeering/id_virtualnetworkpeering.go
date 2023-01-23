@@ -11,19 +11,19 @@ var _ resourceids.ResourceId = VirtualNetworkPeeringId{}
 
 // VirtualNetworkPeeringId is a struct representing the Resource ID for a Virtual Network Peering
 type VirtualNetworkPeeringId struct {
-	SubscriptionId    string
-	ResourceGroupName string
-	WorkspaceName     string
-	PeeringName       string
+	SubscriptionId            string
+	ResourceGroupName         string
+	WorkspaceName             string
+	VirtualNetworkPeeringName string
 }
 
 // NewVirtualNetworkPeeringID returns a new VirtualNetworkPeeringId struct
-func NewVirtualNetworkPeeringID(subscriptionId string, resourceGroupName string, workspaceName string, peeringName string) VirtualNetworkPeeringId {
+func NewVirtualNetworkPeeringID(subscriptionId string, resourceGroupName string, workspaceName string, virtualNetworkPeeringName string) VirtualNetworkPeeringId {
 	return VirtualNetworkPeeringId{
-		SubscriptionId:    subscriptionId,
-		ResourceGroupName: resourceGroupName,
-		WorkspaceName:     workspaceName,
-		PeeringName:       peeringName,
+		SubscriptionId:            subscriptionId,
+		ResourceGroupName:         resourceGroupName,
+		WorkspaceName:             workspaceName,
+		VirtualNetworkPeeringName: virtualNetworkPeeringName,
 	}
 }
 
@@ -50,8 +50,8 @@ func ParseVirtualNetworkPeeringID(input string) (*VirtualNetworkPeeringId, error
 		return nil, fmt.Errorf("the segment 'workspaceName' was not found in the resource id %q", input)
 	}
 
-	if id.PeeringName, ok = parsed.Parsed["peeringName"]; !ok {
-		return nil, fmt.Errorf("the segment 'peeringName' was not found in the resource id %q", input)
+	if id.VirtualNetworkPeeringName, ok = parsed.Parsed["virtualNetworkPeeringName"]; !ok {
+		return nil, fmt.Errorf("the segment 'virtualNetworkPeeringName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -81,8 +81,8 @@ func ParseVirtualNetworkPeeringIDInsensitively(input string) (*VirtualNetworkPee
 		return nil, fmt.Errorf("the segment 'workspaceName' was not found in the resource id %q", input)
 	}
 
-	if id.PeeringName, ok = parsed.Parsed["peeringName"]; !ok {
-		return nil, fmt.Errorf("the segment 'peeringName' was not found in the resource id %q", input)
+	if id.VirtualNetworkPeeringName, ok = parsed.Parsed["virtualNetworkPeeringName"]; !ok {
+		return nil, fmt.Errorf("the segment 'virtualNetworkPeeringName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -106,7 +106,7 @@ func ValidateVirtualNetworkPeeringID(input interface{}, key string) (warnings []
 // ID returns the formatted Virtual Network Peering ID
 func (id VirtualNetworkPeeringId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.Databricks/workspaces/%s/virtualNetworkPeerings/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.WorkspaceName, id.PeeringName)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.WorkspaceName, id.VirtualNetworkPeeringName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Virtual Network Peering ID
@@ -121,7 +121,7 @@ func (id VirtualNetworkPeeringId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticWorkspaces", "workspaces", "workspaces"),
 		resourceids.UserSpecifiedSegment("workspaceName", "workspaceValue"),
 		resourceids.StaticSegment("staticVirtualNetworkPeerings", "virtualNetworkPeerings", "virtualNetworkPeerings"),
-		resourceids.UserSpecifiedSegment("peeringName", "peeringValue"),
+		resourceids.UserSpecifiedSegment("virtualNetworkPeeringName", "virtualNetworkPeeringValue"),
 	}
 }
 
@@ -131,7 +131,7 @@ func (id VirtualNetworkPeeringId) String() string {
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
 		fmt.Sprintf("Workspace Name: %q", id.WorkspaceName),
-		fmt.Sprintf("Peering Name: %q", id.PeeringName),
+		fmt.Sprintf("Virtual Network Peering Name: %q", id.VirtualNetworkPeeringName),
 	}
 	return fmt.Sprintf("Virtual Network Peering (%s)", strings.Join(components, "\n"))
 }

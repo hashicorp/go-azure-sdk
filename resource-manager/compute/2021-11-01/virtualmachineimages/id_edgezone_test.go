@@ -15,12 +15,12 @@ func TestNewEdgeZoneID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
 	}
 
-	if id.Location != "locationValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'Location'", id.Location, "locationValue")
+	if id.LocationName != "locationValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'LocationName'", id.LocationName, "locationValue")
 	}
 
-	if id.EdgeZone != "edgeZoneValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'EdgeZone'", id.EdgeZone, "edgeZoneValue")
+	if id.EdgeZoneName != "edgeZoneValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'EdgeZoneName'", id.EdgeZoneName, "edgeZoneValue")
 	}
 }
 
@@ -83,8 +83,8 @@ func TestParseEdgeZoneID(t *testing.T) {
 			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationValue/edgeZones/edgeZoneValue",
 			Expected: &EdgeZoneId{
 				SubscriptionId: "12345678-1234-9876-4563-123456789012",
-				Location:       "locationValue",
-				EdgeZone:       "edgeZoneValue",
+				LocationName:   "locationValue",
+				EdgeZoneName:   "edgeZoneValue",
 			},
 		},
 		{
@@ -112,12 +112,12 @@ func TestParseEdgeZoneID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for SubscriptionId", v.Expected.SubscriptionId, actual.SubscriptionId)
 		}
 
-		if actual.Location != v.Expected.Location {
-			t.Fatalf("Expected %q but got %q for Location", v.Expected.Location, actual.Location)
+		if actual.LocationName != v.Expected.LocationName {
+			t.Fatalf("Expected %q but got %q for LocationName", v.Expected.LocationName, actual.LocationName)
 		}
 
-		if actual.EdgeZone != v.Expected.EdgeZone {
-			t.Fatalf("Expected %q but got %q for EdgeZone", v.Expected.EdgeZone, actual.EdgeZone)
+		if actual.EdgeZoneName != v.Expected.EdgeZoneName {
+			t.Fatalf("Expected %q but got %q for EdgeZoneName", v.Expected.EdgeZoneName, actual.EdgeZoneName)
 		}
 
 	}
@@ -209,8 +209,8 @@ func TestParseEdgeZoneIDInsensitively(t *testing.T) {
 			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationValue/edgeZones/edgeZoneValue",
 			Expected: &EdgeZoneId{
 				SubscriptionId: "12345678-1234-9876-4563-123456789012",
-				Location:       "locationValue",
-				EdgeZone:       "edgeZoneValue",
+				LocationName:   "locationValue",
+				EdgeZoneName:   "edgeZoneValue",
 			},
 		},
 		{
@@ -223,8 +223,8 @@ func TestParseEdgeZoneIDInsensitively(t *testing.T) {
 			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOmPuTe/lOcAtIoNs/lOcAtIoNvAlUe/eDgEzOnEs/eDgEzOnEvAlUe",
 			Expected: &EdgeZoneId{
 				SubscriptionId: "12345678-1234-9876-4563-123456789012",
-				Location:       "lOcAtIoNvAlUe",
-				EdgeZone:       "eDgEzOnEvAlUe",
+				LocationName:   "lOcAtIoNvAlUe",
+				EdgeZoneName:   "eDgEzOnEvAlUe",
 			},
 		},
 		{
@@ -252,12 +252,12 @@ func TestParseEdgeZoneIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for SubscriptionId", v.Expected.SubscriptionId, actual.SubscriptionId)
 		}
 
-		if actual.Location != v.Expected.Location {
-			t.Fatalf("Expected %q but got %q for Location", v.Expected.Location, actual.Location)
+		if actual.LocationName != v.Expected.LocationName {
+			t.Fatalf("Expected %q but got %q for LocationName", v.Expected.LocationName, actual.LocationName)
 		}
 
-		if actual.EdgeZone != v.Expected.EdgeZone {
-			t.Fatalf("Expected %q but got %q for EdgeZone", v.Expected.EdgeZone, actual.EdgeZone)
+		if actual.EdgeZoneName != v.Expected.EdgeZoneName {
+			t.Fatalf("Expected %q but got %q for EdgeZoneName", v.Expected.EdgeZoneName, actual.EdgeZoneName)
 		}
 
 	}

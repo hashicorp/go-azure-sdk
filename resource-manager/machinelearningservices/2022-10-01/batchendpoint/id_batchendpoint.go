@@ -14,16 +14,16 @@ type BatchEndpointId struct {
 	SubscriptionId    string
 	ResourceGroupName string
 	WorkspaceName     string
-	EndpointName      string
+	BatchEndpointName string
 }
 
 // NewBatchEndpointID returns a new BatchEndpointId struct
-func NewBatchEndpointID(subscriptionId string, resourceGroupName string, workspaceName string, endpointName string) BatchEndpointId {
+func NewBatchEndpointID(subscriptionId string, resourceGroupName string, workspaceName string, batchEndpointName string) BatchEndpointId {
 	return BatchEndpointId{
 		SubscriptionId:    subscriptionId,
 		ResourceGroupName: resourceGroupName,
 		WorkspaceName:     workspaceName,
-		EndpointName:      endpointName,
+		BatchEndpointName: batchEndpointName,
 	}
 }
 
@@ -50,8 +50,8 @@ func ParseBatchEndpointID(input string) (*BatchEndpointId, error) {
 		return nil, fmt.Errorf("the segment 'workspaceName' was not found in the resource id %q", input)
 	}
 
-	if id.EndpointName, ok = parsed.Parsed["endpointName"]; !ok {
-		return nil, fmt.Errorf("the segment 'endpointName' was not found in the resource id %q", input)
+	if id.BatchEndpointName, ok = parsed.Parsed["batchEndpointName"]; !ok {
+		return nil, fmt.Errorf("the segment 'batchEndpointName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -81,8 +81,8 @@ func ParseBatchEndpointIDInsensitively(input string) (*BatchEndpointId, error) {
 		return nil, fmt.Errorf("the segment 'workspaceName' was not found in the resource id %q", input)
 	}
 
-	if id.EndpointName, ok = parsed.Parsed["endpointName"]; !ok {
-		return nil, fmt.Errorf("the segment 'endpointName' was not found in the resource id %q", input)
+	if id.BatchEndpointName, ok = parsed.Parsed["batchEndpointName"]; !ok {
+		return nil, fmt.Errorf("the segment 'batchEndpointName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -106,7 +106,7 @@ func ValidateBatchEndpointID(input interface{}, key string) (warnings []string, 
 // ID returns the formatted Batch Endpoint ID
 func (id BatchEndpointId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.MachineLearningServices/workspaces/%s/batchEndpoints/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.WorkspaceName, id.EndpointName)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.WorkspaceName, id.BatchEndpointName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Batch Endpoint ID
@@ -121,7 +121,7 @@ func (id BatchEndpointId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticWorkspaces", "workspaces", "workspaces"),
 		resourceids.UserSpecifiedSegment("workspaceName", "workspaceValue"),
 		resourceids.StaticSegment("staticBatchEndpoints", "batchEndpoints", "batchEndpoints"),
-		resourceids.UserSpecifiedSegment("endpointName", "endpointValue"),
+		resourceids.UserSpecifiedSegment("batchEndpointName", "batchEndpointValue"),
 	}
 }
 
@@ -131,7 +131,7 @@ func (id BatchEndpointId) String() string {
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
 		fmt.Sprintf("Workspace Name: %q", id.WorkspaceName),
-		fmt.Sprintf("Endpoint Name: %q", id.EndpointName),
+		fmt.Sprintf("Batch Endpoint Name: %q", id.BatchEndpointName),
 	}
 	return fmt.Sprintf("Batch Endpoint (%s)", strings.Join(components, "\n"))
 }

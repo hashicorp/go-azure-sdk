@@ -12,15 +12,15 @@ var _ resourceids.ResourceId = RestorableDatabaseAccountId{}
 // RestorableDatabaseAccountId is a struct representing the Resource ID for a Restorable Database Account
 type RestorableDatabaseAccountId struct {
 	SubscriptionId string
-	Location       string
+	LocationName   string
 	InstanceId     string
 }
 
 // NewRestorableDatabaseAccountID returns a new RestorableDatabaseAccountId struct
-func NewRestorableDatabaseAccountID(subscriptionId string, location string, instanceId string) RestorableDatabaseAccountId {
+func NewRestorableDatabaseAccountID(subscriptionId string, locationName string, instanceId string) RestorableDatabaseAccountId {
 	return RestorableDatabaseAccountId{
 		SubscriptionId: subscriptionId,
-		Location:       location,
+		LocationName:   locationName,
 		InstanceId:     instanceId,
 	}
 }
@@ -40,8 +40,8 @@ func ParseRestorableDatabaseAccountID(input string) (*RestorableDatabaseAccountI
 		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
 	}
 
-	if id.Location, ok = parsed.Parsed["location"]; !ok {
-		return nil, fmt.Errorf("the segment 'location' was not found in the resource id %q", input)
+	if id.LocationName, ok = parsed.Parsed["locationName"]; !ok {
+		return nil, fmt.Errorf("the segment 'locationName' was not found in the resource id %q", input)
 	}
 
 	if id.InstanceId, ok = parsed.Parsed["instanceId"]; !ok {
@@ -67,8 +67,8 @@ func ParseRestorableDatabaseAccountIDInsensitively(input string) (*RestorableDat
 		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
 	}
 
-	if id.Location, ok = parsed.Parsed["location"]; !ok {
-		return nil, fmt.Errorf("the segment 'location' was not found in the resource id %q", input)
+	if id.LocationName, ok = parsed.Parsed["locationName"]; !ok {
+		return nil, fmt.Errorf("the segment 'locationName' was not found in the resource id %q", input)
 	}
 
 	if id.InstanceId, ok = parsed.Parsed["instanceId"]; !ok {
@@ -96,7 +96,7 @@ func ValidateRestorableDatabaseAccountID(input interface{}, key string) (warning
 // ID returns the formatted Restorable Database Account ID
 func (id RestorableDatabaseAccountId) ID() string {
 	fmtString := "/subscriptions/%s/providers/Microsoft.DocumentDB/locations/%s/restorableDatabaseAccounts/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.Location, id.InstanceId)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.LocationName, id.InstanceId)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Restorable Database Account ID
@@ -107,7 +107,7 @@ func (id RestorableDatabaseAccountId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftDocumentDB", "Microsoft.DocumentDB", "Microsoft.DocumentDB"),
 		resourceids.StaticSegment("staticLocations", "locations", "locations"),
-		resourceids.UserSpecifiedSegment("location", "locationValue"),
+		resourceids.UserSpecifiedSegment("locationName", "locationValue"),
 		resourceids.StaticSegment("staticRestorableDatabaseAccounts", "restorableDatabaseAccounts", "restorableDatabaseAccounts"),
 		resourceids.UserSpecifiedSegment("instanceId", "instanceIdValue"),
 	}
@@ -117,7 +117,7 @@ func (id RestorableDatabaseAccountId) Segments() []resourceids.Segment {
 func (id RestorableDatabaseAccountId) String() string {
 	components := []string{
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
-		fmt.Sprintf("Location: %q", id.Location),
+		fmt.Sprintf("Location Name: %q", id.LocationName),
 		fmt.Sprintf("Instance: %q", id.InstanceId),
 	}
 	return fmt.Sprintf("Restorable Database Account (%s)", strings.Join(components, "\n"))

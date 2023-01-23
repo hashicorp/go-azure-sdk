@@ -11,21 +11,21 @@ var _ resourceids.ResourceId = ServiceId{}
 
 // ServiceId is a struct representing the Resource ID for a Service
 type ServiceId struct {
-	SubscriptionId    string
-	ResourceGroupName string
-	ClusterName       string
-	ApplicationName   string
-	ServiceName       string
+	SubscriptionId     string
+	ResourceGroupName  string
+	ManagedClusterName string
+	ApplicationName    string
+	ServiceName        string
 }
 
 // NewServiceID returns a new ServiceId struct
-func NewServiceID(subscriptionId string, resourceGroupName string, clusterName string, applicationName string, serviceName string) ServiceId {
+func NewServiceID(subscriptionId string, resourceGroupName string, managedClusterName string, applicationName string, serviceName string) ServiceId {
 	return ServiceId{
-		SubscriptionId:    subscriptionId,
-		ResourceGroupName: resourceGroupName,
-		ClusterName:       clusterName,
-		ApplicationName:   applicationName,
-		ServiceName:       serviceName,
+		SubscriptionId:     subscriptionId,
+		ResourceGroupName:  resourceGroupName,
+		ManagedClusterName: managedClusterName,
+		ApplicationName:    applicationName,
+		ServiceName:        serviceName,
 	}
 }
 
@@ -48,8 +48,8 @@ func ParseServiceID(input string) (*ServiceId, error) {
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.ClusterName, ok = parsed.Parsed["clusterName"]; !ok {
-		return nil, fmt.Errorf("the segment 'clusterName' was not found in the resource id %q", input)
+	if id.ManagedClusterName, ok = parsed.Parsed["managedClusterName"]; !ok {
+		return nil, fmt.Errorf("the segment 'managedClusterName' was not found in the resource id %q", input)
 	}
 
 	if id.ApplicationName, ok = parsed.Parsed["applicationName"]; !ok {
@@ -83,8 +83,8 @@ func ParseServiceIDInsensitively(input string) (*ServiceId, error) {
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.ClusterName, ok = parsed.Parsed["clusterName"]; !ok {
-		return nil, fmt.Errorf("the segment 'clusterName' was not found in the resource id %q", input)
+	if id.ManagedClusterName, ok = parsed.Parsed["managedClusterName"]; !ok {
+		return nil, fmt.Errorf("the segment 'managedClusterName' was not found in the resource id %q", input)
 	}
 
 	if id.ApplicationName, ok = parsed.Parsed["applicationName"]; !ok {
@@ -116,7 +116,7 @@ func ValidateServiceID(input interface{}, key string) (warnings []string, errors
 // ID returns the formatted Service ID
 func (id ServiceId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.ServiceFabric/managedClusters/%s/applications/%s/services/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.ClusterName, id.ApplicationName, id.ServiceName)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.ManagedClusterName, id.ApplicationName, id.ServiceName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Service ID
@@ -129,7 +129,7 @@ func (id ServiceId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftServiceFabric", "Microsoft.ServiceFabric", "Microsoft.ServiceFabric"),
 		resourceids.StaticSegment("staticManagedClusters", "managedClusters", "managedClusters"),
-		resourceids.UserSpecifiedSegment("clusterName", "clusterValue"),
+		resourceids.UserSpecifiedSegment("managedClusterName", "managedClusterValue"),
 		resourceids.StaticSegment("staticApplications", "applications", "applications"),
 		resourceids.UserSpecifiedSegment("applicationName", "applicationValue"),
 		resourceids.StaticSegment("staticServices", "services", "services"),
@@ -142,7 +142,7 @@ func (id ServiceId) String() string {
 	components := []string{
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
-		fmt.Sprintf("Cluster Name: %q", id.ClusterName),
+		fmt.Sprintf("Managed Cluster Name: %q", id.ManagedClusterName),
 		fmt.Sprintf("Application Name: %q", id.ApplicationName),
 		fmt.Sprintf("Service Name: %q", id.ServiceName),
 	}

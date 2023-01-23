@@ -11,21 +11,21 @@ var _ resourceids.ResourceId = BackupProtectionIntentId{}
 
 // BackupProtectionIntentId is a struct representing the Resource ID for a Backup Protection Intent
 type BackupProtectionIntentId struct {
-	SubscriptionId    string
-	ResourceGroupName string
-	VaultName         string
-	FabricName        string
-	IntentObjectName  string
+	SubscriptionId             string
+	ResourceGroupName          string
+	VaultName                  string
+	BackupFabricName           string
+	BackupProtectionIntentName string
 }
 
 // NewBackupProtectionIntentID returns a new BackupProtectionIntentId struct
-func NewBackupProtectionIntentID(subscriptionId string, resourceGroupName string, vaultName string, fabricName string, intentObjectName string) BackupProtectionIntentId {
+func NewBackupProtectionIntentID(subscriptionId string, resourceGroupName string, vaultName string, backupFabricName string, backupProtectionIntentName string) BackupProtectionIntentId {
 	return BackupProtectionIntentId{
-		SubscriptionId:    subscriptionId,
-		ResourceGroupName: resourceGroupName,
-		VaultName:         vaultName,
-		FabricName:        fabricName,
-		IntentObjectName:  intentObjectName,
+		SubscriptionId:             subscriptionId,
+		ResourceGroupName:          resourceGroupName,
+		VaultName:                  vaultName,
+		BackupFabricName:           backupFabricName,
+		BackupProtectionIntentName: backupProtectionIntentName,
 	}
 }
 
@@ -52,12 +52,12 @@ func ParseBackupProtectionIntentID(input string) (*BackupProtectionIntentId, err
 		return nil, fmt.Errorf("the segment 'vaultName' was not found in the resource id %q", input)
 	}
 
-	if id.FabricName, ok = parsed.Parsed["fabricName"]; !ok {
-		return nil, fmt.Errorf("the segment 'fabricName' was not found in the resource id %q", input)
+	if id.BackupFabricName, ok = parsed.Parsed["backupFabricName"]; !ok {
+		return nil, fmt.Errorf("the segment 'backupFabricName' was not found in the resource id %q", input)
 	}
 
-	if id.IntentObjectName, ok = parsed.Parsed["intentObjectName"]; !ok {
-		return nil, fmt.Errorf("the segment 'intentObjectName' was not found in the resource id %q", input)
+	if id.BackupProtectionIntentName, ok = parsed.Parsed["backupProtectionIntentName"]; !ok {
+		return nil, fmt.Errorf("the segment 'backupProtectionIntentName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -87,12 +87,12 @@ func ParseBackupProtectionIntentIDInsensitively(input string) (*BackupProtection
 		return nil, fmt.Errorf("the segment 'vaultName' was not found in the resource id %q", input)
 	}
 
-	if id.FabricName, ok = parsed.Parsed["fabricName"]; !ok {
-		return nil, fmt.Errorf("the segment 'fabricName' was not found in the resource id %q", input)
+	if id.BackupFabricName, ok = parsed.Parsed["backupFabricName"]; !ok {
+		return nil, fmt.Errorf("the segment 'backupFabricName' was not found in the resource id %q", input)
 	}
 
-	if id.IntentObjectName, ok = parsed.Parsed["intentObjectName"]; !ok {
-		return nil, fmt.Errorf("the segment 'intentObjectName' was not found in the resource id %q", input)
+	if id.BackupProtectionIntentName, ok = parsed.Parsed["backupProtectionIntentName"]; !ok {
+		return nil, fmt.Errorf("the segment 'backupProtectionIntentName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -116,7 +116,7 @@ func ValidateBackupProtectionIntentID(input interface{}, key string) (warnings [
 // ID returns the formatted Backup Protection Intent ID
 func (id BackupProtectionIntentId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.RecoveryServices/vaults/%s/backupFabrics/%s/backupProtectionIntent/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.VaultName, id.FabricName, id.IntentObjectName)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.VaultName, id.BackupFabricName, id.BackupProtectionIntentName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Backup Protection Intent ID
@@ -131,9 +131,9 @@ func (id BackupProtectionIntentId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticVaults", "vaults", "vaults"),
 		resourceids.UserSpecifiedSegment("vaultName", "vaultValue"),
 		resourceids.StaticSegment("staticBackupFabrics", "backupFabrics", "backupFabrics"),
-		resourceids.UserSpecifiedSegment("fabricName", "fabricValue"),
+		resourceids.UserSpecifiedSegment("backupFabricName", "backupFabricValue"),
 		resourceids.StaticSegment("staticBackupProtectionIntent", "backupProtectionIntent", "backupProtectionIntent"),
-		resourceids.UserSpecifiedSegment("intentObjectName", "intentObjectValue"),
+		resourceids.UserSpecifiedSegment("backupProtectionIntentName", "backupProtectionIntentValue"),
 	}
 }
 
@@ -143,8 +143,8 @@ func (id BackupProtectionIntentId) String() string {
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
 		fmt.Sprintf("Vault Name: %q", id.VaultName),
-		fmt.Sprintf("Fabric Name: %q", id.FabricName),
-		fmt.Sprintf("Intent Object Name: %q", id.IntentObjectName),
+		fmt.Sprintf("Backup Fabric Name: %q", id.BackupFabricName),
+		fmt.Sprintf("Backup Protection Intent Name: %q", id.BackupProtectionIntentName),
 	}
 	return fmt.Sprintf("Backup Protection Intent (%s)", strings.Join(components, "\n"))
 }

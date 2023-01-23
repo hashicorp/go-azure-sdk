@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = DeleteQueryKeyId{}
 
 func TestNewDeleteQueryKeyID(t *testing.T) {
-	id := NewDeleteQueryKeyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "searchServiceValue", "keyValue")
+	id := NewDeleteQueryKeyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "searchServiceValue", "deleteQueryKeyValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -23,14 +23,14 @@ func TestNewDeleteQueryKeyID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'SearchServiceName'", id.SearchServiceName, "searchServiceValue")
 	}
 
-	if id.Key != "keyValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'Key'", id.Key, "keyValue")
+	if id.DeleteQueryKeyName != "deleteQueryKeyValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'DeleteQueryKeyName'", id.DeleteQueryKeyName, "deleteQueryKeyValue")
 	}
 }
 
 func TestFormatDeleteQueryKeyID(t *testing.T) {
-	actual := NewDeleteQueryKeyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "searchServiceValue", "keyValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Search/searchServices/searchServiceValue/deleteQueryKey/keyValue"
+	actual := NewDeleteQueryKeyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "searchServiceValue", "deleteQueryKeyValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Search/searchServices/searchServiceValue/deleteQueryKey/deleteQueryKeyValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -94,17 +94,17 @@ func TestParseDeleteQueryKeyID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Search/searchServices/searchServiceValue/deleteQueryKey/keyValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Search/searchServices/searchServiceValue/deleteQueryKey/deleteQueryKeyValue",
 			Expected: &DeleteQueryKeyId{
-				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName: "example-resource-group",
-				SearchServiceName: "searchServiceValue",
-				Key:               "keyValue",
+				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:  "example-resource-group",
+				SearchServiceName:  "searchServiceValue",
+				DeleteQueryKeyName: "deleteQueryKeyValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Search/searchServices/searchServiceValue/deleteQueryKey/keyValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Search/searchServices/searchServiceValue/deleteQueryKey/deleteQueryKeyValue/extra",
 			Error: true,
 		},
 	}
@@ -135,8 +135,8 @@ func TestParseDeleteQueryKeyID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for SearchServiceName", v.Expected.SearchServiceName, actual.SearchServiceName)
 		}
 
-		if actual.Key != v.Expected.Key {
-			t.Fatalf("Expected %q but got %q for Key", v.Expected.Key, actual.Key)
+		if actual.DeleteQueryKeyName != v.Expected.DeleteQueryKeyName {
+			t.Fatalf("Expected %q but got %q for DeleteQueryKeyName", v.Expected.DeleteQueryKeyName, actual.DeleteQueryKeyName)
 		}
 
 	}
@@ -245,32 +245,32 @@ func TestParseDeleteQueryKeyIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Search/searchServices/searchServiceValue/deleteQueryKey/keyValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Search/searchServices/searchServiceValue/deleteQueryKey/deleteQueryKeyValue",
 			Expected: &DeleteQueryKeyId{
-				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName: "example-resource-group",
-				SearchServiceName: "searchServiceValue",
-				Key:               "keyValue",
+				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:  "example-resource-group",
+				SearchServiceName:  "searchServiceValue",
+				DeleteQueryKeyName: "deleteQueryKeyValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Search/searchServices/searchServiceValue/deleteQueryKey/keyValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Search/searchServices/searchServiceValue/deleteQueryKey/deleteQueryKeyValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sEaRcH/sEaRcHsErViCeS/sEaRcHsErViCeVaLuE/dElEtEqUeRyKeY/kEyVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sEaRcH/sEaRcHsErViCeS/sEaRcHsErViCeVaLuE/dElEtEqUeRyKeY/dElEtEqUeRyKeYvAlUe",
 			Expected: &DeleteQueryKeyId{
-				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				SearchServiceName: "sEaRcHsErViCeVaLuE",
-				Key:               "kEyVaLuE",
+				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:  "eXaMpLe-rEsOuRcE-GrOuP",
+				SearchServiceName:  "sEaRcHsErViCeVaLuE",
+				DeleteQueryKeyName: "dElEtEqUeRyKeYvAlUe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sEaRcH/sEaRcHsErViCeS/sEaRcHsErViCeVaLuE/dElEtEqUeRyKeY/kEyVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sEaRcH/sEaRcHsErViCeS/sEaRcHsErViCeVaLuE/dElEtEqUeRyKeY/dElEtEqUeRyKeYvAlUe/extra",
 			Error: true,
 		},
 	}
@@ -301,8 +301,8 @@ func TestParseDeleteQueryKeyIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for SearchServiceName", v.Expected.SearchServiceName, actual.SearchServiceName)
 		}
 
-		if actual.Key != v.Expected.Key {
-			t.Fatalf("Expected %q but got %q for Key", v.Expected.Key, actual.Key)
+		if actual.DeleteQueryKeyName != v.Expected.DeleteQueryKeyName {
+			t.Fatalf("Expected %q but got %q for DeleteQueryKeyName", v.Expected.DeleteQueryKeyName, actual.DeleteQueryKeyName)
 		}
 
 	}

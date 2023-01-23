@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := rbacs.NewSqlRoleAssignmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "roleAssignmentIdValue")
+id := rbacs.NewSqlRoleAssignmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "databaseAccountValue", "roleAssignmentIdValue")
 
 payload := rbacs.SqlRoleAssignmentCreateUpdateParameters{
 	// ...
@@ -41,7 +41,7 @@ if err := client.SqlResourcesCreateUpdateSqlRoleAssignmentThenPoll(ctx, id, payl
 
 ```go
 ctx := context.TODO()
-id := rbacs.NewSqlRoleDefinitionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "roleDefinitionIdValue")
+id := rbacs.NewSqlRoleDefinitionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "databaseAccountValue", "roleDefinitionIdValue")
 
 payload := rbacs.SqlRoleDefinitionCreateUpdateParameters{
 	// ...
@@ -58,7 +58,7 @@ if err := client.SqlResourcesCreateUpdateSqlRoleDefinitionThenPoll(ctx, id, payl
 
 ```go
 ctx := context.TODO()
-id := rbacs.NewSqlRoleAssignmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "roleAssignmentIdValue")
+id := rbacs.NewSqlRoleAssignmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "databaseAccountValue", "roleAssignmentIdValue")
 
 if err := client.SqlResourcesDeleteSqlRoleAssignmentThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -70,7 +70,7 @@ if err := client.SqlResourcesDeleteSqlRoleAssignmentThenPoll(ctx, id); err != ni
 
 ```go
 ctx := context.TODO()
-id := rbacs.NewSqlRoleDefinitionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "roleDefinitionIdValue")
+id := rbacs.NewSqlRoleDefinitionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "databaseAccountValue", "roleDefinitionIdValue")
 
 if err := client.SqlResourcesDeleteSqlRoleDefinitionThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -82,7 +82,7 @@ if err := client.SqlResourcesDeleteSqlRoleDefinitionThenPoll(ctx, id); err != ni
 
 ```go
 ctx := context.TODO()
-id := rbacs.NewSqlRoleAssignmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "roleAssignmentIdValue")
+id := rbacs.NewSqlRoleAssignmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "databaseAccountValue", "roleAssignmentIdValue")
 
 read, err := client.SqlResourcesGetSqlRoleAssignment(ctx, id)
 if err != nil {
@@ -98,7 +98,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := rbacs.NewSqlRoleDefinitionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "roleDefinitionIdValue")
+id := rbacs.NewSqlRoleDefinitionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "databaseAccountValue", "roleDefinitionIdValue")
 
 read, err := client.SqlResourcesGetSqlRoleDefinition(ctx, id)
 if err != nil {
@@ -114,7 +114,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := rbacs.NewDatabaseAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue")
+id := rbacs.NewDatabaseAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "databaseAccountValue")
 
 read, err := client.SqlResourcesListSqlRoleAssignments(ctx, id)
 if err != nil {
@@ -130,7 +130,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := rbacs.NewDatabaseAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue")
+id := rbacs.NewDatabaseAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "databaseAccountValue")
 
 read, err := client.SqlResourcesListSqlRoleDefinitions(ctx, id)
 if err != nil {

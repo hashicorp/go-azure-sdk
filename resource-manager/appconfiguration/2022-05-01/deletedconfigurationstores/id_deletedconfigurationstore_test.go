@@ -9,24 +9,24 @@ import (
 var _ resourceids.ResourceId = DeletedConfigurationStoreId{}
 
 func TestNewDeletedConfigurationStoreID(t *testing.T) {
-	id := NewDeletedConfigurationStoreID("12345678-1234-9876-4563-123456789012", "locationValue", "configStoreValue")
+	id := NewDeletedConfigurationStoreID("12345678-1234-9876-4563-123456789012", "locationValue", "deletedConfigurationStoreValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
 	}
 
-	if id.Location != "locationValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'Location'", id.Location, "locationValue")
+	if id.LocationName != "locationValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'LocationName'", id.LocationName, "locationValue")
 	}
 
-	if id.ConfigStoreName != "configStoreValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ConfigStoreName'", id.ConfigStoreName, "configStoreValue")
+	if id.DeletedConfigurationStoreName != "deletedConfigurationStoreValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'DeletedConfigurationStoreName'", id.DeletedConfigurationStoreName, "deletedConfigurationStoreValue")
 	}
 }
 
 func TestFormatDeletedConfigurationStoreID(t *testing.T) {
-	actual := NewDeletedConfigurationStoreID("12345678-1234-9876-4563-123456789012", "locationValue", "configStoreValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.AppConfiguration/locations/locationValue/deletedConfigurationStores/configStoreValue"
+	actual := NewDeletedConfigurationStoreID("12345678-1234-9876-4563-123456789012", "locationValue", "deletedConfigurationStoreValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.AppConfiguration/locations/locationValue/deletedConfigurationStores/deletedConfigurationStoreValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -80,16 +80,16 @@ func TestParseDeletedConfigurationStoreID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.AppConfiguration/locations/locationValue/deletedConfigurationStores/configStoreValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.AppConfiguration/locations/locationValue/deletedConfigurationStores/deletedConfigurationStoreValue",
 			Expected: &DeletedConfigurationStoreId{
-				SubscriptionId:  "12345678-1234-9876-4563-123456789012",
-				Location:        "locationValue",
-				ConfigStoreName: "configStoreValue",
+				SubscriptionId:                "12345678-1234-9876-4563-123456789012",
+				LocationName:                  "locationValue",
+				DeletedConfigurationStoreName: "deletedConfigurationStoreValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.AppConfiguration/locations/locationValue/deletedConfigurationStores/configStoreValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.AppConfiguration/locations/locationValue/deletedConfigurationStores/deletedConfigurationStoreValue/extra",
 			Error: true,
 		},
 	}
@@ -112,12 +112,12 @@ func TestParseDeletedConfigurationStoreID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for SubscriptionId", v.Expected.SubscriptionId, actual.SubscriptionId)
 		}
 
-		if actual.Location != v.Expected.Location {
-			t.Fatalf("Expected %q but got %q for Location", v.Expected.Location, actual.Location)
+		if actual.LocationName != v.Expected.LocationName {
+			t.Fatalf("Expected %q but got %q for LocationName", v.Expected.LocationName, actual.LocationName)
 		}
 
-		if actual.ConfigStoreName != v.Expected.ConfigStoreName {
-			t.Fatalf("Expected %q but got %q for ConfigStoreName", v.Expected.ConfigStoreName, actual.ConfigStoreName)
+		if actual.DeletedConfigurationStoreName != v.Expected.DeletedConfigurationStoreName {
+			t.Fatalf("Expected %q but got %q for DeletedConfigurationStoreName", v.Expected.DeletedConfigurationStoreName, actual.DeletedConfigurationStoreName)
 		}
 
 	}
@@ -206,30 +206,30 @@ func TestParseDeletedConfigurationStoreIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.AppConfiguration/locations/locationValue/deletedConfigurationStores/configStoreValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.AppConfiguration/locations/locationValue/deletedConfigurationStores/deletedConfigurationStoreValue",
 			Expected: &DeletedConfigurationStoreId{
-				SubscriptionId:  "12345678-1234-9876-4563-123456789012",
-				Location:        "locationValue",
-				ConfigStoreName: "configStoreValue",
+				SubscriptionId:                "12345678-1234-9876-4563-123456789012",
+				LocationName:                  "locationValue",
+				DeletedConfigurationStoreName: "deletedConfigurationStoreValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.AppConfiguration/locations/locationValue/deletedConfigurationStores/configStoreValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.AppConfiguration/locations/locationValue/deletedConfigurationStores/deletedConfigurationStoreValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.aPpCoNfIgUrAtIoN/lOcAtIoNs/lOcAtIoNvAlUe/dElEtEdCoNfIgUrAtIoNsToReS/cOnFiGsToReVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.aPpCoNfIgUrAtIoN/lOcAtIoNs/lOcAtIoNvAlUe/dElEtEdCoNfIgUrAtIoNsToReS/dElEtEdCoNfIgUrAtIoNsToReVaLuE",
 			Expected: &DeletedConfigurationStoreId{
-				SubscriptionId:  "12345678-1234-9876-4563-123456789012",
-				Location:        "lOcAtIoNvAlUe",
-				ConfigStoreName: "cOnFiGsToReVaLuE",
+				SubscriptionId:                "12345678-1234-9876-4563-123456789012",
+				LocationName:                  "lOcAtIoNvAlUe",
+				DeletedConfigurationStoreName: "dElEtEdCoNfIgUrAtIoNsToReVaLuE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.aPpCoNfIgUrAtIoN/lOcAtIoNs/lOcAtIoNvAlUe/dElEtEdCoNfIgUrAtIoNsToReS/cOnFiGsToReVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.aPpCoNfIgUrAtIoN/lOcAtIoNs/lOcAtIoNvAlUe/dElEtEdCoNfIgUrAtIoNsToReS/dElEtEdCoNfIgUrAtIoNsToReVaLuE/extra",
 			Error: true,
 		},
 	}
@@ -252,12 +252,12 @@ func TestParseDeletedConfigurationStoreIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for SubscriptionId", v.Expected.SubscriptionId, actual.SubscriptionId)
 		}
 
-		if actual.Location != v.Expected.Location {
-			t.Fatalf("Expected %q but got %q for Location", v.Expected.Location, actual.Location)
+		if actual.LocationName != v.Expected.LocationName {
+			t.Fatalf("Expected %q but got %q for LocationName", v.Expected.LocationName, actual.LocationName)
 		}
 
-		if actual.ConfigStoreName != v.Expected.ConfigStoreName {
-			t.Fatalf("Expected %q but got %q for ConfigStoreName", v.Expected.ConfigStoreName, actual.ConfigStoreName)
+		if actual.DeletedConfigurationStoreName != v.Expected.DeletedConfigurationStoreName {
+			t.Fatalf("Expected %q but got %q for DeletedConfigurationStoreName", v.Expected.DeletedConfigurationStoreName, actual.DeletedConfigurationStoreName)
 		}
 
 	}

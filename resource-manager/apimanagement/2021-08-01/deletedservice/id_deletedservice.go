@@ -11,17 +11,17 @@ var _ resourceids.ResourceId = DeletedServiceId{}
 
 // DeletedServiceId is a struct representing the Resource ID for a Deleted Service
 type DeletedServiceId struct {
-	SubscriptionId string
-	Location       string
-	ServiceName    string
+	SubscriptionId     string
+	LocationName       string
+	DeletedServiceName string
 }
 
 // NewDeletedServiceID returns a new DeletedServiceId struct
-func NewDeletedServiceID(subscriptionId string, location string, serviceName string) DeletedServiceId {
+func NewDeletedServiceID(subscriptionId string, locationName string, deletedServiceName string) DeletedServiceId {
 	return DeletedServiceId{
-		SubscriptionId: subscriptionId,
-		Location:       location,
-		ServiceName:    serviceName,
+		SubscriptionId:     subscriptionId,
+		LocationName:       locationName,
+		DeletedServiceName: deletedServiceName,
 	}
 }
 
@@ -40,12 +40,12 @@ func ParseDeletedServiceID(input string) (*DeletedServiceId, error) {
 		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
 	}
 
-	if id.Location, ok = parsed.Parsed["location"]; !ok {
-		return nil, fmt.Errorf("the segment 'location' was not found in the resource id %q", input)
+	if id.LocationName, ok = parsed.Parsed["locationName"]; !ok {
+		return nil, fmt.Errorf("the segment 'locationName' was not found in the resource id %q", input)
 	}
 
-	if id.ServiceName, ok = parsed.Parsed["serviceName"]; !ok {
-		return nil, fmt.Errorf("the segment 'serviceName' was not found in the resource id %q", input)
+	if id.DeletedServiceName, ok = parsed.Parsed["deletedServiceName"]; !ok {
+		return nil, fmt.Errorf("the segment 'deletedServiceName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -67,12 +67,12 @@ func ParseDeletedServiceIDInsensitively(input string) (*DeletedServiceId, error)
 		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
 	}
 
-	if id.Location, ok = parsed.Parsed["location"]; !ok {
-		return nil, fmt.Errorf("the segment 'location' was not found in the resource id %q", input)
+	if id.LocationName, ok = parsed.Parsed["locationName"]; !ok {
+		return nil, fmt.Errorf("the segment 'locationName' was not found in the resource id %q", input)
 	}
 
-	if id.ServiceName, ok = parsed.Parsed["serviceName"]; !ok {
-		return nil, fmt.Errorf("the segment 'serviceName' was not found in the resource id %q", input)
+	if id.DeletedServiceName, ok = parsed.Parsed["deletedServiceName"]; !ok {
+		return nil, fmt.Errorf("the segment 'deletedServiceName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -96,7 +96,7 @@ func ValidateDeletedServiceID(input interface{}, key string) (warnings []string,
 // ID returns the formatted Deleted Service ID
 func (id DeletedServiceId) ID() string {
 	fmtString := "/subscriptions/%s/providers/Microsoft.ApiManagement/locations/%s/deletedServices/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.Location, id.ServiceName)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.LocationName, id.DeletedServiceName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Deleted Service ID
@@ -107,9 +107,9 @@ func (id DeletedServiceId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftApiManagement", "Microsoft.ApiManagement", "Microsoft.ApiManagement"),
 		resourceids.StaticSegment("staticLocations", "locations", "locations"),
-		resourceids.UserSpecifiedSegment("location", "locationValue"),
+		resourceids.UserSpecifiedSegment("locationName", "locationValue"),
 		resourceids.StaticSegment("staticDeletedServices", "deletedServices", "deletedServices"),
-		resourceids.UserSpecifiedSegment("serviceName", "serviceValue"),
+		resourceids.UserSpecifiedSegment("deletedServiceName", "deletedServiceValue"),
 	}
 }
 
@@ -117,8 +117,8 @@ func (id DeletedServiceId) Segments() []resourceids.Segment {
 func (id DeletedServiceId) String() string {
 	components := []string{
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
-		fmt.Sprintf("Location: %q", id.Location),
-		fmt.Sprintf("Service Name: %q", id.ServiceName),
+		fmt.Sprintf("Location Name: %q", id.LocationName),
+		fmt.Sprintf("Deleted Service Name: %q", id.DeletedServiceName),
 	}
 	return fmt.Sprintf("Deleted Service (%s)", strings.Join(components, "\n"))
 }

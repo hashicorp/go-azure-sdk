@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = StorageId{}
 
 func TestNewStorageID(t *testing.T) {
-	id := NewStorageID("12345678-1234-9876-4563-123456789012", "example-resource-group", "environmentValue", "storageValue")
+	id := NewStorageID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedEnvironmentValue", "storageValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -19,8 +19,8 @@ func TestNewStorageID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.EnvironmentName != "environmentValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'EnvironmentName'", id.EnvironmentName, "environmentValue")
+	if id.ManagedEnvironmentName != "managedEnvironmentValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'ManagedEnvironmentName'", id.ManagedEnvironmentName, "managedEnvironmentValue")
 	}
 
 	if id.StorageName != "storageValue" {
@@ -29,8 +29,8 @@ func TestNewStorageID(t *testing.T) {
 }
 
 func TestFormatStorageID(t *testing.T) {
-	actual := NewStorageID("12345678-1234-9876-4563-123456789012", "example-resource-group", "environmentValue", "storageValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/managedEnvironments/environmentValue/storages/storageValue"
+	actual := NewStorageID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedEnvironmentValue", "storageValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/managedEnvironments/managedEnvironmentValue/storages/storageValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -84,27 +84,27 @@ func TestParseStorageID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/managedEnvironments/environmentValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/managedEnvironments/managedEnvironmentValue",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/managedEnvironments/environmentValue/storages",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/managedEnvironments/managedEnvironmentValue/storages",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/managedEnvironments/environmentValue/storages/storageValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/managedEnvironments/managedEnvironmentValue/storages/storageValue",
 			Expected: &StorageId{
-				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName: "example-resource-group",
-				EnvironmentName:   "environmentValue",
-				StorageName:       "storageValue",
+				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:      "example-resource-group",
+				ManagedEnvironmentName: "managedEnvironmentValue",
+				StorageName:            "storageValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/managedEnvironments/environmentValue/storages/storageValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/managedEnvironments/managedEnvironmentValue/storages/storageValue/extra",
 			Error: true,
 		},
 	}
@@ -131,8 +131,8 @@ func TestParseStorageID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.EnvironmentName != v.Expected.EnvironmentName {
-			t.Fatalf("Expected %q but got %q for EnvironmentName", v.Expected.EnvironmentName, actual.EnvironmentName)
+		if actual.ManagedEnvironmentName != v.Expected.ManagedEnvironmentName {
+			t.Fatalf("Expected %q but got %q for ManagedEnvironmentName", v.Expected.ManagedEnvironmentName, actual.ManagedEnvironmentName)
 		}
 
 		if actual.StorageName != v.Expected.StorageName {
@@ -225,52 +225,52 @@ func TestParseStorageIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/managedEnvironments/environmentValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/managedEnvironments/managedEnvironmentValue",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPp/mAnAgEdEnViRoNmEnTs/eNvIrOnMeNtVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPp/mAnAgEdEnViRoNmEnTs/mAnAgEdEnViRoNmEnTvAlUe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/managedEnvironments/environmentValue/storages",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/managedEnvironments/managedEnvironmentValue/storages",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPp/mAnAgEdEnViRoNmEnTs/eNvIrOnMeNtVaLuE/sToRaGeS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPp/mAnAgEdEnViRoNmEnTs/mAnAgEdEnViRoNmEnTvAlUe/sToRaGeS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/managedEnvironments/environmentValue/storages/storageValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/managedEnvironments/managedEnvironmentValue/storages/storageValue",
 			Expected: &StorageId{
-				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName: "example-resource-group",
-				EnvironmentName:   "environmentValue",
-				StorageName:       "storageValue",
+				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:      "example-resource-group",
+				ManagedEnvironmentName: "managedEnvironmentValue",
+				StorageName:            "storageValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/managedEnvironments/environmentValue/storages/storageValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.App/managedEnvironments/managedEnvironmentValue/storages/storageValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPp/mAnAgEdEnViRoNmEnTs/eNvIrOnMeNtVaLuE/sToRaGeS/sToRaGeVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPp/mAnAgEdEnViRoNmEnTs/mAnAgEdEnViRoNmEnTvAlUe/sToRaGeS/sToRaGeVaLuE",
 			Expected: &StorageId{
-				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				EnvironmentName:   "eNvIrOnMeNtVaLuE",
-				StorageName:       "sToRaGeVaLuE",
+				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:      "eXaMpLe-rEsOuRcE-GrOuP",
+				ManagedEnvironmentName: "mAnAgEdEnViRoNmEnTvAlUe",
+				StorageName:            "sToRaGeVaLuE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPp/mAnAgEdEnViRoNmEnTs/eNvIrOnMeNtVaLuE/sToRaGeS/sToRaGeVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPp/mAnAgEdEnViRoNmEnTs/mAnAgEdEnViRoNmEnTvAlUe/sToRaGeS/sToRaGeVaLuE/extra",
 			Error: true,
 		},
 	}
@@ -297,8 +297,8 @@ func TestParseStorageIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.EnvironmentName != v.Expected.EnvironmentName {
-			t.Fatalf("Expected %q but got %q for EnvironmentName", v.Expected.EnvironmentName, actual.EnvironmentName)
+		if actual.ManagedEnvironmentName != v.Expected.ManagedEnvironmentName {
+			t.Fatalf("Expected %q but got %q for ManagedEnvironmentName", v.Expected.ManagedEnvironmentName, actual.ManagedEnvironmentName)
 		}
 
 		if actual.StorageName != v.Expected.StorageName {

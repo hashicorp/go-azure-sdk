@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = OnboardingStateId{}
 
 func TestNewOnboardingStateID(t *testing.T) {
-	id := NewOnboardingStateID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "sentinelOnboardingStateValue")
+	id := NewOnboardingStateID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "onboardingStateValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -23,14 +23,14 @@ func TestNewOnboardingStateID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'WorkspaceName'", id.WorkspaceName, "workspaceValue")
 	}
 
-	if id.SentinelOnboardingStateName != "sentinelOnboardingStateValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'SentinelOnboardingStateName'", id.SentinelOnboardingStateName, "sentinelOnboardingStateValue")
+	if id.OnboardingStateName != "onboardingStateValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'OnboardingStateName'", id.OnboardingStateName, "onboardingStateValue")
 	}
 }
 
 func TestFormatOnboardingStateID(t *testing.T) {
-	actual := NewOnboardingStateID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "sentinelOnboardingStateValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OperationalInsights/workspaces/workspaceValue/providers/Microsoft.SecurityInsights/onboardingStates/sentinelOnboardingStateValue"
+	actual := NewOnboardingStateID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "onboardingStateValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OperationalInsights/workspaces/workspaceValue/providers/Microsoft.SecurityInsights/onboardingStates/onboardingStateValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -104,17 +104,17 @@ func TestParseOnboardingStateID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OperationalInsights/workspaces/workspaceValue/providers/Microsoft.SecurityInsights/onboardingStates/sentinelOnboardingStateValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OperationalInsights/workspaces/workspaceValue/providers/Microsoft.SecurityInsights/onboardingStates/onboardingStateValue",
 			Expected: &OnboardingStateId{
-				SubscriptionId:              "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName:           "example-resource-group",
-				WorkspaceName:               "workspaceValue",
-				SentinelOnboardingStateName: "sentinelOnboardingStateValue",
+				SubscriptionId:      "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:   "example-resource-group",
+				WorkspaceName:       "workspaceValue",
+				OnboardingStateName: "onboardingStateValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OperationalInsights/workspaces/workspaceValue/providers/Microsoft.SecurityInsights/onboardingStates/sentinelOnboardingStateValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OperationalInsights/workspaces/workspaceValue/providers/Microsoft.SecurityInsights/onboardingStates/onboardingStateValue/extra",
 			Error: true,
 		},
 	}
@@ -145,8 +145,8 @@ func TestParseOnboardingStateID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for WorkspaceName", v.Expected.WorkspaceName, actual.WorkspaceName)
 		}
 
-		if actual.SentinelOnboardingStateName != v.Expected.SentinelOnboardingStateName {
-			t.Fatalf("Expected %q but got %q for SentinelOnboardingStateName", v.Expected.SentinelOnboardingStateName, actual.SentinelOnboardingStateName)
+		if actual.OnboardingStateName != v.Expected.OnboardingStateName {
+			t.Fatalf("Expected %q but got %q for OnboardingStateName", v.Expected.OnboardingStateName, actual.OnboardingStateName)
 		}
 
 	}
@@ -275,32 +275,32 @@ func TestParseOnboardingStateIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OperationalInsights/workspaces/workspaceValue/providers/Microsoft.SecurityInsights/onboardingStates/sentinelOnboardingStateValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OperationalInsights/workspaces/workspaceValue/providers/Microsoft.SecurityInsights/onboardingStates/onboardingStateValue",
 			Expected: &OnboardingStateId{
-				SubscriptionId:              "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName:           "example-resource-group",
-				WorkspaceName:               "workspaceValue",
-				SentinelOnboardingStateName: "sentinelOnboardingStateValue",
+				SubscriptionId:      "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:   "example-resource-group",
+				WorkspaceName:       "workspaceValue",
+				OnboardingStateName: "onboardingStateValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OperationalInsights/workspaces/workspaceValue/providers/Microsoft.SecurityInsights/onboardingStates/sentinelOnboardingStateValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OperationalInsights/workspaces/workspaceValue/providers/Microsoft.SecurityInsights/onboardingStates/onboardingStateValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.oPeRaTiOnAlInSiGhTs/wOrKsPaCeS/wOrKsPaCeVaLuE/pRoViDeRs/mIcRoSoFt.sEcUrItYiNsIgHtS/oNbOaRdInGsTaTeS/sEnTiNeLoNbOaRdInGsTaTeVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.oPeRaTiOnAlInSiGhTs/wOrKsPaCeS/wOrKsPaCeVaLuE/pRoViDeRs/mIcRoSoFt.sEcUrItYiNsIgHtS/oNbOaRdInGsTaTeS/oNbOaRdInGsTaTeVaLuE",
 			Expected: &OnboardingStateId{
-				SubscriptionId:              "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName:           "eXaMpLe-rEsOuRcE-GrOuP",
-				WorkspaceName:               "wOrKsPaCeVaLuE",
-				SentinelOnboardingStateName: "sEnTiNeLoNbOaRdInGsTaTeVaLuE",
+				SubscriptionId:      "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:   "eXaMpLe-rEsOuRcE-GrOuP",
+				WorkspaceName:       "wOrKsPaCeVaLuE",
+				OnboardingStateName: "oNbOaRdInGsTaTeVaLuE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.oPeRaTiOnAlInSiGhTs/wOrKsPaCeS/wOrKsPaCeVaLuE/pRoViDeRs/mIcRoSoFt.sEcUrItYiNsIgHtS/oNbOaRdInGsTaTeS/sEnTiNeLoNbOaRdInGsTaTeVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.oPeRaTiOnAlInSiGhTs/wOrKsPaCeS/wOrKsPaCeVaLuE/pRoViDeRs/mIcRoSoFt.sEcUrItYiNsIgHtS/oNbOaRdInGsTaTeS/oNbOaRdInGsTaTeVaLuE/extra",
 			Error: true,
 		},
 	}
@@ -331,8 +331,8 @@ func TestParseOnboardingStateIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for WorkspaceName", v.Expected.WorkspaceName, actual.WorkspaceName)
 		}
 
-		if actual.SentinelOnboardingStateName != v.Expected.SentinelOnboardingStateName {
-			t.Fatalf("Expected %q but got %q for SentinelOnboardingStateName", v.Expected.SentinelOnboardingStateName, actual.SentinelOnboardingStateName)
+		if actual.OnboardingStateName != v.Expected.OnboardingStateName {
+			t.Fatalf("Expected %q but got %q for OnboardingStateName", v.Expected.OnboardingStateName, actual.OnboardingStateName)
 		}
 
 	}

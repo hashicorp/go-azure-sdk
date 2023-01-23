@@ -12,15 +12,15 @@ var _ resourceids.ResourceId = PrivateLinkScopeId{}
 // PrivateLinkScopeId is a struct representing the Resource ID for a Private Link Scope
 type PrivateLinkScopeId struct {
 	SubscriptionId     string
-	Location           string
+	LocationName       string
 	PrivateLinkScopeId string
 }
 
 // NewPrivateLinkScopeID returns a new PrivateLinkScopeId struct
-func NewPrivateLinkScopeID(subscriptionId string, location string, privateLinkScopeId string) PrivateLinkScopeId {
+func NewPrivateLinkScopeID(subscriptionId string, locationName string, privateLinkScopeId string) PrivateLinkScopeId {
 	return PrivateLinkScopeId{
 		SubscriptionId:     subscriptionId,
-		Location:           location,
+		LocationName:       locationName,
 		PrivateLinkScopeId: privateLinkScopeId,
 	}
 }
@@ -40,8 +40,8 @@ func ParsePrivateLinkScopeID(input string) (*PrivateLinkScopeId, error) {
 		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
 	}
 
-	if id.Location, ok = parsed.Parsed["location"]; !ok {
-		return nil, fmt.Errorf("the segment 'location' was not found in the resource id %q", input)
+	if id.LocationName, ok = parsed.Parsed["locationName"]; !ok {
+		return nil, fmt.Errorf("the segment 'locationName' was not found in the resource id %q", input)
 	}
 
 	if id.PrivateLinkScopeId, ok = parsed.Parsed["privateLinkScopeId"]; !ok {
@@ -67,8 +67,8 @@ func ParsePrivateLinkScopeIDInsensitively(input string) (*PrivateLinkScopeId, er
 		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
 	}
 
-	if id.Location, ok = parsed.Parsed["location"]; !ok {
-		return nil, fmt.Errorf("the segment 'location' was not found in the resource id %q", input)
+	if id.LocationName, ok = parsed.Parsed["locationName"]; !ok {
+		return nil, fmt.Errorf("the segment 'locationName' was not found in the resource id %q", input)
 	}
 
 	if id.PrivateLinkScopeId, ok = parsed.Parsed["privateLinkScopeId"]; !ok {
@@ -96,7 +96,7 @@ func ValidatePrivateLinkScopeID(input interface{}, key string) (warnings []strin
 // ID returns the formatted Private Link Scope ID
 func (id PrivateLinkScopeId) ID() string {
 	fmtString := "/subscriptions/%s/providers/Microsoft.HybridCompute/locations/%s/privateLinkScopes/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.Location, id.PrivateLinkScopeId)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.LocationName, id.PrivateLinkScopeId)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Private Link Scope ID
@@ -107,7 +107,7 @@ func (id PrivateLinkScopeId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftHybridCompute", "Microsoft.HybridCompute", "Microsoft.HybridCompute"),
 		resourceids.StaticSegment("staticLocations", "locations", "locations"),
-		resourceids.UserSpecifiedSegment("location", "locationValue"),
+		resourceids.UserSpecifiedSegment("locationName", "locationValue"),
 		resourceids.StaticSegment("staticPrivateLinkScopes", "privateLinkScopes", "privateLinkScopes"),
 		resourceids.UserSpecifiedSegment("privateLinkScopeId", "privateLinkScopeIdValue"),
 	}
@@ -117,7 +117,7 @@ func (id PrivateLinkScopeId) Segments() []resourceids.Segment {
 func (id PrivateLinkScopeId) String() string {
 	components := []string{
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
-		fmt.Sprintf("Location: %q", id.Location),
+		fmt.Sprintf("Location Name: %q", id.LocationName),
 		fmt.Sprintf("Private Link Scope: %q", id.PrivateLinkScopeId),
 	}
 	return fmt.Sprintf("Private Link Scope (%s)", strings.Join(components, "\n"))

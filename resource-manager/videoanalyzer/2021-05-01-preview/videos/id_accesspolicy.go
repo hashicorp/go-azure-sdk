@@ -13,16 +13,16 @@ var _ resourceids.ResourceId = AccessPolicyId{}
 type AccessPolicyId struct {
 	SubscriptionId    string
 	ResourceGroupName string
-	AccountName       string
+	VideoAnalyzerName string
 	AccessPolicyName  string
 }
 
 // NewAccessPolicyID returns a new AccessPolicyId struct
-func NewAccessPolicyID(subscriptionId string, resourceGroupName string, accountName string, accessPolicyName string) AccessPolicyId {
+func NewAccessPolicyID(subscriptionId string, resourceGroupName string, videoAnalyzerName string, accessPolicyName string) AccessPolicyId {
 	return AccessPolicyId{
 		SubscriptionId:    subscriptionId,
 		ResourceGroupName: resourceGroupName,
-		AccountName:       accountName,
+		VideoAnalyzerName: videoAnalyzerName,
 		AccessPolicyName:  accessPolicyName,
 	}
 }
@@ -46,8 +46,8 @@ func ParseAccessPolicyID(input string) (*AccessPolicyId, error) {
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.AccountName, ok = parsed.Parsed["accountName"]; !ok {
-		return nil, fmt.Errorf("the segment 'accountName' was not found in the resource id %q", input)
+	if id.VideoAnalyzerName, ok = parsed.Parsed["videoAnalyzerName"]; !ok {
+		return nil, fmt.Errorf("the segment 'videoAnalyzerName' was not found in the resource id %q", input)
 	}
 
 	if id.AccessPolicyName, ok = parsed.Parsed["accessPolicyName"]; !ok {
@@ -77,8 +77,8 @@ func ParseAccessPolicyIDInsensitively(input string) (*AccessPolicyId, error) {
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.AccountName, ok = parsed.Parsed["accountName"]; !ok {
-		return nil, fmt.Errorf("the segment 'accountName' was not found in the resource id %q", input)
+	if id.VideoAnalyzerName, ok = parsed.Parsed["videoAnalyzerName"]; !ok {
+		return nil, fmt.Errorf("the segment 'videoAnalyzerName' was not found in the resource id %q", input)
 	}
 
 	if id.AccessPolicyName, ok = parsed.Parsed["accessPolicyName"]; !ok {
@@ -106,7 +106,7 @@ func ValidateAccessPolicyID(input interface{}, key string) (warnings []string, e
 // ID returns the formatted Access Policy ID
 func (id AccessPolicyId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.Media/videoAnalyzers/%s/accessPolicies/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.AccountName, id.AccessPolicyName)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.VideoAnalyzerName, id.AccessPolicyName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Access Policy ID
@@ -119,7 +119,7 @@ func (id AccessPolicyId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftMedia", "Microsoft.Media", "Microsoft.Media"),
 		resourceids.StaticSegment("staticVideoAnalyzers", "videoAnalyzers", "videoAnalyzers"),
-		resourceids.UserSpecifiedSegment("accountName", "accountValue"),
+		resourceids.UserSpecifiedSegment("videoAnalyzerName", "videoAnalyzerValue"),
 		resourceids.StaticSegment("staticAccessPolicies", "accessPolicies", "accessPolicies"),
 		resourceids.UserSpecifiedSegment("accessPolicyName", "accessPolicyValue"),
 	}
@@ -130,7 +130,7 @@ func (id AccessPolicyId) String() string {
 	components := []string{
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
-		fmt.Sprintf("Account Name: %q", id.AccountName),
+		fmt.Sprintf("Video Analyzer Name: %q", id.VideoAnalyzerName),
 		fmt.Sprintf("Access Policy Name: %q", id.AccessPolicyName),
 	}
 	return fmt.Sprintf("Access Policy (%s)", strings.Join(components, "\n"))

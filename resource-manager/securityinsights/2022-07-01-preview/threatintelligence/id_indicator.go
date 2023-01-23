@@ -14,16 +14,16 @@ type IndicatorId struct {
 	SubscriptionId    string
 	ResourceGroupName string
 	WorkspaceName     string
-	Name              string
+	IndicatorName     string
 }
 
 // NewIndicatorID returns a new IndicatorId struct
-func NewIndicatorID(subscriptionId string, resourceGroupName string, workspaceName string, name string) IndicatorId {
+func NewIndicatorID(subscriptionId string, resourceGroupName string, workspaceName string, indicatorName string) IndicatorId {
 	return IndicatorId{
 		SubscriptionId:    subscriptionId,
 		ResourceGroupName: resourceGroupName,
 		WorkspaceName:     workspaceName,
-		Name:              name,
+		IndicatorName:     indicatorName,
 	}
 }
 
@@ -50,8 +50,8 @@ func ParseIndicatorID(input string) (*IndicatorId, error) {
 		return nil, fmt.Errorf("the segment 'workspaceName' was not found in the resource id %q", input)
 	}
 
-	if id.Name, ok = parsed.Parsed["name"]; !ok {
-		return nil, fmt.Errorf("the segment 'name' was not found in the resource id %q", input)
+	if id.IndicatorName, ok = parsed.Parsed["indicatorName"]; !ok {
+		return nil, fmt.Errorf("the segment 'indicatorName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -81,8 +81,8 @@ func ParseIndicatorIDInsensitively(input string) (*IndicatorId, error) {
 		return nil, fmt.Errorf("the segment 'workspaceName' was not found in the resource id %q", input)
 	}
 
-	if id.Name, ok = parsed.Parsed["name"]; !ok {
-		return nil, fmt.Errorf("the segment 'name' was not found in the resource id %q", input)
+	if id.IndicatorName, ok = parsed.Parsed["indicatorName"]; !ok {
+		return nil, fmt.Errorf("the segment 'indicatorName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -106,7 +106,7 @@ func ValidateIndicatorID(input interface{}, key string) (warnings []string, erro
 // ID returns the formatted Indicator ID
 func (id IndicatorId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.OperationalInsights/workspaces/%s/providers/Microsoft.SecurityInsights/threatIntelligence/main/indicators/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.WorkspaceName, id.Name)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.WorkspaceName, id.IndicatorName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Indicator ID
@@ -125,7 +125,7 @@ func (id IndicatorId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticThreatIntelligence", "threatIntelligence", "threatIntelligence"),
 		resourceids.StaticSegment("staticMain", "main", "main"),
 		resourceids.StaticSegment("staticIndicators", "indicators", "indicators"),
-		resourceids.UserSpecifiedSegment("name", "nameValue"),
+		resourceids.UserSpecifiedSegment("indicatorName", "indicatorValue"),
 	}
 }
 
@@ -135,7 +135,7 @@ func (id IndicatorId) String() string {
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
 		fmt.Sprintf("Workspace Name: %q", id.WorkspaceName),
-		fmt.Sprintf("Name: %q", id.Name),
+		fmt.Sprintf("Indicator Name: %q", id.IndicatorName),
 	}
 	return fmt.Sprintf("Indicator (%s)", strings.Join(components, "\n"))
 }

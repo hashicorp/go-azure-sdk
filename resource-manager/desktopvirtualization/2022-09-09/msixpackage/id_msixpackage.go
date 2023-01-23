@@ -11,19 +11,19 @@ var _ resourceids.ResourceId = MsixPackageId{}
 
 // MsixPackageId is a struct representing the Resource ID for a Msix Package
 type MsixPackageId struct {
-	SubscriptionId      string
-	ResourceGroupName   string
-	HostPoolName        string
-	MsixPackageFullName string
+	SubscriptionId    string
+	ResourceGroupName string
+	HostPoolName      string
+	MsixPackageName   string
 }
 
 // NewMsixPackageID returns a new MsixPackageId struct
-func NewMsixPackageID(subscriptionId string, resourceGroupName string, hostPoolName string, msixPackageFullName string) MsixPackageId {
+func NewMsixPackageID(subscriptionId string, resourceGroupName string, hostPoolName string, msixPackageName string) MsixPackageId {
 	return MsixPackageId{
-		SubscriptionId:      subscriptionId,
-		ResourceGroupName:   resourceGroupName,
-		HostPoolName:        hostPoolName,
-		MsixPackageFullName: msixPackageFullName,
+		SubscriptionId:    subscriptionId,
+		ResourceGroupName: resourceGroupName,
+		HostPoolName:      hostPoolName,
+		MsixPackageName:   msixPackageName,
 	}
 }
 
@@ -50,8 +50,8 @@ func ParseMsixPackageID(input string) (*MsixPackageId, error) {
 		return nil, fmt.Errorf("the segment 'hostPoolName' was not found in the resource id %q", input)
 	}
 
-	if id.MsixPackageFullName, ok = parsed.Parsed["msixPackageFullName"]; !ok {
-		return nil, fmt.Errorf("the segment 'msixPackageFullName' was not found in the resource id %q", input)
+	if id.MsixPackageName, ok = parsed.Parsed["msixPackageName"]; !ok {
+		return nil, fmt.Errorf("the segment 'msixPackageName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -81,8 +81,8 @@ func ParseMsixPackageIDInsensitively(input string) (*MsixPackageId, error) {
 		return nil, fmt.Errorf("the segment 'hostPoolName' was not found in the resource id %q", input)
 	}
 
-	if id.MsixPackageFullName, ok = parsed.Parsed["msixPackageFullName"]; !ok {
-		return nil, fmt.Errorf("the segment 'msixPackageFullName' was not found in the resource id %q", input)
+	if id.MsixPackageName, ok = parsed.Parsed["msixPackageName"]; !ok {
+		return nil, fmt.Errorf("the segment 'msixPackageName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -106,7 +106,7 @@ func ValidateMsixPackageID(input interface{}, key string) (warnings []string, er
 // ID returns the formatted Msix Package ID
 func (id MsixPackageId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.DesktopVirtualization/hostPools/%s/msixPackages/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.HostPoolName, id.MsixPackageFullName)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.HostPoolName, id.MsixPackageName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Msix Package ID
@@ -121,7 +121,7 @@ func (id MsixPackageId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticHostPools", "hostPools", "hostPools"),
 		resourceids.UserSpecifiedSegment("hostPoolName", "hostPoolValue"),
 		resourceids.StaticSegment("staticMsixPackages", "msixPackages", "msixPackages"),
-		resourceids.UserSpecifiedSegment("msixPackageFullName", "msixPackageFullValue"),
+		resourceids.UserSpecifiedSegment("msixPackageName", "msixPackageValue"),
 	}
 }
 
@@ -131,7 +131,7 @@ func (id MsixPackageId) String() string {
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
 		fmt.Sprintf("Host Pool Name: %q", id.HostPoolName),
-		fmt.Sprintf("Msix Package Full Name: %q", id.MsixPackageFullName),
+		fmt.Sprintf("Msix Package Name: %q", id.MsixPackageName),
 	}
 	return fmt.Sprintf("Msix Package (%s)", strings.Join(components, "\n"))
 }

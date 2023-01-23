@@ -11,15 +11,15 @@ var _ resourceids.ResourceId = SubscriptionProviderId{}
 
 // SubscriptionProviderId is a struct representing the Resource ID for a Subscription Provider
 type SubscriptionProviderId struct {
-	SubscriptionId            string
-	ResourceProviderNamespace string
+	SubscriptionId string
+	ProviderName   string
 }
 
 // NewSubscriptionProviderID returns a new SubscriptionProviderId struct
-func NewSubscriptionProviderID(subscriptionId string, resourceProviderNamespace string) SubscriptionProviderId {
+func NewSubscriptionProviderID(subscriptionId string, providerName string) SubscriptionProviderId {
 	return SubscriptionProviderId{
-		SubscriptionId:            subscriptionId,
-		ResourceProviderNamespace: resourceProviderNamespace,
+		SubscriptionId: subscriptionId,
+		ProviderName:   providerName,
 	}
 }
 
@@ -38,8 +38,8 @@ func ParseSubscriptionProviderID(input string) (*SubscriptionProviderId, error) 
 		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
 	}
 
-	if id.ResourceProviderNamespace, ok = parsed.Parsed["resourceProviderNamespace"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceProviderNamespace' was not found in the resource id %q", input)
+	if id.ProviderName, ok = parsed.Parsed["providerName"]; !ok {
+		return nil, fmt.Errorf("the segment 'providerName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -61,8 +61,8 @@ func ParseSubscriptionProviderIDInsensitively(input string) (*SubscriptionProvid
 		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
 	}
 
-	if id.ResourceProviderNamespace, ok = parsed.Parsed["resourceProviderNamespace"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceProviderNamespace' was not found in the resource id %q", input)
+	if id.ProviderName, ok = parsed.Parsed["providerName"]; !ok {
+		return nil, fmt.Errorf("the segment 'providerName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -86,7 +86,7 @@ func ValidateSubscriptionProviderID(input interface{}, key string) (warnings []s
 // ID returns the formatted Subscription Provider ID
 func (id SubscriptionProviderId) ID() string {
 	fmtString := "/subscriptions/%s/providers/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceProviderNamespace)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ProviderName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Subscription Provider ID
@@ -95,7 +95,7 @@ func (id SubscriptionProviderId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticSubscriptions", "subscriptions", "subscriptions"),
 		resourceids.SubscriptionIdSegment("subscriptionId", "12345678-1234-9876-4563-123456789012"),
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
-		resourceids.UserSpecifiedSegment("resourceProviderNamespace", "resourceProviderNamespaceValue"),
+		resourceids.UserSpecifiedSegment("providerName", "providerValue"),
 	}
 }
 
@@ -103,7 +103,7 @@ func (id SubscriptionProviderId) Segments() []resourceids.Segment {
 func (id SubscriptionProviderId) String() string {
 	components := []string{
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
-		fmt.Sprintf("Resource Provider Namespace: %q", id.ResourceProviderNamespace),
+		fmt.Sprintf("Provider Name: %q", id.ProviderName),
 	}
 	return fmt.Sprintf("Subscription Provider (%s)", strings.Join(components, "\n"))
 }

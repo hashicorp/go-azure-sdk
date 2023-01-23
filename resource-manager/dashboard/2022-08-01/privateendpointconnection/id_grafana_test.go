@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = GrafanaId{}
 
 func TestNewGrafanaID(t *testing.T) {
-	id := NewGrafanaID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue")
+	id := NewGrafanaID("12345678-1234-9876-4563-123456789012", "example-resource-group", "grafanaValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -19,14 +19,14 @@ func TestNewGrafanaID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.WorkspaceName != "workspaceValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'WorkspaceName'", id.WorkspaceName, "workspaceValue")
+	if id.GrafanaName != "grafanaValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'GrafanaName'", id.GrafanaName, "grafanaValue")
 	}
 }
 
 func TestFormatGrafanaID(t *testing.T) {
-	actual := NewGrafanaID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Dashboard/grafana/workspaceValue"
+	actual := NewGrafanaID("12345678-1234-9876-4563-123456789012", "example-resource-group", "grafanaValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Dashboard/grafana/grafanaValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -80,16 +80,16 @@ func TestParseGrafanaID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Dashboard/grafana/workspaceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Dashboard/grafana/grafanaValue",
 			Expected: &GrafanaId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				WorkspaceName:     "workspaceValue",
+				GrafanaName:       "grafanaValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Dashboard/grafana/workspaceValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Dashboard/grafana/grafanaValue/extra",
 			Error: true,
 		},
 	}
@@ -116,8 +116,8 @@ func TestParseGrafanaID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.WorkspaceName != v.Expected.WorkspaceName {
-			t.Fatalf("Expected %q but got %q for WorkspaceName", v.Expected.WorkspaceName, actual.WorkspaceName)
+		if actual.GrafanaName != v.Expected.GrafanaName {
+			t.Fatalf("Expected %q but got %q for GrafanaName", v.Expected.GrafanaName, actual.GrafanaName)
 		}
 
 	}
@@ -206,30 +206,30 @@ func TestParseGrafanaIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Dashboard/grafana/workspaceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Dashboard/grafana/grafanaValue",
 			Expected: &GrafanaId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				WorkspaceName:     "workspaceValue",
+				GrafanaName:       "grafanaValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Dashboard/grafana/workspaceValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Dashboard/grafana/grafanaValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAsHbOaRd/gRaFaNa/wOrKsPaCeVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAsHbOaRd/gRaFaNa/gRaFaNaVaLuE",
 			Expected: &GrafanaId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				WorkspaceName:     "wOrKsPaCeVaLuE",
+				GrafanaName:       "gRaFaNaVaLuE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAsHbOaRd/gRaFaNa/wOrKsPaCeVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAsHbOaRd/gRaFaNa/gRaFaNaVaLuE/extra",
 			Error: true,
 		},
 	}
@@ -256,8 +256,8 @@ func TestParseGrafanaIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.WorkspaceName != v.Expected.WorkspaceName {
-			t.Fatalf("Expected %q but got %q for WorkspaceName", v.Expected.WorkspaceName, actual.WorkspaceName)
+		if actual.GrafanaName != v.Expected.GrafanaName {
+			t.Fatalf("Expected %q but got %q for GrafanaName", v.Expected.GrafanaName, actual.GrafanaName)
 		}
 
 	}

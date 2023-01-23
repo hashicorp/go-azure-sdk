@@ -15,17 +15,17 @@ type ArmTemplateId struct {
 	ResourceGroupName  string
 	LabName            string
 	ArtifactSourceName string
-	Name               string
+	ArmTemplateName    string
 }
 
 // NewArmTemplateID returns a new ArmTemplateId struct
-func NewArmTemplateID(subscriptionId string, resourceGroupName string, labName string, artifactSourceName string, name string) ArmTemplateId {
+func NewArmTemplateID(subscriptionId string, resourceGroupName string, labName string, artifactSourceName string, armTemplateName string) ArmTemplateId {
 	return ArmTemplateId{
 		SubscriptionId:     subscriptionId,
 		ResourceGroupName:  resourceGroupName,
 		LabName:            labName,
 		ArtifactSourceName: artifactSourceName,
-		Name:               name,
+		ArmTemplateName:    armTemplateName,
 	}
 }
 
@@ -56,8 +56,8 @@ func ParseArmTemplateID(input string) (*ArmTemplateId, error) {
 		return nil, fmt.Errorf("the segment 'artifactSourceName' was not found in the resource id %q", input)
 	}
 
-	if id.Name, ok = parsed.Parsed["name"]; !ok {
-		return nil, fmt.Errorf("the segment 'name' was not found in the resource id %q", input)
+	if id.ArmTemplateName, ok = parsed.Parsed["armTemplateName"]; !ok {
+		return nil, fmt.Errorf("the segment 'armTemplateName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -91,8 +91,8 @@ func ParseArmTemplateIDInsensitively(input string) (*ArmTemplateId, error) {
 		return nil, fmt.Errorf("the segment 'artifactSourceName' was not found in the resource id %q", input)
 	}
 
-	if id.Name, ok = parsed.Parsed["name"]; !ok {
-		return nil, fmt.Errorf("the segment 'name' was not found in the resource id %q", input)
+	if id.ArmTemplateName, ok = parsed.Parsed["armTemplateName"]; !ok {
+		return nil, fmt.Errorf("the segment 'armTemplateName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -116,7 +116,7 @@ func ValidateArmTemplateID(input interface{}, key string) (warnings []string, er
 // ID returns the formatted Arm Template ID
 func (id ArmTemplateId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.DevTestLab/labs/%s/artifactSources/%s/armTemplates/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.LabName, id.ArtifactSourceName, id.Name)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.LabName, id.ArtifactSourceName, id.ArmTemplateName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Arm Template ID
@@ -133,7 +133,7 @@ func (id ArmTemplateId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticArtifactSources", "artifactSources", "artifactSources"),
 		resourceids.UserSpecifiedSegment("artifactSourceName", "artifactSourceValue"),
 		resourceids.StaticSegment("staticArmTemplates", "armTemplates", "armTemplates"),
-		resourceids.UserSpecifiedSegment("name", "nameValue"),
+		resourceids.UserSpecifiedSegment("armTemplateName", "armTemplateValue"),
 	}
 }
 
@@ -144,7 +144,7 @@ func (id ArmTemplateId) String() string {
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
 		fmt.Sprintf("Lab Name: %q", id.LabName),
 		fmt.Sprintf("Artifact Source Name: %q", id.ArtifactSourceName),
-		fmt.Sprintf("Name: %q", id.Name),
+		fmt.Sprintf("Arm Template Name: %q", id.ArmTemplateName),
 	}
 	return fmt.Sprintf("Arm Template (%s)", strings.Join(components, "\n"))
 }

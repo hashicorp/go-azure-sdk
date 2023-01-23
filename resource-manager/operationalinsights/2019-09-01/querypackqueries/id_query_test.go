@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = QueryId{}
 
 func TestNewQueryID(t *testing.T) {
-	id := NewQueryID("12345678-1234-9876-4563-123456789012", "example-resource-group", "queryPackValue", "idValue")
+	id := NewQueryID("12345678-1234-9876-4563-123456789012", "example-resource-group", "queryPackValue", "queryValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -23,14 +23,14 @@ func TestNewQueryID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'QueryPackName'", id.QueryPackName, "queryPackValue")
 	}
 
-	if id.Id != "idValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'Id'", id.Id, "idValue")
+	if id.QueryName != "queryValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'QueryName'", id.QueryName, "queryValue")
 	}
 }
 
 func TestFormatQueryID(t *testing.T) {
-	actual := NewQueryID("12345678-1234-9876-4563-123456789012", "example-resource-group", "queryPackValue", "idValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OperationalInsights/queryPacks/queryPackValue/queries/idValue"
+	actual := NewQueryID("12345678-1234-9876-4563-123456789012", "example-resource-group", "queryPackValue", "queryValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OperationalInsights/queryPacks/queryPackValue/queries/queryValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -94,17 +94,17 @@ func TestParseQueryID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OperationalInsights/queryPacks/queryPackValue/queries/idValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OperationalInsights/queryPacks/queryPackValue/queries/queryValue",
 			Expected: &QueryId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				QueryPackName:     "queryPackValue",
-				Id:                "idValue",
+				QueryName:         "queryValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OperationalInsights/queryPacks/queryPackValue/queries/idValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OperationalInsights/queryPacks/queryPackValue/queries/queryValue/extra",
 			Error: true,
 		},
 	}
@@ -135,8 +135,8 @@ func TestParseQueryID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for QueryPackName", v.Expected.QueryPackName, actual.QueryPackName)
 		}
 
-		if actual.Id != v.Expected.Id {
-			t.Fatalf("Expected %q but got %q for Id", v.Expected.Id, actual.Id)
+		if actual.QueryName != v.Expected.QueryName {
+			t.Fatalf("Expected %q but got %q for QueryName", v.Expected.QueryName, actual.QueryName)
 		}
 
 	}
@@ -245,32 +245,32 @@ func TestParseQueryIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OperationalInsights/queryPacks/queryPackValue/queries/idValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OperationalInsights/queryPacks/queryPackValue/queries/queryValue",
 			Expected: &QueryId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				QueryPackName:     "queryPackValue",
-				Id:                "idValue",
+				QueryName:         "queryValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OperationalInsights/queryPacks/queryPackValue/queries/idValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OperationalInsights/queryPacks/queryPackValue/queries/queryValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.oPeRaTiOnAlInSiGhTs/qUeRyPaCkS/qUeRyPaCkVaLuE/qUeRiEs/iDvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.oPeRaTiOnAlInSiGhTs/qUeRyPaCkS/qUeRyPaCkVaLuE/qUeRiEs/qUeRyVaLuE",
 			Expected: &QueryId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
 				QueryPackName:     "qUeRyPaCkVaLuE",
-				Id:                "iDvAlUe",
+				QueryName:         "qUeRyVaLuE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.oPeRaTiOnAlInSiGhTs/qUeRyPaCkS/qUeRyPaCkVaLuE/qUeRiEs/iDvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.oPeRaTiOnAlInSiGhTs/qUeRyPaCkS/qUeRyPaCkVaLuE/qUeRiEs/qUeRyVaLuE/extra",
 			Error: true,
 		},
 	}
@@ -301,8 +301,8 @@ func TestParseQueryIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for QueryPackName", v.Expected.QueryPackName, actual.QueryPackName)
 		}
 
-		if actual.Id != v.Expected.Id {
-			t.Fatalf("Expected %q but got %q for Id", v.Expected.Id, actual.Id)
+		if actual.QueryName != v.Expected.QueryName {
+			t.Fatalf("Expected %q but got %q for QueryName", v.Expected.QueryName, actual.QueryName)
 		}
 
 	}

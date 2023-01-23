@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = AssemblyId{}
 
 func TestNewAssemblyID(t *testing.T) {
-	id := NewAssemblyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "integrationAccountValue", "assemblyArtifactValue")
+	id := NewAssemblyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "integrationAccountValue", "assemblyValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -23,14 +23,14 @@ func TestNewAssemblyID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'IntegrationAccountName'", id.IntegrationAccountName, "integrationAccountValue")
 	}
 
-	if id.AssemblyArtifactName != "assemblyArtifactValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AssemblyArtifactName'", id.AssemblyArtifactName, "assemblyArtifactValue")
+	if id.AssemblyName != "assemblyValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'AssemblyName'", id.AssemblyName, "assemblyValue")
 	}
 }
 
 func TestFormatAssemblyID(t *testing.T) {
-	actual := NewAssemblyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "integrationAccountValue", "assemblyArtifactValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logic/integrationAccounts/integrationAccountValue/assemblies/assemblyArtifactValue"
+	actual := NewAssemblyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "integrationAccountValue", "assemblyValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logic/integrationAccounts/integrationAccountValue/assemblies/assemblyValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -94,17 +94,17 @@ func TestParseAssemblyID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logic/integrationAccounts/integrationAccountValue/assemblies/assemblyArtifactValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logic/integrationAccounts/integrationAccountValue/assemblies/assemblyValue",
 			Expected: &AssemblyId{
 				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:      "example-resource-group",
 				IntegrationAccountName: "integrationAccountValue",
-				AssemblyArtifactName:   "assemblyArtifactValue",
+				AssemblyName:           "assemblyValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logic/integrationAccounts/integrationAccountValue/assemblies/assemblyArtifactValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logic/integrationAccounts/integrationAccountValue/assemblies/assemblyValue/extra",
 			Error: true,
 		},
 	}
@@ -135,8 +135,8 @@ func TestParseAssemblyID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for IntegrationAccountName", v.Expected.IntegrationAccountName, actual.IntegrationAccountName)
 		}
 
-		if actual.AssemblyArtifactName != v.Expected.AssemblyArtifactName {
-			t.Fatalf("Expected %q but got %q for AssemblyArtifactName", v.Expected.AssemblyArtifactName, actual.AssemblyArtifactName)
+		if actual.AssemblyName != v.Expected.AssemblyName {
+			t.Fatalf("Expected %q but got %q for AssemblyName", v.Expected.AssemblyName, actual.AssemblyName)
 		}
 
 	}
@@ -245,32 +245,32 @@ func TestParseAssemblyIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logic/integrationAccounts/integrationAccountValue/assemblies/assemblyArtifactValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logic/integrationAccounts/integrationAccountValue/assemblies/assemblyValue",
 			Expected: &AssemblyId{
 				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:      "example-resource-group",
 				IntegrationAccountName: "integrationAccountValue",
-				AssemblyArtifactName:   "assemblyArtifactValue",
+				AssemblyName:           "assemblyValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logic/integrationAccounts/integrationAccountValue/assemblies/assemblyArtifactValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logic/integrationAccounts/integrationAccountValue/assemblies/assemblyValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.lOgIc/iNtEgRaTiOnAcCoUnTs/iNtEgRaTiOnAcCoUnTvAlUe/aSsEmBlIeS/aSsEmBlYaRtIfAcTvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.lOgIc/iNtEgRaTiOnAcCoUnTs/iNtEgRaTiOnAcCoUnTvAlUe/aSsEmBlIeS/aSsEmBlYvAlUe",
 			Expected: &AssemblyId{
 				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:      "eXaMpLe-rEsOuRcE-GrOuP",
 				IntegrationAccountName: "iNtEgRaTiOnAcCoUnTvAlUe",
-				AssemblyArtifactName:   "aSsEmBlYaRtIfAcTvAlUe",
+				AssemblyName:           "aSsEmBlYvAlUe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.lOgIc/iNtEgRaTiOnAcCoUnTs/iNtEgRaTiOnAcCoUnTvAlUe/aSsEmBlIeS/aSsEmBlYaRtIfAcTvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.lOgIc/iNtEgRaTiOnAcCoUnTs/iNtEgRaTiOnAcCoUnTvAlUe/aSsEmBlIeS/aSsEmBlYvAlUe/extra",
 			Error: true,
 		},
 	}
@@ -301,8 +301,8 @@ func TestParseAssemblyIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for IntegrationAccountName", v.Expected.IntegrationAccountName, actual.IntegrationAccountName)
 		}
 
-		if actual.AssemblyArtifactName != v.Expected.AssemblyArtifactName {
-			t.Fatalf("Expected %q but got %q for AssemblyArtifactName", v.Expected.AssemblyArtifactName, actual.AssemblyArtifactName)
+		if actual.AssemblyName != v.Expected.AssemblyName {
+			t.Fatalf("Expected %q but got %q for AssemblyName", v.Expected.AssemblyName, actual.AssemblyName)
 		}
 
 	}

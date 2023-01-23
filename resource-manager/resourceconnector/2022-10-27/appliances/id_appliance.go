@@ -13,15 +13,15 @@ var _ resourceids.ResourceId = ApplianceId{}
 type ApplianceId struct {
 	SubscriptionId    string
 	ResourceGroupName string
-	ResourceName      string
+	ApplianceName     string
 }
 
 // NewApplianceID returns a new ApplianceId struct
-func NewApplianceID(subscriptionId string, resourceGroupName string, resourceName string) ApplianceId {
+func NewApplianceID(subscriptionId string, resourceGroupName string, applianceName string) ApplianceId {
 	return ApplianceId{
 		SubscriptionId:    subscriptionId,
 		ResourceGroupName: resourceGroupName,
-		ResourceName:      resourceName,
+		ApplianceName:     applianceName,
 	}
 }
 
@@ -44,8 +44,8 @@ func ParseApplianceID(input string) (*ApplianceId, error) {
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.ResourceName, ok = parsed.Parsed["resourceName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceName' was not found in the resource id %q", input)
+	if id.ApplianceName, ok = parsed.Parsed["applianceName"]; !ok {
+		return nil, fmt.Errorf("the segment 'applianceName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -71,8 +71,8 @@ func ParseApplianceIDInsensitively(input string) (*ApplianceId, error) {
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.ResourceName, ok = parsed.Parsed["resourceName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceName' was not found in the resource id %q", input)
+	if id.ApplianceName, ok = parsed.Parsed["applianceName"]; !ok {
+		return nil, fmt.Errorf("the segment 'applianceName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -96,7 +96,7 @@ func ValidateApplianceID(input interface{}, key string) (warnings []string, erro
 // ID returns the formatted Appliance ID
 func (id ApplianceId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.ResourceConnector/appliances/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.ResourceName)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.ApplianceName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Appliance ID
@@ -109,7 +109,7 @@ func (id ApplianceId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftResourceConnector", "Microsoft.ResourceConnector", "Microsoft.ResourceConnector"),
 		resourceids.StaticSegment("staticAppliances", "appliances", "appliances"),
-		resourceids.UserSpecifiedSegment("resourceName", "resourceValue"),
+		resourceids.UserSpecifiedSegment("applianceName", "applianceValue"),
 	}
 }
 
@@ -118,7 +118,7 @@ func (id ApplianceId) String() string {
 	components := []string{
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
-		fmt.Sprintf("Resource Name: %q", id.ResourceName),
+		fmt.Sprintf("Appliance Name: %q", id.ApplianceName),
 	}
 	return fmt.Sprintf("Appliance (%s)", strings.Join(components, "\n"))
 }

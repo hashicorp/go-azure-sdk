@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = MsixPackageId{}
 
 func TestNewMsixPackageID(t *testing.T) {
-	id := NewMsixPackageID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hostPoolValue", "msixPackageFullValue")
+	id := NewMsixPackageID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hostPoolValue", "msixPackageValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -23,14 +23,14 @@ func TestNewMsixPackageID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'HostPoolName'", id.HostPoolName, "hostPoolValue")
 	}
 
-	if id.MsixPackageFullName != "msixPackageFullValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'MsixPackageFullName'", id.MsixPackageFullName, "msixPackageFullValue")
+	if id.MsixPackageName != "msixPackageValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'MsixPackageName'", id.MsixPackageName, "msixPackageValue")
 	}
 }
 
 func TestFormatMsixPackageID(t *testing.T) {
-	actual := NewMsixPackageID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hostPoolValue", "msixPackageFullValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DesktopVirtualization/hostPools/hostPoolValue/msixPackages/msixPackageFullValue"
+	actual := NewMsixPackageID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hostPoolValue", "msixPackageValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DesktopVirtualization/hostPools/hostPoolValue/msixPackages/msixPackageValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -94,17 +94,17 @@ func TestParseMsixPackageID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DesktopVirtualization/hostPools/hostPoolValue/msixPackages/msixPackageFullValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DesktopVirtualization/hostPools/hostPoolValue/msixPackages/msixPackageValue",
 			Expected: &MsixPackageId{
-				SubscriptionId:      "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName:   "example-resource-group",
-				HostPoolName:        "hostPoolValue",
-				MsixPackageFullName: "msixPackageFullValue",
+				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName: "example-resource-group",
+				HostPoolName:      "hostPoolValue",
+				MsixPackageName:   "msixPackageValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DesktopVirtualization/hostPools/hostPoolValue/msixPackages/msixPackageFullValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DesktopVirtualization/hostPools/hostPoolValue/msixPackages/msixPackageValue/extra",
 			Error: true,
 		},
 	}
@@ -135,8 +135,8 @@ func TestParseMsixPackageID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for HostPoolName", v.Expected.HostPoolName, actual.HostPoolName)
 		}
 
-		if actual.MsixPackageFullName != v.Expected.MsixPackageFullName {
-			t.Fatalf("Expected %q but got %q for MsixPackageFullName", v.Expected.MsixPackageFullName, actual.MsixPackageFullName)
+		if actual.MsixPackageName != v.Expected.MsixPackageName {
+			t.Fatalf("Expected %q but got %q for MsixPackageName", v.Expected.MsixPackageName, actual.MsixPackageName)
 		}
 
 	}
@@ -245,32 +245,32 @@ func TestParseMsixPackageIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DesktopVirtualization/hostPools/hostPoolValue/msixPackages/msixPackageFullValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DesktopVirtualization/hostPools/hostPoolValue/msixPackages/msixPackageValue",
 			Expected: &MsixPackageId{
-				SubscriptionId:      "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName:   "example-resource-group",
-				HostPoolName:        "hostPoolValue",
-				MsixPackageFullName: "msixPackageFullValue",
+				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName: "example-resource-group",
+				HostPoolName:      "hostPoolValue",
+				MsixPackageName:   "msixPackageValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DesktopVirtualization/hostPools/hostPoolValue/msixPackages/msixPackageFullValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DesktopVirtualization/hostPools/hostPoolValue/msixPackages/msixPackageValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEsKtOpViRtUaLiZaTiOn/hOsTpOoLs/hOsTpOoLvAlUe/mSiXpAcKaGeS/mSiXpAcKaGeFuLlVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEsKtOpViRtUaLiZaTiOn/hOsTpOoLs/hOsTpOoLvAlUe/mSiXpAcKaGeS/mSiXpAcKaGeVaLuE",
 			Expected: &MsixPackageId{
-				SubscriptionId:      "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName:   "eXaMpLe-rEsOuRcE-GrOuP",
-				HostPoolName:        "hOsTpOoLvAlUe",
-				MsixPackageFullName: "mSiXpAcKaGeFuLlVaLuE",
+				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
+				HostPoolName:      "hOsTpOoLvAlUe",
+				MsixPackageName:   "mSiXpAcKaGeVaLuE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEsKtOpViRtUaLiZaTiOn/hOsTpOoLs/hOsTpOoLvAlUe/mSiXpAcKaGeS/mSiXpAcKaGeFuLlVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEsKtOpViRtUaLiZaTiOn/hOsTpOoLs/hOsTpOoLvAlUe/mSiXpAcKaGeS/mSiXpAcKaGeVaLuE/extra",
 			Error: true,
 		},
 	}
@@ -301,8 +301,8 @@ func TestParseMsixPackageIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for HostPoolName", v.Expected.HostPoolName, actual.HostPoolName)
 		}
 
-		if actual.MsixPackageFullName != v.Expected.MsixPackageFullName {
-			t.Fatalf("Expected %q but got %q for MsixPackageFullName", v.Expected.MsixPackageFullName, actual.MsixPackageFullName)
+		if actual.MsixPackageName != v.Expected.MsixPackageName {
+			t.Fatalf("Expected %q but got %q for MsixPackageName", v.Expected.MsixPackageName, actual.MsixPackageName)
 		}
 
 	}

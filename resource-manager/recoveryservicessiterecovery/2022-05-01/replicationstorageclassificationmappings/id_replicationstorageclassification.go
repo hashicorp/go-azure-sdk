@@ -11,21 +11,21 @@ var _ resourceids.ResourceId = ReplicationStorageClassificationId{}
 
 // ReplicationStorageClassificationId is a struct representing the Resource ID for a Replication Storage Classification
 type ReplicationStorageClassificationId struct {
-	SubscriptionId            string
-	ResourceGroupName         string
-	ResourceName              string
-	FabricName                string
-	StorageClassificationName string
+	SubscriptionId                       string
+	ResourceGroupName                    string
+	VaultName                            string
+	ReplicationFabricName                string
+	ReplicationStorageClassificationName string
 }
 
 // NewReplicationStorageClassificationID returns a new ReplicationStorageClassificationId struct
-func NewReplicationStorageClassificationID(subscriptionId string, resourceGroupName string, resourceName string, fabricName string, storageClassificationName string) ReplicationStorageClassificationId {
+func NewReplicationStorageClassificationID(subscriptionId string, resourceGroupName string, vaultName string, replicationFabricName string, replicationStorageClassificationName string) ReplicationStorageClassificationId {
 	return ReplicationStorageClassificationId{
-		SubscriptionId:            subscriptionId,
-		ResourceGroupName:         resourceGroupName,
-		ResourceName:              resourceName,
-		FabricName:                fabricName,
-		StorageClassificationName: storageClassificationName,
+		SubscriptionId:                       subscriptionId,
+		ResourceGroupName:                    resourceGroupName,
+		VaultName:                            vaultName,
+		ReplicationFabricName:                replicationFabricName,
+		ReplicationStorageClassificationName: replicationStorageClassificationName,
 	}
 }
 
@@ -48,16 +48,16 @@ func ParseReplicationStorageClassificationID(input string) (*ReplicationStorageC
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.ResourceName, ok = parsed.Parsed["resourceName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceName' was not found in the resource id %q", input)
+	if id.VaultName, ok = parsed.Parsed["vaultName"]; !ok {
+		return nil, fmt.Errorf("the segment 'vaultName' was not found in the resource id %q", input)
 	}
 
-	if id.FabricName, ok = parsed.Parsed["fabricName"]; !ok {
-		return nil, fmt.Errorf("the segment 'fabricName' was not found in the resource id %q", input)
+	if id.ReplicationFabricName, ok = parsed.Parsed["replicationFabricName"]; !ok {
+		return nil, fmt.Errorf("the segment 'replicationFabricName' was not found in the resource id %q", input)
 	}
 
-	if id.StorageClassificationName, ok = parsed.Parsed["storageClassificationName"]; !ok {
-		return nil, fmt.Errorf("the segment 'storageClassificationName' was not found in the resource id %q", input)
+	if id.ReplicationStorageClassificationName, ok = parsed.Parsed["replicationStorageClassificationName"]; !ok {
+		return nil, fmt.Errorf("the segment 'replicationStorageClassificationName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -83,16 +83,16 @@ func ParseReplicationStorageClassificationIDInsensitively(input string) (*Replic
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.ResourceName, ok = parsed.Parsed["resourceName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceName' was not found in the resource id %q", input)
+	if id.VaultName, ok = parsed.Parsed["vaultName"]; !ok {
+		return nil, fmt.Errorf("the segment 'vaultName' was not found in the resource id %q", input)
 	}
 
-	if id.FabricName, ok = parsed.Parsed["fabricName"]; !ok {
-		return nil, fmt.Errorf("the segment 'fabricName' was not found in the resource id %q", input)
+	if id.ReplicationFabricName, ok = parsed.Parsed["replicationFabricName"]; !ok {
+		return nil, fmt.Errorf("the segment 'replicationFabricName' was not found in the resource id %q", input)
 	}
 
-	if id.StorageClassificationName, ok = parsed.Parsed["storageClassificationName"]; !ok {
-		return nil, fmt.Errorf("the segment 'storageClassificationName' was not found in the resource id %q", input)
+	if id.ReplicationStorageClassificationName, ok = parsed.Parsed["replicationStorageClassificationName"]; !ok {
+		return nil, fmt.Errorf("the segment 'replicationStorageClassificationName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -116,7 +116,7 @@ func ValidateReplicationStorageClassificationID(input interface{}, key string) (
 // ID returns the formatted Replication Storage Classification ID
 func (id ReplicationStorageClassificationId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.RecoveryServices/vaults/%s/replicationFabrics/%s/replicationStorageClassifications/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.ResourceName, id.FabricName, id.StorageClassificationName)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.VaultName, id.ReplicationFabricName, id.ReplicationStorageClassificationName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Replication Storage Classification ID
@@ -129,11 +129,11 @@ func (id ReplicationStorageClassificationId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftRecoveryServices", "Microsoft.RecoveryServices", "Microsoft.RecoveryServices"),
 		resourceids.StaticSegment("staticVaults", "vaults", "vaults"),
-		resourceids.UserSpecifiedSegment("resourceName", "resourceValue"),
+		resourceids.UserSpecifiedSegment("vaultName", "vaultValue"),
 		resourceids.StaticSegment("staticReplicationFabrics", "replicationFabrics", "replicationFabrics"),
-		resourceids.UserSpecifiedSegment("fabricName", "fabricValue"),
+		resourceids.UserSpecifiedSegment("replicationFabricName", "replicationFabricValue"),
 		resourceids.StaticSegment("staticReplicationStorageClassifications", "replicationStorageClassifications", "replicationStorageClassifications"),
-		resourceids.UserSpecifiedSegment("storageClassificationName", "storageClassificationValue"),
+		resourceids.UserSpecifiedSegment("replicationStorageClassificationName", "replicationStorageClassificationValue"),
 	}
 }
 
@@ -142,9 +142,9 @@ func (id ReplicationStorageClassificationId) String() string {
 	components := []string{
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
-		fmt.Sprintf("Resource Name: %q", id.ResourceName),
-		fmt.Sprintf("Fabric Name: %q", id.FabricName),
-		fmt.Sprintf("Storage Classification Name: %q", id.StorageClassificationName),
+		fmt.Sprintf("Vault Name: %q", id.VaultName),
+		fmt.Sprintf("Replication Fabric Name: %q", id.ReplicationFabricName),
+		fmt.Sprintf("Replication Storage Classification Name: %q", id.ReplicationStorageClassificationName),
 	}
 	return fmt.Sprintf("Replication Storage Classification (%s)", strings.Join(components, "\n"))
 }

@@ -13,16 +13,16 @@ var _ resourceids.ResourceId = MongodbRoleDefinitionId{}
 type MongodbRoleDefinitionId struct {
 	SubscriptionId        string
 	ResourceGroupName     string
-	AccountName           string
+	DatabaseAccountName   string
 	MongoRoleDefinitionId string
 }
 
 // NewMongodbRoleDefinitionID returns a new MongodbRoleDefinitionId struct
-func NewMongodbRoleDefinitionID(subscriptionId string, resourceGroupName string, accountName string, mongoRoleDefinitionId string) MongodbRoleDefinitionId {
+func NewMongodbRoleDefinitionID(subscriptionId string, resourceGroupName string, databaseAccountName string, mongoRoleDefinitionId string) MongodbRoleDefinitionId {
 	return MongodbRoleDefinitionId{
 		SubscriptionId:        subscriptionId,
 		ResourceGroupName:     resourceGroupName,
-		AccountName:           accountName,
+		DatabaseAccountName:   databaseAccountName,
 		MongoRoleDefinitionId: mongoRoleDefinitionId,
 	}
 }
@@ -46,8 +46,8 @@ func ParseMongodbRoleDefinitionID(input string) (*MongodbRoleDefinitionId, error
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.AccountName, ok = parsed.Parsed["accountName"]; !ok {
-		return nil, fmt.Errorf("the segment 'accountName' was not found in the resource id %q", input)
+	if id.DatabaseAccountName, ok = parsed.Parsed["databaseAccountName"]; !ok {
+		return nil, fmt.Errorf("the segment 'databaseAccountName' was not found in the resource id %q", input)
 	}
 
 	if id.MongoRoleDefinitionId, ok = parsed.Parsed["mongoRoleDefinitionId"]; !ok {
@@ -77,8 +77,8 @@ func ParseMongodbRoleDefinitionIDInsensitively(input string) (*MongodbRoleDefini
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.AccountName, ok = parsed.Parsed["accountName"]; !ok {
-		return nil, fmt.Errorf("the segment 'accountName' was not found in the resource id %q", input)
+	if id.DatabaseAccountName, ok = parsed.Parsed["databaseAccountName"]; !ok {
+		return nil, fmt.Errorf("the segment 'databaseAccountName' was not found in the resource id %q", input)
 	}
 
 	if id.MongoRoleDefinitionId, ok = parsed.Parsed["mongoRoleDefinitionId"]; !ok {
@@ -106,7 +106,7 @@ func ValidateMongodbRoleDefinitionID(input interface{}, key string) (warnings []
 // ID returns the formatted Mongodb Role Definition ID
 func (id MongodbRoleDefinitionId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.DocumentDB/databaseAccounts/%s/mongodbRoleDefinitions/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.AccountName, id.MongoRoleDefinitionId)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.DatabaseAccountName, id.MongoRoleDefinitionId)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Mongodb Role Definition ID
@@ -119,7 +119,7 @@ func (id MongodbRoleDefinitionId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftDocumentDB", "Microsoft.DocumentDB", "Microsoft.DocumentDB"),
 		resourceids.StaticSegment("staticDatabaseAccounts", "databaseAccounts", "databaseAccounts"),
-		resourceids.UserSpecifiedSegment("accountName", "accountValue"),
+		resourceids.UserSpecifiedSegment("databaseAccountName", "databaseAccountValue"),
 		resourceids.StaticSegment("staticMongodbRoleDefinitions", "mongodbRoleDefinitions", "mongodbRoleDefinitions"),
 		resourceids.UserSpecifiedSegment("mongoRoleDefinitionId", "mongoRoleDefinitionIdValue"),
 	}
@@ -130,7 +130,7 @@ func (id MongodbRoleDefinitionId) String() string {
 	components := []string{
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
-		fmt.Sprintf("Account Name: %q", id.AccountName),
+		fmt.Sprintf("Database Account Name: %q", id.DatabaseAccountName),
 		fmt.Sprintf("Mongo Role Definition: %q", id.MongoRoleDefinitionId),
 	}
 	return fmt.Sprintf("Mongodb Role Definition (%s)", strings.Join(components, "\n"))

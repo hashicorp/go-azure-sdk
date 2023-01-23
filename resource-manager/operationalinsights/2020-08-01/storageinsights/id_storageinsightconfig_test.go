@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = StorageInsightConfigId{}
 
 func TestNewStorageInsightConfigID(t *testing.T) {
-	id := NewStorageInsightConfigID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "storageInsightValue")
+	id := NewStorageInsightConfigID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "storageInsightConfigValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -23,14 +23,14 @@ func TestNewStorageInsightConfigID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'WorkspaceName'", id.WorkspaceName, "workspaceValue")
 	}
 
-	if id.StorageInsightName != "storageInsightValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'StorageInsightName'", id.StorageInsightName, "storageInsightValue")
+	if id.StorageInsightConfigName != "storageInsightConfigValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'StorageInsightConfigName'", id.StorageInsightConfigName, "storageInsightConfigValue")
 	}
 }
 
 func TestFormatStorageInsightConfigID(t *testing.T) {
-	actual := NewStorageInsightConfigID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "storageInsightValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OperationalInsights/workspaces/workspaceValue/storageInsightConfigs/storageInsightValue"
+	actual := NewStorageInsightConfigID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "storageInsightConfigValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OperationalInsights/workspaces/workspaceValue/storageInsightConfigs/storageInsightConfigValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -94,17 +94,17 @@ func TestParseStorageInsightConfigID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OperationalInsights/workspaces/workspaceValue/storageInsightConfigs/storageInsightValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OperationalInsights/workspaces/workspaceValue/storageInsightConfigs/storageInsightConfigValue",
 			Expected: &StorageInsightConfigId{
-				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName:  "example-resource-group",
-				WorkspaceName:      "workspaceValue",
-				StorageInsightName: "storageInsightValue",
+				SubscriptionId:           "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:        "example-resource-group",
+				WorkspaceName:            "workspaceValue",
+				StorageInsightConfigName: "storageInsightConfigValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OperationalInsights/workspaces/workspaceValue/storageInsightConfigs/storageInsightValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OperationalInsights/workspaces/workspaceValue/storageInsightConfigs/storageInsightConfigValue/extra",
 			Error: true,
 		},
 	}
@@ -135,8 +135,8 @@ func TestParseStorageInsightConfigID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for WorkspaceName", v.Expected.WorkspaceName, actual.WorkspaceName)
 		}
 
-		if actual.StorageInsightName != v.Expected.StorageInsightName {
-			t.Fatalf("Expected %q but got %q for StorageInsightName", v.Expected.StorageInsightName, actual.StorageInsightName)
+		if actual.StorageInsightConfigName != v.Expected.StorageInsightConfigName {
+			t.Fatalf("Expected %q but got %q for StorageInsightConfigName", v.Expected.StorageInsightConfigName, actual.StorageInsightConfigName)
 		}
 
 	}
@@ -245,32 +245,32 @@ func TestParseStorageInsightConfigIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OperationalInsights/workspaces/workspaceValue/storageInsightConfigs/storageInsightValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OperationalInsights/workspaces/workspaceValue/storageInsightConfigs/storageInsightConfigValue",
 			Expected: &StorageInsightConfigId{
-				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName:  "example-resource-group",
-				WorkspaceName:      "workspaceValue",
-				StorageInsightName: "storageInsightValue",
+				SubscriptionId:           "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:        "example-resource-group",
+				WorkspaceName:            "workspaceValue",
+				StorageInsightConfigName: "storageInsightConfigValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OperationalInsights/workspaces/workspaceValue/storageInsightConfigs/storageInsightValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OperationalInsights/workspaces/workspaceValue/storageInsightConfigs/storageInsightConfigValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.oPeRaTiOnAlInSiGhTs/wOrKsPaCeS/wOrKsPaCeVaLuE/sToRaGeInSiGhTcOnFiGs/sToRaGeInSiGhTvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.oPeRaTiOnAlInSiGhTs/wOrKsPaCeS/wOrKsPaCeVaLuE/sToRaGeInSiGhTcOnFiGs/sToRaGeInSiGhTcOnFiGvAlUe",
 			Expected: &StorageInsightConfigId{
-				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName:  "eXaMpLe-rEsOuRcE-GrOuP",
-				WorkspaceName:      "wOrKsPaCeVaLuE",
-				StorageInsightName: "sToRaGeInSiGhTvAlUe",
+				SubscriptionId:           "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:        "eXaMpLe-rEsOuRcE-GrOuP",
+				WorkspaceName:            "wOrKsPaCeVaLuE",
+				StorageInsightConfigName: "sToRaGeInSiGhTcOnFiGvAlUe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.oPeRaTiOnAlInSiGhTs/wOrKsPaCeS/wOrKsPaCeVaLuE/sToRaGeInSiGhTcOnFiGs/sToRaGeInSiGhTvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.oPeRaTiOnAlInSiGhTs/wOrKsPaCeS/wOrKsPaCeVaLuE/sToRaGeInSiGhTcOnFiGs/sToRaGeInSiGhTcOnFiGvAlUe/extra",
 			Error: true,
 		},
 	}
@@ -301,8 +301,8 @@ func TestParseStorageInsightConfigIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for WorkspaceName", v.Expected.WorkspaceName, actual.WorkspaceName)
 		}
 
-		if actual.StorageInsightName != v.Expected.StorageInsightName {
-			t.Fatalf("Expected %q but got %q for StorageInsightName", v.Expected.StorageInsightName, actual.StorageInsightName)
+		if actual.StorageInsightConfigName != v.Expected.StorageInsightConfigName {
+			t.Fatalf("Expected %q but got %q for StorageInsightConfigName", v.Expected.StorageInsightConfigName, actual.StorageInsightConfigName)
 		}
 
 	}

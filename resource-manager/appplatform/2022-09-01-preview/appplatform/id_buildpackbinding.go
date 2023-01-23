@@ -13,21 +13,21 @@ var _ resourceids.ResourceId = BuildPackBindingId{}
 type BuildPackBindingId struct {
 	SubscriptionId       string
 	ResourceGroupName    string
-	ServiceName          string
+	SpringName           string
 	BuildServiceName     string
 	BuilderName          string
-	BuildpackBindingName string
+	BuildPackBindingName string
 }
 
 // NewBuildPackBindingID returns a new BuildPackBindingId struct
-func NewBuildPackBindingID(subscriptionId string, resourceGroupName string, serviceName string, buildServiceName string, builderName string, buildpackBindingName string) BuildPackBindingId {
+func NewBuildPackBindingID(subscriptionId string, resourceGroupName string, springName string, buildServiceName string, builderName string, buildPackBindingName string) BuildPackBindingId {
 	return BuildPackBindingId{
 		SubscriptionId:       subscriptionId,
 		ResourceGroupName:    resourceGroupName,
-		ServiceName:          serviceName,
+		SpringName:           springName,
 		BuildServiceName:     buildServiceName,
 		BuilderName:          builderName,
-		BuildpackBindingName: buildpackBindingName,
+		BuildPackBindingName: buildPackBindingName,
 	}
 }
 
@@ -50,8 +50,8 @@ func ParseBuildPackBindingID(input string) (*BuildPackBindingId, error) {
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.ServiceName, ok = parsed.Parsed["serviceName"]; !ok {
-		return nil, fmt.Errorf("the segment 'serviceName' was not found in the resource id %q", input)
+	if id.SpringName, ok = parsed.Parsed["springName"]; !ok {
+		return nil, fmt.Errorf("the segment 'springName' was not found in the resource id %q", input)
 	}
 
 	if id.BuildServiceName, ok = parsed.Parsed["buildServiceName"]; !ok {
@@ -62,8 +62,8 @@ func ParseBuildPackBindingID(input string) (*BuildPackBindingId, error) {
 		return nil, fmt.Errorf("the segment 'builderName' was not found in the resource id %q", input)
 	}
 
-	if id.BuildpackBindingName, ok = parsed.Parsed["buildpackBindingName"]; !ok {
-		return nil, fmt.Errorf("the segment 'buildpackBindingName' was not found in the resource id %q", input)
+	if id.BuildPackBindingName, ok = parsed.Parsed["buildPackBindingName"]; !ok {
+		return nil, fmt.Errorf("the segment 'buildPackBindingName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -89,8 +89,8 @@ func ParseBuildPackBindingIDInsensitively(input string) (*BuildPackBindingId, er
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.ServiceName, ok = parsed.Parsed["serviceName"]; !ok {
-		return nil, fmt.Errorf("the segment 'serviceName' was not found in the resource id %q", input)
+	if id.SpringName, ok = parsed.Parsed["springName"]; !ok {
+		return nil, fmt.Errorf("the segment 'springName' was not found in the resource id %q", input)
 	}
 
 	if id.BuildServiceName, ok = parsed.Parsed["buildServiceName"]; !ok {
@@ -101,8 +101,8 @@ func ParseBuildPackBindingIDInsensitively(input string) (*BuildPackBindingId, er
 		return nil, fmt.Errorf("the segment 'builderName' was not found in the resource id %q", input)
 	}
 
-	if id.BuildpackBindingName, ok = parsed.Parsed["buildpackBindingName"]; !ok {
-		return nil, fmt.Errorf("the segment 'buildpackBindingName' was not found in the resource id %q", input)
+	if id.BuildPackBindingName, ok = parsed.Parsed["buildPackBindingName"]; !ok {
+		return nil, fmt.Errorf("the segment 'buildPackBindingName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -126,7 +126,7 @@ func ValidateBuildPackBindingID(input interface{}, key string) (warnings []strin
 // ID returns the formatted Build Pack Binding ID
 func (id BuildPackBindingId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.AppPlatform/spring/%s/buildServices/%s/builders/%s/buildPackBindings/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.ServiceName, id.BuildServiceName, id.BuilderName, id.BuildpackBindingName)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.SpringName, id.BuildServiceName, id.BuilderName, id.BuildPackBindingName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Build Pack Binding ID
@@ -139,13 +139,13 @@ func (id BuildPackBindingId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftAppPlatform", "Microsoft.AppPlatform", "Microsoft.AppPlatform"),
 		resourceids.StaticSegment("staticSpring", "spring", "spring"),
-		resourceids.UserSpecifiedSegment("serviceName", "serviceValue"),
+		resourceids.UserSpecifiedSegment("springName", "springValue"),
 		resourceids.StaticSegment("staticBuildServices", "buildServices", "buildServices"),
 		resourceids.UserSpecifiedSegment("buildServiceName", "buildServiceValue"),
 		resourceids.StaticSegment("staticBuilders", "builders", "builders"),
 		resourceids.UserSpecifiedSegment("builderName", "builderValue"),
 		resourceids.StaticSegment("staticBuildPackBindings", "buildPackBindings", "buildPackBindings"),
-		resourceids.UserSpecifiedSegment("buildpackBindingName", "buildpackBindingValue"),
+		resourceids.UserSpecifiedSegment("buildPackBindingName", "buildPackBindingValue"),
 	}
 }
 
@@ -154,10 +154,10 @@ func (id BuildPackBindingId) String() string {
 	components := []string{
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
-		fmt.Sprintf("Service Name: %q", id.ServiceName),
+		fmt.Sprintf("Spring Name: %q", id.SpringName),
 		fmt.Sprintf("Build Service Name: %q", id.BuildServiceName),
 		fmt.Sprintf("Builder Name: %q", id.BuilderName),
-		fmt.Sprintf("Buildpack Binding Name: %q", id.BuildpackBindingName),
+		fmt.Sprintf("Build Pack Binding Name: %q", id.BuildPackBindingName),
 	}
 	return fmt.Sprintf("Build Pack Binding (%s)", strings.Join(components, "\n"))
 }

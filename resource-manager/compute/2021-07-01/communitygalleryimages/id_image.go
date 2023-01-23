@@ -12,18 +12,18 @@ var _ resourceids.ResourceId = ImageId{}
 // ImageId is a struct representing the Resource ID for a Image
 type ImageId struct {
 	SubscriptionId    string
-	Location          string
-	GalleryUniqueName string
-	GalleryImageName  string
+	LocationName      string
+	SharedGalleryName string
+	ImageName         string
 }
 
 // NewImageID returns a new ImageId struct
-func NewImageID(subscriptionId string, location string, galleryUniqueName string, galleryImageName string) ImageId {
+func NewImageID(subscriptionId string, locationName string, sharedGalleryName string, imageName string) ImageId {
 	return ImageId{
 		SubscriptionId:    subscriptionId,
-		Location:          location,
-		GalleryUniqueName: galleryUniqueName,
-		GalleryImageName:  galleryImageName,
+		LocationName:      locationName,
+		SharedGalleryName: sharedGalleryName,
+		ImageName:         imageName,
 	}
 }
 
@@ -42,16 +42,16 @@ func ParseImageID(input string) (*ImageId, error) {
 		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
 	}
 
-	if id.Location, ok = parsed.Parsed["location"]; !ok {
-		return nil, fmt.Errorf("the segment 'location' was not found in the resource id %q", input)
+	if id.LocationName, ok = parsed.Parsed["locationName"]; !ok {
+		return nil, fmt.Errorf("the segment 'locationName' was not found in the resource id %q", input)
 	}
 
-	if id.GalleryUniqueName, ok = parsed.Parsed["galleryUniqueName"]; !ok {
-		return nil, fmt.Errorf("the segment 'galleryUniqueName' was not found in the resource id %q", input)
+	if id.SharedGalleryName, ok = parsed.Parsed["sharedGalleryName"]; !ok {
+		return nil, fmt.Errorf("the segment 'sharedGalleryName' was not found in the resource id %q", input)
 	}
 
-	if id.GalleryImageName, ok = parsed.Parsed["galleryImageName"]; !ok {
-		return nil, fmt.Errorf("the segment 'galleryImageName' was not found in the resource id %q", input)
+	if id.ImageName, ok = parsed.Parsed["imageName"]; !ok {
+		return nil, fmt.Errorf("the segment 'imageName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -73,16 +73,16 @@ func ParseImageIDInsensitively(input string) (*ImageId, error) {
 		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
 	}
 
-	if id.Location, ok = parsed.Parsed["location"]; !ok {
-		return nil, fmt.Errorf("the segment 'location' was not found in the resource id %q", input)
+	if id.LocationName, ok = parsed.Parsed["locationName"]; !ok {
+		return nil, fmt.Errorf("the segment 'locationName' was not found in the resource id %q", input)
 	}
 
-	if id.GalleryUniqueName, ok = parsed.Parsed["galleryUniqueName"]; !ok {
-		return nil, fmt.Errorf("the segment 'galleryUniqueName' was not found in the resource id %q", input)
+	if id.SharedGalleryName, ok = parsed.Parsed["sharedGalleryName"]; !ok {
+		return nil, fmt.Errorf("the segment 'sharedGalleryName' was not found in the resource id %q", input)
 	}
 
-	if id.GalleryImageName, ok = parsed.Parsed["galleryImageName"]; !ok {
-		return nil, fmt.Errorf("the segment 'galleryImageName' was not found in the resource id %q", input)
+	if id.ImageName, ok = parsed.Parsed["imageName"]; !ok {
+		return nil, fmt.Errorf("the segment 'imageName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -106,7 +106,7 @@ func ValidateImageID(input interface{}, key string) (warnings []string, errors [
 // ID returns the formatted Image ID
 func (id ImageId) ID() string {
 	fmtString := "/subscriptions/%s/providers/Microsoft.Compute/locations/%s/sharedGalleries/%s/images/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.Location, id.GalleryUniqueName, id.GalleryImageName)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.LocationName, id.SharedGalleryName, id.ImageName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Image ID
@@ -117,11 +117,11 @@ func (id ImageId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftCompute", "Microsoft.Compute", "Microsoft.Compute"),
 		resourceids.StaticSegment("staticLocations", "locations", "locations"),
-		resourceids.UserSpecifiedSegment("location", "locationValue"),
+		resourceids.UserSpecifiedSegment("locationName", "locationValue"),
 		resourceids.StaticSegment("staticSharedGalleries", "sharedGalleries", "sharedGalleries"),
-		resourceids.UserSpecifiedSegment("galleryUniqueName", "galleryUniqueValue"),
+		resourceids.UserSpecifiedSegment("sharedGalleryName", "sharedGalleryValue"),
 		resourceids.StaticSegment("staticImages", "images", "images"),
-		resourceids.UserSpecifiedSegment("galleryImageName", "galleryImageValue"),
+		resourceids.UserSpecifiedSegment("imageName", "imageValue"),
 	}
 }
 
@@ -129,9 +129,9 @@ func (id ImageId) Segments() []resourceids.Segment {
 func (id ImageId) String() string {
 	components := []string{
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
-		fmt.Sprintf("Location: %q", id.Location),
-		fmt.Sprintf("Gallery Unique Name: %q", id.GalleryUniqueName),
-		fmt.Sprintf("Gallery Image Name: %q", id.GalleryImageName),
+		fmt.Sprintf("Location Name: %q", id.LocationName),
+		fmt.Sprintf("Shared Gallery Name: %q", id.SharedGalleryName),
+		fmt.Sprintf("Image Name: %q", id.ImageName),
 	}
 	return fmt.Sprintf("Image (%s)", strings.Join(components, "\n"))
 }

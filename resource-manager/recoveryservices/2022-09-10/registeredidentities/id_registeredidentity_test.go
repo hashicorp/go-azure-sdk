@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = RegisteredIdentityId{}
 
 func TestNewRegisteredIdentityID(t *testing.T) {
-	id := NewRegisteredIdentityID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue", "identityValue")
+	id := NewRegisteredIdentityID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue", "registeredIdentityValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -23,14 +23,14 @@ func TestNewRegisteredIdentityID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'VaultName'", id.VaultName, "vaultValue")
 	}
 
-	if id.IdentityName != "identityValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'IdentityName'", id.IdentityName, "identityValue")
+	if id.RegisteredIdentityName != "registeredIdentityValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'RegisteredIdentityName'", id.RegisteredIdentityName, "registeredIdentityValue")
 	}
 }
 
 func TestFormatRegisteredIdentityID(t *testing.T) {
-	actual := NewRegisteredIdentityID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue", "identityValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultValue/registeredIdentities/identityValue"
+	actual := NewRegisteredIdentityID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue", "registeredIdentityValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultValue/registeredIdentities/registeredIdentityValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -94,17 +94,17 @@ func TestParseRegisteredIdentityID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultValue/registeredIdentities/identityValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultValue/registeredIdentities/registeredIdentityValue",
 			Expected: &RegisteredIdentityId{
-				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName: "example-resource-group",
-				VaultName:         "vaultValue",
-				IdentityName:      "identityValue",
+				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:      "example-resource-group",
+				VaultName:              "vaultValue",
+				RegisteredIdentityName: "registeredIdentityValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultValue/registeredIdentities/identityValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultValue/registeredIdentities/registeredIdentityValue/extra",
 			Error: true,
 		},
 	}
@@ -135,8 +135,8 @@ func TestParseRegisteredIdentityID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for VaultName", v.Expected.VaultName, actual.VaultName)
 		}
 
-		if actual.IdentityName != v.Expected.IdentityName {
-			t.Fatalf("Expected %q but got %q for IdentityName", v.Expected.IdentityName, actual.IdentityName)
+		if actual.RegisteredIdentityName != v.Expected.RegisteredIdentityName {
+			t.Fatalf("Expected %q but got %q for RegisteredIdentityName", v.Expected.RegisteredIdentityName, actual.RegisteredIdentityName)
 		}
 
 	}
@@ -245,32 +245,32 @@ func TestParseRegisteredIdentityIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultValue/registeredIdentities/identityValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultValue/registeredIdentities/registeredIdentityValue",
 			Expected: &RegisteredIdentityId{
-				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName: "example-resource-group",
-				VaultName:         "vaultValue",
-				IdentityName:      "identityValue",
+				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:      "example-resource-group",
+				VaultName:              "vaultValue",
+				RegisteredIdentityName: "registeredIdentityValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultValue/registeredIdentities/identityValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultValue/registeredIdentities/registeredIdentityValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEcOvErYsErViCeS/vAuLtS/vAuLtVaLuE/rEgIsTeReDiDeNtItIeS/iDeNtItYvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEcOvErYsErViCeS/vAuLtS/vAuLtVaLuE/rEgIsTeReDiDeNtItIeS/rEgIsTeReDiDeNtItYvAlUe",
 			Expected: &RegisteredIdentityId{
-				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				VaultName:         "vAuLtVaLuE",
-				IdentityName:      "iDeNtItYvAlUe",
+				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:      "eXaMpLe-rEsOuRcE-GrOuP",
+				VaultName:              "vAuLtVaLuE",
+				RegisteredIdentityName: "rEgIsTeReDiDeNtItYvAlUe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEcOvErYsErViCeS/vAuLtS/vAuLtVaLuE/rEgIsTeReDiDeNtItIeS/iDeNtItYvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEcOvErYsErViCeS/vAuLtS/vAuLtVaLuE/rEgIsTeReDiDeNtItIeS/rEgIsTeReDiDeNtItYvAlUe/extra",
 			Error: true,
 		},
 	}
@@ -301,8 +301,8 @@ func TestParseRegisteredIdentityIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for VaultName", v.Expected.VaultName, actual.VaultName)
 		}
 
-		if actual.IdentityName != v.Expected.IdentityName {
-			t.Fatalf("Expected %q but got %q for IdentityName", v.Expected.IdentityName, actual.IdentityName)
+		if actual.RegisteredIdentityName != v.Expected.RegisteredIdentityName {
+			t.Fatalf("Expected %q but got %q for RegisteredIdentityName", v.Expected.RegisteredIdentityName, actual.RegisteredIdentityName)
 		}
 
 	}

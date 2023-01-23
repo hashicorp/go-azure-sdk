@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = RemoteRenderingAccountId{}
 
 func TestNewRemoteRenderingAccountID(t *testing.T) {
-	id := NewRemoteRenderingAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue")
+	id := NewRemoteRenderingAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "remoteRenderingAccountValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -19,14 +19,14 @@ func TestNewRemoteRenderingAccountID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.AccountName != "accountValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AccountName'", id.AccountName, "accountValue")
+	if id.RemoteRenderingAccountName != "remoteRenderingAccountValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'RemoteRenderingAccountName'", id.RemoteRenderingAccountName, "remoteRenderingAccountValue")
 	}
 }
 
 func TestFormatRemoteRenderingAccountID(t *testing.T) {
-	actual := NewRemoteRenderingAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MixedReality/remoteRenderingAccounts/accountValue"
+	actual := NewRemoteRenderingAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "remoteRenderingAccountValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MixedReality/remoteRenderingAccounts/remoteRenderingAccountValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -80,16 +80,16 @@ func TestParseRemoteRenderingAccountID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MixedReality/remoteRenderingAccounts/accountValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MixedReality/remoteRenderingAccounts/remoteRenderingAccountValue",
 			Expected: &RemoteRenderingAccountId{
-				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName: "example-resource-group",
-				AccountName:       "accountValue",
+				SubscriptionId:             "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:          "example-resource-group",
+				RemoteRenderingAccountName: "remoteRenderingAccountValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MixedReality/remoteRenderingAccounts/accountValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MixedReality/remoteRenderingAccounts/remoteRenderingAccountValue/extra",
 			Error: true,
 		},
 	}
@@ -116,8 +116,8 @@ func TestParseRemoteRenderingAccountID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.AccountName != v.Expected.AccountName {
-			t.Fatalf("Expected %q but got %q for AccountName", v.Expected.AccountName, actual.AccountName)
+		if actual.RemoteRenderingAccountName != v.Expected.RemoteRenderingAccountName {
+			t.Fatalf("Expected %q but got %q for RemoteRenderingAccountName", v.Expected.RemoteRenderingAccountName, actual.RemoteRenderingAccountName)
 		}
 
 	}
@@ -206,30 +206,30 @@ func TestParseRemoteRenderingAccountIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MixedReality/remoteRenderingAccounts/accountValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MixedReality/remoteRenderingAccounts/remoteRenderingAccountValue",
 			Expected: &RemoteRenderingAccountId{
-				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName: "example-resource-group",
-				AccountName:       "accountValue",
+				SubscriptionId:             "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:          "example-resource-group",
+				RemoteRenderingAccountName: "remoteRenderingAccountValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MixedReality/remoteRenderingAccounts/accountValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MixedReality/remoteRenderingAccounts/remoteRenderingAccountValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mIxEdReAlItY/rEmOtErEnDeRiNgAcCoUnTs/aCcOuNtVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mIxEdReAlItY/rEmOtErEnDeRiNgAcCoUnTs/rEmOtErEnDeRiNgAcCoUnTvAlUe",
 			Expected: &RemoteRenderingAccountId{
-				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				AccountName:       "aCcOuNtVaLuE",
+				SubscriptionId:             "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:          "eXaMpLe-rEsOuRcE-GrOuP",
+				RemoteRenderingAccountName: "rEmOtErEnDeRiNgAcCoUnTvAlUe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mIxEdReAlItY/rEmOtErEnDeRiNgAcCoUnTs/aCcOuNtVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mIxEdReAlItY/rEmOtErEnDeRiNgAcCoUnTs/rEmOtErEnDeRiNgAcCoUnTvAlUe/extra",
 			Error: true,
 		},
 	}
@@ -256,8 +256,8 @@ func TestParseRemoteRenderingAccountIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.AccountName != v.Expected.AccountName {
-			t.Fatalf("Expected %q but got %q for AccountName", v.Expected.AccountName, actual.AccountName)
+		if actual.RemoteRenderingAccountName != v.Expected.RemoteRenderingAccountName {
+			t.Fatalf("Expected %q but got %q for RemoteRenderingAccountName", v.Expected.RemoteRenderingAccountName, actual.RemoteRenderingAccountName)
 		}
 
 	}

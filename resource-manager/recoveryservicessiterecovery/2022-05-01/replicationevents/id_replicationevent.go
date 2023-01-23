@@ -11,19 +11,19 @@ var _ resourceids.ResourceId = ReplicationEventId{}
 
 // ReplicationEventId is a struct representing the Resource ID for a Replication Event
 type ReplicationEventId struct {
-	SubscriptionId    string
-	ResourceGroupName string
-	ResourceName      string
-	EventName         string
+	SubscriptionId       string
+	ResourceGroupName    string
+	VaultName            string
+	ReplicationEventName string
 }
 
 // NewReplicationEventID returns a new ReplicationEventId struct
-func NewReplicationEventID(subscriptionId string, resourceGroupName string, resourceName string, eventName string) ReplicationEventId {
+func NewReplicationEventID(subscriptionId string, resourceGroupName string, vaultName string, replicationEventName string) ReplicationEventId {
 	return ReplicationEventId{
-		SubscriptionId:    subscriptionId,
-		ResourceGroupName: resourceGroupName,
-		ResourceName:      resourceName,
-		EventName:         eventName,
+		SubscriptionId:       subscriptionId,
+		ResourceGroupName:    resourceGroupName,
+		VaultName:            vaultName,
+		ReplicationEventName: replicationEventName,
 	}
 }
 
@@ -46,12 +46,12 @@ func ParseReplicationEventID(input string) (*ReplicationEventId, error) {
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.ResourceName, ok = parsed.Parsed["resourceName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceName' was not found in the resource id %q", input)
+	if id.VaultName, ok = parsed.Parsed["vaultName"]; !ok {
+		return nil, fmt.Errorf("the segment 'vaultName' was not found in the resource id %q", input)
 	}
 
-	if id.EventName, ok = parsed.Parsed["eventName"]; !ok {
-		return nil, fmt.Errorf("the segment 'eventName' was not found in the resource id %q", input)
+	if id.ReplicationEventName, ok = parsed.Parsed["replicationEventName"]; !ok {
+		return nil, fmt.Errorf("the segment 'replicationEventName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -77,12 +77,12 @@ func ParseReplicationEventIDInsensitively(input string) (*ReplicationEventId, er
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.ResourceName, ok = parsed.Parsed["resourceName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceName' was not found in the resource id %q", input)
+	if id.VaultName, ok = parsed.Parsed["vaultName"]; !ok {
+		return nil, fmt.Errorf("the segment 'vaultName' was not found in the resource id %q", input)
 	}
 
-	if id.EventName, ok = parsed.Parsed["eventName"]; !ok {
-		return nil, fmt.Errorf("the segment 'eventName' was not found in the resource id %q", input)
+	if id.ReplicationEventName, ok = parsed.Parsed["replicationEventName"]; !ok {
+		return nil, fmt.Errorf("the segment 'replicationEventName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -106,7 +106,7 @@ func ValidateReplicationEventID(input interface{}, key string) (warnings []strin
 // ID returns the formatted Replication Event ID
 func (id ReplicationEventId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.RecoveryServices/vaults/%s/replicationEvents/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.ResourceName, id.EventName)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.VaultName, id.ReplicationEventName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Replication Event ID
@@ -119,9 +119,9 @@ func (id ReplicationEventId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftRecoveryServices", "Microsoft.RecoveryServices", "Microsoft.RecoveryServices"),
 		resourceids.StaticSegment("staticVaults", "vaults", "vaults"),
-		resourceids.UserSpecifiedSegment("resourceName", "resourceValue"),
+		resourceids.UserSpecifiedSegment("vaultName", "vaultValue"),
 		resourceids.StaticSegment("staticReplicationEvents", "replicationEvents", "replicationEvents"),
-		resourceids.UserSpecifiedSegment("eventName", "eventValue"),
+		resourceids.UserSpecifiedSegment("replicationEventName", "replicationEventValue"),
 	}
 }
 
@@ -130,8 +130,8 @@ func (id ReplicationEventId) String() string {
 	components := []string{
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
-		fmt.Sprintf("Resource Name: %q", id.ResourceName),
-		fmt.Sprintf("Event Name: %q", id.EventName),
+		fmt.Sprintf("Vault Name: %q", id.VaultName),
+		fmt.Sprintf("Replication Event Name: %q", id.ReplicationEventName),
 	}
 	return fmt.Sprintf("Replication Event (%s)", strings.Join(components, "\n"))
 }

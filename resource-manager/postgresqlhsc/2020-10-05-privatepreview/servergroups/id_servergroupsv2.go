@@ -11,17 +11,17 @@ var _ resourceids.ResourceId = ServerGroupsv2Id{}
 
 // ServerGroupsv2Id is a struct representing the Resource ID for a Server Groupsv 2
 type ServerGroupsv2Id struct {
-	SubscriptionId    string
-	ResourceGroupName string
-	ServerGroupName   string
+	SubscriptionId     string
+	ResourceGroupName  string
+	ServerGroupsv2Name string
 }
 
 // NewServerGroupsv2ID returns a new ServerGroupsv2Id struct
-func NewServerGroupsv2ID(subscriptionId string, resourceGroupName string, serverGroupName string) ServerGroupsv2Id {
+func NewServerGroupsv2ID(subscriptionId string, resourceGroupName string, serverGroupsv2Name string) ServerGroupsv2Id {
 	return ServerGroupsv2Id{
-		SubscriptionId:    subscriptionId,
-		ResourceGroupName: resourceGroupName,
-		ServerGroupName:   serverGroupName,
+		SubscriptionId:     subscriptionId,
+		ResourceGroupName:  resourceGroupName,
+		ServerGroupsv2Name: serverGroupsv2Name,
 	}
 }
 
@@ -44,8 +44,8 @@ func ParseServerGroupsv2ID(input string) (*ServerGroupsv2Id, error) {
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.ServerGroupName, ok = parsed.Parsed["serverGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'serverGroupName' was not found in the resource id %q", input)
+	if id.ServerGroupsv2Name, ok = parsed.Parsed["serverGroupsv2Name"]; !ok {
+		return nil, fmt.Errorf("the segment 'serverGroupsv2Name' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -71,8 +71,8 @@ func ParseServerGroupsv2IDInsensitively(input string) (*ServerGroupsv2Id, error)
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.ServerGroupName, ok = parsed.Parsed["serverGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'serverGroupName' was not found in the resource id %q", input)
+	if id.ServerGroupsv2Name, ok = parsed.Parsed["serverGroupsv2Name"]; !ok {
+		return nil, fmt.Errorf("the segment 'serverGroupsv2Name' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -96,7 +96,7 @@ func ValidateServerGroupsv2ID(input interface{}, key string) (warnings []string,
 // ID returns the formatted Server Groupsv 2 ID
 func (id ServerGroupsv2Id) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.ServerGroupName)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.ServerGroupsv2Name)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Server Groupsv 2 ID
@@ -109,7 +109,7 @@ func (id ServerGroupsv2Id) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftDBforPostgreSQL", "Microsoft.DBforPostgreSQL", "Microsoft.DBforPostgreSQL"),
 		resourceids.StaticSegment("staticServerGroupsv2", "serverGroupsv2", "serverGroupsv2"),
-		resourceids.UserSpecifiedSegment("serverGroupName", "serverGroupValue"),
+		resourceids.UserSpecifiedSegment("serverGroupsv2Name", "serverGroupsv2Value"),
 	}
 }
 
@@ -118,7 +118,7 @@ func (id ServerGroupsv2Id) String() string {
 	components := []string{
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
-		fmt.Sprintf("Server Group Name: %q", id.ServerGroupName),
+		fmt.Sprintf("Server Groupsv 2 Name: %q", id.ServerGroupsv2Name),
 	}
 	return fmt.Sprintf("Server Groupsv 2 (%s)", strings.Join(components, "\n"))
 }

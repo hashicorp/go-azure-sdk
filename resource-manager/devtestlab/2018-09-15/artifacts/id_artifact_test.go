@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = ArtifactId{}
 
 func TestNewArtifactID(t *testing.T) {
-	id := NewArtifactID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "artifactSourceValue", "nameValue")
+	id := NewArtifactID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "artifactSourceValue", "artifactValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -27,14 +27,14 @@ func TestNewArtifactID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ArtifactSourceName'", id.ArtifactSourceName, "artifactSourceValue")
 	}
 
-	if id.Name != "nameValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'Name'", id.Name, "nameValue")
+	if id.ArtifactName != "artifactValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'ArtifactName'", id.ArtifactName, "artifactValue")
 	}
 }
 
 func TestFormatArtifactID(t *testing.T) {
-	actual := NewArtifactID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "artifactSourceValue", "nameValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labValue/artifactSources/artifactSourceValue/artifacts/nameValue"
+	actual := NewArtifactID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "artifactSourceValue", "artifactValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labValue/artifactSources/artifactSourceValue/artifacts/artifactValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -108,18 +108,18 @@ func TestParseArtifactID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labValue/artifactSources/artifactSourceValue/artifacts/nameValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labValue/artifactSources/artifactSourceValue/artifacts/artifactValue",
 			Expected: &ArtifactId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "example-resource-group",
 				LabName:            "labValue",
 				ArtifactSourceName: "artifactSourceValue",
-				Name:               "nameValue",
+				ArtifactName:       "artifactValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labValue/artifactSources/artifactSourceValue/artifacts/nameValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labValue/artifactSources/artifactSourceValue/artifacts/artifactValue/extra",
 			Error: true,
 		},
 	}
@@ -154,8 +154,8 @@ func TestParseArtifactID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ArtifactSourceName", v.Expected.ArtifactSourceName, actual.ArtifactSourceName)
 		}
 
-		if actual.Name != v.Expected.Name {
-			t.Fatalf("Expected %q but got %q for Name", v.Expected.Name, actual.Name)
+		if actual.ArtifactName != v.Expected.ArtifactName {
+			t.Fatalf("Expected %q but got %q for ArtifactName", v.Expected.ArtifactName, actual.ArtifactName)
 		}
 
 	}
@@ -284,34 +284,34 @@ func TestParseArtifactIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labValue/artifactSources/artifactSourceValue/artifacts/nameValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labValue/artifactSources/artifactSourceValue/artifacts/artifactValue",
 			Expected: &ArtifactId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "example-resource-group",
 				LabName:            "labValue",
 				ArtifactSourceName: "artifactSourceValue",
-				Name:               "nameValue",
+				ArtifactName:       "artifactValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labValue/artifactSources/artifactSourceValue/artifacts/nameValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labValue/artifactSources/artifactSourceValue/artifacts/artifactValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvTeStLaB/lAbS/lAbVaLuE/aRtIfAcTsOuRcEs/aRtIfAcTsOuRcEvAlUe/aRtIfAcTs/nAmEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvTeStLaB/lAbS/lAbVaLuE/aRtIfAcTsOuRcEs/aRtIfAcTsOuRcEvAlUe/aRtIfAcTs/aRtIfAcTvAlUe",
 			Expected: &ArtifactId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "eXaMpLe-rEsOuRcE-GrOuP",
 				LabName:            "lAbVaLuE",
 				ArtifactSourceName: "aRtIfAcTsOuRcEvAlUe",
-				Name:               "nAmEvAlUe",
+				ArtifactName:       "aRtIfAcTvAlUe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvTeStLaB/lAbS/lAbVaLuE/aRtIfAcTsOuRcEs/aRtIfAcTsOuRcEvAlUe/aRtIfAcTs/nAmEvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvTeStLaB/lAbS/lAbVaLuE/aRtIfAcTsOuRcEs/aRtIfAcTsOuRcEvAlUe/aRtIfAcTs/aRtIfAcTvAlUe/extra",
 			Error: true,
 		},
 	}
@@ -346,8 +346,8 @@ func TestParseArtifactIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ArtifactSourceName", v.Expected.ArtifactSourceName, actual.ArtifactSourceName)
 		}
 
-		if actual.Name != v.Expected.Name {
-			t.Fatalf("Expected %q but got %q for Name", v.Expected.Name, actual.Name)
+		if actual.ArtifactName != v.Expected.ArtifactName {
+			t.Fatalf("Expected %q but got %q for ArtifactName", v.Expected.ArtifactName, actual.ArtifactName)
 		}
 
 	}

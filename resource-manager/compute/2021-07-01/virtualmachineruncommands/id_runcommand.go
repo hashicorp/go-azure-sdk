@@ -12,15 +12,15 @@ var _ resourceids.ResourceId = RunCommandId{}
 // RunCommandId is a struct representing the Resource ID for a Run Command
 type RunCommandId struct {
 	SubscriptionId string
-	Location       string
+	LocationName   string
 	CommandId      string
 }
 
 // NewRunCommandID returns a new RunCommandId struct
-func NewRunCommandID(subscriptionId string, location string, commandId string) RunCommandId {
+func NewRunCommandID(subscriptionId string, locationName string, commandId string) RunCommandId {
 	return RunCommandId{
 		SubscriptionId: subscriptionId,
-		Location:       location,
+		LocationName:   locationName,
 		CommandId:      commandId,
 	}
 }
@@ -40,8 +40,8 @@ func ParseRunCommandID(input string) (*RunCommandId, error) {
 		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
 	}
 
-	if id.Location, ok = parsed.Parsed["location"]; !ok {
-		return nil, fmt.Errorf("the segment 'location' was not found in the resource id %q", input)
+	if id.LocationName, ok = parsed.Parsed["locationName"]; !ok {
+		return nil, fmt.Errorf("the segment 'locationName' was not found in the resource id %q", input)
 	}
 
 	if id.CommandId, ok = parsed.Parsed["commandId"]; !ok {
@@ -67,8 +67,8 @@ func ParseRunCommandIDInsensitively(input string) (*RunCommandId, error) {
 		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
 	}
 
-	if id.Location, ok = parsed.Parsed["location"]; !ok {
-		return nil, fmt.Errorf("the segment 'location' was not found in the resource id %q", input)
+	if id.LocationName, ok = parsed.Parsed["locationName"]; !ok {
+		return nil, fmt.Errorf("the segment 'locationName' was not found in the resource id %q", input)
 	}
 
 	if id.CommandId, ok = parsed.Parsed["commandId"]; !ok {
@@ -96,7 +96,7 @@ func ValidateRunCommandID(input interface{}, key string) (warnings []string, err
 // ID returns the formatted Run Command ID
 func (id RunCommandId) ID() string {
 	fmtString := "/subscriptions/%s/providers/Microsoft.Compute/locations/%s/runCommands/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.Location, id.CommandId)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.LocationName, id.CommandId)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Run Command ID
@@ -107,7 +107,7 @@ func (id RunCommandId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftCompute", "Microsoft.Compute", "Microsoft.Compute"),
 		resourceids.StaticSegment("staticLocations", "locations", "locations"),
-		resourceids.UserSpecifiedSegment("location", "locationValue"),
+		resourceids.UserSpecifiedSegment("locationName", "locationValue"),
 		resourceids.StaticSegment("staticRunCommands", "runCommands", "runCommands"),
 		resourceids.UserSpecifiedSegment("commandId", "commandIdValue"),
 	}
@@ -117,7 +117,7 @@ func (id RunCommandId) Segments() []resourceids.Segment {
 func (id RunCommandId) String() string {
 	components := []string{
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
-		fmt.Sprintf("Location: %q", id.Location),
+		fmt.Sprintf("Location Name: %q", id.LocationName),
 		fmt.Sprintf("Command: %q", id.CommandId),
 	}
 	return fmt.Sprintf("Run Command (%s)", strings.Join(components, "\n"))

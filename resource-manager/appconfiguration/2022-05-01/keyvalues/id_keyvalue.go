@@ -11,19 +11,19 @@ var _ resourceids.ResourceId = KeyValueId{}
 
 // KeyValueId is a struct representing the Resource ID for a Key Value
 type KeyValueId struct {
-	SubscriptionId    string
-	ResourceGroupName string
-	ConfigStoreName   string
-	KeyValueName      string
+	SubscriptionId         string
+	ResourceGroupName      string
+	ConfigurationStoreName string
+	KeyValueName           string
 }
 
 // NewKeyValueID returns a new KeyValueId struct
-func NewKeyValueID(subscriptionId string, resourceGroupName string, configStoreName string, keyValueName string) KeyValueId {
+func NewKeyValueID(subscriptionId string, resourceGroupName string, configurationStoreName string, keyValueName string) KeyValueId {
 	return KeyValueId{
-		SubscriptionId:    subscriptionId,
-		ResourceGroupName: resourceGroupName,
-		ConfigStoreName:   configStoreName,
-		KeyValueName:      keyValueName,
+		SubscriptionId:         subscriptionId,
+		ResourceGroupName:      resourceGroupName,
+		ConfigurationStoreName: configurationStoreName,
+		KeyValueName:           keyValueName,
 	}
 }
 
@@ -46,8 +46,8 @@ func ParseKeyValueID(input string) (*KeyValueId, error) {
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.ConfigStoreName, ok = parsed.Parsed["configStoreName"]; !ok {
-		return nil, fmt.Errorf("the segment 'configStoreName' was not found in the resource id %q", input)
+	if id.ConfigurationStoreName, ok = parsed.Parsed["configurationStoreName"]; !ok {
+		return nil, fmt.Errorf("the segment 'configurationStoreName' was not found in the resource id %q", input)
 	}
 
 	if id.KeyValueName, ok = parsed.Parsed["keyValueName"]; !ok {
@@ -77,8 +77,8 @@ func ParseKeyValueIDInsensitively(input string) (*KeyValueId, error) {
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.ConfigStoreName, ok = parsed.Parsed["configStoreName"]; !ok {
-		return nil, fmt.Errorf("the segment 'configStoreName' was not found in the resource id %q", input)
+	if id.ConfigurationStoreName, ok = parsed.Parsed["configurationStoreName"]; !ok {
+		return nil, fmt.Errorf("the segment 'configurationStoreName' was not found in the resource id %q", input)
 	}
 
 	if id.KeyValueName, ok = parsed.Parsed["keyValueName"]; !ok {
@@ -106,7 +106,7 @@ func ValidateKeyValueID(input interface{}, key string) (warnings []string, error
 // ID returns the formatted Key Value ID
 func (id KeyValueId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.AppConfiguration/configurationStores/%s/keyValues/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.ConfigStoreName, id.KeyValueName)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.ConfigurationStoreName, id.KeyValueName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Key Value ID
@@ -119,7 +119,7 @@ func (id KeyValueId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftAppConfiguration", "Microsoft.AppConfiguration", "Microsoft.AppConfiguration"),
 		resourceids.StaticSegment("staticConfigurationStores", "configurationStores", "configurationStores"),
-		resourceids.UserSpecifiedSegment("configStoreName", "configStoreValue"),
+		resourceids.UserSpecifiedSegment("configurationStoreName", "configurationStoreValue"),
 		resourceids.StaticSegment("staticKeyValues", "keyValues", "keyValues"),
 		resourceids.UserSpecifiedSegment("keyValueName", "keyValueValue"),
 	}
@@ -130,7 +130,7 @@ func (id KeyValueId) String() string {
 	components := []string{
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
-		fmt.Sprintf("Config Store Name: %q", id.ConfigStoreName),
+		fmt.Sprintf("Configuration Store Name: %q", id.ConfigurationStoreName),
 		fmt.Sprintf("Key Value Name: %q", id.KeyValueName),
 	}
 	return fmt.Sprintf("Key Value (%s)", strings.Join(components, "\n"))

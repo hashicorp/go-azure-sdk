@@ -11,19 +11,19 @@ var _ resourceids.ResourceId = DeletedBackupInstanceId{}
 
 // DeletedBackupInstanceId is a struct representing the Resource ID for a Deleted Backup Instance
 type DeletedBackupInstanceId struct {
-	SubscriptionId     string
-	ResourceGroupName  string
-	VaultName          string
-	BackupInstanceName string
+	SubscriptionId            string
+	ResourceGroupName         string
+	BackupVaultName           string
+	DeletedBackupInstanceName string
 }
 
 // NewDeletedBackupInstanceID returns a new DeletedBackupInstanceId struct
-func NewDeletedBackupInstanceID(subscriptionId string, resourceGroupName string, vaultName string, backupInstanceName string) DeletedBackupInstanceId {
+func NewDeletedBackupInstanceID(subscriptionId string, resourceGroupName string, backupVaultName string, deletedBackupInstanceName string) DeletedBackupInstanceId {
 	return DeletedBackupInstanceId{
-		SubscriptionId:     subscriptionId,
-		ResourceGroupName:  resourceGroupName,
-		VaultName:          vaultName,
-		BackupInstanceName: backupInstanceName,
+		SubscriptionId:            subscriptionId,
+		ResourceGroupName:         resourceGroupName,
+		BackupVaultName:           backupVaultName,
+		DeletedBackupInstanceName: deletedBackupInstanceName,
 	}
 }
 
@@ -46,12 +46,12 @@ func ParseDeletedBackupInstanceID(input string) (*DeletedBackupInstanceId, error
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.VaultName, ok = parsed.Parsed["vaultName"]; !ok {
-		return nil, fmt.Errorf("the segment 'vaultName' was not found in the resource id %q", input)
+	if id.BackupVaultName, ok = parsed.Parsed["backupVaultName"]; !ok {
+		return nil, fmt.Errorf("the segment 'backupVaultName' was not found in the resource id %q", input)
 	}
 
-	if id.BackupInstanceName, ok = parsed.Parsed["backupInstanceName"]; !ok {
-		return nil, fmt.Errorf("the segment 'backupInstanceName' was not found in the resource id %q", input)
+	if id.DeletedBackupInstanceName, ok = parsed.Parsed["deletedBackupInstanceName"]; !ok {
+		return nil, fmt.Errorf("the segment 'deletedBackupInstanceName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -77,12 +77,12 @@ func ParseDeletedBackupInstanceIDInsensitively(input string) (*DeletedBackupInst
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.VaultName, ok = parsed.Parsed["vaultName"]; !ok {
-		return nil, fmt.Errorf("the segment 'vaultName' was not found in the resource id %q", input)
+	if id.BackupVaultName, ok = parsed.Parsed["backupVaultName"]; !ok {
+		return nil, fmt.Errorf("the segment 'backupVaultName' was not found in the resource id %q", input)
 	}
 
-	if id.BackupInstanceName, ok = parsed.Parsed["backupInstanceName"]; !ok {
-		return nil, fmt.Errorf("the segment 'backupInstanceName' was not found in the resource id %q", input)
+	if id.DeletedBackupInstanceName, ok = parsed.Parsed["deletedBackupInstanceName"]; !ok {
+		return nil, fmt.Errorf("the segment 'deletedBackupInstanceName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -106,7 +106,7 @@ func ValidateDeletedBackupInstanceID(input interface{}, key string) (warnings []
 // ID returns the formatted Deleted Backup Instance ID
 func (id DeletedBackupInstanceId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.DataProtection/backupVaults/%s/deletedBackupInstances/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.VaultName, id.BackupInstanceName)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.BackupVaultName, id.DeletedBackupInstanceName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Deleted Backup Instance ID
@@ -119,9 +119,9 @@ func (id DeletedBackupInstanceId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftDataProtection", "Microsoft.DataProtection", "Microsoft.DataProtection"),
 		resourceids.StaticSegment("staticBackupVaults", "backupVaults", "backupVaults"),
-		resourceids.UserSpecifiedSegment("vaultName", "vaultValue"),
+		resourceids.UserSpecifiedSegment("backupVaultName", "backupVaultValue"),
 		resourceids.StaticSegment("staticDeletedBackupInstances", "deletedBackupInstances", "deletedBackupInstances"),
-		resourceids.UserSpecifiedSegment("backupInstanceName", "backupInstanceValue"),
+		resourceids.UserSpecifiedSegment("deletedBackupInstanceName", "deletedBackupInstanceValue"),
 	}
 }
 
@@ -130,8 +130,8 @@ func (id DeletedBackupInstanceId) String() string {
 	components := []string{
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
-		fmt.Sprintf("Vault Name: %q", id.VaultName),
-		fmt.Sprintf("Backup Instance Name: %q", id.BackupInstanceName),
+		fmt.Sprintf("Backup Vault Name: %q", id.BackupVaultName),
+		fmt.Sprintf("Deleted Backup Instance Name: %q", id.DeletedBackupInstanceName),
 	}
 	return fmt.Sprintf("Deleted Backup Instance (%s)", strings.Join(components, "\n"))
 }

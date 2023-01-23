@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = ReplicationProtectionIntentId{}
 
 func TestNewReplicationProtectionIntentID(t *testing.T) {
-	id := NewReplicationProtectionIntentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue", "intentObjectValue")
+	id := NewReplicationProtectionIntentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue", "replicationProtectionIntentValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -19,18 +19,18 @@ func TestNewReplicationProtectionIntentID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.ResourceName != "resourceValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ResourceName'", id.ResourceName, "resourceValue")
+	if id.VaultName != "vaultValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'VaultName'", id.VaultName, "vaultValue")
 	}
 
-	if id.IntentObjectName != "intentObjectValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'IntentObjectName'", id.IntentObjectName, "intentObjectValue")
+	if id.ReplicationProtectionIntentName != "replicationProtectionIntentValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'ReplicationProtectionIntentName'", id.ReplicationProtectionIntentName, "replicationProtectionIntentValue")
 	}
 }
 
 func TestFormatReplicationProtectionIntentID(t *testing.T) {
-	actual := NewReplicationProtectionIntentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue", "intentObjectValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/resourceValue/replicationProtectionIntents/intentObjectValue"
+	actual := NewReplicationProtectionIntentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue", "replicationProtectionIntentValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultValue/replicationProtectionIntents/replicationProtectionIntentValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -84,27 +84,27 @@ func TestParseReplicationProtectionIntentID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/resourceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultValue",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/resourceValue/replicationProtectionIntents",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultValue/replicationProtectionIntents",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/resourceValue/replicationProtectionIntents/intentObjectValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultValue/replicationProtectionIntents/replicationProtectionIntentValue",
 			Expected: &ReplicationProtectionIntentId{
-				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName: "example-resource-group",
-				ResourceName:      "resourceValue",
-				IntentObjectName:  "intentObjectValue",
+				SubscriptionId:                  "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:               "example-resource-group",
+				VaultName:                       "vaultValue",
+				ReplicationProtectionIntentName: "replicationProtectionIntentValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/resourceValue/replicationProtectionIntents/intentObjectValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultValue/replicationProtectionIntents/replicationProtectionIntentValue/extra",
 			Error: true,
 		},
 	}
@@ -131,12 +131,12 @@ func TestParseReplicationProtectionIntentID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.ResourceName != v.Expected.ResourceName {
-			t.Fatalf("Expected %q but got %q for ResourceName", v.Expected.ResourceName, actual.ResourceName)
+		if actual.VaultName != v.Expected.VaultName {
+			t.Fatalf("Expected %q but got %q for VaultName", v.Expected.VaultName, actual.VaultName)
 		}
 
-		if actual.IntentObjectName != v.Expected.IntentObjectName {
-			t.Fatalf("Expected %q but got %q for IntentObjectName", v.Expected.IntentObjectName, actual.IntentObjectName)
+		if actual.ReplicationProtectionIntentName != v.Expected.ReplicationProtectionIntentName {
+			t.Fatalf("Expected %q but got %q for ReplicationProtectionIntentName", v.Expected.ReplicationProtectionIntentName, actual.ReplicationProtectionIntentName)
 		}
 
 	}
@@ -225,52 +225,52 @@ func TestParseReplicationProtectionIntentIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/resourceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultValue",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEcOvErYsErViCeS/vAuLtS/rEsOuRcEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEcOvErYsErViCeS/vAuLtS/vAuLtVaLuE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/resourceValue/replicationProtectionIntents",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultValue/replicationProtectionIntents",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEcOvErYsErViCeS/vAuLtS/rEsOuRcEvAlUe/rEpLiCaTiOnPrOtEcTiOnInTeNtS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEcOvErYsErViCeS/vAuLtS/vAuLtVaLuE/rEpLiCaTiOnPrOtEcTiOnInTeNtS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/resourceValue/replicationProtectionIntents/intentObjectValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultValue/replicationProtectionIntents/replicationProtectionIntentValue",
 			Expected: &ReplicationProtectionIntentId{
-				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName: "example-resource-group",
-				ResourceName:      "resourceValue",
-				IntentObjectName:  "intentObjectValue",
+				SubscriptionId:                  "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:               "example-resource-group",
+				VaultName:                       "vaultValue",
+				ReplicationProtectionIntentName: "replicationProtectionIntentValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/resourceValue/replicationProtectionIntents/intentObjectValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultValue/replicationProtectionIntents/replicationProtectionIntentValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEcOvErYsErViCeS/vAuLtS/rEsOuRcEvAlUe/rEpLiCaTiOnPrOtEcTiOnInTeNtS/iNtEnToBjEcTvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEcOvErYsErViCeS/vAuLtS/vAuLtVaLuE/rEpLiCaTiOnPrOtEcTiOnInTeNtS/rEpLiCaTiOnPrOtEcTiOnInTeNtVaLuE",
 			Expected: &ReplicationProtectionIntentId{
-				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				ResourceName:      "rEsOuRcEvAlUe",
-				IntentObjectName:  "iNtEnToBjEcTvAlUe",
+				SubscriptionId:                  "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:               "eXaMpLe-rEsOuRcE-GrOuP",
+				VaultName:                       "vAuLtVaLuE",
+				ReplicationProtectionIntentName: "rEpLiCaTiOnPrOtEcTiOnInTeNtVaLuE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEcOvErYsErViCeS/vAuLtS/rEsOuRcEvAlUe/rEpLiCaTiOnPrOtEcTiOnInTeNtS/iNtEnToBjEcTvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEcOvErYsErViCeS/vAuLtS/vAuLtVaLuE/rEpLiCaTiOnPrOtEcTiOnInTeNtS/rEpLiCaTiOnPrOtEcTiOnInTeNtVaLuE/extra",
 			Error: true,
 		},
 	}
@@ -297,12 +297,12 @@ func TestParseReplicationProtectionIntentIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.ResourceName != v.Expected.ResourceName {
-			t.Fatalf("Expected %q but got %q for ResourceName", v.Expected.ResourceName, actual.ResourceName)
+		if actual.VaultName != v.Expected.VaultName {
+			t.Fatalf("Expected %q but got %q for VaultName", v.Expected.VaultName, actual.VaultName)
 		}
 
-		if actual.IntentObjectName != v.Expected.IntentObjectName {
-			t.Fatalf("Expected %q but got %q for IntentObjectName", v.Expected.IntentObjectName, actual.IntentObjectName)
+		if actual.ReplicationProtectionIntentName != v.Expected.ReplicationProtectionIntentName {
+			t.Fatalf("Expected %q but got %q for ReplicationProtectionIntentName", v.Expected.ReplicationProtectionIntentName, actual.ReplicationProtectionIntentName)
 		}
 
 	}

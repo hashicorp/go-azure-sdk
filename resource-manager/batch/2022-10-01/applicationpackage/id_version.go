@@ -13,17 +13,17 @@ var _ resourceids.ResourceId = VersionId{}
 type VersionId struct {
 	SubscriptionId    string
 	ResourceGroupName string
-	AccountName       string
+	BatchAccountName  string
 	ApplicationName   string
 	VersionName       string
 }
 
 // NewVersionID returns a new VersionId struct
-func NewVersionID(subscriptionId string, resourceGroupName string, accountName string, applicationName string, versionName string) VersionId {
+func NewVersionID(subscriptionId string, resourceGroupName string, batchAccountName string, applicationName string, versionName string) VersionId {
 	return VersionId{
 		SubscriptionId:    subscriptionId,
 		ResourceGroupName: resourceGroupName,
-		AccountName:       accountName,
+		BatchAccountName:  batchAccountName,
 		ApplicationName:   applicationName,
 		VersionName:       versionName,
 	}
@@ -48,8 +48,8 @@ func ParseVersionID(input string) (*VersionId, error) {
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.AccountName, ok = parsed.Parsed["accountName"]; !ok {
-		return nil, fmt.Errorf("the segment 'accountName' was not found in the resource id %q", input)
+	if id.BatchAccountName, ok = parsed.Parsed["batchAccountName"]; !ok {
+		return nil, fmt.Errorf("the segment 'batchAccountName' was not found in the resource id %q", input)
 	}
 
 	if id.ApplicationName, ok = parsed.Parsed["applicationName"]; !ok {
@@ -83,8 +83,8 @@ func ParseVersionIDInsensitively(input string) (*VersionId, error) {
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.AccountName, ok = parsed.Parsed["accountName"]; !ok {
-		return nil, fmt.Errorf("the segment 'accountName' was not found in the resource id %q", input)
+	if id.BatchAccountName, ok = parsed.Parsed["batchAccountName"]; !ok {
+		return nil, fmt.Errorf("the segment 'batchAccountName' was not found in the resource id %q", input)
 	}
 
 	if id.ApplicationName, ok = parsed.Parsed["applicationName"]; !ok {
@@ -116,7 +116,7 @@ func ValidateVersionID(input interface{}, key string) (warnings []string, errors
 // ID returns the formatted Version ID
 func (id VersionId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.Batch/batchAccounts/%s/applications/%s/versions/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.AccountName, id.ApplicationName, id.VersionName)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.BatchAccountName, id.ApplicationName, id.VersionName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Version ID
@@ -129,7 +129,7 @@ func (id VersionId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftBatch", "Microsoft.Batch", "Microsoft.Batch"),
 		resourceids.StaticSegment("staticBatchAccounts", "batchAccounts", "batchAccounts"),
-		resourceids.UserSpecifiedSegment("accountName", "accountValue"),
+		resourceids.UserSpecifiedSegment("batchAccountName", "batchAccountValue"),
 		resourceids.StaticSegment("staticApplications", "applications", "applications"),
 		resourceids.UserSpecifiedSegment("applicationName", "applicationValue"),
 		resourceids.StaticSegment("staticVersions", "versions", "versions"),
@@ -142,7 +142,7 @@ func (id VersionId) String() string {
 	components := []string{
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
-		fmt.Sprintf("Account Name: %q", id.AccountName),
+		fmt.Sprintf("Batch Account Name: %q", id.BatchAccountName),
 		fmt.Sprintf("Application Name: %q", id.ApplicationName),
 		fmt.Sprintf("Version Name: %q", id.VersionName),
 	}

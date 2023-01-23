@@ -9,24 +9,24 @@ import (
 var _ resourceids.ResourceId = CommunityGalleryId{}
 
 func TestNewCommunityGalleryID(t *testing.T) {
-	id := NewCommunityGalleryID("12345678-1234-9876-4563-123456789012", "locationValue", "publicGalleryValue")
+	id := NewCommunityGalleryID("12345678-1234-9876-4563-123456789012", "locationValue", "communityGalleryValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
 	}
 
-	if id.Location != "locationValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'Location'", id.Location, "locationValue")
+	if id.LocationName != "locationValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'LocationName'", id.LocationName, "locationValue")
 	}
 
-	if id.PublicGalleryName != "publicGalleryValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'PublicGalleryName'", id.PublicGalleryName, "publicGalleryValue")
+	if id.CommunityGalleryName != "communityGalleryValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'CommunityGalleryName'", id.CommunityGalleryName, "communityGalleryValue")
 	}
 }
 
 func TestFormatCommunityGalleryID(t *testing.T) {
-	actual := NewCommunityGalleryID("12345678-1234-9876-4563-123456789012", "locationValue", "publicGalleryValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationValue/communityGalleries/publicGalleryValue"
+	actual := NewCommunityGalleryID("12345678-1234-9876-4563-123456789012", "locationValue", "communityGalleryValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationValue/communityGalleries/communityGalleryValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -80,16 +80,16 @@ func TestParseCommunityGalleryID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationValue/communityGalleries/publicGalleryValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationValue/communityGalleries/communityGalleryValue",
 			Expected: &CommunityGalleryId{
-				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				Location:          "locationValue",
-				PublicGalleryName: "publicGalleryValue",
+				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
+				LocationName:         "locationValue",
+				CommunityGalleryName: "communityGalleryValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationValue/communityGalleries/publicGalleryValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationValue/communityGalleries/communityGalleryValue/extra",
 			Error: true,
 		},
 	}
@@ -112,12 +112,12 @@ func TestParseCommunityGalleryID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for SubscriptionId", v.Expected.SubscriptionId, actual.SubscriptionId)
 		}
 
-		if actual.Location != v.Expected.Location {
-			t.Fatalf("Expected %q but got %q for Location", v.Expected.Location, actual.Location)
+		if actual.LocationName != v.Expected.LocationName {
+			t.Fatalf("Expected %q but got %q for LocationName", v.Expected.LocationName, actual.LocationName)
 		}
 
-		if actual.PublicGalleryName != v.Expected.PublicGalleryName {
-			t.Fatalf("Expected %q but got %q for PublicGalleryName", v.Expected.PublicGalleryName, actual.PublicGalleryName)
+		if actual.CommunityGalleryName != v.Expected.CommunityGalleryName {
+			t.Fatalf("Expected %q but got %q for CommunityGalleryName", v.Expected.CommunityGalleryName, actual.CommunityGalleryName)
 		}
 
 	}
@@ -206,30 +206,30 @@ func TestParseCommunityGalleryIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationValue/communityGalleries/publicGalleryValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationValue/communityGalleries/communityGalleryValue",
 			Expected: &CommunityGalleryId{
-				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				Location:          "locationValue",
-				PublicGalleryName: "publicGalleryValue",
+				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
+				LocationName:         "locationValue",
+				CommunityGalleryName: "communityGalleryValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationValue/communityGalleries/publicGalleryValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationValue/communityGalleries/communityGalleryValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOmPuTe/lOcAtIoNs/lOcAtIoNvAlUe/cOmMuNiTyGaLlErIeS/pUbLiCgAlLeRyVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOmPuTe/lOcAtIoNs/lOcAtIoNvAlUe/cOmMuNiTyGaLlErIeS/cOmMuNiTyGaLlErYvAlUe",
 			Expected: &CommunityGalleryId{
-				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				Location:          "lOcAtIoNvAlUe",
-				PublicGalleryName: "pUbLiCgAlLeRyVaLuE",
+				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
+				LocationName:         "lOcAtIoNvAlUe",
+				CommunityGalleryName: "cOmMuNiTyGaLlErYvAlUe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOmPuTe/lOcAtIoNs/lOcAtIoNvAlUe/cOmMuNiTyGaLlErIeS/pUbLiCgAlLeRyVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOmPuTe/lOcAtIoNs/lOcAtIoNvAlUe/cOmMuNiTyGaLlErIeS/cOmMuNiTyGaLlErYvAlUe/extra",
 			Error: true,
 		},
 	}
@@ -252,12 +252,12 @@ func TestParseCommunityGalleryIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for SubscriptionId", v.Expected.SubscriptionId, actual.SubscriptionId)
 		}
 
-		if actual.Location != v.Expected.Location {
-			t.Fatalf("Expected %q but got %q for Location", v.Expected.Location, actual.Location)
+		if actual.LocationName != v.Expected.LocationName {
+			t.Fatalf("Expected %q but got %q for LocationName", v.Expected.LocationName, actual.LocationName)
 		}
 
-		if actual.PublicGalleryName != v.Expected.PublicGalleryName {
-			t.Fatalf("Expected %q but got %q for PublicGalleryName", v.Expected.PublicGalleryName, actual.PublicGalleryName)
+		if actual.CommunityGalleryName != v.Expected.CommunityGalleryName {
+			t.Fatalf("Expected %q but got %q for CommunityGalleryName", v.Expected.CommunityGalleryName, actual.CommunityGalleryName)
 		}
 
 	}

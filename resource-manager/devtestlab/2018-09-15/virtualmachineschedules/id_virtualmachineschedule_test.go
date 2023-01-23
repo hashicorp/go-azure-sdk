@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = VirtualMachineScheduleId{}
 
 func TestNewVirtualMachineScheduleID(t *testing.T) {
-	id := NewVirtualMachineScheduleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "virtualMachineValue", "nameValue")
+	id := NewVirtualMachineScheduleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "virtualMachineValue", "scheduleValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -27,14 +27,14 @@ func TestNewVirtualMachineScheduleID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'VirtualMachineName'", id.VirtualMachineName, "virtualMachineValue")
 	}
 
-	if id.Name != "nameValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'Name'", id.Name, "nameValue")
+	if id.ScheduleName != "scheduleValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'ScheduleName'", id.ScheduleName, "scheduleValue")
 	}
 }
 
 func TestFormatVirtualMachineScheduleID(t *testing.T) {
-	actual := NewVirtualMachineScheduleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "virtualMachineValue", "nameValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labValue/virtualMachines/virtualMachineValue/schedules/nameValue"
+	actual := NewVirtualMachineScheduleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "virtualMachineValue", "scheduleValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labValue/virtualMachines/virtualMachineValue/schedules/scheduleValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -108,18 +108,18 @@ func TestParseVirtualMachineScheduleID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labValue/virtualMachines/virtualMachineValue/schedules/nameValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labValue/virtualMachines/virtualMachineValue/schedules/scheduleValue",
 			Expected: &VirtualMachineScheduleId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "example-resource-group",
 				LabName:            "labValue",
 				VirtualMachineName: "virtualMachineValue",
-				Name:               "nameValue",
+				ScheduleName:       "scheduleValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labValue/virtualMachines/virtualMachineValue/schedules/nameValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labValue/virtualMachines/virtualMachineValue/schedules/scheduleValue/extra",
 			Error: true,
 		},
 	}
@@ -154,8 +154,8 @@ func TestParseVirtualMachineScheduleID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for VirtualMachineName", v.Expected.VirtualMachineName, actual.VirtualMachineName)
 		}
 
-		if actual.Name != v.Expected.Name {
-			t.Fatalf("Expected %q but got %q for Name", v.Expected.Name, actual.Name)
+		if actual.ScheduleName != v.Expected.ScheduleName {
+			t.Fatalf("Expected %q but got %q for ScheduleName", v.Expected.ScheduleName, actual.ScheduleName)
 		}
 
 	}
@@ -284,34 +284,34 @@ func TestParseVirtualMachineScheduleIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labValue/virtualMachines/virtualMachineValue/schedules/nameValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labValue/virtualMachines/virtualMachineValue/schedules/scheduleValue",
 			Expected: &VirtualMachineScheduleId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "example-resource-group",
 				LabName:            "labValue",
 				VirtualMachineName: "virtualMachineValue",
-				Name:               "nameValue",
+				ScheduleName:       "scheduleValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labValue/virtualMachines/virtualMachineValue/schedules/nameValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labValue/virtualMachines/virtualMachineValue/schedules/scheduleValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvTeStLaB/lAbS/lAbVaLuE/vIrTuAlMaChInEs/vIrTuAlMaChInEvAlUe/sChEdUlEs/nAmEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvTeStLaB/lAbS/lAbVaLuE/vIrTuAlMaChInEs/vIrTuAlMaChInEvAlUe/sChEdUlEs/sChEdUlEvAlUe",
 			Expected: &VirtualMachineScheduleId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "eXaMpLe-rEsOuRcE-GrOuP",
 				LabName:            "lAbVaLuE",
 				VirtualMachineName: "vIrTuAlMaChInEvAlUe",
-				Name:               "nAmEvAlUe",
+				ScheduleName:       "sChEdUlEvAlUe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvTeStLaB/lAbS/lAbVaLuE/vIrTuAlMaChInEs/vIrTuAlMaChInEvAlUe/sChEdUlEs/nAmEvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvTeStLaB/lAbS/lAbVaLuE/vIrTuAlMaChInEs/vIrTuAlMaChInEvAlUe/sChEdUlEs/sChEdUlEvAlUe/extra",
 			Error: true,
 		},
 	}
@@ -346,8 +346,8 @@ func TestParseVirtualMachineScheduleIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for VirtualMachineName", v.Expected.VirtualMachineName, actual.VirtualMachineName)
 		}
 
-		if actual.Name != v.Expected.Name {
-			t.Fatalf("Expected %q but got %q for Name", v.Expected.Name, actual.Name)
+		if actual.ScheduleName != v.Expected.ScheduleName {
+			t.Fatalf("Expected %q but got %q for ScheduleName", v.Expected.ScheduleName, actual.ScheduleName)
 		}
 
 	}

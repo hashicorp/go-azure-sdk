@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = DisasterRecoveryConfigAuthorizationRuleId{}
 
 func TestNewDisasterRecoveryConfigAuthorizationRuleID(t *testing.T) {
-	id := NewDisasterRecoveryConfigAuthorizationRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceValue", "aliasValue", "authorizationRuleValue")
+	id := NewDisasterRecoveryConfigAuthorizationRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceValue", "disasterRecoveryConfigValue", "authorizationRuleValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -23,8 +23,8 @@ func TestNewDisasterRecoveryConfigAuthorizationRuleID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'NamespaceName'", id.NamespaceName, "namespaceValue")
 	}
 
-	if id.Alias != "aliasValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'Alias'", id.Alias, "aliasValue")
+	if id.DisasterRecoveryConfigName != "disasterRecoveryConfigValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'DisasterRecoveryConfigName'", id.DisasterRecoveryConfigName, "disasterRecoveryConfigValue")
 	}
 
 	if id.AuthorizationRuleName != "authorizationRuleValue" {
@@ -33,8 +33,8 @@ func TestNewDisasterRecoveryConfigAuthorizationRuleID(t *testing.T) {
 }
 
 func TestFormatDisasterRecoveryConfigAuthorizationRuleID(t *testing.T) {
-	actual := NewDisasterRecoveryConfigAuthorizationRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceValue", "aliasValue", "authorizationRuleValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventHub/namespaces/namespaceValue/disasterRecoveryConfigs/aliasValue/authorizationRules/authorizationRuleValue"
+	actual := NewDisasterRecoveryConfigAuthorizationRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceValue", "disasterRecoveryConfigValue", "authorizationRuleValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventHub/namespaces/namespaceValue/disasterRecoveryConfigs/disasterRecoveryConfigValue/authorizationRules/authorizationRuleValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -98,28 +98,28 @@ func TestParseDisasterRecoveryConfigAuthorizationRuleID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventHub/namespaces/namespaceValue/disasterRecoveryConfigs/aliasValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventHub/namespaces/namespaceValue/disasterRecoveryConfigs/disasterRecoveryConfigValue",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventHub/namespaces/namespaceValue/disasterRecoveryConfigs/aliasValue/authorizationRules",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventHub/namespaces/namespaceValue/disasterRecoveryConfigs/disasterRecoveryConfigValue/authorizationRules",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventHub/namespaces/namespaceValue/disasterRecoveryConfigs/aliasValue/authorizationRules/authorizationRuleValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventHub/namespaces/namespaceValue/disasterRecoveryConfigs/disasterRecoveryConfigValue/authorizationRules/authorizationRuleValue",
 			Expected: &DisasterRecoveryConfigAuthorizationRuleId{
-				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName:     "example-resource-group",
-				NamespaceName:         "namespaceValue",
-				Alias:                 "aliasValue",
-				AuthorizationRuleName: "authorizationRuleValue",
+				SubscriptionId:             "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:          "example-resource-group",
+				NamespaceName:              "namespaceValue",
+				DisasterRecoveryConfigName: "disasterRecoveryConfigValue",
+				AuthorizationRuleName:      "authorizationRuleValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventHub/namespaces/namespaceValue/disasterRecoveryConfigs/aliasValue/authorizationRules/authorizationRuleValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventHub/namespaces/namespaceValue/disasterRecoveryConfigs/disasterRecoveryConfigValue/authorizationRules/authorizationRuleValue/extra",
 			Error: true,
 		},
 	}
@@ -150,8 +150,8 @@ func TestParseDisasterRecoveryConfigAuthorizationRuleID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for NamespaceName", v.Expected.NamespaceName, actual.NamespaceName)
 		}
 
-		if actual.Alias != v.Expected.Alias {
-			t.Fatalf("Expected %q but got %q for Alias", v.Expected.Alias, actual.Alias)
+		if actual.DisasterRecoveryConfigName != v.Expected.DisasterRecoveryConfigName {
+			t.Fatalf("Expected %q but got %q for DisasterRecoveryConfigName", v.Expected.DisasterRecoveryConfigName, actual.DisasterRecoveryConfigName)
 		}
 
 		if actual.AuthorizationRuleName != v.Expected.AuthorizationRuleName {
@@ -264,54 +264,54 @@ func TestParseDisasterRecoveryConfigAuthorizationRuleIDInsensitively(t *testing.
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventHub/namespaces/namespaceValue/disasterRecoveryConfigs/aliasValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventHub/namespaces/namespaceValue/disasterRecoveryConfigs/disasterRecoveryConfigValue",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eVeNtHuB/nAmEsPaCeS/nAmEsPaCeVaLuE/dIsAsTeRrEcOvErYcOnFiGs/aLiAsVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eVeNtHuB/nAmEsPaCeS/nAmEsPaCeVaLuE/dIsAsTeRrEcOvErYcOnFiGs/dIsAsTeRrEcOvErYcOnFiGvAlUe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventHub/namespaces/namespaceValue/disasterRecoveryConfigs/aliasValue/authorizationRules",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventHub/namespaces/namespaceValue/disasterRecoveryConfigs/disasterRecoveryConfigValue/authorizationRules",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eVeNtHuB/nAmEsPaCeS/nAmEsPaCeVaLuE/dIsAsTeRrEcOvErYcOnFiGs/aLiAsVaLuE/aUtHoRiZaTiOnRuLeS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eVeNtHuB/nAmEsPaCeS/nAmEsPaCeVaLuE/dIsAsTeRrEcOvErYcOnFiGs/dIsAsTeRrEcOvErYcOnFiGvAlUe/aUtHoRiZaTiOnRuLeS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventHub/namespaces/namespaceValue/disasterRecoveryConfigs/aliasValue/authorizationRules/authorizationRuleValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventHub/namespaces/namespaceValue/disasterRecoveryConfigs/disasterRecoveryConfigValue/authorizationRules/authorizationRuleValue",
 			Expected: &DisasterRecoveryConfigAuthorizationRuleId{
-				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName:     "example-resource-group",
-				NamespaceName:         "namespaceValue",
-				Alias:                 "aliasValue",
-				AuthorizationRuleName: "authorizationRuleValue",
+				SubscriptionId:             "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:          "example-resource-group",
+				NamespaceName:              "namespaceValue",
+				DisasterRecoveryConfigName: "disasterRecoveryConfigValue",
+				AuthorizationRuleName:      "authorizationRuleValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventHub/namespaces/namespaceValue/disasterRecoveryConfigs/aliasValue/authorizationRules/authorizationRuleValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventHub/namespaces/namespaceValue/disasterRecoveryConfigs/disasterRecoveryConfigValue/authorizationRules/authorizationRuleValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eVeNtHuB/nAmEsPaCeS/nAmEsPaCeVaLuE/dIsAsTeRrEcOvErYcOnFiGs/aLiAsVaLuE/aUtHoRiZaTiOnRuLeS/aUtHoRiZaTiOnRuLeVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eVeNtHuB/nAmEsPaCeS/nAmEsPaCeVaLuE/dIsAsTeRrEcOvErYcOnFiGs/dIsAsTeRrEcOvErYcOnFiGvAlUe/aUtHoRiZaTiOnRuLeS/aUtHoRiZaTiOnRuLeVaLuE",
 			Expected: &DisasterRecoveryConfigAuthorizationRuleId{
-				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName:     "eXaMpLe-rEsOuRcE-GrOuP",
-				NamespaceName:         "nAmEsPaCeVaLuE",
-				Alias:                 "aLiAsVaLuE",
-				AuthorizationRuleName: "aUtHoRiZaTiOnRuLeVaLuE",
+				SubscriptionId:             "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:          "eXaMpLe-rEsOuRcE-GrOuP",
+				NamespaceName:              "nAmEsPaCeVaLuE",
+				DisasterRecoveryConfigName: "dIsAsTeRrEcOvErYcOnFiGvAlUe",
+				AuthorizationRuleName:      "aUtHoRiZaTiOnRuLeVaLuE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eVeNtHuB/nAmEsPaCeS/nAmEsPaCeVaLuE/dIsAsTeRrEcOvErYcOnFiGs/aLiAsVaLuE/aUtHoRiZaTiOnRuLeS/aUtHoRiZaTiOnRuLeVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.eVeNtHuB/nAmEsPaCeS/nAmEsPaCeVaLuE/dIsAsTeRrEcOvErYcOnFiGs/dIsAsTeRrEcOvErYcOnFiGvAlUe/aUtHoRiZaTiOnRuLeS/aUtHoRiZaTiOnRuLeVaLuE/extra",
 			Error: true,
 		},
 	}
@@ -342,8 +342,8 @@ func TestParseDisasterRecoveryConfigAuthorizationRuleIDInsensitively(t *testing.
 			t.Fatalf("Expected %q but got %q for NamespaceName", v.Expected.NamespaceName, actual.NamespaceName)
 		}
 
-		if actual.Alias != v.Expected.Alias {
-			t.Fatalf("Expected %q but got %q for Alias", v.Expected.Alias, actual.Alias)
+		if actual.DisasterRecoveryConfigName != v.Expected.DisasterRecoveryConfigName {
+			t.Fatalf("Expected %q but got %q for DisasterRecoveryConfigName", v.Expected.DisasterRecoveryConfigName, actual.DisasterRecoveryConfigName)
 		}
 
 		if actual.AuthorizationRuleName != v.Expected.AuthorizationRuleName {

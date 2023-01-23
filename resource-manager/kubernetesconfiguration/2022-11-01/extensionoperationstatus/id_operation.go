@@ -13,7 +13,7 @@ var _ resourceids.ResourceId = OperationId{}
 type OperationId struct {
 	SubscriptionId      string
 	ResourceGroupName   string
-	ClusterRp           string
+	ProviderName        string
 	ClusterResourceName string
 	ClusterName         string
 	ExtensionName       string
@@ -21,11 +21,11 @@ type OperationId struct {
 }
 
 // NewOperationID returns a new OperationId struct
-func NewOperationID(subscriptionId string, resourceGroupName string, clusterRp string, clusterResourceName string, clusterName string, extensionName string, operationId string) OperationId {
+func NewOperationID(subscriptionId string, resourceGroupName string, providerName string, clusterResourceName string, clusterName string, extensionName string, operationId string) OperationId {
 	return OperationId{
 		SubscriptionId:      subscriptionId,
 		ResourceGroupName:   resourceGroupName,
-		ClusterRp:           clusterRp,
+		ProviderName:        providerName,
 		ClusterResourceName: clusterResourceName,
 		ClusterName:         clusterName,
 		ExtensionName:       extensionName,
@@ -52,8 +52,8 @@ func ParseOperationID(input string) (*OperationId, error) {
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.ClusterRp, ok = parsed.Parsed["clusterRp"]; !ok {
-		return nil, fmt.Errorf("the segment 'clusterRp' was not found in the resource id %q", input)
+	if id.ProviderName, ok = parsed.Parsed["providerName"]; !ok {
+		return nil, fmt.Errorf("the segment 'providerName' was not found in the resource id %q", input)
 	}
 
 	if id.ClusterResourceName, ok = parsed.Parsed["clusterResourceName"]; !ok {
@@ -95,8 +95,8 @@ func ParseOperationIDInsensitively(input string) (*OperationId, error) {
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.ClusterRp, ok = parsed.Parsed["clusterRp"]; !ok {
-		return nil, fmt.Errorf("the segment 'clusterRp' was not found in the resource id %q", input)
+	if id.ProviderName, ok = parsed.Parsed["providerName"]; !ok {
+		return nil, fmt.Errorf("the segment 'providerName' was not found in the resource id %q", input)
 	}
 
 	if id.ClusterResourceName, ok = parsed.Parsed["clusterResourceName"]; !ok {
@@ -136,7 +136,7 @@ func ValidateOperationID(input interface{}, key string) (warnings []string, erro
 // ID returns the formatted Operation ID
 func (id OperationId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/%s/%s/%s/providers/Microsoft.KubernetesConfiguration/extensions/%s/operations/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.ClusterRp, id.ClusterResourceName, id.ClusterName, id.ExtensionName, id.OperationId)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.ProviderName, id.ClusterResourceName, id.ClusterName, id.ExtensionName, id.OperationId)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Operation ID
@@ -147,7 +147,7 @@ func (id OperationId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticResourceGroups", "resourceGroups", "resourceGroups"),
 		resourceids.ResourceGroupSegment("resourceGroupName", "example-resource-group"),
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
-		resourceids.UserSpecifiedSegment("clusterRp", "clusterRpValue"),
+		resourceids.UserSpecifiedSegment("providerName", "providerValue"),
 		resourceids.UserSpecifiedSegment("clusterResourceName", "clusterResourceValue"),
 		resourceids.UserSpecifiedSegment("clusterName", "clusterValue"),
 		resourceids.StaticSegment("staticProviders2", "providers", "providers"),
@@ -164,7 +164,7 @@ func (id OperationId) String() string {
 	components := []string{
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
-		fmt.Sprintf("Cluster Rp: %q", id.ClusterRp),
+		fmt.Sprintf("Provider Name: %q", id.ProviderName),
 		fmt.Sprintf("Cluster Resource Name: %q", id.ClusterResourceName),
 		fmt.Sprintf("Cluster Name: %q", id.ClusterName),
 		fmt.Sprintf("Extension Name: %q", id.ExtensionName),

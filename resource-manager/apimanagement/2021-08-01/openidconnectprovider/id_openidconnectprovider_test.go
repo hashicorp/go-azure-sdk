@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = OpenidConnectProviderId{}
 
 func TestNewOpenidConnectProviderID(t *testing.T) {
-	id := NewOpenidConnectProviderID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "opidValue")
+	id := NewOpenidConnectProviderID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "openidConnectProviderValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -23,14 +23,14 @@ func TestNewOpenidConnectProviderID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ServiceName'", id.ServiceName, "serviceValue")
 	}
 
-	if id.Opid != "opidValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'Opid'", id.Opid, "opidValue")
+	if id.OpenidConnectProviderName != "openidConnectProviderValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'OpenidConnectProviderName'", id.OpenidConnectProviderName, "openidConnectProviderValue")
 	}
 }
 
 func TestFormatOpenidConnectProviderID(t *testing.T) {
-	actual := NewOpenidConnectProviderID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "opidValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceValue/openidConnectProviders/opidValue"
+	actual := NewOpenidConnectProviderID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "openidConnectProviderValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceValue/openidConnectProviders/openidConnectProviderValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -94,17 +94,17 @@ func TestParseOpenidConnectProviderID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceValue/openidConnectProviders/opidValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceValue/openidConnectProviders/openidConnectProviderValue",
 			Expected: &OpenidConnectProviderId{
-				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName: "example-resource-group",
-				ServiceName:       "serviceValue",
-				Opid:              "opidValue",
+				SubscriptionId:            "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:         "example-resource-group",
+				ServiceName:               "serviceValue",
+				OpenidConnectProviderName: "openidConnectProviderValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceValue/openidConnectProviders/opidValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceValue/openidConnectProviders/openidConnectProviderValue/extra",
 			Error: true,
 		},
 	}
@@ -135,8 +135,8 @@ func TestParseOpenidConnectProviderID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ServiceName", v.Expected.ServiceName, actual.ServiceName)
 		}
 
-		if actual.Opid != v.Expected.Opid {
-			t.Fatalf("Expected %q but got %q for Opid", v.Expected.Opid, actual.Opid)
+		if actual.OpenidConnectProviderName != v.Expected.OpenidConnectProviderName {
+			t.Fatalf("Expected %q but got %q for OpenidConnectProviderName", v.Expected.OpenidConnectProviderName, actual.OpenidConnectProviderName)
 		}
 
 	}
@@ -245,32 +245,32 @@ func TestParseOpenidConnectProviderIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceValue/openidConnectProviders/opidValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceValue/openidConnectProviders/openidConnectProviderValue",
 			Expected: &OpenidConnectProviderId{
-				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName: "example-resource-group",
-				ServiceName:       "serviceValue",
-				Opid:              "opidValue",
+				SubscriptionId:            "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:         "example-resource-group",
+				ServiceName:               "serviceValue",
+				OpenidConnectProviderName: "openidConnectProviderValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceValue/openidConnectProviders/opidValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceValue/openidConnectProviders/openidConnectProviderValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPiMaNaGeMeNt/sErViCe/sErViCeVaLuE/oPeNiDcOnNeCtPrOvIdErS/oPiDvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPiMaNaGeMeNt/sErViCe/sErViCeVaLuE/oPeNiDcOnNeCtPrOvIdErS/oPeNiDcOnNeCtPrOvIdErVaLuE",
 			Expected: &OpenidConnectProviderId{
-				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				ServiceName:       "sErViCeVaLuE",
-				Opid:              "oPiDvAlUe",
+				SubscriptionId:            "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:         "eXaMpLe-rEsOuRcE-GrOuP",
+				ServiceName:               "sErViCeVaLuE",
+				OpenidConnectProviderName: "oPeNiDcOnNeCtPrOvIdErVaLuE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPiMaNaGeMeNt/sErViCe/sErViCeVaLuE/oPeNiDcOnNeCtPrOvIdErS/oPiDvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPiMaNaGeMeNt/sErViCe/sErViCeVaLuE/oPeNiDcOnNeCtPrOvIdErS/oPeNiDcOnNeCtPrOvIdErVaLuE/extra",
 			Error: true,
 		},
 	}
@@ -301,8 +301,8 @@ func TestParseOpenidConnectProviderIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ServiceName", v.Expected.ServiceName, actual.ServiceName)
 		}
 
-		if actual.Opid != v.Expected.Opid {
-			t.Fatalf("Expected %q but got %q for Opid", v.Expected.Opid, actual.Opid)
+		if actual.OpenidConnectProviderName != v.Expected.OpenidConnectProviderName {
+			t.Fatalf("Expected %q but got %q for OpenidConnectProviderName", v.Expected.OpenidConnectProviderName, actual.OpenidConnectProviderName)
 		}
 
 	}

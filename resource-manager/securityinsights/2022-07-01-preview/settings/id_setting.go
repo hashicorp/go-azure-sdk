@@ -14,16 +14,16 @@ type SettingId struct {
 	SubscriptionId    string
 	ResourceGroupName string
 	WorkspaceName     string
-	SettingsName      string
+	SettingName       string
 }
 
 // NewSettingID returns a new SettingId struct
-func NewSettingID(subscriptionId string, resourceGroupName string, workspaceName string, settingsName string) SettingId {
+func NewSettingID(subscriptionId string, resourceGroupName string, workspaceName string, settingName string) SettingId {
 	return SettingId{
 		SubscriptionId:    subscriptionId,
 		ResourceGroupName: resourceGroupName,
 		WorkspaceName:     workspaceName,
-		SettingsName:      settingsName,
+		SettingName:       settingName,
 	}
 }
 
@@ -50,8 +50,8 @@ func ParseSettingID(input string) (*SettingId, error) {
 		return nil, fmt.Errorf("the segment 'workspaceName' was not found in the resource id %q", input)
 	}
 
-	if id.SettingsName, ok = parsed.Parsed["settingsName"]; !ok {
-		return nil, fmt.Errorf("the segment 'settingsName' was not found in the resource id %q", input)
+	if id.SettingName, ok = parsed.Parsed["settingName"]; !ok {
+		return nil, fmt.Errorf("the segment 'settingName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -81,8 +81,8 @@ func ParseSettingIDInsensitively(input string) (*SettingId, error) {
 		return nil, fmt.Errorf("the segment 'workspaceName' was not found in the resource id %q", input)
 	}
 
-	if id.SettingsName, ok = parsed.Parsed["settingsName"]; !ok {
-		return nil, fmt.Errorf("the segment 'settingsName' was not found in the resource id %q", input)
+	if id.SettingName, ok = parsed.Parsed["settingName"]; !ok {
+		return nil, fmt.Errorf("the segment 'settingName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -106,7 +106,7 @@ func ValidateSettingID(input interface{}, key string) (warnings []string, errors
 // ID returns the formatted Setting ID
 func (id SettingId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.OperationalInsights/workspaces/%s/providers/Microsoft.SecurityInsights/settings/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.WorkspaceName, id.SettingsName)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.WorkspaceName, id.SettingName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Setting ID
@@ -123,7 +123,7 @@ func (id SettingId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders2", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftSecurityInsights", "Microsoft.SecurityInsights", "Microsoft.SecurityInsights"),
 		resourceids.StaticSegment("staticSettings", "settings", "settings"),
-		resourceids.UserSpecifiedSegment("settingsName", "settingsValue"),
+		resourceids.UserSpecifiedSegment("settingName", "settingValue"),
 	}
 }
 
@@ -133,7 +133,7 @@ func (id SettingId) String() string {
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
 		fmt.Sprintf("Workspace Name: %q", id.WorkspaceName),
-		fmt.Sprintf("Settings Name: %q", id.SettingsName),
+		fmt.Sprintf("Setting Name: %q", id.SettingName),
 	}
 	return fmt.Sprintf("Setting (%s)", strings.Join(components, "\n"))
 }

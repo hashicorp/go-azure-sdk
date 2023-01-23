@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = WcfRelayId{}
 
 func TestNewWcfRelayID(t *testing.T) {
-	id := NewWcfRelayID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceValue", "relayValue")
+	id := NewWcfRelayID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceValue", "wcfRelayValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -23,14 +23,14 @@ func TestNewWcfRelayID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'NamespaceName'", id.NamespaceName, "namespaceValue")
 	}
 
-	if id.RelayName != "relayValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'RelayName'", id.RelayName, "relayValue")
+	if id.WcfRelayName != "wcfRelayValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'WcfRelayName'", id.WcfRelayName, "wcfRelayValue")
 	}
 }
 
 func TestFormatWcfRelayID(t *testing.T) {
-	actual := NewWcfRelayID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceValue", "relayValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Relay/namespaces/namespaceValue/wcfRelays/relayValue"
+	actual := NewWcfRelayID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceValue", "wcfRelayValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Relay/namespaces/namespaceValue/wcfRelays/wcfRelayValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -94,17 +94,17 @@ func TestParseWcfRelayID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Relay/namespaces/namespaceValue/wcfRelays/relayValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Relay/namespaces/namespaceValue/wcfRelays/wcfRelayValue",
 			Expected: &WcfRelayId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				NamespaceName:     "namespaceValue",
-				RelayName:         "relayValue",
+				WcfRelayName:      "wcfRelayValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Relay/namespaces/namespaceValue/wcfRelays/relayValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Relay/namespaces/namespaceValue/wcfRelays/wcfRelayValue/extra",
 			Error: true,
 		},
 	}
@@ -135,8 +135,8 @@ func TestParseWcfRelayID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for NamespaceName", v.Expected.NamespaceName, actual.NamespaceName)
 		}
 
-		if actual.RelayName != v.Expected.RelayName {
-			t.Fatalf("Expected %q but got %q for RelayName", v.Expected.RelayName, actual.RelayName)
+		if actual.WcfRelayName != v.Expected.WcfRelayName {
+			t.Fatalf("Expected %q but got %q for WcfRelayName", v.Expected.WcfRelayName, actual.WcfRelayName)
 		}
 
 	}
@@ -245,32 +245,32 @@ func TestParseWcfRelayIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Relay/namespaces/namespaceValue/wcfRelays/relayValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Relay/namespaces/namespaceValue/wcfRelays/wcfRelayValue",
 			Expected: &WcfRelayId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				NamespaceName:     "namespaceValue",
-				RelayName:         "relayValue",
+				WcfRelayName:      "wcfRelayValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Relay/namespaces/namespaceValue/wcfRelays/relayValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Relay/namespaces/namespaceValue/wcfRelays/wcfRelayValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rElAy/nAmEsPaCeS/nAmEsPaCeVaLuE/wCfReLaYs/rElAyVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rElAy/nAmEsPaCeS/nAmEsPaCeVaLuE/wCfReLaYs/wCfReLaYvAlUe",
 			Expected: &WcfRelayId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
 				NamespaceName:     "nAmEsPaCeVaLuE",
-				RelayName:         "rElAyVaLuE",
+				WcfRelayName:      "wCfReLaYvAlUe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rElAy/nAmEsPaCeS/nAmEsPaCeVaLuE/wCfReLaYs/rElAyVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rElAy/nAmEsPaCeS/nAmEsPaCeVaLuE/wCfReLaYs/wCfReLaYvAlUe/extra",
 			Error: true,
 		},
 	}
@@ -301,8 +301,8 @@ func TestParseWcfRelayIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for NamespaceName", v.Expected.NamespaceName, actual.NamespaceName)
 		}
 
-		if actual.RelayName != v.Expected.RelayName {
-			t.Fatalf("Expected %q but got %q for RelayName", v.Expected.RelayName, actual.RelayName)
+		if actual.WcfRelayName != v.Expected.WcfRelayName {
+			t.Fatalf("Expected %q but got %q for WcfRelayName", v.Expected.WcfRelayName, actual.WcfRelayName)
 		}
 
 	}

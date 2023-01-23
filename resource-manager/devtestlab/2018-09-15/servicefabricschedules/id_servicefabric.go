@@ -15,17 +15,17 @@ type ServiceFabricId struct {
 	ResourceGroupName string
 	LabName           string
 	UserName          string
-	Name              string
+	ServiceFabricName string
 }
 
 // NewServiceFabricID returns a new ServiceFabricId struct
-func NewServiceFabricID(subscriptionId string, resourceGroupName string, labName string, userName string, name string) ServiceFabricId {
+func NewServiceFabricID(subscriptionId string, resourceGroupName string, labName string, userName string, serviceFabricName string) ServiceFabricId {
 	return ServiceFabricId{
 		SubscriptionId:    subscriptionId,
 		ResourceGroupName: resourceGroupName,
 		LabName:           labName,
 		UserName:          userName,
-		Name:              name,
+		ServiceFabricName: serviceFabricName,
 	}
 }
 
@@ -56,8 +56,8 @@ func ParseServiceFabricID(input string) (*ServiceFabricId, error) {
 		return nil, fmt.Errorf("the segment 'userName' was not found in the resource id %q", input)
 	}
 
-	if id.Name, ok = parsed.Parsed["name"]; !ok {
-		return nil, fmt.Errorf("the segment 'name' was not found in the resource id %q", input)
+	if id.ServiceFabricName, ok = parsed.Parsed["serviceFabricName"]; !ok {
+		return nil, fmt.Errorf("the segment 'serviceFabricName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -91,8 +91,8 @@ func ParseServiceFabricIDInsensitively(input string) (*ServiceFabricId, error) {
 		return nil, fmt.Errorf("the segment 'userName' was not found in the resource id %q", input)
 	}
 
-	if id.Name, ok = parsed.Parsed["name"]; !ok {
-		return nil, fmt.Errorf("the segment 'name' was not found in the resource id %q", input)
+	if id.ServiceFabricName, ok = parsed.Parsed["serviceFabricName"]; !ok {
+		return nil, fmt.Errorf("the segment 'serviceFabricName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -116,7 +116,7 @@ func ValidateServiceFabricID(input interface{}, key string) (warnings []string, 
 // ID returns the formatted Service Fabric ID
 func (id ServiceFabricId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.DevTestLab/labs/%s/users/%s/serviceFabrics/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.LabName, id.UserName, id.Name)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.LabName, id.UserName, id.ServiceFabricName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Service Fabric ID
@@ -133,7 +133,7 @@ func (id ServiceFabricId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticUsers", "users", "users"),
 		resourceids.UserSpecifiedSegment("userName", "userValue"),
 		resourceids.StaticSegment("staticServiceFabrics", "serviceFabrics", "serviceFabrics"),
-		resourceids.UserSpecifiedSegment("name", "nameValue"),
+		resourceids.UserSpecifiedSegment("serviceFabricName", "serviceFabricValue"),
 	}
 }
 
@@ -144,7 +144,7 @@ func (id ServiceFabricId) String() string {
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
 		fmt.Sprintf("Lab Name: %q", id.LabName),
 		fmt.Sprintf("User Name: %q", id.UserName),
-		fmt.Sprintf("Name: %q", id.Name),
+		fmt.Sprintf("Service Fabric Name: %q", id.ServiceFabricName),
 	}
 	return fmt.Sprintf("Service Fabric (%s)", strings.Join(components, "\n"))
 }

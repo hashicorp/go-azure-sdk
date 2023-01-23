@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := securitymlanalyticssettings.NewSecurityMLAnalyticsSettingID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "settingsResourceValue")
+id := securitymlanalyticssettings.NewSecurityMLAnalyticsSettingID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "securityMLAnalyticsSettingValue")
 
 payload := securitymlanalyticssettings.SecurityMLAnalyticsSetting{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := securitymlanalyticssettings.NewSecurityMLAnalyticsSettingID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "settingsResourceValue")
+id := securitymlanalyticssettings.NewSecurityMLAnalyticsSettingID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "securityMLAnalyticsSettingValue")
 
 read, err := client.SecurityMLAnalyticsSettingsDelete(ctx, id)
 if err != nil {
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := securitymlanalyticssettings.NewSecurityMLAnalyticsSettingID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "settingsResourceValue")
+id := securitymlanalyticssettings.NewSecurityMLAnalyticsSettingID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "securityMLAnalyticsSettingValue")
 
 read, err := client.SecurityMLAnalyticsSettingsGet(ctx, id)
 if err != nil {

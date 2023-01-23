@@ -14,16 +14,16 @@ type ManagedApiId struct {
 	SubscriptionId                    string
 	ResourceGroup                     string
 	IntegrationServiceEnvironmentName string
-	ApiName                           string
+	ManagedApiName                    string
 }
 
 // NewManagedApiID returns a new ManagedApiId struct
-func NewManagedApiID(subscriptionId string, resourceGroup string, integrationServiceEnvironmentName string, apiName string) ManagedApiId {
+func NewManagedApiID(subscriptionId string, resourceGroup string, integrationServiceEnvironmentName string, managedApiName string) ManagedApiId {
 	return ManagedApiId{
 		SubscriptionId:                    subscriptionId,
 		ResourceGroup:                     resourceGroup,
 		IntegrationServiceEnvironmentName: integrationServiceEnvironmentName,
-		ApiName:                           apiName,
+		ManagedApiName:                    managedApiName,
 	}
 }
 
@@ -50,8 +50,8 @@ func ParseManagedApiID(input string) (*ManagedApiId, error) {
 		return nil, fmt.Errorf("the segment 'integrationServiceEnvironmentName' was not found in the resource id %q", input)
 	}
 
-	if id.ApiName, ok = parsed.Parsed["apiName"]; !ok {
-		return nil, fmt.Errorf("the segment 'apiName' was not found in the resource id %q", input)
+	if id.ManagedApiName, ok = parsed.Parsed["managedApiName"]; !ok {
+		return nil, fmt.Errorf("the segment 'managedApiName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -81,8 +81,8 @@ func ParseManagedApiIDInsensitively(input string) (*ManagedApiId, error) {
 		return nil, fmt.Errorf("the segment 'integrationServiceEnvironmentName' was not found in the resource id %q", input)
 	}
 
-	if id.ApiName, ok = parsed.Parsed["apiName"]; !ok {
-		return nil, fmt.Errorf("the segment 'apiName' was not found in the resource id %q", input)
+	if id.ManagedApiName, ok = parsed.Parsed["managedApiName"]; !ok {
+		return nil, fmt.Errorf("the segment 'managedApiName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -106,7 +106,7 @@ func ValidateManagedApiID(input interface{}, key string) (warnings []string, err
 // ID returns the formatted Managed Api ID
 func (id ManagedApiId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.Logic/integrationServiceEnvironments/%s/managedApis/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroup, id.IntegrationServiceEnvironmentName, id.ApiName)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroup, id.IntegrationServiceEnvironmentName, id.ManagedApiName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Managed Api ID
@@ -121,7 +121,7 @@ func (id ManagedApiId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticIntegrationServiceEnvironments", "integrationServiceEnvironments", "integrationServiceEnvironments"),
 		resourceids.UserSpecifiedSegment("integrationServiceEnvironmentName", "integrationServiceEnvironmentValue"),
 		resourceids.StaticSegment("staticManagedApis", "managedApis", "managedApis"),
-		resourceids.UserSpecifiedSegment("apiName", "apiValue"),
+		resourceids.UserSpecifiedSegment("managedApiName", "managedApiValue"),
 	}
 }
 
@@ -131,7 +131,7 @@ func (id ManagedApiId) String() string {
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group: %q", id.ResourceGroup),
 		fmt.Sprintf("Integration Service Environment Name: %q", id.IntegrationServiceEnvironmentName),
-		fmt.Sprintf("Api Name: %q", id.ApiName),
+		fmt.Sprintf("Managed Api Name: %q", id.ManagedApiName),
 	}
 	return fmt.Sprintf("Managed Api (%s)", strings.Join(components, "\n"))
 }

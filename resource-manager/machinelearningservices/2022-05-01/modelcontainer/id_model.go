@@ -14,16 +14,16 @@ type ModelId struct {
 	SubscriptionId    string
 	ResourceGroupName string
 	WorkspaceName     string
-	Name              string
+	ModelName         string
 }
 
 // NewModelID returns a new ModelId struct
-func NewModelID(subscriptionId string, resourceGroupName string, workspaceName string, name string) ModelId {
+func NewModelID(subscriptionId string, resourceGroupName string, workspaceName string, modelName string) ModelId {
 	return ModelId{
 		SubscriptionId:    subscriptionId,
 		ResourceGroupName: resourceGroupName,
 		WorkspaceName:     workspaceName,
-		Name:              name,
+		ModelName:         modelName,
 	}
 }
 
@@ -50,8 +50,8 @@ func ParseModelID(input string) (*ModelId, error) {
 		return nil, fmt.Errorf("the segment 'workspaceName' was not found in the resource id %q", input)
 	}
 
-	if id.Name, ok = parsed.Parsed["name"]; !ok {
-		return nil, fmt.Errorf("the segment 'name' was not found in the resource id %q", input)
+	if id.ModelName, ok = parsed.Parsed["modelName"]; !ok {
+		return nil, fmt.Errorf("the segment 'modelName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -81,8 +81,8 @@ func ParseModelIDInsensitively(input string) (*ModelId, error) {
 		return nil, fmt.Errorf("the segment 'workspaceName' was not found in the resource id %q", input)
 	}
 
-	if id.Name, ok = parsed.Parsed["name"]; !ok {
-		return nil, fmt.Errorf("the segment 'name' was not found in the resource id %q", input)
+	if id.ModelName, ok = parsed.Parsed["modelName"]; !ok {
+		return nil, fmt.Errorf("the segment 'modelName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -106,7 +106,7 @@ func ValidateModelID(input interface{}, key string) (warnings []string, errors [
 // ID returns the formatted Model ID
 func (id ModelId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.MachineLearningServices/workspaces/%s/models/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.WorkspaceName, id.Name)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.WorkspaceName, id.ModelName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Model ID
@@ -121,7 +121,7 @@ func (id ModelId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticWorkspaces", "workspaces", "workspaces"),
 		resourceids.UserSpecifiedSegment("workspaceName", "workspaceValue"),
 		resourceids.StaticSegment("staticModels", "models", "models"),
-		resourceids.UserSpecifiedSegment("name", "nameValue"),
+		resourceids.UserSpecifiedSegment("modelName", "modelValue"),
 	}
 }
 
@@ -131,7 +131,7 @@ func (id ModelId) String() string {
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
 		fmt.Sprintf("Workspace Name: %q", id.WorkspaceName),
-		fmt.Sprintf("Name: %q", id.Name),
+		fmt.Sprintf("Model Name: %q", id.ModelName),
 	}
 	return fmt.Sprintf("Model (%s)", strings.Join(components, "\n"))
 }

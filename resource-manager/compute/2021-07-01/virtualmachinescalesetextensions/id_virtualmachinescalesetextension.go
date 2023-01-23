@@ -14,16 +14,16 @@ type VirtualMachineScaleSetExtensionId struct {
 	SubscriptionId             string
 	ResourceGroupName          string
 	VirtualMachineScaleSetName string
-	VmssExtensionName          string
+	ExtensionName              string
 }
 
 // NewVirtualMachineScaleSetExtensionID returns a new VirtualMachineScaleSetExtensionId struct
-func NewVirtualMachineScaleSetExtensionID(subscriptionId string, resourceGroupName string, virtualMachineScaleSetName string, vmssExtensionName string) VirtualMachineScaleSetExtensionId {
+func NewVirtualMachineScaleSetExtensionID(subscriptionId string, resourceGroupName string, virtualMachineScaleSetName string, extensionName string) VirtualMachineScaleSetExtensionId {
 	return VirtualMachineScaleSetExtensionId{
 		SubscriptionId:             subscriptionId,
 		ResourceGroupName:          resourceGroupName,
 		VirtualMachineScaleSetName: virtualMachineScaleSetName,
-		VmssExtensionName:          vmssExtensionName,
+		ExtensionName:              extensionName,
 	}
 }
 
@@ -50,8 +50,8 @@ func ParseVirtualMachineScaleSetExtensionID(input string) (*VirtualMachineScaleS
 		return nil, fmt.Errorf("the segment 'virtualMachineScaleSetName' was not found in the resource id %q", input)
 	}
 
-	if id.VmssExtensionName, ok = parsed.Parsed["vmssExtensionName"]; !ok {
-		return nil, fmt.Errorf("the segment 'vmssExtensionName' was not found in the resource id %q", input)
+	if id.ExtensionName, ok = parsed.Parsed["extensionName"]; !ok {
+		return nil, fmt.Errorf("the segment 'extensionName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -81,8 +81,8 @@ func ParseVirtualMachineScaleSetExtensionIDInsensitively(input string) (*Virtual
 		return nil, fmt.Errorf("the segment 'virtualMachineScaleSetName' was not found in the resource id %q", input)
 	}
 
-	if id.VmssExtensionName, ok = parsed.Parsed["vmssExtensionName"]; !ok {
-		return nil, fmt.Errorf("the segment 'vmssExtensionName' was not found in the resource id %q", input)
+	if id.ExtensionName, ok = parsed.Parsed["extensionName"]; !ok {
+		return nil, fmt.Errorf("the segment 'extensionName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -106,7 +106,7 @@ func ValidateVirtualMachineScaleSetExtensionID(input interface{}, key string) (w
 // ID returns the formatted Virtual Machine Scale Set Extension ID
 func (id VirtualMachineScaleSetExtensionId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.Compute/virtualMachineScaleSets/%s/extensions/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.VirtualMachineScaleSetName, id.VmssExtensionName)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.VirtualMachineScaleSetName, id.ExtensionName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Virtual Machine Scale Set Extension ID
@@ -121,7 +121,7 @@ func (id VirtualMachineScaleSetExtensionId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticVirtualMachineScaleSets", "virtualMachineScaleSets", "virtualMachineScaleSets"),
 		resourceids.UserSpecifiedSegment("virtualMachineScaleSetName", "virtualMachineScaleSetValue"),
 		resourceids.StaticSegment("staticExtensions", "extensions", "extensions"),
-		resourceids.UserSpecifiedSegment("vmssExtensionName", "vmssExtensionValue"),
+		resourceids.UserSpecifiedSegment("extensionName", "extensionValue"),
 	}
 }
 
@@ -131,7 +131,7 @@ func (id VirtualMachineScaleSetExtensionId) String() string {
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
 		fmt.Sprintf("Virtual Machine Scale Set Name: %q", id.VirtualMachineScaleSetName),
-		fmt.Sprintf("Vmss Extension Name: %q", id.VmssExtensionName),
+		fmt.Sprintf("Extension Name: %q", id.ExtensionName),
 	}
 	return fmt.Sprintf("Virtual Machine Scale Set Extension (%s)", strings.Join(components, "\n"))
 }

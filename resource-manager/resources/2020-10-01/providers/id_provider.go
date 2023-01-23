@@ -11,13 +11,13 @@ var _ resourceids.ResourceId = ProviderId{}
 
 // ProviderId is a struct representing the Resource ID for a Provider
 type ProviderId struct {
-	ResourceProviderNamespace string
+	ProviderName string
 }
 
 // NewProviderID returns a new ProviderId struct
-func NewProviderID(resourceProviderNamespace string) ProviderId {
+func NewProviderID(providerName string) ProviderId {
 	return ProviderId{
-		ResourceProviderNamespace: resourceProviderNamespace,
+		ProviderName: providerName,
 	}
 }
 
@@ -32,8 +32,8 @@ func ParseProviderID(input string) (*ProviderId, error) {
 	var ok bool
 	id := ProviderId{}
 
-	if id.ResourceProviderNamespace, ok = parsed.Parsed["resourceProviderNamespace"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceProviderNamespace' was not found in the resource id %q", input)
+	if id.ProviderName, ok = parsed.Parsed["providerName"]; !ok {
+		return nil, fmt.Errorf("the segment 'providerName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -51,8 +51,8 @@ func ParseProviderIDInsensitively(input string) (*ProviderId, error) {
 	var ok bool
 	id := ProviderId{}
 
-	if id.ResourceProviderNamespace, ok = parsed.Parsed["resourceProviderNamespace"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceProviderNamespace' was not found in the resource id %q", input)
+	if id.ProviderName, ok = parsed.Parsed["providerName"]; !ok {
+		return nil, fmt.Errorf("the segment 'providerName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -76,21 +76,21 @@ func ValidateProviderID(input interface{}, key string) (warnings []string, error
 // ID returns the formatted Provider ID
 func (id ProviderId) ID() string {
 	fmtString := "/providers/%s"
-	return fmt.Sprintf(fmtString, id.ResourceProviderNamespace)
+	return fmt.Sprintf(fmtString, id.ProviderName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Provider ID
 func (id ProviderId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
-		resourceids.UserSpecifiedSegment("resourceProviderNamespace", "resourceProviderNamespaceValue"),
+		resourceids.UserSpecifiedSegment("providerName", "providerValue"),
 	}
 }
 
 // String returns a human-readable description of this Provider ID
 func (id ProviderId) String() string {
 	components := []string{
-		fmt.Sprintf("Resource Provider Namespace: %q", id.ResourceProviderNamespace),
+		fmt.Sprintf("Provider Name: %q", id.ProviderName),
 	}
 	return fmt.Sprintf("Provider (%s)", strings.Join(components, "\n"))
 }

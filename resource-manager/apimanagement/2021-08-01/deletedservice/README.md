@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := deletedservice.NewDeletedServiceID("12345678-1234-9876-4563-123456789012", "locationValue", "serviceValue")
+id := deletedservice.NewDeletedServiceID("12345678-1234-9876-4563-123456789012", "locationValue", "deletedServiceValue")
 
 read, err := client.GetByName(ctx, id)
 if err != nil {
@@ -57,7 +57,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := deletedservice.NewDeletedServiceID("12345678-1234-9876-4563-123456789012", "locationValue", "serviceValue")
+id := deletedservice.NewDeletedServiceID("12345678-1234-9876-4563-123456789012", "locationValue", "deletedServiceValue")
 
 if err := client.PurgeThenPoll(ctx, id); err != nil {
 	// handle the error

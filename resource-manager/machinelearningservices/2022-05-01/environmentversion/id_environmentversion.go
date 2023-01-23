@@ -14,18 +14,18 @@ type EnvironmentVersionId struct {
 	SubscriptionId    string
 	ResourceGroupName string
 	WorkspaceName     string
-	Name              string
-	Version           string
+	EnvironmentName   string
+	VersionName       string
 }
 
 // NewEnvironmentVersionID returns a new EnvironmentVersionId struct
-func NewEnvironmentVersionID(subscriptionId string, resourceGroupName string, workspaceName string, name string, version string) EnvironmentVersionId {
+func NewEnvironmentVersionID(subscriptionId string, resourceGroupName string, workspaceName string, environmentName string, versionName string) EnvironmentVersionId {
 	return EnvironmentVersionId{
 		SubscriptionId:    subscriptionId,
 		ResourceGroupName: resourceGroupName,
 		WorkspaceName:     workspaceName,
-		Name:              name,
-		Version:           version,
+		EnvironmentName:   environmentName,
+		VersionName:       versionName,
 	}
 }
 
@@ -52,12 +52,12 @@ func ParseEnvironmentVersionID(input string) (*EnvironmentVersionId, error) {
 		return nil, fmt.Errorf("the segment 'workspaceName' was not found in the resource id %q", input)
 	}
 
-	if id.Name, ok = parsed.Parsed["name"]; !ok {
-		return nil, fmt.Errorf("the segment 'name' was not found in the resource id %q", input)
+	if id.EnvironmentName, ok = parsed.Parsed["environmentName"]; !ok {
+		return nil, fmt.Errorf("the segment 'environmentName' was not found in the resource id %q", input)
 	}
 
-	if id.Version, ok = parsed.Parsed["version"]; !ok {
-		return nil, fmt.Errorf("the segment 'version' was not found in the resource id %q", input)
+	if id.VersionName, ok = parsed.Parsed["versionName"]; !ok {
+		return nil, fmt.Errorf("the segment 'versionName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -87,12 +87,12 @@ func ParseEnvironmentVersionIDInsensitively(input string) (*EnvironmentVersionId
 		return nil, fmt.Errorf("the segment 'workspaceName' was not found in the resource id %q", input)
 	}
 
-	if id.Name, ok = parsed.Parsed["name"]; !ok {
-		return nil, fmt.Errorf("the segment 'name' was not found in the resource id %q", input)
+	if id.EnvironmentName, ok = parsed.Parsed["environmentName"]; !ok {
+		return nil, fmt.Errorf("the segment 'environmentName' was not found in the resource id %q", input)
 	}
 
-	if id.Version, ok = parsed.Parsed["version"]; !ok {
-		return nil, fmt.Errorf("the segment 'version' was not found in the resource id %q", input)
+	if id.VersionName, ok = parsed.Parsed["versionName"]; !ok {
+		return nil, fmt.Errorf("the segment 'versionName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -116,7 +116,7 @@ func ValidateEnvironmentVersionID(input interface{}, key string) (warnings []str
 // ID returns the formatted Environment Version ID
 func (id EnvironmentVersionId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.MachineLearningServices/workspaces/%s/environments/%s/versions/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.WorkspaceName, id.Name, id.Version)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.WorkspaceName, id.EnvironmentName, id.VersionName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Environment Version ID
@@ -131,9 +131,9 @@ func (id EnvironmentVersionId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticWorkspaces", "workspaces", "workspaces"),
 		resourceids.UserSpecifiedSegment("workspaceName", "workspaceValue"),
 		resourceids.StaticSegment("staticEnvironments", "environments", "environments"),
-		resourceids.UserSpecifiedSegment("name", "nameValue"),
+		resourceids.UserSpecifiedSegment("environmentName", "environmentValue"),
 		resourceids.StaticSegment("staticVersions", "versions", "versions"),
-		resourceids.UserSpecifiedSegment("version", "versionValue"),
+		resourceids.UserSpecifiedSegment("versionName", "versionValue"),
 	}
 }
 
@@ -143,8 +143,8 @@ func (id EnvironmentVersionId) String() string {
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
 		fmt.Sprintf("Workspace Name: %q", id.WorkspaceName),
-		fmt.Sprintf("Name: %q", id.Name),
-		fmt.Sprintf("Version: %q", id.Version),
+		fmt.Sprintf("Environment Name: %q", id.EnvironmentName),
+		fmt.Sprintf("Version Name: %q", id.VersionName),
 	}
 	return fmt.Sprintf("Environment Version (%s)", strings.Join(components, "\n"))
 }

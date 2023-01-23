@@ -11,19 +11,19 @@ var _ resourceids.ResourceId = AuthorizationServerId{}
 
 // AuthorizationServerId is a struct representing the Resource ID for a Authorization Server
 type AuthorizationServerId struct {
-	SubscriptionId    string
-	ResourceGroupName string
-	ServiceName       string
-	Authsid           string
+	SubscriptionId          string
+	ResourceGroupName       string
+	ServiceName             string
+	AuthorizationServerName string
 }
 
 // NewAuthorizationServerID returns a new AuthorizationServerId struct
-func NewAuthorizationServerID(subscriptionId string, resourceGroupName string, serviceName string, authsid string) AuthorizationServerId {
+func NewAuthorizationServerID(subscriptionId string, resourceGroupName string, serviceName string, authorizationServerName string) AuthorizationServerId {
 	return AuthorizationServerId{
-		SubscriptionId:    subscriptionId,
-		ResourceGroupName: resourceGroupName,
-		ServiceName:       serviceName,
-		Authsid:           authsid,
+		SubscriptionId:          subscriptionId,
+		ResourceGroupName:       resourceGroupName,
+		ServiceName:             serviceName,
+		AuthorizationServerName: authorizationServerName,
 	}
 }
 
@@ -50,8 +50,8 @@ func ParseAuthorizationServerID(input string) (*AuthorizationServerId, error) {
 		return nil, fmt.Errorf("the segment 'serviceName' was not found in the resource id %q", input)
 	}
 
-	if id.Authsid, ok = parsed.Parsed["authsid"]; !ok {
-		return nil, fmt.Errorf("the segment 'authsid' was not found in the resource id %q", input)
+	if id.AuthorizationServerName, ok = parsed.Parsed["authorizationServerName"]; !ok {
+		return nil, fmt.Errorf("the segment 'authorizationServerName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -81,8 +81,8 @@ func ParseAuthorizationServerIDInsensitively(input string) (*AuthorizationServer
 		return nil, fmt.Errorf("the segment 'serviceName' was not found in the resource id %q", input)
 	}
 
-	if id.Authsid, ok = parsed.Parsed["authsid"]; !ok {
-		return nil, fmt.Errorf("the segment 'authsid' was not found in the resource id %q", input)
+	if id.AuthorizationServerName, ok = parsed.Parsed["authorizationServerName"]; !ok {
+		return nil, fmt.Errorf("the segment 'authorizationServerName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -106,7 +106,7 @@ func ValidateAuthorizationServerID(input interface{}, key string) (warnings []st
 // ID returns the formatted Authorization Server ID
 func (id AuthorizationServerId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.ApiManagement/service/%s/authorizationServers/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.ServiceName, id.Authsid)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.ServiceName, id.AuthorizationServerName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Authorization Server ID
@@ -121,7 +121,7 @@ func (id AuthorizationServerId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticService", "service", "service"),
 		resourceids.UserSpecifiedSegment("serviceName", "serviceValue"),
 		resourceids.StaticSegment("staticAuthorizationServers", "authorizationServers", "authorizationServers"),
-		resourceids.UserSpecifiedSegment("authsid", "authsidValue"),
+		resourceids.UserSpecifiedSegment("authorizationServerName", "authorizationServerValue"),
 	}
 }
 
@@ -131,7 +131,7 @@ func (id AuthorizationServerId) String() string {
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
 		fmt.Sprintf("Service Name: %q", id.ServiceName),
-		fmt.Sprintf("Authsid: %q", id.Authsid),
+		fmt.Sprintf("Authorization Server Name: %q", id.AuthorizationServerName),
 	}
 	return fmt.Sprintf("Authorization Server (%s)", strings.Join(components, "\n"))
 }

@@ -11,15 +11,15 @@ var _ resourceids.ResourceId = DiagnosticSettingId{}
 
 // DiagnosticSettingId is a struct representing the Resource ID for a Diagnostic Setting
 type DiagnosticSettingId struct {
-	SubscriptionId string
-	Name           string
+	SubscriptionId        string
+	DiagnosticSettingName string
 }
 
 // NewDiagnosticSettingID returns a new DiagnosticSettingId struct
-func NewDiagnosticSettingID(subscriptionId string, name string) DiagnosticSettingId {
+func NewDiagnosticSettingID(subscriptionId string, diagnosticSettingName string) DiagnosticSettingId {
 	return DiagnosticSettingId{
-		SubscriptionId: subscriptionId,
-		Name:           name,
+		SubscriptionId:        subscriptionId,
+		DiagnosticSettingName: diagnosticSettingName,
 	}
 }
 
@@ -38,8 +38,8 @@ func ParseDiagnosticSettingID(input string) (*DiagnosticSettingId, error) {
 		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
 	}
 
-	if id.Name, ok = parsed.Parsed["name"]; !ok {
-		return nil, fmt.Errorf("the segment 'name' was not found in the resource id %q", input)
+	if id.DiagnosticSettingName, ok = parsed.Parsed["diagnosticSettingName"]; !ok {
+		return nil, fmt.Errorf("the segment 'diagnosticSettingName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -61,8 +61,8 @@ func ParseDiagnosticSettingIDInsensitively(input string) (*DiagnosticSettingId, 
 		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
 	}
 
-	if id.Name, ok = parsed.Parsed["name"]; !ok {
-		return nil, fmt.Errorf("the segment 'name' was not found in the resource id %q", input)
+	if id.DiagnosticSettingName, ok = parsed.Parsed["diagnosticSettingName"]; !ok {
+		return nil, fmt.Errorf("the segment 'diagnosticSettingName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -86,7 +86,7 @@ func ValidateDiagnosticSettingID(input interface{}, key string) (warnings []stri
 // ID returns the formatted Diagnostic Setting ID
 func (id DiagnosticSettingId) ID() string {
 	fmtString := "/subscriptions/%s/providers/Microsoft.Insights/diagnosticSettings/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.Name)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.DiagnosticSettingName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Diagnostic Setting ID
@@ -97,7 +97,7 @@ func (id DiagnosticSettingId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftInsights", "Microsoft.Insights", "Microsoft.Insights"),
 		resourceids.StaticSegment("staticDiagnosticSettings", "diagnosticSettings", "diagnosticSettings"),
-		resourceids.UserSpecifiedSegment("name", "nameValue"),
+		resourceids.UserSpecifiedSegment("diagnosticSettingName", "diagnosticSettingValue"),
 	}
 }
 
@@ -105,7 +105,7 @@ func (id DiagnosticSettingId) Segments() []resourceids.Segment {
 func (id DiagnosticSettingId) String() string {
 	components := []string{
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
-		fmt.Sprintf("Name: %q", id.Name),
+		fmt.Sprintf("Diagnostic Setting Name: %q", id.DiagnosticSettingName),
 	}
 	return fmt.Sprintf("Diagnostic Setting (%s)", strings.Join(components, "\n"))
 }

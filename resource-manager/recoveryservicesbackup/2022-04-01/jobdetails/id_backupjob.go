@@ -14,16 +14,16 @@ type BackupJobId struct {
 	SubscriptionId    string
 	ResourceGroupName string
 	VaultName         string
-	JobName           string
+	BackupJobName     string
 }
 
 // NewBackupJobID returns a new BackupJobId struct
-func NewBackupJobID(subscriptionId string, resourceGroupName string, vaultName string, jobName string) BackupJobId {
+func NewBackupJobID(subscriptionId string, resourceGroupName string, vaultName string, backupJobName string) BackupJobId {
 	return BackupJobId{
 		SubscriptionId:    subscriptionId,
 		ResourceGroupName: resourceGroupName,
 		VaultName:         vaultName,
-		JobName:           jobName,
+		BackupJobName:     backupJobName,
 	}
 }
 
@@ -50,8 +50,8 @@ func ParseBackupJobID(input string) (*BackupJobId, error) {
 		return nil, fmt.Errorf("the segment 'vaultName' was not found in the resource id %q", input)
 	}
 
-	if id.JobName, ok = parsed.Parsed["jobName"]; !ok {
-		return nil, fmt.Errorf("the segment 'jobName' was not found in the resource id %q", input)
+	if id.BackupJobName, ok = parsed.Parsed["backupJobName"]; !ok {
+		return nil, fmt.Errorf("the segment 'backupJobName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -81,8 +81,8 @@ func ParseBackupJobIDInsensitively(input string) (*BackupJobId, error) {
 		return nil, fmt.Errorf("the segment 'vaultName' was not found in the resource id %q", input)
 	}
 
-	if id.JobName, ok = parsed.Parsed["jobName"]; !ok {
-		return nil, fmt.Errorf("the segment 'jobName' was not found in the resource id %q", input)
+	if id.BackupJobName, ok = parsed.Parsed["backupJobName"]; !ok {
+		return nil, fmt.Errorf("the segment 'backupJobName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -106,7 +106,7 @@ func ValidateBackupJobID(input interface{}, key string) (warnings []string, erro
 // ID returns the formatted Backup Job ID
 func (id BackupJobId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.RecoveryServices/vaults/%s/backupJobs/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.VaultName, id.JobName)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.VaultName, id.BackupJobName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Backup Job ID
@@ -121,7 +121,7 @@ func (id BackupJobId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticVaults", "vaults", "vaults"),
 		resourceids.UserSpecifiedSegment("vaultName", "vaultValue"),
 		resourceids.StaticSegment("staticBackupJobs", "backupJobs", "backupJobs"),
-		resourceids.UserSpecifiedSegment("jobName", "jobValue"),
+		resourceids.UserSpecifiedSegment("backupJobName", "backupJobValue"),
 	}
 }
 
@@ -131,7 +131,7 @@ func (id BackupJobId) String() string {
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
 		fmt.Sprintf("Vault Name: %q", id.VaultName),
-		fmt.Sprintf("Job Name: %q", id.JobName),
+		fmt.Sprintf("Backup Job Name: %q", id.BackupJobName),
 	}
 	return fmt.Sprintf("Backup Job (%s)", strings.Join(components, "\n"))
 }

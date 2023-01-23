@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = DeploymentScriptId{}
 
 func TestNewDeploymentScriptID(t *testing.T) {
-	id := NewDeploymentScriptID("12345678-1234-9876-4563-123456789012", "example-resource-group", "scriptValue")
+	id := NewDeploymentScriptID("12345678-1234-9876-4563-123456789012", "example-resource-group", "deploymentScriptValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -19,14 +19,14 @@ func TestNewDeploymentScriptID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.ScriptName != "scriptValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ScriptName'", id.ScriptName, "scriptValue")
+	if id.DeploymentScriptName != "deploymentScriptValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'DeploymentScriptName'", id.DeploymentScriptName, "deploymentScriptValue")
 	}
 }
 
 func TestFormatDeploymentScriptID(t *testing.T) {
-	actual := NewDeploymentScriptID("12345678-1234-9876-4563-123456789012", "example-resource-group", "scriptValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Resources/deploymentScripts/scriptValue"
+	actual := NewDeploymentScriptID("12345678-1234-9876-4563-123456789012", "example-resource-group", "deploymentScriptValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Resources/deploymentScripts/deploymentScriptValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -80,16 +80,16 @@ func TestParseDeploymentScriptID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Resources/deploymentScripts/scriptValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Resources/deploymentScripts/deploymentScriptValue",
 			Expected: &DeploymentScriptId{
-				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName: "example-resource-group",
-				ScriptName:        "scriptValue",
+				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:    "example-resource-group",
+				DeploymentScriptName: "deploymentScriptValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Resources/deploymentScripts/scriptValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Resources/deploymentScripts/deploymentScriptValue/extra",
 			Error: true,
 		},
 	}
@@ -116,8 +116,8 @@ func TestParseDeploymentScriptID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.ScriptName != v.Expected.ScriptName {
-			t.Fatalf("Expected %q but got %q for ScriptName", v.Expected.ScriptName, actual.ScriptName)
+		if actual.DeploymentScriptName != v.Expected.DeploymentScriptName {
+			t.Fatalf("Expected %q but got %q for DeploymentScriptName", v.Expected.DeploymentScriptName, actual.DeploymentScriptName)
 		}
 
 	}
@@ -206,30 +206,30 @@ func TestParseDeploymentScriptIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Resources/deploymentScripts/scriptValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Resources/deploymentScripts/deploymentScriptValue",
 			Expected: &DeploymentScriptId{
-				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName: "example-resource-group",
-				ScriptName:        "scriptValue",
+				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:    "example-resource-group",
+				DeploymentScriptName: "deploymentScriptValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Resources/deploymentScripts/scriptValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Resources/deploymentScripts/deploymentScriptValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEsOuRcEs/dEpLoYmEnTsCrIpTs/sCrIpTvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEsOuRcEs/dEpLoYmEnTsCrIpTs/dEpLoYmEnTsCrIpTvAlUe",
 			Expected: &DeploymentScriptId{
-				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				ScriptName:        "sCrIpTvAlUe",
+				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:    "eXaMpLe-rEsOuRcE-GrOuP",
+				DeploymentScriptName: "dEpLoYmEnTsCrIpTvAlUe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEsOuRcEs/dEpLoYmEnTsCrIpTs/sCrIpTvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEsOuRcEs/dEpLoYmEnTsCrIpTs/dEpLoYmEnTsCrIpTvAlUe/extra",
 			Error: true,
 		},
 	}
@@ -256,8 +256,8 @@ func TestParseDeploymentScriptIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.ScriptName != v.Expected.ScriptName {
-			t.Fatalf("Expected %q but got %q for ScriptName", v.Expected.ScriptName, actual.ScriptName)
+		if actual.DeploymentScriptName != v.Expected.DeploymentScriptName {
+			t.Fatalf("Expected %q but got %q for DeploymentScriptName", v.Expected.DeploymentScriptName, actual.DeploymentScriptName)
 		}
 
 	}

@@ -11,17 +11,17 @@ var _ resourceids.ResourceId = FrontDoorWebApplicationFirewallPolicyId{}
 
 // FrontDoorWebApplicationFirewallPolicyId is a struct representing the Resource ID for a Front Door Web Application Firewall Policy
 type FrontDoorWebApplicationFirewallPolicyId struct {
-	SubscriptionId    string
-	ResourceGroupName string
-	PolicyName        string
+	SubscriptionId                            string
+	ResourceGroupName                         string
+	FrontDoorWebApplicationFirewallPolicyName string
 }
 
 // NewFrontDoorWebApplicationFirewallPolicyID returns a new FrontDoorWebApplicationFirewallPolicyId struct
-func NewFrontDoorWebApplicationFirewallPolicyID(subscriptionId string, resourceGroupName string, policyName string) FrontDoorWebApplicationFirewallPolicyId {
+func NewFrontDoorWebApplicationFirewallPolicyID(subscriptionId string, resourceGroupName string, frontDoorWebApplicationFirewallPolicyName string) FrontDoorWebApplicationFirewallPolicyId {
 	return FrontDoorWebApplicationFirewallPolicyId{
 		SubscriptionId:    subscriptionId,
 		ResourceGroupName: resourceGroupName,
-		PolicyName:        policyName,
+		FrontDoorWebApplicationFirewallPolicyName: frontDoorWebApplicationFirewallPolicyName,
 	}
 }
 
@@ -44,8 +44,8 @@ func ParseFrontDoorWebApplicationFirewallPolicyID(input string) (*FrontDoorWebAp
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.PolicyName, ok = parsed.Parsed["policyName"]; !ok {
-		return nil, fmt.Errorf("the segment 'policyName' was not found in the resource id %q", input)
+	if id.FrontDoorWebApplicationFirewallPolicyName, ok = parsed.Parsed["frontDoorWebApplicationFirewallPolicyName"]; !ok {
+		return nil, fmt.Errorf("the segment 'frontDoorWebApplicationFirewallPolicyName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -71,8 +71,8 @@ func ParseFrontDoorWebApplicationFirewallPolicyIDInsensitively(input string) (*F
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.PolicyName, ok = parsed.Parsed["policyName"]; !ok {
-		return nil, fmt.Errorf("the segment 'policyName' was not found in the resource id %q", input)
+	if id.FrontDoorWebApplicationFirewallPolicyName, ok = parsed.Parsed["frontDoorWebApplicationFirewallPolicyName"]; !ok {
+		return nil, fmt.Errorf("the segment 'frontDoorWebApplicationFirewallPolicyName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -96,7 +96,7 @@ func ValidateFrontDoorWebApplicationFirewallPolicyID(input interface{}, key stri
 // ID returns the formatted Front Door Web Application Firewall Policy ID
 func (id FrontDoorWebApplicationFirewallPolicyId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.Network/frontDoorWebApplicationFirewallPolicies/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.PolicyName)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.FrontDoorWebApplicationFirewallPolicyName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Front Door Web Application Firewall Policy ID
@@ -109,7 +109,7 @@ func (id FrontDoorWebApplicationFirewallPolicyId) Segments() []resourceids.Segme
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftNetwork", "Microsoft.Network", "Microsoft.Network"),
 		resourceids.StaticSegment("staticFrontDoorWebApplicationFirewallPolicies", "frontDoorWebApplicationFirewallPolicies", "frontDoorWebApplicationFirewallPolicies"),
-		resourceids.UserSpecifiedSegment("policyName", "policyValue"),
+		resourceids.UserSpecifiedSegment("frontDoorWebApplicationFirewallPolicyName", "frontDoorWebApplicationFirewallPolicyValue"),
 	}
 }
 
@@ -118,7 +118,7 @@ func (id FrontDoorWebApplicationFirewallPolicyId) String() string {
 	components := []string{
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
-		fmt.Sprintf("Policy Name: %q", id.PolicyName),
+		fmt.Sprintf("Front Door Web Application Firewall Policy Name: %q", id.FrontDoorWebApplicationFirewallPolicyName),
 	}
 	return fmt.Sprintf("Front Door Web Application Firewall Policy (%s)", strings.Join(components, "\n"))
 }

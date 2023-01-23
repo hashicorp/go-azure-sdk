@@ -14,16 +14,16 @@ type Python3PackageId struct {
 	SubscriptionId        string
 	ResourceGroupName     string
 	AutomationAccountName string
-	PackageName           string
+	Python3PackageName    string
 }
 
 // NewPython3PackageID returns a new Python3PackageId struct
-func NewPython3PackageID(subscriptionId string, resourceGroupName string, automationAccountName string, packageName string) Python3PackageId {
+func NewPython3PackageID(subscriptionId string, resourceGroupName string, automationAccountName string, python3PackageName string) Python3PackageId {
 	return Python3PackageId{
 		SubscriptionId:        subscriptionId,
 		ResourceGroupName:     resourceGroupName,
 		AutomationAccountName: automationAccountName,
-		PackageName:           packageName,
+		Python3PackageName:    python3PackageName,
 	}
 }
 
@@ -50,8 +50,8 @@ func ParsePython3PackageID(input string) (*Python3PackageId, error) {
 		return nil, fmt.Errorf("the segment 'automationAccountName' was not found in the resource id %q", input)
 	}
 
-	if id.PackageName, ok = parsed.Parsed["packageName"]; !ok {
-		return nil, fmt.Errorf("the segment 'packageName' was not found in the resource id %q", input)
+	if id.Python3PackageName, ok = parsed.Parsed["python3PackageName"]; !ok {
+		return nil, fmt.Errorf("the segment 'python3PackageName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -81,8 +81,8 @@ func ParsePython3PackageIDInsensitively(input string) (*Python3PackageId, error)
 		return nil, fmt.Errorf("the segment 'automationAccountName' was not found in the resource id %q", input)
 	}
 
-	if id.PackageName, ok = parsed.Parsed["packageName"]; !ok {
-		return nil, fmt.Errorf("the segment 'packageName' was not found in the resource id %q", input)
+	if id.Python3PackageName, ok = parsed.Parsed["python3PackageName"]; !ok {
+		return nil, fmt.Errorf("the segment 'python3PackageName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -106,7 +106,7 @@ func ValidatePython3PackageID(input interface{}, key string) (warnings []string,
 // ID returns the formatted Python 3 Package ID
 func (id Python3PackageId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.Automation/automationAccounts/%s/python3Packages/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.AutomationAccountName, id.PackageName)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.AutomationAccountName, id.Python3PackageName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Python 3 Package ID
@@ -121,7 +121,7 @@ func (id Python3PackageId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticAutomationAccounts", "automationAccounts", "automationAccounts"),
 		resourceids.UserSpecifiedSegment("automationAccountName", "automationAccountValue"),
 		resourceids.StaticSegment("staticPython3Packages", "python3Packages", "python3Packages"),
-		resourceids.UserSpecifiedSegment("packageName", "packageValue"),
+		resourceids.UserSpecifiedSegment("python3PackageName", "python3PackageValue"),
 	}
 }
 
@@ -131,7 +131,7 @@ func (id Python3PackageId) String() string {
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
 		fmt.Sprintf("Automation Account Name: %q", id.AutomationAccountName),
-		fmt.Sprintf("Package Name: %q", id.PackageName),
+		fmt.Sprintf("Python 3 Package Name: %q", id.Python3PackageName),
 	}
 	return fmt.Sprintf("Python 3 Package (%s)", strings.Join(components, "\n"))
 }

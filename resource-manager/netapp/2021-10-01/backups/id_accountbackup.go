@@ -13,17 +13,17 @@ var _ resourceids.ResourceId = AccountBackupId{}
 type AccountBackupId struct {
 	SubscriptionId    string
 	ResourceGroupName string
-	AccountName       string
-	BackupName        string
+	NetAppAccountName string
+	AccountBackupName string
 }
 
 // NewAccountBackupID returns a new AccountBackupId struct
-func NewAccountBackupID(subscriptionId string, resourceGroupName string, accountName string, backupName string) AccountBackupId {
+func NewAccountBackupID(subscriptionId string, resourceGroupName string, netAppAccountName string, accountBackupName string) AccountBackupId {
 	return AccountBackupId{
 		SubscriptionId:    subscriptionId,
 		ResourceGroupName: resourceGroupName,
-		AccountName:       accountName,
-		BackupName:        backupName,
+		NetAppAccountName: netAppAccountName,
+		AccountBackupName: accountBackupName,
 	}
 }
 
@@ -46,12 +46,12 @@ func ParseAccountBackupID(input string) (*AccountBackupId, error) {
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.AccountName, ok = parsed.Parsed["accountName"]; !ok {
-		return nil, fmt.Errorf("the segment 'accountName' was not found in the resource id %q", input)
+	if id.NetAppAccountName, ok = parsed.Parsed["netAppAccountName"]; !ok {
+		return nil, fmt.Errorf("the segment 'netAppAccountName' was not found in the resource id %q", input)
 	}
 
-	if id.BackupName, ok = parsed.Parsed["backupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'backupName' was not found in the resource id %q", input)
+	if id.AccountBackupName, ok = parsed.Parsed["accountBackupName"]; !ok {
+		return nil, fmt.Errorf("the segment 'accountBackupName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -77,12 +77,12 @@ func ParseAccountBackupIDInsensitively(input string) (*AccountBackupId, error) {
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.AccountName, ok = parsed.Parsed["accountName"]; !ok {
-		return nil, fmt.Errorf("the segment 'accountName' was not found in the resource id %q", input)
+	if id.NetAppAccountName, ok = parsed.Parsed["netAppAccountName"]; !ok {
+		return nil, fmt.Errorf("the segment 'netAppAccountName' was not found in the resource id %q", input)
 	}
 
-	if id.BackupName, ok = parsed.Parsed["backupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'backupName' was not found in the resource id %q", input)
+	if id.AccountBackupName, ok = parsed.Parsed["accountBackupName"]; !ok {
+		return nil, fmt.Errorf("the segment 'accountBackupName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -106,7 +106,7 @@ func ValidateAccountBackupID(input interface{}, key string) (warnings []string, 
 // ID returns the formatted Account Backup ID
 func (id AccountBackupId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.NetApp/netAppAccounts/%s/accountBackups/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.AccountName, id.BackupName)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.NetAppAccountName, id.AccountBackupName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Account Backup ID
@@ -119,9 +119,9 @@ func (id AccountBackupId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftNetApp", "Microsoft.NetApp", "Microsoft.NetApp"),
 		resourceids.StaticSegment("staticNetAppAccounts", "netAppAccounts", "netAppAccounts"),
-		resourceids.UserSpecifiedSegment("accountName", "accountValue"),
+		resourceids.UserSpecifiedSegment("netAppAccountName", "netAppAccountValue"),
 		resourceids.StaticSegment("staticAccountBackups", "accountBackups", "accountBackups"),
-		resourceids.UserSpecifiedSegment("backupName", "backupValue"),
+		resourceids.UserSpecifiedSegment("accountBackupName", "accountBackupValue"),
 	}
 }
 
@@ -130,8 +130,8 @@ func (id AccountBackupId) String() string {
 	components := []string{
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
-		fmt.Sprintf("Account Name: %q", id.AccountName),
-		fmt.Sprintf("Backup Name: %q", id.BackupName),
+		fmt.Sprintf("Net App Account Name: %q", id.NetAppAccountName),
+		fmt.Sprintf("Account Backup Name: %q", id.AccountBackupName),
 	}
 	return fmt.Sprintf("Account Backup (%s)", strings.Join(components, "\n"))
 }

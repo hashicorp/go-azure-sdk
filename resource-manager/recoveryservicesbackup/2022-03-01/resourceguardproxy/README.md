@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := resourceguardproxy.NewBackupResourceGuardProxyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue", "resourceGuardProxyValue")
+id := resourceguardproxy.NewBackupResourceGuardProxyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue", "backupResourceGuardProxyValue")
 
 read, err := client.Delete(ctx, id)
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := resourceguardproxy.NewBackupResourceGuardProxyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue", "resourceGuardProxyValue")
+id := resourceguardproxy.NewBackupResourceGuardProxyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue", "backupResourceGuardProxyValue")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -56,7 +56,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := resourceguardproxy.NewBackupResourceGuardProxyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue", "resourceGuardProxyValue")
+id := resourceguardproxy.NewBackupResourceGuardProxyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue", "backupResourceGuardProxyValue")
 
 payload := resourceguardproxy.ResourceGuardProxyBaseResource{
 	// ...
@@ -77,7 +77,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := resourceguardproxy.NewBackupResourceGuardProxyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue", "resourceGuardProxyValue")
+id := resourceguardproxy.NewBackupResourceGuardProxyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue", "backupResourceGuardProxyValue")
 
 payload := resourceguardproxy.UnlockDeleteRequest{
 	// ...

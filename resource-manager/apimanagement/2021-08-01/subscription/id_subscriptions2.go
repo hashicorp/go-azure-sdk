@@ -14,16 +14,16 @@ type Subscriptions2Id struct {
 	SubscriptionId    string
 	ResourceGroupName string
 	ServiceName       string
-	Sid               string
+	SubscriptionName  string
 }
 
 // NewSubscriptions2ID returns a new Subscriptions2Id struct
-func NewSubscriptions2ID(subscriptionId string, resourceGroupName string, serviceName string, sid string) Subscriptions2Id {
+func NewSubscriptions2ID(subscriptionId string, resourceGroupName string, serviceName string, subscriptionName string) Subscriptions2Id {
 	return Subscriptions2Id{
 		SubscriptionId:    subscriptionId,
 		ResourceGroupName: resourceGroupName,
 		ServiceName:       serviceName,
-		Sid:               sid,
+		SubscriptionName:  subscriptionName,
 	}
 }
 
@@ -50,8 +50,8 @@ func ParseSubscriptions2ID(input string) (*Subscriptions2Id, error) {
 		return nil, fmt.Errorf("the segment 'serviceName' was not found in the resource id %q", input)
 	}
 
-	if id.Sid, ok = parsed.Parsed["sid"]; !ok {
-		return nil, fmt.Errorf("the segment 'sid' was not found in the resource id %q", input)
+	if id.SubscriptionName, ok = parsed.Parsed["subscriptionName"]; !ok {
+		return nil, fmt.Errorf("the segment 'subscriptionName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -81,8 +81,8 @@ func ParseSubscriptions2IDInsensitively(input string) (*Subscriptions2Id, error)
 		return nil, fmt.Errorf("the segment 'serviceName' was not found in the resource id %q", input)
 	}
 
-	if id.Sid, ok = parsed.Parsed["sid"]; !ok {
-		return nil, fmt.Errorf("the segment 'sid' was not found in the resource id %q", input)
+	if id.SubscriptionName, ok = parsed.Parsed["subscriptionName"]; !ok {
+		return nil, fmt.Errorf("the segment 'subscriptionName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -106,7 +106,7 @@ func ValidateSubscriptions2ID(input interface{}, key string) (warnings []string,
 // ID returns the formatted Subscriptions 2 ID
 func (id Subscriptions2Id) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.ApiManagement/service/%s/subscriptions/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.ServiceName, id.Sid)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.ServiceName, id.SubscriptionName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Subscriptions 2 ID
@@ -121,7 +121,7 @@ func (id Subscriptions2Id) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticService", "service", "service"),
 		resourceids.UserSpecifiedSegment("serviceName", "serviceValue"),
 		resourceids.StaticSegment("staticSubscriptions2", "subscriptions", "subscriptions"),
-		resourceids.UserSpecifiedSegment("sid", "sidValue"),
+		resourceids.UserSpecifiedSegment("subscriptionName", "subscriptionValue"),
 	}
 }
 
@@ -131,7 +131,7 @@ func (id Subscriptions2Id) String() string {
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
 		fmt.Sprintf("Service Name: %q", id.ServiceName),
-		fmt.Sprintf("Sid: %q", id.Sid),
+		fmt.Sprintf("Subscription Name: %q", id.SubscriptionName),
 	}
 	return fmt.Sprintf("Subscriptions 2 (%s)", strings.Join(components, "\n"))
 }

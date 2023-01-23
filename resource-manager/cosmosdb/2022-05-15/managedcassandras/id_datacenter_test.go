@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = DataCenterId{}
 
 func TestNewDataCenterID(t *testing.T) {
-	id := NewDataCenterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "clusterValue", "dataCenterValue")
+	id := NewDataCenterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "cassandraClusterValue", "dataCenterValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -19,8 +19,8 @@ func TestNewDataCenterID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.ClusterName != "clusterValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ClusterName'", id.ClusterName, "clusterValue")
+	if id.CassandraClusterName != "cassandraClusterValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'CassandraClusterName'", id.CassandraClusterName, "cassandraClusterValue")
 	}
 
 	if id.DataCenterName != "dataCenterValue" {
@@ -29,8 +29,8 @@ func TestNewDataCenterID(t *testing.T) {
 }
 
 func TestFormatDataCenterID(t *testing.T) {
-	actual := NewDataCenterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "clusterValue", "dataCenterValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/cassandraClusters/clusterValue/dataCenters/dataCenterValue"
+	actual := NewDataCenterID("12345678-1234-9876-4563-123456789012", "example-resource-group", "cassandraClusterValue", "dataCenterValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/cassandraClusters/cassandraClusterValue/dataCenters/dataCenterValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -84,27 +84,27 @@ func TestParseDataCenterID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/cassandraClusters/clusterValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/cassandraClusters/cassandraClusterValue",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/cassandraClusters/clusterValue/dataCenters",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/cassandraClusters/cassandraClusterValue/dataCenters",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/cassandraClusters/clusterValue/dataCenters/dataCenterValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/cassandraClusters/cassandraClusterValue/dataCenters/dataCenterValue",
 			Expected: &DataCenterId{
-				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName: "example-resource-group",
-				ClusterName:       "clusterValue",
-				DataCenterName:    "dataCenterValue",
+				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:    "example-resource-group",
+				CassandraClusterName: "cassandraClusterValue",
+				DataCenterName:       "dataCenterValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/cassandraClusters/clusterValue/dataCenters/dataCenterValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/cassandraClusters/cassandraClusterValue/dataCenters/dataCenterValue/extra",
 			Error: true,
 		},
 	}
@@ -131,8 +131,8 @@ func TestParseDataCenterID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.ClusterName != v.Expected.ClusterName {
-			t.Fatalf("Expected %q but got %q for ClusterName", v.Expected.ClusterName, actual.ClusterName)
+		if actual.CassandraClusterName != v.Expected.CassandraClusterName {
+			t.Fatalf("Expected %q but got %q for CassandraClusterName", v.Expected.CassandraClusterName, actual.CassandraClusterName)
 		}
 
 		if actual.DataCenterName != v.Expected.DataCenterName {
@@ -225,52 +225,52 @@ func TestParseDataCenterIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/cassandraClusters/clusterValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/cassandraClusters/cassandraClusterValue",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dOcUmEnTdB/cAsSaNdRaClUsTeRs/cLuStErVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dOcUmEnTdB/cAsSaNdRaClUsTeRs/cAsSaNdRaClUsTeRvAlUe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/cassandraClusters/clusterValue/dataCenters",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/cassandraClusters/cassandraClusterValue/dataCenters",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dOcUmEnTdB/cAsSaNdRaClUsTeRs/cLuStErVaLuE/dAtAcEnTeRs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dOcUmEnTdB/cAsSaNdRaClUsTeRs/cAsSaNdRaClUsTeRvAlUe/dAtAcEnTeRs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/cassandraClusters/clusterValue/dataCenters/dataCenterValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/cassandraClusters/cassandraClusterValue/dataCenters/dataCenterValue",
 			Expected: &DataCenterId{
-				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName: "example-resource-group",
-				ClusterName:       "clusterValue",
-				DataCenterName:    "dataCenterValue",
+				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:    "example-resource-group",
+				CassandraClusterName: "cassandraClusterValue",
+				DataCenterName:       "dataCenterValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/cassandraClusters/clusterValue/dataCenters/dataCenterValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/cassandraClusters/cassandraClusterValue/dataCenters/dataCenterValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dOcUmEnTdB/cAsSaNdRaClUsTeRs/cLuStErVaLuE/dAtAcEnTeRs/dAtAcEnTeRvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dOcUmEnTdB/cAsSaNdRaClUsTeRs/cAsSaNdRaClUsTeRvAlUe/dAtAcEnTeRs/dAtAcEnTeRvAlUe",
 			Expected: &DataCenterId{
-				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				ClusterName:       "cLuStErVaLuE",
-				DataCenterName:    "dAtAcEnTeRvAlUe",
+				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:    "eXaMpLe-rEsOuRcE-GrOuP",
+				CassandraClusterName: "cAsSaNdRaClUsTeRvAlUe",
+				DataCenterName:       "dAtAcEnTeRvAlUe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dOcUmEnTdB/cAsSaNdRaClUsTeRs/cLuStErVaLuE/dAtAcEnTeRs/dAtAcEnTeRvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dOcUmEnTdB/cAsSaNdRaClUsTeRs/cAsSaNdRaClUsTeRvAlUe/dAtAcEnTeRs/dAtAcEnTeRvAlUe/extra",
 			Error: true,
 		},
 	}
@@ -297,8 +297,8 @@ func TestParseDataCenterIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.ClusterName != v.Expected.ClusterName {
-			t.Fatalf("Expected %q but got %q for ClusterName", v.Expected.ClusterName, actual.ClusterName)
+		if actual.CassandraClusterName != v.Expected.CassandraClusterName {
+			t.Fatalf("Expected %q but got %q for CassandraClusterName", v.Expected.CassandraClusterName, actual.CassandraClusterName)
 		}
 
 		if actual.DataCenterName != v.Expected.DataCenterName {

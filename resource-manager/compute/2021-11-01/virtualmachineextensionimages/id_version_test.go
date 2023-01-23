@@ -15,8 +15,8 @@ func TestNewVersionID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
 	}
 
-	if id.Location != "locationValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'Location'", id.Location, "locationValue")
+	if id.LocationName != "locationValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'LocationName'", id.LocationName, "locationValue")
 	}
 
 	if id.PublisherName != "publisherValue" {
@@ -27,8 +27,8 @@ func TestNewVersionID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'TypeName'", id.TypeName, "typeValue")
 	}
 
-	if id.Version != "versionValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'Version'", id.Version, "versionValue")
+	if id.VersionName != "versionValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'VersionName'", id.VersionName, "versionValue")
 	}
 }
 
@@ -121,10 +121,10 @@ func TestParseVersionID(t *testing.T) {
 			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationValue/publishers/publisherValue/artifactTypes/vmExtension/types/typeValue/versions/versionValue",
 			Expected: &VersionId{
 				SubscriptionId: "12345678-1234-9876-4563-123456789012",
-				Location:       "locationValue",
+				LocationName:   "locationValue",
 				PublisherName:  "publisherValue",
 				TypeName:       "typeValue",
-				Version:        "versionValue",
+				VersionName:    "versionValue",
 			},
 		},
 		{
@@ -152,8 +152,8 @@ func TestParseVersionID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for SubscriptionId", v.Expected.SubscriptionId, actual.SubscriptionId)
 		}
 
-		if actual.Location != v.Expected.Location {
-			t.Fatalf("Expected %q but got %q for Location", v.Expected.Location, actual.Location)
+		if actual.LocationName != v.Expected.LocationName {
+			t.Fatalf("Expected %q but got %q for LocationName", v.Expected.LocationName, actual.LocationName)
 		}
 
 		if actual.PublisherName != v.Expected.PublisherName {
@@ -164,8 +164,8 @@ func TestParseVersionID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for TypeName", v.Expected.TypeName, actual.TypeName)
 		}
 
-		if actual.Version != v.Expected.Version {
-			t.Fatalf("Expected %q but got %q for Version", v.Expected.Version, actual.Version)
+		if actual.VersionName != v.Expected.VersionName {
+			t.Fatalf("Expected %q but got %q for VersionName", v.Expected.VersionName, actual.VersionName)
 		}
 
 	}
@@ -317,10 +317,10 @@ func TestParseVersionIDInsensitively(t *testing.T) {
 			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationValue/publishers/publisherValue/artifactTypes/vmExtension/types/typeValue/versions/versionValue",
 			Expected: &VersionId{
 				SubscriptionId: "12345678-1234-9876-4563-123456789012",
-				Location:       "locationValue",
+				LocationName:   "locationValue",
 				PublisherName:  "publisherValue",
 				TypeName:       "typeValue",
-				Version:        "versionValue",
+				VersionName:    "versionValue",
 			},
 		},
 		{
@@ -333,10 +333,10 @@ func TestParseVersionIDInsensitively(t *testing.T) {
 			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOmPuTe/lOcAtIoNs/lOcAtIoNvAlUe/pUbLiShErS/pUbLiShErVaLuE/aRtIfAcTtYpEs/vMeXtEnSiOn/tYpEs/tYpEvAlUe/vErSiOnS/vErSiOnVaLuE",
 			Expected: &VersionId{
 				SubscriptionId: "12345678-1234-9876-4563-123456789012",
-				Location:       "lOcAtIoNvAlUe",
+				LocationName:   "lOcAtIoNvAlUe",
 				PublisherName:  "pUbLiShErVaLuE",
 				TypeName:       "tYpEvAlUe",
-				Version:        "vErSiOnVaLuE",
+				VersionName:    "vErSiOnVaLuE",
 			},
 		},
 		{
@@ -364,8 +364,8 @@ func TestParseVersionIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for SubscriptionId", v.Expected.SubscriptionId, actual.SubscriptionId)
 		}
 
-		if actual.Location != v.Expected.Location {
-			t.Fatalf("Expected %q but got %q for Location", v.Expected.Location, actual.Location)
+		if actual.LocationName != v.Expected.LocationName {
+			t.Fatalf("Expected %q but got %q for LocationName", v.Expected.LocationName, actual.LocationName)
 		}
 
 		if actual.PublisherName != v.Expected.PublisherName {
@@ -376,8 +376,8 @@ func TestParseVersionIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for TypeName", v.Expected.TypeName, actual.TypeName)
 		}
 
-		if actual.Version != v.Expected.Version {
-			t.Fatalf("Expected %q but got %q for Version", v.Expected.Version, actual.Version)
+		if actual.VersionName != v.Expected.VersionName {
+			t.Fatalf("Expected %q but got %q for VersionName", v.Expected.VersionName, actual.VersionName)
 		}
 
 	}

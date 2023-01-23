@@ -14,16 +14,16 @@ type Python2PackageId struct {
 	SubscriptionId        string
 	ResourceGroupName     string
 	AutomationAccountName string
-	PackageName           string
+	Python2PackageName    string
 }
 
 // NewPython2PackageID returns a new Python2PackageId struct
-func NewPython2PackageID(subscriptionId string, resourceGroupName string, automationAccountName string, packageName string) Python2PackageId {
+func NewPython2PackageID(subscriptionId string, resourceGroupName string, automationAccountName string, python2PackageName string) Python2PackageId {
 	return Python2PackageId{
 		SubscriptionId:        subscriptionId,
 		ResourceGroupName:     resourceGroupName,
 		AutomationAccountName: automationAccountName,
-		PackageName:           packageName,
+		Python2PackageName:    python2PackageName,
 	}
 }
 
@@ -50,8 +50,8 @@ func ParsePython2PackageID(input string) (*Python2PackageId, error) {
 		return nil, fmt.Errorf("the segment 'automationAccountName' was not found in the resource id %q", input)
 	}
 
-	if id.PackageName, ok = parsed.Parsed["packageName"]; !ok {
-		return nil, fmt.Errorf("the segment 'packageName' was not found in the resource id %q", input)
+	if id.Python2PackageName, ok = parsed.Parsed["python2PackageName"]; !ok {
+		return nil, fmt.Errorf("the segment 'python2PackageName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -81,8 +81,8 @@ func ParsePython2PackageIDInsensitively(input string) (*Python2PackageId, error)
 		return nil, fmt.Errorf("the segment 'automationAccountName' was not found in the resource id %q", input)
 	}
 
-	if id.PackageName, ok = parsed.Parsed["packageName"]; !ok {
-		return nil, fmt.Errorf("the segment 'packageName' was not found in the resource id %q", input)
+	if id.Python2PackageName, ok = parsed.Parsed["python2PackageName"]; !ok {
+		return nil, fmt.Errorf("the segment 'python2PackageName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -106,7 +106,7 @@ func ValidatePython2PackageID(input interface{}, key string) (warnings []string,
 // ID returns the formatted Python 2 Package ID
 func (id Python2PackageId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.Automation/automationAccounts/%s/python2Packages/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.AutomationAccountName, id.PackageName)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.AutomationAccountName, id.Python2PackageName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Python 2 Package ID
@@ -121,7 +121,7 @@ func (id Python2PackageId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticAutomationAccounts", "automationAccounts", "automationAccounts"),
 		resourceids.UserSpecifiedSegment("automationAccountName", "automationAccountValue"),
 		resourceids.StaticSegment("staticPython2Packages", "python2Packages", "python2Packages"),
-		resourceids.UserSpecifiedSegment("packageName", "packageValue"),
+		resourceids.UserSpecifiedSegment("python2PackageName", "python2PackageValue"),
 	}
 }
 
@@ -131,7 +131,7 @@ func (id Python2PackageId) String() string {
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
 		fmt.Sprintf("Automation Account Name: %q", id.AutomationAccountName),
-		fmt.Sprintf("Package Name: %q", id.PackageName),
+		fmt.Sprintf("Python 2 Package Name: %q", id.Python2PackageName),
 	}
 	return fmt.Sprintf("Python 2 Package (%s)", strings.Join(components, "\n"))
 }

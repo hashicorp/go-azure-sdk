@@ -13,15 +13,15 @@ var _ resourceids.ResourceId = CustomApiId{}
 type CustomApiId struct {
 	SubscriptionId    string
 	ResourceGroupName string
-	ApiName           string
+	CustomApiName     string
 }
 
 // NewCustomApiID returns a new CustomApiId struct
-func NewCustomApiID(subscriptionId string, resourceGroupName string, apiName string) CustomApiId {
+func NewCustomApiID(subscriptionId string, resourceGroupName string, customApiName string) CustomApiId {
 	return CustomApiId{
 		SubscriptionId:    subscriptionId,
 		ResourceGroupName: resourceGroupName,
-		ApiName:           apiName,
+		CustomApiName:     customApiName,
 	}
 }
 
@@ -44,8 +44,8 @@ func ParseCustomApiID(input string) (*CustomApiId, error) {
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.ApiName, ok = parsed.Parsed["apiName"]; !ok {
-		return nil, fmt.Errorf("the segment 'apiName' was not found in the resource id %q", input)
+	if id.CustomApiName, ok = parsed.Parsed["customApiName"]; !ok {
+		return nil, fmt.Errorf("the segment 'customApiName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -71,8 +71,8 @@ func ParseCustomApiIDInsensitively(input string) (*CustomApiId, error) {
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.ApiName, ok = parsed.Parsed["apiName"]; !ok {
-		return nil, fmt.Errorf("the segment 'apiName' was not found in the resource id %q", input)
+	if id.CustomApiName, ok = parsed.Parsed["customApiName"]; !ok {
+		return nil, fmt.Errorf("the segment 'customApiName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -96,7 +96,7 @@ func ValidateCustomApiID(input interface{}, key string) (warnings []string, erro
 // ID returns the formatted Custom Api ID
 func (id CustomApiId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.Web/customApis/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.ApiName)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.CustomApiName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Custom Api ID
@@ -109,7 +109,7 @@ func (id CustomApiId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftWeb", "Microsoft.Web", "Microsoft.Web"),
 		resourceids.StaticSegment("staticCustomApis", "customApis", "customApis"),
-		resourceids.UserSpecifiedSegment("apiName", "apiValue"),
+		resourceids.UserSpecifiedSegment("customApiName", "customApiValue"),
 	}
 }
 
@@ -118,7 +118,7 @@ func (id CustomApiId) String() string {
 	components := []string{
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
-		fmt.Sprintf("Api Name: %q", id.ApiName),
+		fmt.Sprintf("Custom Api Name: %q", id.CustomApiName),
 	}
 	return fmt.Sprintf("Custom Api (%s)", strings.Join(components, "\n"))
 }

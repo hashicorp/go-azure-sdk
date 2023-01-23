@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := virtualmachineimages.NewOfferSkuVersionID("12345678-1234-9876-4563-123456789012", "locationValue", "edgeZoneValue", "publisherValue", "offerValue", "skusValue", "versionValue")
+id := virtualmachineimages.NewOfferSkuVersionID("12345678-1234-9876-4563-123456789012", "locationValue", "edgeZoneValue", "publisherValue", "offerValue", "skuValue", "versionValue")
 
 read, err := client.EdgeZoneGet(ctx, id)
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := virtualmachineimages.NewOfferSkuID("12345678-1234-9876-4563-123456789012", "locationValue", "edgeZoneValue", "publisherValue", "offerValue", "skusValue")
+id := virtualmachineimages.NewOfferSkuID("12345678-1234-9876-4563-123456789012", "locationValue", "edgeZoneValue", "publisherValue", "offerValue", "skuValue")
 
 read, err := client.EdgeZoneList(ctx, id, virtualmachineimages.DefaultEdgeZoneListOperationOptions())
 if err != nil {
@@ -104,7 +104,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := virtualmachineimages.NewSkuVersionID("12345678-1234-9876-4563-123456789012", "locationValue", "publisherValue", "offerValue", "skusValue", "versionValue")
+id := virtualmachineimages.NewSkuVersionID("12345678-1234-9876-4563-123456789012", "locationValue", "publisherValue", "offerValue", "skuValue", "versionValue")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -120,7 +120,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := virtualmachineimages.NewSkuID("12345678-1234-9876-4563-123456789012", "locationValue", "publisherValue", "offerValue", "skusValue")
+id := virtualmachineimages.NewSkuID("12345678-1234-9876-4563-123456789012", "locationValue", "publisherValue", "offerValue", "skuValue")
 
 read, err := client.List(ctx, id, virtualmachineimages.DefaultListOperationOptions())
 if err != nil {

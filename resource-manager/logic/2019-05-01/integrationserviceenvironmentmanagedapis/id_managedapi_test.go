@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = ManagedApiId{}
 
 func TestNewManagedApiID(t *testing.T) {
-	id := NewManagedApiID("12345678-1234-9876-4563-123456789012", "example-resource-group", "integrationServiceEnvironmentValue", "apiValue")
+	id := NewManagedApiID("12345678-1234-9876-4563-123456789012", "example-resource-group", "integrationServiceEnvironmentValue", "managedApiValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -23,14 +23,14 @@ func TestNewManagedApiID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'IntegrationServiceEnvironmentName'", id.IntegrationServiceEnvironmentName, "integrationServiceEnvironmentValue")
 	}
 
-	if id.ApiName != "apiValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ApiName'", id.ApiName, "apiValue")
+	if id.ManagedApiName != "managedApiValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'ManagedApiName'", id.ManagedApiName, "managedApiValue")
 	}
 }
 
 func TestFormatManagedApiID(t *testing.T) {
-	actual := NewManagedApiID("12345678-1234-9876-4563-123456789012", "example-resource-group", "integrationServiceEnvironmentValue", "apiValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logic/integrationServiceEnvironments/integrationServiceEnvironmentValue/managedApis/apiValue"
+	actual := NewManagedApiID("12345678-1234-9876-4563-123456789012", "example-resource-group", "integrationServiceEnvironmentValue", "managedApiValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logic/integrationServiceEnvironments/integrationServiceEnvironmentValue/managedApis/managedApiValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -94,17 +94,17 @@ func TestParseManagedApiID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logic/integrationServiceEnvironments/integrationServiceEnvironmentValue/managedApis/apiValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logic/integrationServiceEnvironments/integrationServiceEnvironmentValue/managedApis/managedApiValue",
 			Expected: &ManagedApiId{
 				SubscriptionId:                    "12345678-1234-9876-4563-123456789012",
 				ResourceGroup:                     "example-resource-group",
 				IntegrationServiceEnvironmentName: "integrationServiceEnvironmentValue",
-				ApiName:                           "apiValue",
+				ManagedApiName:                    "managedApiValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logic/integrationServiceEnvironments/integrationServiceEnvironmentValue/managedApis/apiValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logic/integrationServiceEnvironments/integrationServiceEnvironmentValue/managedApis/managedApiValue/extra",
 			Error: true,
 		},
 	}
@@ -135,8 +135,8 @@ func TestParseManagedApiID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for IntegrationServiceEnvironmentName", v.Expected.IntegrationServiceEnvironmentName, actual.IntegrationServiceEnvironmentName)
 		}
 
-		if actual.ApiName != v.Expected.ApiName {
-			t.Fatalf("Expected %q but got %q for ApiName", v.Expected.ApiName, actual.ApiName)
+		if actual.ManagedApiName != v.Expected.ManagedApiName {
+			t.Fatalf("Expected %q but got %q for ManagedApiName", v.Expected.ManagedApiName, actual.ManagedApiName)
 		}
 
 	}
@@ -245,32 +245,32 @@ func TestParseManagedApiIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logic/integrationServiceEnvironments/integrationServiceEnvironmentValue/managedApis/apiValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logic/integrationServiceEnvironments/integrationServiceEnvironmentValue/managedApis/managedApiValue",
 			Expected: &ManagedApiId{
 				SubscriptionId:                    "12345678-1234-9876-4563-123456789012",
 				ResourceGroup:                     "example-resource-group",
 				IntegrationServiceEnvironmentName: "integrationServiceEnvironmentValue",
-				ApiName:                           "apiValue",
+				ManagedApiName:                    "managedApiValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logic/integrationServiceEnvironments/integrationServiceEnvironmentValue/managedApis/apiValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logic/integrationServiceEnvironments/integrationServiceEnvironmentValue/managedApis/managedApiValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.lOgIc/iNtEgRaTiOnSeRvIcEeNvIrOnMeNtS/iNtEgRaTiOnSeRvIcEeNvIrOnMeNtVaLuE/mAnAgEdApIs/aPiVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.lOgIc/iNtEgRaTiOnSeRvIcEeNvIrOnMeNtS/iNtEgRaTiOnSeRvIcEeNvIrOnMeNtVaLuE/mAnAgEdApIs/mAnAgEdApIvAlUe",
 			Expected: &ManagedApiId{
 				SubscriptionId:                    "12345678-1234-9876-4563-123456789012",
 				ResourceGroup:                     "eXaMpLe-rEsOuRcE-GrOuP",
 				IntegrationServiceEnvironmentName: "iNtEgRaTiOnSeRvIcEeNvIrOnMeNtVaLuE",
-				ApiName:                           "aPiVaLuE",
+				ManagedApiName:                    "mAnAgEdApIvAlUe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.lOgIc/iNtEgRaTiOnSeRvIcEeNvIrOnMeNtS/iNtEgRaTiOnSeRvIcEeNvIrOnMeNtVaLuE/mAnAgEdApIs/aPiVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.lOgIc/iNtEgRaTiOnSeRvIcEeNvIrOnMeNtS/iNtEgRaTiOnSeRvIcEeNvIrOnMeNtVaLuE/mAnAgEdApIs/mAnAgEdApIvAlUe/extra",
 			Error: true,
 		},
 	}
@@ -301,8 +301,8 @@ func TestParseManagedApiIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for IntegrationServiceEnvironmentName", v.Expected.IntegrationServiceEnvironmentName, actual.IntegrationServiceEnvironmentName)
 		}
 
-		if actual.ApiName != v.Expected.ApiName {
-			t.Fatalf("Expected %q but got %q for ApiName", v.Expected.ApiName, actual.ApiName)
+		if actual.ManagedApiName != v.Expected.ManagedApiName {
+			t.Fatalf("Expected %q but got %q for ManagedApiName", v.Expected.ManagedApiName, actual.ManagedApiName)
 		}
 
 	}

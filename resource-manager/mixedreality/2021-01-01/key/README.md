@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := key.NewRemoteRenderingAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue")
+id := key.NewRemoteRenderingAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "remoteRenderingAccountValue")
 
 read, err := client.RemoteRenderingAccountsListKeys(ctx, id)
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := key.NewRemoteRenderingAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue")
+id := key.NewRemoteRenderingAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "remoteRenderingAccountValue")
 
 payload := key.AccountKeyRegenerateRequest{
 	// ...
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := key.NewSpatialAnchorsAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue")
+id := key.NewSpatialAnchorsAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "spatialAnchorsAccountValue")
 
 read, err := client.SpatialAnchorsAccountsListKeys(ctx, id)
 if err != nil {
@@ -77,7 +77,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := key.NewSpatialAnchorsAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue")
+id := key.NewSpatialAnchorsAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "spatialAnchorsAccountValue")
 
 payload := key.AccountKeyRegenerateRequest{
 	// ...

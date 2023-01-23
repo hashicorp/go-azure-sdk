@@ -11,19 +11,19 @@ var _ resourceids.ResourceId = ConfigurationId{}
 
 // ConfigurationId is a struct representing the Resource ID for a Configuration
 type ConfigurationId struct {
-	SubscriptionId    string
-	ResourceGroupName string
-	ServerGroupName   string
-	ConfigurationName string
+	SubscriptionId     string
+	ResourceGroupName  string
+	ServerGroupsv2Name string
+	ConfigurationName  string
 }
 
 // NewConfigurationID returns a new ConfigurationId struct
-func NewConfigurationID(subscriptionId string, resourceGroupName string, serverGroupName string, configurationName string) ConfigurationId {
+func NewConfigurationID(subscriptionId string, resourceGroupName string, serverGroupsv2Name string, configurationName string) ConfigurationId {
 	return ConfigurationId{
-		SubscriptionId:    subscriptionId,
-		ResourceGroupName: resourceGroupName,
-		ServerGroupName:   serverGroupName,
-		ConfigurationName: configurationName,
+		SubscriptionId:     subscriptionId,
+		ResourceGroupName:  resourceGroupName,
+		ServerGroupsv2Name: serverGroupsv2Name,
+		ConfigurationName:  configurationName,
 	}
 }
 
@@ -46,8 +46,8 @@ func ParseConfigurationID(input string) (*ConfigurationId, error) {
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.ServerGroupName, ok = parsed.Parsed["serverGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'serverGroupName' was not found in the resource id %q", input)
+	if id.ServerGroupsv2Name, ok = parsed.Parsed["serverGroupsv2Name"]; !ok {
+		return nil, fmt.Errorf("the segment 'serverGroupsv2Name' was not found in the resource id %q", input)
 	}
 
 	if id.ConfigurationName, ok = parsed.Parsed["configurationName"]; !ok {
@@ -77,8 +77,8 @@ func ParseConfigurationIDInsensitively(input string) (*ConfigurationId, error) {
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.ServerGroupName, ok = parsed.Parsed["serverGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'serverGroupName' was not found in the resource id %q", input)
+	if id.ServerGroupsv2Name, ok = parsed.Parsed["serverGroupsv2Name"]; !ok {
+		return nil, fmt.Errorf("the segment 'serverGroupsv2Name' was not found in the resource id %q", input)
 	}
 
 	if id.ConfigurationName, ok = parsed.Parsed["configurationName"]; !ok {
@@ -106,7 +106,7 @@ func ValidateConfigurationID(input interface{}, key string) (warnings []string, 
 // ID returns the formatted Configuration ID
 func (id ConfigurationId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/%s/configurations/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.ServerGroupName, id.ConfigurationName)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.ServerGroupsv2Name, id.ConfigurationName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Configuration ID
@@ -119,7 +119,7 @@ func (id ConfigurationId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftDBforPostgreSQL", "Microsoft.DBforPostgreSQL", "Microsoft.DBforPostgreSQL"),
 		resourceids.StaticSegment("staticServerGroupsv2", "serverGroupsv2", "serverGroupsv2"),
-		resourceids.UserSpecifiedSegment("serverGroupName", "serverGroupValue"),
+		resourceids.UserSpecifiedSegment("serverGroupsv2Name", "serverGroupsv2Value"),
 		resourceids.StaticSegment("staticConfigurations", "configurations", "configurations"),
 		resourceids.UserSpecifiedSegment("configurationName", "configurationValue"),
 	}
@@ -130,7 +130,7 @@ func (id ConfigurationId) String() string {
 	components := []string{
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
-		fmt.Sprintf("Server Group Name: %q", id.ServerGroupName),
+		fmt.Sprintf("Server Groupsv 2 Name: %q", id.ServerGroupsv2Name),
 		fmt.Sprintf("Configuration Name: %q", id.ConfigurationName),
 	}
 	return fmt.Sprintf("Configuration (%s)", strings.Join(components, "\n"))
