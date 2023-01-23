@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = BackupPolicyId{}
 
 func TestNewBackupPolicyID(t *testing.T) {
-	id := NewBackupPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "backupPolicyValue")
+	id := NewBackupPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "netAppAccountValue", "backupPolicyValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -19,8 +19,8 @@ func TestNewBackupPolicyID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.AccountName != "accountValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AccountName'", id.AccountName, "accountValue")
+	if id.NetAppAccountName != "netAppAccountValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'NetAppAccountName'", id.NetAppAccountName, "netAppAccountValue")
 	}
 
 	if id.BackupPolicyName != "backupPolicyValue" {
@@ -29,8 +29,8 @@ func TestNewBackupPolicyID(t *testing.T) {
 }
 
 func TestFormatBackupPolicyID(t *testing.T) {
-	actual := NewBackupPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "backupPolicyValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetApp/netAppAccounts/accountValue/backupPolicies/backupPolicyValue"
+	actual := NewBackupPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "netAppAccountValue", "backupPolicyValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetApp/netAppAccounts/netAppAccountValue/backupPolicies/backupPolicyValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -84,27 +84,27 @@ func TestParseBackupPolicyID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetApp/netAppAccounts/accountValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetApp/netAppAccounts/netAppAccountValue",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetApp/netAppAccounts/accountValue/backupPolicies",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetApp/netAppAccounts/netAppAccountValue/backupPolicies",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetApp/netAppAccounts/accountValue/backupPolicies/backupPolicyValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetApp/netAppAccounts/netAppAccountValue/backupPolicies/backupPolicyValue",
 			Expected: &BackupPolicyId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				AccountName:       "accountValue",
+				NetAppAccountName: "netAppAccountValue",
 				BackupPolicyName:  "backupPolicyValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetApp/netAppAccounts/accountValue/backupPolicies/backupPolicyValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetApp/netAppAccounts/netAppAccountValue/backupPolicies/backupPolicyValue/extra",
 			Error: true,
 		},
 	}
@@ -131,8 +131,8 @@ func TestParseBackupPolicyID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.AccountName != v.Expected.AccountName {
-			t.Fatalf("Expected %q but got %q for AccountName", v.Expected.AccountName, actual.AccountName)
+		if actual.NetAppAccountName != v.Expected.NetAppAccountName {
+			t.Fatalf("Expected %q but got %q for NetAppAccountName", v.Expected.NetAppAccountName, actual.NetAppAccountName)
 		}
 
 		if actual.BackupPolicyName != v.Expected.BackupPolicyName {
@@ -225,52 +225,52 @@ func TestParseBackupPolicyIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetApp/netAppAccounts/accountValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetApp/netAppAccounts/netAppAccountValue",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtApP/nEtApPaCcOuNtS/aCcOuNtVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtApP/nEtApPaCcOuNtS/nEtApPaCcOuNtVaLuE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetApp/netAppAccounts/accountValue/backupPolicies",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetApp/netAppAccounts/netAppAccountValue/backupPolicies",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtApP/nEtApPaCcOuNtS/aCcOuNtVaLuE/bAcKuPpOlIcIeS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtApP/nEtApPaCcOuNtS/nEtApPaCcOuNtVaLuE/bAcKuPpOlIcIeS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetApp/netAppAccounts/accountValue/backupPolicies/backupPolicyValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetApp/netAppAccounts/netAppAccountValue/backupPolicies/backupPolicyValue",
 			Expected: &BackupPolicyId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				AccountName:       "accountValue",
+				NetAppAccountName: "netAppAccountValue",
 				BackupPolicyName:  "backupPolicyValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetApp/netAppAccounts/accountValue/backupPolicies/backupPolicyValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.NetApp/netAppAccounts/netAppAccountValue/backupPolicies/backupPolicyValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtApP/nEtApPaCcOuNtS/aCcOuNtVaLuE/bAcKuPpOlIcIeS/bAcKuPpOlIcYvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtApP/nEtApPaCcOuNtS/nEtApPaCcOuNtVaLuE/bAcKuPpOlIcIeS/bAcKuPpOlIcYvAlUe",
 			Expected: &BackupPolicyId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				AccountName:       "aCcOuNtVaLuE",
+				NetAppAccountName: "nEtApPaCcOuNtVaLuE",
 				BackupPolicyName:  "bAcKuPpOlIcYvAlUe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtApP/nEtApPaCcOuNtS/aCcOuNtVaLuE/bAcKuPpOlIcIeS/bAcKuPpOlIcYvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtApP/nEtApPaCcOuNtS/nEtApPaCcOuNtVaLuE/bAcKuPpOlIcIeS/bAcKuPpOlIcYvAlUe/extra",
 			Error: true,
 		},
 	}
@@ -297,8 +297,8 @@ func TestParseBackupPolicyIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.AccountName != v.Expected.AccountName {
-			t.Fatalf("Expected %q but got %q for AccountName", v.Expected.AccountName, actual.AccountName)
+		if actual.NetAppAccountName != v.Expected.NetAppAccountName {
+			t.Fatalf("Expected %q but got %q for NetAppAccountName", v.Expected.NetAppAccountName, actual.NetAppAccountName)
 		}
 
 		if actual.BackupPolicyName != v.Expected.BackupPolicyName {

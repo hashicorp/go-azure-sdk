@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := replicationjobs.NewReplicationJobID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue", "jobValue")
+id := replicationjobs.NewReplicationJobID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue", "replicationJobValue")
 
 if err := client.CancelThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -36,7 +36,7 @@ if err := client.CancelThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := replicationjobs.NewVaultID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue")
+id := replicationjobs.NewVaultID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue")
 
 payload := replicationjobs.JobQueryParameter{
 	// ...
@@ -53,7 +53,7 @@ if err := client.ExportThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := replicationjobs.NewReplicationJobID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue", "jobValue")
+id := replicationjobs.NewReplicationJobID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue", "replicationJobValue")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -69,7 +69,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := replicationjobs.NewVaultID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue")
+id := replicationjobs.NewVaultID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue")
 
 // alternatively `client.List(ctx, id, replicationjobs.DefaultListOperationOptions())` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id, replicationjobs.DefaultListOperationOptions())
@@ -86,7 +86,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := replicationjobs.NewReplicationJobID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue", "jobValue")
+id := replicationjobs.NewReplicationJobID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue", "replicationJobValue")
 
 if err := client.RestartThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -98,7 +98,7 @@ if err := client.RestartThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := replicationjobs.NewReplicationJobID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue", "jobValue")
+id := replicationjobs.NewReplicationJobID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue", "replicationJobValue")
 
 payload := replicationjobs.ResumeJobParams{
 	// ...

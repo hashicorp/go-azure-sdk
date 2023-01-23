@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = ApplicationId{}
 
 func TestNewApplicationID(t *testing.T) {
-	id := NewApplicationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "galleryValue", "galleryApplicationValue")
+	id := NewApplicationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "galleryValue", "applicationValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -23,14 +23,14 @@ func TestNewApplicationID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'GalleryName'", id.GalleryName, "galleryValue")
 	}
 
-	if id.GalleryApplicationName != "galleryApplicationValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'GalleryApplicationName'", id.GalleryApplicationName, "galleryApplicationValue")
+	if id.ApplicationName != "applicationValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'ApplicationName'", id.ApplicationName, "applicationValue")
 	}
 }
 
 func TestFormatApplicationID(t *testing.T) {
-	actual := NewApplicationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "galleryValue", "galleryApplicationValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/galleries/galleryValue/applications/galleryApplicationValue"
+	actual := NewApplicationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "galleryValue", "applicationValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/galleries/galleryValue/applications/applicationValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -94,17 +94,17 @@ func TestParseApplicationID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/galleries/galleryValue/applications/galleryApplicationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/galleries/galleryValue/applications/applicationValue",
 			Expected: &ApplicationId{
-				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName:      "example-resource-group",
-				GalleryName:            "galleryValue",
-				GalleryApplicationName: "galleryApplicationValue",
+				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName: "example-resource-group",
+				GalleryName:       "galleryValue",
+				ApplicationName:   "applicationValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/galleries/galleryValue/applications/galleryApplicationValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/galleries/galleryValue/applications/applicationValue/extra",
 			Error: true,
 		},
 	}
@@ -135,8 +135,8 @@ func TestParseApplicationID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for GalleryName", v.Expected.GalleryName, actual.GalleryName)
 		}
 
-		if actual.GalleryApplicationName != v.Expected.GalleryApplicationName {
-			t.Fatalf("Expected %q but got %q for GalleryApplicationName", v.Expected.GalleryApplicationName, actual.GalleryApplicationName)
+		if actual.ApplicationName != v.Expected.ApplicationName {
+			t.Fatalf("Expected %q but got %q for ApplicationName", v.Expected.ApplicationName, actual.ApplicationName)
 		}
 
 	}
@@ -245,32 +245,32 @@ func TestParseApplicationIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/galleries/galleryValue/applications/galleryApplicationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/galleries/galleryValue/applications/applicationValue",
 			Expected: &ApplicationId{
-				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName:      "example-resource-group",
-				GalleryName:            "galleryValue",
-				GalleryApplicationName: "galleryApplicationValue",
+				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName: "example-resource-group",
+				GalleryName:       "galleryValue",
+				ApplicationName:   "applicationValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/galleries/galleryValue/applications/galleryApplicationValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/galleries/galleryValue/applications/applicationValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmPuTe/gAlLeRiEs/gAlLeRyVaLuE/aPpLiCaTiOnS/gAlLeRyApPlIcAtIoNvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmPuTe/gAlLeRiEs/gAlLeRyVaLuE/aPpLiCaTiOnS/aPpLiCaTiOnVaLuE",
 			Expected: &ApplicationId{
-				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName:      "eXaMpLe-rEsOuRcE-GrOuP",
-				GalleryName:            "gAlLeRyVaLuE",
-				GalleryApplicationName: "gAlLeRyApPlIcAtIoNvAlUe",
+				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
+				GalleryName:       "gAlLeRyVaLuE",
+				ApplicationName:   "aPpLiCaTiOnVaLuE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmPuTe/gAlLeRiEs/gAlLeRyVaLuE/aPpLiCaTiOnS/gAlLeRyApPlIcAtIoNvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmPuTe/gAlLeRiEs/gAlLeRyVaLuE/aPpLiCaTiOnS/aPpLiCaTiOnVaLuE/extra",
 			Error: true,
 		},
 	}
@@ -301,8 +301,8 @@ func TestParseApplicationIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for GalleryName", v.Expected.GalleryName, actual.GalleryName)
 		}
 
-		if actual.GalleryApplicationName != v.Expected.GalleryApplicationName {
-			t.Fatalf("Expected %q but got %q for GalleryApplicationName", v.Expected.GalleryApplicationName, actual.GalleryApplicationName)
+		if actual.ApplicationName != v.Expected.ApplicationName {
+			t.Fatalf("Expected %q but got %q for ApplicationName", v.Expected.ApplicationName, actual.ApplicationName)
 		}
 
 	}

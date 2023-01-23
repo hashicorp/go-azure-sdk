@@ -9,24 +9,24 @@ import (
 var _ resourceids.ResourceId = SharedGalleryId{}
 
 func TestNewSharedGalleryID(t *testing.T) {
-	id := NewSharedGalleryID("12345678-1234-9876-4563-123456789012", "locationValue", "galleryUniqueValue")
+	id := NewSharedGalleryID("12345678-1234-9876-4563-123456789012", "locationValue", "sharedGalleryValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
 	}
 
-	if id.Location != "locationValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'Location'", id.Location, "locationValue")
+	if id.LocationName != "locationValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'LocationName'", id.LocationName, "locationValue")
 	}
 
-	if id.GalleryUniqueName != "galleryUniqueValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'GalleryUniqueName'", id.GalleryUniqueName, "galleryUniqueValue")
+	if id.SharedGalleryName != "sharedGalleryValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'SharedGalleryName'", id.SharedGalleryName, "sharedGalleryValue")
 	}
 }
 
 func TestFormatSharedGalleryID(t *testing.T) {
-	actual := NewSharedGalleryID("12345678-1234-9876-4563-123456789012", "locationValue", "galleryUniqueValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationValue/sharedGalleries/galleryUniqueValue"
+	actual := NewSharedGalleryID("12345678-1234-9876-4563-123456789012", "locationValue", "sharedGalleryValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationValue/sharedGalleries/sharedGalleryValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -80,16 +80,16 @@ func TestParseSharedGalleryID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationValue/sharedGalleries/galleryUniqueValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationValue/sharedGalleries/sharedGalleryValue",
 			Expected: &SharedGalleryId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				Location:          "locationValue",
-				GalleryUniqueName: "galleryUniqueValue",
+				LocationName:      "locationValue",
+				SharedGalleryName: "sharedGalleryValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationValue/sharedGalleries/galleryUniqueValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationValue/sharedGalleries/sharedGalleryValue/extra",
 			Error: true,
 		},
 	}
@@ -112,12 +112,12 @@ func TestParseSharedGalleryID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for SubscriptionId", v.Expected.SubscriptionId, actual.SubscriptionId)
 		}
 
-		if actual.Location != v.Expected.Location {
-			t.Fatalf("Expected %q but got %q for Location", v.Expected.Location, actual.Location)
+		if actual.LocationName != v.Expected.LocationName {
+			t.Fatalf("Expected %q but got %q for LocationName", v.Expected.LocationName, actual.LocationName)
 		}
 
-		if actual.GalleryUniqueName != v.Expected.GalleryUniqueName {
-			t.Fatalf("Expected %q but got %q for GalleryUniqueName", v.Expected.GalleryUniqueName, actual.GalleryUniqueName)
+		if actual.SharedGalleryName != v.Expected.SharedGalleryName {
+			t.Fatalf("Expected %q but got %q for SharedGalleryName", v.Expected.SharedGalleryName, actual.SharedGalleryName)
 		}
 
 	}
@@ -206,30 +206,30 @@ func TestParseSharedGalleryIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationValue/sharedGalleries/galleryUniqueValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationValue/sharedGalleries/sharedGalleryValue",
 			Expected: &SharedGalleryId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				Location:          "locationValue",
-				GalleryUniqueName: "galleryUniqueValue",
+				LocationName:      "locationValue",
+				SharedGalleryName: "sharedGalleryValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationValue/sharedGalleries/galleryUniqueValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationValue/sharedGalleries/sharedGalleryValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOmPuTe/lOcAtIoNs/lOcAtIoNvAlUe/sHaReDgAlLeRiEs/gAlLeRyUnIqUeVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOmPuTe/lOcAtIoNs/lOcAtIoNvAlUe/sHaReDgAlLeRiEs/sHaReDgAlLeRyVaLuE",
 			Expected: &SharedGalleryId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				Location:          "lOcAtIoNvAlUe",
-				GalleryUniqueName: "gAlLeRyUnIqUeVaLuE",
+				LocationName:      "lOcAtIoNvAlUe",
+				SharedGalleryName: "sHaReDgAlLeRyVaLuE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOmPuTe/lOcAtIoNs/lOcAtIoNvAlUe/sHaReDgAlLeRiEs/gAlLeRyUnIqUeVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOmPuTe/lOcAtIoNs/lOcAtIoNvAlUe/sHaReDgAlLeRiEs/sHaReDgAlLeRyVaLuE/extra",
 			Error: true,
 		},
 	}
@@ -252,12 +252,12 @@ func TestParseSharedGalleryIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for SubscriptionId", v.Expected.SubscriptionId, actual.SubscriptionId)
 		}
 
-		if actual.Location != v.Expected.Location {
-			t.Fatalf("Expected %q but got %q for Location", v.Expected.Location, actual.Location)
+		if actual.LocationName != v.Expected.LocationName {
+			t.Fatalf("Expected %q but got %q for LocationName", v.Expected.LocationName, actual.LocationName)
 		}
 
-		if actual.GalleryUniqueName != v.Expected.GalleryUniqueName {
-			t.Fatalf("Expected %q but got %q for GalleryUniqueName", v.Expected.GalleryUniqueName, actual.GalleryUniqueName)
+		if actual.SharedGalleryName != v.Expected.SharedGalleryName {
+			t.Fatalf("Expected %q but got %q for SharedGalleryName", v.Expected.SharedGalleryName, actual.SharedGalleryName)
 		}
 
 	}

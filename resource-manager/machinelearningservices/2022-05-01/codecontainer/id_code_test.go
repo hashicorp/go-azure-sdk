@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = CodeId{}
 
 func TestNewCodeID(t *testing.T) {
-	id := NewCodeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "nameValue")
+	id := NewCodeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "codeValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -23,14 +23,14 @@ func TestNewCodeID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'WorkspaceName'", id.WorkspaceName, "workspaceValue")
 	}
 
-	if id.Name != "nameValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'Name'", id.Name, "nameValue")
+	if id.CodeName != "codeValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'CodeName'", id.CodeName, "codeValue")
 	}
 }
 
 func TestFormatCodeID(t *testing.T) {
-	actual := NewCodeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "nameValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MachineLearningServices/workspaces/workspaceValue/codes/nameValue"
+	actual := NewCodeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "codeValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MachineLearningServices/workspaces/workspaceValue/codes/codeValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -94,17 +94,17 @@ func TestParseCodeID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MachineLearningServices/workspaces/workspaceValue/codes/nameValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MachineLearningServices/workspaces/workspaceValue/codes/codeValue",
 			Expected: &CodeId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				WorkspaceName:     "workspaceValue",
-				Name:              "nameValue",
+				CodeName:          "codeValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MachineLearningServices/workspaces/workspaceValue/codes/nameValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MachineLearningServices/workspaces/workspaceValue/codes/codeValue/extra",
 			Error: true,
 		},
 	}
@@ -135,8 +135,8 @@ func TestParseCodeID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for WorkspaceName", v.Expected.WorkspaceName, actual.WorkspaceName)
 		}
 
-		if actual.Name != v.Expected.Name {
-			t.Fatalf("Expected %q but got %q for Name", v.Expected.Name, actual.Name)
+		if actual.CodeName != v.Expected.CodeName {
+			t.Fatalf("Expected %q but got %q for CodeName", v.Expected.CodeName, actual.CodeName)
 		}
 
 	}
@@ -245,32 +245,32 @@ func TestParseCodeIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MachineLearningServices/workspaces/workspaceValue/codes/nameValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MachineLearningServices/workspaces/workspaceValue/codes/codeValue",
 			Expected: &CodeId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				WorkspaceName:     "workspaceValue",
-				Name:              "nameValue",
+				CodeName:          "codeValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MachineLearningServices/workspaces/workspaceValue/codes/nameValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MachineLearningServices/workspaces/workspaceValue/codes/codeValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mAcHiNeLeArNiNgSeRvIcEs/wOrKsPaCeS/wOrKsPaCeVaLuE/cOdEs/nAmEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mAcHiNeLeArNiNgSeRvIcEs/wOrKsPaCeS/wOrKsPaCeVaLuE/cOdEs/cOdEvAlUe",
 			Expected: &CodeId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
 				WorkspaceName:     "wOrKsPaCeVaLuE",
-				Name:              "nAmEvAlUe",
+				CodeName:          "cOdEvAlUe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mAcHiNeLeArNiNgSeRvIcEs/wOrKsPaCeS/wOrKsPaCeVaLuE/cOdEs/nAmEvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mAcHiNeLeArNiNgSeRvIcEs/wOrKsPaCeS/wOrKsPaCeVaLuE/cOdEs/cOdEvAlUe/extra",
 			Error: true,
 		},
 	}
@@ -301,8 +301,8 @@ func TestParseCodeIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for WorkspaceName", v.Expected.WorkspaceName, actual.WorkspaceName)
 		}
 
-		if actual.Name != v.Expected.Name {
-			t.Fatalf("Expected %q but got %q for Name", v.Expected.Name, actual.Name)
+		if actual.CodeName != v.Expected.CodeName {
+			t.Fatalf("Expected %q but got %q for CodeName", v.Expected.CodeName, actual.CodeName)
 		}
 
 	}

@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = VirtualMachineScaleSetExtensionId{}
 
 func TestNewVirtualMachineScaleSetExtensionID(t *testing.T) {
-	id := NewVirtualMachineScaleSetExtensionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineScaleSetValue", "vmssExtensionValue")
+	id := NewVirtualMachineScaleSetExtensionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineScaleSetValue", "extensionValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -23,14 +23,14 @@ func TestNewVirtualMachineScaleSetExtensionID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'VirtualMachineScaleSetName'", id.VirtualMachineScaleSetName, "virtualMachineScaleSetValue")
 	}
 
-	if id.VmssExtensionName != "vmssExtensionValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'VmssExtensionName'", id.VmssExtensionName, "vmssExtensionValue")
+	if id.ExtensionName != "extensionValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'ExtensionName'", id.ExtensionName, "extensionValue")
 	}
 }
 
 func TestFormatVirtualMachineScaleSetExtensionID(t *testing.T) {
-	actual := NewVirtualMachineScaleSetExtensionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineScaleSetValue", "vmssExtensionValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/virtualMachineScaleSets/virtualMachineScaleSetValue/extensions/vmssExtensionValue"
+	actual := NewVirtualMachineScaleSetExtensionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineScaleSetValue", "extensionValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/virtualMachineScaleSets/virtualMachineScaleSetValue/extensions/extensionValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -94,17 +94,17 @@ func TestParseVirtualMachineScaleSetExtensionID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/virtualMachineScaleSets/virtualMachineScaleSetValue/extensions/vmssExtensionValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/virtualMachineScaleSets/virtualMachineScaleSetValue/extensions/extensionValue",
 			Expected: &VirtualMachineScaleSetExtensionId{
 				SubscriptionId:             "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:          "example-resource-group",
 				VirtualMachineScaleSetName: "virtualMachineScaleSetValue",
-				VmssExtensionName:          "vmssExtensionValue",
+				ExtensionName:              "extensionValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/virtualMachineScaleSets/virtualMachineScaleSetValue/extensions/vmssExtensionValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/virtualMachineScaleSets/virtualMachineScaleSetValue/extensions/extensionValue/extra",
 			Error: true,
 		},
 	}
@@ -135,8 +135,8 @@ func TestParseVirtualMachineScaleSetExtensionID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for VirtualMachineScaleSetName", v.Expected.VirtualMachineScaleSetName, actual.VirtualMachineScaleSetName)
 		}
 
-		if actual.VmssExtensionName != v.Expected.VmssExtensionName {
-			t.Fatalf("Expected %q but got %q for VmssExtensionName", v.Expected.VmssExtensionName, actual.VmssExtensionName)
+		if actual.ExtensionName != v.Expected.ExtensionName {
+			t.Fatalf("Expected %q but got %q for ExtensionName", v.Expected.ExtensionName, actual.ExtensionName)
 		}
 
 	}
@@ -245,32 +245,32 @@ func TestParseVirtualMachineScaleSetExtensionIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/virtualMachineScaleSets/virtualMachineScaleSetValue/extensions/vmssExtensionValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/virtualMachineScaleSets/virtualMachineScaleSetValue/extensions/extensionValue",
 			Expected: &VirtualMachineScaleSetExtensionId{
 				SubscriptionId:             "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:          "example-resource-group",
 				VirtualMachineScaleSetName: "virtualMachineScaleSetValue",
-				VmssExtensionName:          "vmssExtensionValue",
+				ExtensionName:              "extensionValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/virtualMachineScaleSets/virtualMachineScaleSetValue/extensions/vmssExtensionValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/virtualMachineScaleSets/virtualMachineScaleSetValue/extensions/extensionValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmPuTe/vIrTuAlMaChInEsCaLeSeTs/vIrTuAlMaChInEsCaLeSeTvAlUe/eXtEnSiOnS/vMsSeXtEnSiOnVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmPuTe/vIrTuAlMaChInEsCaLeSeTs/vIrTuAlMaChInEsCaLeSeTvAlUe/eXtEnSiOnS/eXtEnSiOnVaLuE",
 			Expected: &VirtualMachineScaleSetExtensionId{
 				SubscriptionId:             "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:          "eXaMpLe-rEsOuRcE-GrOuP",
 				VirtualMachineScaleSetName: "vIrTuAlMaChInEsCaLeSeTvAlUe",
-				VmssExtensionName:          "vMsSeXtEnSiOnVaLuE",
+				ExtensionName:              "eXtEnSiOnVaLuE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmPuTe/vIrTuAlMaChInEsCaLeSeTs/vIrTuAlMaChInEsCaLeSeTvAlUe/eXtEnSiOnS/vMsSeXtEnSiOnVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmPuTe/vIrTuAlMaChInEsCaLeSeTs/vIrTuAlMaChInEsCaLeSeTvAlUe/eXtEnSiOnS/eXtEnSiOnVaLuE/extra",
 			Error: true,
 		},
 	}
@@ -301,8 +301,8 @@ func TestParseVirtualMachineScaleSetExtensionIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for VirtualMachineScaleSetName", v.Expected.VirtualMachineScaleSetName, actual.VirtualMachineScaleSetName)
 		}
 
-		if actual.VmssExtensionName != v.Expected.VmssExtensionName {
-			t.Fatalf("Expected %q but got %q for VmssExtensionName", v.Expected.VmssExtensionName, actual.VmssExtensionName)
+		if actual.ExtensionName != v.Expected.ExtensionName {
+			t.Fatalf("Expected %q but got %q for ExtensionName", v.Expected.ExtensionName, actual.ExtensionName)
 		}
 
 	}

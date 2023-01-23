@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = StreamingJobId{}
 
 func TestNewStreamingJobID(t *testing.T) {
-	id := NewStreamingJobID("12345678-1234-9876-4563-123456789012", "example-resource-group", "jobValue")
+	id := NewStreamingJobID("12345678-1234-9876-4563-123456789012", "example-resource-group", "streamingJobValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -19,14 +19,14 @@ func TestNewStreamingJobID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.JobName != "jobValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'JobName'", id.JobName, "jobValue")
+	if id.StreamingJobName != "streamingJobValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'StreamingJobName'", id.StreamingJobName, "streamingJobValue")
 	}
 }
 
 func TestFormatStreamingJobID(t *testing.T) {
-	actual := NewStreamingJobID("12345678-1234-9876-4563-123456789012", "example-resource-group", "jobValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StreamAnalytics/streamingJobs/jobValue"
+	actual := NewStreamingJobID("12345678-1234-9876-4563-123456789012", "example-resource-group", "streamingJobValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StreamAnalytics/streamingJobs/streamingJobValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -80,16 +80,16 @@ func TestParseStreamingJobID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StreamAnalytics/streamingJobs/jobValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StreamAnalytics/streamingJobs/streamingJobValue",
 			Expected: &StreamingJobId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				JobName:           "jobValue",
+				StreamingJobName:  "streamingJobValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StreamAnalytics/streamingJobs/jobValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StreamAnalytics/streamingJobs/streamingJobValue/extra",
 			Error: true,
 		},
 	}
@@ -116,8 +116,8 @@ func TestParseStreamingJobID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.JobName != v.Expected.JobName {
-			t.Fatalf("Expected %q but got %q for JobName", v.Expected.JobName, actual.JobName)
+		if actual.StreamingJobName != v.Expected.StreamingJobName {
+			t.Fatalf("Expected %q but got %q for StreamingJobName", v.Expected.StreamingJobName, actual.StreamingJobName)
 		}
 
 	}
@@ -206,30 +206,30 @@ func TestParseStreamingJobIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StreamAnalytics/streamingJobs/jobValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StreamAnalytics/streamingJobs/streamingJobValue",
 			Expected: &StreamingJobId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				JobName:           "jobValue",
+				StreamingJobName:  "streamingJobValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StreamAnalytics/streamingJobs/jobValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.StreamAnalytics/streamingJobs/streamingJobValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sTrEaMaNaLyTiCs/sTrEaMiNgJoBs/jObVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sTrEaMaNaLyTiCs/sTrEaMiNgJoBs/sTrEaMiNgJoBvAlUe",
 			Expected: &StreamingJobId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				JobName:           "jObVaLuE",
+				StreamingJobName:  "sTrEaMiNgJoBvAlUe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sTrEaMaNaLyTiCs/sTrEaMiNgJoBs/jObVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sTrEaMaNaLyTiCs/sTrEaMiNgJoBs/sTrEaMiNgJoBvAlUe/extra",
 			Error: true,
 		},
 	}
@@ -256,8 +256,8 @@ func TestParseStreamingJobIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.JobName != v.Expected.JobName {
-			t.Fatalf("Expected %q but got %q for JobName", v.Expected.JobName, actual.JobName)
+		if actual.StreamingJobName != v.Expected.StreamingJobName {
+			t.Fatalf("Expected %q but got %q for StreamingJobName", v.Expected.StreamingJobName, actual.StreamingJobName)
 		}
 
 	}

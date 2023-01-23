@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = ComponentVersionId{}
 
 func TestNewComponentVersionID(t *testing.T) {
-	id := NewComponentVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "nameValue", "versionValue")
+	id := NewComponentVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "componentValue", "versionValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -23,18 +23,18 @@ func TestNewComponentVersionID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'WorkspaceName'", id.WorkspaceName, "workspaceValue")
 	}
 
-	if id.Name != "nameValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'Name'", id.Name, "nameValue")
+	if id.ComponentName != "componentValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'ComponentName'", id.ComponentName, "componentValue")
 	}
 
-	if id.Version != "versionValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'Version'", id.Version, "versionValue")
+	if id.VersionName != "versionValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'VersionName'", id.VersionName, "versionValue")
 	}
 }
 
 func TestFormatComponentVersionID(t *testing.T) {
-	actual := NewComponentVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "nameValue", "versionValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MachineLearningServices/workspaces/workspaceValue/components/nameValue/versions/versionValue"
+	actual := NewComponentVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "componentValue", "versionValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MachineLearningServices/workspaces/workspaceValue/components/componentValue/versions/versionValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -98,28 +98,28 @@ func TestParseComponentVersionID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MachineLearningServices/workspaces/workspaceValue/components/nameValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MachineLearningServices/workspaces/workspaceValue/components/componentValue",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MachineLearningServices/workspaces/workspaceValue/components/nameValue/versions",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MachineLearningServices/workspaces/workspaceValue/components/componentValue/versions",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MachineLearningServices/workspaces/workspaceValue/components/nameValue/versions/versionValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MachineLearningServices/workspaces/workspaceValue/components/componentValue/versions/versionValue",
 			Expected: &ComponentVersionId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				WorkspaceName:     "workspaceValue",
-				Name:              "nameValue",
-				Version:           "versionValue",
+				ComponentName:     "componentValue",
+				VersionName:       "versionValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MachineLearningServices/workspaces/workspaceValue/components/nameValue/versions/versionValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MachineLearningServices/workspaces/workspaceValue/components/componentValue/versions/versionValue/extra",
 			Error: true,
 		},
 	}
@@ -150,12 +150,12 @@ func TestParseComponentVersionID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for WorkspaceName", v.Expected.WorkspaceName, actual.WorkspaceName)
 		}
 
-		if actual.Name != v.Expected.Name {
-			t.Fatalf("Expected %q but got %q for Name", v.Expected.Name, actual.Name)
+		if actual.ComponentName != v.Expected.ComponentName {
+			t.Fatalf("Expected %q but got %q for ComponentName", v.Expected.ComponentName, actual.ComponentName)
 		}
 
-		if actual.Version != v.Expected.Version {
-			t.Fatalf("Expected %q but got %q for Version", v.Expected.Version, actual.Version)
+		if actual.VersionName != v.Expected.VersionName {
+			t.Fatalf("Expected %q but got %q for VersionName", v.Expected.VersionName, actual.VersionName)
 		}
 
 	}
@@ -264,54 +264,54 @@ func TestParseComponentVersionIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MachineLearningServices/workspaces/workspaceValue/components/nameValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MachineLearningServices/workspaces/workspaceValue/components/componentValue",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mAcHiNeLeArNiNgSeRvIcEs/wOrKsPaCeS/wOrKsPaCeVaLuE/cOmPoNeNtS/nAmEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mAcHiNeLeArNiNgSeRvIcEs/wOrKsPaCeS/wOrKsPaCeVaLuE/cOmPoNeNtS/cOmPoNeNtVaLuE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MachineLearningServices/workspaces/workspaceValue/components/nameValue/versions",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MachineLearningServices/workspaces/workspaceValue/components/componentValue/versions",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mAcHiNeLeArNiNgSeRvIcEs/wOrKsPaCeS/wOrKsPaCeVaLuE/cOmPoNeNtS/nAmEvAlUe/vErSiOnS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mAcHiNeLeArNiNgSeRvIcEs/wOrKsPaCeS/wOrKsPaCeVaLuE/cOmPoNeNtS/cOmPoNeNtVaLuE/vErSiOnS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MachineLearningServices/workspaces/workspaceValue/components/nameValue/versions/versionValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MachineLearningServices/workspaces/workspaceValue/components/componentValue/versions/versionValue",
 			Expected: &ComponentVersionId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				WorkspaceName:     "workspaceValue",
-				Name:              "nameValue",
-				Version:           "versionValue",
+				ComponentName:     "componentValue",
+				VersionName:       "versionValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MachineLearningServices/workspaces/workspaceValue/components/nameValue/versions/versionValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MachineLearningServices/workspaces/workspaceValue/components/componentValue/versions/versionValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mAcHiNeLeArNiNgSeRvIcEs/wOrKsPaCeS/wOrKsPaCeVaLuE/cOmPoNeNtS/nAmEvAlUe/vErSiOnS/vErSiOnVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mAcHiNeLeArNiNgSeRvIcEs/wOrKsPaCeS/wOrKsPaCeVaLuE/cOmPoNeNtS/cOmPoNeNtVaLuE/vErSiOnS/vErSiOnVaLuE",
 			Expected: &ComponentVersionId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
 				WorkspaceName:     "wOrKsPaCeVaLuE",
-				Name:              "nAmEvAlUe",
-				Version:           "vErSiOnVaLuE",
+				ComponentName:     "cOmPoNeNtVaLuE",
+				VersionName:       "vErSiOnVaLuE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mAcHiNeLeArNiNgSeRvIcEs/wOrKsPaCeS/wOrKsPaCeVaLuE/cOmPoNeNtS/nAmEvAlUe/vErSiOnS/vErSiOnVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mAcHiNeLeArNiNgSeRvIcEs/wOrKsPaCeS/wOrKsPaCeVaLuE/cOmPoNeNtS/cOmPoNeNtVaLuE/vErSiOnS/vErSiOnVaLuE/extra",
 			Error: true,
 		},
 	}
@@ -342,12 +342,12 @@ func TestParseComponentVersionIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for WorkspaceName", v.Expected.WorkspaceName, actual.WorkspaceName)
 		}
 
-		if actual.Name != v.Expected.Name {
-			t.Fatalf("Expected %q but got %q for Name", v.Expected.Name, actual.Name)
+		if actual.ComponentName != v.Expected.ComponentName {
+			t.Fatalf("Expected %q but got %q for ComponentName", v.Expected.ComponentName, actual.ComponentName)
 		}
 
-		if actual.Version != v.Expected.Version {
-			t.Fatalf("Expected %q but got %q for Version", v.Expected.Version, actual.Version)
+		if actual.VersionName != v.Expected.VersionName {
+			t.Fatalf("Expected %q but got %q for VersionName", v.Expected.VersionName, actual.VersionName)
 		}
 
 	}

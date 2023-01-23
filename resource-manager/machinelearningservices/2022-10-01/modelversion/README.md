@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := modelversion.NewModelVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "nameValue", "versionValue")
+id := modelversion.NewModelVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "modelValue", "versionValue")
 
 payload := modelversion.ModelVersionResource{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := modelversion.NewModelVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "nameValue", "versionValue")
+id := modelversion.NewModelVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "modelValue", "versionValue")
 
 read, err := client.Delete(ctx, id)
 if err != nil {
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := modelversion.NewModelVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "nameValue", "versionValue")
+id := modelversion.NewModelVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "modelValue", "versionValue")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -77,7 +77,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := modelversion.NewModelID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "nameValue")
+id := modelversion.NewModelID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "modelValue")
 
 // alternatively `client.List(ctx, id, modelversion.DefaultListOperationOptions())` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id, modelversion.DefaultListOperationOptions())

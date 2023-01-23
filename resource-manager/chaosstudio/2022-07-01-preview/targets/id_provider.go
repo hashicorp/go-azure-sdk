@@ -11,21 +11,21 @@ var _ resourceids.ResourceId = ProviderId{}
 
 // ProviderId is a struct representing the Resource ID for a Provider
 type ProviderId struct {
-	SubscriptionId          string
-	ResourceGroupName       string
-	ParentProviderNamespace string
-	ParentResourceType      string
-	ParentResourceName      string
+	SubscriptionId     string
+	ResourceGroupName  string
+	ProviderName       string
+	ParentResourceType string
+	ParentResourceName string
 }
 
 // NewProviderID returns a new ProviderId struct
-func NewProviderID(subscriptionId string, resourceGroupName string, parentProviderNamespace string, parentResourceType string, parentResourceName string) ProviderId {
+func NewProviderID(subscriptionId string, resourceGroupName string, providerName string, parentResourceType string, parentResourceName string) ProviderId {
 	return ProviderId{
-		SubscriptionId:          subscriptionId,
-		ResourceGroupName:       resourceGroupName,
-		ParentProviderNamespace: parentProviderNamespace,
-		ParentResourceType:      parentResourceType,
-		ParentResourceName:      parentResourceName,
+		SubscriptionId:     subscriptionId,
+		ResourceGroupName:  resourceGroupName,
+		ProviderName:       providerName,
+		ParentResourceType: parentResourceType,
+		ParentResourceName: parentResourceName,
 	}
 }
 
@@ -48,8 +48,8 @@ func ParseProviderID(input string) (*ProviderId, error) {
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.ParentProviderNamespace, ok = parsed.Parsed["parentProviderNamespace"]; !ok {
-		return nil, fmt.Errorf("the segment 'parentProviderNamespace' was not found in the resource id %q", input)
+	if id.ProviderName, ok = parsed.Parsed["providerName"]; !ok {
+		return nil, fmt.Errorf("the segment 'providerName' was not found in the resource id %q", input)
 	}
 
 	if id.ParentResourceType, ok = parsed.Parsed["parentResourceType"]; !ok {
@@ -83,8 +83,8 @@ func ParseProviderIDInsensitively(input string) (*ProviderId, error) {
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.ParentProviderNamespace, ok = parsed.Parsed["parentProviderNamespace"]; !ok {
-		return nil, fmt.Errorf("the segment 'parentProviderNamespace' was not found in the resource id %q", input)
+	if id.ProviderName, ok = parsed.Parsed["providerName"]; !ok {
+		return nil, fmt.Errorf("the segment 'providerName' was not found in the resource id %q", input)
 	}
 
 	if id.ParentResourceType, ok = parsed.Parsed["parentResourceType"]; !ok {
@@ -116,7 +116,7 @@ func ValidateProviderID(input interface{}, key string) (warnings []string, error
 // ID returns the formatted Provider ID
 func (id ProviderId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/%s/%s/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.ParentProviderNamespace, id.ParentResourceType, id.ParentResourceName)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.ProviderName, id.ParentResourceType, id.ParentResourceName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Provider ID
@@ -127,7 +127,7 @@ func (id ProviderId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticResourceGroups", "resourceGroups", "resourceGroups"),
 		resourceids.ResourceGroupSegment("resourceGroupName", "example-resource-group"),
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
-		resourceids.UserSpecifiedSegment("parentProviderNamespace", "parentProviderNamespaceValue"),
+		resourceids.UserSpecifiedSegment("providerName", "providerValue"),
 		resourceids.UserSpecifiedSegment("parentResourceType", "parentResourceTypeValue"),
 		resourceids.UserSpecifiedSegment("parentResourceName", "parentResourceValue"),
 	}
@@ -138,7 +138,7 @@ func (id ProviderId) String() string {
 	components := []string{
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
-		fmt.Sprintf("Parent Provider Namespace: %q", id.ParentProviderNamespace),
+		fmt.Sprintf("Provider Name: %q", id.ProviderName),
 		fmt.Sprintf("Parent Resource Type: %q", id.ParentResourceType),
 		fmt.Sprintf("Parent Resource Name: %q", id.ParentResourceName),
 	}

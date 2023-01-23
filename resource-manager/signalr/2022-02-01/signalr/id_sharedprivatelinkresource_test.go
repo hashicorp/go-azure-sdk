@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = SharedPrivateLinkResourceId{}
 
 func TestNewSharedPrivateLinkResourceID(t *testing.T) {
-	id := NewSharedPrivateLinkResourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue", "sharedPrivateLinkResourceValue")
+	id := NewSharedPrivateLinkResourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "signalRValue", "sharedPrivateLinkResourceValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -19,8 +19,8 @@ func TestNewSharedPrivateLinkResourceID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.ResourceName != "resourceValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ResourceName'", id.ResourceName, "resourceValue")
+	if id.SignalRName != "signalRValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'SignalRName'", id.SignalRName, "signalRValue")
 	}
 
 	if id.SharedPrivateLinkResourceName != "sharedPrivateLinkResourceValue" {
@@ -29,8 +29,8 @@ func TestNewSharedPrivateLinkResourceID(t *testing.T) {
 }
 
 func TestFormatSharedPrivateLinkResourceID(t *testing.T) {
-	actual := NewSharedPrivateLinkResourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue", "sharedPrivateLinkResourceValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SignalRService/signalR/resourceValue/sharedPrivateLinkResources/sharedPrivateLinkResourceValue"
+	actual := NewSharedPrivateLinkResourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "signalRValue", "sharedPrivateLinkResourceValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SignalRService/signalR/signalRValue/sharedPrivateLinkResources/sharedPrivateLinkResourceValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -84,27 +84,27 @@ func TestParseSharedPrivateLinkResourceID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SignalRService/signalR/resourceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SignalRService/signalR/signalRValue",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SignalRService/signalR/resourceValue/sharedPrivateLinkResources",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SignalRService/signalR/signalRValue/sharedPrivateLinkResources",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SignalRService/signalR/resourceValue/sharedPrivateLinkResources/sharedPrivateLinkResourceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SignalRService/signalR/signalRValue/sharedPrivateLinkResources/sharedPrivateLinkResourceValue",
 			Expected: &SharedPrivateLinkResourceId{
 				SubscriptionId:                "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:             "example-resource-group",
-				ResourceName:                  "resourceValue",
+				SignalRName:                   "signalRValue",
 				SharedPrivateLinkResourceName: "sharedPrivateLinkResourceValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SignalRService/signalR/resourceValue/sharedPrivateLinkResources/sharedPrivateLinkResourceValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SignalRService/signalR/signalRValue/sharedPrivateLinkResources/sharedPrivateLinkResourceValue/extra",
 			Error: true,
 		},
 	}
@@ -131,8 +131,8 @@ func TestParseSharedPrivateLinkResourceID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.ResourceName != v.Expected.ResourceName {
-			t.Fatalf("Expected %q but got %q for ResourceName", v.Expected.ResourceName, actual.ResourceName)
+		if actual.SignalRName != v.Expected.SignalRName {
+			t.Fatalf("Expected %q but got %q for SignalRName", v.Expected.SignalRName, actual.SignalRName)
 		}
 
 		if actual.SharedPrivateLinkResourceName != v.Expected.SharedPrivateLinkResourceName {
@@ -225,52 +225,52 @@ func TestParseSharedPrivateLinkResourceIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SignalRService/signalR/resourceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SignalRService/signalR/signalRValue",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sIgNaLrSeRvIcE/sIgNaLr/rEsOuRcEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sIgNaLrSeRvIcE/sIgNaLr/sIgNaLrVaLuE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SignalRService/signalR/resourceValue/sharedPrivateLinkResources",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SignalRService/signalR/signalRValue/sharedPrivateLinkResources",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sIgNaLrSeRvIcE/sIgNaLr/rEsOuRcEvAlUe/sHaReDpRiVaTeLiNkReSoUrCeS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sIgNaLrSeRvIcE/sIgNaLr/sIgNaLrVaLuE/sHaReDpRiVaTeLiNkReSoUrCeS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SignalRService/signalR/resourceValue/sharedPrivateLinkResources/sharedPrivateLinkResourceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SignalRService/signalR/signalRValue/sharedPrivateLinkResources/sharedPrivateLinkResourceValue",
 			Expected: &SharedPrivateLinkResourceId{
 				SubscriptionId:                "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:             "example-resource-group",
-				ResourceName:                  "resourceValue",
+				SignalRName:                   "signalRValue",
 				SharedPrivateLinkResourceName: "sharedPrivateLinkResourceValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SignalRService/signalR/resourceValue/sharedPrivateLinkResources/sharedPrivateLinkResourceValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SignalRService/signalR/signalRValue/sharedPrivateLinkResources/sharedPrivateLinkResourceValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sIgNaLrSeRvIcE/sIgNaLr/rEsOuRcEvAlUe/sHaReDpRiVaTeLiNkReSoUrCeS/sHaReDpRiVaTeLiNkReSoUrCeVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sIgNaLrSeRvIcE/sIgNaLr/sIgNaLrVaLuE/sHaReDpRiVaTeLiNkReSoUrCeS/sHaReDpRiVaTeLiNkReSoUrCeVaLuE",
 			Expected: &SharedPrivateLinkResourceId{
 				SubscriptionId:                "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:             "eXaMpLe-rEsOuRcE-GrOuP",
-				ResourceName:                  "rEsOuRcEvAlUe",
+				SignalRName:                   "sIgNaLrVaLuE",
 				SharedPrivateLinkResourceName: "sHaReDpRiVaTeLiNkReSoUrCeVaLuE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sIgNaLrSeRvIcE/sIgNaLr/rEsOuRcEvAlUe/sHaReDpRiVaTeLiNkReSoUrCeS/sHaReDpRiVaTeLiNkReSoUrCeVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sIgNaLrSeRvIcE/sIgNaLr/sIgNaLrVaLuE/sHaReDpRiVaTeLiNkReSoUrCeS/sHaReDpRiVaTeLiNkReSoUrCeVaLuE/extra",
 			Error: true,
 		},
 	}
@@ -297,8 +297,8 @@ func TestParseSharedPrivateLinkResourceIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.ResourceName != v.Expected.ResourceName {
-			t.Fatalf("Expected %q but got %q for ResourceName", v.Expected.ResourceName, actual.ResourceName)
+		if actual.SignalRName != v.Expected.SignalRName {
+			t.Fatalf("Expected %q but got %q for SignalRName", v.Expected.SignalRName, actual.SignalRName)
 		}
 
 		if actual.SharedPrivateLinkResourceName != v.Expected.SharedPrivateLinkResourceName {

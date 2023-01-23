@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = LocalUserId{}
 
 func TestNewLocalUserID(t *testing.T) {
-	id := NewLocalUserID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "usernameValue")
+	id := NewLocalUserID("12345678-1234-9876-4563-123456789012", "example-resource-group", "storageAccountValue", "localUserValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -19,18 +19,18 @@ func TestNewLocalUserID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.AccountName != "accountValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AccountName'", id.AccountName, "accountValue")
+	if id.StorageAccountName != "storageAccountValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'StorageAccountName'", id.StorageAccountName, "storageAccountValue")
 	}
 
-	if id.Username != "usernameValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'Username'", id.Username, "usernameValue")
+	if id.LocalUserName != "localUserValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'LocalUserName'", id.LocalUserName, "localUserValue")
 	}
 }
 
 func TestFormatLocalUserID(t *testing.T) {
-	actual := NewLocalUserID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "usernameValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/accountValue/localUsers/usernameValue"
+	actual := NewLocalUserID("12345678-1234-9876-4563-123456789012", "example-resource-group", "storageAccountValue", "localUserValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/storageAccountValue/localUsers/localUserValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -84,27 +84,27 @@ func TestParseLocalUserID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/accountValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/storageAccountValue",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/accountValue/localUsers",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/storageAccountValue/localUsers",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/accountValue/localUsers/usernameValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/storageAccountValue/localUsers/localUserValue",
 			Expected: &LocalUserId{
-				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName: "example-resource-group",
-				AccountName:       "accountValue",
-				Username:          "usernameValue",
+				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:  "example-resource-group",
+				StorageAccountName: "storageAccountValue",
+				LocalUserName:      "localUserValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/accountValue/localUsers/usernameValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/storageAccountValue/localUsers/localUserValue/extra",
 			Error: true,
 		},
 	}
@@ -131,12 +131,12 @@ func TestParseLocalUserID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.AccountName != v.Expected.AccountName {
-			t.Fatalf("Expected %q but got %q for AccountName", v.Expected.AccountName, actual.AccountName)
+		if actual.StorageAccountName != v.Expected.StorageAccountName {
+			t.Fatalf("Expected %q but got %q for StorageAccountName", v.Expected.StorageAccountName, actual.StorageAccountName)
 		}
 
-		if actual.Username != v.Expected.Username {
-			t.Fatalf("Expected %q but got %q for Username", v.Expected.Username, actual.Username)
+		if actual.LocalUserName != v.Expected.LocalUserName {
+			t.Fatalf("Expected %q but got %q for LocalUserName", v.Expected.LocalUserName, actual.LocalUserName)
 		}
 
 	}
@@ -225,52 +225,52 @@ func TestParseLocalUserIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/accountValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/storageAccountValue",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGe/sToRaGeAcCoUnTs/aCcOuNtVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGe/sToRaGeAcCoUnTs/sToRaGeAcCoUnTvAlUe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/accountValue/localUsers",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/storageAccountValue/localUsers",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGe/sToRaGeAcCoUnTs/aCcOuNtVaLuE/lOcAlUsErS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGe/sToRaGeAcCoUnTs/sToRaGeAcCoUnTvAlUe/lOcAlUsErS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/accountValue/localUsers/usernameValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/storageAccountValue/localUsers/localUserValue",
 			Expected: &LocalUserId{
-				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName: "example-resource-group",
-				AccountName:       "accountValue",
-				Username:          "usernameValue",
+				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:  "example-resource-group",
+				StorageAccountName: "storageAccountValue",
+				LocalUserName:      "localUserValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/accountValue/localUsers/usernameValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/storageAccountValue/localUsers/localUserValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGe/sToRaGeAcCoUnTs/aCcOuNtVaLuE/lOcAlUsErS/uSeRnAmEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGe/sToRaGeAcCoUnTs/sToRaGeAcCoUnTvAlUe/lOcAlUsErS/lOcAlUsErVaLuE",
 			Expected: &LocalUserId{
-				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				AccountName:       "aCcOuNtVaLuE",
-				Username:          "uSeRnAmEvAlUe",
+				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:  "eXaMpLe-rEsOuRcE-GrOuP",
+				StorageAccountName: "sToRaGeAcCoUnTvAlUe",
+				LocalUserName:      "lOcAlUsErVaLuE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGe/sToRaGeAcCoUnTs/aCcOuNtVaLuE/lOcAlUsErS/uSeRnAmEvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGe/sToRaGeAcCoUnTs/sToRaGeAcCoUnTvAlUe/lOcAlUsErS/lOcAlUsErVaLuE/extra",
 			Error: true,
 		},
 	}
@@ -297,12 +297,12 @@ func TestParseLocalUserIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.AccountName != v.Expected.AccountName {
-			t.Fatalf("Expected %q but got %q for AccountName", v.Expected.AccountName, actual.AccountName)
+		if actual.StorageAccountName != v.Expected.StorageAccountName {
+			t.Fatalf("Expected %q but got %q for StorageAccountName", v.Expected.StorageAccountName, actual.StorageAccountName)
 		}
 
-		if actual.Username != v.Expected.Username {
-			t.Fatalf("Expected %q but got %q for Username", v.Expected.Username, actual.Username)
+		if actual.LocalUserName != v.Expected.LocalUserName {
+			t.Fatalf("Expected %q but got %q for LocalUserName", v.Expected.LocalUserName, actual.LocalUserName)
 		}
 
 	}

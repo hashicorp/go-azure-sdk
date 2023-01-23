@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = PooledScheduleId{}
 
 func TestNewPooledScheduleID(t *testing.T) {
-	id := NewPooledScheduleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "scalingPlanValue", "scalingPlanScheduleValue")
+	id := NewPooledScheduleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "scalingPlanValue", "pooledScheduleValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -23,14 +23,14 @@ func TestNewPooledScheduleID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ScalingPlanName'", id.ScalingPlanName, "scalingPlanValue")
 	}
 
-	if id.ScalingPlanScheduleName != "scalingPlanScheduleValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ScalingPlanScheduleName'", id.ScalingPlanScheduleName, "scalingPlanScheduleValue")
+	if id.PooledScheduleName != "pooledScheduleValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'PooledScheduleName'", id.PooledScheduleName, "pooledScheduleValue")
 	}
 }
 
 func TestFormatPooledScheduleID(t *testing.T) {
-	actual := NewPooledScheduleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "scalingPlanValue", "scalingPlanScheduleValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DesktopVirtualization/scalingPlans/scalingPlanValue/pooledSchedules/scalingPlanScheduleValue"
+	actual := NewPooledScheduleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "scalingPlanValue", "pooledScheduleValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DesktopVirtualization/scalingPlans/scalingPlanValue/pooledSchedules/pooledScheduleValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -94,17 +94,17 @@ func TestParsePooledScheduleID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DesktopVirtualization/scalingPlans/scalingPlanValue/pooledSchedules/scalingPlanScheduleValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DesktopVirtualization/scalingPlans/scalingPlanValue/pooledSchedules/pooledScheduleValue",
 			Expected: &PooledScheduleId{
-				SubscriptionId:          "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName:       "example-resource-group",
-				ScalingPlanName:         "scalingPlanValue",
-				ScalingPlanScheduleName: "scalingPlanScheduleValue",
+				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:  "example-resource-group",
+				ScalingPlanName:    "scalingPlanValue",
+				PooledScheduleName: "pooledScheduleValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DesktopVirtualization/scalingPlans/scalingPlanValue/pooledSchedules/scalingPlanScheduleValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DesktopVirtualization/scalingPlans/scalingPlanValue/pooledSchedules/pooledScheduleValue/extra",
 			Error: true,
 		},
 	}
@@ -135,8 +135,8 @@ func TestParsePooledScheduleID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ScalingPlanName", v.Expected.ScalingPlanName, actual.ScalingPlanName)
 		}
 
-		if actual.ScalingPlanScheduleName != v.Expected.ScalingPlanScheduleName {
-			t.Fatalf("Expected %q but got %q for ScalingPlanScheduleName", v.Expected.ScalingPlanScheduleName, actual.ScalingPlanScheduleName)
+		if actual.PooledScheduleName != v.Expected.PooledScheduleName {
+			t.Fatalf("Expected %q but got %q for PooledScheduleName", v.Expected.PooledScheduleName, actual.PooledScheduleName)
 		}
 
 	}
@@ -245,32 +245,32 @@ func TestParsePooledScheduleIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DesktopVirtualization/scalingPlans/scalingPlanValue/pooledSchedules/scalingPlanScheduleValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DesktopVirtualization/scalingPlans/scalingPlanValue/pooledSchedules/pooledScheduleValue",
 			Expected: &PooledScheduleId{
-				SubscriptionId:          "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName:       "example-resource-group",
-				ScalingPlanName:         "scalingPlanValue",
-				ScalingPlanScheduleName: "scalingPlanScheduleValue",
+				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:  "example-resource-group",
+				ScalingPlanName:    "scalingPlanValue",
+				PooledScheduleName: "pooledScheduleValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DesktopVirtualization/scalingPlans/scalingPlanValue/pooledSchedules/scalingPlanScheduleValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DesktopVirtualization/scalingPlans/scalingPlanValue/pooledSchedules/pooledScheduleValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEsKtOpViRtUaLiZaTiOn/sCaLiNgPlAnS/sCaLiNgPlAnVaLuE/pOoLeDsChEdUlEs/sCaLiNgPlAnScHeDuLeVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEsKtOpViRtUaLiZaTiOn/sCaLiNgPlAnS/sCaLiNgPlAnVaLuE/pOoLeDsChEdUlEs/pOoLeDsChEdUlEvAlUe",
 			Expected: &PooledScheduleId{
-				SubscriptionId:          "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName:       "eXaMpLe-rEsOuRcE-GrOuP",
-				ScalingPlanName:         "sCaLiNgPlAnVaLuE",
-				ScalingPlanScheduleName: "sCaLiNgPlAnScHeDuLeVaLuE",
+				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:  "eXaMpLe-rEsOuRcE-GrOuP",
+				ScalingPlanName:    "sCaLiNgPlAnVaLuE",
+				PooledScheduleName: "pOoLeDsChEdUlEvAlUe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEsKtOpViRtUaLiZaTiOn/sCaLiNgPlAnS/sCaLiNgPlAnVaLuE/pOoLeDsChEdUlEs/sCaLiNgPlAnScHeDuLeVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEsKtOpViRtUaLiZaTiOn/sCaLiNgPlAnS/sCaLiNgPlAnVaLuE/pOoLeDsChEdUlEs/pOoLeDsChEdUlEvAlUe/extra",
 			Error: true,
 		},
 	}
@@ -301,8 +301,8 @@ func TestParsePooledScheduleIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ScalingPlanName", v.Expected.ScalingPlanName, actual.ScalingPlanName)
 		}
 
-		if actual.ScalingPlanScheduleName != v.Expected.ScalingPlanScheduleName {
-			t.Fatalf("Expected %q but got %q for ScalingPlanScheduleName", v.Expected.ScalingPlanScheduleName, actual.ScalingPlanScheduleName)
+		if actual.PooledScheduleName != v.Expected.PooledScheduleName {
+			t.Fatalf("Expected %q but got %q for PooledScheduleName", v.Expected.PooledScheduleName, actual.PooledScheduleName)
 		}
 
 	}

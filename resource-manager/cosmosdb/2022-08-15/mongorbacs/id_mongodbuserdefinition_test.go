@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = MongodbUserDefinitionId{}
 
 func TestNewMongodbUserDefinitionID(t *testing.T) {
-	id := NewMongodbUserDefinitionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "mongoUserDefinitionIdValue")
+	id := NewMongodbUserDefinitionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "databaseAccountValue", "mongoUserDefinitionIdValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -19,8 +19,8 @@ func TestNewMongodbUserDefinitionID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.AccountName != "accountValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AccountName'", id.AccountName, "accountValue")
+	if id.DatabaseAccountName != "databaseAccountValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'DatabaseAccountName'", id.DatabaseAccountName, "databaseAccountValue")
 	}
 
 	if id.MongoUserDefinitionId != "mongoUserDefinitionIdValue" {
@@ -29,8 +29,8 @@ func TestNewMongodbUserDefinitionID(t *testing.T) {
 }
 
 func TestFormatMongodbUserDefinitionID(t *testing.T) {
-	actual := NewMongodbUserDefinitionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "mongoUserDefinitionIdValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/accountValue/mongodbUserDefinitions/mongoUserDefinitionIdValue"
+	actual := NewMongodbUserDefinitionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "databaseAccountValue", "mongoUserDefinitionIdValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/databaseAccountValue/mongodbUserDefinitions/mongoUserDefinitionIdValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -84,27 +84,27 @@ func TestParseMongodbUserDefinitionID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/accountValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/databaseAccountValue",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/accountValue/mongodbUserDefinitions",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/databaseAccountValue/mongodbUserDefinitions",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/accountValue/mongodbUserDefinitions/mongoUserDefinitionIdValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/databaseAccountValue/mongodbUserDefinitions/mongoUserDefinitionIdValue",
 			Expected: &MongodbUserDefinitionId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:     "example-resource-group",
-				AccountName:           "accountValue",
+				DatabaseAccountName:   "databaseAccountValue",
 				MongoUserDefinitionId: "mongoUserDefinitionIdValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/accountValue/mongodbUserDefinitions/mongoUserDefinitionIdValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/databaseAccountValue/mongodbUserDefinitions/mongoUserDefinitionIdValue/extra",
 			Error: true,
 		},
 	}
@@ -131,8 +131,8 @@ func TestParseMongodbUserDefinitionID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.AccountName != v.Expected.AccountName {
-			t.Fatalf("Expected %q but got %q for AccountName", v.Expected.AccountName, actual.AccountName)
+		if actual.DatabaseAccountName != v.Expected.DatabaseAccountName {
+			t.Fatalf("Expected %q but got %q for DatabaseAccountName", v.Expected.DatabaseAccountName, actual.DatabaseAccountName)
 		}
 
 		if actual.MongoUserDefinitionId != v.Expected.MongoUserDefinitionId {
@@ -225,52 +225,52 @@ func TestParseMongodbUserDefinitionIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/accountValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/databaseAccountValue",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dOcUmEnTdB/dAtAbAsEaCcOuNtS/aCcOuNtVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dOcUmEnTdB/dAtAbAsEaCcOuNtS/dAtAbAsEaCcOuNtVaLuE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/accountValue/mongodbUserDefinitions",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/databaseAccountValue/mongodbUserDefinitions",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dOcUmEnTdB/dAtAbAsEaCcOuNtS/aCcOuNtVaLuE/mOnGoDbUsErDeFiNiTiOnS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dOcUmEnTdB/dAtAbAsEaCcOuNtS/dAtAbAsEaCcOuNtVaLuE/mOnGoDbUsErDeFiNiTiOnS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/accountValue/mongodbUserDefinitions/mongoUserDefinitionIdValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/databaseAccountValue/mongodbUserDefinitions/mongoUserDefinitionIdValue",
 			Expected: &MongodbUserDefinitionId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:     "example-resource-group",
-				AccountName:           "accountValue",
+				DatabaseAccountName:   "databaseAccountValue",
 				MongoUserDefinitionId: "mongoUserDefinitionIdValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/accountValue/mongodbUserDefinitions/mongoUserDefinitionIdValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/databaseAccountValue/mongodbUserDefinitions/mongoUserDefinitionIdValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dOcUmEnTdB/dAtAbAsEaCcOuNtS/aCcOuNtVaLuE/mOnGoDbUsErDeFiNiTiOnS/mOnGoUsErDeFiNiTiOnIdVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dOcUmEnTdB/dAtAbAsEaCcOuNtS/dAtAbAsEaCcOuNtVaLuE/mOnGoDbUsErDeFiNiTiOnS/mOnGoUsErDeFiNiTiOnIdVaLuE",
 			Expected: &MongodbUserDefinitionId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:     "eXaMpLe-rEsOuRcE-GrOuP",
-				AccountName:           "aCcOuNtVaLuE",
+				DatabaseAccountName:   "dAtAbAsEaCcOuNtVaLuE",
 				MongoUserDefinitionId: "mOnGoUsErDeFiNiTiOnIdVaLuE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dOcUmEnTdB/dAtAbAsEaCcOuNtS/aCcOuNtVaLuE/mOnGoDbUsErDeFiNiTiOnS/mOnGoUsErDeFiNiTiOnIdVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dOcUmEnTdB/dAtAbAsEaCcOuNtS/dAtAbAsEaCcOuNtVaLuE/mOnGoDbUsErDeFiNiTiOnS/mOnGoUsErDeFiNiTiOnIdVaLuE/extra",
 			Error: true,
 		},
 	}
@@ -297,8 +297,8 @@ func TestParseMongodbUserDefinitionIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.AccountName != v.Expected.AccountName {
-			t.Fatalf("Expected %q but got %q for AccountName", v.Expected.AccountName, actual.AccountName)
+		if actual.DatabaseAccountName != v.Expected.DatabaseAccountName {
+			t.Fatalf("Expected %q but got %q for DatabaseAccountName", v.Expected.DatabaseAccountName, actual.DatabaseAccountName)
 		}
 
 		if actual.MongoUserDefinitionId != v.Expected.MongoUserDefinitionId {

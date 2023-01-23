@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = GetBackupSecurityPINRequestId{}
 
 func TestNewGetBackupSecurityPINRequestID(t *testing.T) {
-	id := NewGetBackupSecurityPINRequestID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceGuardsValue", "requestValue")
+	id := NewGetBackupSecurityPINRequestID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceGuardValue", "getBackupSecurityPINRequestValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -19,18 +19,18 @@ func TestNewGetBackupSecurityPINRequestID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.ResourceGuardsName != "resourceGuardsValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ResourceGuardsName'", id.ResourceGuardsName, "resourceGuardsValue")
+	if id.ResourceGuardName != "resourceGuardValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'ResourceGuardName'", id.ResourceGuardName, "resourceGuardValue")
 	}
 
-	if id.RequestName != "requestValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'RequestName'", id.RequestName, "requestValue")
+	if id.GetBackupSecurityPINRequestName != "getBackupSecurityPINRequestValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'GetBackupSecurityPINRequestName'", id.GetBackupSecurityPINRequestName, "getBackupSecurityPINRequestValue")
 	}
 }
 
 func TestFormatGetBackupSecurityPINRequestID(t *testing.T) {
-	actual := NewGetBackupSecurityPINRequestID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceGuardsValue", "requestValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataProtection/resourceGuards/resourceGuardsValue/getBackupSecurityPINRequests/requestValue"
+	actual := NewGetBackupSecurityPINRequestID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceGuardValue", "getBackupSecurityPINRequestValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataProtection/resourceGuards/resourceGuardValue/getBackupSecurityPINRequests/getBackupSecurityPINRequestValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -84,27 +84,27 @@ func TestParseGetBackupSecurityPINRequestID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataProtection/resourceGuards/resourceGuardsValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataProtection/resourceGuards/resourceGuardValue",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataProtection/resourceGuards/resourceGuardsValue/getBackupSecurityPINRequests",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataProtection/resourceGuards/resourceGuardValue/getBackupSecurityPINRequests",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataProtection/resourceGuards/resourceGuardsValue/getBackupSecurityPINRequests/requestValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataProtection/resourceGuards/resourceGuardValue/getBackupSecurityPINRequests/getBackupSecurityPINRequestValue",
 			Expected: &GetBackupSecurityPINRequestId{
-				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName:  "example-resource-group",
-				ResourceGuardsName: "resourceGuardsValue",
-				RequestName:        "requestValue",
+				SubscriptionId:                  "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:               "example-resource-group",
+				ResourceGuardName:               "resourceGuardValue",
+				GetBackupSecurityPINRequestName: "getBackupSecurityPINRequestValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataProtection/resourceGuards/resourceGuardsValue/getBackupSecurityPINRequests/requestValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataProtection/resourceGuards/resourceGuardValue/getBackupSecurityPINRequests/getBackupSecurityPINRequestValue/extra",
 			Error: true,
 		},
 	}
@@ -131,12 +131,12 @@ func TestParseGetBackupSecurityPINRequestID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.ResourceGuardsName != v.Expected.ResourceGuardsName {
-			t.Fatalf("Expected %q but got %q for ResourceGuardsName", v.Expected.ResourceGuardsName, actual.ResourceGuardsName)
+		if actual.ResourceGuardName != v.Expected.ResourceGuardName {
+			t.Fatalf("Expected %q but got %q for ResourceGuardName", v.Expected.ResourceGuardName, actual.ResourceGuardName)
 		}
 
-		if actual.RequestName != v.Expected.RequestName {
-			t.Fatalf("Expected %q but got %q for RequestName", v.Expected.RequestName, actual.RequestName)
+		if actual.GetBackupSecurityPINRequestName != v.Expected.GetBackupSecurityPINRequestName {
+			t.Fatalf("Expected %q but got %q for GetBackupSecurityPINRequestName", v.Expected.GetBackupSecurityPINRequestName, actual.GetBackupSecurityPINRequestName)
 		}
 
 	}
@@ -225,52 +225,52 @@ func TestParseGetBackupSecurityPINRequestIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataProtection/resourceGuards/resourceGuardsValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataProtection/resourceGuards/resourceGuardValue",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtApRoTeCtIoN/rEsOuRcEgUaRdS/rEsOuRcEgUaRdSvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtApRoTeCtIoN/rEsOuRcEgUaRdS/rEsOuRcEgUaRdVaLuE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataProtection/resourceGuards/resourceGuardsValue/getBackupSecurityPINRequests",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataProtection/resourceGuards/resourceGuardValue/getBackupSecurityPINRequests",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtApRoTeCtIoN/rEsOuRcEgUaRdS/rEsOuRcEgUaRdSvAlUe/gEtBaCkUpSeCuRiTyPiNrEqUeStS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtApRoTeCtIoN/rEsOuRcEgUaRdS/rEsOuRcEgUaRdVaLuE/gEtBaCkUpSeCuRiTyPiNrEqUeStS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataProtection/resourceGuards/resourceGuardsValue/getBackupSecurityPINRequests/requestValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataProtection/resourceGuards/resourceGuardValue/getBackupSecurityPINRequests/getBackupSecurityPINRequestValue",
 			Expected: &GetBackupSecurityPINRequestId{
-				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName:  "example-resource-group",
-				ResourceGuardsName: "resourceGuardsValue",
-				RequestName:        "requestValue",
+				SubscriptionId:                  "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:               "example-resource-group",
+				ResourceGuardName:               "resourceGuardValue",
+				GetBackupSecurityPINRequestName: "getBackupSecurityPINRequestValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataProtection/resourceGuards/resourceGuardsValue/getBackupSecurityPINRequests/requestValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataProtection/resourceGuards/resourceGuardValue/getBackupSecurityPINRequests/getBackupSecurityPINRequestValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtApRoTeCtIoN/rEsOuRcEgUaRdS/rEsOuRcEgUaRdSvAlUe/gEtBaCkUpSeCuRiTyPiNrEqUeStS/rEqUeStVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtApRoTeCtIoN/rEsOuRcEgUaRdS/rEsOuRcEgUaRdVaLuE/gEtBaCkUpSeCuRiTyPiNrEqUeStS/gEtBaCkUpSeCuRiTyPiNrEqUeStVaLuE",
 			Expected: &GetBackupSecurityPINRequestId{
-				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName:  "eXaMpLe-rEsOuRcE-GrOuP",
-				ResourceGuardsName: "rEsOuRcEgUaRdSvAlUe",
-				RequestName:        "rEqUeStVaLuE",
+				SubscriptionId:                  "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:               "eXaMpLe-rEsOuRcE-GrOuP",
+				ResourceGuardName:               "rEsOuRcEgUaRdVaLuE",
+				GetBackupSecurityPINRequestName: "gEtBaCkUpSeCuRiTyPiNrEqUeStVaLuE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtApRoTeCtIoN/rEsOuRcEgUaRdS/rEsOuRcEgUaRdSvAlUe/gEtBaCkUpSeCuRiTyPiNrEqUeStS/rEqUeStVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtApRoTeCtIoN/rEsOuRcEgUaRdS/rEsOuRcEgUaRdVaLuE/gEtBaCkUpSeCuRiTyPiNrEqUeStS/gEtBaCkUpSeCuRiTyPiNrEqUeStVaLuE/extra",
 			Error: true,
 		},
 	}
@@ -297,12 +297,12 @@ func TestParseGetBackupSecurityPINRequestIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.ResourceGuardsName != v.Expected.ResourceGuardsName {
-			t.Fatalf("Expected %q but got %q for ResourceGuardsName", v.Expected.ResourceGuardsName, actual.ResourceGuardsName)
+		if actual.ResourceGuardName != v.Expected.ResourceGuardName {
+			t.Fatalf("Expected %q but got %q for ResourceGuardName", v.Expected.ResourceGuardName, actual.ResourceGuardName)
 		}
 
-		if actual.RequestName != v.Expected.RequestName {
-			t.Fatalf("Expected %q but got %q for RequestName", v.Expected.RequestName, actual.RequestName)
+		if actual.GetBackupSecurityPINRequestName != v.Expected.GetBackupSecurityPINRequestName {
+			t.Fatalf("Expected %q but got %q for GetBackupSecurityPINRequestName", v.Expected.GetBackupSecurityPINRequestName, actual.GetBackupSecurityPINRequestName)
 		}
 
 	}

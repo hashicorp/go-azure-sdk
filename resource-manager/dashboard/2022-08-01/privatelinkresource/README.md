@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := privatelinkresource.NewPrivateLinkResourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "privateLinkResourceValue")
+id := privatelinkresource.NewPrivateLinkResourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "grafanaValue", "privateLinkResourceValue")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := privatelinkresource.NewGrafanaID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue")
+id := privatelinkresource.NewGrafanaID("12345678-1234-9876-4563-123456789012", "example-resource-group", "grafanaValue")
 
 // alternatively `client.List(ctx, id)` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id)

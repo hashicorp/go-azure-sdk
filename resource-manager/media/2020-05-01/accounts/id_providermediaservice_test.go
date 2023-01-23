@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = ProviderMediaServiceId{}
 
 func TestNewProviderMediaServiceID(t *testing.T) {
-	id := NewProviderMediaServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue")
+	id := NewProviderMediaServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "mediaServiceValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -19,14 +19,14 @@ func TestNewProviderMediaServiceID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.AccountName != "accountValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AccountName'", id.AccountName, "accountValue")
+	if id.MediaServiceName != "mediaServiceValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'MediaServiceName'", id.MediaServiceName, "mediaServiceValue")
 	}
 }
 
 func TestFormatProviderMediaServiceID(t *testing.T) {
-	actual := NewProviderMediaServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/mediaServices/accountValue"
+	actual := NewProviderMediaServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "mediaServiceValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/mediaServices/mediaServiceValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -80,16 +80,16 @@ func TestParseProviderMediaServiceID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/mediaServices/accountValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/mediaServices/mediaServiceValue",
 			Expected: &ProviderMediaServiceId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				AccountName:       "accountValue",
+				MediaServiceName:  "mediaServiceValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/mediaServices/accountValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/mediaServices/mediaServiceValue/extra",
 			Error: true,
 		},
 	}
@@ -116,8 +116,8 @@ func TestParseProviderMediaServiceID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.AccountName != v.Expected.AccountName {
-			t.Fatalf("Expected %q but got %q for AccountName", v.Expected.AccountName, actual.AccountName)
+		if actual.MediaServiceName != v.Expected.MediaServiceName {
+			t.Fatalf("Expected %q but got %q for MediaServiceName", v.Expected.MediaServiceName, actual.MediaServiceName)
 		}
 
 	}
@@ -206,30 +206,30 @@ func TestParseProviderMediaServiceIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/mediaServices/accountValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/mediaServices/mediaServiceValue",
 			Expected: &ProviderMediaServiceId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				AccountName:       "accountValue",
+				MediaServiceName:  "mediaServiceValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/mediaServices/accountValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/mediaServices/mediaServiceValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mEdIa/mEdIaSeRvIcEs/aCcOuNtVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mEdIa/mEdIaSeRvIcEs/mEdIaSeRvIcEvAlUe",
 			Expected: &ProviderMediaServiceId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				AccountName:       "aCcOuNtVaLuE",
+				MediaServiceName:  "mEdIaSeRvIcEvAlUe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mEdIa/mEdIaSeRvIcEs/aCcOuNtVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mEdIa/mEdIaSeRvIcEs/mEdIaSeRvIcEvAlUe/extra",
 			Error: true,
 		},
 	}
@@ -256,8 +256,8 @@ func TestParseProviderMediaServiceIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.AccountName != v.Expected.AccountName {
-			t.Fatalf("Expected %q but got %q for AccountName", v.Expected.AccountName, actual.AccountName)
+		if actual.MediaServiceName != v.Expected.MediaServiceName {
+			t.Fatalf("Expected %q but got %q for MediaServiceName", v.Expected.MediaServiceName, actual.MediaServiceName)
 		}
 
 	}

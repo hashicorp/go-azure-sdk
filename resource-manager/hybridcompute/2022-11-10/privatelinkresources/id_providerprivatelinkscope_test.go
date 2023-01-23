@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = ProviderPrivateLinkScopeId{}
 
 func TestNewProviderPrivateLinkScopeID(t *testing.T) {
-	id := NewProviderPrivateLinkScopeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "scopeValue")
+	id := NewProviderPrivateLinkScopeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateLinkScopeValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -19,14 +19,14 @@ func TestNewProviderPrivateLinkScopeID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.ScopeName != "scopeValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ScopeName'", id.ScopeName, "scopeValue")
+	if id.PrivateLinkScopeName != "privateLinkScopeValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'PrivateLinkScopeName'", id.PrivateLinkScopeName, "privateLinkScopeValue")
 	}
 }
 
 func TestFormatProviderPrivateLinkScopeID(t *testing.T) {
-	actual := NewProviderPrivateLinkScopeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "scopeValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HybridCompute/privateLinkScopes/scopeValue"
+	actual := NewProviderPrivateLinkScopeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateLinkScopeValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HybridCompute/privateLinkScopes/privateLinkScopeValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -80,16 +80,16 @@ func TestParseProviderPrivateLinkScopeID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HybridCompute/privateLinkScopes/scopeValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HybridCompute/privateLinkScopes/privateLinkScopeValue",
 			Expected: &ProviderPrivateLinkScopeId{
-				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName: "example-resource-group",
-				ScopeName:         "scopeValue",
+				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:    "example-resource-group",
+				PrivateLinkScopeName: "privateLinkScopeValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HybridCompute/privateLinkScopes/scopeValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HybridCompute/privateLinkScopes/privateLinkScopeValue/extra",
 			Error: true,
 		},
 	}
@@ -116,8 +116,8 @@ func TestParseProviderPrivateLinkScopeID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.ScopeName != v.Expected.ScopeName {
-			t.Fatalf("Expected %q but got %q for ScopeName", v.Expected.ScopeName, actual.ScopeName)
+		if actual.PrivateLinkScopeName != v.Expected.PrivateLinkScopeName {
+			t.Fatalf("Expected %q but got %q for PrivateLinkScopeName", v.Expected.PrivateLinkScopeName, actual.PrivateLinkScopeName)
 		}
 
 	}
@@ -206,30 +206,30 @@ func TestParseProviderPrivateLinkScopeIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HybridCompute/privateLinkScopes/scopeValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HybridCompute/privateLinkScopes/privateLinkScopeValue",
 			Expected: &ProviderPrivateLinkScopeId{
-				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName: "example-resource-group",
-				ScopeName:         "scopeValue",
+				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:    "example-resource-group",
+				PrivateLinkScopeName: "privateLinkScopeValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HybridCompute/privateLinkScopes/scopeValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HybridCompute/privateLinkScopes/privateLinkScopeValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.hYbRiDcOmPuTe/pRiVaTeLiNkScOpEs/sCoPeVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.hYbRiDcOmPuTe/pRiVaTeLiNkScOpEs/pRiVaTeLiNkScOpEvAlUe",
 			Expected: &ProviderPrivateLinkScopeId{
-				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				ScopeName:         "sCoPeVaLuE",
+				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:    "eXaMpLe-rEsOuRcE-GrOuP",
+				PrivateLinkScopeName: "pRiVaTeLiNkScOpEvAlUe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.hYbRiDcOmPuTe/pRiVaTeLiNkScOpEs/sCoPeVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.hYbRiDcOmPuTe/pRiVaTeLiNkScOpEs/pRiVaTeLiNkScOpEvAlUe/extra",
 			Error: true,
 		},
 	}
@@ -256,8 +256,8 @@ func TestParseProviderPrivateLinkScopeIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.ScopeName != v.Expected.ScopeName {
-			t.Fatalf("Expected %q but got %q for ScopeName", v.Expected.ScopeName, actual.ScopeName)
+		if actual.PrivateLinkScopeName != v.Expected.PrivateLinkScopeName {
+			t.Fatalf("Expected %q but got %q for PrivateLinkScopeName", v.Expected.PrivateLinkScopeName, actual.PrivateLinkScopeName)
 		}
 
 	}

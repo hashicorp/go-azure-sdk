@@ -11,21 +11,21 @@ var _ resourceids.ResourceId = ReplicationLogicalNetworkId{}
 
 // ReplicationLogicalNetworkId is a struct representing the Resource ID for a Replication Logical Network
 type ReplicationLogicalNetworkId struct {
-	SubscriptionId     string
-	ResourceGroupName  string
-	ResourceName       string
-	FabricName         string
-	LogicalNetworkName string
+	SubscriptionId                string
+	ResourceGroupName             string
+	VaultName                     string
+	ReplicationFabricName         string
+	ReplicationLogicalNetworkName string
 }
 
 // NewReplicationLogicalNetworkID returns a new ReplicationLogicalNetworkId struct
-func NewReplicationLogicalNetworkID(subscriptionId string, resourceGroupName string, resourceName string, fabricName string, logicalNetworkName string) ReplicationLogicalNetworkId {
+func NewReplicationLogicalNetworkID(subscriptionId string, resourceGroupName string, vaultName string, replicationFabricName string, replicationLogicalNetworkName string) ReplicationLogicalNetworkId {
 	return ReplicationLogicalNetworkId{
-		SubscriptionId:     subscriptionId,
-		ResourceGroupName:  resourceGroupName,
-		ResourceName:       resourceName,
-		FabricName:         fabricName,
-		LogicalNetworkName: logicalNetworkName,
+		SubscriptionId:                subscriptionId,
+		ResourceGroupName:             resourceGroupName,
+		VaultName:                     vaultName,
+		ReplicationFabricName:         replicationFabricName,
+		ReplicationLogicalNetworkName: replicationLogicalNetworkName,
 	}
 }
 
@@ -48,16 +48,16 @@ func ParseReplicationLogicalNetworkID(input string) (*ReplicationLogicalNetworkI
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.ResourceName, ok = parsed.Parsed["resourceName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceName' was not found in the resource id %q", input)
+	if id.VaultName, ok = parsed.Parsed["vaultName"]; !ok {
+		return nil, fmt.Errorf("the segment 'vaultName' was not found in the resource id %q", input)
 	}
 
-	if id.FabricName, ok = parsed.Parsed["fabricName"]; !ok {
-		return nil, fmt.Errorf("the segment 'fabricName' was not found in the resource id %q", input)
+	if id.ReplicationFabricName, ok = parsed.Parsed["replicationFabricName"]; !ok {
+		return nil, fmt.Errorf("the segment 'replicationFabricName' was not found in the resource id %q", input)
 	}
 
-	if id.LogicalNetworkName, ok = parsed.Parsed["logicalNetworkName"]; !ok {
-		return nil, fmt.Errorf("the segment 'logicalNetworkName' was not found in the resource id %q", input)
+	if id.ReplicationLogicalNetworkName, ok = parsed.Parsed["replicationLogicalNetworkName"]; !ok {
+		return nil, fmt.Errorf("the segment 'replicationLogicalNetworkName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -83,16 +83,16 @@ func ParseReplicationLogicalNetworkIDInsensitively(input string) (*ReplicationLo
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.ResourceName, ok = parsed.Parsed["resourceName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceName' was not found in the resource id %q", input)
+	if id.VaultName, ok = parsed.Parsed["vaultName"]; !ok {
+		return nil, fmt.Errorf("the segment 'vaultName' was not found in the resource id %q", input)
 	}
 
-	if id.FabricName, ok = parsed.Parsed["fabricName"]; !ok {
-		return nil, fmt.Errorf("the segment 'fabricName' was not found in the resource id %q", input)
+	if id.ReplicationFabricName, ok = parsed.Parsed["replicationFabricName"]; !ok {
+		return nil, fmt.Errorf("the segment 'replicationFabricName' was not found in the resource id %q", input)
 	}
 
-	if id.LogicalNetworkName, ok = parsed.Parsed["logicalNetworkName"]; !ok {
-		return nil, fmt.Errorf("the segment 'logicalNetworkName' was not found in the resource id %q", input)
+	if id.ReplicationLogicalNetworkName, ok = parsed.Parsed["replicationLogicalNetworkName"]; !ok {
+		return nil, fmt.Errorf("the segment 'replicationLogicalNetworkName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -116,7 +116,7 @@ func ValidateReplicationLogicalNetworkID(input interface{}, key string) (warning
 // ID returns the formatted Replication Logical Network ID
 func (id ReplicationLogicalNetworkId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.RecoveryServices/vaults/%s/replicationFabrics/%s/replicationLogicalNetworks/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.ResourceName, id.FabricName, id.LogicalNetworkName)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.VaultName, id.ReplicationFabricName, id.ReplicationLogicalNetworkName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Replication Logical Network ID
@@ -129,11 +129,11 @@ func (id ReplicationLogicalNetworkId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftRecoveryServices", "Microsoft.RecoveryServices", "Microsoft.RecoveryServices"),
 		resourceids.StaticSegment("staticVaults", "vaults", "vaults"),
-		resourceids.UserSpecifiedSegment("resourceName", "resourceValue"),
+		resourceids.UserSpecifiedSegment("vaultName", "vaultValue"),
 		resourceids.StaticSegment("staticReplicationFabrics", "replicationFabrics", "replicationFabrics"),
-		resourceids.UserSpecifiedSegment("fabricName", "fabricValue"),
+		resourceids.UserSpecifiedSegment("replicationFabricName", "replicationFabricValue"),
 		resourceids.StaticSegment("staticReplicationLogicalNetworks", "replicationLogicalNetworks", "replicationLogicalNetworks"),
-		resourceids.UserSpecifiedSegment("logicalNetworkName", "logicalNetworkValue"),
+		resourceids.UserSpecifiedSegment("replicationLogicalNetworkName", "replicationLogicalNetworkValue"),
 	}
 }
 
@@ -142,9 +142,9 @@ func (id ReplicationLogicalNetworkId) String() string {
 	components := []string{
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
-		fmt.Sprintf("Resource Name: %q", id.ResourceName),
-		fmt.Sprintf("Fabric Name: %q", id.FabricName),
-		fmt.Sprintf("Logical Network Name: %q", id.LogicalNetworkName),
+		fmt.Sprintf("Vault Name: %q", id.VaultName),
+		fmt.Sprintf("Replication Fabric Name: %q", id.ReplicationFabricName),
+		fmt.Sprintf("Replication Logical Network Name: %q", id.ReplicationLogicalNetworkName),
 	}
 	return fmt.Sprintf("Replication Logical Network (%s)", strings.Join(components, "\n"))
 }

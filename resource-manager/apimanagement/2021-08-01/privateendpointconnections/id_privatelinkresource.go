@@ -11,19 +11,19 @@ var _ resourceids.ResourceId = PrivateLinkResourceId{}
 
 // PrivateLinkResourceId is a struct representing the Resource ID for a Private Link Resource
 type PrivateLinkResourceId struct {
-	SubscriptionId             string
-	ResourceGroupName          string
-	ServiceName                string
-	PrivateLinkSubResourceName string
+	SubscriptionId          string
+	ResourceGroupName       string
+	ServiceName             string
+	PrivateLinkResourceName string
 }
 
 // NewPrivateLinkResourceID returns a new PrivateLinkResourceId struct
-func NewPrivateLinkResourceID(subscriptionId string, resourceGroupName string, serviceName string, privateLinkSubResourceName string) PrivateLinkResourceId {
+func NewPrivateLinkResourceID(subscriptionId string, resourceGroupName string, serviceName string, privateLinkResourceName string) PrivateLinkResourceId {
 	return PrivateLinkResourceId{
-		SubscriptionId:             subscriptionId,
-		ResourceGroupName:          resourceGroupName,
-		ServiceName:                serviceName,
-		PrivateLinkSubResourceName: privateLinkSubResourceName,
+		SubscriptionId:          subscriptionId,
+		ResourceGroupName:       resourceGroupName,
+		ServiceName:             serviceName,
+		PrivateLinkResourceName: privateLinkResourceName,
 	}
 }
 
@@ -50,8 +50,8 @@ func ParsePrivateLinkResourceID(input string) (*PrivateLinkResourceId, error) {
 		return nil, fmt.Errorf("the segment 'serviceName' was not found in the resource id %q", input)
 	}
 
-	if id.PrivateLinkSubResourceName, ok = parsed.Parsed["privateLinkSubResourceName"]; !ok {
-		return nil, fmt.Errorf("the segment 'privateLinkSubResourceName' was not found in the resource id %q", input)
+	if id.PrivateLinkResourceName, ok = parsed.Parsed["privateLinkResourceName"]; !ok {
+		return nil, fmt.Errorf("the segment 'privateLinkResourceName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -81,8 +81,8 @@ func ParsePrivateLinkResourceIDInsensitively(input string) (*PrivateLinkResource
 		return nil, fmt.Errorf("the segment 'serviceName' was not found in the resource id %q", input)
 	}
 
-	if id.PrivateLinkSubResourceName, ok = parsed.Parsed["privateLinkSubResourceName"]; !ok {
-		return nil, fmt.Errorf("the segment 'privateLinkSubResourceName' was not found in the resource id %q", input)
+	if id.PrivateLinkResourceName, ok = parsed.Parsed["privateLinkResourceName"]; !ok {
+		return nil, fmt.Errorf("the segment 'privateLinkResourceName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -106,7 +106,7 @@ func ValidatePrivateLinkResourceID(input interface{}, key string) (warnings []st
 // ID returns the formatted Private Link Resource ID
 func (id PrivateLinkResourceId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.ApiManagement/service/%s/privateLinkResources/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.ServiceName, id.PrivateLinkSubResourceName)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.ServiceName, id.PrivateLinkResourceName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Private Link Resource ID
@@ -121,7 +121,7 @@ func (id PrivateLinkResourceId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticService", "service", "service"),
 		resourceids.UserSpecifiedSegment("serviceName", "serviceValue"),
 		resourceids.StaticSegment("staticPrivateLinkResources", "privateLinkResources", "privateLinkResources"),
-		resourceids.UserSpecifiedSegment("privateLinkSubResourceName", "privateLinkSubResourceValue"),
+		resourceids.UserSpecifiedSegment("privateLinkResourceName", "privateLinkResourceValue"),
 	}
 }
 
@@ -131,7 +131,7 @@ func (id PrivateLinkResourceId) String() string {
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
 		fmt.Sprintf("Service Name: %q", id.ServiceName),
-		fmt.Sprintf("Private Link Sub Resource Name: %q", id.PrivateLinkSubResourceName),
+		fmt.Sprintf("Private Link Resource Name: %q", id.PrivateLinkResourceName),
 	}
 	return fmt.Sprintf("Private Link Resource (%s)", strings.Join(components, "\n"))
 }

@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = BackupResourceGuardProxyId{}
 
 func TestNewBackupResourceGuardProxyID(t *testing.T) {
-	id := NewBackupResourceGuardProxyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue", "resourceGuardProxyValue")
+	id := NewBackupResourceGuardProxyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue", "backupResourceGuardProxyValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -23,14 +23,14 @@ func TestNewBackupResourceGuardProxyID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'VaultName'", id.VaultName, "vaultValue")
 	}
 
-	if id.ResourceGuardProxyName != "resourceGuardProxyValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ResourceGuardProxyName'", id.ResourceGuardProxyName, "resourceGuardProxyValue")
+	if id.BackupResourceGuardProxyName != "backupResourceGuardProxyValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'BackupResourceGuardProxyName'", id.BackupResourceGuardProxyName, "backupResourceGuardProxyValue")
 	}
 }
 
 func TestFormatBackupResourceGuardProxyID(t *testing.T) {
-	actual := NewBackupResourceGuardProxyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue", "resourceGuardProxyValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultValue/backupResourceGuardProxies/resourceGuardProxyValue"
+	actual := NewBackupResourceGuardProxyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue", "backupResourceGuardProxyValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultValue/backupResourceGuardProxies/backupResourceGuardProxyValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -94,17 +94,17 @@ func TestParseBackupResourceGuardProxyID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultValue/backupResourceGuardProxies/resourceGuardProxyValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultValue/backupResourceGuardProxies/backupResourceGuardProxyValue",
 			Expected: &BackupResourceGuardProxyId{
-				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName:      "example-resource-group",
-				VaultName:              "vaultValue",
-				ResourceGuardProxyName: "resourceGuardProxyValue",
+				SubscriptionId:               "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:            "example-resource-group",
+				VaultName:                    "vaultValue",
+				BackupResourceGuardProxyName: "backupResourceGuardProxyValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultValue/backupResourceGuardProxies/resourceGuardProxyValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultValue/backupResourceGuardProxies/backupResourceGuardProxyValue/extra",
 			Error: true,
 		},
 	}
@@ -135,8 +135,8 @@ func TestParseBackupResourceGuardProxyID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for VaultName", v.Expected.VaultName, actual.VaultName)
 		}
 
-		if actual.ResourceGuardProxyName != v.Expected.ResourceGuardProxyName {
-			t.Fatalf("Expected %q but got %q for ResourceGuardProxyName", v.Expected.ResourceGuardProxyName, actual.ResourceGuardProxyName)
+		if actual.BackupResourceGuardProxyName != v.Expected.BackupResourceGuardProxyName {
+			t.Fatalf("Expected %q but got %q for BackupResourceGuardProxyName", v.Expected.BackupResourceGuardProxyName, actual.BackupResourceGuardProxyName)
 		}
 
 	}
@@ -245,32 +245,32 @@ func TestParseBackupResourceGuardProxyIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultValue/backupResourceGuardProxies/resourceGuardProxyValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultValue/backupResourceGuardProxies/backupResourceGuardProxyValue",
 			Expected: &BackupResourceGuardProxyId{
-				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName:      "example-resource-group",
-				VaultName:              "vaultValue",
-				ResourceGuardProxyName: "resourceGuardProxyValue",
+				SubscriptionId:               "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:            "example-resource-group",
+				VaultName:                    "vaultValue",
+				BackupResourceGuardProxyName: "backupResourceGuardProxyValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultValue/backupResourceGuardProxies/resourceGuardProxyValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultValue/backupResourceGuardProxies/backupResourceGuardProxyValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEcOvErYsErViCeS/vAuLtS/vAuLtVaLuE/bAcKuPrEsOuRcEgUaRdPrOxIeS/rEsOuRcEgUaRdPrOxYvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEcOvErYsErViCeS/vAuLtS/vAuLtVaLuE/bAcKuPrEsOuRcEgUaRdPrOxIeS/bAcKuPrEsOuRcEgUaRdPrOxYvAlUe",
 			Expected: &BackupResourceGuardProxyId{
-				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName:      "eXaMpLe-rEsOuRcE-GrOuP",
-				VaultName:              "vAuLtVaLuE",
-				ResourceGuardProxyName: "rEsOuRcEgUaRdPrOxYvAlUe",
+				SubscriptionId:               "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:            "eXaMpLe-rEsOuRcE-GrOuP",
+				VaultName:                    "vAuLtVaLuE",
+				BackupResourceGuardProxyName: "bAcKuPrEsOuRcEgUaRdPrOxYvAlUe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEcOvErYsErViCeS/vAuLtS/vAuLtVaLuE/bAcKuPrEsOuRcEgUaRdPrOxIeS/rEsOuRcEgUaRdPrOxYvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEcOvErYsErViCeS/vAuLtS/vAuLtVaLuE/bAcKuPrEsOuRcEgUaRdPrOxIeS/bAcKuPrEsOuRcEgUaRdPrOxYvAlUe/extra",
 			Error: true,
 		},
 	}
@@ -301,8 +301,8 @@ func TestParseBackupResourceGuardProxyIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for VaultName", v.Expected.VaultName, actual.VaultName)
 		}
 
-		if actual.ResourceGuardProxyName != v.Expected.ResourceGuardProxyName {
-			t.Fatalf("Expected %q but got %q for ResourceGuardProxyName", v.Expected.ResourceGuardProxyName, actual.ResourceGuardProxyName)
+		if actual.BackupResourceGuardProxyName != v.Expected.BackupResourceGuardProxyName {
+			t.Fatalf("Expected %q but got %q for BackupResourceGuardProxyName", v.Expected.BackupResourceGuardProxyName, actual.BackupResourceGuardProxyName)
 		}
 
 	}

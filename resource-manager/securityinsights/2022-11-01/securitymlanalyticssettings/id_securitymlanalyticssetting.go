@@ -11,19 +11,19 @@ var _ resourceids.ResourceId = SecurityMLAnalyticsSettingId{}
 
 // SecurityMLAnalyticsSettingId is a struct representing the Resource ID for a Security M L Analytics Setting
 type SecurityMLAnalyticsSettingId struct {
-	SubscriptionId       string
-	ResourceGroupName    string
-	WorkspaceName        string
-	SettingsResourceName string
+	SubscriptionId                 string
+	ResourceGroupName              string
+	WorkspaceName                  string
+	SecurityMLAnalyticsSettingName string
 }
 
 // NewSecurityMLAnalyticsSettingID returns a new SecurityMLAnalyticsSettingId struct
-func NewSecurityMLAnalyticsSettingID(subscriptionId string, resourceGroupName string, workspaceName string, settingsResourceName string) SecurityMLAnalyticsSettingId {
+func NewSecurityMLAnalyticsSettingID(subscriptionId string, resourceGroupName string, workspaceName string, securityMLAnalyticsSettingName string) SecurityMLAnalyticsSettingId {
 	return SecurityMLAnalyticsSettingId{
-		SubscriptionId:       subscriptionId,
-		ResourceGroupName:    resourceGroupName,
-		WorkspaceName:        workspaceName,
-		SettingsResourceName: settingsResourceName,
+		SubscriptionId:                 subscriptionId,
+		ResourceGroupName:              resourceGroupName,
+		WorkspaceName:                  workspaceName,
+		SecurityMLAnalyticsSettingName: securityMLAnalyticsSettingName,
 	}
 }
 
@@ -50,8 +50,8 @@ func ParseSecurityMLAnalyticsSettingID(input string) (*SecurityMLAnalyticsSettin
 		return nil, fmt.Errorf("the segment 'workspaceName' was not found in the resource id %q", input)
 	}
 
-	if id.SettingsResourceName, ok = parsed.Parsed["settingsResourceName"]; !ok {
-		return nil, fmt.Errorf("the segment 'settingsResourceName' was not found in the resource id %q", input)
+	if id.SecurityMLAnalyticsSettingName, ok = parsed.Parsed["securityMLAnalyticsSettingName"]; !ok {
+		return nil, fmt.Errorf("the segment 'securityMLAnalyticsSettingName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -81,8 +81,8 @@ func ParseSecurityMLAnalyticsSettingIDInsensitively(input string) (*SecurityMLAn
 		return nil, fmt.Errorf("the segment 'workspaceName' was not found in the resource id %q", input)
 	}
 
-	if id.SettingsResourceName, ok = parsed.Parsed["settingsResourceName"]; !ok {
-		return nil, fmt.Errorf("the segment 'settingsResourceName' was not found in the resource id %q", input)
+	if id.SecurityMLAnalyticsSettingName, ok = parsed.Parsed["securityMLAnalyticsSettingName"]; !ok {
+		return nil, fmt.Errorf("the segment 'securityMLAnalyticsSettingName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -106,7 +106,7 @@ func ValidateSecurityMLAnalyticsSettingID(input interface{}, key string) (warnin
 // ID returns the formatted Security M L Analytics Setting ID
 func (id SecurityMLAnalyticsSettingId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.OperationalInsights/workspaces/%s/providers/Microsoft.SecurityInsights/securityMLAnalyticsSettings/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.WorkspaceName, id.SettingsResourceName)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.WorkspaceName, id.SecurityMLAnalyticsSettingName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Security M L Analytics Setting ID
@@ -123,7 +123,7 @@ func (id SecurityMLAnalyticsSettingId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders2", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftSecurityInsights", "Microsoft.SecurityInsights", "Microsoft.SecurityInsights"),
 		resourceids.StaticSegment("staticSecurityMLAnalyticsSettings", "securityMLAnalyticsSettings", "securityMLAnalyticsSettings"),
-		resourceids.UserSpecifiedSegment("settingsResourceName", "settingsResourceValue"),
+		resourceids.UserSpecifiedSegment("securityMLAnalyticsSettingName", "securityMLAnalyticsSettingValue"),
 	}
 }
 
@@ -133,7 +133,7 @@ func (id SecurityMLAnalyticsSettingId) String() string {
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
 		fmt.Sprintf("Workspace Name: %q", id.WorkspaceName),
-		fmt.Sprintf("Settings Resource Name: %q", id.SettingsResourceName),
+		fmt.Sprintf("Security M L Analytics Setting Name: %q", id.SecurityMLAnalyticsSettingName),
 	}
 	return fmt.Sprintf("Security M L Analytics Setting (%s)", strings.Join(components, "\n"))
 }

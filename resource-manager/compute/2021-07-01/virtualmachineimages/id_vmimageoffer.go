@@ -12,20 +12,20 @@ var _ resourceids.ResourceId = VMImageOfferId{}
 // VMImageOfferId is a struct representing the Resource ID for a V M Image Offer
 type VMImageOfferId struct {
 	SubscriptionId string
-	Location       string
-	EdgeZone       string
+	LocationName   string
+	EdgeZoneName   string
 	PublisherName  string
-	Offer          string
+	OfferName      string
 }
 
 // NewVMImageOfferID returns a new VMImageOfferId struct
-func NewVMImageOfferID(subscriptionId string, location string, edgeZone string, publisherName string, offer string) VMImageOfferId {
+func NewVMImageOfferID(subscriptionId string, locationName string, edgeZoneName string, publisherName string, offerName string) VMImageOfferId {
 	return VMImageOfferId{
 		SubscriptionId: subscriptionId,
-		Location:       location,
-		EdgeZone:       edgeZone,
+		LocationName:   locationName,
+		EdgeZoneName:   edgeZoneName,
 		PublisherName:  publisherName,
-		Offer:          offer,
+		OfferName:      offerName,
 	}
 }
 
@@ -44,20 +44,20 @@ func ParseVMImageOfferID(input string) (*VMImageOfferId, error) {
 		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
 	}
 
-	if id.Location, ok = parsed.Parsed["location"]; !ok {
-		return nil, fmt.Errorf("the segment 'location' was not found in the resource id %q", input)
+	if id.LocationName, ok = parsed.Parsed["locationName"]; !ok {
+		return nil, fmt.Errorf("the segment 'locationName' was not found in the resource id %q", input)
 	}
 
-	if id.EdgeZone, ok = parsed.Parsed["edgeZone"]; !ok {
-		return nil, fmt.Errorf("the segment 'edgeZone' was not found in the resource id %q", input)
+	if id.EdgeZoneName, ok = parsed.Parsed["edgeZoneName"]; !ok {
+		return nil, fmt.Errorf("the segment 'edgeZoneName' was not found in the resource id %q", input)
 	}
 
 	if id.PublisherName, ok = parsed.Parsed["publisherName"]; !ok {
 		return nil, fmt.Errorf("the segment 'publisherName' was not found in the resource id %q", input)
 	}
 
-	if id.Offer, ok = parsed.Parsed["offer"]; !ok {
-		return nil, fmt.Errorf("the segment 'offer' was not found in the resource id %q", input)
+	if id.OfferName, ok = parsed.Parsed["offerName"]; !ok {
+		return nil, fmt.Errorf("the segment 'offerName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -79,20 +79,20 @@ func ParseVMImageOfferIDInsensitively(input string) (*VMImageOfferId, error) {
 		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
 	}
 
-	if id.Location, ok = parsed.Parsed["location"]; !ok {
-		return nil, fmt.Errorf("the segment 'location' was not found in the resource id %q", input)
+	if id.LocationName, ok = parsed.Parsed["locationName"]; !ok {
+		return nil, fmt.Errorf("the segment 'locationName' was not found in the resource id %q", input)
 	}
 
-	if id.EdgeZone, ok = parsed.Parsed["edgeZone"]; !ok {
-		return nil, fmt.Errorf("the segment 'edgeZone' was not found in the resource id %q", input)
+	if id.EdgeZoneName, ok = parsed.Parsed["edgeZoneName"]; !ok {
+		return nil, fmt.Errorf("the segment 'edgeZoneName' was not found in the resource id %q", input)
 	}
 
 	if id.PublisherName, ok = parsed.Parsed["publisherName"]; !ok {
 		return nil, fmt.Errorf("the segment 'publisherName' was not found in the resource id %q", input)
 	}
 
-	if id.Offer, ok = parsed.Parsed["offer"]; !ok {
-		return nil, fmt.Errorf("the segment 'offer' was not found in the resource id %q", input)
+	if id.OfferName, ok = parsed.Parsed["offerName"]; !ok {
+		return nil, fmt.Errorf("the segment 'offerName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -116,7 +116,7 @@ func ValidateVMImageOfferID(input interface{}, key string) (warnings []string, e
 // ID returns the formatted V M Image Offer ID
 func (id VMImageOfferId) ID() string {
 	fmtString := "/subscriptions/%s/providers/Microsoft.Compute/locations/%s/edgeZones/%s/publishers/%s/artifactTypes/vmImage/offers/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.Location, id.EdgeZone, id.PublisherName, id.Offer)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.LocationName, id.EdgeZoneName, id.PublisherName, id.OfferName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this V M Image Offer ID
@@ -127,15 +127,15 @@ func (id VMImageOfferId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftCompute", "Microsoft.Compute", "Microsoft.Compute"),
 		resourceids.StaticSegment("staticLocations", "locations", "locations"),
-		resourceids.UserSpecifiedSegment("location", "locationValue"),
+		resourceids.UserSpecifiedSegment("locationName", "locationValue"),
 		resourceids.StaticSegment("staticEdgeZones", "edgeZones", "edgeZones"),
-		resourceids.UserSpecifiedSegment("edgeZone", "edgeZoneValue"),
+		resourceids.UserSpecifiedSegment("edgeZoneName", "edgeZoneValue"),
 		resourceids.StaticSegment("staticPublishers", "publishers", "publishers"),
 		resourceids.UserSpecifiedSegment("publisherName", "publisherValue"),
 		resourceids.StaticSegment("staticArtifactTypes", "artifactTypes", "artifactTypes"),
 		resourceids.StaticSegment("staticVmImage", "vmImage", "vmImage"),
 		resourceids.StaticSegment("staticOffers", "offers", "offers"),
-		resourceids.UserSpecifiedSegment("offer", "offerValue"),
+		resourceids.UserSpecifiedSegment("offerName", "offerValue"),
 	}
 }
 
@@ -143,10 +143,10 @@ func (id VMImageOfferId) Segments() []resourceids.Segment {
 func (id VMImageOfferId) String() string {
 	components := []string{
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
-		fmt.Sprintf("Location: %q", id.Location),
-		fmt.Sprintf("Edge Zone: %q", id.EdgeZone),
+		fmt.Sprintf("Location Name: %q", id.LocationName),
+		fmt.Sprintf("Edge Zone Name: %q", id.EdgeZoneName),
 		fmt.Sprintf("Publisher Name: %q", id.PublisherName),
-		fmt.Sprintf("Offer: %q", id.Offer),
+		fmt.Sprintf("Offer Name: %q", id.OfferName),
 	}
 	return fmt.Sprintf("V M Image Offer (%s)", strings.Join(components, "\n"))
 }

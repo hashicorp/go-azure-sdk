@@ -9,20 +9,20 @@ import (
 var _ resourceids.ResourceId = PublicMaintenanceConfigurationId{}
 
 func TestNewPublicMaintenanceConfigurationID(t *testing.T) {
-	id := NewPublicMaintenanceConfigurationID("12345678-1234-9876-4563-123456789012", "resourceValue")
+	id := NewPublicMaintenanceConfigurationID("12345678-1234-9876-4563-123456789012", "publicMaintenanceConfigurationValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
 	}
 
-	if id.ResourceName != "resourceValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ResourceName'", id.ResourceName, "resourceValue")
+	if id.PublicMaintenanceConfigurationName != "publicMaintenanceConfigurationValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'PublicMaintenanceConfigurationName'", id.PublicMaintenanceConfigurationName, "publicMaintenanceConfigurationValue")
 	}
 }
 
 func TestFormatPublicMaintenanceConfigurationID(t *testing.T) {
-	actual := NewPublicMaintenanceConfigurationID("12345678-1234-9876-4563-123456789012", "resourceValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Maintenance/publicMaintenanceConfigurations/resourceValue"
+	actual := NewPublicMaintenanceConfigurationID("12345678-1234-9876-4563-123456789012", "publicMaintenanceConfigurationValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Maintenance/publicMaintenanceConfigurations/publicMaintenanceConfigurationValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -66,15 +66,15 @@ func TestParsePublicMaintenanceConfigurationID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Maintenance/publicMaintenanceConfigurations/resourceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Maintenance/publicMaintenanceConfigurations/publicMaintenanceConfigurationValue",
 			Expected: &PublicMaintenanceConfigurationId{
-				SubscriptionId: "12345678-1234-9876-4563-123456789012",
-				ResourceName:   "resourceValue",
+				SubscriptionId:                     "12345678-1234-9876-4563-123456789012",
+				PublicMaintenanceConfigurationName: "publicMaintenanceConfigurationValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Maintenance/publicMaintenanceConfigurations/resourceValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Maintenance/publicMaintenanceConfigurations/publicMaintenanceConfigurationValue/extra",
 			Error: true,
 		},
 	}
@@ -97,8 +97,8 @@ func TestParsePublicMaintenanceConfigurationID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for SubscriptionId", v.Expected.SubscriptionId, actual.SubscriptionId)
 		}
 
-		if actual.ResourceName != v.Expected.ResourceName {
-			t.Fatalf("Expected %q but got %q for ResourceName", v.Expected.ResourceName, actual.ResourceName)
+		if actual.PublicMaintenanceConfigurationName != v.Expected.PublicMaintenanceConfigurationName {
+			t.Fatalf("Expected %q but got %q for PublicMaintenanceConfigurationName", v.Expected.PublicMaintenanceConfigurationName, actual.PublicMaintenanceConfigurationName)
 		}
 
 	}
@@ -167,28 +167,28 @@ func TestParsePublicMaintenanceConfigurationIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Maintenance/publicMaintenanceConfigurations/resourceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Maintenance/publicMaintenanceConfigurations/publicMaintenanceConfigurationValue",
 			Expected: &PublicMaintenanceConfigurationId{
-				SubscriptionId: "12345678-1234-9876-4563-123456789012",
-				ResourceName:   "resourceValue",
+				SubscriptionId:                     "12345678-1234-9876-4563-123456789012",
+				PublicMaintenanceConfigurationName: "publicMaintenanceConfigurationValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Maintenance/publicMaintenanceConfigurations/resourceValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Maintenance/publicMaintenanceConfigurations/publicMaintenanceConfigurationValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.mAiNtEnAnCe/pUbLiCmAiNtEnAnCeCoNfIgUrAtIoNs/rEsOuRcEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.mAiNtEnAnCe/pUbLiCmAiNtEnAnCeCoNfIgUrAtIoNs/pUbLiCmAiNtEnAnCeCoNfIgUrAtIoNvAlUe",
 			Expected: &PublicMaintenanceConfigurationId{
-				SubscriptionId: "12345678-1234-9876-4563-123456789012",
-				ResourceName:   "rEsOuRcEvAlUe",
+				SubscriptionId:                     "12345678-1234-9876-4563-123456789012",
+				PublicMaintenanceConfigurationName: "pUbLiCmAiNtEnAnCeCoNfIgUrAtIoNvAlUe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.mAiNtEnAnCe/pUbLiCmAiNtEnAnCeCoNfIgUrAtIoNs/rEsOuRcEvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.mAiNtEnAnCe/pUbLiCmAiNtEnAnCeCoNfIgUrAtIoNs/pUbLiCmAiNtEnAnCeCoNfIgUrAtIoNvAlUe/extra",
 			Error: true,
 		},
 	}
@@ -211,8 +211,8 @@ func TestParsePublicMaintenanceConfigurationIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for SubscriptionId", v.Expected.SubscriptionId, actual.SubscriptionId)
 		}
 
-		if actual.ResourceName != v.Expected.ResourceName {
-			t.Fatalf("Expected %q but got %q for ResourceName", v.Expected.ResourceName, actual.ResourceName)
+		if actual.PublicMaintenanceConfigurationName != v.Expected.PublicMaintenanceConfigurationName {
+			t.Fatalf("Expected %q but got %q for PublicMaintenanceConfigurationName", v.Expected.PublicMaintenanceConfigurationName, actual.PublicMaintenanceConfigurationName)
 		}
 
 	}

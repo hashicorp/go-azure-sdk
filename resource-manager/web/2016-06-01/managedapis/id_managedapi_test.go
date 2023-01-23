@@ -9,24 +9,24 @@ import (
 var _ resourceids.ResourceId = ManagedApiId{}
 
 func TestNewManagedApiID(t *testing.T) {
-	id := NewManagedApiID("12345678-1234-9876-4563-123456789012", "locationValue", "apiValue")
+	id := NewManagedApiID("12345678-1234-9876-4563-123456789012", "locationValue", "managedApiValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
 	}
 
-	if id.Location != "locationValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'Location'", id.Location, "locationValue")
+	if id.LocationName != "locationValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'LocationName'", id.LocationName, "locationValue")
 	}
 
-	if id.ApiName != "apiValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ApiName'", id.ApiName, "apiValue")
+	if id.ManagedApiName != "managedApiValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'ManagedApiName'", id.ManagedApiName, "managedApiValue")
 	}
 }
 
 func TestFormatManagedApiID(t *testing.T) {
-	actual := NewManagedApiID("12345678-1234-9876-4563-123456789012", "locationValue", "apiValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Web/locations/locationValue/managedApis/apiValue"
+	actual := NewManagedApiID("12345678-1234-9876-4563-123456789012", "locationValue", "managedApiValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Web/locations/locationValue/managedApis/managedApiValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -80,16 +80,16 @@ func TestParseManagedApiID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Web/locations/locationValue/managedApis/apiValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Web/locations/locationValue/managedApis/managedApiValue",
 			Expected: &ManagedApiId{
 				SubscriptionId: "12345678-1234-9876-4563-123456789012",
-				Location:       "locationValue",
-				ApiName:        "apiValue",
+				LocationName:   "locationValue",
+				ManagedApiName: "managedApiValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Web/locations/locationValue/managedApis/apiValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Web/locations/locationValue/managedApis/managedApiValue/extra",
 			Error: true,
 		},
 	}
@@ -112,12 +112,12 @@ func TestParseManagedApiID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for SubscriptionId", v.Expected.SubscriptionId, actual.SubscriptionId)
 		}
 
-		if actual.Location != v.Expected.Location {
-			t.Fatalf("Expected %q but got %q for Location", v.Expected.Location, actual.Location)
+		if actual.LocationName != v.Expected.LocationName {
+			t.Fatalf("Expected %q but got %q for LocationName", v.Expected.LocationName, actual.LocationName)
 		}
 
-		if actual.ApiName != v.Expected.ApiName {
-			t.Fatalf("Expected %q but got %q for ApiName", v.Expected.ApiName, actual.ApiName)
+		if actual.ManagedApiName != v.Expected.ManagedApiName {
+			t.Fatalf("Expected %q but got %q for ManagedApiName", v.Expected.ManagedApiName, actual.ManagedApiName)
 		}
 
 	}
@@ -206,30 +206,30 @@ func TestParseManagedApiIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Web/locations/locationValue/managedApis/apiValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Web/locations/locationValue/managedApis/managedApiValue",
 			Expected: &ManagedApiId{
 				SubscriptionId: "12345678-1234-9876-4563-123456789012",
-				Location:       "locationValue",
-				ApiName:        "apiValue",
+				LocationName:   "locationValue",
+				ManagedApiName: "managedApiValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Web/locations/locationValue/managedApis/apiValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Web/locations/locationValue/managedApis/managedApiValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.wEb/lOcAtIoNs/lOcAtIoNvAlUe/mAnAgEdApIs/aPiVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.wEb/lOcAtIoNs/lOcAtIoNvAlUe/mAnAgEdApIs/mAnAgEdApIvAlUe",
 			Expected: &ManagedApiId{
 				SubscriptionId: "12345678-1234-9876-4563-123456789012",
-				Location:       "lOcAtIoNvAlUe",
-				ApiName:        "aPiVaLuE",
+				LocationName:   "lOcAtIoNvAlUe",
+				ManagedApiName: "mAnAgEdApIvAlUe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.wEb/lOcAtIoNs/lOcAtIoNvAlUe/mAnAgEdApIs/aPiVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.wEb/lOcAtIoNs/lOcAtIoNvAlUe/mAnAgEdApIs/mAnAgEdApIvAlUe/extra",
 			Error: true,
 		},
 	}
@@ -252,12 +252,12 @@ func TestParseManagedApiIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for SubscriptionId", v.Expected.SubscriptionId, actual.SubscriptionId)
 		}
 
-		if actual.Location != v.Expected.Location {
-			t.Fatalf("Expected %q but got %q for Location", v.Expected.Location, actual.Location)
+		if actual.LocationName != v.Expected.LocationName {
+			t.Fatalf("Expected %q but got %q for LocationName", v.Expected.LocationName, actual.LocationName)
 		}
 
-		if actual.ApiName != v.Expected.ApiName {
-			t.Fatalf("Expected %q but got %q for ApiName", v.Expected.ApiName, actual.ApiName)
+		if actual.ManagedApiName != v.Expected.ManagedApiName {
+			t.Fatalf("Expected %q but got %q for ManagedApiName", v.Expected.ManagedApiName, actual.ManagedApiName)
 		}
 
 	}

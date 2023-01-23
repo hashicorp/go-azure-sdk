@@ -11,19 +11,19 @@ var _ resourceids.ResourceId = ReplicationProtectionIntentId{}
 
 // ReplicationProtectionIntentId is a struct representing the Resource ID for a Replication Protection Intent
 type ReplicationProtectionIntentId struct {
-	SubscriptionId    string
-	ResourceGroupName string
-	ResourceName      string
-	IntentObjectName  string
+	SubscriptionId                  string
+	ResourceGroupName               string
+	VaultName                       string
+	ReplicationProtectionIntentName string
 }
 
 // NewReplicationProtectionIntentID returns a new ReplicationProtectionIntentId struct
-func NewReplicationProtectionIntentID(subscriptionId string, resourceGroupName string, resourceName string, intentObjectName string) ReplicationProtectionIntentId {
+func NewReplicationProtectionIntentID(subscriptionId string, resourceGroupName string, vaultName string, replicationProtectionIntentName string) ReplicationProtectionIntentId {
 	return ReplicationProtectionIntentId{
-		SubscriptionId:    subscriptionId,
-		ResourceGroupName: resourceGroupName,
-		ResourceName:      resourceName,
-		IntentObjectName:  intentObjectName,
+		SubscriptionId:                  subscriptionId,
+		ResourceGroupName:               resourceGroupName,
+		VaultName:                       vaultName,
+		ReplicationProtectionIntentName: replicationProtectionIntentName,
 	}
 }
 
@@ -46,12 +46,12 @@ func ParseReplicationProtectionIntentID(input string) (*ReplicationProtectionInt
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.ResourceName, ok = parsed.Parsed["resourceName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceName' was not found in the resource id %q", input)
+	if id.VaultName, ok = parsed.Parsed["vaultName"]; !ok {
+		return nil, fmt.Errorf("the segment 'vaultName' was not found in the resource id %q", input)
 	}
 
-	if id.IntentObjectName, ok = parsed.Parsed["intentObjectName"]; !ok {
-		return nil, fmt.Errorf("the segment 'intentObjectName' was not found in the resource id %q", input)
+	if id.ReplicationProtectionIntentName, ok = parsed.Parsed["replicationProtectionIntentName"]; !ok {
+		return nil, fmt.Errorf("the segment 'replicationProtectionIntentName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -77,12 +77,12 @@ func ParseReplicationProtectionIntentIDInsensitively(input string) (*Replication
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.ResourceName, ok = parsed.Parsed["resourceName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceName' was not found in the resource id %q", input)
+	if id.VaultName, ok = parsed.Parsed["vaultName"]; !ok {
+		return nil, fmt.Errorf("the segment 'vaultName' was not found in the resource id %q", input)
 	}
 
-	if id.IntentObjectName, ok = parsed.Parsed["intentObjectName"]; !ok {
-		return nil, fmt.Errorf("the segment 'intentObjectName' was not found in the resource id %q", input)
+	if id.ReplicationProtectionIntentName, ok = parsed.Parsed["replicationProtectionIntentName"]; !ok {
+		return nil, fmt.Errorf("the segment 'replicationProtectionIntentName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -106,7 +106,7 @@ func ValidateReplicationProtectionIntentID(input interface{}, key string) (warni
 // ID returns the formatted Replication Protection Intent ID
 func (id ReplicationProtectionIntentId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.RecoveryServices/vaults/%s/replicationProtectionIntents/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.ResourceName, id.IntentObjectName)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.VaultName, id.ReplicationProtectionIntentName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Replication Protection Intent ID
@@ -119,9 +119,9 @@ func (id ReplicationProtectionIntentId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftRecoveryServices", "Microsoft.RecoveryServices", "Microsoft.RecoveryServices"),
 		resourceids.StaticSegment("staticVaults", "vaults", "vaults"),
-		resourceids.UserSpecifiedSegment("resourceName", "resourceValue"),
+		resourceids.UserSpecifiedSegment("vaultName", "vaultValue"),
 		resourceids.StaticSegment("staticReplicationProtectionIntents", "replicationProtectionIntents", "replicationProtectionIntents"),
-		resourceids.UserSpecifiedSegment("intentObjectName", "intentObjectValue"),
+		resourceids.UserSpecifiedSegment("replicationProtectionIntentName", "replicationProtectionIntentValue"),
 	}
 }
 
@@ -130,8 +130,8 @@ func (id ReplicationProtectionIntentId) String() string {
 	components := []string{
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
-		fmt.Sprintf("Resource Name: %q", id.ResourceName),
-		fmt.Sprintf("Intent Object Name: %q", id.IntentObjectName),
+		fmt.Sprintf("Vault Name: %q", id.VaultName),
+		fmt.Sprintf("Replication Protection Intent Name: %q", id.ReplicationProtectionIntentName),
 	}
 	return fmt.Sprintf("Replication Protection Intent (%s)", strings.Join(components, "\n"))
 }

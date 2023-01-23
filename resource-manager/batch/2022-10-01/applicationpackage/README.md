@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := applicationpackage.NewVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "applicationValue", "versionValue")
+id := applicationpackage.NewVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "batchAccountValue", "applicationValue", "versionValue")
 
 payload := applicationpackage.ActivateApplicationPackageParameters{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := applicationpackage.NewVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "applicationValue", "versionValue")
+id := applicationpackage.NewVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "batchAccountValue", "applicationValue", "versionValue")
 
 payload := applicationpackage.ApplicationPackage{
 	// ...
@@ -66,7 +66,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := applicationpackage.NewVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "applicationValue", "versionValue")
+id := applicationpackage.NewVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "batchAccountValue", "applicationValue", "versionValue")
 
 read, err := client.Delete(ctx, id)
 if err != nil {
@@ -82,7 +82,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := applicationpackage.NewVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "applicationValue", "versionValue")
+id := applicationpackage.NewVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "batchAccountValue", "applicationValue", "versionValue")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -98,7 +98,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := applicationpackage.NewApplicationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "applicationValue")
+id := applicationpackage.NewApplicationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "batchAccountValue", "applicationValue")
 
 // alternatively `client.List(ctx, id, applicationpackage.DefaultListOperationOptions())` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id, applicationpackage.DefaultListOperationOptions())

@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := replicationprotectableitems.NewReplicationProtectableItemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue", "fabricValue", "protectionContainerValue", "protectableItemValue")
+id := replicationprotectableitems.NewReplicationProtectableItemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue", "replicationFabricValue", "replicationProtectionContainerValue", "replicationProtectableItemValue")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := replicationprotectableitems.NewReplicationProtectionContainerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue", "fabricValue", "protectionContainerValue")
+id := replicationprotectableitems.NewReplicationProtectionContainerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue", "replicationFabricValue", "replicationProtectionContainerValue")
 
 // alternatively `client.ListByReplicationProtectionContainers(ctx, id, replicationprotectableitems.DefaultListByReplicationProtectionContainersOperationOptions())` can be used to do batched pagination
 items, err := client.ListByReplicationProtectionContainersComplete(ctx, id, replicationprotectableitems.DefaultListByReplicationProtectionContainersOperationOptions())

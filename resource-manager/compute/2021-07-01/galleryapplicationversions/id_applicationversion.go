@@ -11,21 +11,21 @@ var _ resourceids.ResourceId = ApplicationVersionId{}
 
 // ApplicationVersionId is a struct representing the Resource ID for a Application Version
 type ApplicationVersionId struct {
-	SubscriptionId                string
-	ResourceGroupName             string
-	GalleryName                   string
-	GalleryApplicationName        string
-	GalleryApplicationVersionName string
+	SubscriptionId    string
+	ResourceGroupName string
+	GalleryName       string
+	ApplicationName   string
+	VersionName       string
 }
 
 // NewApplicationVersionID returns a new ApplicationVersionId struct
-func NewApplicationVersionID(subscriptionId string, resourceGroupName string, galleryName string, galleryApplicationName string, galleryApplicationVersionName string) ApplicationVersionId {
+func NewApplicationVersionID(subscriptionId string, resourceGroupName string, galleryName string, applicationName string, versionName string) ApplicationVersionId {
 	return ApplicationVersionId{
-		SubscriptionId:                subscriptionId,
-		ResourceGroupName:             resourceGroupName,
-		GalleryName:                   galleryName,
-		GalleryApplicationName:        galleryApplicationName,
-		GalleryApplicationVersionName: galleryApplicationVersionName,
+		SubscriptionId:    subscriptionId,
+		ResourceGroupName: resourceGroupName,
+		GalleryName:       galleryName,
+		ApplicationName:   applicationName,
+		VersionName:       versionName,
 	}
 }
 
@@ -52,12 +52,12 @@ func ParseApplicationVersionID(input string) (*ApplicationVersionId, error) {
 		return nil, fmt.Errorf("the segment 'galleryName' was not found in the resource id %q", input)
 	}
 
-	if id.GalleryApplicationName, ok = parsed.Parsed["galleryApplicationName"]; !ok {
-		return nil, fmt.Errorf("the segment 'galleryApplicationName' was not found in the resource id %q", input)
+	if id.ApplicationName, ok = parsed.Parsed["applicationName"]; !ok {
+		return nil, fmt.Errorf("the segment 'applicationName' was not found in the resource id %q", input)
 	}
 
-	if id.GalleryApplicationVersionName, ok = parsed.Parsed["galleryApplicationVersionName"]; !ok {
-		return nil, fmt.Errorf("the segment 'galleryApplicationVersionName' was not found in the resource id %q", input)
+	if id.VersionName, ok = parsed.Parsed["versionName"]; !ok {
+		return nil, fmt.Errorf("the segment 'versionName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -87,12 +87,12 @@ func ParseApplicationVersionIDInsensitively(input string) (*ApplicationVersionId
 		return nil, fmt.Errorf("the segment 'galleryName' was not found in the resource id %q", input)
 	}
 
-	if id.GalleryApplicationName, ok = parsed.Parsed["galleryApplicationName"]; !ok {
-		return nil, fmt.Errorf("the segment 'galleryApplicationName' was not found in the resource id %q", input)
+	if id.ApplicationName, ok = parsed.Parsed["applicationName"]; !ok {
+		return nil, fmt.Errorf("the segment 'applicationName' was not found in the resource id %q", input)
 	}
 
-	if id.GalleryApplicationVersionName, ok = parsed.Parsed["galleryApplicationVersionName"]; !ok {
-		return nil, fmt.Errorf("the segment 'galleryApplicationVersionName' was not found in the resource id %q", input)
+	if id.VersionName, ok = parsed.Parsed["versionName"]; !ok {
+		return nil, fmt.Errorf("the segment 'versionName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -116,7 +116,7 @@ func ValidateApplicationVersionID(input interface{}, key string) (warnings []str
 // ID returns the formatted Application Version ID
 func (id ApplicationVersionId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.Compute/galleries/%s/applications/%s/versions/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.GalleryName, id.GalleryApplicationName, id.GalleryApplicationVersionName)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.GalleryName, id.ApplicationName, id.VersionName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Application Version ID
@@ -131,9 +131,9 @@ func (id ApplicationVersionId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticGalleries", "galleries", "galleries"),
 		resourceids.UserSpecifiedSegment("galleryName", "galleryValue"),
 		resourceids.StaticSegment("staticApplications", "applications", "applications"),
-		resourceids.UserSpecifiedSegment("galleryApplicationName", "galleryApplicationValue"),
+		resourceids.UserSpecifiedSegment("applicationName", "applicationValue"),
 		resourceids.StaticSegment("staticVersions", "versions", "versions"),
-		resourceids.UserSpecifiedSegment("galleryApplicationVersionName", "galleryApplicationVersionValue"),
+		resourceids.UserSpecifiedSegment("versionName", "versionValue"),
 	}
 }
 
@@ -143,8 +143,8 @@ func (id ApplicationVersionId) String() string {
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
 		fmt.Sprintf("Gallery Name: %q", id.GalleryName),
-		fmt.Sprintf("Gallery Application Name: %q", id.GalleryApplicationName),
-		fmt.Sprintf("Gallery Application Version Name: %q", id.GalleryApplicationVersionName),
+		fmt.Sprintf("Application Name: %q", id.ApplicationName),
+		fmt.Sprintf("Version Name: %q", id.VersionName),
 	}
 	return fmt.Sprintf("Application Version (%s)", strings.Join(components, "\n"))
 }

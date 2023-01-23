@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = LiveOutputOperationLocationId{}
 
 func TestNewLiveOutputOperationLocationID(t *testing.T) {
-	id := NewLiveOutputOperationLocationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "liveEventValue", "liveOutputValue", "operationIdValue")
+	id := NewLiveOutputOperationLocationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "mediaServiceValue", "liveEventValue", "liveOutputValue", "operationIdValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -19,8 +19,8 @@ func TestNewLiveOutputOperationLocationID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.AccountName != "accountValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AccountName'", id.AccountName, "accountValue")
+	if id.MediaServiceName != "mediaServiceValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'MediaServiceName'", id.MediaServiceName, "mediaServiceValue")
 	}
 
 	if id.LiveEventName != "liveEventValue" {
@@ -37,8 +37,8 @@ func TestNewLiveOutputOperationLocationID(t *testing.T) {
 }
 
 func TestFormatLiveOutputOperationLocationID(t *testing.T) {
-	actual := NewLiveOutputOperationLocationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "liveEventValue", "liveOutputValue", "operationIdValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/mediaServices/accountValue/liveEvents/liveEventValue/liveOutputs/liveOutputValue/operationLocations/operationIdValue"
+	actual := NewLiveOutputOperationLocationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "mediaServiceValue", "liveEventValue", "liveOutputValue", "operationIdValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/mediaServices/mediaServiceValue/liveEvents/liveEventValue/liveOutputs/liveOutputValue/operationLocations/operationIdValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -92,41 +92,41 @@ func TestParseLiveOutputOperationLocationID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/mediaServices/accountValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/mediaServices/mediaServiceValue",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/mediaServices/accountValue/liveEvents",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/mediaServices/mediaServiceValue/liveEvents",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/mediaServices/accountValue/liveEvents/liveEventValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/mediaServices/mediaServiceValue/liveEvents/liveEventValue",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/mediaServices/accountValue/liveEvents/liveEventValue/liveOutputs",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/mediaServices/mediaServiceValue/liveEvents/liveEventValue/liveOutputs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/mediaServices/accountValue/liveEvents/liveEventValue/liveOutputs/liveOutputValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/mediaServices/mediaServiceValue/liveEvents/liveEventValue/liveOutputs/liveOutputValue",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/mediaServices/accountValue/liveEvents/liveEventValue/liveOutputs/liveOutputValue/operationLocations",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/mediaServices/mediaServiceValue/liveEvents/liveEventValue/liveOutputs/liveOutputValue/operationLocations",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/mediaServices/accountValue/liveEvents/liveEventValue/liveOutputs/liveOutputValue/operationLocations/operationIdValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/mediaServices/mediaServiceValue/liveEvents/liveEventValue/liveOutputs/liveOutputValue/operationLocations/operationIdValue",
 			Expected: &LiveOutputOperationLocationId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				AccountName:       "accountValue",
+				MediaServiceName:  "mediaServiceValue",
 				LiveEventName:     "liveEventValue",
 				LiveOutputName:    "liveOutputValue",
 				OperationId:       "operationIdValue",
@@ -134,7 +134,7 @@ func TestParseLiveOutputOperationLocationID(t *testing.T) {
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/mediaServices/accountValue/liveEvents/liveEventValue/liveOutputs/liveOutputValue/operationLocations/operationIdValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/mediaServices/mediaServiceValue/liveEvents/liveEventValue/liveOutputs/liveOutputValue/operationLocations/operationIdValue/extra",
 			Error: true,
 		},
 	}
@@ -161,8 +161,8 @@ func TestParseLiveOutputOperationLocationID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.AccountName != v.Expected.AccountName {
-			t.Fatalf("Expected %q but got %q for AccountName", v.Expected.AccountName, actual.AccountName)
+		if actual.MediaServiceName != v.Expected.MediaServiceName {
+			t.Fatalf("Expected %q but got %q for MediaServiceName", v.Expected.MediaServiceName, actual.MediaServiceName)
 		}
 
 		if actual.LiveEventName != v.Expected.LiveEventName {
@@ -263,71 +263,71 @@ func TestParseLiveOutputOperationLocationIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/mediaServices/accountValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/mediaServices/mediaServiceValue",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mEdIa/mEdIaSeRvIcEs/aCcOuNtVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mEdIa/mEdIaSeRvIcEs/mEdIaSeRvIcEvAlUe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/mediaServices/accountValue/liveEvents",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/mediaServices/mediaServiceValue/liveEvents",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mEdIa/mEdIaSeRvIcEs/aCcOuNtVaLuE/lIvEeVeNtS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mEdIa/mEdIaSeRvIcEs/mEdIaSeRvIcEvAlUe/lIvEeVeNtS",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/mediaServices/accountValue/liveEvents/liveEventValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/mediaServices/mediaServiceValue/liveEvents/liveEventValue",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mEdIa/mEdIaSeRvIcEs/aCcOuNtVaLuE/lIvEeVeNtS/lIvEeVeNtVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mEdIa/mEdIaSeRvIcEs/mEdIaSeRvIcEvAlUe/lIvEeVeNtS/lIvEeVeNtVaLuE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/mediaServices/accountValue/liveEvents/liveEventValue/liveOutputs",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/mediaServices/mediaServiceValue/liveEvents/liveEventValue/liveOutputs",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mEdIa/mEdIaSeRvIcEs/aCcOuNtVaLuE/lIvEeVeNtS/lIvEeVeNtVaLuE/lIvEoUtPuTs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mEdIa/mEdIaSeRvIcEs/mEdIaSeRvIcEvAlUe/lIvEeVeNtS/lIvEeVeNtVaLuE/lIvEoUtPuTs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/mediaServices/accountValue/liveEvents/liveEventValue/liveOutputs/liveOutputValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/mediaServices/mediaServiceValue/liveEvents/liveEventValue/liveOutputs/liveOutputValue",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mEdIa/mEdIaSeRvIcEs/aCcOuNtVaLuE/lIvEeVeNtS/lIvEeVeNtVaLuE/lIvEoUtPuTs/lIvEoUtPuTvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mEdIa/mEdIaSeRvIcEs/mEdIaSeRvIcEvAlUe/lIvEeVeNtS/lIvEeVeNtVaLuE/lIvEoUtPuTs/lIvEoUtPuTvAlUe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/mediaServices/accountValue/liveEvents/liveEventValue/liveOutputs/liveOutputValue/operationLocations",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/mediaServices/mediaServiceValue/liveEvents/liveEventValue/liveOutputs/liveOutputValue/operationLocations",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mEdIa/mEdIaSeRvIcEs/aCcOuNtVaLuE/lIvEeVeNtS/lIvEeVeNtVaLuE/lIvEoUtPuTs/lIvEoUtPuTvAlUe/oPeRaTiOnLoCaTiOnS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mEdIa/mEdIaSeRvIcEs/mEdIaSeRvIcEvAlUe/lIvEeVeNtS/lIvEeVeNtVaLuE/lIvEoUtPuTs/lIvEoUtPuTvAlUe/oPeRaTiOnLoCaTiOnS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/mediaServices/accountValue/liveEvents/liveEventValue/liveOutputs/liveOutputValue/operationLocations/operationIdValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/mediaServices/mediaServiceValue/liveEvents/liveEventValue/liveOutputs/liveOutputValue/operationLocations/operationIdValue",
 			Expected: &LiveOutputOperationLocationId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				AccountName:       "accountValue",
+				MediaServiceName:  "mediaServiceValue",
 				LiveEventName:     "liveEventValue",
 				LiveOutputName:    "liveOutputValue",
 				OperationId:       "operationIdValue",
@@ -335,16 +335,16 @@ func TestParseLiveOutputOperationLocationIDInsensitively(t *testing.T) {
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/mediaServices/accountValue/liveEvents/liveEventValue/liveOutputs/liveOutputValue/operationLocations/operationIdValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/mediaServices/mediaServiceValue/liveEvents/liveEventValue/liveOutputs/liveOutputValue/operationLocations/operationIdValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mEdIa/mEdIaSeRvIcEs/aCcOuNtVaLuE/lIvEeVeNtS/lIvEeVeNtVaLuE/lIvEoUtPuTs/lIvEoUtPuTvAlUe/oPeRaTiOnLoCaTiOnS/oPeRaTiOnIdVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mEdIa/mEdIaSeRvIcEs/mEdIaSeRvIcEvAlUe/lIvEeVeNtS/lIvEeVeNtVaLuE/lIvEoUtPuTs/lIvEoUtPuTvAlUe/oPeRaTiOnLoCaTiOnS/oPeRaTiOnIdVaLuE",
 			Expected: &LiveOutputOperationLocationId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				AccountName:       "aCcOuNtVaLuE",
+				MediaServiceName:  "mEdIaSeRvIcEvAlUe",
 				LiveEventName:     "lIvEeVeNtVaLuE",
 				LiveOutputName:    "lIvEoUtPuTvAlUe",
 				OperationId:       "oPeRaTiOnIdVaLuE",
@@ -352,7 +352,7 @@ func TestParseLiveOutputOperationLocationIDInsensitively(t *testing.T) {
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mEdIa/mEdIaSeRvIcEs/aCcOuNtVaLuE/lIvEeVeNtS/lIvEeVeNtVaLuE/lIvEoUtPuTs/lIvEoUtPuTvAlUe/oPeRaTiOnLoCaTiOnS/oPeRaTiOnIdVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mEdIa/mEdIaSeRvIcEs/mEdIaSeRvIcEvAlUe/lIvEeVeNtS/lIvEeVeNtVaLuE/lIvEoUtPuTs/lIvEoUtPuTvAlUe/oPeRaTiOnLoCaTiOnS/oPeRaTiOnIdVaLuE/extra",
 			Error: true,
 		},
 	}
@@ -379,8 +379,8 @@ func TestParseLiveOutputOperationLocationIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.AccountName != v.Expected.AccountName {
-			t.Fatalf("Expected %q but got %q for AccountName", v.Expected.AccountName, actual.AccountName)
+		if actual.MediaServiceName != v.Expected.MediaServiceName {
+			t.Fatalf("Expected %q but got %q for MediaServiceName", v.Expected.MediaServiceName, actual.MediaServiceName)
 		}
 
 		if actual.LiveEventName != v.Expected.LiveEventName {

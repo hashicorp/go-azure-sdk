@@ -9,24 +9,24 @@ import (
 var _ resourceids.ResourceId = DeletedServiceId{}
 
 func TestNewDeletedServiceID(t *testing.T) {
-	id := NewDeletedServiceID("12345678-1234-9876-4563-123456789012", "locationValue", "serviceValue")
+	id := NewDeletedServiceID("12345678-1234-9876-4563-123456789012", "locationValue", "deletedServiceValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
 	}
 
-	if id.Location != "locationValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'Location'", id.Location, "locationValue")
+	if id.LocationName != "locationValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'LocationName'", id.LocationName, "locationValue")
 	}
 
-	if id.ServiceName != "serviceValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ServiceName'", id.ServiceName, "serviceValue")
+	if id.DeletedServiceName != "deletedServiceValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'DeletedServiceName'", id.DeletedServiceName, "deletedServiceValue")
 	}
 }
 
 func TestFormatDeletedServiceID(t *testing.T) {
-	actual := NewDeletedServiceID("12345678-1234-9876-4563-123456789012", "locationValue", "serviceValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.ApiManagement/locations/locationValue/deletedServices/serviceValue"
+	actual := NewDeletedServiceID("12345678-1234-9876-4563-123456789012", "locationValue", "deletedServiceValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.ApiManagement/locations/locationValue/deletedServices/deletedServiceValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -80,16 +80,16 @@ func TestParseDeletedServiceID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.ApiManagement/locations/locationValue/deletedServices/serviceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.ApiManagement/locations/locationValue/deletedServices/deletedServiceValue",
 			Expected: &DeletedServiceId{
-				SubscriptionId: "12345678-1234-9876-4563-123456789012",
-				Location:       "locationValue",
-				ServiceName:    "serviceValue",
+				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
+				LocationName:       "locationValue",
+				DeletedServiceName: "deletedServiceValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.ApiManagement/locations/locationValue/deletedServices/serviceValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.ApiManagement/locations/locationValue/deletedServices/deletedServiceValue/extra",
 			Error: true,
 		},
 	}
@@ -112,12 +112,12 @@ func TestParseDeletedServiceID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for SubscriptionId", v.Expected.SubscriptionId, actual.SubscriptionId)
 		}
 
-		if actual.Location != v.Expected.Location {
-			t.Fatalf("Expected %q but got %q for Location", v.Expected.Location, actual.Location)
+		if actual.LocationName != v.Expected.LocationName {
+			t.Fatalf("Expected %q but got %q for LocationName", v.Expected.LocationName, actual.LocationName)
 		}
 
-		if actual.ServiceName != v.Expected.ServiceName {
-			t.Fatalf("Expected %q but got %q for ServiceName", v.Expected.ServiceName, actual.ServiceName)
+		if actual.DeletedServiceName != v.Expected.DeletedServiceName {
+			t.Fatalf("Expected %q but got %q for DeletedServiceName", v.Expected.DeletedServiceName, actual.DeletedServiceName)
 		}
 
 	}
@@ -206,30 +206,30 @@ func TestParseDeletedServiceIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.ApiManagement/locations/locationValue/deletedServices/serviceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.ApiManagement/locations/locationValue/deletedServices/deletedServiceValue",
 			Expected: &DeletedServiceId{
-				SubscriptionId: "12345678-1234-9876-4563-123456789012",
-				Location:       "locationValue",
-				ServiceName:    "serviceValue",
+				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
+				LocationName:       "locationValue",
+				DeletedServiceName: "deletedServiceValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.ApiManagement/locations/locationValue/deletedServices/serviceValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.ApiManagement/locations/locationValue/deletedServices/deletedServiceValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.aPiMaNaGeMeNt/lOcAtIoNs/lOcAtIoNvAlUe/dElEtEdSeRvIcEs/sErViCeVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.aPiMaNaGeMeNt/lOcAtIoNs/lOcAtIoNvAlUe/dElEtEdSeRvIcEs/dElEtEdSeRvIcEvAlUe",
 			Expected: &DeletedServiceId{
-				SubscriptionId: "12345678-1234-9876-4563-123456789012",
-				Location:       "lOcAtIoNvAlUe",
-				ServiceName:    "sErViCeVaLuE",
+				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
+				LocationName:       "lOcAtIoNvAlUe",
+				DeletedServiceName: "dElEtEdSeRvIcEvAlUe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.aPiMaNaGeMeNt/lOcAtIoNs/lOcAtIoNvAlUe/dElEtEdSeRvIcEs/sErViCeVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.aPiMaNaGeMeNt/lOcAtIoNs/lOcAtIoNvAlUe/dElEtEdSeRvIcEs/dElEtEdSeRvIcEvAlUe/extra",
 			Error: true,
 		},
 	}
@@ -252,12 +252,12 @@ func TestParseDeletedServiceIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for SubscriptionId", v.Expected.SubscriptionId, actual.SubscriptionId)
 		}
 
-		if actual.Location != v.Expected.Location {
-			t.Fatalf("Expected %q but got %q for Location", v.Expected.Location, actual.Location)
+		if actual.LocationName != v.Expected.LocationName {
+			t.Fatalf("Expected %q but got %q for LocationName", v.Expected.LocationName, actual.LocationName)
 		}
 
-		if actual.ServiceName != v.Expected.ServiceName {
-			t.Fatalf("Expected %q but got %q for ServiceName", v.Expected.ServiceName, actual.ServiceName)
+		if actual.DeletedServiceName != v.Expected.DeletedServiceName {
+			t.Fatalf("Expected %q but got %q for DeletedServiceName", v.Expected.DeletedServiceName, actual.DeletedServiceName)
 		}
 
 	}

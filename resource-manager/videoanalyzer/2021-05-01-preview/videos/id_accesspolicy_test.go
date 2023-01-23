@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = AccessPolicyId{}
 
 func TestNewAccessPolicyID(t *testing.T) {
-	id := NewAccessPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "accessPolicyValue")
+	id := NewAccessPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "videoAnalyzerValue", "accessPolicyValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -19,8 +19,8 @@ func TestNewAccessPolicyID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.AccountName != "accountValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AccountName'", id.AccountName, "accountValue")
+	if id.VideoAnalyzerName != "videoAnalyzerValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'VideoAnalyzerName'", id.VideoAnalyzerName, "videoAnalyzerValue")
 	}
 
 	if id.AccessPolicyName != "accessPolicyValue" {
@@ -29,8 +29,8 @@ func TestNewAccessPolicyID(t *testing.T) {
 }
 
 func TestFormatAccessPolicyID(t *testing.T) {
-	actual := NewAccessPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "accessPolicyValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/videoAnalyzers/accountValue/accessPolicies/accessPolicyValue"
+	actual := NewAccessPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "videoAnalyzerValue", "accessPolicyValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/videoAnalyzers/videoAnalyzerValue/accessPolicies/accessPolicyValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -84,27 +84,27 @@ func TestParseAccessPolicyID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/videoAnalyzers/accountValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/videoAnalyzers/videoAnalyzerValue",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/videoAnalyzers/accountValue/accessPolicies",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/videoAnalyzers/videoAnalyzerValue/accessPolicies",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/videoAnalyzers/accountValue/accessPolicies/accessPolicyValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/videoAnalyzers/videoAnalyzerValue/accessPolicies/accessPolicyValue",
 			Expected: &AccessPolicyId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				AccountName:       "accountValue",
+				VideoAnalyzerName: "videoAnalyzerValue",
 				AccessPolicyName:  "accessPolicyValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/videoAnalyzers/accountValue/accessPolicies/accessPolicyValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/videoAnalyzers/videoAnalyzerValue/accessPolicies/accessPolicyValue/extra",
 			Error: true,
 		},
 	}
@@ -131,8 +131,8 @@ func TestParseAccessPolicyID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.AccountName != v.Expected.AccountName {
-			t.Fatalf("Expected %q but got %q for AccountName", v.Expected.AccountName, actual.AccountName)
+		if actual.VideoAnalyzerName != v.Expected.VideoAnalyzerName {
+			t.Fatalf("Expected %q but got %q for VideoAnalyzerName", v.Expected.VideoAnalyzerName, actual.VideoAnalyzerName)
 		}
 
 		if actual.AccessPolicyName != v.Expected.AccessPolicyName {
@@ -225,52 +225,52 @@ func TestParseAccessPolicyIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/videoAnalyzers/accountValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/videoAnalyzers/videoAnalyzerValue",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mEdIa/vIdEoAnAlYzErS/aCcOuNtVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mEdIa/vIdEoAnAlYzErS/vIdEoAnAlYzErVaLuE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/videoAnalyzers/accountValue/accessPolicies",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/videoAnalyzers/videoAnalyzerValue/accessPolicies",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mEdIa/vIdEoAnAlYzErS/aCcOuNtVaLuE/aCcEsSpOlIcIeS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mEdIa/vIdEoAnAlYzErS/vIdEoAnAlYzErVaLuE/aCcEsSpOlIcIeS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/videoAnalyzers/accountValue/accessPolicies/accessPolicyValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/videoAnalyzers/videoAnalyzerValue/accessPolicies/accessPolicyValue",
 			Expected: &AccessPolicyId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				AccountName:       "accountValue",
+				VideoAnalyzerName: "videoAnalyzerValue",
 				AccessPolicyName:  "accessPolicyValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/videoAnalyzers/accountValue/accessPolicies/accessPolicyValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/videoAnalyzers/videoAnalyzerValue/accessPolicies/accessPolicyValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mEdIa/vIdEoAnAlYzErS/aCcOuNtVaLuE/aCcEsSpOlIcIeS/aCcEsSpOlIcYvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mEdIa/vIdEoAnAlYzErS/vIdEoAnAlYzErVaLuE/aCcEsSpOlIcIeS/aCcEsSpOlIcYvAlUe",
 			Expected: &AccessPolicyId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				AccountName:       "aCcOuNtVaLuE",
+				VideoAnalyzerName: "vIdEoAnAlYzErVaLuE",
 				AccessPolicyName:  "aCcEsSpOlIcYvAlUe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mEdIa/vIdEoAnAlYzErS/aCcOuNtVaLuE/aCcEsSpOlIcIeS/aCcEsSpOlIcYvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mEdIa/vIdEoAnAlYzErS/vIdEoAnAlYzErVaLuE/aCcEsSpOlIcIeS/aCcEsSpOlIcYvAlUe/extra",
 			Error: true,
 		},
 	}
@@ -297,8 +297,8 @@ func TestParseAccessPolicyIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.AccountName != v.Expected.AccountName {
-			t.Fatalf("Expected %q but got %q for AccountName", v.Expected.AccountName, actual.AccountName)
+		if actual.VideoAnalyzerName != v.Expected.VideoAnalyzerName {
+			t.Fatalf("Expected %q but got %q for VideoAnalyzerName", v.Expected.VideoAnalyzerName, actual.VideoAnalyzerName)
 		}
 
 		if actual.AccessPolicyName != v.Expected.AccessPolicyName {

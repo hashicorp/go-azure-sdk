@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := privateendpointconnection.NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "privateEndpointConnectionValue")
+id := privateendpointconnection.NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "batchAccountValue", "privateEndpointConnectionValue")
 
 if err := client.DeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -36,7 +36,7 @@ if err := client.DeleteThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := privateendpointconnection.NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "privateEndpointConnectionValue")
+id := privateendpointconnection.NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "batchAccountValue", "privateEndpointConnectionValue")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -52,7 +52,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := privateendpointconnection.NewBatchAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue")
+id := privateendpointconnection.NewBatchAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "batchAccountValue")
 
 // alternatively `client.ListByBatchAccount(ctx, id, privateendpointconnection.DefaultListByBatchAccountOperationOptions())` can be used to do batched pagination
 items, err := client.ListByBatchAccountComplete(ctx, id, privateendpointconnection.DefaultListByBatchAccountOperationOptions())
@@ -69,7 +69,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := privateendpointconnection.NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "privateEndpointConnectionValue")
+id := privateendpointconnection.NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "batchAccountValue", "privateEndpointConnectionValue")
 
 payload := privateendpointconnection.PrivateEndpointConnection{
 	// ...

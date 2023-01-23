@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = LiveEventId{}
 
 func TestNewLiveEventID(t *testing.T) {
-	id := NewLiveEventID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "liveEventValue")
+	id := NewLiveEventID("12345678-1234-9876-4563-123456789012", "example-resource-group", "mediaServiceValue", "liveEventValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -19,8 +19,8 @@ func TestNewLiveEventID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.AccountName != "accountValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AccountName'", id.AccountName, "accountValue")
+	if id.MediaServiceName != "mediaServiceValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'MediaServiceName'", id.MediaServiceName, "mediaServiceValue")
 	}
 
 	if id.LiveEventName != "liveEventValue" {
@@ -29,8 +29,8 @@ func TestNewLiveEventID(t *testing.T) {
 }
 
 func TestFormatLiveEventID(t *testing.T) {
-	actual := NewLiveEventID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "liveEventValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/mediaServices/accountValue/liveEvents/liveEventValue"
+	actual := NewLiveEventID("12345678-1234-9876-4563-123456789012", "example-resource-group", "mediaServiceValue", "liveEventValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/mediaServices/mediaServiceValue/liveEvents/liveEventValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -84,27 +84,27 @@ func TestParseLiveEventID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/mediaServices/accountValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/mediaServices/mediaServiceValue",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/mediaServices/accountValue/liveEvents",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/mediaServices/mediaServiceValue/liveEvents",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/mediaServices/accountValue/liveEvents/liveEventValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/mediaServices/mediaServiceValue/liveEvents/liveEventValue",
 			Expected: &LiveEventId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				AccountName:       "accountValue",
+				MediaServiceName:  "mediaServiceValue",
 				LiveEventName:     "liveEventValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/mediaServices/accountValue/liveEvents/liveEventValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/mediaServices/mediaServiceValue/liveEvents/liveEventValue/extra",
 			Error: true,
 		},
 	}
@@ -131,8 +131,8 @@ func TestParseLiveEventID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.AccountName != v.Expected.AccountName {
-			t.Fatalf("Expected %q but got %q for AccountName", v.Expected.AccountName, actual.AccountName)
+		if actual.MediaServiceName != v.Expected.MediaServiceName {
+			t.Fatalf("Expected %q but got %q for MediaServiceName", v.Expected.MediaServiceName, actual.MediaServiceName)
 		}
 
 		if actual.LiveEventName != v.Expected.LiveEventName {
@@ -225,52 +225,52 @@ func TestParseLiveEventIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/mediaServices/accountValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/mediaServices/mediaServiceValue",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mEdIa/mEdIaSeRvIcEs/aCcOuNtVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mEdIa/mEdIaSeRvIcEs/mEdIaSeRvIcEvAlUe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/mediaServices/accountValue/liveEvents",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/mediaServices/mediaServiceValue/liveEvents",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mEdIa/mEdIaSeRvIcEs/aCcOuNtVaLuE/lIvEeVeNtS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mEdIa/mEdIaSeRvIcEs/mEdIaSeRvIcEvAlUe/lIvEeVeNtS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/mediaServices/accountValue/liveEvents/liveEventValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/mediaServices/mediaServiceValue/liveEvents/liveEventValue",
 			Expected: &LiveEventId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				AccountName:       "accountValue",
+				MediaServiceName:  "mediaServiceValue",
 				LiveEventName:     "liveEventValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/mediaServices/accountValue/liveEvents/liveEventValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Media/mediaServices/mediaServiceValue/liveEvents/liveEventValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mEdIa/mEdIaSeRvIcEs/aCcOuNtVaLuE/lIvEeVeNtS/lIvEeVeNtVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mEdIa/mEdIaSeRvIcEs/mEdIaSeRvIcEvAlUe/lIvEeVeNtS/lIvEeVeNtVaLuE",
 			Expected: &LiveEventId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				AccountName:       "aCcOuNtVaLuE",
+				MediaServiceName:  "mEdIaSeRvIcEvAlUe",
 				LiveEventName:     "lIvEeVeNtVaLuE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mEdIa/mEdIaSeRvIcEs/aCcOuNtVaLuE/lIvEeVeNtS/lIvEeVeNtVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mEdIa/mEdIaSeRvIcEs/mEdIaSeRvIcEvAlUe/lIvEeVeNtS/lIvEeVeNtVaLuE/extra",
 			Error: true,
 		},
 	}
@@ -297,8 +297,8 @@ func TestParseLiveEventIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.AccountName != v.Expected.AccountName {
-			t.Fatalf("Expected %q but got %q for AccountName", v.Expected.AccountName, actual.AccountName)
+		if actual.MediaServiceName != v.Expected.MediaServiceName {
+			t.Fatalf("Expected %q but got %q for MediaServiceName", v.Expected.MediaServiceName, actual.MediaServiceName)
 		}
 
 		if actual.LiveEventName != v.Expected.LiveEventName {

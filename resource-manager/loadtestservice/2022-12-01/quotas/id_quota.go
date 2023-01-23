@@ -11,17 +11,17 @@ var _ resourceids.ResourceId = QuotaId{}
 
 // QuotaId is a struct representing the Resource ID for a Quota
 type QuotaId struct {
-	SubscriptionId  string
-	Location        string
-	QuotaBucketName string
+	SubscriptionId string
+	LocationName   string
+	QuotaName      string
 }
 
 // NewQuotaID returns a new QuotaId struct
-func NewQuotaID(subscriptionId string, location string, quotaBucketName string) QuotaId {
+func NewQuotaID(subscriptionId string, locationName string, quotaName string) QuotaId {
 	return QuotaId{
-		SubscriptionId:  subscriptionId,
-		Location:        location,
-		QuotaBucketName: quotaBucketName,
+		SubscriptionId: subscriptionId,
+		LocationName:   locationName,
+		QuotaName:      quotaName,
 	}
 }
 
@@ -40,12 +40,12 @@ func ParseQuotaID(input string) (*QuotaId, error) {
 		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
 	}
 
-	if id.Location, ok = parsed.Parsed["location"]; !ok {
-		return nil, fmt.Errorf("the segment 'location' was not found in the resource id %q", input)
+	if id.LocationName, ok = parsed.Parsed["locationName"]; !ok {
+		return nil, fmt.Errorf("the segment 'locationName' was not found in the resource id %q", input)
 	}
 
-	if id.QuotaBucketName, ok = parsed.Parsed["quotaBucketName"]; !ok {
-		return nil, fmt.Errorf("the segment 'quotaBucketName' was not found in the resource id %q", input)
+	if id.QuotaName, ok = parsed.Parsed["quotaName"]; !ok {
+		return nil, fmt.Errorf("the segment 'quotaName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -67,12 +67,12 @@ func ParseQuotaIDInsensitively(input string) (*QuotaId, error) {
 		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
 	}
 
-	if id.Location, ok = parsed.Parsed["location"]; !ok {
-		return nil, fmt.Errorf("the segment 'location' was not found in the resource id %q", input)
+	if id.LocationName, ok = parsed.Parsed["locationName"]; !ok {
+		return nil, fmt.Errorf("the segment 'locationName' was not found in the resource id %q", input)
 	}
 
-	if id.QuotaBucketName, ok = parsed.Parsed["quotaBucketName"]; !ok {
-		return nil, fmt.Errorf("the segment 'quotaBucketName' was not found in the resource id %q", input)
+	if id.QuotaName, ok = parsed.Parsed["quotaName"]; !ok {
+		return nil, fmt.Errorf("the segment 'quotaName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -96,7 +96,7 @@ func ValidateQuotaID(input interface{}, key string) (warnings []string, errors [
 // ID returns the formatted Quota ID
 func (id QuotaId) ID() string {
 	fmtString := "/subscriptions/%s/providers/Microsoft.LoadTestService/locations/%s/quotas/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.Location, id.QuotaBucketName)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.LocationName, id.QuotaName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Quota ID
@@ -107,9 +107,9 @@ func (id QuotaId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftLoadTestService", "Microsoft.LoadTestService", "Microsoft.LoadTestService"),
 		resourceids.StaticSegment("staticLocations", "locations", "locations"),
-		resourceids.UserSpecifiedSegment("location", "locationValue"),
+		resourceids.UserSpecifiedSegment("locationName", "locationValue"),
 		resourceids.StaticSegment("staticQuotas", "quotas", "quotas"),
-		resourceids.UserSpecifiedSegment("quotaBucketName", "quotaBucketValue"),
+		resourceids.UserSpecifiedSegment("quotaName", "quotaValue"),
 	}
 }
 
@@ -117,8 +117,8 @@ func (id QuotaId) Segments() []resourceids.Segment {
 func (id QuotaId) String() string {
 	components := []string{
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
-		fmt.Sprintf("Location: %q", id.Location),
-		fmt.Sprintf("Quota Bucket Name: %q", id.QuotaBucketName),
+		fmt.Sprintf("Location Name: %q", id.LocationName),
+		fmt.Sprintf("Quota Name: %q", id.QuotaName),
 	}
 	return fmt.Sprintf("Quota (%s)", strings.Join(components, "\n"))
 }

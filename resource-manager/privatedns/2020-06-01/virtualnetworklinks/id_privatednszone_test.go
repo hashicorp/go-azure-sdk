@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = PrivateDnsZoneId{}
 
 func TestNewPrivateDnsZoneID(t *testing.T) {
-	id := NewPrivateDnsZoneID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateZoneValue")
+	id := NewPrivateDnsZoneID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateDnsZoneValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -19,14 +19,14 @@ func TestNewPrivateDnsZoneID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.PrivateZoneName != "privateZoneValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'PrivateZoneName'", id.PrivateZoneName, "privateZoneValue")
+	if id.PrivateDnsZoneName != "privateDnsZoneValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'PrivateDnsZoneName'", id.PrivateDnsZoneName, "privateDnsZoneValue")
 	}
 }
 
 func TestFormatPrivateDnsZoneID(t *testing.T) {
-	actual := NewPrivateDnsZoneID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateZoneValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/privateDnsZones/privateZoneValue"
+	actual := NewPrivateDnsZoneID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateDnsZoneValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/privateDnsZones/privateDnsZoneValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -80,16 +80,16 @@ func TestParsePrivateDnsZoneID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/privateDnsZones/privateZoneValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/privateDnsZones/privateDnsZoneValue",
 			Expected: &PrivateDnsZoneId{
-				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName: "example-resource-group",
-				PrivateZoneName:   "privateZoneValue",
+				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:  "example-resource-group",
+				PrivateDnsZoneName: "privateDnsZoneValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/privateDnsZones/privateZoneValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/privateDnsZones/privateDnsZoneValue/extra",
 			Error: true,
 		},
 	}
@@ -116,8 +116,8 @@ func TestParsePrivateDnsZoneID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.PrivateZoneName != v.Expected.PrivateZoneName {
-			t.Fatalf("Expected %q but got %q for PrivateZoneName", v.Expected.PrivateZoneName, actual.PrivateZoneName)
+		if actual.PrivateDnsZoneName != v.Expected.PrivateDnsZoneName {
+			t.Fatalf("Expected %q but got %q for PrivateDnsZoneName", v.Expected.PrivateDnsZoneName, actual.PrivateDnsZoneName)
 		}
 
 	}
@@ -206,30 +206,30 @@ func TestParsePrivateDnsZoneIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/privateDnsZones/privateZoneValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/privateDnsZones/privateDnsZoneValue",
 			Expected: &PrivateDnsZoneId{
-				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName: "example-resource-group",
-				PrivateZoneName:   "privateZoneValue",
+				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:  "example-resource-group",
+				PrivateDnsZoneName: "privateDnsZoneValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/privateDnsZones/privateZoneValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Network/privateDnsZones/privateDnsZoneValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/pRiVaTeDnSzOnEs/pRiVaTeZoNeVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/pRiVaTeDnSzOnEs/pRiVaTeDnSzOnEvAlUe",
 			Expected: &PrivateDnsZoneId{
-				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				PrivateZoneName:   "pRiVaTeZoNeVaLuE",
+				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:  "eXaMpLe-rEsOuRcE-GrOuP",
+				PrivateDnsZoneName: "pRiVaTeDnSzOnEvAlUe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/pRiVaTeDnSzOnEs/pRiVaTeZoNeVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.nEtWoRk/pRiVaTeDnSzOnEs/pRiVaTeDnSzOnEvAlUe/extra",
 			Error: true,
 		},
 	}
@@ -256,8 +256,8 @@ func TestParsePrivateDnsZoneIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.PrivateZoneName != v.Expected.PrivateZoneName {
-			t.Fatalf("Expected %q but got %q for PrivateZoneName", v.Expected.PrivateZoneName, actual.PrivateZoneName)
+		if actual.PrivateDnsZoneName != v.Expected.PrivateDnsZoneName {
+			t.Fatalf("Expected %q but got %q for PrivateDnsZoneName", v.Expected.PrivateDnsZoneName, actual.PrivateDnsZoneName)
 		}
 
 	}

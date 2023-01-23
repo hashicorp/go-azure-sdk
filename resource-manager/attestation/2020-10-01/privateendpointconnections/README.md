@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := privateendpointconnections.NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "providerValue", "privateEndpointConnectionValue")
+id := privateendpointconnections.NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "attestationProviderValue", "privateEndpointConnectionValue")
 
 payload := privateendpointconnections.PrivateEndpointConnection{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := privateendpointconnections.NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "providerValue", "privateEndpointConnectionValue")
+id := privateendpointconnections.NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "attestationProviderValue", "privateEndpointConnectionValue")
 
 read, err := client.Delete(ctx, id)
 if err != nil {
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := privateendpointconnections.NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "providerValue", "privateEndpointConnectionValue")
+id := privateendpointconnections.NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "attestationProviderValue", "privateEndpointConnectionValue")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -77,7 +77,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := privateendpointconnections.NewAttestationProvidersID("12345678-1234-9876-4563-123456789012", "example-resource-group", "providerValue")
+id := privateendpointconnections.NewAttestationProvidersID("12345678-1234-9876-4563-123456789012", "example-resource-group", "attestationProviderValue")
 
 read, err := client.List(ctx, id)
 if err != nil {

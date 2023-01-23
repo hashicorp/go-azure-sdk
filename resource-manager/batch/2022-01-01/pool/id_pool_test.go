@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = PoolId{}
 
 func TestNewPoolID(t *testing.T) {
-	id := NewPoolID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "poolValue")
+	id := NewPoolID("12345678-1234-9876-4563-123456789012", "example-resource-group", "batchAccountValue", "poolValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -19,8 +19,8 @@ func TestNewPoolID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.AccountName != "accountValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AccountName'", id.AccountName, "accountValue")
+	if id.BatchAccountName != "batchAccountValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'BatchAccountName'", id.BatchAccountName, "batchAccountValue")
 	}
 
 	if id.PoolName != "poolValue" {
@@ -29,8 +29,8 @@ func TestNewPoolID(t *testing.T) {
 }
 
 func TestFormatPoolID(t *testing.T) {
-	actual := NewPoolID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "poolValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Batch/batchAccounts/accountValue/pools/poolValue"
+	actual := NewPoolID("12345678-1234-9876-4563-123456789012", "example-resource-group", "batchAccountValue", "poolValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Batch/batchAccounts/batchAccountValue/pools/poolValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -84,27 +84,27 @@ func TestParsePoolID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Batch/batchAccounts/accountValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Batch/batchAccounts/batchAccountValue",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Batch/batchAccounts/accountValue/pools",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Batch/batchAccounts/batchAccountValue/pools",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Batch/batchAccounts/accountValue/pools/poolValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Batch/batchAccounts/batchAccountValue/pools/poolValue",
 			Expected: &PoolId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				AccountName:       "accountValue",
+				BatchAccountName:  "batchAccountValue",
 				PoolName:          "poolValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Batch/batchAccounts/accountValue/pools/poolValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Batch/batchAccounts/batchAccountValue/pools/poolValue/extra",
 			Error: true,
 		},
 	}
@@ -131,8 +131,8 @@ func TestParsePoolID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.AccountName != v.Expected.AccountName {
-			t.Fatalf("Expected %q but got %q for AccountName", v.Expected.AccountName, actual.AccountName)
+		if actual.BatchAccountName != v.Expected.BatchAccountName {
+			t.Fatalf("Expected %q but got %q for BatchAccountName", v.Expected.BatchAccountName, actual.BatchAccountName)
 		}
 
 		if actual.PoolName != v.Expected.PoolName {
@@ -225,52 +225,52 @@ func TestParsePoolIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Batch/batchAccounts/accountValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Batch/batchAccounts/batchAccountValue",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.bAtCh/bAtChAcCoUnTs/aCcOuNtVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.bAtCh/bAtChAcCoUnTs/bAtChAcCoUnTvAlUe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Batch/batchAccounts/accountValue/pools",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Batch/batchAccounts/batchAccountValue/pools",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.bAtCh/bAtChAcCoUnTs/aCcOuNtVaLuE/pOoLs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.bAtCh/bAtChAcCoUnTs/bAtChAcCoUnTvAlUe/pOoLs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Batch/batchAccounts/accountValue/pools/poolValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Batch/batchAccounts/batchAccountValue/pools/poolValue",
 			Expected: &PoolId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				AccountName:       "accountValue",
+				BatchAccountName:  "batchAccountValue",
 				PoolName:          "poolValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Batch/batchAccounts/accountValue/pools/poolValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Batch/batchAccounts/batchAccountValue/pools/poolValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.bAtCh/bAtChAcCoUnTs/aCcOuNtVaLuE/pOoLs/pOoLvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.bAtCh/bAtChAcCoUnTs/bAtChAcCoUnTvAlUe/pOoLs/pOoLvAlUe",
 			Expected: &PoolId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				AccountName:       "aCcOuNtVaLuE",
+				BatchAccountName:  "bAtChAcCoUnTvAlUe",
 				PoolName:          "pOoLvAlUe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.bAtCh/bAtChAcCoUnTs/aCcOuNtVaLuE/pOoLs/pOoLvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.bAtCh/bAtChAcCoUnTs/bAtChAcCoUnTvAlUe/pOoLs/pOoLvAlUe/extra",
 			Error: true,
 		},
 	}
@@ -297,8 +297,8 @@ func TestParsePoolIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.AccountName != v.Expected.AccountName {
-			t.Fatalf("Expected %q but got %q for AccountName", v.Expected.AccountName, actual.AccountName)
+		if actual.BatchAccountName != v.Expected.BatchAccountName {
+			t.Fatalf("Expected %q but got %q for BatchAccountName", v.Expected.BatchAccountName, actual.BatchAccountName)
 		}
 
 		if actual.PoolName != v.Expected.PoolName {

@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = PrivateEndpointConnectionId{}
 
 func TestNewPrivateEndpointConnectionID(t *testing.T) {
-	id := NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "privateEndpointConnectionValue")
+	id := NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "grafanaValue", "privateEndpointConnectionValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -19,8 +19,8 @@ func TestNewPrivateEndpointConnectionID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.WorkspaceName != "workspaceValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'WorkspaceName'", id.WorkspaceName, "workspaceValue")
+	if id.GrafanaName != "grafanaValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'GrafanaName'", id.GrafanaName, "grafanaValue")
 	}
 
 	if id.PrivateEndpointConnectionName != "privateEndpointConnectionValue" {
@@ -29,8 +29,8 @@ func TestNewPrivateEndpointConnectionID(t *testing.T) {
 }
 
 func TestFormatPrivateEndpointConnectionID(t *testing.T) {
-	actual := NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "privateEndpointConnectionValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Dashboard/grafana/workspaceValue/privateEndpointConnections/privateEndpointConnectionValue"
+	actual := NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "grafanaValue", "privateEndpointConnectionValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Dashboard/grafana/grafanaValue/privateEndpointConnections/privateEndpointConnectionValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -84,27 +84,27 @@ func TestParsePrivateEndpointConnectionID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Dashboard/grafana/workspaceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Dashboard/grafana/grafanaValue",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Dashboard/grafana/workspaceValue/privateEndpointConnections",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Dashboard/grafana/grafanaValue/privateEndpointConnections",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Dashboard/grafana/workspaceValue/privateEndpointConnections/privateEndpointConnectionValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Dashboard/grafana/grafanaValue/privateEndpointConnections/privateEndpointConnectionValue",
 			Expected: &PrivateEndpointConnectionId{
 				SubscriptionId:                "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:             "example-resource-group",
-				WorkspaceName:                 "workspaceValue",
+				GrafanaName:                   "grafanaValue",
 				PrivateEndpointConnectionName: "privateEndpointConnectionValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Dashboard/grafana/workspaceValue/privateEndpointConnections/privateEndpointConnectionValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Dashboard/grafana/grafanaValue/privateEndpointConnections/privateEndpointConnectionValue/extra",
 			Error: true,
 		},
 	}
@@ -131,8 +131,8 @@ func TestParsePrivateEndpointConnectionID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.WorkspaceName != v.Expected.WorkspaceName {
-			t.Fatalf("Expected %q but got %q for WorkspaceName", v.Expected.WorkspaceName, actual.WorkspaceName)
+		if actual.GrafanaName != v.Expected.GrafanaName {
+			t.Fatalf("Expected %q but got %q for GrafanaName", v.Expected.GrafanaName, actual.GrafanaName)
 		}
 
 		if actual.PrivateEndpointConnectionName != v.Expected.PrivateEndpointConnectionName {
@@ -225,52 +225,52 @@ func TestParsePrivateEndpointConnectionIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Dashboard/grafana/workspaceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Dashboard/grafana/grafanaValue",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAsHbOaRd/gRaFaNa/wOrKsPaCeVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAsHbOaRd/gRaFaNa/gRaFaNaVaLuE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Dashboard/grafana/workspaceValue/privateEndpointConnections",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Dashboard/grafana/grafanaValue/privateEndpointConnections",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAsHbOaRd/gRaFaNa/wOrKsPaCeVaLuE/pRiVaTeEnDpOiNtCoNnEcTiOnS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAsHbOaRd/gRaFaNa/gRaFaNaVaLuE/pRiVaTeEnDpOiNtCoNnEcTiOnS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Dashboard/grafana/workspaceValue/privateEndpointConnections/privateEndpointConnectionValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Dashboard/grafana/grafanaValue/privateEndpointConnections/privateEndpointConnectionValue",
 			Expected: &PrivateEndpointConnectionId{
 				SubscriptionId:                "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:             "example-resource-group",
-				WorkspaceName:                 "workspaceValue",
+				GrafanaName:                   "grafanaValue",
 				PrivateEndpointConnectionName: "privateEndpointConnectionValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Dashboard/grafana/workspaceValue/privateEndpointConnections/privateEndpointConnectionValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Dashboard/grafana/grafanaValue/privateEndpointConnections/privateEndpointConnectionValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAsHbOaRd/gRaFaNa/wOrKsPaCeVaLuE/pRiVaTeEnDpOiNtCoNnEcTiOnS/pRiVaTeEnDpOiNtCoNnEcTiOnVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAsHbOaRd/gRaFaNa/gRaFaNaVaLuE/pRiVaTeEnDpOiNtCoNnEcTiOnS/pRiVaTeEnDpOiNtCoNnEcTiOnVaLuE",
 			Expected: &PrivateEndpointConnectionId{
 				SubscriptionId:                "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:             "eXaMpLe-rEsOuRcE-GrOuP",
-				WorkspaceName:                 "wOrKsPaCeVaLuE",
+				GrafanaName:                   "gRaFaNaVaLuE",
 				PrivateEndpointConnectionName: "pRiVaTeEnDpOiNtCoNnEcTiOnVaLuE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAsHbOaRd/gRaFaNa/wOrKsPaCeVaLuE/pRiVaTeEnDpOiNtCoNnEcTiOnS/pRiVaTeEnDpOiNtCoNnEcTiOnVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAsHbOaRd/gRaFaNa/gRaFaNaVaLuE/pRiVaTeEnDpOiNtCoNnEcTiOnS/pRiVaTeEnDpOiNtCoNnEcTiOnVaLuE/extra",
 			Error: true,
 		},
 	}
@@ -297,8 +297,8 @@ func TestParsePrivateEndpointConnectionIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.WorkspaceName != v.Expected.WorkspaceName {
-			t.Fatalf("Expected %q but got %q for WorkspaceName", v.Expected.WorkspaceName, actual.WorkspaceName)
+		if actual.GrafanaName != v.Expected.GrafanaName {
+			t.Fatalf("Expected %q but got %q for GrafanaName", v.Expected.GrafanaName, actual.GrafanaName)
 		}
 
 		if actual.PrivateEndpointConnectionName != v.Expected.PrivateEndpointConnectionName {

@@ -14,17 +14,17 @@ type WcfRelayAuthorizationRuleId struct {
 	SubscriptionId        string
 	ResourceGroupName     string
 	NamespaceName         string
-	RelayName             string
+	WcfRelayName          string
 	AuthorizationRuleName string
 }
 
 // NewWcfRelayAuthorizationRuleID returns a new WcfRelayAuthorizationRuleId struct
-func NewWcfRelayAuthorizationRuleID(subscriptionId string, resourceGroupName string, namespaceName string, relayName string, authorizationRuleName string) WcfRelayAuthorizationRuleId {
+func NewWcfRelayAuthorizationRuleID(subscriptionId string, resourceGroupName string, namespaceName string, wcfRelayName string, authorizationRuleName string) WcfRelayAuthorizationRuleId {
 	return WcfRelayAuthorizationRuleId{
 		SubscriptionId:        subscriptionId,
 		ResourceGroupName:     resourceGroupName,
 		NamespaceName:         namespaceName,
-		RelayName:             relayName,
+		WcfRelayName:          wcfRelayName,
 		AuthorizationRuleName: authorizationRuleName,
 	}
 }
@@ -52,8 +52,8 @@ func ParseWcfRelayAuthorizationRuleID(input string) (*WcfRelayAuthorizationRuleI
 		return nil, fmt.Errorf("the segment 'namespaceName' was not found in the resource id %q", input)
 	}
 
-	if id.RelayName, ok = parsed.Parsed["relayName"]; !ok {
-		return nil, fmt.Errorf("the segment 'relayName' was not found in the resource id %q", input)
+	if id.WcfRelayName, ok = parsed.Parsed["wcfRelayName"]; !ok {
+		return nil, fmt.Errorf("the segment 'wcfRelayName' was not found in the resource id %q", input)
 	}
 
 	if id.AuthorizationRuleName, ok = parsed.Parsed["authorizationRuleName"]; !ok {
@@ -87,8 +87,8 @@ func ParseWcfRelayAuthorizationRuleIDInsensitively(input string) (*WcfRelayAutho
 		return nil, fmt.Errorf("the segment 'namespaceName' was not found in the resource id %q", input)
 	}
 
-	if id.RelayName, ok = parsed.Parsed["relayName"]; !ok {
-		return nil, fmt.Errorf("the segment 'relayName' was not found in the resource id %q", input)
+	if id.WcfRelayName, ok = parsed.Parsed["wcfRelayName"]; !ok {
+		return nil, fmt.Errorf("the segment 'wcfRelayName' was not found in the resource id %q", input)
 	}
 
 	if id.AuthorizationRuleName, ok = parsed.Parsed["authorizationRuleName"]; !ok {
@@ -116,7 +116,7 @@ func ValidateWcfRelayAuthorizationRuleID(input interface{}, key string) (warning
 // ID returns the formatted Wcf Relay Authorization Rule ID
 func (id WcfRelayAuthorizationRuleId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.Relay/namespaces/%s/wcfRelays/%s/authorizationRules/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.NamespaceName, id.RelayName, id.AuthorizationRuleName)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.NamespaceName, id.WcfRelayName, id.AuthorizationRuleName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Wcf Relay Authorization Rule ID
@@ -131,7 +131,7 @@ func (id WcfRelayAuthorizationRuleId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticNamespaces", "namespaces", "namespaces"),
 		resourceids.UserSpecifiedSegment("namespaceName", "namespaceValue"),
 		resourceids.StaticSegment("staticWcfRelays", "wcfRelays", "wcfRelays"),
-		resourceids.UserSpecifiedSegment("relayName", "relayValue"),
+		resourceids.UserSpecifiedSegment("wcfRelayName", "wcfRelayValue"),
 		resourceids.StaticSegment("staticAuthorizationRules", "authorizationRules", "authorizationRules"),
 		resourceids.UserSpecifiedSegment("authorizationRuleName", "authorizationRuleValue"),
 	}
@@ -143,7 +143,7 @@ func (id WcfRelayAuthorizationRuleId) String() string {
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
 		fmt.Sprintf("Namespace Name: %q", id.NamespaceName),
-		fmt.Sprintf("Relay Name: %q", id.RelayName),
+		fmt.Sprintf("Wcf Relay Name: %q", id.WcfRelayName),
 		fmt.Sprintf("Authorization Rule Name: %q", id.AuthorizationRuleName),
 	}
 	return fmt.Sprintf("Wcf Relay Authorization Rule (%s)", strings.Join(components, "\n"))

@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := virtualmachineschedules.NewVirtualMachineScheduleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "virtualMachineValue", "nameValue")
+id := virtualmachineschedules.NewVirtualMachineScheduleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "virtualMachineValue", "scheduleValue")
 
 payload := virtualmachineschedules.Schedule{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := virtualmachineschedules.NewVirtualMachineScheduleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "virtualMachineValue", "nameValue")
+id := virtualmachineschedules.NewVirtualMachineScheduleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "virtualMachineValue", "scheduleValue")
 
 read, err := client.Delete(ctx, id)
 if err != nil {
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := virtualmachineschedules.NewVirtualMachineScheduleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "virtualMachineValue", "nameValue")
+id := virtualmachineschedules.NewVirtualMachineScheduleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "virtualMachineValue", "scheduleValue")
 
 if err := client.ExecuteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -73,7 +73,7 @@ if err := client.ExecuteThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := virtualmachineschedules.NewVirtualMachineScheduleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "virtualMachineValue", "nameValue")
+id := virtualmachineschedules.NewVirtualMachineScheduleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "virtualMachineValue", "scheduleValue")
 
 read, err := client.Get(ctx, id, virtualmachineschedules.DefaultGetOperationOptions())
 if err != nil {
@@ -89,7 +89,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := virtualmachineschedules.NewVirtualMachineID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "nameValue")
+id := virtualmachineschedules.NewVirtualMachineID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "virtualMachineValue")
 
 // alternatively `client.List(ctx, id, virtualmachineschedules.DefaultListOperationOptions())` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id, virtualmachineschedules.DefaultListOperationOptions())
@@ -106,7 +106,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := virtualmachineschedules.NewVirtualMachineScheduleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "virtualMachineValue", "nameValue")
+id := virtualmachineschedules.NewVirtualMachineScheduleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "virtualMachineValue", "scheduleValue")
 
 payload := virtualmachineschedules.UpdateResource{
 	// ...

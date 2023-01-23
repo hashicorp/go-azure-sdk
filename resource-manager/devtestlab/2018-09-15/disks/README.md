@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := disks.NewDiskID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "userValue", "nameValue")
+id := disks.NewDiskID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "userValue", "diskValue")
 
 payload := disks.AttachDiskProperties{
 	// ...
@@ -41,7 +41,7 @@ if err := client.AttachThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := disks.NewDiskID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "userValue", "nameValue")
+id := disks.NewDiskID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "userValue", "diskValue")
 
 payload := disks.Disk{
 	// ...
@@ -58,7 +58,7 @@ if err := client.CreateOrUpdateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := disks.NewDiskID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "userValue", "nameValue")
+id := disks.NewDiskID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "userValue", "diskValue")
 
 if err := client.DeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -70,7 +70,7 @@ if err := client.DeleteThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := disks.NewDiskID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "userValue", "nameValue")
+id := disks.NewDiskID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "userValue", "diskValue")
 
 payload := disks.DetachDiskProperties{
 	// ...
@@ -87,7 +87,7 @@ if err := client.DetachThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := disks.NewDiskID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "userValue", "nameValue")
+id := disks.NewDiskID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "userValue", "diskValue")
 
 read, err := client.Get(ctx, id, disks.DefaultGetOperationOptions())
 if err != nil {
@@ -120,7 +120,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := disks.NewDiskID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "userValue", "nameValue")
+id := disks.NewDiskID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "userValue", "diskValue")
 
 payload := disks.UpdateResource{
 	// ...

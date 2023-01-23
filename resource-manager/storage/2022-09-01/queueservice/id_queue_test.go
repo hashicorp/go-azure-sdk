@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = QueueId{}
 
 func TestNewQueueID(t *testing.T) {
-	id := NewQueueID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "queueValue")
+	id := NewQueueID("12345678-1234-9876-4563-123456789012", "example-resource-group", "storageAccountValue", "queueValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -19,8 +19,8 @@ func TestNewQueueID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.AccountName != "accountValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AccountName'", id.AccountName, "accountValue")
+	if id.StorageAccountName != "storageAccountValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'StorageAccountName'", id.StorageAccountName, "storageAccountValue")
 	}
 
 	if id.QueueName != "queueValue" {
@@ -29,8 +29,8 @@ func TestNewQueueID(t *testing.T) {
 }
 
 func TestFormatQueueID(t *testing.T) {
-	actual := NewQueueID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "queueValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/accountValue/queueServices/default/queues/queueValue"
+	actual := NewQueueID("12345678-1234-9876-4563-123456789012", "example-resource-group", "storageAccountValue", "queueValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/storageAccountValue/queueServices/default/queues/queueValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -84,37 +84,37 @@ func TestParseQueueID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/accountValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/storageAccountValue",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/accountValue/queueServices",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/storageAccountValue/queueServices",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/accountValue/queueServices/default",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/storageAccountValue/queueServices/default",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/accountValue/queueServices/default/queues",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/storageAccountValue/queueServices/default/queues",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/accountValue/queueServices/default/queues/queueValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/storageAccountValue/queueServices/default/queues/queueValue",
 			Expected: &QueueId{
-				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName: "example-resource-group",
-				AccountName:       "accountValue",
-				QueueName:         "queueValue",
+				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:  "example-resource-group",
+				StorageAccountName: "storageAccountValue",
+				QueueName:          "queueValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/accountValue/queueServices/default/queues/queueValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/storageAccountValue/queueServices/default/queues/queueValue/extra",
 			Error: true,
 		},
 	}
@@ -141,8 +141,8 @@ func TestParseQueueID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.AccountName != v.Expected.AccountName {
-			t.Fatalf("Expected %q but got %q for AccountName", v.Expected.AccountName, actual.AccountName)
+		if actual.StorageAccountName != v.Expected.StorageAccountName {
+			t.Fatalf("Expected %q but got %q for StorageAccountName", v.Expected.StorageAccountName, actual.StorageAccountName)
 		}
 
 		if actual.QueueName != v.Expected.QueueName {
@@ -235,72 +235,72 @@ func TestParseQueueIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/accountValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/storageAccountValue",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGe/sToRaGeAcCoUnTs/aCcOuNtVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGe/sToRaGeAcCoUnTs/sToRaGeAcCoUnTvAlUe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/accountValue/queueServices",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/storageAccountValue/queueServices",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGe/sToRaGeAcCoUnTs/aCcOuNtVaLuE/qUeUeSeRvIcEs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGe/sToRaGeAcCoUnTs/sToRaGeAcCoUnTvAlUe/qUeUeSeRvIcEs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/accountValue/queueServices/default",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/storageAccountValue/queueServices/default",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGe/sToRaGeAcCoUnTs/aCcOuNtVaLuE/qUeUeSeRvIcEs/dEfAuLt",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGe/sToRaGeAcCoUnTs/sToRaGeAcCoUnTvAlUe/qUeUeSeRvIcEs/dEfAuLt",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/accountValue/queueServices/default/queues",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/storageAccountValue/queueServices/default/queues",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGe/sToRaGeAcCoUnTs/aCcOuNtVaLuE/qUeUeSeRvIcEs/dEfAuLt/qUeUeS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGe/sToRaGeAcCoUnTs/sToRaGeAcCoUnTvAlUe/qUeUeSeRvIcEs/dEfAuLt/qUeUeS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/accountValue/queueServices/default/queues/queueValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/storageAccountValue/queueServices/default/queues/queueValue",
 			Expected: &QueueId{
-				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName: "example-resource-group",
-				AccountName:       "accountValue",
-				QueueName:         "queueValue",
+				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:  "example-resource-group",
+				StorageAccountName: "storageAccountValue",
+				QueueName:          "queueValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/accountValue/queueServices/default/queues/queueValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/storageAccountValue/queueServices/default/queues/queueValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGe/sToRaGeAcCoUnTs/aCcOuNtVaLuE/qUeUeSeRvIcEs/dEfAuLt/qUeUeS/qUeUeVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGe/sToRaGeAcCoUnTs/sToRaGeAcCoUnTvAlUe/qUeUeSeRvIcEs/dEfAuLt/qUeUeS/qUeUeVaLuE",
 			Expected: &QueueId{
-				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				AccountName:       "aCcOuNtVaLuE",
-				QueueName:         "qUeUeVaLuE",
+				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:  "eXaMpLe-rEsOuRcE-GrOuP",
+				StorageAccountName: "sToRaGeAcCoUnTvAlUe",
+				QueueName:          "qUeUeVaLuE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGe/sToRaGeAcCoUnTs/aCcOuNtVaLuE/qUeUeSeRvIcEs/dEfAuLt/qUeUeS/qUeUeVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGe/sToRaGeAcCoUnTs/sToRaGeAcCoUnTvAlUe/qUeUeSeRvIcEs/dEfAuLt/qUeUeS/qUeUeVaLuE/extra",
 			Error: true,
 		},
 	}
@@ -327,8 +327,8 @@ func TestParseQueueIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.AccountName != v.Expected.AccountName {
-			t.Fatalf("Expected %q but got %q for AccountName", v.Expected.AccountName, actual.AccountName)
+		if actual.StorageAccountName != v.Expected.StorageAccountName {
+			t.Fatalf("Expected %q but got %q for StorageAccountName", v.Expected.StorageAccountName, actual.StorageAccountName)
 		}
 
 		if actual.QueueName != v.Expected.QueueName {

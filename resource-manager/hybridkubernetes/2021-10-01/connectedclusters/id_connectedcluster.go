@@ -11,17 +11,17 @@ var _ resourceids.ResourceId = ConnectedClusterId{}
 
 // ConnectedClusterId is a struct representing the Resource ID for a Connected Cluster
 type ConnectedClusterId struct {
-	SubscriptionId    string
-	ResourceGroupName string
-	ClusterName       string
+	SubscriptionId       string
+	ResourceGroupName    string
+	ConnectedClusterName string
 }
 
 // NewConnectedClusterID returns a new ConnectedClusterId struct
-func NewConnectedClusterID(subscriptionId string, resourceGroupName string, clusterName string) ConnectedClusterId {
+func NewConnectedClusterID(subscriptionId string, resourceGroupName string, connectedClusterName string) ConnectedClusterId {
 	return ConnectedClusterId{
-		SubscriptionId:    subscriptionId,
-		ResourceGroupName: resourceGroupName,
-		ClusterName:       clusterName,
+		SubscriptionId:       subscriptionId,
+		ResourceGroupName:    resourceGroupName,
+		ConnectedClusterName: connectedClusterName,
 	}
 }
 
@@ -44,8 +44,8 @@ func ParseConnectedClusterID(input string) (*ConnectedClusterId, error) {
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.ClusterName, ok = parsed.Parsed["clusterName"]; !ok {
-		return nil, fmt.Errorf("the segment 'clusterName' was not found in the resource id %q", input)
+	if id.ConnectedClusterName, ok = parsed.Parsed["connectedClusterName"]; !ok {
+		return nil, fmt.Errorf("the segment 'connectedClusterName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -71,8 +71,8 @@ func ParseConnectedClusterIDInsensitively(input string) (*ConnectedClusterId, er
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.ClusterName, ok = parsed.Parsed["clusterName"]; !ok {
-		return nil, fmt.Errorf("the segment 'clusterName' was not found in the resource id %q", input)
+	if id.ConnectedClusterName, ok = parsed.Parsed["connectedClusterName"]; !ok {
+		return nil, fmt.Errorf("the segment 'connectedClusterName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -96,7 +96,7 @@ func ValidateConnectedClusterID(input interface{}, key string) (warnings []strin
 // ID returns the formatted Connected Cluster ID
 func (id ConnectedClusterId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.Kubernetes/connectedClusters/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.ClusterName)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.ConnectedClusterName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Connected Cluster ID
@@ -109,7 +109,7 @@ func (id ConnectedClusterId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftKubernetes", "Microsoft.Kubernetes", "Microsoft.Kubernetes"),
 		resourceids.StaticSegment("staticConnectedClusters", "connectedClusters", "connectedClusters"),
-		resourceids.UserSpecifiedSegment("clusterName", "clusterValue"),
+		resourceids.UserSpecifiedSegment("connectedClusterName", "connectedClusterValue"),
 	}
 }
 
@@ -118,7 +118,7 @@ func (id ConnectedClusterId) String() string {
 	components := []string{
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
-		fmt.Sprintf("Cluster Name: %q", id.ClusterName),
+		fmt.Sprintf("Connected Cluster Name: %q", id.ConnectedClusterName),
 	}
 	return fmt.Sprintf("Connected Cluster (%s)", strings.Join(components, "\n"))
 }

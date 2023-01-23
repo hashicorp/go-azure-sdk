@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = PrivateEndpointConnectionId{}
 
 func TestNewPrivateEndpointConnectionID(t *testing.T) {
-	id := NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "privateEndpointConnectionValue")
+	id := NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "databaseAccountValue", "privateEndpointConnectionValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -19,8 +19,8 @@ func TestNewPrivateEndpointConnectionID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.AccountName != "accountValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AccountName'", id.AccountName, "accountValue")
+	if id.DatabaseAccountName != "databaseAccountValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'DatabaseAccountName'", id.DatabaseAccountName, "databaseAccountValue")
 	}
 
 	if id.PrivateEndpointConnectionName != "privateEndpointConnectionValue" {
@@ -29,8 +29,8 @@ func TestNewPrivateEndpointConnectionID(t *testing.T) {
 }
 
 func TestFormatPrivateEndpointConnectionID(t *testing.T) {
-	actual := NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "privateEndpointConnectionValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/accountValue/privateEndpointConnections/privateEndpointConnectionValue"
+	actual := NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "databaseAccountValue", "privateEndpointConnectionValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/databaseAccountValue/privateEndpointConnections/privateEndpointConnectionValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -84,27 +84,27 @@ func TestParsePrivateEndpointConnectionID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/accountValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/databaseAccountValue",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/accountValue/privateEndpointConnections",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/databaseAccountValue/privateEndpointConnections",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/accountValue/privateEndpointConnections/privateEndpointConnectionValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/databaseAccountValue/privateEndpointConnections/privateEndpointConnectionValue",
 			Expected: &PrivateEndpointConnectionId{
 				SubscriptionId:                "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:             "example-resource-group",
-				AccountName:                   "accountValue",
+				DatabaseAccountName:           "databaseAccountValue",
 				PrivateEndpointConnectionName: "privateEndpointConnectionValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/accountValue/privateEndpointConnections/privateEndpointConnectionValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/databaseAccountValue/privateEndpointConnections/privateEndpointConnectionValue/extra",
 			Error: true,
 		},
 	}
@@ -131,8 +131,8 @@ func TestParsePrivateEndpointConnectionID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.AccountName != v.Expected.AccountName {
-			t.Fatalf("Expected %q but got %q for AccountName", v.Expected.AccountName, actual.AccountName)
+		if actual.DatabaseAccountName != v.Expected.DatabaseAccountName {
+			t.Fatalf("Expected %q but got %q for DatabaseAccountName", v.Expected.DatabaseAccountName, actual.DatabaseAccountName)
 		}
 
 		if actual.PrivateEndpointConnectionName != v.Expected.PrivateEndpointConnectionName {
@@ -225,52 +225,52 @@ func TestParsePrivateEndpointConnectionIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/accountValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/databaseAccountValue",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dOcUmEnTdB/dAtAbAsEaCcOuNtS/aCcOuNtVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dOcUmEnTdB/dAtAbAsEaCcOuNtS/dAtAbAsEaCcOuNtVaLuE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/accountValue/privateEndpointConnections",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/databaseAccountValue/privateEndpointConnections",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dOcUmEnTdB/dAtAbAsEaCcOuNtS/aCcOuNtVaLuE/pRiVaTeEnDpOiNtCoNnEcTiOnS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dOcUmEnTdB/dAtAbAsEaCcOuNtS/dAtAbAsEaCcOuNtVaLuE/pRiVaTeEnDpOiNtCoNnEcTiOnS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/accountValue/privateEndpointConnections/privateEndpointConnectionValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/databaseAccountValue/privateEndpointConnections/privateEndpointConnectionValue",
 			Expected: &PrivateEndpointConnectionId{
 				SubscriptionId:                "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:             "example-resource-group",
-				AccountName:                   "accountValue",
+				DatabaseAccountName:           "databaseAccountValue",
 				PrivateEndpointConnectionName: "privateEndpointConnectionValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/accountValue/privateEndpointConnections/privateEndpointConnectionValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/databaseAccountValue/privateEndpointConnections/privateEndpointConnectionValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dOcUmEnTdB/dAtAbAsEaCcOuNtS/aCcOuNtVaLuE/pRiVaTeEnDpOiNtCoNnEcTiOnS/pRiVaTeEnDpOiNtCoNnEcTiOnVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dOcUmEnTdB/dAtAbAsEaCcOuNtS/dAtAbAsEaCcOuNtVaLuE/pRiVaTeEnDpOiNtCoNnEcTiOnS/pRiVaTeEnDpOiNtCoNnEcTiOnVaLuE",
 			Expected: &PrivateEndpointConnectionId{
 				SubscriptionId:                "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:             "eXaMpLe-rEsOuRcE-GrOuP",
-				AccountName:                   "aCcOuNtVaLuE",
+				DatabaseAccountName:           "dAtAbAsEaCcOuNtVaLuE",
 				PrivateEndpointConnectionName: "pRiVaTeEnDpOiNtCoNnEcTiOnVaLuE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dOcUmEnTdB/dAtAbAsEaCcOuNtS/aCcOuNtVaLuE/pRiVaTeEnDpOiNtCoNnEcTiOnS/pRiVaTeEnDpOiNtCoNnEcTiOnVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dOcUmEnTdB/dAtAbAsEaCcOuNtS/dAtAbAsEaCcOuNtVaLuE/pRiVaTeEnDpOiNtCoNnEcTiOnS/pRiVaTeEnDpOiNtCoNnEcTiOnVaLuE/extra",
 			Error: true,
 		},
 	}
@@ -297,8 +297,8 @@ func TestParsePrivateEndpointConnectionIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.AccountName != v.Expected.AccountName {
-			t.Fatalf("Expected %q but got %q for AccountName", v.Expected.AccountName, actual.AccountName)
+		if actual.DatabaseAccountName != v.Expected.DatabaseAccountName {
+			t.Fatalf("Expected %q but got %q for DatabaseAccountName", v.Expected.DatabaseAccountName, actual.DatabaseAccountName)
 		}
 
 		if actual.PrivateEndpointConnectionName != v.Expected.PrivateEndpointConnectionName {

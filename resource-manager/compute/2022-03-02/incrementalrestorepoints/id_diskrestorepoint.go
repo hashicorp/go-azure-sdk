@@ -14,17 +14,17 @@ type DiskRestorePointId struct {
 	SubscriptionId             string
 	ResourceGroupName          string
 	RestorePointCollectionName string
-	VmRestorePointName         string
+	RestorePointName           string
 	DiskRestorePointName       string
 }
 
 // NewDiskRestorePointID returns a new DiskRestorePointId struct
-func NewDiskRestorePointID(subscriptionId string, resourceGroupName string, restorePointCollectionName string, vmRestorePointName string, diskRestorePointName string) DiskRestorePointId {
+func NewDiskRestorePointID(subscriptionId string, resourceGroupName string, restorePointCollectionName string, restorePointName string, diskRestorePointName string) DiskRestorePointId {
 	return DiskRestorePointId{
 		SubscriptionId:             subscriptionId,
 		ResourceGroupName:          resourceGroupName,
 		RestorePointCollectionName: restorePointCollectionName,
-		VmRestorePointName:         vmRestorePointName,
+		RestorePointName:           restorePointName,
 		DiskRestorePointName:       diskRestorePointName,
 	}
 }
@@ -52,8 +52,8 @@ func ParseDiskRestorePointID(input string) (*DiskRestorePointId, error) {
 		return nil, fmt.Errorf("the segment 'restorePointCollectionName' was not found in the resource id %q", input)
 	}
 
-	if id.VmRestorePointName, ok = parsed.Parsed["vmRestorePointName"]; !ok {
-		return nil, fmt.Errorf("the segment 'vmRestorePointName' was not found in the resource id %q", input)
+	if id.RestorePointName, ok = parsed.Parsed["restorePointName"]; !ok {
+		return nil, fmt.Errorf("the segment 'restorePointName' was not found in the resource id %q", input)
 	}
 
 	if id.DiskRestorePointName, ok = parsed.Parsed["diskRestorePointName"]; !ok {
@@ -87,8 +87,8 @@ func ParseDiskRestorePointIDInsensitively(input string) (*DiskRestorePointId, er
 		return nil, fmt.Errorf("the segment 'restorePointCollectionName' was not found in the resource id %q", input)
 	}
 
-	if id.VmRestorePointName, ok = parsed.Parsed["vmRestorePointName"]; !ok {
-		return nil, fmt.Errorf("the segment 'vmRestorePointName' was not found in the resource id %q", input)
+	if id.RestorePointName, ok = parsed.Parsed["restorePointName"]; !ok {
+		return nil, fmt.Errorf("the segment 'restorePointName' was not found in the resource id %q", input)
 	}
 
 	if id.DiskRestorePointName, ok = parsed.Parsed["diskRestorePointName"]; !ok {
@@ -116,7 +116,7 @@ func ValidateDiskRestorePointID(input interface{}, key string) (warnings []strin
 // ID returns the formatted Disk Restore Point ID
 func (id DiskRestorePointId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.Compute/restorePointCollections/%s/restorePoints/%s/diskRestorePoints/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.RestorePointCollectionName, id.VmRestorePointName, id.DiskRestorePointName)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.RestorePointCollectionName, id.RestorePointName, id.DiskRestorePointName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Disk Restore Point ID
@@ -131,7 +131,7 @@ func (id DiskRestorePointId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticRestorePointCollections", "restorePointCollections", "restorePointCollections"),
 		resourceids.UserSpecifiedSegment("restorePointCollectionName", "restorePointCollectionValue"),
 		resourceids.StaticSegment("staticRestorePoints", "restorePoints", "restorePoints"),
-		resourceids.UserSpecifiedSegment("vmRestorePointName", "vmRestorePointValue"),
+		resourceids.UserSpecifiedSegment("restorePointName", "restorePointValue"),
 		resourceids.StaticSegment("staticDiskRestorePoints", "diskRestorePoints", "diskRestorePoints"),
 		resourceids.UserSpecifiedSegment("diskRestorePointName", "diskRestorePointValue"),
 	}
@@ -143,7 +143,7 @@ func (id DiskRestorePointId) String() string {
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
 		fmt.Sprintf("Restore Point Collection Name: %q", id.RestorePointCollectionName),
-		fmt.Sprintf("Vm Restore Point Name: %q", id.VmRestorePointName),
+		fmt.Sprintf("Restore Point Name: %q", id.RestorePointName),
 		fmt.Sprintf("Disk Restore Point Name: %q", id.DiskRestorePointName),
 	}
 	return fmt.Sprintf("Disk Restore Point (%s)", strings.Join(components, "\n"))

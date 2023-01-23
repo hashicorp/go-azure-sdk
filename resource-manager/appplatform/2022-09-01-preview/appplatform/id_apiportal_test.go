@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = ApiPortalId{}
 
 func TestNewApiPortalID(t *testing.T) {
-	id := NewApiPortalID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "apiPortalValue")
+	id := NewApiPortalID("12345678-1234-9876-4563-123456789012", "example-resource-group", "springValue", "apiPortalValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -19,8 +19,8 @@ func TestNewApiPortalID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.ServiceName != "serviceValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ServiceName'", id.ServiceName, "serviceValue")
+	if id.SpringName != "springValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'SpringName'", id.SpringName, "springValue")
 	}
 
 	if id.ApiPortalName != "apiPortalValue" {
@@ -29,8 +29,8 @@ func TestNewApiPortalID(t *testing.T) {
 }
 
 func TestFormatApiPortalID(t *testing.T) {
-	actual := NewApiPortalID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "apiPortalValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/serviceValue/apiPortals/apiPortalValue"
+	actual := NewApiPortalID("12345678-1234-9876-4563-123456789012", "example-resource-group", "springValue", "apiPortalValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/springValue/apiPortals/apiPortalValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -84,27 +84,27 @@ func TestParseApiPortalID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/serviceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/springValue",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/serviceValue/apiPortals",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/springValue/apiPortals",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/serviceValue/apiPortals/apiPortalValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/springValue/apiPortals/apiPortalValue",
 			Expected: &ApiPortalId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				ServiceName:       "serviceValue",
+				SpringName:        "springValue",
 				ApiPortalName:     "apiPortalValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/serviceValue/apiPortals/apiPortalValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/springValue/apiPortals/apiPortalValue/extra",
 			Error: true,
 		},
 	}
@@ -131,8 +131,8 @@ func TestParseApiPortalID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.ServiceName != v.Expected.ServiceName {
-			t.Fatalf("Expected %q but got %q for ServiceName", v.Expected.ServiceName, actual.ServiceName)
+		if actual.SpringName != v.Expected.SpringName {
+			t.Fatalf("Expected %q but got %q for SpringName", v.Expected.SpringName, actual.SpringName)
 		}
 
 		if actual.ApiPortalName != v.Expected.ApiPortalName {
@@ -225,52 +225,52 @@ func TestParseApiPortalIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/serviceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/springValue",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPpPlAtFoRm/sPrInG/sErViCeVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPpPlAtFoRm/sPrInG/sPrInGvAlUe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/serviceValue/apiPortals",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/springValue/apiPortals",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPpPlAtFoRm/sPrInG/sErViCeVaLuE/aPiPoRtAlS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPpPlAtFoRm/sPrInG/sPrInGvAlUe/aPiPoRtAlS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/serviceValue/apiPortals/apiPortalValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/springValue/apiPortals/apiPortalValue",
 			Expected: &ApiPortalId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				ServiceName:       "serviceValue",
+				SpringName:        "springValue",
 				ApiPortalName:     "apiPortalValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/serviceValue/apiPortals/apiPortalValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/springValue/apiPortals/apiPortalValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPpPlAtFoRm/sPrInG/sErViCeVaLuE/aPiPoRtAlS/aPiPoRtAlVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPpPlAtFoRm/sPrInG/sPrInGvAlUe/aPiPoRtAlS/aPiPoRtAlVaLuE",
 			Expected: &ApiPortalId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				ServiceName:       "sErViCeVaLuE",
+				SpringName:        "sPrInGvAlUe",
 				ApiPortalName:     "aPiPoRtAlVaLuE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPpPlAtFoRm/sPrInG/sErViCeVaLuE/aPiPoRtAlS/aPiPoRtAlVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPpPlAtFoRm/sPrInG/sPrInGvAlUe/aPiPoRtAlS/aPiPoRtAlVaLuE/extra",
 			Error: true,
 		},
 	}
@@ -297,8 +297,8 @@ func TestParseApiPortalIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.ServiceName != v.Expected.ServiceName {
-			t.Fatalf("Expected %q but got %q for ServiceName", v.Expected.ServiceName, actual.ServiceName)
+		if actual.SpringName != v.Expected.SpringName {
+			t.Fatalf("Expected %q but got %q for SpringName", v.Expected.SpringName, actual.SpringName)
 		}
 
 		if actual.ApiPortalName != v.Expected.ApiPortalName {

@@ -11,19 +11,19 @@ var _ resourceids.ResourceId = OpenidConnectProviderId{}
 
 // OpenidConnectProviderId is a struct representing the Resource ID for a Openid Connect Provider
 type OpenidConnectProviderId struct {
-	SubscriptionId    string
-	ResourceGroupName string
-	ServiceName       string
-	Opid              string
+	SubscriptionId            string
+	ResourceGroupName         string
+	ServiceName               string
+	OpenidConnectProviderName string
 }
 
 // NewOpenidConnectProviderID returns a new OpenidConnectProviderId struct
-func NewOpenidConnectProviderID(subscriptionId string, resourceGroupName string, serviceName string, opid string) OpenidConnectProviderId {
+func NewOpenidConnectProviderID(subscriptionId string, resourceGroupName string, serviceName string, openidConnectProviderName string) OpenidConnectProviderId {
 	return OpenidConnectProviderId{
-		SubscriptionId:    subscriptionId,
-		ResourceGroupName: resourceGroupName,
-		ServiceName:       serviceName,
-		Opid:              opid,
+		SubscriptionId:            subscriptionId,
+		ResourceGroupName:         resourceGroupName,
+		ServiceName:               serviceName,
+		OpenidConnectProviderName: openidConnectProviderName,
 	}
 }
 
@@ -50,8 +50,8 @@ func ParseOpenidConnectProviderID(input string) (*OpenidConnectProviderId, error
 		return nil, fmt.Errorf("the segment 'serviceName' was not found in the resource id %q", input)
 	}
 
-	if id.Opid, ok = parsed.Parsed["opid"]; !ok {
-		return nil, fmt.Errorf("the segment 'opid' was not found in the resource id %q", input)
+	if id.OpenidConnectProviderName, ok = parsed.Parsed["openidConnectProviderName"]; !ok {
+		return nil, fmt.Errorf("the segment 'openidConnectProviderName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -81,8 +81,8 @@ func ParseOpenidConnectProviderIDInsensitively(input string) (*OpenidConnectProv
 		return nil, fmt.Errorf("the segment 'serviceName' was not found in the resource id %q", input)
 	}
 
-	if id.Opid, ok = parsed.Parsed["opid"]; !ok {
-		return nil, fmt.Errorf("the segment 'opid' was not found in the resource id %q", input)
+	if id.OpenidConnectProviderName, ok = parsed.Parsed["openidConnectProviderName"]; !ok {
+		return nil, fmt.Errorf("the segment 'openidConnectProviderName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -106,7 +106,7 @@ func ValidateOpenidConnectProviderID(input interface{}, key string) (warnings []
 // ID returns the formatted Openid Connect Provider ID
 func (id OpenidConnectProviderId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.ApiManagement/service/%s/openidConnectProviders/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.ServiceName, id.Opid)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.ServiceName, id.OpenidConnectProviderName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Openid Connect Provider ID
@@ -121,7 +121,7 @@ func (id OpenidConnectProviderId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticService", "service", "service"),
 		resourceids.UserSpecifiedSegment("serviceName", "serviceValue"),
 		resourceids.StaticSegment("staticOpenidConnectProviders", "openidConnectProviders", "openidConnectProviders"),
-		resourceids.UserSpecifiedSegment("opid", "opidValue"),
+		resourceids.UserSpecifiedSegment("openidConnectProviderName", "openidConnectProviderValue"),
 	}
 }
 
@@ -131,7 +131,7 @@ func (id OpenidConnectProviderId) String() string {
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
 		fmt.Sprintf("Service Name: %q", id.ServiceName),
-		fmt.Sprintf("Opid: %q", id.Opid),
+		fmt.Sprintf("Openid Connect Provider Name: %q", id.OpenidConnectProviderName),
 	}
 	return fmt.Sprintf("Openid Connect Provider (%s)", strings.Join(components, "\n"))
 }

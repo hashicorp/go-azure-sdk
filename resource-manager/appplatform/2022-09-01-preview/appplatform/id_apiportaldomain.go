@@ -13,17 +13,17 @@ var _ resourceids.ResourceId = ApiPortalDomainId{}
 type ApiPortalDomainId struct {
 	SubscriptionId    string
 	ResourceGroupName string
-	ServiceName       string
+	SpringName        string
 	ApiPortalName     string
 	DomainName        string
 }
 
 // NewApiPortalDomainID returns a new ApiPortalDomainId struct
-func NewApiPortalDomainID(subscriptionId string, resourceGroupName string, serviceName string, apiPortalName string, domainName string) ApiPortalDomainId {
+func NewApiPortalDomainID(subscriptionId string, resourceGroupName string, springName string, apiPortalName string, domainName string) ApiPortalDomainId {
 	return ApiPortalDomainId{
 		SubscriptionId:    subscriptionId,
 		ResourceGroupName: resourceGroupName,
-		ServiceName:       serviceName,
+		SpringName:        springName,
 		ApiPortalName:     apiPortalName,
 		DomainName:        domainName,
 	}
@@ -48,8 +48,8 @@ func ParseApiPortalDomainID(input string) (*ApiPortalDomainId, error) {
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.ServiceName, ok = parsed.Parsed["serviceName"]; !ok {
-		return nil, fmt.Errorf("the segment 'serviceName' was not found in the resource id %q", input)
+	if id.SpringName, ok = parsed.Parsed["springName"]; !ok {
+		return nil, fmt.Errorf("the segment 'springName' was not found in the resource id %q", input)
 	}
 
 	if id.ApiPortalName, ok = parsed.Parsed["apiPortalName"]; !ok {
@@ -83,8 +83,8 @@ func ParseApiPortalDomainIDInsensitively(input string) (*ApiPortalDomainId, erro
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.ServiceName, ok = parsed.Parsed["serviceName"]; !ok {
-		return nil, fmt.Errorf("the segment 'serviceName' was not found in the resource id %q", input)
+	if id.SpringName, ok = parsed.Parsed["springName"]; !ok {
+		return nil, fmt.Errorf("the segment 'springName' was not found in the resource id %q", input)
 	}
 
 	if id.ApiPortalName, ok = parsed.Parsed["apiPortalName"]; !ok {
@@ -116,7 +116,7 @@ func ValidateApiPortalDomainID(input interface{}, key string) (warnings []string
 // ID returns the formatted Api Portal Domain ID
 func (id ApiPortalDomainId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.AppPlatform/spring/%s/apiPortals/%s/domains/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.ServiceName, id.ApiPortalName, id.DomainName)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.SpringName, id.ApiPortalName, id.DomainName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Api Portal Domain ID
@@ -129,7 +129,7 @@ func (id ApiPortalDomainId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftAppPlatform", "Microsoft.AppPlatform", "Microsoft.AppPlatform"),
 		resourceids.StaticSegment("staticSpring", "spring", "spring"),
-		resourceids.UserSpecifiedSegment("serviceName", "serviceValue"),
+		resourceids.UserSpecifiedSegment("springName", "springValue"),
 		resourceids.StaticSegment("staticApiPortals", "apiPortals", "apiPortals"),
 		resourceids.UserSpecifiedSegment("apiPortalName", "apiPortalValue"),
 		resourceids.StaticSegment("staticDomains", "domains", "domains"),
@@ -142,7 +142,7 @@ func (id ApiPortalDomainId) String() string {
 	components := []string{
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
-		fmt.Sprintf("Service Name: %q", id.ServiceName),
+		fmt.Sprintf("Spring Name: %q", id.SpringName),
 		fmt.Sprintf("Api Portal Name: %q", id.ApiPortalName),
 		fmt.Sprintf("Domain Name: %q", id.DomainName),
 	}

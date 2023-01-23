@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = SignalRId{}
 
 func TestNewSignalRID(t *testing.T) {
-	id := NewSignalRID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue")
+	id := NewSignalRID("12345678-1234-9876-4563-123456789012", "example-resource-group", "signalRValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -19,14 +19,14 @@ func TestNewSignalRID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.ResourceName != "resourceValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ResourceName'", id.ResourceName, "resourceValue")
+	if id.SignalRName != "signalRValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'SignalRName'", id.SignalRName, "signalRValue")
 	}
 }
 
 func TestFormatSignalRID(t *testing.T) {
-	actual := NewSignalRID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SignalRService/signalR/resourceValue"
+	actual := NewSignalRID("12345678-1234-9876-4563-123456789012", "example-resource-group", "signalRValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SignalRService/signalR/signalRValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -80,16 +80,16 @@ func TestParseSignalRID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SignalRService/signalR/resourceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SignalRService/signalR/signalRValue",
 			Expected: &SignalRId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				ResourceName:      "resourceValue",
+				SignalRName:       "signalRValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SignalRService/signalR/resourceValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SignalRService/signalR/signalRValue/extra",
 			Error: true,
 		},
 	}
@@ -116,8 +116,8 @@ func TestParseSignalRID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.ResourceName != v.Expected.ResourceName {
-			t.Fatalf("Expected %q but got %q for ResourceName", v.Expected.ResourceName, actual.ResourceName)
+		if actual.SignalRName != v.Expected.SignalRName {
+			t.Fatalf("Expected %q but got %q for SignalRName", v.Expected.SignalRName, actual.SignalRName)
 		}
 
 	}
@@ -206,30 +206,30 @@ func TestParseSignalRIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SignalRService/signalR/resourceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SignalRService/signalR/signalRValue",
 			Expected: &SignalRId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				ResourceName:      "resourceValue",
+				SignalRName:       "signalRValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SignalRService/signalR/resourceValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.SignalRService/signalR/signalRValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sIgNaLrSeRvIcE/sIgNaLr/rEsOuRcEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sIgNaLrSeRvIcE/sIgNaLr/sIgNaLrVaLuE",
 			Expected: &SignalRId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				ResourceName:      "rEsOuRcEvAlUe",
+				SignalRName:       "sIgNaLrVaLuE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sIgNaLrSeRvIcE/sIgNaLr/rEsOuRcEvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sIgNaLrSeRvIcE/sIgNaLr/sIgNaLrVaLuE/extra",
 			Error: true,
 		},
 	}
@@ -256,8 +256,8 @@ func TestParseSignalRIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.ResourceName != v.Expected.ResourceName {
-			t.Fatalf("Expected %q but got %q for ResourceName", v.Expected.ResourceName, actual.ResourceName)
+		if actual.SignalRName != v.Expected.SignalRName {
+			t.Fatalf("Expected %q but got %q for SignalRName", v.Expected.SignalRName, actual.SignalRName)
 		}
 
 	}

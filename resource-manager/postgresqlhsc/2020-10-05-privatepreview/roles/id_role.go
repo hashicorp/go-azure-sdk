@@ -11,19 +11,19 @@ var _ resourceids.ResourceId = RoleId{}
 
 // RoleId is a struct representing the Resource ID for a Role
 type RoleId struct {
-	SubscriptionId    string
-	ResourceGroupName string
-	ServerGroupName   string
-	RoleName          string
+	SubscriptionId     string
+	ResourceGroupName  string
+	ServerGroupsv2Name string
+	RoleName           string
 }
 
 // NewRoleID returns a new RoleId struct
-func NewRoleID(subscriptionId string, resourceGroupName string, serverGroupName string, roleName string) RoleId {
+func NewRoleID(subscriptionId string, resourceGroupName string, serverGroupsv2Name string, roleName string) RoleId {
 	return RoleId{
-		SubscriptionId:    subscriptionId,
-		ResourceGroupName: resourceGroupName,
-		ServerGroupName:   serverGroupName,
-		RoleName:          roleName,
+		SubscriptionId:     subscriptionId,
+		ResourceGroupName:  resourceGroupName,
+		ServerGroupsv2Name: serverGroupsv2Name,
+		RoleName:           roleName,
 	}
 }
 
@@ -46,8 +46,8 @@ func ParseRoleID(input string) (*RoleId, error) {
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.ServerGroupName, ok = parsed.Parsed["serverGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'serverGroupName' was not found in the resource id %q", input)
+	if id.ServerGroupsv2Name, ok = parsed.Parsed["serverGroupsv2Name"]; !ok {
+		return nil, fmt.Errorf("the segment 'serverGroupsv2Name' was not found in the resource id %q", input)
 	}
 
 	if id.RoleName, ok = parsed.Parsed["roleName"]; !ok {
@@ -77,8 +77,8 @@ func ParseRoleIDInsensitively(input string) (*RoleId, error) {
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.ServerGroupName, ok = parsed.Parsed["serverGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'serverGroupName' was not found in the resource id %q", input)
+	if id.ServerGroupsv2Name, ok = parsed.Parsed["serverGroupsv2Name"]; !ok {
+		return nil, fmt.Errorf("the segment 'serverGroupsv2Name' was not found in the resource id %q", input)
 	}
 
 	if id.RoleName, ok = parsed.Parsed["roleName"]; !ok {
@@ -106,7 +106,7 @@ func ValidateRoleID(input interface{}, key string) (warnings []string, errors []
 // ID returns the formatted Role ID
 func (id RoleId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/%s/roles/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.ServerGroupName, id.RoleName)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.ServerGroupsv2Name, id.RoleName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Role ID
@@ -119,7 +119,7 @@ func (id RoleId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftDBforPostgreSQL", "Microsoft.DBforPostgreSQL", "Microsoft.DBforPostgreSQL"),
 		resourceids.StaticSegment("staticServerGroupsv2", "serverGroupsv2", "serverGroupsv2"),
-		resourceids.UserSpecifiedSegment("serverGroupName", "serverGroupValue"),
+		resourceids.UserSpecifiedSegment("serverGroupsv2Name", "serverGroupsv2Value"),
 		resourceids.StaticSegment("staticRoles", "roles", "roles"),
 		resourceids.UserSpecifiedSegment("roleName", "roleValue"),
 	}
@@ -130,7 +130,7 @@ func (id RoleId) String() string {
 	components := []string{
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
-		fmt.Sprintf("Server Group Name: %q", id.ServerGroupName),
+		fmt.Sprintf("Server Groupsv 2 Name: %q", id.ServerGroupsv2Name),
 		fmt.Sprintf("Role Name: %q", id.RoleName),
 	}
 	return fmt.Sprintf("Role (%s)", strings.Join(components, "\n"))

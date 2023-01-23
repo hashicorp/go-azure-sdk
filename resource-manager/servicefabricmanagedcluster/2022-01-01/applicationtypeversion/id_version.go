@@ -13,19 +13,19 @@ var _ resourceids.ResourceId = VersionId{}
 type VersionId struct {
 	SubscriptionId      string
 	ResourceGroupName   string
-	ClusterName         string
+	ManagedClusterName  string
 	ApplicationTypeName string
-	Version             string
+	VersionName         string
 }
 
 // NewVersionID returns a new VersionId struct
-func NewVersionID(subscriptionId string, resourceGroupName string, clusterName string, applicationTypeName string, version string) VersionId {
+func NewVersionID(subscriptionId string, resourceGroupName string, managedClusterName string, applicationTypeName string, versionName string) VersionId {
 	return VersionId{
 		SubscriptionId:      subscriptionId,
 		ResourceGroupName:   resourceGroupName,
-		ClusterName:         clusterName,
+		ManagedClusterName:  managedClusterName,
 		ApplicationTypeName: applicationTypeName,
-		Version:             version,
+		VersionName:         versionName,
 	}
 }
 
@@ -48,16 +48,16 @@ func ParseVersionID(input string) (*VersionId, error) {
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.ClusterName, ok = parsed.Parsed["clusterName"]; !ok {
-		return nil, fmt.Errorf("the segment 'clusterName' was not found in the resource id %q", input)
+	if id.ManagedClusterName, ok = parsed.Parsed["managedClusterName"]; !ok {
+		return nil, fmt.Errorf("the segment 'managedClusterName' was not found in the resource id %q", input)
 	}
 
 	if id.ApplicationTypeName, ok = parsed.Parsed["applicationTypeName"]; !ok {
 		return nil, fmt.Errorf("the segment 'applicationTypeName' was not found in the resource id %q", input)
 	}
 
-	if id.Version, ok = parsed.Parsed["version"]; !ok {
-		return nil, fmt.Errorf("the segment 'version' was not found in the resource id %q", input)
+	if id.VersionName, ok = parsed.Parsed["versionName"]; !ok {
+		return nil, fmt.Errorf("the segment 'versionName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -83,16 +83,16 @@ func ParseVersionIDInsensitively(input string) (*VersionId, error) {
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.ClusterName, ok = parsed.Parsed["clusterName"]; !ok {
-		return nil, fmt.Errorf("the segment 'clusterName' was not found in the resource id %q", input)
+	if id.ManagedClusterName, ok = parsed.Parsed["managedClusterName"]; !ok {
+		return nil, fmt.Errorf("the segment 'managedClusterName' was not found in the resource id %q", input)
 	}
 
 	if id.ApplicationTypeName, ok = parsed.Parsed["applicationTypeName"]; !ok {
 		return nil, fmt.Errorf("the segment 'applicationTypeName' was not found in the resource id %q", input)
 	}
 
-	if id.Version, ok = parsed.Parsed["version"]; !ok {
-		return nil, fmt.Errorf("the segment 'version' was not found in the resource id %q", input)
+	if id.VersionName, ok = parsed.Parsed["versionName"]; !ok {
+		return nil, fmt.Errorf("the segment 'versionName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -116,7 +116,7 @@ func ValidateVersionID(input interface{}, key string) (warnings []string, errors
 // ID returns the formatted Version ID
 func (id VersionId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.ServiceFabric/managedClusters/%s/applicationTypes/%s/versions/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.ClusterName, id.ApplicationTypeName, id.Version)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.ManagedClusterName, id.ApplicationTypeName, id.VersionName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Version ID
@@ -129,11 +129,11 @@ func (id VersionId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftServiceFabric", "Microsoft.ServiceFabric", "Microsoft.ServiceFabric"),
 		resourceids.StaticSegment("staticManagedClusters", "managedClusters", "managedClusters"),
-		resourceids.UserSpecifiedSegment("clusterName", "clusterValue"),
+		resourceids.UserSpecifiedSegment("managedClusterName", "managedClusterValue"),
 		resourceids.StaticSegment("staticApplicationTypes", "applicationTypes", "applicationTypes"),
 		resourceids.UserSpecifiedSegment("applicationTypeName", "applicationTypeValue"),
 		resourceids.StaticSegment("staticVersions", "versions", "versions"),
-		resourceids.UserSpecifiedSegment("version", "versionValue"),
+		resourceids.UserSpecifiedSegment("versionName", "versionValue"),
 	}
 }
 
@@ -142,9 +142,9 @@ func (id VersionId) String() string {
 	components := []string{
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
-		fmt.Sprintf("Cluster Name: %q", id.ClusterName),
+		fmt.Sprintf("Managed Cluster Name: %q", id.ManagedClusterName),
 		fmt.Sprintf("Application Type Name: %q", id.ApplicationTypeName),
-		fmt.Sprintf("Version: %q", id.Version),
+		fmt.Sprintf("Version Name: %q", id.VersionName),
 	}
 	return fmt.Sprintf("Version (%s)", strings.Join(components, "\n"))
 }

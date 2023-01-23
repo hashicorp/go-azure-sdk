@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = BackupFabricId{}
 
 func TestNewBackupFabricID(t *testing.T) {
-	id := NewBackupFabricID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue", "fabricValue")
+	id := NewBackupFabricID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue", "backupFabricValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -23,14 +23,14 @@ func TestNewBackupFabricID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'VaultName'", id.VaultName, "vaultValue")
 	}
 
-	if id.FabricName != "fabricValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'FabricName'", id.FabricName, "fabricValue")
+	if id.BackupFabricName != "backupFabricValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'BackupFabricName'", id.BackupFabricName, "backupFabricValue")
 	}
 }
 
 func TestFormatBackupFabricID(t *testing.T) {
-	actual := NewBackupFabricID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue", "fabricValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultValue/backupFabrics/fabricValue"
+	actual := NewBackupFabricID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue", "backupFabricValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultValue/backupFabrics/backupFabricValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -94,17 +94,17 @@ func TestParseBackupFabricID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultValue/backupFabrics/fabricValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultValue/backupFabrics/backupFabricValue",
 			Expected: &BackupFabricId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				VaultName:         "vaultValue",
-				FabricName:        "fabricValue",
+				BackupFabricName:  "backupFabricValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultValue/backupFabrics/fabricValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultValue/backupFabrics/backupFabricValue/extra",
 			Error: true,
 		},
 	}
@@ -135,8 +135,8 @@ func TestParseBackupFabricID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for VaultName", v.Expected.VaultName, actual.VaultName)
 		}
 
-		if actual.FabricName != v.Expected.FabricName {
-			t.Fatalf("Expected %q but got %q for FabricName", v.Expected.FabricName, actual.FabricName)
+		if actual.BackupFabricName != v.Expected.BackupFabricName {
+			t.Fatalf("Expected %q but got %q for BackupFabricName", v.Expected.BackupFabricName, actual.BackupFabricName)
 		}
 
 	}
@@ -245,32 +245,32 @@ func TestParseBackupFabricIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultValue/backupFabrics/fabricValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultValue/backupFabrics/backupFabricValue",
 			Expected: &BackupFabricId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				VaultName:         "vaultValue",
-				FabricName:        "fabricValue",
+				BackupFabricName:  "backupFabricValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultValue/backupFabrics/fabricValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultValue/backupFabrics/backupFabricValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEcOvErYsErViCeS/vAuLtS/vAuLtVaLuE/bAcKuPfAbRiCs/fAbRiCvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEcOvErYsErViCeS/vAuLtS/vAuLtVaLuE/bAcKuPfAbRiCs/bAcKuPfAbRiCvAlUe",
 			Expected: &BackupFabricId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
 				VaultName:         "vAuLtVaLuE",
-				FabricName:        "fAbRiCvAlUe",
+				BackupFabricName:  "bAcKuPfAbRiCvAlUe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEcOvErYsErViCeS/vAuLtS/vAuLtVaLuE/bAcKuPfAbRiCs/fAbRiCvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEcOvErYsErViCeS/vAuLtS/vAuLtVaLuE/bAcKuPfAbRiCs/bAcKuPfAbRiCvAlUe/extra",
 			Error: true,
 		},
 	}
@@ -301,8 +301,8 @@ func TestParseBackupFabricIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for VaultName", v.Expected.VaultName, actual.VaultName)
 		}
 
-		if actual.FabricName != v.Expected.FabricName {
-			t.Fatalf("Expected %q but got %q for FabricName", v.Expected.FabricName, actual.FabricName)
+		if actual.BackupFabricName != v.Expected.BackupFabricName {
+			t.Fatalf("Expected %q but got %q for BackupFabricName", v.Expected.BackupFabricName, actual.BackupFabricName)
 		}
 
 	}

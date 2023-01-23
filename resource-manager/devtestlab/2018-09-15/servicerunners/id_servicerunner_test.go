@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = ServiceRunnerId{}
 
 func TestNewServiceRunnerID(t *testing.T) {
-	id := NewServiceRunnerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "nameValue")
+	id := NewServiceRunnerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "serviceRunnerValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -23,14 +23,14 @@ func TestNewServiceRunnerID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'LabName'", id.LabName, "labValue")
 	}
 
-	if id.Name != "nameValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'Name'", id.Name, "nameValue")
+	if id.ServiceRunnerName != "serviceRunnerValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'ServiceRunnerName'", id.ServiceRunnerName, "serviceRunnerValue")
 	}
 }
 
 func TestFormatServiceRunnerID(t *testing.T) {
-	actual := NewServiceRunnerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "nameValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labValue/serviceRunners/nameValue"
+	actual := NewServiceRunnerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "serviceRunnerValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labValue/serviceRunners/serviceRunnerValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -94,17 +94,17 @@ func TestParseServiceRunnerID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labValue/serviceRunners/nameValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labValue/serviceRunners/serviceRunnerValue",
 			Expected: &ServiceRunnerId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				LabName:           "labValue",
-				Name:              "nameValue",
+				ServiceRunnerName: "serviceRunnerValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labValue/serviceRunners/nameValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labValue/serviceRunners/serviceRunnerValue/extra",
 			Error: true,
 		},
 	}
@@ -135,8 +135,8 @@ func TestParseServiceRunnerID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for LabName", v.Expected.LabName, actual.LabName)
 		}
 
-		if actual.Name != v.Expected.Name {
-			t.Fatalf("Expected %q but got %q for Name", v.Expected.Name, actual.Name)
+		if actual.ServiceRunnerName != v.Expected.ServiceRunnerName {
+			t.Fatalf("Expected %q but got %q for ServiceRunnerName", v.Expected.ServiceRunnerName, actual.ServiceRunnerName)
 		}
 
 	}
@@ -245,32 +245,32 @@ func TestParseServiceRunnerIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labValue/serviceRunners/nameValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labValue/serviceRunners/serviceRunnerValue",
 			Expected: &ServiceRunnerId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				LabName:           "labValue",
-				Name:              "nameValue",
+				ServiceRunnerName: "serviceRunnerValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labValue/serviceRunners/nameValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labValue/serviceRunners/serviceRunnerValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvTeStLaB/lAbS/lAbVaLuE/sErViCeRuNnErS/nAmEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvTeStLaB/lAbS/lAbVaLuE/sErViCeRuNnErS/sErViCeRuNnErVaLuE",
 			Expected: &ServiceRunnerId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
 				LabName:           "lAbVaLuE",
-				Name:              "nAmEvAlUe",
+				ServiceRunnerName: "sErViCeRuNnErVaLuE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvTeStLaB/lAbS/lAbVaLuE/sErViCeRuNnErS/nAmEvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvTeStLaB/lAbS/lAbVaLuE/sErViCeRuNnErS/sErViCeRuNnErVaLuE/extra",
 			Error: true,
 		},
 	}
@@ -301,8 +301,8 @@ func TestParseServiceRunnerIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for LabName", v.Expected.LabName, actual.LabName)
 		}
 
-		if actual.Name != v.Expected.Name {
-			t.Fatalf("Expected %q but got %q for Name", v.Expected.Name, actual.Name)
+		if actual.ServiceRunnerName != v.Expected.ServiceRunnerName {
+			t.Fatalf("Expected %q but got %q for ServiceRunnerName", v.Expected.ServiceRunnerName, actual.ServiceRunnerName)
 		}
 
 	}

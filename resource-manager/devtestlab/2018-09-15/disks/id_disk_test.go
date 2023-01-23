@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = DiskId{}
 
 func TestNewDiskID(t *testing.T) {
-	id := NewDiskID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "userValue", "nameValue")
+	id := NewDiskID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "userValue", "diskValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -27,14 +27,14 @@ func TestNewDiskID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'UserName'", id.UserName, "userValue")
 	}
 
-	if id.Name != "nameValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'Name'", id.Name, "nameValue")
+	if id.DiskName != "diskValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'DiskName'", id.DiskName, "diskValue")
 	}
 }
 
 func TestFormatDiskID(t *testing.T) {
-	actual := NewDiskID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "userValue", "nameValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labValue/users/userValue/disks/nameValue"
+	actual := NewDiskID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "userValue", "diskValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labValue/users/userValue/disks/diskValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -108,18 +108,18 @@ func TestParseDiskID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labValue/users/userValue/disks/nameValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labValue/users/userValue/disks/diskValue",
 			Expected: &DiskId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				LabName:           "labValue",
 				UserName:          "userValue",
-				Name:              "nameValue",
+				DiskName:          "diskValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labValue/users/userValue/disks/nameValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labValue/users/userValue/disks/diskValue/extra",
 			Error: true,
 		},
 	}
@@ -154,8 +154,8 @@ func TestParseDiskID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for UserName", v.Expected.UserName, actual.UserName)
 		}
 
-		if actual.Name != v.Expected.Name {
-			t.Fatalf("Expected %q but got %q for Name", v.Expected.Name, actual.Name)
+		if actual.DiskName != v.Expected.DiskName {
+			t.Fatalf("Expected %q but got %q for DiskName", v.Expected.DiskName, actual.DiskName)
 		}
 
 	}
@@ -284,34 +284,34 @@ func TestParseDiskIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labValue/users/userValue/disks/nameValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labValue/users/userValue/disks/diskValue",
 			Expected: &DiskId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				LabName:           "labValue",
 				UserName:          "userValue",
-				Name:              "nameValue",
+				DiskName:          "diskValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labValue/users/userValue/disks/nameValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labValue/users/userValue/disks/diskValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvTeStLaB/lAbS/lAbVaLuE/uSeRs/uSeRvAlUe/dIsKs/nAmEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvTeStLaB/lAbS/lAbVaLuE/uSeRs/uSeRvAlUe/dIsKs/dIsKvAlUe",
 			Expected: &DiskId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
 				LabName:           "lAbVaLuE",
 				UserName:          "uSeRvAlUe",
-				Name:              "nAmEvAlUe",
+				DiskName:          "dIsKvAlUe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvTeStLaB/lAbS/lAbVaLuE/uSeRs/uSeRvAlUe/dIsKs/nAmEvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvTeStLaB/lAbS/lAbVaLuE/uSeRs/uSeRvAlUe/dIsKs/dIsKvAlUe/extra",
 			Error: true,
 		},
 	}
@@ -346,8 +346,8 @@ func TestParseDiskIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for UserName", v.Expected.UserName, actual.UserName)
 		}
 
-		if actual.Name != v.Expected.Name {
-			t.Fatalf("Expected %q but got %q for Name", v.Expected.Name, actual.Name)
+		if actual.DiskName != v.Expected.DiskName {
+			t.Fatalf("Expected %q but got %q for DiskName", v.Expected.DiskName, actual.DiskName)
 		}
 
 	}

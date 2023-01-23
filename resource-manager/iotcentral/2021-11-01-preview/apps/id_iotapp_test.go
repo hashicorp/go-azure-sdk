@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = IotAppId{}
 
 func TestNewIotAppID(t *testing.T) {
-	id := NewIotAppID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue")
+	id := NewIotAppID("12345678-1234-9876-4563-123456789012", "example-resource-group", "iotAppValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -19,14 +19,14 @@ func TestNewIotAppID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.ResourceName != "resourceValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ResourceName'", id.ResourceName, "resourceValue")
+	if id.IotAppName != "iotAppValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'IotAppName'", id.IotAppName, "iotAppValue")
 	}
 }
 
 func TestFormatIotAppID(t *testing.T) {
-	actual := NewIotAppID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.IoTCentral/iotApps/resourceValue"
+	actual := NewIotAppID("12345678-1234-9876-4563-123456789012", "example-resource-group", "iotAppValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.IoTCentral/iotApps/iotAppValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -80,16 +80,16 @@ func TestParseIotAppID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.IoTCentral/iotApps/resourceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.IoTCentral/iotApps/iotAppValue",
 			Expected: &IotAppId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				ResourceName:      "resourceValue",
+				IotAppName:        "iotAppValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.IoTCentral/iotApps/resourceValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.IoTCentral/iotApps/iotAppValue/extra",
 			Error: true,
 		},
 	}
@@ -116,8 +116,8 @@ func TestParseIotAppID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.ResourceName != v.Expected.ResourceName {
-			t.Fatalf("Expected %q but got %q for ResourceName", v.Expected.ResourceName, actual.ResourceName)
+		if actual.IotAppName != v.Expected.IotAppName {
+			t.Fatalf("Expected %q but got %q for IotAppName", v.Expected.IotAppName, actual.IotAppName)
 		}
 
 	}
@@ -206,30 +206,30 @@ func TestParseIotAppIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.IoTCentral/iotApps/resourceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.IoTCentral/iotApps/iotAppValue",
 			Expected: &IotAppId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				ResourceName:      "resourceValue",
+				IotAppName:        "iotAppValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.IoTCentral/iotApps/resourceValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.IoTCentral/iotApps/iotAppValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.iOtCeNtRaL/iOtApPs/rEsOuRcEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.iOtCeNtRaL/iOtApPs/iOtApPvAlUe",
 			Expected: &IotAppId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				ResourceName:      "rEsOuRcEvAlUe",
+				IotAppName:        "iOtApPvAlUe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.iOtCeNtRaL/iOtApPs/rEsOuRcEvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.iOtCeNtRaL/iOtApPs/iOtApPvAlUe/extra",
 			Error: true,
 		},
 	}
@@ -256,8 +256,8 @@ func TestParseIotAppIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.ResourceName != v.Expected.ResourceName {
-			t.Fatalf("Expected %q but got %q for ResourceName", v.Expected.ResourceName, actual.ResourceName)
+		if actual.IotAppName != v.Expected.IotAppName {
+			t.Fatalf("Expected %q but got %q for IotAppName", v.Expected.IotAppName, actual.IotAppName)
 		}
 
 	}

@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = BackupJobId{}
 
 func TestNewBackupJobID(t *testing.T) {
-	id := NewBackupJobID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue", "jobValue")
+	id := NewBackupJobID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue", "backupJobValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -23,14 +23,14 @@ func TestNewBackupJobID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'VaultName'", id.VaultName, "vaultValue")
 	}
 
-	if id.JobName != "jobValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'JobName'", id.JobName, "jobValue")
+	if id.BackupJobName != "backupJobValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'BackupJobName'", id.BackupJobName, "backupJobValue")
 	}
 }
 
 func TestFormatBackupJobID(t *testing.T) {
-	actual := NewBackupJobID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue", "jobValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultValue/backupJobs/jobValue"
+	actual := NewBackupJobID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue", "backupJobValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultValue/backupJobs/backupJobValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -94,17 +94,17 @@ func TestParseBackupJobID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultValue/backupJobs/jobValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultValue/backupJobs/backupJobValue",
 			Expected: &BackupJobId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				VaultName:         "vaultValue",
-				JobName:           "jobValue",
+				BackupJobName:     "backupJobValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultValue/backupJobs/jobValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultValue/backupJobs/backupJobValue/extra",
 			Error: true,
 		},
 	}
@@ -135,8 +135,8 @@ func TestParseBackupJobID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for VaultName", v.Expected.VaultName, actual.VaultName)
 		}
 
-		if actual.JobName != v.Expected.JobName {
-			t.Fatalf("Expected %q but got %q for JobName", v.Expected.JobName, actual.JobName)
+		if actual.BackupJobName != v.Expected.BackupJobName {
+			t.Fatalf("Expected %q but got %q for BackupJobName", v.Expected.BackupJobName, actual.BackupJobName)
 		}
 
 	}
@@ -245,32 +245,32 @@ func TestParseBackupJobIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultValue/backupJobs/jobValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultValue/backupJobs/backupJobValue",
 			Expected: &BackupJobId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				VaultName:         "vaultValue",
-				JobName:           "jobValue",
+				BackupJobName:     "backupJobValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultValue/backupJobs/jobValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultValue/backupJobs/backupJobValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEcOvErYsErViCeS/vAuLtS/vAuLtVaLuE/bAcKuPjObS/jObVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEcOvErYsErViCeS/vAuLtS/vAuLtVaLuE/bAcKuPjObS/bAcKuPjObVaLuE",
 			Expected: &BackupJobId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
 				VaultName:         "vAuLtVaLuE",
-				JobName:           "jObVaLuE",
+				BackupJobName:     "bAcKuPjObVaLuE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEcOvErYsErViCeS/vAuLtS/vAuLtVaLuE/bAcKuPjObS/jObVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEcOvErYsErViCeS/vAuLtS/vAuLtVaLuE/bAcKuPjObS/bAcKuPjObVaLuE/extra",
 			Error: true,
 		},
 	}
@@ -301,8 +301,8 @@ func TestParseBackupJobIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for VaultName", v.Expected.VaultName, actual.VaultName)
 		}
 
-		if actual.JobName != v.Expected.JobName {
-			t.Fatalf("Expected %q but got %q for JobName", v.Expected.JobName, actual.JobName)
+		if actual.BackupJobName != v.Expected.BackupJobName {
+			t.Fatalf("Expected %q but got %q for BackupJobName", v.Expected.BackupJobName, actual.BackupJobName)
 		}
 
 	}

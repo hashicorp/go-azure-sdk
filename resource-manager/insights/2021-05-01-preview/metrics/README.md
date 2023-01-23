@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := metrics.NewAutoScaleSettingID("12345678-1234-9876-4563-123456789012", "example-resource-group", "autoscaleSettingValue")
+id := metrics.NewAutoScaleSettingID("12345678-1234-9876-4563-123456789012", "example-resource-group", "autoScaleSettingValue")
 
 read, err := client.PredictiveMetricGet(ctx, id, metrics.DefaultPredictiveMetricGetOperationOptions())
 if err != nil {

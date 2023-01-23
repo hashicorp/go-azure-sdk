@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = Python3PackageId{}
 
 func TestNewPython3PackageID(t *testing.T) {
-	id := NewPython3PackageID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountValue", "packageValue")
+	id := NewPython3PackageID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountValue", "python3PackageValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -23,14 +23,14 @@ func TestNewPython3PackageID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'AutomationAccountName'", id.AutomationAccountName, "automationAccountValue")
 	}
 
-	if id.PackageName != "packageValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'PackageName'", id.PackageName, "packageValue")
+	if id.Python3PackageName != "python3PackageValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'Python3PackageName'", id.Python3PackageName, "python3PackageValue")
 	}
 }
 
 func TestFormatPython3PackageID(t *testing.T) {
-	actual := NewPython3PackageID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountValue", "packageValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue/python3Packages/packageValue"
+	actual := NewPython3PackageID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountValue", "python3PackageValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue/python3Packages/python3PackageValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -94,17 +94,17 @@ func TestParsePython3PackageID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue/python3Packages/packageValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue/python3Packages/python3PackageValue",
 			Expected: &Python3PackageId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:     "example-resource-group",
 				AutomationAccountName: "automationAccountValue",
-				PackageName:           "packageValue",
+				Python3PackageName:    "python3PackageValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue/python3Packages/packageValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue/python3Packages/python3PackageValue/extra",
 			Error: true,
 		},
 	}
@@ -135,8 +135,8 @@ func TestParsePython3PackageID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for AutomationAccountName", v.Expected.AutomationAccountName, actual.AutomationAccountName)
 		}
 
-		if actual.PackageName != v.Expected.PackageName {
-			t.Fatalf("Expected %q but got %q for PackageName", v.Expected.PackageName, actual.PackageName)
+		if actual.Python3PackageName != v.Expected.Python3PackageName {
+			t.Fatalf("Expected %q but got %q for Python3PackageName", v.Expected.Python3PackageName, actual.Python3PackageName)
 		}
 
 	}
@@ -245,32 +245,32 @@ func TestParsePython3PackageIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue/python3Packages/packageValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue/python3Packages/python3PackageValue",
 			Expected: &Python3PackageId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:     "example-resource-group",
 				AutomationAccountName: "automationAccountValue",
-				PackageName:           "packageValue",
+				Python3PackageName:    "python3PackageValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue/python3Packages/packageValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue/python3Packages/python3PackageValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aUtOmAtIoN/aUtOmAtIoNaCcOuNtS/aUtOmAtIoNaCcOuNtVaLuE/pYtHoN3PaCkAgEs/pAcKaGeVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aUtOmAtIoN/aUtOmAtIoNaCcOuNtS/aUtOmAtIoNaCcOuNtVaLuE/pYtHoN3PaCkAgEs/pYtHoN3PaCkAgEvAlUe",
 			Expected: &Python3PackageId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:     "eXaMpLe-rEsOuRcE-GrOuP",
 				AutomationAccountName: "aUtOmAtIoNaCcOuNtVaLuE",
-				PackageName:           "pAcKaGeVaLuE",
+				Python3PackageName:    "pYtHoN3PaCkAgEvAlUe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aUtOmAtIoN/aUtOmAtIoNaCcOuNtS/aUtOmAtIoNaCcOuNtVaLuE/pYtHoN3PaCkAgEs/pAcKaGeVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aUtOmAtIoN/aUtOmAtIoNaCcOuNtS/aUtOmAtIoNaCcOuNtVaLuE/pYtHoN3PaCkAgEs/pYtHoN3PaCkAgEvAlUe/extra",
 			Error: true,
 		},
 	}
@@ -301,8 +301,8 @@ func TestParsePython3PackageIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for AutomationAccountName", v.Expected.AutomationAccountName, actual.AutomationAccountName)
 		}
 
-		if actual.PackageName != v.Expected.PackageName {
-			t.Fatalf("Expected %q but got %q for PackageName", v.Expected.PackageName, actual.PackageName)
+		if actual.Python3PackageName != v.Expected.Python3PackageName {
+			t.Fatalf("Expected %q but got %q for Python3PackageName", v.Expected.Python3PackageName, actual.Python3PackageName)
 		}
 
 	}

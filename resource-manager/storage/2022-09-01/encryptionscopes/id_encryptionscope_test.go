@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = EncryptionScopeId{}
 
 func TestNewEncryptionScopeID(t *testing.T) {
-	id := NewEncryptionScopeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "encryptionScopeValue")
+	id := NewEncryptionScopeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "storageAccountValue", "encryptionScopeValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -19,8 +19,8 @@ func TestNewEncryptionScopeID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.AccountName != "accountValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AccountName'", id.AccountName, "accountValue")
+	if id.StorageAccountName != "storageAccountValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'StorageAccountName'", id.StorageAccountName, "storageAccountValue")
 	}
 
 	if id.EncryptionScopeName != "encryptionScopeValue" {
@@ -29,8 +29,8 @@ func TestNewEncryptionScopeID(t *testing.T) {
 }
 
 func TestFormatEncryptionScopeID(t *testing.T) {
-	actual := NewEncryptionScopeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "encryptionScopeValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/accountValue/encryptionScopes/encryptionScopeValue"
+	actual := NewEncryptionScopeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "storageAccountValue", "encryptionScopeValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/storageAccountValue/encryptionScopes/encryptionScopeValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -84,27 +84,27 @@ func TestParseEncryptionScopeID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/accountValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/storageAccountValue",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/accountValue/encryptionScopes",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/storageAccountValue/encryptionScopes",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/accountValue/encryptionScopes/encryptionScopeValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/storageAccountValue/encryptionScopes/encryptionScopeValue",
 			Expected: &EncryptionScopeId{
 				SubscriptionId:      "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:   "example-resource-group",
-				AccountName:         "accountValue",
+				StorageAccountName:  "storageAccountValue",
 				EncryptionScopeName: "encryptionScopeValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/accountValue/encryptionScopes/encryptionScopeValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/storageAccountValue/encryptionScopes/encryptionScopeValue/extra",
 			Error: true,
 		},
 	}
@@ -131,8 +131,8 @@ func TestParseEncryptionScopeID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.AccountName != v.Expected.AccountName {
-			t.Fatalf("Expected %q but got %q for AccountName", v.Expected.AccountName, actual.AccountName)
+		if actual.StorageAccountName != v.Expected.StorageAccountName {
+			t.Fatalf("Expected %q but got %q for StorageAccountName", v.Expected.StorageAccountName, actual.StorageAccountName)
 		}
 
 		if actual.EncryptionScopeName != v.Expected.EncryptionScopeName {
@@ -225,52 +225,52 @@ func TestParseEncryptionScopeIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/accountValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/storageAccountValue",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGe/sToRaGeAcCoUnTs/aCcOuNtVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGe/sToRaGeAcCoUnTs/sToRaGeAcCoUnTvAlUe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/accountValue/encryptionScopes",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/storageAccountValue/encryptionScopes",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGe/sToRaGeAcCoUnTs/aCcOuNtVaLuE/eNcRyPtIoNsCoPeS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGe/sToRaGeAcCoUnTs/sToRaGeAcCoUnTvAlUe/eNcRyPtIoNsCoPeS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/accountValue/encryptionScopes/encryptionScopeValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/storageAccountValue/encryptionScopes/encryptionScopeValue",
 			Expected: &EncryptionScopeId{
 				SubscriptionId:      "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:   "example-resource-group",
-				AccountName:         "accountValue",
+				StorageAccountName:  "storageAccountValue",
 				EncryptionScopeName: "encryptionScopeValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/accountValue/encryptionScopes/encryptionScopeValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/storageAccountValue/encryptionScopes/encryptionScopeValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGe/sToRaGeAcCoUnTs/aCcOuNtVaLuE/eNcRyPtIoNsCoPeS/eNcRyPtIoNsCoPeVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGe/sToRaGeAcCoUnTs/sToRaGeAcCoUnTvAlUe/eNcRyPtIoNsCoPeS/eNcRyPtIoNsCoPeVaLuE",
 			Expected: &EncryptionScopeId{
 				SubscriptionId:      "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:   "eXaMpLe-rEsOuRcE-GrOuP",
-				AccountName:         "aCcOuNtVaLuE",
+				StorageAccountName:  "sToRaGeAcCoUnTvAlUe",
 				EncryptionScopeName: "eNcRyPtIoNsCoPeVaLuE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGe/sToRaGeAcCoUnTs/aCcOuNtVaLuE/eNcRyPtIoNsCoPeS/eNcRyPtIoNsCoPeVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGe/sToRaGeAcCoUnTs/sToRaGeAcCoUnTvAlUe/eNcRyPtIoNsCoPeS/eNcRyPtIoNsCoPeVaLuE/extra",
 			Error: true,
 		},
 	}
@@ -297,8 +297,8 @@ func TestParseEncryptionScopeIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.AccountName != v.Expected.AccountName {
-			t.Fatalf("Expected %q but got %q for AccountName", v.Expected.AccountName, actual.AccountName)
+		if actual.StorageAccountName != v.Expected.StorageAccountName {
+			t.Fatalf("Expected %q but got %q for StorageAccountName", v.Expected.StorageAccountName, actual.StorageAccountName)
 		}
 
 		if actual.EncryptionScopeName != v.Expected.EncryptionScopeName {

@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = ReplicationEventId{}
 
 func TestNewReplicationEventID(t *testing.T) {
-	id := NewReplicationEventID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue", "eventValue")
+	id := NewReplicationEventID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue", "replicationEventValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -19,18 +19,18 @@ func TestNewReplicationEventID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.ResourceName != "resourceValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ResourceName'", id.ResourceName, "resourceValue")
+	if id.VaultName != "vaultValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'VaultName'", id.VaultName, "vaultValue")
 	}
 
-	if id.EventName != "eventValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'EventName'", id.EventName, "eventValue")
+	if id.ReplicationEventName != "replicationEventValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'ReplicationEventName'", id.ReplicationEventName, "replicationEventValue")
 	}
 }
 
 func TestFormatReplicationEventID(t *testing.T) {
-	actual := NewReplicationEventID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue", "eventValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/resourceValue/replicationEvents/eventValue"
+	actual := NewReplicationEventID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue", "replicationEventValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultValue/replicationEvents/replicationEventValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -84,27 +84,27 @@ func TestParseReplicationEventID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/resourceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultValue",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/resourceValue/replicationEvents",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultValue/replicationEvents",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/resourceValue/replicationEvents/eventValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultValue/replicationEvents/replicationEventValue",
 			Expected: &ReplicationEventId{
-				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName: "example-resource-group",
-				ResourceName:      "resourceValue",
-				EventName:         "eventValue",
+				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:    "example-resource-group",
+				VaultName:            "vaultValue",
+				ReplicationEventName: "replicationEventValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/resourceValue/replicationEvents/eventValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultValue/replicationEvents/replicationEventValue/extra",
 			Error: true,
 		},
 	}
@@ -131,12 +131,12 @@ func TestParseReplicationEventID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.ResourceName != v.Expected.ResourceName {
-			t.Fatalf("Expected %q but got %q for ResourceName", v.Expected.ResourceName, actual.ResourceName)
+		if actual.VaultName != v.Expected.VaultName {
+			t.Fatalf("Expected %q but got %q for VaultName", v.Expected.VaultName, actual.VaultName)
 		}
 
-		if actual.EventName != v.Expected.EventName {
-			t.Fatalf("Expected %q but got %q for EventName", v.Expected.EventName, actual.EventName)
+		if actual.ReplicationEventName != v.Expected.ReplicationEventName {
+			t.Fatalf("Expected %q but got %q for ReplicationEventName", v.Expected.ReplicationEventName, actual.ReplicationEventName)
 		}
 
 	}
@@ -225,52 +225,52 @@ func TestParseReplicationEventIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/resourceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultValue",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEcOvErYsErViCeS/vAuLtS/rEsOuRcEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEcOvErYsErViCeS/vAuLtS/vAuLtVaLuE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/resourceValue/replicationEvents",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultValue/replicationEvents",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEcOvErYsErViCeS/vAuLtS/rEsOuRcEvAlUe/rEpLiCaTiOnEvEnTs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEcOvErYsErViCeS/vAuLtS/vAuLtVaLuE/rEpLiCaTiOnEvEnTs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/resourceValue/replicationEvents/eventValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultValue/replicationEvents/replicationEventValue",
 			Expected: &ReplicationEventId{
-				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName: "example-resource-group",
-				ResourceName:      "resourceValue",
-				EventName:         "eventValue",
+				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:    "example-resource-group",
+				VaultName:            "vaultValue",
+				ReplicationEventName: "replicationEventValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/resourceValue/replicationEvents/eventValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultValue/replicationEvents/replicationEventValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEcOvErYsErViCeS/vAuLtS/rEsOuRcEvAlUe/rEpLiCaTiOnEvEnTs/eVeNtVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEcOvErYsErViCeS/vAuLtS/vAuLtVaLuE/rEpLiCaTiOnEvEnTs/rEpLiCaTiOnEvEnTvAlUe",
 			Expected: &ReplicationEventId{
-				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				ResourceName:      "rEsOuRcEvAlUe",
-				EventName:         "eVeNtVaLuE",
+				SubscriptionId:       "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:    "eXaMpLe-rEsOuRcE-GrOuP",
+				VaultName:            "vAuLtVaLuE",
+				ReplicationEventName: "rEpLiCaTiOnEvEnTvAlUe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEcOvErYsErViCeS/vAuLtS/rEsOuRcEvAlUe/rEpLiCaTiOnEvEnTs/eVeNtVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEcOvErYsErViCeS/vAuLtS/vAuLtVaLuE/rEpLiCaTiOnEvEnTs/rEpLiCaTiOnEvEnTvAlUe/extra",
 			Error: true,
 		},
 	}
@@ -297,12 +297,12 @@ func TestParseReplicationEventIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.ResourceName != v.Expected.ResourceName {
-			t.Fatalf("Expected %q but got %q for ResourceName", v.Expected.ResourceName, actual.ResourceName)
+		if actual.VaultName != v.Expected.VaultName {
+			t.Fatalf("Expected %q but got %q for VaultName", v.Expected.VaultName, actual.VaultName)
 		}
 
-		if actual.EventName != v.Expected.EventName {
-			t.Fatalf("Expected %q but got %q for EventName", v.Expected.EventName, actual.EventName)
+		if actual.ReplicationEventName != v.Expected.ReplicationEventName {
+			t.Fatalf("Expected %q but got %q for ReplicationEventName", v.Expected.ReplicationEventName, actual.ReplicationEventName)
 		}
 
 	}

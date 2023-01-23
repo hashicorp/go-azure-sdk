@@ -15,8 +15,8 @@ func TestNewConnectionGatewayInstallationID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
 	}
 
-	if id.Location != "locationValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'Location'", id.Location, "locationValue")
+	if id.LocationName != "locationValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'LocationName'", id.LocationName, "locationValue")
 	}
 
 	if id.GatewayId != "gatewayIdValue" {
@@ -83,7 +83,7 @@ func TestParseConnectionGatewayInstallationID(t *testing.T) {
 			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Web/locations/locationValue/connectionGatewayInstallations/gatewayIdValue",
 			Expected: &ConnectionGatewayInstallationId{
 				SubscriptionId: "12345678-1234-9876-4563-123456789012",
-				Location:       "locationValue",
+				LocationName:   "locationValue",
 				GatewayId:      "gatewayIdValue",
 			},
 		},
@@ -112,8 +112,8 @@ func TestParseConnectionGatewayInstallationID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for SubscriptionId", v.Expected.SubscriptionId, actual.SubscriptionId)
 		}
 
-		if actual.Location != v.Expected.Location {
-			t.Fatalf("Expected %q but got %q for Location", v.Expected.Location, actual.Location)
+		if actual.LocationName != v.Expected.LocationName {
+			t.Fatalf("Expected %q but got %q for LocationName", v.Expected.LocationName, actual.LocationName)
 		}
 
 		if actual.GatewayId != v.Expected.GatewayId {
@@ -209,7 +209,7 @@ func TestParseConnectionGatewayInstallationIDInsensitively(t *testing.T) {
 			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Web/locations/locationValue/connectionGatewayInstallations/gatewayIdValue",
 			Expected: &ConnectionGatewayInstallationId{
 				SubscriptionId: "12345678-1234-9876-4563-123456789012",
-				Location:       "locationValue",
+				LocationName:   "locationValue",
 				GatewayId:      "gatewayIdValue",
 			},
 		},
@@ -223,7 +223,7 @@ func TestParseConnectionGatewayInstallationIDInsensitively(t *testing.T) {
 			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.wEb/lOcAtIoNs/lOcAtIoNvAlUe/cOnNeCtIoNgAtEwAyInStAlLaTiOnS/gAtEwAyIdVaLuE",
 			Expected: &ConnectionGatewayInstallationId{
 				SubscriptionId: "12345678-1234-9876-4563-123456789012",
-				Location:       "lOcAtIoNvAlUe",
+				LocationName:   "lOcAtIoNvAlUe",
 				GatewayId:      "gAtEwAyIdVaLuE",
 			},
 		},
@@ -252,8 +252,8 @@ func TestParseConnectionGatewayInstallationIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for SubscriptionId", v.Expected.SubscriptionId, actual.SubscriptionId)
 		}
 
-		if actual.Location != v.Expected.Location {
-			t.Fatalf("Expected %q but got %q for Location", v.Expected.Location, actual.Location)
+		if actual.LocationName != v.Expected.LocationName {
+			t.Fatalf("Expected %q but got %q for LocationName", v.Expected.LocationName, actual.LocationName)
 		}
 
 		if actual.GatewayId != v.Expected.GatewayId {

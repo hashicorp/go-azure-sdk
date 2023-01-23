@@ -11,19 +11,19 @@ var _ resourceids.ResourceId = RegisteredIdentityId{}
 
 // RegisteredIdentityId is a struct representing the Resource ID for a Registered Identity
 type RegisteredIdentityId struct {
-	SubscriptionId    string
-	ResourceGroupName string
-	VaultName         string
-	IdentityName      string
+	SubscriptionId         string
+	ResourceGroupName      string
+	VaultName              string
+	RegisteredIdentityName string
 }
 
 // NewRegisteredIdentityID returns a new RegisteredIdentityId struct
-func NewRegisteredIdentityID(subscriptionId string, resourceGroupName string, vaultName string, identityName string) RegisteredIdentityId {
+func NewRegisteredIdentityID(subscriptionId string, resourceGroupName string, vaultName string, registeredIdentityName string) RegisteredIdentityId {
 	return RegisteredIdentityId{
-		SubscriptionId:    subscriptionId,
-		ResourceGroupName: resourceGroupName,
-		VaultName:         vaultName,
-		IdentityName:      identityName,
+		SubscriptionId:         subscriptionId,
+		ResourceGroupName:      resourceGroupName,
+		VaultName:              vaultName,
+		RegisteredIdentityName: registeredIdentityName,
 	}
 }
 
@@ -50,8 +50,8 @@ func ParseRegisteredIdentityID(input string) (*RegisteredIdentityId, error) {
 		return nil, fmt.Errorf("the segment 'vaultName' was not found in the resource id %q", input)
 	}
 
-	if id.IdentityName, ok = parsed.Parsed["identityName"]; !ok {
-		return nil, fmt.Errorf("the segment 'identityName' was not found in the resource id %q", input)
+	if id.RegisteredIdentityName, ok = parsed.Parsed["registeredIdentityName"]; !ok {
+		return nil, fmt.Errorf("the segment 'registeredIdentityName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -81,8 +81,8 @@ func ParseRegisteredIdentityIDInsensitively(input string) (*RegisteredIdentityId
 		return nil, fmt.Errorf("the segment 'vaultName' was not found in the resource id %q", input)
 	}
 
-	if id.IdentityName, ok = parsed.Parsed["identityName"]; !ok {
-		return nil, fmt.Errorf("the segment 'identityName' was not found in the resource id %q", input)
+	if id.RegisteredIdentityName, ok = parsed.Parsed["registeredIdentityName"]; !ok {
+		return nil, fmt.Errorf("the segment 'registeredIdentityName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -106,7 +106,7 @@ func ValidateRegisteredIdentityID(input interface{}, key string) (warnings []str
 // ID returns the formatted Registered Identity ID
 func (id RegisteredIdentityId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.RecoveryServices/vaults/%s/registeredIdentities/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.VaultName, id.IdentityName)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.VaultName, id.RegisteredIdentityName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Registered Identity ID
@@ -121,7 +121,7 @@ func (id RegisteredIdentityId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticVaults", "vaults", "vaults"),
 		resourceids.UserSpecifiedSegment("vaultName", "vaultValue"),
 		resourceids.StaticSegment("staticRegisteredIdentities", "registeredIdentities", "registeredIdentities"),
-		resourceids.UserSpecifiedSegment("identityName", "identityValue"),
+		resourceids.UserSpecifiedSegment("registeredIdentityName", "registeredIdentityValue"),
 	}
 }
 
@@ -131,7 +131,7 @@ func (id RegisteredIdentityId) String() string {
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
 		fmt.Sprintf("Vault Name: %q", id.VaultName),
-		fmt.Sprintf("Identity Name: %q", id.IdentityName),
+		fmt.Sprintf("Registered Identity Name: %q", id.RegisteredIdentityName),
 	}
 	return fmt.Sprintf("Registered Identity (%s)", strings.Join(components, "\n"))
 }

@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = LabScheduleId{}
 
 func TestNewLabScheduleID(t *testing.T) {
-	id := NewLabScheduleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "nameValue")
+	id := NewLabScheduleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "scheduleValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -23,14 +23,14 @@ func TestNewLabScheduleID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'LabName'", id.LabName, "labValue")
 	}
 
-	if id.Name != "nameValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'Name'", id.Name, "nameValue")
+	if id.ScheduleName != "scheduleValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'ScheduleName'", id.ScheduleName, "scheduleValue")
 	}
 }
 
 func TestFormatLabScheduleID(t *testing.T) {
-	actual := NewLabScheduleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "nameValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labValue/schedules/nameValue"
+	actual := NewLabScheduleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "scheduleValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labValue/schedules/scheduleValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -94,17 +94,17 @@ func TestParseLabScheduleID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labValue/schedules/nameValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labValue/schedules/scheduleValue",
 			Expected: &LabScheduleId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				LabName:           "labValue",
-				Name:              "nameValue",
+				ScheduleName:      "scheduleValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labValue/schedules/nameValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labValue/schedules/scheduleValue/extra",
 			Error: true,
 		},
 	}
@@ -135,8 +135,8 @@ func TestParseLabScheduleID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for LabName", v.Expected.LabName, actual.LabName)
 		}
 
-		if actual.Name != v.Expected.Name {
-			t.Fatalf("Expected %q but got %q for Name", v.Expected.Name, actual.Name)
+		if actual.ScheduleName != v.Expected.ScheduleName {
+			t.Fatalf("Expected %q but got %q for ScheduleName", v.Expected.ScheduleName, actual.ScheduleName)
 		}
 
 	}
@@ -245,32 +245,32 @@ func TestParseLabScheduleIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labValue/schedules/nameValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labValue/schedules/scheduleValue",
 			Expected: &LabScheduleId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				LabName:           "labValue",
-				Name:              "nameValue",
+				ScheduleName:      "scheduleValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labValue/schedules/nameValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labValue/schedules/scheduleValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvTeStLaB/lAbS/lAbVaLuE/sChEdUlEs/nAmEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvTeStLaB/lAbS/lAbVaLuE/sChEdUlEs/sChEdUlEvAlUe",
 			Expected: &LabScheduleId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
 				LabName:           "lAbVaLuE",
-				Name:              "nAmEvAlUe",
+				ScheduleName:      "sChEdUlEvAlUe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvTeStLaB/lAbS/lAbVaLuE/sChEdUlEs/nAmEvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvTeStLaB/lAbS/lAbVaLuE/sChEdUlEs/sChEdUlEvAlUe/extra",
 			Error: true,
 		},
 	}
@@ -301,8 +301,8 @@ func TestParseLabScheduleIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for LabName", v.Expected.LabName, actual.LabName)
 		}
 
-		if actual.Name != v.Expected.Name {
-			t.Fatalf("Expected %q but got %q for Name", v.Expected.Name, actual.Name)
+		if actual.ScheduleName != v.Expected.ScheduleName {
+			t.Fatalf("Expected %q but got %q for ScheduleName", v.Expected.ScheduleName, actual.ScheduleName)
 		}
 
 	}

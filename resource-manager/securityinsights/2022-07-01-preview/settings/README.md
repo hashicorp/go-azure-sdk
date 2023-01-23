@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := settings.NewSettingID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "settingsValue")
+id := settings.NewSettingID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "settingValue")
 
 read, err := client.ProductSettingsDelete(ctx, id)
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := settings.NewSettingID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "settingsValue")
+id := settings.NewSettingID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "settingValue")
 
 read, err := client.ProductSettingsGet(ctx, id)
 if err != nil {
@@ -72,7 +72,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := settings.NewSettingID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "settingsValue")
+id := settings.NewSettingID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "settingValue")
 
 payload := settings.Settings{
 	// ...

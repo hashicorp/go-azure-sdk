@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = VirtualMachineId{}
 
 func TestNewVirtualMachineID(t *testing.T) {
-	id := NewVirtualMachineID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "nameValue")
+	id := NewVirtualMachineID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "virtualMachineValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -23,14 +23,14 @@ func TestNewVirtualMachineID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'LabName'", id.LabName, "labValue")
 	}
 
-	if id.Name != "nameValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'Name'", id.Name, "nameValue")
+	if id.VirtualMachineName != "virtualMachineValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'VirtualMachineName'", id.VirtualMachineName, "virtualMachineValue")
 	}
 }
 
 func TestFormatVirtualMachineID(t *testing.T) {
-	actual := NewVirtualMachineID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "nameValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labValue/virtualMachines/nameValue"
+	actual := NewVirtualMachineID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "virtualMachineValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labValue/virtualMachines/virtualMachineValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -94,17 +94,17 @@ func TestParseVirtualMachineID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labValue/virtualMachines/nameValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labValue/virtualMachines/virtualMachineValue",
 			Expected: &VirtualMachineId{
-				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName: "example-resource-group",
-				LabName:           "labValue",
-				Name:              "nameValue",
+				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:  "example-resource-group",
+				LabName:            "labValue",
+				VirtualMachineName: "virtualMachineValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labValue/virtualMachines/nameValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labValue/virtualMachines/virtualMachineValue/extra",
 			Error: true,
 		},
 	}
@@ -135,8 +135,8 @@ func TestParseVirtualMachineID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for LabName", v.Expected.LabName, actual.LabName)
 		}
 
-		if actual.Name != v.Expected.Name {
-			t.Fatalf("Expected %q but got %q for Name", v.Expected.Name, actual.Name)
+		if actual.VirtualMachineName != v.Expected.VirtualMachineName {
+			t.Fatalf("Expected %q but got %q for VirtualMachineName", v.Expected.VirtualMachineName, actual.VirtualMachineName)
 		}
 
 	}
@@ -245,32 +245,32 @@ func TestParseVirtualMachineIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labValue/virtualMachines/nameValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labValue/virtualMachines/virtualMachineValue",
 			Expected: &VirtualMachineId{
-				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName: "example-resource-group",
-				LabName:           "labValue",
-				Name:              "nameValue",
+				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:  "example-resource-group",
+				LabName:            "labValue",
+				VirtualMachineName: "virtualMachineValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labValue/virtualMachines/nameValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labValue/virtualMachines/virtualMachineValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvTeStLaB/lAbS/lAbVaLuE/vIrTuAlMaChInEs/nAmEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvTeStLaB/lAbS/lAbVaLuE/vIrTuAlMaChInEs/vIrTuAlMaChInEvAlUe",
 			Expected: &VirtualMachineId{
-				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				LabName:           "lAbVaLuE",
-				Name:              "nAmEvAlUe",
+				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:  "eXaMpLe-rEsOuRcE-GrOuP",
+				LabName:            "lAbVaLuE",
+				VirtualMachineName: "vIrTuAlMaChInEvAlUe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvTeStLaB/lAbS/lAbVaLuE/vIrTuAlMaChInEs/nAmEvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvTeStLaB/lAbS/lAbVaLuE/vIrTuAlMaChInEs/vIrTuAlMaChInEvAlUe/extra",
 			Error: true,
 		},
 	}
@@ -301,8 +301,8 @@ func TestParseVirtualMachineIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for LabName", v.Expected.LabName, actual.LabName)
 		}
 
-		if actual.Name != v.Expected.Name {
-			t.Fatalf("Expected %q but got %q for Name", v.Expected.Name, actual.Name)
+		if actual.VirtualMachineName != v.Expected.VirtualMachineName {
+			t.Fatalf("Expected %q but got %q for VirtualMachineName", v.Expected.VirtualMachineName, actual.VirtualMachineName)
 		}
 
 	}

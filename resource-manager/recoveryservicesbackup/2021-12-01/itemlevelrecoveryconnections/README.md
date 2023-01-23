@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := itemlevelrecoveryconnections.NewRecoveryPointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue", "fabricValue", "containerValue", "protectedItemValue", "recoveryPointIdValue")
+id := itemlevelrecoveryconnections.NewRecoveryPointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue", "backupFabricValue", "protectionContainerValue", "protectedItemValue", "recoveryPointIdValue")
 
 payload := itemlevelrecoveryconnections.ILRRequestResource{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := itemlevelrecoveryconnections.NewRecoveryPointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue", "fabricValue", "containerValue", "protectedItemValue", "recoveryPointIdValue")
+id := itemlevelrecoveryconnections.NewRecoveryPointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue", "backupFabricValue", "protectionContainerValue", "protectedItemValue", "recoveryPointIdValue")
 
 read, err := client.Revoke(ctx, id)
 if err != nil {

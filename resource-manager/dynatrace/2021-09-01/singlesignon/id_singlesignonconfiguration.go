@@ -11,19 +11,19 @@ var _ resourceids.ResourceId = SingleSignOnConfigurationId{}
 
 // SingleSignOnConfigurationId is a struct representing the Resource ID for a Single Sign On Configuration
 type SingleSignOnConfigurationId struct {
-	SubscriptionId    string
-	ResourceGroupName string
-	MonitorName       string
-	ConfigurationName string
+	SubscriptionId                string
+	ResourceGroupName             string
+	MonitorName                   string
+	SingleSignOnConfigurationName string
 }
 
 // NewSingleSignOnConfigurationID returns a new SingleSignOnConfigurationId struct
-func NewSingleSignOnConfigurationID(subscriptionId string, resourceGroupName string, monitorName string, configurationName string) SingleSignOnConfigurationId {
+func NewSingleSignOnConfigurationID(subscriptionId string, resourceGroupName string, monitorName string, singleSignOnConfigurationName string) SingleSignOnConfigurationId {
 	return SingleSignOnConfigurationId{
-		SubscriptionId:    subscriptionId,
-		ResourceGroupName: resourceGroupName,
-		MonitorName:       monitorName,
-		ConfigurationName: configurationName,
+		SubscriptionId:                subscriptionId,
+		ResourceGroupName:             resourceGroupName,
+		MonitorName:                   monitorName,
+		SingleSignOnConfigurationName: singleSignOnConfigurationName,
 	}
 }
 
@@ -50,8 +50,8 @@ func ParseSingleSignOnConfigurationID(input string) (*SingleSignOnConfigurationI
 		return nil, fmt.Errorf("the segment 'monitorName' was not found in the resource id %q", input)
 	}
 
-	if id.ConfigurationName, ok = parsed.Parsed["configurationName"]; !ok {
-		return nil, fmt.Errorf("the segment 'configurationName' was not found in the resource id %q", input)
+	if id.SingleSignOnConfigurationName, ok = parsed.Parsed["singleSignOnConfigurationName"]; !ok {
+		return nil, fmt.Errorf("the segment 'singleSignOnConfigurationName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -81,8 +81,8 @@ func ParseSingleSignOnConfigurationIDInsensitively(input string) (*SingleSignOnC
 		return nil, fmt.Errorf("the segment 'monitorName' was not found in the resource id %q", input)
 	}
 
-	if id.ConfigurationName, ok = parsed.Parsed["configurationName"]; !ok {
-		return nil, fmt.Errorf("the segment 'configurationName' was not found in the resource id %q", input)
+	if id.SingleSignOnConfigurationName, ok = parsed.Parsed["singleSignOnConfigurationName"]; !ok {
+		return nil, fmt.Errorf("the segment 'singleSignOnConfigurationName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -106,7 +106,7 @@ func ValidateSingleSignOnConfigurationID(input interface{}, key string) (warning
 // ID returns the formatted Single Sign On Configuration ID
 func (id SingleSignOnConfigurationId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Dynatrace.Observability/monitors/%s/singleSignOnConfigurations/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.MonitorName, id.ConfigurationName)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.MonitorName, id.SingleSignOnConfigurationName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Single Sign On Configuration ID
@@ -121,7 +121,7 @@ func (id SingleSignOnConfigurationId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticMonitors", "monitors", "monitors"),
 		resourceids.UserSpecifiedSegment("monitorName", "monitorValue"),
 		resourceids.StaticSegment("staticSingleSignOnConfigurations", "singleSignOnConfigurations", "singleSignOnConfigurations"),
-		resourceids.UserSpecifiedSegment("configurationName", "configurationValue"),
+		resourceids.UserSpecifiedSegment("singleSignOnConfigurationName", "singleSignOnConfigurationValue"),
 	}
 }
 
@@ -131,7 +131,7 @@ func (id SingleSignOnConfigurationId) String() string {
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
 		fmt.Sprintf("Monitor Name: %q", id.MonitorName),
-		fmt.Sprintf("Configuration Name: %q", id.ConfigurationName),
+		fmt.Sprintf("Single Sign On Configuration Name: %q", id.SingleSignOnConfigurationName),
 	}
 	return fmt.Sprintf("Single Sign On Configuration (%s)", strings.Join(components, "\n"))
 }

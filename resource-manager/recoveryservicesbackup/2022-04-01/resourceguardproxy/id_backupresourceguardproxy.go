@@ -11,19 +11,19 @@ var _ resourceids.ResourceId = BackupResourceGuardProxyId{}
 
 // BackupResourceGuardProxyId is a struct representing the Resource ID for a Backup Resource Guard Proxy
 type BackupResourceGuardProxyId struct {
-	SubscriptionId         string
-	ResourceGroupName      string
-	VaultName              string
-	ResourceGuardProxyName string
+	SubscriptionId               string
+	ResourceGroupName            string
+	VaultName                    string
+	BackupResourceGuardProxyName string
 }
 
 // NewBackupResourceGuardProxyID returns a new BackupResourceGuardProxyId struct
-func NewBackupResourceGuardProxyID(subscriptionId string, resourceGroupName string, vaultName string, resourceGuardProxyName string) BackupResourceGuardProxyId {
+func NewBackupResourceGuardProxyID(subscriptionId string, resourceGroupName string, vaultName string, backupResourceGuardProxyName string) BackupResourceGuardProxyId {
 	return BackupResourceGuardProxyId{
-		SubscriptionId:         subscriptionId,
-		ResourceGroupName:      resourceGroupName,
-		VaultName:              vaultName,
-		ResourceGuardProxyName: resourceGuardProxyName,
+		SubscriptionId:               subscriptionId,
+		ResourceGroupName:            resourceGroupName,
+		VaultName:                    vaultName,
+		BackupResourceGuardProxyName: backupResourceGuardProxyName,
 	}
 }
 
@@ -50,8 +50,8 @@ func ParseBackupResourceGuardProxyID(input string) (*BackupResourceGuardProxyId,
 		return nil, fmt.Errorf("the segment 'vaultName' was not found in the resource id %q", input)
 	}
 
-	if id.ResourceGuardProxyName, ok = parsed.Parsed["resourceGuardProxyName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGuardProxyName' was not found in the resource id %q", input)
+	if id.BackupResourceGuardProxyName, ok = parsed.Parsed["backupResourceGuardProxyName"]; !ok {
+		return nil, fmt.Errorf("the segment 'backupResourceGuardProxyName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -81,8 +81,8 @@ func ParseBackupResourceGuardProxyIDInsensitively(input string) (*BackupResource
 		return nil, fmt.Errorf("the segment 'vaultName' was not found in the resource id %q", input)
 	}
 
-	if id.ResourceGuardProxyName, ok = parsed.Parsed["resourceGuardProxyName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGuardProxyName' was not found in the resource id %q", input)
+	if id.BackupResourceGuardProxyName, ok = parsed.Parsed["backupResourceGuardProxyName"]; !ok {
+		return nil, fmt.Errorf("the segment 'backupResourceGuardProxyName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -106,7 +106,7 @@ func ValidateBackupResourceGuardProxyID(input interface{}, key string) (warnings
 // ID returns the formatted Backup Resource Guard Proxy ID
 func (id BackupResourceGuardProxyId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.RecoveryServices/vaults/%s/backupResourceGuardProxies/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.VaultName, id.ResourceGuardProxyName)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.VaultName, id.BackupResourceGuardProxyName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Backup Resource Guard Proxy ID
@@ -121,7 +121,7 @@ func (id BackupResourceGuardProxyId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticVaults", "vaults", "vaults"),
 		resourceids.UserSpecifiedSegment("vaultName", "vaultValue"),
 		resourceids.StaticSegment("staticBackupResourceGuardProxies", "backupResourceGuardProxies", "backupResourceGuardProxies"),
-		resourceids.UserSpecifiedSegment("resourceGuardProxyName", "resourceGuardProxyValue"),
+		resourceids.UserSpecifiedSegment("backupResourceGuardProxyName", "backupResourceGuardProxyValue"),
 	}
 }
 
@@ -131,7 +131,7 @@ func (id BackupResourceGuardProxyId) String() string {
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
 		fmt.Sprintf("Vault Name: %q", id.VaultName),
-		fmt.Sprintf("Resource Guard Proxy Name: %q", id.ResourceGuardProxyName),
+		fmt.Sprintf("Backup Resource Guard Proxy Name: %q", id.BackupResourceGuardProxyName),
 	}
 	return fmt.Sprintf("Backup Resource Guard Proxy (%s)", strings.Join(components, "\n"))
 }

@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = FirewallRuleId{}
 
 func TestNewFirewallRuleID(t *testing.T) {
-	id := NewFirewallRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverValue", "firewallRuleValue")
+	id := NewFirewallRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "flexibleServerValue", "firewallRuleValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -19,8 +19,8 @@ func TestNewFirewallRuleID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.ServerName != "serverValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ServerName'", id.ServerName, "serverValue")
+	if id.FlexibleServerName != "flexibleServerValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'FlexibleServerName'", id.FlexibleServerName, "flexibleServerValue")
 	}
 
 	if id.FirewallRuleName != "firewallRuleValue" {
@@ -29,8 +29,8 @@ func TestNewFirewallRuleID(t *testing.T) {
 }
 
 func TestFormatFirewallRuleID(t *testing.T) {
-	actual := NewFirewallRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverValue", "firewallRuleValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforMySQL/flexibleServers/serverValue/firewallRules/firewallRuleValue"
+	actual := NewFirewallRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "flexibleServerValue", "firewallRuleValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforMySQL/flexibleServers/flexibleServerValue/firewallRules/firewallRuleValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -84,27 +84,27 @@ func TestParseFirewallRuleID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforMySQL/flexibleServers/serverValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforMySQL/flexibleServers/flexibleServerValue",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforMySQL/flexibleServers/serverValue/firewallRules",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforMySQL/flexibleServers/flexibleServerValue/firewallRules",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforMySQL/flexibleServers/serverValue/firewallRules/firewallRuleValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforMySQL/flexibleServers/flexibleServerValue/firewallRules/firewallRuleValue",
 			Expected: &FirewallRuleId{
-				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName: "example-resource-group",
-				ServerName:        "serverValue",
-				FirewallRuleName:  "firewallRuleValue",
+				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:  "example-resource-group",
+				FlexibleServerName: "flexibleServerValue",
+				FirewallRuleName:   "firewallRuleValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforMySQL/flexibleServers/serverValue/firewallRules/firewallRuleValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforMySQL/flexibleServers/flexibleServerValue/firewallRules/firewallRuleValue/extra",
 			Error: true,
 		},
 	}
@@ -131,8 +131,8 @@ func TestParseFirewallRuleID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.ServerName != v.Expected.ServerName {
-			t.Fatalf("Expected %q but got %q for ServerName", v.Expected.ServerName, actual.ServerName)
+		if actual.FlexibleServerName != v.Expected.FlexibleServerName {
+			t.Fatalf("Expected %q but got %q for FlexibleServerName", v.Expected.FlexibleServerName, actual.FlexibleServerName)
 		}
 
 		if actual.FirewallRuleName != v.Expected.FirewallRuleName {
@@ -225,52 +225,52 @@ func TestParseFirewallRuleIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforMySQL/flexibleServers/serverValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforMySQL/flexibleServers/flexibleServerValue",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dBfOrMySqL/fLeXiBlEsErVeRs/sErVeRvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dBfOrMySqL/fLeXiBlEsErVeRs/fLeXiBlEsErVeRvAlUe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforMySQL/flexibleServers/serverValue/firewallRules",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforMySQL/flexibleServers/flexibleServerValue/firewallRules",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dBfOrMySqL/fLeXiBlEsErVeRs/sErVeRvAlUe/fIrEwAlLrUlEs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dBfOrMySqL/fLeXiBlEsErVeRs/fLeXiBlEsErVeRvAlUe/fIrEwAlLrUlEs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforMySQL/flexibleServers/serverValue/firewallRules/firewallRuleValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforMySQL/flexibleServers/flexibleServerValue/firewallRules/firewallRuleValue",
 			Expected: &FirewallRuleId{
-				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName: "example-resource-group",
-				ServerName:        "serverValue",
-				FirewallRuleName:  "firewallRuleValue",
+				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:  "example-resource-group",
+				FlexibleServerName: "flexibleServerValue",
+				FirewallRuleName:   "firewallRuleValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforMySQL/flexibleServers/serverValue/firewallRules/firewallRuleValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforMySQL/flexibleServers/flexibleServerValue/firewallRules/firewallRuleValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dBfOrMySqL/fLeXiBlEsErVeRs/sErVeRvAlUe/fIrEwAlLrUlEs/fIrEwAlLrUlEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dBfOrMySqL/fLeXiBlEsErVeRs/fLeXiBlEsErVeRvAlUe/fIrEwAlLrUlEs/fIrEwAlLrUlEvAlUe",
 			Expected: &FirewallRuleId{
-				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				ServerName:        "sErVeRvAlUe",
-				FirewallRuleName:  "fIrEwAlLrUlEvAlUe",
+				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:  "eXaMpLe-rEsOuRcE-GrOuP",
+				FlexibleServerName: "fLeXiBlEsErVeRvAlUe",
+				FirewallRuleName:   "fIrEwAlLrUlEvAlUe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dBfOrMySqL/fLeXiBlEsErVeRs/sErVeRvAlUe/fIrEwAlLrUlEs/fIrEwAlLrUlEvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dBfOrMySqL/fLeXiBlEsErVeRs/fLeXiBlEsErVeRvAlUe/fIrEwAlLrUlEs/fIrEwAlLrUlEvAlUe/extra",
 			Error: true,
 		},
 	}
@@ -297,8 +297,8 @@ func TestParseFirewallRuleIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.ServerName != v.Expected.ServerName {
-			t.Fatalf("Expected %q but got %q for ServerName", v.Expected.ServerName, actual.ServerName)
+		if actual.FlexibleServerName != v.Expected.FlexibleServerName {
+			t.Fatalf("Expected %q but got %q for FlexibleServerName", v.Expected.FlexibleServerName, actual.FlexibleServerName)
 		}
 
 		if actual.FirewallRuleName != v.Expected.FirewallRuleName {

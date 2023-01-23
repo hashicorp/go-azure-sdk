@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = HealthBotId{}
 
 func TestNewHealthBotID(t *testing.T) {
-	id := NewHealthBotID("12345678-1234-9876-4563-123456789012", "example-resource-group", "botValue")
+	id := NewHealthBotID("12345678-1234-9876-4563-123456789012", "example-resource-group", "healthBotValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -19,14 +19,14 @@ func TestNewHealthBotID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.BotName != "botValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'BotName'", id.BotName, "botValue")
+	if id.HealthBotName != "healthBotValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'HealthBotName'", id.HealthBotName, "healthBotValue")
 	}
 }
 
 func TestFormatHealthBotID(t *testing.T) {
-	actual := NewHealthBotID("12345678-1234-9876-4563-123456789012", "example-resource-group", "botValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HealthBot/healthBots/botValue"
+	actual := NewHealthBotID("12345678-1234-9876-4563-123456789012", "example-resource-group", "healthBotValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HealthBot/healthBots/healthBotValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -80,16 +80,16 @@ func TestParseHealthBotID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HealthBot/healthBots/botValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HealthBot/healthBots/healthBotValue",
 			Expected: &HealthBotId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				BotName:           "botValue",
+				HealthBotName:     "healthBotValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HealthBot/healthBots/botValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HealthBot/healthBots/healthBotValue/extra",
 			Error: true,
 		},
 	}
@@ -116,8 +116,8 @@ func TestParseHealthBotID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.BotName != v.Expected.BotName {
-			t.Fatalf("Expected %q but got %q for BotName", v.Expected.BotName, actual.BotName)
+		if actual.HealthBotName != v.Expected.HealthBotName {
+			t.Fatalf("Expected %q but got %q for HealthBotName", v.Expected.HealthBotName, actual.HealthBotName)
 		}
 
 	}
@@ -206,30 +206,30 @@ func TestParseHealthBotIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HealthBot/healthBots/botValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HealthBot/healthBots/healthBotValue",
 			Expected: &HealthBotId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				BotName:           "botValue",
+				HealthBotName:     "healthBotValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HealthBot/healthBots/botValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HealthBot/healthBots/healthBotValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.hEaLtHbOt/hEaLtHbOtS/bOtVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.hEaLtHbOt/hEaLtHbOtS/hEaLtHbOtVaLuE",
 			Expected: &HealthBotId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				BotName:           "bOtVaLuE",
+				HealthBotName:     "hEaLtHbOtVaLuE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.hEaLtHbOt/hEaLtHbOtS/bOtVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.hEaLtHbOt/hEaLtHbOtS/hEaLtHbOtVaLuE/extra",
 			Error: true,
 		},
 	}
@@ -256,8 +256,8 @@ func TestParseHealthBotIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.BotName != v.Expected.BotName {
-			t.Fatalf("Expected %q but got %q for BotName", v.Expected.BotName, actual.BotName)
+		if actual.HealthBotName != v.Expected.HealthBotName {
+			t.Fatalf("Expected %q but got %q for HealthBotName", v.Expected.HealthBotName, actual.HealthBotName)
 		}
 
 	}

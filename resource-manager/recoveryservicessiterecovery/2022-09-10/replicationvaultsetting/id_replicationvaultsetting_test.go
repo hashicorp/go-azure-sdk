@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = ReplicationVaultSettingId{}
 
 func TestNewReplicationVaultSettingID(t *testing.T) {
-	id := NewReplicationVaultSettingID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue", "vaultSettingValue")
+	id := NewReplicationVaultSettingID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue", "replicationVaultSettingValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -19,18 +19,18 @@ func TestNewReplicationVaultSettingID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.ResourceName != "resourceValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ResourceName'", id.ResourceName, "resourceValue")
+	if id.VaultName != "vaultValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'VaultName'", id.VaultName, "vaultValue")
 	}
 
-	if id.VaultSettingName != "vaultSettingValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'VaultSettingName'", id.VaultSettingName, "vaultSettingValue")
+	if id.ReplicationVaultSettingName != "replicationVaultSettingValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'ReplicationVaultSettingName'", id.ReplicationVaultSettingName, "replicationVaultSettingValue")
 	}
 }
 
 func TestFormatReplicationVaultSettingID(t *testing.T) {
-	actual := NewReplicationVaultSettingID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue", "vaultSettingValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/resourceValue/replicationVaultSettings/vaultSettingValue"
+	actual := NewReplicationVaultSettingID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue", "replicationVaultSettingValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultValue/replicationVaultSettings/replicationVaultSettingValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -84,27 +84,27 @@ func TestParseReplicationVaultSettingID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/resourceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultValue",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/resourceValue/replicationVaultSettings",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultValue/replicationVaultSettings",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/resourceValue/replicationVaultSettings/vaultSettingValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultValue/replicationVaultSettings/replicationVaultSettingValue",
 			Expected: &ReplicationVaultSettingId{
-				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName: "example-resource-group",
-				ResourceName:      "resourceValue",
-				VaultSettingName:  "vaultSettingValue",
+				SubscriptionId:              "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:           "example-resource-group",
+				VaultName:                   "vaultValue",
+				ReplicationVaultSettingName: "replicationVaultSettingValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/resourceValue/replicationVaultSettings/vaultSettingValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultValue/replicationVaultSettings/replicationVaultSettingValue/extra",
 			Error: true,
 		},
 	}
@@ -131,12 +131,12 @@ func TestParseReplicationVaultSettingID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.ResourceName != v.Expected.ResourceName {
-			t.Fatalf("Expected %q but got %q for ResourceName", v.Expected.ResourceName, actual.ResourceName)
+		if actual.VaultName != v.Expected.VaultName {
+			t.Fatalf("Expected %q but got %q for VaultName", v.Expected.VaultName, actual.VaultName)
 		}
 
-		if actual.VaultSettingName != v.Expected.VaultSettingName {
-			t.Fatalf("Expected %q but got %q for VaultSettingName", v.Expected.VaultSettingName, actual.VaultSettingName)
+		if actual.ReplicationVaultSettingName != v.Expected.ReplicationVaultSettingName {
+			t.Fatalf("Expected %q but got %q for ReplicationVaultSettingName", v.Expected.ReplicationVaultSettingName, actual.ReplicationVaultSettingName)
 		}
 
 	}
@@ -225,52 +225,52 @@ func TestParseReplicationVaultSettingIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/resourceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultValue",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEcOvErYsErViCeS/vAuLtS/rEsOuRcEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEcOvErYsErViCeS/vAuLtS/vAuLtVaLuE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/resourceValue/replicationVaultSettings",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultValue/replicationVaultSettings",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEcOvErYsErViCeS/vAuLtS/rEsOuRcEvAlUe/rEpLiCaTiOnVaUlTsEtTiNgS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEcOvErYsErViCeS/vAuLtS/vAuLtVaLuE/rEpLiCaTiOnVaUlTsEtTiNgS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/resourceValue/replicationVaultSettings/vaultSettingValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultValue/replicationVaultSettings/replicationVaultSettingValue",
 			Expected: &ReplicationVaultSettingId{
-				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName: "example-resource-group",
-				ResourceName:      "resourceValue",
-				VaultSettingName:  "vaultSettingValue",
+				SubscriptionId:              "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:           "example-resource-group",
+				VaultName:                   "vaultValue",
+				ReplicationVaultSettingName: "replicationVaultSettingValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/resourceValue/replicationVaultSettings/vaultSettingValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultValue/replicationVaultSettings/replicationVaultSettingValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEcOvErYsErViCeS/vAuLtS/rEsOuRcEvAlUe/rEpLiCaTiOnVaUlTsEtTiNgS/vAuLtSeTtInGvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEcOvErYsErViCeS/vAuLtS/vAuLtVaLuE/rEpLiCaTiOnVaUlTsEtTiNgS/rEpLiCaTiOnVaUlTsEtTiNgVaLuE",
 			Expected: &ReplicationVaultSettingId{
-				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				ResourceName:      "rEsOuRcEvAlUe",
-				VaultSettingName:  "vAuLtSeTtInGvAlUe",
+				SubscriptionId:              "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:           "eXaMpLe-rEsOuRcE-GrOuP",
+				VaultName:                   "vAuLtVaLuE",
+				ReplicationVaultSettingName: "rEpLiCaTiOnVaUlTsEtTiNgVaLuE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEcOvErYsErViCeS/vAuLtS/rEsOuRcEvAlUe/rEpLiCaTiOnVaUlTsEtTiNgS/vAuLtSeTtInGvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEcOvErYsErViCeS/vAuLtS/vAuLtVaLuE/rEpLiCaTiOnVaUlTsEtTiNgS/rEpLiCaTiOnVaUlTsEtTiNgVaLuE/extra",
 			Error: true,
 		},
 	}
@@ -297,12 +297,12 @@ func TestParseReplicationVaultSettingIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.ResourceName != v.Expected.ResourceName {
-			t.Fatalf("Expected %q but got %q for ResourceName", v.Expected.ResourceName, actual.ResourceName)
+		if actual.VaultName != v.Expected.VaultName {
+			t.Fatalf("Expected %q but got %q for VaultName", v.Expected.VaultName, actual.VaultName)
 		}
 
-		if actual.VaultSettingName != v.Expected.VaultSettingName {
-			t.Fatalf("Expected %q but got %q for VaultSettingName", v.Expected.VaultSettingName, actual.VaultSettingName)
+		if actual.ReplicationVaultSettingName != v.Expected.ReplicationVaultSettingName {
+			t.Fatalf("Expected %q but got %q for ReplicationVaultSettingName", v.Expected.ReplicationVaultSettingName, actual.ReplicationVaultSettingName)
 		}
 
 	}

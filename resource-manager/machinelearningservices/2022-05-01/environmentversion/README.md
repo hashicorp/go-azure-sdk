@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := environmentversion.NewEnvironmentVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "nameValue", "versionValue")
+id := environmentversion.NewEnvironmentVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "environmentValue", "versionValue")
 
 payload := environmentversion.EnvironmentVersionResource{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := environmentversion.NewEnvironmentVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "nameValue", "versionValue")
+id := environmentversion.NewEnvironmentVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "environmentValue", "versionValue")
 
 read, err := client.Delete(ctx, id)
 if err != nil {
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := environmentversion.NewEnvironmentVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "nameValue", "versionValue")
+id := environmentversion.NewEnvironmentVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "environmentValue", "versionValue")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -77,7 +77,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := environmentversion.NewEnvironmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "nameValue")
+id := environmentversion.NewEnvironmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "environmentValue")
 
 // alternatively `client.List(ctx, id, environmentversion.DefaultListOperationOptions())` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id, environmentversion.DefaultListOperationOptions())

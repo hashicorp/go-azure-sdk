@@ -15,17 +15,17 @@ type VirtualMachineScheduleId struct {
 	ResourceGroupName  string
 	LabName            string
 	VirtualMachineName string
-	Name               string
+	ScheduleName       string
 }
 
 // NewVirtualMachineScheduleID returns a new VirtualMachineScheduleId struct
-func NewVirtualMachineScheduleID(subscriptionId string, resourceGroupName string, labName string, virtualMachineName string, name string) VirtualMachineScheduleId {
+func NewVirtualMachineScheduleID(subscriptionId string, resourceGroupName string, labName string, virtualMachineName string, scheduleName string) VirtualMachineScheduleId {
 	return VirtualMachineScheduleId{
 		SubscriptionId:     subscriptionId,
 		ResourceGroupName:  resourceGroupName,
 		LabName:            labName,
 		VirtualMachineName: virtualMachineName,
-		Name:               name,
+		ScheduleName:       scheduleName,
 	}
 }
 
@@ -56,8 +56,8 @@ func ParseVirtualMachineScheduleID(input string) (*VirtualMachineScheduleId, err
 		return nil, fmt.Errorf("the segment 'virtualMachineName' was not found in the resource id %q", input)
 	}
 
-	if id.Name, ok = parsed.Parsed["name"]; !ok {
-		return nil, fmt.Errorf("the segment 'name' was not found in the resource id %q", input)
+	if id.ScheduleName, ok = parsed.Parsed["scheduleName"]; !ok {
+		return nil, fmt.Errorf("the segment 'scheduleName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -91,8 +91,8 @@ func ParseVirtualMachineScheduleIDInsensitively(input string) (*VirtualMachineSc
 		return nil, fmt.Errorf("the segment 'virtualMachineName' was not found in the resource id %q", input)
 	}
 
-	if id.Name, ok = parsed.Parsed["name"]; !ok {
-		return nil, fmt.Errorf("the segment 'name' was not found in the resource id %q", input)
+	if id.ScheduleName, ok = parsed.Parsed["scheduleName"]; !ok {
+		return nil, fmt.Errorf("the segment 'scheduleName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -116,7 +116,7 @@ func ValidateVirtualMachineScheduleID(input interface{}, key string) (warnings [
 // ID returns the formatted Virtual Machine Schedule ID
 func (id VirtualMachineScheduleId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.DevTestLab/labs/%s/virtualMachines/%s/schedules/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.LabName, id.VirtualMachineName, id.Name)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.LabName, id.VirtualMachineName, id.ScheduleName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Virtual Machine Schedule ID
@@ -133,7 +133,7 @@ func (id VirtualMachineScheduleId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticVirtualMachines", "virtualMachines", "virtualMachines"),
 		resourceids.UserSpecifiedSegment("virtualMachineName", "virtualMachineValue"),
 		resourceids.StaticSegment("staticSchedules", "schedules", "schedules"),
-		resourceids.UserSpecifiedSegment("name", "nameValue"),
+		resourceids.UserSpecifiedSegment("scheduleName", "scheduleValue"),
 	}
 }
 
@@ -144,7 +144,7 @@ func (id VirtualMachineScheduleId) String() string {
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
 		fmt.Sprintf("Lab Name: %q", id.LabName),
 		fmt.Sprintf("Virtual Machine Name: %q", id.VirtualMachineName),
-		fmt.Sprintf("Name: %q", id.Name),
+		fmt.Sprintf("Schedule Name: %q", id.ScheduleName),
 	}
 	return fmt.Sprintf("Virtual Machine Schedule (%s)", strings.Join(components, "\n"))
 }

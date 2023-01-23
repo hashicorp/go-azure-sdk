@@ -11,19 +11,19 @@ var _ resourceids.ResourceId = EndpointId{}
 
 // EndpointId is a struct representing the Resource ID for a Endpoint
 type EndpointId struct {
-	SubscriptionId    string
-	ResourceGroupName string
-	ResourceName      string
-	EndpointName      string
+	SubscriptionId           string
+	ResourceGroupName        string
+	DigitalTwinsInstanceName string
+	EndpointName             string
 }
 
 // NewEndpointID returns a new EndpointId struct
-func NewEndpointID(subscriptionId string, resourceGroupName string, resourceName string, endpointName string) EndpointId {
+func NewEndpointID(subscriptionId string, resourceGroupName string, digitalTwinsInstanceName string, endpointName string) EndpointId {
 	return EndpointId{
-		SubscriptionId:    subscriptionId,
-		ResourceGroupName: resourceGroupName,
-		ResourceName:      resourceName,
-		EndpointName:      endpointName,
+		SubscriptionId:           subscriptionId,
+		ResourceGroupName:        resourceGroupName,
+		DigitalTwinsInstanceName: digitalTwinsInstanceName,
+		EndpointName:             endpointName,
 	}
 }
 
@@ -46,8 +46,8 @@ func ParseEndpointID(input string) (*EndpointId, error) {
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.ResourceName, ok = parsed.Parsed["resourceName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceName' was not found in the resource id %q", input)
+	if id.DigitalTwinsInstanceName, ok = parsed.Parsed["digitalTwinsInstanceName"]; !ok {
+		return nil, fmt.Errorf("the segment 'digitalTwinsInstanceName' was not found in the resource id %q", input)
 	}
 
 	if id.EndpointName, ok = parsed.Parsed["endpointName"]; !ok {
@@ -77,8 +77,8 @@ func ParseEndpointIDInsensitively(input string) (*EndpointId, error) {
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.ResourceName, ok = parsed.Parsed["resourceName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceName' was not found in the resource id %q", input)
+	if id.DigitalTwinsInstanceName, ok = parsed.Parsed["digitalTwinsInstanceName"]; !ok {
+		return nil, fmt.Errorf("the segment 'digitalTwinsInstanceName' was not found in the resource id %q", input)
 	}
 
 	if id.EndpointName, ok = parsed.Parsed["endpointName"]; !ok {
@@ -106,7 +106,7 @@ func ValidateEndpointID(input interface{}, key string) (warnings []string, error
 // ID returns the formatted Endpoint ID
 func (id EndpointId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.DigitalTwins/digitalTwinsInstances/%s/endpoints/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.ResourceName, id.EndpointName)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.DigitalTwinsInstanceName, id.EndpointName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Endpoint ID
@@ -119,7 +119,7 @@ func (id EndpointId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftDigitalTwins", "Microsoft.DigitalTwins", "Microsoft.DigitalTwins"),
 		resourceids.StaticSegment("staticDigitalTwinsInstances", "digitalTwinsInstances", "digitalTwinsInstances"),
-		resourceids.UserSpecifiedSegment("resourceName", "resourceValue"),
+		resourceids.UserSpecifiedSegment("digitalTwinsInstanceName", "digitalTwinsInstanceValue"),
 		resourceids.StaticSegment("staticEndpoints", "endpoints", "endpoints"),
 		resourceids.UserSpecifiedSegment("endpointName", "endpointValue"),
 	}
@@ -130,7 +130,7 @@ func (id EndpointId) String() string {
 	components := []string{
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
-		fmt.Sprintf("Resource Name: %q", id.ResourceName),
+		fmt.Sprintf("Digital Twins Instance Name: %q", id.DigitalTwinsInstanceName),
 		fmt.Sprintf("Endpoint Name: %q", id.EndpointName),
 	}
 	return fmt.Sprintf("Endpoint (%s)", strings.Join(components, "\n"))

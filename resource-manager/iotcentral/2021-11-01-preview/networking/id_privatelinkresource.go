@@ -13,16 +13,16 @@ var _ resourceids.ResourceId = PrivateLinkResourceId{}
 type PrivateLinkResourceId struct {
 	SubscriptionId    string
 	ResourceGroupName string
-	ResourceName      string
+	IotAppName        string
 	GroupId           string
 }
 
 // NewPrivateLinkResourceID returns a new PrivateLinkResourceId struct
-func NewPrivateLinkResourceID(subscriptionId string, resourceGroupName string, resourceName string, groupId string) PrivateLinkResourceId {
+func NewPrivateLinkResourceID(subscriptionId string, resourceGroupName string, iotAppName string, groupId string) PrivateLinkResourceId {
 	return PrivateLinkResourceId{
 		SubscriptionId:    subscriptionId,
 		ResourceGroupName: resourceGroupName,
-		ResourceName:      resourceName,
+		IotAppName:        iotAppName,
 		GroupId:           groupId,
 	}
 }
@@ -46,8 +46,8 @@ func ParsePrivateLinkResourceID(input string) (*PrivateLinkResourceId, error) {
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.ResourceName, ok = parsed.Parsed["resourceName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceName' was not found in the resource id %q", input)
+	if id.IotAppName, ok = parsed.Parsed["iotAppName"]; !ok {
+		return nil, fmt.Errorf("the segment 'iotAppName' was not found in the resource id %q", input)
 	}
 
 	if id.GroupId, ok = parsed.Parsed["groupId"]; !ok {
@@ -77,8 +77,8 @@ func ParsePrivateLinkResourceIDInsensitively(input string) (*PrivateLinkResource
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.ResourceName, ok = parsed.Parsed["resourceName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceName' was not found in the resource id %q", input)
+	if id.IotAppName, ok = parsed.Parsed["iotAppName"]; !ok {
+		return nil, fmt.Errorf("the segment 'iotAppName' was not found in the resource id %q", input)
 	}
 
 	if id.GroupId, ok = parsed.Parsed["groupId"]; !ok {
@@ -106,7 +106,7 @@ func ValidatePrivateLinkResourceID(input interface{}, key string) (warnings []st
 // ID returns the formatted Private Link Resource ID
 func (id PrivateLinkResourceId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.IoTCentral/iotApps/%s/privateLinkResources/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.ResourceName, id.GroupId)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.IotAppName, id.GroupId)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Private Link Resource ID
@@ -119,7 +119,7 @@ func (id PrivateLinkResourceId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftIoTCentral", "Microsoft.IoTCentral", "Microsoft.IoTCentral"),
 		resourceids.StaticSegment("staticIotApps", "iotApps", "iotApps"),
-		resourceids.UserSpecifiedSegment("resourceName", "resourceValue"),
+		resourceids.UserSpecifiedSegment("iotAppName", "iotAppValue"),
 		resourceids.StaticSegment("staticPrivateLinkResources", "privateLinkResources", "privateLinkResources"),
 		resourceids.UserSpecifiedSegment("groupId", "groupIdValue"),
 	}
@@ -130,7 +130,7 @@ func (id PrivateLinkResourceId) String() string {
 	components := []string{
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
-		fmt.Sprintf("Resource Name: %q", id.ResourceName),
+		fmt.Sprintf("Iot App Name: %q", id.IotAppName),
 		fmt.Sprintf("Group: %q", id.GroupId),
 	}
 	return fmt.Sprintf("Private Link Resource (%s)", strings.Join(components, "\n"))

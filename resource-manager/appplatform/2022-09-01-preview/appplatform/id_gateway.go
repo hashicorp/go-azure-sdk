@@ -13,16 +13,16 @@ var _ resourceids.ResourceId = GatewayId{}
 type GatewayId struct {
 	SubscriptionId    string
 	ResourceGroupName string
-	ServiceName       string
+	SpringName        string
 	GatewayName       string
 }
 
 // NewGatewayID returns a new GatewayId struct
-func NewGatewayID(subscriptionId string, resourceGroupName string, serviceName string, gatewayName string) GatewayId {
+func NewGatewayID(subscriptionId string, resourceGroupName string, springName string, gatewayName string) GatewayId {
 	return GatewayId{
 		SubscriptionId:    subscriptionId,
 		ResourceGroupName: resourceGroupName,
-		ServiceName:       serviceName,
+		SpringName:        springName,
 		GatewayName:       gatewayName,
 	}
 }
@@ -46,8 +46,8 @@ func ParseGatewayID(input string) (*GatewayId, error) {
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.ServiceName, ok = parsed.Parsed["serviceName"]; !ok {
-		return nil, fmt.Errorf("the segment 'serviceName' was not found in the resource id %q", input)
+	if id.SpringName, ok = parsed.Parsed["springName"]; !ok {
+		return nil, fmt.Errorf("the segment 'springName' was not found in the resource id %q", input)
 	}
 
 	if id.GatewayName, ok = parsed.Parsed["gatewayName"]; !ok {
@@ -77,8 +77,8 @@ func ParseGatewayIDInsensitively(input string) (*GatewayId, error) {
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.ServiceName, ok = parsed.Parsed["serviceName"]; !ok {
-		return nil, fmt.Errorf("the segment 'serviceName' was not found in the resource id %q", input)
+	if id.SpringName, ok = parsed.Parsed["springName"]; !ok {
+		return nil, fmt.Errorf("the segment 'springName' was not found in the resource id %q", input)
 	}
 
 	if id.GatewayName, ok = parsed.Parsed["gatewayName"]; !ok {
@@ -106,7 +106,7 @@ func ValidateGatewayID(input interface{}, key string) (warnings []string, errors
 // ID returns the formatted Gateway ID
 func (id GatewayId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.AppPlatform/spring/%s/gateways/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.ServiceName, id.GatewayName)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.SpringName, id.GatewayName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Gateway ID
@@ -119,7 +119,7 @@ func (id GatewayId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftAppPlatform", "Microsoft.AppPlatform", "Microsoft.AppPlatform"),
 		resourceids.StaticSegment("staticSpring", "spring", "spring"),
-		resourceids.UserSpecifiedSegment("serviceName", "serviceValue"),
+		resourceids.UserSpecifiedSegment("springName", "springValue"),
 		resourceids.StaticSegment("staticGateways", "gateways", "gateways"),
 		resourceids.UserSpecifiedSegment("gatewayName", "gatewayValue"),
 	}
@@ -130,7 +130,7 @@ func (id GatewayId) String() string {
 	components := []string{
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
-		fmt.Sprintf("Service Name: %q", id.ServiceName),
+		fmt.Sprintf("Spring Name: %q", id.SpringName),
 		fmt.Sprintf("Gateway Name: %q", id.GatewayName),
 	}
 	return fmt.Sprintf("Gateway (%s)", strings.Join(components, "\n"))

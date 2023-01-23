@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := roles.NewRoleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverGroupValue", "roleValue")
+id := roles.NewRoleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverGroupsv2Value", "roleValue")
 
 payload := roles.Role{
 	// ...
@@ -41,7 +41,7 @@ if err := client.CreateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := roles.NewRoleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverGroupValue", "roleValue")
+id := roles.NewRoleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverGroupsv2Value", "roleValue")
 
 if err := client.DeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -53,7 +53,7 @@ if err := client.DeleteThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := roles.NewServerGroupsv2ID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverGroupValue")
+id := roles.NewServerGroupsv2ID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverGroupsv2Value")
 
 read, err := client.ListByServerGroup(ctx, id)
 if err != nil {

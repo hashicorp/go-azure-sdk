@@ -11,15 +11,15 @@ var _ resourceids.ResourceId = Providers2Id{}
 
 // Providers2Id is a struct representing the Resource ID for a Providers 2
 type Providers2Id struct {
-	GroupId                   string
-	ResourceProviderNamespace string
+	GroupId      string
+	ProviderName string
 }
 
 // NewProviders2ID returns a new Providers2Id struct
-func NewProviders2ID(groupId string, resourceProviderNamespace string) Providers2Id {
+func NewProviders2ID(groupId string, providerName string) Providers2Id {
 	return Providers2Id{
-		GroupId:                   groupId,
-		ResourceProviderNamespace: resourceProviderNamespace,
+		GroupId:      groupId,
+		ProviderName: providerName,
 	}
 }
 
@@ -38,8 +38,8 @@ func ParseProviders2ID(input string) (*Providers2Id, error) {
 		return nil, fmt.Errorf("the segment 'groupId' was not found in the resource id %q", input)
 	}
 
-	if id.ResourceProviderNamespace, ok = parsed.Parsed["resourceProviderNamespace"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceProviderNamespace' was not found in the resource id %q", input)
+	if id.ProviderName, ok = parsed.Parsed["providerName"]; !ok {
+		return nil, fmt.Errorf("the segment 'providerName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -61,8 +61,8 @@ func ParseProviders2IDInsensitively(input string) (*Providers2Id, error) {
 		return nil, fmt.Errorf("the segment 'groupId' was not found in the resource id %q", input)
 	}
 
-	if id.ResourceProviderNamespace, ok = parsed.Parsed["resourceProviderNamespace"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceProviderNamespace' was not found in the resource id %q", input)
+	if id.ProviderName, ok = parsed.Parsed["providerName"]; !ok {
+		return nil, fmt.Errorf("the segment 'providerName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -86,7 +86,7 @@ func ValidateProviders2ID(input interface{}, key string) (warnings []string, err
 // ID returns the formatted Providers 2 ID
 func (id Providers2Id) ID() string {
 	fmtString := "/providers/Microsoft.Management/managementGroups/%s/providers/%s"
-	return fmt.Sprintf(fmtString, id.GroupId, id.ResourceProviderNamespace)
+	return fmt.Sprintf(fmtString, id.GroupId, id.ProviderName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Providers 2 ID
@@ -97,7 +97,7 @@ func (id Providers2Id) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticManagementGroups", "managementGroups", "managementGroups"),
 		resourceids.UserSpecifiedSegment("groupId", "groupIdValue"),
 		resourceids.StaticSegment("staticProviders2", "providers", "providers"),
-		resourceids.UserSpecifiedSegment("resourceProviderNamespace", "resourceProviderNamespaceValue"),
+		resourceids.UserSpecifiedSegment("providerName", "providerValue"),
 	}
 }
 
@@ -105,7 +105,7 @@ func (id Providers2Id) Segments() []resourceids.Segment {
 func (id Providers2Id) String() string {
 	components := []string{
 		fmt.Sprintf("Group: %q", id.GroupId),
-		fmt.Sprintf("Resource Provider Namespace: %q", id.ResourceProviderNamespace),
+		fmt.Sprintf("Provider Name: %q", id.ProviderName),
 	}
 	return fmt.Sprintf("Providers 2 (%s)", strings.Join(components, "\n"))
 }

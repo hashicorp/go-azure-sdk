@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = SpatialAnchorsAccountId{}
 
 func TestNewSpatialAnchorsAccountID(t *testing.T) {
-	id := NewSpatialAnchorsAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue")
+	id := NewSpatialAnchorsAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "spatialAnchorsAccountValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -19,14 +19,14 @@ func TestNewSpatialAnchorsAccountID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.AccountName != "accountValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AccountName'", id.AccountName, "accountValue")
+	if id.SpatialAnchorsAccountName != "spatialAnchorsAccountValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'SpatialAnchorsAccountName'", id.SpatialAnchorsAccountName, "spatialAnchorsAccountValue")
 	}
 }
 
 func TestFormatSpatialAnchorsAccountID(t *testing.T) {
-	actual := NewSpatialAnchorsAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MixedReality/spatialAnchorsAccounts/accountValue"
+	actual := NewSpatialAnchorsAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "spatialAnchorsAccountValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MixedReality/spatialAnchorsAccounts/spatialAnchorsAccountValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -80,16 +80,16 @@ func TestParseSpatialAnchorsAccountID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MixedReality/spatialAnchorsAccounts/accountValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MixedReality/spatialAnchorsAccounts/spatialAnchorsAccountValue",
 			Expected: &SpatialAnchorsAccountId{
-				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName: "example-resource-group",
-				AccountName:       "accountValue",
+				SubscriptionId:            "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:         "example-resource-group",
+				SpatialAnchorsAccountName: "spatialAnchorsAccountValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MixedReality/spatialAnchorsAccounts/accountValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MixedReality/spatialAnchorsAccounts/spatialAnchorsAccountValue/extra",
 			Error: true,
 		},
 	}
@@ -116,8 +116,8 @@ func TestParseSpatialAnchorsAccountID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.AccountName != v.Expected.AccountName {
-			t.Fatalf("Expected %q but got %q for AccountName", v.Expected.AccountName, actual.AccountName)
+		if actual.SpatialAnchorsAccountName != v.Expected.SpatialAnchorsAccountName {
+			t.Fatalf("Expected %q but got %q for SpatialAnchorsAccountName", v.Expected.SpatialAnchorsAccountName, actual.SpatialAnchorsAccountName)
 		}
 
 	}
@@ -206,30 +206,30 @@ func TestParseSpatialAnchorsAccountIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MixedReality/spatialAnchorsAccounts/accountValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MixedReality/spatialAnchorsAccounts/spatialAnchorsAccountValue",
 			Expected: &SpatialAnchorsAccountId{
-				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName: "example-resource-group",
-				AccountName:       "accountValue",
+				SubscriptionId:            "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:         "example-resource-group",
+				SpatialAnchorsAccountName: "spatialAnchorsAccountValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MixedReality/spatialAnchorsAccounts/accountValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MixedReality/spatialAnchorsAccounts/spatialAnchorsAccountValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mIxEdReAlItY/sPaTiAlAnChOrSaCcOuNtS/aCcOuNtVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mIxEdReAlItY/sPaTiAlAnChOrSaCcOuNtS/sPaTiAlAnChOrSaCcOuNtVaLuE",
 			Expected: &SpatialAnchorsAccountId{
-				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				AccountName:       "aCcOuNtVaLuE",
+				SubscriptionId:            "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:         "eXaMpLe-rEsOuRcE-GrOuP",
+				SpatialAnchorsAccountName: "sPaTiAlAnChOrSaCcOuNtVaLuE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mIxEdReAlItY/sPaTiAlAnChOrSaCcOuNtS/aCcOuNtVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mIxEdReAlItY/sPaTiAlAnChOrSaCcOuNtS/sPaTiAlAnChOrSaCcOuNtVaLuE/extra",
 			Error: true,
 		},
 	}
@@ -256,8 +256,8 @@ func TestParseSpatialAnchorsAccountIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.AccountName != v.Expected.AccountName {
-			t.Fatalf("Expected %q but got %q for AccountName", v.Expected.AccountName, actual.AccountName)
+		if actual.SpatialAnchorsAccountName != v.Expected.SpatialAnchorsAccountName {
+			t.Fatalf("Expected %q but got %q for SpatialAnchorsAccountName", v.Expected.SpatialAnchorsAccountName, actual.SpatialAnchorsAccountName)
 		}
 
 	}

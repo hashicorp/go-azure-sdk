@@ -13,17 +13,17 @@ var _ resourceids.ResourceId = DomainId{}
 type DomainId struct {
 	SubscriptionId    string
 	ResourceGroupName string
-	ServiceName       string
+	SpringName        string
 	AppName           string
 	DomainName        string
 }
 
 // NewDomainID returns a new DomainId struct
-func NewDomainID(subscriptionId string, resourceGroupName string, serviceName string, appName string, domainName string) DomainId {
+func NewDomainID(subscriptionId string, resourceGroupName string, springName string, appName string, domainName string) DomainId {
 	return DomainId{
 		SubscriptionId:    subscriptionId,
 		ResourceGroupName: resourceGroupName,
-		ServiceName:       serviceName,
+		SpringName:        springName,
 		AppName:           appName,
 		DomainName:        domainName,
 	}
@@ -48,8 +48,8 @@ func ParseDomainID(input string) (*DomainId, error) {
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.ServiceName, ok = parsed.Parsed["serviceName"]; !ok {
-		return nil, fmt.Errorf("the segment 'serviceName' was not found in the resource id %q", input)
+	if id.SpringName, ok = parsed.Parsed["springName"]; !ok {
+		return nil, fmt.Errorf("the segment 'springName' was not found in the resource id %q", input)
 	}
 
 	if id.AppName, ok = parsed.Parsed["appName"]; !ok {
@@ -83,8 +83,8 @@ func ParseDomainIDInsensitively(input string) (*DomainId, error) {
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.ServiceName, ok = parsed.Parsed["serviceName"]; !ok {
-		return nil, fmt.Errorf("the segment 'serviceName' was not found in the resource id %q", input)
+	if id.SpringName, ok = parsed.Parsed["springName"]; !ok {
+		return nil, fmt.Errorf("the segment 'springName' was not found in the resource id %q", input)
 	}
 
 	if id.AppName, ok = parsed.Parsed["appName"]; !ok {
@@ -116,7 +116,7 @@ func ValidateDomainID(input interface{}, key string) (warnings []string, errors 
 // ID returns the formatted Domain ID
 func (id DomainId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.AppPlatform/spring/%s/apps/%s/domains/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.ServiceName, id.AppName, id.DomainName)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.SpringName, id.AppName, id.DomainName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Domain ID
@@ -129,7 +129,7 @@ func (id DomainId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftAppPlatform", "Microsoft.AppPlatform", "Microsoft.AppPlatform"),
 		resourceids.StaticSegment("staticSpring", "spring", "spring"),
-		resourceids.UserSpecifiedSegment("serviceName", "serviceValue"),
+		resourceids.UserSpecifiedSegment("springName", "springValue"),
 		resourceids.StaticSegment("staticApps", "apps", "apps"),
 		resourceids.UserSpecifiedSegment("appName", "appValue"),
 		resourceids.StaticSegment("staticDomains", "domains", "domains"),
@@ -142,7 +142,7 @@ func (id DomainId) String() string {
 	components := []string{
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
-		fmt.Sprintf("Service Name: %q", id.ServiceName),
+		fmt.Sprintf("Spring Name: %q", id.SpringName),
 		fmt.Sprintf("App Name: %q", id.AppName),
 		fmt.Sprintf("Domain Name: %q", id.DomainName),
 	}

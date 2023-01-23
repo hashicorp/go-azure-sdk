@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := restorables.NewCollectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "databaseRidValue", "collectionRidValue")
+id := restorables.NewCollectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "databaseAccountValue", "databaseValue", "collectionValue")
 
 payload := restorables.ContinuousBackupRestoreLocation{
 	// ...
@@ -185,7 +185,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := restorables.NewContainerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "databaseValue", "containerValue")
+id := restorables.NewContainerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "databaseAccountValue", "sqlDatabaseValue", "containerValue")
 
 payload := restorables.ContinuousBackupRestoreLocation{
 	// ...

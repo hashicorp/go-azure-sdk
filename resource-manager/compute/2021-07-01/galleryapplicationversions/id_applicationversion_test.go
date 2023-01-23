@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = ApplicationVersionId{}
 
 func TestNewApplicationVersionID(t *testing.T) {
-	id := NewApplicationVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "galleryValue", "galleryApplicationValue", "galleryApplicationVersionValue")
+	id := NewApplicationVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "galleryValue", "applicationValue", "versionValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -23,18 +23,18 @@ func TestNewApplicationVersionID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'GalleryName'", id.GalleryName, "galleryValue")
 	}
 
-	if id.GalleryApplicationName != "galleryApplicationValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'GalleryApplicationName'", id.GalleryApplicationName, "galleryApplicationValue")
+	if id.ApplicationName != "applicationValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'ApplicationName'", id.ApplicationName, "applicationValue")
 	}
 
-	if id.GalleryApplicationVersionName != "galleryApplicationVersionValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'GalleryApplicationVersionName'", id.GalleryApplicationVersionName, "galleryApplicationVersionValue")
+	if id.VersionName != "versionValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'VersionName'", id.VersionName, "versionValue")
 	}
 }
 
 func TestFormatApplicationVersionID(t *testing.T) {
-	actual := NewApplicationVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "galleryValue", "galleryApplicationValue", "galleryApplicationVersionValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/galleries/galleryValue/applications/galleryApplicationValue/versions/galleryApplicationVersionValue"
+	actual := NewApplicationVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "galleryValue", "applicationValue", "versionValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/galleries/galleryValue/applications/applicationValue/versions/versionValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -98,28 +98,28 @@ func TestParseApplicationVersionID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/galleries/galleryValue/applications/galleryApplicationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/galleries/galleryValue/applications/applicationValue",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/galleries/galleryValue/applications/galleryApplicationValue/versions",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/galleries/galleryValue/applications/applicationValue/versions",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/galleries/galleryValue/applications/galleryApplicationValue/versions/galleryApplicationVersionValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/galleries/galleryValue/applications/applicationValue/versions/versionValue",
 			Expected: &ApplicationVersionId{
-				SubscriptionId:                "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName:             "example-resource-group",
-				GalleryName:                   "galleryValue",
-				GalleryApplicationName:        "galleryApplicationValue",
-				GalleryApplicationVersionName: "galleryApplicationVersionValue",
+				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName: "example-resource-group",
+				GalleryName:       "galleryValue",
+				ApplicationName:   "applicationValue",
+				VersionName:       "versionValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/galleries/galleryValue/applications/galleryApplicationValue/versions/galleryApplicationVersionValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/galleries/galleryValue/applications/applicationValue/versions/versionValue/extra",
 			Error: true,
 		},
 	}
@@ -150,12 +150,12 @@ func TestParseApplicationVersionID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for GalleryName", v.Expected.GalleryName, actual.GalleryName)
 		}
 
-		if actual.GalleryApplicationName != v.Expected.GalleryApplicationName {
-			t.Fatalf("Expected %q but got %q for GalleryApplicationName", v.Expected.GalleryApplicationName, actual.GalleryApplicationName)
+		if actual.ApplicationName != v.Expected.ApplicationName {
+			t.Fatalf("Expected %q but got %q for ApplicationName", v.Expected.ApplicationName, actual.ApplicationName)
 		}
 
-		if actual.GalleryApplicationVersionName != v.Expected.GalleryApplicationVersionName {
-			t.Fatalf("Expected %q but got %q for GalleryApplicationVersionName", v.Expected.GalleryApplicationVersionName, actual.GalleryApplicationVersionName)
+		if actual.VersionName != v.Expected.VersionName {
+			t.Fatalf("Expected %q but got %q for VersionName", v.Expected.VersionName, actual.VersionName)
 		}
 
 	}
@@ -264,54 +264,54 @@ func TestParseApplicationVersionIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/galleries/galleryValue/applications/galleryApplicationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/galleries/galleryValue/applications/applicationValue",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmPuTe/gAlLeRiEs/gAlLeRyVaLuE/aPpLiCaTiOnS/gAlLeRyApPlIcAtIoNvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmPuTe/gAlLeRiEs/gAlLeRyVaLuE/aPpLiCaTiOnS/aPpLiCaTiOnVaLuE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/galleries/galleryValue/applications/galleryApplicationValue/versions",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/galleries/galleryValue/applications/applicationValue/versions",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmPuTe/gAlLeRiEs/gAlLeRyVaLuE/aPpLiCaTiOnS/gAlLeRyApPlIcAtIoNvAlUe/vErSiOnS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmPuTe/gAlLeRiEs/gAlLeRyVaLuE/aPpLiCaTiOnS/aPpLiCaTiOnVaLuE/vErSiOnS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/galleries/galleryValue/applications/galleryApplicationValue/versions/galleryApplicationVersionValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/galleries/galleryValue/applications/applicationValue/versions/versionValue",
 			Expected: &ApplicationVersionId{
-				SubscriptionId:                "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName:             "example-resource-group",
-				GalleryName:                   "galleryValue",
-				GalleryApplicationName:        "galleryApplicationValue",
-				GalleryApplicationVersionName: "galleryApplicationVersionValue",
+				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName: "example-resource-group",
+				GalleryName:       "galleryValue",
+				ApplicationName:   "applicationValue",
+				VersionName:       "versionValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/galleries/galleryValue/applications/galleryApplicationValue/versions/galleryApplicationVersionValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Compute/galleries/galleryValue/applications/applicationValue/versions/versionValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmPuTe/gAlLeRiEs/gAlLeRyVaLuE/aPpLiCaTiOnS/gAlLeRyApPlIcAtIoNvAlUe/vErSiOnS/gAlLeRyApPlIcAtIoNvErSiOnVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmPuTe/gAlLeRiEs/gAlLeRyVaLuE/aPpLiCaTiOnS/aPpLiCaTiOnVaLuE/vErSiOnS/vErSiOnVaLuE",
 			Expected: &ApplicationVersionId{
-				SubscriptionId:                "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName:             "eXaMpLe-rEsOuRcE-GrOuP",
-				GalleryName:                   "gAlLeRyVaLuE",
-				GalleryApplicationName:        "gAlLeRyApPlIcAtIoNvAlUe",
-				GalleryApplicationVersionName: "gAlLeRyApPlIcAtIoNvErSiOnVaLuE",
+				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
+				GalleryName:       "gAlLeRyVaLuE",
+				ApplicationName:   "aPpLiCaTiOnVaLuE",
+				VersionName:       "vErSiOnVaLuE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmPuTe/gAlLeRiEs/gAlLeRyVaLuE/aPpLiCaTiOnS/gAlLeRyApPlIcAtIoNvAlUe/vErSiOnS/gAlLeRyApPlIcAtIoNvErSiOnVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOmPuTe/gAlLeRiEs/gAlLeRyVaLuE/aPpLiCaTiOnS/aPpLiCaTiOnVaLuE/vErSiOnS/vErSiOnVaLuE/extra",
 			Error: true,
 		},
 	}
@@ -342,12 +342,12 @@ func TestParseApplicationVersionIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for GalleryName", v.Expected.GalleryName, actual.GalleryName)
 		}
 
-		if actual.GalleryApplicationName != v.Expected.GalleryApplicationName {
-			t.Fatalf("Expected %q but got %q for GalleryApplicationName", v.Expected.GalleryApplicationName, actual.GalleryApplicationName)
+		if actual.ApplicationName != v.Expected.ApplicationName {
+			t.Fatalf("Expected %q but got %q for ApplicationName", v.Expected.ApplicationName, actual.ApplicationName)
 		}
 
-		if actual.GalleryApplicationVersionName != v.Expected.GalleryApplicationVersionName {
-			t.Fatalf("Expected %q but got %q for GalleryApplicationVersionName", v.Expected.GalleryApplicationVersionName, actual.GalleryApplicationVersionName)
+		if actual.VersionName != v.Expected.VersionName {
+			t.Fatalf("Expected %q but got %q for VersionName", v.Expected.VersionName, actual.VersionName)
 		}
 
 	}

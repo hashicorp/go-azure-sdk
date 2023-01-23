@@ -11,19 +11,19 @@ var _ resourceids.ResourceId = WorkspacePrivateLinkResourceId{}
 
 // WorkspacePrivateLinkResourceId is a struct representing the Resource ID for a Workspace Private Link Resource
 type WorkspacePrivateLinkResourceId struct {
-	SubscriptionId    string
-	ResourceGroupName string
-	WorkspaceName     string
-	GroupName         string
+	SubscriptionId          string
+	ResourceGroupName       string
+	WorkspaceName           string
+	PrivateLinkResourceName string
 }
 
 // NewWorkspacePrivateLinkResourceID returns a new WorkspacePrivateLinkResourceId struct
-func NewWorkspacePrivateLinkResourceID(subscriptionId string, resourceGroupName string, workspaceName string, groupName string) WorkspacePrivateLinkResourceId {
+func NewWorkspacePrivateLinkResourceID(subscriptionId string, resourceGroupName string, workspaceName string, privateLinkResourceName string) WorkspacePrivateLinkResourceId {
 	return WorkspacePrivateLinkResourceId{
-		SubscriptionId:    subscriptionId,
-		ResourceGroupName: resourceGroupName,
-		WorkspaceName:     workspaceName,
-		GroupName:         groupName,
+		SubscriptionId:          subscriptionId,
+		ResourceGroupName:       resourceGroupName,
+		WorkspaceName:           workspaceName,
+		PrivateLinkResourceName: privateLinkResourceName,
 	}
 }
 
@@ -50,8 +50,8 @@ func ParseWorkspacePrivateLinkResourceID(input string) (*WorkspacePrivateLinkRes
 		return nil, fmt.Errorf("the segment 'workspaceName' was not found in the resource id %q", input)
 	}
 
-	if id.GroupName, ok = parsed.Parsed["groupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'groupName' was not found in the resource id %q", input)
+	if id.PrivateLinkResourceName, ok = parsed.Parsed["privateLinkResourceName"]; !ok {
+		return nil, fmt.Errorf("the segment 'privateLinkResourceName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -81,8 +81,8 @@ func ParseWorkspacePrivateLinkResourceIDInsensitively(input string) (*WorkspaceP
 		return nil, fmt.Errorf("the segment 'workspaceName' was not found in the resource id %q", input)
 	}
 
-	if id.GroupName, ok = parsed.Parsed["groupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'groupName' was not found in the resource id %q", input)
+	if id.PrivateLinkResourceName, ok = parsed.Parsed["privateLinkResourceName"]; !ok {
+		return nil, fmt.Errorf("the segment 'privateLinkResourceName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -106,7 +106,7 @@ func ValidateWorkspacePrivateLinkResourceID(input interface{}, key string) (warn
 // ID returns the formatted Workspace Private Link Resource ID
 func (id WorkspacePrivateLinkResourceId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.HealthcareApis/workspaces/%s/privateLinkResources/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.WorkspaceName, id.GroupName)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.WorkspaceName, id.PrivateLinkResourceName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Workspace Private Link Resource ID
@@ -121,7 +121,7 @@ func (id WorkspacePrivateLinkResourceId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticWorkspaces", "workspaces", "workspaces"),
 		resourceids.UserSpecifiedSegment("workspaceName", "workspaceValue"),
 		resourceids.StaticSegment("staticPrivateLinkResources", "privateLinkResources", "privateLinkResources"),
-		resourceids.UserSpecifiedSegment("groupName", "groupValue"),
+		resourceids.UserSpecifiedSegment("privateLinkResourceName", "privateLinkResourceValue"),
 	}
 }
 
@@ -131,7 +131,7 @@ func (id WorkspacePrivateLinkResourceId) String() string {
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
 		fmt.Sprintf("Workspace Name: %q", id.WorkspaceName),
-		fmt.Sprintf("Group Name: %q", id.GroupName),
+		fmt.Sprintf("Private Link Resource Name: %q", id.PrivateLinkResourceName),
 	}
 	return fmt.Sprintf("Workspace Private Link Resource (%s)", strings.Join(components, "\n"))
 }

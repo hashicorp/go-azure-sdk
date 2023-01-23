@@ -9,16 +9,16 @@ import (
 var _ resourceids.ResourceId = ScheduledActionId{}
 
 func TestNewScheduledActionID(t *testing.T) {
-	id := NewScheduledActionID("nameValue")
+	id := NewScheduledActionID("scheduledActionValue")
 
-	if id.Name != "nameValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'Name'", id.Name, "nameValue")
+	if id.ScheduledActionName != "scheduledActionValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'ScheduledActionName'", id.ScheduledActionName, "scheduledActionValue")
 	}
 }
 
 func TestFormatScheduledActionID(t *testing.T) {
-	actual := NewScheduledActionID("nameValue").ID()
-	expected := "/providers/Microsoft.CostManagement/scheduledActions/nameValue"
+	actual := NewScheduledActionID("scheduledActionValue").ID()
+	expected := "/providers/Microsoft.CostManagement/scheduledActions/scheduledActionValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -52,14 +52,14 @@ func TestParseScheduledActionID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.CostManagement/scheduledActions/nameValue",
+			Input: "/providers/Microsoft.CostManagement/scheduledActions/scheduledActionValue",
 			Expected: &ScheduledActionId{
-				Name: "nameValue",
+				ScheduledActionName: "scheduledActionValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.CostManagement/scheduledActions/nameValue/extra",
+			Input: "/providers/Microsoft.CostManagement/scheduledActions/scheduledActionValue/extra",
 			Error: true,
 		},
 	}
@@ -78,8 +78,8 @@ func TestParseScheduledActionID(t *testing.T) {
 			t.Fatal("Expect an error but didn't get one")
 		}
 
-		if actual.Name != v.Expected.Name {
-			t.Fatalf("Expected %q but got %q for Name", v.Expected.Name, actual.Name)
+		if actual.ScheduledActionName != v.Expected.ScheduledActionName {
+			t.Fatalf("Expected %q but got %q for ScheduledActionName", v.Expected.ScheduledActionName, actual.ScheduledActionName)
 		}
 
 	}
@@ -128,26 +128,26 @@ func TestParseScheduledActionIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.CostManagement/scheduledActions/nameValue",
+			Input: "/providers/Microsoft.CostManagement/scheduledActions/scheduledActionValue",
 			Expected: &ScheduledActionId{
-				Name: "nameValue",
+				ScheduledActionName: "scheduledActionValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.CostManagement/scheduledActions/nameValue/extra",
+			Input: "/providers/Microsoft.CostManagement/scheduledActions/scheduledActionValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.cOsTmAnAgEmEnT/sChEdUlEdAcTiOnS/nAmEvAlUe",
+			Input: "/pRoViDeRs/mIcRoSoFt.cOsTmAnAgEmEnT/sChEdUlEdAcTiOnS/sChEdUlEdAcTiOnVaLuE",
 			Expected: &ScheduledActionId{
-				Name: "nAmEvAlUe",
+				ScheduledActionName: "sChEdUlEdAcTiOnVaLuE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.cOsTmAnAgEmEnT/sChEdUlEdAcTiOnS/nAmEvAlUe/extra",
+			Input: "/pRoViDeRs/mIcRoSoFt.cOsTmAnAgEmEnT/sChEdUlEdAcTiOnS/sChEdUlEdAcTiOnVaLuE/extra",
 			Error: true,
 		},
 	}
@@ -166,8 +166,8 @@ func TestParseScheduledActionIDInsensitively(t *testing.T) {
 			t.Fatal("Expect an error but didn't get one")
 		}
 
-		if actual.Name != v.Expected.Name {
-			t.Fatalf("Expected %q but got %q for Name", v.Expected.Name, actual.Name)
+		if actual.ScheduledActionName != v.Expected.ScheduledActionName {
+			t.Fatalf("Expected %q but got %q for ScheduledActionName", v.Expected.ScheduledActionName, actual.ScheduledActionName)
 		}
 
 	}

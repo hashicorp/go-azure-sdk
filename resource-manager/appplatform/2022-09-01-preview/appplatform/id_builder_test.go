@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = BuilderId{}
 
 func TestNewBuilderID(t *testing.T) {
-	id := NewBuilderID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "buildServiceValue", "builderValue")
+	id := NewBuilderID("12345678-1234-9876-4563-123456789012", "example-resource-group", "springValue", "buildServiceValue", "builderValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -19,8 +19,8 @@ func TestNewBuilderID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.ServiceName != "serviceValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ServiceName'", id.ServiceName, "serviceValue")
+	if id.SpringName != "springValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'SpringName'", id.SpringName, "springValue")
 	}
 
 	if id.BuildServiceName != "buildServiceValue" {
@@ -33,8 +33,8 @@ func TestNewBuilderID(t *testing.T) {
 }
 
 func TestFormatBuilderID(t *testing.T) {
-	actual := NewBuilderID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "buildServiceValue", "builderValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/serviceValue/buildServices/buildServiceValue/builders/builderValue"
+	actual := NewBuilderID("12345678-1234-9876-4563-123456789012", "example-resource-group", "springValue", "buildServiceValue", "builderValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/springValue/buildServices/buildServiceValue/builders/builderValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -88,38 +88,38 @@ func TestParseBuilderID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/serviceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/springValue",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/serviceValue/buildServices",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/springValue/buildServices",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/serviceValue/buildServices/buildServiceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/springValue/buildServices/buildServiceValue",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/serviceValue/buildServices/buildServiceValue/builders",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/springValue/buildServices/buildServiceValue/builders",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/serviceValue/buildServices/buildServiceValue/builders/builderValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/springValue/buildServices/buildServiceValue/builders/builderValue",
 			Expected: &BuilderId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				ServiceName:       "serviceValue",
+				SpringName:        "springValue",
 				BuildServiceName:  "buildServiceValue",
 				BuilderName:       "builderValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/serviceValue/buildServices/buildServiceValue/builders/builderValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/springValue/buildServices/buildServiceValue/builders/builderValue/extra",
 			Error: true,
 		},
 	}
@@ -146,8 +146,8 @@ func TestParseBuilderID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.ServiceName != v.Expected.ServiceName {
-			t.Fatalf("Expected %q but got %q for ServiceName", v.Expected.ServiceName, actual.ServiceName)
+		if actual.SpringName != v.Expected.SpringName {
+			t.Fatalf("Expected %q but got %q for SpringName", v.Expected.SpringName, actual.SpringName)
 		}
 
 		if actual.BuildServiceName != v.Expected.BuildServiceName {
@@ -244,74 +244,74 @@ func TestParseBuilderIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/serviceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/springValue",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPpPlAtFoRm/sPrInG/sErViCeVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPpPlAtFoRm/sPrInG/sPrInGvAlUe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/serviceValue/buildServices",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/springValue/buildServices",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPpPlAtFoRm/sPrInG/sErViCeVaLuE/bUiLdSeRvIcEs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPpPlAtFoRm/sPrInG/sPrInGvAlUe/bUiLdSeRvIcEs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/serviceValue/buildServices/buildServiceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/springValue/buildServices/buildServiceValue",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPpPlAtFoRm/sPrInG/sErViCeVaLuE/bUiLdSeRvIcEs/bUiLdSeRvIcEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPpPlAtFoRm/sPrInG/sPrInGvAlUe/bUiLdSeRvIcEs/bUiLdSeRvIcEvAlUe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/serviceValue/buildServices/buildServiceValue/builders",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/springValue/buildServices/buildServiceValue/builders",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPpPlAtFoRm/sPrInG/sErViCeVaLuE/bUiLdSeRvIcEs/bUiLdSeRvIcEvAlUe/bUiLdErS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPpPlAtFoRm/sPrInG/sPrInGvAlUe/bUiLdSeRvIcEs/bUiLdSeRvIcEvAlUe/bUiLdErS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/serviceValue/buildServices/buildServiceValue/builders/builderValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/springValue/buildServices/buildServiceValue/builders/builderValue",
 			Expected: &BuilderId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
-				ServiceName:       "serviceValue",
+				SpringName:        "springValue",
 				BuildServiceName:  "buildServiceValue",
 				BuilderName:       "builderValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/serviceValue/buildServices/buildServiceValue/builders/builderValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AppPlatform/spring/springValue/buildServices/buildServiceValue/builders/builderValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPpPlAtFoRm/sPrInG/sErViCeVaLuE/bUiLdSeRvIcEs/bUiLdSeRvIcEvAlUe/bUiLdErS/bUiLdErVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPpPlAtFoRm/sPrInG/sPrInGvAlUe/bUiLdSeRvIcEs/bUiLdSeRvIcEvAlUe/bUiLdErS/bUiLdErVaLuE",
 			Expected: &BuilderId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				ServiceName:       "sErViCeVaLuE",
+				SpringName:        "sPrInGvAlUe",
 				BuildServiceName:  "bUiLdSeRvIcEvAlUe",
 				BuilderName:       "bUiLdErVaLuE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPpPlAtFoRm/sPrInG/sErViCeVaLuE/bUiLdSeRvIcEs/bUiLdSeRvIcEvAlUe/bUiLdErS/bUiLdErVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPpPlAtFoRm/sPrInG/sPrInGvAlUe/bUiLdSeRvIcEs/bUiLdSeRvIcEvAlUe/bUiLdErS/bUiLdErVaLuE/extra",
 			Error: true,
 		},
 	}
@@ -338,8 +338,8 @@ func TestParseBuilderIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.ServiceName != v.Expected.ServiceName {
-			t.Fatalf("Expected %q but got %q for ServiceName", v.Expected.ServiceName, actual.ServiceName)
+		if actual.SpringName != v.Expected.SpringName {
+			t.Fatalf("Expected %q but got %q for SpringName", v.Expected.SpringName, actual.SpringName)
 		}
 
 		if actual.BuildServiceName != v.Expected.BuildServiceName {

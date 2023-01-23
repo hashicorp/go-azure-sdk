@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := volumesrevert.NewVolumeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "poolValue", "volumeValue")
+id := volumesrevert.NewVolumeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "netAppAccountValue", "capacityPoolValue", "volumeValue")
 
 payload := volumesrevert.VolumeRevert{
 	// ...

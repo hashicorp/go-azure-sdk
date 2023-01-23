@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = ScheduleId{}
 
 func TestNewScheduleID(t *testing.T) {
-	id := NewScheduleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "nameValue")
+	id := NewScheduleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "scheduleValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -23,14 +23,14 @@ func TestNewScheduleID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'WorkspaceName'", id.WorkspaceName, "workspaceValue")
 	}
 
-	if id.Name != "nameValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'Name'", id.Name, "nameValue")
+	if id.ScheduleName != "scheduleValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'ScheduleName'", id.ScheduleName, "scheduleValue")
 	}
 }
 
 func TestFormatScheduleID(t *testing.T) {
-	actual := NewScheduleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "nameValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MachineLearningServices/workspaces/workspaceValue/schedules/nameValue"
+	actual := NewScheduleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "scheduleValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MachineLearningServices/workspaces/workspaceValue/schedules/scheduleValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -94,17 +94,17 @@ func TestParseScheduleID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MachineLearningServices/workspaces/workspaceValue/schedules/nameValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MachineLearningServices/workspaces/workspaceValue/schedules/scheduleValue",
 			Expected: &ScheduleId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				WorkspaceName:     "workspaceValue",
-				Name:              "nameValue",
+				ScheduleName:      "scheduleValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MachineLearningServices/workspaces/workspaceValue/schedules/nameValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MachineLearningServices/workspaces/workspaceValue/schedules/scheduleValue/extra",
 			Error: true,
 		},
 	}
@@ -135,8 +135,8 @@ func TestParseScheduleID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for WorkspaceName", v.Expected.WorkspaceName, actual.WorkspaceName)
 		}
 
-		if actual.Name != v.Expected.Name {
-			t.Fatalf("Expected %q but got %q for Name", v.Expected.Name, actual.Name)
+		if actual.ScheduleName != v.Expected.ScheduleName {
+			t.Fatalf("Expected %q but got %q for ScheduleName", v.Expected.ScheduleName, actual.ScheduleName)
 		}
 
 	}
@@ -245,32 +245,32 @@ func TestParseScheduleIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MachineLearningServices/workspaces/workspaceValue/schedules/nameValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MachineLearningServices/workspaces/workspaceValue/schedules/scheduleValue",
 			Expected: &ScheduleId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				WorkspaceName:     "workspaceValue",
-				Name:              "nameValue",
+				ScheduleName:      "scheduleValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MachineLearningServices/workspaces/workspaceValue/schedules/nameValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MachineLearningServices/workspaces/workspaceValue/schedules/scheduleValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mAcHiNeLeArNiNgSeRvIcEs/wOrKsPaCeS/wOrKsPaCeVaLuE/sChEdUlEs/nAmEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mAcHiNeLeArNiNgSeRvIcEs/wOrKsPaCeS/wOrKsPaCeVaLuE/sChEdUlEs/sChEdUlEvAlUe",
 			Expected: &ScheduleId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
 				WorkspaceName:     "wOrKsPaCeVaLuE",
-				Name:              "nAmEvAlUe",
+				ScheduleName:      "sChEdUlEvAlUe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mAcHiNeLeArNiNgSeRvIcEs/wOrKsPaCeS/wOrKsPaCeVaLuE/sChEdUlEs/nAmEvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mAcHiNeLeArNiNgSeRvIcEs/wOrKsPaCeS/wOrKsPaCeVaLuE/sChEdUlEs/sChEdUlEvAlUe/extra",
 			Error: true,
 		},
 	}
@@ -301,8 +301,8 @@ func TestParseScheduleIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for WorkspaceName", v.Expected.WorkspaceName, actual.WorkspaceName)
 		}
 
-		if actual.Name != v.Expected.Name {
-			t.Fatalf("Expected %q but got %q for Name", v.Expected.Name, actual.Name)
+		if actual.ScheduleName != v.Expected.ScheduleName {
+			t.Fatalf("Expected %q but got %q for ScheduleName", v.Expected.ScheduleName, actual.ScheduleName)
 		}
 
 	}

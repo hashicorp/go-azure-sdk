@@ -13,21 +13,21 @@ var _ resourceids.ResourceId = ResultId{}
 type ResultId struct {
 	SubscriptionId    string
 	ResourceGroupName string
-	ServiceName       string
+	SpringName        string
 	BuildServiceName  string
 	BuildName         string
-	BuildResultName   string
+	ResultName        string
 }
 
 // NewResultID returns a new ResultId struct
-func NewResultID(subscriptionId string, resourceGroupName string, serviceName string, buildServiceName string, buildName string, buildResultName string) ResultId {
+func NewResultID(subscriptionId string, resourceGroupName string, springName string, buildServiceName string, buildName string, resultName string) ResultId {
 	return ResultId{
 		SubscriptionId:    subscriptionId,
 		ResourceGroupName: resourceGroupName,
-		ServiceName:       serviceName,
+		SpringName:        springName,
 		BuildServiceName:  buildServiceName,
 		BuildName:         buildName,
-		BuildResultName:   buildResultName,
+		ResultName:        resultName,
 	}
 }
 
@@ -50,8 +50,8 @@ func ParseResultID(input string) (*ResultId, error) {
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.ServiceName, ok = parsed.Parsed["serviceName"]; !ok {
-		return nil, fmt.Errorf("the segment 'serviceName' was not found in the resource id %q", input)
+	if id.SpringName, ok = parsed.Parsed["springName"]; !ok {
+		return nil, fmt.Errorf("the segment 'springName' was not found in the resource id %q", input)
 	}
 
 	if id.BuildServiceName, ok = parsed.Parsed["buildServiceName"]; !ok {
@@ -62,8 +62,8 @@ func ParseResultID(input string) (*ResultId, error) {
 		return nil, fmt.Errorf("the segment 'buildName' was not found in the resource id %q", input)
 	}
 
-	if id.BuildResultName, ok = parsed.Parsed["buildResultName"]; !ok {
-		return nil, fmt.Errorf("the segment 'buildResultName' was not found in the resource id %q", input)
+	if id.ResultName, ok = parsed.Parsed["resultName"]; !ok {
+		return nil, fmt.Errorf("the segment 'resultName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -89,8 +89,8 @@ func ParseResultIDInsensitively(input string) (*ResultId, error) {
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.ServiceName, ok = parsed.Parsed["serviceName"]; !ok {
-		return nil, fmt.Errorf("the segment 'serviceName' was not found in the resource id %q", input)
+	if id.SpringName, ok = parsed.Parsed["springName"]; !ok {
+		return nil, fmt.Errorf("the segment 'springName' was not found in the resource id %q", input)
 	}
 
 	if id.BuildServiceName, ok = parsed.Parsed["buildServiceName"]; !ok {
@@ -101,8 +101,8 @@ func ParseResultIDInsensitively(input string) (*ResultId, error) {
 		return nil, fmt.Errorf("the segment 'buildName' was not found in the resource id %q", input)
 	}
 
-	if id.BuildResultName, ok = parsed.Parsed["buildResultName"]; !ok {
-		return nil, fmt.Errorf("the segment 'buildResultName' was not found in the resource id %q", input)
+	if id.ResultName, ok = parsed.Parsed["resultName"]; !ok {
+		return nil, fmt.Errorf("the segment 'resultName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -126,7 +126,7 @@ func ValidateResultID(input interface{}, key string) (warnings []string, errors 
 // ID returns the formatted Result ID
 func (id ResultId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.AppPlatform/spring/%s/buildServices/%s/builds/%s/results/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.ServiceName, id.BuildServiceName, id.BuildName, id.BuildResultName)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.SpringName, id.BuildServiceName, id.BuildName, id.ResultName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Result ID
@@ -139,13 +139,13 @@ func (id ResultId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftAppPlatform", "Microsoft.AppPlatform", "Microsoft.AppPlatform"),
 		resourceids.StaticSegment("staticSpring", "spring", "spring"),
-		resourceids.UserSpecifiedSegment("serviceName", "serviceValue"),
+		resourceids.UserSpecifiedSegment("springName", "springValue"),
 		resourceids.StaticSegment("staticBuildServices", "buildServices", "buildServices"),
 		resourceids.UserSpecifiedSegment("buildServiceName", "buildServiceValue"),
 		resourceids.StaticSegment("staticBuilds", "builds", "builds"),
 		resourceids.UserSpecifiedSegment("buildName", "buildValue"),
 		resourceids.StaticSegment("staticResults", "results", "results"),
-		resourceids.UserSpecifiedSegment("buildResultName", "buildResultValue"),
+		resourceids.UserSpecifiedSegment("resultName", "resultValue"),
 	}
 }
 
@@ -154,10 +154,10 @@ func (id ResultId) String() string {
 	components := []string{
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
-		fmt.Sprintf("Service Name: %q", id.ServiceName),
+		fmt.Sprintf("Spring Name: %q", id.SpringName),
 		fmt.Sprintf("Build Service Name: %q", id.BuildServiceName),
 		fmt.Sprintf("Build Name: %q", id.BuildName),
-		fmt.Sprintf("Build Result Name: %q", id.BuildResultName),
+		fmt.Sprintf("Result Name: %q", id.ResultName),
 	}
 	return fmt.Sprintf("Result (%s)", strings.Join(components, "\n"))
 }

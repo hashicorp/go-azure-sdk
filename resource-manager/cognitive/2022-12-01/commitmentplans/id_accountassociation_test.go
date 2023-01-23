@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = AccountAssociationId{}
 
 func TestNewAccountAssociationID(t *testing.T) {
-	id := NewAccountAssociationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "commitmentPlanValue", "commitmentPlanAssociationValue")
+	id := NewAccountAssociationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "commitmentPlanValue", "accountAssociationValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -23,14 +23,14 @@ func TestNewAccountAssociationID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'CommitmentPlanName'", id.CommitmentPlanName, "commitmentPlanValue")
 	}
 
-	if id.CommitmentPlanAssociationName != "commitmentPlanAssociationValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'CommitmentPlanAssociationName'", id.CommitmentPlanAssociationName, "commitmentPlanAssociationValue")
+	if id.AccountAssociationName != "accountAssociationValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'AccountAssociationName'", id.AccountAssociationName, "accountAssociationValue")
 	}
 }
 
 func TestFormatAccountAssociationID(t *testing.T) {
-	actual := NewAccountAssociationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "commitmentPlanValue", "commitmentPlanAssociationValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CognitiveServices/commitmentPlans/commitmentPlanValue/accountAssociations/commitmentPlanAssociationValue"
+	actual := NewAccountAssociationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "commitmentPlanValue", "accountAssociationValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CognitiveServices/commitmentPlans/commitmentPlanValue/accountAssociations/accountAssociationValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -94,17 +94,17 @@ func TestParseAccountAssociationID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CognitiveServices/commitmentPlans/commitmentPlanValue/accountAssociations/commitmentPlanAssociationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CognitiveServices/commitmentPlans/commitmentPlanValue/accountAssociations/accountAssociationValue",
 			Expected: &AccountAssociationId{
-				SubscriptionId:                "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName:             "example-resource-group",
-				CommitmentPlanName:            "commitmentPlanValue",
-				CommitmentPlanAssociationName: "commitmentPlanAssociationValue",
+				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:      "example-resource-group",
+				CommitmentPlanName:     "commitmentPlanValue",
+				AccountAssociationName: "accountAssociationValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CognitiveServices/commitmentPlans/commitmentPlanValue/accountAssociations/commitmentPlanAssociationValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CognitiveServices/commitmentPlans/commitmentPlanValue/accountAssociations/accountAssociationValue/extra",
 			Error: true,
 		},
 	}
@@ -135,8 +135,8 @@ func TestParseAccountAssociationID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for CommitmentPlanName", v.Expected.CommitmentPlanName, actual.CommitmentPlanName)
 		}
 
-		if actual.CommitmentPlanAssociationName != v.Expected.CommitmentPlanAssociationName {
-			t.Fatalf("Expected %q but got %q for CommitmentPlanAssociationName", v.Expected.CommitmentPlanAssociationName, actual.CommitmentPlanAssociationName)
+		if actual.AccountAssociationName != v.Expected.AccountAssociationName {
+			t.Fatalf("Expected %q but got %q for AccountAssociationName", v.Expected.AccountAssociationName, actual.AccountAssociationName)
 		}
 
 	}
@@ -245,32 +245,32 @@ func TestParseAccountAssociationIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CognitiveServices/commitmentPlans/commitmentPlanValue/accountAssociations/commitmentPlanAssociationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CognitiveServices/commitmentPlans/commitmentPlanValue/accountAssociations/accountAssociationValue",
 			Expected: &AccountAssociationId{
-				SubscriptionId:                "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName:             "example-resource-group",
-				CommitmentPlanName:            "commitmentPlanValue",
-				CommitmentPlanAssociationName: "commitmentPlanAssociationValue",
+				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:      "example-resource-group",
+				CommitmentPlanName:     "commitmentPlanValue",
+				AccountAssociationName: "accountAssociationValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CognitiveServices/commitmentPlans/commitmentPlanValue/accountAssociations/commitmentPlanAssociationValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.CognitiveServices/commitmentPlans/commitmentPlanValue/accountAssociations/accountAssociationValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOgNiTiVeSeRvIcEs/cOmMiTmEnTpLaNs/cOmMiTmEnTpLaNvAlUe/aCcOuNtAsSoCiAtIoNs/cOmMiTmEnTpLaNaSsOcIaTiOnVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOgNiTiVeSeRvIcEs/cOmMiTmEnTpLaNs/cOmMiTmEnTpLaNvAlUe/aCcOuNtAsSoCiAtIoNs/aCcOuNtAsSoCiAtIoNvAlUe",
 			Expected: &AccountAssociationId{
-				SubscriptionId:                "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName:             "eXaMpLe-rEsOuRcE-GrOuP",
-				CommitmentPlanName:            "cOmMiTmEnTpLaNvAlUe",
-				CommitmentPlanAssociationName: "cOmMiTmEnTpLaNaSsOcIaTiOnVaLuE",
+				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:      "eXaMpLe-rEsOuRcE-GrOuP",
+				CommitmentPlanName:     "cOmMiTmEnTpLaNvAlUe",
+				AccountAssociationName: "aCcOuNtAsSoCiAtIoNvAlUe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOgNiTiVeSeRvIcEs/cOmMiTmEnTpLaNs/cOmMiTmEnTpLaNvAlUe/aCcOuNtAsSoCiAtIoNs/cOmMiTmEnTpLaNaSsOcIaTiOnVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOgNiTiVeSeRvIcEs/cOmMiTmEnTpLaNs/cOmMiTmEnTpLaNvAlUe/aCcOuNtAsSoCiAtIoNs/aCcOuNtAsSoCiAtIoNvAlUe/extra",
 			Error: true,
 		},
 	}
@@ -301,8 +301,8 @@ func TestParseAccountAssociationIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for CommitmentPlanName", v.Expected.CommitmentPlanName, actual.CommitmentPlanName)
 		}
 
-		if actual.CommitmentPlanAssociationName != v.Expected.CommitmentPlanAssociationName {
-			t.Fatalf("Expected %q but got %q for CommitmentPlanAssociationName", v.Expected.CommitmentPlanAssociationName, actual.CommitmentPlanAssociationName)
+		if actual.AccountAssociationName != v.Expected.AccountAssociationName {
+			t.Fatalf("Expected %q but got %q for AccountAssociationName", v.Expected.AccountAssociationName, actual.AccountAssociationName)
 		}
 
 	}

@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = ActionRuleId{}
 
 func TestNewActionRuleID(t *testing.T) {
-	id := NewActionRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "alertProcessingRuleValue")
+	id := NewActionRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "actionRuleValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -19,14 +19,14 @@ func TestNewActionRuleID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.AlertProcessingRuleName != "alertProcessingRuleValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AlertProcessingRuleName'", id.AlertProcessingRuleName, "alertProcessingRuleValue")
+	if id.ActionRuleName != "actionRuleValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'ActionRuleName'", id.ActionRuleName, "actionRuleValue")
 	}
 }
 
 func TestFormatActionRuleID(t *testing.T) {
-	actual := NewActionRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "alertProcessingRuleValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AlertsManagement/actionRules/alertProcessingRuleValue"
+	actual := NewActionRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "actionRuleValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AlertsManagement/actionRules/actionRuleValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -80,16 +80,16 @@ func TestParseActionRuleID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AlertsManagement/actionRules/alertProcessingRuleValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AlertsManagement/actionRules/actionRuleValue",
 			Expected: &ActionRuleId{
-				SubscriptionId:          "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName:       "example-resource-group",
-				AlertProcessingRuleName: "alertProcessingRuleValue",
+				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName: "example-resource-group",
+				ActionRuleName:    "actionRuleValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AlertsManagement/actionRules/alertProcessingRuleValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AlertsManagement/actionRules/actionRuleValue/extra",
 			Error: true,
 		},
 	}
@@ -116,8 +116,8 @@ func TestParseActionRuleID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.AlertProcessingRuleName != v.Expected.AlertProcessingRuleName {
-			t.Fatalf("Expected %q but got %q for AlertProcessingRuleName", v.Expected.AlertProcessingRuleName, actual.AlertProcessingRuleName)
+		if actual.ActionRuleName != v.Expected.ActionRuleName {
+			t.Fatalf("Expected %q but got %q for ActionRuleName", v.Expected.ActionRuleName, actual.ActionRuleName)
 		}
 
 	}
@@ -206,30 +206,30 @@ func TestParseActionRuleIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AlertsManagement/actionRules/alertProcessingRuleValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AlertsManagement/actionRules/actionRuleValue",
 			Expected: &ActionRuleId{
-				SubscriptionId:          "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName:       "example-resource-group",
-				AlertProcessingRuleName: "alertProcessingRuleValue",
+				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName: "example-resource-group",
+				ActionRuleName:    "actionRuleValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AlertsManagement/actionRules/alertProcessingRuleValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AlertsManagement/actionRules/actionRuleValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aLeRtSmAnAgEmEnT/aCtIoNrUlEs/aLeRtPrOcEsSiNgRuLeVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aLeRtSmAnAgEmEnT/aCtIoNrUlEs/aCtIoNrUlEvAlUe",
 			Expected: &ActionRuleId{
-				SubscriptionId:          "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName:       "eXaMpLe-rEsOuRcE-GrOuP",
-				AlertProcessingRuleName: "aLeRtPrOcEsSiNgRuLeVaLuE",
+				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
+				ActionRuleName:    "aCtIoNrUlEvAlUe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aLeRtSmAnAgEmEnT/aCtIoNrUlEs/aLeRtPrOcEsSiNgRuLeVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aLeRtSmAnAgEmEnT/aCtIoNrUlEs/aCtIoNrUlEvAlUe/extra",
 			Error: true,
 		},
 	}
@@ -256,8 +256,8 @@ func TestParseActionRuleIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.AlertProcessingRuleName != v.Expected.AlertProcessingRuleName {
-			t.Fatalf("Expected %q but got %q for AlertProcessingRuleName", v.Expected.AlertProcessingRuleName, actual.AlertProcessingRuleName)
+		if actual.ActionRuleName != v.Expected.ActionRuleName {
+			t.Fatalf("Expected %q but got %q for ActionRuleName", v.Expected.ActionRuleName, actual.ActionRuleName)
 		}
 
 	}

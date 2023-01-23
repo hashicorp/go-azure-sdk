@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := backups.NewAccountBackupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "backupValue")
+id := backups.NewAccountBackupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "netAppAccountValue", "accountBackupValue")
 
 if err := client.AccountBackupsDeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -36,7 +36,7 @@ if err := client.AccountBackupsDeleteThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := backups.NewAccountBackupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "backupValue")
+id := backups.NewAccountBackupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "netAppAccountValue", "accountBackupValue")
 
 read, err := client.AccountBackupsGet(ctx, id)
 if err != nil {
@@ -52,7 +52,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := backups.NewNetAppAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue")
+id := backups.NewNetAppAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "netAppAccountValue")
 
 read, err := client.AccountBackupsList(ctx, id)
 if err != nil {
@@ -68,7 +68,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := backups.NewBackupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "poolValue", "volumeValue", "backupValue")
+id := backups.NewBackupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "netAppAccountValue", "capacityPoolValue", "volumeValue", "backupValue")
 
 payload := backups.Backup{
 	// ...
@@ -85,7 +85,7 @@ if err := client.CreateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := backups.NewBackupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "poolValue", "volumeValue", "backupValue")
+id := backups.NewBackupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "netAppAccountValue", "capacityPoolValue", "volumeValue", "backupValue")
 
 if err := client.DeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -97,7 +97,7 @@ if err := client.DeleteThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := backups.NewBackupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "poolValue", "volumeValue", "backupValue")
+id := backups.NewBackupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "netAppAccountValue", "capacityPoolValue", "volumeValue", "backupValue")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -113,7 +113,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := backups.NewVolumeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "poolValue", "volumeValue")
+id := backups.NewVolumeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "netAppAccountValue", "capacityPoolValue", "volumeValue")
 
 read, err := client.GetStatus(ctx, id)
 if err != nil {
@@ -129,7 +129,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := backups.NewVolumeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "poolValue", "volumeValue")
+id := backups.NewVolumeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "netAppAccountValue", "capacityPoolValue", "volumeValue")
 
 read, err := client.List(ctx, id)
 if err != nil {
@@ -145,7 +145,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := backups.NewBackupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "poolValue", "volumeValue", "backupValue")
+id := backups.NewBackupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "netAppAccountValue", "capacityPoolValue", "volumeValue", "backupValue")
 
 payload := backups.BackupPatch{
 	// ...

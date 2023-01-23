@@ -12,16 +12,16 @@ var _ resourceids.ResourceId = SharedGalleryId{}
 // SharedGalleryId is a struct representing the Resource ID for a Shared Gallery
 type SharedGalleryId struct {
 	SubscriptionId    string
-	Location          string
-	GalleryUniqueName string
+	LocationName      string
+	SharedGalleryName string
 }
 
 // NewSharedGalleryID returns a new SharedGalleryId struct
-func NewSharedGalleryID(subscriptionId string, location string, galleryUniqueName string) SharedGalleryId {
+func NewSharedGalleryID(subscriptionId string, locationName string, sharedGalleryName string) SharedGalleryId {
 	return SharedGalleryId{
 		SubscriptionId:    subscriptionId,
-		Location:          location,
-		GalleryUniqueName: galleryUniqueName,
+		LocationName:      locationName,
+		SharedGalleryName: sharedGalleryName,
 	}
 }
 
@@ -40,12 +40,12 @@ func ParseSharedGalleryID(input string) (*SharedGalleryId, error) {
 		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
 	}
 
-	if id.Location, ok = parsed.Parsed["location"]; !ok {
-		return nil, fmt.Errorf("the segment 'location' was not found in the resource id %q", input)
+	if id.LocationName, ok = parsed.Parsed["locationName"]; !ok {
+		return nil, fmt.Errorf("the segment 'locationName' was not found in the resource id %q", input)
 	}
 
-	if id.GalleryUniqueName, ok = parsed.Parsed["galleryUniqueName"]; !ok {
-		return nil, fmt.Errorf("the segment 'galleryUniqueName' was not found in the resource id %q", input)
+	if id.SharedGalleryName, ok = parsed.Parsed["sharedGalleryName"]; !ok {
+		return nil, fmt.Errorf("the segment 'sharedGalleryName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -67,12 +67,12 @@ func ParseSharedGalleryIDInsensitively(input string) (*SharedGalleryId, error) {
 		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
 	}
 
-	if id.Location, ok = parsed.Parsed["location"]; !ok {
-		return nil, fmt.Errorf("the segment 'location' was not found in the resource id %q", input)
+	if id.LocationName, ok = parsed.Parsed["locationName"]; !ok {
+		return nil, fmt.Errorf("the segment 'locationName' was not found in the resource id %q", input)
 	}
 
-	if id.GalleryUniqueName, ok = parsed.Parsed["galleryUniqueName"]; !ok {
-		return nil, fmt.Errorf("the segment 'galleryUniqueName' was not found in the resource id %q", input)
+	if id.SharedGalleryName, ok = parsed.Parsed["sharedGalleryName"]; !ok {
+		return nil, fmt.Errorf("the segment 'sharedGalleryName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -96,7 +96,7 @@ func ValidateSharedGalleryID(input interface{}, key string) (warnings []string, 
 // ID returns the formatted Shared Gallery ID
 func (id SharedGalleryId) ID() string {
 	fmtString := "/subscriptions/%s/providers/Microsoft.Compute/locations/%s/sharedGalleries/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.Location, id.GalleryUniqueName)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.LocationName, id.SharedGalleryName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Shared Gallery ID
@@ -107,9 +107,9 @@ func (id SharedGalleryId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftCompute", "Microsoft.Compute", "Microsoft.Compute"),
 		resourceids.StaticSegment("staticLocations", "locations", "locations"),
-		resourceids.UserSpecifiedSegment("location", "locationValue"),
+		resourceids.UserSpecifiedSegment("locationName", "locationValue"),
 		resourceids.StaticSegment("staticSharedGalleries", "sharedGalleries", "sharedGalleries"),
-		resourceids.UserSpecifiedSegment("galleryUniqueName", "galleryUniqueValue"),
+		resourceids.UserSpecifiedSegment("sharedGalleryName", "sharedGalleryValue"),
 	}
 }
 
@@ -117,8 +117,8 @@ func (id SharedGalleryId) Segments() []resourceids.Segment {
 func (id SharedGalleryId) String() string {
 	components := []string{
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
-		fmt.Sprintf("Location: %q", id.Location),
-		fmt.Sprintf("Gallery Unique Name: %q", id.GalleryUniqueName),
+		fmt.Sprintf("Location Name: %q", id.LocationName),
+		fmt.Sprintf("Shared Gallery Name: %q", id.SharedGalleryName),
 	}
 	return fmt.Sprintf("Shared Gallery (%s)", strings.Join(components, "\n"))
 }

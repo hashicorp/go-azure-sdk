@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = EventhubId{}
 
 func TestNewEventhubID(t *testing.T) {
-	id := NewEventhubID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceValue", "eventHubValue")
+	id := NewEventhubID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceValue", "eventhubValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -23,14 +23,14 @@ func TestNewEventhubID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'NamespaceName'", id.NamespaceName, "namespaceValue")
 	}
 
-	if id.EventHubName != "eventHubValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'EventHubName'", id.EventHubName, "eventHubValue")
+	if id.EventhubName != "eventhubValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'EventhubName'", id.EventhubName, "eventhubValue")
 	}
 }
 
 func TestFormatEventhubID(t *testing.T) {
-	actual := NewEventhubID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceValue", "eventHubValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventHub/namespaces/namespaceValue/eventhubs/eventHubValue"
+	actual := NewEventhubID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceValue", "eventhubValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventHub/namespaces/namespaceValue/eventhubs/eventhubValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -94,17 +94,17 @@ func TestParseEventhubID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventHub/namespaces/namespaceValue/eventhubs/eventHubValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventHub/namespaces/namespaceValue/eventhubs/eventhubValue",
 			Expected: &EventhubId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				NamespaceName:     "namespaceValue",
-				EventHubName:      "eventHubValue",
+				EventhubName:      "eventhubValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventHub/namespaces/namespaceValue/eventhubs/eventHubValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventHub/namespaces/namespaceValue/eventhubs/eventhubValue/extra",
 			Error: true,
 		},
 	}
@@ -135,8 +135,8 @@ func TestParseEventhubID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for NamespaceName", v.Expected.NamespaceName, actual.NamespaceName)
 		}
 
-		if actual.EventHubName != v.Expected.EventHubName {
-			t.Fatalf("Expected %q but got %q for EventHubName", v.Expected.EventHubName, actual.EventHubName)
+		if actual.EventhubName != v.Expected.EventhubName {
+			t.Fatalf("Expected %q but got %q for EventhubName", v.Expected.EventhubName, actual.EventhubName)
 		}
 
 	}
@@ -245,17 +245,17 @@ func TestParseEventhubIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventHub/namespaces/namespaceValue/eventhubs/eventHubValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventHub/namespaces/namespaceValue/eventhubs/eventhubValue",
 			Expected: &EventhubId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				NamespaceName:     "namespaceValue",
-				EventHubName:      "eventHubValue",
+				EventhubName:      "eventhubValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventHub/namespaces/namespaceValue/eventhubs/eventHubValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventHub/namespaces/namespaceValue/eventhubs/eventhubValue/extra",
 			Error: true,
 		},
 		{
@@ -265,7 +265,7 @@ func TestParseEventhubIDInsensitively(t *testing.T) {
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
 				NamespaceName:     "nAmEsPaCeVaLuE",
-				EventHubName:      "eVeNtHuBvAlUe",
+				EventhubName:      "eVeNtHuBvAlUe",
 			},
 		},
 		{
@@ -301,8 +301,8 @@ func TestParseEventhubIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for NamespaceName", v.Expected.NamespaceName, actual.NamespaceName)
 		}
 
-		if actual.EventHubName != v.Expected.EventHubName {
-			t.Fatalf("Expected %q but got %q for EventHubName", v.Expected.EventHubName, actual.EventHubName)
+		if actual.EventhubName != v.Expected.EventhubName {
+			t.Fatalf("Expected %q but got %q for EventhubName", v.Expected.EventhubName, actual.EventhubName)
 		}
 
 	}

@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = ProviderId{}
 
 func TestNewProviderID(t *testing.T) {
-	id := NewProviderID("12345678-1234-9876-4563-123456789012", "example-resource-group", "clusterRpValue", "clusterResourceValue", "clusterValue")
+	id := NewProviderID("12345678-1234-9876-4563-123456789012", "example-resource-group", "providerValue", "clusterResourceValue", "clusterValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -19,8 +19,8 @@ func TestNewProviderID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.ClusterRp != "clusterRpValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ClusterRp'", id.ClusterRp, "clusterRpValue")
+	if id.ProviderName != "providerValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'ProviderName'", id.ProviderName, "providerValue")
 	}
 
 	if id.ClusterResourceName != "clusterResourceValue" {
@@ -33,8 +33,8 @@ func TestNewProviderID(t *testing.T) {
 }
 
 func TestFormatProviderID(t *testing.T) {
-	actual := NewProviderID("12345678-1234-9876-4563-123456789012", "example-resource-group", "clusterRpValue", "clusterResourceValue", "clusterValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/clusterRpValue/clusterResourceValue/clusterValue"
+	actual := NewProviderID("12345678-1234-9876-4563-123456789012", "example-resource-group", "providerValue", "clusterResourceValue", "clusterValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/providerValue/clusterResourceValue/clusterValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -78,28 +78,28 @@ func TestParseProviderID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/clusterRpValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/providerValue",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/clusterRpValue/clusterResourceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/providerValue/clusterResourceValue",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/clusterRpValue/clusterResourceValue/clusterValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/providerValue/clusterResourceValue/clusterValue",
 			Expected: &ProviderId{
 				SubscriptionId:      "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:   "example-resource-group",
-				ClusterRp:           "clusterRpValue",
+				ProviderName:        "providerValue",
 				ClusterResourceName: "clusterResourceValue",
 				ClusterName:         "clusterValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/clusterRpValue/clusterResourceValue/clusterValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/providerValue/clusterResourceValue/clusterValue/extra",
 			Error: true,
 		},
 	}
@@ -126,8 +126,8 @@ func TestParseProviderID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.ClusterRp != v.Expected.ClusterRp {
-			t.Fatalf("Expected %q but got %q for ClusterRp", v.Expected.ClusterRp, actual.ClusterRp)
+		if actual.ProviderName != v.Expected.ProviderName {
+			t.Fatalf("Expected %q but got %q for ProviderName", v.Expected.ProviderName, actual.ProviderName)
 		}
 
 		if actual.ClusterResourceName != v.Expected.ClusterResourceName {
@@ -204,54 +204,54 @@ func TestParseProviderIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/clusterRpValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/providerValue",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/cLuStErRpVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/pRoViDeRvAlUe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/clusterRpValue/clusterResourceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/providerValue/clusterResourceValue",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/cLuStErRpVaLuE/cLuStErReSoUrCeVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/pRoViDeRvAlUe/cLuStErReSoUrCeVaLuE",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/clusterRpValue/clusterResourceValue/clusterValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/providerValue/clusterResourceValue/clusterValue",
 			Expected: &ProviderId{
 				SubscriptionId:      "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:   "example-resource-group",
-				ClusterRp:           "clusterRpValue",
+				ProviderName:        "providerValue",
 				ClusterResourceName: "clusterResourceValue",
 				ClusterName:         "clusterValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/clusterRpValue/clusterResourceValue/clusterValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/providerValue/clusterResourceValue/clusterValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/cLuStErRpVaLuE/cLuStErReSoUrCeVaLuE/cLuStErVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/pRoViDeRvAlUe/cLuStErReSoUrCeVaLuE/cLuStErVaLuE",
 			Expected: &ProviderId{
 				SubscriptionId:      "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:   "eXaMpLe-rEsOuRcE-GrOuP",
-				ClusterRp:           "cLuStErRpVaLuE",
+				ProviderName:        "pRoViDeRvAlUe",
 				ClusterResourceName: "cLuStErReSoUrCeVaLuE",
 				ClusterName:         "cLuStErVaLuE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/cLuStErRpVaLuE/cLuStErReSoUrCeVaLuE/cLuStErVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/pRoViDeRvAlUe/cLuStErReSoUrCeVaLuE/cLuStErVaLuE/extra",
 			Error: true,
 		},
 	}
@@ -278,8 +278,8 @@ func TestParseProviderIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.ClusterRp != v.Expected.ClusterRp {
-			t.Fatalf("Expected %q but got %q for ClusterRp", v.Expected.ClusterRp, actual.ClusterRp)
+		if actual.ProviderName != v.Expected.ProviderName {
+			t.Fatalf("Expected %q but got %q for ProviderName", v.Expected.ProviderName, actual.ProviderName)
 		}
 
 		if actual.ClusterResourceName != v.Expected.ClusterResourceName {

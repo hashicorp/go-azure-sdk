@@ -12,15 +12,15 @@ var _ resourceids.ResourceId = PublisherId{}
 // PublisherId is a struct representing the Resource ID for a Publisher
 type PublisherId struct {
 	SubscriptionId string
-	Location       string
+	LocationName   string
 	PublisherName  string
 }
 
 // NewPublisherID returns a new PublisherId struct
-func NewPublisherID(subscriptionId string, location string, publisherName string) PublisherId {
+func NewPublisherID(subscriptionId string, locationName string, publisherName string) PublisherId {
 	return PublisherId{
 		SubscriptionId: subscriptionId,
-		Location:       location,
+		LocationName:   locationName,
 		PublisherName:  publisherName,
 	}
 }
@@ -40,8 +40,8 @@ func ParsePublisherID(input string) (*PublisherId, error) {
 		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
 	}
 
-	if id.Location, ok = parsed.Parsed["location"]; !ok {
-		return nil, fmt.Errorf("the segment 'location' was not found in the resource id %q", input)
+	if id.LocationName, ok = parsed.Parsed["locationName"]; !ok {
+		return nil, fmt.Errorf("the segment 'locationName' was not found in the resource id %q", input)
 	}
 
 	if id.PublisherName, ok = parsed.Parsed["publisherName"]; !ok {
@@ -67,8 +67,8 @@ func ParsePublisherIDInsensitively(input string) (*PublisherId, error) {
 		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
 	}
 
-	if id.Location, ok = parsed.Parsed["location"]; !ok {
-		return nil, fmt.Errorf("the segment 'location' was not found in the resource id %q", input)
+	if id.LocationName, ok = parsed.Parsed["locationName"]; !ok {
+		return nil, fmt.Errorf("the segment 'locationName' was not found in the resource id %q", input)
 	}
 
 	if id.PublisherName, ok = parsed.Parsed["publisherName"]; !ok {
@@ -96,7 +96,7 @@ func ValidatePublisherID(input interface{}, key string) (warnings []string, erro
 // ID returns the formatted Publisher ID
 func (id PublisherId) ID() string {
 	fmtString := "/subscriptions/%s/providers/Microsoft.Compute/locations/%s/publishers/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.Location, id.PublisherName)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.LocationName, id.PublisherName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Publisher ID
@@ -107,7 +107,7 @@ func (id PublisherId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftCompute", "Microsoft.Compute", "Microsoft.Compute"),
 		resourceids.StaticSegment("staticLocations", "locations", "locations"),
-		resourceids.UserSpecifiedSegment("location", "locationValue"),
+		resourceids.UserSpecifiedSegment("locationName", "locationValue"),
 		resourceids.StaticSegment("staticPublishers", "publishers", "publishers"),
 		resourceids.UserSpecifiedSegment("publisherName", "publisherValue"),
 	}
@@ -117,7 +117,7 @@ func (id PublisherId) Segments() []resourceids.Segment {
 func (id PublisherId) String() string {
 	components := []string{
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
-		fmt.Sprintf("Location: %q", id.Location),
+		fmt.Sprintf("Location Name: %q", id.LocationName),
 		fmt.Sprintf("Publisher Name: %q", id.PublisherName),
 	}
 	return fmt.Sprintf("Publisher (%s)", strings.Join(components, "\n"))

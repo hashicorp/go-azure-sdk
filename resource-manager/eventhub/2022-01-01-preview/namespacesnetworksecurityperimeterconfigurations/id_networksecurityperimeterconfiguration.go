@@ -11,19 +11,19 @@ var _ resourceids.ResourceId = NetworkSecurityPerimeterConfigurationId{}
 
 // NetworkSecurityPerimeterConfigurationId is a struct representing the Resource ID for a Network Security Perimeter Configuration
 type NetworkSecurityPerimeterConfigurationId struct {
-	SubscriptionId          string
-	ResourceGroupName       string
-	NamespaceName           string
-	ResourceAssociationName string
+	SubscriptionId                            string
+	ResourceGroupName                         string
+	NamespaceName                             string
+	NetworkSecurityPerimeterConfigurationName string
 }
 
 // NewNetworkSecurityPerimeterConfigurationID returns a new NetworkSecurityPerimeterConfigurationId struct
-func NewNetworkSecurityPerimeterConfigurationID(subscriptionId string, resourceGroupName string, namespaceName string, resourceAssociationName string) NetworkSecurityPerimeterConfigurationId {
+func NewNetworkSecurityPerimeterConfigurationID(subscriptionId string, resourceGroupName string, namespaceName string, networkSecurityPerimeterConfigurationName string) NetworkSecurityPerimeterConfigurationId {
 	return NetworkSecurityPerimeterConfigurationId{
-		SubscriptionId:          subscriptionId,
-		ResourceGroupName:       resourceGroupName,
-		NamespaceName:           namespaceName,
-		ResourceAssociationName: resourceAssociationName,
+		SubscriptionId:    subscriptionId,
+		ResourceGroupName: resourceGroupName,
+		NamespaceName:     namespaceName,
+		NetworkSecurityPerimeterConfigurationName: networkSecurityPerimeterConfigurationName,
 	}
 }
 
@@ -50,8 +50,8 @@ func ParseNetworkSecurityPerimeterConfigurationID(input string) (*NetworkSecurit
 		return nil, fmt.Errorf("the segment 'namespaceName' was not found in the resource id %q", input)
 	}
 
-	if id.ResourceAssociationName, ok = parsed.Parsed["resourceAssociationName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceAssociationName' was not found in the resource id %q", input)
+	if id.NetworkSecurityPerimeterConfigurationName, ok = parsed.Parsed["networkSecurityPerimeterConfigurationName"]; !ok {
+		return nil, fmt.Errorf("the segment 'networkSecurityPerimeterConfigurationName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -81,8 +81,8 @@ func ParseNetworkSecurityPerimeterConfigurationIDInsensitively(input string) (*N
 		return nil, fmt.Errorf("the segment 'namespaceName' was not found in the resource id %q", input)
 	}
 
-	if id.ResourceAssociationName, ok = parsed.Parsed["resourceAssociationName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceAssociationName' was not found in the resource id %q", input)
+	if id.NetworkSecurityPerimeterConfigurationName, ok = parsed.Parsed["networkSecurityPerimeterConfigurationName"]; !ok {
+		return nil, fmt.Errorf("the segment 'networkSecurityPerimeterConfigurationName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -106,7 +106,7 @@ func ValidateNetworkSecurityPerimeterConfigurationID(input interface{}, key stri
 // ID returns the formatted Network Security Perimeter Configuration ID
 func (id NetworkSecurityPerimeterConfigurationId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.EventHub/namespaces/%s/networkSecurityPerimeterConfigurations/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.NamespaceName, id.ResourceAssociationName)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.NamespaceName, id.NetworkSecurityPerimeterConfigurationName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Network Security Perimeter Configuration ID
@@ -121,7 +121,7 @@ func (id NetworkSecurityPerimeterConfigurationId) Segments() []resourceids.Segme
 		resourceids.StaticSegment("staticNamespaces", "namespaces", "namespaces"),
 		resourceids.UserSpecifiedSegment("namespaceName", "namespaceValue"),
 		resourceids.StaticSegment("staticNetworkSecurityPerimeterConfigurations", "networkSecurityPerimeterConfigurations", "networkSecurityPerimeterConfigurations"),
-		resourceids.UserSpecifiedSegment("resourceAssociationName", "resourceAssociationValue"),
+		resourceids.UserSpecifiedSegment("networkSecurityPerimeterConfigurationName", "networkSecurityPerimeterConfigurationValue"),
 	}
 }
 
@@ -131,7 +131,7 @@ func (id NetworkSecurityPerimeterConfigurationId) String() string {
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
 		fmt.Sprintf("Namespace Name: %q", id.NamespaceName),
-		fmt.Sprintf("Resource Association Name: %q", id.ResourceAssociationName),
+		fmt.Sprintf("Network Security Perimeter Configuration Name: %q", id.NetworkSecurityPerimeterConfigurationName),
 	}
 	return fmt.Sprintf("Network Security Perimeter Configuration (%s)", strings.Join(components, "\n"))
 }

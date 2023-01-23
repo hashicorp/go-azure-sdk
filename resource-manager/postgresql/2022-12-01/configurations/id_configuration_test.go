@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = ConfigurationId{}
 
 func TestNewConfigurationID(t *testing.T) {
-	id := NewConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverValue", "configurationValue")
+	id := NewConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "flexibleServerValue", "configurationValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -19,8 +19,8 @@ func TestNewConfigurationID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.ServerName != "serverValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ServerName'", id.ServerName, "serverValue")
+	if id.FlexibleServerName != "flexibleServerValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'FlexibleServerName'", id.FlexibleServerName, "flexibleServerValue")
 	}
 
 	if id.ConfigurationName != "configurationValue" {
@@ -29,8 +29,8 @@ func TestNewConfigurationID(t *testing.T) {
 }
 
 func TestFormatConfigurationID(t *testing.T) {
-	actual := NewConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverValue", "configurationValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforPostgreSQL/flexibleServers/serverValue/configurations/configurationValue"
+	actual := NewConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "flexibleServerValue", "configurationValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforPostgreSQL/flexibleServers/flexibleServerValue/configurations/configurationValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -84,27 +84,27 @@ func TestParseConfigurationID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforPostgreSQL/flexibleServers/serverValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforPostgreSQL/flexibleServers/flexibleServerValue",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforPostgreSQL/flexibleServers/serverValue/configurations",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforPostgreSQL/flexibleServers/flexibleServerValue/configurations",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforPostgreSQL/flexibleServers/serverValue/configurations/configurationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforPostgreSQL/flexibleServers/flexibleServerValue/configurations/configurationValue",
 			Expected: &ConfigurationId{
-				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName: "example-resource-group",
-				ServerName:        "serverValue",
-				ConfigurationName: "configurationValue",
+				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:  "example-resource-group",
+				FlexibleServerName: "flexibleServerValue",
+				ConfigurationName:  "configurationValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforPostgreSQL/flexibleServers/serverValue/configurations/configurationValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforPostgreSQL/flexibleServers/flexibleServerValue/configurations/configurationValue/extra",
 			Error: true,
 		},
 	}
@@ -131,8 +131,8 @@ func TestParseConfigurationID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.ServerName != v.Expected.ServerName {
-			t.Fatalf("Expected %q but got %q for ServerName", v.Expected.ServerName, actual.ServerName)
+		if actual.FlexibleServerName != v.Expected.FlexibleServerName {
+			t.Fatalf("Expected %q but got %q for FlexibleServerName", v.Expected.FlexibleServerName, actual.FlexibleServerName)
 		}
 
 		if actual.ConfigurationName != v.Expected.ConfigurationName {
@@ -225,52 +225,52 @@ func TestParseConfigurationIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforPostgreSQL/flexibleServers/serverValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforPostgreSQL/flexibleServers/flexibleServerValue",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dBfOrPoStGrEsQl/fLeXiBlEsErVeRs/sErVeRvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dBfOrPoStGrEsQl/fLeXiBlEsErVeRs/fLeXiBlEsErVeRvAlUe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforPostgreSQL/flexibleServers/serverValue/configurations",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforPostgreSQL/flexibleServers/flexibleServerValue/configurations",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dBfOrPoStGrEsQl/fLeXiBlEsErVeRs/sErVeRvAlUe/cOnFiGuRaTiOnS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dBfOrPoStGrEsQl/fLeXiBlEsErVeRs/fLeXiBlEsErVeRvAlUe/cOnFiGuRaTiOnS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforPostgreSQL/flexibleServers/serverValue/configurations/configurationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforPostgreSQL/flexibleServers/flexibleServerValue/configurations/configurationValue",
 			Expected: &ConfigurationId{
-				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName: "example-resource-group",
-				ServerName:        "serverValue",
-				ConfigurationName: "configurationValue",
+				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:  "example-resource-group",
+				FlexibleServerName: "flexibleServerValue",
+				ConfigurationName:  "configurationValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforPostgreSQL/flexibleServers/serverValue/configurations/configurationValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforPostgreSQL/flexibleServers/flexibleServerValue/configurations/configurationValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dBfOrPoStGrEsQl/fLeXiBlEsErVeRs/sErVeRvAlUe/cOnFiGuRaTiOnS/cOnFiGuRaTiOnVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dBfOrPoStGrEsQl/fLeXiBlEsErVeRs/fLeXiBlEsErVeRvAlUe/cOnFiGuRaTiOnS/cOnFiGuRaTiOnVaLuE",
 			Expected: &ConfigurationId{
-				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				ServerName:        "sErVeRvAlUe",
-				ConfigurationName: "cOnFiGuRaTiOnVaLuE",
+				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:  "eXaMpLe-rEsOuRcE-GrOuP",
+				FlexibleServerName: "fLeXiBlEsErVeRvAlUe",
+				ConfigurationName:  "cOnFiGuRaTiOnVaLuE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dBfOrPoStGrEsQl/fLeXiBlEsErVeRs/sErVeRvAlUe/cOnFiGuRaTiOnS/cOnFiGuRaTiOnVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dBfOrPoStGrEsQl/fLeXiBlEsErVeRs/fLeXiBlEsErVeRvAlUe/cOnFiGuRaTiOnS/cOnFiGuRaTiOnVaLuE/extra",
 			Error: true,
 		},
 	}
@@ -297,8 +297,8 @@ func TestParseConfigurationIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.ServerName != v.Expected.ServerName {
-			t.Fatalf("Expected %q but got %q for ServerName", v.Expected.ServerName, actual.ServerName)
+		if actual.FlexibleServerName != v.Expected.FlexibleServerName {
+			t.Fatalf("Expected %q but got %q for FlexibleServerName", v.Expected.FlexibleServerName, actual.FlexibleServerName)
 		}
 
 		if actual.ConfigurationName != v.Expected.ConfigurationName {

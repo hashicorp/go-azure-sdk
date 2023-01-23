@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = ServerId{}
 
 func TestNewServerID(t *testing.T) {
-	id := NewServerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverGroupValue", "serverValue")
+	id := NewServerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverGroupsv2Value", "serverValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -19,8 +19,8 @@ func TestNewServerID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.ServerGroupName != "serverGroupValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ServerGroupName'", id.ServerGroupName, "serverGroupValue")
+	if id.ServerGroupsv2Name != "serverGroupsv2Value" {
+		t.Fatalf("Expected %q but got %q for Segment 'ServerGroupsv2Name'", id.ServerGroupsv2Name, "serverGroupsv2Value")
 	}
 
 	if id.ServerName != "serverValue" {
@@ -29,8 +29,8 @@ func TestNewServerID(t *testing.T) {
 }
 
 func TestFormatServerID(t *testing.T) {
-	actual := NewServerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverGroupValue", "serverValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/serverGroupValue/servers/serverValue"
+	actual := NewServerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverGroupsv2Value", "serverValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/serverGroupsv2Value/servers/serverValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -84,27 +84,27 @@ func TestParseServerID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/serverGroupValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/serverGroupsv2Value",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/serverGroupValue/servers",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/serverGroupsv2Value/servers",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/serverGroupValue/servers/serverValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/serverGroupsv2Value/servers/serverValue",
 			Expected: &ServerId{
-				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName: "example-resource-group",
-				ServerGroupName:   "serverGroupValue",
-				ServerName:        "serverValue",
+				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:  "example-resource-group",
+				ServerGroupsv2Name: "serverGroupsv2Value",
+				ServerName:         "serverValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/serverGroupValue/servers/serverValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/serverGroupsv2Value/servers/serverValue/extra",
 			Error: true,
 		},
 	}
@@ -131,8 +131,8 @@ func TestParseServerID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.ServerGroupName != v.Expected.ServerGroupName {
-			t.Fatalf("Expected %q but got %q for ServerGroupName", v.Expected.ServerGroupName, actual.ServerGroupName)
+		if actual.ServerGroupsv2Name != v.Expected.ServerGroupsv2Name {
+			t.Fatalf("Expected %q but got %q for ServerGroupsv2Name", v.Expected.ServerGroupsv2Name, actual.ServerGroupsv2Name)
 		}
 
 		if actual.ServerName != v.Expected.ServerName {
@@ -225,52 +225,52 @@ func TestParseServerIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/serverGroupValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/serverGroupsv2Value",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dBfOrPoStGrEsQl/sErVeRgRoUpSv2/sErVeRgRoUpVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dBfOrPoStGrEsQl/sErVeRgRoUpSv2/sErVeRgRoUpSv2vAlUe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/serverGroupValue/servers",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/serverGroupsv2Value/servers",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dBfOrPoStGrEsQl/sErVeRgRoUpSv2/sErVeRgRoUpVaLuE/sErVeRs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dBfOrPoStGrEsQl/sErVeRgRoUpSv2/sErVeRgRoUpSv2vAlUe/sErVeRs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/serverGroupValue/servers/serverValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/serverGroupsv2Value/servers/serverValue",
 			Expected: &ServerId{
-				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName: "example-resource-group",
-				ServerGroupName:   "serverGroupValue",
-				ServerName:        "serverValue",
+				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:  "example-resource-group",
+				ServerGroupsv2Name: "serverGroupsv2Value",
+				ServerName:         "serverValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/serverGroupValue/servers/serverValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/serverGroupsv2Value/servers/serverValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dBfOrPoStGrEsQl/sErVeRgRoUpSv2/sErVeRgRoUpVaLuE/sErVeRs/sErVeRvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dBfOrPoStGrEsQl/sErVeRgRoUpSv2/sErVeRgRoUpSv2vAlUe/sErVeRs/sErVeRvAlUe",
 			Expected: &ServerId{
-				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				ServerGroupName:   "sErVeRgRoUpVaLuE",
-				ServerName:        "sErVeRvAlUe",
+				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:  "eXaMpLe-rEsOuRcE-GrOuP",
+				ServerGroupsv2Name: "sErVeRgRoUpSv2vAlUe",
+				ServerName:         "sErVeRvAlUe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dBfOrPoStGrEsQl/sErVeRgRoUpSv2/sErVeRgRoUpVaLuE/sErVeRs/sErVeRvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dBfOrPoStGrEsQl/sErVeRgRoUpSv2/sErVeRgRoUpSv2vAlUe/sErVeRs/sErVeRvAlUe/extra",
 			Error: true,
 		},
 	}
@@ -297,8 +297,8 @@ func TestParseServerIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.ServerGroupName != v.Expected.ServerGroupName {
-			t.Fatalf("Expected %q but got %q for ServerGroupName", v.Expected.ServerGroupName, actual.ServerGroupName)
+		if actual.ServerGroupsv2Name != v.Expected.ServerGroupsv2Name {
+			t.Fatalf("Expected %q but got %q for ServerGroupsv2Name", v.Expected.ServerGroupsv2Name, actual.ServerGroupsv2Name)
 		}
 
 		if actual.ServerName != v.Expected.ServerName {

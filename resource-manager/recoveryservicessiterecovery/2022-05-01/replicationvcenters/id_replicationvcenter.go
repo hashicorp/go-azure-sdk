@@ -11,21 +11,21 @@ var _ resourceids.ResourceId = ReplicationvCenterId{}
 
 // ReplicationvCenterId is a struct representing the Resource ID for a Replicationv Center
 type ReplicationvCenterId struct {
-	SubscriptionId    string
-	ResourceGroupName string
-	ResourceName      string
-	FabricName        string
-	VcenterName       string
+	SubscriptionId         string
+	ResourceGroupName      string
+	VaultName              string
+	ReplicationFabricName  string
+	ReplicationvCenterName string
 }
 
 // NewReplicationvCenterID returns a new ReplicationvCenterId struct
-func NewReplicationvCenterID(subscriptionId string, resourceGroupName string, resourceName string, fabricName string, vcenterName string) ReplicationvCenterId {
+func NewReplicationvCenterID(subscriptionId string, resourceGroupName string, vaultName string, replicationFabricName string, replicationvCenterName string) ReplicationvCenterId {
 	return ReplicationvCenterId{
-		SubscriptionId:    subscriptionId,
-		ResourceGroupName: resourceGroupName,
-		ResourceName:      resourceName,
-		FabricName:        fabricName,
-		VcenterName:       vcenterName,
+		SubscriptionId:         subscriptionId,
+		ResourceGroupName:      resourceGroupName,
+		VaultName:              vaultName,
+		ReplicationFabricName:  replicationFabricName,
+		ReplicationvCenterName: replicationvCenterName,
 	}
 }
 
@@ -48,16 +48,16 @@ func ParseReplicationvCenterID(input string) (*ReplicationvCenterId, error) {
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.ResourceName, ok = parsed.Parsed["resourceName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceName' was not found in the resource id %q", input)
+	if id.VaultName, ok = parsed.Parsed["vaultName"]; !ok {
+		return nil, fmt.Errorf("the segment 'vaultName' was not found in the resource id %q", input)
 	}
 
-	if id.FabricName, ok = parsed.Parsed["fabricName"]; !ok {
-		return nil, fmt.Errorf("the segment 'fabricName' was not found in the resource id %q", input)
+	if id.ReplicationFabricName, ok = parsed.Parsed["replicationFabricName"]; !ok {
+		return nil, fmt.Errorf("the segment 'replicationFabricName' was not found in the resource id %q", input)
 	}
 
-	if id.VcenterName, ok = parsed.Parsed["vcenterName"]; !ok {
-		return nil, fmt.Errorf("the segment 'vcenterName' was not found in the resource id %q", input)
+	if id.ReplicationvCenterName, ok = parsed.Parsed["replicationvCenterName"]; !ok {
+		return nil, fmt.Errorf("the segment 'replicationvCenterName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -83,16 +83,16 @@ func ParseReplicationvCenterIDInsensitively(input string) (*ReplicationvCenterId
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.ResourceName, ok = parsed.Parsed["resourceName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceName' was not found in the resource id %q", input)
+	if id.VaultName, ok = parsed.Parsed["vaultName"]; !ok {
+		return nil, fmt.Errorf("the segment 'vaultName' was not found in the resource id %q", input)
 	}
 
-	if id.FabricName, ok = parsed.Parsed["fabricName"]; !ok {
-		return nil, fmt.Errorf("the segment 'fabricName' was not found in the resource id %q", input)
+	if id.ReplicationFabricName, ok = parsed.Parsed["replicationFabricName"]; !ok {
+		return nil, fmt.Errorf("the segment 'replicationFabricName' was not found in the resource id %q", input)
 	}
 
-	if id.VcenterName, ok = parsed.Parsed["vcenterName"]; !ok {
-		return nil, fmt.Errorf("the segment 'vcenterName' was not found in the resource id %q", input)
+	if id.ReplicationvCenterName, ok = parsed.Parsed["replicationvCenterName"]; !ok {
+		return nil, fmt.Errorf("the segment 'replicationvCenterName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -116,7 +116,7 @@ func ValidateReplicationvCenterID(input interface{}, key string) (warnings []str
 // ID returns the formatted Replicationv Center ID
 func (id ReplicationvCenterId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.RecoveryServices/vaults/%s/replicationFabrics/%s/replicationvCenters/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.ResourceName, id.FabricName, id.VcenterName)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.VaultName, id.ReplicationFabricName, id.ReplicationvCenterName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Replicationv Center ID
@@ -129,11 +129,11 @@ func (id ReplicationvCenterId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftRecoveryServices", "Microsoft.RecoveryServices", "Microsoft.RecoveryServices"),
 		resourceids.StaticSegment("staticVaults", "vaults", "vaults"),
-		resourceids.UserSpecifiedSegment("resourceName", "resourceValue"),
+		resourceids.UserSpecifiedSegment("vaultName", "vaultValue"),
 		resourceids.StaticSegment("staticReplicationFabrics", "replicationFabrics", "replicationFabrics"),
-		resourceids.UserSpecifiedSegment("fabricName", "fabricValue"),
+		resourceids.UserSpecifiedSegment("replicationFabricName", "replicationFabricValue"),
 		resourceids.StaticSegment("staticReplicationvCenters", "replicationvCenters", "replicationvCenters"),
-		resourceids.UserSpecifiedSegment("vcenterName", "vcenterValue"),
+		resourceids.UserSpecifiedSegment("replicationvCenterName", "replicationvCenterValue"),
 	}
 }
 
@@ -142,9 +142,9 @@ func (id ReplicationvCenterId) String() string {
 	components := []string{
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
-		fmt.Sprintf("Resource Name: %q", id.ResourceName),
-		fmt.Sprintf("Fabric Name: %q", id.FabricName),
-		fmt.Sprintf("Vcenter Name: %q", id.VcenterName),
+		fmt.Sprintf("Vault Name: %q", id.VaultName),
+		fmt.Sprintf("Replication Fabric Name: %q", id.ReplicationFabricName),
+		fmt.Sprintf("Replicationv Center Name: %q", id.ReplicationvCenterName),
 	}
 	return fmt.Sprintf("Replicationv Center (%s)", strings.Join(components, "\n"))
 }

@@ -11,19 +11,19 @@ var _ resourceids.ResourceId = ExtensionTypeId{}
 
 // ExtensionTypeId is a struct representing the Resource ID for a Extension Type
 type ExtensionTypeId struct {
-	SubscriptionId string
-	Location       string
-	Publisher      string
-	ExtensionType  string
+	SubscriptionId    string
+	LocationName      string
+	PublisherName     string
+	ExtensionTypeName string
 }
 
 // NewExtensionTypeID returns a new ExtensionTypeId struct
-func NewExtensionTypeID(subscriptionId string, location string, publisher string, extensionType string) ExtensionTypeId {
+func NewExtensionTypeID(subscriptionId string, locationName string, publisherName string, extensionTypeName string) ExtensionTypeId {
 	return ExtensionTypeId{
-		SubscriptionId: subscriptionId,
-		Location:       location,
-		Publisher:      publisher,
-		ExtensionType:  extensionType,
+		SubscriptionId:    subscriptionId,
+		LocationName:      locationName,
+		PublisherName:     publisherName,
+		ExtensionTypeName: extensionTypeName,
 	}
 }
 
@@ -42,16 +42,16 @@ func ParseExtensionTypeID(input string) (*ExtensionTypeId, error) {
 		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
 	}
 
-	if id.Location, ok = parsed.Parsed["location"]; !ok {
-		return nil, fmt.Errorf("the segment 'location' was not found in the resource id %q", input)
+	if id.LocationName, ok = parsed.Parsed["locationName"]; !ok {
+		return nil, fmt.Errorf("the segment 'locationName' was not found in the resource id %q", input)
 	}
 
-	if id.Publisher, ok = parsed.Parsed["publisher"]; !ok {
-		return nil, fmt.Errorf("the segment 'publisher' was not found in the resource id %q", input)
+	if id.PublisherName, ok = parsed.Parsed["publisherName"]; !ok {
+		return nil, fmt.Errorf("the segment 'publisherName' was not found in the resource id %q", input)
 	}
 
-	if id.ExtensionType, ok = parsed.Parsed["extensionType"]; !ok {
-		return nil, fmt.Errorf("the segment 'extensionType' was not found in the resource id %q", input)
+	if id.ExtensionTypeName, ok = parsed.Parsed["extensionTypeName"]; !ok {
+		return nil, fmt.Errorf("the segment 'extensionTypeName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -73,16 +73,16 @@ func ParseExtensionTypeIDInsensitively(input string) (*ExtensionTypeId, error) {
 		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
 	}
 
-	if id.Location, ok = parsed.Parsed["location"]; !ok {
-		return nil, fmt.Errorf("the segment 'location' was not found in the resource id %q", input)
+	if id.LocationName, ok = parsed.Parsed["locationName"]; !ok {
+		return nil, fmt.Errorf("the segment 'locationName' was not found in the resource id %q", input)
 	}
 
-	if id.Publisher, ok = parsed.Parsed["publisher"]; !ok {
-		return nil, fmt.Errorf("the segment 'publisher' was not found in the resource id %q", input)
+	if id.PublisherName, ok = parsed.Parsed["publisherName"]; !ok {
+		return nil, fmt.Errorf("the segment 'publisherName' was not found in the resource id %q", input)
 	}
 
-	if id.ExtensionType, ok = parsed.Parsed["extensionType"]; !ok {
-		return nil, fmt.Errorf("the segment 'extensionType' was not found in the resource id %q", input)
+	if id.ExtensionTypeName, ok = parsed.Parsed["extensionTypeName"]; !ok {
+		return nil, fmt.Errorf("the segment 'extensionTypeName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -106,7 +106,7 @@ func ValidateExtensionTypeID(input interface{}, key string) (warnings []string, 
 // ID returns the formatted Extension Type ID
 func (id ExtensionTypeId) ID() string {
 	fmtString := "/subscriptions/%s/providers/Microsoft.HybridCompute/locations/%s/publishers/%s/extensionTypes/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.Location, id.Publisher, id.ExtensionType)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.LocationName, id.PublisherName, id.ExtensionTypeName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Extension Type ID
@@ -117,11 +117,11 @@ func (id ExtensionTypeId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftHybridCompute", "Microsoft.HybridCompute", "Microsoft.HybridCompute"),
 		resourceids.StaticSegment("staticLocations", "locations", "locations"),
-		resourceids.UserSpecifiedSegment("location", "locationValue"),
+		resourceids.UserSpecifiedSegment("locationName", "locationValue"),
 		resourceids.StaticSegment("staticPublishers", "publishers", "publishers"),
-		resourceids.UserSpecifiedSegment("publisher", "publisherValue"),
+		resourceids.UserSpecifiedSegment("publisherName", "publisherValue"),
 		resourceids.StaticSegment("staticExtensionTypes", "extensionTypes", "extensionTypes"),
-		resourceids.UserSpecifiedSegment("extensionType", "extensionTypeValue"),
+		resourceids.UserSpecifiedSegment("extensionTypeName", "extensionTypeValue"),
 	}
 }
 
@@ -129,9 +129,9 @@ func (id ExtensionTypeId) Segments() []resourceids.Segment {
 func (id ExtensionTypeId) String() string {
 	components := []string{
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
-		fmt.Sprintf("Location: %q", id.Location),
-		fmt.Sprintf("Publisher: %q", id.Publisher),
-		fmt.Sprintf("Extension Type: %q", id.ExtensionType),
+		fmt.Sprintf("Location Name: %q", id.LocationName),
+		fmt.Sprintf("Publisher Name: %q", id.PublisherName),
+		fmt.Sprintf("Extension Type Name: %q", id.ExtensionTypeName),
 	}
 	return fmt.Sprintf("Extension Type (%s)", strings.Join(components, "\n"))
 }

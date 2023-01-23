@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = ResourceLockId{}
 
 func TestNewResourceLockID(t *testing.T) {
-	id := NewResourceLockID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceProviderNamespaceValue", "parentResourcePathValue", "resourceTypeValue", "resourceValue", "lockValue")
+	id := NewResourceLockID("12345678-1234-9876-4563-123456789012", "example-resource-group", "providerValue", "parentResourcePathValue", "resourceTypeValue", "resourceValue", "lockValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -19,8 +19,8 @@ func TestNewResourceLockID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.ResourceProviderNamespace != "resourceProviderNamespaceValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ResourceProviderNamespace'", id.ResourceProviderNamespace, "resourceProviderNamespaceValue")
+	if id.ProviderName != "providerValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'ProviderName'", id.ProviderName, "providerValue")
 	}
 
 	if id.ParentResourcePath != "parentResourcePathValue" {
@@ -41,8 +41,8 @@ func TestNewResourceLockID(t *testing.T) {
 }
 
 func TestFormatResourceLockID(t *testing.T) {
-	actual := NewResourceLockID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceProviderNamespaceValue", "parentResourcePathValue", "resourceTypeValue", "resourceValue", "lockValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/resourceProviderNamespaceValue/parentResourcePathValue/resourceTypeValue/resourceValue/providers/Microsoft.Authorization/locks/lockValue"
+	actual := NewResourceLockID("12345678-1234-9876-4563-123456789012", "example-resource-group", "providerValue", "parentResourcePathValue", "resourceTypeValue", "resourceValue", "lockValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/providerValue/parentResourcePathValue/resourceTypeValue/resourceValue/providers/Microsoft.Authorization/locks/lockValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -86,55 +86,55 @@ func TestParseResourceLockID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/resourceProviderNamespaceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/providerValue",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/resourceProviderNamespaceValue/parentResourcePathValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/providerValue/parentResourcePathValue",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/resourceProviderNamespaceValue/parentResourcePathValue/resourceTypeValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/providerValue/parentResourcePathValue/resourceTypeValue",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/resourceProviderNamespaceValue/parentResourcePathValue/resourceTypeValue/resourceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/providerValue/parentResourcePathValue/resourceTypeValue/resourceValue",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/resourceProviderNamespaceValue/parentResourcePathValue/resourceTypeValue/resourceValue/providers",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/providerValue/parentResourcePathValue/resourceTypeValue/resourceValue/providers",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/resourceProviderNamespaceValue/parentResourcePathValue/resourceTypeValue/resourceValue/providers/Microsoft.Authorization",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/providerValue/parentResourcePathValue/resourceTypeValue/resourceValue/providers/Microsoft.Authorization",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/resourceProviderNamespaceValue/parentResourcePathValue/resourceTypeValue/resourceValue/providers/Microsoft.Authorization/locks",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/providerValue/parentResourcePathValue/resourceTypeValue/resourceValue/providers/Microsoft.Authorization/locks",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/resourceProviderNamespaceValue/parentResourcePathValue/resourceTypeValue/resourceValue/providers/Microsoft.Authorization/locks/lockValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/providerValue/parentResourcePathValue/resourceTypeValue/resourceValue/providers/Microsoft.Authorization/locks/lockValue",
 			Expected: &ResourceLockId{
-				SubscriptionId:            "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName:         "example-resource-group",
-				ResourceProviderNamespace: "resourceProviderNamespaceValue",
-				ParentResourcePath:        "parentResourcePathValue",
-				ResourceType:              "resourceTypeValue",
-				ResourceName:              "resourceValue",
-				LockName:                  "lockValue",
+				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:  "example-resource-group",
+				ProviderName:       "providerValue",
+				ParentResourcePath: "parentResourcePathValue",
+				ResourceType:       "resourceTypeValue",
+				ResourceName:       "resourceValue",
+				LockName:           "lockValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/resourceProviderNamespaceValue/parentResourcePathValue/resourceTypeValue/resourceValue/providers/Microsoft.Authorization/locks/lockValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/providerValue/parentResourcePathValue/resourceTypeValue/resourceValue/providers/Microsoft.Authorization/locks/lockValue/extra",
 			Error: true,
 		},
 	}
@@ -161,8 +161,8 @@ func TestParseResourceLockID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.ResourceProviderNamespace != v.Expected.ResourceProviderNamespace {
-			t.Fatalf("Expected %q but got %q for ResourceProviderNamespace", v.Expected.ResourceProviderNamespace, actual.ResourceProviderNamespace)
+		if actual.ProviderName != v.Expected.ProviderName {
+			t.Fatalf("Expected %q but got %q for ProviderName", v.Expected.ProviderName, actual.ProviderName)
 		}
 
 		if actual.ParentResourcePath != v.Expected.ParentResourcePath {
@@ -247,108 +247,108 @@ func TestParseResourceLockIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/resourceProviderNamespaceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/providerValue",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/rEsOuRcEpRoViDeRnAmEsPaCeVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/pRoViDeRvAlUe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/resourceProviderNamespaceValue/parentResourcePathValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/providerValue/parentResourcePathValue",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/rEsOuRcEpRoViDeRnAmEsPaCeVaLuE/pArEnTrEsOuRcEpAtHvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/pRoViDeRvAlUe/pArEnTrEsOuRcEpAtHvAlUe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/resourceProviderNamespaceValue/parentResourcePathValue/resourceTypeValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/providerValue/parentResourcePathValue/resourceTypeValue",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/rEsOuRcEpRoViDeRnAmEsPaCeVaLuE/pArEnTrEsOuRcEpAtHvAlUe/rEsOuRcEtYpEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/pRoViDeRvAlUe/pArEnTrEsOuRcEpAtHvAlUe/rEsOuRcEtYpEvAlUe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/resourceProviderNamespaceValue/parentResourcePathValue/resourceTypeValue/resourceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/providerValue/parentResourcePathValue/resourceTypeValue/resourceValue",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/rEsOuRcEpRoViDeRnAmEsPaCeVaLuE/pArEnTrEsOuRcEpAtHvAlUe/rEsOuRcEtYpEvAlUe/rEsOuRcEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/pRoViDeRvAlUe/pArEnTrEsOuRcEpAtHvAlUe/rEsOuRcEtYpEvAlUe/rEsOuRcEvAlUe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/resourceProviderNamespaceValue/parentResourcePathValue/resourceTypeValue/resourceValue/providers",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/providerValue/parentResourcePathValue/resourceTypeValue/resourceValue/providers",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/rEsOuRcEpRoViDeRnAmEsPaCeVaLuE/pArEnTrEsOuRcEpAtHvAlUe/rEsOuRcEtYpEvAlUe/rEsOuRcEvAlUe/pRoViDeRs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/pRoViDeRvAlUe/pArEnTrEsOuRcEpAtHvAlUe/rEsOuRcEtYpEvAlUe/rEsOuRcEvAlUe/pRoViDeRs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/resourceProviderNamespaceValue/parentResourcePathValue/resourceTypeValue/resourceValue/providers/Microsoft.Authorization",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/providerValue/parentResourcePathValue/resourceTypeValue/resourceValue/providers/Microsoft.Authorization",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/rEsOuRcEpRoViDeRnAmEsPaCeVaLuE/pArEnTrEsOuRcEpAtHvAlUe/rEsOuRcEtYpEvAlUe/rEsOuRcEvAlUe/pRoViDeRs/mIcRoSoFt.aUtHoRiZaTiOn",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/pRoViDeRvAlUe/pArEnTrEsOuRcEpAtHvAlUe/rEsOuRcEtYpEvAlUe/rEsOuRcEvAlUe/pRoViDeRs/mIcRoSoFt.aUtHoRiZaTiOn",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/resourceProviderNamespaceValue/parentResourcePathValue/resourceTypeValue/resourceValue/providers/Microsoft.Authorization/locks",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/providerValue/parentResourcePathValue/resourceTypeValue/resourceValue/providers/Microsoft.Authorization/locks",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/rEsOuRcEpRoViDeRnAmEsPaCeVaLuE/pArEnTrEsOuRcEpAtHvAlUe/rEsOuRcEtYpEvAlUe/rEsOuRcEvAlUe/pRoViDeRs/mIcRoSoFt.aUtHoRiZaTiOn/lOcKs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/pRoViDeRvAlUe/pArEnTrEsOuRcEpAtHvAlUe/rEsOuRcEtYpEvAlUe/rEsOuRcEvAlUe/pRoViDeRs/mIcRoSoFt.aUtHoRiZaTiOn/lOcKs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/resourceProviderNamespaceValue/parentResourcePathValue/resourceTypeValue/resourceValue/providers/Microsoft.Authorization/locks/lockValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/providerValue/parentResourcePathValue/resourceTypeValue/resourceValue/providers/Microsoft.Authorization/locks/lockValue",
 			Expected: &ResourceLockId{
-				SubscriptionId:            "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName:         "example-resource-group",
-				ResourceProviderNamespace: "resourceProviderNamespaceValue",
-				ParentResourcePath:        "parentResourcePathValue",
-				ResourceType:              "resourceTypeValue",
-				ResourceName:              "resourceValue",
-				LockName:                  "lockValue",
+				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:  "example-resource-group",
+				ProviderName:       "providerValue",
+				ParentResourcePath: "parentResourcePathValue",
+				ResourceType:       "resourceTypeValue",
+				ResourceName:       "resourceValue",
+				LockName:           "lockValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/resourceProviderNamespaceValue/parentResourcePathValue/resourceTypeValue/resourceValue/providers/Microsoft.Authorization/locks/lockValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/providerValue/parentResourcePathValue/resourceTypeValue/resourceValue/providers/Microsoft.Authorization/locks/lockValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/rEsOuRcEpRoViDeRnAmEsPaCeVaLuE/pArEnTrEsOuRcEpAtHvAlUe/rEsOuRcEtYpEvAlUe/rEsOuRcEvAlUe/pRoViDeRs/mIcRoSoFt.aUtHoRiZaTiOn/lOcKs/lOcKvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/pRoViDeRvAlUe/pArEnTrEsOuRcEpAtHvAlUe/rEsOuRcEtYpEvAlUe/rEsOuRcEvAlUe/pRoViDeRs/mIcRoSoFt.aUtHoRiZaTiOn/lOcKs/lOcKvAlUe",
 			Expected: &ResourceLockId{
-				SubscriptionId:            "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName:         "eXaMpLe-rEsOuRcE-GrOuP",
-				ResourceProviderNamespace: "rEsOuRcEpRoViDeRnAmEsPaCeVaLuE",
-				ParentResourcePath:        "pArEnTrEsOuRcEpAtHvAlUe",
-				ResourceType:              "rEsOuRcEtYpEvAlUe",
-				ResourceName:              "rEsOuRcEvAlUe",
-				LockName:                  "lOcKvAlUe",
+				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:  "eXaMpLe-rEsOuRcE-GrOuP",
+				ProviderName:       "pRoViDeRvAlUe",
+				ParentResourcePath: "pArEnTrEsOuRcEpAtHvAlUe",
+				ResourceType:       "rEsOuRcEtYpEvAlUe",
+				ResourceName:       "rEsOuRcEvAlUe",
+				LockName:           "lOcKvAlUe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/rEsOuRcEpRoViDeRnAmEsPaCeVaLuE/pArEnTrEsOuRcEpAtHvAlUe/rEsOuRcEtYpEvAlUe/rEsOuRcEvAlUe/pRoViDeRs/mIcRoSoFt.aUtHoRiZaTiOn/lOcKs/lOcKvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/pRoViDeRvAlUe/pArEnTrEsOuRcEpAtHvAlUe/rEsOuRcEtYpEvAlUe/rEsOuRcEvAlUe/pRoViDeRs/mIcRoSoFt.aUtHoRiZaTiOn/lOcKs/lOcKvAlUe/extra",
 			Error: true,
 		},
 	}
@@ -375,8 +375,8 @@ func TestParseResourceLockIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.ResourceProviderNamespace != v.Expected.ResourceProviderNamespace {
-			t.Fatalf("Expected %q but got %q for ResourceProviderNamespace", v.Expected.ResourceProviderNamespace, actual.ResourceProviderNamespace)
+		if actual.ProviderName != v.Expected.ProviderName {
+			t.Fatalf("Expected %q but got %q for ProviderName", v.Expected.ProviderName, actual.ProviderName)
 		}
 
 		if actual.ParentResourcePath != v.Expected.ParentResourcePath {

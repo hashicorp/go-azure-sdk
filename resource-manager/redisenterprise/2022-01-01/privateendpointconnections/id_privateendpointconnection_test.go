@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = PrivateEndpointConnectionId{}
 
 func TestNewPrivateEndpointConnectionID(t *testing.T) {
-	id := NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "clusterValue", "privateEndpointConnectionValue")
+	id := NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "redisEnterpriseValue", "privateEndpointConnectionValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -19,8 +19,8 @@ func TestNewPrivateEndpointConnectionID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.ClusterName != "clusterValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ClusterName'", id.ClusterName, "clusterValue")
+	if id.RedisEnterpriseName != "redisEnterpriseValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'RedisEnterpriseName'", id.RedisEnterpriseName, "redisEnterpriseValue")
 	}
 
 	if id.PrivateEndpointConnectionName != "privateEndpointConnectionValue" {
@@ -29,8 +29,8 @@ func TestNewPrivateEndpointConnectionID(t *testing.T) {
 }
 
 func TestFormatPrivateEndpointConnectionID(t *testing.T) {
-	actual := NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "clusterValue", "privateEndpointConnectionValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Cache/redisEnterprise/clusterValue/privateEndpointConnections/privateEndpointConnectionValue"
+	actual := NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "redisEnterpriseValue", "privateEndpointConnectionValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Cache/redisEnterprise/redisEnterpriseValue/privateEndpointConnections/privateEndpointConnectionValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -84,27 +84,27 @@ func TestParsePrivateEndpointConnectionID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Cache/redisEnterprise/clusterValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Cache/redisEnterprise/redisEnterpriseValue",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Cache/redisEnterprise/clusterValue/privateEndpointConnections",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Cache/redisEnterprise/redisEnterpriseValue/privateEndpointConnections",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Cache/redisEnterprise/clusterValue/privateEndpointConnections/privateEndpointConnectionValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Cache/redisEnterprise/redisEnterpriseValue/privateEndpointConnections/privateEndpointConnectionValue",
 			Expected: &PrivateEndpointConnectionId{
 				SubscriptionId:                "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:             "example-resource-group",
-				ClusterName:                   "clusterValue",
+				RedisEnterpriseName:           "redisEnterpriseValue",
 				PrivateEndpointConnectionName: "privateEndpointConnectionValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Cache/redisEnterprise/clusterValue/privateEndpointConnections/privateEndpointConnectionValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Cache/redisEnterprise/redisEnterpriseValue/privateEndpointConnections/privateEndpointConnectionValue/extra",
 			Error: true,
 		},
 	}
@@ -131,8 +131,8 @@ func TestParsePrivateEndpointConnectionID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.ClusterName != v.Expected.ClusterName {
-			t.Fatalf("Expected %q but got %q for ClusterName", v.Expected.ClusterName, actual.ClusterName)
+		if actual.RedisEnterpriseName != v.Expected.RedisEnterpriseName {
+			t.Fatalf("Expected %q but got %q for RedisEnterpriseName", v.Expected.RedisEnterpriseName, actual.RedisEnterpriseName)
 		}
 
 		if actual.PrivateEndpointConnectionName != v.Expected.PrivateEndpointConnectionName {
@@ -225,52 +225,52 @@ func TestParsePrivateEndpointConnectionIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Cache/redisEnterprise/clusterValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Cache/redisEnterprise/redisEnterpriseValue",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cAcHe/rEdIsEnTeRpRiSe/cLuStErVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cAcHe/rEdIsEnTeRpRiSe/rEdIsEnTeRpRiSeVaLuE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Cache/redisEnterprise/clusterValue/privateEndpointConnections",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Cache/redisEnterprise/redisEnterpriseValue/privateEndpointConnections",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cAcHe/rEdIsEnTeRpRiSe/cLuStErVaLuE/pRiVaTeEnDpOiNtCoNnEcTiOnS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cAcHe/rEdIsEnTeRpRiSe/rEdIsEnTeRpRiSeVaLuE/pRiVaTeEnDpOiNtCoNnEcTiOnS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Cache/redisEnterprise/clusterValue/privateEndpointConnections/privateEndpointConnectionValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Cache/redisEnterprise/redisEnterpriseValue/privateEndpointConnections/privateEndpointConnectionValue",
 			Expected: &PrivateEndpointConnectionId{
 				SubscriptionId:                "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:             "example-resource-group",
-				ClusterName:                   "clusterValue",
+				RedisEnterpriseName:           "redisEnterpriseValue",
 				PrivateEndpointConnectionName: "privateEndpointConnectionValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Cache/redisEnterprise/clusterValue/privateEndpointConnections/privateEndpointConnectionValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Cache/redisEnterprise/redisEnterpriseValue/privateEndpointConnections/privateEndpointConnectionValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cAcHe/rEdIsEnTeRpRiSe/cLuStErVaLuE/pRiVaTeEnDpOiNtCoNnEcTiOnS/pRiVaTeEnDpOiNtCoNnEcTiOnVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cAcHe/rEdIsEnTeRpRiSe/rEdIsEnTeRpRiSeVaLuE/pRiVaTeEnDpOiNtCoNnEcTiOnS/pRiVaTeEnDpOiNtCoNnEcTiOnVaLuE",
 			Expected: &PrivateEndpointConnectionId{
 				SubscriptionId:                "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:             "eXaMpLe-rEsOuRcE-GrOuP",
-				ClusterName:                   "cLuStErVaLuE",
+				RedisEnterpriseName:           "rEdIsEnTeRpRiSeVaLuE",
 				PrivateEndpointConnectionName: "pRiVaTeEnDpOiNtCoNnEcTiOnVaLuE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cAcHe/rEdIsEnTeRpRiSe/cLuStErVaLuE/pRiVaTeEnDpOiNtCoNnEcTiOnS/pRiVaTeEnDpOiNtCoNnEcTiOnVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cAcHe/rEdIsEnTeRpRiSe/rEdIsEnTeRpRiSeVaLuE/pRiVaTeEnDpOiNtCoNnEcTiOnS/pRiVaTeEnDpOiNtCoNnEcTiOnVaLuE/extra",
 			Error: true,
 		},
 	}
@@ -297,8 +297,8 @@ func TestParsePrivateEndpointConnectionIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.ClusterName != v.Expected.ClusterName {
-			t.Fatalf("Expected %q but got %q for ClusterName", v.Expected.ClusterName, actual.ClusterName)
+		if actual.RedisEnterpriseName != v.Expected.RedisEnterpriseName {
+			t.Fatalf("Expected %q but got %q for RedisEnterpriseName", v.Expected.RedisEnterpriseName, actual.RedisEnterpriseName)
 		}
 
 		if actual.PrivateEndpointConnectionName != v.Expected.PrivateEndpointConnectionName {

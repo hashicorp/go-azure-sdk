@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := batchdeployment.NewDeploymentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "endpointValue", "deploymentValue")
+id := batchdeployment.NewDeploymentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "batchEndpointValue", "deploymentValue")
 
 payload := batchdeployment.BatchDeploymentTrackedResource{
 	// ...
@@ -41,7 +41,7 @@ if err := client.CreateOrUpdateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := batchdeployment.NewDeploymentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "endpointValue", "deploymentValue")
+id := batchdeployment.NewDeploymentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "batchEndpointValue", "deploymentValue")
 
 if err := client.DeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -53,7 +53,7 @@ if err := client.DeleteThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := batchdeployment.NewDeploymentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "endpointValue", "deploymentValue")
+id := batchdeployment.NewDeploymentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "batchEndpointValue", "deploymentValue")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -69,7 +69,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := batchdeployment.NewBatchEndpointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "endpointValue")
+id := batchdeployment.NewBatchEndpointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "batchEndpointValue")
 
 // alternatively `client.List(ctx, id, batchdeployment.DefaultListOperationOptions())` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id, batchdeployment.DefaultListOperationOptions())
@@ -86,7 +86,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := batchdeployment.NewDeploymentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "endpointValue", "deploymentValue")
+id := batchdeployment.NewDeploymentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "batchEndpointValue", "deploymentValue")
 
 payload := batchdeployment.PartialBatchDeploymentPartialMinimalTrackedResourceWithProperties{
 	// ...

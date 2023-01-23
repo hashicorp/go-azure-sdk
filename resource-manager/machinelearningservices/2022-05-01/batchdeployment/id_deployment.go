@@ -14,17 +14,17 @@ type DeploymentId struct {
 	SubscriptionId    string
 	ResourceGroupName string
 	WorkspaceName     string
-	EndpointName      string
+	BatchEndpointName string
 	DeploymentName    string
 }
 
 // NewDeploymentID returns a new DeploymentId struct
-func NewDeploymentID(subscriptionId string, resourceGroupName string, workspaceName string, endpointName string, deploymentName string) DeploymentId {
+func NewDeploymentID(subscriptionId string, resourceGroupName string, workspaceName string, batchEndpointName string, deploymentName string) DeploymentId {
 	return DeploymentId{
 		SubscriptionId:    subscriptionId,
 		ResourceGroupName: resourceGroupName,
 		WorkspaceName:     workspaceName,
-		EndpointName:      endpointName,
+		BatchEndpointName: batchEndpointName,
 		DeploymentName:    deploymentName,
 	}
 }
@@ -52,8 +52,8 @@ func ParseDeploymentID(input string) (*DeploymentId, error) {
 		return nil, fmt.Errorf("the segment 'workspaceName' was not found in the resource id %q", input)
 	}
 
-	if id.EndpointName, ok = parsed.Parsed["endpointName"]; !ok {
-		return nil, fmt.Errorf("the segment 'endpointName' was not found in the resource id %q", input)
+	if id.BatchEndpointName, ok = parsed.Parsed["batchEndpointName"]; !ok {
+		return nil, fmt.Errorf("the segment 'batchEndpointName' was not found in the resource id %q", input)
 	}
 
 	if id.DeploymentName, ok = parsed.Parsed["deploymentName"]; !ok {
@@ -87,8 +87,8 @@ func ParseDeploymentIDInsensitively(input string) (*DeploymentId, error) {
 		return nil, fmt.Errorf("the segment 'workspaceName' was not found in the resource id %q", input)
 	}
 
-	if id.EndpointName, ok = parsed.Parsed["endpointName"]; !ok {
-		return nil, fmt.Errorf("the segment 'endpointName' was not found in the resource id %q", input)
+	if id.BatchEndpointName, ok = parsed.Parsed["batchEndpointName"]; !ok {
+		return nil, fmt.Errorf("the segment 'batchEndpointName' was not found in the resource id %q", input)
 	}
 
 	if id.DeploymentName, ok = parsed.Parsed["deploymentName"]; !ok {
@@ -116,7 +116,7 @@ func ValidateDeploymentID(input interface{}, key string) (warnings []string, err
 // ID returns the formatted Deployment ID
 func (id DeploymentId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.MachineLearningServices/workspaces/%s/batchEndpoints/%s/deployments/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.WorkspaceName, id.EndpointName, id.DeploymentName)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.WorkspaceName, id.BatchEndpointName, id.DeploymentName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Deployment ID
@@ -131,7 +131,7 @@ func (id DeploymentId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticWorkspaces", "workspaces", "workspaces"),
 		resourceids.UserSpecifiedSegment("workspaceName", "workspaceValue"),
 		resourceids.StaticSegment("staticBatchEndpoints", "batchEndpoints", "batchEndpoints"),
-		resourceids.UserSpecifiedSegment("endpointName", "endpointValue"),
+		resourceids.UserSpecifiedSegment("batchEndpointName", "batchEndpointValue"),
 		resourceids.StaticSegment("staticDeployments", "deployments", "deployments"),
 		resourceids.UserSpecifiedSegment("deploymentName", "deploymentValue"),
 	}
@@ -143,7 +143,7 @@ func (id DeploymentId) String() string {
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
 		fmt.Sprintf("Workspace Name: %q", id.WorkspaceName),
-		fmt.Sprintf("Endpoint Name: %q", id.EndpointName),
+		fmt.Sprintf("Batch Endpoint Name: %q", id.BatchEndpointName),
 		fmt.Sprintf("Deployment Name: %q", id.DeploymentName),
 	}
 	return fmt.Sprintf("Deployment (%s)", strings.Join(components, "\n"))

@@ -11,19 +11,19 @@ var _ resourceids.ResourceId = ResourceId{}
 
 // ResourceId is a struct representing the Resource ID for a Resource
 type ResourceId struct {
-	SubscriptionId    string
-	ResourceGroupName string
-	ResourceName      string
-	ResourceId        string
+	SubscriptionId           string
+	ResourceGroupName        string
+	DigitalTwinsInstanceName string
+	ResourceId               string
 }
 
 // NewResourceID returns a new ResourceId struct
-func NewResourceID(subscriptionId string, resourceGroupName string, resourceName string, resourceId string) ResourceId {
+func NewResourceID(subscriptionId string, resourceGroupName string, digitalTwinsInstanceName string, resourceId string) ResourceId {
 	return ResourceId{
-		SubscriptionId:    subscriptionId,
-		ResourceGroupName: resourceGroupName,
-		ResourceName:      resourceName,
-		ResourceId:        resourceId,
+		SubscriptionId:           subscriptionId,
+		ResourceGroupName:        resourceGroupName,
+		DigitalTwinsInstanceName: digitalTwinsInstanceName,
+		ResourceId:               resourceId,
 	}
 }
 
@@ -46,8 +46,8 @@ func ParseResourceID(input string) (*ResourceId, error) {
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.ResourceName, ok = parsed.Parsed["resourceName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceName' was not found in the resource id %q", input)
+	if id.DigitalTwinsInstanceName, ok = parsed.Parsed["digitalTwinsInstanceName"]; !ok {
+		return nil, fmt.Errorf("the segment 'digitalTwinsInstanceName' was not found in the resource id %q", input)
 	}
 
 	if id.ResourceId, ok = parsed.Parsed["resourceId"]; !ok {
@@ -77,8 +77,8 @@ func ParseResourceIDInsensitively(input string) (*ResourceId, error) {
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.ResourceName, ok = parsed.Parsed["resourceName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceName' was not found in the resource id %q", input)
+	if id.DigitalTwinsInstanceName, ok = parsed.Parsed["digitalTwinsInstanceName"]; !ok {
+		return nil, fmt.Errorf("the segment 'digitalTwinsInstanceName' was not found in the resource id %q", input)
 	}
 
 	if id.ResourceId, ok = parsed.Parsed["resourceId"]; !ok {
@@ -106,7 +106,7 @@ func ValidateResourceID(input interface{}, key string) (warnings []string, error
 // ID returns the formatted Resource ID
 func (id ResourceId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.DigitalTwins/digitalTwinsInstances/%s/privateLinkResources/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.ResourceName, strings.TrimPrefix(id.ResourceId, "/"))
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.DigitalTwinsInstanceName, strings.TrimPrefix(id.ResourceId, "/"))
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Resource ID
@@ -119,7 +119,7 @@ func (id ResourceId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftDigitalTwins", "Microsoft.DigitalTwins", "Microsoft.DigitalTwins"),
 		resourceids.StaticSegment("staticDigitalTwinsInstances", "digitalTwinsInstances", "digitalTwinsInstances"),
-		resourceids.UserSpecifiedSegment("resourceName", "resourceValue"),
+		resourceids.UserSpecifiedSegment("digitalTwinsInstanceName", "digitalTwinsInstanceValue"),
 		resourceids.StaticSegment("staticPrivateLinkResources", "privateLinkResources", "privateLinkResources"),
 		resourceids.ScopeSegment("resourceId", "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group"),
 	}
@@ -130,7 +130,7 @@ func (id ResourceId) String() string {
 	components := []string{
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
-		fmt.Sprintf("Resource Name: %q", id.ResourceName),
+		fmt.Sprintf("Digital Twins Instance Name: %q", id.DigitalTwinsInstanceName),
 		fmt.Sprintf("Resource: %q", id.ResourceId),
 	}
 	return fmt.Sprintf("Resource (%s)", strings.Join(components, "\n"))

@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = SingleSignOnConfigurationId{}
 
 func TestNewSingleSignOnConfigurationID(t *testing.T) {
-	id := NewSingleSignOnConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorValue", "configurationValue")
+	id := NewSingleSignOnConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorValue", "singleSignOnConfigurationValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -23,14 +23,14 @@ func TestNewSingleSignOnConfigurationID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'MonitorName'", id.MonitorName, "monitorValue")
 	}
 
-	if id.ConfigurationName != "configurationValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ConfigurationName'", id.ConfigurationName, "configurationValue")
+	if id.SingleSignOnConfigurationName != "singleSignOnConfigurationValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'SingleSignOnConfigurationName'", id.SingleSignOnConfigurationName, "singleSignOnConfigurationValue")
 	}
 }
 
 func TestFormatSingleSignOnConfigurationID(t *testing.T) {
-	actual := NewSingleSignOnConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorValue", "configurationValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Dynatrace.Observability/monitors/monitorValue/singleSignOnConfigurations/configurationValue"
+	actual := NewSingleSignOnConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "monitorValue", "singleSignOnConfigurationValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Dynatrace.Observability/monitors/monitorValue/singleSignOnConfigurations/singleSignOnConfigurationValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -94,17 +94,17 @@ func TestParseSingleSignOnConfigurationID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Dynatrace.Observability/monitors/monitorValue/singleSignOnConfigurations/configurationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Dynatrace.Observability/monitors/monitorValue/singleSignOnConfigurations/singleSignOnConfigurationValue",
 			Expected: &SingleSignOnConfigurationId{
-				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName: "example-resource-group",
-				MonitorName:       "monitorValue",
-				ConfigurationName: "configurationValue",
+				SubscriptionId:                "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:             "example-resource-group",
+				MonitorName:                   "monitorValue",
+				SingleSignOnConfigurationName: "singleSignOnConfigurationValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Dynatrace.Observability/monitors/monitorValue/singleSignOnConfigurations/configurationValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Dynatrace.Observability/monitors/monitorValue/singleSignOnConfigurations/singleSignOnConfigurationValue/extra",
 			Error: true,
 		},
 	}
@@ -135,8 +135,8 @@ func TestParseSingleSignOnConfigurationID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for MonitorName", v.Expected.MonitorName, actual.MonitorName)
 		}
 
-		if actual.ConfigurationName != v.Expected.ConfigurationName {
-			t.Fatalf("Expected %q but got %q for ConfigurationName", v.Expected.ConfigurationName, actual.ConfigurationName)
+		if actual.SingleSignOnConfigurationName != v.Expected.SingleSignOnConfigurationName {
+			t.Fatalf("Expected %q but got %q for SingleSignOnConfigurationName", v.Expected.SingleSignOnConfigurationName, actual.SingleSignOnConfigurationName)
 		}
 
 	}
@@ -245,32 +245,32 @@ func TestParseSingleSignOnConfigurationIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Dynatrace.Observability/monitors/monitorValue/singleSignOnConfigurations/configurationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Dynatrace.Observability/monitors/monitorValue/singleSignOnConfigurations/singleSignOnConfigurationValue",
 			Expected: &SingleSignOnConfigurationId{
-				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName: "example-resource-group",
-				MonitorName:       "monitorValue",
-				ConfigurationName: "configurationValue",
+				SubscriptionId:                "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:             "example-resource-group",
+				MonitorName:                   "monitorValue",
+				SingleSignOnConfigurationName: "singleSignOnConfigurationValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Dynatrace.Observability/monitors/monitorValue/singleSignOnConfigurations/configurationValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Dynatrace.Observability/monitors/monitorValue/singleSignOnConfigurations/singleSignOnConfigurationValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/dYnAtRaCe.oBsErVaBiLiTy/mOnItOrS/mOnItOrVaLuE/sInGlEsIgNoNcOnFiGuRaTiOnS/cOnFiGuRaTiOnVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/dYnAtRaCe.oBsErVaBiLiTy/mOnItOrS/mOnItOrVaLuE/sInGlEsIgNoNcOnFiGuRaTiOnS/sInGlEsIgNoNcOnFiGuRaTiOnVaLuE",
 			Expected: &SingleSignOnConfigurationId{
-				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				MonitorName:       "mOnItOrVaLuE",
-				ConfigurationName: "cOnFiGuRaTiOnVaLuE",
+				SubscriptionId:                "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:             "eXaMpLe-rEsOuRcE-GrOuP",
+				MonitorName:                   "mOnItOrVaLuE",
+				SingleSignOnConfigurationName: "sInGlEsIgNoNcOnFiGuRaTiOnVaLuE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/dYnAtRaCe.oBsErVaBiLiTy/mOnItOrS/mOnItOrVaLuE/sInGlEsIgNoNcOnFiGuRaTiOnS/cOnFiGuRaTiOnVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/dYnAtRaCe.oBsErVaBiLiTy/mOnItOrS/mOnItOrVaLuE/sInGlEsIgNoNcOnFiGuRaTiOnS/sInGlEsIgNoNcOnFiGuRaTiOnVaLuE/extra",
 			Error: true,
 		},
 	}
@@ -301,8 +301,8 @@ func TestParseSingleSignOnConfigurationIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for MonitorName", v.Expected.MonitorName, actual.MonitorName)
 		}
 
-		if actual.ConfigurationName != v.Expected.ConfigurationName {
-			t.Fatalf("Expected %q but got %q for ConfigurationName", v.Expected.ConfigurationName, actual.ConfigurationName)
+		if actual.SingleSignOnConfigurationName != v.Expected.SingleSignOnConfigurationName {
+			t.Fatalf("Expected %q but got %q for SingleSignOnConfigurationName", v.Expected.SingleSignOnConfigurationName, actual.SingleSignOnConfigurationName)
 		}
 
 	}

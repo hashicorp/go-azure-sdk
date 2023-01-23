@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = ObjectReplicationPolicyId{}
 
 func TestNewObjectReplicationPolicyID(t *testing.T) {
-	id := NewObjectReplicationPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "objectReplicationPolicyIdValue")
+	id := NewObjectReplicationPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "storageAccountValue", "objectReplicationPolicyIdValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -19,8 +19,8 @@ func TestNewObjectReplicationPolicyID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.AccountName != "accountValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AccountName'", id.AccountName, "accountValue")
+	if id.StorageAccountName != "storageAccountValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'StorageAccountName'", id.StorageAccountName, "storageAccountValue")
 	}
 
 	if id.ObjectReplicationPolicyId != "objectReplicationPolicyIdValue" {
@@ -29,8 +29,8 @@ func TestNewObjectReplicationPolicyID(t *testing.T) {
 }
 
 func TestFormatObjectReplicationPolicyID(t *testing.T) {
-	actual := NewObjectReplicationPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "objectReplicationPolicyIdValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/accountValue/objectReplicationPolicies/objectReplicationPolicyIdValue"
+	actual := NewObjectReplicationPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "storageAccountValue", "objectReplicationPolicyIdValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/storageAccountValue/objectReplicationPolicies/objectReplicationPolicyIdValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -84,27 +84,27 @@ func TestParseObjectReplicationPolicyID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/accountValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/storageAccountValue",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/accountValue/objectReplicationPolicies",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/storageAccountValue/objectReplicationPolicies",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/accountValue/objectReplicationPolicies/objectReplicationPolicyIdValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/storageAccountValue/objectReplicationPolicies/objectReplicationPolicyIdValue",
 			Expected: &ObjectReplicationPolicyId{
 				SubscriptionId:            "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:         "example-resource-group",
-				AccountName:               "accountValue",
+				StorageAccountName:        "storageAccountValue",
 				ObjectReplicationPolicyId: "objectReplicationPolicyIdValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/accountValue/objectReplicationPolicies/objectReplicationPolicyIdValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/storageAccountValue/objectReplicationPolicies/objectReplicationPolicyIdValue/extra",
 			Error: true,
 		},
 	}
@@ -131,8 +131,8 @@ func TestParseObjectReplicationPolicyID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.AccountName != v.Expected.AccountName {
-			t.Fatalf("Expected %q but got %q for AccountName", v.Expected.AccountName, actual.AccountName)
+		if actual.StorageAccountName != v.Expected.StorageAccountName {
+			t.Fatalf("Expected %q but got %q for StorageAccountName", v.Expected.StorageAccountName, actual.StorageAccountName)
 		}
 
 		if actual.ObjectReplicationPolicyId != v.Expected.ObjectReplicationPolicyId {
@@ -225,52 +225,52 @@ func TestParseObjectReplicationPolicyIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/accountValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/storageAccountValue",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGe/sToRaGeAcCoUnTs/aCcOuNtVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGe/sToRaGeAcCoUnTs/sToRaGeAcCoUnTvAlUe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/accountValue/objectReplicationPolicies",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/storageAccountValue/objectReplicationPolicies",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGe/sToRaGeAcCoUnTs/aCcOuNtVaLuE/oBjEcTrEpLiCaTiOnPoLiCiEs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGe/sToRaGeAcCoUnTs/sToRaGeAcCoUnTvAlUe/oBjEcTrEpLiCaTiOnPoLiCiEs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/accountValue/objectReplicationPolicies/objectReplicationPolicyIdValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/storageAccountValue/objectReplicationPolicies/objectReplicationPolicyIdValue",
 			Expected: &ObjectReplicationPolicyId{
 				SubscriptionId:            "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:         "example-resource-group",
-				AccountName:               "accountValue",
+				StorageAccountName:        "storageAccountValue",
 				ObjectReplicationPolicyId: "objectReplicationPolicyIdValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/accountValue/objectReplicationPolicies/objectReplicationPolicyIdValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Storage/storageAccounts/storageAccountValue/objectReplicationPolicies/objectReplicationPolicyIdValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGe/sToRaGeAcCoUnTs/aCcOuNtVaLuE/oBjEcTrEpLiCaTiOnPoLiCiEs/oBjEcTrEpLiCaTiOnPoLiCyIdVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGe/sToRaGeAcCoUnTs/sToRaGeAcCoUnTvAlUe/oBjEcTrEpLiCaTiOnPoLiCiEs/oBjEcTrEpLiCaTiOnPoLiCyIdVaLuE",
 			Expected: &ObjectReplicationPolicyId{
 				SubscriptionId:            "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:         "eXaMpLe-rEsOuRcE-GrOuP",
-				AccountName:               "aCcOuNtVaLuE",
+				StorageAccountName:        "sToRaGeAcCoUnTvAlUe",
 				ObjectReplicationPolicyId: "oBjEcTrEpLiCaTiOnPoLiCyIdVaLuE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGe/sToRaGeAcCoUnTs/aCcOuNtVaLuE/oBjEcTrEpLiCaTiOnPoLiCiEs/oBjEcTrEpLiCaTiOnPoLiCyIdVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sToRaGe/sToRaGeAcCoUnTs/sToRaGeAcCoUnTvAlUe/oBjEcTrEpLiCaTiOnPoLiCiEs/oBjEcTrEpLiCaTiOnPoLiCyIdVaLuE/extra",
 			Error: true,
 		},
 	}
@@ -297,8 +297,8 @@ func TestParseObjectReplicationPolicyIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.AccountName != v.Expected.AccountName {
-			t.Fatalf("Expected %q but got %q for AccountName", v.Expected.AccountName, actual.AccountName)
+		if actual.StorageAccountName != v.Expected.StorageAccountName {
+			t.Fatalf("Expected %q but got %q for StorageAccountName", v.Expected.StorageAccountName, actual.StorageAccountName)
 		}
 
 		if actual.ObjectReplicationPolicyId != v.Expected.ObjectReplicationPolicyId {

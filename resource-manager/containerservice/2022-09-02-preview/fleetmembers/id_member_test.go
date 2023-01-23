@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = MemberId{}
 
 func TestNewMemberID(t *testing.T) {
-	id := NewMemberID("12345678-1234-9876-4563-123456789012", "example-resource-group", "fleetValue", "fleetMemberValue")
+	id := NewMemberID("12345678-1234-9876-4563-123456789012", "example-resource-group", "fleetValue", "memberValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -23,14 +23,14 @@ func TestNewMemberID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'FleetName'", id.FleetName, "fleetValue")
 	}
 
-	if id.FleetMemberName != "fleetMemberValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'FleetMemberName'", id.FleetMemberName, "fleetMemberValue")
+	if id.MemberName != "memberValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'MemberName'", id.MemberName, "memberValue")
 	}
 }
 
 func TestFormatMemberID(t *testing.T) {
-	actual := NewMemberID("12345678-1234-9876-4563-123456789012", "example-resource-group", "fleetValue", "fleetMemberValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerService/fleets/fleetValue/members/fleetMemberValue"
+	actual := NewMemberID("12345678-1234-9876-4563-123456789012", "example-resource-group", "fleetValue", "memberValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerService/fleets/fleetValue/members/memberValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -94,17 +94,17 @@ func TestParseMemberID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerService/fleets/fleetValue/members/fleetMemberValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerService/fleets/fleetValue/members/memberValue",
 			Expected: &MemberId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				FleetName:         "fleetValue",
-				FleetMemberName:   "fleetMemberValue",
+				MemberName:        "memberValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerService/fleets/fleetValue/members/fleetMemberValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerService/fleets/fleetValue/members/memberValue/extra",
 			Error: true,
 		},
 	}
@@ -135,8 +135,8 @@ func TestParseMemberID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for FleetName", v.Expected.FleetName, actual.FleetName)
 		}
 
-		if actual.FleetMemberName != v.Expected.FleetMemberName {
-			t.Fatalf("Expected %q but got %q for FleetMemberName", v.Expected.FleetMemberName, actual.FleetMemberName)
+		if actual.MemberName != v.Expected.MemberName {
+			t.Fatalf("Expected %q but got %q for MemberName", v.Expected.MemberName, actual.MemberName)
 		}
 
 	}
@@ -245,32 +245,32 @@ func TestParseMemberIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerService/fleets/fleetValue/members/fleetMemberValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerService/fleets/fleetValue/members/memberValue",
 			Expected: &MemberId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				FleetName:         "fleetValue",
-				FleetMemberName:   "fleetMemberValue",
+				MemberName:        "memberValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerService/fleets/fleetValue/members/fleetMemberValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerService/fleets/fleetValue/members/memberValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOnTaInErSeRvIcE/fLeEtS/fLeEtVaLuE/mEmBeRs/fLeEtMeMbErVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOnTaInErSeRvIcE/fLeEtS/fLeEtVaLuE/mEmBeRs/mEmBeRvAlUe",
 			Expected: &MemberId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
 				FleetName:         "fLeEtVaLuE",
-				FleetMemberName:   "fLeEtMeMbErVaLuE",
+				MemberName:        "mEmBeRvAlUe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOnTaInErSeRvIcE/fLeEtS/fLeEtVaLuE/mEmBeRs/fLeEtMeMbErVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOnTaInErSeRvIcE/fLeEtS/fLeEtVaLuE/mEmBeRs/mEmBeRvAlUe/extra",
 			Error: true,
 		},
 	}
@@ -301,8 +301,8 @@ func TestParseMemberIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for FleetName", v.Expected.FleetName, actual.FleetName)
 		}
 
-		if actual.FleetMemberName != v.Expected.FleetMemberName {
-			t.Fatalf("Expected %q but got %q for FleetMemberName", v.Expected.FleetMemberName, actual.FleetMemberName)
+		if actual.MemberName != v.Expected.MemberName {
+			t.Fatalf("Expected %q but got %q for MemberName", v.Expected.MemberName, actual.MemberName)
 		}
 
 	}

@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = IndicatorId{}
 
 func TestNewIndicatorID(t *testing.T) {
-	id := NewIndicatorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "nameValue")
+	id := NewIndicatorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "indicatorValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -23,14 +23,14 @@ func TestNewIndicatorID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'WorkspaceName'", id.WorkspaceName, "workspaceValue")
 	}
 
-	if id.Name != "nameValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'Name'", id.Name, "nameValue")
+	if id.IndicatorName != "indicatorValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'IndicatorName'", id.IndicatorName, "indicatorValue")
 	}
 }
 
 func TestFormatIndicatorID(t *testing.T) {
-	actual := NewIndicatorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "nameValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OperationalInsights/workspaces/workspaceValue/providers/Microsoft.SecurityInsights/threatIntelligence/main/indicators/nameValue"
+	actual := NewIndicatorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "indicatorValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OperationalInsights/workspaces/workspaceValue/providers/Microsoft.SecurityInsights/threatIntelligence/main/indicators/indicatorValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -114,17 +114,17 @@ func TestParseIndicatorID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OperationalInsights/workspaces/workspaceValue/providers/Microsoft.SecurityInsights/threatIntelligence/main/indicators/nameValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OperationalInsights/workspaces/workspaceValue/providers/Microsoft.SecurityInsights/threatIntelligence/main/indicators/indicatorValue",
 			Expected: &IndicatorId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				WorkspaceName:     "workspaceValue",
-				Name:              "nameValue",
+				IndicatorName:     "indicatorValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OperationalInsights/workspaces/workspaceValue/providers/Microsoft.SecurityInsights/threatIntelligence/main/indicators/nameValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OperationalInsights/workspaces/workspaceValue/providers/Microsoft.SecurityInsights/threatIntelligence/main/indicators/indicatorValue/extra",
 			Error: true,
 		},
 	}
@@ -155,8 +155,8 @@ func TestParseIndicatorID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for WorkspaceName", v.Expected.WorkspaceName, actual.WorkspaceName)
 		}
 
-		if actual.Name != v.Expected.Name {
-			t.Fatalf("Expected %q but got %q for Name", v.Expected.Name, actual.Name)
+		if actual.IndicatorName != v.Expected.IndicatorName {
+			t.Fatalf("Expected %q but got %q for IndicatorName", v.Expected.IndicatorName, actual.IndicatorName)
 		}
 
 	}
@@ -305,32 +305,32 @@ func TestParseIndicatorIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OperationalInsights/workspaces/workspaceValue/providers/Microsoft.SecurityInsights/threatIntelligence/main/indicators/nameValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OperationalInsights/workspaces/workspaceValue/providers/Microsoft.SecurityInsights/threatIntelligence/main/indicators/indicatorValue",
 			Expected: &IndicatorId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				WorkspaceName:     "workspaceValue",
-				Name:              "nameValue",
+				IndicatorName:     "indicatorValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OperationalInsights/workspaces/workspaceValue/providers/Microsoft.SecurityInsights/threatIntelligence/main/indicators/nameValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OperationalInsights/workspaces/workspaceValue/providers/Microsoft.SecurityInsights/threatIntelligence/main/indicators/indicatorValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.oPeRaTiOnAlInSiGhTs/wOrKsPaCeS/wOrKsPaCeVaLuE/pRoViDeRs/mIcRoSoFt.sEcUrItYiNsIgHtS/tHrEaTiNtElLiGeNcE/mAiN/iNdIcAtOrS/nAmEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.oPeRaTiOnAlInSiGhTs/wOrKsPaCeS/wOrKsPaCeVaLuE/pRoViDeRs/mIcRoSoFt.sEcUrItYiNsIgHtS/tHrEaTiNtElLiGeNcE/mAiN/iNdIcAtOrS/iNdIcAtOrVaLuE",
 			Expected: &IndicatorId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
 				WorkspaceName:     "wOrKsPaCeVaLuE",
-				Name:              "nAmEvAlUe",
+				IndicatorName:     "iNdIcAtOrVaLuE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.oPeRaTiOnAlInSiGhTs/wOrKsPaCeS/wOrKsPaCeVaLuE/pRoViDeRs/mIcRoSoFt.sEcUrItYiNsIgHtS/tHrEaTiNtElLiGeNcE/mAiN/iNdIcAtOrS/nAmEvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.oPeRaTiOnAlInSiGhTs/wOrKsPaCeS/wOrKsPaCeVaLuE/pRoViDeRs/mIcRoSoFt.sEcUrItYiNsIgHtS/tHrEaTiNtElLiGeNcE/mAiN/iNdIcAtOrS/iNdIcAtOrVaLuE/extra",
 			Error: true,
 		},
 	}
@@ -361,8 +361,8 @@ func TestParseIndicatorIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for WorkspaceName", v.Expected.WorkspaceName, actual.WorkspaceName)
 		}
 
-		if actual.Name != v.Expected.Name {
-			t.Fatalf("Expected %q but got %q for Name", v.Expected.Name, actual.Name)
+		if actual.IndicatorName != v.Expected.IndicatorName {
+			t.Fatalf("Expected %q but got %q for IndicatorName", v.Expected.IndicatorName, actual.IndicatorName)
 		}
 
 	}

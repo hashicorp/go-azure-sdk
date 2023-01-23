@@ -11,19 +11,19 @@ var _ resourceids.ResourceId = AccountAssociationId{}
 
 // AccountAssociationId is a struct representing the Resource ID for a Account Association
 type AccountAssociationId struct {
-	SubscriptionId                string
-	ResourceGroupName             string
-	CommitmentPlanName            string
-	CommitmentPlanAssociationName string
+	SubscriptionId         string
+	ResourceGroupName      string
+	CommitmentPlanName     string
+	AccountAssociationName string
 }
 
 // NewAccountAssociationID returns a new AccountAssociationId struct
-func NewAccountAssociationID(subscriptionId string, resourceGroupName string, commitmentPlanName string, commitmentPlanAssociationName string) AccountAssociationId {
+func NewAccountAssociationID(subscriptionId string, resourceGroupName string, commitmentPlanName string, accountAssociationName string) AccountAssociationId {
 	return AccountAssociationId{
-		SubscriptionId:                subscriptionId,
-		ResourceGroupName:             resourceGroupName,
-		CommitmentPlanName:            commitmentPlanName,
-		CommitmentPlanAssociationName: commitmentPlanAssociationName,
+		SubscriptionId:         subscriptionId,
+		ResourceGroupName:      resourceGroupName,
+		CommitmentPlanName:     commitmentPlanName,
+		AccountAssociationName: accountAssociationName,
 	}
 }
 
@@ -50,8 +50,8 @@ func ParseAccountAssociationID(input string) (*AccountAssociationId, error) {
 		return nil, fmt.Errorf("the segment 'commitmentPlanName' was not found in the resource id %q", input)
 	}
 
-	if id.CommitmentPlanAssociationName, ok = parsed.Parsed["commitmentPlanAssociationName"]; !ok {
-		return nil, fmt.Errorf("the segment 'commitmentPlanAssociationName' was not found in the resource id %q", input)
+	if id.AccountAssociationName, ok = parsed.Parsed["accountAssociationName"]; !ok {
+		return nil, fmt.Errorf("the segment 'accountAssociationName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -81,8 +81,8 @@ func ParseAccountAssociationIDInsensitively(input string) (*AccountAssociationId
 		return nil, fmt.Errorf("the segment 'commitmentPlanName' was not found in the resource id %q", input)
 	}
 
-	if id.CommitmentPlanAssociationName, ok = parsed.Parsed["commitmentPlanAssociationName"]; !ok {
-		return nil, fmt.Errorf("the segment 'commitmentPlanAssociationName' was not found in the resource id %q", input)
+	if id.AccountAssociationName, ok = parsed.Parsed["accountAssociationName"]; !ok {
+		return nil, fmt.Errorf("the segment 'accountAssociationName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -106,7 +106,7 @@ func ValidateAccountAssociationID(input interface{}, key string) (warnings []str
 // ID returns the formatted Account Association ID
 func (id AccountAssociationId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.CognitiveServices/commitmentPlans/%s/accountAssociations/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.CommitmentPlanName, id.CommitmentPlanAssociationName)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.CommitmentPlanName, id.AccountAssociationName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Account Association ID
@@ -121,7 +121,7 @@ func (id AccountAssociationId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticCommitmentPlans", "commitmentPlans", "commitmentPlans"),
 		resourceids.UserSpecifiedSegment("commitmentPlanName", "commitmentPlanValue"),
 		resourceids.StaticSegment("staticAccountAssociations", "accountAssociations", "accountAssociations"),
-		resourceids.UserSpecifiedSegment("commitmentPlanAssociationName", "commitmentPlanAssociationValue"),
+		resourceids.UserSpecifiedSegment("accountAssociationName", "accountAssociationValue"),
 	}
 }
 
@@ -131,7 +131,7 @@ func (id AccountAssociationId) String() string {
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
 		fmt.Sprintf("Commitment Plan Name: %q", id.CommitmentPlanName),
-		fmt.Sprintf("Commitment Plan Association Name: %q", id.CommitmentPlanAssociationName),
+		fmt.Sprintf("Account Association Name: %q", id.AccountAssociationName),
 	}
 	return fmt.Sprintf("Account Association (%s)", strings.Join(components, "\n"))
 }

@@ -13,18 +13,18 @@ var _ resourceids.ResourceId = SourceControlConfigurationId{}
 type SourceControlConfigurationId struct {
 	SubscriptionId                 string
 	ResourceGroupName              string
-	ClusterRp                      string
+	ProviderName                   string
 	ClusterResourceName            string
 	ClusterName                    string
 	SourceControlConfigurationName string
 }
 
 // NewSourceControlConfigurationID returns a new SourceControlConfigurationId struct
-func NewSourceControlConfigurationID(subscriptionId string, resourceGroupName string, clusterRp string, clusterResourceName string, clusterName string, sourceControlConfigurationName string) SourceControlConfigurationId {
+func NewSourceControlConfigurationID(subscriptionId string, resourceGroupName string, providerName string, clusterResourceName string, clusterName string, sourceControlConfigurationName string) SourceControlConfigurationId {
 	return SourceControlConfigurationId{
 		SubscriptionId:                 subscriptionId,
 		ResourceGroupName:              resourceGroupName,
-		ClusterRp:                      clusterRp,
+		ProviderName:                   providerName,
 		ClusterResourceName:            clusterResourceName,
 		ClusterName:                    clusterName,
 		SourceControlConfigurationName: sourceControlConfigurationName,
@@ -50,8 +50,8 @@ func ParseSourceControlConfigurationID(input string) (*SourceControlConfiguratio
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.ClusterRp, ok = parsed.Parsed["clusterRp"]; !ok {
-		return nil, fmt.Errorf("the segment 'clusterRp' was not found in the resource id %q", input)
+	if id.ProviderName, ok = parsed.Parsed["providerName"]; !ok {
+		return nil, fmt.Errorf("the segment 'providerName' was not found in the resource id %q", input)
 	}
 
 	if id.ClusterResourceName, ok = parsed.Parsed["clusterResourceName"]; !ok {
@@ -89,8 +89,8 @@ func ParseSourceControlConfigurationIDInsensitively(input string) (*SourceContro
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.ClusterRp, ok = parsed.Parsed["clusterRp"]; !ok {
-		return nil, fmt.Errorf("the segment 'clusterRp' was not found in the resource id %q", input)
+	if id.ProviderName, ok = parsed.Parsed["providerName"]; !ok {
+		return nil, fmt.Errorf("the segment 'providerName' was not found in the resource id %q", input)
 	}
 
 	if id.ClusterResourceName, ok = parsed.Parsed["clusterResourceName"]; !ok {
@@ -126,7 +126,7 @@ func ValidateSourceControlConfigurationID(input interface{}, key string) (warnin
 // ID returns the formatted Source Control Configuration ID
 func (id SourceControlConfigurationId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/%s/%s/%s/providers/Microsoft.KubernetesConfiguration/sourceControlConfigurations/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.ClusterRp, id.ClusterResourceName, id.ClusterName, id.SourceControlConfigurationName)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.ProviderName, id.ClusterResourceName, id.ClusterName, id.SourceControlConfigurationName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Source Control Configuration ID
@@ -137,7 +137,7 @@ func (id SourceControlConfigurationId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticResourceGroups", "resourceGroups", "resourceGroups"),
 		resourceids.ResourceGroupSegment("resourceGroupName", "example-resource-group"),
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
-		resourceids.UserSpecifiedSegment("clusterRp", "clusterRpValue"),
+		resourceids.UserSpecifiedSegment("providerName", "providerValue"),
 		resourceids.UserSpecifiedSegment("clusterResourceName", "clusterResourceValue"),
 		resourceids.UserSpecifiedSegment("clusterName", "clusterValue"),
 		resourceids.StaticSegment("staticProviders2", "providers", "providers"),
@@ -152,7 +152,7 @@ func (id SourceControlConfigurationId) String() string {
 	components := []string{
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
-		fmt.Sprintf("Cluster Rp: %q", id.ClusterRp),
+		fmt.Sprintf("Provider Name: %q", id.ProviderName),
 		fmt.Sprintf("Cluster Resource Name: %q", id.ClusterResourceName),
 		fmt.Sprintf("Cluster Name: %q", id.ClusterName),
 		fmt.Sprintf("Source Control Configuration Name: %q", id.SourceControlConfigurationName),

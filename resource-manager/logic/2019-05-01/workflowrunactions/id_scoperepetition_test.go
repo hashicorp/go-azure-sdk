@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = ScopeRepetitionId{}
 
 func TestNewScopeRepetitionID(t *testing.T) {
-	id := NewScopeRepetitionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workflowValue", "runValue", "actionValue", "repetitionValue")
+	id := NewScopeRepetitionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workflowValue", "runValue", "actionValue", "scopeRepetitionValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -31,14 +31,14 @@ func TestNewScopeRepetitionID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ActionName'", id.ActionName, "actionValue")
 	}
 
-	if id.RepetitionName != "repetitionValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'RepetitionName'", id.RepetitionName, "repetitionValue")
+	if id.ScopeRepetitionName != "scopeRepetitionValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'ScopeRepetitionName'", id.ScopeRepetitionName, "scopeRepetitionValue")
 	}
 }
 
 func TestFormatScopeRepetitionID(t *testing.T) {
-	actual := NewScopeRepetitionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workflowValue", "runValue", "actionValue", "repetitionValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logic/workflows/workflowValue/runs/runValue/actions/actionValue/scopeRepetitions/repetitionValue"
+	actual := NewScopeRepetitionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workflowValue", "runValue", "actionValue", "scopeRepetitionValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logic/workflows/workflowValue/runs/runValue/actions/actionValue/scopeRepetitions/scopeRepetitionValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -122,19 +122,19 @@ func TestParseScopeRepetitionID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logic/workflows/workflowValue/runs/runValue/actions/actionValue/scopeRepetitions/repetitionValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logic/workflows/workflowValue/runs/runValue/actions/actionValue/scopeRepetitions/scopeRepetitionValue",
 			Expected: &ScopeRepetitionId{
-				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName: "example-resource-group",
-				WorkflowName:      "workflowValue",
-				RunName:           "runValue",
-				ActionName:        "actionValue",
-				RepetitionName:    "repetitionValue",
+				SubscriptionId:      "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:   "example-resource-group",
+				WorkflowName:        "workflowValue",
+				RunName:             "runValue",
+				ActionName:          "actionValue",
+				ScopeRepetitionName: "scopeRepetitionValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logic/workflows/workflowValue/runs/runValue/actions/actionValue/scopeRepetitions/repetitionValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logic/workflows/workflowValue/runs/runValue/actions/actionValue/scopeRepetitions/scopeRepetitionValue/extra",
 			Error: true,
 		},
 	}
@@ -173,8 +173,8 @@ func TestParseScopeRepetitionID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ActionName", v.Expected.ActionName, actual.ActionName)
 		}
 
-		if actual.RepetitionName != v.Expected.RepetitionName {
-			t.Fatalf("Expected %q but got %q for RepetitionName", v.Expected.RepetitionName, actual.RepetitionName)
+		if actual.ScopeRepetitionName != v.Expected.ScopeRepetitionName {
+			t.Fatalf("Expected %q but got %q for ScopeRepetitionName", v.Expected.ScopeRepetitionName, actual.ScopeRepetitionName)
 		}
 
 	}
@@ -323,36 +323,36 @@ func TestParseScopeRepetitionIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logic/workflows/workflowValue/runs/runValue/actions/actionValue/scopeRepetitions/repetitionValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logic/workflows/workflowValue/runs/runValue/actions/actionValue/scopeRepetitions/scopeRepetitionValue",
 			Expected: &ScopeRepetitionId{
-				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName: "example-resource-group",
-				WorkflowName:      "workflowValue",
-				RunName:           "runValue",
-				ActionName:        "actionValue",
-				RepetitionName:    "repetitionValue",
+				SubscriptionId:      "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:   "example-resource-group",
+				WorkflowName:        "workflowValue",
+				RunName:             "runValue",
+				ActionName:          "actionValue",
+				ScopeRepetitionName: "scopeRepetitionValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logic/workflows/workflowValue/runs/runValue/actions/actionValue/scopeRepetitions/repetitionValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Logic/workflows/workflowValue/runs/runValue/actions/actionValue/scopeRepetitions/scopeRepetitionValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.lOgIc/wOrKfLoWs/wOrKfLoWvAlUe/rUnS/rUnVaLuE/aCtIoNs/aCtIoNvAlUe/sCoPeRePeTiTiOnS/rEpEtItIoNvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.lOgIc/wOrKfLoWs/wOrKfLoWvAlUe/rUnS/rUnVaLuE/aCtIoNs/aCtIoNvAlUe/sCoPeRePeTiTiOnS/sCoPeRePeTiTiOnVaLuE",
 			Expected: &ScopeRepetitionId{
-				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				WorkflowName:      "wOrKfLoWvAlUe",
-				RunName:           "rUnVaLuE",
-				ActionName:        "aCtIoNvAlUe",
-				RepetitionName:    "rEpEtItIoNvAlUe",
+				SubscriptionId:      "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:   "eXaMpLe-rEsOuRcE-GrOuP",
+				WorkflowName:        "wOrKfLoWvAlUe",
+				RunName:             "rUnVaLuE",
+				ActionName:          "aCtIoNvAlUe",
+				ScopeRepetitionName: "sCoPeRePeTiTiOnVaLuE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.lOgIc/wOrKfLoWs/wOrKfLoWvAlUe/rUnS/rUnVaLuE/aCtIoNs/aCtIoNvAlUe/sCoPeRePeTiTiOnS/rEpEtItIoNvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.lOgIc/wOrKfLoWs/wOrKfLoWvAlUe/rUnS/rUnVaLuE/aCtIoNs/aCtIoNvAlUe/sCoPeRePeTiTiOnS/sCoPeRePeTiTiOnVaLuE/extra",
 			Error: true,
 		},
 	}
@@ -391,8 +391,8 @@ func TestParseScopeRepetitionIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ActionName", v.Expected.ActionName, actual.ActionName)
 		}
 
-		if actual.RepetitionName != v.Expected.RepetitionName {
-			t.Fatalf("Expected %q but got %q for RepetitionName", v.Expected.RepetitionName, actual.RepetitionName)
+		if actual.ScopeRepetitionName != v.Expected.ScopeRepetitionName {
+			t.Fatalf("Expected %q but got %q for ScopeRepetitionName", v.Expected.ScopeRepetitionName, actual.ScopeRepetitionName)
 		}
 
 	}

@@ -11,21 +11,21 @@ var _ resourceids.ResourceId = ProtectionContainerId{}
 
 // ProtectionContainerId is a struct representing the Resource ID for a Protection Container
 type ProtectionContainerId struct {
-	SubscriptionId    string
-	ResourceGroupName string
-	VaultName         string
-	FabricName        string
-	ContainerName     string
+	SubscriptionId          string
+	ResourceGroupName       string
+	VaultName               string
+	BackupFabricName        string
+	ProtectionContainerName string
 }
 
 // NewProtectionContainerID returns a new ProtectionContainerId struct
-func NewProtectionContainerID(subscriptionId string, resourceGroupName string, vaultName string, fabricName string, containerName string) ProtectionContainerId {
+func NewProtectionContainerID(subscriptionId string, resourceGroupName string, vaultName string, backupFabricName string, protectionContainerName string) ProtectionContainerId {
 	return ProtectionContainerId{
-		SubscriptionId:    subscriptionId,
-		ResourceGroupName: resourceGroupName,
-		VaultName:         vaultName,
-		FabricName:        fabricName,
-		ContainerName:     containerName,
+		SubscriptionId:          subscriptionId,
+		ResourceGroupName:       resourceGroupName,
+		VaultName:               vaultName,
+		BackupFabricName:        backupFabricName,
+		ProtectionContainerName: protectionContainerName,
 	}
 }
 
@@ -52,12 +52,12 @@ func ParseProtectionContainerID(input string) (*ProtectionContainerId, error) {
 		return nil, fmt.Errorf("the segment 'vaultName' was not found in the resource id %q", input)
 	}
 
-	if id.FabricName, ok = parsed.Parsed["fabricName"]; !ok {
-		return nil, fmt.Errorf("the segment 'fabricName' was not found in the resource id %q", input)
+	if id.BackupFabricName, ok = parsed.Parsed["backupFabricName"]; !ok {
+		return nil, fmt.Errorf("the segment 'backupFabricName' was not found in the resource id %q", input)
 	}
 
-	if id.ContainerName, ok = parsed.Parsed["containerName"]; !ok {
-		return nil, fmt.Errorf("the segment 'containerName' was not found in the resource id %q", input)
+	if id.ProtectionContainerName, ok = parsed.Parsed["protectionContainerName"]; !ok {
+		return nil, fmt.Errorf("the segment 'protectionContainerName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -87,12 +87,12 @@ func ParseProtectionContainerIDInsensitively(input string) (*ProtectionContainer
 		return nil, fmt.Errorf("the segment 'vaultName' was not found in the resource id %q", input)
 	}
 
-	if id.FabricName, ok = parsed.Parsed["fabricName"]; !ok {
-		return nil, fmt.Errorf("the segment 'fabricName' was not found in the resource id %q", input)
+	if id.BackupFabricName, ok = parsed.Parsed["backupFabricName"]; !ok {
+		return nil, fmt.Errorf("the segment 'backupFabricName' was not found in the resource id %q", input)
 	}
 
-	if id.ContainerName, ok = parsed.Parsed["containerName"]; !ok {
-		return nil, fmt.Errorf("the segment 'containerName' was not found in the resource id %q", input)
+	if id.ProtectionContainerName, ok = parsed.Parsed["protectionContainerName"]; !ok {
+		return nil, fmt.Errorf("the segment 'protectionContainerName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -116,7 +116,7 @@ func ValidateProtectionContainerID(input interface{}, key string) (warnings []st
 // ID returns the formatted Protection Container ID
 func (id ProtectionContainerId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.RecoveryServices/vaults/%s/backupFabrics/%s/protectionContainers/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.VaultName, id.FabricName, id.ContainerName)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.VaultName, id.BackupFabricName, id.ProtectionContainerName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Protection Container ID
@@ -131,9 +131,9 @@ func (id ProtectionContainerId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticVaults", "vaults", "vaults"),
 		resourceids.UserSpecifiedSegment("vaultName", "vaultValue"),
 		resourceids.StaticSegment("staticBackupFabrics", "backupFabrics", "backupFabrics"),
-		resourceids.UserSpecifiedSegment("fabricName", "fabricValue"),
+		resourceids.UserSpecifiedSegment("backupFabricName", "backupFabricValue"),
 		resourceids.StaticSegment("staticProtectionContainers", "protectionContainers", "protectionContainers"),
-		resourceids.UserSpecifiedSegment("containerName", "containerValue"),
+		resourceids.UserSpecifiedSegment("protectionContainerName", "protectionContainerValue"),
 	}
 }
 
@@ -143,8 +143,8 @@ func (id ProtectionContainerId) String() string {
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
 		fmt.Sprintf("Vault Name: %q", id.VaultName),
-		fmt.Sprintf("Fabric Name: %q", id.FabricName),
-		fmt.Sprintf("Container Name: %q", id.ContainerName),
+		fmt.Sprintf("Backup Fabric Name: %q", id.BackupFabricName),
+		fmt.Sprintf("Protection Container Name: %q", id.ProtectionContainerName),
 	}
 	return fmt.Sprintf("Protection Container (%s)", strings.Join(components, "\n"))
 }

@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = SettingId{}
 
 func TestNewSettingID(t *testing.T) {
-	id := NewSettingID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "settingsValue")
+	id := NewSettingID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "settingValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -23,14 +23,14 @@ func TestNewSettingID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'WorkspaceName'", id.WorkspaceName, "workspaceValue")
 	}
 
-	if id.SettingsName != "settingsValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'SettingsName'", id.SettingsName, "settingsValue")
+	if id.SettingName != "settingValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'SettingName'", id.SettingName, "settingValue")
 	}
 }
 
 func TestFormatSettingID(t *testing.T) {
-	actual := NewSettingID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "settingsValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OperationalInsights/workspaces/workspaceValue/providers/Microsoft.SecurityInsights/settings/settingsValue"
+	actual := NewSettingID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "settingValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OperationalInsights/workspaces/workspaceValue/providers/Microsoft.SecurityInsights/settings/settingValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -104,17 +104,17 @@ func TestParseSettingID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OperationalInsights/workspaces/workspaceValue/providers/Microsoft.SecurityInsights/settings/settingsValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OperationalInsights/workspaces/workspaceValue/providers/Microsoft.SecurityInsights/settings/settingValue",
 			Expected: &SettingId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				WorkspaceName:     "workspaceValue",
-				SettingsName:      "settingsValue",
+				SettingName:       "settingValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OperationalInsights/workspaces/workspaceValue/providers/Microsoft.SecurityInsights/settings/settingsValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OperationalInsights/workspaces/workspaceValue/providers/Microsoft.SecurityInsights/settings/settingValue/extra",
 			Error: true,
 		},
 	}
@@ -145,8 +145,8 @@ func TestParseSettingID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for WorkspaceName", v.Expected.WorkspaceName, actual.WorkspaceName)
 		}
 
-		if actual.SettingsName != v.Expected.SettingsName {
-			t.Fatalf("Expected %q but got %q for SettingsName", v.Expected.SettingsName, actual.SettingsName)
+		if actual.SettingName != v.Expected.SettingName {
+			t.Fatalf("Expected %q but got %q for SettingName", v.Expected.SettingName, actual.SettingName)
 		}
 
 	}
@@ -275,32 +275,32 @@ func TestParseSettingIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OperationalInsights/workspaces/workspaceValue/providers/Microsoft.SecurityInsights/settings/settingsValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OperationalInsights/workspaces/workspaceValue/providers/Microsoft.SecurityInsights/settings/settingValue",
 			Expected: &SettingId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				WorkspaceName:     "workspaceValue",
-				SettingsName:      "settingsValue",
+				SettingName:       "settingValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OperationalInsights/workspaces/workspaceValue/providers/Microsoft.SecurityInsights/settings/settingsValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OperationalInsights/workspaces/workspaceValue/providers/Microsoft.SecurityInsights/settings/settingValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.oPeRaTiOnAlInSiGhTs/wOrKsPaCeS/wOrKsPaCeVaLuE/pRoViDeRs/mIcRoSoFt.sEcUrItYiNsIgHtS/sEtTiNgS/sEtTiNgSvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.oPeRaTiOnAlInSiGhTs/wOrKsPaCeS/wOrKsPaCeVaLuE/pRoViDeRs/mIcRoSoFt.sEcUrItYiNsIgHtS/sEtTiNgS/sEtTiNgVaLuE",
 			Expected: &SettingId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
 				WorkspaceName:     "wOrKsPaCeVaLuE",
-				SettingsName:      "sEtTiNgSvAlUe",
+				SettingName:       "sEtTiNgVaLuE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.oPeRaTiOnAlInSiGhTs/wOrKsPaCeS/wOrKsPaCeVaLuE/pRoViDeRs/mIcRoSoFt.sEcUrItYiNsIgHtS/sEtTiNgS/sEtTiNgSvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.oPeRaTiOnAlInSiGhTs/wOrKsPaCeS/wOrKsPaCeVaLuE/pRoViDeRs/mIcRoSoFt.sEcUrItYiNsIgHtS/sEtTiNgS/sEtTiNgVaLuE/extra",
 			Error: true,
 		},
 	}
@@ -331,8 +331,8 @@ func TestParseSettingIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for WorkspaceName", v.Expected.WorkspaceName, actual.WorkspaceName)
 		}
 
-		if actual.SettingsName != v.Expected.SettingsName {
-			t.Fatalf("Expected %q but got %q for SettingsName", v.Expected.SettingsName, actual.SettingsName)
+		if actual.SettingName != v.Expected.SettingName {
+			t.Fatalf("Expected %q but got %q for SettingName", v.Expected.SettingName, actual.SettingName)
 		}
 
 	}

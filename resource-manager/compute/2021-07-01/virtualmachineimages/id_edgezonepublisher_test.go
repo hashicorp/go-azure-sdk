@@ -15,12 +15,12 @@ func TestNewEdgeZonePublisherID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
 	}
 
-	if id.Location != "locationValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'Location'", id.Location, "locationValue")
+	if id.LocationName != "locationValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'LocationName'", id.LocationName, "locationValue")
 	}
 
-	if id.EdgeZone != "edgeZoneValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'EdgeZone'", id.EdgeZone, "edgeZoneValue")
+	if id.EdgeZoneName != "edgeZoneValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'EdgeZoneName'", id.EdgeZoneName, "edgeZoneValue")
 	}
 
 	if id.PublisherName != "publisherValue" {
@@ -97,8 +97,8 @@ func TestParseEdgeZonePublisherID(t *testing.T) {
 			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationValue/edgeZones/edgeZoneValue/publishers/publisherValue",
 			Expected: &EdgeZonePublisherId{
 				SubscriptionId: "12345678-1234-9876-4563-123456789012",
-				Location:       "locationValue",
-				EdgeZone:       "edgeZoneValue",
+				LocationName:   "locationValue",
+				EdgeZoneName:   "edgeZoneValue",
 				PublisherName:  "publisherValue",
 			},
 		},
@@ -127,12 +127,12 @@ func TestParseEdgeZonePublisherID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for SubscriptionId", v.Expected.SubscriptionId, actual.SubscriptionId)
 		}
 
-		if actual.Location != v.Expected.Location {
-			t.Fatalf("Expected %q but got %q for Location", v.Expected.Location, actual.Location)
+		if actual.LocationName != v.Expected.LocationName {
+			t.Fatalf("Expected %q but got %q for LocationName", v.Expected.LocationName, actual.LocationName)
 		}
 
-		if actual.EdgeZone != v.Expected.EdgeZone {
-			t.Fatalf("Expected %q but got %q for EdgeZone", v.Expected.EdgeZone, actual.EdgeZone)
+		if actual.EdgeZoneName != v.Expected.EdgeZoneName {
+			t.Fatalf("Expected %q but got %q for EdgeZoneName", v.Expected.EdgeZoneName, actual.EdgeZoneName)
 		}
 
 		if actual.PublisherName != v.Expected.PublisherName {
@@ -248,8 +248,8 @@ func TestParseEdgeZonePublisherIDInsensitively(t *testing.T) {
 			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationValue/edgeZones/edgeZoneValue/publishers/publisherValue",
 			Expected: &EdgeZonePublisherId{
 				SubscriptionId: "12345678-1234-9876-4563-123456789012",
-				Location:       "locationValue",
-				EdgeZone:       "edgeZoneValue",
+				LocationName:   "locationValue",
+				EdgeZoneName:   "edgeZoneValue",
 				PublisherName:  "publisherValue",
 			},
 		},
@@ -263,8 +263,8 @@ func TestParseEdgeZonePublisherIDInsensitively(t *testing.T) {
 			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOmPuTe/lOcAtIoNs/lOcAtIoNvAlUe/eDgEzOnEs/eDgEzOnEvAlUe/pUbLiShErS/pUbLiShErVaLuE",
 			Expected: &EdgeZonePublisherId{
 				SubscriptionId: "12345678-1234-9876-4563-123456789012",
-				Location:       "lOcAtIoNvAlUe",
-				EdgeZone:       "eDgEzOnEvAlUe",
+				LocationName:   "lOcAtIoNvAlUe",
+				EdgeZoneName:   "eDgEzOnEvAlUe",
 				PublisherName:  "pUbLiShErVaLuE",
 			},
 		},
@@ -293,12 +293,12 @@ func TestParseEdgeZonePublisherIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for SubscriptionId", v.Expected.SubscriptionId, actual.SubscriptionId)
 		}
 
-		if actual.Location != v.Expected.Location {
-			t.Fatalf("Expected %q but got %q for Location", v.Expected.Location, actual.Location)
+		if actual.LocationName != v.Expected.LocationName {
+			t.Fatalf("Expected %q but got %q for LocationName", v.Expected.LocationName, actual.LocationName)
 		}
 
-		if actual.EdgeZone != v.Expected.EdgeZone {
-			t.Fatalf("Expected %q but got %q for EdgeZone", v.Expected.EdgeZone, actual.EdgeZone)
+		if actual.EdgeZoneName != v.Expected.EdgeZoneName {
+			t.Fatalf("Expected %q but got %q for EdgeZoneName", v.Expected.EdgeZoneName, actual.EdgeZoneName)
 		}
 
 		if actual.PublisherName != v.Expected.PublisherName {

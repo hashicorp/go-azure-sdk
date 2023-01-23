@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = ManagedClusterSnapshotId{}
 
 func TestNewManagedClusterSnapshotID(t *testing.T) {
-	id := NewManagedClusterSnapshotID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue")
+	id := NewManagedClusterSnapshotID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedClusterSnapshotValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -19,14 +19,14 @@ func TestNewManagedClusterSnapshotID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.ResourceName != "resourceValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ResourceName'", id.ResourceName, "resourceValue")
+	if id.ManagedClusterSnapshotName != "managedClusterSnapshotValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'ManagedClusterSnapshotName'", id.ManagedClusterSnapshotName, "managedClusterSnapshotValue")
 	}
 }
 
 func TestFormatManagedClusterSnapshotID(t *testing.T) {
-	actual := NewManagedClusterSnapshotID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerService/managedClusterSnapshots/resourceValue"
+	actual := NewManagedClusterSnapshotID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedClusterSnapshotValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerService/managedClusterSnapshots/managedClusterSnapshotValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -80,16 +80,16 @@ func TestParseManagedClusterSnapshotID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerService/managedClusterSnapshots/resourceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerService/managedClusterSnapshots/managedClusterSnapshotValue",
 			Expected: &ManagedClusterSnapshotId{
-				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName: "example-resource-group",
-				ResourceName:      "resourceValue",
+				SubscriptionId:             "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:          "example-resource-group",
+				ManagedClusterSnapshotName: "managedClusterSnapshotValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerService/managedClusterSnapshots/resourceValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerService/managedClusterSnapshots/managedClusterSnapshotValue/extra",
 			Error: true,
 		},
 	}
@@ -116,8 +116,8 @@ func TestParseManagedClusterSnapshotID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.ResourceName != v.Expected.ResourceName {
-			t.Fatalf("Expected %q but got %q for ResourceName", v.Expected.ResourceName, actual.ResourceName)
+		if actual.ManagedClusterSnapshotName != v.Expected.ManagedClusterSnapshotName {
+			t.Fatalf("Expected %q but got %q for ManagedClusterSnapshotName", v.Expected.ManagedClusterSnapshotName, actual.ManagedClusterSnapshotName)
 		}
 
 	}
@@ -206,30 +206,30 @@ func TestParseManagedClusterSnapshotIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerService/managedClusterSnapshots/resourceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerService/managedClusterSnapshots/managedClusterSnapshotValue",
 			Expected: &ManagedClusterSnapshotId{
-				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName: "example-resource-group",
-				ResourceName:      "resourceValue",
+				SubscriptionId:             "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:          "example-resource-group",
+				ManagedClusterSnapshotName: "managedClusterSnapshotValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerService/managedClusterSnapshots/resourceValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ContainerService/managedClusterSnapshots/managedClusterSnapshotValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOnTaInErSeRvIcE/mAnAgEdClUsTeRsNaPsHoTs/rEsOuRcEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOnTaInErSeRvIcE/mAnAgEdClUsTeRsNaPsHoTs/mAnAgEdClUsTeRsNaPsHoTvAlUe",
 			Expected: &ManagedClusterSnapshotId{
-				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				ResourceName:      "rEsOuRcEvAlUe",
+				SubscriptionId:             "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:          "eXaMpLe-rEsOuRcE-GrOuP",
+				ManagedClusterSnapshotName: "mAnAgEdClUsTeRsNaPsHoTvAlUe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOnTaInErSeRvIcE/mAnAgEdClUsTeRsNaPsHoTs/rEsOuRcEvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.cOnTaInErSeRvIcE/mAnAgEdClUsTeRsNaPsHoTs/mAnAgEdClUsTeRsNaPsHoTvAlUe/extra",
 			Error: true,
 		},
 	}
@@ -256,8 +256,8 @@ func TestParseManagedClusterSnapshotIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.ResourceName != v.Expected.ResourceName {
-			t.Fatalf("Expected %q but got %q for ResourceName", v.Expected.ResourceName, actual.ResourceName)
+		if actual.ManagedClusterSnapshotName != v.Expected.ManagedClusterSnapshotName {
+			t.Fatalf("Expected %q but got %q for ManagedClusterSnapshotName", v.Expected.ManagedClusterSnapshotName, actual.ManagedClusterSnapshotName)
 		}
 
 	}

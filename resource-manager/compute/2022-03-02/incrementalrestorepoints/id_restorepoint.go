@@ -14,16 +14,16 @@ type RestorePointId struct {
 	SubscriptionId             string
 	ResourceGroupName          string
 	RestorePointCollectionName string
-	VmRestorePointName         string
+	RestorePointName           string
 }
 
 // NewRestorePointID returns a new RestorePointId struct
-func NewRestorePointID(subscriptionId string, resourceGroupName string, restorePointCollectionName string, vmRestorePointName string) RestorePointId {
+func NewRestorePointID(subscriptionId string, resourceGroupName string, restorePointCollectionName string, restorePointName string) RestorePointId {
 	return RestorePointId{
 		SubscriptionId:             subscriptionId,
 		ResourceGroupName:          resourceGroupName,
 		RestorePointCollectionName: restorePointCollectionName,
-		VmRestorePointName:         vmRestorePointName,
+		RestorePointName:           restorePointName,
 	}
 }
 
@@ -50,8 +50,8 @@ func ParseRestorePointID(input string) (*RestorePointId, error) {
 		return nil, fmt.Errorf("the segment 'restorePointCollectionName' was not found in the resource id %q", input)
 	}
 
-	if id.VmRestorePointName, ok = parsed.Parsed["vmRestorePointName"]; !ok {
-		return nil, fmt.Errorf("the segment 'vmRestorePointName' was not found in the resource id %q", input)
+	if id.RestorePointName, ok = parsed.Parsed["restorePointName"]; !ok {
+		return nil, fmt.Errorf("the segment 'restorePointName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -81,8 +81,8 @@ func ParseRestorePointIDInsensitively(input string) (*RestorePointId, error) {
 		return nil, fmt.Errorf("the segment 'restorePointCollectionName' was not found in the resource id %q", input)
 	}
 
-	if id.VmRestorePointName, ok = parsed.Parsed["vmRestorePointName"]; !ok {
-		return nil, fmt.Errorf("the segment 'vmRestorePointName' was not found in the resource id %q", input)
+	if id.RestorePointName, ok = parsed.Parsed["restorePointName"]; !ok {
+		return nil, fmt.Errorf("the segment 'restorePointName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -106,7 +106,7 @@ func ValidateRestorePointID(input interface{}, key string) (warnings []string, e
 // ID returns the formatted Restore Point ID
 func (id RestorePointId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.Compute/restorePointCollections/%s/restorePoints/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.RestorePointCollectionName, id.VmRestorePointName)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.RestorePointCollectionName, id.RestorePointName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Restore Point ID
@@ -121,7 +121,7 @@ func (id RestorePointId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticRestorePointCollections", "restorePointCollections", "restorePointCollections"),
 		resourceids.UserSpecifiedSegment("restorePointCollectionName", "restorePointCollectionValue"),
 		resourceids.StaticSegment("staticRestorePoints", "restorePoints", "restorePoints"),
-		resourceids.UserSpecifiedSegment("vmRestorePointName", "vmRestorePointValue"),
+		resourceids.UserSpecifiedSegment("restorePointName", "restorePointValue"),
 	}
 }
 
@@ -131,7 +131,7 @@ func (id RestorePointId) String() string {
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
 		fmt.Sprintf("Restore Point Collection Name: %q", id.RestorePointCollectionName),
-		fmt.Sprintf("Vm Restore Point Name: %q", id.VmRestorePointName),
+		fmt.Sprintf("Restore Point Name: %q", id.RestorePointName),
 	}
 	return fmt.Sprintf("Restore Point (%s)", strings.Join(components, "\n"))
 }

@@ -14,16 +14,16 @@ type BackupPolicyId struct {
 	SubscriptionId    string
 	ResourceGroupName string
 	VaultName         string
-	PolicyName        string
+	BackupPolicyName  string
 }
 
 // NewBackupPolicyID returns a new BackupPolicyId struct
-func NewBackupPolicyID(subscriptionId string, resourceGroupName string, vaultName string, policyName string) BackupPolicyId {
+func NewBackupPolicyID(subscriptionId string, resourceGroupName string, vaultName string, backupPolicyName string) BackupPolicyId {
 	return BackupPolicyId{
 		SubscriptionId:    subscriptionId,
 		ResourceGroupName: resourceGroupName,
 		VaultName:         vaultName,
-		PolicyName:        policyName,
+		BackupPolicyName:  backupPolicyName,
 	}
 }
 
@@ -50,8 +50,8 @@ func ParseBackupPolicyID(input string) (*BackupPolicyId, error) {
 		return nil, fmt.Errorf("the segment 'vaultName' was not found in the resource id %q", input)
 	}
 
-	if id.PolicyName, ok = parsed.Parsed["policyName"]; !ok {
-		return nil, fmt.Errorf("the segment 'policyName' was not found in the resource id %q", input)
+	if id.BackupPolicyName, ok = parsed.Parsed["backupPolicyName"]; !ok {
+		return nil, fmt.Errorf("the segment 'backupPolicyName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -81,8 +81,8 @@ func ParseBackupPolicyIDInsensitively(input string) (*BackupPolicyId, error) {
 		return nil, fmt.Errorf("the segment 'vaultName' was not found in the resource id %q", input)
 	}
 
-	if id.PolicyName, ok = parsed.Parsed["policyName"]; !ok {
-		return nil, fmt.Errorf("the segment 'policyName' was not found in the resource id %q", input)
+	if id.BackupPolicyName, ok = parsed.Parsed["backupPolicyName"]; !ok {
+		return nil, fmt.Errorf("the segment 'backupPolicyName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -106,7 +106,7 @@ func ValidateBackupPolicyID(input interface{}, key string) (warnings []string, e
 // ID returns the formatted Backup Policy ID
 func (id BackupPolicyId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.RecoveryServices/vaults/%s/backupPolicies/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.VaultName, id.PolicyName)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.VaultName, id.BackupPolicyName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Backup Policy ID
@@ -121,7 +121,7 @@ func (id BackupPolicyId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticVaults", "vaults", "vaults"),
 		resourceids.UserSpecifiedSegment("vaultName", "vaultValue"),
 		resourceids.StaticSegment("staticBackupPolicies", "backupPolicies", "backupPolicies"),
-		resourceids.UserSpecifiedSegment("policyName", "policyValue"),
+		resourceids.UserSpecifiedSegment("backupPolicyName", "backupPolicyValue"),
 	}
 }
 
@@ -131,7 +131,7 @@ func (id BackupPolicyId) String() string {
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
 		fmt.Sprintf("Vault Name: %q", id.VaultName),
-		fmt.Sprintf("Policy Name: %q", id.PolicyName),
+		fmt.Sprintf("Backup Policy Name: %q", id.BackupPolicyName),
 	}
 	return fmt.Sprintf("Backup Policy (%s)", strings.Join(components, "\n"))
 }

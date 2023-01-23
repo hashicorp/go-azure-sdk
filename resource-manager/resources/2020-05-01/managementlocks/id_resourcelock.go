@@ -11,25 +11,25 @@ var _ resourceids.ResourceId = ResourceLockId{}
 
 // ResourceLockId is a struct representing the Resource ID for a Resource Lock
 type ResourceLockId struct {
-	SubscriptionId            string
-	ResourceGroupName         string
-	ResourceProviderNamespace string
-	ParentResourcePath        string
-	ResourceType              string
-	ResourceName              string
-	LockName                  string
+	SubscriptionId     string
+	ResourceGroupName  string
+	ProviderName       string
+	ParentResourcePath string
+	ResourceType       string
+	ResourceName       string
+	LockName           string
 }
 
 // NewResourceLockID returns a new ResourceLockId struct
-func NewResourceLockID(subscriptionId string, resourceGroupName string, resourceProviderNamespace string, parentResourcePath string, resourceType string, resourceName string, lockName string) ResourceLockId {
+func NewResourceLockID(subscriptionId string, resourceGroupName string, providerName string, parentResourcePath string, resourceType string, resourceName string, lockName string) ResourceLockId {
 	return ResourceLockId{
-		SubscriptionId:            subscriptionId,
-		ResourceGroupName:         resourceGroupName,
-		ResourceProviderNamespace: resourceProviderNamespace,
-		ParentResourcePath:        parentResourcePath,
-		ResourceType:              resourceType,
-		ResourceName:              resourceName,
-		LockName:                  lockName,
+		SubscriptionId:     subscriptionId,
+		ResourceGroupName:  resourceGroupName,
+		ProviderName:       providerName,
+		ParentResourcePath: parentResourcePath,
+		ResourceType:       resourceType,
+		ResourceName:       resourceName,
+		LockName:           lockName,
 	}
 }
 
@@ -52,8 +52,8 @@ func ParseResourceLockID(input string) (*ResourceLockId, error) {
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.ResourceProviderNamespace, ok = parsed.Parsed["resourceProviderNamespace"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceProviderNamespace' was not found in the resource id %q", input)
+	if id.ProviderName, ok = parsed.Parsed["providerName"]; !ok {
+		return nil, fmt.Errorf("the segment 'providerName' was not found in the resource id %q", input)
 	}
 
 	if id.ParentResourcePath, ok = parsed.Parsed["parentResourcePath"]; !ok {
@@ -95,8 +95,8 @@ func ParseResourceLockIDInsensitively(input string) (*ResourceLockId, error) {
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.ResourceProviderNamespace, ok = parsed.Parsed["resourceProviderNamespace"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceProviderNamespace' was not found in the resource id %q", input)
+	if id.ProviderName, ok = parsed.Parsed["providerName"]; !ok {
+		return nil, fmt.Errorf("the segment 'providerName' was not found in the resource id %q", input)
 	}
 
 	if id.ParentResourcePath, ok = parsed.Parsed["parentResourcePath"]; !ok {
@@ -136,7 +136,7 @@ func ValidateResourceLockID(input interface{}, key string) (warnings []string, e
 // ID returns the formatted Resource Lock ID
 func (id ResourceLockId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/%s/%s/%s/%s/providers/Microsoft.Authorization/locks/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.ResourceProviderNamespace, id.ParentResourcePath, id.ResourceType, id.ResourceName, id.LockName)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.ProviderName, id.ParentResourcePath, id.ResourceType, id.ResourceName, id.LockName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Resource Lock ID
@@ -147,7 +147,7 @@ func (id ResourceLockId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticResourceGroups", "resourceGroups", "resourceGroups"),
 		resourceids.ResourceGroupSegment("resourceGroupName", "example-resource-group"),
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
-		resourceids.UserSpecifiedSegment("resourceProviderNamespace", "resourceProviderNamespaceValue"),
+		resourceids.UserSpecifiedSegment("providerName", "providerValue"),
 		resourceids.UserSpecifiedSegment("parentResourcePath", "parentResourcePathValue"),
 		resourceids.UserSpecifiedSegment("resourceType", "resourceTypeValue"),
 		resourceids.UserSpecifiedSegment("resourceName", "resourceValue"),
@@ -163,7 +163,7 @@ func (id ResourceLockId) String() string {
 	components := []string{
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
-		fmt.Sprintf("Resource Provider Namespace: %q", id.ResourceProviderNamespace),
+		fmt.Sprintf("Provider Name: %q", id.ProviderName),
 		fmt.Sprintf("Parent Resource Path: %q", id.ParentResourcePath),
 		fmt.Sprintf("Resource Type: %q", id.ResourceType),
 		fmt.Sprintf("Resource Name: %q", id.ResourceName),

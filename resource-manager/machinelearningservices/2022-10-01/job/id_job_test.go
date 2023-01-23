@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = JobId{}
 
 func TestNewJobID(t *testing.T) {
-	id := NewJobID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "idValue")
+	id := NewJobID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "jobValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -23,14 +23,14 @@ func TestNewJobID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'WorkspaceName'", id.WorkspaceName, "workspaceValue")
 	}
 
-	if id.Id != "idValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'Id'", id.Id, "idValue")
+	if id.JobName != "jobValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'JobName'", id.JobName, "jobValue")
 	}
 }
 
 func TestFormatJobID(t *testing.T) {
-	actual := NewJobID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "idValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MachineLearningServices/workspaces/workspaceValue/jobs/idValue"
+	actual := NewJobID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "jobValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MachineLearningServices/workspaces/workspaceValue/jobs/jobValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -94,17 +94,17 @@ func TestParseJobID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MachineLearningServices/workspaces/workspaceValue/jobs/idValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MachineLearningServices/workspaces/workspaceValue/jobs/jobValue",
 			Expected: &JobId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				WorkspaceName:     "workspaceValue",
-				Id:                "idValue",
+				JobName:           "jobValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MachineLearningServices/workspaces/workspaceValue/jobs/idValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MachineLearningServices/workspaces/workspaceValue/jobs/jobValue/extra",
 			Error: true,
 		},
 	}
@@ -135,8 +135,8 @@ func TestParseJobID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for WorkspaceName", v.Expected.WorkspaceName, actual.WorkspaceName)
 		}
 
-		if actual.Id != v.Expected.Id {
-			t.Fatalf("Expected %q but got %q for Id", v.Expected.Id, actual.Id)
+		if actual.JobName != v.Expected.JobName {
+			t.Fatalf("Expected %q but got %q for JobName", v.Expected.JobName, actual.JobName)
 		}
 
 	}
@@ -245,32 +245,32 @@ func TestParseJobIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MachineLearningServices/workspaces/workspaceValue/jobs/idValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MachineLearningServices/workspaces/workspaceValue/jobs/jobValue",
 			Expected: &JobId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				WorkspaceName:     "workspaceValue",
-				Id:                "idValue",
+				JobName:           "jobValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MachineLearningServices/workspaces/workspaceValue/jobs/idValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.MachineLearningServices/workspaces/workspaceValue/jobs/jobValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mAcHiNeLeArNiNgSeRvIcEs/wOrKsPaCeS/wOrKsPaCeVaLuE/jObS/iDvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mAcHiNeLeArNiNgSeRvIcEs/wOrKsPaCeS/wOrKsPaCeVaLuE/jObS/jObVaLuE",
 			Expected: &JobId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
 				WorkspaceName:     "wOrKsPaCeVaLuE",
-				Id:                "iDvAlUe",
+				JobName:           "jObVaLuE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mAcHiNeLeArNiNgSeRvIcEs/wOrKsPaCeS/wOrKsPaCeVaLuE/jObS/iDvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mAcHiNeLeArNiNgSeRvIcEs/wOrKsPaCeS/wOrKsPaCeVaLuE/jObS/jObVaLuE/extra",
 			Error: true,
 		},
 	}
@@ -301,8 +301,8 @@ func TestParseJobIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for WorkspaceName", v.Expected.WorkspaceName, actual.WorkspaceName)
 		}
 
-		if actual.Id != v.Expected.Id {
-			t.Fatalf("Expected %q but got %q for Id", v.Expected.Id, actual.Id)
+		if actual.JobName != v.Expected.JobName {
+			t.Fatalf("Expected %q but got %q for JobName", v.Expected.JobName, actual.JobName)
 		}
 
 	}

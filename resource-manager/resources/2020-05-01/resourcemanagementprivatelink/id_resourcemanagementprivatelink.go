@@ -11,17 +11,17 @@ var _ resourceids.ResourceId = ResourceManagementPrivateLinkId{}
 
 // ResourceManagementPrivateLinkId is a struct representing the Resource ID for a Resource Management Private Link
 type ResourceManagementPrivateLinkId struct {
-	SubscriptionId    string
-	ResourceGroupName string
-	RmplName          string
+	SubscriptionId                    string
+	ResourceGroupName                 string
+	ResourceManagementPrivateLinkName string
 }
 
 // NewResourceManagementPrivateLinkID returns a new ResourceManagementPrivateLinkId struct
-func NewResourceManagementPrivateLinkID(subscriptionId string, resourceGroupName string, rmplName string) ResourceManagementPrivateLinkId {
+func NewResourceManagementPrivateLinkID(subscriptionId string, resourceGroupName string, resourceManagementPrivateLinkName string) ResourceManagementPrivateLinkId {
 	return ResourceManagementPrivateLinkId{
-		SubscriptionId:    subscriptionId,
-		ResourceGroupName: resourceGroupName,
-		RmplName:          rmplName,
+		SubscriptionId:                    subscriptionId,
+		ResourceGroupName:                 resourceGroupName,
+		ResourceManagementPrivateLinkName: resourceManagementPrivateLinkName,
 	}
 }
 
@@ -44,8 +44,8 @@ func ParseResourceManagementPrivateLinkID(input string) (*ResourceManagementPriv
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.RmplName, ok = parsed.Parsed["rmplName"]; !ok {
-		return nil, fmt.Errorf("the segment 'rmplName' was not found in the resource id %q", input)
+	if id.ResourceManagementPrivateLinkName, ok = parsed.Parsed["resourceManagementPrivateLinkName"]; !ok {
+		return nil, fmt.Errorf("the segment 'resourceManagementPrivateLinkName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -71,8 +71,8 @@ func ParseResourceManagementPrivateLinkIDInsensitively(input string) (*ResourceM
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.RmplName, ok = parsed.Parsed["rmplName"]; !ok {
-		return nil, fmt.Errorf("the segment 'rmplName' was not found in the resource id %q", input)
+	if id.ResourceManagementPrivateLinkName, ok = parsed.Parsed["resourceManagementPrivateLinkName"]; !ok {
+		return nil, fmt.Errorf("the segment 'resourceManagementPrivateLinkName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -96,7 +96,7 @@ func ValidateResourceManagementPrivateLinkID(input interface{}, key string) (war
 // ID returns the formatted Resource Management Private Link ID
 func (id ResourceManagementPrivateLinkId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.Authorization/resourceManagementPrivateLinks/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.RmplName)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.ResourceManagementPrivateLinkName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Resource Management Private Link ID
@@ -109,7 +109,7 @@ func (id ResourceManagementPrivateLinkId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftAuthorization", "Microsoft.Authorization", "Microsoft.Authorization"),
 		resourceids.StaticSegment("staticResourceManagementPrivateLinks", "resourceManagementPrivateLinks", "resourceManagementPrivateLinks"),
-		resourceids.UserSpecifiedSegment("rmplName", "rmplValue"),
+		resourceids.UserSpecifiedSegment("resourceManagementPrivateLinkName", "resourceManagementPrivateLinkValue"),
 	}
 }
 
@@ -118,7 +118,7 @@ func (id ResourceManagementPrivateLinkId) String() string {
 	components := []string{
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
-		fmt.Sprintf("Rmpl Name: %q", id.RmplName),
+		fmt.Sprintf("Resource Management Private Link Name: %q", id.ResourceManagementPrivateLinkName),
 	}
 	return fmt.Sprintf("Resource Management Private Link (%s)", strings.Join(components, "\n"))
 }

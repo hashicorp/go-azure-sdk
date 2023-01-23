@@ -15,8 +15,8 @@ func TestNewRestorableDatabaseAccountID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
 	}
 
-	if id.Location != "locationValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'Location'", id.Location, "locationValue")
+	if id.LocationName != "locationValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'LocationName'", id.LocationName, "locationValue")
 	}
 
 	if id.InstanceId != "instanceIdValue" {
@@ -83,7 +83,7 @@ func TestParseRestorableDatabaseAccountID(t *testing.T) {
 			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.DocumentDB/locations/locationValue/restorableDatabaseAccounts/instanceIdValue",
 			Expected: &RestorableDatabaseAccountId{
 				SubscriptionId: "12345678-1234-9876-4563-123456789012",
-				Location:       "locationValue",
+				LocationName:   "locationValue",
 				InstanceId:     "instanceIdValue",
 			},
 		},
@@ -112,8 +112,8 @@ func TestParseRestorableDatabaseAccountID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for SubscriptionId", v.Expected.SubscriptionId, actual.SubscriptionId)
 		}
 
-		if actual.Location != v.Expected.Location {
-			t.Fatalf("Expected %q but got %q for Location", v.Expected.Location, actual.Location)
+		if actual.LocationName != v.Expected.LocationName {
+			t.Fatalf("Expected %q but got %q for LocationName", v.Expected.LocationName, actual.LocationName)
 		}
 
 		if actual.InstanceId != v.Expected.InstanceId {
@@ -209,7 +209,7 @@ func TestParseRestorableDatabaseAccountIDInsensitively(t *testing.T) {
 			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.DocumentDB/locations/locationValue/restorableDatabaseAccounts/instanceIdValue",
 			Expected: &RestorableDatabaseAccountId{
 				SubscriptionId: "12345678-1234-9876-4563-123456789012",
-				Location:       "locationValue",
+				LocationName:   "locationValue",
 				InstanceId:     "instanceIdValue",
 			},
 		},
@@ -223,7 +223,7 @@ func TestParseRestorableDatabaseAccountIDInsensitively(t *testing.T) {
 			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.dOcUmEnTdB/lOcAtIoNs/lOcAtIoNvAlUe/rEsToRaBlEdAtAbAsEaCcOuNtS/iNsTaNcEiDvAlUe",
 			Expected: &RestorableDatabaseAccountId{
 				SubscriptionId: "12345678-1234-9876-4563-123456789012",
-				Location:       "lOcAtIoNvAlUe",
+				LocationName:   "lOcAtIoNvAlUe",
 				InstanceId:     "iNsTaNcEiDvAlUe",
 			},
 		},
@@ -252,8 +252,8 @@ func TestParseRestorableDatabaseAccountIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for SubscriptionId", v.Expected.SubscriptionId, actual.SubscriptionId)
 		}
 
-		if actual.Location != v.Expected.Location {
-			t.Fatalf("Expected %q but got %q for Location", v.Expected.Location, actual.Location)
+		if actual.LocationName != v.Expected.LocationName {
+			t.Fatalf("Expected %q but got %q for LocationName", v.Expected.LocationName, actual.LocationName)
 		}
 
 		if actual.InstanceId != v.Expected.InstanceId {

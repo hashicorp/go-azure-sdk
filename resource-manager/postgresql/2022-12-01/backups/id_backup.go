@@ -11,19 +11,19 @@ var _ resourceids.ResourceId = BackupId{}
 
 // BackupId is a struct representing the Resource ID for a Backup
 type BackupId struct {
-	SubscriptionId    string
-	ResourceGroupName string
-	ServerName        string
-	BackupName        string
+	SubscriptionId     string
+	ResourceGroupName  string
+	FlexibleServerName string
+	BackupName         string
 }
 
 // NewBackupID returns a new BackupId struct
-func NewBackupID(subscriptionId string, resourceGroupName string, serverName string, backupName string) BackupId {
+func NewBackupID(subscriptionId string, resourceGroupName string, flexibleServerName string, backupName string) BackupId {
 	return BackupId{
-		SubscriptionId:    subscriptionId,
-		ResourceGroupName: resourceGroupName,
-		ServerName:        serverName,
-		BackupName:        backupName,
+		SubscriptionId:     subscriptionId,
+		ResourceGroupName:  resourceGroupName,
+		FlexibleServerName: flexibleServerName,
+		BackupName:         backupName,
 	}
 }
 
@@ -46,8 +46,8 @@ func ParseBackupID(input string) (*BackupId, error) {
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.ServerName, ok = parsed.Parsed["serverName"]; !ok {
-		return nil, fmt.Errorf("the segment 'serverName' was not found in the resource id %q", input)
+	if id.FlexibleServerName, ok = parsed.Parsed["flexibleServerName"]; !ok {
+		return nil, fmt.Errorf("the segment 'flexibleServerName' was not found in the resource id %q", input)
 	}
 
 	if id.BackupName, ok = parsed.Parsed["backupName"]; !ok {
@@ -77,8 +77,8 @@ func ParseBackupIDInsensitively(input string) (*BackupId, error) {
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.ServerName, ok = parsed.Parsed["serverName"]; !ok {
-		return nil, fmt.Errorf("the segment 'serverName' was not found in the resource id %q", input)
+	if id.FlexibleServerName, ok = parsed.Parsed["flexibleServerName"]; !ok {
+		return nil, fmt.Errorf("the segment 'flexibleServerName' was not found in the resource id %q", input)
 	}
 
 	if id.BackupName, ok = parsed.Parsed["backupName"]; !ok {
@@ -106,7 +106,7 @@ func ValidateBackupID(input interface{}, key string) (warnings []string, errors 
 // ID returns the formatted Backup ID
 func (id BackupId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.DBforPostgreSQL/flexibleServers/%s/backups/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.ServerName, id.BackupName)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.FlexibleServerName, id.BackupName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Backup ID
@@ -119,7 +119,7 @@ func (id BackupId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftDBforPostgreSQL", "Microsoft.DBforPostgreSQL", "Microsoft.DBforPostgreSQL"),
 		resourceids.StaticSegment("staticFlexibleServers", "flexibleServers", "flexibleServers"),
-		resourceids.UserSpecifiedSegment("serverName", "serverValue"),
+		resourceids.UserSpecifiedSegment("flexibleServerName", "flexibleServerValue"),
 		resourceids.StaticSegment("staticBackups", "backups", "backups"),
 		resourceids.UserSpecifiedSegment("backupName", "backupValue"),
 	}
@@ -130,7 +130,7 @@ func (id BackupId) String() string {
 	components := []string{
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
-		fmt.Sprintf("Server Name: %q", id.ServerName),
+		fmt.Sprintf("Flexible Server Name: %q", id.FlexibleServerName),
 		fmt.Sprintf("Backup Name: %q", id.BackupName),
 	}
 	return fmt.Sprintf("Backup (%s)", strings.Join(components, "\n"))

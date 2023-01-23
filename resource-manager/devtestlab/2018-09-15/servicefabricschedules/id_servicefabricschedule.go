@@ -16,18 +16,18 @@ type ServiceFabricScheduleId struct {
 	LabName           string
 	UserName          string
 	ServiceFabricName string
-	Name              string
+	ScheduleName      string
 }
 
 // NewServiceFabricScheduleID returns a new ServiceFabricScheduleId struct
-func NewServiceFabricScheduleID(subscriptionId string, resourceGroupName string, labName string, userName string, serviceFabricName string, name string) ServiceFabricScheduleId {
+func NewServiceFabricScheduleID(subscriptionId string, resourceGroupName string, labName string, userName string, serviceFabricName string, scheduleName string) ServiceFabricScheduleId {
 	return ServiceFabricScheduleId{
 		SubscriptionId:    subscriptionId,
 		ResourceGroupName: resourceGroupName,
 		LabName:           labName,
 		UserName:          userName,
 		ServiceFabricName: serviceFabricName,
-		Name:              name,
+		ScheduleName:      scheduleName,
 	}
 }
 
@@ -62,8 +62,8 @@ func ParseServiceFabricScheduleID(input string) (*ServiceFabricScheduleId, error
 		return nil, fmt.Errorf("the segment 'serviceFabricName' was not found in the resource id %q", input)
 	}
 
-	if id.Name, ok = parsed.Parsed["name"]; !ok {
-		return nil, fmt.Errorf("the segment 'name' was not found in the resource id %q", input)
+	if id.ScheduleName, ok = parsed.Parsed["scheduleName"]; !ok {
+		return nil, fmt.Errorf("the segment 'scheduleName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -101,8 +101,8 @@ func ParseServiceFabricScheduleIDInsensitively(input string) (*ServiceFabricSche
 		return nil, fmt.Errorf("the segment 'serviceFabricName' was not found in the resource id %q", input)
 	}
 
-	if id.Name, ok = parsed.Parsed["name"]; !ok {
-		return nil, fmt.Errorf("the segment 'name' was not found in the resource id %q", input)
+	if id.ScheduleName, ok = parsed.Parsed["scheduleName"]; !ok {
+		return nil, fmt.Errorf("the segment 'scheduleName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -126,7 +126,7 @@ func ValidateServiceFabricScheduleID(input interface{}, key string) (warnings []
 // ID returns the formatted Service Fabric Schedule ID
 func (id ServiceFabricScheduleId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.DevTestLab/labs/%s/users/%s/serviceFabrics/%s/schedules/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.LabName, id.UserName, id.ServiceFabricName, id.Name)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.LabName, id.UserName, id.ServiceFabricName, id.ScheduleName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Service Fabric Schedule ID
@@ -145,7 +145,7 @@ func (id ServiceFabricScheduleId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticServiceFabrics", "serviceFabrics", "serviceFabrics"),
 		resourceids.UserSpecifiedSegment("serviceFabricName", "serviceFabricValue"),
 		resourceids.StaticSegment("staticSchedules", "schedules", "schedules"),
-		resourceids.UserSpecifiedSegment("name", "nameValue"),
+		resourceids.UserSpecifiedSegment("scheduleName", "scheduleValue"),
 	}
 }
 
@@ -157,7 +157,7 @@ func (id ServiceFabricScheduleId) String() string {
 		fmt.Sprintf("Lab Name: %q", id.LabName),
 		fmt.Sprintf("User Name: %q", id.UserName),
 		fmt.Sprintf("Service Fabric Name: %q", id.ServiceFabricName),
-		fmt.Sprintf("Name: %q", id.Name),
+		fmt.Sprintf("Schedule Name: %q", id.ScheduleName),
 	}
 	return fmt.Sprintf("Service Fabric Schedule (%s)", strings.Join(components, "\n"))
 }

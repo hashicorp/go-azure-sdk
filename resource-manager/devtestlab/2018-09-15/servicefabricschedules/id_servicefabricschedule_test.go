@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = ServiceFabricScheduleId{}
 
 func TestNewServiceFabricScheduleID(t *testing.T) {
-	id := NewServiceFabricScheduleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "userValue", "serviceFabricValue", "nameValue")
+	id := NewServiceFabricScheduleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "userValue", "serviceFabricValue", "scheduleValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -31,14 +31,14 @@ func TestNewServiceFabricScheduleID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ServiceFabricName'", id.ServiceFabricName, "serviceFabricValue")
 	}
 
-	if id.Name != "nameValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'Name'", id.Name, "nameValue")
+	if id.ScheduleName != "scheduleValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'ScheduleName'", id.ScheduleName, "scheduleValue")
 	}
 }
 
 func TestFormatServiceFabricScheduleID(t *testing.T) {
-	actual := NewServiceFabricScheduleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "userValue", "serviceFabricValue", "nameValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labValue/users/userValue/serviceFabrics/serviceFabricValue/schedules/nameValue"
+	actual := NewServiceFabricScheduleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "userValue", "serviceFabricValue", "scheduleValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labValue/users/userValue/serviceFabrics/serviceFabricValue/schedules/scheduleValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -122,19 +122,19 @@ func TestParseServiceFabricScheduleID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labValue/users/userValue/serviceFabrics/serviceFabricValue/schedules/nameValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labValue/users/userValue/serviceFabrics/serviceFabricValue/schedules/scheduleValue",
 			Expected: &ServiceFabricScheduleId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				LabName:           "labValue",
 				UserName:          "userValue",
 				ServiceFabricName: "serviceFabricValue",
-				Name:              "nameValue",
+				ScheduleName:      "scheduleValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labValue/users/userValue/serviceFabrics/serviceFabricValue/schedules/nameValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labValue/users/userValue/serviceFabrics/serviceFabricValue/schedules/scheduleValue/extra",
 			Error: true,
 		},
 	}
@@ -173,8 +173,8 @@ func TestParseServiceFabricScheduleID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ServiceFabricName", v.Expected.ServiceFabricName, actual.ServiceFabricName)
 		}
 
-		if actual.Name != v.Expected.Name {
-			t.Fatalf("Expected %q but got %q for Name", v.Expected.Name, actual.Name)
+		if actual.ScheduleName != v.Expected.ScheduleName {
+			t.Fatalf("Expected %q but got %q for ScheduleName", v.Expected.ScheduleName, actual.ScheduleName)
 		}
 
 	}
@@ -323,36 +323,36 @@ func TestParseServiceFabricScheduleIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labValue/users/userValue/serviceFabrics/serviceFabricValue/schedules/nameValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labValue/users/userValue/serviceFabrics/serviceFabricValue/schedules/scheduleValue",
 			Expected: &ServiceFabricScheduleId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				LabName:           "labValue",
 				UserName:          "userValue",
 				ServiceFabricName: "serviceFabricValue",
-				Name:              "nameValue",
+				ScheduleName:      "scheduleValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labValue/users/userValue/serviceFabrics/serviceFabricValue/schedules/nameValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labValue/users/userValue/serviceFabrics/serviceFabricValue/schedules/scheduleValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvTeStLaB/lAbS/lAbVaLuE/uSeRs/uSeRvAlUe/sErViCeFaBrIcS/sErViCeFaBrIcVaLuE/sChEdUlEs/nAmEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvTeStLaB/lAbS/lAbVaLuE/uSeRs/uSeRvAlUe/sErViCeFaBrIcS/sErViCeFaBrIcVaLuE/sChEdUlEs/sChEdUlEvAlUe",
 			Expected: &ServiceFabricScheduleId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
 				LabName:           "lAbVaLuE",
 				UserName:          "uSeRvAlUe",
 				ServiceFabricName: "sErViCeFaBrIcVaLuE",
-				Name:              "nAmEvAlUe",
+				ScheduleName:      "sChEdUlEvAlUe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvTeStLaB/lAbS/lAbVaLuE/uSeRs/uSeRvAlUe/sErViCeFaBrIcS/sErViCeFaBrIcVaLuE/sChEdUlEs/nAmEvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvTeStLaB/lAbS/lAbVaLuE/uSeRs/uSeRvAlUe/sErViCeFaBrIcS/sErViCeFaBrIcVaLuE/sChEdUlEs/sChEdUlEvAlUe/extra",
 			Error: true,
 		},
 	}
@@ -391,8 +391,8 @@ func TestParseServiceFabricScheduleIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ServiceFabricName", v.Expected.ServiceFabricName, actual.ServiceFabricName)
 		}
 
-		if actual.Name != v.Expected.Name {
-			t.Fatalf("Expected %q but got %q for Name", v.Expected.Name, actual.Name)
+		if actual.ScheduleName != v.Expected.ScheduleName {
+			t.Fatalf("Expected %q but got %q for ScheduleName", v.Expected.ScheduleName, actual.ScheduleName)
 		}
 
 	}

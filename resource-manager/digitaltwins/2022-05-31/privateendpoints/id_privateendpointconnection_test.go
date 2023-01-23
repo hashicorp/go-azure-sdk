@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = PrivateEndpointConnectionId{}
 
 func TestNewPrivateEndpointConnectionID(t *testing.T) {
-	id := NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue", "privateEndpointConnectionValue")
+	id := NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "digitalTwinsInstanceValue", "privateEndpointConnectionValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -19,8 +19,8 @@ func TestNewPrivateEndpointConnectionID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.ResourceName != "resourceValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ResourceName'", id.ResourceName, "resourceValue")
+	if id.DigitalTwinsInstanceName != "digitalTwinsInstanceValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'DigitalTwinsInstanceName'", id.DigitalTwinsInstanceName, "digitalTwinsInstanceValue")
 	}
 
 	if id.PrivateEndpointConnectionName != "privateEndpointConnectionValue" {
@@ -29,8 +29,8 @@ func TestNewPrivateEndpointConnectionID(t *testing.T) {
 }
 
 func TestFormatPrivateEndpointConnectionID(t *testing.T) {
-	actual := NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue", "privateEndpointConnectionValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DigitalTwins/digitalTwinsInstances/resourceValue/privateEndpointConnections/privateEndpointConnectionValue"
+	actual := NewPrivateEndpointConnectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "digitalTwinsInstanceValue", "privateEndpointConnectionValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DigitalTwins/digitalTwinsInstances/digitalTwinsInstanceValue/privateEndpointConnections/privateEndpointConnectionValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -84,27 +84,27 @@ func TestParsePrivateEndpointConnectionID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DigitalTwins/digitalTwinsInstances/resourceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DigitalTwins/digitalTwinsInstances/digitalTwinsInstanceValue",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DigitalTwins/digitalTwinsInstances/resourceValue/privateEndpointConnections",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DigitalTwins/digitalTwinsInstances/digitalTwinsInstanceValue/privateEndpointConnections",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DigitalTwins/digitalTwinsInstances/resourceValue/privateEndpointConnections/privateEndpointConnectionValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DigitalTwins/digitalTwinsInstances/digitalTwinsInstanceValue/privateEndpointConnections/privateEndpointConnectionValue",
 			Expected: &PrivateEndpointConnectionId{
 				SubscriptionId:                "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:             "example-resource-group",
-				ResourceName:                  "resourceValue",
+				DigitalTwinsInstanceName:      "digitalTwinsInstanceValue",
 				PrivateEndpointConnectionName: "privateEndpointConnectionValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DigitalTwins/digitalTwinsInstances/resourceValue/privateEndpointConnections/privateEndpointConnectionValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DigitalTwins/digitalTwinsInstances/digitalTwinsInstanceValue/privateEndpointConnections/privateEndpointConnectionValue/extra",
 			Error: true,
 		},
 	}
@@ -131,8 +131,8 @@ func TestParsePrivateEndpointConnectionID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.ResourceName != v.Expected.ResourceName {
-			t.Fatalf("Expected %q but got %q for ResourceName", v.Expected.ResourceName, actual.ResourceName)
+		if actual.DigitalTwinsInstanceName != v.Expected.DigitalTwinsInstanceName {
+			t.Fatalf("Expected %q but got %q for DigitalTwinsInstanceName", v.Expected.DigitalTwinsInstanceName, actual.DigitalTwinsInstanceName)
 		}
 
 		if actual.PrivateEndpointConnectionName != v.Expected.PrivateEndpointConnectionName {
@@ -225,52 +225,52 @@ func TestParsePrivateEndpointConnectionIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DigitalTwins/digitalTwinsInstances/resourceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DigitalTwins/digitalTwinsInstances/digitalTwinsInstanceValue",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dIgItAlTwInS/dIgItAlTwInSiNsTaNcEs/rEsOuRcEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dIgItAlTwInS/dIgItAlTwInSiNsTaNcEs/dIgItAlTwInSiNsTaNcEvAlUe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DigitalTwins/digitalTwinsInstances/resourceValue/privateEndpointConnections",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DigitalTwins/digitalTwinsInstances/digitalTwinsInstanceValue/privateEndpointConnections",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dIgItAlTwInS/dIgItAlTwInSiNsTaNcEs/rEsOuRcEvAlUe/pRiVaTeEnDpOiNtCoNnEcTiOnS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dIgItAlTwInS/dIgItAlTwInSiNsTaNcEs/dIgItAlTwInSiNsTaNcEvAlUe/pRiVaTeEnDpOiNtCoNnEcTiOnS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DigitalTwins/digitalTwinsInstances/resourceValue/privateEndpointConnections/privateEndpointConnectionValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DigitalTwins/digitalTwinsInstances/digitalTwinsInstanceValue/privateEndpointConnections/privateEndpointConnectionValue",
 			Expected: &PrivateEndpointConnectionId{
 				SubscriptionId:                "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:             "example-resource-group",
-				ResourceName:                  "resourceValue",
+				DigitalTwinsInstanceName:      "digitalTwinsInstanceValue",
 				PrivateEndpointConnectionName: "privateEndpointConnectionValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DigitalTwins/digitalTwinsInstances/resourceValue/privateEndpointConnections/privateEndpointConnectionValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DigitalTwins/digitalTwinsInstances/digitalTwinsInstanceValue/privateEndpointConnections/privateEndpointConnectionValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dIgItAlTwInS/dIgItAlTwInSiNsTaNcEs/rEsOuRcEvAlUe/pRiVaTeEnDpOiNtCoNnEcTiOnS/pRiVaTeEnDpOiNtCoNnEcTiOnVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dIgItAlTwInS/dIgItAlTwInSiNsTaNcEs/dIgItAlTwInSiNsTaNcEvAlUe/pRiVaTeEnDpOiNtCoNnEcTiOnS/pRiVaTeEnDpOiNtCoNnEcTiOnVaLuE",
 			Expected: &PrivateEndpointConnectionId{
 				SubscriptionId:                "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:             "eXaMpLe-rEsOuRcE-GrOuP",
-				ResourceName:                  "rEsOuRcEvAlUe",
+				DigitalTwinsInstanceName:      "dIgItAlTwInSiNsTaNcEvAlUe",
 				PrivateEndpointConnectionName: "pRiVaTeEnDpOiNtCoNnEcTiOnVaLuE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dIgItAlTwInS/dIgItAlTwInSiNsTaNcEs/rEsOuRcEvAlUe/pRiVaTeEnDpOiNtCoNnEcTiOnS/pRiVaTeEnDpOiNtCoNnEcTiOnVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dIgItAlTwInS/dIgItAlTwInSiNsTaNcEs/dIgItAlTwInSiNsTaNcEvAlUe/pRiVaTeEnDpOiNtCoNnEcTiOnS/pRiVaTeEnDpOiNtCoNnEcTiOnVaLuE/extra",
 			Error: true,
 		},
 	}
@@ -297,8 +297,8 @@ func TestParsePrivateEndpointConnectionIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.ResourceName != v.Expected.ResourceName {
-			t.Fatalf("Expected %q but got %q for ResourceName", v.Expected.ResourceName, actual.ResourceName)
+		if actual.DigitalTwinsInstanceName != v.Expected.DigitalTwinsInstanceName {
+			t.Fatalf("Expected %q but got %q for DigitalTwinsInstanceName", v.Expected.DigitalTwinsInstanceName, actual.DigitalTwinsInstanceName)
 		}
 
 		if actual.PrivateEndpointConnectionName != v.Expected.PrivateEndpointConnectionName {

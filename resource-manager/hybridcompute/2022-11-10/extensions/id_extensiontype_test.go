@@ -15,16 +15,16 @@ func TestNewExtensionTypeID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
 	}
 
-	if id.Location != "locationValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'Location'", id.Location, "locationValue")
+	if id.LocationName != "locationValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'LocationName'", id.LocationName, "locationValue")
 	}
 
-	if id.Publisher != "publisherValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'Publisher'", id.Publisher, "publisherValue")
+	if id.PublisherName != "publisherValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'PublisherName'", id.PublisherName, "publisherValue")
 	}
 
-	if id.ExtensionType != "extensionTypeValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ExtensionType'", id.ExtensionType, "extensionTypeValue")
+	if id.ExtensionTypeName != "extensionTypeValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'ExtensionTypeName'", id.ExtensionTypeName, "extensionTypeValue")
 	}
 }
 
@@ -96,10 +96,10 @@ func TestParseExtensionTypeID(t *testing.T) {
 			// Valid URI
 			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.HybridCompute/locations/locationValue/publishers/publisherValue/extensionTypes/extensionTypeValue",
 			Expected: &ExtensionTypeId{
-				SubscriptionId: "12345678-1234-9876-4563-123456789012",
-				Location:       "locationValue",
-				Publisher:      "publisherValue",
-				ExtensionType:  "extensionTypeValue",
+				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
+				LocationName:      "locationValue",
+				PublisherName:     "publisherValue",
+				ExtensionTypeName: "extensionTypeValue",
 			},
 		},
 		{
@@ -127,16 +127,16 @@ func TestParseExtensionTypeID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for SubscriptionId", v.Expected.SubscriptionId, actual.SubscriptionId)
 		}
 
-		if actual.Location != v.Expected.Location {
-			t.Fatalf("Expected %q but got %q for Location", v.Expected.Location, actual.Location)
+		if actual.LocationName != v.Expected.LocationName {
+			t.Fatalf("Expected %q but got %q for LocationName", v.Expected.LocationName, actual.LocationName)
 		}
 
-		if actual.Publisher != v.Expected.Publisher {
-			t.Fatalf("Expected %q but got %q for Publisher", v.Expected.Publisher, actual.Publisher)
+		if actual.PublisherName != v.Expected.PublisherName {
+			t.Fatalf("Expected %q but got %q for PublisherName", v.Expected.PublisherName, actual.PublisherName)
 		}
 
-		if actual.ExtensionType != v.Expected.ExtensionType {
-			t.Fatalf("Expected %q but got %q for ExtensionType", v.Expected.ExtensionType, actual.ExtensionType)
+		if actual.ExtensionTypeName != v.Expected.ExtensionTypeName {
+			t.Fatalf("Expected %q but got %q for ExtensionTypeName", v.Expected.ExtensionTypeName, actual.ExtensionTypeName)
 		}
 
 	}
@@ -247,10 +247,10 @@ func TestParseExtensionTypeIDInsensitively(t *testing.T) {
 			// Valid URI
 			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.HybridCompute/locations/locationValue/publishers/publisherValue/extensionTypes/extensionTypeValue",
 			Expected: &ExtensionTypeId{
-				SubscriptionId: "12345678-1234-9876-4563-123456789012",
-				Location:       "locationValue",
-				Publisher:      "publisherValue",
-				ExtensionType:  "extensionTypeValue",
+				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
+				LocationName:      "locationValue",
+				PublisherName:     "publisherValue",
+				ExtensionTypeName: "extensionTypeValue",
 			},
 		},
 		{
@@ -262,10 +262,10 @@ func TestParseExtensionTypeIDInsensitively(t *testing.T) {
 			// Valid URI (mIxEd CaSe since this is insensitive)
 			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.hYbRiDcOmPuTe/lOcAtIoNs/lOcAtIoNvAlUe/pUbLiShErS/pUbLiShErVaLuE/eXtEnSiOnTyPeS/eXtEnSiOnTyPeVaLuE",
 			Expected: &ExtensionTypeId{
-				SubscriptionId: "12345678-1234-9876-4563-123456789012",
-				Location:       "lOcAtIoNvAlUe",
-				Publisher:      "pUbLiShErVaLuE",
-				ExtensionType:  "eXtEnSiOnTyPeVaLuE",
+				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
+				LocationName:      "lOcAtIoNvAlUe",
+				PublisherName:     "pUbLiShErVaLuE",
+				ExtensionTypeName: "eXtEnSiOnTyPeVaLuE",
 			},
 		},
 		{
@@ -293,16 +293,16 @@ func TestParseExtensionTypeIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for SubscriptionId", v.Expected.SubscriptionId, actual.SubscriptionId)
 		}
 
-		if actual.Location != v.Expected.Location {
-			t.Fatalf("Expected %q but got %q for Location", v.Expected.Location, actual.Location)
+		if actual.LocationName != v.Expected.LocationName {
+			t.Fatalf("Expected %q but got %q for LocationName", v.Expected.LocationName, actual.LocationName)
 		}
 
-		if actual.Publisher != v.Expected.Publisher {
-			t.Fatalf("Expected %q but got %q for Publisher", v.Expected.Publisher, actual.Publisher)
+		if actual.PublisherName != v.Expected.PublisherName {
+			t.Fatalf("Expected %q but got %q for PublisherName", v.Expected.PublisherName, actual.PublisherName)
 		}
 
-		if actual.ExtensionType != v.Expected.ExtensionType {
-			t.Fatalf("Expected %q but got %q for ExtensionType", v.Expected.ExtensionType, actual.ExtensionType)
+		if actual.ExtensionTypeName != v.Expected.ExtensionTypeName {
+			t.Fatalf("Expected %q but got %q for ExtensionTypeName", v.Expected.ExtensionTypeName, actual.ExtensionTypeName)
 		}
 
 	}

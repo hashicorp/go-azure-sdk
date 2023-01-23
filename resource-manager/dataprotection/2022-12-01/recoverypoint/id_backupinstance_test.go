@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = BackupInstanceId{}
 
 func TestNewBackupInstanceID(t *testing.T) {
-	id := NewBackupInstanceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue", "backupInstanceValue")
+	id := NewBackupInstanceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "backupVaultValue", "backupInstanceValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -19,8 +19,8 @@ func TestNewBackupInstanceID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.VaultName != "vaultValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'VaultName'", id.VaultName, "vaultValue")
+	if id.BackupVaultName != "backupVaultValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'BackupVaultName'", id.BackupVaultName, "backupVaultValue")
 	}
 
 	if id.BackupInstanceName != "backupInstanceValue" {
@@ -29,8 +29,8 @@ func TestNewBackupInstanceID(t *testing.T) {
 }
 
 func TestFormatBackupInstanceID(t *testing.T) {
-	actual := NewBackupInstanceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue", "backupInstanceValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataProtection/backupVaults/vaultValue/backupInstances/backupInstanceValue"
+	actual := NewBackupInstanceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "backupVaultValue", "backupInstanceValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataProtection/backupVaults/backupVaultValue/backupInstances/backupInstanceValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -84,27 +84,27 @@ func TestParseBackupInstanceID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataProtection/backupVaults/vaultValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataProtection/backupVaults/backupVaultValue",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataProtection/backupVaults/vaultValue/backupInstances",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataProtection/backupVaults/backupVaultValue/backupInstances",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataProtection/backupVaults/vaultValue/backupInstances/backupInstanceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataProtection/backupVaults/backupVaultValue/backupInstances/backupInstanceValue",
 			Expected: &BackupInstanceId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "example-resource-group",
-				VaultName:          "vaultValue",
+				BackupVaultName:    "backupVaultValue",
 				BackupInstanceName: "backupInstanceValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataProtection/backupVaults/vaultValue/backupInstances/backupInstanceValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataProtection/backupVaults/backupVaultValue/backupInstances/backupInstanceValue/extra",
 			Error: true,
 		},
 	}
@@ -131,8 +131,8 @@ func TestParseBackupInstanceID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.VaultName != v.Expected.VaultName {
-			t.Fatalf("Expected %q but got %q for VaultName", v.Expected.VaultName, actual.VaultName)
+		if actual.BackupVaultName != v.Expected.BackupVaultName {
+			t.Fatalf("Expected %q but got %q for BackupVaultName", v.Expected.BackupVaultName, actual.BackupVaultName)
 		}
 
 		if actual.BackupInstanceName != v.Expected.BackupInstanceName {
@@ -225,52 +225,52 @@ func TestParseBackupInstanceIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataProtection/backupVaults/vaultValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataProtection/backupVaults/backupVaultValue",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtApRoTeCtIoN/bAcKuPvAuLtS/vAuLtVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtApRoTeCtIoN/bAcKuPvAuLtS/bAcKuPvAuLtVaLuE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataProtection/backupVaults/vaultValue/backupInstances",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataProtection/backupVaults/backupVaultValue/backupInstances",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtApRoTeCtIoN/bAcKuPvAuLtS/vAuLtVaLuE/bAcKuPiNsTaNcEs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtApRoTeCtIoN/bAcKuPvAuLtS/bAcKuPvAuLtVaLuE/bAcKuPiNsTaNcEs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataProtection/backupVaults/vaultValue/backupInstances/backupInstanceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataProtection/backupVaults/backupVaultValue/backupInstances/backupInstanceValue",
 			Expected: &BackupInstanceId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "example-resource-group",
-				VaultName:          "vaultValue",
+				BackupVaultName:    "backupVaultValue",
 				BackupInstanceName: "backupInstanceValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataProtection/backupVaults/vaultValue/backupInstances/backupInstanceValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataProtection/backupVaults/backupVaultValue/backupInstances/backupInstanceValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtApRoTeCtIoN/bAcKuPvAuLtS/vAuLtVaLuE/bAcKuPiNsTaNcEs/bAcKuPiNsTaNcEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtApRoTeCtIoN/bAcKuPvAuLtS/bAcKuPvAuLtVaLuE/bAcKuPiNsTaNcEs/bAcKuPiNsTaNcEvAlUe",
 			Expected: &BackupInstanceId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "eXaMpLe-rEsOuRcE-GrOuP",
-				VaultName:          "vAuLtVaLuE",
+				BackupVaultName:    "bAcKuPvAuLtVaLuE",
 				BackupInstanceName: "bAcKuPiNsTaNcEvAlUe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtApRoTeCtIoN/bAcKuPvAuLtS/vAuLtVaLuE/bAcKuPiNsTaNcEs/bAcKuPiNsTaNcEvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtApRoTeCtIoN/bAcKuPvAuLtS/bAcKuPvAuLtVaLuE/bAcKuPiNsTaNcEs/bAcKuPiNsTaNcEvAlUe/extra",
 			Error: true,
 		},
 	}
@@ -297,8 +297,8 @@ func TestParseBackupInstanceIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.VaultName != v.Expected.VaultName {
-			t.Fatalf("Expected %q but got %q for VaultName", v.Expected.VaultName, actual.VaultName)
+		if actual.BackupVaultName != v.Expected.BackupVaultName {
+			t.Fatalf("Expected %q but got %q for BackupVaultName", v.Expected.BackupVaultName, actual.BackupVaultName)
 		}
 
 		if actual.BackupInstanceName != v.Expected.BackupInstanceName {

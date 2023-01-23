@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = ScheduledQueryRuleId{}
 
 func TestNewScheduledQueryRuleID(t *testing.T) {
-	id := NewScheduledQueryRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "ruleValue")
+	id := NewScheduledQueryRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "scheduledQueryRuleValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -19,14 +19,14 @@ func TestNewScheduledQueryRuleID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.RuleName != "ruleValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'RuleName'", id.RuleName, "ruleValue")
+	if id.ScheduledQueryRuleName != "scheduledQueryRuleValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'ScheduledQueryRuleName'", id.ScheduledQueryRuleName, "scheduledQueryRuleValue")
 	}
 }
 
 func TestFormatScheduledQueryRuleID(t *testing.T) {
-	actual := NewScheduledQueryRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "ruleValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/scheduledQueryRules/ruleValue"
+	actual := NewScheduledQueryRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "scheduledQueryRuleValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/scheduledQueryRules/scheduledQueryRuleValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -80,16 +80,16 @@ func TestParseScheduledQueryRuleID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/scheduledQueryRules/ruleValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/scheduledQueryRules/scheduledQueryRuleValue",
 			Expected: &ScheduledQueryRuleId{
-				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName: "example-resource-group",
-				RuleName:          "ruleValue",
+				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:      "example-resource-group",
+				ScheduledQueryRuleName: "scheduledQueryRuleValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/scheduledQueryRules/ruleValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/scheduledQueryRules/scheduledQueryRuleValue/extra",
 			Error: true,
 		},
 	}
@@ -116,8 +116,8 @@ func TestParseScheduledQueryRuleID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.RuleName != v.Expected.RuleName {
-			t.Fatalf("Expected %q but got %q for RuleName", v.Expected.RuleName, actual.RuleName)
+		if actual.ScheduledQueryRuleName != v.Expected.ScheduledQueryRuleName {
+			t.Fatalf("Expected %q but got %q for ScheduledQueryRuleName", v.Expected.ScheduledQueryRuleName, actual.ScheduledQueryRuleName)
 		}
 
 	}
@@ -206,30 +206,30 @@ func TestParseScheduledQueryRuleIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/scheduledQueryRules/ruleValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/scheduledQueryRules/scheduledQueryRuleValue",
 			Expected: &ScheduledQueryRuleId{
-				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName: "example-resource-group",
-				RuleName:          "ruleValue",
+				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:      "example-resource-group",
+				ScheduledQueryRuleName: "scheduledQueryRuleValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/scheduledQueryRules/ruleValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Insights/scheduledQueryRules/scheduledQueryRuleValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.iNsIgHtS/sChEdUlEdQuErYrUlEs/rUlEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.iNsIgHtS/sChEdUlEdQuErYrUlEs/sChEdUlEdQuErYrUlEvAlUe",
 			Expected: &ScheduledQueryRuleId{
-				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				RuleName:          "rUlEvAlUe",
+				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:      "eXaMpLe-rEsOuRcE-GrOuP",
+				ScheduledQueryRuleName: "sChEdUlEdQuErYrUlEvAlUe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.iNsIgHtS/sChEdUlEdQuErYrUlEs/rUlEvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.iNsIgHtS/sChEdUlEdQuErYrUlEs/sChEdUlEdQuErYrUlEvAlUe/extra",
 			Error: true,
 		},
 	}
@@ -256,8 +256,8 @@ func TestParseScheduledQueryRuleIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.RuleName != v.Expected.RuleName {
-			t.Fatalf("Expected %q but got %q for RuleName", v.Expected.RuleName, actual.RuleName)
+		if actual.ScheduledQueryRuleName != v.Expected.ScheduledQueryRuleName {
+			t.Fatalf("Expected %q but got %q for ScheduledQueryRuleName", v.Expected.ScheduledQueryRuleName, actual.ScheduledQueryRuleName)
 		}
 
 	}

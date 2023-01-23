@@ -9,16 +9,16 @@ import (
 var _ resourceids.ResourceId = PacketCoreControlPlaneVersionId{}
 
 func TestNewPacketCoreControlPlaneVersionID(t *testing.T) {
-	id := NewPacketCoreControlPlaneVersionID("versionValue")
+	id := NewPacketCoreControlPlaneVersionID("packetCoreControlPlaneVersionValue")
 
-	if id.VersionName != "versionValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'VersionName'", id.VersionName, "versionValue")
+	if id.PacketCoreControlPlaneVersionName != "packetCoreControlPlaneVersionValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'PacketCoreControlPlaneVersionName'", id.PacketCoreControlPlaneVersionName, "packetCoreControlPlaneVersionValue")
 	}
 }
 
 func TestFormatPacketCoreControlPlaneVersionID(t *testing.T) {
-	actual := NewPacketCoreControlPlaneVersionID("versionValue").ID()
-	expected := "/providers/Microsoft.MobileNetwork/packetCoreControlPlaneVersions/versionValue"
+	actual := NewPacketCoreControlPlaneVersionID("packetCoreControlPlaneVersionValue").ID()
+	expected := "/providers/Microsoft.MobileNetwork/packetCoreControlPlaneVersions/packetCoreControlPlaneVersionValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -52,14 +52,14 @@ func TestParsePacketCoreControlPlaneVersionID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.MobileNetwork/packetCoreControlPlaneVersions/versionValue",
+			Input: "/providers/Microsoft.MobileNetwork/packetCoreControlPlaneVersions/packetCoreControlPlaneVersionValue",
 			Expected: &PacketCoreControlPlaneVersionId{
-				VersionName: "versionValue",
+				PacketCoreControlPlaneVersionName: "packetCoreControlPlaneVersionValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.MobileNetwork/packetCoreControlPlaneVersions/versionValue/extra",
+			Input: "/providers/Microsoft.MobileNetwork/packetCoreControlPlaneVersions/packetCoreControlPlaneVersionValue/extra",
 			Error: true,
 		},
 	}
@@ -78,8 +78,8 @@ func TestParsePacketCoreControlPlaneVersionID(t *testing.T) {
 			t.Fatal("Expect an error but didn't get one")
 		}
 
-		if actual.VersionName != v.Expected.VersionName {
-			t.Fatalf("Expected %q but got %q for VersionName", v.Expected.VersionName, actual.VersionName)
+		if actual.PacketCoreControlPlaneVersionName != v.Expected.PacketCoreControlPlaneVersionName {
+			t.Fatalf("Expected %q but got %q for PacketCoreControlPlaneVersionName", v.Expected.PacketCoreControlPlaneVersionName, actual.PacketCoreControlPlaneVersionName)
 		}
 
 	}
@@ -128,26 +128,26 @@ func TestParsePacketCoreControlPlaneVersionIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.MobileNetwork/packetCoreControlPlaneVersions/versionValue",
+			Input: "/providers/Microsoft.MobileNetwork/packetCoreControlPlaneVersions/packetCoreControlPlaneVersionValue",
 			Expected: &PacketCoreControlPlaneVersionId{
-				VersionName: "versionValue",
+				PacketCoreControlPlaneVersionName: "packetCoreControlPlaneVersionValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.MobileNetwork/packetCoreControlPlaneVersions/versionValue/extra",
+			Input: "/providers/Microsoft.MobileNetwork/packetCoreControlPlaneVersions/packetCoreControlPlaneVersionValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.mObIlEnEtWoRk/pAcKeTcOrEcOnTrOlPlAnEvErSiOnS/vErSiOnVaLuE",
+			Input: "/pRoViDeRs/mIcRoSoFt.mObIlEnEtWoRk/pAcKeTcOrEcOnTrOlPlAnEvErSiOnS/pAcKeTcOrEcOnTrOlPlAnEvErSiOnVaLuE",
 			Expected: &PacketCoreControlPlaneVersionId{
-				VersionName: "vErSiOnVaLuE",
+				PacketCoreControlPlaneVersionName: "pAcKeTcOrEcOnTrOlPlAnEvErSiOnVaLuE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.mObIlEnEtWoRk/pAcKeTcOrEcOnTrOlPlAnEvErSiOnS/vErSiOnVaLuE/extra",
+			Input: "/pRoViDeRs/mIcRoSoFt.mObIlEnEtWoRk/pAcKeTcOrEcOnTrOlPlAnEvErSiOnS/pAcKeTcOrEcOnTrOlPlAnEvErSiOnVaLuE/extra",
 			Error: true,
 		},
 	}
@@ -166,8 +166,8 @@ func TestParsePacketCoreControlPlaneVersionIDInsensitively(t *testing.T) {
 			t.Fatal("Expect an error but didn't get one")
 		}
 
-		if actual.VersionName != v.Expected.VersionName {
-			t.Fatalf("Expected %q but got %q for VersionName", v.Expected.VersionName, actual.VersionName)
+		if actual.PacketCoreControlPlaneVersionName != v.Expected.PacketCoreControlPlaneVersionName {
+			t.Fatalf("Expected %q but got %q for PacketCoreControlPlaneVersionName", v.Expected.PacketCoreControlPlaneVersionName, actual.PacketCoreControlPlaneVersionName)
 		}
 
 	}

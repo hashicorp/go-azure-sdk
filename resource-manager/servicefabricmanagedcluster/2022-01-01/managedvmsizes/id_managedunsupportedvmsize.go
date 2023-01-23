@@ -11,17 +11,17 @@ var _ resourceids.ResourceId = ManagedUnsupportedVMSizeId{}
 
 // ManagedUnsupportedVMSizeId is a struct representing the Resource ID for a Managed Unsupported V M Size
 type ManagedUnsupportedVMSizeId struct {
-	SubscriptionId string
-	Location       string
-	VmSize         string
+	SubscriptionId               string
+	LocationName                 string
+	ManagedUnsupportedVMSizeName string
 }
 
 // NewManagedUnsupportedVMSizeID returns a new ManagedUnsupportedVMSizeId struct
-func NewManagedUnsupportedVMSizeID(subscriptionId string, location string, vmSize string) ManagedUnsupportedVMSizeId {
+func NewManagedUnsupportedVMSizeID(subscriptionId string, locationName string, managedUnsupportedVMSizeName string) ManagedUnsupportedVMSizeId {
 	return ManagedUnsupportedVMSizeId{
-		SubscriptionId: subscriptionId,
-		Location:       location,
-		VmSize:         vmSize,
+		SubscriptionId:               subscriptionId,
+		LocationName:                 locationName,
+		ManagedUnsupportedVMSizeName: managedUnsupportedVMSizeName,
 	}
 }
 
@@ -40,12 +40,12 @@ func ParseManagedUnsupportedVMSizeID(input string) (*ManagedUnsupportedVMSizeId,
 		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
 	}
 
-	if id.Location, ok = parsed.Parsed["location"]; !ok {
-		return nil, fmt.Errorf("the segment 'location' was not found in the resource id %q", input)
+	if id.LocationName, ok = parsed.Parsed["locationName"]; !ok {
+		return nil, fmt.Errorf("the segment 'locationName' was not found in the resource id %q", input)
 	}
 
-	if id.VmSize, ok = parsed.Parsed["vmSize"]; !ok {
-		return nil, fmt.Errorf("the segment 'vmSize' was not found in the resource id %q", input)
+	if id.ManagedUnsupportedVMSizeName, ok = parsed.Parsed["managedUnsupportedVMSizeName"]; !ok {
+		return nil, fmt.Errorf("the segment 'managedUnsupportedVMSizeName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -67,12 +67,12 @@ func ParseManagedUnsupportedVMSizeIDInsensitively(input string) (*ManagedUnsuppo
 		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
 	}
 
-	if id.Location, ok = parsed.Parsed["location"]; !ok {
-		return nil, fmt.Errorf("the segment 'location' was not found in the resource id %q", input)
+	if id.LocationName, ok = parsed.Parsed["locationName"]; !ok {
+		return nil, fmt.Errorf("the segment 'locationName' was not found in the resource id %q", input)
 	}
 
-	if id.VmSize, ok = parsed.Parsed["vmSize"]; !ok {
-		return nil, fmt.Errorf("the segment 'vmSize' was not found in the resource id %q", input)
+	if id.ManagedUnsupportedVMSizeName, ok = parsed.Parsed["managedUnsupportedVMSizeName"]; !ok {
+		return nil, fmt.Errorf("the segment 'managedUnsupportedVMSizeName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -96,7 +96,7 @@ func ValidateManagedUnsupportedVMSizeID(input interface{}, key string) (warnings
 // ID returns the formatted Managed Unsupported V M Size ID
 func (id ManagedUnsupportedVMSizeId) ID() string {
 	fmtString := "/subscriptions/%s/providers/Microsoft.ServiceFabric/locations/%s/managedUnsupportedVMSizes/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.Location, id.VmSize)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.LocationName, id.ManagedUnsupportedVMSizeName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Managed Unsupported V M Size ID
@@ -107,9 +107,9 @@ func (id ManagedUnsupportedVMSizeId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftServiceFabric", "Microsoft.ServiceFabric", "Microsoft.ServiceFabric"),
 		resourceids.StaticSegment("staticLocations", "locations", "locations"),
-		resourceids.UserSpecifiedSegment("location", "locationValue"),
+		resourceids.UserSpecifiedSegment("locationName", "locationValue"),
 		resourceids.StaticSegment("staticManagedUnsupportedVMSizes", "managedUnsupportedVMSizes", "managedUnsupportedVMSizes"),
-		resourceids.UserSpecifiedSegment("vmSize", "vmSizeValue"),
+		resourceids.UserSpecifiedSegment("managedUnsupportedVMSizeName", "managedUnsupportedVMSizeValue"),
 	}
 }
 
@@ -117,8 +117,8 @@ func (id ManagedUnsupportedVMSizeId) Segments() []resourceids.Segment {
 func (id ManagedUnsupportedVMSizeId) String() string {
 	components := []string{
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
-		fmt.Sprintf("Location: %q", id.Location),
-		fmt.Sprintf("Vm Size: %q", id.VmSize),
+		fmt.Sprintf("Location Name: %q", id.LocationName),
+		fmt.Sprintf("Managed Unsupported V M Size Name: %q", id.ManagedUnsupportedVMSizeName),
 	}
 	return fmt.Sprintf("Managed Unsupported V M Size (%s)", strings.Join(components, "\n"))
 }

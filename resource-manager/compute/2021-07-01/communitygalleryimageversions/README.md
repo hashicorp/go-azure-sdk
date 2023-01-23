@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := communitygalleryimageversions.NewVersionID("12345678-1234-9876-4563-123456789012", "locationValue", "galleryUniqueValue", "galleryImageValue", "galleryImageVersionValue")
+id := communitygalleryimageversions.NewVersionID("12345678-1234-9876-4563-123456789012", "locationValue", "sharedGalleryValue", "imageValue", "versionValue")
 
 read, err := client.Get(ctx, id)
 if err != nil {

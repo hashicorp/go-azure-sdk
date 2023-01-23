@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = SecretId{}
 
 func TestNewSecretID(t *testing.T) {
-	id := NewSecretID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "userValue", "nameValue")
+	id := NewSecretID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "userValue", "secretValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -27,14 +27,14 @@ func TestNewSecretID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'UserName'", id.UserName, "userValue")
 	}
 
-	if id.Name != "nameValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'Name'", id.Name, "nameValue")
+	if id.SecretName != "secretValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'SecretName'", id.SecretName, "secretValue")
 	}
 }
 
 func TestFormatSecretID(t *testing.T) {
-	actual := NewSecretID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "userValue", "nameValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labValue/users/userValue/secrets/nameValue"
+	actual := NewSecretID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "userValue", "secretValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labValue/users/userValue/secrets/secretValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -108,18 +108,18 @@ func TestParseSecretID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labValue/users/userValue/secrets/nameValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labValue/users/userValue/secrets/secretValue",
 			Expected: &SecretId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				LabName:           "labValue",
 				UserName:          "userValue",
-				Name:              "nameValue",
+				SecretName:        "secretValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labValue/users/userValue/secrets/nameValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labValue/users/userValue/secrets/secretValue/extra",
 			Error: true,
 		},
 	}
@@ -154,8 +154,8 @@ func TestParseSecretID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for UserName", v.Expected.UserName, actual.UserName)
 		}
 
-		if actual.Name != v.Expected.Name {
-			t.Fatalf("Expected %q but got %q for Name", v.Expected.Name, actual.Name)
+		if actual.SecretName != v.Expected.SecretName {
+			t.Fatalf("Expected %q but got %q for SecretName", v.Expected.SecretName, actual.SecretName)
 		}
 
 	}
@@ -284,34 +284,34 @@ func TestParseSecretIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labValue/users/userValue/secrets/nameValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labValue/users/userValue/secrets/secretValue",
 			Expected: &SecretId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				LabName:           "labValue",
 				UserName:          "userValue",
-				Name:              "nameValue",
+				SecretName:        "secretValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labValue/users/userValue/secrets/nameValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DevTestLab/labs/labValue/users/userValue/secrets/secretValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvTeStLaB/lAbS/lAbVaLuE/uSeRs/uSeRvAlUe/sEcReTs/nAmEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvTeStLaB/lAbS/lAbVaLuE/uSeRs/uSeRvAlUe/sEcReTs/sEcReTvAlUe",
 			Expected: &SecretId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
 				LabName:           "lAbVaLuE",
 				UserName:          "uSeRvAlUe",
-				Name:              "nAmEvAlUe",
+				SecretName:        "sEcReTvAlUe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvTeStLaB/lAbS/lAbVaLuE/uSeRs/uSeRvAlUe/sEcReTs/nAmEvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dEvTeStLaB/lAbS/lAbVaLuE/uSeRs/uSeRvAlUe/sEcReTs/sEcReTvAlUe/extra",
 			Error: true,
 		},
 	}
@@ -346,8 +346,8 @@ func TestParseSecretIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for UserName", v.Expected.UserName, actual.UserName)
 		}
 
-		if actual.Name != v.Expected.Name {
-			t.Fatalf("Expected %q but got %q for Name", v.Expected.Name, actual.Name)
+		if actual.SecretName != v.Expected.SecretName {
+			t.Fatalf("Expected %q but got %q for SecretName", v.Expected.SecretName, actual.SecretName)
 		}
 
 	}

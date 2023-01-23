@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := backuppolicy.NewBackupPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "backupPolicyValue")
+id := backuppolicy.NewBackupPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "netAppAccountValue", "backupPolicyValue")
 
 payload := backuppolicy.BackupPolicy{
 	// ...
@@ -41,7 +41,7 @@ if err := client.BackupPoliciesCreateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := backuppolicy.NewBackupPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "backupPolicyValue")
+id := backuppolicy.NewBackupPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "netAppAccountValue", "backupPolicyValue")
 
 if err := client.BackupPoliciesDeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -53,7 +53,7 @@ if err := client.BackupPoliciesDeleteThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := backuppolicy.NewBackupPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "backupPolicyValue")
+id := backuppolicy.NewBackupPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "netAppAccountValue", "backupPolicyValue")
 
 read, err := client.BackupPoliciesGet(ctx, id)
 if err != nil {
@@ -69,7 +69,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := backuppolicy.NewNetAppAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue")
+id := backuppolicy.NewNetAppAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "netAppAccountValue")
 
 read, err := client.BackupPoliciesList(ctx, id)
 if err != nil {
@@ -85,7 +85,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := backuppolicy.NewBackupPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "backupPolicyValue")
+id := backuppolicy.NewBackupPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "netAppAccountValue", "backupPolicyValue")
 
 payload := backuppolicy.BackupPolicyPatch{
 	// ...

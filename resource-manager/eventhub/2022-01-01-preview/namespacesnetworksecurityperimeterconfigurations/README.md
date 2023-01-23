@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := namespacesnetworksecurityperimeterconfigurations.NewNetworkSecurityPerimeterConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceValue", "resourceAssociationValue")
+id := namespacesnetworksecurityperimeterconfigurations.NewNetworkSecurityPerimeterConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceValue", "networkSecurityPerimeterConfigurationValue")
 
 if err := client.NetworkSecurityPerimeterConfigurationsCreateOrUpdateThenPoll(ctx, id); err != nil {
 	// handle the error

@@ -15,17 +15,17 @@ type SecretId struct {
 	ResourceGroupName string
 	LabName           string
 	UserName          string
-	Name              string
+	SecretName        string
 }
 
 // NewSecretID returns a new SecretId struct
-func NewSecretID(subscriptionId string, resourceGroupName string, labName string, userName string, name string) SecretId {
+func NewSecretID(subscriptionId string, resourceGroupName string, labName string, userName string, secretName string) SecretId {
 	return SecretId{
 		SubscriptionId:    subscriptionId,
 		ResourceGroupName: resourceGroupName,
 		LabName:           labName,
 		UserName:          userName,
-		Name:              name,
+		SecretName:        secretName,
 	}
 }
 
@@ -56,8 +56,8 @@ func ParseSecretID(input string) (*SecretId, error) {
 		return nil, fmt.Errorf("the segment 'userName' was not found in the resource id %q", input)
 	}
 
-	if id.Name, ok = parsed.Parsed["name"]; !ok {
-		return nil, fmt.Errorf("the segment 'name' was not found in the resource id %q", input)
+	if id.SecretName, ok = parsed.Parsed["secretName"]; !ok {
+		return nil, fmt.Errorf("the segment 'secretName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -91,8 +91,8 @@ func ParseSecretIDInsensitively(input string) (*SecretId, error) {
 		return nil, fmt.Errorf("the segment 'userName' was not found in the resource id %q", input)
 	}
 
-	if id.Name, ok = parsed.Parsed["name"]; !ok {
-		return nil, fmt.Errorf("the segment 'name' was not found in the resource id %q", input)
+	if id.SecretName, ok = parsed.Parsed["secretName"]; !ok {
+		return nil, fmt.Errorf("the segment 'secretName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -116,7 +116,7 @@ func ValidateSecretID(input interface{}, key string) (warnings []string, errors 
 // ID returns the formatted Secret ID
 func (id SecretId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.DevTestLab/labs/%s/users/%s/secrets/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.LabName, id.UserName, id.Name)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.LabName, id.UserName, id.SecretName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Secret ID
@@ -133,7 +133,7 @@ func (id SecretId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticUsers", "users", "users"),
 		resourceids.UserSpecifiedSegment("userName", "userValue"),
 		resourceids.StaticSegment("staticSecrets", "secrets", "secrets"),
-		resourceids.UserSpecifiedSegment("name", "nameValue"),
+		resourceids.UserSpecifiedSegment("secretName", "secretValue"),
 	}
 }
 
@@ -144,7 +144,7 @@ func (id SecretId) String() string {
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
 		fmt.Sprintf("Lab Name: %q", id.LabName),
 		fmt.Sprintf("User Name: %q", id.UserName),
-		fmt.Sprintf("Name: %q", id.Name),
+		fmt.Sprintf("Secret Name: %q", id.SecretName),
 	}
 	return fmt.Sprintf("Secret (%s)", strings.Join(components, "\n"))
 }

@@ -9,40 +9,40 @@ import (
 var _ resourceids.ResourceId = OfferSkuVersionId{}
 
 func TestNewOfferSkuVersionID(t *testing.T) {
-	id := NewOfferSkuVersionID("12345678-1234-9876-4563-123456789012", "locationValue", "edgeZoneValue", "publisherValue", "offerValue", "skusValue", "versionValue")
+	id := NewOfferSkuVersionID("12345678-1234-9876-4563-123456789012", "locationValue", "edgeZoneValue", "publisherValue", "offerValue", "skuValue", "versionValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
 	}
 
-	if id.Location != "locationValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'Location'", id.Location, "locationValue")
+	if id.LocationName != "locationValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'LocationName'", id.LocationName, "locationValue")
 	}
 
-	if id.EdgeZone != "edgeZoneValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'EdgeZone'", id.EdgeZone, "edgeZoneValue")
+	if id.EdgeZoneName != "edgeZoneValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'EdgeZoneName'", id.EdgeZoneName, "edgeZoneValue")
 	}
 
 	if id.PublisherName != "publisherValue" {
 		t.Fatalf("Expected %q but got %q for Segment 'PublisherName'", id.PublisherName, "publisherValue")
 	}
 
-	if id.Offer != "offerValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'Offer'", id.Offer, "offerValue")
+	if id.OfferName != "offerValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'OfferName'", id.OfferName, "offerValue")
 	}
 
-	if id.Skus != "skusValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'Skus'", id.Skus, "skusValue")
+	if id.SkuName != "skuValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'SkuName'", id.SkuName, "skuValue")
 	}
 
-	if id.Version != "versionValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'Version'", id.Version, "versionValue")
+	if id.VersionName != "versionValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'VersionName'", id.VersionName, "versionValue")
 	}
 }
 
 func TestFormatOfferSkuVersionID(t *testing.T) {
-	actual := NewOfferSkuVersionID("12345678-1234-9876-4563-123456789012", "locationValue", "edgeZoneValue", "publisherValue", "offerValue", "skusValue", "versionValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationValue/edgeZones/edgeZoneValue/publishers/publisherValue/artifactTypes/vmImage/offers/offerValue/skus/skusValue/versions/versionValue"
+	actual := NewOfferSkuVersionID("12345678-1234-9876-4563-123456789012", "locationValue", "edgeZoneValue", "publisherValue", "offerValue", "skuValue", "versionValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationValue/edgeZones/edgeZoneValue/publishers/publisherValue/artifactTypes/vmImage/offers/offerValue/skus/skuValue/versions/versionValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -136,30 +136,30 @@ func TestParseOfferSkuVersionID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationValue/edgeZones/edgeZoneValue/publishers/publisherValue/artifactTypes/vmImage/offers/offerValue/skus/skusValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationValue/edgeZones/edgeZoneValue/publishers/publisherValue/artifactTypes/vmImage/offers/offerValue/skus/skuValue",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationValue/edgeZones/edgeZoneValue/publishers/publisherValue/artifactTypes/vmImage/offers/offerValue/skus/skusValue/versions",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationValue/edgeZones/edgeZoneValue/publishers/publisherValue/artifactTypes/vmImage/offers/offerValue/skus/skuValue/versions",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationValue/edgeZones/edgeZoneValue/publishers/publisherValue/artifactTypes/vmImage/offers/offerValue/skus/skusValue/versions/versionValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationValue/edgeZones/edgeZoneValue/publishers/publisherValue/artifactTypes/vmImage/offers/offerValue/skus/skuValue/versions/versionValue",
 			Expected: &OfferSkuVersionId{
 				SubscriptionId: "12345678-1234-9876-4563-123456789012",
-				Location:       "locationValue",
-				EdgeZone:       "edgeZoneValue",
+				LocationName:   "locationValue",
+				EdgeZoneName:   "edgeZoneValue",
 				PublisherName:  "publisherValue",
-				Offer:          "offerValue",
-				Skus:           "skusValue",
-				Version:        "versionValue",
+				OfferName:      "offerValue",
+				SkuName:        "skuValue",
+				VersionName:    "versionValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationValue/edgeZones/edgeZoneValue/publishers/publisherValue/artifactTypes/vmImage/offers/offerValue/skus/skusValue/versions/versionValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationValue/edgeZones/edgeZoneValue/publishers/publisherValue/artifactTypes/vmImage/offers/offerValue/skus/skuValue/versions/versionValue/extra",
 			Error: true,
 		},
 	}
@@ -182,28 +182,28 @@ func TestParseOfferSkuVersionID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for SubscriptionId", v.Expected.SubscriptionId, actual.SubscriptionId)
 		}
 
-		if actual.Location != v.Expected.Location {
-			t.Fatalf("Expected %q but got %q for Location", v.Expected.Location, actual.Location)
+		if actual.LocationName != v.Expected.LocationName {
+			t.Fatalf("Expected %q but got %q for LocationName", v.Expected.LocationName, actual.LocationName)
 		}
 
-		if actual.EdgeZone != v.Expected.EdgeZone {
-			t.Fatalf("Expected %q but got %q for EdgeZone", v.Expected.EdgeZone, actual.EdgeZone)
+		if actual.EdgeZoneName != v.Expected.EdgeZoneName {
+			t.Fatalf("Expected %q but got %q for EdgeZoneName", v.Expected.EdgeZoneName, actual.EdgeZoneName)
 		}
 
 		if actual.PublisherName != v.Expected.PublisherName {
 			t.Fatalf("Expected %q but got %q for PublisherName", v.Expected.PublisherName, actual.PublisherName)
 		}
 
-		if actual.Offer != v.Expected.Offer {
-			t.Fatalf("Expected %q but got %q for Offer", v.Expected.Offer, actual.Offer)
+		if actual.OfferName != v.Expected.OfferName {
+			t.Fatalf("Expected %q but got %q for OfferName", v.Expected.OfferName, actual.OfferName)
 		}
 
-		if actual.Skus != v.Expected.Skus {
-			t.Fatalf("Expected %q but got %q for Skus", v.Expected.Skus, actual.Skus)
+		if actual.SkuName != v.Expected.SkuName {
+			t.Fatalf("Expected %q but got %q for SkuName", v.Expected.SkuName, actual.SkuName)
 		}
 
-		if actual.Version != v.Expected.Version {
-			t.Fatalf("Expected %q but got %q for Version", v.Expected.Version, actual.Version)
+		if actual.VersionName != v.Expected.VersionName {
+			t.Fatalf("Expected %q but got %q for VersionName", v.Expected.VersionName, actual.VersionName)
 		}
 
 	}
@@ -372,58 +372,58 @@ func TestParseOfferSkuVersionIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationValue/edgeZones/edgeZoneValue/publishers/publisherValue/artifactTypes/vmImage/offers/offerValue/skus/skusValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationValue/edgeZones/edgeZoneValue/publishers/publisherValue/artifactTypes/vmImage/offers/offerValue/skus/skuValue",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOmPuTe/lOcAtIoNs/lOcAtIoNvAlUe/eDgEzOnEs/eDgEzOnEvAlUe/pUbLiShErS/pUbLiShErVaLuE/aRtIfAcTtYpEs/vMiMaGe/oFfErS/oFfErVaLuE/sKuS/sKuSvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOmPuTe/lOcAtIoNs/lOcAtIoNvAlUe/eDgEzOnEs/eDgEzOnEvAlUe/pUbLiShErS/pUbLiShErVaLuE/aRtIfAcTtYpEs/vMiMaGe/oFfErS/oFfErVaLuE/sKuS/sKuVaLuE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationValue/edgeZones/edgeZoneValue/publishers/publisherValue/artifactTypes/vmImage/offers/offerValue/skus/skusValue/versions",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationValue/edgeZones/edgeZoneValue/publishers/publisherValue/artifactTypes/vmImage/offers/offerValue/skus/skuValue/versions",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOmPuTe/lOcAtIoNs/lOcAtIoNvAlUe/eDgEzOnEs/eDgEzOnEvAlUe/pUbLiShErS/pUbLiShErVaLuE/aRtIfAcTtYpEs/vMiMaGe/oFfErS/oFfErVaLuE/sKuS/sKuSvAlUe/vErSiOnS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOmPuTe/lOcAtIoNs/lOcAtIoNvAlUe/eDgEzOnEs/eDgEzOnEvAlUe/pUbLiShErS/pUbLiShErVaLuE/aRtIfAcTtYpEs/vMiMaGe/oFfErS/oFfErVaLuE/sKuS/sKuVaLuE/vErSiOnS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationValue/edgeZones/edgeZoneValue/publishers/publisherValue/artifactTypes/vmImage/offers/offerValue/skus/skusValue/versions/versionValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationValue/edgeZones/edgeZoneValue/publishers/publisherValue/artifactTypes/vmImage/offers/offerValue/skus/skuValue/versions/versionValue",
 			Expected: &OfferSkuVersionId{
 				SubscriptionId: "12345678-1234-9876-4563-123456789012",
-				Location:       "locationValue",
-				EdgeZone:       "edgeZoneValue",
+				LocationName:   "locationValue",
+				EdgeZoneName:   "edgeZoneValue",
 				PublisherName:  "publisherValue",
-				Offer:          "offerValue",
-				Skus:           "skusValue",
-				Version:        "versionValue",
+				OfferName:      "offerValue",
+				SkuName:        "skuValue",
+				VersionName:    "versionValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationValue/edgeZones/edgeZoneValue/publishers/publisherValue/artifactTypes/vmImage/offers/offerValue/skus/skusValue/versions/versionValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Compute/locations/locationValue/edgeZones/edgeZoneValue/publishers/publisherValue/artifactTypes/vmImage/offers/offerValue/skus/skuValue/versions/versionValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOmPuTe/lOcAtIoNs/lOcAtIoNvAlUe/eDgEzOnEs/eDgEzOnEvAlUe/pUbLiShErS/pUbLiShErVaLuE/aRtIfAcTtYpEs/vMiMaGe/oFfErS/oFfErVaLuE/sKuS/sKuSvAlUe/vErSiOnS/vErSiOnVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOmPuTe/lOcAtIoNs/lOcAtIoNvAlUe/eDgEzOnEs/eDgEzOnEvAlUe/pUbLiShErS/pUbLiShErVaLuE/aRtIfAcTtYpEs/vMiMaGe/oFfErS/oFfErVaLuE/sKuS/sKuVaLuE/vErSiOnS/vErSiOnVaLuE",
 			Expected: &OfferSkuVersionId{
 				SubscriptionId: "12345678-1234-9876-4563-123456789012",
-				Location:       "lOcAtIoNvAlUe",
-				EdgeZone:       "eDgEzOnEvAlUe",
+				LocationName:   "lOcAtIoNvAlUe",
+				EdgeZoneName:   "eDgEzOnEvAlUe",
 				PublisherName:  "pUbLiShErVaLuE",
-				Offer:          "oFfErVaLuE",
-				Skus:           "sKuSvAlUe",
-				Version:        "vErSiOnVaLuE",
+				OfferName:      "oFfErVaLuE",
+				SkuName:        "sKuVaLuE",
+				VersionName:    "vErSiOnVaLuE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOmPuTe/lOcAtIoNs/lOcAtIoNvAlUe/eDgEzOnEs/eDgEzOnEvAlUe/pUbLiShErS/pUbLiShErVaLuE/aRtIfAcTtYpEs/vMiMaGe/oFfErS/oFfErVaLuE/sKuS/sKuSvAlUe/vErSiOnS/vErSiOnVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.cOmPuTe/lOcAtIoNs/lOcAtIoNvAlUe/eDgEzOnEs/eDgEzOnEvAlUe/pUbLiShErS/pUbLiShErVaLuE/aRtIfAcTtYpEs/vMiMaGe/oFfErS/oFfErVaLuE/sKuS/sKuVaLuE/vErSiOnS/vErSiOnVaLuE/extra",
 			Error: true,
 		},
 	}
@@ -446,28 +446,28 @@ func TestParseOfferSkuVersionIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for SubscriptionId", v.Expected.SubscriptionId, actual.SubscriptionId)
 		}
 
-		if actual.Location != v.Expected.Location {
-			t.Fatalf("Expected %q but got %q for Location", v.Expected.Location, actual.Location)
+		if actual.LocationName != v.Expected.LocationName {
+			t.Fatalf("Expected %q but got %q for LocationName", v.Expected.LocationName, actual.LocationName)
 		}
 
-		if actual.EdgeZone != v.Expected.EdgeZone {
-			t.Fatalf("Expected %q but got %q for EdgeZone", v.Expected.EdgeZone, actual.EdgeZone)
+		if actual.EdgeZoneName != v.Expected.EdgeZoneName {
+			t.Fatalf("Expected %q but got %q for EdgeZoneName", v.Expected.EdgeZoneName, actual.EdgeZoneName)
 		}
 
 		if actual.PublisherName != v.Expected.PublisherName {
 			t.Fatalf("Expected %q but got %q for PublisherName", v.Expected.PublisherName, actual.PublisherName)
 		}
 
-		if actual.Offer != v.Expected.Offer {
-			t.Fatalf("Expected %q but got %q for Offer", v.Expected.Offer, actual.Offer)
+		if actual.OfferName != v.Expected.OfferName {
+			t.Fatalf("Expected %q but got %q for OfferName", v.Expected.OfferName, actual.OfferName)
 		}
 
-		if actual.Skus != v.Expected.Skus {
-			t.Fatalf("Expected %q but got %q for Skus", v.Expected.Skus, actual.Skus)
+		if actual.SkuName != v.Expected.SkuName {
+			t.Fatalf("Expected %q but got %q for SkuName", v.Expected.SkuName, actual.SkuName)
 		}
 
-		if actual.Version != v.Expected.Version {
-			t.Fatalf("Expected %q but got %q for Version", v.Expected.Version, actual.Version)
+		if actual.VersionName != v.Expected.VersionName {
+			t.Fatalf("Expected %q but got %q for VersionName", v.Expected.VersionName, actual.VersionName)
 		}
 
 	}

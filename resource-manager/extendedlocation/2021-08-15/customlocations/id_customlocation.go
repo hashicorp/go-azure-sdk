@@ -11,17 +11,17 @@ var _ resourceids.ResourceId = CustomLocationId{}
 
 // CustomLocationId is a struct representing the Resource ID for a Custom Location
 type CustomLocationId struct {
-	SubscriptionId    string
-	ResourceGroupName string
-	ResourceName      string
+	SubscriptionId     string
+	ResourceGroupName  string
+	CustomLocationName string
 }
 
 // NewCustomLocationID returns a new CustomLocationId struct
-func NewCustomLocationID(subscriptionId string, resourceGroupName string, resourceName string) CustomLocationId {
+func NewCustomLocationID(subscriptionId string, resourceGroupName string, customLocationName string) CustomLocationId {
 	return CustomLocationId{
-		SubscriptionId:    subscriptionId,
-		ResourceGroupName: resourceGroupName,
-		ResourceName:      resourceName,
+		SubscriptionId:     subscriptionId,
+		ResourceGroupName:  resourceGroupName,
+		CustomLocationName: customLocationName,
 	}
 }
 
@@ -44,8 +44,8 @@ func ParseCustomLocationID(input string) (*CustomLocationId, error) {
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.ResourceName, ok = parsed.Parsed["resourceName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceName' was not found in the resource id %q", input)
+	if id.CustomLocationName, ok = parsed.Parsed["customLocationName"]; !ok {
+		return nil, fmt.Errorf("the segment 'customLocationName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -71,8 +71,8 @@ func ParseCustomLocationIDInsensitively(input string) (*CustomLocationId, error)
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.ResourceName, ok = parsed.Parsed["resourceName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceName' was not found in the resource id %q", input)
+	if id.CustomLocationName, ok = parsed.Parsed["customLocationName"]; !ok {
+		return nil, fmt.Errorf("the segment 'customLocationName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -96,7 +96,7 @@ func ValidateCustomLocationID(input interface{}, key string) (warnings []string,
 // ID returns the formatted Custom Location ID
 func (id CustomLocationId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.ExtendedLocation/customLocations/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.ResourceName)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.CustomLocationName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Custom Location ID
@@ -109,7 +109,7 @@ func (id CustomLocationId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftExtendedLocation", "Microsoft.ExtendedLocation", "Microsoft.ExtendedLocation"),
 		resourceids.StaticSegment("staticCustomLocations", "customLocations", "customLocations"),
-		resourceids.UserSpecifiedSegment("resourceName", "resourceValue"),
+		resourceids.UserSpecifiedSegment("customLocationName", "customLocationValue"),
 	}
 }
 
@@ -118,7 +118,7 @@ func (id CustomLocationId) String() string {
 	components := []string{
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
-		fmt.Sprintf("Resource Name: %q", id.ResourceName),
+		fmt.Sprintf("Custom Location Name: %q", id.CustomLocationName),
 	}
 	return fmt.Sprintf("Custom Location (%s)", strings.Join(components, "\n"))
 }

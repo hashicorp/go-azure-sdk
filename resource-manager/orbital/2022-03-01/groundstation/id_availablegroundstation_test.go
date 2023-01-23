@@ -9,20 +9,20 @@ import (
 var _ resourceids.ResourceId = AvailableGroundStationId{}
 
 func TestNewAvailableGroundStationID(t *testing.T) {
-	id := NewAvailableGroundStationID("12345678-1234-9876-4563-123456789012", "groundStationValue")
+	id := NewAvailableGroundStationID("12345678-1234-9876-4563-123456789012", "availableGroundStationValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
 	}
 
-	if id.GroundStationName != "groundStationValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'GroundStationName'", id.GroundStationName, "groundStationValue")
+	if id.AvailableGroundStationName != "availableGroundStationValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'AvailableGroundStationName'", id.AvailableGroundStationName, "availableGroundStationValue")
 	}
 }
 
 func TestFormatAvailableGroundStationID(t *testing.T) {
-	actual := NewAvailableGroundStationID("12345678-1234-9876-4563-123456789012", "groundStationValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Orbital/availableGroundStations/groundStationValue"
+	actual := NewAvailableGroundStationID("12345678-1234-9876-4563-123456789012", "availableGroundStationValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Orbital/availableGroundStations/availableGroundStationValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -66,15 +66,15 @@ func TestParseAvailableGroundStationID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Orbital/availableGroundStations/groundStationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Orbital/availableGroundStations/availableGroundStationValue",
 			Expected: &AvailableGroundStationId{
-				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				GroundStationName: "groundStationValue",
+				SubscriptionId:             "12345678-1234-9876-4563-123456789012",
+				AvailableGroundStationName: "availableGroundStationValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Orbital/availableGroundStations/groundStationValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Orbital/availableGroundStations/availableGroundStationValue/extra",
 			Error: true,
 		},
 	}
@@ -97,8 +97,8 @@ func TestParseAvailableGroundStationID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for SubscriptionId", v.Expected.SubscriptionId, actual.SubscriptionId)
 		}
 
-		if actual.GroundStationName != v.Expected.GroundStationName {
-			t.Fatalf("Expected %q but got %q for GroundStationName", v.Expected.GroundStationName, actual.GroundStationName)
+		if actual.AvailableGroundStationName != v.Expected.AvailableGroundStationName {
+			t.Fatalf("Expected %q but got %q for AvailableGroundStationName", v.Expected.AvailableGroundStationName, actual.AvailableGroundStationName)
 		}
 
 	}
@@ -167,28 +167,28 @@ func TestParseAvailableGroundStationIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Orbital/availableGroundStations/groundStationValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Orbital/availableGroundStations/availableGroundStationValue",
 			Expected: &AvailableGroundStationId{
-				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				GroundStationName: "groundStationValue",
+				SubscriptionId:             "12345678-1234-9876-4563-123456789012",
+				AvailableGroundStationName: "availableGroundStationValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Orbital/availableGroundStations/groundStationValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/providers/Microsoft.Orbital/availableGroundStations/availableGroundStationValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.oRbItAl/aVaIlAbLeGrOuNdStAtIoNs/gRoUnDsTaTiOnVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.oRbItAl/aVaIlAbLeGrOuNdStAtIoNs/aVaIlAbLeGrOuNdStAtIoNvAlUe",
 			Expected: &AvailableGroundStationId{
-				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				GroundStationName: "gRoUnDsTaTiOnVaLuE",
+				SubscriptionId:             "12345678-1234-9876-4563-123456789012",
+				AvailableGroundStationName: "aVaIlAbLeGrOuNdStAtIoNvAlUe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.oRbItAl/aVaIlAbLeGrOuNdStAtIoNs/gRoUnDsTaTiOnVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/pRoViDeRs/mIcRoSoFt.oRbItAl/aVaIlAbLeGrOuNdStAtIoNs/aVaIlAbLeGrOuNdStAtIoNvAlUe/extra",
 			Error: true,
 		},
 	}
@@ -211,8 +211,8 @@ func TestParseAvailableGroundStationIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for SubscriptionId", v.Expected.SubscriptionId, actual.SubscriptionId)
 		}
 
-		if actual.GroundStationName != v.Expected.GroundStationName {
-			t.Fatalf("Expected %q but got %q for GroundStationName", v.Expected.GroundStationName, actual.GroundStationName)
+		if actual.AvailableGroundStationName != v.Expected.AvailableGroundStationName {
+			t.Fatalf("Expected %q but got %q for AvailableGroundStationName", v.Expected.AvailableGroundStationName, actual.AvailableGroundStationName)
 		}
 
 	}

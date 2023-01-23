@@ -12,17 +12,17 @@ var _ resourceids.ResourceId = EdgeZonePublisherId{}
 // EdgeZonePublisherId is a struct representing the Resource ID for a Edge Zone Publisher
 type EdgeZonePublisherId struct {
 	SubscriptionId string
-	Location       string
-	EdgeZone       string
+	LocationName   string
+	EdgeZoneName   string
 	PublisherName  string
 }
 
 // NewEdgeZonePublisherID returns a new EdgeZonePublisherId struct
-func NewEdgeZonePublisherID(subscriptionId string, location string, edgeZone string, publisherName string) EdgeZonePublisherId {
+func NewEdgeZonePublisherID(subscriptionId string, locationName string, edgeZoneName string, publisherName string) EdgeZonePublisherId {
 	return EdgeZonePublisherId{
 		SubscriptionId: subscriptionId,
-		Location:       location,
-		EdgeZone:       edgeZone,
+		LocationName:   locationName,
+		EdgeZoneName:   edgeZoneName,
 		PublisherName:  publisherName,
 	}
 }
@@ -42,12 +42,12 @@ func ParseEdgeZonePublisherID(input string) (*EdgeZonePublisherId, error) {
 		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
 	}
 
-	if id.Location, ok = parsed.Parsed["location"]; !ok {
-		return nil, fmt.Errorf("the segment 'location' was not found in the resource id %q", input)
+	if id.LocationName, ok = parsed.Parsed["locationName"]; !ok {
+		return nil, fmt.Errorf("the segment 'locationName' was not found in the resource id %q", input)
 	}
 
-	if id.EdgeZone, ok = parsed.Parsed["edgeZone"]; !ok {
-		return nil, fmt.Errorf("the segment 'edgeZone' was not found in the resource id %q", input)
+	if id.EdgeZoneName, ok = parsed.Parsed["edgeZoneName"]; !ok {
+		return nil, fmt.Errorf("the segment 'edgeZoneName' was not found in the resource id %q", input)
 	}
 
 	if id.PublisherName, ok = parsed.Parsed["publisherName"]; !ok {
@@ -73,12 +73,12 @@ func ParseEdgeZonePublisherIDInsensitively(input string) (*EdgeZonePublisherId, 
 		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
 	}
 
-	if id.Location, ok = parsed.Parsed["location"]; !ok {
-		return nil, fmt.Errorf("the segment 'location' was not found in the resource id %q", input)
+	if id.LocationName, ok = parsed.Parsed["locationName"]; !ok {
+		return nil, fmt.Errorf("the segment 'locationName' was not found in the resource id %q", input)
 	}
 
-	if id.EdgeZone, ok = parsed.Parsed["edgeZone"]; !ok {
-		return nil, fmt.Errorf("the segment 'edgeZone' was not found in the resource id %q", input)
+	if id.EdgeZoneName, ok = parsed.Parsed["edgeZoneName"]; !ok {
+		return nil, fmt.Errorf("the segment 'edgeZoneName' was not found in the resource id %q", input)
 	}
 
 	if id.PublisherName, ok = parsed.Parsed["publisherName"]; !ok {
@@ -106,7 +106,7 @@ func ValidateEdgeZonePublisherID(input interface{}, key string) (warnings []stri
 // ID returns the formatted Edge Zone Publisher ID
 func (id EdgeZonePublisherId) ID() string {
 	fmtString := "/subscriptions/%s/providers/Microsoft.Compute/locations/%s/edgeZones/%s/publishers/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.Location, id.EdgeZone, id.PublisherName)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.LocationName, id.EdgeZoneName, id.PublisherName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Edge Zone Publisher ID
@@ -117,9 +117,9 @@ func (id EdgeZonePublisherId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftCompute", "Microsoft.Compute", "Microsoft.Compute"),
 		resourceids.StaticSegment("staticLocations", "locations", "locations"),
-		resourceids.UserSpecifiedSegment("location", "locationValue"),
+		resourceids.UserSpecifiedSegment("locationName", "locationValue"),
 		resourceids.StaticSegment("staticEdgeZones", "edgeZones", "edgeZones"),
-		resourceids.UserSpecifiedSegment("edgeZone", "edgeZoneValue"),
+		resourceids.UserSpecifiedSegment("edgeZoneName", "edgeZoneValue"),
 		resourceids.StaticSegment("staticPublishers", "publishers", "publishers"),
 		resourceids.UserSpecifiedSegment("publisherName", "publisherValue"),
 	}
@@ -129,8 +129,8 @@ func (id EdgeZonePublisherId) Segments() []resourceids.Segment {
 func (id EdgeZonePublisherId) String() string {
 	components := []string{
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
-		fmt.Sprintf("Location: %q", id.Location),
-		fmt.Sprintf("Edge Zone: %q", id.EdgeZone),
+		fmt.Sprintf("Location Name: %q", id.LocationName),
+		fmt.Sprintf("Edge Zone Name: %q", id.EdgeZoneName),
 		fmt.Sprintf("Publisher Name: %q", id.PublisherName),
 	}
 	return fmt.Sprintf("Edge Zone Publisher (%s)", strings.Join(components, "\n"))

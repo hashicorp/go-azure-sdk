@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := notebookworkspacesresource.NewDatabaseAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue")
+id := notebookworkspacesresource.NewDatabaseAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "databaseAccountValue")
 
 payload := notebookworkspacesresource.ARMProxyResource{
 	// ...
@@ -41,7 +41,7 @@ if err := client.NotebookWorkspacesCreateOrUpdateThenPoll(ctx, id, payload); err
 
 ```go
 ctx := context.TODO()
-id := notebookworkspacesresource.NewDatabaseAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue")
+id := notebookworkspacesresource.NewDatabaseAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "databaseAccountValue")
 
 if err := client.NotebookWorkspacesDeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -53,7 +53,7 @@ if err := client.NotebookWorkspacesDeleteThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := notebookworkspacesresource.NewDatabaseAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue")
+id := notebookworkspacesresource.NewDatabaseAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "databaseAccountValue")
 
 read, err := client.NotebookWorkspacesGet(ctx, id)
 if err != nil {
@@ -69,7 +69,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := notebookworkspacesresource.NewDatabaseAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue")
+id := notebookworkspacesresource.NewDatabaseAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "databaseAccountValue")
 
 read, err := client.NotebookWorkspacesListByDatabaseAccount(ctx, id)
 if err != nil {
@@ -85,7 +85,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := notebookworkspacesresource.NewDatabaseAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue")
+id := notebookworkspacesresource.NewDatabaseAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "databaseAccountValue")
 
 read, err := client.NotebookWorkspacesListConnectionInfo(ctx, id)
 if err != nil {
@@ -101,7 +101,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := notebookworkspacesresource.NewDatabaseAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue")
+id := notebookworkspacesresource.NewDatabaseAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "databaseAccountValue")
 
 if err := client.NotebookWorkspacesRegenerateAuthTokenThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -113,7 +113,7 @@ if err := client.NotebookWorkspacesRegenerateAuthTokenThenPoll(ctx, id); err != 
 
 ```go
 ctx := context.TODO()
-id := notebookworkspacesresource.NewDatabaseAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue")
+id := notebookworkspacesresource.NewDatabaseAccountID("12345678-1234-9876-4563-123456789012", "example-resource-group", "databaseAccountValue")
 
 if err := client.NotebookWorkspacesStartThenPoll(ctx, id); err != nil {
 	// handle the error

@@ -9,16 +9,16 @@ import (
 var _ resourceids.ResourceId = DatabaseAccountNameId{}
 
 func TestNewDatabaseAccountNameID(t *testing.T) {
-	id := NewDatabaseAccountNameID("accountValue")
+	id := NewDatabaseAccountNameID("databaseAccountNameValue")
 
-	if id.AccountName != "accountValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AccountName'", id.AccountName, "accountValue")
+	if id.DatabaseAccountNameName != "databaseAccountNameValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'DatabaseAccountNameName'", id.DatabaseAccountNameName, "databaseAccountNameValue")
 	}
 }
 
 func TestFormatDatabaseAccountNameID(t *testing.T) {
-	actual := NewDatabaseAccountNameID("accountValue").ID()
-	expected := "/providers/Microsoft.DocumentDB/databaseAccountNames/accountValue"
+	actual := NewDatabaseAccountNameID("databaseAccountNameValue").ID()
+	expected := "/providers/Microsoft.DocumentDB/databaseAccountNames/databaseAccountNameValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -52,14 +52,14 @@ func TestParseDatabaseAccountNameID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.DocumentDB/databaseAccountNames/accountValue",
+			Input: "/providers/Microsoft.DocumentDB/databaseAccountNames/databaseAccountNameValue",
 			Expected: &DatabaseAccountNameId{
-				AccountName: "accountValue",
+				DatabaseAccountNameName: "databaseAccountNameValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.DocumentDB/databaseAccountNames/accountValue/extra",
+			Input: "/providers/Microsoft.DocumentDB/databaseAccountNames/databaseAccountNameValue/extra",
 			Error: true,
 		},
 	}
@@ -78,8 +78,8 @@ func TestParseDatabaseAccountNameID(t *testing.T) {
 			t.Fatal("Expect an error but didn't get one")
 		}
 
-		if actual.AccountName != v.Expected.AccountName {
-			t.Fatalf("Expected %q but got %q for AccountName", v.Expected.AccountName, actual.AccountName)
+		if actual.DatabaseAccountNameName != v.Expected.DatabaseAccountNameName {
+			t.Fatalf("Expected %q but got %q for DatabaseAccountNameName", v.Expected.DatabaseAccountNameName, actual.DatabaseAccountNameName)
 		}
 
 	}
@@ -128,26 +128,26 @@ func TestParseDatabaseAccountNameIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.DocumentDB/databaseAccountNames/accountValue",
+			Input: "/providers/Microsoft.DocumentDB/databaseAccountNames/databaseAccountNameValue",
 			Expected: &DatabaseAccountNameId{
-				AccountName: "accountValue",
+				DatabaseAccountNameName: "databaseAccountNameValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.DocumentDB/databaseAccountNames/accountValue/extra",
+			Input: "/providers/Microsoft.DocumentDB/databaseAccountNames/databaseAccountNameValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.dOcUmEnTdB/dAtAbAsEaCcOuNtNaMeS/aCcOuNtVaLuE",
+			Input: "/pRoViDeRs/mIcRoSoFt.dOcUmEnTdB/dAtAbAsEaCcOuNtNaMeS/dAtAbAsEaCcOuNtNaMeVaLuE",
 			Expected: &DatabaseAccountNameId{
-				AccountName: "aCcOuNtVaLuE",
+				DatabaseAccountNameName: "dAtAbAsEaCcOuNtNaMeVaLuE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.dOcUmEnTdB/dAtAbAsEaCcOuNtNaMeS/aCcOuNtVaLuE/extra",
+			Input: "/pRoViDeRs/mIcRoSoFt.dOcUmEnTdB/dAtAbAsEaCcOuNtNaMeS/dAtAbAsEaCcOuNtNaMeVaLuE/extra",
 			Error: true,
 		},
 	}
@@ -166,8 +166,8 @@ func TestParseDatabaseAccountNameIDInsensitively(t *testing.T) {
 			t.Fatal("Expect an error but didn't get one")
 		}
 
-		if actual.AccountName != v.Expected.AccountName {
-			t.Fatalf("Expected %q but got %q for AccountName", v.Expected.AccountName, actual.AccountName)
+		if actual.DatabaseAccountNameName != v.Expected.DatabaseAccountNameName {
+			t.Fatalf("Expected %q but got %q for DatabaseAccountNameName", v.Expected.DatabaseAccountNameName, actual.DatabaseAccountNameName)
 		}
 
 	}

@@ -15,17 +15,17 @@ type DiskId struct {
 	ResourceGroupName string
 	LabName           string
 	UserName          string
-	Name              string
+	DiskName          string
 }
 
 // NewDiskID returns a new DiskId struct
-func NewDiskID(subscriptionId string, resourceGroupName string, labName string, userName string, name string) DiskId {
+func NewDiskID(subscriptionId string, resourceGroupName string, labName string, userName string, diskName string) DiskId {
 	return DiskId{
 		SubscriptionId:    subscriptionId,
 		ResourceGroupName: resourceGroupName,
 		LabName:           labName,
 		UserName:          userName,
-		Name:              name,
+		DiskName:          diskName,
 	}
 }
 
@@ -56,8 +56,8 @@ func ParseDiskID(input string) (*DiskId, error) {
 		return nil, fmt.Errorf("the segment 'userName' was not found in the resource id %q", input)
 	}
 
-	if id.Name, ok = parsed.Parsed["name"]; !ok {
-		return nil, fmt.Errorf("the segment 'name' was not found in the resource id %q", input)
+	if id.DiskName, ok = parsed.Parsed["diskName"]; !ok {
+		return nil, fmt.Errorf("the segment 'diskName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -91,8 +91,8 @@ func ParseDiskIDInsensitively(input string) (*DiskId, error) {
 		return nil, fmt.Errorf("the segment 'userName' was not found in the resource id %q", input)
 	}
 
-	if id.Name, ok = parsed.Parsed["name"]; !ok {
-		return nil, fmt.Errorf("the segment 'name' was not found in the resource id %q", input)
+	if id.DiskName, ok = parsed.Parsed["diskName"]; !ok {
+		return nil, fmt.Errorf("the segment 'diskName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -116,7 +116,7 @@ func ValidateDiskID(input interface{}, key string) (warnings []string, errors []
 // ID returns the formatted Disk ID
 func (id DiskId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.DevTestLab/labs/%s/users/%s/disks/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.LabName, id.UserName, id.Name)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.LabName, id.UserName, id.DiskName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Disk ID
@@ -133,7 +133,7 @@ func (id DiskId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticUsers", "users", "users"),
 		resourceids.UserSpecifiedSegment("userName", "userValue"),
 		resourceids.StaticSegment("staticDisks", "disks", "disks"),
-		resourceids.UserSpecifiedSegment("name", "nameValue"),
+		resourceids.UserSpecifiedSegment("diskName", "diskValue"),
 	}
 }
 
@@ -144,7 +144,7 @@ func (id DiskId) String() string {
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
 		fmt.Sprintf("Lab Name: %q", id.LabName),
 		fmt.Sprintf("User Name: %q", id.UserName),
-		fmt.Sprintf("Name: %q", id.Name),
+		fmt.Sprintf("Disk Name: %q", id.DiskName),
 	}
 	return fmt.Sprintf("Disk (%s)", strings.Join(components, "\n"))
 }

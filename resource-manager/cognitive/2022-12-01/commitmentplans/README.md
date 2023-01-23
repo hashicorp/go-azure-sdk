@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := commitmentplans.NewAccountAssociationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "commitmentPlanValue", "commitmentPlanAssociationValue")
+id := commitmentplans.NewAccountAssociationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "commitmentPlanValue", "accountAssociationValue")
 
 payload := commitmentplans.CommitmentPlanAccountAssociation{
 	// ...
@@ -74,7 +74,7 @@ if err := client.DeleteThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := commitmentplans.NewAccountAssociationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "commitmentPlanValue", "commitmentPlanAssociationValue")
+id := commitmentplans.NewAccountAssociationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "commitmentPlanValue", "accountAssociationValue")
 
 if err := client.DeleteAssociationThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -102,7 +102,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := commitmentplans.NewAccountAssociationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "commitmentPlanValue", "commitmentPlanAssociationValue")
+id := commitmentplans.NewAccountAssociationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "commitmentPlanValue", "accountAssociationValue")
 
 read, err := client.GetAssociation(ctx, id)
 if err != nil {

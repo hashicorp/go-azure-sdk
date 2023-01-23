@@ -11,17 +11,17 @@ var _ resourceids.ResourceId = AutoScaleVCoreId{}
 
 // AutoScaleVCoreId is a struct representing the Resource ID for a Auto Scale V Core
 type AutoScaleVCoreId struct {
-	SubscriptionId    string
-	ResourceGroupName string
-	VcoreName         string
+	SubscriptionId     string
+	ResourceGroupName  string
+	AutoScaleVCoreName string
 }
 
 // NewAutoScaleVCoreID returns a new AutoScaleVCoreId struct
-func NewAutoScaleVCoreID(subscriptionId string, resourceGroupName string, vcoreName string) AutoScaleVCoreId {
+func NewAutoScaleVCoreID(subscriptionId string, resourceGroupName string, autoScaleVCoreName string) AutoScaleVCoreId {
 	return AutoScaleVCoreId{
-		SubscriptionId:    subscriptionId,
-		ResourceGroupName: resourceGroupName,
-		VcoreName:         vcoreName,
+		SubscriptionId:     subscriptionId,
+		ResourceGroupName:  resourceGroupName,
+		AutoScaleVCoreName: autoScaleVCoreName,
 	}
 }
 
@@ -44,8 +44,8 @@ func ParseAutoScaleVCoreID(input string) (*AutoScaleVCoreId, error) {
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.VcoreName, ok = parsed.Parsed["vcoreName"]; !ok {
-		return nil, fmt.Errorf("the segment 'vcoreName' was not found in the resource id %q", input)
+	if id.AutoScaleVCoreName, ok = parsed.Parsed["autoScaleVCoreName"]; !ok {
+		return nil, fmt.Errorf("the segment 'autoScaleVCoreName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -71,8 +71,8 @@ func ParseAutoScaleVCoreIDInsensitively(input string) (*AutoScaleVCoreId, error)
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.VcoreName, ok = parsed.Parsed["vcoreName"]; !ok {
-		return nil, fmt.Errorf("the segment 'vcoreName' was not found in the resource id %q", input)
+	if id.AutoScaleVCoreName, ok = parsed.Parsed["autoScaleVCoreName"]; !ok {
+		return nil, fmt.Errorf("the segment 'autoScaleVCoreName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -96,7 +96,7 @@ func ValidateAutoScaleVCoreID(input interface{}, key string) (warnings []string,
 // ID returns the formatted Auto Scale V Core ID
 func (id AutoScaleVCoreId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.PowerBIDedicated/autoScaleVCores/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.VcoreName)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.AutoScaleVCoreName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Auto Scale V Core ID
@@ -109,7 +109,7 @@ func (id AutoScaleVCoreId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftPowerBIDedicated", "Microsoft.PowerBIDedicated", "Microsoft.PowerBIDedicated"),
 		resourceids.StaticSegment("staticAutoScaleVCores", "autoScaleVCores", "autoScaleVCores"),
-		resourceids.UserSpecifiedSegment("vcoreName", "vcoreValue"),
+		resourceids.UserSpecifiedSegment("autoScaleVCoreName", "autoScaleVCoreValue"),
 	}
 }
 
@@ -118,7 +118,7 @@ func (id AutoScaleVCoreId) String() string {
 	components := []string{
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
-		fmt.Sprintf("Vcore Name: %q", id.VcoreName),
+		fmt.Sprintf("Auto Scale V Core Name: %q", id.AutoScaleVCoreName),
 	}
 	return fmt.Sprintf("Auto Scale V Core (%s)", strings.Join(components, "\n"))
 }

@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = FederatedIdentityCredentialId{}
 
 func TestNewFederatedIdentityCredentialID(t *testing.T) {
-	id := NewFederatedIdentityCredentialID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue", "federatedIdentityCredentialResourceValue")
+	id := NewFederatedIdentityCredentialID("12345678-1234-9876-4563-123456789012", "example-resource-group", "userAssignedIdentityValue", "federatedIdentityCredentialValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -19,18 +19,18 @@ func TestNewFederatedIdentityCredentialID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.ResourceName != "resourceValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ResourceName'", id.ResourceName, "resourceValue")
+	if id.UserAssignedIdentityName != "userAssignedIdentityValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserAssignedIdentityName'", id.UserAssignedIdentityName, "userAssignedIdentityValue")
 	}
 
-	if id.FederatedIdentityCredentialResourceName != "federatedIdentityCredentialResourceValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'FederatedIdentityCredentialResourceName'", id.FederatedIdentityCredentialResourceName, "federatedIdentityCredentialResourceValue")
+	if id.FederatedIdentityCredentialName != "federatedIdentityCredentialValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'FederatedIdentityCredentialName'", id.FederatedIdentityCredentialName, "federatedIdentityCredentialValue")
 	}
 }
 
 func TestFormatFederatedIdentityCredentialID(t *testing.T) {
-	actual := NewFederatedIdentityCredentialID("12345678-1234-9876-4563-123456789012", "example-resource-group", "resourceValue", "federatedIdentityCredentialResourceValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ManagedIdentity/userAssignedIdentities/resourceValue/federatedIdentityCredentials/federatedIdentityCredentialResourceValue"
+	actual := NewFederatedIdentityCredentialID("12345678-1234-9876-4563-123456789012", "example-resource-group", "userAssignedIdentityValue", "federatedIdentityCredentialValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ManagedIdentity/userAssignedIdentities/userAssignedIdentityValue/federatedIdentityCredentials/federatedIdentityCredentialValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -84,27 +84,27 @@ func TestParseFederatedIdentityCredentialID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ManagedIdentity/userAssignedIdentities/resourceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ManagedIdentity/userAssignedIdentities/userAssignedIdentityValue",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ManagedIdentity/userAssignedIdentities/resourceValue/federatedIdentityCredentials",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ManagedIdentity/userAssignedIdentities/userAssignedIdentityValue/federatedIdentityCredentials",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ManagedIdentity/userAssignedIdentities/resourceValue/federatedIdentityCredentials/federatedIdentityCredentialResourceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ManagedIdentity/userAssignedIdentities/userAssignedIdentityValue/federatedIdentityCredentials/federatedIdentityCredentialValue",
 			Expected: &FederatedIdentityCredentialId{
-				SubscriptionId:                          "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName:                       "example-resource-group",
-				ResourceName:                            "resourceValue",
-				FederatedIdentityCredentialResourceName: "federatedIdentityCredentialResourceValue",
+				SubscriptionId:                  "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:               "example-resource-group",
+				UserAssignedIdentityName:        "userAssignedIdentityValue",
+				FederatedIdentityCredentialName: "federatedIdentityCredentialValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ManagedIdentity/userAssignedIdentities/resourceValue/federatedIdentityCredentials/federatedIdentityCredentialResourceValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ManagedIdentity/userAssignedIdentities/userAssignedIdentityValue/federatedIdentityCredentials/federatedIdentityCredentialValue/extra",
 			Error: true,
 		},
 	}
@@ -131,12 +131,12 @@ func TestParseFederatedIdentityCredentialID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.ResourceName != v.Expected.ResourceName {
-			t.Fatalf("Expected %q but got %q for ResourceName", v.Expected.ResourceName, actual.ResourceName)
+		if actual.UserAssignedIdentityName != v.Expected.UserAssignedIdentityName {
+			t.Fatalf("Expected %q but got %q for UserAssignedIdentityName", v.Expected.UserAssignedIdentityName, actual.UserAssignedIdentityName)
 		}
 
-		if actual.FederatedIdentityCredentialResourceName != v.Expected.FederatedIdentityCredentialResourceName {
-			t.Fatalf("Expected %q but got %q for FederatedIdentityCredentialResourceName", v.Expected.FederatedIdentityCredentialResourceName, actual.FederatedIdentityCredentialResourceName)
+		if actual.FederatedIdentityCredentialName != v.Expected.FederatedIdentityCredentialName {
+			t.Fatalf("Expected %q but got %q for FederatedIdentityCredentialName", v.Expected.FederatedIdentityCredentialName, actual.FederatedIdentityCredentialName)
 		}
 
 	}
@@ -225,52 +225,52 @@ func TestParseFederatedIdentityCredentialIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ManagedIdentity/userAssignedIdentities/resourceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ManagedIdentity/userAssignedIdentities/userAssignedIdentityValue",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mAnAgEdIdEnTiTy/uSeRaSsIgNeDiDeNtItIeS/rEsOuRcEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mAnAgEdIdEnTiTy/uSeRaSsIgNeDiDeNtItIeS/uSeRaSsIgNeDiDeNtItYvAlUe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ManagedIdentity/userAssignedIdentities/resourceValue/federatedIdentityCredentials",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ManagedIdentity/userAssignedIdentities/userAssignedIdentityValue/federatedIdentityCredentials",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mAnAgEdIdEnTiTy/uSeRaSsIgNeDiDeNtItIeS/rEsOuRcEvAlUe/fEdErAtEdIdEnTiTyCrEdEnTiAlS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mAnAgEdIdEnTiTy/uSeRaSsIgNeDiDeNtItIeS/uSeRaSsIgNeDiDeNtItYvAlUe/fEdErAtEdIdEnTiTyCrEdEnTiAlS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ManagedIdentity/userAssignedIdentities/resourceValue/federatedIdentityCredentials/federatedIdentityCredentialResourceValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ManagedIdentity/userAssignedIdentities/userAssignedIdentityValue/federatedIdentityCredentials/federatedIdentityCredentialValue",
 			Expected: &FederatedIdentityCredentialId{
-				SubscriptionId:                          "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName:                       "example-resource-group",
-				ResourceName:                            "resourceValue",
-				FederatedIdentityCredentialResourceName: "federatedIdentityCredentialResourceValue",
+				SubscriptionId:                  "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:               "example-resource-group",
+				UserAssignedIdentityName:        "userAssignedIdentityValue",
+				FederatedIdentityCredentialName: "federatedIdentityCredentialValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ManagedIdentity/userAssignedIdentities/resourceValue/federatedIdentityCredentials/federatedIdentityCredentialResourceValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ManagedIdentity/userAssignedIdentities/userAssignedIdentityValue/federatedIdentityCredentials/federatedIdentityCredentialValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mAnAgEdIdEnTiTy/uSeRaSsIgNeDiDeNtItIeS/rEsOuRcEvAlUe/fEdErAtEdIdEnTiTyCrEdEnTiAlS/fEdErAtEdIdEnTiTyCrEdEnTiAlReSoUrCeVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mAnAgEdIdEnTiTy/uSeRaSsIgNeDiDeNtItIeS/uSeRaSsIgNeDiDeNtItYvAlUe/fEdErAtEdIdEnTiTyCrEdEnTiAlS/fEdErAtEdIdEnTiTyCrEdEnTiAlVaLuE",
 			Expected: &FederatedIdentityCredentialId{
-				SubscriptionId:                          "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName:                       "eXaMpLe-rEsOuRcE-GrOuP",
-				ResourceName:                            "rEsOuRcEvAlUe",
-				FederatedIdentityCredentialResourceName: "fEdErAtEdIdEnTiTyCrEdEnTiAlReSoUrCeVaLuE",
+				SubscriptionId:                  "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:               "eXaMpLe-rEsOuRcE-GrOuP",
+				UserAssignedIdentityName:        "uSeRaSsIgNeDiDeNtItYvAlUe",
+				FederatedIdentityCredentialName: "fEdErAtEdIdEnTiTyCrEdEnTiAlVaLuE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mAnAgEdIdEnTiTy/uSeRaSsIgNeDiDeNtItIeS/rEsOuRcEvAlUe/fEdErAtEdIdEnTiTyCrEdEnTiAlS/fEdErAtEdIdEnTiTyCrEdEnTiAlReSoUrCeVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.mAnAgEdIdEnTiTy/uSeRaSsIgNeDiDeNtItIeS/uSeRaSsIgNeDiDeNtItYvAlUe/fEdErAtEdIdEnTiTyCrEdEnTiAlS/fEdErAtEdIdEnTiTyCrEdEnTiAlVaLuE/extra",
 			Error: true,
 		},
 	}
@@ -297,12 +297,12 @@ func TestParseFederatedIdentityCredentialIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.ResourceName != v.Expected.ResourceName {
-			t.Fatalf("Expected %q but got %q for ResourceName", v.Expected.ResourceName, actual.ResourceName)
+		if actual.UserAssignedIdentityName != v.Expected.UserAssignedIdentityName {
+			t.Fatalf("Expected %q but got %q for UserAssignedIdentityName", v.Expected.UserAssignedIdentityName, actual.UserAssignedIdentityName)
 		}
 
-		if actual.FederatedIdentityCredentialResourceName != v.Expected.FederatedIdentityCredentialResourceName {
-			t.Fatalf("Expected %q but got %q for FederatedIdentityCredentialResourceName", v.Expected.FederatedIdentityCredentialResourceName, actual.FederatedIdentityCredentialResourceName)
+		if actual.FederatedIdentityCredentialName != v.Expected.FederatedIdentityCredentialName {
+			t.Fatalf("Expected %q but got %q for FederatedIdentityCredentialName", v.Expected.FederatedIdentityCredentialName, actual.FederatedIdentityCredentialName)
 		}
 
 	}

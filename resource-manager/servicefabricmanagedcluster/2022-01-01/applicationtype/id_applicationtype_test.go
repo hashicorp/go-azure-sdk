@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = ApplicationTypeId{}
 
 func TestNewApplicationTypeID(t *testing.T) {
-	id := NewApplicationTypeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "clusterValue", "applicationTypeValue")
+	id := NewApplicationTypeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedClusterValue", "applicationTypeValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -19,8 +19,8 @@ func TestNewApplicationTypeID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.ClusterName != "clusterValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ClusterName'", id.ClusterName, "clusterValue")
+	if id.ManagedClusterName != "managedClusterValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'ManagedClusterName'", id.ManagedClusterName, "managedClusterValue")
 	}
 
 	if id.ApplicationTypeName != "applicationTypeValue" {
@@ -29,8 +29,8 @@ func TestNewApplicationTypeID(t *testing.T) {
 }
 
 func TestFormatApplicationTypeID(t *testing.T) {
-	actual := NewApplicationTypeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "clusterValue", "applicationTypeValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ServiceFabric/managedClusters/clusterValue/applicationTypes/applicationTypeValue"
+	actual := NewApplicationTypeID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedClusterValue", "applicationTypeValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ServiceFabric/managedClusters/managedClusterValue/applicationTypes/applicationTypeValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -84,27 +84,27 @@ func TestParseApplicationTypeID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ServiceFabric/managedClusters/clusterValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ServiceFabric/managedClusters/managedClusterValue",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ServiceFabric/managedClusters/clusterValue/applicationTypes",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ServiceFabric/managedClusters/managedClusterValue/applicationTypes",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ServiceFabric/managedClusters/clusterValue/applicationTypes/applicationTypeValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ServiceFabric/managedClusters/managedClusterValue/applicationTypes/applicationTypeValue",
 			Expected: &ApplicationTypeId{
 				SubscriptionId:      "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:   "example-resource-group",
-				ClusterName:         "clusterValue",
+				ManagedClusterName:  "managedClusterValue",
 				ApplicationTypeName: "applicationTypeValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ServiceFabric/managedClusters/clusterValue/applicationTypes/applicationTypeValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ServiceFabric/managedClusters/managedClusterValue/applicationTypes/applicationTypeValue/extra",
 			Error: true,
 		},
 	}
@@ -131,8 +131,8 @@ func TestParseApplicationTypeID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.ClusterName != v.Expected.ClusterName {
-			t.Fatalf("Expected %q but got %q for ClusterName", v.Expected.ClusterName, actual.ClusterName)
+		if actual.ManagedClusterName != v.Expected.ManagedClusterName {
+			t.Fatalf("Expected %q but got %q for ManagedClusterName", v.Expected.ManagedClusterName, actual.ManagedClusterName)
 		}
 
 		if actual.ApplicationTypeName != v.Expected.ApplicationTypeName {
@@ -225,52 +225,52 @@ func TestParseApplicationTypeIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ServiceFabric/managedClusters/clusterValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ServiceFabric/managedClusters/managedClusterValue",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sErViCeFaBrIc/mAnAgEdClUsTeRs/cLuStErVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sErViCeFaBrIc/mAnAgEdClUsTeRs/mAnAgEdClUsTeRvAlUe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ServiceFabric/managedClusters/clusterValue/applicationTypes",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ServiceFabric/managedClusters/managedClusterValue/applicationTypes",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sErViCeFaBrIc/mAnAgEdClUsTeRs/cLuStErVaLuE/aPpLiCaTiOnTyPeS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sErViCeFaBrIc/mAnAgEdClUsTeRs/mAnAgEdClUsTeRvAlUe/aPpLiCaTiOnTyPeS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ServiceFabric/managedClusters/clusterValue/applicationTypes/applicationTypeValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ServiceFabric/managedClusters/managedClusterValue/applicationTypes/applicationTypeValue",
 			Expected: &ApplicationTypeId{
 				SubscriptionId:      "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:   "example-resource-group",
-				ClusterName:         "clusterValue",
+				ManagedClusterName:  "managedClusterValue",
 				ApplicationTypeName: "applicationTypeValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ServiceFabric/managedClusters/clusterValue/applicationTypes/applicationTypeValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ServiceFabric/managedClusters/managedClusterValue/applicationTypes/applicationTypeValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sErViCeFaBrIc/mAnAgEdClUsTeRs/cLuStErVaLuE/aPpLiCaTiOnTyPeS/aPpLiCaTiOnTyPeVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sErViCeFaBrIc/mAnAgEdClUsTeRs/mAnAgEdClUsTeRvAlUe/aPpLiCaTiOnTyPeS/aPpLiCaTiOnTyPeVaLuE",
 			Expected: &ApplicationTypeId{
 				SubscriptionId:      "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:   "eXaMpLe-rEsOuRcE-GrOuP",
-				ClusterName:         "cLuStErVaLuE",
+				ManagedClusterName:  "mAnAgEdClUsTeRvAlUe",
 				ApplicationTypeName: "aPpLiCaTiOnTyPeVaLuE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sErViCeFaBrIc/mAnAgEdClUsTeRs/cLuStErVaLuE/aPpLiCaTiOnTyPeS/aPpLiCaTiOnTyPeVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sErViCeFaBrIc/mAnAgEdClUsTeRs/mAnAgEdClUsTeRvAlUe/aPpLiCaTiOnTyPeS/aPpLiCaTiOnTyPeVaLuE/extra",
 			Error: true,
 		},
 	}
@@ -297,8 +297,8 @@ func TestParseApplicationTypeIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.ClusterName != v.Expected.ClusterName {
-			t.Fatalf("Expected %q but got %q for ClusterName", v.Expected.ClusterName, actual.ClusterName)
+		if actual.ManagedClusterName != v.Expected.ManagedClusterName {
+			t.Fatalf("Expected %q but got %q for ManagedClusterName", v.Expected.ManagedClusterName, actual.ManagedClusterName)
 		}
 
 		if actual.ApplicationTypeName != v.Expected.ApplicationTypeName {

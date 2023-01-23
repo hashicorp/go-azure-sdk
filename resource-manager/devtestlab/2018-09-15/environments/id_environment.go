@@ -15,17 +15,17 @@ type EnvironmentId struct {
 	ResourceGroupName string
 	LabName           string
 	UserName          string
-	Name              string
+	EnvironmentName   string
 }
 
 // NewEnvironmentID returns a new EnvironmentId struct
-func NewEnvironmentID(subscriptionId string, resourceGroupName string, labName string, userName string, name string) EnvironmentId {
+func NewEnvironmentID(subscriptionId string, resourceGroupName string, labName string, userName string, environmentName string) EnvironmentId {
 	return EnvironmentId{
 		SubscriptionId:    subscriptionId,
 		ResourceGroupName: resourceGroupName,
 		LabName:           labName,
 		UserName:          userName,
-		Name:              name,
+		EnvironmentName:   environmentName,
 	}
 }
 
@@ -56,8 +56,8 @@ func ParseEnvironmentID(input string) (*EnvironmentId, error) {
 		return nil, fmt.Errorf("the segment 'userName' was not found in the resource id %q", input)
 	}
 
-	if id.Name, ok = parsed.Parsed["name"]; !ok {
-		return nil, fmt.Errorf("the segment 'name' was not found in the resource id %q", input)
+	if id.EnvironmentName, ok = parsed.Parsed["environmentName"]; !ok {
+		return nil, fmt.Errorf("the segment 'environmentName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -91,8 +91,8 @@ func ParseEnvironmentIDInsensitively(input string) (*EnvironmentId, error) {
 		return nil, fmt.Errorf("the segment 'userName' was not found in the resource id %q", input)
 	}
 
-	if id.Name, ok = parsed.Parsed["name"]; !ok {
-		return nil, fmt.Errorf("the segment 'name' was not found in the resource id %q", input)
+	if id.EnvironmentName, ok = parsed.Parsed["environmentName"]; !ok {
+		return nil, fmt.Errorf("the segment 'environmentName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -116,7 +116,7 @@ func ValidateEnvironmentID(input interface{}, key string) (warnings []string, er
 // ID returns the formatted Environment ID
 func (id EnvironmentId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.DevTestLab/labs/%s/users/%s/environments/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.LabName, id.UserName, id.Name)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.LabName, id.UserName, id.EnvironmentName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Environment ID
@@ -133,7 +133,7 @@ func (id EnvironmentId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticUsers", "users", "users"),
 		resourceids.UserSpecifiedSegment("userName", "userValue"),
 		resourceids.StaticSegment("staticEnvironments", "environments", "environments"),
-		resourceids.UserSpecifiedSegment("name", "nameValue"),
+		resourceids.UserSpecifiedSegment("environmentName", "environmentValue"),
 	}
 }
 
@@ -144,7 +144,7 @@ func (id EnvironmentId) String() string {
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
 		fmt.Sprintf("Lab Name: %q", id.LabName),
 		fmt.Sprintf("User Name: %q", id.UserName),
-		fmt.Sprintf("Name: %q", id.Name),
+		fmt.Sprintf("Environment Name: %q", id.EnvironmentName),
 	}
 	return fmt.Sprintf("Environment (%s)", strings.Join(components, "\n"))
 }

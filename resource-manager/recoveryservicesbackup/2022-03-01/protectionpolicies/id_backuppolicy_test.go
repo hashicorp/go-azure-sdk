@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = BackupPolicyId{}
 
 func TestNewBackupPolicyID(t *testing.T) {
-	id := NewBackupPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue", "policyValue")
+	id := NewBackupPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue", "backupPolicyValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -23,14 +23,14 @@ func TestNewBackupPolicyID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'VaultName'", id.VaultName, "vaultValue")
 	}
 
-	if id.PolicyName != "policyValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'PolicyName'", id.PolicyName, "policyValue")
+	if id.BackupPolicyName != "backupPolicyValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'BackupPolicyName'", id.BackupPolicyName, "backupPolicyValue")
 	}
 }
 
 func TestFormatBackupPolicyID(t *testing.T) {
-	actual := NewBackupPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue", "policyValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultValue/backupPolicies/policyValue"
+	actual := NewBackupPolicyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue", "backupPolicyValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultValue/backupPolicies/backupPolicyValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -94,17 +94,17 @@ func TestParseBackupPolicyID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultValue/backupPolicies/policyValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultValue/backupPolicies/backupPolicyValue",
 			Expected: &BackupPolicyId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				VaultName:         "vaultValue",
-				PolicyName:        "policyValue",
+				BackupPolicyName:  "backupPolicyValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultValue/backupPolicies/policyValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultValue/backupPolicies/backupPolicyValue/extra",
 			Error: true,
 		},
 	}
@@ -135,8 +135,8 @@ func TestParseBackupPolicyID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for VaultName", v.Expected.VaultName, actual.VaultName)
 		}
 
-		if actual.PolicyName != v.Expected.PolicyName {
-			t.Fatalf("Expected %q but got %q for PolicyName", v.Expected.PolicyName, actual.PolicyName)
+		if actual.BackupPolicyName != v.Expected.BackupPolicyName {
+			t.Fatalf("Expected %q but got %q for BackupPolicyName", v.Expected.BackupPolicyName, actual.BackupPolicyName)
 		}
 
 	}
@@ -245,32 +245,32 @@ func TestParseBackupPolicyIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultValue/backupPolicies/policyValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultValue/backupPolicies/backupPolicyValue",
 			Expected: &BackupPolicyId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				VaultName:         "vaultValue",
-				PolicyName:        "policyValue",
+				BackupPolicyName:  "backupPolicyValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultValue/backupPolicies/policyValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.RecoveryServices/vaults/vaultValue/backupPolicies/backupPolicyValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEcOvErYsErViCeS/vAuLtS/vAuLtVaLuE/bAcKuPpOlIcIeS/pOlIcYvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEcOvErYsErViCeS/vAuLtS/vAuLtVaLuE/bAcKuPpOlIcIeS/bAcKuPpOlIcYvAlUe",
 			Expected: &BackupPolicyId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
 				VaultName:         "vAuLtVaLuE",
-				PolicyName:        "pOlIcYvAlUe",
+				BackupPolicyName:  "bAcKuPpOlIcYvAlUe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEcOvErYsErViCeS/vAuLtS/vAuLtVaLuE/bAcKuPpOlIcIeS/pOlIcYvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.rEcOvErYsErViCeS/vAuLtS/vAuLtVaLuE/bAcKuPpOlIcIeS/bAcKuPpOlIcYvAlUe/extra",
 			Error: true,
 		},
 	}
@@ -301,8 +301,8 @@ func TestParseBackupPolicyIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for VaultName", v.Expected.VaultName, actual.VaultName)
 		}
 
-		if actual.PolicyName != v.Expected.PolicyName {
-			t.Fatalf("Expected %q but got %q for PolicyName", v.Expected.PolicyName, actual.PolicyName)
+		if actual.BackupPolicyName != v.Expected.BackupPolicyName {
+			t.Fatalf("Expected %q but got %q for BackupPolicyName", v.Expected.BackupPolicyName, actual.BackupPolicyName)
 		}
 
 	}

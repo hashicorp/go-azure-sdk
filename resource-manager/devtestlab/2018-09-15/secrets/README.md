@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := secrets.NewSecretID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "userValue", "nameValue")
+id := secrets.NewSecretID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "userValue", "secretValue")
 
 payload := secrets.Secret{
 	// ...
@@ -41,7 +41,7 @@ if err := client.CreateOrUpdateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := secrets.NewSecretID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "userValue", "nameValue")
+id := secrets.NewSecretID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "userValue", "secretValue")
 
 read, err := client.Delete(ctx, id)
 if err != nil {
@@ -57,7 +57,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := secrets.NewSecretID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "userValue", "nameValue")
+id := secrets.NewSecretID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "userValue", "secretValue")
 
 read, err := client.Get(ctx, id, secrets.DefaultGetOperationOptions())
 if err != nil {
@@ -90,7 +90,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := secrets.NewSecretID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "userValue", "nameValue")
+id := secrets.NewSecretID("12345678-1234-9876-4563-123456789012", "example-resource-group", "labValue", "userValue", "secretValue")
 
 payload := secrets.UpdateResource{
 	// ...

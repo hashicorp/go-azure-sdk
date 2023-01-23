@@ -14,16 +14,16 @@ type ExtensionId struct {
 	SubscriptionId     string
 	ResourceGroupName  string
 	VirtualMachineName string
-	VmExtensionName    string
+	ExtensionName      string
 }
 
 // NewExtensionID returns a new ExtensionId struct
-func NewExtensionID(subscriptionId string, resourceGroupName string, virtualMachineName string, vmExtensionName string) ExtensionId {
+func NewExtensionID(subscriptionId string, resourceGroupName string, virtualMachineName string, extensionName string) ExtensionId {
 	return ExtensionId{
 		SubscriptionId:     subscriptionId,
 		ResourceGroupName:  resourceGroupName,
 		VirtualMachineName: virtualMachineName,
-		VmExtensionName:    vmExtensionName,
+		ExtensionName:      extensionName,
 	}
 }
 
@@ -50,8 +50,8 @@ func ParseExtensionID(input string) (*ExtensionId, error) {
 		return nil, fmt.Errorf("the segment 'virtualMachineName' was not found in the resource id %q", input)
 	}
 
-	if id.VmExtensionName, ok = parsed.Parsed["vmExtensionName"]; !ok {
-		return nil, fmt.Errorf("the segment 'vmExtensionName' was not found in the resource id %q", input)
+	if id.ExtensionName, ok = parsed.Parsed["extensionName"]; !ok {
+		return nil, fmt.Errorf("the segment 'extensionName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -81,8 +81,8 @@ func ParseExtensionIDInsensitively(input string) (*ExtensionId, error) {
 		return nil, fmt.Errorf("the segment 'virtualMachineName' was not found in the resource id %q", input)
 	}
 
-	if id.VmExtensionName, ok = parsed.Parsed["vmExtensionName"]; !ok {
-		return nil, fmt.Errorf("the segment 'vmExtensionName' was not found in the resource id %q", input)
+	if id.ExtensionName, ok = parsed.Parsed["extensionName"]; !ok {
+		return nil, fmt.Errorf("the segment 'extensionName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -106,7 +106,7 @@ func ValidateExtensionID(input interface{}, key string) (warnings []string, erro
 // ID returns the formatted Extension ID
 func (id ExtensionId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.Compute/virtualMachines/%s/extensions/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.VirtualMachineName, id.VmExtensionName)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.VirtualMachineName, id.ExtensionName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Extension ID
@@ -121,7 +121,7 @@ func (id ExtensionId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticVirtualMachines", "virtualMachines", "virtualMachines"),
 		resourceids.UserSpecifiedSegment("virtualMachineName", "virtualMachineValue"),
 		resourceids.StaticSegment("staticExtensions", "extensions", "extensions"),
-		resourceids.UserSpecifiedSegment("vmExtensionName", "vmExtensionValue"),
+		resourceids.UserSpecifiedSegment("extensionName", "extensionValue"),
 	}
 }
 
@@ -131,7 +131,7 @@ func (id ExtensionId) String() string {
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
 		fmt.Sprintf("Virtual Machine Name: %q", id.VirtualMachineName),
-		fmt.Sprintf("Vm Extension Name: %q", id.VmExtensionName),
+		fmt.Sprintf("Extension Name: %q", id.ExtensionName),
 	}
 	return fmt.Sprintf("Extension (%s)", strings.Join(components, "\n"))
 }

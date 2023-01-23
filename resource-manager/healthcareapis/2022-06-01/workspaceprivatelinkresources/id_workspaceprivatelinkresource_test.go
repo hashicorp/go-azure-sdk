@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = WorkspacePrivateLinkResourceId{}
 
 func TestNewWorkspacePrivateLinkResourceID(t *testing.T) {
-	id := NewWorkspacePrivateLinkResourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "groupValue")
+	id := NewWorkspacePrivateLinkResourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "privateLinkResourceValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -23,14 +23,14 @@ func TestNewWorkspacePrivateLinkResourceID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'WorkspaceName'", id.WorkspaceName, "workspaceValue")
 	}
 
-	if id.GroupName != "groupValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'GroupName'", id.GroupName, "groupValue")
+	if id.PrivateLinkResourceName != "privateLinkResourceValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'PrivateLinkResourceName'", id.PrivateLinkResourceName, "privateLinkResourceValue")
 	}
 }
 
 func TestFormatWorkspacePrivateLinkResourceID(t *testing.T) {
-	actual := NewWorkspacePrivateLinkResourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "groupValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HealthcareApis/workspaces/workspaceValue/privateLinkResources/groupValue"
+	actual := NewWorkspacePrivateLinkResourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "privateLinkResourceValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HealthcareApis/workspaces/workspaceValue/privateLinkResources/privateLinkResourceValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -94,17 +94,17 @@ func TestParseWorkspacePrivateLinkResourceID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HealthcareApis/workspaces/workspaceValue/privateLinkResources/groupValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HealthcareApis/workspaces/workspaceValue/privateLinkResources/privateLinkResourceValue",
 			Expected: &WorkspacePrivateLinkResourceId{
-				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName: "example-resource-group",
-				WorkspaceName:     "workspaceValue",
-				GroupName:         "groupValue",
+				SubscriptionId:          "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:       "example-resource-group",
+				WorkspaceName:           "workspaceValue",
+				PrivateLinkResourceName: "privateLinkResourceValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HealthcareApis/workspaces/workspaceValue/privateLinkResources/groupValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HealthcareApis/workspaces/workspaceValue/privateLinkResources/privateLinkResourceValue/extra",
 			Error: true,
 		},
 	}
@@ -135,8 +135,8 @@ func TestParseWorkspacePrivateLinkResourceID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for WorkspaceName", v.Expected.WorkspaceName, actual.WorkspaceName)
 		}
 
-		if actual.GroupName != v.Expected.GroupName {
-			t.Fatalf("Expected %q but got %q for GroupName", v.Expected.GroupName, actual.GroupName)
+		if actual.PrivateLinkResourceName != v.Expected.PrivateLinkResourceName {
+			t.Fatalf("Expected %q but got %q for PrivateLinkResourceName", v.Expected.PrivateLinkResourceName, actual.PrivateLinkResourceName)
 		}
 
 	}
@@ -245,32 +245,32 @@ func TestParseWorkspacePrivateLinkResourceIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HealthcareApis/workspaces/workspaceValue/privateLinkResources/groupValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HealthcareApis/workspaces/workspaceValue/privateLinkResources/privateLinkResourceValue",
 			Expected: &WorkspacePrivateLinkResourceId{
-				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName: "example-resource-group",
-				WorkspaceName:     "workspaceValue",
-				GroupName:         "groupValue",
+				SubscriptionId:          "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:       "example-resource-group",
+				WorkspaceName:           "workspaceValue",
+				PrivateLinkResourceName: "privateLinkResourceValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HealthcareApis/workspaces/workspaceValue/privateLinkResources/groupValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.HealthcareApis/workspaces/workspaceValue/privateLinkResources/privateLinkResourceValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.hEaLtHcArEaPiS/wOrKsPaCeS/wOrKsPaCeVaLuE/pRiVaTeLiNkReSoUrCeS/gRoUpVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.hEaLtHcArEaPiS/wOrKsPaCeS/wOrKsPaCeVaLuE/pRiVaTeLiNkReSoUrCeS/pRiVaTeLiNkReSoUrCeVaLuE",
 			Expected: &WorkspacePrivateLinkResourceId{
-				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				WorkspaceName:     "wOrKsPaCeVaLuE",
-				GroupName:         "gRoUpVaLuE",
+				SubscriptionId:          "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:       "eXaMpLe-rEsOuRcE-GrOuP",
+				WorkspaceName:           "wOrKsPaCeVaLuE",
+				PrivateLinkResourceName: "pRiVaTeLiNkReSoUrCeVaLuE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.hEaLtHcArEaPiS/wOrKsPaCeS/wOrKsPaCeVaLuE/pRiVaTeLiNkReSoUrCeS/gRoUpVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.hEaLtHcArEaPiS/wOrKsPaCeS/wOrKsPaCeVaLuE/pRiVaTeLiNkReSoUrCeS/pRiVaTeLiNkReSoUrCeVaLuE/extra",
 			Error: true,
 		},
 	}
@@ -301,8 +301,8 @@ func TestParseWorkspacePrivateLinkResourceIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for WorkspaceName", v.Expected.WorkspaceName, actual.WorkspaceName)
 		}
 
-		if actual.GroupName != v.Expected.GroupName {
-			t.Fatalf("Expected %q but got %q for GroupName", v.Expected.GroupName, actual.GroupName)
+		if actual.PrivateLinkResourceName != v.Expected.PrivateLinkResourceName {
+			t.Fatalf("Expected %q but got %q for PrivateLinkResourceName", v.Expected.PrivateLinkResourceName, actual.PrivateLinkResourceName)
 		}
 
 	}

@@ -9,20 +9,20 @@ import (
 var _ resourceids.ResourceId = ScopedDiagnosticSettingsCategoryId{}
 
 func TestNewScopedDiagnosticSettingsCategoryID(t *testing.T) {
-	id := NewScopedDiagnosticSettingsCategoryID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "nameValue")
+	id := NewScopedDiagnosticSettingsCategoryID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "diagnosticSettingsCategoryValue")
 
 	if id.ResourceUri != "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group" {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceUri'", id.ResourceUri, "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
 	}
 
-	if id.Name != "nameValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'Name'", id.Name, "nameValue")
+	if id.DiagnosticSettingsCategoryName != "diagnosticSettingsCategoryValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'DiagnosticSettingsCategoryName'", id.DiagnosticSettingsCategoryName, "diagnosticSettingsCategoryValue")
 	}
 }
 
 func TestFormatScopedDiagnosticSettingsCategoryID(t *testing.T) {
-	actual := NewScopedDiagnosticSettingsCategoryID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "nameValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Insights/diagnosticSettingsCategories/nameValue"
+	actual := NewScopedDiagnosticSettingsCategoryID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "diagnosticSettingsCategoryValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Insights/diagnosticSettingsCategories/diagnosticSettingsCategoryValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -61,15 +61,15 @@ func TestParseScopedDiagnosticSettingsCategoryID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Insights/diagnosticSettingsCategories/nameValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Insights/diagnosticSettingsCategories/diagnosticSettingsCategoryValue",
 			Expected: &ScopedDiagnosticSettingsCategoryId{
-				ResourceUri: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group",
-				Name:        "nameValue",
+				ResourceUri:                    "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group",
+				DiagnosticSettingsCategoryName: "diagnosticSettingsCategoryValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Insights/diagnosticSettingsCategories/nameValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Insights/diagnosticSettingsCategories/diagnosticSettingsCategoryValue/extra",
 			Error: true,
 		},
 	}
@@ -92,8 +92,8 @@ func TestParseScopedDiagnosticSettingsCategoryID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceUri", v.Expected.ResourceUri, actual.ResourceUri)
 		}
 
-		if actual.Name != v.Expected.Name {
-			t.Fatalf("Expected %q but got %q for Name", v.Expected.Name, actual.Name)
+		if actual.DiagnosticSettingsCategoryName != v.Expected.DiagnosticSettingsCategoryName {
+			t.Fatalf("Expected %q but got %q for DiagnosticSettingsCategoryName", v.Expected.DiagnosticSettingsCategoryName, actual.DiagnosticSettingsCategoryName)
 		}
 
 	}
@@ -152,28 +152,28 @@ func TestParseScopedDiagnosticSettingsCategoryIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Insights/diagnosticSettingsCategories/nameValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Insights/diagnosticSettingsCategories/diagnosticSettingsCategoryValue",
 			Expected: &ScopedDiagnosticSettingsCategoryId{
-				ResourceUri: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group",
-				Name:        "nameValue",
+				ResourceUri:                    "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group",
+				DiagnosticSettingsCategoryName: "diagnosticSettingsCategoryValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Insights/diagnosticSettingsCategories/nameValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group/providers/Microsoft.Insights/diagnosticSettingsCategories/diagnosticSettingsCategoryValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.iNsIgHtS/dIaGnOsTiCsEtTiNgScAtEgOrIeS/nAmEvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.iNsIgHtS/dIaGnOsTiCsEtTiNgScAtEgOrIeS/dIaGnOsTiCsEtTiNgScAtEgOrYvAlUe",
 			Expected: &ScopedDiagnosticSettingsCategoryId{
-				ResourceUri: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp",
-				Name:        "nAmEvAlUe",
+				ResourceUri:                    "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp",
+				DiagnosticSettingsCategoryName: "dIaGnOsTiCsEtTiNgScAtEgOrYvAlUe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.iNsIgHtS/dIaGnOsTiCsEtTiNgScAtEgOrIeS/nAmEvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/sOmE-ReSoUrCe-gRoUp/pRoViDeRs/mIcRoSoFt.iNsIgHtS/dIaGnOsTiCsEtTiNgScAtEgOrIeS/dIaGnOsTiCsEtTiNgScAtEgOrYvAlUe/extra",
 			Error: true,
 		},
 	}
@@ -196,8 +196,8 @@ func TestParseScopedDiagnosticSettingsCategoryIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceUri", v.Expected.ResourceUri, actual.ResourceUri)
 		}
 
-		if actual.Name != v.Expected.Name {
-			t.Fatalf("Expected %q but got %q for Name", v.Expected.Name, actual.Name)
+		if actual.DiagnosticSettingsCategoryName != v.Expected.DiagnosticSettingsCategoryName {
+			t.Fatalf("Expected %q but got %q for DiagnosticSettingsCategoryName", v.Expected.DiagnosticSettingsCategoryName, actual.DiagnosticSettingsCategoryName)
 		}
 
 	}

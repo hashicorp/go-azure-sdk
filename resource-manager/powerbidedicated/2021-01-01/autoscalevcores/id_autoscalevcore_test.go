@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = AutoScaleVCoreId{}
 
 func TestNewAutoScaleVCoreID(t *testing.T) {
-	id := NewAutoScaleVCoreID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vcoreValue")
+	id := NewAutoScaleVCoreID("12345678-1234-9876-4563-123456789012", "example-resource-group", "autoScaleVCoreValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -19,14 +19,14 @@ func TestNewAutoScaleVCoreID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.VcoreName != "vcoreValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'VcoreName'", id.VcoreName, "vcoreValue")
+	if id.AutoScaleVCoreName != "autoScaleVCoreValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'AutoScaleVCoreName'", id.AutoScaleVCoreName, "autoScaleVCoreValue")
 	}
 }
 
 func TestFormatAutoScaleVCoreID(t *testing.T) {
-	actual := NewAutoScaleVCoreID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vcoreValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.PowerBIDedicated/autoScaleVCores/vcoreValue"
+	actual := NewAutoScaleVCoreID("12345678-1234-9876-4563-123456789012", "example-resource-group", "autoScaleVCoreValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.PowerBIDedicated/autoScaleVCores/autoScaleVCoreValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -80,16 +80,16 @@ func TestParseAutoScaleVCoreID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.PowerBIDedicated/autoScaleVCores/vcoreValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.PowerBIDedicated/autoScaleVCores/autoScaleVCoreValue",
 			Expected: &AutoScaleVCoreId{
-				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName: "example-resource-group",
-				VcoreName:         "vcoreValue",
+				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:  "example-resource-group",
+				AutoScaleVCoreName: "autoScaleVCoreValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.PowerBIDedicated/autoScaleVCores/vcoreValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.PowerBIDedicated/autoScaleVCores/autoScaleVCoreValue/extra",
 			Error: true,
 		},
 	}
@@ -116,8 +116,8 @@ func TestParseAutoScaleVCoreID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.VcoreName != v.Expected.VcoreName {
-			t.Fatalf("Expected %q but got %q for VcoreName", v.Expected.VcoreName, actual.VcoreName)
+		if actual.AutoScaleVCoreName != v.Expected.AutoScaleVCoreName {
+			t.Fatalf("Expected %q but got %q for AutoScaleVCoreName", v.Expected.AutoScaleVCoreName, actual.AutoScaleVCoreName)
 		}
 
 	}
@@ -206,30 +206,30 @@ func TestParseAutoScaleVCoreIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.PowerBIDedicated/autoScaleVCores/vcoreValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.PowerBIDedicated/autoScaleVCores/autoScaleVCoreValue",
 			Expected: &AutoScaleVCoreId{
-				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName: "example-resource-group",
-				VcoreName:         "vcoreValue",
+				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:  "example-resource-group",
+				AutoScaleVCoreName: "autoScaleVCoreValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.PowerBIDedicated/autoScaleVCores/vcoreValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.PowerBIDedicated/autoScaleVCores/autoScaleVCoreValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.pOwErBiDeDiCaTeD/aUtOsCaLeVcOrEs/vCoReVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.pOwErBiDeDiCaTeD/aUtOsCaLeVcOrEs/aUtOsCaLeVcOrEvAlUe",
 			Expected: &AutoScaleVCoreId{
-				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
-				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
-				VcoreName:         "vCoReVaLuE",
+				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
+				ResourceGroupName:  "eXaMpLe-rEsOuRcE-GrOuP",
+				AutoScaleVCoreName: "aUtOsCaLeVcOrEvAlUe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.pOwErBiDeDiCaTeD/aUtOsCaLeVcOrEs/vCoReVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.pOwErBiDeDiCaTeD/aUtOsCaLeVcOrEs/aUtOsCaLeVcOrEvAlUe/extra",
 			Error: true,
 		},
 	}
@@ -256,8 +256,8 @@ func TestParseAutoScaleVCoreIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.VcoreName != v.Expected.VcoreName {
-			t.Fatalf("Expected %q but got %q for VcoreName", v.Expected.VcoreName, actual.VcoreName)
+		if actual.AutoScaleVCoreName != v.Expected.AutoScaleVCoreName {
+			t.Fatalf("Expected %q but got %q for AutoScaleVCoreName", v.Expected.AutoScaleVCoreName, actual.AutoScaleVCoreName)
 		}
 
 	}

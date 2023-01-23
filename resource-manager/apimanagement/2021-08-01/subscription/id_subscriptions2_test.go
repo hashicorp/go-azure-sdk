@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = Subscriptions2Id{}
 
 func TestNewSubscriptions2ID(t *testing.T) {
-	id := NewSubscriptions2ID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "sidValue")
+	id := NewSubscriptions2ID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "subscriptionValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -23,14 +23,14 @@ func TestNewSubscriptions2ID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ServiceName'", id.ServiceName, "serviceValue")
 	}
 
-	if id.Sid != "sidValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'Sid'", id.Sid, "sidValue")
+	if id.SubscriptionName != "subscriptionValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionName'", id.SubscriptionName, "subscriptionValue")
 	}
 }
 
 func TestFormatSubscriptions2ID(t *testing.T) {
-	actual := NewSubscriptions2ID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "sidValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceValue/subscriptions/sidValue"
+	actual := NewSubscriptions2ID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "subscriptionValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceValue/subscriptions/subscriptionValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -94,17 +94,17 @@ func TestParseSubscriptions2ID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceValue/subscriptions/sidValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceValue/subscriptions/subscriptionValue",
 			Expected: &Subscriptions2Id{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				ServiceName:       "serviceValue",
-				Sid:               "sidValue",
+				SubscriptionName:  "subscriptionValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceValue/subscriptions/sidValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceValue/subscriptions/subscriptionValue/extra",
 			Error: true,
 		},
 	}
@@ -135,8 +135,8 @@ func TestParseSubscriptions2ID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ServiceName", v.Expected.ServiceName, actual.ServiceName)
 		}
 
-		if actual.Sid != v.Expected.Sid {
-			t.Fatalf("Expected %q but got %q for Sid", v.Expected.Sid, actual.Sid)
+		if actual.SubscriptionName != v.Expected.SubscriptionName {
+			t.Fatalf("Expected %q but got %q for SubscriptionName", v.Expected.SubscriptionName, actual.SubscriptionName)
 		}
 
 	}
@@ -245,32 +245,32 @@ func TestParseSubscriptions2IDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceValue/subscriptions/sidValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceValue/subscriptions/subscriptionValue",
 			Expected: &Subscriptions2Id{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				ServiceName:       "serviceValue",
-				Sid:               "sidValue",
+				SubscriptionName:  "subscriptionValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceValue/subscriptions/sidValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.ApiManagement/service/serviceValue/subscriptions/subscriptionValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPiMaNaGeMeNt/sErViCe/sErViCeVaLuE/sUbScRiPtIoNs/sIdVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPiMaNaGeMeNt/sErViCe/sErViCeVaLuE/sUbScRiPtIoNs/sUbScRiPtIoNvAlUe",
 			Expected: &Subscriptions2Id{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
 				ServiceName:       "sErViCeVaLuE",
-				Sid:               "sIdVaLuE",
+				SubscriptionName:  "sUbScRiPtIoNvAlUe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPiMaNaGeMeNt/sErViCe/sErViCeVaLuE/sUbScRiPtIoNs/sIdVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aPiMaNaGeMeNt/sErViCe/sErViCeVaLuE/sUbScRiPtIoNs/sUbScRiPtIoNvAlUe/extra",
 			Error: true,
 		},
 	}
@@ -301,8 +301,8 @@ func TestParseSubscriptions2IDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ServiceName", v.Expected.ServiceName, actual.ServiceName)
 		}
 
-		if actual.Sid != v.Expected.Sid {
-			t.Fatalf("Expected %q but got %q for Sid", v.Expected.Sid, actual.Sid)
+		if actual.SubscriptionName != v.Expected.SubscriptionName {
+			t.Fatalf("Expected %q but got %q for SubscriptionName", v.Expected.SubscriptionName, actual.SubscriptionName)
 		}
 
 	}

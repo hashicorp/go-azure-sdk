@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = EventhubAuthorizationRuleId{}
 
 func TestNewEventhubAuthorizationRuleID(t *testing.T) {
-	id := NewEventhubAuthorizationRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceValue", "eventHubValue", "authorizationRuleValue")
+	id := NewEventhubAuthorizationRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceValue", "eventhubValue", "authorizationRuleValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -23,8 +23,8 @@ func TestNewEventhubAuthorizationRuleID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'NamespaceName'", id.NamespaceName, "namespaceValue")
 	}
 
-	if id.EventHubName != "eventHubValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'EventHubName'", id.EventHubName, "eventHubValue")
+	if id.EventhubName != "eventhubValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'EventhubName'", id.EventhubName, "eventhubValue")
 	}
 
 	if id.AuthorizationRuleName != "authorizationRuleValue" {
@@ -33,8 +33,8 @@ func TestNewEventhubAuthorizationRuleID(t *testing.T) {
 }
 
 func TestFormatEventhubAuthorizationRuleID(t *testing.T) {
-	actual := NewEventhubAuthorizationRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceValue", "eventHubValue", "authorizationRuleValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventHub/namespaces/namespaceValue/eventhubs/eventHubValue/authorizationRules/authorizationRuleValue"
+	actual := NewEventhubAuthorizationRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "namespaceValue", "eventhubValue", "authorizationRuleValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventHub/namespaces/namespaceValue/eventhubs/eventhubValue/authorizationRules/authorizationRuleValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -98,28 +98,28 @@ func TestParseEventhubAuthorizationRuleID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventHub/namespaces/namespaceValue/eventhubs/eventHubValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventHub/namespaces/namespaceValue/eventhubs/eventhubValue",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventHub/namespaces/namespaceValue/eventhubs/eventHubValue/authorizationRules",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventHub/namespaces/namespaceValue/eventhubs/eventhubValue/authorizationRules",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventHub/namespaces/namespaceValue/eventhubs/eventHubValue/authorizationRules/authorizationRuleValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventHub/namespaces/namespaceValue/eventhubs/eventhubValue/authorizationRules/authorizationRuleValue",
 			Expected: &EventhubAuthorizationRuleId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:     "example-resource-group",
 				NamespaceName:         "namespaceValue",
-				EventHubName:          "eventHubValue",
+				EventhubName:          "eventhubValue",
 				AuthorizationRuleName: "authorizationRuleValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventHub/namespaces/namespaceValue/eventhubs/eventHubValue/authorizationRules/authorizationRuleValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventHub/namespaces/namespaceValue/eventhubs/eventhubValue/authorizationRules/authorizationRuleValue/extra",
 			Error: true,
 		},
 	}
@@ -150,8 +150,8 @@ func TestParseEventhubAuthorizationRuleID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for NamespaceName", v.Expected.NamespaceName, actual.NamespaceName)
 		}
 
-		if actual.EventHubName != v.Expected.EventHubName {
-			t.Fatalf("Expected %q but got %q for EventHubName", v.Expected.EventHubName, actual.EventHubName)
+		if actual.EventhubName != v.Expected.EventhubName {
+			t.Fatalf("Expected %q but got %q for EventhubName", v.Expected.EventhubName, actual.EventhubName)
 		}
 
 		if actual.AuthorizationRuleName != v.Expected.AuthorizationRuleName {
@@ -264,7 +264,7 @@ func TestParseEventhubAuthorizationRuleIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventHub/namespaces/namespaceValue/eventhubs/eventHubValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventHub/namespaces/namespaceValue/eventhubs/eventhubValue",
 			Error: true,
 		},
 		{
@@ -274,7 +274,7 @@ func TestParseEventhubAuthorizationRuleIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventHub/namespaces/namespaceValue/eventhubs/eventHubValue/authorizationRules",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventHub/namespaces/namespaceValue/eventhubs/eventhubValue/authorizationRules",
 			Error: true,
 		},
 		{
@@ -284,18 +284,18 @@ func TestParseEventhubAuthorizationRuleIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventHub/namespaces/namespaceValue/eventhubs/eventHubValue/authorizationRules/authorizationRuleValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventHub/namespaces/namespaceValue/eventhubs/eventhubValue/authorizationRules/authorizationRuleValue",
 			Expected: &EventhubAuthorizationRuleId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:     "example-resource-group",
 				NamespaceName:         "namespaceValue",
-				EventHubName:          "eventHubValue",
+				EventhubName:          "eventhubValue",
 				AuthorizationRuleName: "authorizationRuleValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventHub/namespaces/namespaceValue/eventhubs/eventHubValue/authorizationRules/authorizationRuleValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.EventHub/namespaces/namespaceValue/eventhubs/eventhubValue/authorizationRules/authorizationRuleValue/extra",
 			Error: true,
 		},
 		{
@@ -305,7 +305,7 @@ func TestParseEventhubAuthorizationRuleIDInsensitively(t *testing.T) {
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:     "eXaMpLe-rEsOuRcE-GrOuP",
 				NamespaceName:         "nAmEsPaCeVaLuE",
-				EventHubName:          "eVeNtHuBvAlUe",
+				EventhubName:          "eVeNtHuBvAlUe",
 				AuthorizationRuleName: "aUtHoRiZaTiOnRuLeVaLuE",
 			},
 		},
@@ -342,8 +342,8 @@ func TestParseEventhubAuthorizationRuleIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for NamespaceName", v.Expected.NamespaceName, actual.NamespaceName)
 		}
 
-		if actual.EventHubName != v.Expected.EventHubName {
-			t.Fatalf("Expected %q but got %q for EventHubName", v.Expected.EventHubName, actual.EventHubName)
+		if actual.EventhubName != v.Expected.EventhubName {
+			t.Fatalf("Expected %q but got %q for EventhubName", v.Expected.EventhubName, actual.EventhubName)
 		}
 
 		if actual.AuthorizationRuleName != v.Expected.AuthorizationRuleName {

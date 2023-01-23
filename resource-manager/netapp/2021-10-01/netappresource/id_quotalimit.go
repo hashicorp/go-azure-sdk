@@ -12,15 +12,15 @@ var _ resourceids.ResourceId = QuotaLimitId{}
 // QuotaLimitId is a struct representing the Resource ID for a Quota Limit
 type QuotaLimitId struct {
 	SubscriptionId string
-	Location       string
+	LocationName   string
 	QuotaLimitName string
 }
 
 // NewQuotaLimitID returns a new QuotaLimitId struct
-func NewQuotaLimitID(subscriptionId string, location string, quotaLimitName string) QuotaLimitId {
+func NewQuotaLimitID(subscriptionId string, locationName string, quotaLimitName string) QuotaLimitId {
 	return QuotaLimitId{
 		SubscriptionId: subscriptionId,
-		Location:       location,
+		LocationName:   locationName,
 		QuotaLimitName: quotaLimitName,
 	}
 }
@@ -40,8 +40,8 @@ func ParseQuotaLimitID(input string) (*QuotaLimitId, error) {
 		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
 	}
 
-	if id.Location, ok = parsed.Parsed["location"]; !ok {
-		return nil, fmt.Errorf("the segment 'location' was not found in the resource id %q", input)
+	if id.LocationName, ok = parsed.Parsed["locationName"]; !ok {
+		return nil, fmt.Errorf("the segment 'locationName' was not found in the resource id %q", input)
 	}
 
 	if id.QuotaLimitName, ok = parsed.Parsed["quotaLimitName"]; !ok {
@@ -67,8 +67,8 @@ func ParseQuotaLimitIDInsensitively(input string) (*QuotaLimitId, error) {
 		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
 	}
 
-	if id.Location, ok = parsed.Parsed["location"]; !ok {
-		return nil, fmt.Errorf("the segment 'location' was not found in the resource id %q", input)
+	if id.LocationName, ok = parsed.Parsed["locationName"]; !ok {
+		return nil, fmt.Errorf("the segment 'locationName' was not found in the resource id %q", input)
 	}
 
 	if id.QuotaLimitName, ok = parsed.Parsed["quotaLimitName"]; !ok {
@@ -96,7 +96,7 @@ func ValidateQuotaLimitID(input interface{}, key string) (warnings []string, err
 // ID returns the formatted Quota Limit ID
 func (id QuotaLimitId) ID() string {
 	fmtString := "/subscriptions/%s/providers/Microsoft.NetApp/locations/%s/quotaLimits/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.Location, id.QuotaLimitName)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.LocationName, id.QuotaLimitName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Quota Limit ID
@@ -107,7 +107,7 @@ func (id QuotaLimitId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftNetApp", "Microsoft.NetApp", "Microsoft.NetApp"),
 		resourceids.StaticSegment("staticLocations", "locations", "locations"),
-		resourceids.UserSpecifiedSegment("location", "locationValue"),
+		resourceids.UserSpecifiedSegment("locationName", "locationValue"),
 		resourceids.StaticSegment("staticQuotaLimits", "quotaLimits", "quotaLimits"),
 		resourceids.UserSpecifiedSegment("quotaLimitName", "quotaLimitValue"),
 	}
@@ -117,7 +117,7 @@ func (id QuotaLimitId) Segments() []resourceids.Segment {
 func (id QuotaLimitId) String() string {
 	components := []string{
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
-		fmt.Sprintf("Location: %q", id.Location),
+		fmt.Sprintf("Location Name: %q", id.LocationName),
 		fmt.Sprintf("Quota Limit Name: %q", id.QuotaLimitName),
 	}
 	return fmt.Sprintf("Quota Limit (%s)", strings.Join(components, "\n"))

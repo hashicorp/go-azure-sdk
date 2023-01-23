@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = DataStoreId{}
 
 func TestNewDataStoreID(t *testing.T) {
-	id := NewDataStoreID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudValue", "clusterValue", "datastoreValue")
+	id := NewDataStoreID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudValue", "clusterValue", "dataStoreValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -27,14 +27,14 @@ func TestNewDataStoreID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ClusterName'", id.ClusterName, "clusterValue")
 	}
 
-	if id.DatastoreName != "datastoreValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DatastoreName'", id.DatastoreName, "datastoreValue")
+	if id.DataStoreName != "dataStoreValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'DataStoreName'", id.DataStoreName, "dataStoreValue")
 	}
 }
 
 func TestFormatDataStoreID(t *testing.T) {
-	actual := NewDataStoreID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudValue", "clusterValue", "datastoreValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AVS/privateClouds/privateCloudValue/clusters/clusterValue/dataStores/datastoreValue"
+	actual := NewDataStoreID("12345678-1234-9876-4563-123456789012", "example-resource-group", "privateCloudValue", "clusterValue", "dataStoreValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AVS/privateClouds/privateCloudValue/clusters/clusterValue/dataStores/dataStoreValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -108,18 +108,18 @@ func TestParseDataStoreID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AVS/privateClouds/privateCloudValue/clusters/clusterValue/dataStores/datastoreValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AVS/privateClouds/privateCloudValue/clusters/clusterValue/dataStores/dataStoreValue",
 			Expected: &DataStoreId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				PrivateCloudName:  "privateCloudValue",
 				ClusterName:       "clusterValue",
-				DatastoreName:     "datastoreValue",
+				DataStoreName:     "dataStoreValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AVS/privateClouds/privateCloudValue/clusters/clusterValue/dataStores/datastoreValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AVS/privateClouds/privateCloudValue/clusters/clusterValue/dataStores/dataStoreValue/extra",
 			Error: true,
 		},
 	}
@@ -154,8 +154,8 @@ func TestParseDataStoreID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ClusterName", v.Expected.ClusterName, actual.ClusterName)
 		}
 
-		if actual.DatastoreName != v.Expected.DatastoreName {
-			t.Fatalf("Expected %q but got %q for DatastoreName", v.Expected.DatastoreName, actual.DatastoreName)
+		if actual.DataStoreName != v.Expected.DataStoreName {
+			t.Fatalf("Expected %q but got %q for DataStoreName", v.Expected.DataStoreName, actual.DataStoreName)
 		}
 
 	}
@@ -284,18 +284,18 @@ func TestParseDataStoreIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AVS/privateClouds/privateCloudValue/clusters/clusterValue/dataStores/datastoreValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AVS/privateClouds/privateCloudValue/clusters/clusterValue/dataStores/dataStoreValue",
 			Expected: &DataStoreId{
 				SubscriptionId:    "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName: "example-resource-group",
 				PrivateCloudName:  "privateCloudValue",
 				ClusterName:       "clusterValue",
-				DatastoreName:     "datastoreValue",
+				DataStoreName:     "dataStoreValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AVS/privateClouds/privateCloudValue/clusters/clusterValue/dataStores/datastoreValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.AVS/privateClouds/privateCloudValue/clusters/clusterValue/dataStores/dataStoreValue/extra",
 			Error: true,
 		},
 		{
@@ -306,7 +306,7 @@ func TestParseDataStoreIDInsensitively(t *testing.T) {
 				ResourceGroupName: "eXaMpLe-rEsOuRcE-GrOuP",
 				PrivateCloudName:  "pRiVaTeClOuDvAlUe",
 				ClusterName:       "cLuStErVaLuE",
-				DatastoreName:     "dAtAsToReVaLuE",
+				DataStoreName:     "dAtAsToReVaLuE",
 			},
 		},
 		{
@@ -346,8 +346,8 @@ func TestParseDataStoreIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ClusterName", v.Expected.ClusterName, actual.ClusterName)
 		}
 
-		if actual.DatastoreName != v.Expected.DatastoreName {
-			t.Fatalf("Expected %q but got %q for DatastoreName", v.Expected.DatastoreName, actual.DatastoreName)
+		if actual.DataStoreName != v.Expected.DataStoreName {
+			t.Fatalf("Expected %q but got %q for DataStoreName", v.Expected.DataStoreName, actual.DataStoreName)
 		}
 
 	}

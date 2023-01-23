@@ -14,16 +14,16 @@ type ServiceRunnerId struct {
 	SubscriptionId    string
 	ResourceGroupName string
 	LabName           string
-	Name              string
+	ServiceRunnerName string
 }
 
 // NewServiceRunnerID returns a new ServiceRunnerId struct
-func NewServiceRunnerID(subscriptionId string, resourceGroupName string, labName string, name string) ServiceRunnerId {
+func NewServiceRunnerID(subscriptionId string, resourceGroupName string, labName string, serviceRunnerName string) ServiceRunnerId {
 	return ServiceRunnerId{
 		SubscriptionId:    subscriptionId,
 		ResourceGroupName: resourceGroupName,
 		LabName:           labName,
-		Name:              name,
+		ServiceRunnerName: serviceRunnerName,
 	}
 }
 
@@ -50,8 +50,8 @@ func ParseServiceRunnerID(input string) (*ServiceRunnerId, error) {
 		return nil, fmt.Errorf("the segment 'labName' was not found in the resource id %q", input)
 	}
 
-	if id.Name, ok = parsed.Parsed["name"]; !ok {
-		return nil, fmt.Errorf("the segment 'name' was not found in the resource id %q", input)
+	if id.ServiceRunnerName, ok = parsed.Parsed["serviceRunnerName"]; !ok {
+		return nil, fmt.Errorf("the segment 'serviceRunnerName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -81,8 +81,8 @@ func ParseServiceRunnerIDInsensitively(input string) (*ServiceRunnerId, error) {
 		return nil, fmt.Errorf("the segment 'labName' was not found in the resource id %q", input)
 	}
 
-	if id.Name, ok = parsed.Parsed["name"]; !ok {
-		return nil, fmt.Errorf("the segment 'name' was not found in the resource id %q", input)
+	if id.ServiceRunnerName, ok = parsed.Parsed["serviceRunnerName"]; !ok {
+		return nil, fmt.Errorf("the segment 'serviceRunnerName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -106,7 +106,7 @@ func ValidateServiceRunnerID(input interface{}, key string) (warnings []string, 
 // ID returns the formatted Service Runner ID
 func (id ServiceRunnerId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.DevTestLab/labs/%s/serviceRunners/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.LabName, id.Name)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.LabName, id.ServiceRunnerName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Service Runner ID
@@ -121,7 +121,7 @@ func (id ServiceRunnerId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticLabs", "labs", "labs"),
 		resourceids.UserSpecifiedSegment("labName", "labValue"),
 		resourceids.StaticSegment("staticServiceRunners", "serviceRunners", "serviceRunners"),
-		resourceids.UserSpecifiedSegment("name", "nameValue"),
+		resourceids.UserSpecifiedSegment("serviceRunnerName", "serviceRunnerValue"),
 	}
 }
 
@@ -131,7 +131,7 @@ func (id ServiceRunnerId) String() string {
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
 		fmt.Sprintf("Lab Name: %q", id.LabName),
-		fmt.Sprintf("Name: %q", id.Name),
+		fmt.Sprintf("Service Runner Name: %q", id.ServiceRunnerName),
 	}
 	return fmt.Sprintf("Service Runner (%s)", strings.Join(components, "\n"))
 }

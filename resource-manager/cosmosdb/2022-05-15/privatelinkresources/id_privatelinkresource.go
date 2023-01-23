@@ -11,19 +11,19 @@ var _ resourceids.ResourceId = PrivateLinkResourceId{}
 
 // PrivateLinkResourceId is a struct representing the Resource ID for a Private Link Resource
 type PrivateLinkResourceId struct {
-	SubscriptionId    string
-	ResourceGroupName string
-	AccountName       string
-	GroupName         string
+	SubscriptionId          string
+	ResourceGroupName       string
+	DatabaseAccountName     string
+	PrivateLinkResourceName string
 }
 
 // NewPrivateLinkResourceID returns a new PrivateLinkResourceId struct
-func NewPrivateLinkResourceID(subscriptionId string, resourceGroupName string, accountName string, groupName string) PrivateLinkResourceId {
+func NewPrivateLinkResourceID(subscriptionId string, resourceGroupName string, databaseAccountName string, privateLinkResourceName string) PrivateLinkResourceId {
 	return PrivateLinkResourceId{
-		SubscriptionId:    subscriptionId,
-		ResourceGroupName: resourceGroupName,
-		AccountName:       accountName,
-		GroupName:         groupName,
+		SubscriptionId:          subscriptionId,
+		ResourceGroupName:       resourceGroupName,
+		DatabaseAccountName:     databaseAccountName,
+		PrivateLinkResourceName: privateLinkResourceName,
 	}
 }
 
@@ -46,12 +46,12 @@ func ParsePrivateLinkResourceID(input string) (*PrivateLinkResourceId, error) {
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.AccountName, ok = parsed.Parsed["accountName"]; !ok {
-		return nil, fmt.Errorf("the segment 'accountName' was not found in the resource id %q", input)
+	if id.DatabaseAccountName, ok = parsed.Parsed["databaseAccountName"]; !ok {
+		return nil, fmt.Errorf("the segment 'databaseAccountName' was not found in the resource id %q", input)
 	}
 
-	if id.GroupName, ok = parsed.Parsed["groupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'groupName' was not found in the resource id %q", input)
+	if id.PrivateLinkResourceName, ok = parsed.Parsed["privateLinkResourceName"]; !ok {
+		return nil, fmt.Errorf("the segment 'privateLinkResourceName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -77,12 +77,12 @@ func ParsePrivateLinkResourceIDInsensitively(input string) (*PrivateLinkResource
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.AccountName, ok = parsed.Parsed["accountName"]; !ok {
-		return nil, fmt.Errorf("the segment 'accountName' was not found in the resource id %q", input)
+	if id.DatabaseAccountName, ok = parsed.Parsed["databaseAccountName"]; !ok {
+		return nil, fmt.Errorf("the segment 'databaseAccountName' was not found in the resource id %q", input)
 	}
 
-	if id.GroupName, ok = parsed.Parsed["groupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'groupName' was not found in the resource id %q", input)
+	if id.PrivateLinkResourceName, ok = parsed.Parsed["privateLinkResourceName"]; !ok {
+		return nil, fmt.Errorf("the segment 'privateLinkResourceName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -106,7 +106,7 @@ func ValidatePrivateLinkResourceID(input interface{}, key string) (warnings []st
 // ID returns the formatted Private Link Resource ID
 func (id PrivateLinkResourceId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.DocumentDB/databaseAccounts/%s/privateLinkResources/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.AccountName, id.GroupName)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.DatabaseAccountName, id.PrivateLinkResourceName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Private Link Resource ID
@@ -119,9 +119,9 @@ func (id PrivateLinkResourceId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftDocumentDB", "Microsoft.DocumentDB", "Microsoft.DocumentDB"),
 		resourceids.StaticSegment("staticDatabaseAccounts", "databaseAccounts", "databaseAccounts"),
-		resourceids.UserSpecifiedSegment("accountName", "accountValue"),
+		resourceids.UserSpecifiedSegment("databaseAccountName", "databaseAccountValue"),
 		resourceids.StaticSegment("staticPrivateLinkResources", "privateLinkResources", "privateLinkResources"),
-		resourceids.UserSpecifiedSegment("groupName", "groupValue"),
+		resourceids.UserSpecifiedSegment("privateLinkResourceName", "privateLinkResourceValue"),
 	}
 }
 
@@ -130,8 +130,8 @@ func (id PrivateLinkResourceId) String() string {
 	components := []string{
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
-		fmt.Sprintf("Account Name: %q", id.AccountName),
-		fmt.Sprintf("Group Name: %q", id.GroupName),
+		fmt.Sprintf("Database Account Name: %q", id.DatabaseAccountName),
+		fmt.Sprintf("Private Link Resource Name: %q", id.PrivateLinkResourceName),
 	}
 	return fmt.Sprintf("Private Link Resource (%s)", strings.Join(components, "\n"))
 }

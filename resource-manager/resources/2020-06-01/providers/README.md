@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := providers.NewSubscriptionProviderID("12345678-1234-9876-4563-123456789012", "resourceProviderNamespaceValue")
+id := providers.NewSubscriptionProviderID("12345678-1234-9876-4563-123456789012", "providerValue")
 
 read, err := client.Get(ctx, id, providers.DefaultGetOperationOptions())
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := providers.NewProviderID("resourceProviderNamespaceValue")
+id := providers.NewProviderID("providerValue")
 
 read, err := client.GetAtTenantScope(ctx, id, providers.DefaultGetAtTenantScopeOperationOptions())
 if err != nil {
@@ -90,7 +90,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := providers.NewSubscriptionProviderID("12345678-1234-9876-4563-123456789012", "resourceProviderNamespaceValue")
+id := providers.NewSubscriptionProviderID("12345678-1234-9876-4563-123456789012", "providerValue")
 
 read, err := client.Register(ctx, id)
 if err != nil {
@@ -106,7 +106,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := providers.NewProviders2ID("groupIdValue", "resourceProviderNamespaceValue")
+id := providers.NewProviders2ID("groupIdValue", "providerValue")
 
 read, err := client.RegisterAtManagementGroupScope(ctx, id)
 if err != nil {
@@ -122,7 +122,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := providers.NewSubscriptionProviderID("12345678-1234-9876-4563-123456789012", "resourceProviderNamespaceValue")
+id := providers.NewSubscriptionProviderID("12345678-1234-9876-4563-123456789012", "providerValue")
 
 read, err := client.Unregister(ctx, id)
 if err != nil {

@@ -13,16 +13,16 @@ var _ resourceids.ResourceId = PrivateEndpointConnectionId{}
 type PrivateEndpointConnectionId struct {
 	SubscriptionId                string
 	ResourceGroupName             string
-	ClusterName                   string
+	RedisEnterpriseName           string
 	PrivateEndpointConnectionName string
 }
 
 // NewPrivateEndpointConnectionID returns a new PrivateEndpointConnectionId struct
-func NewPrivateEndpointConnectionID(subscriptionId string, resourceGroupName string, clusterName string, privateEndpointConnectionName string) PrivateEndpointConnectionId {
+func NewPrivateEndpointConnectionID(subscriptionId string, resourceGroupName string, redisEnterpriseName string, privateEndpointConnectionName string) PrivateEndpointConnectionId {
 	return PrivateEndpointConnectionId{
 		SubscriptionId:                subscriptionId,
 		ResourceGroupName:             resourceGroupName,
-		ClusterName:                   clusterName,
+		RedisEnterpriseName:           redisEnterpriseName,
 		PrivateEndpointConnectionName: privateEndpointConnectionName,
 	}
 }
@@ -46,8 +46,8 @@ func ParsePrivateEndpointConnectionID(input string) (*PrivateEndpointConnectionI
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.ClusterName, ok = parsed.Parsed["clusterName"]; !ok {
-		return nil, fmt.Errorf("the segment 'clusterName' was not found in the resource id %q", input)
+	if id.RedisEnterpriseName, ok = parsed.Parsed["redisEnterpriseName"]; !ok {
+		return nil, fmt.Errorf("the segment 'redisEnterpriseName' was not found in the resource id %q", input)
 	}
 
 	if id.PrivateEndpointConnectionName, ok = parsed.Parsed["privateEndpointConnectionName"]; !ok {
@@ -77,8 +77,8 @@ func ParsePrivateEndpointConnectionIDInsensitively(input string) (*PrivateEndpoi
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.ClusterName, ok = parsed.Parsed["clusterName"]; !ok {
-		return nil, fmt.Errorf("the segment 'clusterName' was not found in the resource id %q", input)
+	if id.RedisEnterpriseName, ok = parsed.Parsed["redisEnterpriseName"]; !ok {
+		return nil, fmt.Errorf("the segment 'redisEnterpriseName' was not found in the resource id %q", input)
 	}
 
 	if id.PrivateEndpointConnectionName, ok = parsed.Parsed["privateEndpointConnectionName"]; !ok {
@@ -106,7 +106,7 @@ func ValidatePrivateEndpointConnectionID(input interface{}, key string) (warning
 // ID returns the formatted Private Endpoint Connection ID
 func (id PrivateEndpointConnectionId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.Cache/redisEnterprise/%s/privateEndpointConnections/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.ClusterName, id.PrivateEndpointConnectionName)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.RedisEnterpriseName, id.PrivateEndpointConnectionName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Private Endpoint Connection ID
@@ -119,7 +119,7 @@ func (id PrivateEndpointConnectionId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftCache", "Microsoft.Cache", "Microsoft.Cache"),
 		resourceids.StaticSegment("staticRedisEnterprise", "redisEnterprise", "redisEnterprise"),
-		resourceids.UserSpecifiedSegment("clusterName", "clusterValue"),
+		resourceids.UserSpecifiedSegment("redisEnterpriseName", "redisEnterpriseValue"),
 		resourceids.StaticSegment("staticPrivateEndpointConnections", "privateEndpointConnections", "privateEndpointConnections"),
 		resourceids.UserSpecifiedSegment("privateEndpointConnectionName", "privateEndpointConnectionValue"),
 	}
@@ -130,7 +130,7 @@ func (id PrivateEndpointConnectionId) String() string {
 	components := []string{
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
-		fmt.Sprintf("Cluster Name: %q", id.ClusterName),
+		fmt.Sprintf("Redis Enterprise Name: %q", id.RedisEnterpriseName),
 		fmt.Sprintf("Private Endpoint Connection Name: %q", id.PrivateEndpointConnectionName),
 	}
 	return fmt.Sprintf("Private Endpoint Connection (%s)", strings.Join(components, "\n"))

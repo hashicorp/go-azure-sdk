@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = PartitionKeyRangeIdId{}
 
 func TestNewPartitionKeyRangeIdID(t *testing.T) {
-	id := NewPartitionKeyRangeIdID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "databaseRidValue", "collectionRidValue", "partitionKeyRangeIdValue")
+	id := NewPartitionKeyRangeIdID("12345678-1234-9876-4563-123456789012", "example-resource-group", "databaseAccountValue", "databaseValue", "collectionValue", "partitionKeyRangeIdValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -19,16 +19,16 @@ func TestNewPartitionKeyRangeIdID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.AccountName != "accountValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AccountName'", id.AccountName, "accountValue")
+	if id.DatabaseAccountName != "databaseAccountValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'DatabaseAccountName'", id.DatabaseAccountName, "databaseAccountValue")
 	}
 
-	if id.DatabaseRid != "databaseRidValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DatabaseRid'", id.DatabaseRid, "databaseRidValue")
+	if id.DatabaseName != "databaseValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'DatabaseName'", id.DatabaseName, "databaseValue")
 	}
 
-	if id.CollectionRid != "collectionRidValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'CollectionRid'", id.CollectionRid, "collectionRidValue")
+	if id.CollectionName != "collectionValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'CollectionName'", id.CollectionName, "collectionValue")
 	}
 
 	if id.PartitionKeyRangeId != "partitionKeyRangeIdValue" {
@@ -37,8 +37,8 @@ func TestNewPartitionKeyRangeIdID(t *testing.T) {
 }
 
 func TestFormatPartitionKeyRangeIdID(t *testing.T) {
-	actual := NewPartitionKeyRangeIdID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "databaseRidValue", "collectionRidValue", "partitionKeyRangeIdValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/accountValue/databases/databaseRidValue/collections/collectionRidValue/partitionKeyRangeId/partitionKeyRangeIdValue"
+	actual := NewPartitionKeyRangeIdID("12345678-1234-9876-4563-123456789012", "example-resource-group", "databaseAccountValue", "databaseValue", "collectionValue", "partitionKeyRangeIdValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/databaseAccountValue/databases/databaseValue/collections/collectionValue/partitionKeyRangeId/partitionKeyRangeIdValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -92,49 +92,49 @@ func TestParsePartitionKeyRangeIdID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/accountValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/databaseAccountValue",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/accountValue/databases",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/databaseAccountValue/databases",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/accountValue/databases/databaseRidValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/databaseAccountValue/databases/databaseValue",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/accountValue/databases/databaseRidValue/collections",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/databaseAccountValue/databases/databaseValue/collections",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/accountValue/databases/databaseRidValue/collections/collectionRidValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/databaseAccountValue/databases/databaseValue/collections/collectionValue",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/accountValue/databases/databaseRidValue/collections/collectionRidValue/partitionKeyRangeId",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/databaseAccountValue/databases/databaseValue/collections/collectionValue/partitionKeyRangeId",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/accountValue/databases/databaseRidValue/collections/collectionRidValue/partitionKeyRangeId/partitionKeyRangeIdValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/databaseAccountValue/databases/databaseValue/collections/collectionValue/partitionKeyRangeId/partitionKeyRangeIdValue",
 			Expected: &PartitionKeyRangeIdId{
 				SubscriptionId:      "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:   "example-resource-group",
-				AccountName:         "accountValue",
-				DatabaseRid:         "databaseRidValue",
-				CollectionRid:       "collectionRidValue",
+				DatabaseAccountName: "databaseAccountValue",
+				DatabaseName:        "databaseValue",
+				CollectionName:      "collectionValue",
 				PartitionKeyRangeId: "partitionKeyRangeIdValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/accountValue/databases/databaseRidValue/collections/collectionRidValue/partitionKeyRangeId/partitionKeyRangeIdValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/databaseAccountValue/databases/databaseValue/collections/collectionValue/partitionKeyRangeId/partitionKeyRangeIdValue/extra",
 			Error: true,
 		},
 	}
@@ -161,16 +161,16 @@ func TestParsePartitionKeyRangeIdID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.AccountName != v.Expected.AccountName {
-			t.Fatalf("Expected %q but got %q for AccountName", v.Expected.AccountName, actual.AccountName)
+		if actual.DatabaseAccountName != v.Expected.DatabaseAccountName {
+			t.Fatalf("Expected %q but got %q for DatabaseAccountName", v.Expected.DatabaseAccountName, actual.DatabaseAccountName)
 		}
 
-		if actual.DatabaseRid != v.Expected.DatabaseRid {
-			t.Fatalf("Expected %q but got %q for DatabaseRid", v.Expected.DatabaseRid, actual.DatabaseRid)
+		if actual.DatabaseName != v.Expected.DatabaseName {
+			t.Fatalf("Expected %q but got %q for DatabaseName", v.Expected.DatabaseName, actual.DatabaseName)
 		}
 
-		if actual.CollectionRid != v.Expected.CollectionRid {
-			t.Fatalf("Expected %q but got %q for CollectionRid", v.Expected.CollectionRid, actual.CollectionRid)
+		if actual.CollectionName != v.Expected.CollectionName {
+			t.Fatalf("Expected %q but got %q for CollectionName", v.Expected.CollectionName, actual.CollectionName)
 		}
 
 		if actual.PartitionKeyRangeId != v.Expected.PartitionKeyRangeId {
@@ -263,96 +263,96 @@ func TestParsePartitionKeyRangeIdIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/accountValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/databaseAccountValue",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dOcUmEnTdB/dAtAbAsEaCcOuNtS/aCcOuNtVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dOcUmEnTdB/dAtAbAsEaCcOuNtS/dAtAbAsEaCcOuNtVaLuE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/accountValue/databases",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/databaseAccountValue/databases",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dOcUmEnTdB/dAtAbAsEaCcOuNtS/aCcOuNtVaLuE/dAtAbAsEs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dOcUmEnTdB/dAtAbAsEaCcOuNtS/dAtAbAsEaCcOuNtVaLuE/dAtAbAsEs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/accountValue/databases/databaseRidValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/databaseAccountValue/databases/databaseValue",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dOcUmEnTdB/dAtAbAsEaCcOuNtS/aCcOuNtVaLuE/dAtAbAsEs/dAtAbAsErIdVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dOcUmEnTdB/dAtAbAsEaCcOuNtS/dAtAbAsEaCcOuNtVaLuE/dAtAbAsEs/dAtAbAsEvAlUe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/accountValue/databases/databaseRidValue/collections",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/databaseAccountValue/databases/databaseValue/collections",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dOcUmEnTdB/dAtAbAsEaCcOuNtS/aCcOuNtVaLuE/dAtAbAsEs/dAtAbAsErIdVaLuE/cOlLeCtIoNs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dOcUmEnTdB/dAtAbAsEaCcOuNtS/dAtAbAsEaCcOuNtVaLuE/dAtAbAsEs/dAtAbAsEvAlUe/cOlLeCtIoNs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/accountValue/databases/databaseRidValue/collections/collectionRidValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/databaseAccountValue/databases/databaseValue/collections/collectionValue",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dOcUmEnTdB/dAtAbAsEaCcOuNtS/aCcOuNtVaLuE/dAtAbAsEs/dAtAbAsErIdVaLuE/cOlLeCtIoNs/cOlLeCtIoNrIdVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dOcUmEnTdB/dAtAbAsEaCcOuNtS/dAtAbAsEaCcOuNtVaLuE/dAtAbAsEs/dAtAbAsEvAlUe/cOlLeCtIoNs/cOlLeCtIoNvAlUe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/accountValue/databases/databaseRidValue/collections/collectionRidValue/partitionKeyRangeId",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/databaseAccountValue/databases/databaseValue/collections/collectionValue/partitionKeyRangeId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dOcUmEnTdB/dAtAbAsEaCcOuNtS/aCcOuNtVaLuE/dAtAbAsEs/dAtAbAsErIdVaLuE/cOlLeCtIoNs/cOlLeCtIoNrIdVaLuE/pArTiTiOnKeYrAnGeId",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dOcUmEnTdB/dAtAbAsEaCcOuNtS/dAtAbAsEaCcOuNtVaLuE/dAtAbAsEs/dAtAbAsEvAlUe/cOlLeCtIoNs/cOlLeCtIoNvAlUe/pArTiTiOnKeYrAnGeId",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/accountValue/databases/databaseRidValue/collections/collectionRidValue/partitionKeyRangeId/partitionKeyRangeIdValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/databaseAccountValue/databases/databaseValue/collections/collectionValue/partitionKeyRangeId/partitionKeyRangeIdValue",
 			Expected: &PartitionKeyRangeIdId{
 				SubscriptionId:      "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:   "example-resource-group",
-				AccountName:         "accountValue",
-				DatabaseRid:         "databaseRidValue",
-				CollectionRid:       "collectionRidValue",
+				DatabaseAccountName: "databaseAccountValue",
+				DatabaseName:        "databaseValue",
+				CollectionName:      "collectionValue",
 				PartitionKeyRangeId: "partitionKeyRangeIdValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/accountValue/databases/databaseRidValue/collections/collectionRidValue/partitionKeyRangeId/partitionKeyRangeIdValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DocumentDB/databaseAccounts/databaseAccountValue/databases/databaseValue/collections/collectionValue/partitionKeyRangeId/partitionKeyRangeIdValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dOcUmEnTdB/dAtAbAsEaCcOuNtS/aCcOuNtVaLuE/dAtAbAsEs/dAtAbAsErIdVaLuE/cOlLeCtIoNs/cOlLeCtIoNrIdVaLuE/pArTiTiOnKeYrAnGeId/pArTiTiOnKeYrAnGeIdVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dOcUmEnTdB/dAtAbAsEaCcOuNtS/dAtAbAsEaCcOuNtVaLuE/dAtAbAsEs/dAtAbAsEvAlUe/cOlLeCtIoNs/cOlLeCtIoNvAlUe/pArTiTiOnKeYrAnGeId/pArTiTiOnKeYrAnGeIdVaLuE",
 			Expected: &PartitionKeyRangeIdId{
 				SubscriptionId:      "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:   "eXaMpLe-rEsOuRcE-GrOuP",
-				AccountName:         "aCcOuNtVaLuE",
-				DatabaseRid:         "dAtAbAsErIdVaLuE",
-				CollectionRid:       "cOlLeCtIoNrIdVaLuE",
+				DatabaseAccountName: "dAtAbAsEaCcOuNtVaLuE",
+				DatabaseName:        "dAtAbAsEvAlUe",
+				CollectionName:      "cOlLeCtIoNvAlUe",
 				PartitionKeyRangeId: "pArTiTiOnKeYrAnGeIdVaLuE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dOcUmEnTdB/dAtAbAsEaCcOuNtS/aCcOuNtVaLuE/dAtAbAsEs/dAtAbAsErIdVaLuE/cOlLeCtIoNs/cOlLeCtIoNrIdVaLuE/pArTiTiOnKeYrAnGeId/pArTiTiOnKeYrAnGeIdVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dOcUmEnTdB/dAtAbAsEaCcOuNtS/dAtAbAsEaCcOuNtVaLuE/dAtAbAsEs/dAtAbAsEvAlUe/cOlLeCtIoNs/cOlLeCtIoNvAlUe/pArTiTiOnKeYrAnGeId/pArTiTiOnKeYrAnGeIdVaLuE/extra",
 			Error: true,
 		},
 	}
@@ -379,16 +379,16 @@ func TestParsePartitionKeyRangeIdIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.AccountName != v.Expected.AccountName {
-			t.Fatalf("Expected %q but got %q for AccountName", v.Expected.AccountName, actual.AccountName)
+		if actual.DatabaseAccountName != v.Expected.DatabaseAccountName {
+			t.Fatalf("Expected %q but got %q for DatabaseAccountName", v.Expected.DatabaseAccountName, actual.DatabaseAccountName)
 		}
 
-		if actual.DatabaseRid != v.Expected.DatabaseRid {
-			t.Fatalf("Expected %q but got %q for DatabaseRid", v.Expected.DatabaseRid, actual.DatabaseRid)
+		if actual.DatabaseName != v.Expected.DatabaseName {
+			t.Fatalf("Expected %q but got %q for DatabaseName", v.Expected.DatabaseName, actual.DatabaseName)
 		}
 
-		if actual.CollectionRid != v.Expected.CollectionRid {
-			t.Fatalf("Expected %q but got %q for CollectionRid", v.Expected.CollectionRid, actual.CollectionRid)
+		if actual.CollectionName != v.Expected.CollectionName {
+			t.Fatalf("Expected %q but got %q for CollectionName", v.Expected.CollectionName, actual.CollectionName)
 		}
 
 		if actual.PartitionKeyRangeId != v.Expected.PartitionKeyRangeId {

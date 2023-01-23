@@ -13,21 +13,21 @@ var _ resourceids.ResourceId = SubVolumeId{}
 type SubVolumeId struct {
 	SubscriptionId    string
 	ResourceGroupName string
-	AccountName       string
-	PoolName          string
+	NetAppAccountName string
+	CapacityPoolName  string
 	VolumeName        string
-	SubvolumeName     string
+	SubVolumeName     string
 }
 
 // NewSubVolumeID returns a new SubVolumeId struct
-func NewSubVolumeID(subscriptionId string, resourceGroupName string, accountName string, poolName string, volumeName string, subvolumeName string) SubVolumeId {
+func NewSubVolumeID(subscriptionId string, resourceGroupName string, netAppAccountName string, capacityPoolName string, volumeName string, subVolumeName string) SubVolumeId {
 	return SubVolumeId{
 		SubscriptionId:    subscriptionId,
 		ResourceGroupName: resourceGroupName,
-		AccountName:       accountName,
-		PoolName:          poolName,
+		NetAppAccountName: netAppAccountName,
+		CapacityPoolName:  capacityPoolName,
 		VolumeName:        volumeName,
-		SubvolumeName:     subvolumeName,
+		SubVolumeName:     subVolumeName,
 	}
 }
 
@@ -50,20 +50,20 @@ func ParseSubVolumeID(input string) (*SubVolumeId, error) {
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.AccountName, ok = parsed.Parsed["accountName"]; !ok {
-		return nil, fmt.Errorf("the segment 'accountName' was not found in the resource id %q", input)
+	if id.NetAppAccountName, ok = parsed.Parsed["netAppAccountName"]; !ok {
+		return nil, fmt.Errorf("the segment 'netAppAccountName' was not found in the resource id %q", input)
 	}
 
-	if id.PoolName, ok = parsed.Parsed["poolName"]; !ok {
-		return nil, fmt.Errorf("the segment 'poolName' was not found in the resource id %q", input)
+	if id.CapacityPoolName, ok = parsed.Parsed["capacityPoolName"]; !ok {
+		return nil, fmt.Errorf("the segment 'capacityPoolName' was not found in the resource id %q", input)
 	}
 
 	if id.VolumeName, ok = parsed.Parsed["volumeName"]; !ok {
 		return nil, fmt.Errorf("the segment 'volumeName' was not found in the resource id %q", input)
 	}
 
-	if id.SubvolumeName, ok = parsed.Parsed["subvolumeName"]; !ok {
-		return nil, fmt.Errorf("the segment 'subvolumeName' was not found in the resource id %q", input)
+	if id.SubVolumeName, ok = parsed.Parsed["subVolumeName"]; !ok {
+		return nil, fmt.Errorf("the segment 'subVolumeName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -89,20 +89,20 @@ func ParseSubVolumeIDInsensitively(input string) (*SubVolumeId, error) {
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.AccountName, ok = parsed.Parsed["accountName"]; !ok {
-		return nil, fmt.Errorf("the segment 'accountName' was not found in the resource id %q", input)
+	if id.NetAppAccountName, ok = parsed.Parsed["netAppAccountName"]; !ok {
+		return nil, fmt.Errorf("the segment 'netAppAccountName' was not found in the resource id %q", input)
 	}
 
-	if id.PoolName, ok = parsed.Parsed["poolName"]; !ok {
-		return nil, fmt.Errorf("the segment 'poolName' was not found in the resource id %q", input)
+	if id.CapacityPoolName, ok = parsed.Parsed["capacityPoolName"]; !ok {
+		return nil, fmt.Errorf("the segment 'capacityPoolName' was not found in the resource id %q", input)
 	}
 
 	if id.VolumeName, ok = parsed.Parsed["volumeName"]; !ok {
 		return nil, fmt.Errorf("the segment 'volumeName' was not found in the resource id %q", input)
 	}
 
-	if id.SubvolumeName, ok = parsed.Parsed["subvolumeName"]; !ok {
-		return nil, fmt.Errorf("the segment 'subvolumeName' was not found in the resource id %q", input)
+	if id.SubVolumeName, ok = parsed.Parsed["subVolumeName"]; !ok {
+		return nil, fmt.Errorf("the segment 'subVolumeName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -126,7 +126,7 @@ func ValidateSubVolumeID(input interface{}, key string) (warnings []string, erro
 // ID returns the formatted Sub Volume ID
 func (id SubVolumeId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.NetApp/netAppAccounts/%s/capacityPools/%s/volumes/%s/subVolumes/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.AccountName, id.PoolName, id.VolumeName, id.SubvolumeName)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.NetAppAccountName, id.CapacityPoolName, id.VolumeName, id.SubVolumeName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Sub Volume ID
@@ -139,13 +139,13 @@ func (id SubVolumeId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftNetApp", "Microsoft.NetApp", "Microsoft.NetApp"),
 		resourceids.StaticSegment("staticNetAppAccounts", "netAppAccounts", "netAppAccounts"),
-		resourceids.UserSpecifiedSegment("accountName", "accountValue"),
+		resourceids.UserSpecifiedSegment("netAppAccountName", "netAppAccountValue"),
 		resourceids.StaticSegment("staticCapacityPools", "capacityPools", "capacityPools"),
-		resourceids.UserSpecifiedSegment("poolName", "poolValue"),
+		resourceids.UserSpecifiedSegment("capacityPoolName", "capacityPoolValue"),
 		resourceids.StaticSegment("staticVolumes", "volumes", "volumes"),
 		resourceids.UserSpecifiedSegment("volumeName", "volumeValue"),
 		resourceids.StaticSegment("staticSubVolumes", "subVolumes", "subVolumes"),
-		resourceids.UserSpecifiedSegment("subvolumeName", "subvolumeValue"),
+		resourceids.UserSpecifiedSegment("subVolumeName", "subVolumeValue"),
 	}
 }
 
@@ -154,10 +154,10 @@ func (id SubVolumeId) String() string {
 	components := []string{
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
-		fmt.Sprintf("Account Name: %q", id.AccountName),
-		fmt.Sprintf("Pool Name: %q", id.PoolName),
+		fmt.Sprintf("Net App Account Name: %q", id.NetAppAccountName),
+		fmt.Sprintf("Capacity Pool Name: %q", id.CapacityPoolName),
 		fmt.Sprintf("Volume Name: %q", id.VolumeName),
-		fmt.Sprintf("Subvolume Name: %q", id.SubvolumeName),
+		fmt.Sprintf("Sub Volume Name: %q", id.SubVolumeName),
 	}
 	return fmt.Sprintf("Sub Volume (%s)", strings.Join(components, "\n"))
 }

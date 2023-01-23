@@ -11,21 +11,21 @@ var _ resourceids.ResourceId = RecipientEmailId{}
 
 // RecipientEmailId is a struct representing the Resource ID for a Recipient Email
 type RecipientEmailId struct {
-	SubscriptionId    string
-	ResourceGroupName string
-	ServiceName       string
-	NotificationName  NotificationName
-	Email             string
+	SubscriptionId     string
+	ResourceGroupName  string
+	ServiceName        string
+	NotificationName   NotificationName
+	RecipientEmailName string
 }
 
 // NewRecipientEmailID returns a new RecipientEmailId struct
-func NewRecipientEmailID(subscriptionId string, resourceGroupName string, serviceName string, notificationName NotificationName, email string) RecipientEmailId {
+func NewRecipientEmailID(subscriptionId string, resourceGroupName string, serviceName string, notificationName NotificationName, recipientEmailName string) RecipientEmailId {
 	return RecipientEmailId{
-		SubscriptionId:    subscriptionId,
-		ResourceGroupName: resourceGroupName,
-		ServiceName:       serviceName,
-		NotificationName:  notificationName,
-		Email:             email,
+		SubscriptionId:     subscriptionId,
+		ResourceGroupName:  resourceGroupName,
+		ServiceName:        serviceName,
+		NotificationName:   notificationName,
+		RecipientEmailName: recipientEmailName,
 	}
 }
 
@@ -64,8 +64,8 @@ func ParseRecipientEmailID(input string) (*RecipientEmailId, error) {
 		id.NotificationName = *notificationName
 	}
 
-	if id.Email, ok = parsed.Parsed["email"]; !ok {
-		return nil, fmt.Errorf("the segment 'email' was not found in the resource id %q", input)
+	if id.RecipientEmailName, ok = parsed.Parsed["recipientEmailName"]; !ok {
+		return nil, fmt.Errorf("the segment 'recipientEmailName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -107,8 +107,8 @@ func ParseRecipientEmailIDInsensitively(input string) (*RecipientEmailId, error)
 		id.NotificationName = *notificationName
 	}
 
-	if id.Email, ok = parsed.Parsed["email"]; !ok {
-		return nil, fmt.Errorf("the segment 'email' was not found in the resource id %q", input)
+	if id.RecipientEmailName, ok = parsed.Parsed["recipientEmailName"]; !ok {
+		return nil, fmt.Errorf("the segment 'recipientEmailName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -132,7 +132,7 @@ func ValidateRecipientEmailID(input interface{}, key string) (warnings []string,
 // ID returns the formatted Recipient Email ID
 func (id RecipientEmailId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.ApiManagement/service/%s/notifications/%s/recipientEmails/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.ServiceName, string(id.NotificationName), id.Email)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.ServiceName, string(id.NotificationName), id.RecipientEmailName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Recipient Email ID
@@ -149,7 +149,7 @@ func (id RecipientEmailId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticNotifications", "notifications", "notifications"),
 		resourceids.ConstantSegment("notificationName", PossibleValuesForNotificationName(), "AccountClosedPublisher"),
 		resourceids.StaticSegment("staticRecipientEmails", "recipientEmails", "recipientEmails"),
-		resourceids.UserSpecifiedSegment("email", "emailValue"),
+		resourceids.UserSpecifiedSegment("recipientEmailName", "recipientEmailValue"),
 	}
 }
 
@@ -160,7 +160,7 @@ func (id RecipientEmailId) String() string {
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
 		fmt.Sprintf("Service Name: %q", id.ServiceName),
 		fmt.Sprintf("Notification Name: %q", string(id.NotificationName)),
-		fmt.Sprintf("Email: %q", id.Email),
+		fmt.Sprintf("Recipient Email Name: %q", id.RecipientEmailName),
 	}
 	return fmt.Sprintf("Recipient Email (%s)", strings.Join(components, "\n"))
 }

@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = Python2PackageId{}
 
 func TestNewPython2PackageID(t *testing.T) {
-	id := NewPython2PackageID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountValue", "packageValue")
+	id := NewPython2PackageID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountValue", "python2PackageValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -23,14 +23,14 @@ func TestNewPython2PackageID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'AutomationAccountName'", id.AutomationAccountName, "automationAccountValue")
 	}
 
-	if id.PackageName != "packageValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'PackageName'", id.PackageName, "packageValue")
+	if id.Python2PackageName != "python2PackageValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'Python2PackageName'", id.Python2PackageName, "python2PackageValue")
 	}
 }
 
 func TestFormatPython2PackageID(t *testing.T) {
-	actual := NewPython2PackageID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountValue", "packageValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue/python2Packages/packageValue"
+	actual := NewPython2PackageID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountValue", "python2PackageValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue/python2Packages/python2PackageValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -94,17 +94,17 @@ func TestParsePython2PackageID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue/python2Packages/packageValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue/python2Packages/python2PackageValue",
 			Expected: &Python2PackageId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:     "example-resource-group",
 				AutomationAccountName: "automationAccountValue",
-				PackageName:           "packageValue",
+				Python2PackageName:    "python2PackageValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue/python2Packages/packageValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue/python2Packages/python2PackageValue/extra",
 			Error: true,
 		},
 	}
@@ -135,8 +135,8 @@ func TestParsePython2PackageID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for AutomationAccountName", v.Expected.AutomationAccountName, actual.AutomationAccountName)
 		}
 
-		if actual.PackageName != v.Expected.PackageName {
-			t.Fatalf("Expected %q but got %q for PackageName", v.Expected.PackageName, actual.PackageName)
+		if actual.Python2PackageName != v.Expected.Python2PackageName {
+			t.Fatalf("Expected %q but got %q for Python2PackageName", v.Expected.Python2PackageName, actual.Python2PackageName)
 		}
 
 	}
@@ -245,32 +245,32 @@ func TestParsePython2PackageIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue/python2Packages/packageValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue/python2Packages/python2PackageValue",
 			Expected: &Python2PackageId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:     "example-resource-group",
 				AutomationAccountName: "automationAccountValue",
-				PackageName:           "packageValue",
+				Python2PackageName:    "python2PackageValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue/python2Packages/packageValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue/python2Packages/python2PackageValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aUtOmAtIoN/aUtOmAtIoNaCcOuNtS/aUtOmAtIoNaCcOuNtVaLuE/pYtHoN2PaCkAgEs/pAcKaGeVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aUtOmAtIoN/aUtOmAtIoNaCcOuNtS/aUtOmAtIoNaCcOuNtVaLuE/pYtHoN2PaCkAgEs/pYtHoN2PaCkAgEvAlUe",
 			Expected: &Python2PackageId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:     "eXaMpLe-rEsOuRcE-GrOuP",
 				AutomationAccountName: "aUtOmAtIoNaCcOuNtVaLuE",
-				PackageName:           "pAcKaGeVaLuE",
+				Python2PackageName:    "pYtHoN2PaCkAgEvAlUe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aUtOmAtIoN/aUtOmAtIoNaCcOuNtS/aUtOmAtIoNaCcOuNtVaLuE/pYtHoN2PaCkAgEs/pAcKaGeVaLuE/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aUtOmAtIoN/aUtOmAtIoNaCcOuNtS/aUtOmAtIoNaCcOuNtVaLuE/pYtHoN2PaCkAgEs/pYtHoN2PaCkAgEvAlUe/extra",
 			Error: true,
 		},
 	}
@@ -301,8 +301,8 @@ func TestParsePython2PackageIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for AutomationAccountName", v.Expected.AutomationAccountName, actual.AutomationAccountName)
 		}
 
-		if actual.PackageName != v.Expected.PackageName {
-			t.Fatalf("Expected %q but got %q for PackageName", v.Expected.PackageName, actual.PackageName)
+		if actual.Python2PackageName != v.Expected.Python2PackageName {
+			t.Fatalf("Expected %q but got %q for Python2PackageName", v.Expected.Python2PackageName, actual.Python2PackageName)
 		}
 
 	}

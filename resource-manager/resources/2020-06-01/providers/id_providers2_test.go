@@ -9,20 +9,20 @@ import (
 var _ resourceids.ResourceId = Providers2Id{}
 
 func TestNewProviders2ID(t *testing.T) {
-	id := NewProviders2ID("groupIdValue", "resourceProviderNamespaceValue")
+	id := NewProviders2ID("groupIdValue", "providerValue")
 
 	if id.GroupId != "groupIdValue" {
 		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupIdValue")
 	}
 
-	if id.ResourceProviderNamespace != "resourceProviderNamespaceValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ResourceProviderNamespace'", id.ResourceProviderNamespace, "resourceProviderNamespaceValue")
+	if id.ProviderName != "providerValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'ProviderName'", id.ProviderName, "providerValue")
 	}
 }
 
 func TestFormatProviders2ID(t *testing.T) {
-	actual := NewProviders2ID("groupIdValue", "resourceProviderNamespaceValue").ID()
-	expected := "/providers/Microsoft.Management/managementGroups/groupIdValue/providers/resourceProviderNamespaceValue"
+	actual := NewProviders2ID("groupIdValue", "providerValue").ID()
+	expected := "/providers/Microsoft.Management/managementGroups/groupIdValue/providers/providerValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -66,15 +66,15 @@ func TestParseProviders2ID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.Management/managementGroups/groupIdValue/providers/resourceProviderNamespaceValue",
+			Input: "/providers/Microsoft.Management/managementGroups/groupIdValue/providers/providerValue",
 			Expected: &Providers2Id{
-				GroupId:                   "groupIdValue",
-				ResourceProviderNamespace: "resourceProviderNamespaceValue",
+				GroupId:      "groupIdValue",
+				ProviderName: "providerValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.Management/managementGroups/groupIdValue/providers/resourceProviderNamespaceValue/extra",
+			Input: "/providers/Microsoft.Management/managementGroups/groupIdValue/providers/providerValue/extra",
 			Error: true,
 		},
 	}
@@ -97,8 +97,8 @@ func TestParseProviders2ID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for GroupId", v.Expected.GroupId, actual.GroupId)
 		}
 
-		if actual.ResourceProviderNamespace != v.Expected.ResourceProviderNamespace {
-			t.Fatalf("Expected %q but got %q for ResourceProviderNamespace", v.Expected.ResourceProviderNamespace, actual.ResourceProviderNamespace)
+		if actual.ProviderName != v.Expected.ProviderName {
+			t.Fatalf("Expected %q but got %q for ProviderName", v.Expected.ProviderName, actual.ProviderName)
 		}
 
 	}
@@ -167,28 +167,28 @@ func TestParseProviders2IDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.Management/managementGroups/groupIdValue/providers/resourceProviderNamespaceValue",
+			Input: "/providers/Microsoft.Management/managementGroups/groupIdValue/providers/providerValue",
 			Expected: &Providers2Id{
-				GroupId:                   "groupIdValue",
-				ResourceProviderNamespace: "resourceProviderNamespaceValue",
+				GroupId:      "groupIdValue",
+				ProviderName: "providerValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.Management/managementGroups/groupIdValue/providers/resourceProviderNamespaceValue/extra",
+			Input: "/providers/Microsoft.Management/managementGroups/groupIdValue/providers/providerValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.mAnAgEmEnT/mAnAgEmEnTgRoUpS/gRoUpIdVaLuE/pRoViDeRs/rEsOuRcEpRoViDeRnAmEsPaCeVaLuE",
+			Input: "/pRoViDeRs/mIcRoSoFt.mAnAgEmEnT/mAnAgEmEnTgRoUpS/gRoUpIdVaLuE/pRoViDeRs/pRoViDeRvAlUe",
 			Expected: &Providers2Id{
-				GroupId:                   "gRoUpIdVaLuE",
-				ResourceProviderNamespace: "rEsOuRcEpRoViDeRnAmEsPaCeVaLuE",
+				GroupId:      "gRoUpIdVaLuE",
+				ProviderName: "pRoViDeRvAlUe",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.mAnAgEmEnT/mAnAgEmEnTgRoUpS/gRoUpIdVaLuE/pRoViDeRs/rEsOuRcEpRoViDeRnAmEsPaCeVaLuE/extra",
+			Input: "/pRoViDeRs/mIcRoSoFt.mAnAgEmEnT/mAnAgEmEnTgRoUpS/gRoUpIdVaLuE/pRoViDeRs/pRoViDeRvAlUe/extra",
 			Error: true,
 		},
 	}
@@ -211,8 +211,8 @@ func TestParseProviders2IDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for GroupId", v.Expected.GroupId, actual.GroupId)
 		}
 
-		if actual.ResourceProviderNamespace != v.Expected.ResourceProviderNamespace {
-			t.Fatalf("Expected %q but got %q for ResourceProviderNamespace", v.Expected.ResourceProviderNamespace, actual.ResourceProviderNamespace)
+		if actual.ProviderName != v.Expected.ProviderName {
+			t.Fatalf("Expected %q but got %q for ProviderName", v.Expected.ProviderName, actual.ProviderName)
 		}
 
 	}
