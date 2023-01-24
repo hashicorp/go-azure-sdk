@@ -7,8 +7,6 @@ on:
 jobs:
   open-pull-request:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
     steps:
       - uses: actions/checkout@v2
 
