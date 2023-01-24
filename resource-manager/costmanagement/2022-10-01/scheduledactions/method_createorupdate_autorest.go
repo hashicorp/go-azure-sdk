@@ -16,9 +16,33 @@ type CreateOrUpdateOperationResponse struct {
 	Model        *ScheduledAction
 }
 
+type CreateOrUpdateOperationOptions struct {
+	IfMatch *string
+}
+
+func DefaultCreateOrUpdateOperationOptions() CreateOrUpdateOperationOptions {
+	return CreateOrUpdateOperationOptions{}
+}
+
+func (o CreateOrUpdateOperationOptions) toHeaders() map[string]interface{} {
+	out := make(map[string]interface{})
+
+	if o.IfMatch != nil {
+		out["If-Match"] = *o.IfMatch
+	}
+
+	return out
+}
+
+func (o CreateOrUpdateOperationOptions) toQueryString() map[string]interface{} {
+	out := make(map[string]interface{})
+
+	return out
+}
+
 // CreateOrUpdate ...
-func (c ScheduledActionsClient) CreateOrUpdate(ctx context.Context, id ScheduledActionId, input ScheduledAction) (result CreateOrUpdateOperationResponse, err error) {
-	req, err := c.preparerForCreateOrUpdate(ctx, id, input)
+func (c ScheduledActionsClient) CreateOrUpdate(ctx context.Context, id ScheduledActionId, input ScheduledAction, options CreateOrUpdateOperationOptions) (result CreateOrUpdateOperationResponse, err error) {
+	req, err := c.preparerForCreateOrUpdate(ctx, id, input, options)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "scheduledactions.ScheduledActionsClient", "CreateOrUpdate", nil, "Failure preparing request")
 		return
@@ -40,15 +64,20 @@ func (c ScheduledActionsClient) CreateOrUpdate(ctx context.Context, id Scheduled
 }
 
 // preparerForCreateOrUpdate prepares the CreateOrUpdate request.
-func (c ScheduledActionsClient) preparerForCreateOrUpdate(ctx context.Context, id ScheduledActionId, input ScheduledAction) (*http.Request, error) {
+func (c ScheduledActionsClient) preparerForCreateOrUpdate(ctx context.Context, id ScheduledActionId, input ScheduledAction, options CreateOrUpdateOperationOptions) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
+	}
+
+	for k, v := range options.toQueryString() {
+		queryParameters[k] = autorest.Encode("query", v)
 	}
 
 	preparer := autorest.CreatePreparer(
 		autorest.AsContentType("application/json; charset=utf-8"),
 		autorest.AsPut(),
 		autorest.WithBaseURL(c.baseUri),
+		autorest.WithHeaders(options.toHeaders()),
 		autorest.WithPath(id.ID()),
 		autorest.WithJSON(input),
 		autorest.WithQueryParameters(queryParameters))
