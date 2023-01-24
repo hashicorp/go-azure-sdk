@@ -72,7 +72,7 @@ payload := scheduledactions.ScheduledAction{
 }
 
 
-read, err := client.CreateOrUpdate(ctx, id, payload)
+read, err := client.CreateOrUpdate(ctx, id, payload, scheduledactions.DefaultCreateOrUpdateOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -93,7 +93,7 @@ payload := scheduledactions.ScheduledAction{
 }
 
 
-read, err := client.CreateOrUpdateByScope(ctx, id, payload)
+read, err := client.CreateOrUpdateByScope(ctx, id, payload, scheduledactions.DefaultCreateOrUpdateByScopeOperationOptions())
 if err != nil {
 	// handle the error
 }

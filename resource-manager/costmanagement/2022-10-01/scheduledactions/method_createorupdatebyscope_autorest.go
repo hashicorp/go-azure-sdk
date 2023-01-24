@@ -16,9 +16,33 @@ type CreateOrUpdateByScopeOperationResponse struct {
 	Model        *ScheduledAction
 }
 
+type CreateOrUpdateByScopeOperationOptions struct {
+	IfMatch *string
+}
+
+func DefaultCreateOrUpdateByScopeOperationOptions() CreateOrUpdateByScopeOperationOptions {
+	return CreateOrUpdateByScopeOperationOptions{}
+}
+
+func (o CreateOrUpdateByScopeOperationOptions) toHeaders() map[string]interface{} {
+	out := make(map[string]interface{})
+
+	if o.IfMatch != nil {
+		out["If-Match"] = *o.IfMatch
+	}
+
+	return out
+}
+
+func (o CreateOrUpdateByScopeOperationOptions) toQueryString() map[string]interface{} {
+	out := make(map[string]interface{})
+
+	return out
+}
+
 // CreateOrUpdateByScope ...
-func (c ScheduledActionsClient) CreateOrUpdateByScope(ctx context.Context, id ScopedScheduledActionId, input ScheduledAction) (result CreateOrUpdateByScopeOperationResponse, err error) {
-	req, err := c.preparerForCreateOrUpdateByScope(ctx, id, input)
+func (c ScheduledActionsClient) CreateOrUpdateByScope(ctx context.Context, id ScopedScheduledActionId, input ScheduledAction, options CreateOrUpdateByScopeOperationOptions) (result CreateOrUpdateByScopeOperationResponse, err error) {
+	req, err := c.preparerForCreateOrUpdateByScope(ctx, id, input, options)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "scheduledactions.ScheduledActionsClient", "CreateOrUpdateByScope", nil, "Failure preparing request")
 		return
@@ -40,15 +64,20 @@ func (c ScheduledActionsClient) CreateOrUpdateByScope(ctx context.Context, id Sc
 }
 
 // preparerForCreateOrUpdateByScope prepares the CreateOrUpdateByScope request.
-func (c ScheduledActionsClient) preparerForCreateOrUpdateByScope(ctx context.Context, id ScopedScheduledActionId, input ScheduledAction) (*http.Request, error) {
+func (c ScheduledActionsClient) preparerForCreateOrUpdateByScope(ctx context.Context, id ScopedScheduledActionId, input ScheduledAction, options CreateOrUpdateByScopeOperationOptions) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
+	}
+
+	for k, v := range options.toQueryString() {
+		queryParameters[k] = autorest.Encode("query", v)
 	}
 
 	preparer := autorest.CreatePreparer(
 		autorest.AsContentType("application/json; charset=utf-8"),
 		autorest.AsPut(),
 		autorest.WithBaseURL(c.baseUri),
+		autorest.WithHeaders(options.toHeaders()),
 		autorest.WithPath(id.ID()),
 		autorest.WithJSON(input),
 		autorest.WithQueryParameters(queryParameters))
