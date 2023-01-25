@@ -40,7 +40,9 @@ func (e *Environment) updateFromMetaData(config *metadata.MetaData) error {
 	if config.ResourceManagerEndpoint != "" {
 		e.ResourceManager = ResourceManagerAPI(config.ResourceManagerEndpoint)
 	}
-	// TODO: override the Microsoft Graph endpoint when it becomes available (~Feb 2023)
+	if config.ResourceIdentifiers.MicrosoftGraph != "" {
+		e.MicrosoftGraph = MicrosoftGraphAPI(config.ResourceIdentifiers.MicrosoftGraph)
+	}
 
 	// Dns Suffixes
 	if config.DnsSuffixes.FrontDoor != "" {

@@ -17,6 +17,7 @@ import (
 	"time"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/auth"
+	"github.com/hashicorp/go-azure-sdk/sdk/internal/accept"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 	"github.com/hashicorp/go-retryablehttp"
 )
@@ -145,9 +146,17 @@ func (r *Response) Unmarshal(model interface{}) error {
 
 	contentType := strings.ToLower(r.Header.Get("Content-Type"))
 	if contentType == "" {
-		// some API's (e.g. Storage Data Plane) don't return a content type.. so I guess we
-		// check the request type?
-		contentType = strings.ToLower(r.Request.Header.Get("Content-Type"))
+		// some APIs (e.g. Storage Data Plane) don't return a content type... so we'll assume from the Accept header
+		acc, err := accept.FromString(r.Request.Header.Get("Accept"))
+		if err != nil {
+			if preferred := acc.FirstChoice(); preferred != nil {
+				contentType = preferred.ContentType
+			}
+		}
+		if contentType == "" {
+			// fall back on request media type
+			contentType = strings.ToLower(r.Request.Header.Get("Content-Type"))
+		}
 	}
 	if strings.Contains(contentType, "application/json") {
 		// Read the response body and close it
