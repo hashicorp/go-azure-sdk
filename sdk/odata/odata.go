@@ -19,6 +19,7 @@ type Id string
 func (id Id) MarshalJSON() ([]byte, error) {
 	id2 := regexp.MustCompile(`/v2/`).ReplaceAllString(string(id), `/v1.0/`)
 
+	// For MS Graph, fix invalid IDs by attempting to parse a UUID from them and constructing a valid URI
 	// TODO: improve logic here, currently assumes all invalid IDs are graph entities
 	u, err := url.Parse(id2)
 	if err != nil || u.Scheme == "" || u.Host == "" {
@@ -75,6 +76,8 @@ func (l *Link) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	u.RawQuery = u.Query().Encode()
+
+	// For MS Graph, "v2" is a dev/internal version that sometimes leaks out
 	*l = Link(regexp.MustCompile(`/v2/`).ReplaceAllString(u.String(), `/v1.0/`))
 
 	return nil

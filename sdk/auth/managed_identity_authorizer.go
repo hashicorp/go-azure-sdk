@@ -10,19 +10,22 @@ import (
 	"strconv"
 	"time"
 
-	"golang.org/x/oauth2"
-
 	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	"golang.org/x/oauth2"
 )
 
 // Copyright (c) HashiCorp Inc. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type ManagedIdentityAuthorizerOptions struct {
-	// TODO: document me
+	// Api describes the Azure API being used
+	Api environments.Api
 
-	Api                           environments.Api
-	ClientId                      string
+	// ClientId is the client ID used when authenticating
+	ClientId string
+
+	// CustomManagedIdentityEndpoint is an optional endpoint from which to obtain an access
+	// token. When blank, the default is used.
 	CustomManagedIdentityEndpoint string
 }
 

@@ -7,19 +7,29 @@ import (
 	"net/url"
 	"strings"
 
-	"golang.org/x/oauth2"
-
 	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	"golang.org/x/oauth2"
 )
 
 type ClientSecretAuthorizerOptions struct {
-	// TODO: document these
+	// Environment is the Azure environment/cloud being targeted
+	Environment environments.Environment
 
-	Environment  environments.Environment
-	Api          environments.Api
-	TenantId     string
+	// Api describes the Azure API being used
+	Api environments.Api
+
+	// TenantId is the tenant to authenticate against
+	TenantId string
+
+	// AuxTenantIds lists additional tenants to authenticate against, currently only
+	// used for Resource Manager when auxiliary tenants are needed.
+	// e.g. https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/authenticate-multi-tenant
 	AuxTenantIds []string
-	ClientId     string
+
+	// ClientId is the client ID used when authenticating
+	ClientId string
+
+	// ClientSecret is the client secret used when authenticating
 	ClientSecret string
 }
 

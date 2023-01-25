@@ -8,23 +8,37 @@ import (
 	"net/http"
 	"net/url"
 
-	"golang.org/x/oauth2"
-
 	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	"golang.org/x/oauth2"
 )
 
 // Copyright (c) HashiCorp Inc. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type GitHubOIDCAuthorizerOptions struct {
-	// TODO: document these
+	// Api describes the Azure API being used
+	Api environments.Api
 
-	Api                 environments.Api
-	AuxiliaryTenantIds  []string
-	ClientId            string
-	Environment         environments.Environment
-	TenantId            string
-	IdTokenRequestUrl   string
+	// ClientId is the client ID used when authenticating
+	ClientId string
+
+	// Environment is the Azure environment/cloud being targeted
+	Environment environments.Environment
+
+	// TenantId is the tenant to authenticate against
+	TenantId string
+
+	// AuxTenantIds lists additional tenants to authenticate against, currently only
+	// used for Resource Manager when auxiliary tenants are needed.
+	// e.g. https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/authenticate-multi-tenant
+	AuxiliaryTenantIds []string
+
+	// IdTokenRequestUrl is the URL for the OIDC provider from which to request an ID token.
+	// Usually exposed via the ACTIONS_ID_TOKEN_REQUEST_URL environment variable when running in GitHub Actions
+	IdTokenRequestUrl string
+
+	// IdTokenRequestToken is the bearer token for the request to the OIDC provider.
+	// Usually exposed via the ACTIONS_ID_TOKEN_REQUEST_TOKEN environment variable when running in GitHub Actions
 	IdTokenRequestToken string
 }
 

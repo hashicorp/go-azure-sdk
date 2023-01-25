@@ -8,13 +8,24 @@ import (
 )
 
 type OIDCAuthorizerOptions struct {
-	// TODO: document me
+	// Environment is the Azure environment/cloud being targeted
+	Environment environments.Environment
 
-	Environment        environments.Environment
-	Api                environments.Api
-	TenantId           string
+	// Api describes the Azure API being used
+	Api environments.Api
+
+	// TenantId is the tenant to authenticate against
+	TenantId string
+
+	// AuxTenantIds lists additional tenants to authenticate against, currently only
+	// used for Resource Manager when auxiliary tenants are needed.
+	// e.g. https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/authenticate-multi-tenant
 	AuxiliaryTenantIds []string
-	ClientId           string
+
+	// ClientId is the client ID used when authenticating
+	ClientId string
+
+	// FederatedAssertion is the client assertion dispensed by the OIDC provider used to verify identity during authentication
 	FederatedAssertion string
 }
 

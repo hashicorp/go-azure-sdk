@@ -11,8 +11,6 @@ import (
 	"strings"
 	"time"
 
-	"github.com/hashicorp/go-azure-sdk/sdk/odata"
-
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
 )
@@ -99,11 +97,6 @@ func (p *longRunningOperationPoller) Poll(ctx context.Context) (result *pollers.
 	}
 	req.URL.RawQuery = p.pollingUrl.RawQuery
 
-	// disable retries since the poller handles this for us
-	req.RetryFunc = func(response *http.Response, data *odata.OData) (bool, error) {
-		return false, nil
-	}
-
 	// Custom RetryFunc to inspect the operation payload and check the status
 	req.RetryFunc = client.RequestRetryAny(defaultRetryFunctions...)
 
@@ -173,7 +166,7 @@ type operationResult struct {
 	StartTime *time.Time `json:"startTime"`
 
 	Properties struct {
-		// Some API's (such as Storage) return the Resource Representation from the LRO API, as such we need to check provisioningState
+		// Some APIs (such as Storage) return the Resource Representation from the LRO API, as such we need to check provisioningState
 		ProvisioningState status `json:"provisioningState"`
 	} `json:"properties"`
 

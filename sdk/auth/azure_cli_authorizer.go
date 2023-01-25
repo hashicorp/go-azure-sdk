@@ -8,25 +8,30 @@ import (
 	"os"
 	"strings"
 
+	"github.com/hashicorp/go-azure-sdk/sdk/environments"
 	"github.com/hashicorp/go-azure-sdk/sdk/internal/azurecli"
 	"golang.org/x/oauth2"
-
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) HashiCorp Inc. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type AzureCliAuthorizerOptions struct {
-	// TODO: document these
+	// Api describes the Azure API being used
+	Api environments.Api
 
-	Api      environments.Api
+	// TenantId is the tenant to authenticate against
 	TenantId string
+
+	// AuxTenantIds lists additional tenants to authenticate against, currently only
+	// used for Resource Manager when auxiliary tenants are needed.
+	// e.g. https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/authenticate-multi-tenant
+	AuxTenantIds []string
 }
 
 // NewAzureCliAuthorizer returns an Authorizer which authenticates using the Azure CLI.
 func NewAzureCliAuthorizer(ctx context.Context, options AzureCliAuthorizerOptions) (Authorizer, error) {
-	conf, err := newAzureCliConfig(options.Api, options.TenantId)
+	conf, err := newAzureCliConfig(options.Api, options.TenantId, options.AuxTenantIds)
 	if err != nil {
 		return nil, err
 	}
@@ -136,7 +141,7 @@ type azureCliConfig struct {
 }
 
 // newAzureCliConfig validates the supplied tenant ID and returns a new azureCliConfig.
-func newAzureCliConfig(api environments.Api, tenantId string) (*azureCliConfig, error) {
+func newAzureCliConfig(api environments.Api, tenantId string, auxiliaryTenantIds []string) (*azureCliConfig, error) {
 	var err error
 
 	// check az-cli version
@@ -154,7 +159,11 @@ func newAzureCliConfig(api environments.Api, tenantId string) (*azureCliConfig, 
 		return nil, errors.New("invalid tenantId or unable to determine tenantId")
 	}
 
-	return &azureCliConfig{Api: api, TenantID: tenantId}, nil
+	return &azureCliConfig{
+		Api:                api,
+		TenantID:           tenantId,
+		AuxiliaryTenantIDs: auxiliaryTenantIds,
+	}, nil
 }
 
 // TokenSource provides a source for obtaining access tokens using AzureCliAuthorizer.
