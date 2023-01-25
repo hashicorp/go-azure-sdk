@@ -7,6 +7,8 @@ import (
 	"strings"
 )
 
+// Header represents an HTTP Accept header value
+// See https://httpwg.org/specs/rfc9110.html#field.accept
 type Header struct {
 	types []PreferredType
 }
@@ -27,9 +29,15 @@ func (h Header) String() string {
 }
 
 type PreferredType struct {
+	// ContentType is a singular media type (e.g. text/plain), or one partially containing
+	// wildcards (e.g. text/*), or entirely wildcards (e.g. */*)
 	ContentType string
-	Parameters  map[string]string
-	Weight      qValue
+
+	// Parameters is a map of media type parameters, e.g. charset=utf-8
+	Parameters map[string]string
+
+	// Weight is the integer-normalized quality value representing the relative weight/preference
+	Weight qValue
 }
 
 func (t PreferredType) String() string {
@@ -42,6 +50,9 @@ func (t PreferredType) String() string {
 	return strings.Join(out, "; ")
 }
 
+// qValue is an integer-normalized representation of a quality value, which has a minimum value
+// of 0.001, a maximum value of 1 and a maximum precision of 3 decimal places.
+// See https://httpwg.org/specs/rfc9110.html#quality.values
 type qValue uint16
 
 func (q qValue) String() string {
@@ -122,7 +133,7 @@ func FromString(in string) (Header, error) {
 						return Header{}, fmt.Errorf("invalid weight for %q: %q", typ.ContentType, q)
 					}
 
-					// if an integer was supplied, multiply it
+					// if an integer was supplied, just multiply it for normalized value
 					if pIndex < 1 {
 						typ.Weight = qValue(weight * 1000)
 					} else {
