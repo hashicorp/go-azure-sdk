@@ -5,6 +5,9 @@ import (
 	"strings"
 )
 
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
 func FromName(name string) (*Environment, error) {
 	switch strings.ToLower(name) {
 	case "china":
@@ -25,13 +28,3 @@ func FromName(name string) (*Environment, error) {
 
 	return nil, fmt.Errorf("no environment was found with the name %q", name)
 }
-
-// TODO: From Name
-//func FromNamed(env string) (*Environment, error) {
-//	switch strings.ToLower(env) {
-//	case "canary":
-//		return &Canary, nil
-//	}
-//
-//	return nil, fmt.Errorf("invalid environment specified: %s", env)
-//}

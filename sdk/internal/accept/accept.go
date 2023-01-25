@@ -7,6 +7,9 @@ import (
 	"strings"
 )
 
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
 // Header represents an HTTP Accept header value
 // See https://httpwg.org/specs/rfc9110.html#field.accept
 type Header struct {
