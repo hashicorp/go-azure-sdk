@@ -22,11 +22,15 @@ func FromEndpoint(ctx context.Context, endpoint string) (*Environment, error) {
 	}
 	env.Name = config.Name
 
-	// TODO: support mapping the Microsoft Graph endpoint once this is returned (~Feb 2023)
 	if config.ResourceManagerEndpoint == "" {
 		return nil, fmt.Errorf("retrieving metadata from endpoint: no `resourceManagerEndpoint` was returned")
 	}
 	env.ResourceManager = ResourceManagerAPI(config.ResourceManagerEndpoint)
+
+	if config.ResourceIdentifiers.MicrosoftGraph == "" {
+		return nil, fmt.Errorf("retrieving metdata from endpoint: no `microsoftGraphResourceId` was returned")
+	}
+	env.MicrosoftGraph = MicrosoftGraphAPI(config.ResourceIdentifiers.MicrosoftGraph)
 
 	if err := env.updateFromMetaData(config); err != nil {
 		return nil, fmt.Errorf("updating Environment from MetaData: %+v", err)
