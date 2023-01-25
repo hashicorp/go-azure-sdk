@@ -6,7 +6,7 @@ import (
 )
 
 func TestFromEndpoint_Public(t *testing.T) {
-	actual, err := FromEndpoint(context.TODO(), "https://management.azure.com")
+	actual, err := FromEndpoint(context.Background(), "https://management.azure.com")
 	if err != nil {
 		t.Fatalf("loading from endpoint: %+v", err)
 	}

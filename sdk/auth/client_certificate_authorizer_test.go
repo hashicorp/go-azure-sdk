@@ -10,7 +10,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/sdk/internal/test"
 )
 
-func TestAccClientCertificateAuthorizerV2(t *testing.T) {
+func TestAccClientCertificateAuthorizer(t *testing.T) {
 	test.AccTest(t)
 
 	env, err := environments.FromName(test.Environment)
@@ -28,8 +28,8 @@ func TestAccClientCertificateAuthorizerV2(t *testing.T) {
 		AuxTenantIds: []string{},
 		ClientId:     test.ClientId,
 		Pkcs12Data:   pfx,
-		Pkcs12Path:   test.ClientCertPassword,
-		Pkcs12Pass:   test.ClientCertificatePath,
+		Pkcs12Path:   test.ClientCertificatePath,
+		Pkcs12Pass:   test.ClientCertPassword,
 	}
 	authorizer, err := auth.NewClientCertificateAuthorizer(ctx, opts)
 	if err != nil {
