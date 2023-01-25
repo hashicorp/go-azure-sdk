@@ -222,6 +222,9 @@ type Client struct {
 	// UserAgent is the HTTP user agent string to send in requests.
 	UserAgent string
 
+	// CorrelationId is a custom correlation ID which can be added to requests for tracing purposes
+	CorrelationId string
+
 	// Authorizer is anything that can provide an access token with which to authorize requests.
 	Authorizer auth.Authorizer
 
@@ -259,6 +262,9 @@ func (c *Client) NewRequest(ctx context.Context, input RequestOptions) (*Request
 
 	if c.UserAgent != "" {
 		req.Header.Add("User-Agent", c.UserAgent)
+	}
+	if c.CorrelationId != "" {
+		req.Header.Add("X-Ms-Correlation-Request-Id", c.CorrelationId)
 	}
 
 	path := strings.TrimPrefix(input.Path, "/")

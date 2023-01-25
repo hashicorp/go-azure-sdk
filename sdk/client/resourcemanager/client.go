@@ -27,7 +27,6 @@ func NewResourceManagerClient(api environments.Api, serviceName, apiVersion stri
 	}
 	baseClient := client.NewClient(*endpoint, serviceName, apiVersion)
 	return &Client{
-		// TODO: we need a means of setting additional headers (e.g. the Correlation ID etc)
 		Client:     baseClient,
 		apiVersion: apiVersion,
 	}, nil
