@@ -72,8 +72,8 @@ func TestAccParseClaims_clientCertificate(t *testing.T) {
 		AuxTenantIds: []string{},
 		ClientId:     test.ClientId,
 		Pkcs12Data:   pfx,
-		Pkcs12Path:   test.ClientCertPassword,
-		Pkcs12Pass:   test.ClientCertificatePath,
+		Pkcs12Path:   test.ClientCertificatePath,
+		Pkcs12Pass:   test.ClientCertPassword,
 	}
 	authorizer, err := auth.NewClientCertificateAuthorizer(ctx, opts)
 	if err != nil {
