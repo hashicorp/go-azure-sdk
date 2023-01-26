@@ -109,7 +109,7 @@ var PublishedApis = map[string]string{
 	"WindowsVirtualDesktop":             windowsVirtualDesktopAppId,
 	"Yammer":                            yammerAppId,
 
-	// TODO: do we still need these?
+	// Deprecated, remove these when APIs reach final EOL
 	"AzureActiveDirectoryGraph": "00000002-0000-0000-c000-000000000000",
 	"AzureServiceManagement":    "797f4846-ba00-4fd7-ba43-dac1f8f63013",
 }

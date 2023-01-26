@@ -28,7 +28,7 @@ type GitHubOIDCAuthorizerOptions struct {
 	// TenantId is the tenant to authenticate against
 	TenantId string
 
-	// AuxTenantIds lists additional tenants to authenticate against, currently only
+	// AuxiliaryTenantIds lists additional tenants to authenticate against, currently only
 	// used for Resource Manager when auxiliary tenants are needed.
 	// e.g. https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/authenticate-multi-tenant
 	AuxiliaryTenantIds []string
