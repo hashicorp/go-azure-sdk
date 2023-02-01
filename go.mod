@@ -1,28 +1,28 @@
 module github.com/hashicorp/go-azure-sdk
 
-go 1.18
+go 1.19
 
 require (
-	github.com/Azure/go-autorest/autorest v0.11.27
+	github.com/Azure/go-autorest/autorest v0.11.28
 	github.com/davecgh/go-spew v1.1.1
-	github.com/hashicorp/go-azure-helpers v0.43.0
-	github.com/hashicorp/go-retryablehttp v0.7.0
-	github.com/hashicorp/go-uuid v1.0.2
-	github.com/hashicorp/go-version v1.3.0
-	golang.org/x/crypto v0.0.0-20211215153901-e495a2d5b3d3
-	golang.org/x/oauth2 v0.0.0-20210514164344-f6687ab2804c
+	github.com/hashicorp/go-azure-helpers v0.48.0
+	github.com/hashicorp/go-retryablehttp v0.7.2
+	github.com/hashicorp/go-uuid v1.0.3
+	github.com/hashicorp/go-version v1.6.0
+	golang.org/x/crypto v0.5.0
+	golang.org/x/oauth2 v0.4.0
 )
 
 require (
 	github.com/Azure/go-autorest v14.2.0+incompatible // indirect
-	github.com/Azure/go-autorest/autorest/adal v0.9.18 // indirect
+	github.com/Azure/go-autorest/autorest/adal v0.9.22 // indirect
 	github.com/Azure/go-autorest/autorest/date v0.3.0 // indirect
 	github.com/Azure/go-autorest/logger v0.2.1 // indirect
 	github.com/Azure/go-autorest/tracing v0.6.0 // indirect
 	github.com/agext/levenshtein v1.2.2 // indirect
 	github.com/apparentlymart/go-textseg v1.0.0 // indirect
 	github.com/apparentlymart/go-textseg/v13 v13.0.0 // indirect
-	github.com/golang-jwt/jwt/v4 v4.2.0 // indirect
+	github.com/golang-jwt/jwt/v4 v4.4.3 // indirect
 	github.com/golang/protobuf v1.5.2 // indirect
 	github.com/hashicorp/errwrap v1.0.0 // indirect
 	github.com/hashicorp/go-cleanhttp v0.5.2 // indirect
@@ -38,9 +38,8 @@ require (
 	github.com/mitchellh/reflectwalk v1.0.2 // indirect
 	github.com/vmihailenco/msgpack v4.0.4+incompatible // indirect
 	github.com/zclconf/go-cty v1.8.4 // indirect
-	golang.org/x/net v0.0.0-20211112202133-69e39bad7dc2 // indirect
-	golang.org/x/sys v0.0.0-20210630005230-0f9fa26af87c // indirect
-	golang.org/x/text v0.3.6 // indirect
+	golang.org/x/net v0.5.0 // indirect
+	golang.org/x/text v0.6.0 // indirect
 	google.golang.org/appengine v1.6.7 // indirect
-	google.golang.org/protobuf v1.26.0 // indirect
+	google.golang.org/protobuf v1.28.1 // indirect
 )
