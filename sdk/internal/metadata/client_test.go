@@ -66,7 +66,7 @@ func TestGetMetaData(t *testing.T) {
 		ResourceManagerEndpoint: "https://management.azure.com/",
 	}
 
-	m, err := client.GetMetaData(ctx)
+	m, err := client.GetMetaData(ctx, "")
 	if err != nil {
 		t.Fatalf("error received: %+v", err)
 	} else if m == nil {

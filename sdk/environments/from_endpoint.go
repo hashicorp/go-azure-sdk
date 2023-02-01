@@ -11,11 +11,11 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 // FromEndpoint attempts to load an environment from the given Endpoint.
-func FromEndpoint(ctx context.Context, endpoint string) (*Environment, error) {
+func FromEndpoint(ctx context.Context, endpoint, name string) (*Environment, error) {
 	env := baseEnvironmentWithName("FromEnvironment")
 
 	client := metadata.NewClientWithEndpoint(endpoint)
-	config, err := client.GetMetaData(ctx)
+	config, err := client.GetMetaData(ctx, name)
 	if err != nil {
 		return nil, fmt.Errorf("retrieving metadata from endpoint %q: %+v", endpoint, err)
 	}
