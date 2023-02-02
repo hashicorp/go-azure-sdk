@@ -14,8 +14,8 @@ var _ client.BaseClient = &Client{}
 type ApiVersion string
 
 const (
-	Version10   ApiVersion = "v1.0"
-	VersionBeta ApiVersion = "beta"
+	VersionOnePointZero ApiVersion = "v1.0"
+	VersionBeta         ApiVersion = "beta"
 )
 
 type Client struct {
