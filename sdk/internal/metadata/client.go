@@ -6,8 +6,8 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
+	"log"
 	"net/http"
-	"strings"
 )
 
 // Copyright (c) HashiCorp Inc. All rights reserved.
@@ -25,25 +25,19 @@ func NewClientWithEndpoint(endpoint string) *Client {
 	}
 }
 
+// GetMetaData connects to the ARM metadata service at the configured endpoint, to retrieve information about the
+// current environment. Sometimes an endpoint will not support the latest schema, in such cases it will not be
+// possible to configure all services but a best effort will be made to request and parse an earlier schema version.
+// `name` is used when falling back to an earlier schema version where multiple environments are returned and the
+// desired one must be matched by name.
 func (c *Client) GetMetaData(ctx context.Context, name string) (*MetaData, error) {
-	var metadata *metaDataResponse
-	var err error
-
-	// USGovernment does not yet support latest schema
-	version := "2022-09-01"
-	if strings.Contains(name, "USGovernment") {
-		version = "2019-05-01"
-	}
-
-	switch version {
-	case "2022-09-01":
-		metadata, err = c.getMetaDataFrom2022API(ctx, name)
-	case "2019-05-01":
-		metadata, err = c.getMetaDataFrom2019API(ctx, name)
-	}
-
+	metadata, err := c.getMetaDataFrom2022API(ctx, name)
 	if err != nil {
-		return nil, fmt.Errorf("retrieving metadata from the %s API: %+v", version, err)
+		log.Printf("[DEBUG] Falling back to ARM Metadata version 2019-05-01 for %s", c.endpoint)
+		metadata, err = c.getMetaDataFrom2019API(ctx, name)
+		if err != nil {
+			return nil, fmt.Errorf("retrieving metadata from the 2022-09-01 and 2019-05-01 APIs: %+v", err)
+		}
 	}
 
 	return &MetaData{
@@ -110,6 +104,7 @@ func (c *Client) getMetaDataFrom2022API(ctx context.Context, name string) (*meta
 
 	var model *metaDataResponse
 	if err := json.Unmarshal(respBody, &model); err != nil {
+		log.Printf("[DEBUG] Unrecognised metadata response for %s: %s", uri, respBody)
 		return nil, fmt.Errorf("unmarshaling response: %+v", err)
 	}
 
@@ -146,6 +141,7 @@ func (c *Client) getMetaDataFrom2019API(ctx context.Context, name string) (*meta
 
 	var model *[]metaDataResponse
 	if err := json.Unmarshal(respBody, &model); err != nil {
+		log.Printf("[DEBUG] Unrecognised metadata response for %s: %s", uri, respBody)
 		return nil, fmt.Errorf("unmarshaling response: %+v", err)
 	}
 

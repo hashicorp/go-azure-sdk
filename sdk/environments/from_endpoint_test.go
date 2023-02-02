@@ -17,7 +17,7 @@ func TestFromEndpoint_Public(t *testing.T) {
 }
 
 func TestFromEndpoint_USGovernment(t *testing.T) {
-	t.Skip("USGovernment ARM metadata service has reverted to older schema")
+	t.Skip("Skipping because USGovernment ARM metadata service has reverted to older schema 2019-05-01 (manicminer, 2023-02-02)")
 
 	actual, err := FromEndpoint(context.Background(), "https://management.usgovcloudapi.net", "AzureUSGovernment")
 	if err != nil {
