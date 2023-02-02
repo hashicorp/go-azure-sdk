@@ -5,7 +5,7 @@ go 1.19
 require (
 	github.com/Azure/go-autorest/autorest v0.11.28
 	github.com/davecgh/go-spew v1.1.1
-	github.com/hashicorp/go-azure-helpers v0.49.0
+	github.com/hashicorp/go-azure-helpers v0.50.0
 	github.com/hashicorp/go-retryablehttp v0.7.2
 	github.com/hashicorp/go-uuid v1.0.3
 	github.com/hashicorp/go-version v1.6.0
