@@ -6,8 +6,8 @@ import (
 	"testing"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/auth"
+	"github.com/hashicorp/go-azure-sdk/sdk/claims"
 	"github.com/hashicorp/go-azure-sdk/sdk/environments"
-	"github.com/hashicorp/go-azure-sdk/sdk/internal/claims"
 	"github.com/hashicorp/go-azure-sdk/sdk/internal/test"
 )
 

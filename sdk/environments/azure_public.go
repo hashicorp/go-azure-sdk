@@ -5,16 +5,16 @@ func AzurePublic() *Environment {
 
 	env.Authorization = &Authorization{
 		Audiences: []string{
-			"https://management.core.windows.net/",
-			"https://management.azure.com/",
+			"https://management.core.windows.net",
+			"https://management.azure.com",
 		},
 		LoginEndpoint: "https://login.microsoftonline.com",
 	}
 	env.ResourceManager = ResourceManagerAPI("https://management.azure.com")
-	env.MicrosoftGraph = MicrosoftGraphAPI("https://graph.microsoft.com/")
+	env.MicrosoftGraph = MicrosoftGraphAPI("https://graph.microsoft.com")
 
 	env.ApiManagement = ApiManagementAPI("azure-api.net")
-	env.Batch = BatchAPI("https://batch.core.windows.net/")
+	env.Batch = BatchAPI("https://batch.core.windows.net")
 	env.CDNFrontDoor = CDNFrontDoorAPI("azurefd.net")
 	env.ContainerRegistry = ContainerRegistryAPI("azurecr.io")
 	env.CosmosDB = CosmosDBAPI("documents.azure.com")

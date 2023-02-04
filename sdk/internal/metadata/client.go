@@ -6,6 +6,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
+	"log"
 	"net/http"
 )
 
@@ -24,10 +25,19 @@ func NewClientWithEndpoint(endpoint string) *Client {
 	}
 }
 
-func (c *Client) GetMetaData(ctx context.Context) (*MetaData, error) {
-	metadata, err := c.getMetaDataFrom2022API(ctx)
+// GetMetaData connects to the ARM metadata service at the configured endpoint, to retrieve information about the
+// current environment. Sometimes an endpoint will not support the latest schema, in such cases it will not be
+// possible to configure all services but a best effort will be made to request and parse an earlier schema version.
+// `name` is used when falling back to an earlier schema version where multiple environments are returned and the
+// desired one must be matched by name.
+func (c *Client) GetMetaData(ctx context.Context, name string) (*MetaData, error) {
+	metadata, err := c.getMetaDataFrom2022API(ctx, name)
 	if err != nil {
-		return nil, fmt.Errorf("retrieving metadata from the 2022-09-01 API: %+v", err)
+		log.Printf("[DEBUG] Falling back to ARM Metadata version 2019-05-01 for %s", c.endpoint)
+		metadata, err = c.getMetaDataFrom2019API(ctx, name)
+		if err != nil {
+			return nil, fmt.Errorf("retrieving metadata from the 2022-09-01 and 2019-05-01 APIs: %+v", err)
+		}
 	}
 
 	return &MetaData{
@@ -64,7 +74,7 @@ func (c *Client) GetMetaData(ctx context.Context) (*MetaData, error) {
 	}, nil
 }
 
-func (c *Client) getMetaDataFrom2022API(ctx context.Context) (*metaDataResponse20220901, error) {
+func (c *Client) getMetaDataFrom2022API(ctx context.Context, name string) (*metaDataResponse, error) {
 	client := &http.Client{
 		Transport: http.DefaultTransport,
 	}
@@ -92,14 +102,65 @@ func (c *Client) getMetaDataFrom2022API(ctx context.Context) (*metaDataResponse2
 	// Trim away a BOM if present
 	respBody = bytes.TrimPrefix(respBody, []byte("\xef\xbb\xbf"))
 
-	var model *metaDataResponse20220901
+	var model *metaDataResponse
 	if err := json.Unmarshal(respBody, &model); err != nil {
+		log.Printf("[DEBUG] Unrecognised metadata response for %s: %s", uri, respBody)
 		return nil, fmt.Errorf("unmarshaling response: %+v", err)
 	}
+
 	return model, nil
 }
 
-type metaDataResponse20220901 struct {
+func (c *Client) getMetaDataFrom2019API(ctx context.Context, name string) (*metaDataResponse, error) {
+	client := &http.Client{
+		Transport: http.DefaultTransport,
+	}
+	uri := fmt.Sprintf("%s/metadata/endpoints?api-version=2019-05-01", c.endpoint)
+	req, err := http.NewRequestWithContext(ctx, http.MethodGet, uri, nil)
+	if err != nil {
+		return nil, fmt.Errorf("preparing request: %+v", err)
+	}
+
+	resp, err := client.Do(req)
+	if err != nil {
+		return nil, fmt.Errorf("performing request: %+v", err)
+	}
+
+	if resp.StatusCode != http.StatusOK {
+		return nil, fmt.Errorf("performing request: expected 200 OK but got %d %s", resp.StatusCode, resp.Status)
+	}
+
+	respBody, err := io.ReadAll(resp.Body)
+	if err != nil {
+		return nil, fmt.Errorf("parsing response body: %+v", err)
+	}
+	resp.Body.Close()
+
+	// Trim away a BOM if present
+	respBody = bytes.TrimPrefix(respBody, []byte("\xef\xbb\xbf"))
+
+	var model *[]metaDataResponse
+	if err := json.Unmarshal(respBody, &model); err != nil {
+		log.Printf("[DEBUG] Unrecognised metadata response for %s: %s", uri, respBody)
+		return nil, fmt.Errorf("unmarshaling response: %+v", err)
+	}
+
+	if model == nil {
+		return nil, fmt.Errorf("unmarshaling response: no environments returned")
+	}
+
+	// This version returns an array of environments, we are only interested in one
+	var env metaDataResponse
+	for _, e := range *model {
+		if name == "" || e.Name == name {
+			env = e
+			break
+		}
+	}
+	return &env, nil
+}
+
+type metaDataResponse struct {
 	Portal         string `json:"portal"`
 	Authentication struct {
 		LoginEndpoint    string   `json:"loginEndpoint"`
@@ -139,4 +200,5 @@ type metaDataResponse20220901 struct {
 	SynapseAnalyticsResourceId            string `json:"synapseAnalyticsResourceId"`
 	LogAnalyticsResourceId                string `json:"logAnalyticsResourceId"`
 	OssrDbmsResourceId                    string `json:"ossrDbmsResourceId"`
+	Gallery                               string `json:"gallery"`
 }

@@ -42,6 +42,9 @@ var _ Authorizer = &AzureCliAuthorizer{}
 
 // AzureCliAuthorizer is an Authorizer which supports the Azure CLI.
 type AzureCliAuthorizer struct {
+	// TenantID is the specified tenant ID, or the auto-detected tenant ID if none was specified
+	TenantID string
+
 	conf *azureCliConfig
 }
 
@@ -170,7 +173,8 @@ func newAzureCliConfig(api environments.Api, tenantId string, auxiliaryTenantIds
 func (c *azureCliConfig) TokenSource(ctx context.Context) (Authorizer, error) {
 	// Cache access tokens internally to avoid unnecessary `az` invocations
 	return NewCachedAuthorizer(&AzureCliAuthorizer{
-		conf: c,
+		TenantID: c.TenantID,
+		conf:     c,
 	})
 }
 

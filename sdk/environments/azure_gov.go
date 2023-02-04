@@ -11,10 +11,10 @@ func AzureUSGovernment() *Environment {
 		LoginEndpoint: "https://login.microsoftonline.us",
 	}
 	env.ResourceManager = ResourceManagerAPI("https://management.usgovcloudapi.net")
-	env.MicrosoftGraph = MicrosoftGraphAPI("https://graph.microsoft.us/").withResourceIdentifier("https://graph.microsoft.us/")
+	env.MicrosoftGraph = MicrosoftGraphAPI("https://graph.microsoft.us").withResourceIdentifier("https://graph.microsoft.us")
 
 	env.ApiManagement = ApiManagementAPI("azure-api.us")
-	env.Batch = BatchAPI("https://batch.core.usgovcloudapi.net").withResourceIdentifier("https://batch.core.usgovcloudapi.net/")
+	env.Batch = BatchAPI("https://batch.core.usgovcloudapi.net").withResourceIdentifier("https://batch.core.usgovcloudapi.net")
 	env.ContainerRegistry = ContainerRegistryAPI("azurecr.us")
 	env.CosmosDB = CosmosDBAPI("documents.azure.us")
 	env.KeyVault = KeyVaultAPI("vault.usgovcloudapi.net").withResourceIdentifier("https://vault.usgovcloudapi.net")
@@ -24,7 +24,7 @@ func AzureUSGovernment() *Environment {
 	env.OperationalInsights = OperationalInsightsAPI().withResourceIdentifier("https://api.loganalytics.us")
 	env.Postgresql = PostgresqlAPI("postgres.database.usgovcloudapi.net").withResourceIdentifier("https://ossrdbms-aad.database.usgovcloudapi.net")
 	env.ServiceBus = ServiceBusAPI("https://servicebus.usgovcloudapi.net", "servicebus.usgovcloudapi.net")
-	env.Sql = SqlAPI("database.usgovcloudapi.net").withResourceIdentifier("https://database.usgovcloudapi.net/")
+	env.Sql = SqlAPI("database.usgovcloudapi.net").withResourceIdentifier("https://database.usgovcloudapi.net")
 	env.Storage = StorageAPI("core.usgovcloudapi.net")
 	env.Synapse = SynapseAPI("dev.azuresynapse.usgovcloudapi.net").withResourceIdentifier("https://dev.azuresynapse.usgovcloudapi.net")
 	env.TrafficManager = TrafficManagerAPI("usgovtrafficmanager.net")
