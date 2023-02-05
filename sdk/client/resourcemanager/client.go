@@ -33,9 +33,6 @@ func NewResourceManagerClient(api environments.Api, serviceName, apiVersion stri
 }
 
 func (c *Client) NewRequest(ctx context.Context, input client.RequestOptions) (*client.Request, error) {
-	if _, ok := ctx.Deadline(); !ok {
-		return nil, fmt.Errorf("the context used must have a deadline attached for polling purposes, but got no deadline")
-	}
 	if err := input.Validate(); err != nil {
 		return nil, fmt.Errorf("pre-validating request payload: %+v", err)
 	}

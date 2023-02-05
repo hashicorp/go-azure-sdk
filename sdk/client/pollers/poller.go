@@ -95,7 +95,7 @@ func (p *Poller) PollUntilDone(ctx context.Context) error {
 		return fmt.Errorf("internal-error: `poller` was nil`")
 	}
 	if _, ok := ctx.Deadline(); !ok {
-		return fmt.Errorf("internal-error: `ctx` should have a deadline")
+		return fmt.Errorf("the context used must have a deadline attached for polling purposes, but got no deadline")
 	}
 
 	var wait sync.WaitGroup
