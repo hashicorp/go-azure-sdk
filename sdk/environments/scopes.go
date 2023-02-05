@@ -16,7 +16,7 @@ func Resource(endpoint Api) (*string, error) {
 }
 
 func Scope(endpoint Api) (*string, error) {
-	e, ok := endpoint.Endpoint()
+	e, ok := endpoint.ResourceIdentifier()
 	if !ok {
 		return nil, fmt.Errorf("the endpoint %q is not supported in this Azure Environment", endpoint.Name())
 	}

@@ -28,7 +28,7 @@ func BatchAPI(endpoint string) *ApiEndpoint {
 		endpoint:            pointer.To(endpoint),
 		microsoftGraphAppId: pointer.To(batchAppId),
 		name:                "Batch",
-		resourceIdentifier:  pointer.To("https://batch.core.windows.net/"),
+		resourceIdentifier:  pointer.To("https://batch.core.windows.net"),
 	}
 }
 
@@ -68,7 +68,7 @@ func DataLakeAPI(domainSuffix string) Api {
 		endpoint:            nil,
 		microsoftGraphAppId: pointer.To(dataLakeAppId),
 		name:                "DataLake",
-		resourceIdentifier:  pointer.To("https://datalake.azure.net/"),
+		resourceIdentifier:  pointer.To("https://datalake.azure.net"),
 	}
 }
 
@@ -108,7 +108,7 @@ func MicrosoftGraphAPI(endpoint string) *ApiEndpoint {
 		endpoint:            pointer.To(endpoint),
 		microsoftGraphAppId: pointer.To(microsoftGraphAppId),
 		name:                "MicrosoftGraph",
-		resourceIdentifier:  pointer.To("https://graph.microsoft.com/"),
+		resourceIdentifier:  pointer.To("https://graph.microsoft.com"),
 	}
 }
 
@@ -142,13 +142,13 @@ func PostgresqlAPI(domainSuffix string) *ApiEndpoint {
 	}
 }
 
-func ResourceManagerAPI(endpoint string) Api {
+func ResourceManagerAPI(endpoint string) *ApiEndpoint {
 	return &ApiEndpoint{
 		domainSuffix:        nil,
 		endpoint:            pointer.To(endpoint),
-		microsoftGraphAppId: nil, // each RP gets it's own
+		microsoftGraphAppId: nil,
 		name:                "ResourceManager",
-		resourceIdentifier:  nil,
+		resourceIdentifier:  pointer.To("https://management.azure.com"),
 	}
 }
 
@@ -158,7 +158,7 @@ func ServiceBusAPI(endpoint, domainSuffix string) Api {
 		endpoint:            pointer.To(endpoint),
 		microsoftGraphAppId: pointer.To(serviceBusAppId),
 		name:                "ServiceBus",
-		resourceIdentifier:  pointer.To("https://servicebus.azure.net/"),
+		resourceIdentifier:  pointer.To("https://servicebus.azure.net"),
 	}
 }
 
@@ -168,7 +168,7 @@ func SqlAPI(domainSuffix string) *ApiEndpoint {
 		endpoint:            nil,
 		microsoftGraphAppId: pointer.To(sqlDatabaseAppId),
 		name:                "AzureSqlDatabase",
-		resourceIdentifier:  pointer.To("https://database.windows.net/"),
+		resourceIdentifier:  pointer.To("https://database.windows.net"),
 	}
 }
 
@@ -178,7 +178,7 @@ func StorageAPI(domainSuffix string) Api {
 		endpoint:            nil,
 		microsoftGraphAppId: pointer.To(storageAppId),
 		name:                "AzureStorage",
-		resourceIdentifier:  pointer.To("https://storage.azure.com/"),
+		resourceIdentifier:  pointer.To("https://storage.azure.com"),
 	}
 }
 
