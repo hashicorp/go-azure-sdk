@@ -49,7 +49,11 @@ func (c *Authorizer) WithAuthorization() autorest.PrepareDecorator {
 					}
 				}
 
-				return autorest.Prepare(req, autorest.WithHeader("x-ms-authorization-auxiliary", strings.Join(auxTokenList, ", ")))
+				if len(auxTokenList) > 0 {
+					return autorest.Prepare(req, autorest.WithHeader("x-ms-authorization-auxiliary", strings.Join(auxTokenList, ", ")))
+				}
+
+				return req, nil
 			}
 
 			return req, err
