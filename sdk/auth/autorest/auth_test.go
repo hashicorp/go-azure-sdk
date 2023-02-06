@@ -13,6 +13,8 @@ import (
 )
 
 func TestAuthorizerWithAuthorization(t *testing.T) {
+	test.AccTest(t)
+
 	ctx := context.Background()
 	conn := test.NewConnection(t)
 	api := conn.AuthConfig.Environment.MicrosoftGraph
@@ -30,6 +32,8 @@ func TestAuthorizerWithAuthorization(t *testing.T) {
 }
 
 func TestAuthorizerBearerAuthorizerCallback(t *testing.T) {
+	test.AccTest(t)
+
 	ctx := context.Background()
 	conn := test.NewConnection(t)
 	api := conn.AuthConfig.Environment.KeyVault
