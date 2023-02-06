@@ -10,7 +10,7 @@ func AzureUSGovernment() *Environment {
 		},
 		LoginEndpoint: "https://login.microsoftonline.us",
 	}
-	env.ResourceManager = ResourceManagerAPI("https://management.usgovcloudapi.net")
+	env.ResourceManager = ResourceManagerAPI("https://management.usgovcloudapi.net").withResourceIdentifier("https://manaagement.usgovcloudapi.net")
 	env.MicrosoftGraph = MicrosoftGraphAPI("https://graph.microsoft.us").withResourceIdentifier("https://graph.microsoft.us")
 
 	env.ApiManagement = ApiManagementAPI("azure-api.us")

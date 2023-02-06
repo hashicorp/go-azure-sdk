@@ -10,7 +10,7 @@ func AzureChina() *Environment {
 		},
 		LoginEndpoint: "https://login.chinacloudapi.cn",
 	}
-	env.ResourceManager = ResourceManagerAPI("https://management.chinacloudapi.cn")
+	env.ResourceManager = ResourceManagerAPI("https://management.chinacloudapi.cn").withResourceIdentifier("https://management.chinacloudapi.cn")
 	env.MicrosoftGraph = MicrosoftGraphAPI("https://microsoftgraph.chinacloudapi.cn").withResourceIdentifier("https://microsoftgraph.chinacloudapi.cn")
 
 	// DataLake, ManagedHSM and OperationalInsights are not available
