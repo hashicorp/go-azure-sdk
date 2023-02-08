@@ -67,20 +67,3 @@ if model := read.Model; model != nil {
 	// do something with the model/response object
 }
 ```
-
-
-### Example Usage: `KeyValuesClient.ListByConfigurationStore`
-
-```go
-ctx := context.TODO()
-id := keyvalues.NewConfigurationStoreID("12345678-1234-9876-4563-123456789012", "example-resource-group", "configurationStoreValue")
-
-// alternatively `client.ListByConfigurationStore(ctx, id)` can be used to do batched pagination
-items, err := client.ListByConfigurationStoreComplete(ctx, id)
-if err != nil {
-	// handle the error
-}
-for _, item := range items {
-	// do something
-}
-```

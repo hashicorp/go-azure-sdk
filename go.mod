@@ -4,6 +4,7 @@ go 1.19
 
 require (
 	github.com/Azure/go-autorest/autorest v0.11.28
+	github.com/Azure/go-autorest/autorest/adal v0.9.22
 	github.com/davecgh/go-spew v1.1.1
 	github.com/hashicorp/go-azure-helpers v0.50.0
 	github.com/hashicorp/go-retryablehttp v0.7.2
@@ -15,7 +16,6 @@ require (
 
 require (
 	github.com/Azure/go-autorest v14.2.0+incompatible // indirect
-	github.com/Azure/go-autorest/autorest/adal v0.9.22 // indirect
 	github.com/Azure/go-autorest/autorest/date v0.3.0 // indirect
 	github.com/Azure/go-autorest/logger v0.2.1 // indirect
 	github.com/Azure/go-autorest/tracing v0.6.0 // indirect
