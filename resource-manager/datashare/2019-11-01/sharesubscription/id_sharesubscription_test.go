@@ -1,4 +1,4 @@
-package dsccompilationjob
+package sharesubscription
 
 import (
 	"testing"
@@ -6,10 +6,10 @@ import (
 	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
 )
 
-var _ resourceids.ResourceId = CompilationJobId{}
+var _ resourceids.ResourceId = ShareSubscriptionId{}
 
-func TestNewCompilationJobID(t *testing.T) {
-	id := NewCompilationJobID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountValue", "compilationJobValue")
+func TestNewShareSubscriptionID(t *testing.T) {
+	id := NewShareSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "shareSubscriptionValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -19,28 +19,28 @@ func TestNewCompilationJobID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.AutomationAccountName != "automationAccountValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AutomationAccountName'", id.AutomationAccountName, "automationAccountValue")
+	if id.AccountName != "accountValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'AccountName'", id.AccountName, "accountValue")
 	}
 
-	if id.CompilationJobName != "compilationJobValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'CompilationJobName'", id.CompilationJobName, "compilationJobValue")
+	if id.ShareSubscriptionName != "shareSubscriptionValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'ShareSubscriptionName'", id.ShareSubscriptionName, "shareSubscriptionValue")
 	}
 }
 
-func TestFormatCompilationJobID(t *testing.T) {
-	actual := NewCompilationJobID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountValue", "compilationJobValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue/compilationJobs/compilationJobValue"
+func TestFormatShareSubscriptionID(t *testing.T) {
+	actual := NewShareSubscriptionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "accountValue", "shareSubscriptionValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataShare/accounts/accountValue/shareSubscriptions/shareSubscriptionValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
 }
 
-func TestParseCompilationJobID(t *testing.T) {
+func TestParseShareSubscriptionID(t *testing.T) {
 	testData := []struct {
 		Input    string
 		Error    bool
-		Expected *CompilationJobId
+		Expected *ShareSubscriptionId
 	}{
 		{
 			// Incomplete URI
@@ -74,44 +74,44 @@ func TestParseCompilationJobID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataShare",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataShare/accounts",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataShare/accounts/accountValue",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue/compilationJobs",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataShare/accounts/accountValue/shareSubscriptions",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue/compilationJobs/compilationJobValue",
-			Expected: &CompilationJobId{
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataShare/accounts/accountValue/shareSubscriptions/shareSubscriptionValue",
+			Expected: &ShareSubscriptionId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:     "example-resource-group",
-				AutomationAccountName: "automationAccountValue",
-				CompilationJobName:    "compilationJobValue",
+				AccountName:           "accountValue",
+				ShareSubscriptionName: "shareSubscriptionValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue/compilationJobs/compilationJobValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataShare/accounts/accountValue/shareSubscriptions/shareSubscriptionValue/extra",
 			Error: true,
 		},
 	}
 	for _, v := range testData {
 		t.Logf("[DEBUG] Testing %q", v.Input)
 
-		actual, err := ParseCompilationJobID(v.Input)
+		actual, err := ParseShareSubscriptionID(v.Input)
 		if err != nil {
 			if v.Error {
 				continue
@@ -131,22 +131,22 @@ func TestParseCompilationJobID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.AutomationAccountName != v.Expected.AutomationAccountName {
-			t.Fatalf("Expected %q but got %q for AutomationAccountName", v.Expected.AutomationAccountName, actual.AutomationAccountName)
+		if actual.AccountName != v.Expected.AccountName {
+			t.Fatalf("Expected %q but got %q for AccountName", v.Expected.AccountName, actual.AccountName)
 		}
 
-		if actual.CompilationJobName != v.Expected.CompilationJobName {
-			t.Fatalf("Expected %q but got %q for CompilationJobName", v.Expected.CompilationJobName, actual.CompilationJobName)
+		if actual.ShareSubscriptionName != v.Expected.ShareSubscriptionName {
+			t.Fatalf("Expected %q but got %q for ShareSubscriptionName", v.Expected.ShareSubscriptionName, actual.ShareSubscriptionName)
 		}
 
 	}
 }
 
-func TestParseCompilationJobIDInsensitively(t *testing.T) {
+func TestParseShareSubscriptionIDInsensitively(t *testing.T) {
 	testData := []struct {
 		Input    string
 		Error    bool
-		Expected *CompilationJobId
+		Expected *ShareSubscriptionId
 	}{
 		{
 			// Incomplete URI
@@ -205,79 +205,79 @@ func TestParseCompilationJobIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataShare",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aUtOmAtIoN",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAsHaRe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataShare/accounts",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aUtOmAtIoN/aUtOmAtIoNaCcOuNtS",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAsHaRe/aCcOuNtS",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataShare/accounts/accountValue",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aUtOmAtIoN/aUtOmAtIoNaCcOuNtS/aUtOmAtIoNaCcOuNtVaLuE",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAsHaRe/aCcOuNtS/aCcOuNtVaLuE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue/compilationJobs",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataShare/accounts/accountValue/shareSubscriptions",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aUtOmAtIoN/aUtOmAtIoNaCcOuNtS/aUtOmAtIoNaCcOuNtVaLuE/cOmPiLaTiOnJoBs",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAsHaRe/aCcOuNtS/aCcOuNtVaLuE/sHaReSuBsCrIpTiOnS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue/compilationJobs/compilationJobValue",
-			Expected: &CompilationJobId{
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataShare/accounts/accountValue/shareSubscriptions/shareSubscriptionValue",
+			Expected: &ShareSubscriptionId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:     "example-resource-group",
-				AutomationAccountName: "automationAccountValue",
-				CompilationJobName:    "compilationJobValue",
+				AccountName:           "accountValue",
+				ShareSubscriptionName: "shareSubscriptionValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue/compilationJobs/compilationJobValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.DataShare/accounts/accountValue/shareSubscriptions/shareSubscriptionValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aUtOmAtIoN/aUtOmAtIoNaCcOuNtS/aUtOmAtIoNaCcOuNtVaLuE/cOmPiLaTiOnJoBs/cOmPiLaTiOnJoBvAlUe",
-			Expected: &CompilationJobId{
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAsHaRe/aCcOuNtS/aCcOuNtVaLuE/sHaReSuBsCrIpTiOnS/sHaReSuBsCrIpTiOnVaLuE",
+			Expected: &ShareSubscriptionId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:     "eXaMpLe-rEsOuRcE-GrOuP",
-				AutomationAccountName: "aUtOmAtIoNaCcOuNtVaLuE",
-				CompilationJobName:    "cOmPiLaTiOnJoBvAlUe",
+				AccountName:           "aCcOuNtVaLuE",
+				ShareSubscriptionName: "sHaReSuBsCrIpTiOnVaLuE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aUtOmAtIoN/aUtOmAtIoNaCcOuNtS/aUtOmAtIoNaCcOuNtVaLuE/cOmPiLaTiOnJoBs/cOmPiLaTiOnJoBvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.dAtAsHaRe/aCcOuNtS/aCcOuNtVaLuE/sHaReSuBsCrIpTiOnS/sHaReSuBsCrIpTiOnVaLuE/extra",
 			Error: true,
 		},
 	}
 	for _, v := range testData {
 		t.Logf("[DEBUG] Testing %q", v.Input)
 
-		actual, err := ParseCompilationJobIDInsensitively(v.Input)
+		actual, err := ParseShareSubscriptionIDInsensitively(v.Input)
 		if err != nil {
 			if v.Error {
 				continue
@@ -297,21 +297,21 @@ func TestParseCompilationJobIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.AutomationAccountName != v.Expected.AutomationAccountName {
-			t.Fatalf("Expected %q but got %q for AutomationAccountName", v.Expected.AutomationAccountName, actual.AutomationAccountName)
+		if actual.AccountName != v.Expected.AccountName {
+			t.Fatalf("Expected %q but got %q for AccountName", v.Expected.AccountName, actual.AccountName)
 		}
 
-		if actual.CompilationJobName != v.Expected.CompilationJobName {
-			t.Fatalf("Expected %q but got %q for CompilationJobName", v.Expected.CompilationJobName, actual.CompilationJobName)
+		if actual.ShareSubscriptionName != v.Expected.ShareSubscriptionName {
+			t.Fatalf("Expected %q but got %q for ShareSubscriptionName", v.Expected.ShareSubscriptionName, actual.ShareSubscriptionName)
 		}
 
 	}
 }
 
-func TestSegmentsForCompilationJobId(t *testing.T) {
-	segments := CompilationJobId{}.Segments()
+func TestSegmentsForShareSubscriptionId(t *testing.T) {
+	segments := ShareSubscriptionId{}.Segments()
 	if len(segments) == 0 {
-		t.Fatalf("CompilationJobId has no segments")
+		t.Fatalf("ShareSubscriptionId has no segments")
 	}
 
 	uniqueNames := make(map[string]struct{}, 0)
