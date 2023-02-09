@@ -9,7 +9,7 @@ import (
 var _ resourceids.ResourceId = CompilationJobId{}
 
 func TestNewCompilationJobID(t *testing.T) {
-	id := NewCompilationJobID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountValue", "compilationJobValue")
+	id := NewCompilationJobID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountValue", "jobIdValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -23,14 +23,14 @@ func TestNewCompilationJobID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'AutomationAccountName'", id.AutomationAccountName, "automationAccountValue")
 	}
 
-	if id.CompilationJobName != "compilationJobValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'CompilationJobName'", id.CompilationJobName, "compilationJobValue")
+	if id.JobId != "jobIdValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'JobId'", id.JobId, "jobIdValue")
 	}
 }
 
 func TestFormatCompilationJobID(t *testing.T) {
-	actual := NewCompilationJobID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountValue", "compilationJobValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue/compilationJobs/compilationJobValue"
+	actual := NewCompilationJobID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountValue", "jobIdValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue/compilationJobs/jobIdValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -94,17 +94,17 @@ func TestParseCompilationJobID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue/compilationJobs/compilationJobValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue/compilationJobs/jobIdValue",
 			Expected: &CompilationJobId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:     "example-resource-group",
 				AutomationAccountName: "automationAccountValue",
-				CompilationJobName:    "compilationJobValue",
+				JobId:                 "jobIdValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue/compilationJobs/compilationJobValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue/compilationJobs/jobIdValue/extra",
 			Error: true,
 		},
 	}
@@ -135,8 +135,8 @@ func TestParseCompilationJobID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for AutomationAccountName", v.Expected.AutomationAccountName, actual.AutomationAccountName)
 		}
 
-		if actual.CompilationJobName != v.Expected.CompilationJobName {
-			t.Fatalf("Expected %q but got %q for CompilationJobName", v.Expected.CompilationJobName, actual.CompilationJobName)
+		if actual.JobId != v.Expected.JobId {
+			t.Fatalf("Expected %q but got %q for JobId", v.Expected.JobId, actual.JobId)
 		}
 
 	}
@@ -245,32 +245,32 @@ func TestParseCompilationJobIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue/compilationJobs/compilationJobValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue/compilationJobs/jobIdValue",
 			Expected: &CompilationJobId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:     "example-resource-group",
 				AutomationAccountName: "automationAccountValue",
-				CompilationJobName:    "compilationJobValue",
+				JobId:                 "jobIdValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue/compilationJobs/compilationJobValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Automation/automationAccounts/automationAccountValue/compilationJobs/jobIdValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aUtOmAtIoN/aUtOmAtIoNaCcOuNtS/aUtOmAtIoNaCcOuNtVaLuE/cOmPiLaTiOnJoBs/cOmPiLaTiOnJoBvAlUe",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aUtOmAtIoN/aUtOmAtIoNaCcOuNtS/aUtOmAtIoNaCcOuNtVaLuE/cOmPiLaTiOnJoBs/jObIdVaLuE",
 			Expected: &CompilationJobId{
 				SubscriptionId:        "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:     "eXaMpLe-rEsOuRcE-GrOuP",
 				AutomationAccountName: "aUtOmAtIoNaCcOuNtVaLuE",
-				CompilationJobName:    "cOmPiLaTiOnJoBvAlUe",
+				JobId:                 "jObIdVaLuE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aUtOmAtIoN/aUtOmAtIoNaCcOuNtS/aUtOmAtIoNaCcOuNtVaLuE/cOmPiLaTiOnJoBs/cOmPiLaTiOnJoBvAlUe/extra",
+			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.aUtOmAtIoN/aUtOmAtIoNaCcOuNtS/aUtOmAtIoNaCcOuNtVaLuE/cOmPiLaTiOnJoBs/jObIdVaLuE/extra",
 			Error: true,
 		},
 	}
@@ -301,8 +301,8 @@ func TestParseCompilationJobIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for AutomationAccountName", v.Expected.AutomationAccountName, actual.AutomationAccountName)
 		}
 
-		if actual.CompilationJobName != v.Expected.CompilationJobName {
-			t.Fatalf("Expected %q but got %q for CompilationJobName", v.Expected.CompilationJobName, actual.CompilationJobName)
+		if actual.JobId != v.Expected.JobId {
+			t.Fatalf("Expected %q but got %q for JobId", v.Expected.JobId, actual.JobId)
 		}
 
 	}
