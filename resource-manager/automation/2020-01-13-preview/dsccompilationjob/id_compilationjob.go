@@ -14,16 +14,16 @@ type CompilationJobId struct {
 	SubscriptionId        string
 	ResourceGroupName     string
 	AutomationAccountName string
-	JobId                 string
+	CompilationJobName    string
 }
 
 // NewCompilationJobID returns a new CompilationJobId struct
-func NewCompilationJobID(subscriptionId string, resourceGroupName string, automationAccountName string, jobId string) CompilationJobId {
+func NewCompilationJobID(subscriptionId string, resourceGroupName string, automationAccountName string, compilationJobName string) CompilationJobId {
 	return CompilationJobId{
 		SubscriptionId:        subscriptionId,
 		ResourceGroupName:     resourceGroupName,
 		AutomationAccountName: automationAccountName,
-		JobId:                 jobId,
+		CompilationJobName:    compilationJobName,
 	}
 }
 
@@ -50,8 +50,8 @@ func ParseCompilationJobID(input string) (*CompilationJobId, error) {
 		return nil, fmt.Errorf("the segment 'automationAccountName' was not found in the resource id %q", input)
 	}
 
-	if id.JobId, ok = parsed.Parsed["jobId"]; !ok {
-		return nil, fmt.Errorf("the segment 'jobId' was not found in the resource id %q", input)
+	if id.CompilationJobName, ok = parsed.Parsed["compilationJobName"]; !ok {
+		return nil, fmt.Errorf("the segment 'compilationJobName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -81,8 +81,8 @@ func ParseCompilationJobIDInsensitively(input string) (*CompilationJobId, error)
 		return nil, fmt.Errorf("the segment 'automationAccountName' was not found in the resource id %q", input)
 	}
 
-	if id.JobId, ok = parsed.Parsed["jobId"]; !ok {
-		return nil, fmt.Errorf("the segment 'jobId' was not found in the resource id %q", input)
+	if id.CompilationJobName, ok = parsed.Parsed["compilationJobName"]; !ok {
+		return nil, fmt.Errorf("the segment 'compilationJobName' was not found in the resource id %q", input)
 	}
 
 	return &id, nil
@@ -106,7 +106,7 @@ func ValidateCompilationJobID(input interface{}, key string) (warnings []string,
 // ID returns the formatted Compilation Job ID
 func (id CompilationJobId) ID() string {
 	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.Automation/automationAccounts/%s/compilationJobs/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.AutomationAccountName, id.JobId)
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.AutomationAccountName, id.CompilationJobName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Compilation Job ID
@@ -121,7 +121,7 @@ func (id CompilationJobId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("staticAutomationAccounts", "automationAccounts", "automationAccounts"),
 		resourceids.UserSpecifiedSegment("automationAccountName", "automationAccountValue"),
 		resourceids.StaticSegment("staticCompilationJobs", "compilationJobs", "compilationJobs"),
-		resourceids.UserSpecifiedSegment("jobId", "jobIdValue"),
+		resourceids.UserSpecifiedSegment("compilationJobName", "compilationJobValue"),
 	}
 }
 
@@ -131,7 +131,7 @@ func (id CompilationJobId) String() string {
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
 		fmt.Sprintf("Automation Account Name: %q", id.AutomationAccountName),
-		fmt.Sprintf("Job: %q", id.JobId),
+		fmt.Sprintf("Compilation Job Name: %q", id.CompilationJobName),
 	}
 	return fmt.Sprintf("Compilation Job (%s)", strings.Join(components, "\n"))
 }
