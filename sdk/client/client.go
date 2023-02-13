@@ -158,7 +158,10 @@ func (r *Response) Unmarshal(model interface{}) error {
 			contentType = strings.ToLower(r.Request.Header.Get("Content-Type"))
 		}
 	}
-	if strings.Contains(contentType, "application/json") {
+	isContentType := func(typ string) bool {
+		return strings.Contains(contentType, typ)
+	}
+	if isContentType("application/json") {
 		// Read the response body and close it
 		respBody, err := io.ReadAll(r.Body)
 		if err != nil {
@@ -178,7 +181,7 @@ func (r *Response) Unmarshal(model interface{}) error {
 		r.Body = io.NopCloser(bytes.NewBuffer(respBody))
 	}
 
-	if strings.Contains(contentType, "application/xml") || strings.Contains(contentType, "text/xml") {
+	if isContentType("application/xml") || isContentType("text/xml") {
 		// Read the response body and close it
 		respBody, err := io.ReadAll(r.Body)
 		if err != nil {
@@ -198,11 +201,8 @@ func (r *Response) Unmarshal(model interface{}) error {
 		r.Body = io.NopCloser(bytes.NewBuffer(respBody))
 	}
 
-	if strings.Contains(contentType, "application/octet-stream") {
-		if _, ok := model.([]byte); !ok {
-			return fmt.Errorf("internal-error: `model` must be []byte but got %+v", model)
-		}
-
+	if isContentType("application/octet-stream") ||
+		isContentType("text/powershell") {
 		// Read the response body and close it
 		respBody, err := io.ReadAll(r.Body)
 		if err != nil {
@@ -213,11 +213,20 @@ func (r *Response) Unmarshal(model interface{}) error {
 		// Trim away a BOM if present
 		respBody = bytes.TrimPrefix(respBody, []byte("\xef\xbb\xbf"))
 
-		// copy the byte stream across
-		model = respBody
-
 		// Reassign the response body as downstream code may expect it
 		r.Body = io.NopCloser(bytes.NewBuffer(respBody))
+
+		// copy the byte stream across
+		switch bs := model.(type) {
+		case []byte:
+			model = respBody
+		case *[]byte:
+			*bs = respBody
+		case **[]byte:
+			*bs = &respBody
+		default:
+			return fmt.Errorf("internal-error: `model` must be []byte but got %+v", model)
+		}
 	}
 
 	return nil

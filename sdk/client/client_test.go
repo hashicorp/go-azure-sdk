@@ -39,8 +39,34 @@ func TestAccClient(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	_, err = req.ExecutePaged(ctx)
+	resp, err := req.ExecutePaged(ctx)
 	if err != nil {
 		t.Fatalf("ExecutePaged(): %v", err)
 	}
+
+	// test resp unmarshal as json
+	resp.Header.Set("Content-Type", "application/json")
+	var resJSON interface{}
+	if err = resp.Unmarshal(&resJSON); err != nil {
+		t.Fatal(err)
+	}
+
+	// unmarshal as *[]byte
+	resp.Header.Set("Content-Type", "application/octet-stream")
+	var bs []byte
+	if err := resp.Unmarshal(&bs); err != nil {
+		t.Fatal(err)
+	}
+	var bsPtr *[]byte
+	if err := resp.Unmarshal(&bsPtr); err != nil {
+		t.Fatal(err)
+	}
+
+	// unmarshal to XML should raise an error
+	resp.Header.Set("Content-Type", "text/xml")
+	var resXML interface{}
+	if err = resp.Unmarshal(&resXML); err == nil {
+		t.Fatal("should raise an error when unmarshalling to XML")
+	}
+
 }
