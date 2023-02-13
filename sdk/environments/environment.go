@@ -140,18 +140,18 @@ type Environment struct {
 var _ Api = &ApiEndpoint{}
 
 type ApiEndpoint struct {
-	domainSuffix        *string
-	endpoint            *string
-	microsoftGraphAppId *string
-	name                string
-	resourceIdentifier  *string
+	domainSuffix       *string
+	endpoint           *string
+	appId              *string
+	name               string
+	resourceIdentifier *string
 }
 
-func NewApiEndpoint(name, endpoint string, microsoftGraphAppId *string) *ApiEndpoint {
+func NewApiEndpoint(name, endpoint string, appId *string) *ApiEndpoint {
 	return &ApiEndpoint{
-		endpoint:            pointer.To(endpoint),
-		microsoftGraphAppId: microsoftGraphAppId,
-		name:                name,
+		appId:    appId,
+		endpoint: pointer.To(endpoint),
+		name:     name,
 	}
 }
 
@@ -174,11 +174,11 @@ func (e *ApiEndpoint) Endpoint() (*string, bool) {
 	return e.endpoint, e.endpoint != nil
 }
 
-func (e *ApiEndpoint) MicrosoftGraphAppId() (*string, bool) {
-	if e == nil || e.microsoftGraphAppId == nil {
+func (e *ApiEndpoint) AppId() (*string, bool) {
+	if e == nil || e.appId == nil {
 		return nil, false
 	}
-	return e.microsoftGraphAppId, true
+	return e.appId, true
 }
 
 func (e *ApiEndpoint) Name() string {
