@@ -2,6 +2,7 @@ package entityqueries
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"net/http"
 	"net/url"
@@ -132,8 +133,8 @@ func (c EntityQueriesClient) preparerForListWithNextLink(ctx context.Context, ne
 // closes the http.Response Body.
 func (c EntityQueriesClient) responderForList(resp *http.Response) (result ListOperationResponse, err error) {
 	type page struct {
-		Values   []EntityQuery `json:"value"`
-		NextLink *string       `json:"nextLink"`
+		Values   []json.RawMessage `json:"value"`
+		NextLink *string           `json:"nextLink"`
 	}
 	var respObj page
 	err = autorest.Respond(
@@ -142,7 +143,16 @@ func (c EntityQueriesClient) responderForList(resp *http.Response) (result ListO
 		autorest.ByUnmarshallingJSON(&respObj),
 		autorest.ByClosing())
 	result.HttpResponse = resp
-	result.Model = &respObj.Values
+	temp := make([]EntityQuery, 0)
+	for i, v := range respObj.Values {
+		val, err := unmarshalEntityQueryImplementation(v)
+		if err != nil {
+			err = fmt.Errorf("unmarshalling item %d for EntityQuery (%q): %+v", i, v, err)
+			return result, err
+		}
+		temp = append(temp, val)
+	}
+	result.Model = &temp
 	result.nextLink = respObj.NextLink
 	if respObj.NextLink != nil {
 		result.nextPageFunc = func(ctx context.Context, nextLink string) (result ListOperationResponse, err error) {

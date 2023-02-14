@@ -2,6 +2,7 @@ package addons
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"net/http"
 	"net/url"
@@ -103,8 +104,8 @@ func (c AddonsClient) preparerForListByRoleWithNextLink(ctx context.Context, nex
 // closes the http.Response Body.
 func (c AddonsClient) responderForListByRole(resp *http.Response) (result ListByRoleOperationResponse, err error) {
 	type page struct {
-		Values   []Addon `json:"value"`
-		NextLink *string `json:"nextLink"`
+		Values   []json.RawMessage `json:"value"`
+		NextLink *string           `json:"nextLink"`
 	}
 	var respObj page
 	err = autorest.Respond(
@@ -113,7 +114,16 @@ func (c AddonsClient) responderForListByRole(resp *http.Response) (result ListBy
 		autorest.ByUnmarshallingJSON(&respObj),
 		autorest.ByClosing())
 	result.HttpResponse = resp
-	result.Model = &respObj.Values
+	temp := make([]Addon, 0)
+	for i, v := range respObj.Values {
+		val, err := unmarshalAddonImplementation(v)
+		if err != nil {
+			err = fmt.Errorf("unmarshalling item %d for Addon (%q): %+v", i, v, err)
+			return result, err
+		}
+		temp = append(temp, val)
+	}
+	result.Model = &temp
 	result.nextLink = respObj.NextLink
 	if respObj.NextLink != nil {
 		result.nextPageFunc = func(ctx context.Context, nextLink string) (result ListByRoleOperationResponse, err error) {

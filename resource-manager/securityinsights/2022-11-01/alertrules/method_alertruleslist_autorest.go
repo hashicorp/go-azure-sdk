@@ -2,6 +2,7 @@ package alertrules
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"net/http"
 	"net/url"
@@ -103,8 +104,8 @@ func (c AlertRulesClient) preparerForAlertRulesListWithNextLink(ctx context.Cont
 // closes the http.Response Body.
 func (c AlertRulesClient) responderForAlertRulesList(resp *http.Response) (result AlertRulesListOperationResponse, err error) {
 	type page struct {
-		Values   []AlertRule `json:"value"`
-		NextLink *string     `json:"nextLink"`
+		Values   []json.RawMessage `json:"value"`
+		NextLink *string           `json:"nextLink"`
 	}
 	var respObj page
 	err = autorest.Respond(
@@ -113,7 +114,16 @@ func (c AlertRulesClient) responderForAlertRulesList(resp *http.Response) (resul
 		autorest.ByUnmarshallingJSON(&respObj),
 		autorest.ByClosing())
 	result.HttpResponse = resp
-	result.Model = &respObj.Values
+	temp := make([]AlertRule, 0)
+	for i, v := range respObj.Values {
+		val, err := unmarshalAlertRuleImplementation(v)
+		if err != nil {
+			err = fmt.Errorf("unmarshalling item %d for AlertRule (%q): %+v", i, v, err)
+			return result, err
+		}
+		temp = append(temp, val)
+	}
+	result.Model = &temp
 	result.nextLink = respObj.NextLink
 	if respObj.NextLink != nil {
 		result.nextPageFunc = func(ctx context.Context, nextLink string) (result AlertRulesListOperationResponse, err error) {
