@@ -54,11 +54,16 @@ func TestAccClient(t *testing.T) {
 	// unmarshal as *[]byte
 	resp.Header.Set("Content-Type", "application/octet-stream")
 	var bs []byte
-	if err := resp.Unmarshal(&bs); err != nil {
+	// pass slice itself will not work
+	if err = resp.Unmarshal(bs); err == nil {
+		t.Fatalf("response []byte should raise an error")
+	}
+
+	if err = resp.Unmarshal(&bs); err != nil {
 		t.Fatal(err)
 	}
 	var bsPtr *[]byte
-	if err := resp.Unmarshal(&bsPtr); err != nil {
+	if err = resp.Unmarshal(&bsPtr); err != nil {
 		t.Fatal(err)
 	}
 

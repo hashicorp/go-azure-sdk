@@ -218,14 +218,12 @@ func (r *Response) Unmarshal(model interface{}) error {
 
 		// copy the byte stream across
 		switch bs := model.(type) {
-		case []byte:
-			model = respBody
 		case *[]byte:
 			*bs = respBody
 		case **[]byte:
 			*bs = &respBody
 		default:
-			return fmt.Errorf("internal-error: `model` must be []byte but got %+v", model)
+			return fmt.Errorf("internal-error: `model` must be *[]byte or **[]byte but got %+v", model)
 		}
 	}
 
