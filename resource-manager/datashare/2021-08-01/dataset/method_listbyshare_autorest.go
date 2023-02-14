@@ -144,6 +144,7 @@ func (c DataSetClient) responderForListByShare(resp *http.Response) (result List
 	err = autorest.Respond(
 		resp,
 		azure.WithErrorUnlessStatusCode(http.StatusOK),
+		autorest.ByUnmarshallingJSON(&respObj),
 		autorest.ByClosing())
 	result.HttpResponse = resp
 	result.Model = &respObj.Values

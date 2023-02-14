@@ -2,8 +2,8 @@ package dppfeaturesupport
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
-	"io/ioutil"
 	"net/http"
 
 	"github.com/Azure/go-autorest/autorest"
@@ -60,16 +60,14 @@ func (c DppFeatureSupportClient) preparerForDataProtectionCheckFeatureSupport(ct
 // responderForDataProtectionCheckFeatureSupport handles the response to the DataProtectionCheckFeatureSupport request. The method always
 // closes the http.Response Body.
 func (c DppFeatureSupportClient) responderForDataProtectionCheckFeatureSupport(resp *http.Response) (result DataProtectionCheckFeatureSupportOperationResponse, err error) {
+	var respObj json.RawMessage
 	err = autorest.Respond(
 		resp,
 		azure.WithErrorUnlessStatusCode(http.StatusOK),
+		autorest.ByUnmarshallingJSON(&respObj),
 		autorest.ByClosing())
 	result.HttpResponse = resp
-	b, err := ioutil.ReadAll(resp.Body)
-	if err != nil {
-		return result, fmt.Errorf("reading response body for FeatureValidationResponseBase: %+v", err)
-	}
-	model, err := unmarshalFeatureValidationResponseBaseImplementation(b)
+	model, err := unmarshalFeatureValidationResponseBaseImplementation(respObj)
 	if err != nil {
 		return
 	}

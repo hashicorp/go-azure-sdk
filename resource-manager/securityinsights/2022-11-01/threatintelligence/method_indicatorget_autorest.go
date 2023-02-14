@@ -2,8 +2,7 @@ package threatintelligence
 
 import (
 	"context"
-	"fmt"
-	"io/ioutil"
+	"encoding/json"
 	"net/http"
 
 	"github.com/Azure/go-autorest/autorest"
@@ -59,16 +58,14 @@ func (c ThreatIntelligenceClient) preparerForIndicatorGet(ctx context.Context, i
 // responderForIndicatorGet handles the response to the IndicatorGet request. The method always
 // closes the http.Response Body.
 func (c ThreatIntelligenceClient) responderForIndicatorGet(resp *http.Response) (result IndicatorGetOperationResponse, err error) {
+	var respObj json.RawMessage
 	err = autorest.Respond(
 		resp,
 		azure.WithErrorUnlessStatusCode(http.StatusOK),
+		autorest.ByUnmarshallingJSON(&respObj),
 		autorest.ByClosing())
 	result.HttpResponse = resp
-	b, err := ioutil.ReadAll(resp.Body)
-	if err != nil {
-		return result, fmt.Errorf("reading response body for ThreatIntelligenceInformation: %+v", err)
-	}
-	model, err := unmarshalThreatIntelligenceInformationImplementation(b)
+	model, err := unmarshalThreatIntelligenceInformationImplementation(respObj)
 	if err != nil {
 		return
 	}

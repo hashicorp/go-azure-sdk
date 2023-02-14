@@ -2,8 +2,7 @@ package trigger
 
 import (
 	"context"
-	"fmt"
-	"io/ioutil"
+	"encoding/json"
 	"net/http"
 
 	"github.com/Azure/go-autorest/autorest"
@@ -59,16 +58,14 @@ func (c TriggerClient) preparerForGet(ctx context.Context, id TriggerId) (*http.
 // responderForGet handles the response to the Get request. The method always
 // closes the http.Response Body.
 func (c TriggerClient) responderForGet(resp *http.Response) (result GetOperationResponse, err error) {
+	var respObj json.RawMessage
 	err = autorest.Respond(
 		resp,
 		azure.WithErrorUnlessStatusCode(http.StatusOK),
+		autorest.ByUnmarshallingJSON(&respObj),
 		autorest.ByClosing())
 	result.HttpResponse = resp
-	b, err := ioutil.ReadAll(resp.Body)
-	if err != nil {
-		return result, fmt.Errorf("reading response body for Trigger: %+v", err)
-	}
-	model, err := unmarshalTriggerImplementation(b)
+	model, err := unmarshalTriggerImplementation(respObj)
 	if err != nil {
 		return
 	}

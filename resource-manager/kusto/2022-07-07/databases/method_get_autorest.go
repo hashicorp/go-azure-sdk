@@ -2,8 +2,7 @@ package databases
 
 import (
 	"context"
-	"fmt"
-	"io/ioutil"
+	"encoding/json"
 	"net/http"
 
 	"github.com/Azure/go-autorest/autorest"
@@ -59,16 +58,14 @@ func (c DatabasesClient) preparerForGet(ctx context.Context, id DatabaseId) (*ht
 // responderForGet handles the response to the Get request. The method always
 // closes the http.Response Body.
 func (c DatabasesClient) responderForGet(resp *http.Response) (result GetOperationResponse, err error) {
+	var respObj json.RawMessage
 	err = autorest.Respond(
 		resp,
 		azure.WithErrorUnlessStatusCode(http.StatusOK),
+		autorest.ByUnmarshallingJSON(&respObj),
 		autorest.ByClosing())
 	result.HttpResponse = resp
-	b, err := ioutil.ReadAll(resp.Body)
-	if err != nil {
-		return result, fmt.Errorf("reading response body for Database: %+v", err)
-	}
-	model, err := unmarshalDatabaseImplementation(b)
+	model, err := unmarshalDatabaseImplementation(respObj)
 	if err != nil {
 		return
 	}

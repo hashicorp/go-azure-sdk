@@ -2,8 +2,7 @@ package dataconnectors
 
 import (
 	"context"
-	"fmt"
-	"io/ioutil"
+	"encoding/json"
 	"net/http"
 
 	"github.com/Azure/go-autorest/autorest"
@@ -60,16 +59,14 @@ func (c DataConnectorsClient) preparerForDataConnectorsCreateOrUpdate(ctx contex
 // responderForDataConnectorsCreateOrUpdate handles the response to the DataConnectorsCreateOrUpdate request. The method always
 // closes the http.Response Body.
 func (c DataConnectorsClient) responderForDataConnectorsCreateOrUpdate(resp *http.Response) (result DataConnectorsCreateOrUpdateOperationResponse, err error) {
+	var respObj json.RawMessage
 	err = autorest.Respond(
 		resp,
 		azure.WithErrorUnlessStatusCode(http.StatusCreated, http.StatusOK),
+		autorest.ByUnmarshallingJSON(&respObj),
 		autorest.ByClosing())
 	result.HttpResponse = resp
-	b, err := ioutil.ReadAll(resp.Body)
-	if err != nil {
-		return result, fmt.Errorf("reading response body for DataConnector: %+v", err)
-	}
-	model, err := unmarshalDataConnectorImplementation(b)
+	model, err := unmarshalDataConnectorImplementation(respObj)
 	if err != nil {
 		return
 	}
