@@ -2,6 +2,7 @@ package dataconnectors
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"net/http"
 	"net/url"
@@ -103,8 +104,8 @@ func (c DataConnectorsClient) preparerForDataConnectorsListWithNextLink(ctx cont
 // closes the http.Response Body.
 func (c DataConnectorsClient) responderForDataConnectorsList(resp *http.Response) (result DataConnectorsListOperationResponse, err error) {
 	type page struct {
-		Values   []DataConnector `json:"value"`
-		NextLink *string         `json:"nextLink"`
+		Values   []json.RawMessage `json:"value"`
+		NextLink *string           `json:"nextLink"`
 	}
 	var respObj page
 	err = autorest.Respond(
@@ -113,7 +114,16 @@ func (c DataConnectorsClient) responderForDataConnectorsList(resp *http.Response
 		autorest.ByUnmarshallingJSON(&respObj),
 		autorest.ByClosing())
 	result.HttpResponse = resp
-	result.Model = &respObj.Values
+	temp := make([]DataConnector, 0)
+	for i, v := range respObj.Values {
+		val, err := unmarshalDataConnectorImplementation(v)
+		if err != nil {
+			err = fmt.Errorf("unmarshalling item %d for DataConnector (%q): %+v", i, v, err)
+			return result, err
+		}
+		temp = append(temp, val)
+	}
+	result.Model = &temp
 	result.nextLink = respObj.NextLink
 	if respObj.NextLink != nil {
 		result.nextPageFunc = func(ctx context.Context, nextLink string) (result DataConnectorsListOperationResponse, err error) {

@@ -2,6 +2,7 @@ package securitymlanalyticssettings
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"net/http"
 	"net/url"
@@ -103,8 +104,8 @@ func (c SecurityMLAnalyticsSettingsClient) preparerForSecurityMLAnalyticsSetting
 // closes the http.Response Body.
 func (c SecurityMLAnalyticsSettingsClient) responderForSecurityMLAnalyticsSettingsList(resp *http.Response) (result SecurityMLAnalyticsSettingsListOperationResponse, err error) {
 	type page struct {
-		Values   []SecurityMLAnalyticsSetting `json:"value"`
-		NextLink *string                      `json:"nextLink"`
+		Values   []json.RawMessage `json:"value"`
+		NextLink *string           `json:"nextLink"`
 	}
 	var respObj page
 	err = autorest.Respond(
@@ -113,7 +114,16 @@ func (c SecurityMLAnalyticsSettingsClient) responderForSecurityMLAnalyticsSettin
 		autorest.ByUnmarshallingJSON(&respObj),
 		autorest.ByClosing())
 	result.HttpResponse = resp
-	result.Model = &respObj.Values
+	temp := make([]SecurityMLAnalyticsSetting, 0)
+	for i, v := range respObj.Values {
+		val, err := unmarshalSecurityMLAnalyticsSettingImplementation(v)
+		if err != nil {
+			err = fmt.Errorf("unmarshalling item %d for SecurityMLAnalyticsSetting (%q): %+v", i, v, err)
+			return result, err
+		}
+		temp = append(temp, val)
+	}
+	result.Model = &temp
 	result.nextLink = respObj.NextLink
 	if respObj.NextLink != nil {
 		result.nextPageFunc = func(ctx context.Context, nextLink string) (result SecurityMLAnalyticsSettingsListOperationResponse, err error) {

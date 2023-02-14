@@ -2,6 +2,7 @@ package synchronizationsetting
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"net/http"
 	"net/url"
@@ -103,8 +104,8 @@ func (c SynchronizationSettingClient) preparerForListByShareWithNextLink(ctx con
 // closes the http.Response Body.
 func (c SynchronizationSettingClient) responderForListByShare(resp *http.Response) (result ListByShareOperationResponse, err error) {
 	type page struct {
-		Values   []SynchronizationSetting `json:"value"`
-		NextLink *string                  `json:"nextLink"`
+		Values   []json.RawMessage `json:"value"`
+		NextLink *string           `json:"nextLink"`
 	}
 	var respObj page
 	err = autorest.Respond(
@@ -113,7 +114,16 @@ func (c SynchronizationSettingClient) responderForListByShare(resp *http.Respons
 		autorest.ByUnmarshallingJSON(&respObj),
 		autorest.ByClosing())
 	result.HttpResponse = resp
-	result.Model = &respObj.Values
+	temp := make([]SynchronizationSetting, 0)
+	for i, v := range respObj.Values {
+		val, err := unmarshalSynchronizationSettingImplementation(v)
+		if err != nil {
+			err = fmt.Errorf("unmarshalling item %d for SynchronizationSetting (%q): %+v", i, v, err)
+			return result, err
+		}
+		temp = append(temp, val)
+	}
+	result.Model = &temp
 	result.nextLink = respObj.NextLink
 	if respObj.NextLink != nil {
 		result.nextPageFunc = func(ctx context.Context, nextLink string) (result ListByShareOperationResponse, err error) {

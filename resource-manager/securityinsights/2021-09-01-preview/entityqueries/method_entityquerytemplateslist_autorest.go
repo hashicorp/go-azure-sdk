@@ -2,6 +2,7 @@ package entityqueries
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"net/http"
 	"net/url"
@@ -132,8 +133,8 @@ func (c EntityQueriesClient) preparerForEntityQueryTemplatesListWithNextLink(ctx
 // closes the http.Response Body.
 func (c EntityQueriesClient) responderForEntityQueryTemplatesList(resp *http.Response) (result EntityQueryTemplatesListOperationResponse, err error) {
 	type page struct {
-		Values   []EntityQueryTemplate `json:"value"`
-		NextLink *string               `json:"nextLink"`
+		Values   []json.RawMessage `json:"value"`
+		NextLink *string           `json:"nextLink"`
 	}
 	var respObj page
 	err = autorest.Respond(
@@ -142,7 +143,16 @@ func (c EntityQueriesClient) responderForEntityQueryTemplatesList(resp *http.Res
 		autorest.ByUnmarshallingJSON(&respObj),
 		autorest.ByClosing())
 	result.HttpResponse = resp
-	result.Model = &respObj.Values
+	temp := make([]EntityQueryTemplate, 0)
+	for i, v := range respObj.Values {
+		val, err := unmarshalEntityQueryTemplateImplementation(v)
+		if err != nil {
+			err = fmt.Errorf("unmarshalling item %d for EntityQueryTemplate (%q): %+v", i, v, err)
+			return result, err
+		}
+		temp = append(temp, val)
+	}
+	result.Model = &temp
 	result.nextLink = respObj.NextLink
 	if respObj.NextLink != nil {
 		result.nextPageFunc = func(ctx context.Context, nextLink string) (result EntityQueryTemplatesListOperationResponse, err error) {

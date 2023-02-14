@@ -2,6 +2,7 @@ package sharesubscription
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"net/http"
 	"net/url"
@@ -103,8 +104,8 @@ func (c ShareSubscriptionClient) preparerForListSourceShareSynchronizationSettin
 // closes the http.Response Body.
 func (c ShareSubscriptionClient) responderForListSourceShareSynchronizationSettings(resp *http.Response) (result ListSourceShareSynchronizationSettingsOperationResponse, err error) {
 	type page struct {
-		Values   []SourceShareSynchronizationSetting `json:"value"`
-		NextLink *string                             `json:"nextLink"`
+		Values   []json.RawMessage `json:"value"`
+		NextLink *string           `json:"nextLink"`
 	}
 	var respObj page
 	err = autorest.Respond(
@@ -113,7 +114,16 @@ func (c ShareSubscriptionClient) responderForListSourceShareSynchronizationSetti
 		autorest.ByUnmarshallingJSON(&respObj),
 		autorest.ByClosing())
 	result.HttpResponse = resp
-	result.Model = &respObj.Values
+	temp := make([]SourceShareSynchronizationSetting, 0)
+	for i, v := range respObj.Values {
+		val, err := unmarshalSourceShareSynchronizationSettingImplementation(v)
+		if err != nil {
+			err = fmt.Errorf("unmarshalling item %d for SourceShareSynchronizationSetting (%q): %+v", i, v, err)
+			return result, err
+		}
+		temp = append(temp, val)
+	}
+	result.Model = &temp
 	result.nextLink = respObj.NextLink
 	if respObj.NextLink != nil {
 		result.nextPageFunc = func(ctx context.Context, nextLink string) (result ListSourceShareSynchronizationSettingsOperationResponse, err error) {
