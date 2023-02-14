@@ -155,6 +155,7 @@ func (c UsageDetailsClient) responderForList(resp *http.Response) (result ListOp
 	err = autorest.Respond(
 		resp,
 		azure.WithErrorUnlessStatusCode(http.StatusOK),
+		autorest.ByUnmarshallingJSON(&respObj),
 		autorest.ByClosing())
 	result.HttpResponse = resp
 	result.Model = &respObj.Values

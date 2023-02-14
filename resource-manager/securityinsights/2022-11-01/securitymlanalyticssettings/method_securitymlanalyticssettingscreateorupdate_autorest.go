@@ -2,8 +2,7 @@ package securitymlanalyticssettings
 
 import (
 	"context"
-	"fmt"
-	"io/ioutil"
+	"encoding/json"
 	"net/http"
 
 	"github.com/Azure/go-autorest/autorest"
@@ -60,16 +59,14 @@ func (c SecurityMLAnalyticsSettingsClient) preparerForSecurityMLAnalyticsSetting
 // responderForSecurityMLAnalyticsSettingsCreateOrUpdate handles the response to the SecurityMLAnalyticsSettingsCreateOrUpdate request. The method always
 // closes the http.Response Body.
 func (c SecurityMLAnalyticsSettingsClient) responderForSecurityMLAnalyticsSettingsCreateOrUpdate(resp *http.Response) (result SecurityMLAnalyticsSettingsCreateOrUpdateOperationResponse, err error) {
+	var respObj json.RawMessage
 	err = autorest.Respond(
 		resp,
 		azure.WithErrorUnlessStatusCode(http.StatusCreated, http.StatusOK),
+		autorest.ByUnmarshallingJSON(&respObj),
 		autorest.ByClosing())
 	result.HttpResponse = resp
-	b, err := ioutil.ReadAll(resp.Body)
-	if err != nil {
-		return result, fmt.Errorf("reading response body for SecurityMLAnalyticsSetting: %+v", err)
-	}
-	model, err := unmarshalSecurityMLAnalyticsSettingImplementation(b)
+	model, err := unmarshalSecurityMLAnalyticsSettingImplementation(respObj)
 	if err != nil {
 		return
 	}

@@ -2,8 +2,7 @@ package settings
 
 import (
 	"context"
-	"fmt"
-	"io/ioutil"
+	"encoding/json"
 	"net/http"
 
 	"github.com/Azure/go-autorest/autorest"
@@ -60,16 +59,14 @@ func (c SettingsClient) preparerForProductSettingsUpdate(ctx context.Context, id
 // responderForProductSettingsUpdate handles the response to the ProductSettingsUpdate request. The method always
 // closes the http.Response Body.
 func (c SettingsClient) responderForProductSettingsUpdate(resp *http.Response) (result ProductSettingsUpdateOperationResponse, err error) {
+	var respObj json.RawMessage
 	err = autorest.Respond(
 		resp,
 		azure.WithErrorUnlessStatusCode(http.StatusOK),
+		autorest.ByUnmarshallingJSON(&respObj),
 		autorest.ByClosing())
 	result.HttpResponse = resp
-	b, err := ioutil.ReadAll(resp.Body)
-	if err != nil {
-		return result, fmt.Errorf("reading response body for Settings: %+v", err)
-	}
-	model, err := unmarshalSettingsImplementation(b)
+	model, err := unmarshalSettingsImplementation(respObj)
 	if err != nil {
 		return
 	}

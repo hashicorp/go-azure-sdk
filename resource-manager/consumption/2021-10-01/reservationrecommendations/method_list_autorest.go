@@ -140,6 +140,7 @@ func (c ReservationRecommendationsClient) responderForList(resp *http.Response) 
 	err = autorest.Respond(
 		resp,
 		azure.WithErrorUnlessStatusCode(http.StatusNoContent, http.StatusOK),
+		autorest.ByUnmarshallingJSON(&respObj),
 		autorest.ByClosing())
 	result.HttpResponse = resp
 	result.Model = &respObj.Values

@@ -2,8 +2,7 @@ package entityqueries
 
 import (
 	"context"
-	"fmt"
-	"io/ioutil"
+	"encoding/json"
 	"net/http"
 
 	"github.com/Azure/go-autorest/autorest"
@@ -60,16 +59,14 @@ func (c EntityQueriesClient) preparerForCreateOrUpdate(ctx context.Context, id E
 // responderForCreateOrUpdate handles the response to the CreateOrUpdate request. The method always
 // closes the http.Response Body.
 func (c EntityQueriesClient) responderForCreateOrUpdate(resp *http.Response) (result CreateOrUpdateOperationResponse, err error) {
+	var respObj json.RawMessage
 	err = autorest.Respond(
 		resp,
 		azure.WithErrorUnlessStatusCode(http.StatusCreated, http.StatusOK),
+		autorest.ByUnmarshallingJSON(&respObj),
 		autorest.ByClosing())
 	result.HttpResponse = resp
-	b, err := ioutil.ReadAll(resp.Body)
-	if err != nil {
-		return result, fmt.Errorf("reading response body for EntityQuery: %+v", err)
-	}
-	model, err := unmarshalEntityQueryImplementation(b)
+	model, err := unmarshalEntityQueryImplementation(respObj)
 	if err != nil {
 		return
 	}

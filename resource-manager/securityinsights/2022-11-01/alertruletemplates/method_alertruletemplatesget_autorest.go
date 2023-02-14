@@ -2,8 +2,7 @@ package alertruletemplates
 
 import (
 	"context"
-	"fmt"
-	"io/ioutil"
+	"encoding/json"
 	"net/http"
 
 	"github.com/Azure/go-autorest/autorest"
@@ -59,16 +58,14 @@ func (c AlertRuleTemplatesClient) preparerForAlertRuleTemplatesGet(ctx context.C
 // responderForAlertRuleTemplatesGet handles the response to the AlertRuleTemplatesGet request. The method always
 // closes the http.Response Body.
 func (c AlertRuleTemplatesClient) responderForAlertRuleTemplatesGet(resp *http.Response) (result AlertRuleTemplatesGetOperationResponse, err error) {
+	var respObj json.RawMessage
 	err = autorest.Respond(
 		resp,
 		azure.WithErrorUnlessStatusCode(http.StatusOK),
+		autorest.ByUnmarshallingJSON(&respObj),
 		autorest.ByClosing())
 	result.HttpResponse = resp
-	b, err := ioutil.ReadAll(resp.Body)
-	if err != nil {
-		return result, fmt.Errorf("reading response body for AlertRuleTemplate: %+v", err)
-	}
-	model, err := unmarshalAlertRuleTemplateImplementation(b)
+	model, err := unmarshalAlertRuleTemplateImplementation(respObj)
 	if err != nil {
 		return
 	}

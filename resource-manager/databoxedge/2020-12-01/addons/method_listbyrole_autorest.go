@@ -110,6 +110,7 @@ func (c AddonsClient) responderForListByRole(resp *http.Response) (result ListBy
 	err = autorest.Respond(
 		resp,
 		azure.WithErrorUnlessStatusCode(http.StatusOK),
+		autorest.ByUnmarshallingJSON(&respObj),
 		autorest.ByClosing())
 	result.HttpResponse = resp
 	result.Model = &respObj.Values

@@ -111,6 +111,7 @@ func (c SettingsClient) responderForList(resp *http.Response) (result ListOperat
 	err = autorest.Respond(
 		resp,
 		azure.WithErrorUnlessStatusCode(http.StatusOK),
+		autorest.ByUnmarshallingJSON(&respObj),
 		autorest.ByClosing())
 	result.HttpResponse = resp
 	result.Model = &respObj.Values
