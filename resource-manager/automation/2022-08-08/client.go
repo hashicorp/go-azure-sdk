@@ -1,7 +1,8 @@
 package v2022_08_08
 
 import (
-	"github.com/Azure/go-autorest/autorest"
+	"fmt"
+
 	"github.com/hashicorp/go-azure-sdk/resource-manager/automation/2022-08-08/activity"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/automation/2022-08-08/automationaccount"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/automation/2022-08-08/certificate"
@@ -36,6 +37,8 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/automation/2022-08-08/typefields"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/automation/2022-08-08/usages"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/automation/2022-08-08/variable"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -75,144 +78,245 @@ type Client struct {
 	Variable                                           *variable.VariableClient
 }
 
-func NewClientWithBaseURI(endpoint string, configureAuthFunc func(c *autorest.Client)) Client {
-
-	activityClient := activity.NewActivityClientWithBaseURI(endpoint)
-	configureAuthFunc(&activityClient.Client)
-
-	automationAccountClient := automationaccount.NewAutomationAccountClientWithBaseURI(endpoint)
-	configureAuthFunc(&automationAccountClient.Client)
-
-	certificateClient := certificate.NewCertificateClientWithBaseURI(endpoint)
-	configureAuthFunc(&certificateClient.Client)
-
-	connectionClient := connection.NewConnectionClientWithBaseURI(endpoint)
-	configureAuthFunc(&connectionClient.Client)
-
-	connectionTypeClient := connectiontype.NewConnectionTypeClientWithBaseURI(endpoint)
-	configureAuthFunc(&connectionTypeClient.Client)
-
-	credentialClient := credential.NewCredentialClientWithBaseURI(endpoint)
-	configureAuthFunc(&credentialClient.Client)
-
-	dscConfigurationClient := dscconfiguration.NewDscConfigurationClientWithBaseURI(endpoint)
-	configureAuthFunc(&dscConfigurationClient.Client)
-
-	dscNodeConfigurationClient := dscnodeconfiguration.NewDscNodeConfigurationClientWithBaseURI(endpoint)
-	configureAuthFunc(&dscNodeConfigurationClient.Client)
-
-	hybridRunbookWorkerClient := hybridrunbookworker.NewHybridRunbookWorkerClientWithBaseURI(endpoint)
-	configureAuthFunc(&hybridRunbookWorkerClient.Client)
-
-	hybridRunbookWorkerGroupClient := hybridrunbookworkergroup.NewHybridRunbookWorkerGroupClientWithBaseURI(endpoint)
-	configureAuthFunc(&hybridRunbookWorkerGroupClient.Client)
-
-	jobClient := job.NewJobClientWithBaseURI(endpoint)
-	configureAuthFunc(&jobClient.Client)
-
-	jobScheduleClient := jobschedule.NewJobScheduleClientWithBaseURI(endpoint)
-	configureAuthFunc(&jobScheduleClient.Client)
-
-	jobStreamClient := jobstream.NewJobStreamClientWithBaseURI(endpoint)
-	configureAuthFunc(&jobStreamClient.Client)
-
-	linkedWorkspaceClient := linkedworkspace.NewLinkedWorkspaceClientWithBaseURI(endpoint)
-	configureAuthFunc(&linkedWorkspaceClient.Client)
-
-	listAllHybridRunbookWorkerGroupInAutomationAccountClient := listallhybridrunbookworkergroupinautomationaccount.NewListAllHybridRunbookWorkerGroupInAutomationAccountClientWithBaseURI(endpoint)
-	configureAuthFunc(&listAllHybridRunbookWorkerGroupInAutomationAccountClient.Client)
-
-	listKeysClient := listkeys.NewListKeysClientWithBaseURI(endpoint)
-	configureAuthFunc(&listKeysClient.Client)
-
-	moduleClient := module.NewModuleClientWithBaseURI(endpoint)
-	configureAuthFunc(&moduleClient.Client)
-
-	objectDataTypesClient := objectdatatypes.NewObjectDataTypesClientWithBaseURI(endpoint)
-	configureAuthFunc(&objectDataTypesClient.Client)
-
-	python2PackageClient := python2package.NewPython2PackageClientWithBaseURI(endpoint)
-	configureAuthFunc(&python2PackageClient.Client)
-
-	python3PackageClient := python3package.NewPython3PackageClientWithBaseURI(endpoint)
-	configureAuthFunc(&python3PackageClient.Client)
-
-	runbookClient := runbook.NewRunbookClientWithBaseURI(endpoint)
-	configureAuthFunc(&runbookClient.Client)
-
-	runbookDraftClient := runbookdraft.NewRunbookDraftClientWithBaseURI(endpoint)
-	configureAuthFunc(&runbookDraftClient.Client)
-
-	scheduleClient := schedule.NewScheduleClientWithBaseURI(endpoint)
-	configureAuthFunc(&scheduleClient.Client)
-
-	softwareUpdateConfigurationMachineRunClient := softwareupdateconfigurationmachinerun.NewSoftwareUpdateConfigurationMachineRunClientWithBaseURI(endpoint)
-	configureAuthFunc(&softwareUpdateConfigurationMachineRunClient.Client)
-
-	softwareUpdateConfigurationRunClient := softwareupdateconfigurationrun.NewSoftwareUpdateConfigurationRunClientWithBaseURI(endpoint)
-	configureAuthFunc(&softwareUpdateConfigurationRunClient.Client)
-
-	sourceControlClient := sourcecontrol.NewSourceControlClientWithBaseURI(endpoint)
-	configureAuthFunc(&sourceControlClient.Client)
-
-	sourceControlSyncJobClient := sourcecontrolsyncjob.NewSourceControlSyncJobClientWithBaseURI(endpoint)
-	configureAuthFunc(&sourceControlSyncJobClient.Client)
-
-	sourceControlSyncJobStreamsClient := sourcecontrolsyncjobstreams.NewSourceControlSyncJobStreamsClientWithBaseURI(endpoint)
-	configureAuthFunc(&sourceControlSyncJobStreamsClient.Client)
-
-	statisticsClient := statistics.NewStatisticsClientWithBaseURI(endpoint)
-	configureAuthFunc(&statisticsClient.Client)
-
-	testJobClient := testjob.NewTestJobClientWithBaseURI(endpoint)
-	configureAuthFunc(&testJobClient.Client)
-
-	testJobStreamClient := testjobstream.NewTestJobStreamClientWithBaseURI(endpoint)
-	configureAuthFunc(&testJobStreamClient.Client)
-
-	typeFieldsClient := typefields.NewTypeFieldsClientWithBaseURI(endpoint)
-	configureAuthFunc(&typeFieldsClient.Client)
-
-	usagesClient := usages.NewUsagesClientWithBaseURI(endpoint)
-	configureAuthFunc(&usagesClient.Client)
-
-	variableClient := variable.NewVariableClientWithBaseURI(endpoint)
-	configureAuthFunc(&variableClient.Client)
-
-	return Client{
-		Activity:                 &activityClient,
-		AutomationAccount:        &automationAccountClient,
-		Certificate:              &certificateClient,
-		Connection:               &connectionClient,
-		ConnectionType:           &connectionTypeClient,
-		Credential:               &credentialClient,
-		DscConfiguration:         &dscConfigurationClient,
-		DscNodeConfiguration:     &dscNodeConfigurationClient,
-		HybridRunbookWorker:      &hybridRunbookWorkerClient,
-		HybridRunbookWorkerGroup: &hybridRunbookWorkerGroupClient,
-		Job:                      &jobClient,
-		JobSchedule:              &jobScheduleClient,
-		JobStream:                &jobStreamClient,
-		LinkedWorkspace:          &linkedWorkspaceClient,
-		ListAllHybridRunbookWorkerGroupInAutomationAccount: &listAllHybridRunbookWorkerGroupInAutomationAccountClient,
-		ListKeys:                              &listKeysClient,
-		Module:                                &moduleClient,
-		ObjectDataTypes:                       &objectDataTypesClient,
-		Python2Package:                        &python2PackageClient,
-		Python3Package:                        &python3PackageClient,
-		Runbook:                               &runbookClient,
-		RunbookDraft:                          &runbookDraftClient,
-		Schedule:                              &scheduleClient,
-		SoftwareUpdateConfigurationMachineRun: &softwareUpdateConfigurationMachineRunClient,
-		SoftwareUpdateConfigurationRun:        &softwareUpdateConfigurationRunClient,
-		SourceControl:                         &sourceControlClient,
-		SourceControlSyncJob:                  &sourceControlSyncJobClient,
-		SourceControlSyncJobStreams:           &sourceControlSyncJobStreamsClient,
-		Statistics:                            &statisticsClient,
-		TestJob:                               &testJobClient,
-		TestJobStream:                         &testJobStreamClient,
-		TypeFields:                            &typeFieldsClient,
-		Usages:                                &usagesClient,
-		Variable:                              &variableClient,
+func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+	activityClient, err := activity.NewActivityClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building Activity client: %+v", err)
 	}
+	configureFunc(activityClient.Client)
+
+	automationAccountClient, err := automationaccount.NewAutomationAccountClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building AutomationAccount client: %+v", err)
+	}
+	configureFunc(automationAccountClient.Client)
+
+	certificateClient, err := certificate.NewCertificateClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building Certificate client: %+v", err)
+	}
+	configureFunc(certificateClient.Client)
+
+	connectionClient, err := connection.NewConnectionClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building Connection client: %+v", err)
+	}
+	configureFunc(connectionClient.Client)
+
+	connectionTypeClient, err := connectiontype.NewConnectionTypeClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building ConnectionType client: %+v", err)
+	}
+	configureFunc(connectionTypeClient.Client)
+
+	credentialClient, err := credential.NewCredentialClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building Credential client: %+v", err)
+	}
+	configureFunc(credentialClient.Client)
+
+	dscConfigurationClient, err := dscconfiguration.NewDscConfigurationClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building DscConfiguration client: %+v", err)
+	}
+	configureFunc(dscConfigurationClient.Client)
+
+	dscNodeConfigurationClient, err := dscnodeconfiguration.NewDscNodeConfigurationClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building DscNodeConfiguration client: %+v", err)
+	}
+	configureFunc(dscNodeConfigurationClient.Client)
+
+	hybridRunbookWorkerClient, err := hybridrunbookworker.NewHybridRunbookWorkerClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building HybridRunbookWorker client: %+v", err)
+	}
+	configureFunc(hybridRunbookWorkerClient.Client)
+
+	hybridRunbookWorkerGroupClient, err := hybridrunbookworkergroup.NewHybridRunbookWorkerGroupClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building HybridRunbookWorkerGroup client: %+v", err)
+	}
+	configureFunc(hybridRunbookWorkerGroupClient.Client)
+
+	jobClient, err := job.NewJobClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building Job client: %+v", err)
+	}
+	configureFunc(jobClient.Client)
+
+	jobScheduleClient, err := jobschedule.NewJobScheduleClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building JobSchedule client: %+v", err)
+	}
+	configureFunc(jobScheduleClient.Client)
+
+	jobStreamClient, err := jobstream.NewJobStreamClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building JobStream client: %+v", err)
+	}
+	configureFunc(jobStreamClient.Client)
+
+	linkedWorkspaceClient, err := linkedworkspace.NewLinkedWorkspaceClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building LinkedWorkspace client: %+v", err)
+	}
+	configureFunc(linkedWorkspaceClient.Client)
+
+	listAllHybridRunbookWorkerGroupInAutomationAccountClient, err := listallhybridrunbookworkergroupinautomationaccount.NewListAllHybridRunbookWorkerGroupInAutomationAccountClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building ListAllHybridRunbookWorkerGroupInAutomationAccount client: %+v", err)
+	}
+	configureFunc(listAllHybridRunbookWorkerGroupInAutomationAccountClient.Client)
+
+	listKeysClient, err := listkeys.NewListKeysClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building ListKeys client: %+v", err)
+	}
+	configureFunc(listKeysClient.Client)
+
+	moduleClient, err := module.NewModuleClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building Module client: %+v", err)
+	}
+	configureFunc(moduleClient.Client)
+
+	objectDataTypesClient, err := objectdatatypes.NewObjectDataTypesClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building ObjectDataTypes client: %+v", err)
+	}
+	configureFunc(objectDataTypesClient.Client)
+
+	python2PackageClient, err := python2package.NewPython2PackageClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building Python2Package client: %+v", err)
+	}
+	configureFunc(python2PackageClient.Client)
+
+	python3PackageClient, err := python3package.NewPython3PackageClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building Python3Package client: %+v", err)
+	}
+	configureFunc(python3PackageClient.Client)
+
+	runbookClient, err := runbook.NewRunbookClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building Runbook client: %+v", err)
+	}
+	configureFunc(runbookClient.Client)
+
+	runbookDraftClient, err := runbookdraft.NewRunbookDraftClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building RunbookDraft client: %+v", err)
+	}
+	configureFunc(runbookDraftClient.Client)
+
+	scheduleClient, err := schedule.NewScheduleClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building Schedule client: %+v", err)
+	}
+	configureFunc(scheduleClient.Client)
+
+	softwareUpdateConfigurationMachineRunClient, err := softwareupdateconfigurationmachinerun.NewSoftwareUpdateConfigurationMachineRunClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building SoftwareUpdateConfigurationMachineRun client: %+v", err)
+	}
+	configureFunc(softwareUpdateConfigurationMachineRunClient.Client)
+
+	softwareUpdateConfigurationRunClient, err := softwareupdateconfigurationrun.NewSoftwareUpdateConfigurationRunClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building SoftwareUpdateConfigurationRun client: %+v", err)
+	}
+	configureFunc(softwareUpdateConfigurationRunClient.Client)
+
+	sourceControlClient, err := sourcecontrol.NewSourceControlClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building SourceControl client: %+v", err)
+	}
+	configureFunc(sourceControlClient.Client)
+
+	sourceControlSyncJobClient, err := sourcecontrolsyncjob.NewSourceControlSyncJobClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building SourceControlSyncJob client: %+v", err)
+	}
+	configureFunc(sourceControlSyncJobClient.Client)
+
+	sourceControlSyncJobStreamsClient, err := sourcecontrolsyncjobstreams.NewSourceControlSyncJobStreamsClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building SourceControlSyncJobStreams client: %+v", err)
+	}
+	configureFunc(sourceControlSyncJobStreamsClient.Client)
+
+	statisticsClient, err := statistics.NewStatisticsClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building Statistics client: %+v", err)
+	}
+	configureFunc(statisticsClient.Client)
+
+	testJobClient, err := testjob.NewTestJobClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building TestJob client: %+v", err)
+	}
+	configureFunc(testJobClient.Client)
+
+	testJobStreamClient, err := testjobstream.NewTestJobStreamClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building TestJobStream client: %+v", err)
+	}
+	configureFunc(testJobStreamClient.Client)
+
+	typeFieldsClient, err := typefields.NewTypeFieldsClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building TypeFields client: %+v", err)
+	}
+	configureFunc(typeFieldsClient.Client)
+
+	usagesClient, err := usages.NewUsagesClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building Usages client: %+v", err)
+	}
+	configureFunc(usagesClient.Client)
+
+	variableClient, err := variable.NewVariableClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building Variable client: %+v", err)
+	}
+	configureFunc(variableClient.Client)
+
+	return &Client{
+		Activity:                 activityClient,
+		AutomationAccount:        automationAccountClient,
+		Certificate:              certificateClient,
+		Connection:               connectionClient,
+		ConnectionType:           connectionTypeClient,
+		Credential:               credentialClient,
+		DscConfiguration:         dscConfigurationClient,
+		DscNodeConfiguration:     dscNodeConfigurationClient,
+		HybridRunbookWorker:      hybridRunbookWorkerClient,
+		HybridRunbookWorkerGroup: hybridRunbookWorkerGroupClient,
+		Job:                      jobClient,
+		JobSchedule:              jobScheduleClient,
+		JobStream:                jobStreamClient,
+		LinkedWorkspace:          linkedWorkspaceClient,
+		ListAllHybridRunbookWorkerGroupInAutomationAccount: listAllHybridRunbookWorkerGroupInAutomationAccountClient,
+		ListKeys:                              listKeysClient,
+		Module:                                moduleClient,
+		ObjectDataTypes:                       objectDataTypesClient,
+		Python2Package:                        python2PackageClient,
+		Python3Package:                        python3PackageClient,
+		Runbook:                               runbookClient,
+		RunbookDraft:                          runbookDraftClient,
+		Schedule:                              scheduleClient,
+		SoftwareUpdateConfigurationMachineRun: softwareUpdateConfigurationMachineRunClient,
+		SoftwareUpdateConfigurationRun:        softwareUpdateConfigurationRunClient,
+		SourceControl:                         sourceControlClient,
+		SourceControlSyncJob:                  sourceControlSyncJobClient,
+		SourceControlSyncJobStreams:           sourceControlSyncJobStreamsClient,
+		Statistics:                            statisticsClient,
+		TestJob:                               testJobClient,
+		TestJobStream:                         testJobStreamClient,
+		TypeFields:                            typeFieldsClient,
+		Usages:                                usagesClient,
+		Variable:                              variableClient,
+	}, nil
 }
