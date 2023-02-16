@@ -1,4 +1,4 @@
-package metadata
+package metadata_test
 
 import (
 	"context"
@@ -8,6 +8,9 @@ import (
 	"net/http"
 	"reflect"
 	"testing"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/internal/metadata"
+	"github.com/hashicorp/go-azure-sdk/sdk/internal/test"
 )
 
 var (
@@ -18,6 +21,8 @@ var (
 )
 
 func TestGetMetaData(t *testing.T) {
+	test.AccTest(t)
+
 	ctx := context.Background()
 	port := 8000 + rand.Intn(999)
 	done := metadataStubServer(ctx, port)
@@ -25,13 +30,13 @@ func TestGetMetaData(t *testing.T) {
 		done <- true
 	}()
 
-	client := NewClientWithEndpoint(fmt.Sprintf("http://localhost:%d", port))
+	client := metadata.NewClientWithEndpoint(fmt.Sprintf("http://localhost:%d", port))
 	if client == nil {
 		t.Fatal("client was nil")
 	}
 
-	expected := MetaData{
-		Authentication: Authentication{
+	expected := metadata.MetaData{
+		Authentication: metadata.Authentication{
 			Audiences: []string{
 				"https://management.core.windows.net/",
 				"https://management.azure.com/",
@@ -40,7 +45,7 @@ func TestGetMetaData(t *testing.T) {
 			IdentityProvider: "AAD",
 			Tenant:           "common",
 		},
-		DnsSuffixes: DnsSuffixes{
+		DnsSuffixes: metadata.DnsSuffixes{
 			Attestation: "attest.azure.net",
 			FrontDoor:   "azurefd.net",
 			KeyVault:    "vault.azure.net",
@@ -54,7 +59,7 @@ func TestGetMetaData(t *testing.T) {
 			Synapse:     "dev.azuresynapse.net",
 		},
 		Name: "AzureCloud",
-		ResourceIdentifiers: ResourceIdentifiers{
+		ResourceIdentifiers: metadata.ResourceIdentifiers{
 			Attestation:    "https://attest.azure.net",
 			Batch:          "https://batch.core.windows.net",
 			LogAnalytics:   "https://api.loganalytics.io",
