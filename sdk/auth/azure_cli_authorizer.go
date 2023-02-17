@@ -4,12 +4,12 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	azurecli2 "github.com/hashicorp/go-azure-sdk/sdk/azurecli"
 	"net/http"
 	"os"
 	"strings"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/environments"
-	"github.com/hashicorp/go-azure-sdk/sdk/internal/azurecli"
 	"golang.org/x/oauth2"
 )
 
@@ -57,7 +57,7 @@ func (a *AzureCliAuthorizer) Token(_ context.Context, _ *http.Request) (*oauth2.
 	azArgs := []string{"account", "get-access-token"}
 
 	// verify that the Azure CLI supports MSAL - ADAL is no longer supported
-	err := azurecli.CheckAzVersion(azurecli.MsalVersion, nil)
+	err := azurecli2.CheckAzVersion(azurecli2.MsalVersion, nil)
 	if err != nil {
 		return nil, fmt.Errorf("checking the version of the Azure CLI: %+v", err)
 	}
@@ -74,7 +74,7 @@ func (a *AzureCliAuthorizer) Token(_ context.Context, _ *http.Request) (*oauth2.
 	}
 
 	var token azureCliToken
-	if err := azurecli.JSONUnmarshalAzCmd(&token, azArgs...); err != nil {
+	if err := azurecli2.JSONUnmarshalAzCmd(&token, azArgs...); err != nil {
 		return nil, err
 	}
 
@@ -98,7 +98,7 @@ func (a *AzureCliAuthorizer) AuxiliaryTokens(_ context.Context, _ *http.Request)
 	azArgs := []string{"account", "get-access-token"}
 
 	// verify that the Azure CLI supports MSAL - ADAL is no longer supported
-	err := azurecli.CheckAzVersion(AzureCliMsalVersion, nil)
+	err := azurecli2.CheckAzVersion(AzureCliMsalVersion, nil)
 	if err != nil {
 		return nil, fmt.Errorf("checking the version of the Azure CLI: %+v", err)
 	}
@@ -113,7 +113,7 @@ func (a *AzureCliAuthorizer) AuxiliaryTokens(_ context.Context, _ *http.Request)
 		argsWithTenant := append(azArgs, "--tenant", tenantId)
 
 		var token azureCliToken
-		if err := azurecli.JSONUnmarshalAzCmd(&token, argsWithTenant...); err != nil {
+		if err := azurecli2.JSONUnmarshalAzCmd(&token, argsWithTenant...); err != nil {
 			return nil, err
 		}
 
@@ -148,13 +148,13 @@ func newAzureCliConfig(api environments.Api, tenantId string, auxiliaryTenantIds
 	var err error
 
 	// check az-cli version
-	nextMajor := azurecli.NextMajorVersion
-	if err = azurecli.CheckAzVersion(azurecli.MinimumVersion, &nextMajor); err != nil {
+	nextMajor := azurecli2.NextMajorVersion
+	if err = azurecli2.CheckAzVersion(azurecli2.MinimumVersion, &nextMajor); err != nil {
 		return nil, err
 	}
 
 	// check tenant id
-	tenantId, err = azurecli.CheckTenantID(tenantId)
+	tenantId, err = azurecli2.CheckTenantID(tenantId)
 	if err != nil {
 		return nil, err
 	}
