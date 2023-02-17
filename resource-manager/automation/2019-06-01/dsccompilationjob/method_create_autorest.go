@@ -8,6 +8,7 @@ import (
 	"github.com/Azure/go-autorest/autorest"
 	"github.com/Azure/go-autorest/autorest/azure"
 	"github.com/hashicorp/go-azure-helpers/polling"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -19,7 +20,7 @@ type CreateOperationResponse struct {
 }
 
 // Create ...
-func (c DscCompilationJobClient) Create(ctx context.Context, id CompilationJobId, input DscCompilationJobCreateParameters) (result CreateOperationResponse, err error) {
+func (c DscCompilationJobClient) Create(ctx context.Context, id commonids.AutomationCompilationJobId, input DscCompilationJobCreateParameters) (result CreateOperationResponse, err error) {
 	req, err := c.preparerForCreate(ctx, id, input)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "dsccompilationjob.DscCompilationJobClient", "Create", nil, "Failure preparing request")
@@ -36,7 +37,7 @@ func (c DscCompilationJobClient) Create(ctx context.Context, id CompilationJobId
 }
 
 // CreateThenPoll performs Create then polls until it's completed
-func (c DscCompilationJobClient) CreateThenPoll(ctx context.Context, id CompilationJobId, input DscCompilationJobCreateParameters) error {
+func (c DscCompilationJobClient) CreateThenPoll(ctx context.Context, id commonids.AutomationCompilationJobId, input DscCompilationJobCreateParameters) error {
 	result, err := c.Create(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing Create: %+v", err)
@@ -50,7 +51,7 @@ func (c DscCompilationJobClient) CreateThenPoll(ctx context.Context, id Compilat
 }
 
 // preparerForCreate prepares the Create request.
-func (c DscCompilationJobClient) preparerForCreate(ctx context.Context, id CompilationJobId, input DscCompilationJobCreateParameters) (*http.Request, error) {
+func (c DscCompilationJobClient) preparerForCreate(ctx context.Context, id commonids.AutomationCompilationJobId, input DscCompilationJobCreateParameters) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

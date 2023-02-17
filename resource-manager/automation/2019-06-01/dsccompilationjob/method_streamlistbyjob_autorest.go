@@ -7,6 +7,7 @@ import (
 
 	"github.com/Azure/go-autorest/autorest"
 	"github.com/Azure/go-autorest/autorest/azure"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -18,7 +19,7 @@ type StreamListByJobOperationResponse struct {
 }
 
 // StreamListByJob ...
-func (c DscCompilationJobClient) StreamListByJob(ctx context.Context, id CompilationJobId) (result StreamListByJobOperationResponse, err error) {
+func (c DscCompilationJobClient) StreamListByJob(ctx context.Context, id commonids.AutomationCompilationJobId) (result StreamListByJobOperationResponse, err error) {
 	req, err := c.preparerForStreamListByJob(ctx, id)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "dsccompilationjob.DscCompilationJobClient", "StreamListByJob", nil, "Failure preparing request")
@@ -41,7 +42,7 @@ func (c DscCompilationJobClient) StreamListByJob(ctx context.Context, id Compila
 }
 
 // preparerForStreamListByJob prepares the StreamListByJob request.
-func (c DscCompilationJobClient) preparerForStreamListByJob(ctx context.Context, id CompilationJobId) (*http.Request, error) {
+func (c DscCompilationJobClient) preparerForStreamListByJob(ctx context.Context, id commonids.AutomationCompilationJobId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}
