@@ -13,9 +13,7 @@ jobs:
       - name: "open a pull request"
         id: open-pr
         run: |
-          # this runs everytime the PR gets pushed too, whilst you can only create a PR a single time
-          # so we should be smarter, but piping this to /dev/null is a fine workaround for MVP
-          gh pr create --title "$PR_TITLE" --body "$PR_BODY" -B "$PR_TARGET" -l "$PR_LABEL" > /dev/null
+          bash ./scripts/open-pull-request.sh "$PR_TITLE" "$PR_BODY" "$PR_TARGET" "$PR_LABEL"
 
         env:
           PR_TITLE: "Auto PR: Regenerating the Go SDK (${{ github.sha }})"
