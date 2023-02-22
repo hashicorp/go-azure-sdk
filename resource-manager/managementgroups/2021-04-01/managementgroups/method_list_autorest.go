@@ -133,7 +133,7 @@ func (c ManagementGroupsClient) preparerForListWithNextLink(ctx context.Context,
 func (c ManagementGroupsClient) responderForList(resp *http.Response) (result ListOperationResponse, err error) {
 	type page struct {
 		Values   []ManagementGroupInfo `json:"value"`
-		NextLink *string               `json:"nextLink"`
+		NextLink *string               `json:"@nextLink"`
 	}
 	var respObj page
 	err = autorest.Respond(
