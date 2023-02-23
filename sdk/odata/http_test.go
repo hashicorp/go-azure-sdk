@@ -13,6 +13,12 @@ import (
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
 
+// body returns a bodyOnce, which implements io.ReadCloser where Close() is effectual,
+// it simulates a genuine Body object such as *http.gzipReader
+func body(in string) io.ReadCloser {
+	return &bodyOnce{strings.NewReader(in), false}
+}
+
 type bodyOnce struct {
 	io.Reader
 	closed bool
@@ -28,10 +34,6 @@ func (b *bodyOnce) Read(p []byte) (n int, err error) {
 func (b *bodyOnce) Close() error {
 	b.closed = true
 	return nil
-}
-
-func body(in string) io.ReadCloser {
-	return &bodyOnce{strings.NewReader(in), false}
 }
 
 func TestFromResponse(t *testing.T) {
