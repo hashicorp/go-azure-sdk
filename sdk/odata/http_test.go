@@ -94,7 +94,7 @@ func TestFromResponse(t *testing.T) {
 					"businessPhones@odata.type": "#Collection(String)",
 					"businessPhones": [],
 					"city": null
-				}`),
+				}`), // editLink is not a valid URI
 			},
 			expected: &odata.OData{
 				Context:  pointer.To("https://graph.microsoft.com/beta/$metadata#users/$entity"),
@@ -108,9 +108,31 @@ func TestFromResponse(t *testing.T) {
 		{
 			response: &http.Response{
 				Header: http.Header{
+					"Content-Type": []string{"text/plain; charset=utf-8"}, // unexpected content-type
+				},
+				Body: body(`{
+					"@odata.context": "https://graph.microsoft.com/beta/$metadata#users/$entity",
+					"@odata.type": "#microsoft.graph.user",
+					"@odata.id": "users('8a3b99a7-c82f-44b2-a10d-eb85b6c6b0e4')",
+					"@odata.editLink": "users('8a3b99a7-c82f-44b2-a10d-eb85b6c6b0e4')",
+					"id": "8a3b99a7-c82f-44b2-a10d-eb85b6c6b0e4",
+					"deletedDateTime": null,
+					"accountEnabled": true,
+					"ageGroup": null,
+					"businessPhones@odata.type": "#Collection(String)",
+					"businessPhones": [],
+					"city": null
+				}`),
+			},
+			expected:    nil,
+			shouldError: false,
+		},
+		{
+			response: &http.Response{
+				Header: http.Header{
 					"Content-Type": []string{"application/json; charset=utf-8"},
 				},
-				Body: body(`{G1bb3r1$h, "Non"5en5e}}}`),
+				Body: body(`{G1bb3r1$h, "Non"5en5e}}}`), // invalid JSON
 			},
 			expected:    nil,
 			shouldError: true,
