@@ -13,10 +13,6 @@ import (
 // Copyright (c) HashiCorp Inc. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-func linkPtr(in odata.Link) *odata.Link {
-	return &in
-}
-
 func TestODataId(t *testing.T) {
 	type testCase struct {
 		input    odata.Id
@@ -88,7 +84,7 @@ func TestOData(t *testing.T) {
 			}`,
 			expected: odata.OData{
 				Context:  pointer.To("https://graph.microsoft.com/beta/$metadata#servicePrincipals"),
-				NextLink: linkPtr("https://graph.microsoft.com/beta/1564a4be-0377-4d9b-8aff-5a2b564e177c/servicePrincipals?%24skiptoken=X%274453707402000100000035536572766963655072696E636970616C5F31326430653134382D663634382D343233382D383566312D34336331643937353963313035536572766963655072696E636970616C5F31326430653134382D663634382D343233382D383566312D3433633164393735396331300000000000000000000000%27"),
+				NextLink: pointer.To(odata.Link("https://graph.microsoft.com/beta/1564a4be-0377-4d9b-8aff-5a2b564e177c/servicePrincipals?%24skiptoken=X%274453707402000100000035536572766963655072696E636970616C5F31326430653134382D663634382D343233382D383566312D34336331643937353963313035536572766963655072696E636970616C5F31326430653134382D663634382D343233382D383566312D3433633164393735396331300000000000000000000000%27")),
 				Value: []interface{}{map[string]interface{}{
 					"id":              "00000000-0000-0000-0000-000000000000",
 					"deletedDateTime": nil,
