@@ -75,6 +75,7 @@ func TestFromResponse(t *testing.T) {
 					"createdDateTime": "2020-07-08T01:22:29Z",
 				}},
 			},
+			shouldError: false,
 		},
 		{
 			response: &http.Response{
@@ -102,6 +103,17 @@ func TestFromResponse(t *testing.T) {
 				EditLink: pointer.To(odata.Link("")),
 				Value:    nil,
 			},
+			shouldError: false,
+		},
+		{
+			response: &http.Response{
+				Header: http.Header{
+					"Content-Type": []string{"application/json; charset=utf-8"},
+				},
+				Body: body(`{G1bb3r1$h, "Non"5en5e}}}`),
+			},
+			expected:    nil,
+			shouldError: true,
 		},
 	}
 
