@@ -201,8 +201,7 @@ func (r *Response) Unmarshal(model interface{}) error {
 		r.Body = io.NopCloser(bytes.NewBuffer(respBody))
 	}
 
-	if isContentType("application/octet-stream") ||
-		isContentType("text/powershell") {
+	if isContentType("application/octet-stream") || strings.HasPrefix(contentType, "text/") {
 		// Read the response body and close it
 		respBody, err := io.ReadAll(r.Body)
 		if err != nil {
@@ -222,8 +221,13 @@ func (r *Response) Unmarshal(model interface{}) error {
 			*bs = respBody
 		case **[]byte:
 			*bs = &respBody
+		case *string:
+			*bs = string(respBody)
+		case **string:
+			str := string(respBody)
+			*bs = &str
 		default:
-			return fmt.Errorf("internal-error: `model` must be *[]byte or **[]byte but got %+v", model)
+			return fmt.Errorf("internal-error: `model` must be *[]byte, **[]byte, *string or **string, but got %+v", model)
 		}
 	}
 
