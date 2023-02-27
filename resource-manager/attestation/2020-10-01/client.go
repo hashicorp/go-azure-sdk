@@ -6,6 +6,9 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/attestation/2020-10-01/privateendpointconnections"
 )
 
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
 type Client struct {
 	AttestationProviders       *attestationproviders.AttestationProvidersClient
 	PrivateEndpointConnections *privateendpointconnections.PrivateEndpointConnectionsClient

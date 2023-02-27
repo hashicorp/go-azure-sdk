@@ -6,6 +6,9 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/operationalinsights/2019-09-01/querypacks"
 )
 
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
 type Client struct {
 	QueryPackQueries *querypackqueries.QueryPackQueriesClient
 	QueryPacks       *querypacks.QueryPacksClient

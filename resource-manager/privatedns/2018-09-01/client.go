@@ -7,6 +7,9 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/privatedns/2018-09-01/virtualnetworklinks"
 )
 
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
 type Client struct {
 	PrivateZones        *privatezones.PrivateZonesClient
 	RecordSets          *recordsets.RecordSetsClient

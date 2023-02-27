@@ -17,6 +17,9 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/datamigration/2021-06-30/taskresource"
 )
 
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
 type Client struct {
 	CustomOperation     *customoperation.CustomOperationClient
 	DELETE              *delete.DELETEClient

@@ -9,6 +9,9 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/vmware/2020-03-20/privateclouds"
 )
 
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
 type Client struct {
 	Authorizations     *authorizations.AuthorizationsClient
 	Clusters           *clusters.ClustersClient

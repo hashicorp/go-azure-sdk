@@ -7,6 +7,9 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/videoanalyzer/2021-05-01-preview/videos"
 )
 
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
 type Client struct {
 	EdgeModules    *edgemodules.EdgeModulesClient
 	VideoAnalyzers *videoanalyzers.VideoAnalyzersClient

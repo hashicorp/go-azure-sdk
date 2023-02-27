@@ -28,6 +28,9 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/mariadb/2018-06-01/waitstatistics"
 )
 
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
 type Client struct {
 	Advisors                                     *advisors.AdvisorsClient
 	CheckNameAvailability                        *checknameavailability.CheckNameAvailabilityClient

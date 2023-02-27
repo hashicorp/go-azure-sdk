@@ -12,6 +12,9 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/kubernetesconfiguration/2022-03-01/sourcecontrolconfiguration"
 )
 
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
 type Client struct {
 	ClusterExtensions                *clusterextensions.ClusterExtensionsClient
 	ExtensionOperationStatus         *extensionoperationstatus.ExtensionOperationStatusClient

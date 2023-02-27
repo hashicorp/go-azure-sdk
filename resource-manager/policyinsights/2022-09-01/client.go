@@ -5,6 +5,9 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/policyinsights/2022-09-01/attestations"
 )
 
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
 type Client struct {
 	Attestations *attestations.AttestationsClient
 }

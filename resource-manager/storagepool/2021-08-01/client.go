@@ -8,6 +8,9 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/storagepool/2021-08-01/resourceskus"
 )
 
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
 type Client struct {
 	DiskPoolZones *diskpoolzones.DiskPoolZonesClient
 	DiskPools     *diskpools.DiskPoolsClient

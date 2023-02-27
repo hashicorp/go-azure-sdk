@@ -25,6 +25,9 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/logic/2019-05-01/workflowversions"
 )
 
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
 type Client struct {
 	IntegrationAccountAgreements               *integrationaccountagreements.IntegrationAccountAgreementsClient
 	IntegrationAccountAssemblies               *integrationaccountassemblies.IntegrationAccountAssembliesClient

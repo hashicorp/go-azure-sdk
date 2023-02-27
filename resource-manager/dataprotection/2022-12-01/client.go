@@ -14,6 +14,9 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/dataprotection/2022-12-01/resourceguards"
 )
 
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
 type Client struct {
 	AzureBackupJob           *azurebackupjob.AzureBackupJobClient
 	AzureBackupJobs          *azurebackupjobs.AzureBackupJobsClient
