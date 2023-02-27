@@ -36,6 +36,9 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2021-09-01-preview/watchlists"
 )
 
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
 type Client struct {
 	Actions                        *actions.ActionsClient
 	AlertRuleTemplates             *alertruletemplates.AlertRuleTemplatesClient

@@ -23,6 +23,9 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/eventhub/2022-01-01-preview/schemaregistry"
 )
 
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
 type Client struct {
 	ApplicationGroup                                 *applicationgroup.ApplicationGroupClient
 	AuthorizationRulesDisasterRecoveryConfigs        *authorizationrulesdisasterrecoveryconfigs.AuthorizationRulesDisasterRecoveryConfigsClient

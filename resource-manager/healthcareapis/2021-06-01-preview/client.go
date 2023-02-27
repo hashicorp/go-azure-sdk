@@ -13,6 +13,9 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/healthcareapis/2021-06-01-preview/workspaces"
 )
 
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
 type Client struct {
 	Collection                 *collection.CollectionClient
 	DicomServices              *dicomservices.DicomServicesClient

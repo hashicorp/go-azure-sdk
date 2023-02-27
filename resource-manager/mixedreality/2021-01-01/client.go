@@ -7,6 +7,9 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/mixedreality/2021-01-01/resource"
 )
 
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
 type Client struct {
 	Key      *key.KeyClient
 	Proxy    *proxy.ProxyClient

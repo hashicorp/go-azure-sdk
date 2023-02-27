@@ -5,6 +5,9 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/redhatopenshift/2022-04-01/openshiftclusters"
 )
 
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
 type Client struct {
 	OpenShiftClusters *openshiftclusters.OpenShiftClustersClient
 }
