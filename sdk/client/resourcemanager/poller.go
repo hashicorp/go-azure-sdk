@@ -38,7 +38,7 @@ func PollerFromResponse(response *client.Response, client *Client) (poller polle
 		strings.EqualFold(response.Request.Method, "POST") ||
 		strings.EqualFold(response.Request.Method, "PUT")
 	if statusCodesToCheckProvisioningState && contentTypeMatchesForProvisioningStateCheck && methodIsApplicable {
-		provisioningState, provisioningStateErr := provisioningStatePollerFromResponse(response, client, DefaultProvisioningStatePollingInterval)
+		provisioningState, provisioningStateErr := provisioningStatePollerFromResponse(response, client, DefaultPollingInterval)
 		if provisioningStateErr != nil {
 			err = provisioningStateErr
 			return pollers.Poller{}, fmt.Errorf("building provisioningState poller: %+v", provisioningStateErr)
