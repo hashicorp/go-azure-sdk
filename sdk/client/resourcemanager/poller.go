@@ -46,7 +46,7 @@ func PollerFromResponse(response *client.Response, client *Client) (poller polle
 		return pollers.NewPoller(provisioningState, provisioningState.initialRetryDuration, pollers.DefaultNumberOfDroppedConnectionsToAllow), nil
 	}
 
-	// finally, if it was a Delete that returned a 204
+	// finally, if it was a Delete that returned a 200/204
 	methodIsDelete := strings.EqualFold(response.Request.Method, "DELETE")
 	statusCodesToCheckDelete := response.StatusCode == http.StatusOK || response.StatusCode == http.StatusNoContent
 	if methodIsDelete && statusCodesToCheckDelete {
