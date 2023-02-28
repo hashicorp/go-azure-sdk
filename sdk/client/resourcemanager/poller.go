@@ -46,5 +46,17 @@ func PollerFromResponse(response *client.Response, client *Client) (poller polle
 		return pollers.NewPoller(provisioningState, provisioningState.initialRetryDuration, pollers.DefaultNumberOfDroppedConnectionsToAllow), nil
 	}
 
+	// finally, if it was a Delete that returned a 204
+	methodIsDelete := strings.EqualFold(response.Request.Method, "DELETE")
+	statusCodesToCheckDelete := response.StatusCode == http.StatusOK || response.StatusCode == http.StatusNoContent
+	if methodIsDelete && statusCodesToCheckDelete {
+		deletePoller, deletePollerErr := deletePollerFromResponse(response, client, DefaultPollingInterval)
+		if deletePollerErr != nil {
+			err = deletePollerErr
+			return pollers.Poller{}, fmt.Errorf("building delete poller: %+v", deletePollerErr)
+		}
+		return pollers.NewPoller(deletePoller, deletePoller.initialRetryDuration, pollers.DefaultNumberOfDroppedConnectionsToAllow), nil
+	}
+
 	return pollers.Poller{}, fmt.Errorf("no applicable pollers were found for the response")
 }
