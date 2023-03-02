@@ -161,7 +161,8 @@ func (r *Response) Unmarshal(model interface{}) error {
 	isContentType := func(typ string) bool {
 		return strings.Contains(contentType, typ)
 	}
-	if isContentType("application/json") {
+	switch {
+	case isContentType("application/json"):
 		// Read the response body and close it
 		respBody, err := io.ReadAll(r.Body)
 		if err != nil {
@@ -179,9 +180,7 @@ func (r *Response) Unmarshal(model interface{}) error {
 
 		// Reassign the response body as downstream code may expect it
 		r.Body = io.NopCloser(bytes.NewBuffer(respBody))
-	}
-
-	if isContentType("application/xml") || isContentType("text/xml") {
+	case isContentType("application/xml") || isContentType("text/xml"):
 		// Read the response body and close it
 		respBody, err := io.ReadAll(r.Body)
 		if err != nil {
@@ -199,9 +198,7 @@ func (r *Response) Unmarshal(model interface{}) error {
 
 		// Reassign the response body as downstream code may expect it
 		r.Body = io.NopCloser(bytes.NewBuffer(respBody))
-	}
-
-	if isContentType("application/octet-stream") || strings.HasPrefix(contentType, "text/") {
+	case isContentType("application/octet-stream") || strings.HasPrefix(contentType, "text/"):
 		// Read the response body and close it
 		respBody, err := io.ReadAll(r.Body)
 		if err != nil {
