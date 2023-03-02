@@ -69,6 +69,12 @@ func RetryableErrorHandler(resp *http.Response, _ error, _ int) (*http.Response,
 	return resp, nil
 }
 
+type contentType string
+
+func (c contentType) is(typ string) bool {
+	return strings.Contains(string(c), typ)
+}
+
 // Request embeds *http.Request and adds useful metadata
 type Request struct {
 	RetryFunc        RequestRetryFunc
@@ -82,9 +88,9 @@ type Request struct {
 }
 
 func (r *Request) Marshal(payload interface{}) error {
-	contentType := strings.ToLower(r.Header.Get("Content-Type"))
+	cType := contentType(strings.ToLower(r.Header.Get("Content-Type")))
 
-	if strings.Contains(contentType, "application/json") {
+	if cType.is("application/json") {
 		body, err := json.Marshal(payload)
 		if err == nil {
 			r.ContentLength = int64(len(body))
@@ -93,7 +99,7 @@ func (r *Request) Marshal(payload interface{}) error {
 		return nil
 	}
 
-	if strings.Contains(contentType, "application/xml") || strings.Contains(contentType, "text/xml") {
+	if cType.is("application/xml") || cType.is("text/xml") {
 		body, err := xml.Marshal(payload)
 		if err == nil {
 			r.ContentLength = int64(len(body))
@@ -102,7 +108,8 @@ func (r *Request) Marshal(payload interface{}) error {
 		return nil
 	}
 
-	if strings.Contains(contentType, "application/octet-stream") {
+	if cType.is("application/octet-stream") ||
+		cType.is("text/powershell") {
 		v, ok := payload.([]byte)
 		if !ok {
 			return fmt.Errorf("internal-error: `payload` must be []byte but got %+v", payload)
@@ -112,7 +119,7 @@ func (r *Request) Marshal(payload interface{}) error {
 		r.Body = io.NopCloser(bytes.NewReader(v))
 	}
 
-	return fmt.Errorf("internal-error: unimplemented marshal function for content type %q", contentType)
+	return fmt.Errorf("internal-error: unimplemented marshal function for content type %q", cType)
 }
 
 func (r *Request) Execute(ctx context.Context) (*Response, error) {
@@ -144,25 +151,22 @@ func (r *Response) Unmarshal(model interface{}) error {
 		return fmt.Errorf("model was nil")
 	}
 
-	contentType := strings.ToLower(r.Header.Get("Content-Type"))
-	if contentType == "" {
+	cType := contentType(strings.ToLower(r.Header.Get("Content-Type")))
+	if cType == "" {
 		// some APIs (e.g. Storage Data Plane) don't return a content type... so we'll assume from the Accept header
 		acc, err := accept.FromString(r.Request.Header.Get("Accept"))
 		if err != nil {
 			if preferred := acc.FirstChoice(); preferred != nil {
-				contentType = preferred.ContentType
+				cType = contentType(preferred.ContentType)
 			}
 		}
-		if contentType == "" {
+		if cType == "" {
 			// fall back on request media type
-			contentType = strings.ToLower(r.Request.Header.Get("Content-Type"))
+			cType = contentType(strings.ToLower(r.Request.Header.Get("Content-Type")))
 		}
 	}
-	isContentType := func(typ string) bool {
-		return strings.Contains(contentType, typ)
-	}
 	switch {
-	case isContentType("application/json"):
+	case cType.is("application/json"):
 		// Read the response body and close it
 		respBody, err := io.ReadAll(r.Body)
 		if err != nil {
@@ -180,7 +184,7 @@ func (r *Response) Unmarshal(model interface{}) error {
 
 		// Reassign the response body as downstream code may expect it
 		r.Body = io.NopCloser(bytes.NewBuffer(respBody))
-	case isContentType("application/xml") || isContentType("text/xml"):
+	case cType.is("application/xml") || cType.is("text/xml"):
 		// Read the response body and close it
 		respBody, err := io.ReadAll(r.Body)
 		if err != nil {
@@ -198,7 +202,7 @@ func (r *Response) Unmarshal(model interface{}) error {
 
 		// Reassign the response body as downstream code may expect it
 		r.Body = io.NopCloser(bytes.NewBuffer(respBody))
-	case isContentType("application/octet-stream") || strings.HasPrefix(contentType, "text/"):
+	case cType.is("application/octet-stream") || cType.is("text/powershell"):
 		// Read the response body and close it
 		respBody, err := io.ReadAll(r.Body)
 		if err != nil {
@@ -218,11 +222,6 @@ func (r *Response) Unmarshal(model interface{}) error {
 			*bs = respBody
 		case **[]byte:
 			*bs = &respBody
-		case *string:
-			*bs = string(respBody)
-		case **string:
-			str := string(respBody)
-			*bs = &str
 		default:
 			return fmt.Errorf("internal-error: `model` must be *[]byte, **[]byte, *string or **string, but got %+v", model)
 		}
