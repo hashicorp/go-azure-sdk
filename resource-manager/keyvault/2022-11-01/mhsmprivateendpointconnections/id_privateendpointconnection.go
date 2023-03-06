@@ -16,16 +16,16 @@ var _ resourceids.ResourceId = PrivateEndpointConnectionId{}
 type PrivateEndpointConnectionId struct {
 	SubscriptionId                string
 	ResourceGroupName             string
-	VaultName                     string
+	ManagedHSMName                string
 	PrivateEndpointConnectionName string
 }
 
 // NewPrivateEndpointConnectionID returns a new PrivateEndpointConnectionId struct
-func NewPrivateEndpointConnectionID(subscriptionId string, resourceGroupName string, vaultName string, privateEndpointConnectionName string) PrivateEndpointConnectionId {
+func NewPrivateEndpointConnectionID(subscriptionId string, resourceGroupName string, managedHSMName string, privateEndpointConnectionName string) PrivateEndpointConnectionId {
 	return PrivateEndpointConnectionId{
 		SubscriptionId:                subscriptionId,
 		ResourceGroupName:             resourceGroupName,
-		VaultName:                     vaultName,
+		ManagedHSMName:                managedHSMName,
 		PrivateEndpointConnectionName: privateEndpointConnectionName,
 	}
 }
@@ -49,8 +49,8 @@ func ParsePrivateEndpointConnectionID(input string) (*PrivateEndpointConnectionI
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.VaultName, ok = parsed.Parsed["vaultName"]; !ok {
-		return nil, fmt.Errorf("the segment 'vaultName' was not found in the resource id %q", input)
+	if id.ManagedHSMName, ok = parsed.Parsed["managedHSMName"]; !ok {
+		return nil, fmt.Errorf("the segment 'managedHSMName' was not found in the resource id %q", input)
 	}
 
 	if id.PrivateEndpointConnectionName, ok = parsed.Parsed["privateEndpointConnectionName"]; !ok {
@@ -80,8 +80,8 @@ func ParsePrivateEndpointConnectionIDInsensitively(input string) (*PrivateEndpoi
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.VaultName, ok = parsed.Parsed["vaultName"]; !ok {
-		return nil, fmt.Errorf("the segment 'vaultName' was not found in the resource id %q", input)
+	if id.ManagedHSMName, ok = parsed.Parsed["managedHSMName"]; !ok {
+		return nil, fmt.Errorf("the segment 'managedHSMName' was not found in the resource id %q", input)
 	}
 
 	if id.PrivateEndpointConnectionName, ok = parsed.Parsed["privateEndpointConnectionName"]; !ok {
@@ -108,8 +108,8 @@ func ValidatePrivateEndpointConnectionID(input interface{}, key string) (warning
 
 // ID returns the formatted Private Endpoint Connection ID
 func (id PrivateEndpointConnectionId) ID() string {
-	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.KeyVault/vaults/%s/privateEndpointConnections/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.VaultName, id.PrivateEndpointConnectionName)
+	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.KeyVault/managedHSMs/%s/privateEndpointConnections/%s"
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.ManagedHSMName, id.PrivateEndpointConnectionName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Private Endpoint Connection ID
@@ -121,8 +121,8 @@ func (id PrivateEndpointConnectionId) Segments() []resourceids.Segment {
 		resourceids.ResourceGroupSegment("resourceGroupName", "example-resource-group"),
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftKeyVault", "Microsoft.KeyVault", "Microsoft.KeyVault"),
-		resourceids.StaticSegment("staticVaults", "vaults", "vaults"),
-		resourceids.UserSpecifiedSegment("vaultName", "vaultValue"),
+		resourceids.StaticSegment("staticManagedHSMs", "managedHSMs", "managedHSMs"),
+		resourceids.UserSpecifiedSegment("managedHSMName", "managedHSMValue"),
 		resourceids.StaticSegment("staticPrivateEndpointConnections", "privateEndpointConnections", "privateEndpointConnections"),
 		resourceids.UserSpecifiedSegment("privateEndpointConnectionName", "privateEndpointConnectionValue"),
 	}
@@ -133,7 +133,7 @@ func (id PrivateEndpointConnectionId) String() string {
 	components := []string{
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
-		fmt.Sprintf("Vault Name: %q", id.VaultName),
+		fmt.Sprintf("Managed H S M Name: %q", id.ManagedHSMName),
 		fmt.Sprintf("Private Endpoint Connection Name: %q", id.PrivateEndpointConnectionName),
 	}
 	return fmt.Sprintf("Private Endpoint Connection (%s)", strings.Join(components, "\n"))

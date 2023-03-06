@@ -8,6 +8,7 @@ import (
 
 	"github.com/Azure/go-autorest/autorest"
 	"github.com/Azure/go-autorest/autorest/azure"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -62,7 +63,7 @@ func (o ListOperationOptions) toQueryString() map[string]interface{} {
 }
 
 // List ...
-func (c SecretsClient) List(ctx context.Context, id VaultId, options ListOperationOptions) (resp ListOperationResponse, err error) {
+func (c SecretsClient) List(ctx context.Context, id commonids.KeyVaultId, options ListOperationOptions) (resp ListOperationResponse, err error) {
 	req, err := c.preparerForList(ctx, id, options)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "secrets.SecretsClient", "List", nil, "Failure preparing request")
@@ -84,7 +85,7 @@ func (c SecretsClient) List(ctx context.Context, id VaultId, options ListOperati
 }
 
 // preparerForList prepares the List request.
-func (c SecretsClient) preparerForList(ctx context.Context, id VaultId, options ListOperationOptions) (*http.Request, error) {
+func (c SecretsClient) preparerForList(ctx context.Context, id commonids.KeyVaultId, options ListOperationOptions) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}
@@ -171,12 +172,12 @@ func (c SecretsClient) responderForList(resp *http.Response) (result ListOperati
 }
 
 // ListComplete retrieves all of the results into a single object
-func (c SecretsClient) ListComplete(ctx context.Context, id VaultId, options ListOperationOptions) (ListCompleteResult, error) {
+func (c SecretsClient) ListComplete(ctx context.Context, id commonids.KeyVaultId, options ListOperationOptions) (ListCompleteResult, error) {
 	return c.ListCompleteMatchingPredicate(ctx, id, options, SecretOperationPredicate{})
 }
 
 // ListCompleteMatchingPredicate retrieves all of the results and then applied the predicate
-func (c SecretsClient) ListCompleteMatchingPredicate(ctx context.Context, id VaultId, options ListOperationOptions, predicate SecretOperationPredicate) (resp ListCompleteResult, err error) {
+func (c SecretsClient) ListCompleteMatchingPredicate(ctx context.Context, id commonids.KeyVaultId, options ListOperationOptions, predicate SecretOperationPredicate) (resp ListCompleteResult, err error) {
 	items := make([]Secret, 0)
 
 	page, err := c.List(ctx, id, options)

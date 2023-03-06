@@ -16,16 +16,16 @@ var _ resourceids.ResourceId = KeyId{}
 type KeyId struct {
 	SubscriptionId    string
 	ResourceGroupName string
-	VaultName         string
+	ManagedHSMName    string
 	KeyName           string
 }
 
 // NewKeyID returns a new KeyId struct
-func NewKeyID(subscriptionId string, resourceGroupName string, vaultName string, keyName string) KeyId {
+func NewKeyID(subscriptionId string, resourceGroupName string, managedHSMName string, keyName string) KeyId {
 	return KeyId{
 		SubscriptionId:    subscriptionId,
 		ResourceGroupName: resourceGroupName,
-		VaultName:         vaultName,
+		ManagedHSMName:    managedHSMName,
 		KeyName:           keyName,
 	}
 }
@@ -49,8 +49,8 @@ func ParseKeyID(input string) (*KeyId, error) {
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.VaultName, ok = parsed.Parsed["vaultName"]; !ok {
-		return nil, fmt.Errorf("the segment 'vaultName' was not found in the resource id %q", input)
+	if id.ManagedHSMName, ok = parsed.Parsed["managedHSMName"]; !ok {
+		return nil, fmt.Errorf("the segment 'managedHSMName' was not found in the resource id %q", input)
 	}
 
 	if id.KeyName, ok = parsed.Parsed["keyName"]; !ok {
@@ -80,8 +80,8 @@ func ParseKeyIDInsensitively(input string) (*KeyId, error) {
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.VaultName, ok = parsed.Parsed["vaultName"]; !ok {
-		return nil, fmt.Errorf("the segment 'vaultName' was not found in the resource id %q", input)
+	if id.ManagedHSMName, ok = parsed.Parsed["managedHSMName"]; !ok {
+		return nil, fmt.Errorf("the segment 'managedHSMName' was not found in the resource id %q", input)
 	}
 
 	if id.KeyName, ok = parsed.Parsed["keyName"]; !ok {
@@ -108,8 +108,8 @@ func ValidateKeyID(input interface{}, key string) (warnings []string, errors []e
 
 // ID returns the formatted Key ID
 func (id KeyId) ID() string {
-	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.KeyVault/vaults/%s/keys/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.VaultName, id.KeyName)
+	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.KeyVault/managedHSMs/%s/keys/%s"
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.ManagedHSMName, id.KeyName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Key ID
@@ -121,8 +121,8 @@ func (id KeyId) Segments() []resourceids.Segment {
 		resourceids.ResourceGroupSegment("resourceGroupName", "example-resource-group"),
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftKeyVault", "Microsoft.KeyVault", "Microsoft.KeyVault"),
-		resourceids.StaticSegment("staticVaults", "vaults", "vaults"),
-		resourceids.UserSpecifiedSegment("vaultName", "vaultValue"),
+		resourceids.StaticSegment("staticManagedHSMs", "managedHSMs", "managedHSMs"),
+		resourceids.UserSpecifiedSegment("managedHSMName", "managedHSMValue"),
 		resourceids.StaticSegment("staticKeys", "keys", "keys"),
 		resourceids.UserSpecifiedSegment("keyName", "keyValue"),
 	}
@@ -133,7 +133,7 @@ func (id KeyId) String() string {
 	components := []string{
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
-		fmt.Sprintf("Vault Name: %q", id.VaultName),
+		fmt.Sprintf("Managed H S M Name: %q", id.ManagedHSMName),
 		fmt.Sprintf("Key Name: %q", id.KeyName),
 	}
 	return fmt.Sprintf("Key (%s)", strings.Join(components, "\n"))

@@ -8,6 +8,7 @@ import (
 
 	"github.com/Azure/go-autorest/autorest"
 	"github.com/Azure/go-autorest/autorest/azure"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -38,7 +39,7 @@ func (r ListVersionsOperationResponse) LoadMore(ctx context.Context) (resp ListV
 }
 
 // ListVersions ...
-func (c KeysClient) ListVersions(ctx context.Context, id KeyId) (resp ListVersionsOperationResponse, err error) {
+func (c KeysClient) ListVersions(ctx context.Context, id commonids.KeyVaultKeyId) (resp ListVersionsOperationResponse, err error) {
 	req, err := c.preparerForListVersions(ctx, id)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "keys.KeysClient", "ListVersions", nil, "Failure preparing request")
@@ -60,7 +61,7 @@ func (c KeysClient) ListVersions(ctx context.Context, id KeyId) (resp ListVersio
 }
 
 // preparerForListVersions prepares the ListVersions request.
-func (c KeysClient) preparerForListVersions(ctx context.Context, id KeyId) (*http.Request, error) {
+func (c KeysClient) preparerForListVersions(ctx context.Context, id commonids.KeyVaultKeyId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}
@@ -142,12 +143,12 @@ func (c KeysClient) responderForListVersions(resp *http.Response) (result ListVe
 }
 
 // ListVersionsComplete retrieves all of the results into a single object
-func (c KeysClient) ListVersionsComplete(ctx context.Context, id KeyId) (ListVersionsCompleteResult, error) {
+func (c KeysClient) ListVersionsComplete(ctx context.Context, id commonids.KeyVaultKeyId) (ListVersionsCompleteResult, error) {
 	return c.ListVersionsCompleteMatchingPredicate(ctx, id, KeyOperationPredicate{})
 }
 
 // ListVersionsCompleteMatchingPredicate retrieves all of the results and then applied the predicate
-func (c KeysClient) ListVersionsCompleteMatchingPredicate(ctx context.Context, id KeyId, predicate KeyOperationPredicate) (resp ListVersionsCompleteResult, err error) {
+func (c KeysClient) ListVersionsCompleteMatchingPredicate(ctx context.Context, id commonids.KeyVaultKeyId, predicate KeyOperationPredicate) (resp ListVersionsCompleteResult, err error) {
 	items := make([]Key, 0)
 
 	page, err := c.ListVersions(ctx, id)

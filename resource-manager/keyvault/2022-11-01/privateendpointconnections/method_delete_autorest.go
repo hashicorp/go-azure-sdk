@@ -8,6 +8,7 @@ import (
 	"github.com/Azure/go-autorest/autorest"
 	"github.com/Azure/go-autorest/autorest/azure"
 	"github.com/hashicorp/go-azure-helpers/polling"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -19,7 +20,7 @@ type DeleteOperationResponse struct {
 }
 
 // Delete ...
-func (c PrivateEndpointConnectionsClient) Delete(ctx context.Context, id PrivateEndpointConnectionId) (result DeleteOperationResponse, err error) {
+func (c PrivateEndpointConnectionsClient) Delete(ctx context.Context, id commonids.KeyVaultPrivateEndpointConnectionId) (result DeleteOperationResponse, err error) {
 	req, err := c.preparerForDelete(ctx, id)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "privateendpointconnections.PrivateEndpointConnectionsClient", "Delete", nil, "Failure preparing request")
@@ -36,7 +37,7 @@ func (c PrivateEndpointConnectionsClient) Delete(ctx context.Context, id Private
 }
 
 // DeleteThenPoll performs Delete then polls until it's completed
-func (c PrivateEndpointConnectionsClient) DeleteThenPoll(ctx context.Context, id PrivateEndpointConnectionId) error {
+func (c PrivateEndpointConnectionsClient) DeleteThenPoll(ctx context.Context, id commonids.KeyVaultPrivateEndpointConnectionId) error {
 	result, err := c.Delete(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing Delete: %+v", err)
@@ -50,7 +51,7 @@ func (c PrivateEndpointConnectionsClient) DeleteThenPoll(ctx context.Context, id
 }
 
 // preparerForDelete prepares the Delete request.
-func (c PrivateEndpointConnectionsClient) preparerForDelete(ctx context.Context, id PrivateEndpointConnectionId) (*http.Request, error) {
+func (c PrivateEndpointConnectionsClient) preparerForDelete(ctx context.Context, id commonids.KeyVaultPrivateEndpointConnectionId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

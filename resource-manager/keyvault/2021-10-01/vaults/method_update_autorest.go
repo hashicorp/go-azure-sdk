@@ -6,6 +6,7 @@ import (
 
 	"github.com/Azure/go-autorest/autorest"
 	"github.com/Azure/go-autorest/autorest/azure"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -17,7 +18,7 @@ type UpdateOperationResponse struct {
 }
 
 // Update ...
-func (c VaultsClient) Update(ctx context.Context, id VaultId, input VaultPatchParameters) (result UpdateOperationResponse, err error) {
+func (c VaultsClient) Update(ctx context.Context, id commonids.KeyVaultId, input VaultPatchParameters) (result UpdateOperationResponse, err error) {
 	req, err := c.preparerForUpdate(ctx, id, input)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "vaults.VaultsClient", "Update", nil, "Failure preparing request")
@@ -40,7 +41,7 @@ func (c VaultsClient) Update(ctx context.Context, id VaultId, input VaultPatchPa
 }
 
 // preparerForUpdate prepares the Update request.
-func (c VaultsClient) preparerForUpdate(ctx context.Context, id VaultId, input VaultPatchParameters) (*http.Request, error) {
+func (c VaultsClient) preparerForUpdate(ctx context.Context, id commonids.KeyVaultId, input VaultPatchParameters) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

@@ -393,17 +393,13 @@ func parseEngineType(input string) (*EngineType, error) {
 type LanguageExtensionImageName string
 
 const (
-	LanguageExtensionImageNamePythonThreeNineOneTwo                    LanguageExtensionImageName = "Python3_9_12"
-	LanguageExtensionImageNamePythonThreeNineOneTwoIncludeDeepLearning LanguageExtensionImageName = "Python3_9_12IncludeDeepLearning"
-	LanguageExtensionImageNamePythonThreeOneZeroEight                  LanguageExtensionImageName = "Python3_10_8"
-	LanguageExtensionImageNamePythonThreeSixFive                       LanguageExtensionImageName = "Python3_6_5"
-	LanguageExtensionImageNameR                                        LanguageExtensionImageName = "R"
+	LanguageExtensionImageNamePythonThreeOneZeroEight LanguageExtensionImageName = "Python3_10_8"
+	LanguageExtensionImageNamePythonThreeSixFive      LanguageExtensionImageName = "Python3_6_5"
+	LanguageExtensionImageNameR                       LanguageExtensionImageName = "R"
 )
 
 func PossibleValuesForLanguageExtensionImageName() []string {
 	return []string{
-		string(LanguageExtensionImageNamePythonThreeNineOneTwo),
-		string(LanguageExtensionImageNamePythonThreeNineOneTwoIncludeDeepLearning),
 		string(LanguageExtensionImageNamePythonThreeOneZeroEight),
 		string(LanguageExtensionImageNamePythonThreeSixFive),
 		string(LanguageExtensionImageNameR),
@@ -412,11 +408,9 @@ func PossibleValuesForLanguageExtensionImageName() []string {
 
 func parseLanguageExtensionImageName(input string) (*LanguageExtensionImageName, error) {
 	vals := map[string]LanguageExtensionImageName{
-		"python3_9_12":                    LanguageExtensionImageNamePythonThreeNineOneTwo,
-		"python3_9_12includedeeplearning": LanguageExtensionImageNamePythonThreeNineOneTwoIncludeDeepLearning,
-		"python3_10_8":                    LanguageExtensionImageNamePythonThreeOneZeroEight,
-		"python3_6_5":                     LanguageExtensionImageNamePythonThreeSixFive,
-		"r":                               LanguageExtensionImageNameR,
+		"python3_10_8": LanguageExtensionImageNamePythonThreeOneZeroEight,
+		"python3_6_5":  LanguageExtensionImageNamePythonThreeSixFive,
+		"r":            LanguageExtensionImageNameR,
 	}
 	if v, ok := vals[strings.ToLower(input)]; ok {
 		return &v, nil

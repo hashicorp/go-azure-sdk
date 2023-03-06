@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := keys.NewKeyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue", "keyValue")
+id := keys.NewKeyVaultKeyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue", "keyValue")
 
 payload := keys.KeyCreateParameters{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := keys.NewKeyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue", "keyValue")
+id := keys.NewKeyVaultKeyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue", "keyValue")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := keys.NewVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue", "keyValue", "versionValue")
+id := keys.NewKeyVaultKeyVersionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue", "keyValue", "versionValue")
 
 read, err := client.GetVersion(ctx, id)
 if err != nil {
@@ -77,7 +77,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := keys.NewVaultID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue")
+id := keys.NewKeyVaultID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue")
 
 // alternatively `client.List(ctx, id)` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id)
@@ -94,7 +94,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := keys.NewKeyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue", "keyValue")
+id := keys.NewKeyVaultKeyID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue", "keyValue")
 
 // alternatively `client.ListVersions(ctx, id)` can be used to do batched pagination
 items, err := client.ListVersionsComplete(ctx, id)

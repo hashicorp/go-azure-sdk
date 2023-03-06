@@ -16,17 +16,17 @@ var _ resourceids.ResourceId = VersionId{}
 type VersionId struct {
 	SubscriptionId    string
 	ResourceGroupName string
-	VaultName         string
+	ManagedHSMName    string
 	KeyName           string
 	VersionName       string
 }
 
 // NewVersionID returns a new VersionId struct
-func NewVersionID(subscriptionId string, resourceGroupName string, vaultName string, keyName string, versionName string) VersionId {
+func NewVersionID(subscriptionId string, resourceGroupName string, managedHSMName string, keyName string, versionName string) VersionId {
 	return VersionId{
 		SubscriptionId:    subscriptionId,
 		ResourceGroupName: resourceGroupName,
-		VaultName:         vaultName,
+		ManagedHSMName:    managedHSMName,
 		KeyName:           keyName,
 		VersionName:       versionName,
 	}
@@ -51,8 +51,8 @@ func ParseVersionID(input string) (*VersionId, error) {
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.VaultName, ok = parsed.Parsed["vaultName"]; !ok {
-		return nil, fmt.Errorf("the segment 'vaultName' was not found in the resource id %q", input)
+	if id.ManagedHSMName, ok = parsed.Parsed["managedHSMName"]; !ok {
+		return nil, fmt.Errorf("the segment 'managedHSMName' was not found in the resource id %q", input)
 	}
 
 	if id.KeyName, ok = parsed.Parsed["keyName"]; !ok {
@@ -86,8 +86,8 @@ func ParseVersionIDInsensitively(input string) (*VersionId, error) {
 		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
 	}
 
-	if id.VaultName, ok = parsed.Parsed["vaultName"]; !ok {
-		return nil, fmt.Errorf("the segment 'vaultName' was not found in the resource id %q", input)
+	if id.ManagedHSMName, ok = parsed.Parsed["managedHSMName"]; !ok {
+		return nil, fmt.Errorf("the segment 'managedHSMName' was not found in the resource id %q", input)
 	}
 
 	if id.KeyName, ok = parsed.Parsed["keyName"]; !ok {
@@ -118,8 +118,8 @@ func ValidateVersionID(input interface{}, key string) (warnings []string, errors
 
 // ID returns the formatted Version ID
 func (id VersionId) ID() string {
-	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.KeyVault/vaults/%s/keys/%s/versions/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.VaultName, id.KeyName, id.VersionName)
+	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.KeyVault/managedHSMs/%s/keys/%s/versions/%s"
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.ManagedHSMName, id.KeyName, id.VersionName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Version ID
@@ -131,8 +131,8 @@ func (id VersionId) Segments() []resourceids.Segment {
 		resourceids.ResourceGroupSegment("resourceGroupName", "example-resource-group"),
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftKeyVault", "Microsoft.KeyVault", "Microsoft.KeyVault"),
-		resourceids.StaticSegment("staticVaults", "vaults", "vaults"),
-		resourceids.UserSpecifiedSegment("vaultName", "vaultValue"),
+		resourceids.StaticSegment("staticManagedHSMs", "managedHSMs", "managedHSMs"),
+		resourceids.UserSpecifiedSegment("managedHSMName", "managedHSMValue"),
 		resourceids.StaticSegment("staticKeys", "keys", "keys"),
 		resourceids.UserSpecifiedSegment("keyName", "keyValue"),
 		resourceids.StaticSegment("staticVersions", "versions", "versions"),
@@ -145,7 +145,7 @@ func (id VersionId) String() string {
 	components := []string{
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
-		fmt.Sprintf("Vault Name: %q", id.VaultName),
+		fmt.Sprintf("Managed H S M Name: %q", id.ManagedHSMName),
 		fmt.Sprintf("Key Name: %q", id.KeyName),
 		fmt.Sprintf("Version Name: %q", id.VersionName),
 	}
