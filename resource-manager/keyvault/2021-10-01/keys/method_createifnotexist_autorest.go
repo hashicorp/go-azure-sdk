@@ -6,6 +6,7 @@ import (
 
 	"github.com/Azure/go-autorest/autorest"
 	"github.com/Azure/go-autorest/autorest/azure"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -17,7 +18,7 @@ type CreateIfNotExistOperationResponse struct {
 }
 
 // CreateIfNotExist ...
-func (c KeysClient) CreateIfNotExist(ctx context.Context, id KeyId, input KeyCreateParameters) (result CreateIfNotExistOperationResponse, err error) {
+func (c KeysClient) CreateIfNotExist(ctx context.Context, id commonids.KeyVaultKeyId, input KeyCreateParameters) (result CreateIfNotExistOperationResponse, err error) {
 	req, err := c.preparerForCreateIfNotExist(ctx, id, input)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "keys.KeysClient", "CreateIfNotExist", nil, "Failure preparing request")
@@ -40,7 +41,7 @@ func (c KeysClient) CreateIfNotExist(ctx context.Context, id KeyId, input KeyCre
 }
 
 // preparerForCreateIfNotExist prepares the CreateIfNotExist request.
-func (c KeysClient) preparerForCreateIfNotExist(ctx context.Context, id KeyId, input KeyCreateParameters) (*http.Request, error) {
+func (c KeysClient) preparerForCreateIfNotExist(ctx context.Context, id commonids.KeyVaultKeyId, input KeyCreateParameters) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

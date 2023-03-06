@@ -6,6 +6,7 @@ import (
 
 	"github.com/Azure/go-autorest/autorest"
 	"github.com/Azure/go-autorest/autorest/azure"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -16,7 +17,7 @@ type DeleteOperationResponse struct {
 }
 
 // Delete ...
-func (c VaultsClient) Delete(ctx context.Context, id VaultId) (result DeleteOperationResponse, err error) {
+func (c VaultsClient) Delete(ctx context.Context, id commonids.KeyVaultId) (result DeleteOperationResponse, err error) {
 	req, err := c.preparerForDelete(ctx, id)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "vaults.VaultsClient", "Delete", nil, "Failure preparing request")
@@ -39,7 +40,7 @@ func (c VaultsClient) Delete(ctx context.Context, id VaultId) (result DeleteOper
 }
 
 // preparerForDelete prepares the Delete request.
-func (c VaultsClient) preparerForDelete(ctx context.Context, id VaultId) (*http.Request, error) {
+func (c VaultsClient) preparerForDelete(ctx context.Context, id commonids.KeyVaultId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

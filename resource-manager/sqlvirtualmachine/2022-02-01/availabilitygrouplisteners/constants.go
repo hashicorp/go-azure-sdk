@@ -8,21 +8,21 @@ import "strings"
 type Commit string
 
 const (
-	CommitASYNCHRONOUSCOMMIT Commit = "ASYNCHRONOUS_COMMIT"
-	CommitSYNCHRONOUSCOMMIT  Commit = "SYNCHRONOUS_COMMIT"
+	CommitAsynchronousCommit Commit = "Asynchronous_Commit"
+	CommitSynchronousCommit  Commit = "Synchronous_Commit"
 )
 
 func PossibleValuesForCommit() []string {
 	return []string{
-		string(CommitASYNCHRONOUSCOMMIT),
-		string(CommitSYNCHRONOUSCOMMIT),
+		string(CommitAsynchronousCommit),
+		string(CommitSynchronousCommit),
 	}
 }
 
 func parseCommit(input string) (*Commit, error) {
 	vals := map[string]Commit{
-		"asynchronous_commit": CommitASYNCHRONOUSCOMMIT,
-		"synchronous_commit":  CommitSYNCHRONOUSCOMMIT,
+		"asynchronous_commit": CommitAsynchronousCommit,
+		"synchronous_commit":  CommitSynchronousCommit,
 	}
 	if v, ok := vals[strings.ToLower(input)]; ok {
 		return &v, nil
@@ -36,21 +36,21 @@ func parseCommit(input string) (*Commit, error) {
 type Failover string
 
 const (
-	FailoverAUTOMATIC Failover = "AUTOMATIC"
-	FailoverMANUAL    Failover = "MANUAL"
+	FailoverAutomatic Failover = "Automatic"
+	FailoverManual    Failover = "Manual"
 )
 
 func PossibleValuesForFailover() []string {
 	return []string{
-		string(FailoverAUTOMATIC),
-		string(FailoverMANUAL),
+		string(FailoverAutomatic),
+		string(FailoverManual),
 	}
 }
 
 func parseFailover(input string) (*Failover, error) {
 	vals := map[string]Failover{
-		"automatic": FailoverAUTOMATIC,
-		"manual":    FailoverMANUAL,
+		"automatic": FailoverAutomatic,
+		"manual":    FailoverManual,
 	}
 	if v, ok := vals[strings.ToLower(input)]; ok {
 		return &v, nil
@@ -64,24 +64,24 @@ func parseFailover(input string) (*Failover, error) {
 type ReadableSecondary string
 
 const (
-	ReadableSecondaryALL      ReadableSecondary = "ALL"
-	ReadableSecondaryNO       ReadableSecondary = "NO"
-	ReadableSecondaryREADONLY ReadableSecondary = "READ_ONLY"
+	ReadableSecondaryAll      ReadableSecondary = "All"
+	ReadableSecondaryNo       ReadableSecondary = "No"
+	ReadableSecondaryReadOnly ReadableSecondary = "Read_Only"
 )
 
 func PossibleValuesForReadableSecondary() []string {
 	return []string{
-		string(ReadableSecondaryALL),
-		string(ReadableSecondaryNO),
-		string(ReadableSecondaryREADONLY),
+		string(ReadableSecondaryAll),
+		string(ReadableSecondaryNo),
+		string(ReadableSecondaryReadOnly),
 	}
 }
 
 func parseReadableSecondary(input string) (*ReadableSecondary, error) {
 	vals := map[string]ReadableSecondary{
-		"all":       ReadableSecondaryALL,
-		"no":        ReadableSecondaryNO,
-		"read_only": ReadableSecondaryREADONLY,
+		"all":       ReadableSecondaryAll,
+		"no":        ReadableSecondaryNo,
+		"read_only": ReadableSecondaryReadOnly,
 	}
 	if v, ok := vals[strings.ToLower(input)]; ok {
 		return &v, nil
@@ -95,21 +95,21 @@ func parseReadableSecondary(input string) (*ReadableSecondary, error) {
 type Role string
 
 const (
-	RolePRIMARY   Role = "PRIMARY"
-	RoleSECONDARY Role = "SECONDARY"
+	RolePrimary   Role = "Primary"
+	RoleSecondary Role = "Secondary"
 )
 
 func PossibleValuesForRole() []string {
 	return []string{
-		string(RolePRIMARY),
-		string(RoleSECONDARY),
+		string(RolePrimary),
+		string(RoleSecondary),
 	}
 }
 
 func parseRole(input string) (*Role, error) {
 	vals := map[string]Role{
-		"primary":   RolePRIMARY,
-		"secondary": RoleSECONDARY,
+		"primary":   RolePrimary,
+		"secondary": RoleSecondary,
 	}
 	if v, ok := vals[strings.ToLower(input)]; ok {
 		return &v, nil
