@@ -8,6 +8,7 @@ import (
 
 	"github.com/Azure/go-autorest/autorest"
 	"github.com/Azure/go-autorest/autorest/azure"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -38,7 +39,7 @@ func (r ListOperationResponse) LoadMore(ctx context.Context) (resp ListOperation
 }
 
 // List ...
-func (c KeysClient) List(ctx context.Context, id VaultId) (resp ListOperationResponse, err error) {
+func (c KeysClient) List(ctx context.Context, id commonids.KeyVaultId) (resp ListOperationResponse, err error) {
 	req, err := c.preparerForList(ctx, id)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "keys.KeysClient", "List", nil, "Failure preparing request")
@@ -60,7 +61,7 @@ func (c KeysClient) List(ctx context.Context, id VaultId) (resp ListOperationRes
 }
 
 // preparerForList prepares the List request.
-func (c KeysClient) preparerForList(ctx context.Context, id VaultId) (*http.Request, error) {
+func (c KeysClient) preparerForList(ctx context.Context, id commonids.KeyVaultId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}
@@ -142,12 +143,12 @@ func (c KeysClient) responderForList(resp *http.Response) (result ListOperationR
 }
 
 // ListComplete retrieves all of the results into a single object
-func (c KeysClient) ListComplete(ctx context.Context, id VaultId) (ListCompleteResult, error) {
+func (c KeysClient) ListComplete(ctx context.Context, id commonids.KeyVaultId) (ListCompleteResult, error) {
 	return c.ListCompleteMatchingPredicate(ctx, id, KeyOperationPredicate{})
 }
 
 // ListCompleteMatchingPredicate retrieves all of the results and then applied the predicate
-func (c KeysClient) ListCompleteMatchingPredicate(ctx context.Context, id VaultId, predicate KeyOperationPredicate) (resp ListCompleteResult, err error) {
+func (c KeysClient) ListCompleteMatchingPredicate(ctx context.Context, id commonids.KeyVaultId, predicate KeyOperationPredicate) (resp ListCompleteResult, err error) {
 	items := make([]Key, 0)
 
 	page, err := c.List(ctx, id)

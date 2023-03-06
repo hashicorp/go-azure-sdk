@@ -7,6 +7,7 @@ import (
 
 	"github.com/Azure/go-autorest/autorest"
 	"github.com/Azure/go-autorest/autorest/azure"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -18,7 +19,7 @@ type ListByVaultOperationResponse struct {
 }
 
 // ListByVault ...
-func (c PrivateLinkResourcesClient) ListByVault(ctx context.Context, id VaultId) (result ListByVaultOperationResponse, err error) {
+func (c PrivateLinkResourcesClient) ListByVault(ctx context.Context, id commonids.KeyVaultId) (result ListByVaultOperationResponse, err error) {
 	req, err := c.preparerForListByVault(ctx, id)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "privatelinkresources.PrivateLinkResourcesClient", "ListByVault", nil, "Failure preparing request")
@@ -41,7 +42,7 @@ func (c PrivateLinkResourcesClient) ListByVault(ctx context.Context, id VaultId)
 }
 
 // preparerForListByVault prepares the ListByVault request.
-func (c PrivateLinkResourcesClient) preparerForListByVault(ctx context.Context, id VaultId) (*http.Request, error) {
+func (c PrivateLinkResourcesClient) preparerForListByVault(ctx context.Context, id commonids.KeyVaultId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}
