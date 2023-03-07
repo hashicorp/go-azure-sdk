@@ -57,7 +57,8 @@ func (s *SharedKeyAuthorizer) Token(ctx context.Context, req *http.Request) (*oa
 }
 
 func (s *SharedKeyAuthorizer) AuxiliaryTokens(_ context.Context, _ *http.Request) ([]*oauth2.Token, error) {
-	return nil, fmt.Errorf("auxiliary tokens are not supported with SharedKey authentication")
+	// Auxiliary tokens are not supported with SharedKey authentication
+	return []*oauth2.Token{}, nil
 }
 
 // ---
