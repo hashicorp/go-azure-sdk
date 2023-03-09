@@ -65,6 +65,9 @@ func (c AlertRuleTemplatesClient) responderForAlertRuleTemplatesGet(resp *http.R
 		autorest.ByUnmarshallingJSON(&respObj),
 		autorest.ByClosing())
 	result.HttpResponse = resp
+	if err != nil {
+		return
+	}
 	model, err := unmarshalAlertRuleTemplateImplementation(respObj)
 	if err != nil {
 		return

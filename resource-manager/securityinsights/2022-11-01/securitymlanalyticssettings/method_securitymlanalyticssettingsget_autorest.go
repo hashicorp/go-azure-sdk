@@ -65,6 +65,9 @@ func (c SecurityMLAnalyticsSettingsClient) responderForSecurityMLAnalyticsSettin
 		autorest.ByUnmarshallingJSON(&respObj),
 		autorest.ByClosing())
 	result.HttpResponse = resp
+	if err != nil {
+		return
+	}
 	model, err := unmarshalSecurityMLAnalyticsSettingImplementation(respObj)
 	if err != nil {
 		return

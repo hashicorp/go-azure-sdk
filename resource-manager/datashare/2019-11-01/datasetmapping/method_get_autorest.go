@@ -65,6 +65,9 @@ func (c DataSetMappingClient) responderForGet(resp *http.Response) (result GetOp
 		autorest.ByUnmarshallingJSON(&respObj),
 		autorest.ByClosing())
 	result.HttpResponse = resp
+	if err != nil {
+		return
+	}
 	model, err := unmarshalDataSetMappingImplementation(respObj)
 	if err != nil {
 		return

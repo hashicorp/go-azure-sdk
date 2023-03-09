@@ -65,6 +65,9 @@ func (c EntityQueriesClient) responderForEntityQueryTemplatesGet(resp *http.Resp
 		autorest.ByUnmarshallingJSON(&respObj),
 		autorest.ByClosing())
 	result.HttpResponse = resp
+	if err != nil {
+		return
+	}
 	model, err := unmarshalEntityQueryTemplateImplementation(respObj)
 	if err != nil {
 		return

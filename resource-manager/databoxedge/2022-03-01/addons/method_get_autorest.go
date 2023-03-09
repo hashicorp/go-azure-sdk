@@ -65,6 +65,9 @@ func (c AddonsClient) responderForGet(resp *http.Response) (result GetOperationR
 		autorest.ByUnmarshallingJSON(&respObj),
 		autorest.ByClosing())
 	result.HttpResponse = resp
+	if err != nil {
+		return
+	}
 	model, err := unmarshalAddonImplementation(respObj)
 	if err != nil {
 		return

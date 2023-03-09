@@ -65,6 +65,9 @@ func (c SettingsClient) responderForGet(resp *http.Response) (result GetOperatio
 		autorest.ByUnmarshallingJSON(&respObj),
 		autorest.ByClosing())
 	result.HttpResponse = resp
+	if err != nil {
+		return
+	}
 	model, err := unmarshalSettingImplementation(respObj)
 	if err != nil {
 		return
