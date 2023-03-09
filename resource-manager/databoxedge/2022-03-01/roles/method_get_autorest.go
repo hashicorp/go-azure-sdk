@@ -65,6 +65,9 @@ func (c RolesClient) responderForGet(resp *http.Response) (result GetOperationRe
 		autorest.ByUnmarshallingJSON(&respObj),
 		autorest.ByClosing())
 	result.HttpResponse = resp
+	if err != nil {
+		return
+	}
 	model, err := unmarshalRoleImplementation(respObj)
 	if err != nil {
 		return

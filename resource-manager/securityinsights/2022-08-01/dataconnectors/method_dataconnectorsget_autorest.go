@@ -65,6 +65,9 @@ func (c DataConnectorsClient) responderForDataConnectorsGet(resp *http.Response)
 		autorest.ByUnmarshallingJSON(&respObj),
 		autorest.ByClosing())
 	result.HttpResponse = resp
+	if err != nil {
+		return
+	}
 	model, err := unmarshalDataConnectorImplementation(respObj)
 	if err != nil {
 		return

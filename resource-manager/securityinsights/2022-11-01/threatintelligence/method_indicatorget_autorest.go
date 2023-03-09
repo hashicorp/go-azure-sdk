@@ -65,6 +65,9 @@ func (c ThreatIntelligenceClient) responderForIndicatorGet(resp *http.Response) 
 		autorest.ByUnmarshallingJSON(&respObj),
 		autorest.ByClosing())
 	result.HttpResponse = resp
+	if err != nil {
+		return
+	}
 	model, err := unmarshalThreatIntelligenceInformationImplementation(respObj)
 	if err != nil {
 		return
