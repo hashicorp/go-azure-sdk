@@ -66,6 +66,9 @@ func (c OperationalizationClustersClient) responderForComputeListKeys(resp *http
 		autorest.ByUnmarshallingJSON(&respObj),
 		autorest.ByClosing())
 	result.HttpResponse = resp
+	if err != nil {
+		return
+	}
 	model, err := unmarshalComputeSecretsImplementation(respObj)
 	if err != nil {
 		return

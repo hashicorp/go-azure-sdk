@@ -65,6 +65,9 @@ func (c TriggerClient) responderForGet(resp *http.Response) (result GetOperation
 		autorest.ByUnmarshallingJSON(&respObj),
 		autorest.ByClosing())
 	result.HttpResponse = resp
+	if err != nil {
+		return
+	}
 	model, err := unmarshalTriggerImplementation(respObj)
 	if err != nil {
 		return
