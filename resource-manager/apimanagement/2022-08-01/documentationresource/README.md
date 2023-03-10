@@ -95,8 +95,8 @@ if model := read.Model; model != nil {
 ctx := context.TODO()
 id := documentationresource.NewServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue")
 
-// alternatively `client.ListByService(ctx, id)` can be used to do batched pagination
-items, err := client.ListByServiceComplete(ctx, id)
+// alternatively `client.ListByService(ctx, id, documentationresource.DefaultListByServiceOperationOptions())` can be used to do batched pagination
+items, err := client.ListByServiceComplete(ctx, id, documentationresource.DefaultListByServiceOperationOptions())
 if err != nil {
 	// handle the error
 }

@@ -37,9 +37,43 @@ func (r ListByServiceOperationResponse) LoadMore(ctx context.Context) (resp List
 	return r.nextPageFunc(ctx, *r.nextLink)
 }
 
+type ListByServiceOperationOptions struct {
+	Filter *string
+	Skip   *int64
+	Top    *int64
+}
+
+func DefaultListByServiceOperationOptions() ListByServiceOperationOptions {
+	return ListByServiceOperationOptions{}
+}
+
+func (o ListByServiceOperationOptions) toHeaders() map[string]interface{} {
+	out := make(map[string]interface{})
+
+	return out
+}
+
+func (o ListByServiceOperationOptions) toQueryString() map[string]interface{} {
+	out := make(map[string]interface{})
+
+	if o.Filter != nil {
+		out["$filter"] = *o.Filter
+	}
+
+	if o.Skip != nil {
+		out["$skip"] = *o.Skip
+	}
+
+	if o.Top != nil {
+		out["$top"] = *o.Top
+	}
+
+	return out
+}
+
 // ListByService ...
-func (c DocumentationResourceClient) ListByService(ctx context.Context, id ServiceId) (resp ListByServiceOperationResponse, err error) {
-	req, err := c.preparerForListByService(ctx, id)
+func (c DocumentationResourceClient) ListByService(ctx context.Context, id ServiceId, options ListByServiceOperationOptions) (resp ListByServiceOperationResponse, err error) {
+	req, err := c.preparerForListByService(ctx, id, options)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "documentationresource.DocumentationResourceClient", "ListByService", nil, "Failure preparing request")
 		return
@@ -60,15 +94,20 @@ func (c DocumentationResourceClient) ListByService(ctx context.Context, id Servi
 }
 
 // preparerForListByService prepares the ListByService request.
-func (c DocumentationResourceClient) preparerForListByService(ctx context.Context, id ServiceId) (*http.Request, error) {
+func (c DocumentationResourceClient) preparerForListByService(ctx context.Context, id ServiceId, options ListByServiceOperationOptions) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
+	}
+
+	for k, v := range options.toQueryString() {
+		queryParameters[k] = autorest.Encode("query", v)
 	}
 
 	preparer := autorest.CreatePreparer(
 		autorest.AsContentType("application/json; charset=utf-8"),
 		autorest.AsGet(),
 		autorest.WithBaseURL(c.baseUri),
+		autorest.WithHeaders(options.toHeaders()),
 		autorest.WithPath(fmt.Sprintf("%s/documentations", id.ID())),
 		autorest.WithQueryParameters(queryParameters))
 	return preparer.Prepare((&http.Request{}).WithContext(ctx))
@@ -142,15 +181,15 @@ func (c DocumentationResourceClient) responderForListByService(resp *http.Respon
 }
 
 // ListByServiceComplete retrieves all of the results into a single object
-func (c DocumentationResourceClient) ListByServiceComplete(ctx context.Context, id ServiceId) (ListByServiceCompleteResult, error) {
-	return c.ListByServiceCompleteMatchingPredicate(ctx, id, DocumentationContractOperationPredicate{})
+func (c DocumentationResourceClient) ListByServiceComplete(ctx context.Context, id ServiceId, options ListByServiceOperationOptions) (ListByServiceCompleteResult, error) {
+	return c.ListByServiceCompleteMatchingPredicate(ctx, id, options, DocumentationContractOperationPredicate{})
 }
 
 // ListByServiceCompleteMatchingPredicate retrieves all of the results and then applied the predicate
-func (c DocumentationResourceClient) ListByServiceCompleteMatchingPredicate(ctx context.Context, id ServiceId, predicate DocumentationContractOperationPredicate) (resp ListByServiceCompleteResult, err error) {
+func (c DocumentationResourceClient) ListByServiceCompleteMatchingPredicate(ctx context.Context, id ServiceId, options ListByServiceOperationOptions, predicate DocumentationContractOperationPredicate) (resp ListByServiceCompleteResult, err error) {
 	items := make([]DocumentationContract, 0)
 
-	page, err := c.ListByService(ctx, id)
+	page, err := c.ListByService(ctx, id, options)
 	if err != nil {
 		err = fmt.Errorf("loading the initial page: %+v", err)
 		return

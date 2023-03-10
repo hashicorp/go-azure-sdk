@@ -95,8 +95,8 @@ if model := read.Model; model != nil {
 ctx := context.TODO()
 id := apiwiki.NewApiID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "apiIdValue")
 
-// alternatively `client.List(ctx, id)` can be used to do batched pagination
-items, err := client.ListComplete(ctx, id)
+// alternatively `client.List(ctx, id, apiwiki.DefaultListOperationOptions())` can be used to do batched pagination
+items, err := client.ListComplete(ctx, id, apiwiki.DefaultListOperationOptions())
 if err != nil {
 	// handle the error
 }

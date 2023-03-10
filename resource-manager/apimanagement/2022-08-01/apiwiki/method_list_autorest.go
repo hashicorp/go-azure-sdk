@@ -37,9 +37,43 @@ func (r ListOperationResponse) LoadMore(ctx context.Context) (resp ListOperation
 	return r.nextPageFunc(ctx, *r.nextLink)
 }
 
+type ListOperationOptions struct {
+	Filter *string
+	Skip   *int64
+	Top    *int64
+}
+
+func DefaultListOperationOptions() ListOperationOptions {
+	return ListOperationOptions{}
+}
+
+func (o ListOperationOptions) toHeaders() map[string]interface{} {
+	out := make(map[string]interface{})
+
+	return out
+}
+
+func (o ListOperationOptions) toQueryString() map[string]interface{} {
+	out := make(map[string]interface{})
+
+	if o.Filter != nil {
+		out["$filter"] = *o.Filter
+	}
+
+	if o.Skip != nil {
+		out["$skip"] = *o.Skip
+	}
+
+	if o.Top != nil {
+		out["$top"] = *o.Top
+	}
+
+	return out
+}
+
 // List ...
-func (c ApiWikiClient) List(ctx context.Context, id ApiId) (resp ListOperationResponse, err error) {
-	req, err := c.preparerForList(ctx, id)
+func (c ApiWikiClient) List(ctx context.Context, id ApiId, options ListOperationOptions) (resp ListOperationResponse, err error) {
+	req, err := c.preparerForList(ctx, id, options)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "apiwiki.ApiWikiClient", "List", nil, "Failure preparing request")
 		return
@@ -60,15 +94,20 @@ func (c ApiWikiClient) List(ctx context.Context, id ApiId) (resp ListOperationRe
 }
 
 // preparerForList prepares the List request.
-func (c ApiWikiClient) preparerForList(ctx context.Context, id ApiId) (*http.Request, error) {
+func (c ApiWikiClient) preparerForList(ctx context.Context, id ApiId, options ListOperationOptions) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
+	}
+
+	for k, v := range options.toQueryString() {
+		queryParameters[k] = autorest.Encode("query", v)
 	}
 
 	preparer := autorest.CreatePreparer(
 		autorest.AsContentType("application/json; charset=utf-8"),
 		autorest.AsGet(),
 		autorest.WithBaseURL(c.baseUri),
+		autorest.WithHeaders(options.toHeaders()),
 		autorest.WithPath(fmt.Sprintf("%s/wikis", id.ID())),
 		autorest.WithQueryParameters(queryParameters))
 	return preparer.Prepare((&http.Request{}).WithContext(ctx))
@@ -142,15 +181,15 @@ func (c ApiWikiClient) responderForList(resp *http.Response) (result ListOperati
 }
 
 // ListComplete retrieves all of the results into a single object
-func (c ApiWikiClient) ListComplete(ctx context.Context, id ApiId) (ListCompleteResult, error) {
-	return c.ListCompleteMatchingPredicate(ctx, id, WikiContractOperationPredicate{})
+func (c ApiWikiClient) ListComplete(ctx context.Context, id ApiId, options ListOperationOptions) (ListCompleteResult, error) {
+	return c.ListCompleteMatchingPredicate(ctx, id, options, WikiContractOperationPredicate{})
 }
 
 // ListCompleteMatchingPredicate retrieves all of the results and then applied the predicate
-func (c ApiWikiClient) ListCompleteMatchingPredicate(ctx context.Context, id ApiId, predicate WikiContractOperationPredicate) (resp ListCompleteResult, err error) {
+func (c ApiWikiClient) ListCompleteMatchingPredicate(ctx context.Context, id ApiId, options ListOperationOptions, predicate WikiContractOperationPredicate) (resp ListCompleteResult, err error) {
 	items := make([]WikiContract, 0)
 
-	page, err := c.List(ctx, id)
+	page, err := c.List(ctx, id, options)
 	if err != nil {
 		err = fmt.Errorf("loading the initial page: %+v", err)
 		return
