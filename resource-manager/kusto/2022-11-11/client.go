@@ -1,5 +1,8 @@
 package v2022_11_11
 
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
 import (
 	"github.com/Azure/go-autorest/autorest"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/kusto/2022-11-11/attacheddatabaseconfigurations"
@@ -15,9 +18,6 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/kusto/2022-11-11/privatelinkresources"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/kusto/2022-11-11/scripts"
 )
-
-// Copyright (c) Microsoft Corporation. All rights reserved.
-// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type Client struct {
 	AttachedDatabaseConfigurations       *attacheddatabaseconfigurations.AttachedDatabaseConfigurationsClient

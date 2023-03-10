@@ -1,5 +1,8 @@
 package v2022_03_08_preview
 
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
 import (
 	"github.com/Azure/go-autorest/autorest"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/postgresql/2022-03-08-preview/administrators"
@@ -16,9 +19,6 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/postgresql/2022-03-08-preview/serverstart"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/postgresql/2022-03-08-preview/serverstop"
 )
-
-// Copyright (c) Microsoft Corporation. All rights reserved.
-// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type Client struct {
 	Administrators            *administrators.AdministratorsClient

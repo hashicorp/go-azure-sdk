@@ -1,5 +1,8 @@
 package v2022_10_01
 
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
 import (
 	"github.com/Azure/go-autorest/autorest"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/costmanagement/2022-10-01/alerts"
@@ -16,9 +19,6 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/costmanagement/2022-10-01/usagedetails"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/costmanagement/2022-10-01/views"
 )
-
-// Copyright (c) Microsoft Corporation. All rights reserved.
-// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type Client struct {
 	Alerts                      *alerts.AlertsClient
