@@ -95,8 +95,8 @@ if model := read.Model; model != nil {
 ctx := context.TODO()
 id := productwiki.NewProductID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "productIdValue")
 
-// alternatively `client.List(ctx, id)` can be used to do batched pagination
-items, err := client.ListComplete(ctx, id)
+// alternatively `client.List(ctx, id, productwiki.DefaultListOperationOptions())` can be used to do batched pagination
+items, err := client.ListComplete(ctx, id, productwiki.DefaultListOperationOptions())
 if err != nil {
 	// handle the error
 }
