@@ -110,18 +110,18 @@ func parseParameterType(input string) (*ParameterType, error) {
 type Type string
 
 const (
-	TypeLinkedServiceReference Type = "LinkedServiceReference"
+	TypeIntegrationRuntimeReference Type = "IntegrationRuntimeReference"
 )
 
 func PossibleValuesForType() []string {
 	return []string{
-		string(TypeLinkedServiceReference),
+		string(TypeIntegrationRuntimeReference),
 	}
 }
 
 func parseType(input string) (*Type, error) {
 	vals := map[string]Type{
-		"linkedservicereference": TypeLinkedServiceReference,
+		"integrationruntimereference": TypeIntegrationRuntimeReference,
 	}
 	if v, ok := vals[strings.ToLower(input)]; ok {
 		return &v, nil

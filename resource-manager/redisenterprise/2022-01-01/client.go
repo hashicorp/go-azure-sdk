@@ -1,5 +1,8 @@
 package v2022_01_01
 
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
 import (
 	"github.com/Azure/go-autorest/autorest"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/redisenterprise/2022-01-01/databases"
@@ -7,9 +10,6 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/redisenterprise/2022-01-01/privatelinkresources"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/redisenterprise/2022-01-01/redisenterprise"
 )
-
-// Copyright (c) Microsoft Corporation. All rights reserved.
-// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type Client struct {
 	Databases                  *databases.DatabasesClient

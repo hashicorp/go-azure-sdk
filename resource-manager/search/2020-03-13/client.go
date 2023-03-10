@@ -1,5 +1,8 @@
 package v2020_03_13
 
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
 import (
 	"github.com/Azure/go-autorest/autorest"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/search/2020-03-13/adminkeys"
@@ -8,9 +11,6 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/search/2020-03-13/querykeys"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/search/2020-03-13/services"
 )
-
-// Copyright (c) Microsoft Corporation. All rights reserved.
-// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type Client struct {
 	AdminKeys                  *adminkeys.AdminKeysClient

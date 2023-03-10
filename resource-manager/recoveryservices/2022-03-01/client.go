@@ -1,5 +1,8 @@
 package v2022_03_01
 
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
 import (
 	"github.com/Azure/go-autorest/autorest"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservices/2022-03-01/getprivatelinkresources"
@@ -12,9 +15,6 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservices/2022-03-01/vaults"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservices/2022-03-01/vaultusages"
 )
-
-// Copyright (c) Microsoft Corporation. All rights reserved.
-// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type Client struct {
 	GetPrivateLinkResources  *getprivatelinkresources.GetPrivateLinkResourcesClient

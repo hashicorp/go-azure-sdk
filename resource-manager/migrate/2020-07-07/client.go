@@ -1,5 +1,8 @@
 package v2020_07_07
 
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
 import (
 	"github.com/Azure/go-autorest/autorest"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/migrate/2020-07-07/hypervcluster"
@@ -18,9 +21,6 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/migrate/2020-07-07/sites"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/migrate/2020-07-07/vcenter"
 )
-
-// Copyright (c) Microsoft Corporation. All rights reserved.
-// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type Client struct {
 	HyperVCluster             *hypervcluster.HyperVClusterClient

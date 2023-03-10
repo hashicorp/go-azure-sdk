@@ -1,5 +1,8 @@
 package v2022_04_01
 
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
 import (
 	"github.com/Azure/go-autorest/autorest"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/dataprotection/2022-04-01/azurebackupjob"
@@ -12,9 +15,6 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/dataprotection/2022-04-01/recoverypoint"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/dataprotection/2022-04-01/resourceguards"
 )
-
-// Copyright (c) Microsoft Corporation. All rights reserved.
-// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type Client struct {
 	AzureBackupJob           *azurebackupjob.AzureBackupJobClient

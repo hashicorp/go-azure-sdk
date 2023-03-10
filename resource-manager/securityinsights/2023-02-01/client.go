@@ -1,5 +1,8 @@
 package v2023_02_01
 
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
 import (
 	"github.com/Azure/go-autorest/autorest"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2023-02-01/actions"
@@ -21,9 +24,6 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2023-02-01/watchlistitems"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2023-02-01/watchlists"
 )
-
-// Copyright (c) Microsoft Corporation. All rights reserved.
-// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type Client struct {
 	Actions                     *actions.ActionsClient

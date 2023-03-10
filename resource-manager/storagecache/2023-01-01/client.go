@@ -1,5 +1,8 @@
 package v2023_01_01
 
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
 import (
 	"github.com/Azure/go-autorest/autorest"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/storagecache/2023-01-01/ascusages"
@@ -8,9 +11,6 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/storagecache/2023-01-01/storagetargets"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/storagecache/2023-01-01/usagemodels"
 )
-
-// Copyright (c) Microsoft Corporation. All rights reserved.
-// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type Client struct {
 	AscUsages      *ascusages.AscUsagesClient
