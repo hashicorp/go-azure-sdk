@@ -169,10 +169,10 @@ func azureMetadata(ctx context.Context, url string) (body []byte, err error) {
 	req.Header = http.Header{
 		"Metadata": []string{"true"},
 	}
-	client := &http.Client{
-		Transport: http.DefaultTransport,
-		Timeout:   msiDefaultTimeout,
-	}
+
+	client := httpClient()
+	client.Timeout = msiDefaultTimeout
+
 	var resp *http.Response
 	log.Printf("[DEBUG] Performing %s Request to %q", req.Method, url)
 	resp, err = client.Do(req)
