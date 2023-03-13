@@ -46,7 +46,6 @@ func NewManagedIdentityAuthorizer(ctx context.Context, options ManagedIdentityAu
 const (
 	msiDefaultApiVersion = "2018-02-01"
 	msiDefaultEndpoint   = "http://169.254.169.254/metadata/identity/oauth2/token"
-	msiDefaultTimeout    = 10 * time.Second
 )
 
 var _ Authorizer = &ManagedIdentityAuthorizer{}
@@ -174,7 +173,7 @@ func azureMetadata(ctx context.Context, url string) (body []byte, err error) {
 		retryWaitMin:  2 * time.Second,
 		retryWaitMax:  60 * time.Second,
 		retryMaxCount: 5,
-		timeout:       msiDefaultTimeout,
+		timeout:       10 * time.Second,
 		useProxy:      false,
 	})
 
