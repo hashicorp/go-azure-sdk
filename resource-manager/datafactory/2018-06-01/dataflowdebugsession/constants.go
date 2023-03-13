@@ -106,28 +106,3 @@ func parseParameterType(input string) (*ParameterType, error) {
 	out := ParameterType(input)
 	return &out, nil
 }
-
-type Type string
-
-const (
-	TypeIntegrationRuntimeReference Type = "IntegrationRuntimeReference"
-)
-
-func PossibleValuesForType() []string {
-	return []string{
-		string(TypeIntegrationRuntimeReference),
-	}
-}
-
-func parseType(input string) (*Type, error) {
-	vals := map[string]Type{
-		"integrationruntimereference": TypeIntegrationRuntimeReference,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := Type(input)
-	return &out, nil
-}

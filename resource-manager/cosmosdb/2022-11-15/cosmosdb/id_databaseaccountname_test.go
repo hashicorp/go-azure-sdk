@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = DatabaseAccountNameId{}
 
 func TestNewDatabaseAccountNameID(t *testing.T) {
-	id := NewDatabaseAccountNameID("databaseAccountNameValue")
+	id := NewDatabaseAccountNameID("databaseAccountValue")
 
-	if id.DatabaseAccountNameName != "databaseAccountNameValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DatabaseAccountNameName'", id.DatabaseAccountNameName, "databaseAccountNameValue")
+	if id.DatabaseAccountName != "databaseAccountValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'DatabaseAccountName'", id.DatabaseAccountName, "databaseAccountValue")
 	}
 }
 
 func TestFormatDatabaseAccountNameID(t *testing.T) {
-	actual := NewDatabaseAccountNameID("databaseAccountNameValue").ID()
-	expected := "/providers/Microsoft.DocumentDB/databaseAccountNames/databaseAccountNameValue"
+	actual := NewDatabaseAccountNameID("databaseAccountValue").ID()
+	expected := "/providers/Microsoft.DocumentDB/databaseAccountNames/databaseAccountValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseDatabaseAccountNameID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.DocumentDB/databaseAccountNames/databaseAccountNameValue",
+			Input: "/providers/Microsoft.DocumentDB/databaseAccountNames/databaseAccountValue",
 			Expected: &DatabaseAccountNameId{
-				DatabaseAccountNameName: "databaseAccountNameValue",
+				DatabaseAccountName: "databaseAccountValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.DocumentDB/databaseAccountNames/databaseAccountNameValue/extra",
+			Input: "/providers/Microsoft.DocumentDB/databaseAccountNames/databaseAccountValue/extra",
 			Error: true,
 		},
 	}
@@ -81,8 +81,8 @@ func TestParseDatabaseAccountNameID(t *testing.T) {
 			t.Fatal("Expect an error but didn't get one")
 		}
 
-		if actual.DatabaseAccountNameName != v.Expected.DatabaseAccountNameName {
-			t.Fatalf("Expected %q but got %q for DatabaseAccountNameName", v.Expected.DatabaseAccountNameName, actual.DatabaseAccountNameName)
+		if actual.DatabaseAccountName != v.Expected.DatabaseAccountName {
+			t.Fatalf("Expected %q but got %q for DatabaseAccountName", v.Expected.DatabaseAccountName, actual.DatabaseAccountName)
 		}
 
 	}
@@ -131,26 +131,26 @@ func TestParseDatabaseAccountNameIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/providers/Microsoft.DocumentDB/databaseAccountNames/databaseAccountNameValue",
+			Input: "/providers/Microsoft.DocumentDB/databaseAccountNames/databaseAccountValue",
 			Expected: &DatabaseAccountNameId{
-				DatabaseAccountNameName: "databaseAccountNameValue",
+				DatabaseAccountName: "databaseAccountValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/Microsoft.DocumentDB/databaseAccountNames/databaseAccountNameValue/extra",
+			Input: "/providers/Microsoft.DocumentDB/databaseAccountNames/databaseAccountValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.dOcUmEnTdB/dAtAbAsEaCcOuNtNaMeS/dAtAbAsEaCcOuNtNaMeVaLuE",
+			Input: "/pRoViDeRs/mIcRoSoFt.dOcUmEnTdB/dAtAbAsEaCcOuNtNaMeS/dAtAbAsEaCcOuNtVaLuE",
 			Expected: &DatabaseAccountNameId{
-				DatabaseAccountNameName: "dAtAbAsEaCcOuNtNaMeVaLuE",
+				DatabaseAccountName: "dAtAbAsEaCcOuNtVaLuE",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/pRoViDeRs/mIcRoSoFt.dOcUmEnTdB/dAtAbAsEaCcOuNtNaMeS/dAtAbAsEaCcOuNtNaMeVaLuE/extra",
+			Input: "/pRoViDeRs/mIcRoSoFt.dOcUmEnTdB/dAtAbAsEaCcOuNtNaMeS/dAtAbAsEaCcOuNtVaLuE/extra",
 			Error: true,
 		},
 	}
@@ -169,8 +169,8 @@ func TestParseDatabaseAccountNameIDInsensitively(t *testing.T) {
 			t.Fatal("Expect an error but didn't get one")
 		}
 
-		if actual.DatabaseAccountNameName != v.Expected.DatabaseAccountNameName {
-			t.Fatalf("Expected %q but got %q for DatabaseAccountNameName", v.Expected.DatabaseAccountNameName, actual.DatabaseAccountNameName)
+		if actual.DatabaseAccountName != v.Expected.DatabaseAccountName {
+			t.Fatalf("Expected %q but got %q for DatabaseAccountName", v.Expected.DatabaseAccountName, actual.DatabaseAccountName)
 		}
 
 	}
