@@ -90,7 +90,7 @@ func (a *GitHubOIDCAuthorizer) githubAssertion(ctx context.Context, _ *http.Requ
 	req.Header.Set("Authorization", fmt.Sprintf("Bearer %s", a.conf.IDTokenRequestToken))
 	req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
 
-	client := httpClient()
+	client := httpClient(defaultHttpClientParams())
 	resp, err := client.Do(req)
 	if err != nil {
 		return nil, fmt.Errorf("githubAssertion: cannot request token: %v", err)
