@@ -170,6 +170,8 @@ func azureMetadata(ctx context.Context, url string) (body []byte, err error) {
 	}
 
 	client := httpClient(httpClientParams{
+		instanceMetadataService: true,
+
 		retryWaitMin:  2 * time.Second,
 		retryWaitMax:  60 * time.Second,
 		retryMaxCount: 5,

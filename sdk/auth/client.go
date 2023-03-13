@@ -14,6 +14,8 @@ import (
 )
 
 type httpClientParams struct {
+	instanceMetadataService bool
+
 	retryWaitMin  time.Duration
 	retryWaitMax  time.Duration
 	retryMaxCount int
@@ -23,6 +25,8 @@ type httpClientParams struct {
 
 func defaultHttpClientParams() httpClientParams {
 	return httpClientParams{
+		instanceMetadataService: false,
+
 		retryWaitMin:  1 * time.Second,
 		retryWaitMax:  30 * time.Second,
 		retryMaxCount: 8,
@@ -40,10 +44,12 @@ func httpClient(params httpClientParams) *http.Client {
 		// note: min and max contain the values of r.RetryWaitMin and r.RetryWaitMax
 
 		if resp != nil {
-			// IMDS uses inappropriate 410 status to indicate a rebooting-like state, retry after 70 seconds
-			// See https://learn.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/how-to-use-vm-token#retry-guidance
-			if resp.StatusCode == http.StatusGone {
-				return 70 * time.Second
+			if params.instanceMetadataService {
+				// IMDS uses inappropriate 410 status to indicate a rebooting-like state, retry after 70 seconds
+				// See https://learn.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/how-to-use-vm-token#retry-guidance
+				if resp.StatusCode == http.StatusGone {
+					return 70 * time.Second
+				}
 			}
 
 			// Always look for Retry-After header, regardless of HTTP status
