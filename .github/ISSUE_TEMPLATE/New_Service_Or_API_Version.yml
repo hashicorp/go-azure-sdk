@@ -1,3 +1,6 @@
+# Copyright (c) HashiCorp, Inc.
+# SPDX-License-Identifier: MPL-2.0
+
 name: Support New Service or a New API Version
 description: Request support for a New Service, or a new API Version for an existing Service.
 title: "Support for [Service] / [API Version]"
