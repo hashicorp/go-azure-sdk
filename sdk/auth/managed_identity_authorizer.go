@@ -157,7 +157,11 @@ func (c *managedIdentityConfig) TokenSource(_ context.Context) (Authorizer, erro
 }
 
 func azureMetadata(ctx context.Context, url string) (body []byte, err error) {
-	ctx2, cancel := context.WithDeadline(ctx, time.Now().Add(time.Second*30))
+	const retryMaxCount = 5
+	const retryWaitMax = 60
+	const singleTimeout = 10
+	const timeout = retryMaxCount * (retryWaitMax + singleTimeout)
+	ctx2, cancel := context.WithDeadline(ctx, time.Now().Add(time.Second*(30+timeout)))
 	defer cancel()
 
 	var req *http.Request
@@ -173,9 +177,9 @@ func azureMetadata(ctx context.Context, url string) (body []byte, err error) {
 		instanceMetadataService: true,
 
 		retryWaitMin:  2 * time.Second,
-		retryWaitMax:  60 * time.Second,
-		retryMaxCount: 5,
-		timeout:       10 * time.Second,
+		retryWaitMax:  retryWaitMax * time.Second,
+		retryMaxCount: retryMaxCount,
+		timeout:       timeout * time.Second,
 		useProxy:      false,
 	})
 
