@@ -157,15 +157,13 @@ func (c *managedIdentityConfig) TokenSource(_ context.Context) (Authorizer, erro
 }
 
 func azureMetadata(ctx context.Context, url string) (body []byte, err error) {
-	const retryMaxCount = 5
-	const retryWaitMax = 60
-	const singleTimeout = 10
-	const timeout = retryMaxCount * (retryWaitMax + singleTimeout)
-	ctx2, cancel := context.WithDeadline(ctx, time.Now().Add(time.Second*(30+timeout)))
-	defer cancel()
+	deadline, ok := ctx.Deadline()
+	if !ok {
+		return nil, fmt.Errorf("internal-error: context had no deadline")
+	}
 
 	var req *http.Request
-	req, err = http.NewRequestWithContext(ctx2, http.MethodGet, url, http.NoBody)
+	req, err = http.NewRequestWithContext(ctx, http.MethodGet, url, http.NoBody)
 	if err != nil {
 		return
 	}
@@ -177,9 +175,9 @@ func azureMetadata(ctx context.Context, url string) (body []byte, err error) {
 		instanceMetadataService: true,
 
 		retryWaitMin:  2 * time.Second,
-		retryWaitMax:  retryWaitMax * time.Second,
-		retryMaxCount: retryMaxCount,
-		timeout:       timeout * time.Second,
+		retryWaitMax:  60 * time.Second,
+		retryMaxCount: 5,
+		timeout:       time.Until(deadline),
 		useProxy:      false,
 	})
 
