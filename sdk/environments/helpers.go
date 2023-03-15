@@ -25,6 +25,16 @@ func ApiManagementAPI(domainSuffix string) Api {
 	}
 }
 
+func AttestationAPI(endpoint string) Api {
+	return &ApiEndpoint{
+		domainSuffix:       nil,
+		endpoint:           pointer.To(endpoint),
+		appId:              pointer.To(attestationServiceAppId),
+		name:               "AttestationService",
+		resourceIdentifier: nil,
+	}
+}
+
 func BatchAPI(endpoint string) *ApiEndpoint {
 	return &ApiEndpoint{
 		domainSuffix:       nil,
