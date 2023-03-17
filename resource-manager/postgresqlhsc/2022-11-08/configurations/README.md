@@ -20,40 +20,6 @@ client.Client.Authorizer = authorizer
 ```
 
 
-### Example Usage: `ConfigurationsClient.CreateOrUpdateCoordinator`
-
-```go
-ctx := context.TODO()
-id := configurations.NewCoordinatorConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverGroupsv2Value", "coordinatorConfigurationValue")
-
-payload := configurations.ServerConfiguration{
-	// ...
-}
-
-
-if err := client.CreateOrUpdateCoordinatorThenPoll(ctx, id, payload); err != nil {
-	// handle the error
-}
-```
-
-
-### Example Usage: `ConfigurationsClient.CreateOrUpdateNode`
-
-```go
-ctx := context.TODO()
-id := configurations.NewNodeConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverGroupsv2Value", "nodeConfigurationValue")
-
-payload := configurations.ServerConfiguration{
-	// ...
-}
-
-
-if err := client.CreateOrUpdateNodeThenPoll(ctx, id, payload); err != nil {
-	// handle the error
-}
-```
-
-
 ### Example Usage: `ConfigurationsClient.Get`
 
 ```go
@@ -132,5 +98,39 @@ if err != nil {
 }
 for _, item := range items {
 	// do something
+}
+```
+
+
+### Example Usage: `ConfigurationsClient.UpdateOnCoordinator`
+
+```go
+ctx := context.TODO()
+id := configurations.NewCoordinatorConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverGroupsv2Value", "coordinatorConfigurationValue")
+
+payload := configurations.ServerConfiguration{
+	// ...
+}
+
+
+if err := client.UpdateOnCoordinatorThenPoll(ctx, id, payload); err != nil {
+	// handle the error
+}
+```
+
+
+### Example Usage: `ConfigurationsClient.UpdateOnNode`
+
+```go
+ctx := context.TODO()
+id := configurations.NewNodeConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverGroupsv2Value", "nodeConfigurationValue")
+
+payload := configurations.ServerConfiguration{
+	// ...
+}
+
+
+if err := client.UpdateOnNodeThenPoll(ctx, id, payload); err != nil {
+	// handle the error
 }
 ```
