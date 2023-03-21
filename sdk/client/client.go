@@ -395,7 +395,6 @@ func (c *Client) Execute(ctx context.Context, req *Request) (*Response, error) {
 	}
 
 	// Extract OData from response
-	var o *odata.OData
 	resp.OData, err = odata.FromResponse(resp.Response)
 	if err != nil {
 		return resp, err
@@ -403,15 +402,15 @@ func (c *Client) Execute(ctx context.Context, req *Request) (*Response, error) {
 
 	// Determine whether response status is valid
 	if !containsStatusCode(req.ValidStatusCodes, resp.StatusCode) {
-		if f := req.ValidStatusFunc; f != nil && f(resp.Response, o) {
+		if f := req.ValidStatusFunc; f != nil && f(resp.Response, resp.OData) {
 			return resp, nil
 		}
 
 		// Determine suitable error text
 		var errText string
 		switch {
-		case o != nil && o.Error != nil && o.Error.String() != "":
-			errText = fmt.Sprintf("error: %s", o.Error)
+		case resp.OData != nil && resp.OData.Error != nil && resp.OData.Error.String() != "":
+			errText = fmt.Sprintf("error: %s", resp.OData.Error)
 
 		default:
 			defer resp.Body.Close()
