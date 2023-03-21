@@ -400,9 +400,6 @@ func (c *Client) Execute(ctx context.Context, req *Request) (*Response, error) {
 	if err != nil {
 		return resp, err
 	}
-	if resp == nil {
-		return resp, fmt.Errorf("nil response received")
-	}
 
 	// Determine whether response status is valid
 	if !containsStatusCode(req.ValidStatusCodes, resp.StatusCode) {
