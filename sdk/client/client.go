@@ -394,14 +394,14 @@ func (c *Client) Execute(ctx context.Context, req *Request) (*Response, error) {
 		}
 	}
 
-	// Extract OData from response
-	resp.OData, err = odata.FromResponse(resp.Response)
-	if err != nil {
-		return resp, err
-	}
+	// Extract OData from response, intentionally ignoring any errors as it's not crucial to extract
+	// valid OData at this point (valid json can still error here, such as any non-object literal)
+	resp.OData, _ = odata.FromResponse(resp.Response)
 
 	// Determine whether response status is valid
 	if !containsStatusCode(req.ValidStatusCodes, resp.StatusCode) {
+		// The status code didn't match, but we also need to check the ValidStatusFUnc, if provided
+		// Note that the odata argument here is a best-effort and may be nil
 		if f := req.ValidStatusFunc; f != nil && f(resp.Response, resp.OData) {
 			return resp, nil
 		}
