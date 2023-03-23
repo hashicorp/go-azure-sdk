@@ -29,7 +29,7 @@ func tokenDueForRenewal(token *oauth2.Token) bool {
 	expiresWithinTenMinutes := expiry.Add(-delta).Before(now)
 
 	// Try to parse the token claims to retrieve the issuedAt time
-	if claims, err := claims.ParseClaims(token); err != nil {
+	if claims, err := claims.ParseClaims(token); err == nil {
 		if claims.IssuedAt > 0 {
 			issued := time.Unix(claims.IssuedAt, 0)
 			validity := expiry.Sub(issued)
