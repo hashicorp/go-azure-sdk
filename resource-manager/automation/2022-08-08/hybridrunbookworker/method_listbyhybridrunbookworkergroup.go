@@ -77,7 +77,7 @@ func (c HybridRunbookWorkerClient) ListByHybridRunbookWorkerGroup(ctx context.Co
 	}
 
 	var values struct {
-		Values *[]HybridRunbookWorker `json:"values"`
+		Values *[]HybridRunbookWorker `json:"value"`
 	}
 	if err = resp.Unmarshal(&values); err != nil {
 		return

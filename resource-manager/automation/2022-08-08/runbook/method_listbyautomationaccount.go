@@ -49,7 +49,7 @@ func (c RunbookClient) ListByAutomationAccount(ctx context.Context, id Automatio
 	}
 
 	var values struct {
-		Values *[]Runbook `json:"values"`
+		Values *[]Runbook `json:"value"`
 	}
 	if err = resp.Unmarshal(&values); err != nil {
 		return

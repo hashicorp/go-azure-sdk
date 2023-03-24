@@ -49,7 +49,7 @@ func (c ActivityClient) ListByModule(ctx context.Context, id ModuleId) (result L
 	}
 
 	var values struct {
-		Values *[]Activity `json:"values"`
+		Values *[]Activity `json:"value"`
 	}
 	if err = resp.Unmarshal(&values); err != nil {
 		return

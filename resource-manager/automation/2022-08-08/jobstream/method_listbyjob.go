@@ -80,7 +80,7 @@ func (c JobStreamClient) ListByJob(ctx context.Context, id JobId, options ListBy
 	}
 
 	var values struct {
-		Values *[]JobStream `json:"values"`
+		Values *[]JobStream `json:"value"`
 	}
 	if err = resp.Unmarshal(&values); err != nil {
 		return

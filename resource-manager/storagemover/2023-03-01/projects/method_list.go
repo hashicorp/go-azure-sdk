@@ -49,7 +49,7 @@ func (c ProjectsClient) List(ctx context.Context, id StorageMoverId) (result Lis
 	}
 
 	var values struct {
-		Values *[]Project `json:"values"`
+		Values *[]Project `json:"value"`
 	}
 	if err = resp.Unmarshal(&values); err != nil {
 		return

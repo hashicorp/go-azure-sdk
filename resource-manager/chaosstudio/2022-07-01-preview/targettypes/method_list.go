@@ -77,7 +77,7 @@ func (c TargetTypesClient) List(ctx context.Context, id LocationId, options List
 	}
 
 	var values struct {
-		Values *[]TargetType `json:"values"`
+		Values *[]TargetType `json:"value"`
 	}
 	if err = resp.Unmarshal(&values); err != nil {
 		return

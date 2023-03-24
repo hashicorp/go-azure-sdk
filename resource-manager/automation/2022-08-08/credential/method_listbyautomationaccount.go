@@ -49,7 +49,7 @@ func (c CredentialClient) ListByAutomationAccount(ctx context.Context, id Automa
 	}
 
 	var values struct {
-		Values *[]Credential `json:"values"`
+		Values *[]Credential `json:"value"`
 	}
 	if err = resp.Unmarshal(&values); err != nil {
 		return

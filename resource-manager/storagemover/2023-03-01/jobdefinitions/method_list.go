@@ -49,7 +49,7 @@ func (c JobDefinitionsClient) List(ctx context.Context, id ProjectId) (result Li
 	}
 
 	var values struct {
-		Values *[]JobDefinition `json:"values"`
+		Values *[]JobDefinition `json:"value"`
 	}
 	if err = resp.Unmarshal(&values); err != nil {
 		return

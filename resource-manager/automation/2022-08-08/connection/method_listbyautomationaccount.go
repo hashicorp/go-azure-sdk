@@ -49,7 +49,7 @@ func (c ConnectionClient) ListByAutomationAccount(ctx context.Context, id Automa
 	}
 
 	var values struct {
-		Values *[]Connection `json:"values"`
+		Values *[]Connection `json:"value"`
 	}
 	if err = resp.Unmarshal(&values); err != nil {
 		return

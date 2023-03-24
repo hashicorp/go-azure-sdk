@@ -82,7 +82,7 @@ func (c ExperimentsClient) ListAll(ctx context.Context, id commonids.Subscriptio
 	}
 
 	var values struct {
-		Values *[]Experiment `json:"values"`
+		Values *[]Experiment `json:"value"`
 	}
 	if err = resp.Unmarshal(&values); err != nil {
 		return

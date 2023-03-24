@@ -50,7 +50,7 @@ func (c AutomationAccountClient) ListByResourceGroup(ctx context.Context, id com
 	}
 
 	var values struct {
-		Values *[]AutomationAccount `json:"values"`
+		Values *[]AutomationAccount `json:"value"`
 	}
 	if err = resp.Unmarshal(&values); err != nil {
 		return

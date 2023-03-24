@@ -49,7 +49,7 @@ func (c VariableClient) ListByAutomationAccount(ctx context.Context, id Automati
 	}
 
 	var values struct {
-		Values *[]Variable `json:"values"`
+		Values *[]Variable `json:"value"`
 	}
 	if err = resp.Unmarshal(&values); err != nil {
 		return

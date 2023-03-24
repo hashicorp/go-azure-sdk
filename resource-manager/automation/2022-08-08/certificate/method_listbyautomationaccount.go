@@ -49,7 +49,7 @@ func (c CertificateClient) ListByAutomationAccount(ctx context.Context, id Autom
 	}
 
 	var values struct {
-		Values *[]Certificate `json:"values"`
+		Values *[]Certificate `json:"value"`
 	}
 	if err = resp.Unmarshal(&values); err != nil {
 		return

@@ -49,7 +49,7 @@ func (c AgentsClient) List(ctx context.Context, id StorageMoverId) (result ListO
 	}
 
 	var values struct {
-		Values *[]Agent `json:"values"`
+		Values *[]Agent `json:"value"`
 	}
 	if err = resp.Unmarshal(&values); err != nil {
 		return

@@ -49,7 +49,7 @@ func (c ModuleClient) ListByAutomationAccount(ctx context.Context, id Automation
 	}
 
 	var values struct {
-		Values *[]Module `json:"values"`
+		Values *[]Module `json:"value"`
 	}
 	if err = resp.Unmarshal(&values); err != nil {
 		return

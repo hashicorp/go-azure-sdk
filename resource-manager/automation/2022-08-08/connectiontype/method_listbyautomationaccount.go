@@ -49,7 +49,7 @@ func (c ConnectionTypeClient) ListByAutomationAccount(ctx context.Context, id Au
 	}
 
 	var values struct {
-		Values *[]ConnectionType `json:"values"`
+		Values *[]ConnectionType `json:"value"`
 	}
 	if err = resp.Unmarshal(&values); err != nil {
 		return

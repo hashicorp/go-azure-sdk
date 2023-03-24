@@ -49,7 +49,7 @@ func (c EndpointsClient) List(ctx context.Context, id StorageMoverId) (result Li
 	}
 
 	var values struct {
-		Values *[]Endpoint `json:"values"`
+		Values *[]Endpoint `json:"value"`
 	}
 	if err = resp.Unmarshal(&values); err != nil {
 		return

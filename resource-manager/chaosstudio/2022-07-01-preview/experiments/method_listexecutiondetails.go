@@ -49,7 +49,7 @@ func (c ExperimentsClient) ListExecutionDetails(ctx context.Context, id Experime
 	}
 
 	var values struct {
-		Values *[]ExperimentExecutionDetails `json:"values"`
+		Values *[]ExperimentExecutionDetails `json:"value"`
 	}
 	if err = resp.Unmarshal(&values); err != nil {
 		return

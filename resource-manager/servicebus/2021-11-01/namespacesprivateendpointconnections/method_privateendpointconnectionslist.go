@@ -49,7 +49,7 @@ func (c NamespacesPrivateEndpointConnectionsClient) PrivateEndpointConnectionsLi
 	}
 
 	var values struct {
-		Values *[]PrivateEndpointConnection `json:"values"`
+		Values *[]PrivateEndpointConnection `json:"value"`
 	}
 	if err = resp.Unmarshal(&values); err != nil {
 		return

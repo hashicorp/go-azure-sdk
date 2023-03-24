@@ -49,7 +49,7 @@ func (c PrivateLinkResourcesClient) List(ctx context.Context, id WorkspaceId) (r
 	}
 
 	var values struct {
-		Values *[]GroupIdInformation `json:"values"`
+		Values *[]GroupIdInformation `json:"value"`
 	}
 	if err = resp.Unmarshal(&values); err != nil {
 		return

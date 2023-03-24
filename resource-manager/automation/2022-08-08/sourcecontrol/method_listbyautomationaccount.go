@@ -77,7 +77,7 @@ func (c SourceControlClient) ListByAutomationAccount(ctx context.Context, id Aut
 	}
 
 	var values struct {
-		Values *[]SourceControl `json:"values"`
+		Values *[]SourceControl `json:"value"`
 	}
 	if err = resp.Unmarshal(&values); err != nil {
 		return
