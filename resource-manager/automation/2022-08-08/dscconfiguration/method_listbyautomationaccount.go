@@ -89,7 +89,7 @@ func (c DscConfigurationClient) ListByAutomationAccount(ctx context.Context, id 
 	}
 
 	var values struct {
-		Values *[]DscConfiguration `json:"values"`
+		Values *[]DscConfiguration `json:"value"`
 	}
 	if err = resp.Unmarshal(&values); err != nil {
 		return

@@ -49,7 +49,7 @@ func (c Python3PackageClient) ListByAutomationAccount(ctx context.Context, id Au
 	}
 
 	var values struct {
-		Values *[]Module `json:"values"`
+		Values *[]Module `json:"value"`
 	}
 	if err = resp.Unmarshal(&values); err != nil {
 		return

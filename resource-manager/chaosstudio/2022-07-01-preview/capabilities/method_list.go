@@ -77,7 +77,7 @@ func (c CapabilitiesClient) List(ctx context.Context, id TargetId, options ListO
 	}
 
 	var values struct {
-		Values *[]Capability `json:"values"`
+		Values *[]Capability `json:"value"`
 	}
 	if err = resp.Unmarshal(&values); err != nil {
 		return

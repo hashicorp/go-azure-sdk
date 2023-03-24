@@ -49,7 +49,7 @@ func (c JobRunsClient) List(ctx context.Context, id JobDefinitionId) (result Lis
 	}
 
 	var values struct {
-		Values *[]JobRun `json:"values"`
+		Values *[]JobRun `json:"value"`
 	}
 	if err = resp.Unmarshal(&values); err != nil {
 		return

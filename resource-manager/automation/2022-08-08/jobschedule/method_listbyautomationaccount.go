@@ -77,7 +77,7 @@ func (c JobScheduleClient) ListByAutomationAccount(ctx context.Context, id Autom
 	}
 
 	var values struct {
-		Values *[]JobSchedule `json:"values"`
+		Values *[]JobSchedule `json:"value"`
 	}
 	if err = resp.Unmarshal(&values); err != nil {
 		return

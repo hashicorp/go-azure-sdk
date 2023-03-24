@@ -77,7 +77,7 @@ func (c SourceControlSyncJobClient) ListByAutomationAccount(ctx context.Context,
 	}
 
 	var values struct {
-		Values *[]SourceControlSyncJob `json:"values"`
+		Values *[]SourceControlSyncJob `json:"value"`
 	}
 	if err = resp.Unmarshal(&values); err != nil {
 		return

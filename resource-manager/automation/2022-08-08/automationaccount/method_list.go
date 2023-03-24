@@ -50,7 +50,7 @@ func (c AutomationAccountClient) List(ctx context.Context, id commonids.Subscrip
 	}
 
 	var values struct {
-		Values *[]AutomationAccount `json:"values"`
+		Values *[]AutomationAccount `json:"value"`
 	}
 	if err = resp.Unmarshal(&values); err != nil {
 		return

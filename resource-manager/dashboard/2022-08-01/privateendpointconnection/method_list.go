@@ -49,7 +49,7 @@ func (c PrivateEndpointConnectionClient) List(ctx context.Context, id GrafanaId)
 	}
 
 	var values struct {
-		Values *[]PrivateEndpointConnection `json:"values"`
+		Values *[]PrivateEndpointConnection `json:"value"`
 	}
 	if err = resp.Unmarshal(&values); err != nil {
 		return

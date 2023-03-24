@@ -49,7 +49,7 @@ func (c PrivateLinkResourceClient) List(ctx context.Context, id GrafanaId) (resu
 	}
 
 	var values struct {
-		Values *[]PrivateLinkResource `json:"values"`
+		Values *[]PrivateLinkResource `json:"value"`
 	}
 	if err = resp.Unmarshal(&values); err != nil {
 		return

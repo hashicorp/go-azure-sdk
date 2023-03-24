@@ -77,7 +77,7 @@ func (c SourceControlSyncJobStreamsClient) ListBySyncJob(ctx context.Context, id
 	}
 
 	var values struct {
-		Values *[]SourceControlSyncJobStream `json:"values"`
+		Values *[]SourceControlSyncJobStream `json:"value"`
 	}
 	if err = resp.Unmarshal(&values); err != nil {
 		return

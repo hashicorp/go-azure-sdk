@@ -49,7 +49,7 @@ func (c MigrationConfigsClient) List(ctx context.Context, id NamespaceId) (resul
 	}
 
 	var values struct {
-		Values *[]MigrationConfigProperties `json:"values"`
+		Values *[]MigrationConfigProperties `json:"value"`
 	}
 	if err = resp.Unmarshal(&values); err != nil {
 		return
