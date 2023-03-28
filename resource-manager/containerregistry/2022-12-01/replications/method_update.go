@@ -25,6 +25,7 @@ func (c ReplicationsClient) Update(ctx context.Context, id ReplicationId, input 
 	opts := client.RequestOptions{
 		ContentType: "application/json",
 		ExpectedStatusCodes: []int{
+			http.StatusCreated,
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPatch,

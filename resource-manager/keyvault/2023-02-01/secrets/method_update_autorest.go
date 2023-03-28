@@ -60,7 +60,7 @@ func (c SecretsClient) preparerForUpdate(ctx context.Context, id SecretId, input
 func (c SecretsClient) responderForUpdate(resp *http.Response) (result UpdateOperationResponse, err error) {
 	err = autorest.Respond(
 		resp,
-		azure.WithErrorUnlessStatusCode(http.StatusOK),
+		azure.WithErrorUnlessStatusCode(http.StatusCreated, http.StatusOK),
 		autorest.ByUnmarshallingJSON(&result.Model),
 		autorest.ByClosing())
 	result.HttpResponse = resp

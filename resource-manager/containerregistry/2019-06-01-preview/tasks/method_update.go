@@ -25,6 +25,7 @@ func (c TasksClient) Update(ctx context.Context, id TaskId, input TaskUpdatePara
 	opts := client.RequestOptions{
 		ContentType: "application/json",
 		ExpectedStatusCodes: []int{
+			http.StatusCreated,
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPatch,

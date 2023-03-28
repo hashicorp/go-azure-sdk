@@ -25,6 +25,7 @@ func (c ConnectedRegistriesClient) Update(ctx context.Context, id ConnectedRegis
 	opts := client.RequestOptions{
 		ContentType: "application/json",
 		ExpectedStatusCodes: []int{
+			http.StatusCreated,
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPatch,

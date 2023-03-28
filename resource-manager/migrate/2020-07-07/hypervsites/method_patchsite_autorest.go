@@ -60,7 +60,7 @@ func (c HyperVSitesClient) preparerForPatchSite(ctx context.Context, id HyperVSi
 func (c HyperVSitesClient) responderForPatchSite(resp *http.Response) (result PatchSiteOperationResponse, err error) {
 	err = autorest.Respond(
 		resp,
-		azure.WithErrorUnlessStatusCode(http.StatusOK),
+		azure.WithErrorUnlessStatusCode(http.StatusCreated, http.StatusOK),
 		autorest.ByUnmarshallingJSON(&result.Model),
 		autorest.ByClosing())
 	result.HttpResponse = resp

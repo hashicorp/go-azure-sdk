@@ -25,6 +25,7 @@ func (c TokensClient) Update(ctx context.Context, id TokenId, input TokenUpdateP
 	opts := client.RequestOptions{
 		ContentType: "application/json",
 		ExpectedStatusCodes: []int{
+			http.StatusCreated,
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPatch,
