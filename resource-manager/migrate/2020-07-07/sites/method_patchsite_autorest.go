@@ -60,7 +60,7 @@ func (c SitesClient) preparerForPatchSite(ctx context.Context, id VMwareSiteId, 
 func (c SitesClient) responderForPatchSite(resp *http.Response) (result PatchSiteOperationResponse, err error) {
 	err = autorest.Respond(
 		resp,
-		azure.WithErrorUnlessStatusCode(http.StatusOK),
+		azure.WithErrorUnlessStatusCode(http.StatusCreated, http.StatusOK),
 		autorest.ByUnmarshallingJSON(&result.Model),
 		autorest.ByClosing())
 	result.HttpResponse = resp

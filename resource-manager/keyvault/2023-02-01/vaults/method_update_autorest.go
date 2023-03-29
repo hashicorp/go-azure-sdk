@@ -61,7 +61,7 @@ func (c VaultsClient) preparerForUpdate(ctx context.Context, id commonids.KeyVau
 func (c VaultsClient) responderForUpdate(resp *http.Response) (result UpdateOperationResponse, err error) {
 	err = autorest.Respond(
 		resp,
-		azure.WithErrorUnlessStatusCode(http.StatusOK),
+		azure.WithErrorUnlessStatusCode(http.StatusCreated, http.StatusOK),
 		autorest.ByUnmarshallingJSON(&result.Model),
 		autorest.ByClosing())
 	result.HttpResponse = resp
