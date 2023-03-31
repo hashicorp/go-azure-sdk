@@ -1,0 +1,53 @@
+package v2022_09_01
+
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+import (
+	"github.com/Azure/go-autorest/autorest"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/search/2022-09-01/adminkeys"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/search/2022-09-01/privateendpointconnections"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/search/2022-09-01/privatelinkresources"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/search/2022-09-01/querykeys"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/search/2022-09-01/services"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/search/2022-09-01/sharedprivatelinkresources"
+)
+
+type Client struct {
+	AdminKeys                  *adminkeys.AdminKeysClient
+	PrivateEndpointConnections *privateendpointconnections.PrivateEndpointConnectionsClient
+	PrivateLinkResources       *privatelinkresources.PrivateLinkResourcesClient
+	QueryKeys                  *querykeys.QueryKeysClient
+	Services                   *services.ServicesClient
+	SharedPrivateLinkResources *sharedprivatelinkresources.SharedPrivateLinkResourcesClient
+}
+
+func NewClientWithBaseURI(endpoint string, configureAuthFunc func(c *autorest.Client)) Client {
+
+	adminKeysClient := adminkeys.NewAdminKeysClientWithBaseURI(endpoint)
+	configureAuthFunc(&adminKeysClient.Client)
+
+	privateEndpointConnectionsClient := privateendpointconnections.NewPrivateEndpointConnectionsClientWithBaseURI(endpoint)
+	configureAuthFunc(&privateEndpointConnectionsClient.Client)
+
+	privateLinkResourcesClient := privatelinkresources.NewPrivateLinkResourcesClientWithBaseURI(endpoint)
+	configureAuthFunc(&privateLinkResourcesClient.Client)
+
+	queryKeysClient := querykeys.NewQueryKeysClientWithBaseURI(endpoint)
+	configureAuthFunc(&queryKeysClient.Client)
+
+	servicesClient := services.NewServicesClientWithBaseURI(endpoint)
+	configureAuthFunc(&servicesClient.Client)
+
+	sharedPrivateLinkResourcesClient := sharedprivatelinkresources.NewSharedPrivateLinkResourcesClientWithBaseURI(endpoint)
+	configureAuthFunc(&sharedPrivateLinkResourcesClient.Client)
+
+	return Client{
+		AdminKeys:                  &adminKeysClient,
+		PrivateEndpointConnections: &privateEndpointConnectionsClient,
+		PrivateLinkResources:       &privateLinkResourcesClient,
+		QueryKeys:                  &queryKeysClient,
+		Services:                   &servicesClient,
+		SharedPrivateLinkResources: &sharedPrivateLinkResourcesClient,
+	}
+}
