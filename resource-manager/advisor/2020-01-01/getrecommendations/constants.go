@@ -1,7 +1,5 @@
 package getrecommendations
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -25,23 +23,6 @@ func PossibleValuesForCategory() []string {
 	}
 }
 
-func parseCategory(input string) (*Category, error) {
-	vals := map[string]Category{
-		"cost":                  CategoryCost,
-		"highavailability":      CategoryHighAvailability,
-		"operationalexcellence": CategoryOperationalExcellence,
-		"performance":           CategoryPerformance,
-		"security":              CategorySecurity,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := Category(input)
-	return &out, nil
-}
-
 type Impact string
 
 const (
@@ -56,19 +37,4 @@ func PossibleValuesForImpact() []string {
 		string(ImpactLow),
 		string(ImpactMedium),
 	}
-}
-
-func parseImpact(input string) (*Impact, error) {
-	vals := map[string]Impact{
-		"high":   ImpactHigh,
-		"low":    ImpactLow,
-		"medium": ImpactMedium,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := Impact(input)
-	return &out, nil
 }

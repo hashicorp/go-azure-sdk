@@ -1,7 +1,5 @@
 package authorizationruleseventhubs
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -21,21 +19,6 @@ func PossibleValuesForAccessRights() []string {
 	}
 }
 
-func parseAccessRights(input string) (*AccessRights, error) {
-	vals := map[string]AccessRights{
-		"listen": AccessRightsListen,
-		"manage": AccessRightsManage,
-		"send":   AccessRightsSend,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := AccessRights(input)
-	return &out, nil
-}
-
 type KeyType string
 
 const (
@@ -48,18 +31,4 @@ func PossibleValuesForKeyType() []string {
 		string(KeyTypePrimaryKey),
 		string(KeyTypeSecondaryKey),
 	}
-}
-
-func parseKeyType(input string) (*KeyType, error) {
-	vals := map[string]KeyType{
-		"primarykey":   KeyTypePrimaryKey,
-		"secondarykey": KeyTypeSecondaryKey,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := KeyType(input)
-	return &out, nil
 }

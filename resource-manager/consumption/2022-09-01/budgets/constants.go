@@ -1,7 +1,5 @@
 package budgets
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -17,19 +15,6 @@ func PossibleValuesForBudgetOperatorType() []string {
 	}
 }
 
-func parseBudgetOperatorType(input string) (*BudgetOperatorType, error) {
-	vals := map[string]BudgetOperatorType{
-		"in": BudgetOperatorTypeIn,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := BudgetOperatorType(input)
-	return &out, nil
-}
-
 type CategoryType string
 
 const (
@@ -40,19 +25,6 @@ func PossibleValuesForCategoryType() []string {
 	return []string{
 		string(CategoryTypeCost),
 	}
-}
-
-func parseCategoryType(input string) (*CategoryType, error) {
-	vals := map[string]CategoryType{
-		"cost": CategoryTypeCost,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := CategoryType(input)
-	return &out, nil
 }
 
 type CultureCode string
@@ -107,39 +79,6 @@ func PossibleValuesForCultureCode() []string {
 	}
 }
 
-func parseCultureCode(input string) (*CultureCode, error) {
-	vals := map[string]CultureCode{
-		"cs-cz": CultureCodeCsNegativecz,
-		"da-dk": CultureCodeDaNegativedk,
-		"de-de": CultureCodeDeNegativede,
-		"en-gb": CultureCodeEnNegativegb,
-		"en-us": CultureCodeEnNegativeus,
-		"es-es": CultureCodeEsNegativees,
-		"fr-fr": CultureCodeFrNegativefr,
-		"hu-hu": CultureCodeHuNegativehu,
-		"it-it": CultureCodeItNegativeit,
-		"ja-jp": CultureCodeJaNegativejp,
-		"ko-kr": CultureCodeKoNegativekr,
-		"nb-no": CultureCodeNbNegativeno,
-		"nl-nl": CultureCodeNlNegativenl,
-		"pl-pl": CultureCodePlNegativepl,
-		"pt-br": CultureCodePtNegativebr,
-		"pt-pt": CultureCodePtNegativept,
-		"ru-ru": CultureCodeRuNegativeru,
-		"sv-se": CultureCodeSvNegativese,
-		"tr-tr": CultureCodeTrNegativetr,
-		"zh-cn": CultureCodeZhNegativecn,
-		"zh-tw": CultureCodeZhNegativetw,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := CultureCode(input)
-	return &out, nil
-}
-
 type OperatorType string
 
 const (
@@ -156,21 +95,6 @@ func PossibleValuesForOperatorType() []string {
 	}
 }
 
-func parseOperatorType(input string) (*OperatorType, error) {
-	vals := map[string]OperatorType{
-		"equalto":              OperatorTypeEqualTo,
-		"greaterthan":          OperatorTypeGreaterThan,
-		"greaterthanorequalto": OperatorTypeGreaterThanOrEqualTo,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := OperatorType(input)
-	return &out, nil
-}
-
 type ThresholdType string
 
 const (
@@ -183,20 +107,6 @@ func PossibleValuesForThresholdType() []string {
 		string(ThresholdTypeActual),
 		string(ThresholdTypeForecasted),
 	}
-}
-
-func parseThresholdType(input string) (*ThresholdType, error) {
-	vals := map[string]ThresholdType{
-		"actual":     ThresholdTypeActual,
-		"forecasted": ThresholdTypeForecasted,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ThresholdType(input)
-	return &out, nil
 }
 
 type TimeGrainType string
@@ -219,22 +129,4 @@ func PossibleValuesForTimeGrainType() []string {
 		string(TimeGrainTypeMonthly),
 		string(TimeGrainTypeQuarterly),
 	}
-}
-
-func parseTimeGrainType(input string) (*TimeGrainType, error) {
-	vals := map[string]TimeGrainType{
-		"annually":       TimeGrainTypeAnnually,
-		"billingannual":  TimeGrainTypeBillingAnnual,
-		"billingmonth":   TimeGrainTypeBillingMonth,
-		"billingquarter": TimeGrainTypeBillingQuarter,
-		"monthly":        TimeGrainTypeMonthly,
-		"quarterly":      TimeGrainTypeQuarterly,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := TimeGrainType(input)
-	return &out, nil
 }

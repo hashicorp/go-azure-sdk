@@ -1,7 +1,5 @@
 package redisenterprise
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -19,20 +17,6 @@ func PossibleValuesForAccessKeyType() []string {
 	}
 }
 
-func parseAccessKeyType(input string) (*AccessKeyType, error) {
-	vals := map[string]AccessKeyType{
-		"primary":   AccessKeyTypePrimary,
-		"secondary": AccessKeyTypeSecondary,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := AccessKeyType(input)
-	return &out, nil
-}
-
 type AofFrequency string
 
 const (
@@ -47,20 +31,6 @@ func PossibleValuesForAofFrequency() []string {
 	}
 }
 
-func parseAofFrequency(input string) (*AofFrequency, error) {
-	vals := map[string]AofFrequency{
-		"always": AofFrequencyAlways,
-		"1s":     AofFrequencyOnes,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := AofFrequency(input)
-	return &out, nil
-}
-
 type ClusteringPolicy string
 
 const (
@@ -73,20 +43,6 @@ func PossibleValuesForClusteringPolicy() []string {
 		string(ClusteringPolicyEnterpriseCluster),
 		string(ClusteringPolicyOSSCluster),
 	}
-}
-
-func parseClusteringPolicy(input string) (*ClusteringPolicy, error) {
-	vals := map[string]ClusteringPolicy{
-		"enterprisecluster": ClusteringPolicyEnterpriseCluster,
-		"osscluster":        ClusteringPolicyOSSCluster,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ClusteringPolicy(input)
-	return &out, nil
 }
 
 type EvictionPolicy string
@@ -115,26 +71,6 @@ func PossibleValuesForEvictionPolicy() []string {
 	}
 }
 
-func parseEvictionPolicy(input string) (*EvictionPolicy, error) {
-	vals := map[string]EvictionPolicy{
-		"allkeyslfu":     EvictionPolicyAllKeysLFU,
-		"allkeyslru":     EvictionPolicyAllKeysLRU,
-		"allkeysrandom":  EvictionPolicyAllKeysRandom,
-		"noeviction":     EvictionPolicyNoEviction,
-		"volatilelfu":    EvictionPolicyVolatileLFU,
-		"volatilelru":    EvictionPolicyVolatileLRU,
-		"volatilerandom": EvictionPolicyVolatileRandom,
-		"volatilettl":    EvictionPolicyVolatileTTL,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := EvictionPolicy(input)
-	return &out, nil
-}
-
 type LinkState string
 
 const (
@@ -155,23 +91,6 @@ func PossibleValuesForLinkState() []string {
 	}
 }
 
-func parseLinkState(input string) (*LinkState, error) {
-	vals := map[string]LinkState{
-		"linkfailed":   LinkStateLinkFailed,
-		"linked":       LinkStateLinked,
-		"linking":      LinkStateLinking,
-		"unlinkfailed": LinkStateUnlinkFailed,
-		"unlinking":    LinkStateUnlinking,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := LinkState(input)
-	return &out, nil
-}
-
 type PrivateEndpointConnectionProvisioningState string
 
 const (
@@ -190,22 +109,6 @@ func PossibleValuesForPrivateEndpointConnectionProvisioningState() []string {
 	}
 }
 
-func parsePrivateEndpointConnectionProvisioningState(input string) (*PrivateEndpointConnectionProvisioningState, error) {
-	vals := map[string]PrivateEndpointConnectionProvisioningState{
-		"creating":  PrivateEndpointConnectionProvisioningStateCreating,
-		"deleting":  PrivateEndpointConnectionProvisioningStateDeleting,
-		"failed":    PrivateEndpointConnectionProvisioningStateFailed,
-		"succeeded": PrivateEndpointConnectionProvisioningStateSucceeded,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PrivateEndpointConnectionProvisioningState(input)
-	return &out, nil
-}
-
 type PrivateEndpointServiceConnectionStatus string
 
 const (
@@ -222,21 +125,6 @@ func PossibleValuesForPrivateEndpointServiceConnectionStatus() []string {
 	}
 }
 
-func parsePrivateEndpointServiceConnectionStatus(input string) (*PrivateEndpointServiceConnectionStatus, error) {
-	vals := map[string]PrivateEndpointServiceConnectionStatus{
-		"approved": PrivateEndpointServiceConnectionStatusApproved,
-		"pending":  PrivateEndpointServiceConnectionStatusPending,
-		"rejected": PrivateEndpointServiceConnectionStatusRejected,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PrivateEndpointServiceConnectionStatus(input)
-	return &out, nil
-}
-
 type Protocol string
 
 const (
@@ -249,20 +137,6 @@ func PossibleValuesForProtocol() []string {
 		string(ProtocolEncrypted),
 		string(ProtocolPlaintext),
 	}
-}
-
-func parseProtocol(input string) (*Protocol, error) {
-	vals := map[string]Protocol{
-		"encrypted": ProtocolEncrypted,
-		"plaintext": ProtocolPlaintext,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := Protocol(input)
-	return &out, nil
 }
 
 type ProvisioningState string
@@ -287,24 +161,6 @@ func PossibleValuesForProvisioningState() []string {
 	}
 }
 
-func parseProvisioningState(input string) (*ProvisioningState, error) {
-	vals := map[string]ProvisioningState{
-		"canceled":  ProvisioningStateCanceled,
-		"creating":  ProvisioningStateCreating,
-		"deleting":  ProvisioningStateDeleting,
-		"failed":    ProvisioningStateFailed,
-		"succeeded": ProvisioningStateSucceeded,
-		"updating":  ProvisioningStateUpdating,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ProvisioningState(input)
-	return &out, nil
-}
-
 type RdbFrequency string
 
 const (
@@ -319,21 +175,6 @@ func PossibleValuesForRdbFrequency() []string {
 		string(RdbFrequencyOneh),
 		string(RdbFrequencySixh),
 	}
-}
-
-func parseRdbFrequency(input string) (*RdbFrequency, error) {
-	vals := map[string]RdbFrequency{
-		"12h": RdbFrequencyOneTwoh,
-		"1h":  RdbFrequencyOneh,
-		"6h":  RdbFrequencySixh,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := RdbFrequency(input)
-	return &out, nil
 }
 
 type ResourceState string
@@ -370,30 +211,6 @@ func PossibleValuesForResourceState() []string {
 	}
 }
 
-func parseResourceState(input string) (*ResourceState, error) {
-	vals := map[string]ResourceState{
-		"createfailed":  ResourceStateCreateFailed,
-		"creating":      ResourceStateCreating,
-		"deletefailed":  ResourceStateDeleteFailed,
-		"deleting":      ResourceStateDeleting,
-		"disablefailed": ResourceStateDisableFailed,
-		"disabled":      ResourceStateDisabled,
-		"disabling":     ResourceStateDisabling,
-		"enablefailed":  ResourceStateEnableFailed,
-		"enabling":      ResourceStateEnabling,
-		"running":       ResourceStateRunning,
-		"updatefailed":  ResourceStateUpdateFailed,
-		"updating":      ResourceStateUpdating,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ResourceState(input)
-	return &out, nil
-}
-
 type SkuName string
 
 const (
@@ -418,25 +235,6 @@ func PossibleValuesForSkuName() []string {
 	}
 }
 
-func parseSkuName(input string) (*SkuName, error) {
-	vals := map[string]SkuName{
-		"enterprise_e50":        SkuNameEnterpriseEFiveZero,
-		"enterprise_e100":       SkuNameEnterpriseEOneHundred,
-		"enterprise_e10":        SkuNameEnterpriseEOneZero,
-		"enterprise_e20":        SkuNameEnterpriseETwoZero,
-		"enterpriseflash_f1500": SkuNameEnterpriseFlashFOneFiveHundred,
-		"enterpriseflash_f700":  SkuNameEnterpriseFlashFSevenHundred,
-		"enterpriseflash_f300":  SkuNameEnterpriseFlashFThreeHundred,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SkuName(input)
-	return &out, nil
-}
-
 type TlsVersion string
 
 const (
@@ -451,19 +249,4 @@ func PossibleValuesForTlsVersion() []string {
 		string(TlsVersionOnePointTwo),
 		string(TlsVersionOnePointZero),
 	}
-}
-
-func parseTlsVersion(input string) (*TlsVersion, error) {
-	vals := map[string]TlsVersion{
-		"1.1": TlsVersionOnePointOne,
-		"1.2": TlsVersionOnePointTwo,
-		"1.0": TlsVersionOnePointZero,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := TlsVersion(input)
-	return &out, nil
 }

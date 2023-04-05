@@ -1,7 +1,5 @@
 package locations
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -19,20 +17,6 @@ func PossibleValuesForQuotaEnabled() []string {
 	}
 }
 
-func parseQuotaEnabled(input string) (*QuotaEnabled, error) {
-	vals := map[string]QuotaEnabled{
-		"disabled": QuotaEnabledDisabled,
-		"enabled":  QuotaEnabledEnabled,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := QuotaEnabled(input)
-	return &out, nil
-}
-
 type TrialStatus string
 
 const (
@@ -47,19 +31,4 @@ func PossibleValuesForTrialStatus() []string {
 		string(TrialStatusTrialDisabled),
 		string(TrialStatusTrialUsed),
 	}
-}
-
-func parseTrialStatus(input string) (*TrialStatus, error) {
-	vals := map[string]TrialStatus{
-		"trialavailable": TrialStatusTrialAvailable,
-		"trialdisabled":  TrialStatusTrialDisabled,
-		"trialused":      TrialStatusTrialUsed,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := TrialStatus(input)
-	return &out, nil
 }

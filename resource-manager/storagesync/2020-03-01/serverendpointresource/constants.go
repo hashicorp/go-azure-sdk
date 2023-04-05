@@ -1,7 +1,5 @@
 package serverendpointresource
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -17,20 +15,6 @@ func PossibleValuesForFeatureStatus() []string {
 		string(FeatureStatusOff),
 		string(FeatureStatusOn),
 	}
-}
-
-func parseFeatureStatus(input string) (*FeatureStatus, error) {
-	vals := map[string]FeatureStatus{
-		"off": FeatureStatusOff,
-		"on":  FeatureStatusOn,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := FeatureStatus(input)
-	return &out, nil
 }
 
 type InitialDownloadPolicy string
@@ -49,21 +33,6 @@ func PossibleValuesForInitialDownloadPolicy() []string {
 	}
 }
 
-func parseInitialDownloadPolicy(input string) (*InitialDownloadPolicy, error) {
-	vals := map[string]InitialDownloadPolicy{
-		"avoidtieredfiles":           InitialDownloadPolicyAvoidTieredFiles,
-		"namespaceonly":              InitialDownloadPolicyNamespaceOnly,
-		"namespacethenmodifiedfiles": InitialDownloadPolicyNamespaceThenModifiedFiles,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := InitialDownloadPolicy(input)
-	return &out, nil
-}
-
 type LocalCacheMode string
 
 const (
@@ -78,20 +47,6 @@ func PossibleValuesForLocalCacheMode() []string {
 	}
 }
 
-func parseLocalCacheMode(input string) (*LocalCacheMode, error) {
-	vals := map[string]LocalCacheMode{
-		"downloadnewandmodifiedfiles": LocalCacheModeDownloadNewAndModifiedFiles,
-		"updatelocallycachedfiles":    LocalCacheModeUpdateLocallyCachedFiles,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := LocalCacheMode(input)
-	return &out, nil
-}
-
 type ServerEndpointCloudTieringHealthState string
 
 const (
@@ -104,20 +59,6 @@ func PossibleValuesForServerEndpointCloudTieringHealthState() []string {
 		string(ServerEndpointCloudTieringHealthStateError),
 		string(ServerEndpointCloudTieringHealthStateHealthy),
 	}
-}
-
-func parseServerEndpointCloudTieringHealthState(input string) (*ServerEndpointCloudTieringHealthState, error) {
-	vals := map[string]ServerEndpointCloudTieringHealthState{
-		"error":   ServerEndpointCloudTieringHealthStateError,
-		"healthy": ServerEndpointCloudTieringHealthStateHealthy,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ServerEndpointCloudTieringHealthState(input)
-	return &out, nil
 }
 
 type ServerEndpointOfflineDataTransferState string
@@ -138,22 +79,6 @@ func PossibleValuesForServerEndpointOfflineDataTransferState() []string {
 	}
 }
 
-func parseServerEndpointOfflineDataTransferState(input string) (*ServerEndpointOfflineDataTransferState, error) {
-	vals := map[string]ServerEndpointOfflineDataTransferState{
-		"complete":   ServerEndpointOfflineDataTransferStateComplete,
-		"inprogress": ServerEndpointOfflineDataTransferStateInProgress,
-		"notrunning": ServerEndpointOfflineDataTransferStateNotRunning,
-		"stopping":   ServerEndpointOfflineDataTransferStateStopping,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ServerEndpointOfflineDataTransferState(input)
-	return &out, nil
-}
-
 type ServerEndpointSyncActivityState string
 
 const (
@@ -168,21 +93,6 @@ func PossibleValuesForServerEndpointSyncActivityState() []string {
 		string(ServerEndpointSyncActivityStateUpload),
 		string(ServerEndpointSyncActivityStateUploadAndDownload),
 	}
-}
-
-func parseServerEndpointSyncActivityState(input string) (*ServerEndpointSyncActivityState, error) {
-	vals := map[string]ServerEndpointSyncActivityState{
-		"download":          ServerEndpointSyncActivityStateDownload,
-		"upload":            ServerEndpointSyncActivityStateUpload,
-		"uploadanddownload": ServerEndpointSyncActivityStateUploadAndDownload,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ServerEndpointSyncActivityState(input)
-	return &out, nil
 }
 
 type ServerEndpointSyncHealthState string
@@ -205,23 +115,6 @@ func PossibleValuesForServerEndpointSyncHealthState() []string {
 	}
 }
 
-func parseServerEndpointSyncHealthState(input string) (*ServerEndpointSyncHealthState, error) {
-	vals := map[string]ServerEndpointSyncHealthState{
-		"error":      ServerEndpointSyncHealthStateError,
-		"healthy":    ServerEndpointSyncHealthStateHealthy,
-		"noactivity": ServerEndpointSyncHealthStateNoActivity,
-		"syncblockedforchangedetectionpostrestore": ServerEndpointSyncHealthStateSyncBlockedForChangeDetectionPostRestore,
-		"syncblockedforrestore":                    ServerEndpointSyncHealthStateSyncBlockedForRestore,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ServerEndpointSyncHealthState(input)
-	return &out, nil
-}
-
 type ServerEndpointSyncMode string
 
 const (
@@ -240,21 +133,4 @@ func PossibleValuesForServerEndpointSyncMode() []string {
 		string(ServerEndpointSyncModeRegular),
 		string(ServerEndpointSyncModeSnapshotUpload),
 	}
-}
-
-func parseServerEndpointSyncMode(input string) (*ServerEndpointSyncMode, error) {
-	vals := map[string]ServerEndpointSyncMode{
-		"initialfulldownload": ServerEndpointSyncModeInitialFullDownload,
-		"initialupload":       ServerEndpointSyncModeInitialUpload,
-		"namespacedownload":   ServerEndpointSyncModeNamespaceDownload,
-		"regular":             ServerEndpointSyncModeRegular,
-		"snapshotupload":      ServerEndpointSyncModeSnapshotUpload,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ServerEndpointSyncMode(input)
-	return &out, nil
 }

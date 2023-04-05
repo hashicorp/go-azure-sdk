@@ -1,7 +1,5 @@
 package domains
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -19,21 +17,6 @@ func PossibleValuesForDomainManagement() []string {
 		string(DomainManagementCustomerManaged),
 		string(DomainManagementCustomerManagedInExchangeOnline),
 	}
-}
-
-func parseDomainManagement(input string) (*DomainManagement, error) {
-	vals := map[string]DomainManagement{
-		"azuremanaged":                    DomainManagementAzureManaged,
-		"customermanaged":                 DomainManagementCustomerManaged,
-		"customermanagedinexchangeonline": DomainManagementCustomerManagedInExchangeOnline,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := DomainManagement(input)
-	return &out, nil
 }
 
 type DomainsProvisioningState string
@@ -64,27 +47,6 @@ func PossibleValuesForDomainsProvisioningState() []string {
 	}
 }
 
-func parseDomainsProvisioningState(input string) (*DomainsProvisioningState, error) {
-	vals := map[string]DomainsProvisioningState{
-		"canceled":  DomainsProvisioningStateCanceled,
-		"creating":  DomainsProvisioningStateCreating,
-		"deleting":  DomainsProvisioningStateDeleting,
-		"failed":    DomainsProvisioningStateFailed,
-		"moving":    DomainsProvisioningStateMoving,
-		"running":   DomainsProvisioningStateRunning,
-		"succeeded": DomainsProvisioningStateSucceeded,
-		"unknown":   DomainsProvisioningStateUnknown,
-		"updating":  DomainsProvisioningStateUpdating,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := DomainsProvisioningState(input)
-	return &out, nil
-}
-
 type UserEngagementTracking string
 
 const (
@@ -97,20 +59,6 @@ func PossibleValuesForUserEngagementTracking() []string {
 		string(UserEngagementTrackingDisabled),
 		string(UserEngagementTrackingEnabled),
 	}
-}
-
-func parseUserEngagementTracking(input string) (*UserEngagementTracking, error) {
-	vals := map[string]UserEngagementTracking{
-		"disabled": UserEngagementTrackingDisabled,
-		"enabled":  UserEngagementTrackingEnabled,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := UserEngagementTracking(input)
-	return &out, nil
 }
 
 type VerificationStatus string
@@ -135,24 +83,6 @@ func PossibleValuesForVerificationStatus() []string {
 	}
 }
 
-func parseVerificationStatus(input string) (*VerificationStatus, error) {
-	vals := map[string]VerificationStatus{
-		"cancellationrequested":  VerificationStatusCancellationRequested,
-		"notstarted":             VerificationStatusNotStarted,
-		"verificationfailed":     VerificationStatusVerificationFailed,
-		"verificationinprogress": VerificationStatusVerificationInProgress,
-		"verificationrequested":  VerificationStatusVerificationRequested,
-		"verified":               VerificationStatusVerified,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := VerificationStatus(input)
-	return &out, nil
-}
-
 type VerificationType string
 
 const (
@@ -171,21 +101,4 @@ func PossibleValuesForVerificationType() []string {
 		string(VerificationTypeDomain),
 		string(VerificationTypeSPF),
 	}
-}
-
-func parseVerificationType(input string) (*VerificationType, error) {
-	vals := map[string]VerificationType{
-		"dkim":   VerificationTypeDKIM,
-		"dkim2":  VerificationTypeDKIMTwo,
-		"dmarc":  VerificationTypeDMARC,
-		"domain": VerificationTypeDomain,
-		"spf":    VerificationTypeSPF,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := VerificationType(input)
-	return &out, nil
 }

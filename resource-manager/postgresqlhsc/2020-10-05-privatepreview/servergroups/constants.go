@@ -1,7 +1,5 @@
 package servergroups
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -15,19 +13,6 @@ func PossibleValuesForCheckNameAvailabilityResourceType() []string {
 	return []string{
 		string(CheckNameAvailabilityResourceTypeMicrosoftPointDBforPostgreSQLServerGroupsvTwo),
 	}
-}
-
-func parseCheckNameAvailabilityResourceType(input string) (*CheckNameAvailabilityResourceType, error) {
-	vals := map[string]CheckNameAvailabilityResourceType{
-		"microsoft.dbforpostgresql/servergroupsv2": CheckNameAvailabilityResourceTypeMicrosoftPointDBforPostgreSQLServerGroupsvTwo,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := CheckNameAvailabilityResourceType(input)
-	return &out, nil
 }
 
 type CitusVersion string
@@ -54,25 +39,6 @@ func PossibleValuesForCitusVersion() []string {
 	}
 }
 
-func parseCitusVersion(input string) (*CitusVersion, error) {
-	vals := map[string]CitusVersion{
-		"8.3": CitusVersionEightPointThree,
-		"9.5": CitusVersionNinePointFive,
-		"9.4": CitusVersionNinePointFour,
-		"9.1": CitusVersionNinePointOne,
-		"9.3": CitusVersionNinePointThree,
-		"9.2": CitusVersionNinePointTwo,
-		"9.0": CitusVersionNinePointZero,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := CitusVersion(input)
-	return &out, nil
-}
-
 type CreateMode string
 
 const (
@@ -89,21 +55,6 @@ func PossibleValuesForCreateMode() []string {
 	}
 }
 
-func parseCreateMode(input string) (*CreateMode, error) {
-	vals := map[string]CreateMode{
-		"default":            CreateModeDefault,
-		"pointintimerestore": CreateModePointInTimeRestore,
-		"readreplica":        CreateModeReadReplica,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := CreateMode(input)
-	return &out, nil
-}
-
 type PostgreSQLVersion string
 
 const (
@@ -116,20 +67,6 @@ func PossibleValuesForPostgreSQLVersion() []string {
 		string(PostgreSQLVersionOneOne),
 		string(PostgreSQLVersionOneTwo),
 	}
-}
-
-func parsePostgreSQLVersion(input string) (*PostgreSQLVersion, error) {
-	vals := map[string]PostgreSQLVersion{
-		"11": PostgreSQLVersionOneOne,
-		"12": PostgreSQLVersionOneTwo,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PostgreSQLVersion(input)
-	return &out, nil
 }
 
 type ResourceProviderType string
@@ -146,20 +83,6 @@ func PossibleValuesForResourceProviderType() []string {
 	}
 }
 
-func parseResourceProviderType(input string) (*ResourceProviderType, error) {
-	vals := map[string]ResourceProviderType{
-		"marlin": ResourceProviderTypeMarlin,
-		"meru":   ResourceProviderTypeMeru,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ResourceProviderType(input)
-	return &out, nil
-}
-
 type ServerEdition string
 
 const (
@@ -174,20 +97,6 @@ func PossibleValuesForServerEdition() []string {
 	}
 }
 
-func parseServerEdition(input string) (*ServerEdition, error) {
-	vals := map[string]ServerEdition{
-		"generalpurpose":  ServerEditionGeneralPurpose,
-		"memoryoptimized": ServerEditionMemoryOptimized,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ServerEdition(input)
-	return &out, nil
-}
-
 type ServerRole string
 
 const (
@@ -200,20 +109,6 @@ func PossibleValuesForServerRole() []string {
 		string(ServerRoleCoordinator),
 		string(ServerRoleWorker),
 	}
-}
-
-func parseServerRole(input string) (*ServerRole, error) {
-	vals := map[string]ServerRole{
-		"coordinator": ServerRoleCoordinator,
-		"worker":      ServerRoleWorker,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ServerRole(input)
-	return &out, nil
 }
 
 type ServerState string
@@ -240,24 +135,4 @@ func PossibleValuesForServerState() []string {
 		string(ServerStateStopping),
 		string(ServerStateUpdating),
 	}
-}
-
-func parseServerState(input string) (*ServerState, error) {
-	vals := map[string]ServerState{
-		"disabled":     ServerStateDisabled,
-		"dropping":     ServerStateDropping,
-		"provisioning": ServerStateProvisioning,
-		"ready":        ServerStateReady,
-		"starting":     ServerStateStarting,
-		"stopped":      ServerStateStopped,
-		"stopping":     ServerStateStopping,
-		"updating":     ServerStateUpdating,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ServerState(input)
-	return &out, nil
 }

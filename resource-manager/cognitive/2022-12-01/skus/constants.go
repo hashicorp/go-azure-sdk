@@ -1,7 +1,5 @@
 package skus
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -19,20 +17,6 @@ func PossibleValuesForResourceSkuRestrictionsReasonCode() []string {
 	}
 }
 
-func parseResourceSkuRestrictionsReasonCode(input string) (*ResourceSkuRestrictionsReasonCode, error) {
-	vals := map[string]ResourceSkuRestrictionsReasonCode{
-		"notavailableforsubscription": ResourceSkuRestrictionsReasonCodeNotAvailableForSubscription,
-		"quotaid":                     ResourceSkuRestrictionsReasonCodeQuotaId,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ResourceSkuRestrictionsReasonCode(input)
-	return &out, nil
-}
-
 type ResourceSkuRestrictionsType string
 
 const (
@@ -45,18 +29,4 @@ func PossibleValuesForResourceSkuRestrictionsType() []string {
 		string(ResourceSkuRestrictionsTypeLocation),
 		string(ResourceSkuRestrictionsTypeZone),
 	}
-}
-
-func parseResourceSkuRestrictionsType(input string) (*ResourceSkuRestrictionsType, error) {
-	vals := map[string]ResourceSkuRestrictionsType{
-		"location": ResourceSkuRestrictionsTypeLocation,
-		"zone":     ResourceSkuRestrictionsTypeZone,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ResourceSkuRestrictionsType(input)
-	return &out, nil
 }

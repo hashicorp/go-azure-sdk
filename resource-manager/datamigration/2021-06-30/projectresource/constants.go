@@ -1,7 +1,5 @@
 package projectresource
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -17,20 +15,6 @@ func PossibleValuesForProjectProvisioningState() []string {
 		string(ProjectProvisioningStateDeleting),
 		string(ProjectProvisioningStateSucceeded),
 	}
-}
-
-func parseProjectProvisioningState(input string) (*ProjectProvisioningState, error) {
-	vals := map[string]ProjectProvisioningState{
-		"deleting":  ProjectProvisioningStateDeleting,
-		"succeeded": ProjectProvisioningStateSucceeded,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ProjectProvisioningState(input)
-	return &out, nil
 }
 
 type ProjectSourcePlatform string
@@ -53,23 +37,6 @@ func PossibleValuesForProjectSourcePlatform() []string {
 	}
 }
 
-func parseProjectSourcePlatform(input string) (*ProjectSourcePlatform, error) {
-	vals := map[string]ProjectSourcePlatform{
-		"mongodb":    ProjectSourcePlatformMongoDb,
-		"mysql":      ProjectSourcePlatformMySQL,
-		"postgresql": ProjectSourcePlatformPostgreSql,
-		"sql":        ProjectSourcePlatformSQL,
-		"unknown":    ProjectSourcePlatformUnknown,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ProjectSourcePlatform(input)
-	return &out, nil
-}
-
 type ProjectTargetPlatform string
 
 const (
@@ -90,22 +57,4 @@ func PossibleValuesForProjectTargetPlatform() []string {
 		string(ProjectTargetPlatformSQLMI),
 		string(ProjectTargetPlatformUnknown),
 	}
-}
-
-func parseProjectTargetPlatform(input string) (*ProjectTargetPlatform, error) {
-	vals := map[string]ProjectTargetPlatform{
-		"azuredbformysql":      ProjectTargetPlatformAzureDbForMySql,
-		"azuredbforpostgresql": ProjectTargetPlatformAzureDbForPostgreSql,
-		"mongodb":              ProjectTargetPlatformMongoDb,
-		"sqldb":                ProjectTargetPlatformSQLDB,
-		"sqlmi":                ProjectTargetPlatformSQLMI,
-		"unknown":              ProjectTargetPlatformUnknown,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ProjectTargetPlatform(input)
-	return &out, nil
 }

@@ -1,7 +1,5 @@
 package integrationruntimes
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -19,20 +17,6 @@ func PossibleValuesForIntegrationRuntimeAuthKeyName() []string {
 	}
 }
 
-func parseIntegrationRuntimeAuthKeyName(input string) (*IntegrationRuntimeAuthKeyName, error) {
-	vals := map[string]IntegrationRuntimeAuthKeyName{
-		"authkey1": IntegrationRuntimeAuthKeyNameAuthKeyOne,
-		"authkey2": IntegrationRuntimeAuthKeyNameAuthKeyTwo,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := IntegrationRuntimeAuthKeyName(input)
-	return &out, nil
-}
-
 type IntegrationRuntimeAutoUpdate string
 
 const (
@@ -45,20 +29,6 @@ func PossibleValuesForIntegrationRuntimeAutoUpdate() []string {
 		string(IntegrationRuntimeAutoUpdateOff),
 		string(IntegrationRuntimeAutoUpdateOn),
 	}
-}
-
-func parseIntegrationRuntimeAutoUpdate(input string) (*IntegrationRuntimeAutoUpdate, error) {
-	vals := map[string]IntegrationRuntimeAutoUpdate{
-		"off": IntegrationRuntimeAutoUpdateOff,
-		"on":  IntegrationRuntimeAutoUpdateOn,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := IntegrationRuntimeAutoUpdate(input)
-	return &out, nil
 }
 
 type IntegrationRuntimeState string
@@ -91,28 +61,6 @@ func PossibleValuesForIntegrationRuntimeState() []string {
 	}
 }
 
-func parseIntegrationRuntimeState(input string) (*IntegrationRuntimeState, error) {
-	vals := map[string]IntegrationRuntimeState{
-		"accessdenied":     IntegrationRuntimeStateAccessDenied,
-		"initial":          IntegrationRuntimeStateInitial,
-		"limited":          IntegrationRuntimeStateLimited,
-		"needregistration": IntegrationRuntimeStateNeedRegistration,
-		"offline":          IntegrationRuntimeStateOffline,
-		"online":           IntegrationRuntimeStateOnline,
-		"started":          IntegrationRuntimeStateStarted,
-		"starting":         IntegrationRuntimeStateStarting,
-		"stopped":          IntegrationRuntimeStateStopped,
-		"stopping":         IntegrationRuntimeStateStopping,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := IntegrationRuntimeState(input)
-	return &out, nil
-}
-
 type IntegrationRuntimeType string
 
 const (
@@ -125,18 +73,4 @@ func PossibleValuesForIntegrationRuntimeType() []string {
 		string(IntegrationRuntimeTypeManaged),
 		string(IntegrationRuntimeTypeSelfHosted),
 	}
-}
-
-func parseIntegrationRuntimeType(input string) (*IntegrationRuntimeType, error) {
-	vals := map[string]IntegrationRuntimeType{
-		"managed":    IntegrationRuntimeTypeManaged,
-		"selfhosted": IntegrationRuntimeTypeSelfHosted,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := IntegrationRuntimeType(input)
-	return &out, nil
 }

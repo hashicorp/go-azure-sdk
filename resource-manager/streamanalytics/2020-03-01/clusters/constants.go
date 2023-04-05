@@ -1,7 +1,5 @@
 package clusters
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -23,22 +21,6 @@ func PossibleValuesForClusterProvisioningState() []string {
 	}
 }
 
-func parseClusterProvisioningState(input string) (*ClusterProvisioningState, error) {
-	vals := map[string]ClusterProvisioningState{
-		"canceled":   ClusterProvisioningStateCanceled,
-		"failed":     ClusterProvisioningStateFailed,
-		"inprogress": ClusterProvisioningStateInProgress,
-		"succeeded":  ClusterProvisioningStateSucceeded,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ClusterProvisioningState(input)
-	return &out, nil
-}
-
 type ClusterSkuName string
 
 const (
@@ -49,19 +31,6 @@ func PossibleValuesForClusterSkuName() []string {
 	return []string{
 		string(ClusterSkuNameDefault),
 	}
-}
-
-func parseClusterSkuName(input string) (*ClusterSkuName, error) {
-	vals := map[string]ClusterSkuName{
-		"default": ClusterSkuNameDefault,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ClusterSkuName(input)
-	return &out, nil
 }
 
 type JobState string
@@ -92,26 +61,4 @@ func PossibleValuesForJobState() []string {
 		string(JobStateStopped),
 		string(JobStateStopping),
 	}
-}
-
-func parseJobState(input string) (*JobState, error) {
-	vals := map[string]JobState{
-		"created":    JobStateCreated,
-		"degraded":   JobStateDegraded,
-		"deleting":   JobStateDeleting,
-		"failed":     JobStateFailed,
-		"restarting": JobStateRestarting,
-		"running":    JobStateRunning,
-		"scaling":    JobStateScaling,
-		"starting":   JobStateStarting,
-		"stopped":    JobStateStopped,
-		"stopping":   JobStateStopping,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := JobState(input)
-	return &out, nil
 }

@@ -1,7 +1,5 @@
 package deviceupdates
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -17,19 +15,6 @@ func PossibleValuesForAuthenticationType() []string {
 	}
 }
 
-func parseAuthenticationType(input string) (*AuthenticationType, error) {
-	vals := map[string]AuthenticationType{
-		"keybased": AuthenticationTypeKeyBased,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := AuthenticationType(input)
-	return &out, nil
-}
-
 type CheckNameAvailabilityReason string
 
 const (
@@ -42,20 +27,6 @@ func PossibleValuesForCheckNameAvailabilityReason() []string {
 		string(CheckNameAvailabilityReasonAlreadyExists),
 		string(CheckNameAvailabilityReasonInvalid),
 	}
-}
-
-func parseCheckNameAvailabilityReason(input string) (*CheckNameAvailabilityReason, error) {
-	vals := map[string]CheckNameAvailabilityReason{
-		"alreadyexists": CheckNameAvailabilityReasonAlreadyExists,
-		"invalid":       CheckNameAvailabilityReasonInvalid,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := CheckNameAvailabilityReason(input)
-	return &out, nil
 }
 
 type PrivateEndpointConnectionProvisioningState string
@@ -76,22 +47,6 @@ func PossibleValuesForPrivateEndpointConnectionProvisioningState() []string {
 	}
 }
 
-func parsePrivateEndpointConnectionProvisioningState(input string) (*PrivateEndpointConnectionProvisioningState, error) {
-	vals := map[string]PrivateEndpointConnectionProvisioningState{
-		"creating":  PrivateEndpointConnectionProvisioningStateCreating,
-		"deleting":  PrivateEndpointConnectionProvisioningStateDeleting,
-		"failed":    PrivateEndpointConnectionProvisioningStateFailed,
-		"succeeded": PrivateEndpointConnectionProvisioningStateSucceeded,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PrivateEndpointConnectionProvisioningState(input)
-	return &out, nil
-}
-
 type PrivateEndpointConnectionProxyProvisioningState string
 
 const (
@@ -110,22 +65,6 @@ func PossibleValuesForPrivateEndpointConnectionProxyProvisioningState() []string
 	}
 }
 
-func parsePrivateEndpointConnectionProxyProvisioningState(input string) (*PrivateEndpointConnectionProxyProvisioningState, error) {
-	vals := map[string]PrivateEndpointConnectionProxyProvisioningState{
-		"creating":  PrivateEndpointConnectionProxyProvisioningStateCreating,
-		"deleting":  PrivateEndpointConnectionProxyProvisioningStateDeleting,
-		"failed":    PrivateEndpointConnectionProxyProvisioningStateFailed,
-		"succeeded": PrivateEndpointConnectionProxyProvisioningStateSucceeded,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PrivateEndpointConnectionProxyProvisioningState(input)
-	return &out, nil
-}
-
 type PrivateEndpointServiceConnectionStatus string
 
 const (
@@ -140,21 +79,6 @@ func PossibleValuesForPrivateEndpointServiceConnectionStatus() []string {
 		string(PrivateEndpointServiceConnectionStatusPending),
 		string(PrivateEndpointServiceConnectionStatusRejected),
 	}
-}
-
-func parsePrivateEndpointServiceConnectionStatus(input string) (*PrivateEndpointServiceConnectionStatus, error) {
-	vals := map[string]PrivateEndpointServiceConnectionStatus{
-		"approved": PrivateEndpointServiceConnectionStatusApproved,
-		"pending":  PrivateEndpointServiceConnectionStatusPending,
-		"rejected": PrivateEndpointServiceConnectionStatusRejected,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PrivateEndpointServiceConnectionStatus(input)
-	return &out, nil
 }
 
 type ProvisioningState string
@@ -179,24 +103,6 @@ func PossibleValuesForProvisioningState() []string {
 	}
 }
 
-func parseProvisioningState(input string) (*ProvisioningState, error) {
-	vals := map[string]ProvisioningState{
-		"accepted":  ProvisioningStateAccepted,
-		"canceled":  ProvisioningStateCanceled,
-		"creating":  ProvisioningStateCreating,
-		"deleted":   ProvisioningStateDeleted,
-		"failed":    ProvisioningStateFailed,
-		"succeeded": ProvisioningStateSucceeded,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ProvisioningState(input)
-	return &out, nil
-}
-
 type PublicNetworkAccess string
 
 const (
@@ -209,20 +115,6 @@ func PossibleValuesForPublicNetworkAccess() []string {
 		string(PublicNetworkAccessDisabled),
 		string(PublicNetworkAccessEnabled),
 	}
-}
-
-func parsePublicNetworkAccess(input string) (*PublicNetworkAccess, error) {
-	vals := map[string]PublicNetworkAccess{
-		"disabled": PublicNetworkAccessDisabled,
-		"enabled":  PublicNetworkAccessEnabled,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PublicNetworkAccess(input)
-	return &out, nil
 }
 
 type Role string
@@ -239,20 +131,6 @@ func PossibleValuesForRole() []string {
 	}
 }
 
-func parseRole(input string) (*Role, error) {
-	vals := map[string]Role{
-		"failover": RoleFailover,
-		"primary":  RolePrimary,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := Role(input)
-	return &out, nil
-}
-
 type SKU string
 
 const (
@@ -265,18 +143,4 @@ func PossibleValuesForSKU() []string {
 		string(SKUFree),
 		string(SKUStandard),
 	}
-}
-
-func parseSKU(input string) (*SKU, error) {
-	vals := map[string]SKU{
-		"free":     SKUFree,
-		"standard": SKUStandard,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SKU(input)
-	return &out, nil
 }

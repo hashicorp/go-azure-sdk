@@ -1,7 +1,5 @@
 package storageaccounts
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -17,20 +15,6 @@ func PossibleValuesForDataPolicy() []string {
 		string(DataPolicyCloud),
 		string(DataPolicyLocal),
 	}
-}
-
-func parseDataPolicy(input string) (*DataPolicy, error) {
-	vals := map[string]DataPolicy{
-		"cloud": DataPolicyCloud,
-		"local": DataPolicyLocal,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := DataPolicy(input)
-	return &out, nil
 }
 
 type StorageAccountStatus string
@@ -51,21 +35,4 @@ func PossibleValuesForStorageAccountStatus() []string {
 		string(StorageAccountStatusUnknown),
 		string(StorageAccountStatusUpdating),
 	}
-}
-
-func parseStorageAccountStatus(input string) (*StorageAccountStatus, error) {
-	vals := map[string]StorageAccountStatus{
-		"needsattention": StorageAccountStatusNeedsAttention,
-		"ok":             StorageAccountStatusOK,
-		"offline":        StorageAccountStatusOffline,
-		"unknown":        StorageAccountStatusUnknown,
-		"updating":       StorageAccountStatusUpdating,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := StorageAccountStatus(input)
-	return &out, nil
 }

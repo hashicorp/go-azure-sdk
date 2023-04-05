@@ -1,7 +1,5 @@
 package monitors
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -19,20 +17,6 @@ func PossibleValuesForLiftrResourceCategories() []string {
 	}
 }
 
-func parseLiftrResourceCategories(input string) (*LiftrResourceCategories, error) {
-	vals := map[string]LiftrResourceCategories{
-		"monitorlogs": LiftrResourceCategoriesMonitorLogs,
-		"unknown":     LiftrResourceCategoriesUnknown,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := LiftrResourceCategories(input)
-	return &out, nil
-}
-
 type ManagedIdentityTypes string
 
 const (
@@ -45,20 +29,6 @@ func PossibleValuesForManagedIdentityTypes() []string {
 		string(ManagedIdentityTypesSystemAssigned),
 		string(ManagedIdentityTypesUserAssigned),
 	}
-}
-
-func parseManagedIdentityTypes(input string) (*ManagedIdentityTypes, error) {
-	vals := map[string]ManagedIdentityTypes{
-		"systemassigned": ManagedIdentityTypesSystemAssigned,
-		"userassigned":   ManagedIdentityTypesUserAssigned,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ManagedIdentityTypes(input)
-	return &out, nil
 }
 
 type MarketplaceSubscriptionStatus string
@@ -75,20 +45,6 @@ func PossibleValuesForMarketplaceSubscriptionStatus() []string {
 	}
 }
 
-func parseMarketplaceSubscriptionStatus(input string) (*MarketplaceSubscriptionStatus, error) {
-	vals := map[string]MarketplaceSubscriptionStatus{
-		"active":    MarketplaceSubscriptionStatusActive,
-		"suspended": MarketplaceSubscriptionStatusSuspended,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := MarketplaceSubscriptionStatus(input)
-	return &out, nil
-}
-
 type MonitoringStatus string
 
 const (
@@ -101,20 +57,6 @@ func PossibleValuesForMonitoringStatus() []string {
 		string(MonitoringStatusDisabled),
 		string(MonitoringStatusEnabled),
 	}
-}
-
-func parseMonitoringStatus(input string) (*MonitoringStatus, error) {
-	vals := map[string]MonitoringStatus{
-		"disabled": MonitoringStatusDisabled,
-		"enabled":  MonitoringStatusEnabled,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := MonitoringStatus(input)
-	return &out, nil
 }
 
 type ProvisioningState string
@@ -145,27 +87,6 @@ func PossibleValuesForProvisioningState() []string {
 	}
 }
 
-func parseProvisioningState(input string) (*ProvisioningState, error) {
-	vals := map[string]ProvisioningState{
-		"accepted":     ProvisioningStateAccepted,
-		"canceled":     ProvisioningStateCanceled,
-		"creating":     ProvisioningStateCreating,
-		"deleted":      ProvisioningStateDeleted,
-		"deleting":     ProvisioningStateDeleting,
-		"failed":       ProvisioningStateFailed,
-		"notspecified": ProvisioningStateNotSpecified,
-		"succeeded":    ProvisioningStateSucceeded,
-		"updating":     ProvisioningStateUpdating,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ProvisioningState(input)
-	return &out, nil
-}
-
 type UserRole string
 
 const (
@@ -180,19 +101,4 @@ func PossibleValuesForUserRole() []string {
 		string(UserRoleNone),
 		string(UserRoleUser),
 	}
-}
-
-func parseUserRole(input string) (*UserRole, error) {
-	vals := map[string]UserRole{
-		"admin": UserRoleAdmin,
-		"none":  UserRoleNone,
-		"user":  UserRoleUser,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := UserRole(input)
-	return &out, nil
 }

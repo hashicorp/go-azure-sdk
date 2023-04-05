@@ -1,7 +1,5 @@
 package workloadnetworks
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -17,20 +15,6 @@ func PossibleValuesForDhcpTypeEnum() []string {
 		string(DhcpTypeEnumRELAY),
 		string(DhcpTypeEnumSERVER),
 	}
-}
-
-func parseDhcpTypeEnum(input string) (*DhcpTypeEnum, error) {
-	vals := map[string]DhcpTypeEnum{
-		"relay":  DhcpTypeEnumRELAY,
-		"server": DhcpTypeEnumSERVER,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := DhcpTypeEnum(input)
-	return &out, nil
 }
 
 type DnsServiceLogLevelEnum string
@@ -53,23 +37,6 @@ func PossibleValuesForDnsServiceLogLevelEnum() []string {
 	}
 }
 
-func parseDnsServiceLogLevelEnum(input string) (*DnsServiceLogLevelEnum, error) {
-	vals := map[string]DnsServiceLogLevelEnum{
-		"debug":   DnsServiceLogLevelEnumDEBUG,
-		"error":   DnsServiceLogLevelEnumERROR,
-		"fatal":   DnsServiceLogLevelEnumFATAL,
-		"info":    DnsServiceLogLevelEnumINFO,
-		"warning": DnsServiceLogLevelEnumWARNING,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := DnsServiceLogLevelEnum(input)
-	return &out, nil
-}
-
 type DnsServiceStatusEnum string
 
 const (
@@ -82,20 +49,6 @@ func PossibleValuesForDnsServiceStatusEnum() []string {
 		string(DnsServiceStatusEnumFAILURE),
 		string(DnsServiceStatusEnumSUCCESS),
 	}
-}
-
-func parseDnsServiceStatusEnum(input string) (*DnsServiceStatusEnum, error) {
-	vals := map[string]DnsServiceStatusEnum{
-		"failure": DnsServiceStatusEnumFAILURE,
-		"success": DnsServiceStatusEnumSUCCESS,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := DnsServiceStatusEnum(input)
-	return &out, nil
 }
 
 type PortMirroringDirectionEnum string
@@ -114,21 +67,6 @@ func PossibleValuesForPortMirroringDirectionEnum() []string {
 	}
 }
 
-func parsePortMirroringDirectionEnum(input string) (*PortMirroringDirectionEnum, error) {
-	vals := map[string]PortMirroringDirectionEnum{
-		"bidirectional": PortMirroringDirectionEnumBIDIRECTIONAL,
-		"egress":        PortMirroringDirectionEnumEGRESS,
-		"ingress":       PortMirroringDirectionEnumINGRESS,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PortMirroringDirectionEnum(input)
-	return &out, nil
-}
-
 type PortMirroringStatusEnum string
 
 const (
@@ -141,20 +79,6 @@ func PossibleValuesForPortMirroringStatusEnum() []string {
 		string(PortMirroringStatusEnumFAILURE),
 		string(PortMirroringStatusEnumSUCCESS),
 	}
-}
-
-func parsePortMirroringStatusEnum(input string) (*PortMirroringStatusEnum, error) {
-	vals := map[string]PortMirroringStatusEnum{
-		"failure": PortMirroringStatusEnumFAILURE,
-		"success": PortMirroringStatusEnumSUCCESS,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PortMirroringStatusEnum(input)
-	return &out, nil
 }
 
 type SegmentStatusEnum string
@@ -171,20 +95,6 @@ func PossibleValuesForSegmentStatusEnum() []string {
 	}
 }
 
-func parseSegmentStatusEnum(input string) (*SegmentStatusEnum, error) {
-	vals := map[string]SegmentStatusEnum{
-		"failure": SegmentStatusEnumFAILURE,
-		"success": SegmentStatusEnumSUCCESS,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SegmentStatusEnum(input)
-	return &out, nil
-}
-
 type VMGroupStatusEnum string
 
 const (
@@ -197,20 +107,6 @@ func PossibleValuesForVMGroupStatusEnum() []string {
 		string(VMGroupStatusEnumFAILURE),
 		string(VMGroupStatusEnumSUCCESS),
 	}
-}
-
-func parseVMGroupStatusEnum(input string) (*VMGroupStatusEnum, error) {
-	vals := map[string]VMGroupStatusEnum{
-		"failure": VMGroupStatusEnumFAILURE,
-		"success": VMGroupStatusEnumSUCCESS,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := VMGroupStatusEnum(input)
-	return &out, nil
 }
 
 type VMTypeEnum string
@@ -227,21 +123,6 @@ func PossibleValuesForVMTypeEnum() []string {
 		string(VMTypeEnumREGULAR),
 		string(VMTypeEnumSERVICE),
 	}
-}
-
-func parseVMTypeEnum(input string) (*VMTypeEnum, error) {
-	vals := map[string]VMTypeEnum{
-		"edge":    VMTypeEnumEDGE,
-		"regular": VMTypeEnumREGULAR,
-		"service": VMTypeEnumSERVICE,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := VMTypeEnum(input)
-	return &out, nil
 }
 
 type WorkloadNetworkDhcpProvisioningState string
@@ -264,23 +145,6 @@ func PossibleValuesForWorkloadNetworkDhcpProvisioningState() []string {
 	}
 }
 
-func parseWorkloadNetworkDhcpProvisioningState(input string) (*WorkloadNetworkDhcpProvisioningState, error) {
-	vals := map[string]WorkloadNetworkDhcpProvisioningState{
-		"building":  WorkloadNetworkDhcpProvisioningStateBuilding,
-		"deleting":  WorkloadNetworkDhcpProvisioningStateDeleting,
-		"failed":    WorkloadNetworkDhcpProvisioningStateFailed,
-		"succeeded": WorkloadNetworkDhcpProvisioningStateSucceeded,
-		"updating":  WorkloadNetworkDhcpProvisioningStateUpdating,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := WorkloadNetworkDhcpProvisioningState(input)
-	return &out, nil
-}
-
 type WorkloadNetworkDnsServiceProvisioningState string
 
 const (
@@ -299,23 +163,6 @@ func PossibleValuesForWorkloadNetworkDnsServiceProvisioningState() []string {
 		string(WorkloadNetworkDnsServiceProvisioningStateSucceeded),
 		string(WorkloadNetworkDnsServiceProvisioningStateUpdating),
 	}
-}
-
-func parseWorkloadNetworkDnsServiceProvisioningState(input string) (*WorkloadNetworkDnsServiceProvisioningState, error) {
-	vals := map[string]WorkloadNetworkDnsServiceProvisioningState{
-		"building":  WorkloadNetworkDnsServiceProvisioningStateBuilding,
-		"deleting":  WorkloadNetworkDnsServiceProvisioningStateDeleting,
-		"failed":    WorkloadNetworkDnsServiceProvisioningStateFailed,
-		"succeeded": WorkloadNetworkDnsServiceProvisioningStateSucceeded,
-		"updating":  WorkloadNetworkDnsServiceProvisioningStateUpdating,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := WorkloadNetworkDnsServiceProvisioningState(input)
-	return &out, nil
 }
 
 type WorkloadNetworkDnsZoneProvisioningState string
@@ -338,23 +185,6 @@ func PossibleValuesForWorkloadNetworkDnsZoneProvisioningState() []string {
 	}
 }
 
-func parseWorkloadNetworkDnsZoneProvisioningState(input string) (*WorkloadNetworkDnsZoneProvisioningState, error) {
-	vals := map[string]WorkloadNetworkDnsZoneProvisioningState{
-		"building":  WorkloadNetworkDnsZoneProvisioningStateBuilding,
-		"deleting":  WorkloadNetworkDnsZoneProvisioningStateDeleting,
-		"failed":    WorkloadNetworkDnsZoneProvisioningStateFailed,
-		"succeeded": WorkloadNetworkDnsZoneProvisioningStateSucceeded,
-		"updating":  WorkloadNetworkDnsZoneProvisioningStateUpdating,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := WorkloadNetworkDnsZoneProvisioningState(input)
-	return &out, nil
-}
-
 type WorkloadNetworkPortMirroringProvisioningState string
 
 const (
@@ -373,23 +203,6 @@ func PossibleValuesForWorkloadNetworkPortMirroringProvisioningState() []string {
 		string(WorkloadNetworkPortMirroringProvisioningStateSucceeded),
 		string(WorkloadNetworkPortMirroringProvisioningStateUpdating),
 	}
-}
-
-func parseWorkloadNetworkPortMirroringProvisioningState(input string) (*WorkloadNetworkPortMirroringProvisioningState, error) {
-	vals := map[string]WorkloadNetworkPortMirroringProvisioningState{
-		"building":  WorkloadNetworkPortMirroringProvisioningStateBuilding,
-		"deleting":  WorkloadNetworkPortMirroringProvisioningStateDeleting,
-		"failed":    WorkloadNetworkPortMirroringProvisioningStateFailed,
-		"succeeded": WorkloadNetworkPortMirroringProvisioningStateSucceeded,
-		"updating":  WorkloadNetworkPortMirroringProvisioningStateUpdating,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := WorkloadNetworkPortMirroringProvisioningState(input)
-	return &out, nil
 }
 
 type WorkloadNetworkPublicIPProvisioningState string
@@ -412,23 +225,6 @@ func PossibleValuesForWorkloadNetworkPublicIPProvisioningState() []string {
 	}
 }
 
-func parseWorkloadNetworkPublicIPProvisioningState(input string) (*WorkloadNetworkPublicIPProvisioningState, error) {
-	vals := map[string]WorkloadNetworkPublicIPProvisioningState{
-		"building":  WorkloadNetworkPublicIPProvisioningStateBuilding,
-		"deleting":  WorkloadNetworkPublicIPProvisioningStateDeleting,
-		"failed":    WorkloadNetworkPublicIPProvisioningStateFailed,
-		"succeeded": WorkloadNetworkPublicIPProvisioningStateSucceeded,
-		"updating":  WorkloadNetworkPublicIPProvisioningStateUpdating,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := WorkloadNetworkPublicIPProvisioningState(input)
-	return &out, nil
-}
-
 type WorkloadNetworkSegmentProvisioningState string
 
 const (
@@ -449,23 +245,6 @@ func PossibleValuesForWorkloadNetworkSegmentProvisioningState() []string {
 	}
 }
 
-func parseWorkloadNetworkSegmentProvisioningState(input string) (*WorkloadNetworkSegmentProvisioningState, error) {
-	vals := map[string]WorkloadNetworkSegmentProvisioningState{
-		"building":  WorkloadNetworkSegmentProvisioningStateBuilding,
-		"deleting":  WorkloadNetworkSegmentProvisioningStateDeleting,
-		"failed":    WorkloadNetworkSegmentProvisioningStateFailed,
-		"succeeded": WorkloadNetworkSegmentProvisioningStateSucceeded,
-		"updating":  WorkloadNetworkSegmentProvisioningStateUpdating,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := WorkloadNetworkSegmentProvisioningState(input)
-	return &out, nil
-}
-
 type WorkloadNetworkVMGroupProvisioningState string
 
 const (
@@ -484,21 +263,4 @@ func PossibleValuesForWorkloadNetworkVMGroupProvisioningState() []string {
 		string(WorkloadNetworkVMGroupProvisioningStateSucceeded),
 		string(WorkloadNetworkVMGroupProvisioningStateUpdating),
 	}
-}
-
-func parseWorkloadNetworkVMGroupProvisioningState(input string) (*WorkloadNetworkVMGroupProvisioningState, error) {
-	vals := map[string]WorkloadNetworkVMGroupProvisioningState{
-		"building":  WorkloadNetworkVMGroupProvisioningStateBuilding,
-		"deleting":  WorkloadNetworkVMGroupProvisioningStateDeleting,
-		"failed":    WorkloadNetworkVMGroupProvisioningStateFailed,
-		"succeeded": WorkloadNetworkVMGroupProvisioningStateSucceeded,
-		"updating":  WorkloadNetworkVMGroupProvisioningStateUpdating,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := WorkloadNetworkVMGroupProvisioningState(input)
-	return &out, nil
 }

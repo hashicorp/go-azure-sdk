@@ -1,7 +1,5 @@
 package cognitiveservicesaccounts
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -19,20 +17,6 @@ func PossibleValuesForKeyName() []string {
 	}
 }
 
-func parseKeyName(input string) (*KeyName, error) {
-	vals := map[string]KeyName{
-		"key1": KeyNameKeyOne,
-		"key2": KeyNameKeyTwo,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := KeyName(input)
-	return &out, nil
-}
-
 type KeySource string
 
 const (
@@ -47,20 +31,6 @@ func PossibleValuesForKeySource() []string {
 	}
 }
 
-func parseKeySource(input string) (*KeySource, error) {
-	vals := map[string]KeySource{
-		"microsoft.cognitiveservices": KeySourceMicrosoftPointCognitiveServices,
-		"microsoft.keyvault":          KeySourceMicrosoftPointKeyVault,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := KeySource(input)
-	return &out, nil
-}
-
 type NetworkRuleAction string
 
 const (
@@ -73,20 +43,6 @@ func PossibleValuesForNetworkRuleAction() []string {
 		string(NetworkRuleActionAllow),
 		string(NetworkRuleActionDeny),
 	}
-}
-
-func parseNetworkRuleAction(input string) (*NetworkRuleAction, error) {
-	vals := map[string]NetworkRuleAction{
-		"allow": NetworkRuleActionAllow,
-		"deny":  NetworkRuleActionDeny,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := NetworkRuleAction(input)
-	return &out, nil
 }
 
 type PrivateEndpointConnectionProvisioningState string
@@ -107,22 +63,6 @@ func PossibleValuesForPrivateEndpointConnectionProvisioningState() []string {
 	}
 }
 
-func parsePrivateEndpointConnectionProvisioningState(input string) (*PrivateEndpointConnectionProvisioningState, error) {
-	vals := map[string]PrivateEndpointConnectionProvisioningState{
-		"creating":  PrivateEndpointConnectionProvisioningStateCreating,
-		"deleting":  PrivateEndpointConnectionProvisioningStateDeleting,
-		"failed":    PrivateEndpointConnectionProvisioningStateFailed,
-		"succeeded": PrivateEndpointConnectionProvisioningStateSucceeded,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PrivateEndpointConnectionProvisioningState(input)
-	return &out, nil
-}
-
 type PrivateEndpointServiceConnectionStatus string
 
 const (
@@ -137,21 +77,6 @@ func PossibleValuesForPrivateEndpointServiceConnectionStatus() []string {
 		string(PrivateEndpointServiceConnectionStatusPending),
 		string(PrivateEndpointServiceConnectionStatusRejected),
 	}
-}
-
-func parsePrivateEndpointServiceConnectionStatus(input string) (*PrivateEndpointServiceConnectionStatus, error) {
-	vals := map[string]PrivateEndpointServiceConnectionStatus{
-		"approved": PrivateEndpointServiceConnectionStatusApproved,
-		"pending":  PrivateEndpointServiceConnectionStatusPending,
-		"rejected": PrivateEndpointServiceConnectionStatusRejected,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PrivateEndpointServiceConnectionStatus(input)
-	return &out, nil
 }
 
 type ProvisioningState string
@@ -178,25 +103,6 @@ func PossibleValuesForProvisioningState() []string {
 	}
 }
 
-func parseProvisioningState(input string) (*ProvisioningState, error) {
-	vals := map[string]ProvisioningState{
-		"accepted":     ProvisioningStateAccepted,
-		"creating":     ProvisioningStateCreating,
-		"deleting":     ProvisioningStateDeleting,
-		"failed":       ProvisioningStateFailed,
-		"moving":       ProvisioningStateMoving,
-		"resolvingdns": ProvisioningStateResolvingDNS,
-		"succeeded":    ProvisioningStateSucceeded,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ProvisioningState(input)
-	return &out, nil
-}
-
 type PublicNetworkAccess string
 
 const (
@@ -209,20 +115,6 @@ func PossibleValuesForPublicNetworkAccess() []string {
 		string(PublicNetworkAccessDisabled),
 		string(PublicNetworkAccessEnabled),
 	}
-}
-
-func parsePublicNetworkAccess(input string) (*PublicNetworkAccess, error) {
-	vals := map[string]PublicNetworkAccess{
-		"disabled": PublicNetworkAccessDisabled,
-		"enabled":  PublicNetworkAccessEnabled,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PublicNetworkAccess(input)
-	return &out, nil
 }
 
 type QuotaUsageStatus string
@@ -243,22 +135,6 @@ func PossibleValuesForQuotaUsageStatus() []string {
 	}
 }
 
-func parseQuotaUsageStatus(input string) (*QuotaUsageStatus, error) {
-	vals := map[string]QuotaUsageStatus{
-		"blocked":   QuotaUsageStatusBlocked,
-		"inoverage": QuotaUsageStatusInOverage,
-		"included":  QuotaUsageStatusIncluded,
-		"unknown":   QuotaUsageStatusUnknown,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := QuotaUsageStatus(input)
-	return &out, nil
-}
-
 type ResourceSkuRestrictionsReasonCode string
 
 const (
@@ -273,20 +149,6 @@ func PossibleValuesForResourceSkuRestrictionsReasonCode() []string {
 	}
 }
 
-func parseResourceSkuRestrictionsReasonCode(input string) (*ResourceSkuRestrictionsReasonCode, error) {
-	vals := map[string]ResourceSkuRestrictionsReasonCode{
-		"notavailableforsubscription": ResourceSkuRestrictionsReasonCodeNotAvailableForSubscription,
-		"quotaid":                     ResourceSkuRestrictionsReasonCodeQuotaId,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ResourceSkuRestrictionsReasonCode(input)
-	return &out, nil
-}
-
 type ResourceSkuRestrictionsType string
 
 const (
@@ -299,20 +161,6 @@ func PossibleValuesForResourceSkuRestrictionsType() []string {
 		string(ResourceSkuRestrictionsTypeLocation),
 		string(ResourceSkuRestrictionsTypeZone),
 	}
-}
-
-func parseResourceSkuRestrictionsType(input string) (*ResourceSkuRestrictionsType, error) {
-	vals := map[string]ResourceSkuRestrictionsType{
-		"location": ResourceSkuRestrictionsTypeLocation,
-		"zone":     ResourceSkuRestrictionsTypeZone,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ResourceSkuRestrictionsType(input)
-	return &out, nil
 }
 
 type SkuTier string
@@ -333,23 +181,6 @@ func PossibleValuesForSkuTier() []string {
 		string(SkuTierPremium),
 		string(SkuTierStandard),
 	}
-}
-
-func parseSkuTier(input string) (*SkuTier, error) {
-	vals := map[string]SkuTier{
-		"basic":      SkuTierBasic,
-		"enterprise": SkuTierEnterprise,
-		"free":       SkuTierFree,
-		"premium":    SkuTierPremium,
-		"standard":   SkuTierStandard,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SkuTier(input)
-	return &out, nil
 }
 
 type UnitType string
@@ -374,23 +205,4 @@ func PossibleValuesForUnitType() []string {
 		string(UnitTypePercent),
 		string(UnitTypeSeconds),
 	}
-}
-
-func parseUnitType(input string) (*UnitType, error) {
-	vals := map[string]UnitType{
-		"bytes":          UnitTypeBytes,
-		"bytespersecond": UnitTypeBytesPerSecond,
-		"count":          UnitTypeCount,
-		"countpersecond": UnitTypeCountPerSecond,
-		"milliseconds":   UnitTypeMilliseconds,
-		"percent":        UnitTypePercent,
-		"seconds":        UnitTypeSeconds,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := UnitType(input)
-	return &out, nil
 }

@@ -1,7 +1,5 @@
 package environmentversion
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -17,20 +15,6 @@ func PossibleValuesForEnvironmentType() []string {
 		string(EnvironmentTypeCurated),
 		string(EnvironmentTypeUserCreated),
 	}
-}
-
-func parseEnvironmentType(input string) (*EnvironmentType, error) {
-	vals := map[string]EnvironmentType{
-		"curated":     EnvironmentTypeCurated,
-		"usercreated": EnvironmentTypeUserCreated,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := EnvironmentType(input)
-	return &out, nil
 }
 
 type ListViewType string
@@ -49,21 +33,6 @@ func PossibleValuesForListViewType() []string {
 	}
 }
 
-func parseListViewType(input string) (*ListViewType, error) {
-	vals := map[string]ListViewType{
-		"activeonly":   ListViewTypeActiveOnly,
-		"all":          ListViewTypeAll,
-		"archivedonly": ListViewTypeArchivedOnly,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ListViewType(input)
-	return &out, nil
-}
-
 type OperatingSystemType string
 
 const (
@@ -76,18 +45,4 @@ func PossibleValuesForOperatingSystemType() []string {
 		string(OperatingSystemTypeLinux),
 		string(OperatingSystemTypeWindows),
 	}
-}
-
-func parseOperatingSystemType(input string) (*OperatingSystemType, error) {
-	vals := map[string]OperatingSystemType{
-		"linux":   OperatingSystemTypeLinux,
-		"windows": OperatingSystemTypeWindows,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := OperatingSystemType(input)
-	return &out, nil
 }

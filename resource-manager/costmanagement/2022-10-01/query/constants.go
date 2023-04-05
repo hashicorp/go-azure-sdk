@@ -1,7 +1,5 @@
 package query
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -21,21 +19,6 @@ func PossibleValuesForExportType() []string {
 	}
 }
 
-func parseExportType(input string) (*ExportType, error) {
-	vals := map[string]ExportType{
-		"actualcost":    ExportTypeActualCost,
-		"amortizedcost": ExportTypeAmortizedCost,
-		"usage":         ExportTypeUsage,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ExportType(input)
-	return &out, nil
-}
-
 type ExternalCloudProviderType string
 
 const (
@@ -50,20 +33,6 @@ func PossibleValuesForExternalCloudProviderType() []string {
 	}
 }
 
-func parseExternalCloudProviderType(input string) (*ExternalCloudProviderType, error) {
-	vals := map[string]ExternalCloudProviderType{
-		"externalbillingaccounts": ExternalCloudProviderTypeExternalBillingAccounts,
-		"externalsubscriptions":   ExternalCloudProviderTypeExternalSubscriptions,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ExternalCloudProviderType(input)
-	return &out, nil
-}
-
 type FunctionType string
 
 const (
@@ -76,19 +45,6 @@ func PossibleValuesForFunctionType() []string {
 	}
 }
 
-func parseFunctionType(input string) (*FunctionType, error) {
-	vals := map[string]FunctionType{
-		"sum": FunctionTypeSum,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := FunctionType(input)
-	return &out, nil
-}
-
 type GranularityType string
 
 const (
@@ -99,19 +55,6 @@ func PossibleValuesForGranularityType() []string {
 	return []string{
 		string(GranularityTypeDaily),
 	}
-}
-
-func parseGranularityType(input string) (*GranularityType, error) {
-	vals := map[string]GranularityType{
-		"daily": GranularityTypeDaily,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := GranularityType(input)
-	return &out, nil
 }
 
 type QueryColumnType string
@@ -128,20 +71,6 @@ func PossibleValuesForQueryColumnType() []string {
 	}
 }
 
-func parseQueryColumnType(input string) (*QueryColumnType, error) {
-	vals := map[string]QueryColumnType{
-		"dimension": QueryColumnTypeDimension,
-		"tagkey":    QueryColumnTypeTagKey,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := QueryColumnType(input)
-	return &out, nil
-}
-
 type QueryOperatorType string
 
 const (
@@ -152,19 +81,6 @@ func PossibleValuesForQueryOperatorType() []string {
 	return []string{
 		string(QueryOperatorTypeIn),
 	}
-}
-
-func parseQueryOperatorType(input string) (*QueryOperatorType, error) {
-	vals := map[string]QueryOperatorType{
-		"in": QueryOperatorTypeIn,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := QueryOperatorType(input)
-	return &out, nil
 }
 
 type TimeframeType string
@@ -187,22 +103,4 @@ func PossibleValuesForTimeframeType() []string {
 		string(TimeframeTypeTheLastMonth),
 		string(TimeframeTypeWeekToDate),
 	}
-}
-
-func parseTimeframeType(input string) (*TimeframeType, error) {
-	vals := map[string]TimeframeType{
-		"billingmonthtodate":  TimeframeTypeBillingMonthToDate,
-		"custom":              TimeframeTypeCustom,
-		"monthtodate":         TimeframeTypeMonthToDate,
-		"thelastbillingmonth": TimeframeTypeTheLastBillingMonth,
-		"thelastmonth":        TimeframeTypeTheLastMonth,
-		"weektodate":          TimeframeTypeWeekToDate,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := TimeframeType(input)
-	return &out, nil
 }

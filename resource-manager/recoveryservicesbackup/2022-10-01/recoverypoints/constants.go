@@ -1,7 +1,5 @@
 package recoverypoints
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -25,23 +23,6 @@ func PossibleValuesForRecoveryPointTierStatus() []string {
 	}
 }
 
-func parseRecoveryPointTierStatus(input string) (*RecoveryPointTierStatus, error) {
-	vals := map[string]RecoveryPointTierStatus{
-		"deleted":    RecoveryPointTierStatusDeleted,
-		"disabled":   RecoveryPointTierStatusDisabled,
-		"invalid":    RecoveryPointTierStatusInvalid,
-		"rehydrated": RecoveryPointTierStatusRehydrated,
-		"valid":      RecoveryPointTierStatusValid,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := RecoveryPointTierStatus(input)
-	return &out, nil
-}
-
 type RecoveryPointTierType string
 
 const (
@@ -58,22 +39,6 @@ func PossibleValuesForRecoveryPointTierType() []string {
 		string(RecoveryPointTierTypeInstantRP),
 		string(RecoveryPointTierTypeInvalid),
 	}
-}
-
-func parseRecoveryPointTierType(input string) (*RecoveryPointTierType, error) {
-	vals := map[string]RecoveryPointTierType{
-		"archivedrp": RecoveryPointTierTypeArchivedRP,
-		"hardenedrp": RecoveryPointTierTypeHardenedRP,
-		"instantrp":  RecoveryPointTierTypeInstantRP,
-		"invalid":    RecoveryPointTierTypeInvalid,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := RecoveryPointTierType(input)
-	return &out, nil
 }
 
 type RestorePointType string
@@ -100,25 +65,6 @@ func PossibleValuesForRestorePointType() []string {
 	}
 }
 
-func parseRestorePointType(input string) (*RestorePointType, error) {
-	vals := map[string]RestorePointType{
-		"differential":         RestorePointTypeDifferential,
-		"full":                 RestorePointTypeFull,
-		"incremental":          RestorePointTypeIncremental,
-		"invalid":              RestorePointTypeInvalid,
-		"log":                  RestorePointTypeLog,
-		"snapshotcopyonlyfull": RestorePointTypeSnapshotCopyOnlyFull,
-		"snapshotfull":         RestorePointTypeSnapshotFull,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := RestorePointType(input)
-	return &out, nil
-}
-
 type SQLDataDirectoryType string
 
 const (
@@ -133,19 +79,4 @@ func PossibleValuesForSQLDataDirectoryType() []string {
 		string(SQLDataDirectoryTypeInvalid),
 		string(SQLDataDirectoryTypeLog),
 	}
-}
-
-func parseSQLDataDirectoryType(input string) (*SQLDataDirectoryType, error) {
-	vals := map[string]SQLDataDirectoryType{
-		"data":    SQLDataDirectoryTypeData,
-		"invalid": SQLDataDirectoryTypeInvalid,
-		"log":     SQLDataDirectoryTypeLog,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SQLDataDirectoryType(input)
-	return &out, nil
 }

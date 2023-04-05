@@ -1,6 +1,10 @@
 package disasterrecoveryconfigs
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -21,19 +25,19 @@ func PossibleValuesForAccessRights() []string {
 	}
 }
 
-func parseAccessRights(input string) (*AccessRights, error) {
-	vals := map[string]AccessRights{
-		"listen": AccessRightsListen,
-		"manage": AccessRightsManage,
-		"send":   AccessRightsSend,
+func (s *AccessRights) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForAccessRights() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := AccessRights(input)
-	return &out, nil
+	*s = AccessRights(decoded)
+	return nil
 }
 
 type ProvisioningStateDR string
@@ -52,19 +56,19 @@ func PossibleValuesForProvisioningStateDR() []string {
 	}
 }
 
-func parseProvisioningStateDR(input string) (*ProvisioningStateDR, error) {
-	vals := map[string]ProvisioningStateDR{
-		"accepted":  ProvisioningStateDRAccepted,
-		"failed":    ProvisioningStateDRFailed,
-		"succeeded": ProvisioningStateDRSucceeded,
+func (s *ProvisioningStateDR) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForProvisioningStateDR() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ProvisioningStateDR(input)
-	return &out, nil
+	*s = ProvisioningStateDR(decoded)
+	return nil
 }
 
 type RoleDisasterRecovery string
@@ -83,19 +87,19 @@ func PossibleValuesForRoleDisasterRecovery() []string {
 	}
 }
 
-func parseRoleDisasterRecovery(input string) (*RoleDisasterRecovery, error) {
-	vals := map[string]RoleDisasterRecovery{
-		"primary":               RoleDisasterRecoveryPrimary,
-		"primarynotreplicating": RoleDisasterRecoveryPrimaryNotReplicating,
-		"secondary":             RoleDisasterRecoverySecondary,
+func (s *RoleDisasterRecovery) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForRoleDisasterRecovery() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := RoleDisasterRecovery(input)
-	return &out, nil
+	*s = RoleDisasterRecovery(decoded)
+	return nil
 }
 
 type UnavailableReason string
@@ -120,20 +124,17 @@ func PossibleValuesForUnavailableReason() []string {
 	}
 }
 
-func parseUnavailableReason(input string) (*UnavailableReason, error) {
-	vals := map[string]UnavailableReason{
-		"invalidname":                           UnavailableReasonInvalidName,
-		"nameinlockdown":                        UnavailableReasonNameInLockdown,
-		"nameinuse":                             UnavailableReasonNameInUse,
-		"none":                                  UnavailableReasonNone,
-		"subscriptionisdisabled":                UnavailableReasonSubscriptionIsDisabled,
-		"toomanynamespaceincurrentsubscription": UnavailableReasonTooManyNamespaceInCurrentSubscription,
+func (s *UnavailableReason) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForUnavailableReason() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := UnavailableReason(input)
-	return &out, nil
+	*s = UnavailableReason(decoded)
+	return nil
 }

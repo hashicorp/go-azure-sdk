@@ -1,7 +1,5 @@
 package integrationserviceenvironmentmanagedapis
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -19,21 +17,6 @@ func PossibleValuesForApiDeploymentParameterVisibility() []string {
 		string(ApiDeploymentParameterVisibilityInternal),
 		string(ApiDeploymentParameterVisibilityNotSpecified),
 	}
-}
-
-func parseApiDeploymentParameterVisibility(input string) (*ApiDeploymentParameterVisibility, error) {
-	vals := map[string]ApiDeploymentParameterVisibility{
-		"default":      ApiDeploymentParameterVisibilityDefault,
-		"internal":     ApiDeploymentParameterVisibilityInternal,
-		"notspecified": ApiDeploymentParameterVisibilityNotSpecified,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ApiDeploymentParameterVisibility(input)
-	return &out, nil
 }
 
 type ApiTier string
@@ -54,22 +37,6 @@ func PossibleValuesForApiTier() []string {
 	}
 }
 
-func parseApiTier(input string) (*ApiTier, error) {
-	vals := map[string]ApiTier{
-		"enterprise":   ApiTierEnterprise,
-		"notspecified": ApiTierNotSpecified,
-		"premium":      ApiTierPremium,
-		"standard":     ApiTierStandard,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ApiTier(input)
-	return &out, nil
-}
-
 type ApiType string
 
 const (
@@ -86,21 +53,6 @@ func PossibleValuesForApiType() []string {
 	}
 }
 
-func parseApiType(input string) (*ApiType, error) {
-	vals := map[string]ApiType{
-		"notspecified": ApiTypeNotSpecified,
-		"rest":         ApiTypeRest,
-		"soap":         ApiTypeSoap,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ApiType(input)
-	return &out, nil
-}
-
 type StatusAnnotation string
 
 const (
@@ -115,21 +67,6 @@ func PossibleValuesForStatusAnnotation() []string {
 		string(StatusAnnotationPreview),
 		string(StatusAnnotationProduction),
 	}
-}
-
-func parseStatusAnnotation(input string) (*StatusAnnotation, error) {
-	vals := map[string]StatusAnnotation{
-		"notspecified": StatusAnnotationNotSpecified,
-		"preview":      StatusAnnotationPreview,
-		"production":   StatusAnnotationProduction,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := StatusAnnotation(input)
-	return &out, nil
 }
 
 type SwaggerSchemaType string
@@ -156,26 +93,6 @@ func PossibleValuesForSwaggerSchemaType() []string {
 		string(SwaggerSchemaTypeObject),
 		string(SwaggerSchemaTypeString),
 	}
-}
-
-func parseSwaggerSchemaType(input string) (*SwaggerSchemaType, error) {
-	vals := map[string]SwaggerSchemaType{
-		"array":   SwaggerSchemaTypeArray,
-		"boolean": SwaggerSchemaTypeBoolean,
-		"file":    SwaggerSchemaTypeFile,
-		"integer": SwaggerSchemaTypeInteger,
-		"null":    SwaggerSchemaTypeNull,
-		"number":  SwaggerSchemaTypeNumber,
-		"object":  SwaggerSchemaTypeObject,
-		"string":  SwaggerSchemaTypeString,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SwaggerSchemaType(input)
-	return &out, nil
 }
 
 type WorkflowProvisioningState string
@@ -232,40 +149,6 @@ func PossibleValuesForWorkflowProvisioningState() []string {
 	}
 }
 
-func parseWorkflowProvisioningState(input string) (*WorkflowProvisioningState, error) {
-	vals := map[string]WorkflowProvisioningState{
-		"accepted":      WorkflowProvisioningStateAccepted,
-		"canceled":      WorkflowProvisioningStateCanceled,
-		"completed":     WorkflowProvisioningStateCompleted,
-		"created":       WorkflowProvisioningStateCreated,
-		"creating":      WorkflowProvisioningStateCreating,
-		"deleted":       WorkflowProvisioningStateDeleted,
-		"deleting":      WorkflowProvisioningStateDeleting,
-		"failed":        WorkflowProvisioningStateFailed,
-		"inprogress":    WorkflowProvisioningStateInProgress,
-		"moving":        WorkflowProvisioningStateMoving,
-		"notspecified":  WorkflowProvisioningStateNotSpecified,
-		"pending":       WorkflowProvisioningStatePending,
-		"ready":         WorkflowProvisioningStateReady,
-		"registered":    WorkflowProvisioningStateRegistered,
-		"registering":   WorkflowProvisioningStateRegistering,
-		"renewing":      WorkflowProvisioningStateRenewing,
-		"running":       WorkflowProvisioningStateRunning,
-		"succeeded":     WorkflowProvisioningStateSucceeded,
-		"unregistered":  WorkflowProvisioningStateUnregistered,
-		"unregistering": WorkflowProvisioningStateUnregistering,
-		"updating":      WorkflowProvisioningStateUpdating,
-		"waiting":       WorkflowProvisioningStateWaiting,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := WorkflowProvisioningState(input)
-	return &out, nil
-}
-
 type WsdlImportMethod string
 
 const (
@@ -280,19 +163,4 @@ func PossibleValuesForWsdlImportMethod() []string {
 		string(WsdlImportMethodSoapPassThrough),
 		string(WsdlImportMethodSoapToRest),
 	}
-}
-
-func parseWsdlImportMethod(input string) (*WsdlImportMethod, error) {
-	vals := map[string]WsdlImportMethod{
-		"notspecified":    WsdlImportMethodNotSpecified,
-		"soappassthrough": WsdlImportMethodSoapPassThrough,
-		"soaptorest":      WsdlImportMethodSoapToRest,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := WsdlImportMethod(input)
-	return &out, nil
 }

@@ -1,7 +1,5 @@
 package capacityreservationgroups
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -15,19 +13,6 @@ func PossibleValuesForCapacityReservationGroupInstanceViewTypes() []string {
 	return []string{
 		string(CapacityReservationGroupInstanceViewTypesInstanceView),
 	}
-}
-
-func parseCapacityReservationGroupInstanceViewTypes(input string) (*CapacityReservationGroupInstanceViewTypes, error) {
-	vals := map[string]CapacityReservationGroupInstanceViewTypes{
-		"instanceview": CapacityReservationGroupInstanceViewTypesInstanceView,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := CapacityReservationGroupInstanceViewTypes(input)
-	return &out, nil
 }
 
 type ExpandTypesForGetCapacityReservationGroups string
@@ -44,20 +29,6 @@ func PossibleValuesForExpandTypesForGetCapacityReservationGroups() []string {
 	}
 }
 
-func parseExpandTypesForGetCapacityReservationGroups(input string) (*ExpandTypesForGetCapacityReservationGroups, error) {
-	vals := map[string]ExpandTypesForGetCapacityReservationGroups{
-		"virtualmachinescalesetvms/$ref": ExpandTypesForGetCapacityReservationGroupsVirtualMachineScaleSetVMsRef,
-		"virtualmachines/$ref":           ExpandTypesForGetCapacityReservationGroupsVirtualMachinesRef,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ExpandTypesForGetCapacityReservationGroups(input)
-	return &out, nil
-}
-
 type StatusLevelTypes string
 
 const (
@@ -72,19 +43,4 @@ func PossibleValuesForStatusLevelTypes() []string {
 		string(StatusLevelTypesInfo),
 		string(StatusLevelTypesWarning),
 	}
-}
-
-func parseStatusLevelTypes(input string) (*StatusLevelTypes, error) {
-	vals := map[string]StatusLevelTypes{
-		"error":   StatusLevelTypesError,
-		"info":    StatusLevelTypesInfo,
-		"warning": StatusLevelTypesWarning,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := StatusLevelTypes(input)
-	return &out, nil
 }

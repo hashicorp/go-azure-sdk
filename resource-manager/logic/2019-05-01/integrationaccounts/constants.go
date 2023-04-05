@@ -1,7 +1,5 @@
 package integrationaccounts
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -27,24 +25,6 @@ func PossibleValuesForEventLevel() []string {
 	}
 }
 
-func parseEventLevel(input string) (*EventLevel, error) {
-	vals := map[string]EventLevel{
-		"critical":      EventLevelCritical,
-		"error":         EventLevelError,
-		"informational": EventLevelInformational,
-		"logalways":     EventLevelLogAlways,
-		"verbose":       EventLevelVerbose,
-		"warning":       EventLevelWarning,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := EventLevel(input)
-	return &out, nil
-}
-
 type IntegrationAccountSkuName string
 
 const (
@@ -63,22 +43,6 @@ func PossibleValuesForIntegrationAccountSkuName() []string {
 	}
 }
 
-func parseIntegrationAccountSkuName(input string) (*IntegrationAccountSkuName, error) {
-	vals := map[string]IntegrationAccountSkuName{
-		"basic":        IntegrationAccountSkuNameBasic,
-		"free":         IntegrationAccountSkuNameFree,
-		"notspecified": IntegrationAccountSkuNameNotSpecified,
-		"standard":     IntegrationAccountSkuNameStandard,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := IntegrationAccountSkuName(input)
-	return &out, nil
-}
-
 type KeyType string
 
 const (
@@ -95,21 +59,6 @@ func PossibleValuesForKeyType() []string {
 	}
 }
 
-func parseKeyType(input string) (*KeyType, error) {
-	vals := map[string]KeyType{
-		"notspecified": KeyTypeNotSpecified,
-		"primary":      KeyTypePrimary,
-		"secondary":    KeyTypeSecondary,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := KeyType(input)
-	return &out, nil
-}
-
 type TrackEventsOperationOptions string
 
 const (
@@ -122,20 +71,6 @@ func PossibleValuesForTrackEventsOperationOptions() []string {
 		string(TrackEventsOperationOptionsDisableSourceInfoEnrich),
 		string(TrackEventsOperationOptionsNone),
 	}
-}
-
-func parseTrackEventsOperationOptions(input string) (*TrackEventsOperationOptions, error) {
-	vals := map[string]TrackEventsOperationOptions{
-		"disablesourceinfoenrich": TrackEventsOperationOptionsDisableSourceInfoEnrich,
-		"none":                    TrackEventsOperationOptionsNone,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := TrackEventsOperationOptions(input)
-	return &out, nil
 }
 
 type TrackingRecordType string
@@ -180,34 +115,6 @@ func PossibleValuesForTrackingRecordType() []string {
 	}
 }
 
-func parseTrackingRecordType(input string) (*TrackingRecordType, error) {
-	vals := map[string]TrackingRecordType{
-		"as2mdn":                               TrackingRecordTypeASTwoMDN,
-		"as2message":                           TrackingRecordTypeASTwoMessage,
-		"custom":                               TrackingRecordTypeCustom,
-		"edifactfunctionalgroup":               TrackingRecordTypeEdifactFunctionalGroup,
-		"edifactfunctionalgroupacknowledgment": TrackingRecordTypeEdifactFunctionalGroupAcknowledgment,
-		"edifactinterchange":                   TrackingRecordTypeEdifactInterchange,
-		"edifactinterchangeacknowledgment":     TrackingRecordTypeEdifactInterchangeAcknowledgment,
-		"edifacttransactionset":                TrackingRecordTypeEdifactTransactionSet,
-		"edifacttransactionsetacknowledgment":  TrackingRecordTypeEdifactTransactionSetAcknowledgment,
-		"notspecified":                         TrackingRecordTypeNotSpecified,
-		"x12functionalgroup":                   TrackingRecordTypeXOneTwoFunctionalGroup,
-		"x12functionalgroupacknowledgment":     TrackingRecordTypeXOneTwoFunctionalGroupAcknowledgment,
-		"x12interchange":                       TrackingRecordTypeXOneTwoInterchange,
-		"x12interchangeacknowledgment":         TrackingRecordTypeXOneTwoInterchangeAcknowledgment,
-		"x12transactionset":                    TrackingRecordTypeXOneTwoTransactionSet,
-		"x12transactionsetacknowledgment":      TrackingRecordTypeXOneTwoTransactionSetAcknowledgment,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := TrackingRecordType(input)
-	return &out, nil
-}
-
 type WorkflowState string
 
 const (
@@ -228,22 +135,4 @@ func PossibleValuesForWorkflowState() []string {
 		string(WorkflowStateNotSpecified),
 		string(WorkflowStateSuspended),
 	}
-}
-
-func parseWorkflowState(input string) (*WorkflowState, error) {
-	vals := map[string]WorkflowState{
-		"completed":    WorkflowStateCompleted,
-		"deleted":      WorkflowStateDeleted,
-		"disabled":     WorkflowStateDisabled,
-		"enabled":      WorkflowStateEnabled,
-		"notspecified": WorkflowStateNotSpecified,
-		"suspended":    WorkflowStateSuspended,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := WorkflowState(input)
-	return &out, nil
 }

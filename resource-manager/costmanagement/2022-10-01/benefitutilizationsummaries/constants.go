@@ -1,7 +1,5 @@
 package benefitutilizationsummaries
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -21,21 +19,6 @@ func PossibleValuesForBenefitKind() []string {
 	}
 }
 
-func parseBenefitKind(input string) (*BenefitKind, error) {
-	vals := map[string]BenefitKind{
-		"includedquantity": BenefitKindIncludedQuantity,
-		"reservation":      BenefitKindReservation,
-		"savingsplan":      BenefitKindSavingsPlan,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := BenefitKind(input)
-	return &out, nil
-}
-
 type GrainParameter string
 
 const (
@@ -50,19 +33,4 @@ func PossibleValuesForGrainParameter() []string {
 		string(GrainParameterHourly),
 		string(GrainParameterMonthly),
 	}
-}
-
-func parseGrainParameter(input string) (*GrainParameter, error) {
-	vals := map[string]GrainParameter{
-		"daily":   GrainParameterDaily,
-		"hourly":  GrainParameterHourly,
-		"monthly": GrainParameterMonthly,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := GrainParameter(input)
-	return &out, nil
 }

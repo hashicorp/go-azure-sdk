@@ -1,7 +1,5 @@
 package placementpolicies
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -17,20 +15,6 @@ func PossibleValuesForAffinityType() []string {
 		string(AffinityTypeAffinity),
 		string(AffinityTypeAntiAffinity),
 	}
-}
-
-func parseAffinityType(input string) (*AffinityType, error) {
-	vals := map[string]AffinityType{
-		"affinity":     AffinityTypeAffinity,
-		"antiaffinity": AffinityTypeAntiAffinity,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := AffinityType(input)
-	return &out, nil
 }
 
 type PlacementPolicyProvisioningState string
@@ -53,23 +37,6 @@ func PossibleValuesForPlacementPolicyProvisioningState() []string {
 	}
 }
 
-func parsePlacementPolicyProvisioningState(input string) (*PlacementPolicyProvisioningState, error) {
-	vals := map[string]PlacementPolicyProvisioningState{
-		"building":  PlacementPolicyProvisioningStateBuilding,
-		"deleting":  PlacementPolicyProvisioningStateDeleting,
-		"failed":    PlacementPolicyProvisioningStateFailed,
-		"succeeded": PlacementPolicyProvisioningStateSucceeded,
-		"updating":  PlacementPolicyProvisioningStateUpdating,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PlacementPolicyProvisioningState(input)
-	return &out, nil
-}
-
 type PlacementPolicyState string
 
 const (
@@ -82,20 +49,6 @@ func PossibleValuesForPlacementPolicyState() []string {
 		string(PlacementPolicyStateDisabled),
 		string(PlacementPolicyStateEnabled),
 	}
-}
-
-func parsePlacementPolicyState(input string) (*PlacementPolicyState, error) {
-	vals := map[string]PlacementPolicyState{
-		"disabled": PlacementPolicyStateDisabled,
-		"enabled":  PlacementPolicyStateEnabled,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PlacementPolicyState(input)
-	return &out, nil
 }
 
 type PlacementPolicyType string
@@ -112,20 +65,6 @@ func PossibleValuesForPlacementPolicyType() []string {
 	}
 }
 
-func parsePlacementPolicyType(input string) (*PlacementPolicyType, error) {
-	vals := map[string]PlacementPolicyType{
-		"vmhost": PlacementPolicyTypeVMHost,
-		"vmvm":   PlacementPolicyTypeVMVM,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PlacementPolicyType(input)
-	return &out, nil
-}
-
 type VirtualMachineRestrictMovementState string
 
 const (
@@ -138,18 +77,4 @@ func PossibleValuesForVirtualMachineRestrictMovementState() []string {
 		string(VirtualMachineRestrictMovementStateDisabled),
 		string(VirtualMachineRestrictMovementStateEnabled),
 	}
-}
-
-func parseVirtualMachineRestrictMovementState(input string) (*VirtualMachineRestrictMovementState, error) {
-	vals := map[string]VirtualMachineRestrictMovementState{
-		"disabled": VirtualMachineRestrictMovementStateDisabled,
-		"enabled":  VirtualMachineRestrictMovementStateEnabled,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := VirtualMachineRestrictMovementState(input)
-	return &out, nil
 }

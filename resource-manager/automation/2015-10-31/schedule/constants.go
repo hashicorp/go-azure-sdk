@@ -1,7 +1,5 @@
 package schedule
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -29,25 +27,6 @@ func PossibleValuesForScheduleDay() []string {
 	}
 }
 
-func parseScheduleDay(input string) (*ScheduleDay, error) {
-	vals := map[string]ScheduleDay{
-		"friday":    ScheduleDayFriday,
-		"monday":    ScheduleDayMonday,
-		"saturday":  ScheduleDaySaturday,
-		"sunday":    ScheduleDaySunday,
-		"thursday":  ScheduleDayThursday,
-		"tuesday":   ScheduleDayTuesday,
-		"wednesday": ScheduleDayWednesday,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ScheduleDay(input)
-	return &out, nil
-}
-
 type ScheduleFrequency string
 
 const (
@@ -68,22 +47,4 @@ func PossibleValuesForScheduleFrequency() []string {
 		string(ScheduleFrequencyOneTime),
 		string(ScheduleFrequencyWeek),
 	}
-}
-
-func parseScheduleFrequency(input string) (*ScheduleFrequency, error) {
-	vals := map[string]ScheduleFrequency{
-		"day":     ScheduleFrequencyDay,
-		"hour":    ScheduleFrequencyHour,
-		"minute":  ScheduleFrequencyMinute,
-		"month":   ScheduleFrequencyMonth,
-		"onetime": ScheduleFrequencyOneTime,
-		"week":    ScheduleFrequencyWeek,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ScheduleFrequency(input)
-	return &out, nil
 }

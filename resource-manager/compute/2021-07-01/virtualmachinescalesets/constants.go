@@ -1,7 +1,5 @@
 package virtualmachinescalesets
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -21,21 +19,6 @@ func PossibleValuesForCachingTypes() []string {
 	}
 }
 
-func parseCachingTypes(input string) (*CachingTypes, error) {
-	vals := map[string]CachingTypes{
-		"none":      CachingTypesNone,
-		"readonly":  CachingTypesReadOnly,
-		"readwrite": CachingTypesReadWrite,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := CachingTypes(input)
-	return &out, nil
-}
-
 type ComponentNames string
 
 const (
@@ -46,19 +29,6 @@ func PossibleValuesForComponentNames() []string {
 	return []string{
 		string(ComponentNamesMicrosoftNegativeWindowsNegativeShellNegativeSetup),
 	}
-}
-
-func parseComponentNames(input string) (*ComponentNames, error) {
-	vals := map[string]ComponentNames{
-		"microsoft-windows-shell-setup": ComponentNamesMicrosoftNegativeWindowsNegativeShellNegativeSetup,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ComponentNames(input)
-	return &out, nil
 }
 
 type DeleteOptions string
@@ -75,20 +45,6 @@ func PossibleValuesForDeleteOptions() []string {
 	}
 }
 
-func parseDeleteOptions(input string) (*DeleteOptions, error) {
-	vals := map[string]DeleteOptions{
-		"delete": DeleteOptionsDelete,
-		"detach": DeleteOptionsDetach,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := DeleteOptions(input)
-	return &out, nil
-}
-
 type DiffDiskOptions string
 
 const (
@@ -99,19 +55,6 @@ func PossibleValuesForDiffDiskOptions() []string {
 	return []string{
 		string(DiffDiskOptionsLocal),
 	}
-}
-
-func parseDiffDiskOptions(input string) (*DiffDiskOptions, error) {
-	vals := map[string]DiffDiskOptions{
-		"local": DiffDiskOptionsLocal,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := DiffDiskOptions(input)
-	return &out, nil
 }
 
 type DiffDiskPlacement string
@@ -126,20 +69,6 @@ func PossibleValuesForDiffDiskPlacement() []string {
 		string(DiffDiskPlacementCacheDisk),
 		string(DiffDiskPlacementResourceDisk),
 	}
-}
-
-func parseDiffDiskPlacement(input string) (*DiffDiskPlacement, error) {
-	vals := map[string]DiffDiskPlacement{
-		"cachedisk":    DiffDiskPlacementCacheDisk,
-		"resourcedisk": DiffDiskPlacementResourceDisk,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := DiffDiskPlacement(input)
-	return &out, nil
 }
 
 type DiskCreateOptionTypes string
@@ -158,21 +87,6 @@ func PossibleValuesForDiskCreateOptionTypes() []string {
 	}
 }
 
-func parseDiskCreateOptionTypes(input string) (*DiskCreateOptionTypes, error) {
-	vals := map[string]DiskCreateOptionTypes{
-		"attach":    DiskCreateOptionTypesAttach,
-		"empty":     DiskCreateOptionTypesEmpty,
-		"fromimage": DiskCreateOptionTypesFromImage,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := DiskCreateOptionTypes(input)
-	return &out, nil
-}
-
 type ExpandTypesForGetVMScaleSets string
 
 const (
@@ -183,19 +97,6 @@ func PossibleValuesForExpandTypesForGetVMScaleSets() []string {
 	return []string{
 		string(ExpandTypesForGetVMScaleSetsUserData),
 	}
-}
-
-func parseExpandTypesForGetVMScaleSets(input string) (*ExpandTypesForGetVMScaleSets, error) {
-	vals := map[string]ExpandTypesForGetVMScaleSets{
-		"userdata": ExpandTypesForGetVMScaleSetsUserData,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ExpandTypesForGetVMScaleSets(input)
-	return &out, nil
 }
 
 type IPVersion string
@@ -212,20 +113,6 @@ func PossibleValuesForIPVersion() []string {
 	}
 }
 
-func parseIPVersion(input string) (*IPVersion, error) {
-	vals := map[string]IPVersion{
-		"ipv4": IPVersionIPvFour,
-		"ipv6": IPVersionIPvSix,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := IPVersion(input)
-	return &out, nil
-}
-
 type LinuxPatchAssessmentMode string
 
 const (
@@ -238,20 +125,6 @@ func PossibleValuesForLinuxPatchAssessmentMode() []string {
 		string(LinuxPatchAssessmentModeAutomaticByPlatform),
 		string(LinuxPatchAssessmentModeImageDefault),
 	}
-}
-
-func parseLinuxPatchAssessmentMode(input string) (*LinuxPatchAssessmentMode, error) {
-	vals := map[string]LinuxPatchAssessmentMode{
-		"automaticbyplatform": LinuxPatchAssessmentModeAutomaticByPlatform,
-		"imagedefault":        LinuxPatchAssessmentModeImageDefault,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := LinuxPatchAssessmentMode(input)
-	return &out, nil
 }
 
 type LinuxVMGuestPatchMode string
@@ -268,20 +141,6 @@ func PossibleValuesForLinuxVMGuestPatchMode() []string {
 	}
 }
 
-func parseLinuxVMGuestPatchMode(input string) (*LinuxVMGuestPatchMode, error) {
-	vals := map[string]LinuxVMGuestPatchMode{
-		"automaticbyplatform": LinuxVMGuestPatchModeAutomaticByPlatform,
-		"imagedefault":        LinuxVMGuestPatchModeImageDefault,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := LinuxVMGuestPatchMode(input)
-	return &out, nil
-}
-
 type NetworkApiVersion string
 
 const (
@@ -292,19 +151,6 @@ func PossibleValuesForNetworkApiVersion() []string {
 	return []string{
 		string(NetworkApiVersionTwoZeroTwoZeroNegativeOneOneNegativeZeroOne),
 	}
-}
-
-func parseNetworkApiVersion(input string) (*NetworkApiVersion, error) {
-	vals := map[string]NetworkApiVersion{
-		"2020-11-01": NetworkApiVersionTwoZeroTwoZeroNegativeOneOneNegativeZeroOne,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := NetworkApiVersion(input)
-	return &out, nil
 }
 
 type OperatingSystemTypes string
@@ -321,20 +167,6 @@ func PossibleValuesForOperatingSystemTypes() []string {
 	}
 }
 
-func parseOperatingSystemTypes(input string) (*OperatingSystemTypes, error) {
-	vals := map[string]OperatingSystemTypes{
-		"linux":   OperatingSystemTypesLinux,
-		"windows": OperatingSystemTypesWindows,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := OperatingSystemTypes(input)
-	return &out, nil
-}
-
 type OrchestrationMode string
 
 const (
@@ -349,20 +181,6 @@ func PossibleValuesForOrchestrationMode() []string {
 	}
 }
 
-func parseOrchestrationMode(input string) (*OrchestrationMode, error) {
-	vals := map[string]OrchestrationMode{
-		"flexible": OrchestrationModeFlexible,
-		"uniform":  OrchestrationModeUniform,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := OrchestrationMode(input)
-	return &out, nil
-}
-
 type OrchestrationServiceNames string
 
 const (
@@ -373,19 +191,6 @@ func PossibleValuesForOrchestrationServiceNames() []string {
 	return []string{
 		string(OrchestrationServiceNamesAutomaticRepairs),
 	}
-}
-
-func parseOrchestrationServiceNames(input string) (*OrchestrationServiceNames, error) {
-	vals := map[string]OrchestrationServiceNames{
-		"automaticrepairs": OrchestrationServiceNamesAutomaticRepairs,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := OrchestrationServiceNames(input)
-	return &out, nil
 }
 
 type OrchestrationServiceState string
@@ -404,21 +209,6 @@ func PossibleValuesForOrchestrationServiceState() []string {
 	}
 }
 
-func parseOrchestrationServiceState(input string) (*OrchestrationServiceState, error) {
-	vals := map[string]OrchestrationServiceState{
-		"notrunning": OrchestrationServiceStateNotRunning,
-		"running":    OrchestrationServiceStateRunning,
-		"suspended":  OrchestrationServiceStateSuspended,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := OrchestrationServiceState(input)
-	return &out, nil
-}
-
 type OrchestrationServiceStateAction string
 
 const (
@@ -433,20 +223,6 @@ func PossibleValuesForOrchestrationServiceStateAction() []string {
 	}
 }
 
-func parseOrchestrationServiceStateAction(input string) (*OrchestrationServiceStateAction, error) {
-	vals := map[string]OrchestrationServiceStateAction{
-		"resume":  OrchestrationServiceStateActionResume,
-		"suspend": OrchestrationServiceStateActionSuspend,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := OrchestrationServiceStateAction(input)
-	return &out, nil
-}
-
 type PassNames string
 
 const (
@@ -457,19 +233,6 @@ func PossibleValuesForPassNames() []string {
 	return []string{
 		string(PassNamesOobeSystem),
 	}
-}
-
-func parsePassNames(input string) (*PassNames, error) {
-	vals := map[string]PassNames{
-		"oobesystem": PassNamesOobeSystem,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PassNames(input)
-	return &out, nil
 }
 
 type ProtocolTypes string
@@ -486,20 +249,6 @@ func PossibleValuesForProtocolTypes() []string {
 	}
 }
 
-func parseProtocolTypes(input string) (*ProtocolTypes, error) {
-	vals := map[string]ProtocolTypes{
-		"http":  ProtocolTypesHTTP,
-		"https": ProtocolTypesHTTPS,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ProtocolTypes(input)
-	return &out, nil
-}
-
 type PublicIPAddressSkuName string
 
 const (
@@ -512,20 +261,6 @@ func PossibleValuesForPublicIPAddressSkuName() []string {
 		string(PublicIPAddressSkuNameBasic),
 		string(PublicIPAddressSkuNameStandard),
 	}
-}
-
-func parsePublicIPAddressSkuName(input string) (*PublicIPAddressSkuName, error) {
-	vals := map[string]PublicIPAddressSkuName{
-		"basic":    PublicIPAddressSkuNameBasic,
-		"standard": PublicIPAddressSkuNameStandard,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PublicIPAddressSkuName(input)
-	return &out, nil
 }
 
 type PublicIPAddressSkuTier string
@@ -542,20 +277,6 @@ func PossibleValuesForPublicIPAddressSkuTier() []string {
 	}
 }
 
-func parsePublicIPAddressSkuTier(input string) (*PublicIPAddressSkuTier, error) {
-	vals := map[string]PublicIPAddressSkuTier{
-		"global":   PublicIPAddressSkuTierGlobal,
-		"regional": PublicIPAddressSkuTierRegional,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PublicIPAddressSkuTier(input)
-	return &out, nil
-}
-
 type SecurityTypes string
 
 const (
@@ -566,19 +287,6 @@ func PossibleValuesForSecurityTypes() []string {
 	return []string{
 		string(SecurityTypesTrustedLaunch),
 	}
-}
-
-func parseSecurityTypes(input string) (*SecurityTypes, error) {
-	vals := map[string]SecurityTypes{
-		"trustedlaunch": SecurityTypesTrustedLaunch,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SecurityTypes(input)
-	return &out, nil
 }
 
 type SettingNames string
@@ -595,20 +303,6 @@ func PossibleValuesForSettingNames() []string {
 	}
 }
 
-func parseSettingNames(input string) (*SettingNames, error) {
-	vals := map[string]SettingNames{
-		"autologon":          SettingNamesAutoLogon,
-		"firstlogoncommands": SettingNamesFirstLogonCommands,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SettingNames(input)
-	return &out, nil
-}
-
 type StatusLevelTypes string
 
 const (
@@ -623,21 +317,6 @@ func PossibleValuesForStatusLevelTypes() []string {
 		string(StatusLevelTypesInfo),
 		string(StatusLevelTypesWarning),
 	}
-}
-
-func parseStatusLevelTypes(input string) (*StatusLevelTypes, error) {
-	vals := map[string]StatusLevelTypes{
-		"error":   StatusLevelTypesError,
-		"info":    StatusLevelTypesInfo,
-		"warning": StatusLevelTypesWarning,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := StatusLevelTypes(input)
-	return &out, nil
 }
 
 type StorageAccountTypes string
@@ -662,24 +341,6 @@ func PossibleValuesForStorageAccountTypes() []string {
 	}
 }
 
-func parseStorageAccountTypes(input string) (*StorageAccountTypes, error) {
-	vals := map[string]StorageAccountTypes{
-		"premium_lrs":     StorageAccountTypesPremiumLRS,
-		"premium_zrs":     StorageAccountTypesPremiumZRS,
-		"standard_lrs":    StorageAccountTypesStandardLRS,
-		"standardssd_lrs": StorageAccountTypesStandardSSDLRS,
-		"standardssd_zrs": StorageAccountTypesStandardSSDZRS,
-		"ultrassd_lrs":    StorageAccountTypesUltraSSDLRS,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := StorageAccountTypes(input)
-	return &out, nil
-}
-
 type UpgradeMode string
 
 const (
@@ -696,21 +357,6 @@ func PossibleValuesForUpgradeMode() []string {
 	}
 }
 
-func parseUpgradeMode(input string) (*UpgradeMode, error) {
-	vals := map[string]UpgradeMode{
-		"automatic": UpgradeModeAutomatic,
-		"manual":    UpgradeModeManual,
-		"rolling":   UpgradeModeRolling,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := UpgradeMode(input)
-	return &out, nil
-}
-
 type UpgradeOperationInvoker string
 
 const (
@@ -725,21 +371,6 @@ func PossibleValuesForUpgradeOperationInvoker() []string {
 		string(UpgradeOperationInvokerUnknown),
 		string(UpgradeOperationInvokerUser),
 	}
-}
-
-func parseUpgradeOperationInvoker(input string) (*UpgradeOperationInvoker, error) {
-	vals := map[string]UpgradeOperationInvoker{
-		"platform": UpgradeOperationInvokerPlatform,
-		"unknown":  UpgradeOperationInvokerUnknown,
-		"user":     UpgradeOperationInvokerUser,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := UpgradeOperationInvoker(input)
-	return &out, nil
 }
 
 type UpgradeState string
@@ -760,22 +391,6 @@ func PossibleValuesForUpgradeState() []string {
 	}
 }
 
-func parseUpgradeState(input string) (*UpgradeState, error) {
-	vals := map[string]UpgradeState{
-		"cancelled":      UpgradeStateCancelled,
-		"completed":      UpgradeStateCompleted,
-		"faulted":        UpgradeStateFaulted,
-		"rollingforward": UpgradeStateRollingForward,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := UpgradeState(input)
-	return &out, nil
-}
-
 type VirtualMachineEvictionPolicyTypes string
 
 const (
@@ -788,20 +403,6 @@ func PossibleValuesForVirtualMachineEvictionPolicyTypes() []string {
 		string(VirtualMachineEvictionPolicyTypesDeallocate),
 		string(VirtualMachineEvictionPolicyTypesDelete),
 	}
-}
-
-func parseVirtualMachineEvictionPolicyTypes(input string) (*VirtualMachineEvictionPolicyTypes, error) {
-	vals := map[string]VirtualMachineEvictionPolicyTypes{
-		"deallocate": VirtualMachineEvictionPolicyTypesDeallocate,
-		"delete":     VirtualMachineEvictionPolicyTypesDelete,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := VirtualMachineEvictionPolicyTypes(input)
-	return &out, nil
 }
 
 type VirtualMachinePriorityTypes string
@@ -820,21 +421,6 @@ func PossibleValuesForVirtualMachinePriorityTypes() []string {
 	}
 }
 
-func parseVirtualMachinePriorityTypes(input string) (*VirtualMachinePriorityTypes, error) {
-	vals := map[string]VirtualMachinePriorityTypes{
-		"low":     VirtualMachinePriorityTypesLow,
-		"regular": VirtualMachinePriorityTypesRegular,
-		"spot":    VirtualMachinePriorityTypesSpot,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := VirtualMachinePriorityTypes(input)
-	return &out, nil
-}
-
 type VirtualMachineScaleSetScaleInRules string
 
 const (
@@ -851,21 +437,6 @@ func PossibleValuesForVirtualMachineScaleSetScaleInRules() []string {
 	}
 }
 
-func parseVirtualMachineScaleSetScaleInRules(input string) (*VirtualMachineScaleSetScaleInRules, error) {
-	vals := map[string]VirtualMachineScaleSetScaleInRules{
-		"default":  VirtualMachineScaleSetScaleInRulesDefault,
-		"newestvm": VirtualMachineScaleSetScaleInRulesNewestVM,
-		"oldestvm": VirtualMachineScaleSetScaleInRulesOldestVM,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := VirtualMachineScaleSetScaleInRules(input)
-	return &out, nil
-}
-
 type VirtualMachineScaleSetSkuScaleType string
 
 const (
@@ -878,20 +449,6 @@ func PossibleValuesForVirtualMachineScaleSetSkuScaleType() []string {
 		string(VirtualMachineScaleSetSkuScaleTypeAutomatic),
 		string(VirtualMachineScaleSetSkuScaleTypeNone),
 	}
-}
-
-func parseVirtualMachineScaleSetSkuScaleType(input string) (*VirtualMachineScaleSetSkuScaleType, error) {
-	vals := map[string]VirtualMachineScaleSetSkuScaleType{
-		"automatic": VirtualMachineScaleSetSkuScaleTypeAutomatic,
-		"none":      VirtualMachineScaleSetSkuScaleTypeNone,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := VirtualMachineScaleSetSkuScaleType(input)
-	return &out, nil
 }
 
 type WindowsPatchAssessmentMode string
@@ -908,20 +465,6 @@ func PossibleValuesForWindowsPatchAssessmentMode() []string {
 	}
 }
 
-func parseWindowsPatchAssessmentMode(input string) (*WindowsPatchAssessmentMode, error) {
-	vals := map[string]WindowsPatchAssessmentMode{
-		"automaticbyplatform": WindowsPatchAssessmentModeAutomaticByPlatform,
-		"imagedefault":        WindowsPatchAssessmentModeImageDefault,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := WindowsPatchAssessmentMode(input)
-	return &out, nil
-}
-
 type WindowsVMGuestPatchMode string
 
 const (
@@ -936,19 +479,4 @@ func PossibleValuesForWindowsVMGuestPatchMode() []string {
 		string(WindowsVMGuestPatchModeAutomaticByPlatform),
 		string(WindowsVMGuestPatchModeManual),
 	}
-}
-
-func parseWindowsVMGuestPatchMode(input string) (*WindowsVMGuestPatchMode, error) {
-	vals := map[string]WindowsVMGuestPatchMode{
-		"automaticbyos":       WindowsVMGuestPatchModeAutomaticByOS,
-		"automaticbyplatform": WindowsVMGuestPatchModeAutomaticByPlatform,
-		"manual":              WindowsVMGuestPatchModeManual,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := WindowsVMGuestPatchMode(input)
-	return &out, nil
 }

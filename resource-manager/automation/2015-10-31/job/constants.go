@@ -1,7 +1,5 @@
 package job
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -21,22 +19,6 @@ func PossibleValuesForJobProvisioningState() []string {
 		string(JobProvisioningStateSucceeded),
 		string(JobProvisioningStateSuspended),
 	}
-}
-
-func parseJobProvisioningState(input string) (*JobProvisioningState, error) {
-	vals := map[string]JobProvisioningState{
-		"failed":     JobProvisioningStateFailed,
-		"processing": JobProvisioningStateProcessing,
-		"succeeded":  JobProvisioningStateSucceeded,
-		"suspended":  JobProvisioningStateSuspended,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := JobProvisioningState(input)
-	return &out, nil
 }
 
 type JobStatus string
@@ -73,29 +55,4 @@ func PossibleValuesForJobStatus() []string {
 		string(JobStatusSuspended),
 		string(JobStatusSuspending),
 	}
-}
-
-func parseJobStatus(input string) (*JobStatus, error) {
-	vals := map[string]JobStatus{
-		"activating":   JobStatusActivating,
-		"blocked":      JobStatusBlocked,
-		"completed":    JobStatusCompleted,
-		"disconnected": JobStatusDisconnected,
-		"failed":       JobStatusFailed,
-		"new":          JobStatusNew,
-		"removing":     JobStatusRemoving,
-		"resuming":     JobStatusResuming,
-		"running":      JobStatusRunning,
-		"stopped":      JobStatusStopped,
-		"stopping":     JobStatusStopping,
-		"suspended":    JobStatusSuspended,
-		"suspending":   JobStatusSuspending,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := JobStatus(input)
-	return &out, nil
 }

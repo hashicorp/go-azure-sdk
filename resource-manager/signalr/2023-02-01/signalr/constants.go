@@ -1,6 +1,10 @@
 package signalr
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -19,18 +23,19 @@ func PossibleValuesForACLAction() []string {
 	}
 }
 
-func parseACLAction(input string) (*ACLAction, error) {
-	vals := map[string]ACLAction{
-		"allow": ACLActionAllow,
-		"deny":  ACLActionDeny,
+func (s *ACLAction) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForACLAction() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ACLAction(input)
-	return &out, nil
+	*s = ACLAction(decoded)
+	return nil
 }
 
 type FeatureFlags string
@@ -51,20 +56,19 @@ func PossibleValuesForFeatureFlags() []string {
 	}
 }
 
-func parseFeatureFlags(input string) (*FeatureFlags, error) {
-	vals := map[string]FeatureFlags{
-		"enableconnectivitylogs": FeatureFlagsEnableConnectivityLogs,
-		"enablelivetrace":        FeatureFlagsEnableLiveTrace,
-		"enablemessaginglogs":    FeatureFlagsEnableMessagingLogs,
-		"servicemode":            FeatureFlagsServiceMode,
+func (s *FeatureFlags) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForFeatureFlags() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := FeatureFlags(input)
-	return &out, nil
+	*s = FeatureFlags(decoded)
+	return nil
 }
 
 type KeyType string
@@ -83,19 +87,19 @@ func PossibleValuesForKeyType() []string {
 	}
 }
 
-func parseKeyType(input string) (*KeyType, error) {
-	vals := map[string]KeyType{
-		"primary":   KeyTypePrimary,
-		"salt":      KeyTypeSalt,
-		"secondary": KeyTypeSecondary,
+func (s *KeyType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForKeyType() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := KeyType(input)
-	return &out, nil
+	*s = KeyType(decoded)
+	return nil
 }
 
 type PrivateLinkServiceConnectionStatus string
@@ -116,20 +120,19 @@ func PossibleValuesForPrivateLinkServiceConnectionStatus() []string {
 	}
 }
 
-func parsePrivateLinkServiceConnectionStatus(input string) (*PrivateLinkServiceConnectionStatus, error) {
-	vals := map[string]PrivateLinkServiceConnectionStatus{
-		"approved":     PrivateLinkServiceConnectionStatusApproved,
-		"disconnected": PrivateLinkServiceConnectionStatusDisconnected,
-		"pending":      PrivateLinkServiceConnectionStatusPending,
-		"rejected":     PrivateLinkServiceConnectionStatusRejected,
+func (s *PrivateLinkServiceConnectionStatus) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForPrivateLinkServiceConnectionStatus() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PrivateLinkServiceConnectionStatus(input)
-	return &out, nil
+	*s = PrivateLinkServiceConnectionStatus(decoded)
+	return nil
 }
 
 type ProvisioningState string
@@ -160,25 +163,19 @@ func PossibleValuesForProvisioningState() []string {
 	}
 }
 
-func parseProvisioningState(input string) (*ProvisioningState, error) {
-	vals := map[string]ProvisioningState{
-		"canceled":  ProvisioningStateCanceled,
-		"creating":  ProvisioningStateCreating,
-		"deleting":  ProvisioningStateDeleting,
-		"failed":    ProvisioningStateFailed,
-		"moving":    ProvisioningStateMoving,
-		"running":   ProvisioningStateRunning,
-		"succeeded": ProvisioningStateSucceeded,
-		"unknown":   ProvisioningStateUnknown,
-		"updating":  ProvisioningStateUpdating,
+func (s *ProvisioningState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForProvisioningState() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ProvisioningState(input)
-	return &out, nil
+	*s = ProvisioningState(decoded)
+	return nil
 }
 
 type ScaleType string
@@ -197,19 +194,19 @@ func PossibleValuesForScaleType() []string {
 	}
 }
 
-func parseScaleType(input string) (*ScaleType, error) {
-	vals := map[string]ScaleType{
-		"automatic": ScaleTypeAutomatic,
-		"manual":    ScaleTypeManual,
-		"none":      ScaleTypeNone,
+func (s *ScaleType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForScaleType() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ScaleType(input)
-	return &out, nil
+	*s = ScaleType(decoded)
+	return nil
 }
 
 type ServiceKind string
@@ -226,18 +223,19 @@ func PossibleValuesForServiceKind() []string {
 	}
 }
 
-func parseServiceKind(input string) (*ServiceKind, error) {
-	vals := map[string]ServiceKind{
-		"rawwebsockets": ServiceKindRawWebSockets,
-		"signalr":       ServiceKindSignalR,
+func (s *ServiceKind) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForServiceKind() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ServiceKind(input)
-	return &out, nil
+	*s = ServiceKind(decoded)
+	return nil
 }
 
 type SharedPrivateLinkResourceStatus string
@@ -260,21 +258,19 @@ func PossibleValuesForSharedPrivateLinkResourceStatus() []string {
 	}
 }
 
-func parseSharedPrivateLinkResourceStatus(input string) (*SharedPrivateLinkResourceStatus, error) {
-	vals := map[string]SharedPrivateLinkResourceStatus{
-		"approved":     SharedPrivateLinkResourceStatusApproved,
-		"disconnected": SharedPrivateLinkResourceStatusDisconnected,
-		"pending":      SharedPrivateLinkResourceStatusPending,
-		"rejected":     SharedPrivateLinkResourceStatusRejected,
-		"timeout":      SharedPrivateLinkResourceStatusTimeout,
+func (s *SharedPrivateLinkResourceStatus) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForSharedPrivateLinkResourceStatus() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SharedPrivateLinkResourceStatus(input)
-	return &out, nil
+	*s = SharedPrivateLinkResourceStatus(decoded)
+	return nil
 }
 
 type SignalRRequestType string
@@ -295,20 +291,19 @@ func PossibleValuesForSignalRRequestType() []string {
 	}
 }
 
-func parseSignalRRequestType(input string) (*SignalRRequestType, error) {
-	vals := map[string]SignalRRequestType{
-		"clientconnection": SignalRRequestTypeClientConnection,
-		"restapi":          SignalRRequestTypeRESTAPI,
-		"serverconnection": SignalRRequestTypeServerConnection,
-		"trace":            SignalRRequestTypeTrace,
+func (s *SignalRRequestType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForSignalRRequestType() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SignalRRequestType(input)
-	return &out, nil
+	*s = SignalRRequestType(decoded)
+	return nil
 }
 
 type SignalRSkuTier string
@@ -329,20 +324,19 @@ func PossibleValuesForSignalRSkuTier() []string {
 	}
 }
 
-func parseSignalRSkuTier(input string) (*SignalRSkuTier, error) {
-	vals := map[string]SignalRSkuTier{
-		"basic":    SignalRSkuTierBasic,
-		"free":     SignalRSkuTierFree,
-		"premium":  SignalRSkuTierPremium,
-		"standard": SignalRSkuTierStandard,
+func (s *SignalRSkuTier) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForSignalRSkuTier() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SignalRSkuTier(input)
-	return &out, nil
+	*s = SignalRSkuTier(decoded)
+	return nil
 }
 
 type UpstreamAuthType string
@@ -359,16 +353,17 @@ func PossibleValuesForUpstreamAuthType() []string {
 	}
 }
 
-func parseUpstreamAuthType(input string) (*UpstreamAuthType, error) {
-	vals := map[string]UpstreamAuthType{
-		"managedidentity": UpstreamAuthTypeManagedIdentity,
-		"none":            UpstreamAuthTypeNone,
+func (s *UpstreamAuthType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForUpstreamAuthType() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := UpstreamAuthType(input)
-	return &out, nil
+	*s = UpstreamAuthType(decoded)
+	return nil
 }

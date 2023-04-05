@@ -1,7 +1,5 @@
 package managedclustersnapshots
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -19,20 +17,6 @@ func PossibleValuesForLoadBalancerSku() []string {
 	}
 }
 
-func parseLoadBalancerSku(input string) (*LoadBalancerSku, error) {
-	vals := map[string]LoadBalancerSku{
-		"basic":    LoadBalancerSkuBasic,
-		"standard": LoadBalancerSkuStandard,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := LoadBalancerSku(input)
-	return &out, nil
-}
-
 type ManagedClusterSKUName string
 
 const (
@@ -43,19 +27,6 @@ func PossibleValuesForManagedClusterSKUName() []string {
 	return []string{
 		string(ManagedClusterSKUNameBasic),
 	}
-}
-
-func parseManagedClusterSKUName(input string) (*ManagedClusterSKUName, error) {
-	vals := map[string]ManagedClusterSKUName{
-		"basic": ManagedClusterSKUNameBasic,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ManagedClusterSKUName(input)
-	return &out, nil
 }
 
 type ManagedClusterSKUTier string
@@ -72,20 +43,6 @@ func PossibleValuesForManagedClusterSKUTier() []string {
 	}
 }
 
-func parseManagedClusterSKUTier(input string) (*ManagedClusterSKUTier, error) {
-	vals := map[string]ManagedClusterSKUTier{
-		"free": ManagedClusterSKUTierFree,
-		"paid": ManagedClusterSKUTierPaid,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ManagedClusterSKUTier(input)
-	return &out, nil
-}
-
 type NetworkMode string
 
 const (
@@ -98,20 +55,6 @@ func PossibleValuesForNetworkMode() []string {
 		string(NetworkModeBridge),
 		string(NetworkModeTransparent),
 	}
-}
-
-func parseNetworkMode(input string) (*NetworkMode, error) {
-	vals := map[string]NetworkMode{
-		"bridge":      NetworkModeBridge,
-		"transparent": NetworkModeTransparent,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := NetworkMode(input)
-	return &out, nil
 }
 
 type NetworkPlugin string
@@ -130,21 +73,6 @@ func PossibleValuesForNetworkPlugin() []string {
 	}
 }
 
-func parseNetworkPlugin(input string) (*NetworkPlugin, error) {
-	vals := map[string]NetworkPlugin{
-		"azure":   NetworkPluginAzure,
-		"kubenet": NetworkPluginKubenet,
-		"none":    NetworkPluginNone,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := NetworkPlugin(input)
-	return &out, nil
-}
-
 type NetworkPluginMode string
 
 const (
@@ -155,19 +83,6 @@ func PossibleValuesForNetworkPluginMode() []string {
 	return []string{
 		string(NetworkPluginModeOverlay),
 	}
-}
-
-func parseNetworkPluginMode(input string) (*NetworkPluginMode, error) {
-	vals := map[string]NetworkPluginMode{
-		"overlay": NetworkPluginModeOverlay,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := NetworkPluginMode(input)
-	return &out, nil
 }
 
 type NetworkPolicy string
@@ -184,20 +99,6 @@ func PossibleValuesForNetworkPolicy() []string {
 	}
 }
 
-func parseNetworkPolicy(input string) (*NetworkPolicy, error) {
-	vals := map[string]NetworkPolicy{
-		"azure":  NetworkPolicyAzure,
-		"calico": NetworkPolicyCalico,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := NetworkPolicy(input)
-	return &out, nil
-}
-
 type SnapshotType string
 
 const (
@@ -210,18 +111,4 @@ func PossibleValuesForSnapshotType() []string {
 		string(SnapshotTypeManagedCluster),
 		string(SnapshotTypeNodePool),
 	}
-}
-
-func parseSnapshotType(input string) (*SnapshotType, error) {
-	vals := map[string]SnapshotType{
-		"managedcluster": SnapshotTypeManagedCluster,
-		"nodepool":       SnapshotTypeNodePool,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SnapshotType(input)
-	return &out, nil
 }

@@ -1,7 +1,5 @@
 package user
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -21,22 +19,6 @@ func PossibleValuesForInvitationState() []string {
 		string(InvitationStateSending),
 		string(InvitationStateSent),
 	}
-}
-
-func parseInvitationState(input string) (*InvitationState, error) {
-	vals := map[string]InvitationState{
-		"failed":  InvitationStateFailed,
-		"notsent": InvitationStateNotSent,
-		"sending": InvitationStateSending,
-		"sent":    InvitationStateSent,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := InvitationState(input)
-	return &out, nil
 }
 
 type ProvisioningState string
@@ -61,24 +43,6 @@ func PossibleValuesForProvisioningState() []string {
 	}
 }
 
-func parseProvisioningState(input string) (*ProvisioningState, error) {
-	vals := map[string]ProvisioningState{
-		"creating":  ProvisioningStateCreating,
-		"deleting":  ProvisioningStateDeleting,
-		"failed":    ProvisioningStateFailed,
-		"locked":    ProvisioningStateLocked,
-		"succeeded": ProvisioningStateSucceeded,
-		"updating":  ProvisioningStateUpdating,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ProvisioningState(input)
-	return &out, nil
-}
-
 type RegistrationState string
 
 const (
@@ -91,18 +55,4 @@ func PossibleValuesForRegistrationState() []string {
 		string(RegistrationStateNotRegistered),
 		string(RegistrationStateRegistered),
 	}
-}
-
-func parseRegistrationState(input string) (*RegistrationState, error) {
-	vals := map[string]RegistrationState{
-		"notregistered": RegistrationStateNotRegistered,
-		"registered":    RegistrationStateRegistered,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := RegistrationState(input)
-	return &out, nil
 }

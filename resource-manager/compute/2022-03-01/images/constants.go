@@ -1,7 +1,5 @@
 package images
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -21,21 +19,6 @@ func PossibleValuesForCachingTypes() []string {
 	}
 }
 
-func parseCachingTypes(input string) (*CachingTypes, error) {
-	vals := map[string]CachingTypes{
-		"none":      CachingTypesNone,
-		"readonly":  CachingTypesReadOnly,
-		"readwrite": CachingTypesReadWrite,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := CachingTypes(input)
-	return &out, nil
-}
-
 type HyperVGenerationTypes string
 
 const (
@@ -48,20 +31,6 @@ func PossibleValuesForHyperVGenerationTypes() []string {
 		string(HyperVGenerationTypesVOne),
 		string(HyperVGenerationTypesVTwo),
 	}
-}
-
-func parseHyperVGenerationTypes(input string) (*HyperVGenerationTypes, error) {
-	vals := map[string]HyperVGenerationTypes{
-		"v1": HyperVGenerationTypesVOne,
-		"v2": HyperVGenerationTypesVTwo,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := HyperVGenerationTypes(input)
-	return &out, nil
 }
 
 type OperatingSystemStateTypes string
@@ -78,20 +47,6 @@ func PossibleValuesForOperatingSystemStateTypes() []string {
 	}
 }
 
-func parseOperatingSystemStateTypes(input string) (*OperatingSystemStateTypes, error) {
-	vals := map[string]OperatingSystemStateTypes{
-		"generalized": OperatingSystemStateTypesGeneralized,
-		"specialized": OperatingSystemStateTypesSpecialized,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := OperatingSystemStateTypes(input)
-	return &out, nil
-}
-
 type OperatingSystemTypes string
 
 const (
@@ -104,20 +59,6 @@ func PossibleValuesForOperatingSystemTypes() []string {
 		string(OperatingSystemTypesLinux),
 		string(OperatingSystemTypesWindows),
 	}
-}
-
-func parseOperatingSystemTypes(input string) (*OperatingSystemTypes, error) {
-	vals := map[string]OperatingSystemTypes{
-		"linux":   OperatingSystemTypesLinux,
-		"windows": OperatingSystemTypesWindows,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := OperatingSystemTypes(input)
-	return &out, nil
 }
 
 type StorageAccountTypes string
@@ -142,23 +83,4 @@ func PossibleValuesForStorageAccountTypes() []string {
 		string(StorageAccountTypesStandardSSDZRS),
 		string(StorageAccountTypesUltraSSDLRS),
 	}
-}
-
-func parseStorageAccountTypes(input string) (*StorageAccountTypes, error) {
-	vals := map[string]StorageAccountTypes{
-		"premium_lrs":     StorageAccountTypesPremiumLRS,
-		"premiumv2_lrs":   StorageAccountTypesPremiumVTwoLRS,
-		"premium_zrs":     StorageAccountTypesPremiumZRS,
-		"standard_lrs":    StorageAccountTypesStandardLRS,
-		"standardssd_lrs": StorageAccountTypesStandardSSDLRS,
-		"standardssd_zrs": StorageAccountTypesStandardSSDZRS,
-		"ultrassd_lrs":    StorageAccountTypesUltraSSDLRS,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := StorageAccountTypes(input)
-	return &out, nil
 }

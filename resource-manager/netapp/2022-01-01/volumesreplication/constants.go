@@ -1,7 +1,5 @@
 package volumesreplication
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -17,20 +15,6 @@ func PossibleValuesForEndpointType() []string {
 		string(EndpointTypeDst),
 		string(EndpointTypeSrc),
 	}
-}
-
-func parseEndpointType(input string) (*EndpointType, error) {
-	vals := map[string]EndpointType{
-		"dst": EndpointTypeDst,
-		"src": EndpointTypeSrc,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := EndpointType(input)
-	return &out, nil
 }
 
 type MirrorState string
@@ -49,21 +33,6 @@ func PossibleValuesForMirrorState() []string {
 	}
 }
 
-func parseMirrorState(input string) (*MirrorState, error) {
-	vals := map[string]MirrorState{
-		"broken":        MirrorStateBroken,
-		"mirrored":      MirrorStateMirrored,
-		"uninitialized": MirrorStateUninitialized,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := MirrorState(input)
-	return &out, nil
-}
-
 type RelationshipStatus string
 
 const (
@@ -76,20 +45,6 @@ func PossibleValuesForRelationshipStatus() []string {
 		string(RelationshipStatusIdle),
 		string(RelationshipStatusTransferring),
 	}
-}
-
-func parseRelationshipStatus(input string) (*RelationshipStatus, error) {
-	vals := map[string]RelationshipStatus{
-		"idle":         RelationshipStatusIdle,
-		"transferring": RelationshipStatusTransferring,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := RelationshipStatus(input)
-	return &out, nil
 }
 
 type ReplicationSchedule string
@@ -106,19 +61,4 @@ func PossibleValuesForReplicationSchedule() []string {
 		string(ReplicationScheduleHourly),
 		string(ReplicationScheduleOneZerominutely),
 	}
-}
-
-func parseReplicationSchedule(input string) (*ReplicationSchedule, error) {
-	vals := map[string]ReplicationSchedule{
-		"daily":       ReplicationScheduleDaily,
-		"hourly":      ReplicationScheduleHourly,
-		"_10minutely": ReplicationScheduleOneZerominutely,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ReplicationSchedule(input)
-	return &out, nil
 }

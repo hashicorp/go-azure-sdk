@@ -1,7 +1,5 @@
 package providers
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -17,20 +15,6 @@ func PossibleValuesForAliasPathAttributes() []string {
 		string(AliasPathAttributesModifiable),
 		string(AliasPathAttributesNone),
 	}
-}
-
-func parseAliasPathAttributes(input string) (*AliasPathAttributes, error) {
-	vals := map[string]AliasPathAttributes{
-		"modifiable": AliasPathAttributesModifiable,
-		"none":       AliasPathAttributesNone,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := AliasPathAttributes(input)
-	return &out, nil
 }
 
 type AliasPathTokenType string
@@ -59,26 +43,6 @@ func PossibleValuesForAliasPathTokenType() []string {
 	}
 }
 
-func parseAliasPathTokenType(input string) (*AliasPathTokenType, error) {
-	vals := map[string]AliasPathTokenType{
-		"any":          AliasPathTokenTypeAny,
-		"array":        AliasPathTokenTypeArray,
-		"boolean":      AliasPathTokenTypeBoolean,
-		"integer":      AliasPathTokenTypeInteger,
-		"notspecified": AliasPathTokenTypeNotSpecified,
-		"number":       AliasPathTokenTypeNumber,
-		"object":       AliasPathTokenTypeObject,
-		"string":       AliasPathTokenTypeString,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := AliasPathTokenType(input)
-	return &out, nil
-}
-
 type AliasPatternType string
 
 const (
@@ -91,20 +55,6 @@ func PossibleValuesForAliasPatternType() []string {
 		string(AliasPatternTypeExtract),
 		string(AliasPatternTypeNotSpecified),
 	}
-}
-
-func parseAliasPatternType(input string) (*AliasPatternType, error) {
-	vals := map[string]AliasPatternType{
-		"extract":      AliasPatternTypeExtract,
-		"notspecified": AliasPatternTypeNotSpecified,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := AliasPatternType(input)
-	return &out, nil
 }
 
 type AliasType string
@@ -121,19 +71,4 @@ func PossibleValuesForAliasType() []string {
 		string(AliasTypeNotSpecified),
 		string(AliasTypePlainText),
 	}
-}
-
-func parseAliasType(input string) (*AliasType, error) {
-	vals := map[string]AliasType{
-		"mask":         AliasTypeMask,
-		"notspecified": AliasTypeNotSpecified,
-		"plaintext":    AliasTypePlainText,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := AliasType(input)
-	return &out, nil
 }

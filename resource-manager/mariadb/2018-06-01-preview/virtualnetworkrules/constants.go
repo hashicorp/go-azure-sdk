@@ -1,7 +1,5 @@
 package virtualnetworkrules
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -23,21 +21,4 @@ func PossibleValuesForVirtualNetworkRuleState() []string {
 		string(VirtualNetworkRuleStateReady),
 		string(VirtualNetworkRuleStateUnknown),
 	}
-}
-
-func parseVirtualNetworkRuleState(input string) (*VirtualNetworkRuleState, error) {
-	vals := map[string]VirtualNetworkRuleState{
-		"deleting":     VirtualNetworkRuleStateDeleting,
-		"inprogress":   VirtualNetworkRuleStateInProgress,
-		"initializing": VirtualNetworkRuleStateInitializing,
-		"ready":        VirtualNetworkRuleStateReady,
-		"unknown":      VirtualNetworkRuleStateUnknown,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := VirtualNetworkRuleState(input)
-	return &out, nil
 }

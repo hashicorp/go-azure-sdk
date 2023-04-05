@@ -1,6 +1,10 @@
 package assetsandassetfilters
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -21,19 +25,19 @@ func PossibleValuesForAssetContainerPermission() []string {
 	}
 }
 
-func parseAssetContainerPermission(input string) (*AssetContainerPermission, error) {
-	vals := map[string]AssetContainerPermission{
-		"read":            AssetContainerPermissionRead,
-		"readwrite":       AssetContainerPermissionReadWrite,
-		"readwritedelete": AssetContainerPermissionReadWriteDelete,
+func (s *AssetContainerPermission) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForAssetContainerPermission() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := AssetContainerPermission(input)
-	return &out, nil
+	*s = AssetContainerPermission(decoded)
+	return nil
 }
 
 type AssetStorageEncryptionFormat string
@@ -50,18 +54,19 @@ func PossibleValuesForAssetStorageEncryptionFormat() []string {
 	}
 }
 
-func parseAssetStorageEncryptionFormat(input string) (*AssetStorageEncryptionFormat, error) {
-	vals := map[string]AssetStorageEncryptionFormat{
-		"mediastorageclientencryption": AssetStorageEncryptionFormatMediaStorageClientEncryption,
-		"none":                         AssetStorageEncryptionFormatNone,
+func (s *AssetStorageEncryptionFormat) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForAssetStorageEncryptionFormat() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := AssetStorageEncryptionFormat(input)
-	return &out, nil
+	*s = AssetStorageEncryptionFormat(decoded)
+	return nil
 }
 
 type FilterTrackPropertyCompareOperation string
@@ -78,18 +83,19 @@ func PossibleValuesForFilterTrackPropertyCompareOperation() []string {
 	}
 }
 
-func parseFilterTrackPropertyCompareOperation(input string) (*FilterTrackPropertyCompareOperation, error) {
-	vals := map[string]FilterTrackPropertyCompareOperation{
-		"equal":    FilterTrackPropertyCompareOperationEqual,
-		"notequal": FilterTrackPropertyCompareOperationNotEqual,
+func (s *FilterTrackPropertyCompareOperation) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForFilterTrackPropertyCompareOperation() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := FilterTrackPropertyCompareOperation(input)
-	return &out, nil
+	*s = FilterTrackPropertyCompareOperation(decoded)
+	return nil
 }
 
 type FilterTrackPropertyType string
@@ -114,22 +120,19 @@ func PossibleValuesForFilterTrackPropertyType() []string {
 	}
 }
 
-func parseFilterTrackPropertyType(input string) (*FilterTrackPropertyType, error) {
-	vals := map[string]FilterTrackPropertyType{
-		"bitrate":  FilterTrackPropertyTypeBitrate,
-		"fourcc":   FilterTrackPropertyTypeFourCC,
-		"language": FilterTrackPropertyTypeLanguage,
-		"name":     FilterTrackPropertyTypeName,
-		"type":     FilterTrackPropertyTypeType,
-		"unknown":  FilterTrackPropertyTypeUnknown,
+func (s *FilterTrackPropertyType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForFilterTrackPropertyType() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := FilterTrackPropertyType(input)
-	return &out, nil
+	*s = FilterTrackPropertyType(decoded)
+	return nil
 }
 
 type ProvisioningState string
@@ -148,19 +151,19 @@ func PossibleValuesForProvisioningState() []string {
 	}
 }
 
-func parseProvisioningState(input string) (*ProvisioningState, error) {
-	vals := map[string]ProvisioningState{
-		"failed":     ProvisioningStateFailed,
-		"inprogress": ProvisioningStateInProgress,
-		"succeeded":  ProvisioningStateSucceeded,
+func (s *ProvisioningState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForProvisioningState() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ProvisioningState(input)
-	return &out, nil
+	*s = ProvisioningState(decoded)
+	return nil
 }
 
 type Visibility string
@@ -177,16 +180,17 @@ func PossibleValuesForVisibility() []string {
 	}
 }
 
-func parseVisibility(input string) (*Visibility, error) {
-	vals := map[string]Visibility{
-		"hidden":  VisibilityHidden,
-		"visible": VisibilityVisible,
+func (s *Visibility) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForVisibility() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := Visibility(input)
-	return &out, nil
+	*s = Visibility(decoded)
+	return nil
 }

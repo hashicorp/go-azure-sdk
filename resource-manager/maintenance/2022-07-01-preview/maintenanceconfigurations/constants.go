@@ -1,7 +1,5 @@
 package maintenanceconfigurations
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -29,25 +27,6 @@ func PossibleValuesForMaintenanceScope() []string {
 	}
 }
 
-func parseMaintenanceScope(input string) (*MaintenanceScope, error) {
-	vals := map[string]MaintenanceScope{
-		"extension":          MaintenanceScopeExtension,
-		"host":               MaintenanceScopeHost,
-		"inguestpatch":       MaintenanceScopeInGuestPatch,
-		"osimage":            MaintenanceScopeOSImage,
-		"resource":           MaintenanceScopeResource,
-		"sqldb":              MaintenanceScopeSQLDB,
-		"sqlmanagedinstance": MaintenanceScopeSQLManagedInstance,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := MaintenanceScope(input)
-	return &out, nil
-}
-
 type RebootOptions string
 
 const (
@@ -64,21 +43,6 @@ func PossibleValuesForRebootOptions() []string {
 	}
 }
 
-func parseRebootOptions(input string) (*RebootOptions, error) {
-	vals := map[string]RebootOptions{
-		"always":     RebootOptionsAlways,
-		"ifrequired": RebootOptionsIfRequired,
-		"never":      RebootOptionsNever,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := RebootOptions(input)
-	return &out, nil
-}
-
 type TaskScope string
 
 const (
@@ -93,20 +57,6 @@ func PossibleValuesForTaskScope() []string {
 	}
 }
 
-func parseTaskScope(input string) (*TaskScope, error) {
-	vals := map[string]TaskScope{
-		"global":   TaskScopeGlobal,
-		"resource": TaskScopeResource,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := TaskScope(input)
-	return &out, nil
-}
-
 type Visibility string
 
 const (
@@ -119,18 +69,4 @@ func PossibleValuesForVisibility() []string {
 		string(VisibilityCustom),
 		string(VisibilityPublic),
 	}
-}
-
-func parseVisibility(input string) (*Visibility, error) {
-	vals := map[string]Visibility{
-		"custom": VisibilityCustom,
-		"public": VisibilityPublic,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := Visibility(input)
-	return &out, nil
 }

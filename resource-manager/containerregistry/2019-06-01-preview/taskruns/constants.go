@@ -1,6 +1,10 @@
 package taskruns
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -25,21 +29,19 @@ func PossibleValuesForArchitecture() []string {
 	}
 }
 
-func parseArchitecture(input string) (*Architecture, error) {
-	vals := map[string]Architecture{
-		"amd64": ArchitectureAmdSixFour,
-		"arm":   ArchitectureArm,
-		"arm64": ArchitectureArmSixFour,
-		"386":   ArchitectureThreeEightSix,
-		"x86":   ArchitectureXEightSix,
+func (s *Architecture) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForArchitecture() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := Architecture(input)
-	return &out, nil
+	*s = Architecture(decoded)
+	return nil
 }
 
 type OS string
@@ -56,18 +58,19 @@ func PossibleValuesForOS() []string {
 	}
 }
 
-func parseOS(input string) (*OS, error) {
-	vals := map[string]OS{
-		"linux":   OSLinux,
-		"windows": OSWindows,
+func (s *OS) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForOS() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := OS(input)
-	return &out, nil
+	*s = OS(decoded)
+	return nil
 }
 
 type ProvisioningState string
@@ -92,22 +95,19 @@ func PossibleValuesForProvisioningState() []string {
 	}
 }
 
-func parseProvisioningState(input string) (*ProvisioningState, error) {
-	vals := map[string]ProvisioningState{
-		"canceled":  ProvisioningStateCanceled,
-		"creating":  ProvisioningStateCreating,
-		"deleting":  ProvisioningStateDeleting,
-		"failed":    ProvisioningStateFailed,
-		"succeeded": ProvisioningStateSucceeded,
-		"updating":  ProvisioningStateUpdating,
+func (s *ProvisioningState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForProvisioningState() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ProvisioningState(input)
-	return &out, nil
+	*s = ProvisioningState(decoded)
+	return nil
 }
 
 type RunStatus string
@@ -136,24 +136,19 @@ func PossibleValuesForRunStatus() []string {
 	}
 }
 
-func parseRunStatus(input string) (*RunStatus, error) {
-	vals := map[string]RunStatus{
-		"canceled":  RunStatusCanceled,
-		"error":     RunStatusError,
-		"failed":    RunStatusFailed,
-		"queued":    RunStatusQueued,
-		"running":   RunStatusRunning,
-		"started":   RunStatusStarted,
-		"succeeded": RunStatusSucceeded,
-		"timeout":   RunStatusTimeout,
+func (s *RunStatus) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForRunStatus() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := RunStatus(input)
-	return &out, nil
+	*s = RunStatus(decoded)
+	return nil
 }
 
 type RunType string
@@ -174,20 +169,19 @@ func PossibleValuesForRunType() []string {
 	}
 }
 
-func parseRunType(input string) (*RunType, error) {
-	vals := map[string]RunType{
-		"autobuild":  RunTypeAutoBuild,
-		"autorun":    RunTypeAutoRun,
-		"quickbuild": RunTypeQuickBuild,
-		"quickrun":   RunTypeQuickRun,
+func (s *RunType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForRunType() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := RunType(input)
-	return &out, nil
+	*s = RunType(decoded)
+	return nil
 }
 
 type SecretObjectType string
@@ -204,18 +198,19 @@ func PossibleValuesForSecretObjectType() []string {
 	}
 }
 
-func parseSecretObjectType(input string) (*SecretObjectType, error) {
-	vals := map[string]SecretObjectType{
-		"opaque":      SecretObjectTypeOpaque,
-		"vaultsecret": SecretObjectTypeVaultsecret,
+func (s *SecretObjectType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForSecretObjectType() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SecretObjectType(input)
-	return &out, nil
+	*s = SecretObjectType(decoded)
+	return nil
 }
 
 type SourceRegistryLoginMode string
@@ -232,18 +227,19 @@ func PossibleValuesForSourceRegistryLoginMode() []string {
 	}
 }
 
-func parseSourceRegistryLoginMode(input string) (*SourceRegistryLoginMode, error) {
-	vals := map[string]SourceRegistryLoginMode{
-		"default": SourceRegistryLoginModeDefault,
-		"none":    SourceRegistryLoginModeNone,
+func (s *SourceRegistryLoginMode) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForSourceRegistryLoginMode() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SourceRegistryLoginMode(input)
-	return &out, nil
+	*s = SourceRegistryLoginMode(decoded)
+	return nil
 }
 
 type Variant string
@@ -262,17 +258,17 @@ func PossibleValuesForVariant() []string {
 	}
 }
 
-func parseVariant(input string) (*Variant, error) {
-	vals := map[string]Variant{
-		"v8": VariantVEight,
-		"v7": VariantVSeven,
-		"v6": VariantVSix,
+func (s *Variant) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForVariant() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := Variant(input)
-	return &out, nil
+	*s = Variant(decoded)
+	return nil
 }

@@ -1,7 +1,5 @@
 package policies
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -17,20 +15,6 @@ func PossibleValuesForPolicyEvaluatorType() []string {
 		string(PolicyEvaluatorTypeAllowedValuesPolicy),
 		string(PolicyEvaluatorTypeMaxValuePolicy),
 	}
-}
-
-func parsePolicyEvaluatorType(input string) (*PolicyEvaluatorType, error) {
-	vals := map[string]PolicyEvaluatorType{
-		"allowedvaluespolicy": PolicyEvaluatorTypeAllowedValuesPolicy,
-		"maxvaluepolicy":      PolicyEvaluatorTypeMaxValuePolicy,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PolicyEvaluatorType(input)
-	return &out, nil
 }
 
 type PolicyFactName string
@@ -63,28 +47,6 @@ func PossibleValuesForPolicyFactName() []string {
 	}
 }
 
-func parsePolicyFactName(input string) (*PolicyFactName, error) {
-	vals := map[string]PolicyFactName{
-		"environmenttemplate":         PolicyFactNameEnvironmentTemplate,
-		"galleryimage":                PolicyFactNameGalleryImage,
-		"labpremiumvmcount":           PolicyFactNameLabPremiumVMCount,
-		"labtargetcost":               PolicyFactNameLabTargetCost,
-		"labvmcount":                  PolicyFactNameLabVMCount,
-		"labvmsize":                   PolicyFactNameLabVMSize,
-		"scheduleeditpermission":      PolicyFactNameScheduleEditPermission,
-		"userownedlabpremiumvmcount":  PolicyFactNameUserOwnedLabPremiumVMCount,
-		"userownedlabvmcount":         PolicyFactNameUserOwnedLabVMCount,
-		"userownedlabvmcountinsubnet": PolicyFactNameUserOwnedLabVMCountInSubnet,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PolicyFactName(input)
-	return &out, nil
-}
-
 type PolicyStatus string
 
 const (
@@ -97,18 +59,4 @@ func PossibleValuesForPolicyStatus() []string {
 		string(PolicyStatusDisabled),
 		string(PolicyStatusEnabled),
 	}
-}
-
-func parsePolicyStatus(input string) (*PolicyStatus, error) {
-	vals := map[string]PolicyStatus{
-		"disabled": PolicyStatusDisabled,
-		"enabled":  PolicyStatusEnabled,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PolicyStatus(input)
-	return &out, nil
 }

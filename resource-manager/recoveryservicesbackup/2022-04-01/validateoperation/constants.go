@@ -1,7 +1,5 @@
 package validateoperation
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -25,23 +23,6 @@ func PossibleValuesForCopyOptions() []string {
 	}
 }
 
-func parseCopyOptions(input string) (*CopyOptions, error) {
-	vals := map[string]CopyOptions{
-		"createcopy":     CopyOptionsCreateCopy,
-		"failonconflict": CopyOptionsFailOnConflict,
-		"invalid":        CopyOptionsInvalid,
-		"overwrite":      CopyOptionsOverwrite,
-		"skip":           CopyOptionsSkip,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := CopyOptions(input)
-	return &out, nil
-}
-
 type OverwriteOptions string
 
 const (
@@ -58,21 +39,6 @@ func PossibleValuesForOverwriteOptions() []string {
 	}
 }
 
-func parseOverwriteOptions(input string) (*OverwriteOptions, error) {
-	vals := map[string]OverwriteOptions{
-		"failonconflict": OverwriteOptionsFailOnConflict,
-		"invalid":        OverwriteOptionsInvalid,
-		"overwrite":      OverwriteOptionsOverwrite,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := OverwriteOptions(input)
-	return &out, nil
-}
-
 type RecoveryMode string
 
 const (
@@ -87,21 +53,6 @@ func PossibleValuesForRecoveryMode() []string {
 		string(RecoveryModeInvalid),
 		string(RecoveryModeWorkloadRecovery),
 	}
-}
-
-func parseRecoveryMode(input string) (*RecoveryMode, error) {
-	vals := map[string]RecoveryMode{
-		"filerecovery":     RecoveryModeFileRecovery,
-		"invalid":          RecoveryModeInvalid,
-		"workloadrecovery": RecoveryModeWorkloadRecovery,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := RecoveryMode(input)
-	return &out, nil
 }
 
 type RecoveryType string
@@ -124,23 +75,6 @@ func PossibleValuesForRecoveryType() []string {
 	}
 }
 
-func parseRecoveryType(input string) (*RecoveryType, error) {
-	vals := map[string]RecoveryType{
-		"alternatelocation": RecoveryTypeAlternateLocation,
-		"invalid":           RecoveryTypeInvalid,
-		"offline":           RecoveryTypeOffline,
-		"originallocation":  RecoveryTypeOriginalLocation,
-		"restoredisks":      RecoveryTypeRestoreDisks,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := RecoveryType(input)
-	return &out, nil
-}
-
 type RehydrationPriority string
 
 const (
@@ -153,20 +87,6 @@ func PossibleValuesForRehydrationPriority() []string {
 		string(RehydrationPriorityHigh),
 		string(RehydrationPriorityStandard),
 	}
-}
-
-func parseRehydrationPriority(input string) (*RehydrationPriority, error) {
-	vals := map[string]RehydrationPriority{
-		"high":     RehydrationPriorityHigh,
-		"standard": RehydrationPriorityStandard,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := RehydrationPriority(input)
-	return &out, nil
 }
 
 type RestoreRequestType string
@@ -185,21 +105,6 @@ func PossibleValuesForRestoreRequestType() []string {
 	}
 }
 
-func parseRestoreRequestType(input string) (*RestoreRequestType, error) {
-	vals := map[string]RestoreRequestType{
-		"fullsharerestore": RestoreRequestTypeFullShareRestore,
-		"invalid":          RestoreRequestTypeInvalid,
-		"itemlevelrestore": RestoreRequestTypeItemLevelRestore,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := RestoreRequestType(input)
-	return &out, nil
-}
-
 type SQLDataDirectoryType string
 
 const (
@@ -214,19 +119,4 @@ func PossibleValuesForSQLDataDirectoryType() []string {
 		string(SQLDataDirectoryTypeInvalid),
 		string(SQLDataDirectoryTypeLog),
 	}
-}
-
-func parseSQLDataDirectoryType(input string) (*SQLDataDirectoryType, error) {
-	vals := map[string]SQLDataDirectoryType{
-		"data":    SQLDataDirectoryTypeData,
-		"invalid": SQLDataDirectoryTypeInvalid,
-		"log":     SQLDataDirectoryTypeLog,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SQLDataDirectoryType(input)
-	return &out, nil
 }

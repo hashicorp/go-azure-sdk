@@ -1,7 +1,5 @@
 package galleryimageversions
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -23,22 +21,6 @@ func PossibleValuesForAggregatedReplicationState() []string {
 	}
 }
 
-func parseAggregatedReplicationState(input string) (*AggregatedReplicationState, error) {
-	vals := map[string]AggregatedReplicationState{
-		"completed":  AggregatedReplicationStateCompleted,
-		"failed":     AggregatedReplicationStateFailed,
-		"inprogress": AggregatedReplicationStateInProgress,
-		"unknown":    AggregatedReplicationStateUnknown,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := AggregatedReplicationState(input)
-	return &out, nil
-}
-
 type HostCaching string
 
 const (
@@ -53,21 +35,6 @@ func PossibleValuesForHostCaching() []string {
 		string(HostCachingReadOnly),
 		string(HostCachingReadWrite),
 	}
-}
-
-func parseHostCaching(input string) (*HostCaching, error) {
-	vals := map[string]HostCaching{
-		"none":      HostCachingNone,
-		"readonly":  HostCachingReadOnly,
-		"readwrite": HostCachingReadWrite,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := HostCaching(input)
-	return &out, nil
 }
 
 type ProvisioningState string
@@ -92,24 +59,6 @@ func PossibleValuesForProvisioningState() []string {
 	}
 }
 
-func parseProvisioningState(input string) (*ProvisioningState, error) {
-	vals := map[string]ProvisioningState{
-		"creating":  ProvisioningStateCreating,
-		"deleting":  ProvisioningStateDeleting,
-		"failed":    ProvisioningStateFailed,
-		"migrating": ProvisioningStateMigrating,
-		"succeeded": ProvisioningStateSucceeded,
-		"updating":  ProvisioningStateUpdating,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ProvisioningState(input)
-	return &out, nil
-}
-
 type ReplicationMode string
 
 const (
@@ -122,20 +71,6 @@ func PossibleValuesForReplicationMode() []string {
 		string(ReplicationModeFull),
 		string(ReplicationModeShallow),
 	}
-}
-
-func parseReplicationMode(input string) (*ReplicationMode, error) {
-	vals := map[string]ReplicationMode{
-		"full":    ReplicationModeFull,
-		"shallow": ReplicationModeShallow,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ReplicationMode(input)
-	return &out, nil
 }
 
 type ReplicationState string
@@ -156,22 +91,6 @@ func PossibleValuesForReplicationState() []string {
 	}
 }
 
-func parseReplicationState(input string) (*ReplicationState, error) {
-	vals := map[string]ReplicationState{
-		"completed":   ReplicationStateCompleted,
-		"failed":      ReplicationStateFailed,
-		"replicating": ReplicationStateReplicating,
-		"unknown":     ReplicationStateUnknown,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ReplicationState(input)
-	return &out, nil
-}
-
 type ReplicationStatusTypes string
 
 const (
@@ -182,19 +101,6 @@ func PossibleValuesForReplicationStatusTypes() []string {
 	return []string{
 		string(ReplicationStatusTypesReplicationStatus),
 	}
-}
-
-func parseReplicationStatusTypes(input string) (*ReplicationStatusTypes, error) {
-	vals := map[string]ReplicationStatusTypes{
-		"replicationstatus": ReplicationStatusTypesReplicationStatus,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ReplicationStatusTypes(input)
-	return &out, nil
 }
 
 type StorageAccountType string
@@ -211,19 +117,4 @@ func PossibleValuesForStorageAccountType() []string {
 		string(StorageAccountTypeStandardLRS),
 		string(StorageAccountTypeStandardZRS),
 	}
-}
-
-func parseStorageAccountType(input string) (*StorageAccountType, error) {
-	vals := map[string]StorageAccountType{
-		"premium_lrs":  StorageAccountTypePremiumLRS,
-		"standard_lrs": StorageAccountTypeStandardLRS,
-		"standard_zrs": StorageAccountTypeStandardZRS,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := StorageAccountType(input)
-	return &out, nil
 }

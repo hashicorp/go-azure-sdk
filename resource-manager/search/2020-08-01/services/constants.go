@@ -1,7 +1,5 @@
 package services
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -17,20 +15,6 @@ func PossibleValuesForHostingMode() []string {
 		string(HostingModeDefault),
 		string(HostingModeHighDensity),
 	}
-}
-
-func parseHostingMode(input string) (*HostingMode, error) {
-	vals := map[string]HostingMode{
-		"default":     HostingModeDefault,
-		"highdensity": HostingModeHighDensity,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := HostingMode(input)
-	return &out, nil
 }
 
 type PrivateLinkServiceConnectionStatus string
@@ -51,22 +35,6 @@ func PossibleValuesForPrivateLinkServiceConnectionStatus() []string {
 	}
 }
 
-func parsePrivateLinkServiceConnectionStatus(input string) (*PrivateLinkServiceConnectionStatus, error) {
-	vals := map[string]PrivateLinkServiceConnectionStatus{
-		"approved":     PrivateLinkServiceConnectionStatusApproved,
-		"disconnected": PrivateLinkServiceConnectionStatusDisconnected,
-		"pending":      PrivateLinkServiceConnectionStatusPending,
-		"rejected":     PrivateLinkServiceConnectionStatusRejected,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PrivateLinkServiceConnectionStatus(input)
-	return &out, nil
-}
-
 type ProvisioningState string
 
 const (
@@ -83,21 +51,6 @@ func PossibleValuesForProvisioningState() []string {
 	}
 }
 
-func parseProvisioningState(input string) (*ProvisioningState, error) {
-	vals := map[string]ProvisioningState{
-		"failed":       ProvisioningStateFailed,
-		"provisioning": ProvisioningStateProvisioning,
-		"succeeded":    ProvisioningStateSucceeded,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ProvisioningState(input)
-	return &out, nil
-}
-
 type PublicNetworkAccess string
 
 const (
@@ -112,20 +65,6 @@ func PossibleValuesForPublicNetworkAccess() []string {
 	}
 }
 
-func parsePublicNetworkAccess(input string) (*PublicNetworkAccess, error) {
-	vals := map[string]PublicNetworkAccess{
-		"disabled": PublicNetworkAccessDisabled,
-		"enabled":  PublicNetworkAccessEnabled,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PublicNetworkAccess(input)
-	return &out, nil
-}
-
 type ResourceType string
 
 const (
@@ -136,19 +75,6 @@ func PossibleValuesForResourceType() []string {
 	return []string{
 		string(ResourceTypeSearchServices),
 	}
-}
-
-func parseResourceType(input string) (*ResourceType, error) {
-	vals := map[string]ResourceType{
-		"searchservices": ResourceTypeSearchServices,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ResourceType(input)
-	return &out, nil
 }
 
 type SearchServiceStatus string
@@ -173,24 +99,6 @@ func PossibleValuesForSearchServiceStatus() []string {
 	}
 }
 
-func parseSearchServiceStatus(input string) (*SearchServiceStatus, error) {
-	vals := map[string]SearchServiceStatus{
-		"degraded":     SearchServiceStatusDegraded,
-		"deleting":     SearchServiceStatusDeleting,
-		"disabled":     SearchServiceStatusDisabled,
-		"error":        SearchServiceStatusError,
-		"provisioning": SearchServiceStatusProvisioning,
-		"running":      SearchServiceStatusRunning,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SearchServiceStatus(input)
-	return &out, nil
-}
-
 type SharedPrivateLinkResourceProvisioningState string
 
 const (
@@ -211,23 +119,6 @@ func PossibleValuesForSharedPrivateLinkResourceProvisioningState() []string {
 	}
 }
 
-func parseSharedPrivateLinkResourceProvisioningState(input string) (*SharedPrivateLinkResourceProvisioningState, error) {
-	vals := map[string]SharedPrivateLinkResourceProvisioningState{
-		"deleting":   SharedPrivateLinkResourceProvisioningStateDeleting,
-		"failed":     SharedPrivateLinkResourceProvisioningStateFailed,
-		"incomplete": SharedPrivateLinkResourceProvisioningStateIncomplete,
-		"succeeded":  SharedPrivateLinkResourceProvisioningStateSucceeded,
-		"updating":   SharedPrivateLinkResourceProvisioningStateUpdating,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SharedPrivateLinkResourceProvisioningState(input)
-	return &out, nil
-}
-
 type SharedPrivateLinkResourceStatus string
 
 const (
@@ -244,22 +135,6 @@ func PossibleValuesForSharedPrivateLinkResourceStatus() []string {
 		string(SharedPrivateLinkResourceStatusPending),
 		string(SharedPrivateLinkResourceStatusRejected),
 	}
-}
-
-func parseSharedPrivateLinkResourceStatus(input string) (*SharedPrivateLinkResourceStatus, error) {
-	vals := map[string]SharedPrivateLinkResourceStatus{
-		"approved":     SharedPrivateLinkResourceStatusApproved,
-		"disconnected": SharedPrivateLinkResourceStatusDisconnected,
-		"pending":      SharedPrivateLinkResourceStatusPending,
-		"rejected":     SharedPrivateLinkResourceStatusRejected,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SharedPrivateLinkResourceStatus(input)
-	return &out, nil
 }
 
 type SkuName string
@@ -286,25 +161,6 @@ func PossibleValuesForSkuName() []string {
 	}
 }
 
-func parseSkuName(input string) (*SkuName, error) {
-	vals := map[string]SkuName{
-		"basic":                SkuNameBasic,
-		"free":                 SkuNameFree,
-		"standard":             SkuNameStandard,
-		"standard3":            SkuNameStandardThree,
-		"standard2":            SkuNameStandardTwo,
-		"storage_optimized_l1": SkuNameStorageOptimizedLOne,
-		"storage_optimized_l2": SkuNameStorageOptimizedLTwo,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SkuName(input)
-	return &out, nil
-}
-
 type UnavailableNameReason string
 
 const (
@@ -317,18 +173,4 @@ func PossibleValuesForUnavailableNameReason() []string {
 		string(UnavailableNameReasonAlreadyExists),
 		string(UnavailableNameReasonInvalid),
 	}
-}
-
-func parseUnavailableNameReason(input string) (*UnavailableNameReason, error) {
-	vals := map[string]UnavailableNameReason{
-		"alreadyexists": UnavailableNameReasonAlreadyExists,
-		"invalid":       UnavailableNameReasonInvalid,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := UnavailableNameReason(input)
-	return &out, nil
 }

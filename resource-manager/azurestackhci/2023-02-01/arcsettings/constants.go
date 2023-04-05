@@ -1,7 +1,5 @@
 package arcsettings
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -51,36 +49,6 @@ func PossibleValuesForArcSettingAggregateState() []string {
 	}
 }
 
-func parseArcSettingAggregateState(input string) (*ArcSettingAggregateState, error) {
-	vals := map[string]ArcSettingAggregateState{
-		"accepted":           ArcSettingAggregateStateAccepted,
-		"canceled":           ArcSettingAggregateStateCanceled,
-		"connected":          ArcSettingAggregateStateConnected,
-		"creating":           ArcSettingAggregateStateCreating,
-		"deleted":            ArcSettingAggregateStateDeleted,
-		"deleting":           ArcSettingAggregateStateDeleting,
-		"disableinprogress":  ArcSettingAggregateStateDisableInProgress,
-		"disconnected":       ArcSettingAggregateStateDisconnected,
-		"error":              ArcSettingAggregateStateError,
-		"failed":             ArcSettingAggregateStateFailed,
-		"inprogress":         ArcSettingAggregateStateInProgress,
-		"moving":             ArcSettingAggregateStateMoving,
-		"notspecified":       ArcSettingAggregateStateNotSpecified,
-		"partiallyconnected": ArcSettingAggregateStatePartiallyConnected,
-		"partiallysucceeded": ArcSettingAggregateStatePartiallySucceeded,
-		"provisioning":       ArcSettingAggregateStateProvisioning,
-		"succeeded":          ArcSettingAggregateStateSucceeded,
-		"updating":           ArcSettingAggregateStateUpdating,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ArcSettingAggregateState(input)
-	return &out, nil
-}
-
 type NodeArcState string
 
 const (
@@ -127,36 +95,6 @@ func PossibleValuesForNodeArcState() []string {
 	}
 }
 
-func parseNodeArcState(input string) (*NodeArcState, error) {
-	vals := map[string]NodeArcState{
-		"accepted":           NodeArcStateAccepted,
-		"canceled":           NodeArcStateCanceled,
-		"connected":          NodeArcStateConnected,
-		"creating":           NodeArcStateCreating,
-		"deleted":            NodeArcStateDeleted,
-		"deleting":           NodeArcStateDeleting,
-		"disableinprogress":  NodeArcStateDisableInProgress,
-		"disconnected":       NodeArcStateDisconnected,
-		"error":              NodeArcStateError,
-		"failed":             NodeArcStateFailed,
-		"inprogress":         NodeArcStateInProgress,
-		"moving":             NodeArcStateMoving,
-		"notspecified":       NodeArcStateNotSpecified,
-		"partiallyconnected": NodeArcStatePartiallyConnected,
-		"partiallysucceeded": NodeArcStatePartiallySucceeded,
-		"provisioning":       NodeArcStateProvisioning,
-		"succeeded":          NodeArcStateSucceeded,
-		"updating":           NodeArcStateUpdating,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := NodeArcState(input)
-	return &out, nil
-}
-
 type ProvisioningState string
 
 const (
@@ -201,34 +139,4 @@ func PossibleValuesForProvisioningState() []string {
 		string(ProvisioningStateSucceeded),
 		string(ProvisioningStateUpdating),
 	}
-}
-
-func parseProvisioningState(input string) (*ProvisioningState, error) {
-	vals := map[string]ProvisioningState{
-		"accepted":           ProvisioningStateAccepted,
-		"canceled":           ProvisioningStateCanceled,
-		"connected":          ProvisioningStateConnected,
-		"creating":           ProvisioningStateCreating,
-		"deleted":            ProvisioningStateDeleted,
-		"deleting":           ProvisioningStateDeleting,
-		"disableinprogress":  ProvisioningStateDisableInProgress,
-		"disconnected":       ProvisioningStateDisconnected,
-		"error":              ProvisioningStateError,
-		"failed":             ProvisioningStateFailed,
-		"inprogress":         ProvisioningStateInProgress,
-		"moving":             ProvisioningStateMoving,
-		"notspecified":       ProvisioningStateNotSpecified,
-		"partiallyconnected": ProvisioningStatePartiallyConnected,
-		"partiallysucceeded": ProvisioningStatePartiallySucceeded,
-		"provisioning":       ProvisioningStateProvisioning,
-		"succeeded":          ProvisioningStateSucceeded,
-		"updating":           ProvisioningStateUpdating,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ProvisioningState(input)
-	return &out, nil
 }

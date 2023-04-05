@@ -1,7 +1,5 @@
 package integrationserviceenvironmentnetworkhealth
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -21,22 +19,6 @@ func PossibleValuesForErrorResponseCode() []string {
 		string(ErrorResponseCodeInvalidOperationId),
 		string(ErrorResponseCodeNotSpecified),
 	}
-}
-
-func parseErrorResponseCode(input string) (*ErrorResponseCode, error) {
-	vals := map[string]ErrorResponseCode{
-		"integrationserviceenvironmentnotfound": ErrorResponseCodeIntegrationServiceEnvironmentNotFound,
-		"internalservererror":                   ErrorResponseCodeInternalServerError,
-		"invalidoperationid":                    ErrorResponseCodeInvalidOperationId,
-		"notspecified":                          ErrorResponseCodeNotSpecified,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ErrorResponseCode(input)
-	return &out, nil
 }
 
 type IntegrationServiceEnvironmentNetworkDependencyCategoryType string
@@ -73,30 +55,6 @@ func PossibleValuesForIntegrationServiceEnvironmentNetworkDependencyCategoryType
 	}
 }
 
-func parseIntegrationServiceEnvironmentNetworkDependencyCategoryType(input string) (*IntegrationServiceEnvironmentNetworkDependencyCategoryType, error) {
-	vals := map[string]IntegrationServiceEnvironmentNetworkDependencyCategoryType{
-		"accessendpoints":                         IntegrationServiceEnvironmentNetworkDependencyCategoryTypeAccessEndpoints,
-		"azureactivedirectory":                    IntegrationServiceEnvironmentNetworkDependencyCategoryTypeAzureActiveDirectory,
-		"azuremanagement":                         IntegrationServiceEnvironmentNetworkDependencyCategoryTypeAzureManagement,
-		"azurestorage":                            IntegrationServiceEnvironmentNetworkDependencyCategoryTypeAzureStorage,
-		"diagnosticlogsandmetrics":                IntegrationServiceEnvironmentNetworkDependencyCategoryTypeDiagnosticLogsAndMetrics,
-		"integrationserviceenvironmentconnectors": IntegrationServiceEnvironmentNetworkDependencyCategoryTypeIntegrationServiceEnvironmentConnectors,
-		"notspecified":                            IntegrationServiceEnvironmentNetworkDependencyCategoryTypeNotSpecified,
-		"recoveryservice":                         IntegrationServiceEnvironmentNetworkDependencyCategoryTypeRecoveryService,
-		"rediscache":                              IntegrationServiceEnvironmentNetworkDependencyCategoryTypeRedisCache,
-		"regionalservice":                         IntegrationServiceEnvironmentNetworkDependencyCategoryTypeRegionalService,
-		"sql":                                     IntegrationServiceEnvironmentNetworkDependencyCategoryTypeSQL,
-		"sslcertificateverification":              IntegrationServiceEnvironmentNetworkDependencyCategoryTypeSSLCertificateVerification,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := IntegrationServiceEnvironmentNetworkDependencyCategoryType(input)
-	return &out, nil
-}
-
 type IntegrationServiceEnvironmentNetworkDependencyHealthState string
 
 const (
@@ -115,22 +73,6 @@ func PossibleValuesForIntegrationServiceEnvironmentNetworkDependencyHealthState(
 	}
 }
 
-func parseIntegrationServiceEnvironmentNetworkDependencyHealthState(input string) (*IntegrationServiceEnvironmentNetworkDependencyHealthState, error) {
-	vals := map[string]IntegrationServiceEnvironmentNetworkDependencyHealthState{
-		"healthy":      IntegrationServiceEnvironmentNetworkDependencyHealthStateHealthy,
-		"notspecified": IntegrationServiceEnvironmentNetworkDependencyHealthStateNotSpecified,
-		"unhealthy":    IntegrationServiceEnvironmentNetworkDependencyHealthStateUnhealthy,
-		"unknown":      IntegrationServiceEnvironmentNetworkDependencyHealthStateUnknown,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := IntegrationServiceEnvironmentNetworkDependencyHealthState(input)
-	return &out, nil
-}
-
 type IntegrationServiceEnvironmentNetworkEndPointAccessibilityState string
 
 const (
@@ -147,20 +89,4 @@ func PossibleValuesForIntegrationServiceEnvironmentNetworkEndPointAccessibilityS
 		string(IntegrationServiceEnvironmentNetworkEndPointAccessibilityStateNotSpecified),
 		string(IntegrationServiceEnvironmentNetworkEndPointAccessibilityStateUnknown),
 	}
-}
-
-func parseIntegrationServiceEnvironmentNetworkEndPointAccessibilityState(input string) (*IntegrationServiceEnvironmentNetworkEndPointAccessibilityState, error) {
-	vals := map[string]IntegrationServiceEnvironmentNetworkEndPointAccessibilityState{
-		"available":    IntegrationServiceEnvironmentNetworkEndPointAccessibilityStateAvailable,
-		"notavailable": IntegrationServiceEnvironmentNetworkEndPointAccessibilityStateNotAvailable,
-		"notspecified": IntegrationServiceEnvironmentNetworkEndPointAccessibilityStateNotSpecified,
-		"unknown":      IntegrationServiceEnvironmentNetworkEndPointAccessibilityStateUnknown,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := IntegrationServiceEnvironmentNetworkEndPointAccessibilityState(input)
-	return &out, nil
 }

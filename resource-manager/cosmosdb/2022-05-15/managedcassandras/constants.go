@@ -1,7 +1,5 @@
 package managedcassandras
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -17,20 +15,6 @@ func PossibleValuesForAuthenticationMethod() []string {
 		string(AuthenticationMethodCassandra),
 		string(AuthenticationMethodNone),
 	}
-}
-
-func parseAuthenticationMethod(input string) (*AuthenticationMethod, error) {
-	vals := map[string]AuthenticationMethod{
-		"cassandra": AuthenticationMethodCassandra,
-		"none":      AuthenticationMethodNone,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := AuthenticationMethod(input)
-	return &out, nil
 }
 
 type ConnectionState string
@@ -55,24 +39,6 @@ func PossibleValuesForConnectionState() []string {
 	}
 }
 
-func parseConnectionState(input string) (*ConnectionState, error) {
-	vals := map[string]ConnectionState{
-		"datacentertodatacenternetworkerror":           ConnectionStateDatacenterToDatacenterNetworkError,
-		"internalerror":                                ConnectionStateInternalError,
-		"internaloperatortodatacentercertificateerror": ConnectionStateInternalOperatorToDataCenterCertificateError,
-		"ok":                               ConnectionStateOK,
-		"operatortodatacenternetworkerror": ConnectionStateOperatorToDataCenterNetworkError,
-		"unknown":                          ConnectionStateUnknown,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ConnectionState(input)
-	return &out, nil
-}
-
 type ManagedCassandraProvisioningState string
 
 const (
@@ -95,24 +61,6 @@ func PossibleValuesForManagedCassandraProvisioningState() []string {
 	}
 }
 
-func parseManagedCassandraProvisioningState(input string) (*ManagedCassandraProvisioningState, error) {
-	vals := map[string]ManagedCassandraProvisioningState{
-		"canceled":  ManagedCassandraProvisioningStateCanceled,
-		"creating":  ManagedCassandraProvisioningStateCreating,
-		"deleting":  ManagedCassandraProvisioningStateDeleting,
-		"failed":    ManagedCassandraProvisioningStateFailed,
-		"succeeded": ManagedCassandraProvisioningStateSucceeded,
-		"updating":  ManagedCassandraProvisioningStateUpdating,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ManagedCassandraProvisioningState(input)
-	return &out, nil
-}
-
 type NodeState string
 
 const (
@@ -131,21 +79,4 @@ func PossibleValuesForNodeState() []string {
 		string(NodeStateNormal),
 		string(NodeStateStopped),
 	}
-}
-
-func parseNodeState(input string) (*NodeState, error) {
-	vals := map[string]NodeState{
-		"joining": NodeStateJoining,
-		"leaving": NodeStateLeaving,
-		"moving":  NodeStateMoving,
-		"normal":  NodeStateNormal,
-		"stopped": NodeStateStopped,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := NodeState(input)
-	return &out, nil
 }

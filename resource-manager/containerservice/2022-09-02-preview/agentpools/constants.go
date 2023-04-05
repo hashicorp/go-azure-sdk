@@ -1,7 +1,5 @@
 package agentpools
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -19,20 +17,6 @@ func PossibleValuesForAgentPoolMode() []string {
 	}
 }
 
-func parseAgentPoolMode(input string) (*AgentPoolMode, error) {
-	vals := map[string]AgentPoolMode{
-		"system": AgentPoolModeSystem,
-		"user":   AgentPoolModeUser,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := AgentPoolMode(input)
-	return &out, nil
-}
-
 type AgentPoolType string
 
 const (
@@ -47,20 +31,6 @@ func PossibleValuesForAgentPoolType() []string {
 	}
 }
 
-func parseAgentPoolType(input string) (*AgentPoolType, error) {
-	vals := map[string]AgentPoolType{
-		"availabilityset":         AgentPoolTypeAvailabilitySet,
-		"virtualmachinescalesets": AgentPoolTypeVirtualMachineScaleSets,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := AgentPoolType(input)
-	return &out, nil
-}
-
 type Code string
 
 const (
@@ -73,20 +43,6 @@ func PossibleValuesForCode() []string {
 		string(CodeRunning),
 		string(CodeStopped),
 	}
-}
-
-func parseCode(input string) (*Code, error) {
-	vals := map[string]Code{
-		"running": CodeRunning,
-		"stopped": CodeStopped,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := Code(input)
-	return &out, nil
 }
 
 type GPUInstanceProfile string
@@ -109,23 +65,6 @@ func PossibleValuesForGPUInstanceProfile() []string {
 	}
 }
 
-func parseGPUInstanceProfile(input string) (*GPUInstanceProfile, error) {
-	vals := map[string]GPUInstanceProfile{
-		"mig4g": GPUInstanceProfileMIGFourg,
-		"mig1g": GPUInstanceProfileMIGOneg,
-		"mig7g": GPUInstanceProfileMIGSeveng,
-		"mig3g": GPUInstanceProfileMIGThreeg,
-		"mig2g": GPUInstanceProfileMIGTwog,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := GPUInstanceProfile(input)
-	return &out, nil
-}
-
 type KubeletDiskType string
 
 const (
@@ -140,20 +79,6 @@ func PossibleValuesForKubeletDiskType() []string {
 	}
 }
 
-func parseKubeletDiskType(input string) (*KubeletDiskType, error) {
-	vals := map[string]KubeletDiskType{
-		"os":        KubeletDiskTypeOS,
-		"temporary": KubeletDiskTypeTemporary,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := KubeletDiskType(input)
-	return &out, nil
-}
-
 type OSDiskType string
 
 const (
@@ -166,20 +91,6 @@ func PossibleValuesForOSDiskType() []string {
 		string(OSDiskTypeEphemeral),
 		string(OSDiskTypeManaged),
 	}
-}
-
-func parseOSDiskType(input string) (*OSDiskType, error) {
-	vals := map[string]OSDiskType{
-		"ephemeral": OSDiskTypeEphemeral,
-		"managed":   OSDiskTypeManaged,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := OSDiskType(input)
-	return &out, nil
 }
 
 type OSSKU string
@@ -202,23 +113,6 @@ func PossibleValuesForOSSKU() []string {
 	}
 }
 
-func parseOSSKU(input string) (*OSSKU, error) {
-	vals := map[string]OSSKU{
-		"cblmariner":  OSSKUCBLMariner,
-		"mariner":     OSSKUMariner,
-		"ubuntu":      OSSKUUbuntu,
-		"windows2019": OSSKUWindowsTwoZeroOneNine,
-		"windows2022": OSSKUWindowsTwoZeroTwoTwo,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := OSSKU(input)
-	return &out, nil
-}
-
 type OSType string
 
 const (
@@ -231,20 +125,6 @@ func PossibleValuesForOSType() []string {
 		string(OSTypeLinux),
 		string(OSTypeWindows),
 	}
-}
-
-func parseOSType(input string) (*OSType, error) {
-	vals := map[string]OSType{
-		"linux":   OSTypeLinux,
-		"windows": OSTypeWindows,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := OSType(input)
-	return &out, nil
 }
 
 type Protocol string
@@ -261,20 +141,6 @@ func PossibleValuesForProtocol() []string {
 	}
 }
 
-func parseProtocol(input string) (*Protocol, error) {
-	vals := map[string]Protocol{
-		"tcp": ProtocolTCP,
-		"udp": ProtocolUDP,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := Protocol(input)
-	return &out, nil
-}
-
 type ScaleDownMode string
 
 const (
@@ -287,20 +153,6 @@ func PossibleValuesForScaleDownMode() []string {
 		string(ScaleDownModeDeallocate),
 		string(ScaleDownModeDelete),
 	}
-}
-
-func parseScaleDownMode(input string) (*ScaleDownMode, error) {
-	vals := map[string]ScaleDownMode{
-		"deallocate": ScaleDownModeDeallocate,
-		"delete":     ScaleDownModeDelete,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ScaleDownMode(input)
-	return &out, nil
 }
 
 type ScaleSetEvictionPolicy string
@@ -317,20 +169,6 @@ func PossibleValuesForScaleSetEvictionPolicy() []string {
 	}
 }
 
-func parseScaleSetEvictionPolicy(input string) (*ScaleSetEvictionPolicy, error) {
-	vals := map[string]ScaleSetEvictionPolicy{
-		"deallocate": ScaleSetEvictionPolicyDeallocate,
-		"delete":     ScaleSetEvictionPolicyDelete,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ScaleSetEvictionPolicy(input)
-	return &out, nil
-}
-
 type ScaleSetPriority string
 
 const (
@@ -345,20 +183,6 @@ func PossibleValuesForScaleSetPriority() []string {
 	}
 }
 
-func parseScaleSetPriority(input string) (*ScaleSetPriority, error) {
-	vals := map[string]ScaleSetPriority{
-		"regular": ScaleSetPriorityRegular,
-		"spot":    ScaleSetPrioritySpot,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ScaleSetPriority(input)
-	return &out, nil
-}
-
 type WorkloadRuntime string
 
 const (
@@ -371,18 +195,4 @@ func PossibleValuesForWorkloadRuntime() []string {
 		string(WorkloadRuntimeOCIContainer),
 		string(WorkloadRuntimeWasmWasi),
 	}
-}
-
-func parseWorkloadRuntime(input string) (*WorkloadRuntime, error) {
-	vals := map[string]WorkloadRuntime{
-		"ocicontainer": WorkloadRuntimeOCIContainer,
-		"wasmwasi":     WorkloadRuntimeWasmWasi,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := WorkloadRuntime(input)
-	return &out, nil
 }

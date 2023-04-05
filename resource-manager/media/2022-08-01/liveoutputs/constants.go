@@ -1,6 +1,10 @@
 package liveoutputs
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -21,19 +25,19 @@ func PossibleValuesForAsyncOperationStatus() []string {
 	}
 }
 
-func parseAsyncOperationStatus(input string) (*AsyncOperationStatus, error) {
-	vals := map[string]AsyncOperationStatus{
-		"failed":     AsyncOperationStatusFailed,
-		"inprogress": AsyncOperationStatusInProgress,
-		"succeeded":  AsyncOperationStatusSucceeded,
+func (s *AsyncOperationStatus) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForAsyncOperationStatus() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := AsyncOperationStatus(input)
-	return &out, nil
+	*s = AsyncOperationStatus(decoded)
+	return nil
 }
 
 type LiveOutputResourceState string
@@ -52,17 +56,17 @@ func PossibleValuesForLiveOutputResourceState() []string {
 	}
 }
 
-func parseLiveOutputResourceState(input string) (*LiveOutputResourceState, error) {
-	vals := map[string]LiveOutputResourceState{
-		"creating": LiveOutputResourceStateCreating,
-		"deleting": LiveOutputResourceStateDeleting,
-		"running":  LiveOutputResourceStateRunning,
+func (s *LiveOutputResourceState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForLiveOutputResourceState() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := LiveOutputResourceState(input)
-	return &out, nil
+	*s = LiveOutputResourceState(decoded)
+	return nil
 }

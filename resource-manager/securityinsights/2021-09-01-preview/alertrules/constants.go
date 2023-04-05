@@ -1,7 +1,5 @@
 package alertrules
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -17,20 +15,6 @@ func PossibleValuesForAlertDetail() []string {
 		string(AlertDetailDisplayName),
 		string(AlertDetailSeverity),
 	}
-}
-
-func parseAlertDetail(input string) (*AlertDetail, error) {
-	vals := map[string]AlertDetail{
-		"displayname": AlertDetailDisplayName,
-		"severity":    AlertDetailSeverity,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := AlertDetail(input)
-	return &out, nil
 }
 
 type AlertRuleKind string
@@ -55,24 +39,6 @@ func PossibleValuesForAlertRuleKind() []string {
 	}
 }
 
-func parseAlertRuleKind(input string) (*AlertRuleKind, error) {
-	vals := map[string]AlertRuleKind{
-		"fusion":                            AlertRuleKindFusion,
-		"mlbehavioranalytics":               AlertRuleKindMLBehaviorAnalytics,
-		"microsoftsecurityincidentcreation": AlertRuleKindMicrosoftSecurityIncidentCreation,
-		"nrt":                               AlertRuleKindNRT,
-		"scheduled":                         AlertRuleKindScheduled,
-		"threatintelligence":                AlertRuleKindThreatIntelligence,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := AlertRuleKind(input)
-	return &out, nil
-}
-
 type AlertSeverity string
 
 const (
@@ -89,22 +55,6 @@ func PossibleValuesForAlertSeverity() []string {
 		string(AlertSeverityLow),
 		string(AlertSeverityMedium),
 	}
-}
-
-func parseAlertSeverity(input string) (*AlertSeverity, error) {
-	vals := map[string]AlertSeverity{
-		"high":          AlertSeverityHigh,
-		"informational": AlertSeverityInformational,
-		"low":           AlertSeverityLow,
-		"medium":        AlertSeverityMedium,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := AlertSeverity(input)
-	return &out, nil
 }
 
 type AttackTactic string
@@ -141,31 +91,6 @@ func PossibleValuesForAttackTactic() []string {
 		string(AttackTacticPreAttack),
 		string(AttackTacticPrivilegeEscalation),
 	}
-}
-
-func parseAttackTactic(input string) (*AttackTactic, error) {
-	vals := map[string]AttackTactic{
-		"collection":          AttackTacticCollection,
-		"commandandcontrol":   AttackTacticCommandAndControl,
-		"credentialaccess":    AttackTacticCredentialAccess,
-		"defenseevasion":      AttackTacticDefenseEvasion,
-		"discovery":           AttackTacticDiscovery,
-		"execution":           AttackTacticExecution,
-		"exfiltration":        AttackTacticExfiltration,
-		"impact":              AttackTacticImpact,
-		"initialaccess":       AttackTacticInitialAccess,
-		"lateralmovement":     AttackTacticLateralMovement,
-		"persistence":         AttackTacticPersistence,
-		"preattack":           AttackTacticPreAttack,
-		"privilegeescalation": AttackTacticPrivilegeEscalation,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := AttackTactic(input)
-	return &out, nil
 }
 
 type EntityMappingType string
@@ -214,36 +139,6 @@ func PossibleValuesForEntityMappingType() []string {
 	}
 }
 
-func parseEntityMappingType(input string) (*EntityMappingType, error) {
-	vals := map[string]EntityMappingType{
-		"account":          EntityMappingTypeAccount,
-		"azureresource":    EntityMappingTypeAzureResource,
-		"cloudapplication": EntityMappingTypeCloudApplication,
-		"dns":              EntityMappingTypeDNS,
-		"file":             EntityMappingTypeFile,
-		"filehash":         EntityMappingTypeFileHash,
-		"host":             EntityMappingTypeHost,
-		"ip":               EntityMappingTypeIP,
-		"mailcluster":      EntityMappingTypeMailCluster,
-		"mailmessage":      EntityMappingTypeMailMessage,
-		"mailbox":          EntityMappingTypeMailbox,
-		"malware":          EntityMappingTypeMalware,
-		"process":          EntityMappingTypeProcess,
-		"registrykey":      EntityMappingTypeRegistryKey,
-		"registryvalue":    EntityMappingTypeRegistryValue,
-		"securitygroup":    EntityMappingTypeSecurityGroup,
-		"submissionmail":   EntityMappingTypeSubmissionMail,
-		"url":              EntityMappingTypeURL,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := EntityMappingType(input)
-	return &out, nil
-}
-
 type EventGroupingAggregationKind string
 
 const (
@@ -256,20 +151,6 @@ func PossibleValuesForEventGroupingAggregationKind() []string {
 		string(EventGroupingAggregationKindAlertPerResult),
 		string(EventGroupingAggregationKindSingleAlert),
 	}
-}
-
-func parseEventGroupingAggregationKind(input string) (*EventGroupingAggregationKind, error) {
-	vals := map[string]EventGroupingAggregationKind{
-		"alertperresult": EventGroupingAggregationKindAlertPerResult,
-		"singlealert":    EventGroupingAggregationKindSingleAlert,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := EventGroupingAggregationKind(input)
-	return &out, nil
 }
 
 type MatchingMethod string
@@ -286,21 +167,6 @@ func PossibleValuesForMatchingMethod() []string {
 		string(MatchingMethodAnyAlert),
 		string(MatchingMethodSelected),
 	}
-}
-
-func parseMatchingMethod(input string) (*MatchingMethod, error) {
-	vals := map[string]MatchingMethod{
-		"allentities": MatchingMethodAllEntities,
-		"anyalert":    MatchingMethodAnyAlert,
-		"selected":    MatchingMethodSelected,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := MatchingMethod(input)
-	return &out, nil
 }
 
 type MicrosoftSecurityProductName string
@@ -327,25 +193,6 @@ func PossibleValuesForMicrosoftSecurityProductName() []string {
 	}
 }
 
-func parseMicrosoftSecurityProductName(input string) (*MicrosoftSecurityProductName, error) {
-	vals := map[string]MicrosoftSecurityProductName{
-		"azure active directory identity protection":    MicrosoftSecurityProductNameAzureActiveDirectoryIdentityProtection,
-		"azure advanced threat protection":              MicrosoftSecurityProductNameAzureAdvancedThreatProtection,
-		"azure security center":                         MicrosoftSecurityProductNameAzureSecurityCenter,
-		"azure security center for iot":                 MicrosoftSecurityProductNameAzureSecurityCenterForIoT,
-		"microsoft cloud app security":                  MicrosoftSecurityProductNameMicrosoftCloudAppSecurity,
-		"microsoft defender advanced threat protection": MicrosoftSecurityProductNameMicrosoftDefenderAdvancedThreatProtection,
-		"office 365 advanced threat protection":         MicrosoftSecurityProductNameOfficeThreeSixFiveAdvancedThreatProtection,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := MicrosoftSecurityProductName(input)
-	return &out, nil
-}
-
 type TriggerOperator string
 
 const (
@@ -362,20 +209,4 @@ func PossibleValuesForTriggerOperator() []string {
 		string(TriggerOperatorLessThan),
 		string(TriggerOperatorNotEqual),
 	}
-}
-
-func parseTriggerOperator(input string) (*TriggerOperator, error) {
-	vals := map[string]TriggerOperator{
-		"equal":       TriggerOperatorEqual,
-		"greaterthan": TriggerOperatorGreaterThan,
-		"lessthan":    TriggerOperatorLessThan,
-		"notequal":    TriggerOperatorNotEqual,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := TriggerOperator(input)
-	return &out, nil
 }

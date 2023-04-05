@@ -1,7 +1,5 @@
 package outputs
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -21,21 +19,6 @@ func PossibleValuesForAuthenticationMode() []string {
 	}
 }
 
-func parseAuthenticationMode(input string) (*AuthenticationMode, error) {
-	vals := map[string]AuthenticationMode{
-		"connectionstring": AuthenticationModeConnectionString,
-		"msi":              AuthenticationModeMsi,
-		"usertoken":        AuthenticationModeUserToken,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := AuthenticationMode(input)
-	return &out, nil
-}
-
 type BlobWriteMode string
 
 const (
@@ -50,20 +33,6 @@ func PossibleValuesForBlobWriteMode() []string {
 	}
 }
 
-func parseBlobWriteMode(input string) (*BlobWriteMode, error) {
-	vals := map[string]BlobWriteMode{
-		"append": BlobWriteModeAppend,
-		"once":   BlobWriteModeOnce,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := BlobWriteMode(input)
-	return &out, nil
-}
-
 type Encoding string
 
 const (
@@ -74,19 +43,6 @@ func PossibleValuesForEncoding() []string {
 	return []string{
 		string(EncodingUTFEight),
 	}
-}
-
-func parseEncoding(input string) (*Encoding, error) {
-	vals := map[string]Encoding{
-		"utf8": EncodingUTFEight,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := Encoding(input)
-	return &out, nil
 }
 
 type EventSerializationType string
@@ -111,24 +67,6 @@ func PossibleValuesForEventSerializationType() []string {
 	}
 }
 
-func parseEventSerializationType(input string) (*EventSerializationType, error) {
-	vals := map[string]EventSerializationType{
-		"avro":      EventSerializationTypeAvro,
-		"csv":       EventSerializationTypeCsv,
-		"customclr": EventSerializationTypeCustomClr,
-		"delta":     EventSerializationTypeDelta,
-		"json":      EventSerializationTypeJson,
-		"parquet":   EventSerializationTypeParquet,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := EventSerializationType(input)
-	return &out, nil
-}
-
 type JsonOutputSerializationFormat string
 
 const (
@@ -141,20 +79,6 @@ func PossibleValuesForJsonOutputSerializationFormat() []string {
 		string(JsonOutputSerializationFormatArray),
 		string(JsonOutputSerializationFormatLineSeparated),
 	}
-}
-
-func parseJsonOutputSerializationFormat(input string) (*JsonOutputSerializationFormat, error) {
-	vals := map[string]JsonOutputSerializationFormat{
-		"array":         JsonOutputSerializationFormatArray,
-		"lineseparated": JsonOutputSerializationFormatLineSeparated,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := JsonOutputSerializationFormat(input)
-	return &out, nil
 }
 
 type OutputWatermarkMode string
@@ -171,19 +95,4 @@ func PossibleValuesForOutputWatermarkMode() []string {
 		string(OutputWatermarkModeSendCurrentPartitionWatermark),
 		string(OutputWatermarkModeSendLowestWatermarkAcrossPartitions),
 	}
-}
-
-func parseOutputWatermarkMode(input string) (*OutputWatermarkMode, error) {
-	vals := map[string]OutputWatermarkMode{
-		"none":                                OutputWatermarkModeNone,
-		"sendcurrentpartitionwatermark":       OutputWatermarkModeSendCurrentPartitionWatermark,
-		"sendlowestwatermarkacrosspartitions": OutputWatermarkModeSendLowestWatermarkAcrossPartitions,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := OutputWatermarkMode(input)
-	return &out, nil
 }

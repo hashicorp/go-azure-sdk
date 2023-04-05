@@ -1,6 +1,10 @@
 package sapavailabilityzonedetails
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -19,18 +23,19 @@ func PossibleValuesForSAPDatabaseType() []string {
 	}
 }
 
-func parseSAPDatabaseType(input string) (*SAPDatabaseType, error) {
-	vals := map[string]SAPDatabaseType{
-		"db2":  SAPDatabaseTypeDBTwo,
-		"hana": SAPDatabaseTypeHANA,
+func (s *SAPDatabaseType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForSAPDatabaseType() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SAPDatabaseType(input)
-	return &out, nil
+	*s = SAPDatabaseType(decoded)
+	return nil
 }
 
 type SAPProductType string
@@ -49,17 +54,17 @@ func PossibleValuesForSAPProductType() []string {
 	}
 }
 
-func parseSAPProductType(input string) (*SAPProductType, error) {
-	vals := map[string]SAPProductType{
-		"ecc":    SAPProductTypeECC,
-		"other":  SAPProductTypeOther,
-		"s4hana": SAPProductTypeSFourHANA,
+func (s *SAPProductType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForSAPProductType() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SAPProductType(input)
-	return &out, nil
+	*s = SAPProductType(decoded)
+	return nil
 }

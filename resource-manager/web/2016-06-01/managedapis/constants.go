@@ -1,7 +1,5 @@
 package managedapis
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -19,21 +17,6 @@ func PossibleValuesForApiType() []string {
 		string(ApiTypeRest),
 		string(ApiTypeSoap),
 	}
-}
-
-func parseApiType(input string) (*ApiType, error) {
-	vals := map[string]ApiType{
-		"notspecified": ApiTypeNotSpecified,
-		"rest":         ApiTypeRest,
-		"soap":         ApiTypeSoap,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ApiType(input)
-	return &out, nil
 }
 
 type ConnectionParameterType string
@@ -64,27 +47,6 @@ func PossibleValuesForConnectionParameterType() []string {
 	}
 }
 
-func parseConnectionParameterType(input string) (*ConnectionParameterType, error) {
-	vals := map[string]ConnectionParameterType{
-		"array":        ConnectionParameterTypeArray,
-		"bool":         ConnectionParameterTypeBool,
-		"connection":   ConnectionParameterTypeConnection,
-		"int":          ConnectionParameterTypeInt,
-		"oauthsetting": ConnectionParameterTypeOauthSetting,
-		"object":       ConnectionParameterTypeObject,
-		"secureobject": ConnectionParameterTypeSecureobject,
-		"securestring": ConnectionParameterTypeSecurestring,
-		"string":       ConnectionParameterTypeString,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ConnectionParameterType(input)
-	return &out, nil
-}
-
 type WsdlImportMethod string
 
 const (
@@ -99,19 +61,4 @@ func PossibleValuesForWsdlImportMethod() []string {
 		string(WsdlImportMethodSoapPassThrough),
 		string(WsdlImportMethodSoapToRest),
 	}
-}
-
-func parseWsdlImportMethod(input string) (*WsdlImportMethod, error) {
-	vals := map[string]WsdlImportMethod{
-		"notspecified":    WsdlImportMethodNotSpecified,
-		"soappassthrough": WsdlImportMethodSoapPassThrough,
-		"soaptorest":      WsdlImportMethodSoapToRest,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := WsdlImportMethod(input)
-	return &out, nil
 }

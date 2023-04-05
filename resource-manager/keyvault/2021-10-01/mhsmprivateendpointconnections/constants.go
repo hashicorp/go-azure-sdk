@@ -1,7 +1,5 @@
 package mhsmprivateendpointconnections
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -17,19 +15,6 @@ func PossibleValuesForActionsRequired() []string {
 	}
 }
 
-func parseActionsRequired(input string) (*ActionsRequired, error) {
-	vals := map[string]ActionsRequired{
-		"none": ActionsRequiredNone,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ActionsRequired(input)
-	return &out, nil
-}
-
 type ManagedHsmSkuFamily string
 
 const (
@@ -40,19 +25,6 @@ func PossibleValuesForManagedHsmSkuFamily() []string {
 	return []string{
 		string(ManagedHsmSkuFamilyB),
 	}
-}
-
-func parseManagedHsmSkuFamily(input string) (*ManagedHsmSkuFamily, error) {
-	vals := map[string]ManagedHsmSkuFamily{
-		"b": ManagedHsmSkuFamilyB,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ManagedHsmSkuFamily(input)
-	return &out, nil
 }
 
 type ManagedHsmSkuName string
@@ -67,20 +39,6 @@ func PossibleValuesForManagedHsmSkuName() []string {
 		string(ManagedHsmSkuNameCustomBThreeTwo),
 		string(ManagedHsmSkuNameStandardBOne),
 	}
-}
-
-func parseManagedHsmSkuName(input string) (*ManagedHsmSkuName, error) {
-	vals := map[string]ManagedHsmSkuName{
-		"custom_b32":  ManagedHsmSkuNameCustomBThreeTwo,
-		"standard_b1": ManagedHsmSkuNameStandardBOne,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ManagedHsmSkuName(input)
-	return &out, nil
 }
 
 type PrivateEndpointConnectionProvisioningState string
@@ -105,24 +63,6 @@ func PossibleValuesForPrivateEndpointConnectionProvisioningState() []string {
 	}
 }
 
-func parsePrivateEndpointConnectionProvisioningState(input string) (*PrivateEndpointConnectionProvisioningState, error) {
-	vals := map[string]PrivateEndpointConnectionProvisioningState{
-		"creating":     PrivateEndpointConnectionProvisioningStateCreating,
-		"deleting":     PrivateEndpointConnectionProvisioningStateDeleting,
-		"disconnected": PrivateEndpointConnectionProvisioningStateDisconnected,
-		"failed":       PrivateEndpointConnectionProvisioningStateFailed,
-		"succeeded":    PrivateEndpointConnectionProvisioningStateSucceeded,
-		"updating":     PrivateEndpointConnectionProvisioningStateUpdating,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PrivateEndpointConnectionProvisioningState(input)
-	return &out, nil
-}
-
 type PrivateEndpointServiceConnectionStatus string
 
 const (
@@ -139,20 +79,4 @@ func PossibleValuesForPrivateEndpointServiceConnectionStatus() []string {
 		string(PrivateEndpointServiceConnectionStatusPending),
 		string(PrivateEndpointServiceConnectionStatusRejected),
 	}
-}
-
-func parsePrivateEndpointServiceConnectionStatus(input string) (*PrivateEndpointServiceConnectionStatus, error) {
-	vals := map[string]PrivateEndpointServiceConnectionStatus{
-		"approved":     PrivateEndpointServiceConnectionStatusApproved,
-		"disconnected": PrivateEndpointServiceConnectionStatusDisconnected,
-		"pending":      PrivateEndpointServiceConnectionStatusPending,
-		"rejected":     PrivateEndpointServiceConnectionStatusRejected,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PrivateEndpointServiceConnectionStatus(input)
-	return &out, nil
 }

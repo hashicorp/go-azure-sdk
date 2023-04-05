@@ -1,7 +1,5 @@
 package blobcontainers
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -19,20 +17,6 @@ func PossibleValuesForImmutabilityPolicyState() []string {
 	}
 }
 
-func parseImmutabilityPolicyState(input string) (*ImmutabilityPolicyState, error) {
-	vals := map[string]ImmutabilityPolicyState{
-		"locked":   ImmutabilityPolicyStateLocked,
-		"unlocked": ImmutabilityPolicyStateUnlocked,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ImmutabilityPolicyState(input)
-	return &out, nil
-}
-
 type ImmutabilityPolicyUpdateType string
 
 const (
@@ -47,21 +31,6 @@ func PossibleValuesForImmutabilityPolicyUpdateType() []string {
 		string(ImmutabilityPolicyUpdateTypeLock),
 		string(ImmutabilityPolicyUpdateTypePut),
 	}
-}
-
-func parseImmutabilityPolicyUpdateType(input string) (*ImmutabilityPolicyUpdateType, error) {
-	vals := map[string]ImmutabilityPolicyUpdateType{
-		"extend": ImmutabilityPolicyUpdateTypeExtend,
-		"lock":   ImmutabilityPolicyUpdateTypeLock,
-		"put":    ImmutabilityPolicyUpdateTypePut,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ImmutabilityPolicyUpdateType(input)
-	return &out, nil
 }
 
 type LeaseContainerRequestAction string
@@ -84,23 +53,6 @@ func PossibleValuesForLeaseContainerRequestAction() []string {
 	}
 }
 
-func parseLeaseContainerRequestAction(input string) (*LeaseContainerRequestAction, error) {
-	vals := map[string]LeaseContainerRequestAction{
-		"acquire": LeaseContainerRequestActionAcquire,
-		"break":   LeaseContainerRequestActionBreak,
-		"change":  LeaseContainerRequestActionChange,
-		"release": LeaseContainerRequestActionRelease,
-		"renew":   LeaseContainerRequestActionRenew,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := LeaseContainerRequestAction(input)
-	return &out, nil
-}
-
 type LeaseDuration string
 
 const (
@@ -113,20 +65,6 @@ func PossibleValuesForLeaseDuration() []string {
 		string(LeaseDurationFixed),
 		string(LeaseDurationInfinite),
 	}
-}
-
-func parseLeaseDuration(input string) (*LeaseDuration, error) {
-	vals := map[string]LeaseDuration{
-		"fixed":    LeaseDurationFixed,
-		"infinite": LeaseDurationInfinite,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := LeaseDuration(input)
-	return &out, nil
 }
 
 type LeaseState string
@@ -149,23 +87,6 @@ func PossibleValuesForLeaseState() []string {
 	}
 }
 
-func parseLeaseState(input string) (*LeaseState, error) {
-	vals := map[string]LeaseState{
-		"available": LeaseStateAvailable,
-		"breaking":  LeaseStateBreaking,
-		"broken":    LeaseStateBroken,
-		"expired":   LeaseStateExpired,
-		"leased":    LeaseStateLeased,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := LeaseState(input)
-	return &out, nil
-}
-
 type LeaseStatus string
 
 const (
@@ -180,20 +101,6 @@ func PossibleValuesForLeaseStatus() []string {
 	}
 }
 
-func parseLeaseStatus(input string) (*LeaseStatus, error) {
-	vals := map[string]LeaseStatus{
-		"locked":   LeaseStatusLocked,
-		"unlocked": LeaseStatusUnlocked,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := LeaseStatus(input)
-	return &out, nil
-}
-
 type ListContainersInclude string
 
 const (
@@ -204,19 +111,6 @@ func PossibleValuesForListContainersInclude() []string {
 	return []string{
 		string(ListContainersIncludeDeleted),
 	}
-}
-
-func parseListContainersInclude(input string) (*ListContainersInclude, error) {
-	vals := map[string]ListContainersInclude{
-		"deleted": ListContainersIncludeDeleted,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ListContainersInclude(input)
-	return &out, nil
 }
 
 type MigrationState string
@@ -233,20 +127,6 @@ func PossibleValuesForMigrationState() []string {
 	}
 }
 
-func parseMigrationState(input string) (*MigrationState, error) {
-	vals := map[string]MigrationState{
-		"completed":  MigrationStateCompleted,
-		"inprogress": MigrationStateInProgress,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := MigrationState(input)
-	return &out, nil
-}
-
 type PublicAccess string
 
 const (
@@ -261,19 +141,4 @@ func PossibleValuesForPublicAccess() []string {
 		string(PublicAccessContainer),
 		string(PublicAccessNone),
 	}
-}
-
-func parsePublicAccess(input string) (*PublicAccess, error) {
-	vals := map[string]PublicAccess{
-		"blob":      PublicAccessBlob,
-		"container": PublicAccessContainer,
-		"none":      PublicAccessNone,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PublicAccess(input)
-	return &out, nil
 }

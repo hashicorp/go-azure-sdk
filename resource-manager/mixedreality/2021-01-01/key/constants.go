@@ -16,17 +16,3 @@ func PossibleValuesForSerial() []int64 {
 		int64(SerialTwo),
 	}
 }
-
-func parseSerial(input int64) (*Serial, error) {
-	vals := map[int64]Serial{
-		1: SerialOne,
-		2: SerialTwo,
-	}
-	if v, ok := vals[input]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := Serial(input)
-	return &out, nil
-}

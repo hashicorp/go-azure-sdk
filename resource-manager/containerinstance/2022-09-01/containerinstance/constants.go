@@ -1,7 +1,5 @@
 package containerinstance
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -19,20 +17,6 @@ func PossibleValuesForContainerGroupIPAddressType() []string {
 	}
 }
 
-func parseContainerGroupIPAddressType(input string) (*ContainerGroupIPAddressType, error) {
-	vals := map[string]ContainerGroupIPAddressType{
-		"private": ContainerGroupIPAddressTypePrivate,
-		"public":  ContainerGroupIPAddressTypePublic,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ContainerGroupIPAddressType(input)
-	return &out, nil
-}
-
 type ContainerGroupNetworkProtocol string
 
 const (
@@ -45,20 +29,6 @@ func PossibleValuesForContainerGroupNetworkProtocol() []string {
 		string(ContainerGroupNetworkProtocolTCP),
 		string(ContainerGroupNetworkProtocolUDP),
 	}
-}
-
-func parseContainerGroupNetworkProtocol(input string) (*ContainerGroupNetworkProtocol, error) {
-	vals := map[string]ContainerGroupNetworkProtocol{
-		"tcp": ContainerGroupNetworkProtocolTCP,
-		"udp": ContainerGroupNetworkProtocolUDP,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ContainerGroupNetworkProtocol(input)
-	return &out, nil
 }
 
 type ContainerGroupRestartPolicy string
@@ -77,21 +47,6 @@ func PossibleValuesForContainerGroupRestartPolicy() []string {
 	}
 }
 
-func parseContainerGroupRestartPolicy(input string) (*ContainerGroupRestartPolicy, error) {
-	vals := map[string]ContainerGroupRestartPolicy{
-		"always":    ContainerGroupRestartPolicyAlways,
-		"never":     ContainerGroupRestartPolicyNever,
-		"onfailure": ContainerGroupRestartPolicyOnFailure,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ContainerGroupRestartPolicy(input)
-	return &out, nil
-}
-
 type ContainerGroupSku string
 
 const (
@@ -106,20 +61,6 @@ func PossibleValuesForContainerGroupSku() []string {
 	}
 }
 
-func parseContainerGroupSku(input string) (*ContainerGroupSku, error) {
-	vals := map[string]ContainerGroupSku{
-		"dedicated": ContainerGroupSkuDedicated,
-		"standard":  ContainerGroupSkuStandard,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ContainerGroupSku(input)
-	return &out, nil
-}
-
 type ContainerNetworkProtocol string
 
 const (
@@ -132,20 +73,6 @@ func PossibleValuesForContainerNetworkProtocol() []string {
 		string(ContainerNetworkProtocolTCP),
 		string(ContainerNetworkProtocolUDP),
 	}
-}
-
-func parseContainerNetworkProtocol(input string) (*ContainerNetworkProtocol, error) {
-	vals := map[string]ContainerNetworkProtocol{
-		"tcp": ContainerNetworkProtocolTCP,
-		"udp": ContainerNetworkProtocolUDP,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ContainerNetworkProtocol(input)
-	return &out, nil
 }
 
 type DnsNameLabelReusePolicy string
@@ -168,23 +95,6 @@ func PossibleValuesForDnsNameLabelReusePolicy() []string {
 	}
 }
 
-func parseDnsNameLabelReusePolicy(input string) (*DnsNameLabelReusePolicy, error) {
-	vals := map[string]DnsNameLabelReusePolicy{
-		"noreuse":            DnsNameLabelReusePolicyNoreuse,
-		"resourcegroupreuse": DnsNameLabelReusePolicyResourceGroupReuse,
-		"subscriptionreuse":  DnsNameLabelReusePolicySubscriptionReuse,
-		"tenantreuse":        DnsNameLabelReusePolicyTenantReuse,
-		"unsecure":           DnsNameLabelReusePolicyUnsecure,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := DnsNameLabelReusePolicy(input)
-	return &out, nil
-}
-
 type GpuSku string
 
 const (
@@ -201,21 +111,6 @@ func PossibleValuesForGpuSku() []string {
 	}
 }
 
-func parseGpuSku(input string) (*GpuSku, error) {
-	vals := map[string]GpuSku{
-		"k80":  GpuSkuKEightZero,
-		"p100": GpuSkuPOneHundred,
-		"v100": GpuSkuVOneHundred,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := GpuSku(input)
-	return &out, nil
-}
-
 type LogAnalyticsLogType string
 
 const (
@@ -228,20 +123,6 @@ func PossibleValuesForLogAnalyticsLogType() []string {
 		string(LogAnalyticsLogTypeContainerInsights),
 		string(LogAnalyticsLogTypeContainerInstanceLogs),
 	}
-}
-
-func parseLogAnalyticsLogType(input string) (*LogAnalyticsLogType, error) {
-	vals := map[string]LogAnalyticsLogType{
-		"containerinsights":     LogAnalyticsLogTypeContainerInsights,
-		"containerinstancelogs": LogAnalyticsLogTypeContainerInstanceLogs,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := LogAnalyticsLogType(input)
-	return &out, nil
 }
 
 type OperatingSystemTypes string
@@ -258,20 +139,6 @@ func PossibleValuesForOperatingSystemTypes() []string {
 	}
 }
 
-func parseOperatingSystemTypes(input string) (*OperatingSystemTypes, error) {
-	vals := map[string]OperatingSystemTypes{
-		"linux":   OperatingSystemTypesLinux,
-		"windows": OperatingSystemTypesWindows,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := OperatingSystemTypes(input)
-	return &out, nil
-}
-
 type Scheme string
 
 const (
@@ -284,18 +151,4 @@ func PossibleValuesForScheme() []string {
 		string(SchemeHTTP),
 		string(SchemeHTTPS),
 	}
-}
-
-func parseScheme(input string) (*Scheme, error) {
-	vals := map[string]Scheme{
-		"http":  SchemeHTTP,
-		"https": SchemeHTTPS,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := Scheme(input)
-	return &out, nil
 }

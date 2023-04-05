@@ -1,7 +1,5 @@
 package storageaccounts
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -21,21 +19,6 @@ func PossibleValuesForAccessTier() []string {
 	}
 }
 
-func parseAccessTier(input string) (*AccessTier, error) {
-	vals := map[string]AccessTier{
-		"cool":    AccessTierCool,
-		"hot":     AccessTierHot,
-		"premium": AccessTierPremium,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := AccessTier(input)
-	return &out, nil
-}
-
 type AccountImmutabilityPolicyState string
 
 const (
@@ -52,21 +35,6 @@ func PossibleValuesForAccountImmutabilityPolicyState() []string {
 	}
 }
 
-func parseAccountImmutabilityPolicyState(input string) (*AccountImmutabilityPolicyState, error) {
-	vals := map[string]AccountImmutabilityPolicyState{
-		"disabled": AccountImmutabilityPolicyStateDisabled,
-		"locked":   AccountImmutabilityPolicyStateLocked,
-		"unlocked": AccountImmutabilityPolicyStateUnlocked,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := AccountImmutabilityPolicyState(input)
-	return &out, nil
-}
-
 type AccountStatus string
 
 const (
@@ -79,20 +47,6 @@ func PossibleValuesForAccountStatus() []string {
 		string(AccountStatusAvailable),
 		string(AccountStatusUnavailable),
 	}
-}
-
-func parseAccountStatus(input string) (*AccountStatus, error) {
-	vals := map[string]AccountStatus{
-		"available":   AccountStatusAvailable,
-		"unavailable": AccountStatusUnavailable,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := AccountStatus(input)
-	return &out, nil
 }
 
 type AccountType string
@@ -109,20 +63,6 @@ func PossibleValuesForAccountType() []string {
 	}
 }
 
-func parseAccountType(input string) (*AccountType, error) {
-	vals := map[string]AccountType{
-		"computer": AccountTypeComputer,
-		"user":     AccountTypeUser,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := AccountType(input)
-	return &out, nil
-}
-
 type Action string
 
 const (
@@ -133,19 +73,6 @@ func PossibleValuesForAction() []string {
 	return []string{
 		string(ActionAllow),
 	}
-}
-
-func parseAction(input string) (*Action, error) {
-	vals := map[string]Action{
-		"allow": ActionAllow,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := Action(input)
-	return &out, nil
 }
 
 type AllowedCopyScope string
@@ -162,20 +89,6 @@ func PossibleValuesForAllowedCopyScope() []string {
 	}
 }
 
-func parseAllowedCopyScope(input string) (*AllowedCopyScope, error) {
-	vals := map[string]AllowedCopyScope{
-		"aad":         AllowedCopyScopeAAD,
-		"privatelink": AllowedCopyScopePrivateLink,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := AllowedCopyScope(input)
-	return &out, nil
-}
-
 type BlobRestoreProgressStatus string
 
 const (
@@ -190,21 +103,6 @@ func PossibleValuesForBlobRestoreProgressStatus() []string {
 		string(BlobRestoreProgressStatusFailed),
 		string(BlobRestoreProgressStatusInProgress),
 	}
-}
-
-func parseBlobRestoreProgressStatus(input string) (*BlobRestoreProgressStatus, error) {
-	vals := map[string]BlobRestoreProgressStatus{
-		"complete":   BlobRestoreProgressStatusComplete,
-		"failed":     BlobRestoreProgressStatusFailed,
-		"inprogress": BlobRestoreProgressStatusInProgress,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := BlobRestoreProgressStatus(input)
-	return &out, nil
 }
 
 type Bypass string
@@ -225,22 +123,6 @@ func PossibleValuesForBypass() []string {
 	}
 }
 
-func parseBypass(input string) (*Bypass, error) {
-	vals := map[string]Bypass{
-		"azureservices": BypassAzureServices,
-		"logging":       BypassLogging,
-		"metrics":       BypassMetrics,
-		"none":          BypassNone,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := Bypass(input)
-	return &out, nil
-}
-
 type DefaultAction string
 
 const (
@@ -253,20 +135,6 @@ func PossibleValuesForDefaultAction() []string {
 		string(DefaultActionAllow),
 		string(DefaultActionDeny),
 	}
-}
-
-func parseDefaultAction(input string) (*DefaultAction, error) {
-	vals := map[string]DefaultAction{
-		"allow": DefaultActionAllow,
-		"deny":  DefaultActionDeny,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := DefaultAction(input)
-	return &out, nil
 }
 
 type DefaultSharePermission string
@@ -287,22 +155,6 @@ func PossibleValuesForDefaultSharePermission() []string {
 	}
 }
 
-func parseDefaultSharePermission(input string) (*DefaultSharePermission, error) {
-	vals := map[string]DefaultSharePermission{
-		"none":                               DefaultSharePermissionNone,
-		"storagefiledatasmbsharecontributor": DefaultSharePermissionStorageFileDataSmbShareContributor,
-		"storagefiledatasmbshareelevatedcontributor": DefaultSharePermissionStorageFileDataSmbShareElevatedContributor,
-		"storagefiledatasmbsharereader":              DefaultSharePermissionStorageFileDataSmbShareReader,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := DefaultSharePermission(input)
-	return &out, nil
-}
-
 type DirectoryServiceOptions string
 
 const (
@@ -321,22 +173,6 @@ func PossibleValuesForDirectoryServiceOptions() []string {
 	}
 }
 
-func parseDirectoryServiceOptions(input string) (*DirectoryServiceOptions, error) {
-	vals := map[string]DirectoryServiceOptions{
-		"aadds":   DirectoryServiceOptionsAADDS,
-		"aadkerb": DirectoryServiceOptionsAADKERB,
-		"ad":      DirectoryServiceOptionsAD,
-		"none":    DirectoryServiceOptionsNone,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := DirectoryServiceOptions(input)
-	return &out, nil
-}
-
 type DnsEndpointType string
 
 const (
@@ -351,20 +187,6 @@ func PossibleValuesForDnsEndpointType() []string {
 	}
 }
 
-func parseDnsEndpointType(input string) (*DnsEndpointType, error) {
-	vals := map[string]DnsEndpointType{
-		"azurednszone": DnsEndpointTypeAzureDnsZone,
-		"standard":     DnsEndpointTypeStandard,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := DnsEndpointType(input)
-	return &out, nil
-}
-
 type ExpirationAction string
 
 const (
@@ -375,19 +197,6 @@ func PossibleValuesForExpirationAction() []string {
 	return []string{
 		string(ExpirationActionLog),
 	}
-}
-
-func parseExpirationAction(input string) (*ExpirationAction, error) {
-	vals := map[string]ExpirationAction{
-		"log": ExpirationActionLog,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ExpirationAction(input)
-	return &out, nil
 }
 
 type GeoReplicationStatus string
@@ -406,21 +215,6 @@ func PossibleValuesForGeoReplicationStatus() []string {
 	}
 }
 
-func parseGeoReplicationStatus(input string) (*GeoReplicationStatus, error) {
-	vals := map[string]GeoReplicationStatus{
-		"bootstrap":   GeoReplicationStatusBootstrap,
-		"live":        GeoReplicationStatusLive,
-		"unavailable": GeoReplicationStatusUnavailable,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := GeoReplicationStatus(input)
-	return &out, nil
-}
-
 type HTTPProtocol string
 
 const (
@@ -433,20 +227,6 @@ func PossibleValuesForHTTPProtocol() []string {
 		string(HTTPProtocolHTTPS),
 		string(HTTPProtocolHTTPSHttp),
 	}
-}
-
-func parseHTTPProtocol(input string) (*HTTPProtocol, error) {
-	vals := map[string]HTTPProtocol{
-		"https":      HTTPProtocolHTTPS,
-		"https,http": HTTPProtocolHTTPSHttp,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := HTTPProtocol(input)
-	return &out, nil
 }
 
 type KeyPermission string
@@ -463,20 +243,6 @@ func PossibleValuesForKeyPermission() []string {
 	}
 }
 
-func parseKeyPermission(input string) (*KeyPermission, error) {
-	vals := map[string]KeyPermission{
-		"full": KeyPermissionFull,
-		"read": KeyPermissionRead,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := KeyPermission(input)
-	return &out, nil
-}
-
 type KeySource string
 
 const (
@@ -491,20 +257,6 @@ func PossibleValuesForKeySource() []string {
 	}
 }
 
-func parseKeySource(input string) (*KeySource, error) {
-	vals := map[string]KeySource{
-		"microsoft.keyvault": KeySourceMicrosoftPointKeyvault,
-		"microsoft.storage":  KeySourceMicrosoftPointStorage,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := KeySource(input)
-	return &out, nil
-}
-
 type KeyType string
 
 const (
@@ -517,20 +269,6 @@ func PossibleValuesForKeyType() []string {
 		string(KeyTypeAccount),
 		string(KeyTypeService),
 	}
-}
-
-func parseKeyType(input string) (*KeyType, error) {
-	vals := map[string]KeyType{
-		"account": KeyTypeAccount,
-		"service": KeyTypeService,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := KeyType(input)
-	return &out, nil
 }
 
 type Kind string
@@ -553,23 +291,6 @@ func PossibleValuesForKind() []string {
 	}
 }
 
-func parseKind(input string) (*Kind, error) {
-	vals := map[string]Kind{
-		"blobstorage":      KindBlobStorage,
-		"blockblobstorage": KindBlockBlobStorage,
-		"filestorage":      KindFileStorage,
-		"storage":          KindStorage,
-		"storagev2":        KindStorageVTwo,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := Kind(input)
-	return &out, nil
-}
-
 type LargeFileSharesState string
 
 const (
@@ -584,20 +305,6 @@ func PossibleValuesForLargeFileSharesState() []string {
 	}
 }
 
-func parseLargeFileSharesState(input string) (*LargeFileSharesState, error) {
-	vals := map[string]LargeFileSharesState{
-		"disabled": LargeFileSharesStateDisabled,
-		"enabled":  LargeFileSharesStateEnabled,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := LargeFileSharesState(input)
-	return &out, nil
-}
-
 type ListKeyExpand string
 
 const (
@@ -608,19 +315,6 @@ func PossibleValuesForListKeyExpand() []string {
 	return []string{
 		string(ListKeyExpandKerb),
 	}
-}
-
-func parseListKeyExpand(input string) (*ListKeyExpand, error) {
-	vals := map[string]ListKeyExpand{
-		"kerb": ListKeyExpandKerb,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ListKeyExpand(input)
-	return &out, nil
 }
 
 type MinimumTlsVersion string
@@ -637,21 +331,6 @@ func PossibleValuesForMinimumTlsVersion() []string {
 		string(MinimumTlsVersionTLSOneTwo),
 		string(MinimumTlsVersionTLSOneZero),
 	}
-}
-
-func parseMinimumTlsVersion(input string) (*MinimumTlsVersion, error) {
-	vals := map[string]MinimumTlsVersion{
-		"tls1_1": MinimumTlsVersionTLSOneOne,
-		"tls1_2": MinimumTlsVersionTLSOneTwo,
-		"tls1_0": MinimumTlsVersionTLSOneZero,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := MinimumTlsVersion(input)
-	return &out, nil
 }
 
 type Permissions string
@@ -680,26 +359,6 @@ func PossibleValuesForPermissions() []string {
 	}
 }
 
-func parsePermissions(input string) (*Permissions, error) {
-	vals := map[string]Permissions{
-		"a": PermissionsA,
-		"c": PermissionsC,
-		"d": PermissionsD,
-		"l": PermissionsL,
-		"p": PermissionsP,
-		"r": PermissionsR,
-		"u": PermissionsU,
-		"w": PermissionsW,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := Permissions(input)
-	return &out, nil
-}
-
 type PrivateEndpointConnectionProvisioningState string
 
 const (
@@ -718,22 +377,6 @@ func PossibleValuesForPrivateEndpointConnectionProvisioningState() []string {
 	}
 }
 
-func parsePrivateEndpointConnectionProvisioningState(input string) (*PrivateEndpointConnectionProvisioningState, error) {
-	vals := map[string]PrivateEndpointConnectionProvisioningState{
-		"creating":  PrivateEndpointConnectionProvisioningStateCreating,
-		"deleting":  PrivateEndpointConnectionProvisioningStateDeleting,
-		"failed":    PrivateEndpointConnectionProvisioningStateFailed,
-		"succeeded": PrivateEndpointConnectionProvisioningStateSucceeded,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PrivateEndpointConnectionProvisioningState(input)
-	return &out, nil
-}
-
 type PrivateEndpointServiceConnectionStatus string
 
 const (
@@ -748,21 +391,6 @@ func PossibleValuesForPrivateEndpointServiceConnectionStatus() []string {
 		string(PrivateEndpointServiceConnectionStatusPending),
 		string(PrivateEndpointServiceConnectionStatusRejected),
 	}
-}
-
-func parsePrivateEndpointServiceConnectionStatus(input string) (*PrivateEndpointServiceConnectionStatus, error) {
-	vals := map[string]PrivateEndpointServiceConnectionStatus{
-		"approved": PrivateEndpointServiceConnectionStatusApproved,
-		"pending":  PrivateEndpointServiceConnectionStatusPending,
-		"rejected": PrivateEndpointServiceConnectionStatusRejected,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PrivateEndpointServiceConnectionStatus(input)
-	return &out, nil
 }
 
 type ProvisioningState string
@@ -781,21 +409,6 @@ func PossibleValuesForProvisioningState() []string {
 	}
 }
 
-func parseProvisioningState(input string) (*ProvisioningState, error) {
-	vals := map[string]ProvisioningState{
-		"creating":     ProvisioningStateCreating,
-		"resolvingdns": ProvisioningStateResolvingDNS,
-		"succeeded":    ProvisioningStateSucceeded,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ProvisioningState(input)
-	return &out, nil
-}
-
 type PublicNetworkAccess string
 
 const (
@@ -808,20 +421,6 @@ func PossibleValuesForPublicNetworkAccess() []string {
 		string(PublicNetworkAccessDisabled),
 		string(PublicNetworkAccessEnabled),
 	}
-}
-
-func parsePublicNetworkAccess(input string) (*PublicNetworkAccess, error) {
-	vals := map[string]PublicNetworkAccess{
-		"disabled": PublicNetworkAccessDisabled,
-		"enabled":  PublicNetworkAccessEnabled,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PublicNetworkAccess(input)
-	return &out, nil
 }
 
 type Reason string
@@ -838,20 +437,6 @@ func PossibleValuesForReason() []string {
 	}
 }
 
-func parseReason(input string) (*Reason, error) {
-	vals := map[string]Reason{
-		"accountnameinvalid": ReasonAccountNameInvalid,
-		"alreadyexists":      ReasonAlreadyExists,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := Reason(input)
-	return &out, nil
-}
-
 type RoutingChoice string
 
 const (
@@ -864,20 +449,6 @@ func PossibleValuesForRoutingChoice() []string {
 		string(RoutingChoiceInternetRouting),
 		string(RoutingChoiceMicrosoftRouting),
 	}
-}
-
-func parseRoutingChoice(input string) (*RoutingChoice, error) {
-	vals := map[string]RoutingChoice{
-		"internetrouting":  RoutingChoiceInternetRouting,
-		"microsoftrouting": RoutingChoiceMicrosoftRouting,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := RoutingChoice(input)
-	return &out, nil
 }
 
 type Services string
@@ -898,22 +469,6 @@ func PossibleValuesForServices() []string {
 	}
 }
 
-func parseServices(input string) (*Services, error) {
-	vals := map[string]Services{
-		"b": ServicesB,
-		"f": ServicesF,
-		"q": ServicesQ,
-		"t": ServicesT,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := Services(input)
-	return &out, nil
-}
-
 type SignedResource string
 
 const (
@@ -932,22 +487,6 @@ func PossibleValuesForSignedResource() []string {
 	}
 }
 
-func parseSignedResource(input string) (*SignedResource, error) {
-	vals := map[string]SignedResource{
-		"b": SignedResourceB,
-		"c": SignedResourceC,
-		"f": SignedResourceF,
-		"s": SignedResourceS,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SignedResource(input)
-	return &out, nil
-}
-
 type SignedResourceTypes string
 
 const (
@@ -964,21 +503,6 @@ func PossibleValuesForSignedResourceTypes() []string {
 	}
 }
 
-func parseSignedResourceTypes(input string) (*SignedResourceTypes, error) {
-	vals := map[string]SignedResourceTypes{
-		"c": SignedResourceTypesC,
-		"o": SignedResourceTypesO,
-		"s": SignedResourceTypesS,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SignedResourceTypes(input)
-	return &out, nil
-}
-
 type SkuConversionStatus string
 
 const (
@@ -993,21 +517,6 @@ func PossibleValuesForSkuConversionStatus() []string {
 		string(SkuConversionStatusInProgress),
 		string(SkuConversionStatusSucceeded),
 	}
-}
-
-func parseSkuConversionStatus(input string) (*SkuConversionStatus, error) {
-	vals := map[string]SkuConversionStatus{
-		"failed":     SkuConversionStatusFailed,
-		"inprogress": SkuConversionStatusInProgress,
-		"succeeded":  SkuConversionStatusSucceeded,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SkuConversionStatus(input)
-	return &out, nil
 }
 
 type SkuName string
@@ -1036,26 +545,6 @@ func PossibleValuesForSkuName() []string {
 	}
 }
 
-func parseSkuName(input string) (*SkuName, error) {
-	vals := map[string]SkuName{
-		"premium_lrs":     SkuNamePremiumLRS,
-		"premium_zrs":     SkuNamePremiumZRS,
-		"standard_grs":    SkuNameStandardGRS,
-		"standard_gzrs":   SkuNameStandardGZRS,
-		"standard_lrs":    SkuNameStandardLRS,
-		"standard_ragrs":  SkuNameStandardRAGRS,
-		"standard_ragzrs": SkuNameStandardRAGZRS,
-		"standard_zrs":    SkuNameStandardZRS,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SkuName(input)
-	return &out, nil
-}
-
 type SkuTier string
 
 const (
@@ -1068,20 +557,6 @@ func PossibleValuesForSkuTier() []string {
 		string(SkuTierPremium),
 		string(SkuTierStandard),
 	}
-}
-
-func parseSkuTier(input string) (*SkuTier, error) {
-	vals := map[string]SkuTier{
-		"premium":  SkuTierPremium,
-		"standard": SkuTierStandard,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SkuTier(input)
-	return &out, nil
 }
 
 type State string
@@ -1104,23 +579,6 @@ func PossibleValuesForState() []string {
 	}
 }
 
-func parseState(input string) (*State, error) {
-	vals := map[string]State{
-		"deprovisioning":       StateDeprovisioning,
-		"failed":               StateFailed,
-		"networksourcedeleted": StateNetworkSourceDeleted,
-		"provisioning":         StateProvisioning,
-		"succeeded":            StateSucceeded,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := State(input)
-	return &out, nil
-}
-
 type StorageAccountExpand string
 
 const (
@@ -1135,20 +593,6 @@ func PossibleValuesForStorageAccountExpand() []string {
 	}
 }
 
-func parseStorageAccountExpand(input string) (*StorageAccountExpand, error) {
-	vals := map[string]StorageAccountExpand{
-		"blobrestorestatus":   StorageAccountExpandBlobRestoreStatus,
-		"georeplicationstats": StorageAccountExpandGeoReplicationStats,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := StorageAccountExpand(input)
-	return &out, nil
-}
-
 type Type string
 
 const (
@@ -1159,17 +603,4 @@ func PossibleValuesForType() []string {
 	return []string{
 		string(TypeMicrosoftPointStorageStorageAccounts),
 	}
-}
-
-func parseType(input string) (*Type, error) {
-	vals := map[string]Type{
-		"microsoft.storage/storageaccounts": TypeMicrosoftPointStorageStorageAccounts,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := Type(input)
-	return &out, nil
 }

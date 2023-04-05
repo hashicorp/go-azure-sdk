@@ -1,7 +1,5 @@
 package databases
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -17,20 +15,6 @@ func PossibleValuesForCallerRole() []string {
 		string(CallerRoleAdmin),
 		string(CallerRoleNone),
 	}
-}
-
-func parseCallerRole(input string) (*CallerRole, error) {
-	vals := map[string]CallerRole{
-		"admin": CallerRoleAdmin,
-		"none":  CallerRoleNone,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := CallerRole(input)
-	return &out, nil
 }
 
 type DatabasePrincipalRole string
@@ -55,24 +39,6 @@ func PossibleValuesForDatabasePrincipalRole() []string {
 	}
 }
 
-func parseDatabasePrincipalRole(input string) (*DatabasePrincipalRole, error) {
-	vals := map[string]DatabasePrincipalRole{
-		"admin":              DatabasePrincipalRoleAdmin,
-		"ingestor":           DatabasePrincipalRoleIngestor,
-		"monitor":            DatabasePrincipalRoleMonitor,
-		"unrestrictedviewer": DatabasePrincipalRoleUnrestrictedViewer,
-		"user":               DatabasePrincipalRoleUser,
-		"viewer":             DatabasePrincipalRoleViewer,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := DatabasePrincipalRole(input)
-	return &out, nil
-}
-
 type DatabasePrincipalType string
 
 const (
@@ -87,21 +53,6 @@ func PossibleValuesForDatabasePrincipalType() []string {
 		string(DatabasePrincipalTypeGroup),
 		string(DatabasePrincipalTypeUser),
 	}
-}
-
-func parseDatabasePrincipalType(input string) (*DatabasePrincipalType, error) {
-	vals := map[string]DatabasePrincipalType{
-		"app":   DatabasePrincipalTypeApp,
-		"group": DatabasePrincipalTypeGroup,
-		"user":  DatabasePrincipalTypeUser,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := DatabasePrincipalType(input)
-	return &out, nil
 }
 
 type DatabaseShareOrigin string
@@ -120,21 +71,6 @@ func PossibleValuesForDatabaseShareOrigin() []string {
 	}
 }
 
-func parseDatabaseShareOrigin(input string) (*DatabaseShareOrigin, error) {
-	vals := map[string]DatabaseShareOrigin{
-		"datashare": DatabaseShareOriginDataShare,
-		"direct":    DatabaseShareOriginDirect,
-		"other":     DatabaseShareOriginOther,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := DatabaseShareOrigin(input)
-	return &out, nil
-}
-
 type Kind string
 
 const (
@@ -147,20 +83,6 @@ func PossibleValuesForKind() []string {
 		string(KindReadOnlyFollowing),
 		string(KindReadWrite),
 	}
-}
-
-func parseKind(input string) (*Kind, error) {
-	vals := map[string]Kind{
-		"readonlyfollowing": KindReadOnlyFollowing,
-		"readwrite":         KindReadWrite,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := Kind(input)
-	return &out, nil
 }
 
 type PrincipalsModificationKind string
@@ -177,21 +99,6 @@ func PossibleValuesForPrincipalsModificationKind() []string {
 		string(PrincipalsModificationKindReplace),
 		string(PrincipalsModificationKindUnion),
 	}
-}
-
-func parsePrincipalsModificationKind(input string) (*PrincipalsModificationKind, error) {
-	vals := map[string]PrincipalsModificationKind{
-		"none":    PrincipalsModificationKindNone,
-		"replace": PrincipalsModificationKindReplace,
-		"union":   PrincipalsModificationKindUnion,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PrincipalsModificationKind(input)
-	return &out, nil
 }
 
 type ProvisioningState string
@@ -218,25 +125,6 @@ func PossibleValuesForProvisioningState() []string {
 	}
 }
 
-func parseProvisioningState(input string) (*ProvisioningState, error) {
-	vals := map[string]ProvisioningState{
-		"canceled":  ProvisioningStateCanceled,
-		"creating":  ProvisioningStateCreating,
-		"deleting":  ProvisioningStateDeleting,
-		"failed":    ProvisioningStateFailed,
-		"moving":    ProvisioningStateMoving,
-		"running":   ProvisioningStateRunning,
-		"succeeded": ProvisioningStateSucceeded,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ProvisioningState(input)
-	return &out, nil
-}
-
 type Reason string
 
 const (
@@ -251,20 +139,6 @@ func PossibleValuesForReason() []string {
 	}
 }
 
-func parseReason(input string) (*Reason, error) {
-	vals := map[string]Reason{
-		"alreadyexists": ReasonAlreadyExists,
-		"invalid":       ReasonInvalid,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := Reason(input)
-	return &out, nil
-}
-
 type Type string
 
 const (
@@ -277,18 +151,4 @@ func PossibleValuesForType() []string {
 		string(TypeMicrosoftPointKustoClustersAttachedDatabaseConfigurations),
 		string(TypeMicrosoftPointKustoClustersDatabases),
 	}
-}
-
-func parseType(input string) (*Type, error) {
-	vals := map[string]Type{
-		"microsoft.kusto/clusters/attacheddatabaseconfigurations": TypeMicrosoftPointKustoClustersAttachedDatabaseConfigurations,
-		"microsoft.kusto/clusters/databases":                      TypeMicrosoftPointKustoClustersDatabases,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := Type(input)
-	return &out, nil
 }

@@ -1,7 +1,5 @@
 package recordsets
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -29,24 +27,4 @@ func PossibleValuesForRecordType() []string {
 		string(RecordTypeSRV),
 		string(RecordTypeTXT),
 	}
-}
-
-func parseRecordType(input string) (*RecordType, error) {
-	vals := map[string]RecordType{
-		"a":     RecordTypeA,
-		"aaaa":  RecordTypeAAAA,
-		"cname": RecordTypeCNAME,
-		"mx":    RecordTypeMX,
-		"ptr":   RecordTypePTR,
-		"soa":   RecordTypeSOA,
-		"srv":   RecordTypeSRV,
-		"txt":   RecordTypeTXT,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := RecordType(input)
-	return &out, nil
 }

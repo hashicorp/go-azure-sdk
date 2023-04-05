@@ -1,7 +1,5 @@
 package scalingplan
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -29,25 +27,6 @@ func PossibleValuesForDaysOfWeek() []string {
 	}
 }
 
-func parseDaysOfWeek(input string) (*DaysOfWeek, error) {
-	vals := map[string]DaysOfWeek{
-		"friday":    DaysOfWeekFriday,
-		"monday":    DaysOfWeekMonday,
-		"saturday":  DaysOfWeekSaturday,
-		"sunday":    DaysOfWeekSunday,
-		"thursday":  DaysOfWeekThursday,
-		"tuesday":   DaysOfWeekTuesday,
-		"wednesday": DaysOfWeekWednesday,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := DaysOfWeek(input)
-	return &out, nil
-}
-
 type ScalingHostPoolType string
 
 const (
@@ -58,19 +37,6 @@ func PossibleValuesForScalingHostPoolType() []string {
 	return []string{
 		string(ScalingHostPoolTypePooled),
 	}
-}
-
-func parseScalingHostPoolType(input string) (*ScalingHostPoolType, error) {
-	vals := map[string]ScalingHostPoolType{
-		"pooled": ScalingHostPoolTypePooled,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ScalingHostPoolType(input)
-	return &out, nil
 }
 
 type SessionHostLoadBalancingAlgorithm string
@@ -85,20 +51,6 @@ func PossibleValuesForSessionHostLoadBalancingAlgorithm() []string {
 		string(SessionHostLoadBalancingAlgorithmBreadthFirst),
 		string(SessionHostLoadBalancingAlgorithmDepthFirst),
 	}
-}
-
-func parseSessionHostLoadBalancingAlgorithm(input string) (*SessionHostLoadBalancingAlgorithm, error) {
-	vals := map[string]SessionHostLoadBalancingAlgorithm{
-		"breadthfirst": SessionHostLoadBalancingAlgorithmBreadthFirst,
-		"depthfirst":   SessionHostLoadBalancingAlgorithmDepthFirst,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SessionHostLoadBalancingAlgorithm(input)
-	return &out, nil
 }
 
 type SkuTier string
@@ -119,22 +71,6 @@ func PossibleValuesForSkuTier() []string {
 	}
 }
 
-func parseSkuTier(input string) (*SkuTier, error) {
-	vals := map[string]SkuTier{
-		"basic":    SkuTierBasic,
-		"free":     SkuTierFree,
-		"premium":  SkuTierPremium,
-		"standard": SkuTierStandard,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SkuTier(input)
-	return &out, nil
-}
-
 type StopHostsWhen string
 
 const (
@@ -147,18 +83,4 @@ func PossibleValuesForStopHostsWhen() []string {
 		string(StopHostsWhenZeroActiveSessions),
 		string(StopHostsWhenZeroSessions),
 	}
-}
-
-func parseStopHostsWhen(input string) (*StopHostsWhen, error) {
-	vals := map[string]StopHostsWhen{
-		"zeroactivesessions": StopHostsWhenZeroActiveSessions,
-		"zerosessions":       StopHostsWhenZeroSessions,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := StopHostsWhen(input)
-	return &out, nil
 }

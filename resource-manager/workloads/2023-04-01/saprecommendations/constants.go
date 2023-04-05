@@ -1,6 +1,10 @@
 package saprecommendations
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -17,17 +21,19 @@ func PossibleValuesForSAPDatabaseScaleMethod() []string {
 	}
 }
 
-func parseSAPDatabaseScaleMethod(input string) (*SAPDatabaseScaleMethod, error) {
-	vals := map[string]SAPDatabaseScaleMethod{
-		"scaleup": SAPDatabaseScaleMethodScaleUp,
+func (s *SAPDatabaseScaleMethod) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForSAPDatabaseScaleMethod() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SAPDatabaseScaleMethod(input)
-	return &out, nil
+	*s = SAPDatabaseScaleMethod(decoded)
+	return nil
 }
 
 type SAPDatabaseType string
@@ -44,18 +50,19 @@ func PossibleValuesForSAPDatabaseType() []string {
 	}
 }
 
-func parseSAPDatabaseType(input string) (*SAPDatabaseType, error) {
-	vals := map[string]SAPDatabaseType{
-		"db2":  SAPDatabaseTypeDBTwo,
-		"hana": SAPDatabaseTypeHANA,
+func (s *SAPDatabaseType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForSAPDatabaseType() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SAPDatabaseType(input)
-	return &out, nil
+	*s = SAPDatabaseType(decoded)
+	return nil
 }
 
 type SAPDeploymentType string
@@ -72,18 +79,19 @@ func PossibleValuesForSAPDeploymentType() []string {
 	}
 }
 
-func parseSAPDeploymentType(input string) (*SAPDeploymentType, error) {
-	vals := map[string]SAPDeploymentType{
-		"singleserver": SAPDeploymentTypeSingleServer,
-		"threetier":    SAPDeploymentTypeThreeTier,
+func (s *SAPDeploymentType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForSAPDeploymentType() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SAPDeploymentType(input)
-	return &out, nil
+	*s = SAPDeploymentType(decoded)
+	return nil
 }
 
 type SAPEnvironmentType string
@@ -100,18 +108,19 @@ func PossibleValuesForSAPEnvironmentType() []string {
 	}
 }
 
-func parseSAPEnvironmentType(input string) (*SAPEnvironmentType, error) {
-	vals := map[string]SAPEnvironmentType{
-		"nonprod": SAPEnvironmentTypeNonProd,
-		"prod":    SAPEnvironmentTypeProd,
+func (s *SAPEnvironmentType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForSAPEnvironmentType() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SAPEnvironmentType(input)
-	return &out, nil
+	*s = SAPEnvironmentType(decoded)
+	return nil
 }
 
 type SAPHighAvailabilityType string
@@ -128,18 +137,19 @@ func PossibleValuesForSAPHighAvailabilityType() []string {
 	}
 }
 
-func parseSAPHighAvailabilityType(input string) (*SAPHighAvailabilityType, error) {
-	vals := map[string]SAPHighAvailabilityType{
-		"availabilityset":  SAPHighAvailabilityTypeAvailabilitySet,
-		"availabilityzone": SAPHighAvailabilityTypeAvailabilityZone,
+func (s *SAPHighAvailabilityType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForSAPHighAvailabilityType() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SAPHighAvailabilityType(input)
-	return &out, nil
+	*s = SAPHighAvailabilityType(decoded)
+	return nil
 }
 
 type SAPProductType string
@@ -158,17 +168,17 @@ func PossibleValuesForSAPProductType() []string {
 	}
 }
 
-func parseSAPProductType(input string) (*SAPProductType, error) {
-	vals := map[string]SAPProductType{
-		"ecc":    SAPProductTypeECC,
-		"other":  SAPProductTypeOther,
-		"s4hana": SAPProductTypeSFourHANA,
+func (s *SAPProductType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForSAPProductType() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SAPProductType(input)
-	return &out, nil
+	*s = SAPProductType(decoded)
+	return nil
 }

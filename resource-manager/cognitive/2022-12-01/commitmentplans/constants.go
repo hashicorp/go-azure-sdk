@@ -1,7 +1,5 @@
 package commitmentplans
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -29,25 +27,6 @@ func PossibleValuesForCommitmentPlanProvisioningState() []string {
 	}
 }
 
-func parseCommitmentPlanProvisioningState(input string) (*CommitmentPlanProvisioningState, error) {
-	vals := map[string]CommitmentPlanProvisioningState{
-		"accepted":  CommitmentPlanProvisioningStateAccepted,
-		"canceled":  CommitmentPlanProvisioningStateCanceled,
-		"creating":  CommitmentPlanProvisioningStateCreating,
-		"deleting":  CommitmentPlanProvisioningStateDeleting,
-		"failed":    CommitmentPlanProvisioningStateFailed,
-		"moving":    CommitmentPlanProvisioningStateMoving,
-		"succeeded": CommitmentPlanProvisioningStateSucceeded,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := CommitmentPlanProvisioningState(input)
-	return &out, nil
-}
-
 type HostingModel string
 
 const (
@@ -62,21 +41,6 @@ func PossibleValuesForHostingModel() []string {
 		string(HostingModelDisconnectedContainer),
 		string(HostingModelWeb),
 	}
-}
-
-func parseHostingModel(input string) (*HostingModel, error) {
-	vals := map[string]HostingModel{
-		"connectedcontainer":    HostingModelConnectedContainer,
-		"disconnectedcontainer": HostingModelDisconnectedContainer,
-		"web":                   HostingModelWeb,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := HostingModel(input)
-	return &out, nil
 }
 
 type SkuTier string
@@ -97,21 +61,4 @@ func PossibleValuesForSkuTier() []string {
 		string(SkuTierPremium),
 		string(SkuTierStandard),
 	}
-}
-
-func parseSkuTier(input string) (*SkuTier, error) {
-	vals := map[string]SkuTier{
-		"basic":      SkuTierBasic,
-		"enterprise": SkuTierEnterprise,
-		"free":       SkuTierFree,
-		"premium":    SkuTierPremium,
-		"standard":   SkuTierStandard,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SkuTier(input)
-	return &out, nil
 }

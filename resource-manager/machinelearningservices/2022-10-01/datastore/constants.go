@@ -1,7 +1,5 @@
 package datastore
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -25,23 +23,6 @@ func PossibleValuesForCredentialsType() []string {
 	}
 }
 
-func parseCredentialsType(input string) (*CredentialsType, error) {
-	vals := map[string]CredentialsType{
-		"accountkey":       CredentialsTypeAccountKey,
-		"certificate":      CredentialsTypeCertificate,
-		"none":             CredentialsTypeNone,
-		"sas":              CredentialsTypeSas,
-		"serviceprincipal": CredentialsTypeServicePrincipal,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := CredentialsType(input)
-	return &out, nil
-}
-
 type DatastoreType string
 
 const (
@@ -58,22 +39,6 @@ func PossibleValuesForDatastoreType() []string {
 		string(DatastoreTypeAzureDataLakeGenTwo),
 		string(DatastoreTypeAzureFile),
 	}
-}
-
-func parseDatastoreType(input string) (*DatastoreType, error) {
-	vals := map[string]DatastoreType{
-		"azureblob":         DatastoreTypeAzureBlob,
-		"azuredatalakegen1": DatastoreTypeAzureDataLakeGenOne,
-		"azuredatalakegen2": DatastoreTypeAzureDataLakeGenTwo,
-		"azurefile":         DatastoreTypeAzureFile,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := DatastoreType(input)
-	return &out, nil
 }
 
 type SecretsType string
@@ -94,22 +59,6 @@ func PossibleValuesForSecretsType() []string {
 	}
 }
 
-func parseSecretsType(input string) (*SecretsType, error) {
-	vals := map[string]SecretsType{
-		"accountkey":       SecretsTypeAccountKey,
-		"certificate":      SecretsTypeCertificate,
-		"sas":              SecretsTypeSas,
-		"serviceprincipal": SecretsTypeServicePrincipal,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SecretsType(input)
-	return &out, nil
-}
-
 type ServiceDataAccessAuthIdentity string
 
 const (
@@ -124,19 +73,4 @@ func PossibleValuesForServiceDataAccessAuthIdentity() []string {
 		string(ServiceDataAccessAuthIdentityWorkspaceSystemAssignedIdentity),
 		string(ServiceDataAccessAuthIdentityWorkspaceUserAssignedIdentity),
 	}
-}
-
-func parseServiceDataAccessAuthIdentity(input string) (*ServiceDataAccessAuthIdentity, error) {
-	vals := map[string]ServiceDataAccessAuthIdentity{
-		"none":                            ServiceDataAccessAuthIdentityNone,
-		"workspacesystemassignedidentity": ServiceDataAccessAuthIdentityWorkspaceSystemAssignedIdentity,
-		"workspaceuserassignedidentity":   ServiceDataAccessAuthIdentityWorkspaceUserAssignedIdentity,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ServiceDataAccessAuthIdentity(input)
-	return &out, nil
 }

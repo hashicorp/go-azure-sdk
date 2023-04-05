@@ -1,7 +1,5 @@
 package datacollectionendpoints
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -25,23 +23,6 @@ func PossibleValuesForKnownDataCollectionEndpointProvisioningState() []string {
 	}
 }
 
-func parseKnownDataCollectionEndpointProvisioningState(input string) (*KnownDataCollectionEndpointProvisioningState, error) {
-	vals := map[string]KnownDataCollectionEndpointProvisioningState{
-		"creating":  KnownDataCollectionEndpointProvisioningStateCreating,
-		"deleting":  KnownDataCollectionEndpointProvisioningStateDeleting,
-		"failed":    KnownDataCollectionEndpointProvisioningStateFailed,
-		"succeeded": KnownDataCollectionEndpointProvisioningStateSucceeded,
-		"updating":  KnownDataCollectionEndpointProvisioningStateUpdating,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := KnownDataCollectionEndpointProvisioningState(input)
-	return &out, nil
-}
-
 type KnownDataCollectionEndpointResourceKind string
 
 const (
@@ -56,20 +37,6 @@ func PossibleValuesForKnownDataCollectionEndpointResourceKind() []string {
 	}
 }
 
-func parseKnownDataCollectionEndpointResourceKind(input string) (*KnownDataCollectionEndpointResourceKind, error) {
-	vals := map[string]KnownDataCollectionEndpointResourceKind{
-		"linux":   KnownDataCollectionEndpointResourceKindLinux,
-		"windows": KnownDataCollectionEndpointResourceKindWindows,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := KnownDataCollectionEndpointResourceKind(input)
-	return &out, nil
-}
-
 type KnownPublicNetworkAccessOptions string
 
 const (
@@ -82,18 +49,4 @@ func PossibleValuesForKnownPublicNetworkAccessOptions() []string {
 		string(KnownPublicNetworkAccessOptionsDisabled),
 		string(KnownPublicNetworkAccessOptionsEnabled),
 	}
-}
-
-func parseKnownPublicNetworkAccessOptions(input string) (*KnownPublicNetworkAccessOptions, error) {
-	vals := map[string]KnownPublicNetworkAccessOptions{
-		"disabled": KnownPublicNetworkAccessOptionsDisabled,
-		"enabled":  KnownPublicNetworkAccessOptionsEnabled,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := KnownPublicNetworkAccessOptions(input)
-	return &out, nil
 }

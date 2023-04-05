@@ -1,7 +1,5 @@
 package galleries
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -17,20 +15,6 @@ func PossibleValuesForGallerySharingPermissionTypes() []string {
 		string(GallerySharingPermissionTypesGroups),
 		string(GallerySharingPermissionTypesPrivate),
 	}
-}
-
-func parseGallerySharingPermissionTypes(input string) (*GallerySharingPermissionTypes, error) {
-	vals := map[string]GallerySharingPermissionTypes{
-		"groups":  GallerySharingPermissionTypesGroups,
-		"private": GallerySharingPermissionTypesPrivate,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := GallerySharingPermissionTypes(input)
-	return &out, nil
 }
 
 type ProvisioningState string
@@ -55,24 +39,6 @@ func PossibleValuesForProvisioningState() []string {
 	}
 }
 
-func parseProvisioningState(input string) (*ProvisioningState, error) {
-	vals := map[string]ProvisioningState{
-		"creating":  ProvisioningStateCreating,
-		"deleting":  ProvisioningStateDeleting,
-		"failed":    ProvisioningStateFailed,
-		"migrating": ProvisioningStateMigrating,
-		"succeeded": ProvisioningStateSucceeded,
-		"updating":  ProvisioningStateUpdating,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ProvisioningState(input)
-	return &out, nil
-}
-
 type SelectPermissions string
 
 const (
@@ -83,19 +49,6 @@ func PossibleValuesForSelectPermissions() []string {
 	return []string{
 		string(SelectPermissionsPermissions),
 	}
-}
-
-func parseSelectPermissions(input string) (*SelectPermissions, error) {
-	vals := map[string]SelectPermissions{
-		"permissions": SelectPermissionsPermissions,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SelectPermissions(input)
-	return &out, nil
 }
 
 type SharingProfileGroupTypes string
@@ -110,18 +63,4 @@ func PossibleValuesForSharingProfileGroupTypes() []string {
 		string(SharingProfileGroupTypesAADTenants),
 		string(SharingProfileGroupTypesSubscriptions),
 	}
-}
-
-func parseSharingProfileGroupTypes(input string) (*SharingProfileGroupTypes, error) {
-	vals := map[string]SharingProfileGroupTypes{
-		"aadtenants":    SharingProfileGroupTypesAADTenants,
-		"subscriptions": SharingProfileGroupTypesSubscriptions,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SharingProfileGroupTypes(input)
-	return &out, nil
 }

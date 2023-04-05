@@ -1,7 +1,5 @@
 package servicerunners
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -21,20 +19,4 @@ func PossibleValuesForManagedIdentityType() []string {
 		string(ManagedIdentityTypeSystemAssignedUserAssigned),
 		string(ManagedIdentityTypeUserAssigned),
 	}
-}
-
-func parseManagedIdentityType(input string) (*ManagedIdentityType, error) {
-	vals := map[string]ManagedIdentityType{
-		"none":                        ManagedIdentityTypeNone,
-		"systemassigned":              ManagedIdentityTypeSystemAssigned,
-		"systemassigned,userassigned": ManagedIdentityTypeSystemAssignedUserAssigned,
-		"userassigned":                ManagedIdentityTypeUserAssigned,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ManagedIdentityType(input)
-	return &out, nil
 }

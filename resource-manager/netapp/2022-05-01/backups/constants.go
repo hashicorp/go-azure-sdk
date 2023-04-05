@@ -1,7 +1,5 @@
 package backups
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -17,20 +15,6 @@ func PossibleValuesForBackupType() []string {
 		string(BackupTypeManual),
 		string(BackupTypeScheduled),
 	}
-}
-
-func parseBackupType(input string) (*BackupType, error) {
-	vals := map[string]BackupType{
-		"manual":    BackupTypeManual,
-		"scheduled": BackupTypeScheduled,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := BackupType(input)
-	return &out, nil
 }
 
 type MirrorState string
@@ -49,21 +33,6 @@ func PossibleValuesForMirrorState() []string {
 	}
 }
 
-func parseMirrorState(input string) (*MirrorState, error) {
-	vals := map[string]MirrorState{
-		"broken":        MirrorStateBroken,
-		"mirrored":      MirrorStateMirrored,
-		"uninitialized": MirrorStateUninitialized,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := MirrorState(input)
-	return &out, nil
-}
-
 type RelationshipStatus string
 
 const (
@@ -76,18 +45,4 @@ func PossibleValuesForRelationshipStatus() []string {
 		string(RelationshipStatusIdle),
 		string(RelationshipStatusTransferring),
 	}
-}
-
-func parseRelationshipStatus(input string) (*RelationshipStatus, error) {
-	vals := map[string]RelationshipStatus{
-		"idle":         RelationshipStatusIdle,
-		"transferring": RelationshipStatusTransferring,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := RelationshipStatus(input)
-	return &out, nil
 }

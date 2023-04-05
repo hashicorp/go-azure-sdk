@@ -1,6 +1,10 @@
 package jobdefinitions
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -19,18 +23,19 @@ func PossibleValuesForCopyMode() []string {
 	}
 }
 
-func parseCopyMode(input string) (*CopyMode, error) {
-	vals := map[string]CopyMode{
-		"additive": CopyModeAdditive,
-		"mirror":   CopyModeMirror,
+func (s *CopyMode) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForCopyMode() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := CopyMode(input)
-	return &out, nil
+	*s = CopyMode(decoded)
+	return nil
 }
 
 type JobRunStatus string
@@ -59,24 +64,19 @@ func PossibleValuesForJobRunStatus() []string {
 	}
 }
 
-func parseJobRunStatus(input string) (*JobRunStatus, error) {
-	vals := map[string]JobRunStatus{
-		"cancelrequested": JobRunStatusCancelRequested,
-		"canceled":        JobRunStatusCanceled,
-		"canceling":       JobRunStatusCanceling,
-		"failed":          JobRunStatusFailed,
-		"queued":          JobRunStatusQueued,
-		"running":         JobRunStatusRunning,
-		"started":         JobRunStatusStarted,
-		"succeeded":       JobRunStatusSucceeded,
+func (s *JobRunStatus) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForJobRunStatus() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := JobRunStatus(input)
-	return &out, nil
+	*s = JobRunStatus(decoded)
+	return nil
 }
 
 type ProvisioningState string
@@ -91,15 +91,17 @@ func PossibleValuesForProvisioningState() []string {
 	}
 }
 
-func parseProvisioningState(input string) (*ProvisioningState, error) {
-	vals := map[string]ProvisioningState{
-		"succeeded": ProvisioningStateSucceeded,
+func (s *ProvisioningState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForProvisioningState() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ProvisioningState(input)
-	return &out, nil
+	*s = ProvisioningState(decoded)
+	return nil
 }

@@ -1,7 +1,5 @@
 package batchendpoint
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -19,21 +17,6 @@ func PossibleValuesForEndpointAuthMode() []string {
 		string(EndpointAuthModeAMLToken),
 		string(EndpointAuthModeKey),
 	}
-}
-
-func parseEndpointAuthMode(input string) (*EndpointAuthMode, error) {
-	vals := map[string]EndpointAuthMode{
-		"aadtoken": EndpointAuthModeAADToken,
-		"amltoken": EndpointAuthModeAMLToken,
-		"key":      EndpointAuthModeKey,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := EndpointAuthMode(input)
-	return &out, nil
 }
 
 type EndpointProvisioningState string
@@ -58,24 +41,6 @@ func PossibleValuesForEndpointProvisioningState() []string {
 	}
 }
 
-func parseEndpointProvisioningState(input string) (*EndpointProvisioningState, error) {
-	vals := map[string]EndpointProvisioningState{
-		"canceled":  EndpointProvisioningStateCanceled,
-		"creating":  EndpointProvisioningStateCreating,
-		"deleting":  EndpointProvisioningStateDeleting,
-		"failed":    EndpointProvisioningStateFailed,
-		"succeeded": EndpointProvisioningStateSucceeded,
-		"updating":  EndpointProvisioningStateUpdating,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := EndpointProvisioningState(input)
-	return &out, nil
-}
-
 type ManagedServiceIdentityType string
 
 const (
@@ -94,22 +59,6 @@ func PossibleValuesForManagedServiceIdentityType() []string {
 	}
 }
 
-func parseManagedServiceIdentityType(input string) (*ManagedServiceIdentityType, error) {
-	vals := map[string]ManagedServiceIdentityType{
-		"none":                        ManagedServiceIdentityTypeNone,
-		"systemassigned":              ManagedServiceIdentityTypeSystemAssigned,
-		"systemassigned,userassigned": ManagedServiceIdentityTypeSystemAssignedUserAssigned,
-		"userassigned":                ManagedServiceIdentityTypeUserAssigned,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ManagedServiceIdentityType(input)
-	return &out, nil
-}
-
 type SkuTier string
 
 const (
@@ -126,20 +75,4 @@ func PossibleValuesForSkuTier() []string {
 		string(SkuTierPremium),
 		string(SkuTierStandard),
 	}
-}
-
-func parseSkuTier(input string) (*SkuTier, error) {
-	vals := map[string]SkuTier{
-		"basic":    SkuTierBasic,
-		"free":     SkuTierFree,
-		"premium":  SkuTierPremium,
-		"standard": SkuTierStandard,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SkuTier(input)
-	return &out, nil
 }

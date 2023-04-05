@@ -1,7 +1,5 @@
 package appliances
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -19,20 +17,6 @@ func PossibleValuesForAccessProfileType() []string {
 	}
 }
 
-func parseAccessProfileType(input string) (*AccessProfileType, error) {
-	vals := map[string]AccessProfileType{
-		"clustercustomeruser": AccessProfileTypeClusterCustomerUser,
-		"clusteruser":         AccessProfileTypeClusterUser,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := AccessProfileType(input)
-	return &out, nil
-}
-
 type Distro string
 
 const (
@@ -43,19 +27,6 @@ func PossibleValuesForDistro() []string {
 	return []string{
 		string(DistroAKSEdge),
 	}
-}
-
-func parseDistro(input string) (*Distro, error) {
-	vals := map[string]Distro{
-		"aksedge": DistroAKSEdge,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := Distro(input)
-	return &out, nil
 }
 
 type Provider string
@@ -76,23 +47,6 @@ func PossibleValuesForProvider() []string {
 		string(ProviderSCVMM),
 		string(ProviderVMWare),
 	}
-}
-
-func parseProvider(input string) (*Provider, error) {
-	vals := map[string]Provider{
-		"hci":       ProviderHCI,
-		"kubevirt":  ProviderKubeVirt,
-		"openstack": ProviderOpenStack,
-		"scvmm":     ProviderSCVMM,
-		"vmware":    ProviderVMWare,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := Provider(input)
-	return &out, nil
 }
 
 type Status string
@@ -157,43 +111,4 @@ func PossibleValuesForStatus() []string {
 		string(StatusWaitingForHeartbeat),
 		string(StatusWaitingForKVAIO),
 	}
-}
-
-func parseStatus(input string) (*Status, error) {
-	vals := map[string]Status{
-		"connected":                             StatusConnected,
-		"connecting":                            StatusConnecting,
-		"imagedeprovisioning":                   StatusImageDeprovisioning,
-		"imagedownloaded":                       StatusImageDownloaded,
-		"imagedownloading":                      StatusImageDownloading,
-		"imagepending":                          StatusImagePending,
-		"imageprovisioned":                      StatusImageProvisioned,
-		"imageprovisioning":                     StatusImageProvisioning,
-		"imageunknown":                          StatusImageUnknown,
-		"none":                                  StatusNone,
-		"offline":                               StatusOffline,
-		"postupgrade":                           StatusPostUpgrade,
-		"preupgrade":                            StatusPreUpgrade,
-		"preparingforupgrade":                   StatusPreparingForUpgrade,
-		"running":                               StatusRunning,
-		"updatingcapi":                          StatusUpdatingCAPI,
-		"updatingcloudoperator":                 StatusUpdatingCloudOperator,
-		"updatingcluster":                       StatusUpdatingCluster,
-		"upgradeclusterextensionfailedtodelete": StatusUpgradeClusterExtensionFailedToDelete,
-		"upgradecomplete":                       StatusUpgradeComplete,
-		"upgradefailed":                         StatusUpgradeFailed,
-		"upgradeprerequisitescompleted":         StatusUpgradePrerequisitesCompleted,
-		"upgradingkvaio":                        StatusUpgradingKVAIO,
-		"validating":                            StatusValidating,
-		"waitingforcloudoperator":               StatusWaitingForCloudOperator,
-		"waitingforheartbeat":                   StatusWaitingForHeartbeat,
-		"waitingforkvaio":                       StatusWaitingForKVAIO,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := Status(input)
-	return &out, nil
 }

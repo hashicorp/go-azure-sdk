@@ -1,7 +1,5 @@
 package datastores
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -31,26 +29,6 @@ func PossibleValuesForDatastoreProvisioningState() []string {
 	}
 }
 
-func parseDatastoreProvisioningState(input string) (*DatastoreProvisioningState, error) {
-	vals := map[string]DatastoreProvisioningState{
-		"canceled":  DatastoreProvisioningStateCanceled,
-		"cancelled": DatastoreProvisioningStateCancelled,
-		"creating":  DatastoreProvisioningStateCreating,
-		"deleting":  DatastoreProvisioningStateDeleting,
-		"failed":    DatastoreProvisioningStateFailed,
-		"pending":   DatastoreProvisioningStatePending,
-		"succeeded": DatastoreProvisioningStateSucceeded,
-		"updating":  DatastoreProvisioningStateUpdating,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := DatastoreProvisioningState(input)
-	return &out, nil
-}
-
 type DatastoreStatus string
 
 const (
@@ -75,25 +53,6 @@ func PossibleValuesForDatastoreStatus() []string {
 	}
 }
 
-func parseDatastoreStatus(input string) (*DatastoreStatus, error) {
-	vals := map[string]DatastoreStatus{
-		"accessible":        DatastoreStatusAccessible,
-		"attached":          DatastoreStatusAttached,
-		"deadorerror":       DatastoreStatusDeadOrError,
-		"detached":          DatastoreStatusDetached,
-		"inaccessible":      DatastoreStatusInaccessible,
-		"lostcommunication": DatastoreStatusLostCommunication,
-		"unknown":           DatastoreStatusUnknown,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := DatastoreStatus(input)
-	return &out, nil
-}
-
 type MountOptionEnum string
 
 const (
@@ -106,18 +65,4 @@ func PossibleValuesForMountOptionEnum() []string {
 		string(MountOptionEnumATTACH),
 		string(MountOptionEnumMOUNT),
 	}
-}
-
-func parseMountOptionEnum(input string) (*MountOptionEnum, error) {
-	vals := map[string]MountOptionEnum{
-		"attach": MountOptionEnumATTACH,
-		"mount":  MountOptionEnumMOUNT,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := MountOptionEnum(input)
-	return &out, nil
 }

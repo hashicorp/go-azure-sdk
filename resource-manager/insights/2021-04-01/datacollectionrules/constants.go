@@ -1,7 +1,5 @@
 package datacollectionrules
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -25,23 +23,6 @@ func PossibleValuesForKnownDataCollectionRuleProvisioningState() []string {
 	}
 }
 
-func parseKnownDataCollectionRuleProvisioningState(input string) (*KnownDataCollectionRuleProvisioningState, error) {
-	vals := map[string]KnownDataCollectionRuleProvisioningState{
-		"creating":  KnownDataCollectionRuleProvisioningStateCreating,
-		"deleting":  KnownDataCollectionRuleProvisioningStateDeleting,
-		"failed":    KnownDataCollectionRuleProvisioningStateFailed,
-		"succeeded": KnownDataCollectionRuleProvisioningStateSucceeded,
-		"updating":  KnownDataCollectionRuleProvisioningStateUpdating,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := KnownDataCollectionRuleProvisioningState(input)
-	return &out, nil
-}
-
 type KnownDataCollectionRuleResourceKind string
 
 const (
@@ -54,20 +35,6 @@ func PossibleValuesForKnownDataCollectionRuleResourceKind() []string {
 		string(KnownDataCollectionRuleResourceKindLinux),
 		string(KnownDataCollectionRuleResourceKindWindows),
 	}
-}
-
-func parseKnownDataCollectionRuleResourceKind(input string) (*KnownDataCollectionRuleResourceKind, error) {
-	vals := map[string]KnownDataCollectionRuleResourceKind{
-		"linux":   KnownDataCollectionRuleResourceKindLinux,
-		"windows": KnownDataCollectionRuleResourceKindWindows,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := KnownDataCollectionRuleResourceKind(input)
-	return &out, nil
 }
 
 type KnownDataFlowStreams string
@@ -90,23 +57,6 @@ func PossibleValuesForKnownDataFlowStreams() []string {
 	}
 }
 
-func parseKnownDataFlowStreams(input string) (*KnownDataFlowStreams, error) {
-	vals := map[string]KnownDataFlowStreams{
-		"microsoft-event":           KnownDataFlowStreamsMicrosoftNegativeEvent,
-		"microsoft-insightsmetrics": KnownDataFlowStreamsMicrosoftNegativeInsightsMetrics,
-		"microsoft-perf":            KnownDataFlowStreamsMicrosoftNegativePerf,
-		"microsoft-syslog":          KnownDataFlowStreamsMicrosoftNegativeSyslog,
-		"microsoft-windowsevent":    KnownDataFlowStreamsMicrosoftNegativeWindowsEvent,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := KnownDataFlowStreams(input)
-	return &out, nil
-}
-
 type KnownExtensionDataSourceStreams string
 
 const (
@@ -127,23 +77,6 @@ func PossibleValuesForKnownExtensionDataSourceStreams() []string {
 	}
 }
 
-func parseKnownExtensionDataSourceStreams(input string) (*KnownExtensionDataSourceStreams, error) {
-	vals := map[string]KnownExtensionDataSourceStreams{
-		"microsoft-event":           KnownExtensionDataSourceStreamsMicrosoftNegativeEvent,
-		"microsoft-insightsmetrics": KnownExtensionDataSourceStreamsMicrosoftNegativeInsightsMetrics,
-		"microsoft-perf":            KnownExtensionDataSourceStreamsMicrosoftNegativePerf,
-		"microsoft-syslog":          KnownExtensionDataSourceStreamsMicrosoftNegativeSyslog,
-		"microsoft-windowsevent":    KnownExtensionDataSourceStreamsMicrosoftNegativeWindowsEvent,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := KnownExtensionDataSourceStreams(input)
-	return &out, nil
-}
-
 type KnownPerfCounterDataSourceStreams string
 
 const (
@@ -156,20 +89,6 @@ func PossibleValuesForKnownPerfCounterDataSourceStreams() []string {
 		string(KnownPerfCounterDataSourceStreamsMicrosoftNegativeInsightsMetrics),
 		string(KnownPerfCounterDataSourceStreamsMicrosoftNegativePerf),
 	}
-}
-
-func parseKnownPerfCounterDataSourceStreams(input string) (*KnownPerfCounterDataSourceStreams, error) {
-	vals := map[string]KnownPerfCounterDataSourceStreams{
-		"microsoft-insightsmetrics": KnownPerfCounterDataSourceStreamsMicrosoftNegativeInsightsMetrics,
-		"microsoft-perf":            KnownPerfCounterDataSourceStreamsMicrosoftNegativePerf,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := KnownPerfCounterDataSourceStreams(input)
-	return &out, nil
 }
 
 type KnownSyslogDataSourceFacilityNames string
@@ -224,39 +143,6 @@ func PossibleValuesForKnownSyslogDataSourceFacilityNames() []string {
 	}
 }
 
-func parseKnownSyslogDataSourceFacilityNames(input string) (*KnownSyslogDataSourceFacilityNames, error) {
-	vals := map[string]KnownSyslogDataSourceFacilityNames{
-		"*":        KnownSyslogDataSourceFacilityNamesAny,
-		"auth":     KnownSyslogDataSourceFacilityNamesAuth,
-		"authpriv": KnownSyslogDataSourceFacilityNamesAuthpriv,
-		"cron":     KnownSyslogDataSourceFacilityNamesCron,
-		"daemon":   KnownSyslogDataSourceFacilityNamesDaemon,
-		"kern":     KnownSyslogDataSourceFacilityNamesKern,
-		"local5":   KnownSyslogDataSourceFacilityNamesLocalFive,
-		"local4":   KnownSyslogDataSourceFacilityNamesLocalFour,
-		"local1":   KnownSyslogDataSourceFacilityNamesLocalOne,
-		"local7":   KnownSyslogDataSourceFacilityNamesLocalSeven,
-		"local6":   KnownSyslogDataSourceFacilityNamesLocalSix,
-		"local3":   KnownSyslogDataSourceFacilityNamesLocalThree,
-		"local2":   KnownSyslogDataSourceFacilityNamesLocalTwo,
-		"local0":   KnownSyslogDataSourceFacilityNamesLocalZero,
-		"lpr":      KnownSyslogDataSourceFacilityNamesLpr,
-		"mail":     KnownSyslogDataSourceFacilityNamesMail,
-		"mark":     KnownSyslogDataSourceFacilityNamesMark,
-		"news":     KnownSyslogDataSourceFacilityNamesNews,
-		"syslog":   KnownSyslogDataSourceFacilityNamesSyslog,
-		"user":     KnownSyslogDataSourceFacilityNamesUser,
-		"uucp":     KnownSyslogDataSourceFacilityNamesUucp,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := KnownSyslogDataSourceFacilityNames(input)
-	return &out, nil
-}
-
 type KnownSyslogDataSourceLogLevels string
 
 const (
@@ -285,27 +171,6 @@ func PossibleValuesForKnownSyslogDataSourceLogLevels() []string {
 	}
 }
 
-func parseKnownSyslogDataSourceLogLevels(input string) (*KnownSyslogDataSourceLogLevels, error) {
-	vals := map[string]KnownSyslogDataSourceLogLevels{
-		"alert":     KnownSyslogDataSourceLogLevelsAlert,
-		"*":         KnownSyslogDataSourceLogLevelsAny,
-		"critical":  KnownSyslogDataSourceLogLevelsCritical,
-		"debug":     KnownSyslogDataSourceLogLevelsDebug,
-		"emergency": KnownSyslogDataSourceLogLevelsEmergency,
-		"error":     KnownSyslogDataSourceLogLevelsError,
-		"info":      KnownSyslogDataSourceLogLevelsInfo,
-		"notice":    KnownSyslogDataSourceLogLevelsNotice,
-		"warning":   KnownSyslogDataSourceLogLevelsWarning,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := KnownSyslogDataSourceLogLevels(input)
-	return &out, nil
-}
-
 type KnownSyslogDataSourceStreams string
 
 const (
@@ -316,19 +181,6 @@ func PossibleValuesForKnownSyslogDataSourceStreams() []string {
 	return []string{
 		string(KnownSyslogDataSourceStreamsMicrosoftNegativeSyslog),
 	}
-}
-
-func parseKnownSyslogDataSourceStreams(input string) (*KnownSyslogDataSourceStreams, error) {
-	vals := map[string]KnownSyslogDataSourceStreams{
-		"microsoft-syslog": KnownSyslogDataSourceStreamsMicrosoftNegativeSyslog,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := KnownSyslogDataSourceStreams(input)
-	return &out, nil
 }
 
 type KnownWindowsEventLogDataSourceStreams string
@@ -343,18 +195,4 @@ func PossibleValuesForKnownWindowsEventLogDataSourceStreams() []string {
 		string(KnownWindowsEventLogDataSourceStreamsMicrosoftNegativeEvent),
 		string(KnownWindowsEventLogDataSourceStreamsMicrosoftNegativeWindowsEvent),
 	}
-}
-
-func parseKnownWindowsEventLogDataSourceStreams(input string) (*KnownWindowsEventLogDataSourceStreams, error) {
-	vals := map[string]KnownWindowsEventLogDataSourceStreams{
-		"microsoft-event":        KnownWindowsEventLogDataSourceStreamsMicrosoftNegativeEvent,
-		"microsoft-windowsevent": KnownWindowsEventLogDataSourceStreamsMicrosoftNegativeWindowsEvent,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := KnownWindowsEventLogDataSourceStreams(input)
-	return &out, nil
 }

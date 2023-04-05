@@ -1,7 +1,5 @@
 package services
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -19,20 +17,6 @@ func PossibleValuesForPreemptionCapability() []string {
 	}
 }
 
-func parsePreemptionCapability(input string) (*PreemptionCapability, error) {
-	vals := map[string]PreemptionCapability{
-		"maypreempt": PreemptionCapabilityMayPreempt,
-		"notpreempt": PreemptionCapabilityNotPreempt,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PreemptionCapability(input)
-	return &out, nil
-}
-
 type PreemptionVulnerability string
 
 const (
@@ -45,20 +29,6 @@ func PossibleValuesForPreemptionVulnerability() []string {
 		string(PreemptionVulnerabilityNotPreemptable),
 		string(PreemptionVulnerabilityPreemptable),
 	}
-}
-
-func parsePreemptionVulnerability(input string) (*PreemptionVulnerability, error) {
-	vals := map[string]PreemptionVulnerability{
-		"notpreemptable": PreemptionVulnerabilityNotPreemptable,
-		"preemptable":    PreemptionVulnerabilityPreemptable,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PreemptionVulnerability(input)
-	return &out, nil
 }
 
 type ProvisioningState string
@@ -85,25 +55,6 @@ func PossibleValuesForProvisioningState() []string {
 	}
 }
 
-func parseProvisioningState(input string) (*ProvisioningState, error) {
-	vals := map[string]ProvisioningState{
-		"accepted":  ProvisioningStateAccepted,
-		"canceled":  ProvisioningStateCanceled,
-		"deleted":   ProvisioningStateDeleted,
-		"deleting":  ProvisioningStateDeleting,
-		"failed":    ProvisioningStateFailed,
-		"succeeded": ProvisioningStateSucceeded,
-		"unknown":   ProvisioningStateUnknown,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ProvisioningState(input)
-	return &out, nil
-}
-
 type SdfDirection string
 
 const (
@@ -120,21 +71,6 @@ func PossibleValuesForSdfDirection() []string {
 	}
 }
 
-func parseSdfDirection(input string) (*SdfDirection, error) {
-	vals := map[string]SdfDirection{
-		"bidirectional": SdfDirectionBidirectional,
-		"downlink":      SdfDirectionDownlink,
-		"uplink":        SdfDirectionUplink,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SdfDirection(input)
-	return &out, nil
-}
-
 type TrafficControlPermission string
 
 const (
@@ -147,18 +83,4 @@ func PossibleValuesForTrafficControlPermission() []string {
 		string(TrafficControlPermissionBlocked),
 		string(TrafficControlPermissionEnabled),
 	}
-}
-
-func parseTrafficControlPermission(input string) (*TrafficControlPermission, error) {
-	vals := map[string]TrafficControlPermission{
-		"blocked": TrafficControlPermissionBlocked,
-		"enabled": TrafficControlPermissionEnabled,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := TrafficControlPermission(input)
-	return &out, nil
 }

@@ -1,7 +1,5 @@
 package alertprocessingrules
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -17,20 +15,6 @@ func PossibleValuesForActionType() []string {
 		string(ActionTypeAddActionGroups),
 		string(ActionTypeRemoveAllActionGroups),
 	}
-}
-
-func parseActionType(input string) (*ActionType, error) {
-	vals := map[string]ActionType{
-		"addactiongroups":       ActionTypeAddActionGroups,
-		"removeallactiongroups": ActionTypeRemoveAllActionGroups,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ActionType(input)
-	return &out, nil
 }
 
 type DaysOfWeek string
@@ -55,25 +39,6 @@ func PossibleValuesForDaysOfWeek() []string {
 		string(DaysOfWeekTuesday),
 		string(DaysOfWeekWednesday),
 	}
-}
-
-func parseDaysOfWeek(input string) (*DaysOfWeek, error) {
-	vals := map[string]DaysOfWeek{
-		"friday":    DaysOfWeekFriday,
-		"monday":    DaysOfWeekMonday,
-		"saturday":  DaysOfWeekSaturday,
-		"sunday":    DaysOfWeekSunday,
-		"thursday":  DaysOfWeekThursday,
-		"tuesday":   DaysOfWeekTuesday,
-		"wednesday": DaysOfWeekWednesday,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := DaysOfWeek(input)
-	return &out, nil
 }
 
 type Field string
@@ -108,29 +73,6 @@ func PossibleValuesForField() []string {
 	}
 }
 
-func parseField(input string) (*Field, error) {
-	vals := map[string]Field{
-		"alertcontext":        FieldAlertContext,
-		"alertruleid":         FieldAlertRuleId,
-		"alertrulename":       FieldAlertRuleName,
-		"description":         FieldDescription,
-		"monitorcondition":    FieldMonitorCondition,
-		"monitorservice":      FieldMonitorService,
-		"severity":            FieldSeverity,
-		"signaltype":          FieldSignalType,
-		"targetresource":      FieldTargetResource,
-		"targetresourcegroup": FieldTargetResourceGroup,
-		"targetresourcetype":  FieldTargetResourceType,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := Field(input)
-	return &out, nil
-}
-
 type Operator string
 
 const (
@@ -149,22 +91,6 @@ func PossibleValuesForOperator() []string {
 	}
 }
 
-func parseOperator(input string) (*Operator, error) {
-	vals := map[string]Operator{
-		"contains":       OperatorContains,
-		"doesnotcontain": OperatorDoesNotContain,
-		"equals":         OperatorEquals,
-		"notequals":      OperatorNotEquals,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := Operator(input)
-	return &out, nil
-}
-
 type RecurrenceType string
 
 const (
@@ -179,19 +105,4 @@ func PossibleValuesForRecurrenceType() []string {
 		string(RecurrenceTypeMonthly),
 		string(RecurrenceTypeWeekly),
 	}
-}
-
-func parseRecurrenceType(input string) (*RecurrenceType, error) {
-	vals := map[string]RecurrenceType{
-		"daily":   RecurrenceTypeDaily,
-		"monthly": RecurrenceTypeMonthly,
-		"weekly":  RecurrenceTypeWeekly,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := RecurrenceType(input)
-	return &out, nil
 }

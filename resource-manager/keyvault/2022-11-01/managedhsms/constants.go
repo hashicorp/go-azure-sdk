@@ -1,7 +1,5 @@
 package managedhsms
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -15,19 +13,6 @@ func PossibleValuesForActionsRequired() []string {
 	return []string{
 		string(ActionsRequiredNone),
 	}
-}
-
-func parseActionsRequired(input string) (*ActionsRequired, error) {
-	vals := map[string]ActionsRequired{
-		"none": ActionsRequiredNone,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ActionsRequired(input)
-	return &out, nil
 }
 
 type ActivationStatus string
@@ -48,22 +33,6 @@ func PossibleValuesForActivationStatus() []string {
 	}
 }
 
-func parseActivationStatus(input string) (*ActivationStatus, error) {
-	vals := map[string]ActivationStatus{
-		"active":       ActivationStatusActive,
-		"failed":       ActivationStatusFailed,
-		"notactivated": ActivationStatusNotActivated,
-		"unknown":      ActivationStatusUnknown,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ActivationStatus(input)
-	return &out, nil
-}
-
 type CreateMode string
 
 const (
@@ -78,20 +47,6 @@ func PossibleValuesForCreateMode() []string {
 	}
 }
 
-func parseCreateMode(input string) (*CreateMode, error) {
-	vals := map[string]CreateMode{
-		"default": CreateModeDefault,
-		"recover": CreateModeRecover,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := CreateMode(input)
-	return &out, nil
-}
-
 type ManagedHsmSkuFamily string
 
 const (
@@ -102,19 +57,6 @@ func PossibleValuesForManagedHsmSkuFamily() []string {
 	return []string{
 		string(ManagedHsmSkuFamilyB),
 	}
-}
-
-func parseManagedHsmSkuFamily(input string) (*ManagedHsmSkuFamily, error) {
-	vals := map[string]ManagedHsmSkuFamily{
-		"b": ManagedHsmSkuFamilyB,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ManagedHsmSkuFamily(input)
-	return &out, nil
 }
 
 type ManagedHsmSkuName string
@@ -131,20 +73,6 @@ func PossibleValuesForManagedHsmSkuName() []string {
 	}
 }
 
-func parseManagedHsmSkuName(input string) (*ManagedHsmSkuName, error) {
-	vals := map[string]ManagedHsmSkuName{
-		"custom_b32":  ManagedHsmSkuNameCustomBThreeTwo,
-		"standard_b1": ManagedHsmSkuNameStandardBOne,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ManagedHsmSkuName(input)
-	return &out, nil
-}
-
 type NetworkRuleAction string
 
 const (
@@ -159,20 +87,6 @@ func PossibleValuesForNetworkRuleAction() []string {
 	}
 }
 
-func parseNetworkRuleAction(input string) (*NetworkRuleAction, error) {
-	vals := map[string]NetworkRuleAction{
-		"allow": NetworkRuleActionAllow,
-		"deny":  NetworkRuleActionDeny,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := NetworkRuleAction(input)
-	return &out, nil
-}
-
 type NetworkRuleBypassOptions string
 
 const (
@@ -185,20 +99,6 @@ func PossibleValuesForNetworkRuleBypassOptions() []string {
 		string(NetworkRuleBypassOptionsAzureServices),
 		string(NetworkRuleBypassOptionsNone),
 	}
-}
-
-func parseNetworkRuleBypassOptions(input string) (*NetworkRuleBypassOptions, error) {
-	vals := map[string]NetworkRuleBypassOptions{
-		"azureservices": NetworkRuleBypassOptionsAzureServices,
-		"none":          NetworkRuleBypassOptionsNone,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := NetworkRuleBypassOptions(input)
-	return &out, nil
 }
 
 type PrivateEndpointConnectionProvisioningState string
@@ -223,24 +123,6 @@ func PossibleValuesForPrivateEndpointConnectionProvisioningState() []string {
 	}
 }
 
-func parsePrivateEndpointConnectionProvisioningState(input string) (*PrivateEndpointConnectionProvisioningState, error) {
-	vals := map[string]PrivateEndpointConnectionProvisioningState{
-		"creating":     PrivateEndpointConnectionProvisioningStateCreating,
-		"deleting":     PrivateEndpointConnectionProvisioningStateDeleting,
-		"disconnected": PrivateEndpointConnectionProvisioningStateDisconnected,
-		"failed":       PrivateEndpointConnectionProvisioningStateFailed,
-		"succeeded":    PrivateEndpointConnectionProvisioningStateSucceeded,
-		"updating":     PrivateEndpointConnectionProvisioningStateUpdating,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PrivateEndpointConnectionProvisioningState(input)
-	return &out, nil
-}
-
 type PrivateEndpointServiceConnectionStatus string
 
 const (
@@ -257,22 +139,6 @@ func PossibleValuesForPrivateEndpointServiceConnectionStatus() []string {
 		string(PrivateEndpointServiceConnectionStatusPending),
 		string(PrivateEndpointServiceConnectionStatusRejected),
 	}
-}
-
-func parsePrivateEndpointServiceConnectionStatus(input string) (*PrivateEndpointServiceConnectionStatus, error) {
-	vals := map[string]PrivateEndpointServiceConnectionStatus{
-		"approved":     PrivateEndpointServiceConnectionStatusApproved,
-		"disconnected": PrivateEndpointServiceConnectionStatusDisconnected,
-		"pending":      PrivateEndpointServiceConnectionStatusPending,
-		"rejected":     PrivateEndpointServiceConnectionStatusRejected,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PrivateEndpointServiceConnectionStatus(input)
-	return &out, nil
 }
 
 type ProvisioningState string
@@ -301,26 +167,6 @@ func PossibleValuesForProvisioningState() []string {
 	}
 }
 
-func parseProvisioningState(input string) (*ProvisioningState, error) {
-	vals := map[string]ProvisioningState{
-		"activated":             ProvisioningStateActivated,
-		"deleting":              ProvisioningStateDeleting,
-		"failed":                ProvisioningStateFailed,
-		"provisioning":          ProvisioningStateProvisioning,
-		"restoring":             ProvisioningStateRestoring,
-		"securitydomainrestore": ProvisioningStateSecurityDomainRestore,
-		"succeeded":             ProvisioningStateSucceeded,
-		"updating":              ProvisioningStateUpdating,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ProvisioningState(input)
-	return &out, nil
-}
-
 type PublicNetworkAccess string
 
 const (
@@ -335,20 +181,6 @@ func PossibleValuesForPublicNetworkAccess() []string {
 	}
 }
 
-func parsePublicNetworkAccess(input string) (*PublicNetworkAccess, error) {
-	vals := map[string]PublicNetworkAccess{
-		"disabled": PublicNetworkAccessDisabled,
-		"enabled":  PublicNetworkAccessEnabled,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PublicNetworkAccess(input)
-	return &out, nil
-}
-
 type Reason string
 
 const (
@@ -361,18 +193,4 @@ func PossibleValuesForReason() []string {
 		string(ReasonAccountNameInvalid),
 		string(ReasonAlreadyExists),
 	}
-}
-
-func parseReason(input string) (*Reason, error) {
-	vals := map[string]Reason{
-		"accountnameinvalid": ReasonAccountNameInvalid,
-		"alreadyexists":      ReasonAlreadyExists,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := Reason(input)
-	return &out, nil
 }

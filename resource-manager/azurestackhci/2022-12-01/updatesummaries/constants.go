@@ -1,7 +1,5 @@
 package updatesummaries
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -27,24 +25,6 @@ func PossibleValuesForHealthState() []string {
 	}
 }
 
-func parseHealthState(input string) (*HealthState, error) {
-	vals := map[string]HealthState{
-		"error":      HealthStateError,
-		"failure":    HealthStateFailure,
-		"inprogress": HealthStateInProgress,
-		"success":    HealthStateSuccess,
-		"unknown":    HealthStateUnknown,
-		"warning":    HealthStateWarning,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := HealthState(input)
-	return &out, nil
-}
-
 type ProvisioningState string
 
 const (
@@ -65,23 +45,6 @@ func PossibleValuesForProvisioningState() []string {
 	}
 }
 
-func parseProvisioningState(input string) (*ProvisioningState, error) {
-	vals := map[string]ProvisioningState{
-		"accepted":     ProvisioningStateAccepted,
-		"canceled":     ProvisioningStateCanceled,
-		"failed":       ProvisioningStateFailed,
-		"provisioning": ProvisioningStateProvisioning,
-		"succeeded":    ProvisioningStateSucceeded,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ProvisioningState(input)
-	return &out, nil
-}
-
 type Severity string
 
 const (
@@ -100,22 +63,6 @@ func PossibleValuesForSeverity() []string {
 	}
 }
 
-func parseSeverity(input string) (*Severity, error) {
-	vals := map[string]Severity{
-		"critical":      SeverityCritical,
-		"hidden":        SeverityHidden,
-		"informational": SeverityInformational,
-		"warning":       SeverityWarning,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := Severity(input)
-	return &out, nil
-}
-
 type Status string
 
 const (
@@ -130,21 +77,6 @@ func PossibleValuesForStatus() []string {
 		string(StatusInProgress),
 		string(StatusSucceeded),
 	}
-}
-
-func parseStatus(input string) (*Status, error) {
-	vals := map[string]Status{
-		"failed":     StatusFailed,
-		"inprogress": StatusInProgress,
-		"succeeded":  StatusSucceeded,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := Status(input)
-	return &out, nil
 }
 
 type UpdateSummariesPropertiesState string
@@ -171,24 +103,4 @@ func PossibleValuesForUpdateSummariesPropertiesState() []string {
 		string(UpdateSummariesPropertiesStateUpdateFailed),
 		string(UpdateSummariesPropertiesStateUpdateInProgress),
 	}
-}
-
-func parseUpdateSummariesPropertiesState(input string) (*UpdateSummariesPropertiesState, error) {
-	vals := map[string]UpdateSummariesPropertiesState{
-		"appliedsuccessfully":   UpdateSummariesPropertiesStateAppliedSuccessfully,
-		"needsattention":        UpdateSummariesPropertiesStateNeedsAttention,
-		"preparationfailed":     UpdateSummariesPropertiesStatePreparationFailed,
-		"preparationinprogress": UpdateSummariesPropertiesStatePreparationInProgress,
-		"unknown":               UpdateSummariesPropertiesStateUnknown,
-		"updateavailable":       UpdateSummariesPropertiesStateUpdateAvailable,
-		"updatefailed":          UpdateSummariesPropertiesStateUpdateFailed,
-		"updateinprogress":      UpdateSummariesPropertiesStateUpdateInProgress,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := UpdateSummariesPropertiesState(input)
-	return &out, nil
 }

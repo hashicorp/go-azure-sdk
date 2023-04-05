@@ -1,7 +1,5 @@
 package autoscalesettings
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -27,24 +25,6 @@ func PossibleValuesForComparisonOperationType() []string {
 	}
 }
 
-func parseComparisonOperationType(input string) (*ComparisonOperationType, error) {
-	vals := map[string]ComparisonOperationType{
-		"equals":             ComparisonOperationTypeEquals,
-		"greaterthan":        ComparisonOperationTypeGreaterThan,
-		"greaterthanorequal": ComparisonOperationTypeGreaterThanOrEqual,
-		"lessthan":           ComparisonOperationTypeLessThan,
-		"lessthanorequal":    ComparisonOperationTypeLessThanOrEqual,
-		"notequals":          ComparisonOperationTypeNotEquals,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ComparisonOperationType(input)
-	return &out, nil
-}
-
 type MetricStatisticType string
 
 const (
@@ -65,23 +45,6 @@ func PossibleValuesForMetricStatisticType() []string {
 	}
 }
 
-func parseMetricStatisticType(input string) (*MetricStatisticType, error) {
-	vals := map[string]MetricStatisticType{
-		"average": MetricStatisticTypeAverage,
-		"count":   MetricStatisticTypeCount,
-		"max":     MetricStatisticTypeMax,
-		"min":     MetricStatisticTypeMin,
-		"sum":     MetricStatisticTypeSum,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := MetricStatisticType(input)
-	return &out, nil
-}
-
 type OperationType string
 
 const (
@@ -92,19 +55,6 @@ func PossibleValuesForOperationType() []string {
 	return []string{
 		string(OperationTypeScale),
 	}
-}
-
-func parseOperationType(input string) (*OperationType, error) {
-	vals := map[string]OperationType{
-		"scale": OperationTypeScale,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := OperationType(input)
-	return &out, nil
 }
 
 type PredictiveAutoscalePolicyScaleMode string
@@ -121,21 +71,6 @@ func PossibleValuesForPredictiveAutoscalePolicyScaleMode() []string {
 		string(PredictiveAutoscalePolicyScaleModeEnabled),
 		string(PredictiveAutoscalePolicyScaleModeForecastOnly),
 	}
-}
-
-func parsePredictiveAutoscalePolicyScaleMode(input string) (*PredictiveAutoscalePolicyScaleMode, error) {
-	vals := map[string]PredictiveAutoscalePolicyScaleMode{
-		"disabled":     PredictiveAutoscalePolicyScaleModeDisabled,
-		"enabled":      PredictiveAutoscalePolicyScaleModeEnabled,
-		"forecastonly": PredictiveAutoscalePolicyScaleModeForecastOnly,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PredictiveAutoscalePolicyScaleMode(input)
-	return &out, nil
 }
 
 type RecurrenceFrequency string
@@ -164,26 +99,6 @@ func PossibleValuesForRecurrenceFrequency() []string {
 	}
 }
 
-func parseRecurrenceFrequency(input string) (*RecurrenceFrequency, error) {
-	vals := map[string]RecurrenceFrequency{
-		"day":    RecurrenceFrequencyDay,
-		"hour":   RecurrenceFrequencyHour,
-		"minute": RecurrenceFrequencyMinute,
-		"month":  RecurrenceFrequencyMonth,
-		"none":   RecurrenceFrequencyNone,
-		"second": RecurrenceFrequencySecond,
-		"week":   RecurrenceFrequencyWeek,
-		"year":   RecurrenceFrequencyYear,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := RecurrenceFrequency(input)
-	return &out, nil
-}
-
 type ScaleDirection string
 
 const (
@@ -200,21 +115,6 @@ func PossibleValuesForScaleDirection() []string {
 	}
 }
 
-func parseScaleDirection(input string) (*ScaleDirection, error) {
-	vals := map[string]ScaleDirection{
-		"decrease": ScaleDirectionDecrease,
-		"increase": ScaleDirectionIncrease,
-		"none":     ScaleDirectionNone,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ScaleDirection(input)
-	return &out, nil
-}
-
 type ScaleRuleMetricDimensionOperationType string
 
 const (
@@ -227,20 +127,6 @@ func PossibleValuesForScaleRuleMetricDimensionOperationType() []string {
 		string(ScaleRuleMetricDimensionOperationTypeEquals),
 		string(ScaleRuleMetricDimensionOperationTypeNotEquals),
 	}
-}
-
-func parseScaleRuleMetricDimensionOperationType(input string) (*ScaleRuleMetricDimensionOperationType, error) {
-	vals := map[string]ScaleRuleMetricDimensionOperationType{
-		"equals":    ScaleRuleMetricDimensionOperationTypeEquals,
-		"notequals": ScaleRuleMetricDimensionOperationTypeNotEquals,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ScaleRuleMetricDimensionOperationType(input)
-	return &out, nil
 }
 
 type ScaleType string
@@ -259,22 +145,6 @@ func PossibleValuesForScaleType() []string {
 		string(ScaleTypePercentChangeCount),
 		string(ScaleTypeServiceAllowedNextValue),
 	}
-}
-
-func parseScaleType(input string) (*ScaleType, error) {
-	vals := map[string]ScaleType{
-		"changecount":             ScaleTypeChangeCount,
-		"exactcount":              ScaleTypeExactCount,
-		"percentchangecount":      ScaleTypePercentChangeCount,
-		"serviceallowednextvalue": ScaleTypeServiceAllowedNextValue,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ScaleType(input)
-	return &out, nil
 }
 
 type TimeAggregationType string
@@ -297,22 +167,4 @@ func PossibleValuesForTimeAggregationType() []string {
 		string(TimeAggregationTypeMinimum),
 		string(TimeAggregationTypeTotal),
 	}
-}
-
-func parseTimeAggregationType(input string) (*TimeAggregationType, error) {
-	vals := map[string]TimeAggregationType{
-		"average": TimeAggregationTypeAverage,
-		"count":   TimeAggregationTypeCount,
-		"last":    TimeAggregationTypeLast,
-		"maximum": TimeAggregationTypeMaximum,
-		"minimum": TimeAggregationTypeMinimum,
-		"total":   TimeAggregationTypeTotal,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := TimeAggregationType(input)
-	return &out, nil
 }

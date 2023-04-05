@@ -1,7 +1,5 @@
 package integrationaccountagreements
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -21,22 +19,6 @@ func PossibleValuesForAgreementType() []string {
 		string(AgreementTypeNotSpecified),
 		string(AgreementTypeXOneTwo),
 	}
-}
-
-func parseAgreementType(input string) (*AgreementType, error) {
-	vals := map[string]AgreementType{
-		"as2":          AgreementTypeASTwo,
-		"edifact":      AgreementTypeEdifact,
-		"notspecified": AgreementTypeNotSpecified,
-		"x12":          AgreementTypeXOneTwo,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := AgreementType(input)
-	return &out, nil
 }
 
 type EdifactCharacterSet string
@@ -79,33 +61,6 @@ func PossibleValuesForEdifactCharacterSet() []string {
 	}
 }
 
-func parseEdifactCharacterSet(input string) (*EdifactCharacterSet, error) {
-	vals := map[string]EdifactCharacterSet{
-		"keca":         EdifactCharacterSetKECA,
-		"notspecified": EdifactCharacterSetNotSpecified,
-		"unoa":         EdifactCharacterSetUNOA,
-		"unob":         EdifactCharacterSetUNOB,
-		"unoc":         EdifactCharacterSetUNOC,
-		"unod":         EdifactCharacterSetUNOD,
-		"unoe":         EdifactCharacterSetUNOE,
-		"unof":         EdifactCharacterSetUNOF,
-		"unog":         EdifactCharacterSetUNOG,
-		"unoh":         EdifactCharacterSetUNOH,
-		"unoi":         EdifactCharacterSetUNOI,
-		"unoj":         EdifactCharacterSetUNOJ,
-		"unok":         EdifactCharacterSetUNOK,
-		"unox":         EdifactCharacterSetUNOX,
-		"unoy":         EdifactCharacterSetUNOY,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := EdifactCharacterSet(input)
-	return &out, nil
-}
-
 type EdifactDecimalIndicator string
 
 const (
@@ -120,21 +75,6 @@ func PossibleValuesForEdifactDecimalIndicator() []string {
 		string(EdifactDecimalIndicatorDecimal),
 		string(EdifactDecimalIndicatorNotSpecified),
 	}
-}
-
-func parseEdifactDecimalIndicator(input string) (*EdifactDecimalIndicator, error) {
-	vals := map[string]EdifactDecimalIndicator{
-		"comma":        EdifactDecimalIndicatorComma,
-		"decimal":      EdifactDecimalIndicatorDecimal,
-		"notspecified": EdifactDecimalIndicatorNotSpecified,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := EdifactDecimalIndicator(input)
-	return &out, nil
 }
 
 type EncryptionAlgorithm string
@@ -161,25 +101,6 @@ func PossibleValuesForEncryptionAlgorithm() []string {
 	}
 }
 
-func parseEncryptionAlgorithm(input string) (*EncryptionAlgorithm, error) {
-	vals := map[string]EncryptionAlgorithm{
-		"aes192":       EncryptionAlgorithmAESOneNineTwo,
-		"aes128":       EncryptionAlgorithmAESOneTwoEight,
-		"aes256":       EncryptionAlgorithmAESTwoFiveSix,
-		"des3":         EncryptionAlgorithmDESThree,
-		"none":         EncryptionAlgorithmNone,
-		"notspecified": EncryptionAlgorithmNotSpecified,
-		"rc2":          EncryptionAlgorithmRCTwo,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := EncryptionAlgorithm(input)
-	return &out, nil
-}
-
 type HashingAlgorithm string
 
 const (
@@ -204,25 +125,6 @@ func PossibleValuesForHashingAlgorithm() []string {
 	}
 }
 
-func parseHashingAlgorithm(input string) (*HashingAlgorithm, error) {
-	vals := map[string]HashingAlgorithm{
-		"md5":          HashingAlgorithmMDFive,
-		"none":         HashingAlgorithmNone,
-		"notspecified": HashingAlgorithmNotSpecified,
-		"sha1":         HashingAlgorithmSHAOne,
-		"sha2512":      HashingAlgorithmSHATwoFiveOneTwo,
-		"sha2384":      HashingAlgorithmSHATwoThreeEightFour,
-		"sha2256":      HashingAlgorithmSHATwoTwoFiveSix,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := HashingAlgorithm(input)
-	return &out, nil
-}
-
 type KeyType string
 
 const (
@@ -239,21 +141,6 @@ func PossibleValuesForKeyType() []string {
 	}
 }
 
-func parseKeyType(input string) (*KeyType, error) {
-	vals := map[string]KeyType{
-		"notspecified": KeyTypeNotSpecified,
-		"primary":      KeyTypePrimary,
-		"secondary":    KeyTypeSecondary,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := KeyType(input)
-	return &out, nil
-}
-
 type MessageFilterType string
 
 const (
@@ -268,21 +155,6 @@ func PossibleValuesForMessageFilterType() []string {
 		string(MessageFilterTypeInclude),
 		string(MessageFilterTypeNotSpecified),
 	}
-}
-
-func parseMessageFilterType(input string) (*MessageFilterType, error) {
-	vals := map[string]MessageFilterType{
-		"exclude":      MessageFilterTypeExclude,
-		"include":      MessageFilterTypeInclude,
-		"notspecified": MessageFilterTypeNotSpecified,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := MessageFilterType(input)
-	return &out, nil
 }
 
 type SegmentTerminatorSuffix string
@@ -303,23 +175,6 @@ func PossibleValuesForSegmentTerminatorSuffix() []string {
 		string(SegmentTerminatorSuffixNone),
 		string(SegmentTerminatorSuffixNotSpecified),
 	}
-}
-
-func parseSegmentTerminatorSuffix(input string) (*SegmentTerminatorSuffix, error) {
-	vals := map[string]SegmentTerminatorSuffix{
-		"cr":           SegmentTerminatorSuffixCR,
-		"crlf":         SegmentTerminatorSuffixCRLF,
-		"lf":           SegmentTerminatorSuffixLF,
-		"none":         SegmentTerminatorSuffixNone,
-		"notspecified": SegmentTerminatorSuffixNotSpecified,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SegmentTerminatorSuffix(input)
-	return &out, nil
 }
 
 type SigningAlgorithm string
@@ -344,24 +199,6 @@ func PossibleValuesForSigningAlgorithm() []string {
 	}
 }
 
-func parseSigningAlgorithm(input string) (*SigningAlgorithm, error) {
-	vals := map[string]SigningAlgorithm{
-		"default":      SigningAlgorithmDefault,
-		"notspecified": SigningAlgorithmNotSpecified,
-		"sha1":         SigningAlgorithmSHAOne,
-		"sha2512":      SigningAlgorithmSHATwoFiveOneTwo,
-		"sha2384":      SigningAlgorithmSHATwoThreeEightFour,
-		"sha2256":      SigningAlgorithmSHATwoTwoFiveSix,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SigningAlgorithm(input)
-	return &out, nil
-}
-
 type TrailingSeparatorPolicy string
 
 const (
@@ -378,22 +215,6 @@ func PossibleValuesForTrailingSeparatorPolicy() []string {
 		string(TrailingSeparatorPolicyNotSpecified),
 		string(TrailingSeparatorPolicyOptional),
 	}
-}
-
-func parseTrailingSeparatorPolicy(input string) (*TrailingSeparatorPolicy, error) {
-	vals := map[string]TrailingSeparatorPolicy{
-		"mandatory":    TrailingSeparatorPolicyMandatory,
-		"notallowed":   TrailingSeparatorPolicyNotAllowed,
-		"notspecified": TrailingSeparatorPolicyNotSpecified,
-		"optional":     TrailingSeparatorPolicyOptional,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := TrailingSeparatorPolicy(input)
-	return &out, nil
 }
 
 type UsageIndicator string
@@ -414,22 +235,6 @@ func PossibleValuesForUsageIndicator() []string {
 	}
 }
 
-func parseUsageIndicator(input string) (*UsageIndicator, error) {
-	vals := map[string]UsageIndicator{
-		"information":  UsageIndicatorInformation,
-		"notspecified": UsageIndicatorNotSpecified,
-		"production":   UsageIndicatorProduction,
-		"test":         UsageIndicatorTest,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := UsageIndicator(input)
-	return &out, nil
-}
-
 type X12CharacterSet string
 
 const (
@@ -448,22 +253,6 @@ func PossibleValuesForX12CharacterSet() []string {
 	}
 }
 
-func parseX12CharacterSet(input string) (*X12CharacterSet, error) {
-	vals := map[string]X12CharacterSet{
-		"basic":        X12CharacterSetBasic,
-		"extended":     X12CharacterSetExtended,
-		"notspecified": X12CharacterSetNotSpecified,
-		"utf8":         X12CharacterSetUTFEight,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := X12CharacterSet(input)
-	return &out, nil
-}
-
 type X12DateFormat string
 
 const (
@@ -478,21 +267,6 @@ func PossibleValuesForX12DateFormat() []string {
 		string(X12DateFormatNotSpecified),
 		string(X12DateFormatYYMMDD),
 	}
-}
-
-func parseX12DateFormat(input string) (*X12DateFormat, error) {
-	vals := map[string]X12DateFormat{
-		"ccyymmdd":     X12DateFormatCCYYMMDD,
-		"notspecified": X12DateFormatNotSpecified,
-		"yymmdd":       X12DateFormatYYMMDD,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := X12DateFormat(input)
-	return &out, nil
 }
 
 type X12TimeFormat string
@@ -513,21 +287,4 @@ func PossibleValuesForX12TimeFormat() []string {
 		string(X12TimeFormatHHMMSSdd),
 		string(X12TimeFormatNotSpecified),
 	}
-}
-
-func parseX12TimeFormat(input string) (*X12TimeFormat, error) {
-	vals := map[string]X12TimeFormat{
-		"hhmm":         X12TimeFormatHHMM,
-		"hhmmss":       X12TimeFormatHHMMSS,
-		"hhmmssd":      X12TimeFormatHHMMSSd,
-		"hhmmssdd":     X12TimeFormatHHMMSSdd,
-		"notspecified": X12TimeFormatNotSpecified,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := X12TimeFormat(input)
-	return &out, nil
 }

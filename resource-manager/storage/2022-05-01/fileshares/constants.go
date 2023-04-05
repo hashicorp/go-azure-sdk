@@ -1,7 +1,5 @@
 package fileshares
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -19,20 +17,6 @@ func PossibleValuesForEnabledProtocols() []string {
 	}
 }
 
-func parseEnabledProtocols(input string) (*EnabledProtocols, error) {
-	vals := map[string]EnabledProtocols{
-		"nfs": EnabledProtocolsNFS,
-		"smb": EnabledProtocolsSMB,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := EnabledProtocols(input)
-	return &out, nil
-}
-
 type LeaseDuration string
 
 const (
@@ -45,20 +29,6 @@ func PossibleValuesForLeaseDuration() []string {
 		string(LeaseDurationFixed),
 		string(LeaseDurationInfinite),
 	}
-}
-
-func parseLeaseDuration(input string) (*LeaseDuration, error) {
-	vals := map[string]LeaseDuration{
-		"fixed":    LeaseDurationFixed,
-		"infinite": LeaseDurationInfinite,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := LeaseDuration(input)
-	return &out, nil
 }
 
 type LeaseShareAction string
@@ -81,23 +51,6 @@ func PossibleValuesForLeaseShareAction() []string {
 	}
 }
 
-func parseLeaseShareAction(input string) (*LeaseShareAction, error) {
-	vals := map[string]LeaseShareAction{
-		"acquire": LeaseShareActionAcquire,
-		"break":   LeaseShareActionBreak,
-		"change":  LeaseShareActionChange,
-		"release": LeaseShareActionRelease,
-		"renew":   LeaseShareActionRenew,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := LeaseShareAction(input)
-	return &out, nil
-}
-
 type LeaseState string
 
 const (
@@ -118,23 +71,6 @@ func PossibleValuesForLeaseState() []string {
 	}
 }
 
-func parseLeaseState(input string) (*LeaseState, error) {
-	vals := map[string]LeaseState{
-		"available": LeaseStateAvailable,
-		"breaking":  LeaseStateBreaking,
-		"broken":    LeaseStateBroken,
-		"expired":   LeaseStateExpired,
-		"leased":    LeaseStateLeased,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := LeaseState(input)
-	return &out, nil
-}
-
 type LeaseStatus string
 
 const (
@@ -147,20 +83,6 @@ func PossibleValuesForLeaseStatus() []string {
 		string(LeaseStatusLocked),
 		string(LeaseStatusUnlocked),
 	}
-}
-
-func parseLeaseStatus(input string) (*LeaseStatus, error) {
-	vals := map[string]LeaseStatus{
-		"locked":   LeaseStatusLocked,
-		"unlocked": LeaseStatusUnlocked,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := LeaseStatus(input)
-	return &out, nil
 }
 
 type RootSquashType string
@@ -179,21 +101,6 @@ func PossibleValuesForRootSquashType() []string {
 	}
 }
 
-func parseRootSquashType(input string) (*RootSquashType, error) {
-	vals := map[string]RootSquashType{
-		"allsquash":    RootSquashTypeAllSquash,
-		"norootsquash": RootSquashTypeNoRootSquash,
-		"rootsquash":   RootSquashTypeRootSquash,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := RootSquashType(input)
-	return &out, nil
-}
-
 type ShareAccessTier string
 
 const (
@@ -210,20 +117,4 @@ func PossibleValuesForShareAccessTier() []string {
 		string(ShareAccessTierPremium),
 		string(ShareAccessTierTransactionOptimized),
 	}
-}
-
-func parseShareAccessTier(input string) (*ShareAccessTier, error) {
-	vals := map[string]ShareAccessTier{
-		"cool":                 ShareAccessTierCool,
-		"hot":                  ShareAccessTierHot,
-		"premium":              ShareAccessTierPremium,
-		"transactionoptimized": ShareAccessTierTransactionOptimized,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ShareAccessTier(input)
-	return &out, nil
 }

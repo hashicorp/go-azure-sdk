@@ -1,7 +1,5 @@
 package azuretrafficcollectors
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -23,22 +21,6 @@ func PossibleValuesForCreatedByType() []string {
 	}
 }
 
-func parseCreatedByType(input string) (*CreatedByType, error) {
-	vals := map[string]CreatedByType{
-		"application":     CreatedByTypeApplication,
-		"key":             CreatedByTypeKey,
-		"managedidentity": CreatedByTypeManagedIdentity,
-		"user":            CreatedByTypeUser,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := CreatedByType(input)
-	return &out, nil
-}
-
 type ProvisioningState string
 
 const (
@@ -55,20 +37,4 @@ func PossibleValuesForProvisioningState() []string {
 		string(ProvisioningStateSucceeded),
 		string(ProvisioningStateUpdating),
 	}
-}
-
-func parseProvisioningState(input string) (*ProvisioningState, error) {
-	vals := map[string]ProvisioningState{
-		"deleting":  ProvisioningStateDeleting,
-		"failed":    ProvisioningStateFailed,
-		"succeeded": ProvisioningStateSucceeded,
-		"updating":  ProvisioningStateUpdating,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ProvisioningState(input)
-	return &out, nil
 }

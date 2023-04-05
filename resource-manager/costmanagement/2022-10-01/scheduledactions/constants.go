@@ -1,7 +1,5 @@
 package scheduledactions
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -17,20 +15,6 @@ func PossibleValuesForCheckNameAvailabilityReason() []string {
 		string(CheckNameAvailabilityReasonAlreadyExists),
 		string(CheckNameAvailabilityReasonInvalid),
 	}
-}
-
-func parseCheckNameAvailabilityReason(input string) (*CheckNameAvailabilityReason, error) {
-	vals := map[string]CheckNameAvailabilityReason{
-		"alreadyexists": CheckNameAvailabilityReasonAlreadyExists,
-		"invalid":       CheckNameAvailabilityReasonInvalid,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := CheckNameAvailabilityReason(input)
-	return &out, nil
 }
 
 type DaysOfWeek string
@@ -57,25 +41,6 @@ func PossibleValuesForDaysOfWeek() []string {
 	}
 }
 
-func parseDaysOfWeek(input string) (*DaysOfWeek, error) {
-	vals := map[string]DaysOfWeek{
-		"friday":    DaysOfWeekFriday,
-		"monday":    DaysOfWeekMonday,
-		"saturday":  DaysOfWeekSaturday,
-		"sunday":    DaysOfWeekSunday,
-		"thursday":  DaysOfWeekThursday,
-		"tuesday":   DaysOfWeekTuesday,
-		"wednesday": DaysOfWeekWednesday,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := DaysOfWeek(input)
-	return &out, nil
-}
-
 type FileFormat string
 
 const (
@@ -86,19 +51,6 @@ func PossibleValuesForFileFormat() []string {
 	return []string{
 		string(FileFormatCsv),
 	}
-}
-
-func parseFileFormat(input string) (*FileFormat, error) {
-	vals := map[string]FileFormat{
-		"csv": FileFormatCsv,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := FileFormat(input)
-	return &out, nil
 }
 
 type ScheduleFrequency string
@@ -117,21 +69,6 @@ func PossibleValuesForScheduleFrequency() []string {
 	}
 }
 
-func parseScheduleFrequency(input string) (*ScheduleFrequency, error) {
-	vals := map[string]ScheduleFrequency{
-		"daily":   ScheduleFrequencyDaily,
-		"monthly": ScheduleFrequencyMonthly,
-		"weekly":  ScheduleFrequencyWeekly,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ScheduleFrequency(input)
-	return &out, nil
-}
-
 type ScheduledActionKind string
 
 const (
@@ -144,20 +81,6 @@ func PossibleValuesForScheduledActionKind() []string {
 		string(ScheduledActionKindEmail),
 		string(ScheduledActionKindInsightAlert),
 	}
-}
-
-func parseScheduledActionKind(input string) (*ScheduledActionKind, error) {
-	vals := map[string]ScheduledActionKind{
-		"email":        ScheduledActionKindEmail,
-		"insightalert": ScheduledActionKindInsightAlert,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ScheduledActionKind(input)
-	return &out, nil
 }
 
 type ScheduledActionStatus string
@@ -174,21 +97,6 @@ func PossibleValuesForScheduledActionStatus() []string {
 		string(ScheduledActionStatusEnabled),
 		string(ScheduledActionStatusExpired),
 	}
-}
-
-func parseScheduledActionStatus(input string) (*ScheduledActionStatus, error) {
-	vals := map[string]ScheduledActionStatus{
-		"disabled": ScheduledActionStatusDisabled,
-		"enabled":  ScheduledActionStatusEnabled,
-		"expired":  ScheduledActionStatusExpired,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ScheduledActionStatus(input)
-	return &out, nil
 }
 
 type WeeksOfMonth string
@@ -209,21 +117,4 @@ func PossibleValuesForWeeksOfMonth() []string {
 		string(WeeksOfMonthSecond),
 		string(WeeksOfMonthThird),
 	}
-}
-
-func parseWeeksOfMonth(input string) (*WeeksOfMonth, error) {
-	vals := map[string]WeeksOfMonth{
-		"first":  WeeksOfMonthFirst,
-		"fourth": WeeksOfMonthFourth,
-		"last":   WeeksOfMonthLast,
-		"second": WeeksOfMonthSecond,
-		"third":  WeeksOfMonthThird,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := WeeksOfMonth(input)
-	return &out, nil
 }

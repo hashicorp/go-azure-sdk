@@ -1,7 +1,5 @@
 package managedcluster
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -19,20 +17,6 @@ func PossibleValuesForAccess() []string {
 	}
 }
 
-func parseAccess(input string) (*Access, error) {
-	vals := map[string]Access{
-		"allow": AccessAllow,
-		"deny":  AccessDeny,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := Access(input)
-	return &out, nil
-}
-
 type AddonFeatures string
 
 const (
@@ -47,21 +31,6 @@ func PossibleValuesForAddonFeatures() []string {
 		string(AddonFeaturesDnsService),
 		string(AddonFeaturesResourceMonitorService),
 	}
-}
-
-func parseAddonFeatures(input string) (*AddonFeatures, error) {
-	vals := map[string]AddonFeatures{
-		"backuprestoreservice":   AddonFeaturesBackupRestoreService,
-		"dnsservice":             AddonFeaturesDnsService,
-		"resourcemonitorservice": AddonFeaturesResourceMonitorService,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := AddonFeatures(input)
-	return &out, nil
 }
 
 type ClusterState string
@@ -86,24 +55,6 @@ func PossibleValuesForClusterState() []string {
 	}
 }
 
-func parseClusterState(input string) (*ClusterState, error) {
-	vals := map[string]ClusterState{
-		"baselineupgrade": ClusterStateBaselineUpgrade,
-		"deploying":       ClusterStateDeploying,
-		"ready":           ClusterStateReady,
-		"upgradefailed":   ClusterStateUpgradeFailed,
-		"upgrading":       ClusterStateUpgrading,
-		"waitingfornodes": ClusterStateWaitingForNodes,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ClusterState(input)
-	return &out, nil
-}
-
 type ClusterUpgradeCadence string
 
 const (
@@ -120,21 +71,6 @@ func PossibleValuesForClusterUpgradeCadence() []string {
 	}
 }
 
-func parseClusterUpgradeCadence(input string) (*ClusterUpgradeCadence, error) {
-	vals := map[string]ClusterUpgradeCadence{
-		"wave1": ClusterUpgradeCadenceWaveOne,
-		"wave2": ClusterUpgradeCadenceWaveTwo,
-		"wave0": ClusterUpgradeCadenceWaveZero,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ClusterUpgradeCadence(input)
-	return &out, nil
-}
-
 type ClusterUpgradeMode string
 
 const (
@@ -149,20 +85,6 @@ func PossibleValuesForClusterUpgradeMode() []string {
 	}
 }
 
-func parseClusterUpgradeMode(input string) (*ClusterUpgradeMode, error) {
-	vals := map[string]ClusterUpgradeMode{
-		"automatic": ClusterUpgradeModeAutomatic,
-		"manual":    ClusterUpgradeModeManual,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ClusterUpgradeMode(input)
-	return &out, nil
-}
-
 type Direction string
 
 const (
@@ -175,20 +97,6 @@ func PossibleValuesForDirection() []string {
 		string(DirectionInbound),
 		string(DirectionOutbound),
 	}
-}
-
-func parseDirection(input string) (*Direction, error) {
-	vals := map[string]Direction{
-		"inbound":  DirectionInbound,
-		"outbound": DirectionOutbound,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := Direction(input)
-	return &out, nil
 }
 
 type ManagedResourceProvisioningState string
@@ -221,28 +129,6 @@ func PossibleValuesForManagedResourceProvisioningState() []string {
 	}
 }
 
-func parseManagedResourceProvisioningState(input string) (*ManagedResourceProvisioningState, error) {
-	vals := map[string]ManagedResourceProvisioningState{
-		"canceled":  ManagedResourceProvisioningStateCanceled,
-		"created":   ManagedResourceProvisioningStateCreated,
-		"creating":  ManagedResourceProvisioningStateCreating,
-		"deleted":   ManagedResourceProvisioningStateDeleted,
-		"deleting":  ManagedResourceProvisioningStateDeleting,
-		"failed":    ManagedResourceProvisioningStateFailed,
-		"none":      ManagedResourceProvisioningStateNone,
-		"other":     ManagedResourceProvisioningStateOther,
-		"succeeded": ManagedResourceProvisioningStateSucceeded,
-		"updating":  ManagedResourceProvisioningStateUpdating,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ManagedResourceProvisioningState(input)
-	return &out, nil
-}
-
 type NsgProtocol string
 
 const (
@@ -267,25 +153,6 @@ func PossibleValuesForNsgProtocol() []string {
 	}
 }
 
-func parseNsgProtocol(input string) (*NsgProtocol, error) {
-	vals := map[string]NsgProtocol{
-		"ah":    NsgProtocolAh,
-		"esp":   NsgProtocolEsp,
-		"http":  NsgProtocolHTTP,
-		"https": NsgProtocolHTTPS,
-		"icmp":  NsgProtocolIcmp,
-		"tcp":   NsgProtocolTcp,
-		"udp":   NsgProtocolUdp,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := NsgProtocol(input)
-	return &out, nil
-}
-
 type ProbeProtocol string
 
 const (
@@ -302,21 +169,6 @@ func PossibleValuesForProbeProtocol() []string {
 	}
 }
 
-func parseProbeProtocol(input string) (*ProbeProtocol, error) {
-	vals := map[string]ProbeProtocol{
-		"http":  ProbeProtocolHTTP,
-		"https": ProbeProtocolHTTPS,
-		"tcp":   ProbeProtocolTcp,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ProbeProtocol(input)
-	return &out, nil
-}
-
 type Protocol string
 
 const (
@@ -331,20 +183,6 @@ func PossibleValuesForProtocol() []string {
 	}
 }
 
-func parseProtocol(input string) (*Protocol, error) {
-	vals := map[string]Protocol{
-		"tcp": ProtocolTcp,
-		"udp": ProtocolUdp,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := Protocol(input)
-	return &out, nil
-}
-
 type SkuName string
 
 const (
@@ -357,18 +195,4 @@ func PossibleValuesForSkuName() []string {
 		string(SkuNameBasic),
 		string(SkuNameStandard),
 	}
-}
-
-func parseSkuName(input string) (*SkuName, error) {
-	vals := map[string]SkuName{
-		"basic":    SkuNameBasic,
-		"standard": SkuNameStandard,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SkuName(input)
-	return &out, nil
 }

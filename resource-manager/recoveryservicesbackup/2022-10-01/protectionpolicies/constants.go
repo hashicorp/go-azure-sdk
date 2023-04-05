@@ -1,7 +1,5 @@
 package protectionpolicies
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -29,25 +27,6 @@ func PossibleValuesForDayOfWeek() []string {
 	}
 }
 
-func parseDayOfWeek(input string) (*DayOfWeek, error) {
-	vals := map[string]DayOfWeek{
-		"friday":    DayOfWeekFriday,
-		"monday":    DayOfWeekMonday,
-		"saturday":  DayOfWeekSaturday,
-		"sunday":    DayOfWeekSunday,
-		"thursday":  DayOfWeekThursday,
-		"tuesday":   DayOfWeekTuesday,
-		"wednesday": DayOfWeekWednesday,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := DayOfWeek(input)
-	return &out, nil
-}
-
 type IAASVMPolicyType string
 
 const (
@@ -62,21 +41,6 @@ func PossibleValuesForIAASVMPolicyType() []string {
 		string(IAASVMPolicyTypeVOne),
 		string(IAASVMPolicyTypeVTwo),
 	}
-}
-
-func parseIAASVMPolicyType(input string) (*IAASVMPolicyType, error) {
-	vals := map[string]IAASVMPolicyType{
-		"invalid": IAASVMPolicyTypeInvalid,
-		"v1":      IAASVMPolicyTypeVOne,
-		"v2":      IAASVMPolicyTypeVTwo,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := IAASVMPolicyType(input)
-	return &out, nil
 }
 
 type MonthOfYear string
@@ -115,31 +79,6 @@ func PossibleValuesForMonthOfYear() []string {
 	}
 }
 
-func parseMonthOfYear(input string) (*MonthOfYear, error) {
-	vals := map[string]MonthOfYear{
-		"april":     MonthOfYearApril,
-		"august":    MonthOfYearAugust,
-		"december":  MonthOfYearDecember,
-		"february":  MonthOfYearFebruary,
-		"invalid":   MonthOfYearInvalid,
-		"january":   MonthOfYearJanuary,
-		"july":      MonthOfYearJuly,
-		"june":      MonthOfYearJune,
-		"march":     MonthOfYearMarch,
-		"may":       MonthOfYearMay,
-		"november":  MonthOfYearNovember,
-		"october":   MonthOfYearOctober,
-		"september": MonthOfYearSeptember,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := MonthOfYear(input)
-	return &out, nil
-}
-
 type PolicyType string
 
 const (
@@ -166,26 +105,6 @@ func PossibleValuesForPolicyType() []string {
 	}
 }
 
-func parsePolicyType(input string) (*PolicyType, error) {
-	vals := map[string]PolicyType{
-		"copyonlyfull":         PolicyTypeCopyOnlyFull,
-		"differential":         PolicyTypeDifferential,
-		"full":                 PolicyTypeFull,
-		"incremental":          PolicyTypeIncremental,
-		"invalid":              PolicyTypeInvalid,
-		"log":                  PolicyTypeLog,
-		"snapshotcopyonlyfull": PolicyTypeSnapshotCopyOnlyFull,
-		"snapshotfull":         PolicyTypeSnapshotFull,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PolicyType(input)
-	return &out, nil
-}
-
 type RetentionDurationType string
 
 const (
@@ -206,23 +125,6 @@ func PossibleValuesForRetentionDurationType() []string {
 	}
 }
 
-func parseRetentionDurationType(input string) (*RetentionDurationType, error) {
-	vals := map[string]RetentionDurationType{
-		"days":    RetentionDurationTypeDays,
-		"invalid": RetentionDurationTypeInvalid,
-		"months":  RetentionDurationTypeMonths,
-		"weeks":   RetentionDurationTypeWeeks,
-		"years":   RetentionDurationTypeYears,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := RetentionDurationType(input)
-	return &out, nil
-}
-
 type RetentionScheduleFormat string
 
 const (
@@ -237,21 +139,6 @@ func PossibleValuesForRetentionScheduleFormat() []string {
 		string(RetentionScheduleFormatInvalid),
 		string(RetentionScheduleFormatWeekly),
 	}
-}
-
-func parseRetentionScheduleFormat(input string) (*RetentionScheduleFormat, error) {
-	vals := map[string]RetentionScheduleFormat{
-		"daily":   RetentionScheduleFormatDaily,
-		"invalid": RetentionScheduleFormatInvalid,
-		"weekly":  RetentionScheduleFormatWeekly,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := RetentionScheduleFormat(input)
-	return &out, nil
 }
 
 type ScheduleRunType string
@@ -272,22 +159,6 @@ func PossibleValuesForScheduleRunType() []string {
 	}
 }
 
-func parseScheduleRunType(input string) (*ScheduleRunType, error) {
-	vals := map[string]ScheduleRunType{
-		"daily":   ScheduleRunTypeDaily,
-		"hourly":  ScheduleRunTypeHourly,
-		"invalid": ScheduleRunTypeInvalid,
-		"weekly":  ScheduleRunTypeWeekly,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ScheduleRunType(input)
-	return &out, nil
-}
-
 type TieringMode string
 
 const (
@@ -304,22 +175,6 @@ func PossibleValuesForTieringMode() []string {
 		string(TieringModeTierAfter),
 		string(TieringModeTierRecommended),
 	}
-}
-
-func parseTieringMode(input string) (*TieringMode, error) {
-	vals := map[string]TieringMode{
-		"donottier":       TieringModeDoNotTier,
-		"invalid":         TieringModeInvalid,
-		"tierafter":       TieringModeTierAfter,
-		"tierrecommended": TieringModeTierRecommended,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := TieringMode(input)
-	return &out, nil
 }
 
 type WeekOfMonth string
@@ -342,24 +197,6 @@ func PossibleValuesForWeekOfMonth() []string {
 		string(WeekOfMonthSecond),
 		string(WeekOfMonthThird),
 	}
-}
-
-func parseWeekOfMonth(input string) (*WeekOfMonth, error) {
-	vals := map[string]WeekOfMonth{
-		"first":   WeekOfMonthFirst,
-		"fourth":  WeekOfMonthFourth,
-		"invalid": WeekOfMonthInvalid,
-		"last":    WeekOfMonthLast,
-		"second":  WeekOfMonthSecond,
-		"third":   WeekOfMonthThird,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := WeekOfMonth(input)
-	return &out, nil
 }
 
 type WorkloadType string
@@ -402,32 +239,4 @@ func PossibleValuesForWorkloadType() []string {
 		string(WorkloadTypeVM),
 		string(WorkloadTypeVMwareVM),
 	}
-}
-
-func parseWorkloadType(input string) (*WorkloadType, error) {
-	vals := map[string]WorkloadType{
-		"azurefileshare":    WorkloadTypeAzureFileShare,
-		"azuresqldb":        WorkloadTypeAzureSqlDb,
-		"client":            WorkloadTypeClient,
-		"exchange":          WorkloadTypeExchange,
-		"filefolder":        WorkloadTypeFileFolder,
-		"genericdatasource": WorkloadTypeGenericDataSource,
-		"invalid":           WorkloadTypeInvalid,
-		"sapasedatabase":    WorkloadTypeSAPAseDatabase,
-		"saphanadbinstance": WorkloadTypeSAPHanaDBInstance,
-		"saphanadatabase":   WorkloadTypeSAPHanaDatabase,
-		"sqldb":             WorkloadTypeSQLDB,
-		"sqldatabase":       WorkloadTypeSQLDataBase,
-		"sharepoint":        WorkloadTypeSharepoint,
-		"systemstate":       WorkloadTypeSystemState,
-		"vm":                WorkloadTypeVM,
-		"vmwarevm":          WorkloadTypeVMwareVM,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := WorkloadType(input)
-	return &out, nil
 }

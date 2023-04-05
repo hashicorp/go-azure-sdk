@@ -1,7 +1,5 @@
 package replicationmigrationitems
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -21,21 +19,6 @@ func PossibleValuesForDiskAccountType() []string {
 	}
 }
 
-func parseDiskAccountType(input string) (*DiskAccountType, error) {
-	vals := map[string]DiskAccountType{
-		"premium_lrs":     DiskAccountTypePremiumLRS,
-		"standard_lrs":    DiskAccountTypeStandardLRS,
-		"standardssd_lrs": DiskAccountTypeStandardSSDLRS,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := DiskAccountType(input)
-	return &out, nil
-}
-
 type EthernetAddressType string
 
 const (
@@ -48,20 +31,6 @@ func PossibleValuesForEthernetAddressType() []string {
 		string(EthernetAddressTypeDynamic),
 		string(EthernetAddressTypeStatic),
 	}
-}
-
-func parseEthernetAddressType(input string) (*EthernetAddressType, error) {
-	vals := map[string]EthernetAddressType{
-		"dynamic": EthernetAddressTypeDynamic,
-		"static":  EthernetAddressTypeStatic,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := EthernetAddressType(input)
-	return &out, nil
 }
 
 type HealthErrorCustomerResolvability string
@@ -78,20 +47,6 @@ func PossibleValuesForHealthErrorCustomerResolvability() []string {
 	}
 }
 
-func parseHealthErrorCustomerResolvability(input string) (*HealthErrorCustomerResolvability, error) {
-	vals := map[string]HealthErrorCustomerResolvability{
-		"allowed":    HealthErrorCustomerResolvabilityAllowed,
-		"notallowed": HealthErrorCustomerResolvabilityNotAllowed,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := HealthErrorCustomerResolvability(input)
-	return &out, nil
-}
-
 type LicenseType string
 
 const (
@@ -106,21 +61,6 @@ func PossibleValuesForLicenseType() []string {
 		string(LicenseTypeNotSpecified),
 		string(LicenseTypeWindowsServer),
 	}
-}
-
-func parseLicenseType(input string) (*LicenseType, error) {
-	vals := map[string]LicenseType{
-		"nolicensetype": LicenseTypeNoLicenseType,
-		"notspecified":  LicenseTypeNotSpecified,
-		"windowsserver": LicenseTypeWindowsServer,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := LicenseType(input)
-	return &out, nil
 }
 
 type MigrationItemOperation string
@@ -145,25 +85,6 @@ func PossibleValuesForMigrationItemOperation() []string {
 		string(MigrationItemOperationTestMigrate),
 		string(MigrationItemOperationTestMigrateCleanup),
 	}
-}
-
-func parseMigrationItemOperation(input string) (*MigrationItemOperation, error) {
-	vals := map[string]MigrationItemOperation{
-		"disablemigration":   MigrationItemOperationDisableMigration,
-		"migrate":            MigrationItemOperationMigrate,
-		"pausereplication":   MigrationItemOperationPauseReplication,
-		"resumereplication":  MigrationItemOperationResumeReplication,
-		"startresync":        MigrationItemOperationStartResync,
-		"testmigrate":        MigrationItemOperationTestMigrate,
-		"testmigratecleanup": MigrationItemOperationTestMigrateCleanup,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := MigrationItemOperation(input)
-	return &out, nil
 }
 
 type MigrationState string
@@ -210,35 +131,6 @@ func PossibleValuesForMigrationState() []string {
 	}
 }
 
-func parseMigrationState(input string) (*MigrationState, error) {
-	vals := map[string]MigrationState{
-		"disablemigrationfailed":            MigrationStateDisableMigrationFailed,
-		"disablemigrationinprogress":        MigrationStateDisableMigrationInProgress,
-		"enablemigrationfailed":             MigrationStateEnableMigrationFailed,
-		"enablemigrationinprogress":         MigrationStateEnableMigrationInProgress,
-		"initialseedingfailed":              MigrationStateInitialSeedingFailed,
-		"initialseedinginprogress":          MigrationStateInitialSeedingInProgress,
-		"migrationcompletedwithinformation": MigrationStateMigrationCompletedWithInformation,
-		"migrationfailed":                   MigrationStateMigrationFailed,
-		"migrationinprogress":               MigrationStateMigrationInProgress,
-		"migrationpartiallysucceeded":       MigrationStateMigrationPartiallySucceeded,
-		"migrationsucceeded":                MigrationStateMigrationSucceeded,
-		"none":                              MigrationStateNone,
-		"protectionsuspended":               MigrationStateProtectionSuspended,
-		"replicating":                       MigrationStateReplicating,
-		"resumeinprogress":                  MigrationStateResumeInProgress,
-		"resumeinitiated":                   MigrationStateResumeInitiated,
-		"suspendingprotection":              MigrationStateSuspendingProtection,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := MigrationState(input)
-	return &out, nil
-}
-
 type ProtectionHealth string
 
 const (
@@ -257,22 +149,6 @@ func PossibleValuesForProtectionHealth() []string {
 	}
 }
 
-func parseProtectionHealth(input string) (*ProtectionHealth, error) {
-	vals := map[string]ProtectionHealth{
-		"critical": ProtectionHealthCritical,
-		"none":     ProtectionHealthNone,
-		"normal":   ProtectionHealthNormal,
-		"warning":  ProtectionHealthWarning,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ProtectionHealth(input)
-	return &out, nil
-}
-
 type ResyncState string
 
 const (
@@ -287,21 +163,6 @@ func PossibleValuesForResyncState() []string {
 		string(ResyncStatePreparedForResynchronization),
 		string(ResyncStateStartedResynchronization),
 	}
-}
-
-func parseResyncState(input string) (*ResyncState, error) {
-	vals := map[string]ResyncState{
-		"none":                         ResyncStateNone,
-		"preparedforresynchronization": ResyncStatePreparedForResynchronization,
-		"startedresynchronization":     ResyncStateStartedResynchronization,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ResyncState(input)
-	return &out, nil
 }
 
 type SecurityType string
@@ -320,21 +181,6 @@ func PossibleValuesForSecurityType() []string {
 	}
 }
 
-func parseSecurityType(input string) (*SecurityType, error) {
-	vals := map[string]SecurityType{
-		"confidentialvm": SecurityTypeConfidentialVM,
-		"none":           SecurityTypeNone,
-		"trustedlaunch":  SecurityTypeTrustedLaunch,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SecurityType(input)
-	return &out, nil
-}
-
 type SqlServerLicenseType string
 
 const (
@@ -351,22 +197,6 @@ func PossibleValuesForSqlServerLicenseType() []string {
 		string(SqlServerLicenseTypeNotSpecified),
 		string(SqlServerLicenseTypePAYG),
 	}
-}
-
-func parseSqlServerLicenseType(input string) (*SqlServerLicenseType, error) {
-	vals := map[string]SqlServerLicenseType{
-		"ahub":          SqlServerLicenseTypeAHUB,
-		"nolicensetype": SqlServerLicenseTypeNoLicenseType,
-		"notspecified":  SqlServerLicenseTypeNotSpecified,
-		"payg":          SqlServerLicenseTypePAYG,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SqlServerLicenseType(input)
-	return &out, nil
 }
 
 type TestMigrationState string
@@ -391,23 +221,4 @@ func PossibleValuesForTestMigrationState() []string {
 		string(TestMigrationStateTestMigrationPartiallySucceeded),
 		string(TestMigrationStateTestMigrationSucceeded),
 	}
-}
-
-func parseTestMigrationState(input string) (*TestMigrationState, error) {
-	vals := map[string]TestMigrationState{
-		"none":                                  TestMigrationStateNone,
-		"testmigrationcleanupinprogress":        TestMigrationStateTestMigrationCleanupInProgress,
-		"testmigrationcompletedwithinformation": TestMigrationStateTestMigrationCompletedWithInformation,
-		"testmigrationfailed":                   TestMigrationStateTestMigrationFailed,
-		"testmigrationinprogress":               TestMigrationStateTestMigrationInProgress,
-		"testmigrationpartiallysucceeded":       TestMigrationStateTestMigrationPartiallySucceeded,
-		"testmigrationsucceeded":                TestMigrationStateTestMigrationSucceeded,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := TestMigrationState(input)
-	return &out, nil
 }

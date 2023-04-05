@@ -1,7 +1,5 @@
 package subscriptions
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -21,21 +19,6 @@ func PossibleValuesForAcceptOwnership() []string {
 	}
 }
 
-func parseAcceptOwnership(input string) (*AcceptOwnership, error) {
-	vals := map[string]AcceptOwnership{
-		"completed": AcceptOwnershipCompleted,
-		"expired":   AcceptOwnershipExpired,
-		"pending":   AcceptOwnershipPending,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := AcceptOwnership(input)
-	return &out, nil
-}
-
 type Provisioning string
 
 const (
@@ -50,21 +33,6 @@ func PossibleValuesForProvisioning() []string {
 		string(ProvisioningPending),
 		string(ProvisioningSucceeded),
 	}
-}
-
-func parseProvisioning(input string) (*Provisioning, error) {
-	vals := map[string]Provisioning{
-		"accepted":  ProvisioningAccepted,
-		"pending":   ProvisioningPending,
-		"succeeded": ProvisioningSucceeded,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := Provisioning(input)
-	return &out, nil
 }
 
 type ProvisioningState string
@@ -83,21 +51,6 @@ func PossibleValuesForProvisioningState() []string {
 	}
 }
 
-func parseProvisioningState(input string) (*ProvisioningState, error) {
-	vals := map[string]ProvisioningState{
-		"accepted":  ProvisioningStateAccepted,
-		"failed":    ProvisioningStateFailed,
-		"succeeded": ProvisioningStateSucceeded,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ProvisioningState(input)
-	return &out, nil
-}
-
 type Workload string
 
 const (
@@ -110,18 +63,4 @@ func PossibleValuesForWorkload() []string {
 		string(WorkloadDevTest),
 		string(WorkloadProduction),
 	}
-}
-
-func parseWorkload(input string) (*Workload, error) {
-	vals := map[string]Workload{
-		"devtest":    WorkloadDevTest,
-		"production": WorkloadProduction,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := Workload(input)
-	return &out, nil
 }

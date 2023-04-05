@@ -1,7 +1,5 @@
 package sourcecontrolsyncjob
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -21,21 +19,6 @@ func PossibleValuesForProvisioningState() []string {
 	}
 }
 
-func parseProvisioningState(input string) (*ProvisioningState, error) {
-	vals := map[string]ProvisioningState{
-		"completed": ProvisioningStateCompleted,
-		"failed":    ProvisioningStateFailed,
-		"running":   ProvisioningStateRunning,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ProvisioningState(input)
-	return &out, nil
-}
-
 type SyncType string
 
 const (
@@ -48,18 +31,4 @@ func PossibleValuesForSyncType() []string {
 		string(SyncTypeFullSync),
 		string(SyncTypePartialSync),
 	}
-}
-
-func parseSyncType(input string) (*SyncType, error) {
-	vals := map[string]SyncType{
-		"fullsync":    SyncTypeFullSync,
-		"partialsync": SyncTypePartialSync,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SyncType(input)
-	return &out, nil
 }

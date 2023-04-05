@@ -1,7 +1,5 @@
 package tagrules
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -33,27 +31,6 @@ func PossibleValuesForProvisioningState() []string {
 	}
 }
 
-func parseProvisioningState(input string) (*ProvisioningState, error) {
-	vals := map[string]ProvisioningState{
-		"accepted":     ProvisioningStateAccepted,
-		"canceled":     ProvisioningStateCanceled,
-		"creating":     ProvisioningStateCreating,
-		"deleted":      ProvisioningStateDeleted,
-		"deleting":     ProvisioningStateDeleting,
-		"failed":       ProvisioningStateFailed,
-		"notspecified": ProvisioningStateNotSpecified,
-		"succeeded":    ProvisioningStateSucceeded,
-		"updating":     ProvisioningStateUpdating,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ProvisioningState(input)
-	return &out, nil
-}
-
 type TagAction string
 
 const (
@@ -66,18 +43,4 @@ func PossibleValuesForTagAction() []string {
 		string(TagActionExclude),
 		string(TagActionInclude),
 	}
-}
-
-func parseTagAction(input string) (*TagAction, error) {
-	vals := map[string]TagAction{
-		"exclude": TagActionExclude,
-		"include": TagActionInclude,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := TagAction(input)
-	return &out, nil
 }

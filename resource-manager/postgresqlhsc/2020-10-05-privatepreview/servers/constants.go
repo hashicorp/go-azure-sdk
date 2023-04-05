@@ -1,7 +1,5 @@
 package servers
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -29,25 +27,6 @@ func PossibleValuesForCitusVersion() []string {
 	}
 }
 
-func parseCitusVersion(input string) (*CitusVersion, error) {
-	vals := map[string]CitusVersion{
-		"8.3": CitusVersionEightPointThree,
-		"9.5": CitusVersionNinePointFive,
-		"9.4": CitusVersionNinePointFour,
-		"9.1": CitusVersionNinePointOne,
-		"9.3": CitusVersionNinePointThree,
-		"9.2": CitusVersionNinePointTwo,
-		"9.0": CitusVersionNinePointZero,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := CitusVersion(input)
-	return &out, nil
-}
-
 type PostgreSQLVersion string
 
 const (
@@ -62,20 +41,6 @@ func PossibleValuesForPostgreSQLVersion() []string {
 	}
 }
 
-func parsePostgreSQLVersion(input string) (*PostgreSQLVersion, error) {
-	vals := map[string]PostgreSQLVersion{
-		"11": PostgreSQLVersionOneOne,
-		"12": PostgreSQLVersionOneTwo,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PostgreSQLVersion(input)
-	return &out, nil
-}
-
 type ServerEdition string
 
 const (
@@ -88,20 +53,6 @@ func PossibleValuesForServerEdition() []string {
 		string(ServerEditionGeneralPurpose),
 		string(ServerEditionMemoryOptimized),
 	}
-}
-
-func parseServerEdition(input string) (*ServerEdition, error) {
-	vals := map[string]ServerEdition{
-		"generalpurpose":  ServerEditionGeneralPurpose,
-		"memoryoptimized": ServerEditionMemoryOptimized,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ServerEdition(input)
-	return &out, nil
 }
 
 type ServerHaState string
@@ -128,25 +79,6 @@ func PossibleValuesForServerHaState() []string {
 	}
 }
 
-func parseServerHaState(input string) (*ServerHaState, error) {
-	vals := map[string]ServerHaState{
-		"creatingstandby": ServerHaStateCreatingStandby,
-		"failingover":     ServerHaStateFailingOver,
-		"healthy":         ServerHaStateHealthy,
-		"notenabled":      ServerHaStateNotEnabled,
-		"notsync":         ServerHaStateNotSync,
-		"removingstandby": ServerHaStateRemovingStandby,
-		"replicatingdata": ServerHaStateReplicatingData,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ServerHaState(input)
-	return &out, nil
-}
-
 type ServerRole string
 
 const (
@@ -159,20 +91,6 @@ func PossibleValuesForServerRole() []string {
 		string(ServerRoleCoordinator),
 		string(ServerRoleWorker),
 	}
-}
-
-func parseServerRole(input string) (*ServerRole, error) {
-	vals := map[string]ServerRole{
-		"coordinator": ServerRoleCoordinator,
-		"worker":      ServerRoleWorker,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ServerRole(input)
-	return &out, nil
 }
 
 type ServerState string
@@ -199,24 +117,4 @@ func PossibleValuesForServerState() []string {
 		string(ServerStateStopping),
 		string(ServerStateUpdating),
 	}
-}
-
-func parseServerState(input string) (*ServerState, error) {
-	vals := map[string]ServerState{
-		"disabled":     ServerStateDisabled,
-		"dropping":     ServerStateDropping,
-		"provisioning": ServerStateProvisioning,
-		"ready":        ServerStateReady,
-		"starting":     ServerStateStarting,
-		"stopped":      ServerStateStopped,
-		"stopping":     ServerStateStopping,
-		"updating":     ServerStateUpdating,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ServerState(input)
-	return &out, nil
 }

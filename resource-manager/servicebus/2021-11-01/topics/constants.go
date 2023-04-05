@@ -1,6 +1,10 @@
 package topics
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -33,23 +37,17 @@ func PossibleValuesForEntityStatus() []string {
 	}
 }
 
-func parseEntityStatus(input string) (*EntityStatus, error) {
-	vals := map[string]EntityStatus{
-		"active":          EntityStatusActive,
-		"creating":        EntityStatusCreating,
-		"deleting":        EntityStatusDeleting,
-		"disabled":        EntityStatusDisabled,
-		"receivedisabled": EntityStatusReceiveDisabled,
-		"renaming":        EntityStatusRenaming,
-		"restoring":       EntityStatusRestoring,
-		"senddisabled":    EntityStatusSendDisabled,
-		"unknown":         EntityStatusUnknown,
+func (s *EntityStatus) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForEntityStatus() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := EntityStatus(input)
-	return &out, nil
+	*s = EntityStatus(decoded)
+	return nil
 }

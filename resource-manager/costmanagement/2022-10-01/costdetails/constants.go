@@ -1,7 +1,5 @@
 package costdetails
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -15,19 +13,6 @@ func PossibleValuesForCostDetailsDataFormat() []string {
 	return []string{
 		string(CostDetailsDataFormatCsv),
 	}
-}
-
-func parseCostDetailsDataFormat(input string) (*CostDetailsDataFormat, error) {
-	vals := map[string]CostDetailsDataFormat{
-		"csv": CostDetailsDataFormatCsv,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := CostDetailsDataFormat(input)
-	return &out, nil
 }
 
 type CostDetailsMetricType string
@@ -44,20 +29,6 @@ func PossibleValuesForCostDetailsMetricType() []string {
 	}
 }
 
-func parseCostDetailsMetricType(input string) (*CostDetailsMetricType, error) {
-	vals := map[string]CostDetailsMetricType{
-		"actualcost":    CostDetailsMetricTypeActualCost,
-		"amortizedcost": CostDetailsMetricTypeAmortizedCost,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := CostDetailsMetricType(input)
-	return &out, nil
-}
-
 type CostDetailsStatusType string
 
 const (
@@ -72,19 +43,4 @@ func PossibleValuesForCostDetailsStatusType() []string {
 		string(CostDetailsStatusTypeFailed),
 		string(CostDetailsStatusTypeNoDataFound),
 	}
-}
-
-func parseCostDetailsStatusType(input string) (*CostDetailsStatusType, error) {
-	vals := map[string]CostDetailsStatusType{
-		"completed":   CostDetailsStatusTypeCompleted,
-		"failed":      CostDetailsStatusTypeFailed,
-		"nodatafound": CostDetailsStatusTypeNoDataFound,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := CostDetailsStatusType(input)
-	return &out, nil
 }

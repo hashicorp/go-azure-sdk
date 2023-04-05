@@ -1,7 +1,5 @@
 package standardoperation
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -25,23 +23,6 @@ func PossibleValuesForCommandState() []string {
 	}
 }
 
-func parseCommandState(input string) (*CommandState, error) {
-	vals := map[string]CommandState{
-		"accepted":  CommandStateAccepted,
-		"failed":    CommandStateFailed,
-		"running":   CommandStateRunning,
-		"succeeded": CommandStateSucceeded,
-		"unknown":   CommandStateUnknown,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := CommandState(input)
-	return &out, nil
-}
-
 type NameCheckFailureReason string
 
 const (
@@ -56,20 +37,6 @@ func PossibleValuesForNameCheckFailureReason() []string {
 	}
 }
 
-func parseNameCheckFailureReason(input string) (*NameCheckFailureReason, error) {
-	vals := map[string]NameCheckFailureReason{
-		"alreadyexists": NameCheckFailureReasonAlreadyExists,
-		"invalid":       NameCheckFailureReasonInvalid,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := NameCheckFailureReason(input)
-	return &out, nil
-}
-
 type ProjectProvisioningState string
 
 const (
@@ -82,20 +49,6 @@ func PossibleValuesForProjectProvisioningState() []string {
 		string(ProjectProvisioningStateDeleting),
 		string(ProjectProvisioningStateSucceeded),
 	}
-}
-
-func parseProjectProvisioningState(input string) (*ProjectProvisioningState, error) {
-	vals := map[string]ProjectProvisioningState{
-		"deleting":  ProjectProvisioningStateDeleting,
-		"succeeded": ProjectProvisioningStateSucceeded,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ProjectProvisioningState(input)
-	return &out, nil
 }
 
 type ProjectSourcePlatform string
@@ -116,23 +69,6 @@ func PossibleValuesForProjectSourcePlatform() []string {
 		string(ProjectSourcePlatformSQL),
 		string(ProjectSourcePlatformUnknown),
 	}
-}
-
-func parseProjectSourcePlatform(input string) (*ProjectSourcePlatform, error) {
-	vals := map[string]ProjectSourcePlatform{
-		"mongodb":    ProjectSourcePlatformMongoDb,
-		"mysql":      ProjectSourcePlatformMySQL,
-		"postgresql": ProjectSourcePlatformPostgreSql,
-		"sql":        ProjectSourcePlatformSQL,
-		"unknown":    ProjectSourcePlatformUnknown,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ProjectSourcePlatform(input)
-	return &out, nil
 }
 
 type ProjectTargetPlatform string
@@ -157,24 +93,6 @@ func PossibleValuesForProjectTargetPlatform() []string {
 	}
 }
 
-func parseProjectTargetPlatform(input string) (*ProjectTargetPlatform, error) {
-	vals := map[string]ProjectTargetPlatform{
-		"azuredbformysql":      ProjectTargetPlatformAzureDbForMySql,
-		"azuredbforpostgresql": ProjectTargetPlatformAzureDbForPostgreSql,
-		"mongodb":              ProjectTargetPlatformMongoDb,
-		"sqldb":                ProjectTargetPlatformSQLDB,
-		"sqlmi":                ProjectTargetPlatformSQLMI,
-		"unknown":              ProjectTargetPlatformUnknown,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ProjectTargetPlatform(input)
-	return &out, nil
-}
-
 type ResourceSkuCapacityScaleType string
 
 const (
@@ -191,21 +109,6 @@ func PossibleValuesForResourceSkuCapacityScaleType() []string {
 	}
 }
 
-func parseResourceSkuCapacityScaleType(input string) (*ResourceSkuCapacityScaleType, error) {
-	vals := map[string]ResourceSkuCapacityScaleType{
-		"automatic": ResourceSkuCapacityScaleTypeAutomatic,
-		"manual":    ResourceSkuCapacityScaleTypeManual,
-		"none":      ResourceSkuCapacityScaleTypeNone,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ResourceSkuCapacityScaleType(input)
-	return &out, nil
-}
-
 type ResourceSkuRestrictionsReasonCode string
 
 const (
@@ -220,20 +123,6 @@ func PossibleValuesForResourceSkuRestrictionsReasonCode() []string {
 	}
 }
 
-func parseResourceSkuRestrictionsReasonCode(input string) (*ResourceSkuRestrictionsReasonCode, error) {
-	vals := map[string]ResourceSkuRestrictionsReasonCode{
-		"notavailableforsubscription": ResourceSkuRestrictionsReasonCodeNotAvailableForSubscription,
-		"quotaid":                     ResourceSkuRestrictionsReasonCodeQuotaId,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ResourceSkuRestrictionsReasonCode(input)
-	return &out, nil
-}
-
 type ResourceSkuRestrictionsType string
 
 const (
@@ -244,19 +133,6 @@ func PossibleValuesForResourceSkuRestrictionsType() []string {
 	return []string{
 		string(ResourceSkuRestrictionsTypeLocation),
 	}
-}
-
-func parseResourceSkuRestrictionsType(input string) (*ResourceSkuRestrictionsType, error) {
-	vals := map[string]ResourceSkuRestrictionsType{
-		"location": ResourceSkuRestrictionsTypeLocation,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ResourceSkuRestrictionsType(input)
-	return &out, nil
 }
 
 type ServiceProvisioningState string
@@ -289,28 +165,6 @@ func PossibleValuesForServiceProvisioningState() []string {
 	}
 }
 
-func parseServiceProvisioningState(input string) (*ServiceProvisioningState, error) {
-	vals := map[string]ServiceProvisioningState{
-		"accepted":      ServiceProvisioningStateAccepted,
-		"deleting":      ServiceProvisioningStateDeleting,
-		"deploying":     ServiceProvisioningStateDeploying,
-		"failed":        ServiceProvisioningStateFailed,
-		"failedtostart": ServiceProvisioningStateFailedToStart,
-		"failedtostop":  ServiceProvisioningStateFailedToStop,
-		"starting":      ServiceProvisioningStateStarting,
-		"stopped":       ServiceProvisioningStateStopped,
-		"stopping":      ServiceProvisioningStateStopping,
-		"succeeded":     ServiceProvisioningStateSucceeded,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ServiceProvisioningState(input)
-	return &out, nil
-}
-
 type ServiceScalability string
 
 const (
@@ -325,21 +179,6 @@ func PossibleValuesForServiceScalability() []string {
 		string(ServiceScalabilityManual),
 		string(ServiceScalabilityNone),
 	}
-}
-
-func parseServiceScalability(input string) (*ServiceScalability, error) {
-	vals := map[string]ServiceScalability{
-		"automatic": ServiceScalabilityAutomatic,
-		"manual":    ServiceScalabilityManual,
-		"none":      ServiceScalabilityNone,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ServiceScalability(input)
-	return &out, nil
 }
 
 type TaskState string
@@ -366,24 +205,4 @@ func PossibleValuesForTaskState() []string {
 		string(TaskStateSucceeded),
 		string(TaskStateUnknown),
 	}
-}
-
-func parseTaskState(input string) (*TaskState, error) {
-	vals := map[string]TaskState{
-		"canceled":              TaskStateCanceled,
-		"failed":                TaskStateFailed,
-		"failedinputvalidation": TaskStateFailedInputValidation,
-		"faulted":               TaskStateFaulted,
-		"queued":                TaskStateQueued,
-		"running":               TaskStateRunning,
-		"succeeded":             TaskStateSucceeded,
-		"unknown":               TaskStateUnknown,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := TaskState(input)
-	return &out, nil
 }

@@ -1,7 +1,5 @@
 package clusterprincipalassignments
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -19,20 +17,6 @@ func PossibleValuesForClusterPrincipalRole() []string {
 	}
 }
 
-func parseClusterPrincipalRole(input string) (*ClusterPrincipalRole, error) {
-	vals := map[string]ClusterPrincipalRole{
-		"alldatabasesadmin":  ClusterPrincipalRoleAllDatabasesAdmin,
-		"alldatabasesviewer": ClusterPrincipalRoleAllDatabasesViewer,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ClusterPrincipalRole(input)
-	return &out, nil
-}
-
 type PrincipalAssignmentType string
 
 const (
@@ -43,19 +27,6 @@ func PossibleValuesForPrincipalAssignmentType() []string {
 	return []string{
 		string(PrincipalAssignmentTypeMicrosoftPointKustoClustersPrincipalAssignments),
 	}
-}
-
-func parsePrincipalAssignmentType(input string) (*PrincipalAssignmentType, error) {
-	vals := map[string]PrincipalAssignmentType{
-		"microsoft.kusto/clusters/principalassignments": PrincipalAssignmentTypeMicrosoftPointKustoClustersPrincipalAssignments,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PrincipalAssignmentType(input)
-	return &out, nil
 }
 
 type PrincipalType string
@@ -72,21 +43,6 @@ func PossibleValuesForPrincipalType() []string {
 		string(PrincipalTypeGroup),
 		string(PrincipalTypeUser),
 	}
-}
-
-func parsePrincipalType(input string) (*PrincipalType, error) {
-	vals := map[string]PrincipalType{
-		"app":   PrincipalTypeApp,
-		"group": PrincipalTypeGroup,
-		"user":  PrincipalTypeUser,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PrincipalType(input)
-	return &out, nil
 }
 
 type ProvisioningState string
@@ -111,24 +67,6 @@ func PossibleValuesForProvisioningState() []string {
 	}
 }
 
-func parseProvisioningState(input string) (*ProvisioningState, error) {
-	vals := map[string]ProvisioningState{
-		"creating":  ProvisioningStateCreating,
-		"deleting":  ProvisioningStateDeleting,
-		"failed":    ProvisioningStateFailed,
-		"moving":    ProvisioningStateMoving,
-		"running":   ProvisioningStateRunning,
-		"succeeded": ProvisioningStateSucceeded,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ProvisioningState(input)
-	return &out, nil
-}
-
 type Reason string
 
 const (
@@ -141,18 +79,4 @@ func PossibleValuesForReason() []string {
 		string(ReasonAlreadyExists),
 		string(ReasonInvalid),
 	}
-}
-
-func parseReason(input string) (*Reason, error) {
-	vals := map[string]Reason{
-		"alreadyexists": ReasonAlreadyExists,
-		"invalid":       ReasonInvalid,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := Reason(input)
-	return &out, nil
 }

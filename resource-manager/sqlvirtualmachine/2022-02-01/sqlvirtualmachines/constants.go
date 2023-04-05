@@ -1,7 +1,5 @@
 package sqlvirtualmachines
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -29,25 +27,6 @@ func PossibleValuesForAssessmentDayOfWeek() []string {
 	}
 }
 
-func parseAssessmentDayOfWeek(input string) (*AssessmentDayOfWeek, error) {
-	vals := map[string]AssessmentDayOfWeek{
-		"friday":    AssessmentDayOfWeekFriday,
-		"monday":    AssessmentDayOfWeekMonday,
-		"saturday":  AssessmentDayOfWeekSaturday,
-		"sunday":    AssessmentDayOfWeekSunday,
-		"thursday":  AssessmentDayOfWeekThursday,
-		"tuesday":   AssessmentDayOfWeekTuesday,
-		"wednesday": AssessmentDayOfWeekWednesday,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := AssessmentDayOfWeek(input)
-	return &out, nil
-}
-
 type AutoBackupDaysOfWeek string
 
 const (
@@ -72,25 +51,6 @@ func PossibleValuesForAutoBackupDaysOfWeek() []string {
 	}
 }
 
-func parseAutoBackupDaysOfWeek(input string) (*AutoBackupDaysOfWeek, error) {
-	vals := map[string]AutoBackupDaysOfWeek{
-		"friday":    AutoBackupDaysOfWeekFriday,
-		"monday":    AutoBackupDaysOfWeekMonday,
-		"saturday":  AutoBackupDaysOfWeekSaturday,
-		"sunday":    AutoBackupDaysOfWeekSunday,
-		"thursday":  AutoBackupDaysOfWeekThursday,
-		"tuesday":   AutoBackupDaysOfWeekTuesday,
-		"wednesday": AutoBackupDaysOfWeekWednesday,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := AutoBackupDaysOfWeek(input)
-	return &out, nil
-}
-
 type BackupScheduleType string
 
 const (
@@ -103,20 +63,6 @@ func PossibleValuesForBackupScheduleType() []string {
 		string(BackupScheduleTypeAutomated),
 		string(BackupScheduleTypeManual),
 	}
-}
-
-func parseBackupScheduleType(input string) (*BackupScheduleType, error) {
-	vals := map[string]BackupScheduleType{
-		"automated": BackupScheduleTypeAutomated,
-		"manual":    BackupScheduleTypeManual,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := BackupScheduleType(input)
-	return &out, nil
 }
 
 type ConnectivityType string
@@ -133,21 +79,6 @@ func PossibleValuesForConnectivityType() []string {
 		string(ConnectivityTypePRIVATE),
 		string(ConnectivityTypePUBLIC),
 	}
-}
-
-func parseConnectivityType(input string) (*ConnectivityType, error) {
-	vals := map[string]ConnectivityType{
-		"local":   ConnectivityTypeLOCAL,
-		"private": ConnectivityTypePRIVATE,
-		"public":  ConnectivityTypePUBLIC,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ConnectivityType(input)
-	return &out, nil
 }
 
 type DayOfWeek string
@@ -176,26 +107,6 @@ func PossibleValuesForDayOfWeek() []string {
 	}
 }
 
-func parseDayOfWeek(input string) (*DayOfWeek, error) {
-	vals := map[string]DayOfWeek{
-		"everyday":  DayOfWeekEveryday,
-		"friday":    DayOfWeekFriday,
-		"monday":    DayOfWeekMonday,
-		"saturday":  DayOfWeekSaturday,
-		"sunday":    DayOfWeekSunday,
-		"thursday":  DayOfWeekThursday,
-		"tuesday":   DayOfWeekTuesday,
-		"wednesday": DayOfWeekWednesday,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := DayOfWeek(input)
-	return &out, nil
-}
-
 type DiskConfigurationType string
 
 const (
@@ -212,21 +123,6 @@ func PossibleValuesForDiskConfigurationType() []string {
 	}
 }
 
-func parseDiskConfigurationType(input string) (*DiskConfigurationType, error) {
-	vals := map[string]DiskConfigurationType{
-		"add":    DiskConfigurationTypeADD,
-		"extend": DiskConfigurationTypeEXTEND,
-		"new":    DiskConfigurationTypeNEW,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := DiskConfigurationType(input)
-	return &out, nil
-}
-
 type FullBackupFrequencyType string
 
 const (
@@ -239,20 +135,6 @@ func PossibleValuesForFullBackupFrequencyType() []string {
 		string(FullBackupFrequencyTypeDaily),
 		string(FullBackupFrequencyTypeWeekly),
 	}
-}
-
-func parseFullBackupFrequencyType(input string) (*FullBackupFrequencyType, error) {
-	vals := map[string]FullBackupFrequencyType{
-		"daily":  FullBackupFrequencyTypeDaily,
-		"weekly": FullBackupFrequencyTypeWeekly,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := FullBackupFrequencyType(input)
-	return &out, nil
 }
 
 type SqlImageSku string
@@ -275,23 +157,6 @@ func PossibleValuesForSqlImageSku() []string {
 	}
 }
 
-func parseSqlImageSku(input string) (*SqlImageSku, error) {
-	vals := map[string]SqlImageSku{
-		"developer":  SqlImageSkuDeveloper,
-		"enterprise": SqlImageSkuEnterprise,
-		"express":    SqlImageSkuExpress,
-		"standard":   SqlImageSkuStandard,
-		"web":        SqlImageSkuWeb,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SqlImageSku(input)
-	return &out, nil
-}
-
 type SqlManagementMode string
 
 const (
@@ -306,21 +171,6 @@ func PossibleValuesForSqlManagementMode() []string {
 		string(SqlManagementModeLightWeight),
 		string(SqlManagementModeNoAgent),
 	}
-}
-
-func parseSqlManagementMode(input string) (*SqlManagementMode, error) {
-	vals := map[string]SqlManagementMode{
-		"full":        SqlManagementModeFull,
-		"lightweight": SqlManagementModeLightWeight,
-		"noagent":     SqlManagementModeNoAgent,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SqlManagementMode(input)
-	return &out, nil
 }
 
 type SqlServerLicenseType string
@@ -339,21 +189,6 @@ func PossibleValuesForSqlServerLicenseType() []string {
 	}
 }
 
-func parseSqlServerLicenseType(input string) (*SqlServerLicenseType, error) {
-	vals := map[string]SqlServerLicenseType{
-		"ahub": SqlServerLicenseTypeAHUB,
-		"dr":   SqlServerLicenseTypeDR,
-		"payg": SqlServerLicenseTypePAYG,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SqlServerLicenseType(input)
-	return &out, nil
-}
-
 type SqlWorkloadType string
 
 const (
@@ -370,21 +205,6 @@ func PossibleValuesForSqlWorkloadType() []string {
 	}
 }
 
-func parseSqlWorkloadType(input string) (*SqlWorkloadType, error) {
-	vals := map[string]SqlWorkloadType{
-		"dw":      SqlWorkloadTypeDW,
-		"general": SqlWorkloadTypeGENERAL,
-		"oltp":    SqlWorkloadTypeOLTP,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SqlWorkloadType(input)
-	return &out, nil
-}
-
 type StorageWorkloadType string
 
 const (
@@ -399,19 +219,4 @@ func PossibleValuesForStorageWorkloadType() []string {
 		string(StorageWorkloadTypeGENERAL),
 		string(StorageWorkloadTypeOLTP),
 	}
-}
-
-func parseStorageWorkloadType(input string) (*StorageWorkloadType, error) {
-	vals := map[string]StorageWorkloadType{
-		"dw":      StorageWorkloadTypeDW,
-		"general": StorageWorkloadTypeGENERAL,
-		"oltp":    StorageWorkloadTypeOLTP,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := StorageWorkloadType(input)
-	return &out, nil
 }

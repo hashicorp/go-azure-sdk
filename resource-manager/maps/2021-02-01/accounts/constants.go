@@ -1,6 +1,10 @@
 package accounts
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -19,18 +23,19 @@ func PossibleValuesForKeyType() []string {
 	}
 }
 
-func parseKeyType(input string) (*KeyType, error) {
-	vals := map[string]KeyType{
-		"primary":   KeyTypePrimary,
-		"secondary": KeyTypeSecondary,
+func (s *KeyType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForKeyType() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := KeyType(input)
-	return &out, nil
+	*s = KeyType(decoded)
+	return nil
 }
 
 type Kind string
@@ -47,18 +52,19 @@ func PossibleValuesForKind() []string {
 	}
 }
 
-func parseKind(input string) (*Kind, error) {
-	vals := map[string]Kind{
-		"gen1": KindGenOne,
-		"gen2": KindGenTwo,
+func (s *Kind) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForKind() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := Kind(input)
-	return &out, nil
+	*s = Kind(decoded)
+	return nil
 }
 
 type Name string
@@ -77,17 +83,17 @@ func PossibleValuesForName() []string {
 	}
 }
 
-func parseName(input string) (*Name, error) {
-	vals := map[string]Name{
-		"g2": NameGTwo,
-		"s1": NameSOne,
-		"s0": NameSZero,
+func (s *Name) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForName() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := Name(input)
-	return &out, nil
+	*s = Name(decoded)
+	return nil
 }

@@ -1,7 +1,5 @@
 package accounts
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -21,21 +19,6 @@ func PossibleValuesForAADObjectType() []string {
 	}
 }
 
-func parseAADObjectType(input string) (*AADObjectType, error) {
-	vals := map[string]AADObjectType{
-		"group":            AADObjectTypeGroup,
-		"serviceprincipal": AADObjectTypeServicePrincipal,
-		"user":             AADObjectTypeUser,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := AADObjectType(input)
-	return &out, nil
-}
-
 type DataLakeAnalyticsAccountState string
 
 const (
@@ -48,20 +31,6 @@ func PossibleValuesForDataLakeAnalyticsAccountState() []string {
 		string(DataLakeAnalyticsAccountStateActive),
 		string(DataLakeAnalyticsAccountStateSuspended),
 	}
-}
-
-func parseDataLakeAnalyticsAccountState(input string) (*DataLakeAnalyticsAccountState, error) {
-	vals := map[string]DataLakeAnalyticsAccountState{
-		"active":    DataLakeAnalyticsAccountStateActive,
-		"suspended": DataLakeAnalyticsAccountStateSuspended,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := DataLakeAnalyticsAccountState(input)
-	return &out, nil
 }
 
 type DataLakeAnalyticsAccountStatus string
@@ -96,29 +65,6 @@ func PossibleValuesForDataLakeAnalyticsAccountStatus() []string {
 	}
 }
 
-func parseDataLakeAnalyticsAccountStatus(input string) (*DataLakeAnalyticsAccountStatus, error) {
-	vals := map[string]DataLakeAnalyticsAccountStatus{
-		"canceled":   DataLakeAnalyticsAccountStatusCanceled,
-		"creating":   DataLakeAnalyticsAccountStatusCreating,
-		"deleted":    DataLakeAnalyticsAccountStatusDeleted,
-		"deleting":   DataLakeAnalyticsAccountStatusDeleting,
-		"failed":     DataLakeAnalyticsAccountStatusFailed,
-		"patching":   DataLakeAnalyticsAccountStatusPatching,
-		"resuming":   DataLakeAnalyticsAccountStatusResuming,
-		"running":    DataLakeAnalyticsAccountStatusRunning,
-		"succeeded":  DataLakeAnalyticsAccountStatusSucceeded,
-		"suspending": DataLakeAnalyticsAccountStatusSuspending,
-		"undeleting": DataLakeAnalyticsAccountStatusUndeleting,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := DataLakeAnalyticsAccountStatus(input)
-	return &out, nil
-}
-
 type DebugDataAccessLevel string
 
 const (
@@ -135,21 +81,6 @@ func PossibleValuesForDebugDataAccessLevel() []string {
 	}
 }
 
-func parseDebugDataAccessLevel(input string) (*DebugDataAccessLevel, error) {
-	vals := map[string]DebugDataAccessLevel{
-		"all":      DebugDataAccessLevelAll,
-		"customer": DebugDataAccessLevelCustomer,
-		"none":     DebugDataAccessLevelNone,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := DebugDataAccessLevel(input)
-	return &out, nil
-}
-
 type FirewallAllowAzureIPsState string
 
 const (
@@ -162,20 +93,6 @@ func PossibleValuesForFirewallAllowAzureIPsState() []string {
 		string(FirewallAllowAzureIPsStateDisabled),
 		string(FirewallAllowAzureIPsStateEnabled),
 	}
-}
-
-func parseFirewallAllowAzureIPsState(input string) (*FirewallAllowAzureIPsState, error) {
-	vals := map[string]FirewallAllowAzureIPsState{
-		"disabled": FirewallAllowAzureIPsStateDisabled,
-		"enabled":  FirewallAllowAzureIPsStateEnabled,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := FirewallAllowAzureIPsState(input)
-	return &out, nil
 }
 
 type FirewallState string
@@ -192,20 +109,6 @@ func PossibleValuesForFirewallState() []string {
 	}
 }
 
-func parseFirewallState(input string) (*FirewallState, error) {
-	vals := map[string]FirewallState{
-		"disabled": FirewallStateDisabled,
-		"enabled":  FirewallStateEnabled,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := FirewallState(input)
-	return &out, nil
-}
-
 type NestedResourceProvisioningState string
 
 const (
@@ -220,21 +123,6 @@ func PossibleValuesForNestedResourceProvisioningState() []string {
 		string(NestedResourceProvisioningStateFailed),
 		string(NestedResourceProvisioningStateSucceeded),
 	}
-}
-
-func parseNestedResourceProvisioningState(input string) (*NestedResourceProvisioningState, error) {
-	vals := map[string]NestedResourceProvisioningState{
-		"canceled":  NestedResourceProvisioningStateCanceled,
-		"failed":    NestedResourceProvisioningStateFailed,
-		"succeeded": NestedResourceProvisioningStateSucceeded,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := NestedResourceProvisioningState(input)
-	return &out, nil
 }
 
 type TierType string
@@ -265,27 +153,6 @@ func PossibleValuesForTierType() []string {
 	}
 }
 
-func parseTierType(input string) (*TierType, error) {
-	vals := map[string]TierType{
-		"commitment_500auhours":    TierTypeCommitmentFiveHundredAUHours,
-		"commitment_500000auhours": TierTypeCommitmentFiveHundredThousandAUHours,
-		"commitment_5000auhours":   TierTypeCommitmentFiveThousandAUHours,
-		"commitment_50000auhours":  TierTypeCommitmentFiveZeroThousandAUHours,
-		"commitment_100auhours":    TierTypeCommitmentOneHundredAUHours,
-		"commitment_100000auhours": TierTypeCommitmentOneHundredThousandAUHours,
-		"commitment_1000auhours":   TierTypeCommitmentOneThousandAUHours,
-		"commitment_10000auhours":  TierTypeCommitmentOneZeroThousandAUHours,
-		"consumption":              TierTypeConsumption,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := TierType(input)
-	return &out, nil
-}
-
 type Type string
 
 const (
@@ -296,19 +163,6 @@ func PossibleValuesForType() []string {
 	return []string{
 		string(TypeMicrosoftPointDataLakeAnalyticsAccounts),
 	}
-}
-
-func parseType(input string) (*Type, error) {
-	vals := map[string]Type{
-		"microsoft.datalakeanalytics/accounts": TypeMicrosoftPointDataLakeAnalyticsAccounts,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := Type(input)
-	return &out, nil
 }
 
 type VirtualNetworkRuleState string
@@ -325,19 +179,4 @@ func PossibleValuesForVirtualNetworkRuleState() []string {
 		string(VirtualNetworkRuleStateFailed),
 		string(VirtualNetworkRuleStateNetworkSourceDeleted),
 	}
-}
-
-func parseVirtualNetworkRuleState(input string) (*VirtualNetworkRuleState, error) {
-	vals := map[string]VirtualNetworkRuleState{
-		"active":               VirtualNetworkRuleStateActive,
-		"failed":               VirtualNetworkRuleStateFailed,
-		"networksourcedeleted": VirtualNetworkRuleStateNetworkSourceDeleted,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := VirtualNetworkRuleState(input)
-	return &out, nil
 }

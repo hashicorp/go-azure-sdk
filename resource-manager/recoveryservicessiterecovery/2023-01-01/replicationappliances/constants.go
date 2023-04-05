@@ -1,7 +1,5 @@
 package replicationappliances
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -17,20 +15,6 @@ func PossibleValuesForHealthErrorCustomerResolvability() []string {
 		string(HealthErrorCustomerResolvabilityAllowed),
 		string(HealthErrorCustomerResolvabilityNotAllowed),
 	}
-}
-
-func parseHealthErrorCustomerResolvability(input string) (*HealthErrorCustomerResolvability, error) {
-	vals := map[string]HealthErrorCustomerResolvability{
-		"allowed":    HealthErrorCustomerResolvabilityAllowed,
-		"notallowed": HealthErrorCustomerResolvabilityNotAllowed,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := HealthErrorCustomerResolvability(input)
-	return &out, nil
 }
 
 type ProtectionHealth string
@@ -51,22 +35,6 @@ func PossibleValuesForProtectionHealth() []string {
 	}
 }
 
-func parseProtectionHealth(input string) (*ProtectionHealth, error) {
-	vals := map[string]ProtectionHealth{
-		"critical": ProtectionHealthCritical,
-		"none":     ProtectionHealthNone,
-		"normal":   ProtectionHealthNormal,
-		"warning":  ProtectionHealthWarning,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ProtectionHealth(input)
-	return &out, nil
-}
-
 type RcmComponentStatus string
 
 const (
@@ -83,20 +51,4 @@ func PossibleValuesForRcmComponentStatus() []string {
 		string(RcmComponentStatusUnknown),
 		string(RcmComponentStatusWarning),
 	}
-}
-
-func parseRcmComponentStatus(input string) (*RcmComponentStatus, error) {
-	vals := map[string]RcmComponentStatus{
-		"critical": RcmComponentStatusCritical,
-		"healthy":  RcmComponentStatusHealthy,
-		"unknown":  RcmComponentStatusUnknown,
-		"warning":  RcmComponentStatusWarning,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := RcmComponentStatus(input)
-	return &out, nil
 }

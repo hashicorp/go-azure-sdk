@@ -1,7 +1,5 @@
 package dataconnections
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -19,20 +17,6 @@ func PossibleValuesForBlobStorageEventType() []string {
 	}
 }
 
-func parseBlobStorageEventType(input string) (*BlobStorageEventType, error) {
-	vals := map[string]BlobStorageEventType{
-		"microsoft.storage.blobcreated": BlobStorageEventTypeMicrosoftPointStoragePointBlobCreated,
-		"microsoft.storage.blobrenamed": BlobStorageEventTypeMicrosoftPointStoragePointBlobRenamed,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := BlobStorageEventType(input)
-	return &out, nil
-}
-
 type Compression string
 
 const (
@@ -45,20 +29,6 @@ func PossibleValuesForCompression() []string {
 		string(CompressionGZip),
 		string(CompressionNone),
 	}
-}
-
-func parseCompression(input string) (*Compression, error) {
-	vals := map[string]Compression{
-		"gzip": CompressionGZip,
-		"none": CompressionNone,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := Compression(input)
-	return &out, nil
 }
 
 type DataConnectionKind string
@@ -79,22 +49,6 @@ func PossibleValuesForDataConnectionKind() []string {
 	}
 }
 
-func parseDataConnectionKind(input string) (*DataConnectionKind, error) {
-	vals := map[string]DataConnectionKind{
-		"cosmosdb":  DataConnectionKindCosmosDb,
-		"eventgrid": DataConnectionKindEventGrid,
-		"eventhub":  DataConnectionKindEventHub,
-		"iothub":    DataConnectionKindIotHub,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := DataConnectionKind(input)
-	return &out, nil
-}
-
 type DataConnectionType string
 
 const (
@@ -105,19 +59,6 @@ func PossibleValuesForDataConnectionType() []string {
 	return []string{
 		string(DataConnectionTypeMicrosoftPointKustoClustersDatabasesDataConnections),
 	}
-}
-
-func parseDataConnectionType(input string) (*DataConnectionType, error) {
-	vals := map[string]DataConnectionType{
-		"microsoft.kusto/clusters/databases/dataconnections": DataConnectionTypeMicrosoftPointKustoClustersDatabasesDataConnections,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := DataConnectionType(input)
-	return &out, nil
 }
 
 type DatabaseRouting string
@@ -132,20 +73,6 @@ func PossibleValuesForDatabaseRouting() []string {
 		string(DatabaseRoutingMulti),
 		string(DatabaseRoutingSingle),
 	}
-}
-
-func parseDatabaseRouting(input string) (*DatabaseRouting, error) {
-	vals := map[string]DatabaseRouting{
-		"multi":  DatabaseRoutingMulti,
-		"single": DatabaseRoutingSingle,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := DatabaseRouting(input)
-	return &out, nil
 }
 
 type EventGridDataFormat string
@@ -190,34 +117,6 @@ func PossibleValuesForEventGridDataFormat() []string {
 	}
 }
 
-func parseEventGridDataFormat(input string) (*EventGridDataFormat, error) {
-	vals := map[string]EventGridDataFormat{
-		"apacheavro": EventGridDataFormatAPACHEAVRO,
-		"avro":       EventGridDataFormatAVRO,
-		"csv":        EventGridDataFormatCSV,
-		"json":       EventGridDataFormatJSON,
-		"multijson":  EventGridDataFormatMULTIJSON,
-		"orc":        EventGridDataFormatORC,
-		"parquet":    EventGridDataFormatPARQUET,
-		"psv":        EventGridDataFormatPSV,
-		"raw":        EventGridDataFormatRAW,
-		"scsv":       EventGridDataFormatSCSV,
-		"singlejson": EventGridDataFormatSINGLEJSON,
-		"sohsv":      EventGridDataFormatSOHSV,
-		"tsv":        EventGridDataFormatTSV,
-		"tsve":       EventGridDataFormatTSVE,
-		"txt":        EventGridDataFormatTXT,
-		"w3clogfile": EventGridDataFormatWThreeCLOGFILE,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := EventGridDataFormat(input)
-	return &out, nil
-}
-
 type EventHubDataFormat string
 
 const (
@@ -258,34 +157,6 @@ func PossibleValuesForEventHubDataFormat() []string {
 		string(EventHubDataFormatTXT),
 		string(EventHubDataFormatWThreeCLOGFILE),
 	}
-}
-
-func parseEventHubDataFormat(input string) (*EventHubDataFormat, error) {
-	vals := map[string]EventHubDataFormat{
-		"apacheavro": EventHubDataFormatAPACHEAVRO,
-		"avro":       EventHubDataFormatAVRO,
-		"csv":        EventHubDataFormatCSV,
-		"json":       EventHubDataFormatJSON,
-		"multijson":  EventHubDataFormatMULTIJSON,
-		"orc":        EventHubDataFormatORC,
-		"parquet":    EventHubDataFormatPARQUET,
-		"psv":        EventHubDataFormatPSV,
-		"raw":        EventHubDataFormatRAW,
-		"scsv":       EventHubDataFormatSCSV,
-		"singlejson": EventHubDataFormatSINGLEJSON,
-		"sohsv":      EventHubDataFormatSOHSV,
-		"tsv":        EventHubDataFormatTSV,
-		"tsve":       EventHubDataFormatTSVE,
-		"txt":        EventHubDataFormatTXT,
-		"w3clogfile": EventHubDataFormatWThreeCLOGFILE,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := EventHubDataFormat(input)
-	return &out, nil
 }
 
 type IotHubDataFormat string
@@ -330,34 +201,6 @@ func PossibleValuesForIotHubDataFormat() []string {
 	}
 }
 
-func parseIotHubDataFormat(input string) (*IotHubDataFormat, error) {
-	vals := map[string]IotHubDataFormat{
-		"apacheavro": IotHubDataFormatAPACHEAVRO,
-		"avro":       IotHubDataFormatAVRO,
-		"csv":        IotHubDataFormatCSV,
-		"json":       IotHubDataFormatJSON,
-		"multijson":  IotHubDataFormatMULTIJSON,
-		"orc":        IotHubDataFormatORC,
-		"parquet":    IotHubDataFormatPARQUET,
-		"psv":        IotHubDataFormatPSV,
-		"raw":        IotHubDataFormatRAW,
-		"scsv":       IotHubDataFormatSCSV,
-		"singlejson": IotHubDataFormatSINGLEJSON,
-		"sohsv":      IotHubDataFormatSOHSV,
-		"tsv":        IotHubDataFormatTSV,
-		"tsve":       IotHubDataFormatTSVE,
-		"txt":        IotHubDataFormatTXT,
-		"w3clogfile": IotHubDataFormatWThreeCLOGFILE,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := IotHubDataFormat(input)
-	return &out, nil
-}
-
 type ProvisioningState string
 
 const (
@@ -382,25 +225,6 @@ func PossibleValuesForProvisioningState() []string {
 	}
 }
 
-func parseProvisioningState(input string) (*ProvisioningState, error) {
-	vals := map[string]ProvisioningState{
-		"canceled":  ProvisioningStateCanceled,
-		"creating":  ProvisioningStateCreating,
-		"deleting":  ProvisioningStateDeleting,
-		"failed":    ProvisioningStateFailed,
-		"moving":    ProvisioningStateMoving,
-		"running":   ProvisioningStateRunning,
-		"succeeded": ProvisioningStateSucceeded,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ProvisioningState(input)
-	return &out, nil
-}
-
 type Reason string
 
 const (
@@ -413,18 +237,4 @@ func PossibleValuesForReason() []string {
 		string(ReasonAlreadyExists),
 		string(ReasonInvalid),
 	}
-}
-
-func parseReason(input string) (*Reason, error) {
-	vals := map[string]Reason{
-		"alreadyexists": ReasonAlreadyExists,
-		"invalid":       ReasonInvalid,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := Reason(input)
-	return &out, nil
 }

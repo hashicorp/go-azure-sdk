@@ -1,7 +1,5 @@
 package incidentalerts
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -23,22 +21,6 @@ func PossibleValuesForAlertSeverity() []string {
 	}
 }
 
-func parseAlertSeverity(input string) (*AlertSeverity, error) {
-	vals := map[string]AlertSeverity{
-		"high":          AlertSeverityHigh,
-		"informational": AlertSeverityInformational,
-		"low":           AlertSeverityLow,
-		"medium":        AlertSeverityMedium,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := AlertSeverity(input)
-	return &out, nil
-}
-
 type AlertStatus string
 
 const (
@@ -57,23 +39,6 @@ func PossibleValuesForAlertStatus() []string {
 		string(AlertStatusResolved),
 		string(AlertStatusUnknown),
 	}
-}
-
-func parseAlertStatus(input string) (*AlertStatus, error) {
-	vals := map[string]AlertStatus{
-		"dismissed":  AlertStatusDismissed,
-		"inprogress": AlertStatusInProgress,
-		"new":        AlertStatusNew,
-		"resolved":   AlertStatusResolved,
-		"unknown":    AlertStatusUnknown,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := AlertStatus(input)
-	return &out, nil
 }
 
 type AttackTactic string
@@ -112,31 +77,6 @@ func PossibleValuesForAttackTactic() []string {
 	}
 }
 
-func parseAttackTactic(input string) (*AttackTactic, error) {
-	vals := map[string]AttackTactic{
-		"collection":          AttackTacticCollection,
-		"commandandcontrol":   AttackTacticCommandAndControl,
-		"credentialaccess":    AttackTacticCredentialAccess,
-		"defenseevasion":      AttackTacticDefenseEvasion,
-		"discovery":           AttackTacticDiscovery,
-		"execution":           AttackTacticExecution,
-		"exfiltration":        AttackTacticExfiltration,
-		"impact":              AttackTacticImpact,
-		"initialaccess":       AttackTacticInitialAccess,
-		"lateralmovement":     AttackTacticLateralMovement,
-		"persistence":         AttackTacticPersistence,
-		"preattack":           AttackTacticPreAttack,
-		"privilegeescalation": AttackTacticPrivilegeEscalation,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := AttackTactic(input)
-	return &out, nil
-}
-
 type ConfidenceLevel string
 
 const (
@@ -151,21 +91,6 @@ func PossibleValuesForConfidenceLevel() []string {
 		string(ConfidenceLevelLow),
 		string(ConfidenceLevelUnknown),
 	}
-}
-
-func parseConfidenceLevel(input string) (*ConfidenceLevel, error) {
-	vals := map[string]ConfidenceLevel{
-		"high":    ConfidenceLevelHigh,
-		"low":     ConfidenceLevelLow,
-		"unknown": ConfidenceLevelUnknown,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ConfidenceLevel(input)
-	return &out, nil
 }
 
 type ConfidenceScoreStatus string
@@ -184,22 +109,6 @@ func PossibleValuesForConfidenceScoreStatus() []string {
 		string(ConfidenceScoreStatusNotApplicable),
 		string(ConfidenceScoreStatusNotFinal),
 	}
-}
-
-func parseConfidenceScoreStatus(input string) (*ConfidenceScoreStatus, error) {
-	vals := map[string]ConfidenceScoreStatus{
-		"final":         ConfidenceScoreStatusFinal,
-		"inprocess":     ConfidenceScoreStatusInProcess,
-		"notapplicable": ConfidenceScoreStatusNotApplicable,
-		"notfinal":      ConfidenceScoreStatusNotFinal,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ConfidenceScoreStatus(input)
-	return &out, nil
 }
 
 type EntityKind string
@@ -254,39 +163,6 @@ func PossibleValuesForEntityKind() []string {
 	}
 }
 
-func parseEntityKind(input string) (*EntityKind, error) {
-	vals := map[string]EntityKind{
-		"account":          EntityKindAccount,
-		"azureresource":    EntityKindAzureResource,
-		"bookmark":         EntityKindBookmark,
-		"cloudapplication": EntityKindCloudApplication,
-		"dnsresolution":    EntityKindDnsResolution,
-		"file":             EntityKindFile,
-		"filehash":         EntityKindFileHash,
-		"host":             EntityKindHost,
-		"ip":               EntityKindIP,
-		"iotdevice":        EntityKindIoTDevice,
-		"mailcluster":      EntityKindMailCluster,
-		"mailmessage":      EntityKindMailMessage,
-		"mailbox":          EntityKindMailbox,
-		"malware":          EntityKindMalware,
-		"process":          EntityKindProcess,
-		"registrykey":      EntityKindRegistryKey,
-		"registryvalue":    EntityKindRegistryValue,
-		"securityalert":    EntityKindSecurityAlert,
-		"securitygroup":    EntityKindSecurityGroup,
-		"submissionmail":   EntityKindSubmissionMail,
-		"url":              EntityKindUrl,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := EntityKind(input)
-	return &out, nil
-}
-
 type IncidentSeverity string
 
 const (
@@ -303,22 +179,6 @@ func PossibleValuesForIncidentSeverity() []string {
 		string(IncidentSeverityLow),
 		string(IncidentSeverityMedium),
 	}
-}
-
-func parseIncidentSeverity(input string) (*IncidentSeverity, error) {
-	vals := map[string]IncidentSeverity{
-		"high":          IncidentSeverityHigh,
-		"informational": IncidentSeverityInformational,
-		"low":           IncidentSeverityLow,
-		"medium":        IncidentSeverityMedium,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := IncidentSeverity(input)
-	return &out, nil
 }
 
 type KillChainIntent string
@@ -357,30 +217,4 @@ func PossibleValuesForKillChainIntent() []string {
 		string(KillChainIntentProbing),
 		string(KillChainIntentUnknown),
 	}
-}
-
-func parseKillChainIntent(input string) (*KillChainIntent, error) {
-	vals := map[string]KillChainIntent{
-		"collection":          KillChainIntentCollection,
-		"commandandcontrol":   KillChainIntentCommandAndControl,
-		"credentialaccess":    KillChainIntentCredentialAccess,
-		"defenseevasion":      KillChainIntentDefenseEvasion,
-		"discovery":           KillChainIntentDiscovery,
-		"execution":           KillChainIntentExecution,
-		"exfiltration":        KillChainIntentExfiltration,
-		"exploitation":        KillChainIntentExploitation,
-		"impact":              KillChainIntentImpact,
-		"lateralmovement":     KillChainIntentLateralMovement,
-		"persistence":         KillChainIntentPersistence,
-		"privilegeescalation": KillChainIntentPrivilegeEscalation,
-		"probing":             KillChainIntentProbing,
-		"unknown":             KillChainIntentUnknown,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := KillChainIntent(input)
-	return &out, nil
 }

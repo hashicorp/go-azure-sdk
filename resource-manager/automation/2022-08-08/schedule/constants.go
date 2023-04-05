@@ -1,6 +1,10 @@
 package schedule
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -29,23 +33,19 @@ func PossibleValuesForScheduleDay() []string {
 	}
 }
 
-func parseScheduleDay(input string) (*ScheduleDay, error) {
-	vals := map[string]ScheduleDay{
-		"friday":    ScheduleDayFriday,
-		"monday":    ScheduleDayMonday,
-		"saturday":  ScheduleDaySaturday,
-		"sunday":    ScheduleDaySunday,
-		"thursday":  ScheduleDayThursday,
-		"tuesday":   ScheduleDayTuesday,
-		"wednesday": ScheduleDayWednesday,
+func (s *ScheduleDay) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForScheduleDay() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ScheduleDay(input)
-	return &out, nil
+	*s = ScheduleDay(decoded)
+	return nil
 }
 
 type ScheduleFrequency string
@@ -70,20 +70,17 @@ func PossibleValuesForScheduleFrequency() []string {
 	}
 }
 
-func parseScheduleFrequency(input string) (*ScheduleFrequency, error) {
-	vals := map[string]ScheduleFrequency{
-		"day":     ScheduleFrequencyDay,
-		"hour":    ScheduleFrequencyHour,
-		"minute":  ScheduleFrequencyMinute,
-		"month":   ScheduleFrequencyMonth,
-		"onetime": ScheduleFrequencyOneTime,
-		"week":    ScheduleFrequencyWeek,
+func (s *ScheduleFrequency) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForScheduleFrequency() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ScheduleFrequency(input)
-	return &out, nil
+	*s = ScheduleFrequency(decoded)
+	return nil
 }

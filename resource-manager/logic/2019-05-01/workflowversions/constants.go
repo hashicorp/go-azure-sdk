@@ -1,7 +1,5 @@
 package workflowversions
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -15,19 +13,6 @@ func PossibleValuesForOpenAuthenticationProviderType() []string {
 	return []string{
 		string(OpenAuthenticationProviderTypeAAD),
 	}
-}
-
-func parseOpenAuthenticationProviderType(input string) (*OpenAuthenticationProviderType, error) {
-	vals := map[string]OpenAuthenticationProviderType{
-		"aad": OpenAuthenticationProviderTypeAAD,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := OpenAuthenticationProviderType(input)
-	return &out, nil
 }
 
 type ParameterType string
@@ -58,27 +43,6 @@ func PossibleValuesForParameterType() []string {
 	}
 }
 
-func parseParameterType(input string) (*ParameterType, error) {
-	vals := map[string]ParameterType{
-		"array":        ParameterTypeArray,
-		"bool":         ParameterTypeBool,
-		"float":        ParameterTypeFloat,
-		"int":          ParameterTypeInt,
-		"notspecified": ParameterTypeNotSpecified,
-		"object":       ParameterTypeObject,
-		"secureobject": ParameterTypeSecureObject,
-		"securestring": ParameterTypeSecureString,
-		"string":       ParameterTypeString,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ParameterType(input)
-	return &out, nil
-}
-
 type SkuName string
 
 const (
@@ -99,24 +63,6 @@ func PossibleValuesForSkuName() []string {
 		string(SkuNameShared),
 		string(SkuNameStandard),
 	}
-}
-
-func parseSkuName(input string) (*SkuName, error) {
-	vals := map[string]SkuName{
-		"basic":        SkuNameBasic,
-		"free":         SkuNameFree,
-		"notspecified": SkuNameNotSpecified,
-		"premium":      SkuNamePremium,
-		"shared":       SkuNameShared,
-		"standard":     SkuNameStandard,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SkuName(input)
-	return &out, nil
 }
 
 type WorkflowProvisioningState string
@@ -173,40 +119,6 @@ func PossibleValuesForWorkflowProvisioningState() []string {
 	}
 }
 
-func parseWorkflowProvisioningState(input string) (*WorkflowProvisioningState, error) {
-	vals := map[string]WorkflowProvisioningState{
-		"accepted":      WorkflowProvisioningStateAccepted,
-		"canceled":      WorkflowProvisioningStateCanceled,
-		"completed":     WorkflowProvisioningStateCompleted,
-		"created":       WorkflowProvisioningStateCreated,
-		"creating":      WorkflowProvisioningStateCreating,
-		"deleted":       WorkflowProvisioningStateDeleted,
-		"deleting":      WorkflowProvisioningStateDeleting,
-		"failed":        WorkflowProvisioningStateFailed,
-		"inprogress":    WorkflowProvisioningStateInProgress,
-		"moving":        WorkflowProvisioningStateMoving,
-		"notspecified":  WorkflowProvisioningStateNotSpecified,
-		"pending":       WorkflowProvisioningStatePending,
-		"ready":         WorkflowProvisioningStateReady,
-		"registered":    WorkflowProvisioningStateRegistered,
-		"registering":   WorkflowProvisioningStateRegistering,
-		"renewing":      WorkflowProvisioningStateRenewing,
-		"running":       WorkflowProvisioningStateRunning,
-		"succeeded":     WorkflowProvisioningStateSucceeded,
-		"unregistered":  WorkflowProvisioningStateUnregistered,
-		"unregistering": WorkflowProvisioningStateUnregistering,
-		"updating":      WorkflowProvisioningStateUpdating,
-		"waiting":       WorkflowProvisioningStateWaiting,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := WorkflowProvisioningState(input)
-	return &out, nil
-}
-
 type WorkflowState string
 
 const (
@@ -227,22 +139,4 @@ func PossibleValuesForWorkflowState() []string {
 		string(WorkflowStateNotSpecified),
 		string(WorkflowStateSuspended),
 	}
-}
-
-func parseWorkflowState(input string) (*WorkflowState, error) {
-	vals := map[string]WorkflowState{
-		"completed":    WorkflowStateCompleted,
-		"deleted":      WorkflowStateDeleted,
-		"disabled":     WorkflowStateDisabled,
-		"enabled":      WorkflowStateEnabled,
-		"notspecified": WorkflowStateNotSpecified,
-		"suspended":    WorkflowStateSuspended,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := WorkflowState(input)
-	return &out, nil
 }

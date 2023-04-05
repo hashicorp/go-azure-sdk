@@ -1,7 +1,5 @@
 package dppfeaturesupport
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -27,24 +25,6 @@ func PossibleValuesForFeatureSupportStatus() []string {
 	}
 }
 
-func parseFeatureSupportStatus(input string) (*FeatureSupportStatus, error) {
-	vals := map[string]FeatureSupportStatus{
-		"alphapreview":       FeatureSupportStatusAlphaPreview,
-		"generallyavailable": FeatureSupportStatusGenerallyAvailable,
-		"invalid":            FeatureSupportStatusInvalid,
-		"notsupported":       FeatureSupportStatusNotSupported,
-		"privatepreview":     FeatureSupportStatusPrivatePreview,
-		"publicpreview":      FeatureSupportStatusPublicPreview,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := FeatureSupportStatus(input)
-	return &out, nil
-}
-
 type FeatureType string
 
 const (
@@ -57,18 +37,4 @@ func PossibleValuesForFeatureType() []string {
 		string(FeatureTypeDataSourceType),
 		string(FeatureTypeInvalid),
 	}
-}
-
-func parseFeatureType(input string) (*FeatureType, error) {
-	vals := map[string]FeatureType{
-		"datasourcetype": FeatureTypeDataSourceType,
-		"invalid":        FeatureTypeInvalid,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := FeatureType(input)
-	return &out, nil
 }

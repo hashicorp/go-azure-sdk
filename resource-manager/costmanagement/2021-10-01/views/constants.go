@@ -1,7 +1,5 @@
 package views
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -17,20 +15,6 @@ func PossibleValuesForAccumulatedType() []string {
 		string(AccumulatedTypeFalse),
 		string(AccumulatedTypeTrue),
 	}
-}
-
-func parseAccumulatedType(input string) (*AccumulatedType, error) {
-	vals := map[string]AccumulatedType{
-		"false": AccumulatedTypeFalse,
-		"true":  AccumulatedTypeTrue,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := AccumulatedType(input)
-	return &out, nil
 }
 
 type ChartType string
@@ -53,23 +37,6 @@ func PossibleValuesForChartType() []string {
 	}
 }
 
-func parseChartType(input string) (*ChartType, error) {
-	vals := map[string]ChartType{
-		"area":          ChartTypeArea,
-		"groupedcolumn": ChartTypeGroupedColumn,
-		"line":          ChartTypeLine,
-		"stackedcolumn": ChartTypeStackedColumn,
-		"table":         ChartTypeTable,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ChartType(input)
-	return &out, nil
-}
-
 type FunctionType string
 
 const (
@@ -80,19 +47,6 @@ func PossibleValuesForFunctionType() []string {
 	return []string{
 		string(FunctionTypeSum),
 	}
-}
-
-func parseFunctionType(input string) (*FunctionType, error) {
-	vals := map[string]FunctionType{
-		"sum": FunctionTypeSum,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := FunctionType(input)
-	return &out, nil
 }
 
 type KpiTypeType string
@@ -107,20 +61,6 @@ func PossibleValuesForKpiTypeType() []string {
 		string(KpiTypeTypeBudget),
 		string(KpiTypeTypeForecast),
 	}
-}
-
-func parseKpiTypeType(input string) (*KpiTypeType, error) {
-	vals := map[string]KpiTypeType{
-		"budget":   KpiTypeTypeBudget,
-		"forecast": KpiTypeTypeForecast,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := KpiTypeType(input)
-	return &out, nil
 }
 
 type MetricType string
@@ -139,21 +79,6 @@ func PossibleValuesForMetricType() []string {
 	}
 }
 
-func parseMetricType(input string) (*MetricType, error) {
-	vals := map[string]MetricType{
-		"ahub":          MetricTypeAHUB,
-		"actualcost":    MetricTypeActualCost,
-		"amortizedcost": MetricTypeAmortizedCost,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := MetricType(input)
-	return &out, nil
-}
-
 type OperatorType string
 
 const (
@@ -166,20 +91,6 @@ func PossibleValuesForOperatorType() []string {
 		string(OperatorTypeContains),
 		string(OperatorTypeIn),
 	}
-}
-
-func parseOperatorType(input string) (*OperatorType, error) {
-	vals := map[string]OperatorType{
-		"contains": OperatorTypeContains,
-		"in":       OperatorTypeIn,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := OperatorType(input)
-	return &out, nil
 }
 
 type PivotTypeType string
@@ -196,20 +107,6 @@ func PossibleValuesForPivotTypeType() []string {
 	}
 }
 
-func parsePivotTypeType(input string) (*PivotTypeType, error) {
-	vals := map[string]PivotTypeType{
-		"dimension": PivotTypeTypeDimension,
-		"tagkey":    PivotTypeTypeTagKey,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PivotTypeType(input)
-	return &out, nil
-}
-
 type ReportConfigColumnType string
 
 const (
@@ -222,20 +119,6 @@ func PossibleValuesForReportConfigColumnType() []string {
 		string(ReportConfigColumnTypeDimension),
 		string(ReportConfigColumnTypeTag),
 	}
-}
-
-func parseReportConfigColumnType(input string) (*ReportConfigColumnType, error) {
-	vals := map[string]ReportConfigColumnType{
-		"dimension": ReportConfigColumnTypeDimension,
-		"tag":       ReportConfigColumnTypeTag,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ReportConfigColumnType(input)
-	return &out, nil
 }
 
 type ReportConfigSortingType string
@@ -252,20 +135,6 @@ func PossibleValuesForReportConfigSortingType() []string {
 	}
 }
 
-func parseReportConfigSortingType(input string) (*ReportConfigSortingType, error) {
-	vals := map[string]ReportConfigSortingType{
-		"ascending":  ReportConfigSortingTypeAscending,
-		"descending": ReportConfigSortingTypeDescending,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ReportConfigSortingType(input)
-	return &out, nil
-}
-
 type ReportGranularityType string
 
 const (
@@ -278,20 +147,6 @@ func PossibleValuesForReportGranularityType() []string {
 		string(ReportGranularityTypeDaily),
 		string(ReportGranularityTypeMonthly),
 	}
-}
-
-func parseReportGranularityType(input string) (*ReportGranularityType, error) {
-	vals := map[string]ReportGranularityType{
-		"daily":   ReportGranularityTypeDaily,
-		"monthly": ReportGranularityTypeMonthly,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ReportGranularityType(input)
-	return &out, nil
 }
 
 type ReportTimeframeType string
@@ -312,22 +167,6 @@ func PossibleValuesForReportTimeframeType() []string {
 	}
 }
 
-func parseReportTimeframeType(input string) (*ReportTimeframeType, error) {
-	vals := map[string]ReportTimeframeType{
-		"custom":      ReportTimeframeTypeCustom,
-		"monthtodate": ReportTimeframeTypeMonthToDate,
-		"weektodate":  ReportTimeframeTypeWeekToDate,
-		"yeartodate":  ReportTimeframeTypeYearToDate,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ReportTimeframeType(input)
-	return &out, nil
-}
-
 type ReportType string
 
 const (
@@ -338,17 +177,4 @@ func PossibleValuesForReportType() []string {
 	return []string{
 		string(ReportTypeUsage),
 	}
-}
-
-func parseReportType(input string) (*ReportType, error) {
-	vals := map[string]ReportType{
-		"usage": ReportTypeUsage,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ReportType(input)
-	return &out, nil
 }

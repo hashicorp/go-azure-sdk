@@ -1,7 +1,5 @@
 package replicationjobs
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -19,19 +17,4 @@ func PossibleValuesForExportJobOutputSerializationType() []string {
 		string(ExportJobOutputSerializationTypeJson),
 		string(ExportJobOutputSerializationTypeXml),
 	}
-}
-
-func parseExportJobOutputSerializationType(input string) (*ExportJobOutputSerializationType, error) {
-	vals := map[string]ExportJobOutputSerializationType{
-		"excel": ExportJobOutputSerializationTypeExcel,
-		"json":  ExportJobOutputSerializationTypeJson,
-		"xml":   ExportJobOutputSerializationTypeXml,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ExportJobOutputSerializationType(input)
-	return &out, nil
 }

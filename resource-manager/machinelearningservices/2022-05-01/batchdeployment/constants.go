@@ -1,7 +1,5 @@
 package batchdeployment
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -21,21 +19,6 @@ func PossibleValuesForBatchLoggingLevel() []string {
 	}
 }
 
-func parseBatchLoggingLevel(input string) (*BatchLoggingLevel, error) {
-	vals := map[string]BatchLoggingLevel{
-		"debug":   BatchLoggingLevelDebug,
-		"info":    BatchLoggingLevelInfo,
-		"warning": BatchLoggingLevelWarning,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := BatchLoggingLevel(input)
-	return &out, nil
-}
-
 type BatchOutputAction string
 
 const (
@@ -48,20 +31,6 @@ func PossibleValuesForBatchOutputAction() []string {
 		string(BatchOutputActionAppendRow),
 		string(BatchOutputActionSummaryOnly),
 	}
-}
-
-func parseBatchOutputAction(input string) (*BatchOutputAction, error) {
-	vals := map[string]BatchOutputAction{
-		"appendrow":   BatchOutputActionAppendRow,
-		"summaryonly": BatchOutputActionSummaryOnly,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := BatchOutputAction(input)
-	return &out, nil
 }
 
 type DeploymentProvisioningState string
@@ -88,25 +57,6 @@ func PossibleValuesForDeploymentProvisioningState() []string {
 	}
 }
 
-func parseDeploymentProvisioningState(input string) (*DeploymentProvisioningState, error) {
-	vals := map[string]DeploymentProvisioningState{
-		"canceled":  DeploymentProvisioningStateCanceled,
-		"creating":  DeploymentProvisioningStateCreating,
-		"deleting":  DeploymentProvisioningStateDeleting,
-		"failed":    DeploymentProvisioningStateFailed,
-		"scaling":   DeploymentProvisioningStateScaling,
-		"succeeded": DeploymentProvisioningStateSucceeded,
-		"updating":  DeploymentProvisioningStateUpdating,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := DeploymentProvisioningState(input)
-	return &out, nil
-}
-
 type ReferenceType string
 
 const (
@@ -121,21 +71,6 @@ func PossibleValuesForReferenceType() []string {
 		string(ReferenceTypeId),
 		string(ReferenceTypeOutputPath),
 	}
-}
-
-func parseReferenceType(input string) (*ReferenceType, error) {
-	vals := map[string]ReferenceType{
-		"datapath":   ReferenceTypeDataPath,
-		"id":         ReferenceTypeId,
-		"outputpath": ReferenceTypeOutputPath,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ReferenceType(input)
-	return &out, nil
 }
 
 type SkuTier string
@@ -154,20 +89,4 @@ func PossibleValuesForSkuTier() []string {
 		string(SkuTierPremium),
 		string(SkuTierStandard),
 	}
-}
-
-func parseSkuTier(input string) (*SkuTier, error) {
-	vals := map[string]SkuTier{
-		"basic":    SkuTierBasic,
-		"free":     SkuTierFree,
-		"premium":  SkuTierPremium,
-		"standard": SkuTierStandard,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SkuTier(input)
-	return &out, nil
 }

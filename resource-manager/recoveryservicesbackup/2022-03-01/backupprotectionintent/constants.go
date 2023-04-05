@@ -1,7 +1,5 @@
 package backupprotectionintent
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -33,27 +31,6 @@ func PossibleValuesForBackupManagementType() []string {
 	}
 }
 
-func parseBackupManagementType(input string) (*BackupManagementType, error) {
-	vals := map[string]BackupManagementType{
-		"azurebackupserver": BackupManagementTypeAzureBackupServer,
-		"azureiaasvm":       BackupManagementTypeAzureIaasVM,
-		"azuresql":          BackupManagementTypeAzureSql,
-		"azurestorage":      BackupManagementTypeAzureStorage,
-		"azureworkload":     BackupManagementTypeAzureWorkload,
-		"dpm":               BackupManagementTypeDPM,
-		"defaultbackup":     BackupManagementTypeDefaultBackup,
-		"invalid":           BackupManagementTypeInvalid,
-		"mab":               BackupManagementTypeMAB,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := BackupManagementType(input)
-	return &out, nil
-}
-
 type ProtectionIntentItemType string
 
 const (
@@ -76,24 +53,6 @@ func PossibleValuesForProtectionIntentItemType() []string {
 	}
 }
 
-func parseProtectionIntentItemType(input string) (*ProtectionIntentItemType, error) {
-	vals := map[string]ProtectionIntentItemType{
-		"azureresourceitem":                          ProtectionIntentItemTypeAzureResourceItem,
-		"azureworkloadautoprotectionintent":          ProtectionIntentItemTypeAzureWorkloadAutoProtectionIntent,
-		"azureworkloadcontainerautoprotectionintent": ProtectionIntentItemTypeAzureWorkloadContainerAutoProtectionIntent,
-		"azureworkloadsqlautoprotectionintent":       ProtectionIntentItemTypeAzureWorkloadSQLAutoProtectionIntent,
-		"invalid":                                    ProtectionIntentItemTypeInvalid,
-		"recoveryservicevaultitem":                   ProtectionIntentItemTypeRecoveryServiceVaultItem,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ProtectionIntentItemType(input)
-	return &out, nil
-}
-
 type ProtectionStatus string
 
 const (
@@ -112,21 +71,4 @@ func PossibleValuesForProtectionStatus() []string {
 		string(ProtectionStatusProtecting),
 		string(ProtectionStatusProtectionFailed),
 	}
-}
-
-func parseProtectionStatus(input string) (*ProtectionStatus, error) {
-	vals := map[string]ProtectionStatus{
-		"invalid":          ProtectionStatusInvalid,
-		"notprotected":     ProtectionStatusNotProtected,
-		"protected":        ProtectionStatusProtected,
-		"protecting":       ProtectionStatusProtecting,
-		"protectionfailed": ProtectionStatusProtectionFailed,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ProtectionStatus(input)
-	return &out, nil
 }

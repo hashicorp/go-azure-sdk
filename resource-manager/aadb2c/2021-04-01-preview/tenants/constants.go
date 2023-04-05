@@ -1,6 +1,10 @@
 package tenants
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) HashiCorp Inc. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -19,18 +23,19 @@ func PossibleValuesForBillingType() []string {
 	}
 }
 
-func parseBillingType(input string) (*BillingType, error) {
-	vals := map[string]BillingType{
-		"auths": BillingTypeAuths,
-		"mau":   BillingTypeMonthlyActiveUsers,
+func (s *BillingType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForBillingType() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := BillingType(input)
-	return &out, nil
+	*s = BillingType(decoded)
+	return nil
 }
 
 type Location string
@@ -53,21 +58,19 @@ func PossibleValuesForLocation() []string {
 	}
 }
 
-func parseLocation(input string) (*Location, error) {
-	vals := map[string]Location{
-		"asia pacific":  LocationAsiaPacific,
-		"australia":     LocationAustralia,
-		"europe":        LocationEurope,
-		"global":        LocationGlobal,
-		"united states": LocationUnitedStates,
+func (s *Location) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForLocation() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := Location(input)
-	return &out, nil
+	*s = Location(decoded)
+	return nil
 }
 
 type SkuName string
@@ -86,19 +89,19 @@ func PossibleValuesForSkuName() []string {
 	}
 }
 
-func parseSkuName(input string) (*SkuName, error) {
-	vals := map[string]SkuName{
-		"premiump1": SkuNamePremiumP1,
-		"premiump2": SkuNamePremiumP2,
-		"standard":  SkuNameStandard,
+func (s *SkuName) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForSkuName() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SkuName(input)
-	return &out, nil
+	*s = SkuName(decoded)
+	return nil
 }
 
 type SkuTier string
@@ -113,15 +116,17 @@ func PossibleValuesForSkuTier() []string {
 	}
 }
 
-func parseSkuTier(input string) (*SkuTier, error) {
-	vals := map[string]SkuTier{
-		"a0": SkuTierA0,
+func (s *SkuTier) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForSkuTier() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SkuTier(input)
-	return &out, nil
+	*s = SkuTier(decoded)
+	return nil
 }

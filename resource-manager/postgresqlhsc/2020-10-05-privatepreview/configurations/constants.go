@@ -1,7 +1,5 @@
 package configurations
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -23,22 +21,6 @@ func PossibleValuesForConfigurationDataType() []string {
 	}
 }
 
-func parseConfigurationDataType(input string) (*ConfigurationDataType, error) {
-	vals := map[string]ConfigurationDataType{
-		"boolean":     ConfigurationDataTypeBoolean,
-		"enumeration": ConfigurationDataTypeEnumeration,
-		"integer":     ConfigurationDataTypeInteger,
-		"numeric":     ConfigurationDataTypeNumeric,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ConfigurationDataType(input)
-	return &out, nil
-}
-
 type ServerRole string
 
 const (
@@ -51,18 +33,4 @@ func PossibleValuesForServerRole() []string {
 		string(ServerRoleCoordinator),
 		string(ServerRoleWorker),
 	}
-}
-
-func parseServerRole(input string) (*ServerRole, error) {
-	vals := map[string]ServerRole{
-		"coordinator": ServerRoleCoordinator,
-		"worker":      ServerRoleWorker,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ServerRole(input)
-	return &out, nil
 }

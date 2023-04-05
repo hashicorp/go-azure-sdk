@@ -1,7 +1,5 @@
 package networkrulesets
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -19,20 +17,6 @@ func PossibleValuesForDefaultAction() []string {
 	}
 }
 
-func parseDefaultAction(input string) (*DefaultAction, error) {
-	vals := map[string]DefaultAction{
-		"allow": DefaultActionAllow,
-		"deny":  DefaultActionDeny,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := DefaultAction(input)
-	return &out, nil
-}
-
 type NetworkRuleIPAction string
 
 const (
@@ -43,19 +27,6 @@ func PossibleValuesForNetworkRuleIPAction() []string {
 	return []string{
 		string(NetworkRuleIPActionAllow),
 	}
-}
-
-func parseNetworkRuleIPAction(input string) (*NetworkRuleIPAction, error) {
-	vals := map[string]NetworkRuleIPAction{
-		"allow": NetworkRuleIPActionAllow,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := NetworkRuleIPAction(input)
-	return &out, nil
 }
 
 type PublicNetworkAccessFlag string
@@ -72,19 +43,4 @@ func PossibleValuesForPublicNetworkAccessFlag() []string {
 		string(PublicNetworkAccessFlagEnabled),
 		string(PublicNetworkAccessFlagSecuredByPerimeter),
 	}
-}
-
-func parsePublicNetworkAccessFlag(input string) (*PublicNetworkAccessFlag, error) {
-	vals := map[string]PublicNetworkAccessFlag{
-		"disabled":           PublicNetworkAccessFlagDisabled,
-		"enabled":            PublicNetworkAccessFlagEnabled,
-		"securedbyperimeter": PublicNetworkAccessFlagSecuredByPerimeter,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PublicNetworkAccessFlag(input)
-	return &out, nil
 }

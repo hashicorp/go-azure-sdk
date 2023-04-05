@@ -1,7 +1,5 @@
 package vaults
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -17,20 +15,6 @@ func PossibleValuesForAlertsState() []string {
 		string(AlertsStateDisabled),
 		string(AlertsStateEnabled),
 	}
-}
-
-func parseAlertsState(input string) (*AlertsState, error) {
-	vals := map[string]AlertsState{
-		"disabled": AlertsStateDisabled,
-		"enabled":  AlertsStateEnabled,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := AlertsState(input)
-	return &out, nil
 }
 
 type BackupStorageVersion string
@@ -49,21 +33,6 @@ func PossibleValuesForBackupStorageVersion() []string {
 	}
 }
 
-func parseBackupStorageVersion(input string) (*BackupStorageVersion, error) {
-	vals := map[string]BackupStorageVersion{
-		"unassigned": BackupStorageVersionUnassigned,
-		"v1":         BackupStorageVersionVOne,
-		"v2":         BackupStorageVersionVTwo,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := BackupStorageVersion(input)
-	return &out, nil
-}
-
 type CrossRegionRestore string
 
 const (
@@ -76,20 +45,6 @@ func PossibleValuesForCrossRegionRestore() []string {
 		string(CrossRegionRestoreDisabled),
 		string(CrossRegionRestoreEnabled),
 	}
-}
-
-func parseCrossRegionRestore(input string) (*CrossRegionRestore, error) {
-	vals := map[string]CrossRegionRestore{
-		"disabled": CrossRegionRestoreDisabled,
-		"enabled":  CrossRegionRestoreEnabled,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := CrossRegionRestore(input)
-	return &out, nil
 }
 
 type ImmutabilityState string
@@ -108,21 +63,6 @@ func PossibleValuesForImmutabilityState() []string {
 	}
 }
 
-func parseImmutabilityState(input string) (*ImmutabilityState, error) {
-	vals := map[string]ImmutabilityState{
-		"disabled": ImmutabilityStateDisabled,
-		"locked":   ImmutabilityStateLocked,
-		"unlocked": ImmutabilityStateUnlocked,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ImmutabilityState(input)
-	return &out, nil
-}
-
 type InfrastructureEncryptionState string
 
 const (
@@ -135,20 +75,6 @@ func PossibleValuesForInfrastructureEncryptionState() []string {
 		string(InfrastructureEncryptionStateDisabled),
 		string(InfrastructureEncryptionStateEnabled),
 	}
-}
-
-func parseInfrastructureEncryptionState(input string) (*InfrastructureEncryptionState, error) {
-	vals := map[string]InfrastructureEncryptionState{
-		"disabled": InfrastructureEncryptionStateDisabled,
-		"enabled":  InfrastructureEncryptionStateEnabled,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := InfrastructureEncryptionState(input)
-	return &out, nil
 }
 
 type PrivateEndpointConnectionStatus string
@@ -169,22 +95,6 @@ func PossibleValuesForPrivateEndpointConnectionStatus() []string {
 	}
 }
 
-func parsePrivateEndpointConnectionStatus(input string) (*PrivateEndpointConnectionStatus, error) {
-	vals := map[string]PrivateEndpointConnectionStatus{
-		"approved":     PrivateEndpointConnectionStatusApproved,
-		"disconnected": PrivateEndpointConnectionStatusDisconnected,
-		"pending":      PrivateEndpointConnectionStatusPending,
-		"rejected":     PrivateEndpointConnectionStatusRejected,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PrivateEndpointConnectionStatus(input)
-	return &out, nil
-}
-
 type ProvisioningState string
 
 const (
@@ -203,22 +113,6 @@ func PossibleValuesForProvisioningState() []string {
 	}
 }
 
-func parseProvisioningState(input string) (*ProvisioningState, error) {
-	vals := map[string]ProvisioningState{
-		"deleting":  ProvisioningStateDeleting,
-		"failed":    ProvisioningStateFailed,
-		"pending":   ProvisioningStatePending,
-		"succeeded": ProvisioningStateSucceeded,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ProvisioningState(input)
-	return &out, nil
-}
-
 type PublicNetworkAccess string
 
 const (
@@ -231,20 +125,6 @@ func PossibleValuesForPublicNetworkAccess() []string {
 		string(PublicNetworkAccessDisabled),
 		string(PublicNetworkAccessEnabled),
 	}
-}
-
-func parsePublicNetworkAccess(input string) (*PublicNetworkAccess, error) {
-	vals := map[string]PublicNetworkAccess{
-		"disabled": PublicNetworkAccessDisabled,
-		"enabled":  PublicNetworkAccessEnabled,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PublicNetworkAccess(input)
-	return &out, nil
 }
 
 type ResourceMoveState string
@@ -277,28 +157,6 @@ func PossibleValuesForResourceMoveState() []string {
 	}
 }
 
-func parseResourceMoveState(input string) (*ResourceMoveState, error) {
-	vals := map[string]ResourceMoveState{
-		"commitfailed":    ResourceMoveStateCommitFailed,
-		"committimedout":  ResourceMoveStateCommitTimedout,
-		"criticalfailure": ResourceMoveStateCriticalFailure,
-		"failure":         ResourceMoveStateFailure,
-		"inprogress":      ResourceMoveStateInProgress,
-		"movesucceeded":   ResourceMoveStateMoveSucceeded,
-		"partialsuccess":  ResourceMoveStatePartialSuccess,
-		"preparefailed":   ResourceMoveStatePrepareFailed,
-		"preparetimedout": ResourceMoveStatePrepareTimedout,
-		"unknown":         ResourceMoveStateUnknown,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ResourceMoveState(input)
-	return &out, nil
-}
-
 type SkuName string
 
 const (
@@ -311,20 +169,6 @@ func PossibleValuesForSkuName() []string {
 		string(SkuNameRSZero),
 		string(SkuNameStandard),
 	}
-}
-
-func parseSkuName(input string) (*SkuName, error) {
-	vals := map[string]SkuName{
-		"rs0":      SkuNameRSZero,
-		"standard": SkuNameStandard,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SkuName(input)
-	return &out, nil
 }
 
 type StandardTierStorageRedundancy string
@@ -343,21 +187,6 @@ func PossibleValuesForStandardTierStorageRedundancy() []string {
 	}
 }
 
-func parseStandardTierStorageRedundancy(input string) (*StandardTierStorageRedundancy, error) {
-	vals := map[string]StandardTierStorageRedundancy{
-		"georedundant":     StandardTierStorageRedundancyGeoRedundant,
-		"locallyredundant": StandardTierStorageRedundancyLocallyRedundant,
-		"zoneredundant":    StandardTierStorageRedundancyZoneRedundant,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := StandardTierStorageRedundancy(input)
-	return &out, nil
-}
-
 type TriggerType string
 
 const (
@@ -372,20 +201,6 @@ func PossibleValuesForTriggerType() []string {
 	}
 }
 
-func parseTriggerType(input string) (*TriggerType, error) {
-	vals := map[string]TriggerType{
-		"forcedupgrade": TriggerTypeForcedUpgrade,
-		"usertriggered": TriggerTypeUserTriggered,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := TriggerType(input)
-	return &out, nil
-}
-
 type VaultPrivateEndpointState string
 
 const (
@@ -398,20 +213,6 @@ func PossibleValuesForVaultPrivateEndpointState() []string {
 		string(VaultPrivateEndpointStateEnabled),
 		string(VaultPrivateEndpointStateNone),
 	}
-}
-
-func parseVaultPrivateEndpointState(input string) (*VaultPrivateEndpointState, error) {
-	vals := map[string]VaultPrivateEndpointState{
-		"enabled": VaultPrivateEndpointStateEnabled,
-		"none":    VaultPrivateEndpointStateNone,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := VaultPrivateEndpointState(input)
-	return &out, nil
 }
 
 type VaultSubResourceType string
@@ -430,21 +231,6 @@ func PossibleValuesForVaultSubResourceType() []string {
 	}
 }
 
-func parseVaultSubResourceType(input string) (*VaultSubResourceType, error) {
-	vals := map[string]VaultSubResourceType{
-		"azurebackup":           VaultSubResourceTypeAzureBackup,
-		"azurebackup_secondary": VaultSubResourceTypeAzureBackupSecondary,
-		"azuresiterecovery":     VaultSubResourceTypeAzureSiteRecovery,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := VaultSubResourceType(input)
-	return &out, nil
-}
-
 type VaultUpgradeState string
 
 const (
@@ -461,20 +247,4 @@ func PossibleValuesForVaultUpgradeState() []string {
 		string(VaultUpgradeStateUnknown),
 		string(VaultUpgradeStateUpgraded),
 	}
-}
-
-func parseVaultUpgradeState(input string) (*VaultUpgradeState, error) {
-	vals := map[string]VaultUpgradeState{
-		"failed":     VaultUpgradeStateFailed,
-		"inprogress": VaultUpgradeStateInProgress,
-		"unknown":    VaultUpgradeStateUnknown,
-		"upgraded":   VaultUpgradeStateUpgraded,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := VaultUpgradeState(input)
-	return &out, nil
 }

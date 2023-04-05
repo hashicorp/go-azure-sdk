@@ -1,7 +1,5 @@
 package endpoints
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -17,20 +15,6 @@ func PossibleValuesForAuthenticationType() []string {
 		string(AuthenticationTypeIdentityBased),
 		string(AuthenticationTypeKeyBased),
 	}
-}
-
-func parseAuthenticationType(input string) (*AuthenticationType, error) {
-	vals := map[string]AuthenticationType{
-		"identitybased": AuthenticationTypeIdentityBased,
-		"keybased":      AuthenticationTypeKeyBased,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := AuthenticationType(input)
-	return &out, nil
 }
 
 type EndpointProvisioningState string
@@ -67,30 +51,6 @@ func PossibleValuesForEndpointProvisioningState() []string {
 	}
 }
 
-func parseEndpointProvisioningState(input string) (*EndpointProvisioningState, error) {
-	vals := map[string]EndpointProvisioningState{
-		"canceled":     EndpointProvisioningStateCanceled,
-		"deleted":      EndpointProvisioningStateDeleted,
-		"deleting":     EndpointProvisioningStateDeleting,
-		"disabled":     EndpointProvisioningStateDisabled,
-		"failed":       EndpointProvisioningStateFailed,
-		"moving":       EndpointProvisioningStateMoving,
-		"provisioning": EndpointProvisioningStateProvisioning,
-		"restoring":    EndpointProvisioningStateRestoring,
-		"succeeded":    EndpointProvisioningStateSucceeded,
-		"suspending":   EndpointProvisioningStateSuspending,
-		"updating":     EndpointProvisioningStateUpdating,
-		"warning":      EndpointProvisioningStateWarning,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := EndpointProvisioningState(input)
-	return &out, nil
-}
-
 type EndpointType string
 
 const (
@@ -107,21 +67,6 @@ func PossibleValuesForEndpointType() []string {
 	}
 }
 
-func parseEndpointType(input string) (*EndpointType, error) {
-	vals := map[string]EndpointType{
-		"eventgrid":  EndpointTypeEventGrid,
-		"eventhub":   EndpointTypeEventHub,
-		"servicebus": EndpointTypeServiceBus,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := EndpointType(input)
-	return &out, nil
-}
-
 type IdentityType string
 
 const (
@@ -134,18 +79,4 @@ func PossibleValuesForIdentityType() []string {
 		string(IdentityTypeSystemAssigned),
 		string(IdentityTypeUserAssigned),
 	}
-}
-
-func parseIdentityType(input string) (*IdentityType, error) {
-	vals := map[string]IdentityType{
-		"systemassigned": IdentityTypeSystemAssigned,
-		"userassigned":   IdentityTypeUserAssigned,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := IdentityType(input)
-	return &out, nil
 }

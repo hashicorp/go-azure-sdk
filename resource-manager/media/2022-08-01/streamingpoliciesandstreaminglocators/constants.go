@@ -1,6 +1,10 @@
 package streamingpoliciesandstreaminglocators
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -23,20 +27,19 @@ func PossibleValuesForEncryptionScheme() []string {
 	}
 }
 
-func parseEncryptionScheme(input string) (*EncryptionScheme, error) {
-	vals := map[string]EncryptionScheme{
-		"commonencryptioncbcs": EncryptionSchemeCommonEncryptionCbcs,
-		"commonencryptioncenc": EncryptionSchemeCommonEncryptionCenc,
-		"envelopeencryption":   EncryptionSchemeEnvelopeEncryption,
-		"noencryption":         EncryptionSchemeNoEncryption,
+func (s *EncryptionScheme) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForEncryptionScheme() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := EncryptionScheme(input)
-	return &out, nil
+	*s = EncryptionScheme(decoded)
+	return nil
 }
 
 type StreamingLocatorContentKeyType string
@@ -55,19 +58,19 @@ func PossibleValuesForStreamingLocatorContentKeyType() []string {
 	}
 }
 
-func parseStreamingLocatorContentKeyType(input string) (*StreamingLocatorContentKeyType, error) {
-	vals := map[string]StreamingLocatorContentKeyType{
-		"commonencryptioncbcs": StreamingLocatorContentKeyTypeCommonEncryptionCbcs,
-		"commonencryptioncenc": StreamingLocatorContentKeyTypeCommonEncryptionCenc,
-		"envelopeencryption":   StreamingLocatorContentKeyTypeEnvelopeEncryption,
+func (s *StreamingLocatorContentKeyType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForStreamingLocatorContentKeyType() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := StreamingLocatorContentKeyType(input)
-	return &out, nil
+	*s = StreamingLocatorContentKeyType(decoded)
+	return nil
 }
 
 type StreamingPolicyStreamingProtocol string
@@ -88,20 +91,19 @@ func PossibleValuesForStreamingPolicyStreamingProtocol() []string {
 	}
 }
 
-func parseStreamingPolicyStreamingProtocol(input string) (*StreamingPolicyStreamingProtocol, error) {
-	vals := map[string]StreamingPolicyStreamingProtocol{
-		"dash":            StreamingPolicyStreamingProtocolDash,
-		"download":        StreamingPolicyStreamingProtocolDownload,
-		"hls":             StreamingPolicyStreamingProtocolHls,
-		"smoothstreaming": StreamingPolicyStreamingProtocolSmoothStreaming,
+func (s *StreamingPolicyStreamingProtocol) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForStreamingPolicyStreamingProtocol() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := StreamingPolicyStreamingProtocol(input)
-	return &out, nil
+	*s = StreamingPolicyStreamingProtocol(decoded)
+	return nil
 }
 
 type TrackPropertyCompareOperation string
@@ -118,18 +120,19 @@ func PossibleValuesForTrackPropertyCompareOperation() []string {
 	}
 }
 
-func parseTrackPropertyCompareOperation(input string) (*TrackPropertyCompareOperation, error) {
-	vals := map[string]TrackPropertyCompareOperation{
-		"equal":   TrackPropertyCompareOperationEqual,
-		"unknown": TrackPropertyCompareOperationUnknown,
+func (s *TrackPropertyCompareOperation) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForTrackPropertyCompareOperation() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := TrackPropertyCompareOperation(input)
-	return &out, nil
+	*s = TrackPropertyCompareOperation(decoded)
+	return nil
 }
 
 type TrackPropertyType string
@@ -146,16 +149,17 @@ func PossibleValuesForTrackPropertyType() []string {
 	}
 }
 
-func parseTrackPropertyType(input string) (*TrackPropertyType, error) {
-	vals := map[string]TrackPropertyType{
-		"fourcc":  TrackPropertyTypeFourCC,
-		"unknown": TrackPropertyTypeUnknown,
+func (s *TrackPropertyType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForTrackPropertyType() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := TrackPropertyType(input)
-	return &out, nil
+	*s = TrackPropertyType(decoded)
+	return nil
 }

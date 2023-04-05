@@ -1,7 +1,5 @@
 package roleassignmentschedules
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -19,20 +17,6 @@ func PossibleValuesForAssignmentType() []string {
 	}
 }
 
-func parseAssignmentType(input string) (*AssignmentType, error) {
-	vals := map[string]AssignmentType{
-		"activated": AssignmentTypeActivated,
-		"assigned":  AssignmentTypeAssigned,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := AssignmentType(input)
-	return &out, nil
-}
-
 type MemberType string
 
 const (
@@ -47,21 +31,6 @@ func PossibleValuesForMemberType() []string {
 		string(MemberTypeGroup),
 		string(MemberTypeInherited),
 	}
-}
-
-func parseMemberType(input string) (*MemberType, error) {
-	vals := map[string]MemberType{
-		"direct":    MemberTypeDirect,
-		"group":     MemberTypeGroup,
-		"inherited": MemberTypeInherited,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := MemberType(input)
-	return &out, nil
 }
 
 type PrincipalType string
@@ -82,23 +51,6 @@ func PossibleValuesForPrincipalType() []string {
 		string(PrincipalTypeServicePrincipal),
 		string(PrincipalTypeUser),
 	}
-}
-
-func parsePrincipalType(input string) (*PrincipalType, error) {
-	vals := map[string]PrincipalType{
-		"device":           PrincipalTypeDevice,
-		"foreigngroup":     PrincipalTypeForeignGroup,
-		"group":            PrincipalTypeGroup,
-		"serviceprincipal": PrincipalTypeServicePrincipal,
-		"user":             PrincipalTypeUser,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PrincipalType(input)
-	return &out, nil
 }
 
 type Status string
@@ -153,38 +105,4 @@ func PossibleValuesForStatus() []string {
 		string(StatusScheduleCreated),
 		string(StatusTimedOut),
 	}
-}
-
-func parseStatus(input string) (*Status, error) {
-	vals := map[string]Status{
-		"accepted":                    StatusAccepted,
-		"adminapproved":               StatusAdminApproved,
-		"admindenied":                 StatusAdminDenied,
-		"canceled":                    StatusCanceled,
-		"denied":                      StatusDenied,
-		"failed":                      StatusFailed,
-		"failedasresourceislocked":    StatusFailedAsResourceIsLocked,
-		"granted":                     StatusGranted,
-		"invalid":                     StatusInvalid,
-		"pendingadmindecision":        StatusPendingAdminDecision,
-		"pendingapproval":             StatusPendingApproval,
-		"pendingapprovalprovisioning": StatusPendingApprovalProvisioning,
-		"pendingevaluation":           StatusPendingEvaluation,
-		"pendingexternalprovisioning": StatusPendingExternalProvisioning,
-		"pendingprovisioning":         StatusPendingProvisioning,
-		"pendingrevocation":           StatusPendingRevocation,
-		"pendingschedulecreation":     StatusPendingScheduleCreation,
-		"provisioned":                 StatusProvisioned,
-		"provisioningstarted":         StatusProvisioningStarted,
-		"revoked":                     StatusRevoked,
-		"schedulecreated":             StatusScheduleCreated,
-		"timedout":                    StatusTimedOut,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := Status(input)
-	return &out, nil
 }

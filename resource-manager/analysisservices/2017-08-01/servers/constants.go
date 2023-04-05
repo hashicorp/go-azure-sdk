@@ -1,7 +1,5 @@
 package servers
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -19,20 +17,6 @@ func PossibleValuesForConnectionMode() []string {
 	}
 }
 
-func parseConnectionMode(input string) (*ConnectionMode, error) {
-	vals := map[string]ConnectionMode{
-		"all":      ConnectionModeAll,
-		"readonly": ConnectionModeReadOnly,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ConnectionMode(input)
-	return &out, nil
-}
-
 type ManagedMode int64
 
 const (
@@ -45,20 +29,6 @@ func PossibleValuesForManagedMode() []int64 {
 		int64(ManagedModeOne),
 		int64(ManagedModeZero),
 	}
-}
-
-func parseManagedMode(input int64) (*ManagedMode, error) {
-	vals := map[int64]ManagedMode{
-		1: ManagedModeOne,
-		0: ManagedModeZero,
-	}
-	if v, ok := vals[input]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ManagedMode(input)
-	return &out, nil
 }
 
 type ProvisioningState string
@@ -95,30 +65,6 @@ func PossibleValuesForProvisioningState() []string {
 	}
 }
 
-func parseProvisioningState(input string) (*ProvisioningState, error) {
-	vals := map[string]ProvisioningState{
-		"deleting":     ProvisioningStateDeleting,
-		"failed":       ProvisioningStateFailed,
-		"paused":       ProvisioningStatePaused,
-		"pausing":      ProvisioningStatePausing,
-		"preparing":    ProvisioningStatePreparing,
-		"provisioning": ProvisioningStateProvisioning,
-		"resuming":     ProvisioningStateResuming,
-		"scaling":      ProvisioningStateScaling,
-		"succeeded":    ProvisioningStateSucceeded,
-		"suspended":    ProvisioningStateSuspended,
-		"suspending":   ProvisioningStateSuspending,
-		"updating":     ProvisioningStateUpdating,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ProvisioningState(input)
-	return &out, nil
-}
-
 type ServerMonitorMode int64
 
 const (
@@ -131,20 +77,6 @@ func PossibleValuesForServerMonitorMode() []int64 {
 		int64(ServerMonitorModeOne),
 		int64(ServerMonitorModeZero),
 	}
-}
-
-func parseServerMonitorMode(input int64) (*ServerMonitorMode, error) {
-	vals := map[int64]ServerMonitorMode{
-		1: ServerMonitorModeOne,
-		0: ServerMonitorModeZero,
-	}
-	if v, ok := vals[input]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ServerMonitorMode(input)
-	return &out, nil
 }
 
 type SkuTier string
@@ -161,21 +93,6 @@ func PossibleValuesForSkuTier() []string {
 		string(SkuTierDevelopment),
 		string(SkuTierStandard),
 	}
-}
-
-func parseSkuTier(input string) (*SkuTier, error) {
-	vals := map[string]SkuTier{
-		"basic":       SkuTierBasic,
-		"development": SkuTierDevelopment,
-		"standard":    SkuTierStandard,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SkuTier(input)
-	return &out, nil
 }
 
 type State string
@@ -212,30 +129,6 @@ func PossibleValuesForState() []string {
 	}
 }
 
-func parseState(input string) (*State, error) {
-	vals := map[string]State{
-		"deleting":     StateDeleting,
-		"failed":       StateFailed,
-		"paused":       StatePaused,
-		"pausing":      StatePausing,
-		"preparing":    StatePreparing,
-		"provisioning": StateProvisioning,
-		"resuming":     StateResuming,
-		"scaling":      StateScaling,
-		"succeeded":    StateSucceeded,
-		"suspended":    StateSuspended,
-		"suspending":   StateSuspending,
-		"updating":     StateUpdating,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := State(input)
-	return &out, nil
-}
-
 type Status int64
 
 const (
@@ -246,17 +139,4 @@ func PossibleValuesForStatus() []int64 {
 	return []int64{
 		int64(StatusZero),
 	}
-}
-
-func parseStatus(input int64) (*Status, error) {
-	vals := map[int64]Status{
-		0: StatusZero,
-	}
-	if v, ok := vals[input]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := Status(input)
-	return &out, nil
 }

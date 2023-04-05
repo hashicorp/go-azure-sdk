@@ -1,7 +1,5 @@
 package namespaces
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -21,21 +19,6 @@ func PossibleValuesForAccessRights() []string {
 	}
 }
 
-func parseAccessRights(input string) (*AccessRights, error) {
-	vals := map[string]AccessRights{
-		"listen": AccessRightsListen,
-		"manage": AccessRightsManage,
-		"send":   AccessRightsSend,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := AccessRights(input)
-	return &out, nil
-}
-
 type NamespaceType string
 
 const (
@@ -48,20 +31,6 @@ func PossibleValuesForNamespaceType() []string {
 		string(NamespaceTypeMessaging),
 		string(NamespaceTypeNotificationHub),
 	}
-}
-
-func parseNamespaceType(input string) (*NamespaceType, error) {
-	vals := map[string]NamespaceType{
-		"messaging":       NamespaceTypeMessaging,
-		"notificationhub": NamespaceTypeNotificationHub,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := NamespaceType(input)
-	return &out, nil
 }
 
 type SkuName string
@@ -78,19 +47,4 @@ func PossibleValuesForSkuName() []string {
 		string(SkuNameFree),
 		string(SkuNameStandard),
 	}
-}
-
-func parseSkuName(input string) (*SkuName, error) {
-	vals := map[string]SkuName{
-		"basic":    SkuNameBasic,
-		"free":     SkuNameFree,
-		"standard": SkuNameStandard,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SkuName(input)
-	return &out, nil
 }

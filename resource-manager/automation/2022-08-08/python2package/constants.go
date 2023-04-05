@@ -1,6 +1,10 @@
 package python2package
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -47,30 +51,17 @@ func PossibleValuesForModuleProvisioningState() []string {
 	}
 }
 
-func parseModuleProvisioningState(input string) (*ModuleProvisioningState, error) {
-	vals := map[string]ModuleProvisioningState{
-		"activitiesstored":            ModuleProvisioningStateActivitiesStored,
-		"cancelled":                   ModuleProvisioningStateCancelled,
-		"connectiontypeimported":      ModuleProvisioningStateConnectionTypeImported,
-		"contentdownloaded":           ModuleProvisioningStateContentDownloaded,
-		"contentretrieved":            ModuleProvisioningStateContentRetrieved,
-		"contentstored":               ModuleProvisioningStateContentStored,
-		"contentvalidated":            ModuleProvisioningStateContentValidated,
-		"created":                     ModuleProvisioningStateCreated,
-		"creating":                    ModuleProvisioningStateCreating,
-		"failed":                      ModuleProvisioningStateFailed,
-		"moduledatastored":            ModuleProvisioningStateModuleDataStored,
-		"moduleimportrunbookcomplete": ModuleProvisioningStateModuleImportRunbookComplete,
-		"runningimportmodulerunbook":  ModuleProvisioningStateRunningImportModuleRunbook,
-		"startingimportmodulerunbook": ModuleProvisioningStateStartingImportModuleRunbook,
-		"succeeded":                   ModuleProvisioningStateSucceeded,
-		"updating":                    ModuleProvisioningStateUpdating,
+func (s *ModuleProvisioningState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForModuleProvisioningState() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ModuleProvisioningState(input)
-	return &out, nil
+	*s = ModuleProvisioningState(decoded)
+	return nil
 }

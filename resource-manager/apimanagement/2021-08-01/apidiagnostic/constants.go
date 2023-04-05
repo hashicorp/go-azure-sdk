@@ -1,7 +1,5 @@
 package apidiagnostic
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -17,19 +15,6 @@ func PossibleValuesForAlwaysLog() []string {
 	}
 }
 
-func parseAlwaysLog(input string) (*AlwaysLog, error) {
-	vals := map[string]AlwaysLog{
-		"allerrors": AlwaysLogAllErrors,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := AlwaysLog(input)
-	return &out, nil
-}
-
 type DataMaskingMode string
 
 const (
@@ -42,20 +27,6 @@ func PossibleValuesForDataMaskingMode() []string {
 		string(DataMaskingModeHide),
 		string(DataMaskingModeMask),
 	}
-}
-
-func parseDataMaskingMode(input string) (*DataMaskingMode, error) {
-	vals := map[string]DataMaskingMode{
-		"hide": DataMaskingModeHide,
-		"mask": DataMaskingModeMask,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := DataMaskingMode(input)
-	return &out, nil
 }
 
 type HTTPCorrelationProtocol string
@@ -74,21 +45,6 @@ func PossibleValuesForHTTPCorrelationProtocol() []string {
 	}
 }
 
-func parseHTTPCorrelationProtocol(input string) (*HTTPCorrelationProtocol, error) {
-	vals := map[string]HTTPCorrelationProtocol{
-		"legacy": HTTPCorrelationProtocolLegacy,
-		"none":   HTTPCorrelationProtocolNone,
-		"w3c":    HTTPCorrelationProtocolWThreeC,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := HTTPCorrelationProtocol(input)
-	return &out, nil
-}
-
 type OperationNameFormat string
 
 const (
@@ -103,20 +59,6 @@ func PossibleValuesForOperationNameFormat() []string {
 	}
 }
 
-func parseOperationNameFormat(input string) (*OperationNameFormat, error) {
-	vals := map[string]OperationNameFormat{
-		"name": OperationNameFormatName,
-		"url":  OperationNameFormatUrl,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := OperationNameFormat(input)
-	return &out, nil
-}
-
 type SamplingType string
 
 const (
@@ -127,19 +69,6 @@ func PossibleValuesForSamplingType() []string {
 	return []string{
 		string(SamplingTypeFixed),
 	}
-}
-
-func parseSamplingType(input string) (*SamplingType, error) {
-	vals := map[string]SamplingType{
-		"fixed": SamplingTypeFixed,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SamplingType(input)
-	return &out, nil
 }
 
 type Verbosity string
@@ -156,19 +85,4 @@ func PossibleValuesForVerbosity() []string {
 		string(VerbosityInformation),
 		string(VerbosityVerbose),
 	}
-}
-
-func parseVerbosity(input string) (*Verbosity, error) {
-	vals := map[string]Verbosity{
-		"error":       VerbosityError,
-		"information": VerbosityInformation,
-		"verbose":     VerbosityVerbose,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := Verbosity(input)
-	return &out, nil
 }

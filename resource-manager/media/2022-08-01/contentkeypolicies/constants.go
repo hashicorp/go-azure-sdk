@@ -1,6 +1,10 @@
 package contentkeypolicies
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -25,21 +29,19 @@ func PossibleValuesForContentKeyPolicyFairPlayRentalAndLeaseKeyType() []string {
 	}
 }
 
-func parseContentKeyPolicyFairPlayRentalAndLeaseKeyType(input string) (*ContentKeyPolicyFairPlayRentalAndLeaseKeyType, error) {
-	vals := map[string]ContentKeyPolicyFairPlayRentalAndLeaseKeyType{
-		"dualexpiry":          ContentKeyPolicyFairPlayRentalAndLeaseKeyTypeDualExpiry,
-		"persistentlimited":   ContentKeyPolicyFairPlayRentalAndLeaseKeyTypePersistentLimited,
-		"persistentunlimited": ContentKeyPolicyFairPlayRentalAndLeaseKeyTypePersistentUnlimited,
-		"undefined":           ContentKeyPolicyFairPlayRentalAndLeaseKeyTypeUndefined,
-		"unknown":             ContentKeyPolicyFairPlayRentalAndLeaseKeyTypeUnknown,
+func (s *ContentKeyPolicyFairPlayRentalAndLeaseKeyType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForContentKeyPolicyFairPlayRentalAndLeaseKeyType() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ContentKeyPolicyFairPlayRentalAndLeaseKeyType(input)
-	return &out, nil
+	*s = ContentKeyPolicyFairPlayRentalAndLeaseKeyType(decoded)
+	return nil
 }
 
 type ContentKeyPolicyPlayReadyContentType string
@@ -60,20 +62,19 @@ func PossibleValuesForContentKeyPolicyPlayReadyContentType() []string {
 	}
 }
 
-func parseContentKeyPolicyPlayReadyContentType(input string) (*ContentKeyPolicyPlayReadyContentType, error) {
-	vals := map[string]ContentKeyPolicyPlayReadyContentType{
-		"ultravioletdownload":  ContentKeyPolicyPlayReadyContentTypeUltraVioletDownload,
-		"ultravioletstreaming": ContentKeyPolicyPlayReadyContentTypeUltraVioletStreaming,
-		"unknown":              ContentKeyPolicyPlayReadyContentTypeUnknown,
-		"unspecified":          ContentKeyPolicyPlayReadyContentTypeUnspecified,
+func (s *ContentKeyPolicyPlayReadyContentType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForContentKeyPolicyPlayReadyContentType() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ContentKeyPolicyPlayReadyContentType(input)
-	return &out, nil
+	*s = ContentKeyPolicyPlayReadyContentType(decoded)
+	return nil
 }
 
 type ContentKeyPolicyPlayReadyLicenseType string
@@ -92,19 +93,19 @@ func PossibleValuesForContentKeyPolicyPlayReadyLicenseType() []string {
 	}
 }
 
-func parseContentKeyPolicyPlayReadyLicenseType(input string) (*ContentKeyPolicyPlayReadyLicenseType, error) {
-	vals := map[string]ContentKeyPolicyPlayReadyLicenseType{
-		"nonpersistent": ContentKeyPolicyPlayReadyLicenseTypeNonPersistent,
-		"persistent":    ContentKeyPolicyPlayReadyLicenseTypePersistent,
-		"unknown":       ContentKeyPolicyPlayReadyLicenseTypeUnknown,
+func (s *ContentKeyPolicyPlayReadyLicenseType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForContentKeyPolicyPlayReadyLicenseType() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ContentKeyPolicyPlayReadyLicenseType(input)
-	return &out, nil
+	*s = ContentKeyPolicyPlayReadyLicenseType(decoded)
+	return nil
 }
 
 type ContentKeyPolicyPlayReadyUnknownOutputPassingOption string
@@ -125,20 +126,19 @@ func PossibleValuesForContentKeyPolicyPlayReadyUnknownOutputPassingOption() []st
 	}
 }
 
-func parseContentKeyPolicyPlayReadyUnknownOutputPassingOption(input string) (*ContentKeyPolicyPlayReadyUnknownOutputPassingOption, error) {
-	vals := map[string]ContentKeyPolicyPlayReadyUnknownOutputPassingOption{
-		"allowed":                      ContentKeyPolicyPlayReadyUnknownOutputPassingOptionAllowed,
-		"allowedwithvideoconstriction": ContentKeyPolicyPlayReadyUnknownOutputPassingOptionAllowedWithVideoConstriction,
-		"notallowed":                   ContentKeyPolicyPlayReadyUnknownOutputPassingOptionNotAllowed,
-		"unknown":                      ContentKeyPolicyPlayReadyUnknownOutputPassingOptionUnknown,
+func (s *ContentKeyPolicyPlayReadyUnknownOutputPassingOption) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForContentKeyPolicyPlayReadyUnknownOutputPassingOption() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ContentKeyPolicyPlayReadyUnknownOutputPassingOption(input)
-	return &out, nil
+	*s = ContentKeyPolicyPlayReadyUnknownOutputPassingOption(decoded)
+	return nil
 }
 
 type ContentKeyPolicyRestrictionTokenType string
@@ -157,19 +157,19 @@ func PossibleValuesForContentKeyPolicyRestrictionTokenType() []string {
 	}
 }
 
-func parseContentKeyPolicyRestrictionTokenType(input string) (*ContentKeyPolicyRestrictionTokenType, error) {
-	vals := map[string]ContentKeyPolicyRestrictionTokenType{
-		"jwt":     ContentKeyPolicyRestrictionTokenTypeJwt,
-		"swt":     ContentKeyPolicyRestrictionTokenTypeSwt,
-		"unknown": ContentKeyPolicyRestrictionTokenTypeUnknown,
+func (s *ContentKeyPolicyRestrictionTokenType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForContentKeyPolicyRestrictionTokenType() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ContentKeyPolicyRestrictionTokenType(input)
-	return &out, nil
+	*s = ContentKeyPolicyRestrictionTokenType(decoded)
+	return nil
 }
 
 type SecurityLevel string
@@ -190,18 +190,17 @@ func PossibleValuesForSecurityLevel() []string {
 	}
 }
 
-func parseSecurityLevel(input string) (*SecurityLevel, error) {
-	vals := map[string]SecurityLevel{
-		"sl150":   SecurityLevelSLOneFiveZero,
-		"sl3000":  SecurityLevelSLThreeThousand,
-		"sl2000":  SecurityLevelSLTwoThousand,
-		"unknown": SecurityLevelUnknown,
+func (s *SecurityLevel) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForSecurityLevel() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SecurityLevel(input)
-	return &out, nil
+	*s = SecurityLevel(decoded)
+	return nil
 }

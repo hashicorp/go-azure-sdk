@@ -1,7 +1,5 @@
 package replicationrecoveryplans
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -23,22 +21,6 @@ func PossibleValuesForA2ARpRecoveryPointType() []string {
 	}
 }
 
-func parseA2ARpRecoveryPointType(input string) (*A2ARpRecoveryPointType, error) {
-	vals := map[string]A2ARpRecoveryPointType{
-		"latest":                      A2ARpRecoveryPointTypeLatest,
-		"latestapplicationconsistent": A2ARpRecoveryPointTypeLatestApplicationConsistent,
-		"latestcrashconsistent":       A2ARpRecoveryPointTypeLatestCrashConsistent,
-		"latestprocessed":             A2ARpRecoveryPointTypeLatestProcessed,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := A2ARpRecoveryPointType(input)
-	return &out, nil
-}
-
 type AlternateLocationRecoveryOption string
 
 const (
@@ -53,20 +35,6 @@ func PossibleValuesForAlternateLocationRecoveryOption() []string {
 	}
 }
 
-func parseAlternateLocationRecoveryOption(input string) (*AlternateLocationRecoveryOption, error) {
-	vals := map[string]AlternateLocationRecoveryOption{
-		"createvmifnotfound": AlternateLocationRecoveryOptionCreateVMIfNotFound,
-		"noaction":           AlternateLocationRecoveryOptionNoAction,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := AlternateLocationRecoveryOption(input)
-	return &out, nil
-}
-
 type DataSyncStatus string
 
 const (
@@ -79,20 +47,6 @@ func PossibleValuesForDataSyncStatus() []string {
 		string(DataSyncStatusForDownTime),
 		string(DataSyncStatusForSynchronization),
 	}
-}
-
-func parseDataSyncStatus(input string) (*DataSyncStatus, error) {
-	vals := map[string]DataSyncStatus{
-		"fordowntime":        DataSyncStatusForDownTime,
-		"forsynchronization": DataSyncStatusForSynchronization,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := DataSyncStatus(input)
-	return &out, nil
 }
 
 type FailoverDeploymentModel string
@@ -111,21 +65,6 @@ func PossibleValuesForFailoverDeploymentModel() []string {
 	}
 }
 
-func parseFailoverDeploymentModel(input string) (*FailoverDeploymentModel, error) {
-	vals := map[string]FailoverDeploymentModel{
-		"classic":         FailoverDeploymentModelClassic,
-		"notapplicable":   FailoverDeploymentModelNotApplicable,
-		"resourcemanager": FailoverDeploymentModelResourceManager,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := FailoverDeploymentModel(input)
-	return &out, nil
-}
-
 type HyperVReplicaAzureRpRecoveryPointType string
 
 const (
@@ -142,21 +81,6 @@ func PossibleValuesForHyperVReplicaAzureRpRecoveryPointType() []string {
 	}
 }
 
-func parseHyperVReplicaAzureRpRecoveryPointType(input string) (*HyperVReplicaAzureRpRecoveryPointType, error) {
-	vals := map[string]HyperVReplicaAzureRpRecoveryPointType{
-		"latest":                      HyperVReplicaAzureRpRecoveryPointTypeLatest,
-		"latestapplicationconsistent": HyperVReplicaAzureRpRecoveryPointTypeLatestApplicationConsistent,
-		"latestprocessed":             HyperVReplicaAzureRpRecoveryPointTypeLatestProcessed,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := HyperVReplicaAzureRpRecoveryPointType(input)
-	return &out, nil
-}
-
 type InMageRcmFailbackRecoveryPointType string
 
 const (
@@ -169,20 +93,6 @@ func PossibleValuesForInMageRcmFailbackRecoveryPointType() []string {
 		string(InMageRcmFailbackRecoveryPointTypeApplicationConsistent),
 		string(InMageRcmFailbackRecoveryPointTypeCrashConsistent),
 	}
-}
-
-func parseInMageRcmFailbackRecoveryPointType(input string) (*InMageRcmFailbackRecoveryPointType, error) {
-	vals := map[string]InMageRcmFailbackRecoveryPointType{
-		"applicationconsistent": InMageRcmFailbackRecoveryPointTypeApplicationConsistent,
-		"crashconsistent":       InMageRcmFailbackRecoveryPointTypeCrashConsistent,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := InMageRcmFailbackRecoveryPointType(input)
-	return &out, nil
 }
 
 type InMageV2RpRecoveryPointType string
@@ -203,22 +113,6 @@ func PossibleValuesForInMageV2RpRecoveryPointType() []string {
 	}
 }
 
-func parseInMageV2RpRecoveryPointType(input string) (*InMageV2RpRecoveryPointType, error) {
-	vals := map[string]InMageV2RpRecoveryPointType{
-		"latest":                      InMageV2RpRecoveryPointTypeLatest,
-		"latestapplicationconsistent": InMageV2RpRecoveryPointTypeLatestApplicationConsistent,
-		"latestcrashconsistent":       InMageV2RpRecoveryPointTypeLatestCrashConsistent,
-		"latestprocessed":             InMageV2RpRecoveryPointTypeLatestProcessed,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := InMageV2RpRecoveryPointType(input)
-	return &out, nil
-}
-
 type MultiVMSyncPointOption string
 
 const (
@@ -231,20 +125,6 @@ func PossibleValuesForMultiVMSyncPointOption() []string {
 		string(MultiVMSyncPointOptionUseMultiVMSyncRecoveryPoint),
 		string(MultiVMSyncPointOptionUsePerVMRecoveryPoint),
 	}
-}
-
-func parseMultiVMSyncPointOption(input string) (*MultiVMSyncPointOption, error) {
-	vals := map[string]MultiVMSyncPointOption{
-		"usemultivmsyncrecoverypoint": MultiVMSyncPointOptionUseMultiVMSyncRecoveryPoint,
-		"usepervmrecoverypoint":       MultiVMSyncPointOptionUsePerVMRecoveryPoint,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := MultiVMSyncPointOption(input)
-	return &out, nil
 }
 
 type PossibleOperationsDirections string
@@ -261,20 +141,6 @@ func PossibleValuesForPossibleOperationsDirections() []string {
 	}
 }
 
-func parsePossibleOperationsDirections(input string) (*PossibleOperationsDirections, error) {
-	vals := map[string]PossibleOperationsDirections{
-		"primarytorecovery": PossibleOperationsDirectionsPrimaryToRecovery,
-		"recoverytoprimary": PossibleOperationsDirectionsRecoveryToPrimary,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PossibleOperationsDirections(input)
-	return &out, nil
-}
-
 type RecoveryPlanActionLocation string
 
 const (
@@ -287,20 +153,6 @@ func PossibleValuesForRecoveryPlanActionLocation() []string {
 		string(RecoveryPlanActionLocationPrimary),
 		string(RecoveryPlanActionLocationRecovery),
 	}
-}
-
-func parseRecoveryPlanActionLocation(input string) (*RecoveryPlanActionLocation, error) {
-	vals := map[string]RecoveryPlanActionLocation{
-		"primary":  RecoveryPlanActionLocationPrimary,
-		"recovery": RecoveryPlanActionLocationRecovery,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := RecoveryPlanActionLocation(input)
-	return &out, nil
 }
 
 type RecoveryPlanGroupType string
@@ -319,21 +171,6 @@ func PossibleValuesForRecoveryPlanGroupType() []string {
 	}
 }
 
-func parseRecoveryPlanGroupType(input string) (*RecoveryPlanGroupType, error) {
-	vals := map[string]RecoveryPlanGroupType{
-		"boot":     RecoveryPlanGroupTypeBoot,
-		"failover": RecoveryPlanGroupTypeFailover,
-		"shutdown": RecoveryPlanGroupTypeShutdown,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := RecoveryPlanGroupType(input)
-	return &out, nil
-}
-
 type RecoveryPlanPointType string
 
 const (
@@ -350,22 +187,6 @@ func PossibleValuesForRecoveryPlanPointType() []string {
 		string(RecoveryPlanPointTypeLatestCrashConsistent),
 		string(RecoveryPlanPointTypeLatestProcessed),
 	}
-}
-
-func parseRecoveryPlanPointType(input string) (*RecoveryPlanPointType, error) {
-	vals := map[string]RecoveryPlanPointType{
-		"latest":                      RecoveryPlanPointTypeLatest,
-		"latestapplicationconsistent": RecoveryPlanPointTypeLatestApplicationConsistent,
-		"latestcrashconsistent":       RecoveryPlanPointTypeLatestCrashConsistent,
-		"latestprocessed":             RecoveryPlanPointTypeLatestProcessed,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := RecoveryPlanPointType(input)
-	return &out, nil
 }
 
 type ReplicationProtectedItemOperation string
@@ -406,32 +227,6 @@ func PossibleValuesForReplicationProtectedItemOperation() []string {
 	}
 }
 
-func parseReplicationProtectedItemOperation(input string) (*ReplicationProtectedItemOperation, error) {
-	vals := map[string]ReplicationProtectedItemOperation{
-		"cancelfailover":      ReplicationProtectedItemOperationCancelFailover,
-		"changepit":           ReplicationProtectedItemOperationChangePit,
-		"commit":              ReplicationProtectedItemOperationCommit,
-		"completemigration":   ReplicationProtectedItemOperationCompleteMigration,
-		"disableprotection":   ReplicationProtectedItemOperationDisableProtection,
-		"failback":            ReplicationProtectedItemOperationFailback,
-		"finalizefailback":    ReplicationProtectedItemOperationFinalizeFailback,
-		"plannedfailover":     ReplicationProtectedItemOperationPlannedFailover,
-		"repairreplication":   ReplicationProtectedItemOperationRepairReplication,
-		"reversereplicate":    ReplicationProtectedItemOperationReverseReplicate,
-		"switchprotection":    ReplicationProtectedItemOperationSwitchProtection,
-		"testfailover":        ReplicationProtectedItemOperationTestFailover,
-		"testfailovercleanup": ReplicationProtectedItemOperationTestFailoverCleanup,
-		"unplannedfailover":   ReplicationProtectedItemOperationUnplannedFailover,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ReplicationProtectedItemOperation(input)
-	return &out, nil
-}
-
 type RpInMageRecoveryPointType string
 
 const (
@@ -448,21 +243,6 @@ func PossibleValuesForRpInMageRecoveryPointType() []string {
 	}
 }
 
-func parseRpInMageRecoveryPointType(input string) (*RpInMageRecoveryPointType, error) {
-	vals := map[string]RpInMageRecoveryPointType{
-		"custom":     RpInMageRecoveryPointTypeCustom,
-		"latesttag":  RpInMageRecoveryPointTypeLatestTag,
-		"latesttime": RpInMageRecoveryPointTypeLatestTime,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := RpInMageRecoveryPointType(input)
-	return &out, nil
-}
-
 type SourceSiteOperations string
 
 const (
@@ -475,18 +255,4 @@ func PossibleValuesForSourceSiteOperations() []string {
 		string(SourceSiteOperationsNotRequired),
 		string(SourceSiteOperationsRequired),
 	}
-}
-
-func parseSourceSiteOperations(input string) (*SourceSiteOperations, error) {
-	vals := map[string]SourceSiteOperations{
-		"notrequired": SourceSiteOperationsNotRequired,
-		"required":    SourceSiteOperationsRequired,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SourceSiteOperations(input)
-	return &out, nil
 }

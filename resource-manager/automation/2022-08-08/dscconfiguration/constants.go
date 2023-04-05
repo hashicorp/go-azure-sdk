@@ -1,6 +1,10 @@
 package dscconfiguration
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -19,18 +23,19 @@ func PossibleValuesForContentSourceType() []string {
 	}
 }
 
-func parseContentSourceType(input string) (*ContentSourceType, error) {
-	vals := map[string]ContentSourceType{
-		"embeddedcontent": ContentSourceTypeEmbeddedContent,
-		"uri":             ContentSourceTypeUri,
+func (s *ContentSourceType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForContentSourceType() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ContentSourceType(input)
-	return &out, nil
+	*s = ContentSourceType(decoded)
+	return nil
 }
 
 type DscConfigurationProvisioningState string
@@ -45,17 +50,19 @@ func PossibleValuesForDscConfigurationProvisioningState() []string {
 	}
 }
 
-func parseDscConfigurationProvisioningState(input string) (*DscConfigurationProvisioningState, error) {
-	vals := map[string]DscConfigurationProvisioningState{
-		"succeeded": DscConfigurationProvisioningStateSucceeded,
+func (s *DscConfigurationProvisioningState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForDscConfigurationProvisioningState() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := DscConfigurationProvisioningState(input)
-	return &out, nil
+	*s = DscConfigurationProvisioningState(decoded)
+	return nil
 }
 
 type DscConfigurationState string
@@ -74,17 +81,17 @@ func PossibleValuesForDscConfigurationState() []string {
 	}
 }
 
-func parseDscConfigurationState(input string) (*DscConfigurationState, error) {
-	vals := map[string]DscConfigurationState{
-		"edit":      DscConfigurationStateEdit,
-		"new":       DscConfigurationStateNew,
-		"published": DscConfigurationStatePublished,
+func (s *DscConfigurationState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForDscConfigurationState() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := DscConfigurationState(input)
-	return &out, nil
+	*s = DscConfigurationState(decoded)
+	return nil
 }

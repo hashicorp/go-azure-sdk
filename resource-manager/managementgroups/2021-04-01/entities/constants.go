@@ -1,7 +1,5 @@
 package entities
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -25,23 +23,6 @@ func PossibleValuesForEntitySearchType() []string {
 	}
 }
 
-func parseEntitySearchType(input string) (*EntitySearchType, error) {
-	vals := map[string]EntitySearchType{
-		"allowedchildren":             EntitySearchTypeAllowedChildren,
-		"allowedparents":              EntitySearchTypeAllowedParents,
-		"childrenonly":                EntitySearchTypeChildrenOnly,
-		"parentandfirstlevelchildren": EntitySearchTypeParentAndFirstLevelChildren,
-		"parentonly":                  EntitySearchTypeParentOnly,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := EntitySearchType(input)
-	return &out, nil
-}
-
 type EntityViewParameterType string
 
 const (
@@ -60,22 +41,6 @@ func PossibleValuesForEntityViewParameterType() []string {
 	}
 }
 
-func parseEntityViewParameterType(input string) (*EntityViewParameterType, error) {
-	vals := map[string]EntityViewParameterType{
-		"audit":             EntityViewParameterTypeAudit,
-		"fullhierarchy":     EntityViewParameterTypeFullHierarchy,
-		"groupsonly":        EntityViewParameterTypeGroupsOnly,
-		"subscriptionsonly": EntityViewParameterTypeSubscriptionsOnly,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := EntityViewParameterType(input)
-	return &out, nil
-}
-
 type Permissions string
 
 const (
@@ -92,20 +57,4 @@ func PossibleValuesForPermissions() []string {
 		string(PermissionsNoaccess),
 		string(PermissionsView),
 	}
-}
-
-func parsePermissions(input string) (*Permissions, error) {
-	vals := map[string]Permissions{
-		"delete":   PermissionsDelete,
-		"edit":     PermissionsEdit,
-		"noaccess": PermissionsNoaccess,
-		"view":     PermissionsView,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := Permissions(input)
-	return &out, nil
 }

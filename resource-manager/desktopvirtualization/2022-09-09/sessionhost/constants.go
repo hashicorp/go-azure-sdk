@@ -1,7 +1,5 @@
 package sessionhost
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -37,29 +35,6 @@ func PossibleValuesForHealthCheckName() []string {
 	}
 }
 
-func parseHealthCheckName(input string) (*HealthCheckName, error) {
-	vals := map[string]HealthCheckName{
-		"appattachhealthcheck":     HealthCheckNameAppAttachHealthCheck,
-		"domainjoinedcheck":        HealthCheckNameDomainJoinedCheck,
-		"domainreachable":          HealthCheckNameDomainReachable,
-		"domaintrustcheck":         HealthCheckNameDomainTrustCheck,
-		"fslogixhealthcheck":       HealthCheckNameFSLogixHealthCheck,
-		"metadataservicecheck":     HealthCheckNameMetaDataServiceCheck,
-		"monitoringagentcheck":     HealthCheckNameMonitoringAgentCheck,
-		"supportedencryptioncheck": HealthCheckNameSupportedEncryptionCheck,
-		"sxsstacklistenercheck":    HealthCheckNameSxSStackListenerCheck,
-		"urlsaccessiblecheck":      HealthCheckNameUrlsAccessibleCheck,
-		"webrtcredirectorcheck":    HealthCheckNameWebRTCRedirectorCheck,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := HealthCheckName(input)
-	return &out, nil
-}
-
 type HealthCheckResult string
 
 const (
@@ -76,22 +51,6 @@ func PossibleValuesForHealthCheckResult() []string {
 		string(HealthCheckResultSessionHostShutdown),
 		string(HealthCheckResultUnknown),
 	}
-}
-
-func parseHealthCheckResult(input string) (*HealthCheckResult, error) {
-	vals := map[string]HealthCheckResult{
-		"healthcheckfailed":    HealthCheckResultHealthCheckFailed,
-		"healthchecksucceeded": HealthCheckResultHealthCheckSucceeded,
-		"sessionhostshutdown":  HealthCheckResultSessionHostShutdown,
-		"unknown":              HealthCheckResultUnknown,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := HealthCheckResult(input)
-	return &out, nil
 }
 
 type Status string
@@ -128,30 +87,6 @@ func PossibleValuesForStatus() []string {
 	}
 }
 
-func parseStatus(input string) (*Status, error) {
-	vals := map[string]Status{
-		"available":                   StatusAvailable,
-		"disconnected":                StatusDisconnected,
-		"domaintrustrelationshiplost": StatusDomainTrustRelationshipLost,
-		"fslogixnothealthy":           StatusFSLogixNotHealthy,
-		"needsassistance":             StatusNeedsAssistance,
-		"noheartbeat":                 StatusNoHeartbeat,
-		"notjoinedtodomain":           StatusNotJoinedToDomain,
-		"shutdown":                    StatusShutdown,
-		"sxsstacklistenernotready":    StatusSxSStackListenerNotReady,
-		"unavailable":                 StatusUnavailable,
-		"upgradefailed":               StatusUpgradeFailed,
-		"upgrading":                   StatusUpgrading,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := Status(input)
-	return &out, nil
-}
-
 type UpdateState string
 
 const (
@@ -170,21 +105,4 @@ func PossibleValuesForUpdateState() []string {
 		string(UpdateStateStarted),
 		string(UpdateStateSucceeded),
 	}
-}
-
-func parseUpdateState(input string) (*UpdateState, error) {
-	vals := map[string]UpdateState{
-		"failed":    UpdateStateFailed,
-		"initial":   UpdateStateInitial,
-		"pending":   UpdateStatePending,
-		"started":   UpdateStateStarted,
-		"succeeded": UpdateStateSucceeded,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := UpdateState(input)
-	return &out, nil
 }

@@ -1,7 +1,5 @@
 package workflowtriggers
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -29,25 +27,6 @@ func PossibleValuesForDayOfWeek() []string {
 	}
 }
 
-func parseDayOfWeek(input string) (*DayOfWeek, error) {
-	vals := map[string]DayOfWeek{
-		"friday":    DayOfWeekFriday,
-		"monday":    DayOfWeekMonday,
-		"saturday":  DayOfWeekSaturday,
-		"sunday":    DayOfWeekSunday,
-		"thursday":  DayOfWeekThursday,
-		"tuesday":   DayOfWeekTuesday,
-		"wednesday": DayOfWeekWednesday,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := DayOfWeek(input)
-	return &out, nil
-}
-
 type DaysOfWeek string
 
 const (
@@ -72,25 +51,6 @@ func PossibleValuesForDaysOfWeek() []string {
 	}
 }
 
-func parseDaysOfWeek(input string) (*DaysOfWeek, error) {
-	vals := map[string]DaysOfWeek{
-		"friday":    DaysOfWeekFriday,
-		"monday":    DaysOfWeekMonday,
-		"saturday":  DaysOfWeekSaturday,
-		"sunday":    DaysOfWeekSunday,
-		"thursday":  DaysOfWeekThursday,
-		"tuesday":   DaysOfWeekTuesday,
-		"wednesday": DaysOfWeekWednesday,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := DaysOfWeek(input)
-	return &out, nil
-}
-
 type KeyType string
 
 const (
@@ -105,21 +65,6 @@ func PossibleValuesForKeyType() []string {
 		string(KeyTypePrimary),
 		string(KeyTypeSecondary),
 	}
-}
-
-func parseKeyType(input string) (*KeyType, error) {
-	vals := map[string]KeyType{
-		"notspecified": KeyTypeNotSpecified,
-		"primary":      KeyTypePrimary,
-		"secondary":    KeyTypeSecondary,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := KeyType(input)
-	return &out, nil
 }
 
 type RecurrenceFrequency string
@@ -148,26 +93,6 @@ func PossibleValuesForRecurrenceFrequency() []string {
 	}
 }
 
-func parseRecurrenceFrequency(input string) (*RecurrenceFrequency, error) {
-	vals := map[string]RecurrenceFrequency{
-		"day":          RecurrenceFrequencyDay,
-		"hour":         RecurrenceFrequencyHour,
-		"minute":       RecurrenceFrequencyMinute,
-		"month":        RecurrenceFrequencyMonth,
-		"notspecified": RecurrenceFrequencyNotSpecified,
-		"second":       RecurrenceFrequencySecond,
-		"week":         RecurrenceFrequencyWeek,
-		"year":         RecurrenceFrequencyYear,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := RecurrenceFrequency(input)
-	return &out, nil
-}
-
 type WorkflowState string
 
 const (
@@ -188,24 +113,6 @@ func PossibleValuesForWorkflowState() []string {
 		string(WorkflowStateNotSpecified),
 		string(WorkflowStateSuspended),
 	}
-}
-
-func parseWorkflowState(input string) (*WorkflowState, error) {
-	vals := map[string]WorkflowState{
-		"completed":    WorkflowStateCompleted,
-		"deleted":      WorkflowStateDeleted,
-		"disabled":     WorkflowStateDisabled,
-		"enabled":      WorkflowStateEnabled,
-		"notspecified": WorkflowStateNotSpecified,
-		"suspended":    WorkflowStateSuspended,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := WorkflowState(input)
-	return &out, nil
 }
 
 type WorkflowStatus string
@@ -242,31 +149,6 @@ func PossibleValuesForWorkflowStatus() []string {
 		string(WorkflowStatusTimedOut),
 		string(WorkflowStatusWaiting),
 	}
-}
-
-func parseWorkflowStatus(input string) (*WorkflowStatus, error) {
-	vals := map[string]WorkflowStatus{
-		"aborted":      WorkflowStatusAborted,
-		"cancelled":    WorkflowStatusCancelled,
-		"failed":       WorkflowStatusFailed,
-		"faulted":      WorkflowStatusFaulted,
-		"ignored":      WorkflowStatusIgnored,
-		"notspecified": WorkflowStatusNotSpecified,
-		"paused":       WorkflowStatusPaused,
-		"running":      WorkflowStatusRunning,
-		"skipped":      WorkflowStatusSkipped,
-		"succeeded":    WorkflowStatusSucceeded,
-		"suspended":    WorkflowStatusSuspended,
-		"timedout":     WorkflowStatusTimedOut,
-		"waiting":      WorkflowStatusWaiting,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := WorkflowStatus(input)
-	return &out, nil
 }
 
 type WorkflowTriggerProvisioningState string
@@ -313,34 +195,4 @@ func PossibleValuesForWorkflowTriggerProvisioningState() []string {
 		string(WorkflowTriggerProvisioningStateUnregistering),
 		string(WorkflowTriggerProvisioningStateUpdating),
 	}
-}
-
-func parseWorkflowTriggerProvisioningState(input string) (*WorkflowTriggerProvisioningState, error) {
-	vals := map[string]WorkflowTriggerProvisioningState{
-		"accepted":      WorkflowTriggerProvisioningStateAccepted,
-		"canceled":      WorkflowTriggerProvisioningStateCanceled,
-		"completed":     WorkflowTriggerProvisioningStateCompleted,
-		"created":       WorkflowTriggerProvisioningStateCreated,
-		"creating":      WorkflowTriggerProvisioningStateCreating,
-		"deleted":       WorkflowTriggerProvisioningStateDeleted,
-		"deleting":      WorkflowTriggerProvisioningStateDeleting,
-		"failed":        WorkflowTriggerProvisioningStateFailed,
-		"moving":        WorkflowTriggerProvisioningStateMoving,
-		"notspecified":  WorkflowTriggerProvisioningStateNotSpecified,
-		"ready":         WorkflowTriggerProvisioningStateReady,
-		"registered":    WorkflowTriggerProvisioningStateRegistered,
-		"registering":   WorkflowTriggerProvisioningStateRegistering,
-		"running":       WorkflowTriggerProvisioningStateRunning,
-		"succeeded":     WorkflowTriggerProvisioningStateSucceeded,
-		"unregistered":  WorkflowTriggerProvisioningStateUnregistered,
-		"unregistering": WorkflowTriggerProvisioningStateUnregistering,
-		"updating":      WorkflowTriggerProvisioningStateUpdating,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := WorkflowTriggerProvisioningState(input)
-	return &out, nil
 }

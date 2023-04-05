@@ -1,7 +1,5 @@
 package functions
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -17,19 +15,6 @@ func PossibleValuesForUdfType() []string {
 	}
 }
 
-func parseUdfType(input string) (*UdfType, error) {
-	vals := map[string]UdfType{
-		"scalar": UdfTypeScalar,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := UdfType(input)
-	return &out, nil
-}
-
 type UpdateMode string
 
 const (
@@ -42,18 +27,4 @@ func PossibleValuesForUpdateMode() []string {
 		string(UpdateModeRefreshable),
 		string(UpdateModeStatic),
 	}
-}
-
-func parseUpdateMode(input string) (*UpdateMode, error) {
-	vals := map[string]UpdateMode{
-		"refreshable": UpdateModeRefreshable,
-		"static":      UpdateModeStatic,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := UpdateMode(input)
-	return &out, nil
 }

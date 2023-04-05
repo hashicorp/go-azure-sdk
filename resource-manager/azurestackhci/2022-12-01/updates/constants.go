@@ -1,7 +1,5 @@
 package updates
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -19,21 +17,6 @@ func PossibleValuesForAvailabilityType() []string {
 		string(AvailabilityTypeNotify),
 		string(AvailabilityTypeOnline),
 	}
-}
-
-func parseAvailabilityType(input string) (*AvailabilityType, error) {
-	vals := map[string]AvailabilityType{
-		"local":  AvailabilityTypeLocal,
-		"notify": AvailabilityTypeNotify,
-		"online": AvailabilityTypeOnline,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := AvailabilityType(input)
-	return &out, nil
 }
 
 type HealthState string
@@ -58,24 +41,6 @@ func PossibleValuesForHealthState() []string {
 	}
 }
 
-func parseHealthState(input string) (*HealthState, error) {
-	vals := map[string]HealthState{
-		"error":      HealthStateError,
-		"failure":    HealthStateFailure,
-		"inprogress": HealthStateInProgress,
-		"success":    HealthStateSuccess,
-		"unknown":    HealthStateUnknown,
-		"warning":    HealthStateWarning,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := HealthState(input)
-	return &out, nil
-}
-
 type ProvisioningState string
 
 const (
@@ -96,23 +61,6 @@ func PossibleValuesForProvisioningState() []string {
 	}
 }
 
-func parseProvisioningState(input string) (*ProvisioningState, error) {
-	vals := map[string]ProvisioningState{
-		"accepted":     ProvisioningStateAccepted,
-		"canceled":     ProvisioningStateCanceled,
-		"failed":       ProvisioningStateFailed,
-		"provisioning": ProvisioningStateProvisioning,
-		"succeeded":    ProvisioningStateSucceeded,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ProvisioningState(input)
-	return &out, nil
-}
-
 type RebootRequirement string
 
 const (
@@ -127,21 +75,6 @@ func PossibleValuesForRebootRequirement() []string {
 		string(RebootRequirementTrue),
 		string(RebootRequirementUnknown),
 	}
-}
-
-func parseRebootRequirement(input string) (*RebootRequirement, error) {
-	vals := map[string]RebootRequirement{
-		"false":   RebootRequirementFalse,
-		"true":    RebootRequirementTrue,
-		"unknown": RebootRequirementUnknown,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := RebootRequirement(input)
-	return &out, nil
 }
 
 type Severity string
@@ -160,22 +93,6 @@ func PossibleValuesForSeverity() []string {
 		string(SeverityInformational),
 		string(SeverityWarning),
 	}
-}
-
-func parseSeverity(input string) (*Severity, error) {
-	vals := map[string]Severity{
-		"critical":      SeverityCritical,
-		"hidden":        SeverityHidden,
-		"informational": SeverityInformational,
-		"warning":       SeverityWarning,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := Severity(input)
-	return &out, nil
 }
 
 type State string
@@ -224,36 +141,6 @@ func PossibleValuesForState() []string {
 	}
 }
 
-func parseState(input string) (*State, error) {
-	vals := map[string]State{
-		"downloadfailed":     StateDownloadFailed,
-		"downloading":        StateDownloading,
-		"hasprerequisite":    StateHasPrerequisite,
-		"healthcheckfailed":  StateHealthCheckFailed,
-		"healthchecking":     StateHealthChecking,
-		"installationfailed": StateInstallationFailed,
-		"installed":          StateInstalled,
-		"installing":         StateInstalling,
-		"invalid":            StateInvalid,
-		"notapplicablebecauseanotherupdateisinprogress": StateNotApplicableBecauseAnotherUpdateIsInProgress,
-		"obsolete":          StateObsolete,
-		"preparationfailed": StatePreparationFailed,
-		"preparing":         StatePreparing,
-		"ready":             StateReady,
-		"readytoinstall":    StateReadyToInstall,
-		"recalled":          StateRecalled,
-		"scanfailed":        StateScanFailed,
-		"scaninprogress":    StateScanInProgress,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := State(input)
-	return &out, nil
-}
-
 type Status string
 
 const (
@@ -268,19 +155,4 @@ func PossibleValuesForStatus() []string {
 		string(StatusInProgress),
 		string(StatusSucceeded),
 	}
-}
-
-func parseStatus(input string) (*Status, error) {
-	vals := map[string]Status{
-		"failed":     StatusFailed,
-		"inprogress": StatusInProgress,
-		"succeeded":  StatusSucceeded,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := Status(input)
-	return &out, nil
 }

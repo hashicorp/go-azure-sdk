@@ -1,7 +1,5 @@
 package jobs
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -21,22 +19,6 @@ func PossibleValuesForDownloadPhase() []string {
 		string(DownloadPhaseUnknown),
 		string(DownloadPhaseVerifying),
 	}
-}
-
-func parseDownloadPhase(input string) (*DownloadPhase, error) {
-	vals := map[string]DownloadPhase{
-		"downloading":  DownloadPhaseDownloading,
-		"initializing": DownloadPhaseInitializing,
-		"unknown":      DownloadPhaseUnknown,
-		"verifying":    DownloadPhaseVerifying,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := DownloadPhase(input)
-	return &out, nil
 }
 
 type JobStatus string
@@ -61,25 +43,6 @@ func PossibleValuesForJobStatus() []string {
 		string(JobStatusScheduled),
 		string(JobStatusSucceeded),
 	}
-}
-
-func parseJobStatus(input string) (*JobStatus, error) {
-	vals := map[string]JobStatus{
-		"canceled":  JobStatusCanceled,
-		"failed":    JobStatusFailed,
-		"invalid":   JobStatusInvalid,
-		"paused":    JobStatusPaused,
-		"running":   JobStatusRunning,
-		"scheduled": JobStatusScheduled,
-		"succeeded": JobStatusSucceeded,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := JobStatus(input)
-	return &out, nil
 }
 
 type JobType string
@@ -108,27 +71,6 @@ func PossibleValuesForJobType() []string {
 		string(JobTypeScanForUpdates),
 		string(JobTypeTriggerSupportPackage),
 	}
-}
-
-func parseJobType(input string) (*JobType, error) {
-	vals := map[string]JobType{
-		"backup":                JobTypeBackup,
-		"downloadupdates":       JobTypeDownloadUpdates,
-		"installupdates":        JobTypeInstallUpdates,
-		"invalid":               JobTypeInvalid,
-		"refreshcontainer":      JobTypeRefreshContainer,
-		"refreshshare":          JobTypeRefreshShare,
-		"restore":               JobTypeRestore,
-		"scanforupdates":        JobTypeScanForUpdates,
-		"triggersupportpackage": JobTypeTriggerSupportPackage,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := JobType(input)
-	return &out, nil
 }
 
 type UpdateOperationStage string
@@ -173,33 +115,4 @@ func PossibleValuesForUpdateOperationStage() []string {
 		string(UpdateOperationStageSuccess),
 		string(UpdateOperationStageUnknown),
 	}
-}
-
-func parseUpdateOperationStage(input string) (*UpdateOperationStage, error) {
-	vals := map[string]UpdateOperationStage{
-		"downloadcomplete": UpdateOperationStageDownloadComplete,
-		"downloadfailed":   UpdateOperationStageDownloadFailed,
-		"downloadstarted":  UpdateOperationStageDownloadStarted,
-		"failure":          UpdateOperationStageFailure,
-		"initial":          UpdateOperationStageInitial,
-		"installcomplete":  UpdateOperationStageInstallComplete,
-		"installfailed":    UpdateOperationStageInstallFailed,
-		"installstarted":   UpdateOperationStageInstallStarted,
-		"rebootinitiated":  UpdateOperationStageRebootInitiated,
-		"rescancomplete":   UpdateOperationStageRescanComplete,
-		"rescanfailed":     UpdateOperationStageRescanFailed,
-		"rescanstarted":    UpdateOperationStageRescanStarted,
-		"scancomplete":     UpdateOperationStageScanComplete,
-		"scanfailed":       UpdateOperationStageScanFailed,
-		"scanstarted":      UpdateOperationStageScanStarted,
-		"success":          UpdateOperationStageSuccess,
-		"unknown":          UpdateOperationStageUnknown,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := UpdateOperationStage(input)
-	return &out, nil
 }

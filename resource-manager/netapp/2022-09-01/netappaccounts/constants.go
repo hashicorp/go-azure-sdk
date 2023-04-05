@@ -1,7 +1,5 @@
 package netappaccounts
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -25,23 +23,6 @@ func PossibleValuesForActiveDirectoryStatus() []string {
 	}
 }
 
-func parseActiveDirectoryStatus(input string) (*ActiveDirectoryStatus, error) {
-	vals := map[string]ActiveDirectoryStatus{
-		"created":  ActiveDirectoryStatusCreated,
-		"deleted":  ActiveDirectoryStatusDeleted,
-		"error":    ActiveDirectoryStatusError,
-		"inuse":    ActiveDirectoryStatusInUse,
-		"updating": ActiveDirectoryStatusUpdating,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ActiveDirectoryStatus(input)
-	return &out, nil
-}
-
 type KeySource string
 
 const (
@@ -54,20 +35,6 @@ func PossibleValuesForKeySource() []string {
 		string(KeySourceMicrosoftPointKeyVault),
 		string(KeySourceMicrosoftPointNetApp),
 	}
-}
-
-func parseKeySource(input string) (*KeySource, error) {
-	vals := map[string]KeySource{
-		"microsoft.keyvault": KeySourceMicrosoftPointKeyVault,
-		"microsoft.netapp":   KeySourceMicrosoftPointNetApp,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := KeySource(input)
-	return &out, nil
 }
 
 type KeyVaultStatus string
@@ -88,21 +55,4 @@ func PossibleValuesForKeyVaultStatus() []string {
 		string(KeyVaultStatusInUse),
 		string(KeyVaultStatusUpdating),
 	}
-}
-
-func parseKeyVaultStatus(input string) (*KeyVaultStatus, error) {
-	vals := map[string]KeyVaultStatus{
-		"created":  KeyVaultStatusCreated,
-		"deleted":  KeyVaultStatusDeleted,
-		"error":    KeyVaultStatusError,
-		"inuse":    KeyVaultStatusInUse,
-		"updating": KeyVaultStatusUpdating,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := KeyVaultStatus(input)
-	return &out, nil
 }

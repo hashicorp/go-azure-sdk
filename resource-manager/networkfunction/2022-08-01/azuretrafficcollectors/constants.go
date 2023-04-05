@@ -1,7 +1,5 @@
 package azuretrafficcollectors
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -23,22 +21,6 @@ func PossibleValuesForCreatedByType() []string {
 	}
 }
 
-func parseCreatedByType(input string) (*CreatedByType, error) {
-	vals := map[string]CreatedByType{
-		"application":     CreatedByTypeApplication,
-		"key":             CreatedByTypeKey,
-		"managedidentity": CreatedByTypeManagedIdentity,
-		"user":            CreatedByTypeUser,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := CreatedByType(input)
-	return &out, nil
-}
-
 type DestinationType string
 
 const (
@@ -49,19 +31,6 @@ func PossibleValuesForDestinationType() []string {
 	return []string{
 		string(DestinationTypeAzureMonitor),
 	}
-}
-
-func parseDestinationType(input string) (*DestinationType, error) {
-	vals := map[string]DestinationType{
-		"azuremonitor": DestinationTypeAzureMonitor,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := DestinationType(input)
-	return &out, nil
 }
 
 type EmissionType string
@@ -76,19 +45,6 @@ func PossibleValuesForEmissionType() []string {
 	}
 }
 
-func parseEmissionType(input string) (*EmissionType, error) {
-	vals := map[string]EmissionType{
-		"ipfix": EmissionTypeIPFIX,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := EmissionType(input)
-	return &out, nil
-}
-
 type IngestionType string
 
 const (
@@ -99,19 +55,6 @@ func PossibleValuesForIngestionType() []string {
 	return []string{
 		string(IngestionTypeIPFIX),
 	}
-}
-
-func parseIngestionType(input string) (*IngestionType, error) {
-	vals := map[string]IngestionType{
-		"ipfix": IngestionTypeIPFIX,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := IngestionType(input)
-	return &out, nil
 }
 
 type ProvisioningState string
@@ -132,22 +75,6 @@ func PossibleValuesForProvisioningState() []string {
 	}
 }
 
-func parseProvisioningState(input string) (*ProvisioningState, error) {
-	vals := map[string]ProvisioningState{
-		"deleting":  ProvisioningStateDeleting,
-		"failed":    ProvisioningStateFailed,
-		"succeeded": ProvisioningStateSucceeded,
-		"updating":  ProvisioningStateUpdating,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ProvisioningState(input)
-	return &out, nil
-}
-
 type SourceType string
 
 const (
@@ -158,17 +85,4 @@ func PossibleValuesForSourceType() []string {
 	return []string{
 		string(SourceTypeResource),
 	}
-}
-
-func parseSourceType(input string) (*SourceType, error) {
-	vals := map[string]SourceType{
-		"resource": SourceTypeResource,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SourceType(input)
-	return &out, nil
 }

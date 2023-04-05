@@ -1,6 +1,10 @@
 package operation
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -17,15 +21,17 @@ func PossibleValuesForContainerRegistryResourceType() []string {
 	}
 }
 
-func parseContainerRegistryResourceType(input string) (*ContainerRegistryResourceType, error) {
-	vals := map[string]ContainerRegistryResourceType{
-		"microsoft.containerregistry/registries": ContainerRegistryResourceTypeMicrosoftPointContainerRegistryRegistries,
+func (s *ContainerRegistryResourceType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForContainerRegistryResourceType() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ContainerRegistryResourceType(input)
-	return &out, nil
+	*s = ContainerRegistryResourceType(decoded)
+	return nil
 }

@@ -1,7 +1,5 @@
 package scheduledqueryrules
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -25,23 +23,6 @@ func PossibleValuesForAlertSeverity() []int64 {
 	}
 }
 
-func parseAlertSeverity(input int64) (*AlertSeverity, error) {
-	vals := map[int64]AlertSeverity{
-		4: AlertSeverityFour,
-		1: AlertSeverityOne,
-		3: AlertSeverityThree,
-		2: AlertSeverityTwo,
-		0: AlertSeverityZero,
-	}
-	if v, ok := vals[input]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := AlertSeverity(input)
-	return &out, nil
-}
-
 type ConditionOperator string
 
 const (
@@ -62,23 +43,6 @@ func PossibleValuesForConditionOperator() []string {
 	}
 }
 
-func parseConditionOperator(input string) (*ConditionOperator, error) {
-	vals := map[string]ConditionOperator{
-		"equals":             ConditionOperatorEquals,
-		"greaterthan":        ConditionOperatorGreaterThan,
-		"greaterthanorequal": ConditionOperatorGreaterThanOrEqual,
-		"lessthan":           ConditionOperatorLessThan,
-		"lessthanorequal":    ConditionOperatorLessThanOrEqual,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ConditionOperator(input)
-	return &out, nil
-}
-
 type DimensionOperator string
 
 const (
@@ -93,20 +57,6 @@ func PossibleValuesForDimensionOperator() []string {
 	}
 }
 
-func parseDimensionOperator(input string) (*DimensionOperator, error) {
-	vals := map[string]DimensionOperator{
-		"exclude": DimensionOperatorExclude,
-		"include": DimensionOperatorInclude,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := DimensionOperator(input)
-	return &out, nil
-}
-
 type Kind string
 
 const (
@@ -119,20 +69,6 @@ func PossibleValuesForKind() []string {
 		string(KindLogAlert),
 		string(KindLogToMetric),
 	}
-}
-
-func parseKind(input string) (*Kind, error) {
-	vals := map[string]Kind{
-		"logalert":    KindLogAlert,
-		"logtometric": KindLogToMetric,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := Kind(input)
-	return &out, nil
 }
 
 type TimeAggregation string
@@ -153,21 +89,4 @@ func PossibleValuesForTimeAggregation() []string {
 		string(TimeAggregationMinimum),
 		string(TimeAggregationTotal),
 	}
-}
-
-func parseTimeAggregation(input string) (*TimeAggregation, error) {
-	vals := map[string]TimeAggregation{
-		"average": TimeAggregationAverage,
-		"count":   TimeAggregationCount,
-		"maximum": TimeAggregationMaximum,
-		"minimum": TimeAggregationMinimum,
-		"total":   TimeAggregationTotal,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := TimeAggregation(input)
-	return &out, nil
 }

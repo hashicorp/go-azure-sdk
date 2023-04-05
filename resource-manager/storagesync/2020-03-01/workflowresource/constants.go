@@ -1,7 +1,5 @@
 package workflowresource
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -19,21 +17,6 @@ func PossibleValuesForOperationDirection() []string {
 		string(OperationDirectionDo),
 		string(OperationDirectionUndo),
 	}
-}
-
-func parseOperationDirection(input string) (*OperationDirection, error) {
-	vals := map[string]OperationDirection{
-		"cancel": OperationDirectionCancel,
-		"do":     OperationDirectionDo,
-		"undo":   OperationDirectionUndo,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := OperationDirection(input)
-	return &out, nil
 }
 
 type WorkflowStatus string
@@ -54,21 +37,4 @@ func PossibleValuesForWorkflowStatus() []string {
 		string(WorkflowStatusFailed),
 		string(WorkflowStatusSucceeded),
 	}
-}
-
-func parseWorkflowStatus(input string) (*WorkflowStatus, error) {
-	vals := map[string]WorkflowStatus{
-		"aborted":   WorkflowStatusAborted,
-		"active":    WorkflowStatusActive,
-		"expired":   WorkflowStatusExpired,
-		"failed":    WorkflowStatusFailed,
-		"succeeded": WorkflowStatusSucceeded,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := WorkflowStatus(input)
-	return &out, nil
 }

@@ -1,7 +1,5 @@
 package alertruletemplates
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -27,24 +25,6 @@ func PossibleValuesForAlertRuleKind() []string {
 	}
 }
 
-func parseAlertRuleKind(input string) (*AlertRuleKind, error) {
-	vals := map[string]AlertRuleKind{
-		"fusion":                            AlertRuleKindFusion,
-		"mlbehavioranalytics":               AlertRuleKindMLBehaviorAnalytics,
-		"microsoftsecurityincidentcreation": AlertRuleKindMicrosoftSecurityIncidentCreation,
-		"nrt":                               AlertRuleKindNRT,
-		"scheduled":                         AlertRuleKindScheduled,
-		"threatintelligence":                AlertRuleKindThreatIntelligence,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := AlertRuleKind(input)
-	return &out, nil
-}
-
 type AlertSeverity string
 
 const (
@@ -61,22 +41,6 @@ func PossibleValuesForAlertSeverity() []string {
 		string(AlertSeverityLow),
 		string(AlertSeverityMedium),
 	}
-}
-
-func parseAlertSeverity(input string) (*AlertSeverity, error) {
-	vals := map[string]AlertSeverity{
-		"high":          AlertSeverityHigh,
-		"informational": AlertSeverityInformational,
-		"low":           AlertSeverityLow,
-		"medium":        AlertSeverityMedium,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := AlertSeverity(input)
-	return &out, nil
 }
 
 type AttackTactic string
@@ -113,31 +77,6 @@ func PossibleValuesForAttackTactic() []string {
 		string(AttackTacticPreAttack),
 		string(AttackTacticPrivilegeEscalation),
 	}
-}
-
-func parseAttackTactic(input string) (*AttackTactic, error) {
-	vals := map[string]AttackTactic{
-		"collection":          AttackTacticCollection,
-		"commandandcontrol":   AttackTacticCommandAndControl,
-		"credentialaccess":    AttackTacticCredentialAccess,
-		"defenseevasion":      AttackTacticDefenseEvasion,
-		"discovery":           AttackTacticDiscovery,
-		"execution":           AttackTacticExecution,
-		"exfiltration":        AttackTacticExfiltration,
-		"impact":              AttackTacticImpact,
-		"initialaccess":       AttackTacticInitialAccess,
-		"lateralmovement":     AttackTacticLateralMovement,
-		"persistence":         AttackTacticPersistence,
-		"preattack":           AttackTacticPreAttack,
-		"privilegeescalation": AttackTacticPrivilegeEscalation,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := AttackTactic(input)
-	return &out, nil
 }
 
 type EntityMappingType string
@@ -186,36 +125,6 @@ func PossibleValuesForEntityMappingType() []string {
 	}
 }
 
-func parseEntityMappingType(input string) (*EntityMappingType, error) {
-	vals := map[string]EntityMappingType{
-		"account":          EntityMappingTypeAccount,
-		"azureresource":    EntityMappingTypeAzureResource,
-		"cloudapplication": EntityMappingTypeCloudApplication,
-		"dns":              EntityMappingTypeDNS,
-		"file":             EntityMappingTypeFile,
-		"filehash":         EntityMappingTypeFileHash,
-		"host":             EntityMappingTypeHost,
-		"ip":               EntityMappingTypeIP,
-		"mailcluster":      EntityMappingTypeMailCluster,
-		"mailmessage":      EntityMappingTypeMailMessage,
-		"mailbox":          EntityMappingTypeMailbox,
-		"malware":          EntityMappingTypeMalware,
-		"process":          EntityMappingTypeProcess,
-		"registrykey":      EntityMappingTypeRegistryKey,
-		"registryvalue":    EntityMappingTypeRegistryValue,
-		"securitygroup":    EntityMappingTypeSecurityGroup,
-		"submissionmail":   EntityMappingTypeSubmissionMail,
-		"url":              EntityMappingTypeURL,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := EntityMappingType(input)
-	return &out, nil
-}
-
 type EventGroupingAggregationKind string
 
 const (
@@ -228,20 +137,6 @@ func PossibleValuesForEventGroupingAggregationKind() []string {
 		string(EventGroupingAggregationKindAlertPerResult),
 		string(EventGroupingAggregationKindSingleAlert),
 	}
-}
-
-func parseEventGroupingAggregationKind(input string) (*EventGroupingAggregationKind, error) {
-	vals := map[string]EventGroupingAggregationKind{
-		"alertperresult": EventGroupingAggregationKindAlertPerResult,
-		"singlealert":    EventGroupingAggregationKindSingleAlert,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := EventGroupingAggregationKind(input)
-	return &out, nil
 }
 
 type TemplateStatus string
@@ -260,21 +155,6 @@ func PossibleValuesForTemplateStatus() []string {
 	}
 }
 
-func parseTemplateStatus(input string) (*TemplateStatus, error) {
-	vals := map[string]TemplateStatus{
-		"available":    TemplateStatusAvailable,
-		"installed":    TemplateStatusInstalled,
-		"notavailable": TemplateStatusNotAvailable,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := TemplateStatus(input)
-	return &out, nil
-}
-
 type TriggerOperator string
 
 const (
@@ -291,20 +171,4 @@ func PossibleValuesForTriggerOperator() []string {
 		string(TriggerOperatorLessThan),
 		string(TriggerOperatorNotEqual),
 	}
-}
-
-func parseTriggerOperator(input string) (*TriggerOperator, error) {
-	vals := map[string]TriggerOperator{
-		"equal":       TriggerOperatorEqual,
-		"greaterthan": TriggerOperatorGreaterThan,
-		"lessthan":    TriggerOperatorLessThan,
-		"notequal":    TriggerOperatorNotEqual,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := TriggerOperator(input)
-	return &out, nil
 }

@@ -1,7 +1,5 @@
 package replicationprotecteditems
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -43,32 +41,6 @@ func PossibleValuesForAgentUpgradeBlockedReason() []string {
 	}
 }
 
-func parseAgentUpgradeBlockedReason(input string) (*AgentUpgradeBlockedReason, error) {
-	vals := map[string]AgentUpgradeBlockedReason{
-		"agentnoheartbeat":              AgentUpgradeBlockedReasonAgentNoHeartbeat,
-		"alreadyonlatestversion":        AgentUpgradeBlockedReasonAlreadyOnLatestVersion,
-		"distroisnotreported":           AgentUpgradeBlockedReasonDistroIsNotReported,
-		"distronotsupportedforupgrade":  AgentUpgradeBlockedReasonDistroNotSupportedForUpgrade,
-		"incompatibleapplianceversion":  AgentUpgradeBlockedReasonIncompatibleApplianceVersion,
-		"invalidagentversion":           AgentUpgradeBlockedReasonInvalidAgentVersion,
-		"invaliddriverversion":          AgentUpgradeBlockedReasonInvalidDriverVersion,
-		"missingupgradepath":            AgentUpgradeBlockedReasonMissingUpgradePath,
-		"notprotected":                  AgentUpgradeBlockedReasonNotProtected,
-		"processservernoheartbeat":      AgentUpgradeBlockedReasonProcessServerNoHeartbeat,
-		"rcmproxynoheartbeat":           AgentUpgradeBlockedReasonRcmProxyNoHeartbeat,
-		"rebootrequired":                AgentUpgradeBlockedReasonRebootRequired,
-		"unknown":                       AgentUpgradeBlockedReasonUnknown,
-		"unsupportedprotectionscenario": AgentUpgradeBlockedReasonUnsupportedProtectionScenario,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := AgentUpgradeBlockedReason(input)
-	return &out, nil
-}
-
 type AutoProtectionOfDataDisk string
 
 const (
@@ -81,20 +53,6 @@ func PossibleValuesForAutoProtectionOfDataDisk() []string {
 		string(AutoProtectionOfDataDiskDisabled),
 		string(AutoProtectionOfDataDiskEnabled),
 	}
-}
-
-func parseAutoProtectionOfDataDisk(input string) (*AutoProtectionOfDataDisk, error) {
-	vals := map[string]AutoProtectionOfDataDisk{
-		"disabled": AutoProtectionOfDataDiskDisabled,
-		"enabled":  AutoProtectionOfDataDiskEnabled,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := AutoProtectionOfDataDisk(input)
-	return &out, nil
 }
 
 type DisableProtectionReason string
@@ -111,20 +69,6 @@ func PossibleValuesForDisableProtectionReason() []string {
 	}
 }
 
-func parseDisableProtectionReason(input string) (*DisableProtectionReason, error) {
-	vals := map[string]DisableProtectionReason{
-		"migrationcomplete": DisableProtectionReasonMigrationComplete,
-		"notspecified":      DisableProtectionReasonNotSpecified,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := DisableProtectionReason(input)
-	return &out, nil
-}
-
 type DiskAccountType string
 
 const (
@@ -139,21 +83,6 @@ func PossibleValuesForDiskAccountType() []string {
 		string(DiskAccountTypeStandardLRS),
 		string(DiskAccountTypeStandardSSDLRS),
 	}
-}
-
-func parseDiskAccountType(input string) (*DiskAccountType, error) {
-	vals := map[string]DiskAccountType{
-		"premium_lrs":     DiskAccountTypePremiumLRS,
-		"standard_lrs":    DiskAccountTypeStandardLRS,
-		"standardssd_lrs": DiskAccountTypeStandardSSDLRS,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := DiskAccountType(input)
-	return &out, nil
 }
 
 type DiskReplicationProgressHealth string
@@ -176,23 +105,6 @@ func PossibleValuesForDiskReplicationProgressHealth() []string {
 	}
 }
 
-func parseDiskReplicationProgressHealth(input string) (*DiskReplicationProgressHealth, error) {
-	vals := map[string]DiskReplicationProgressHealth{
-		"inprogress":   DiskReplicationProgressHealthInProgress,
-		"noprogress":   DiskReplicationProgressHealthNoProgress,
-		"none":         DiskReplicationProgressHealthNone,
-		"queued":       DiskReplicationProgressHealthQueued,
-		"slowprogress": DiskReplicationProgressHealthSlowProgress,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := DiskReplicationProgressHealth(input)
-	return &out, nil
-}
-
 type EthernetAddressType string
 
 const (
@@ -205,20 +117,6 @@ func PossibleValuesForEthernetAddressType() []string {
 		string(EthernetAddressTypeDynamic),
 		string(EthernetAddressTypeStatic),
 	}
-}
-
-func parseEthernetAddressType(input string) (*EthernetAddressType, error) {
-	vals := map[string]EthernetAddressType{
-		"dynamic": EthernetAddressTypeDynamic,
-		"static":  EthernetAddressTypeStatic,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := EthernetAddressType(input)
-	return &out, nil
 }
 
 type HealthErrorCustomerResolvability string
@@ -235,20 +133,6 @@ func PossibleValuesForHealthErrorCustomerResolvability() []string {
 	}
 }
 
-func parseHealthErrorCustomerResolvability(input string) (*HealthErrorCustomerResolvability, error) {
-	vals := map[string]HealthErrorCustomerResolvability{
-		"allowed":    HealthErrorCustomerResolvabilityAllowed,
-		"notallowed": HealthErrorCustomerResolvabilityNotAllowed,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := HealthErrorCustomerResolvability(input)
-	return &out, nil
-}
-
 type InMageRcmFailbackRecoveryPointType string
 
 const (
@@ -261,20 +145,6 @@ func PossibleValuesForInMageRcmFailbackRecoveryPointType() []string {
 		string(InMageRcmFailbackRecoveryPointTypeApplicationConsistent),
 		string(InMageRcmFailbackRecoveryPointTypeCrashConsistent),
 	}
-}
-
-func parseInMageRcmFailbackRecoveryPointType(input string) (*InMageRcmFailbackRecoveryPointType, error) {
-	vals := map[string]InMageRcmFailbackRecoveryPointType{
-		"applicationconsistent": InMageRcmFailbackRecoveryPointTypeApplicationConsistent,
-		"crashconsistent":       InMageRcmFailbackRecoveryPointTypeCrashConsistent,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := InMageRcmFailbackRecoveryPointType(input)
-	return &out, nil
 }
 
 type LicenseType string
@@ -291,21 +161,6 @@ func PossibleValuesForLicenseType() []string {
 		string(LicenseTypeNotSpecified),
 		string(LicenseTypeWindowsServer),
 	}
-}
-
-func parseLicenseType(input string) (*LicenseType, error) {
-	vals := map[string]LicenseType{
-		"nolicensetype": LicenseTypeNoLicenseType,
-		"notspecified":  LicenseTypeNotSpecified,
-		"windowsserver": LicenseTypeWindowsServer,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := LicenseType(input)
-	return &out, nil
 }
 
 type MobilityAgentUpgradeState string
@@ -326,22 +181,6 @@ func PossibleValuesForMobilityAgentUpgradeState() []string {
 	}
 }
 
-func parseMobilityAgentUpgradeState(input string) (*MobilityAgentUpgradeState, error) {
-	vals := map[string]MobilityAgentUpgradeState{
-		"commit":    MobilityAgentUpgradeStateCommit,
-		"completed": MobilityAgentUpgradeStateCompleted,
-		"none":      MobilityAgentUpgradeStateNone,
-		"started":   MobilityAgentUpgradeStateStarted,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := MobilityAgentUpgradeState(input)
-	return &out, nil
-}
-
 type MultiVMGroupCreateOption string
 
 const (
@@ -354,20 +193,6 @@ func PossibleValuesForMultiVMGroupCreateOption() []string {
 		string(MultiVMGroupCreateOptionAutoCreated),
 		string(MultiVMGroupCreateOptionUserSpecified),
 	}
-}
-
-func parseMultiVMGroupCreateOption(input string) (*MultiVMGroupCreateOption, error) {
-	vals := map[string]MultiVMGroupCreateOption{
-		"autocreated":   MultiVMGroupCreateOptionAutoCreated,
-		"userspecified": MultiVMGroupCreateOptionUserSpecified,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := MultiVMGroupCreateOption(input)
-	return &out, nil
 }
 
 type PlannedFailoverStatus string
@@ -388,22 +213,6 @@ func PossibleValuesForPlannedFailoverStatus() []string {
 	}
 }
 
-func parsePlannedFailoverStatus(input string) (*PlannedFailoverStatus, error) {
-	vals := map[string]PlannedFailoverStatus{
-		"cancelled": PlannedFailoverStatusCancelled,
-		"failed":    PlannedFailoverStatusFailed,
-		"succeeded": PlannedFailoverStatusSucceeded,
-		"unknown":   PlannedFailoverStatusUnknown,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PlannedFailoverStatus(input)
-	return &out, nil
-}
-
 type RecoveryPointType string
 
 const (
@@ -420,21 +229,6 @@ func PossibleValuesForRecoveryPointType() []string {
 	}
 }
 
-func parseRecoveryPointType(input string) (*RecoveryPointType, error) {
-	vals := map[string]RecoveryPointType{
-		"custom":     RecoveryPointTypeCustom,
-		"latesttag":  RecoveryPointTypeLatestTag,
-		"latesttime": RecoveryPointTypeLatestTime,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := RecoveryPointType(input)
-	return &out, nil
-}
-
 type ResyncState string
 
 const (
@@ -449,21 +243,6 @@ func PossibleValuesForResyncState() []string {
 		string(ResyncStatePreparedForResynchronization),
 		string(ResyncStateStartedResynchronization),
 	}
-}
-
-func parseResyncState(input string) (*ResyncState, error) {
-	vals := map[string]ResyncState{
-		"none":                         ResyncStateNone,
-		"preparedforresynchronization": ResyncStatePreparedForResynchronization,
-		"startedresynchronization":     ResyncStateStartedResynchronization,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ResyncState(input)
-	return &out, nil
 }
 
 type SqlServerLicenseType string
@@ -484,22 +263,6 @@ func PossibleValuesForSqlServerLicenseType() []string {
 	}
 }
 
-func parseSqlServerLicenseType(input string) (*SqlServerLicenseType, error) {
-	vals := map[string]SqlServerLicenseType{
-		"ahub":          SqlServerLicenseTypeAHUB,
-		"nolicensetype": SqlServerLicenseTypeNoLicenseType,
-		"notspecified":  SqlServerLicenseTypeNotSpecified,
-		"payg":          SqlServerLicenseTypePAYG,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SqlServerLicenseType(input)
-	return &out, nil
-}
-
 type VMEncryptionType string
 
 const (
@@ -514,21 +277,6 @@ func PossibleValuesForVMEncryptionType() []string {
 		string(VMEncryptionTypeOnePassEncrypted),
 		string(VMEncryptionTypeTwoPassEncrypted),
 	}
-}
-
-func parseVMEncryptionType(input string) (*VMEncryptionType, error) {
-	vals := map[string]VMEncryptionType{
-		"notencrypted":     VMEncryptionTypeNotEncrypted,
-		"onepassencrypted": VMEncryptionTypeOnePassEncrypted,
-		"twopassencrypted": VMEncryptionTypeTwoPassEncrypted,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := VMEncryptionType(input)
-	return &out, nil
 }
 
 type VMReplicationProgressHealth string
@@ -547,20 +295,4 @@ func PossibleValuesForVMReplicationProgressHealth() []string {
 		string(VMReplicationProgressHealthNone),
 		string(VMReplicationProgressHealthSlowProgress),
 	}
-}
-
-func parseVMReplicationProgressHealth(input string) (*VMReplicationProgressHealth, error) {
-	vals := map[string]VMReplicationProgressHealth{
-		"inprogress":   VMReplicationProgressHealthInProgress,
-		"noprogress":   VMReplicationProgressHealthNoProgress,
-		"none":         VMReplicationProgressHealthNone,
-		"slowprogress": VMReplicationProgressHealthSlowProgress,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := VMReplicationProgressHealth(input)
-	return &out, nil
 }

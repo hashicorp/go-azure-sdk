@@ -1,7 +1,5 @@
 package frontdoors
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -17,20 +15,6 @@ func PossibleValuesForBackendEnabledState() []string {
 		string(BackendEnabledStateDisabled),
 		string(BackendEnabledStateEnabled),
 	}
-}
-
-func parseBackendEnabledState(input string) (*BackendEnabledState, error) {
-	vals := map[string]BackendEnabledState{
-		"disabled": BackendEnabledStateDisabled,
-		"enabled":  BackendEnabledStateEnabled,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := BackendEnabledState(input)
-	return &out, nil
 }
 
 type CustomHTTPSProvisioningState string
@@ -51,23 +35,6 @@ func PossibleValuesForCustomHTTPSProvisioningState() []string {
 		string(CustomHTTPSProvisioningStateEnabling),
 		string(CustomHTTPSProvisioningStateFailed),
 	}
-}
-
-func parseCustomHTTPSProvisioningState(input string) (*CustomHTTPSProvisioningState, error) {
-	vals := map[string]CustomHTTPSProvisioningState{
-		"disabled":  CustomHTTPSProvisioningStateDisabled,
-		"disabling": CustomHTTPSProvisioningStateDisabling,
-		"enabled":   CustomHTTPSProvisioningStateEnabled,
-		"enabling":  CustomHTTPSProvisioningStateEnabling,
-		"failed":    CustomHTTPSProvisioningStateFailed,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := CustomHTTPSProvisioningState(input)
-	return &out, nil
 }
 
 type CustomHTTPSProvisioningSubstate string
@@ -100,28 +67,6 @@ func PossibleValuesForCustomHTTPSProvisioningSubstate() []string {
 	}
 }
 
-func parseCustomHTTPSProvisioningSubstate(input string) (*CustomHTTPSProvisioningSubstate, error) {
-	vals := map[string]CustomHTTPSProvisioningSubstate{
-		"certificatedeleted":                            CustomHTTPSProvisioningSubstateCertificateDeleted,
-		"certificatedeployed":                           CustomHTTPSProvisioningSubstateCertificateDeployed,
-		"deletingcertificate":                           CustomHTTPSProvisioningSubstateDeletingCertificate,
-		"deployingcertificate":                          CustomHTTPSProvisioningSubstateDeployingCertificate,
-		"domaincontrolvalidationrequestapproved":        CustomHTTPSProvisioningSubstateDomainControlValidationRequestApproved,
-		"domaincontrolvalidationrequestrejected":        CustomHTTPSProvisioningSubstateDomainControlValidationRequestRejected,
-		"domaincontrolvalidationrequesttimedout":        CustomHTTPSProvisioningSubstateDomainControlValidationRequestTimedOut,
-		"issuingcertificate":                            CustomHTTPSProvisioningSubstateIssuingCertificate,
-		"pendingdomaincontrolvalidationrequestapproval": CustomHTTPSProvisioningSubstatePendingDomainControlValidationREquestApproval,
-		"submittingdomaincontrolvalidationrequest":      CustomHTTPSProvisioningSubstateSubmittingDomainControlValidationRequest,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := CustomHTTPSProvisioningSubstate(input)
-	return &out, nil
-}
-
 type DynamicCompressionEnabled string
 
 const (
@@ -134,20 +79,6 @@ func PossibleValuesForDynamicCompressionEnabled() []string {
 		string(DynamicCompressionEnabledDisabled),
 		string(DynamicCompressionEnabledEnabled),
 	}
-}
-
-func parseDynamicCompressionEnabled(input string) (*DynamicCompressionEnabled, error) {
-	vals := map[string]DynamicCompressionEnabled{
-		"disabled": DynamicCompressionEnabledDisabled,
-		"enabled":  DynamicCompressionEnabledEnabled,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := DynamicCompressionEnabled(input)
-	return &out, nil
 }
 
 type EnforceCertificateNameCheckEnabledState string
@@ -164,20 +95,6 @@ func PossibleValuesForEnforceCertificateNameCheckEnabledState() []string {
 	}
 }
 
-func parseEnforceCertificateNameCheckEnabledState(input string) (*EnforceCertificateNameCheckEnabledState, error) {
-	vals := map[string]EnforceCertificateNameCheckEnabledState{
-		"disabled": EnforceCertificateNameCheckEnabledStateDisabled,
-		"enabled":  EnforceCertificateNameCheckEnabledStateEnabled,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := EnforceCertificateNameCheckEnabledState(input)
-	return &out, nil
-}
-
 type FrontDoorCertificateSource string
 
 const (
@@ -192,20 +109,6 @@ func PossibleValuesForFrontDoorCertificateSource() []string {
 	}
 }
 
-func parseFrontDoorCertificateSource(input string) (*FrontDoorCertificateSource, error) {
-	vals := map[string]FrontDoorCertificateSource{
-		"azurekeyvault": FrontDoorCertificateSourceAzureKeyVault,
-		"frontdoor":     FrontDoorCertificateSourceFrontDoor,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := FrontDoorCertificateSource(input)
-	return &out, nil
-}
-
 type FrontDoorCertificateType string
 
 const (
@@ -216,19 +119,6 @@ func PossibleValuesForFrontDoorCertificateType() []string {
 	return []string{
 		string(FrontDoorCertificateTypeDedicated),
 	}
-}
-
-func parseFrontDoorCertificateType(input string) (*FrontDoorCertificateType, error) {
-	vals := map[string]FrontDoorCertificateType{
-		"dedicated": FrontDoorCertificateTypeDedicated,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := FrontDoorCertificateType(input)
-	return &out, nil
 }
 
 type FrontDoorEnabledState string
@@ -243,20 +133,6 @@ func PossibleValuesForFrontDoorEnabledState() []string {
 		string(FrontDoorEnabledStateDisabled),
 		string(FrontDoorEnabledStateEnabled),
 	}
-}
-
-func parseFrontDoorEnabledState(input string) (*FrontDoorEnabledState, error) {
-	vals := map[string]FrontDoorEnabledState{
-		"disabled": FrontDoorEnabledStateDisabled,
-		"enabled":  FrontDoorEnabledStateEnabled,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := FrontDoorEnabledState(input)
-	return &out, nil
 }
 
 type FrontDoorForwardingProtocol string
@@ -275,21 +151,6 @@ func PossibleValuesForFrontDoorForwardingProtocol() []string {
 	}
 }
 
-func parseFrontDoorForwardingProtocol(input string) (*FrontDoorForwardingProtocol, error) {
-	vals := map[string]FrontDoorForwardingProtocol{
-		"httponly":     FrontDoorForwardingProtocolHTTPOnly,
-		"httpsonly":    FrontDoorForwardingProtocolHTTPSOnly,
-		"matchrequest": FrontDoorForwardingProtocolMatchRequest,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := FrontDoorForwardingProtocol(input)
-	return &out, nil
-}
-
 type FrontDoorHealthProbeMethod string
 
 const (
@@ -304,20 +165,6 @@ func PossibleValuesForFrontDoorHealthProbeMethod() []string {
 	}
 }
 
-func parseFrontDoorHealthProbeMethod(input string) (*FrontDoorHealthProbeMethod, error) {
-	vals := map[string]FrontDoorHealthProbeMethod{
-		"get":  FrontDoorHealthProbeMethodGET,
-		"head": FrontDoorHealthProbeMethodHEAD,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := FrontDoorHealthProbeMethod(input)
-	return &out, nil
-}
-
 type FrontDoorProtocol string
 
 const (
@@ -330,20 +177,6 @@ func PossibleValuesForFrontDoorProtocol() []string {
 		string(FrontDoorProtocolHTTP),
 		string(FrontDoorProtocolHTTPS),
 	}
-}
-
-func parseFrontDoorProtocol(input string) (*FrontDoorProtocol, error) {
-	vals := map[string]FrontDoorProtocol{
-		"http":  FrontDoorProtocolHTTP,
-		"https": FrontDoorProtocolHTTPS,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := FrontDoorProtocol(input)
-	return &out, nil
 }
 
 type FrontDoorQuery string
@@ -364,22 +197,6 @@ func PossibleValuesForFrontDoorQuery() []string {
 	}
 }
 
-func parseFrontDoorQuery(input string) (*FrontDoorQuery, error) {
-	vals := map[string]FrontDoorQuery{
-		"stripall":       FrontDoorQueryStripAll,
-		"stripallexcept": FrontDoorQueryStripAllExcept,
-		"stripnone":      FrontDoorQueryStripNone,
-		"striponly":      FrontDoorQueryStripOnly,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := FrontDoorQuery(input)
-	return &out, nil
-}
-
 type FrontDoorRedirectProtocol string
 
 const (
@@ -394,21 +211,6 @@ func PossibleValuesForFrontDoorRedirectProtocol() []string {
 		string(FrontDoorRedirectProtocolHTTPSOnly),
 		string(FrontDoorRedirectProtocolMatchRequest),
 	}
-}
-
-func parseFrontDoorRedirectProtocol(input string) (*FrontDoorRedirectProtocol, error) {
-	vals := map[string]FrontDoorRedirectProtocol{
-		"httponly":     FrontDoorRedirectProtocolHTTPOnly,
-		"httpsonly":    FrontDoorRedirectProtocolHTTPSOnly,
-		"matchrequest": FrontDoorRedirectProtocolMatchRequest,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := FrontDoorRedirectProtocol(input)
-	return &out, nil
 }
 
 type FrontDoorRedirectType string
@@ -427,22 +229,6 @@ func PossibleValuesForFrontDoorRedirectType() []string {
 		string(FrontDoorRedirectTypePermanentRedirect),
 		string(FrontDoorRedirectTypeTemporaryRedirect),
 	}
-}
-
-func parseFrontDoorRedirectType(input string) (*FrontDoorRedirectType, error) {
-	vals := map[string]FrontDoorRedirectType{
-		"found":             FrontDoorRedirectTypeFound,
-		"moved":             FrontDoorRedirectTypeMoved,
-		"permanentredirect": FrontDoorRedirectTypePermanentRedirect,
-		"temporaryredirect": FrontDoorRedirectTypeTemporaryRedirect,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := FrontDoorRedirectType(input)
-	return &out, nil
 }
 
 type FrontDoorResourceState string
@@ -467,24 +253,6 @@ func PossibleValuesForFrontDoorResourceState() []string {
 	}
 }
 
-func parseFrontDoorResourceState(input string) (*FrontDoorResourceState, error) {
-	vals := map[string]FrontDoorResourceState{
-		"creating":  FrontDoorResourceStateCreating,
-		"deleting":  FrontDoorResourceStateDeleting,
-		"disabled":  FrontDoorResourceStateDisabled,
-		"disabling": FrontDoorResourceStateDisabling,
-		"enabled":   FrontDoorResourceStateEnabled,
-		"enabling":  FrontDoorResourceStateEnabling,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := FrontDoorResourceState(input)
-	return &out, nil
-}
-
 type FrontDoorTlsProtocolType string
 
 const (
@@ -495,19 +263,6 @@ func PossibleValuesForFrontDoorTlsProtocolType() []string {
 	return []string{
 		string(FrontDoorTlsProtocolTypeServerNameIndication),
 	}
-}
-
-func parseFrontDoorTlsProtocolType(input string) (*FrontDoorTlsProtocolType, error) {
-	vals := map[string]FrontDoorTlsProtocolType{
-		"servernameindication": FrontDoorTlsProtocolTypeServerNameIndication,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := FrontDoorTlsProtocolType(input)
-	return &out, nil
 }
 
 type HeaderActionType string
@@ -526,21 +281,6 @@ func PossibleValuesForHeaderActionType() []string {
 	}
 }
 
-func parseHeaderActionType(input string) (*HeaderActionType, error) {
-	vals := map[string]HeaderActionType{
-		"append":    HeaderActionTypeAppend,
-		"delete":    HeaderActionTypeDelete,
-		"overwrite": HeaderActionTypeOverwrite,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := HeaderActionType(input)
-	return &out, nil
-}
-
 type HealthProbeEnabled string
 
 const (
@@ -553,20 +293,6 @@ func PossibleValuesForHealthProbeEnabled() []string {
 		string(HealthProbeEnabledDisabled),
 		string(HealthProbeEnabledEnabled),
 	}
-}
-
-func parseHealthProbeEnabled(input string) (*HealthProbeEnabled, error) {
-	vals := map[string]HealthProbeEnabled{
-		"disabled": HealthProbeEnabledDisabled,
-		"enabled":  HealthProbeEnabledEnabled,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := HealthProbeEnabled(input)
-	return &out, nil
 }
 
 type MatchProcessingBehavior string
@@ -583,20 +309,6 @@ func PossibleValuesForMatchProcessingBehavior() []string {
 	}
 }
 
-func parseMatchProcessingBehavior(input string) (*MatchProcessingBehavior, error) {
-	vals := map[string]MatchProcessingBehavior{
-		"continue": MatchProcessingBehaviorContinue,
-		"stop":     MatchProcessingBehaviorStop,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := MatchProcessingBehavior(input)
-	return &out, nil
-}
-
 type MinimumTLSVersion string
 
 const (
@@ -609,20 +321,6 @@ func PossibleValuesForMinimumTLSVersion() []string {
 		string(MinimumTLSVersionOnePointTwo),
 		string(MinimumTLSVersionOnePointZero),
 	}
-}
-
-func parseMinimumTLSVersion(input string) (*MinimumTLSVersion, error) {
-	vals := map[string]MinimumTLSVersion{
-		"1.2": MinimumTLSVersionOnePointTwo,
-		"1.0": MinimumTLSVersionOnePointZero,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := MinimumTLSVersion(input)
-	return &out, nil
 }
 
 type PrivateEndpointStatus string
@@ -645,23 +343,6 @@ func PossibleValuesForPrivateEndpointStatus() []string {
 	}
 }
 
-func parsePrivateEndpointStatus(input string) (*PrivateEndpointStatus, error) {
-	vals := map[string]PrivateEndpointStatus{
-		"approved":     PrivateEndpointStatusApproved,
-		"disconnected": PrivateEndpointStatusDisconnected,
-		"pending":      PrivateEndpointStatusPending,
-		"rejected":     PrivateEndpointStatusRejected,
-		"timeout":      PrivateEndpointStatusTimeout,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PrivateEndpointStatus(input)
-	return &out, nil
-}
-
 type RoutingRuleEnabledState string
 
 const (
@@ -674,20 +355,6 @@ func PossibleValuesForRoutingRuleEnabledState() []string {
 		string(RoutingRuleEnabledStateDisabled),
 		string(RoutingRuleEnabledStateEnabled),
 	}
-}
-
-func parseRoutingRuleEnabledState(input string) (*RoutingRuleEnabledState, error) {
-	vals := map[string]RoutingRuleEnabledState{
-		"disabled": RoutingRuleEnabledStateDisabled,
-		"enabled":  RoutingRuleEnabledStateEnabled,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := RoutingRuleEnabledState(input)
-	return &out, nil
 }
 
 type RulesEngineMatchVariable string
@@ -724,30 +391,6 @@ func PossibleValuesForRulesEngineMatchVariable() []string {
 	}
 }
 
-func parseRulesEngineMatchVariable(input string) (*RulesEngineMatchVariable, error) {
-	vals := map[string]RulesEngineMatchVariable{
-		"ismobile":                 RulesEngineMatchVariableIsMobile,
-		"postargs":                 RulesEngineMatchVariablePostArgs,
-		"querystring":              RulesEngineMatchVariableQueryString,
-		"remoteaddr":               RulesEngineMatchVariableRemoteAddr,
-		"requestbody":              RulesEngineMatchVariableRequestBody,
-		"requestfilename":          RulesEngineMatchVariableRequestFilename,
-		"requestfilenameextension": RulesEngineMatchVariableRequestFilenameExtension,
-		"requestheader":            RulesEngineMatchVariableRequestHeader,
-		"requestmethod":            RulesEngineMatchVariableRequestMethod,
-		"requestpath":              RulesEngineMatchVariableRequestPath,
-		"requestscheme":            RulesEngineMatchVariableRequestScheme,
-		"requesturi":               RulesEngineMatchVariableRequestUri,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := RulesEngineMatchVariable(input)
-	return &out, nil
-}
-
 type RulesEngineOperator string
 
 const (
@@ -780,29 +423,6 @@ func PossibleValuesForRulesEngineOperator() []string {
 	}
 }
 
-func parseRulesEngineOperator(input string) (*RulesEngineOperator, error) {
-	vals := map[string]RulesEngineOperator{
-		"any":                RulesEngineOperatorAny,
-		"beginswith":         RulesEngineOperatorBeginsWith,
-		"contains":           RulesEngineOperatorContains,
-		"endswith":           RulesEngineOperatorEndsWith,
-		"equal":              RulesEngineOperatorEqual,
-		"geomatch":           RulesEngineOperatorGeoMatch,
-		"greaterthan":        RulesEngineOperatorGreaterThan,
-		"greaterthanorequal": RulesEngineOperatorGreaterThanOrEqual,
-		"ipmatch":            RulesEngineOperatorIPMatch,
-		"lessthan":           RulesEngineOperatorLessThan,
-		"lessthanorequal":    RulesEngineOperatorLessThanOrEqual,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := RulesEngineOperator(input)
-	return &out, nil
-}
-
 type SessionAffinityEnabledState string
 
 const (
@@ -815,20 +435,6 @@ func PossibleValuesForSessionAffinityEnabledState() []string {
 		string(SessionAffinityEnabledStateDisabled),
 		string(SessionAffinityEnabledStateEnabled),
 	}
-}
-
-func parseSessionAffinityEnabledState(input string) (*SessionAffinityEnabledState, error) {
-	vals := map[string]SessionAffinityEnabledState{
-		"disabled": SessionAffinityEnabledStateDisabled,
-		"enabled":  SessionAffinityEnabledStateEnabled,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SessionAffinityEnabledState(input)
-	return &out, nil
 }
 
 type Transform string
@@ -851,22 +457,4 @@ func PossibleValuesForTransform() []string {
 		string(TransformUrlDecode),
 		string(TransformUrlEncode),
 	}
-}
-
-func parseTransform(input string) (*Transform, error) {
-	vals := map[string]Transform{
-		"lowercase":   TransformLowercase,
-		"removenulls": TransformRemoveNulls,
-		"trim":        TransformTrim,
-		"uppercase":   TransformUppercase,
-		"urldecode":   TransformUrlDecode,
-		"urlencode":   TransformUrlEncode,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := Transform(input)
-	return &out, nil
 }
