@@ -1,7 +1,5 @@
 package backupresourceencryptionconfigs
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -21,21 +19,6 @@ func PossibleValuesForEncryptionAtRestType() []string {
 	}
 }
 
-func parseEncryptionAtRestType(input string) (*EncryptionAtRestType, error) {
-	vals := map[string]EncryptionAtRestType{
-		"customermanaged":  EncryptionAtRestTypeCustomerManaged,
-		"invalid":          EncryptionAtRestTypeInvalid,
-		"microsoftmanaged": EncryptionAtRestTypeMicrosoftManaged,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := EncryptionAtRestType(input)
-	return &out, nil
-}
-
 type InfrastructureEncryptionState string
 
 const (
@@ -50,21 +33,6 @@ func PossibleValuesForInfrastructureEncryptionState() []string {
 		string(InfrastructureEncryptionStateEnabled),
 		string(InfrastructureEncryptionStateInvalid),
 	}
-}
-
-func parseInfrastructureEncryptionState(input string) (*InfrastructureEncryptionState, error) {
-	vals := map[string]InfrastructureEncryptionState{
-		"disabled": InfrastructureEncryptionStateDisabled,
-		"enabled":  InfrastructureEncryptionStateEnabled,
-		"invalid":  InfrastructureEncryptionStateInvalid,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := InfrastructureEncryptionState(input)
-	return &out, nil
 }
 
 type LastUpdateStatus string
@@ -91,24 +59,4 @@ func PossibleValuesForLastUpdateStatus() []string {
 		string(LastUpdateStatusPartiallySucceeded),
 		string(LastUpdateStatusSucceeded),
 	}
-}
-
-func parseLastUpdateStatus(input string) (*LastUpdateStatus, error) {
-	vals := map[string]LastUpdateStatus{
-		"failed":              LastUpdateStatusFailed,
-		"firstinitialization": LastUpdateStatusFirstInitialization,
-		"initialized":         LastUpdateStatusInitialized,
-		"invalid":             LastUpdateStatusInvalid,
-		"notenabled":          LastUpdateStatusNotEnabled,
-		"partiallyfailed":     LastUpdateStatusPartiallyFailed,
-		"partiallysucceeded":  LastUpdateStatusPartiallySucceeded,
-		"succeeded":           LastUpdateStatusSucceeded,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := LastUpdateStatus(input)
-	return &out, nil
 }

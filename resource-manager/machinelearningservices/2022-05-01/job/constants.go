@@ -1,7 +1,5 @@
 package job
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -21,21 +19,6 @@ func PossibleValuesForDistributionType() []string {
 	}
 }
 
-func parseDistributionType(input string) (*DistributionType, error) {
-	vals := map[string]DistributionType{
-		"mpi":        DistributionTypeMpi,
-		"pytorch":    DistributionTypePyTorch,
-		"tensorflow": DistributionTypeTensorFlow,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := DistributionType(input)
-	return &out, nil
-}
-
 type EarlyTerminationPolicyType string
 
 const (
@@ -52,21 +35,6 @@ func PossibleValuesForEarlyTerminationPolicyType() []string {
 	}
 }
 
-func parseEarlyTerminationPolicyType(input string) (*EarlyTerminationPolicyType, error) {
-	vals := map[string]EarlyTerminationPolicyType{
-		"bandit":              EarlyTerminationPolicyTypeBandit,
-		"medianstopping":      EarlyTerminationPolicyTypeMedianStopping,
-		"truncationselection": EarlyTerminationPolicyTypeTruncationSelection,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := EarlyTerminationPolicyType(input)
-	return &out, nil
-}
-
 type Goal string
 
 const (
@@ -79,20 +47,6 @@ func PossibleValuesForGoal() []string {
 		string(GoalMaximize),
 		string(GoalMinimize),
 	}
-}
-
-func parseGoal(input string) (*Goal, error) {
-	vals := map[string]Goal{
-		"maximize": GoalMaximize,
-		"minimize": GoalMinimize,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := Goal(input)
-	return &out, nil
 }
 
 type IdentityConfigurationType string
@@ -109,21 +63,6 @@ func PossibleValuesForIdentityConfigurationType() []string {
 		string(IdentityConfigurationTypeManaged),
 		string(IdentityConfigurationTypeUserIdentity),
 	}
-}
-
-func parseIdentityConfigurationType(input string) (*IdentityConfigurationType, error) {
-	vals := map[string]IdentityConfigurationType{
-		"amltoken":     IdentityConfigurationTypeAMLToken,
-		"managed":      IdentityConfigurationTypeManaged,
-		"useridentity": IdentityConfigurationTypeUserIdentity,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := IdentityConfigurationType(input)
-	return &out, nil
 }
 
 type InputDeliveryMode string
@@ -146,24 +85,6 @@ func PossibleValuesForInputDeliveryMode() []string {
 		string(InputDeliveryModeReadOnlyMount),
 		string(InputDeliveryModeReadWriteMount),
 	}
-}
-
-func parseInputDeliveryMode(input string) (*InputDeliveryMode, error) {
-	vals := map[string]InputDeliveryMode{
-		"direct":         InputDeliveryModeDirect,
-		"download":       InputDeliveryModeDownload,
-		"evaldownload":   InputDeliveryModeEvalDownload,
-		"evalmount":      InputDeliveryModeEvalMount,
-		"readonlymount":  InputDeliveryModeReadOnlyMount,
-		"readwritemount": InputDeliveryModeReadWriteMount,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := InputDeliveryMode(input)
-	return &out, nil
 }
 
 type JobInputType string
@@ -190,25 +111,6 @@ func PossibleValuesForJobInputType() []string {
 	}
 }
 
-func parseJobInputType(input string) (*JobInputType, error) {
-	vals := map[string]JobInputType{
-		"custom_model": JobInputTypeCustomModel,
-		"literal":      JobInputTypeLiteral,
-		"mlflow_model": JobInputTypeMlflowModel,
-		"mltable":      JobInputTypeMltable,
-		"triton_model": JobInputTypeTritonModel,
-		"uri_file":     JobInputTypeUriFile,
-		"uri_folder":   JobInputTypeUriFolder,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := JobInputType(input)
-	return &out, nil
-}
-
 type JobLimitsType string
 
 const (
@@ -221,20 +123,6 @@ func PossibleValuesForJobLimitsType() []string {
 		string(JobLimitsTypeCommand),
 		string(JobLimitsTypeSweep),
 	}
-}
-
-func parseJobLimitsType(input string) (*JobLimitsType, error) {
-	vals := map[string]JobLimitsType{
-		"command": JobLimitsTypeCommand,
-		"sweep":   JobLimitsTypeSweep,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := JobLimitsType(input)
-	return &out, nil
 }
 
 type JobOutputType string
@@ -257,24 +145,6 @@ func PossibleValuesForJobOutputType() []string {
 		string(JobOutputTypeUriFile),
 		string(JobOutputTypeUriFolder),
 	}
-}
-
-func parseJobOutputType(input string) (*JobOutputType, error) {
-	vals := map[string]JobOutputType{
-		"custom_model": JobOutputTypeCustomModel,
-		"mlflow_model": JobOutputTypeMlflowModel,
-		"mltable":      JobOutputTypeMltable,
-		"triton_model": JobOutputTypeTritonModel,
-		"uri_file":     JobOutputTypeUriFile,
-		"uri_folder":   JobOutputTypeUriFolder,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := JobOutputType(input)
-	return &out, nil
 }
 
 type JobStatus string
@@ -315,32 +185,6 @@ func PossibleValuesForJobStatus() []string {
 	}
 }
 
-func parseJobStatus(input string) (*JobStatus, error) {
-	vals := map[string]JobStatus{
-		"cancelrequested": JobStatusCancelRequested,
-		"canceled":        JobStatusCanceled,
-		"completed":       JobStatusCompleted,
-		"failed":          JobStatusFailed,
-		"finalizing":      JobStatusFinalizing,
-		"notresponding":   JobStatusNotResponding,
-		"notstarted":      JobStatusNotStarted,
-		"paused":          JobStatusPaused,
-		"preparing":       JobStatusPreparing,
-		"provisioning":    JobStatusProvisioning,
-		"queued":          JobStatusQueued,
-		"running":         JobStatusRunning,
-		"starting":        JobStatusStarting,
-		"unknown":         JobStatusUnknown,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := JobStatus(input)
-	return &out, nil
-}
-
 type JobType string
 
 const (
@@ -355,21 +199,6 @@ func PossibleValuesForJobType() []string {
 		string(JobTypePipeline),
 		string(JobTypeSweep),
 	}
-}
-
-func parseJobType(input string) (*JobType, error) {
-	vals := map[string]JobType{
-		"command":  JobTypeCommand,
-		"pipeline": JobTypePipeline,
-		"sweep":    JobTypeSweep,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := JobType(input)
-	return &out, nil
 }
 
 type ListViewType string
@@ -388,21 +217,6 @@ func PossibleValuesForListViewType() []string {
 	}
 }
 
-func parseListViewType(input string) (*ListViewType, error) {
-	vals := map[string]ListViewType{
-		"activeonly":   ListViewTypeActiveOnly,
-		"all":          ListViewTypeAll,
-		"archivedonly": ListViewTypeArchivedOnly,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ListViewType(input)
-	return &out, nil
-}
-
 type OutputDeliveryMode string
 
 const (
@@ -415,20 +229,6 @@ func PossibleValuesForOutputDeliveryMode() []string {
 		string(OutputDeliveryModeReadWriteMount),
 		string(OutputDeliveryModeUpload),
 	}
-}
-
-func parseOutputDeliveryMode(input string) (*OutputDeliveryMode, error) {
-	vals := map[string]OutputDeliveryMode{
-		"readwritemount": OutputDeliveryModeReadWriteMount,
-		"upload":         OutputDeliveryModeUpload,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := OutputDeliveryMode(input)
-	return &out, nil
 }
 
 type RandomSamplingAlgorithmRule string
@@ -445,20 +245,6 @@ func PossibleValuesForRandomSamplingAlgorithmRule() []string {
 	}
 }
 
-func parseRandomSamplingAlgorithmRule(input string) (*RandomSamplingAlgorithmRule, error) {
-	vals := map[string]RandomSamplingAlgorithmRule{
-		"random": RandomSamplingAlgorithmRuleRandom,
-		"sobol":  RandomSamplingAlgorithmRuleSobol,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := RandomSamplingAlgorithmRule(input)
-	return &out, nil
-}
-
 type SamplingAlgorithmType string
 
 const (
@@ -473,19 +259,4 @@ func PossibleValuesForSamplingAlgorithmType() []string {
 		string(SamplingAlgorithmTypeGrid),
 		string(SamplingAlgorithmTypeRandom),
 	}
-}
-
-func parseSamplingAlgorithmType(input string) (*SamplingAlgorithmType, error) {
-	vals := map[string]SamplingAlgorithmType{
-		"bayesian": SamplingAlgorithmTypeBayesian,
-		"grid":     SamplingAlgorithmTypeGrid,
-		"random":   SamplingAlgorithmTypeRandom,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SamplingAlgorithmType(input)
-	return &out, nil
 }

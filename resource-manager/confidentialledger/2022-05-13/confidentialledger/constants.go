@@ -1,7 +1,5 @@
 package confidentialledger
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -21,21 +19,6 @@ func PossibleValuesForLedgerRoleName() []string {
 	}
 }
 
-func parseLedgerRoleName(input string) (*LedgerRoleName, error) {
-	vals := map[string]LedgerRoleName{
-		"administrator": LedgerRoleNameAdministrator,
-		"contributor":   LedgerRoleNameContributor,
-		"reader":        LedgerRoleNameReader,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := LedgerRoleName(input)
-	return &out, nil
-}
-
 type LedgerType string
 
 const (
@@ -50,21 +33,6 @@ func PossibleValuesForLedgerType() []string {
 		string(LedgerTypePublic),
 		string(LedgerTypeUnknown),
 	}
-}
-
-func parseLedgerType(input string) (*LedgerType, error) {
-	vals := map[string]LedgerType{
-		"private": LedgerTypePrivate,
-		"public":  LedgerTypePublic,
-		"unknown": LedgerTypeUnknown,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := LedgerType(input)
-	return &out, nil
 }
 
 type ProvisioningState string
@@ -89,23 +57,4 @@ func PossibleValuesForProvisioningState() []string {
 		string(ProvisioningStateUnknown),
 		string(ProvisioningStateUpdating),
 	}
-}
-
-func parseProvisioningState(input string) (*ProvisioningState, error) {
-	vals := map[string]ProvisioningState{
-		"canceled":  ProvisioningStateCanceled,
-		"creating":  ProvisioningStateCreating,
-		"deleting":  ProvisioningStateDeleting,
-		"failed":    ProvisioningStateFailed,
-		"succeeded": ProvisioningStateSucceeded,
-		"unknown":   ProvisioningStateUnknown,
-		"updating":  ProvisioningStateUpdating,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ProvisioningState(input)
-	return &out, nil
 }

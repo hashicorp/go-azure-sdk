@@ -1,7 +1,5 @@
 package metricdefinitions
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -25,24 +23,6 @@ func PossibleValuesForAggregationType() []string {
 		string(AggregationTypeNone),
 		string(AggregationTypeTotal),
 	}
-}
-
-func parseAggregationType(input string) (*AggregationType, error) {
-	vals := map[string]AggregationType{
-		"average": AggregationTypeAverage,
-		"count":   AggregationTypeCount,
-		"maximum": AggregationTypeMaximum,
-		"minimum": AggregationTypeMinimum,
-		"none":    AggregationTypeNone,
-		"total":   AggregationTypeTotal,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := AggregationType(input)
-	return &out, nil
 }
 
 type Unit string
@@ -79,29 +59,4 @@ func PossibleValuesForUnit() []string {
 		string(UnitSeconds),
 		string(UnitUnspecified),
 	}
-}
-
-func parseUnit(input string) (*Unit, error) {
-	vals := map[string]Unit{
-		"bitspersecond":  UnitBitsPerSecond,
-		"byteseconds":    UnitByteSeconds,
-		"bytes":          UnitBytes,
-		"bytespersecond": UnitBytesPerSecond,
-		"cores":          UnitCores,
-		"count":          UnitCount,
-		"countpersecond": UnitCountPerSecond,
-		"millicores":     UnitMilliCores,
-		"milliseconds":   UnitMilliSeconds,
-		"nanocores":      UnitNanoCores,
-		"percent":        UnitPercent,
-		"seconds":        UnitSeconds,
-		"unspecified":    UnitUnspecified,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := Unit(input)
-	return &out, nil
 }

@@ -1,7 +1,5 @@
 package capacities
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -39,30 +37,6 @@ func PossibleValuesForCapacityProvisioningState() []string {
 	}
 }
 
-func parseCapacityProvisioningState(input string) (*CapacityProvisioningState, error) {
-	vals := map[string]CapacityProvisioningState{
-		"deleting":     CapacityProvisioningStateDeleting,
-		"failed":       CapacityProvisioningStateFailed,
-		"paused":       CapacityProvisioningStatePaused,
-		"pausing":      CapacityProvisioningStatePausing,
-		"preparing":    CapacityProvisioningStatePreparing,
-		"provisioning": CapacityProvisioningStateProvisioning,
-		"resuming":     CapacityProvisioningStateResuming,
-		"scaling":      CapacityProvisioningStateScaling,
-		"succeeded":    CapacityProvisioningStateSucceeded,
-		"suspended":    CapacityProvisioningStateSuspended,
-		"suspending":   CapacityProvisioningStateSuspending,
-		"updating":     CapacityProvisioningStateUpdating,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := CapacityProvisioningState(input)
-	return &out, nil
-}
-
 type CapacitySkuTier string
 
 const (
@@ -79,21 +53,6 @@ func PossibleValuesForCapacitySkuTier() []string {
 	}
 }
 
-func parseCapacitySkuTier(input string) (*CapacitySkuTier, error) {
-	vals := map[string]CapacitySkuTier{
-		"autopremiumhost": CapacitySkuTierAutoPremiumHost,
-		"pbie_azure":      CapacitySkuTierPBIEAzure,
-		"premium":         CapacitySkuTierPremium,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := CapacitySkuTier(input)
-	return &out, nil
-}
-
 type Mode string
 
 const (
@@ -106,20 +65,6 @@ func PossibleValuesForMode() []string {
 		string(ModeGenOne),
 		string(ModeGenTwo),
 	}
-}
-
-func parseMode(input string) (*Mode, error) {
-	vals := map[string]Mode{
-		"gen1": ModeGenOne,
-		"gen2": ModeGenTwo,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := Mode(input)
-	return &out, nil
 }
 
 type State string
@@ -154,28 +99,4 @@ func PossibleValuesForState() []string {
 		string(StateSuspending),
 		string(StateUpdating),
 	}
-}
-
-func parseState(input string) (*State, error) {
-	vals := map[string]State{
-		"deleting":     StateDeleting,
-		"failed":       StateFailed,
-		"paused":       StatePaused,
-		"pausing":      StatePausing,
-		"preparing":    StatePreparing,
-		"provisioning": StateProvisioning,
-		"resuming":     StateResuming,
-		"scaling":      StateScaling,
-		"succeeded":    StateSucceeded,
-		"suspended":    StateSuspended,
-		"suspending":   StateSuspending,
-		"updating":     StateUpdating,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := State(input)
-	return &out, nil
 }

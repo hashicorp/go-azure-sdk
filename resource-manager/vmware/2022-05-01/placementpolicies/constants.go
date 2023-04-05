@@ -1,7 +1,5 @@
 package placementpolicies
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -19,20 +17,6 @@ func PossibleValuesForAffinityStrength() []string {
 	}
 }
 
-func parseAffinityStrength(input string) (*AffinityStrength, error) {
-	vals := map[string]AffinityStrength{
-		"must":   AffinityStrengthMust,
-		"should": AffinityStrengthShould,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := AffinityStrength(input)
-	return &out, nil
-}
-
 type AffinityType string
 
 const (
@@ -47,20 +31,6 @@ func PossibleValuesForAffinityType() []string {
 	}
 }
 
-func parseAffinityType(input string) (*AffinityType, error) {
-	vals := map[string]AffinityType{
-		"affinity":     AffinityTypeAffinity,
-		"antiaffinity": AffinityTypeAntiAffinity,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := AffinityType(input)
-	return &out, nil
-}
-
 type AzureHybridBenefitType string
 
 const (
@@ -73,20 +43,6 @@ func PossibleValuesForAzureHybridBenefitType() []string {
 		string(AzureHybridBenefitTypeNone),
 		string(AzureHybridBenefitTypeSqlHost),
 	}
-}
-
-func parseAzureHybridBenefitType(input string) (*AzureHybridBenefitType, error) {
-	vals := map[string]AzureHybridBenefitType{
-		"none":    AzureHybridBenefitTypeNone,
-		"sqlhost": AzureHybridBenefitTypeSqlHost,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := AzureHybridBenefitType(input)
-	return &out, nil
 }
 
 type PlacementPolicyProvisioningState string
@@ -111,24 +67,6 @@ func PossibleValuesForPlacementPolicyProvisioningState() []string {
 	}
 }
 
-func parsePlacementPolicyProvisioningState(input string) (*PlacementPolicyProvisioningState, error) {
-	vals := map[string]PlacementPolicyProvisioningState{
-		"building":  PlacementPolicyProvisioningStateBuilding,
-		"canceled":  PlacementPolicyProvisioningStateCanceled,
-		"deleting":  PlacementPolicyProvisioningStateDeleting,
-		"failed":    PlacementPolicyProvisioningStateFailed,
-		"succeeded": PlacementPolicyProvisioningStateSucceeded,
-		"updating":  PlacementPolicyProvisioningStateUpdating,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PlacementPolicyProvisioningState(input)
-	return &out, nil
-}
-
 type PlacementPolicyState string
 
 const (
@@ -141,20 +79,6 @@ func PossibleValuesForPlacementPolicyState() []string {
 		string(PlacementPolicyStateDisabled),
 		string(PlacementPolicyStateEnabled),
 	}
-}
-
-func parsePlacementPolicyState(input string) (*PlacementPolicyState, error) {
-	vals := map[string]PlacementPolicyState{
-		"disabled": PlacementPolicyStateDisabled,
-		"enabled":  PlacementPolicyStateEnabled,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PlacementPolicyState(input)
-	return &out, nil
 }
 
 type PlacementPolicyType string
@@ -171,20 +95,6 @@ func PossibleValuesForPlacementPolicyType() []string {
 	}
 }
 
-func parsePlacementPolicyType(input string) (*PlacementPolicyType, error) {
-	vals := map[string]PlacementPolicyType{
-		"vmhost": PlacementPolicyTypeVMHost,
-		"vmvm":   PlacementPolicyTypeVMVM,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PlacementPolicyType(input)
-	return &out, nil
-}
-
 type VirtualMachineRestrictMovementState string
 
 const (
@@ -197,18 +107,4 @@ func PossibleValuesForVirtualMachineRestrictMovementState() []string {
 		string(VirtualMachineRestrictMovementStateDisabled),
 		string(VirtualMachineRestrictMovementStateEnabled),
 	}
-}
-
-func parseVirtualMachineRestrictMovementState(input string) (*VirtualMachineRestrictMovementState, error) {
-	vals := map[string]VirtualMachineRestrictMovementState{
-		"disabled": VirtualMachineRestrictMovementStateDisabled,
-		"enabled":  VirtualMachineRestrictMovementStateEnabled,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := VirtualMachineRestrictMovementState(input)
-	return &out, nil
 }

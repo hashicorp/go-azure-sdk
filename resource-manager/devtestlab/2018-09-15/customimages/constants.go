@@ -1,7 +1,5 @@
 package customimages
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -21,21 +19,6 @@ func PossibleValuesForCustomImageOsType() []string {
 	}
 }
 
-func parseCustomImageOsType(input string) (*CustomImageOsType, error) {
-	vals := map[string]CustomImageOsType{
-		"linux":   CustomImageOsTypeLinux,
-		"none":    CustomImageOsTypeNone,
-		"windows": CustomImageOsTypeWindows,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := CustomImageOsType(input)
-	return &out, nil
-}
-
 type LinuxOsState string
 
 const (
@@ -50,21 +33,6 @@ func PossibleValuesForLinuxOsState() []string {
 		string(LinuxOsStateDeprovisionRequested),
 		string(LinuxOsStateNonDeprovisioned),
 	}
-}
-
-func parseLinuxOsState(input string) (*LinuxOsState, error) {
-	vals := map[string]LinuxOsState{
-		"deprovisionapplied":   LinuxOsStateDeprovisionApplied,
-		"deprovisionrequested": LinuxOsStateDeprovisionRequested,
-		"nondeprovisioned":     LinuxOsStateNonDeprovisioned,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := LinuxOsState(input)
-	return &out, nil
 }
 
 type StorageType string
@@ -83,21 +51,6 @@ func PossibleValuesForStorageType() []string {
 	}
 }
 
-func parseStorageType(input string) (*StorageType, error) {
-	vals := map[string]StorageType{
-		"premium":     StorageTypePremium,
-		"standard":    StorageTypeStandard,
-		"standardssd": StorageTypeStandardSSD,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := StorageType(input)
-	return &out, nil
-}
-
 type WindowsOsState string
 
 const (
@@ -112,19 +65,4 @@ func PossibleValuesForWindowsOsState() []string {
 		string(WindowsOsStateSysprepApplied),
 		string(WindowsOsStateSysprepRequested),
 	}
-}
-
-func parseWindowsOsState(input string) (*WindowsOsState, error) {
-	vals := map[string]WindowsOsState{
-		"nonsysprepped":    WindowsOsStateNonSysprepped,
-		"sysprepapplied":   WindowsOsStateSysprepApplied,
-		"syspreprequested": WindowsOsStateSysprepRequested,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := WindowsOsState(input)
-	return &out, nil
 }

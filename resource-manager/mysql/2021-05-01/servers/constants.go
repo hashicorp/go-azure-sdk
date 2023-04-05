@@ -1,7 +1,5 @@
 package servers
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -23,22 +21,6 @@ func PossibleValuesForCreateMode() []string {
 	}
 }
 
-func parseCreateMode(input string) (*CreateMode, error) {
-	vals := map[string]CreateMode{
-		"default":            CreateModeDefault,
-		"georestore":         CreateModeGeoRestore,
-		"pointintimerestore": CreateModePointInTimeRestore,
-		"replica":            CreateModeReplica,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := CreateMode(input)
-	return &out, nil
-}
-
 type DataEncryptionType string
 
 const (
@@ -51,20 +33,6 @@ func PossibleValuesForDataEncryptionType() []string {
 		string(DataEncryptionTypeAzureKeyVault),
 		string(DataEncryptionTypeSystemManaged),
 	}
-}
-
-func parseDataEncryptionType(input string) (*DataEncryptionType, error) {
-	vals := map[string]DataEncryptionType{
-		"azurekeyvault": DataEncryptionTypeAzureKeyVault,
-		"systemmanaged": DataEncryptionTypeSystemManaged,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := DataEncryptionType(input)
-	return &out, nil
 }
 
 type EnableStatusEnum string
@@ -81,20 +49,6 @@ func PossibleValuesForEnableStatusEnum() []string {
 	}
 }
 
-func parseEnableStatusEnum(input string) (*EnableStatusEnum, error) {
-	vals := map[string]EnableStatusEnum{
-		"disabled": EnableStatusEnumDisabled,
-		"enabled":  EnableStatusEnumEnabled,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := EnableStatusEnum(input)
-	return &out, nil
-}
-
 type HighAvailabilityMode string
 
 const (
@@ -109,21 +63,6 @@ func PossibleValuesForHighAvailabilityMode() []string {
 		string(HighAvailabilityModeSameZone),
 		string(HighAvailabilityModeZoneRedundant),
 	}
-}
-
-func parseHighAvailabilityMode(input string) (*HighAvailabilityMode, error) {
-	vals := map[string]HighAvailabilityMode{
-		"disabled":      HighAvailabilityModeDisabled,
-		"samezone":      HighAvailabilityModeSameZone,
-		"zoneredundant": HighAvailabilityModeZoneRedundant,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := HighAvailabilityMode(input)
-	return &out, nil
 }
 
 type HighAvailabilityState string
@@ -146,23 +85,6 @@ func PossibleValuesForHighAvailabilityState() []string {
 	}
 }
 
-func parseHighAvailabilityState(input string) (*HighAvailabilityState, error) {
-	vals := map[string]HighAvailabilityState{
-		"creatingstandby": HighAvailabilityStateCreatingStandby,
-		"failingover":     HighAvailabilityStateFailingOver,
-		"healthy":         HighAvailabilityStateHealthy,
-		"notenabled":      HighAvailabilityStateNotEnabled,
-		"removingstandby": HighAvailabilityStateRemovingStandby,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := HighAvailabilityState(input)
-	return &out, nil
-}
-
 type ManagedServiceIdentityType string
 
 const (
@@ -173,19 +95,6 @@ func PossibleValuesForManagedServiceIdentityType() []string {
 	return []string{
 		string(ManagedServiceIdentityTypeUserAssigned),
 	}
-}
-
-func parseManagedServiceIdentityType(input string) (*ManagedServiceIdentityType, error) {
-	vals := map[string]ManagedServiceIdentityType{
-		"userassigned": ManagedServiceIdentityTypeUserAssigned,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ManagedServiceIdentityType(input)
-	return &out, nil
 }
 
 type ReplicationRole string
@@ -202,21 +111,6 @@ func PossibleValuesForReplicationRole() []string {
 		string(ReplicationRoleReplica),
 		string(ReplicationRoleSource),
 	}
-}
-
-func parseReplicationRole(input string) (*ReplicationRole, error) {
-	vals := map[string]ReplicationRole{
-		"none":    ReplicationRoleNone,
-		"replica": ReplicationRoleReplica,
-		"source":  ReplicationRoleSource,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ReplicationRole(input)
-	return &out, nil
 }
 
 type ServerState string
@@ -243,25 +137,6 @@ func PossibleValuesForServerState() []string {
 	}
 }
 
-func parseServerState(input string) (*ServerState, error) {
-	vals := map[string]ServerState{
-		"disabled": ServerStateDisabled,
-		"dropping": ServerStateDropping,
-		"ready":    ServerStateReady,
-		"starting": ServerStateStarting,
-		"stopped":  ServerStateStopped,
-		"stopping": ServerStateStopping,
-		"updating": ServerStateUpdating,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ServerState(input)
-	return &out, nil
-}
-
 type ServerVersion string
 
 const (
@@ -274,20 +149,6 @@ func PossibleValuesForServerVersion() []string {
 		string(ServerVersionEightPointZeroPointTwoOne),
 		string(ServerVersionFivePointSeven),
 	}
-}
-
-func parseServerVersion(input string) (*ServerVersion, error) {
-	vals := map[string]ServerVersion{
-		"8.0.21": ServerVersionEightPointZeroPointTwoOne,
-		"5.7":    ServerVersionFivePointSeven,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ServerVersion(input)
-	return &out, nil
 }
 
 type SkuTier string
@@ -304,19 +165,4 @@ func PossibleValuesForSkuTier() []string {
 		string(SkuTierGeneralPurpose),
 		string(SkuTierMemoryOptimized),
 	}
-}
-
-func parseSkuTier(input string) (*SkuTier, error) {
-	vals := map[string]SkuTier{
-		"burstable":       SkuTierBurstable,
-		"generalpurpose":  SkuTierGeneralPurpose,
-		"memoryoptimized": SkuTierMemoryOptimized,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SkuTier(input)
-	return &out, nil
 }

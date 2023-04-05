@@ -1,7 +1,5 @@
 package deletedbackupinstances
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -39,30 +37,6 @@ func PossibleValuesForCurrentProtectionState() []string {
 	}
 }
 
-func parseCurrentProtectionState(input string) (*CurrentProtectionState, error) {
-	vals := map[string]CurrentProtectionState{
-		"backupschedulessuspended":    CurrentProtectionStateBackupSchedulesSuspended,
-		"configuringprotection":       CurrentProtectionStateConfiguringProtection,
-		"configuringprotectionfailed": CurrentProtectionStateConfiguringProtectionFailed,
-		"invalid":                     CurrentProtectionStateInvalid,
-		"notprotected":                CurrentProtectionStateNotProtected,
-		"protectionconfigured":        CurrentProtectionStateProtectionConfigured,
-		"protectionerror":             CurrentProtectionStateProtectionError,
-		"protectionstopped":           CurrentProtectionStateProtectionStopped,
-		"retentionschedulessuspended": CurrentProtectionStateRetentionSchedulesSuspended,
-		"softdeleted":                 CurrentProtectionStateSoftDeleted,
-		"softdeleting":                CurrentProtectionStateSoftDeleting,
-		"updatingprotection":          CurrentProtectionStateUpdatingProtection,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := CurrentProtectionState(input)
-	return &out, nil
-}
-
 type DataStoreTypes string
 
 const (
@@ -79,21 +53,6 @@ func PossibleValuesForDataStoreTypes() []string {
 	}
 }
 
-func parseDataStoreTypes(input string) (*DataStoreTypes, error) {
-	vals := map[string]DataStoreTypes{
-		"archivestore":     DataStoreTypesArchiveStore,
-		"operationalstore": DataStoreTypesOperationalStore,
-		"vaultstore":       DataStoreTypesVaultStore,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := DataStoreTypes(input)
-	return &out, nil
-}
-
 type SecretStoreType string
 
 const (
@@ -106,20 +65,6 @@ func PossibleValuesForSecretStoreType() []string {
 		string(SecretStoreTypeAzureKeyVault),
 		string(SecretStoreTypeInvalid),
 	}
-}
-
-func parseSecretStoreType(input string) (*SecretStoreType, error) {
-	vals := map[string]SecretStoreType{
-		"azurekeyvault": SecretStoreTypeAzureKeyVault,
-		"invalid":       SecretStoreTypeInvalid,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SecretStoreType(input)
-	return &out, nil
 }
 
 type Status string
@@ -144,24 +89,6 @@ func PossibleValuesForStatus() []string {
 	}
 }
 
-func parseStatus(input string) (*Status, error) {
-	vals := map[string]Status{
-		"configuringprotection":       StatusConfiguringProtection,
-		"configuringprotectionfailed": StatusConfiguringProtectionFailed,
-		"protectionconfigured":        StatusProtectionConfigured,
-		"protectionstopped":           StatusProtectionStopped,
-		"softdeleted":                 StatusSoftDeleted,
-		"softdeleting":                StatusSoftDeleting,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := Status(input)
-	return &out, nil
-}
-
 type ValidationType string
 
 const (
@@ -174,18 +101,4 @@ func PossibleValuesForValidationType() []string {
 		string(ValidationTypeDeepValidation),
 		string(ValidationTypeShallowValidation),
 	}
-}
-
-func parseValidationType(input string) (*ValidationType, error) {
-	vals := map[string]ValidationType{
-		"deepvalidation":    ValidationTypeDeepValidation,
-		"shallowvalidation": ValidationTypeShallowValidation,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ValidationType(input)
-	return &out, nil
 }

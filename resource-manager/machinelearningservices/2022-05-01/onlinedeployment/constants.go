@@ -1,7 +1,5 @@
 package onlinedeployment
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -17,20 +15,6 @@ func PossibleValuesForContainerType() []string {
 		string(ContainerTypeInferenceServer),
 		string(ContainerTypeStorageInitializer),
 	}
-}
-
-func parseContainerType(input string) (*ContainerType, error) {
-	vals := map[string]ContainerType{
-		"inferenceserver":    ContainerTypeInferenceServer,
-		"storageinitializer": ContainerTypeStorageInitializer,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ContainerType(input)
-	return &out, nil
 }
 
 type DeploymentProvisioningState string
@@ -57,25 +41,6 @@ func PossibleValuesForDeploymentProvisioningState() []string {
 	}
 }
 
-func parseDeploymentProvisioningState(input string) (*DeploymentProvisioningState, error) {
-	vals := map[string]DeploymentProvisioningState{
-		"canceled":  DeploymentProvisioningStateCanceled,
-		"creating":  DeploymentProvisioningStateCreating,
-		"deleting":  DeploymentProvisioningStateDeleting,
-		"failed":    DeploymentProvisioningStateFailed,
-		"scaling":   DeploymentProvisioningStateScaling,
-		"succeeded": DeploymentProvisioningStateSucceeded,
-		"updating":  DeploymentProvisioningStateUpdating,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := DeploymentProvisioningState(input)
-	return &out, nil
-}
-
 type EndpointComputeType string
 
 const (
@@ -92,21 +57,6 @@ func PossibleValuesForEndpointComputeType() []string {
 	}
 }
 
-func parseEndpointComputeType(input string) (*EndpointComputeType, error) {
-	vals := map[string]EndpointComputeType{
-		"azuremlcompute": EndpointComputeTypeAzureMLCompute,
-		"kubernetes":     EndpointComputeTypeKubernetes,
-		"managed":        EndpointComputeTypeManaged,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := EndpointComputeType(input)
-	return &out, nil
-}
-
 type ScaleType string
 
 const (
@@ -119,20 +69,6 @@ func PossibleValuesForScaleType() []string {
 		string(ScaleTypeDefault),
 		string(ScaleTypeTargetUtilization),
 	}
-}
-
-func parseScaleType(input string) (*ScaleType, error) {
-	vals := map[string]ScaleType{
-		"default":           ScaleTypeDefault,
-		"targetutilization": ScaleTypeTargetUtilization,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ScaleType(input)
-	return &out, nil
 }
 
 type SkuScaleType string
@@ -151,21 +87,6 @@ func PossibleValuesForSkuScaleType() []string {
 	}
 }
 
-func parseSkuScaleType(input string) (*SkuScaleType, error) {
-	vals := map[string]SkuScaleType{
-		"automatic": SkuScaleTypeAutomatic,
-		"manual":    SkuScaleTypeManual,
-		"none":      SkuScaleTypeNone,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SkuScaleType(input)
-	return &out, nil
-}
-
 type SkuTier string
 
 const (
@@ -182,20 +103,4 @@ func PossibleValuesForSkuTier() []string {
 		string(SkuTierPremium),
 		string(SkuTierStandard),
 	}
-}
-
-func parseSkuTier(input string) (*SkuTier, error) {
-	vals := map[string]SkuTier{
-		"basic":    SkuTierBasic,
-		"free":     SkuTierFree,
-		"premium":  SkuTierPremium,
-		"standard": SkuTierStandard,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SkuTier(input)
-	return &out, nil
 }

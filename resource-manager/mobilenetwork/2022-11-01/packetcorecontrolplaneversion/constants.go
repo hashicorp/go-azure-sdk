@@ -1,7 +1,5 @@
 package packetcorecontrolplaneversion
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -19,20 +17,6 @@ func PossibleValuesForObsoleteVersion() []string {
 	}
 }
 
-func parseObsoleteVersion(input string) (*ObsoleteVersion, error) {
-	vals := map[string]ObsoleteVersion{
-		"notobsolete": ObsoleteVersionNotObsolete,
-		"obsolete":    ObsoleteVersionObsolete,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ObsoleteVersion(input)
-	return &out, nil
-}
-
 type PlatformType string
 
 const (
@@ -45,20 +29,6 @@ func PossibleValuesForPlatformType() []string {
 		string(PlatformTypeAKSNegativeHCI),
 		string(PlatformTypeThreePNegativeAZURENegativeSTACKNegativeHCI),
 	}
-}
-
-func parsePlatformType(input string) (*PlatformType, error) {
-	vals := map[string]PlatformType{
-		"aks-hci":            PlatformTypeAKSNegativeHCI,
-		"3p-azure-stack-hci": PlatformTypeThreePNegativeAZURENegativeSTACKNegativeHCI,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PlatformType(input)
-	return &out, nil
 }
 
 type ProvisioningState string
@@ -85,25 +55,6 @@ func PossibleValuesForProvisioningState() []string {
 	}
 }
 
-func parseProvisioningState(input string) (*ProvisioningState, error) {
-	vals := map[string]ProvisioningState{
-		"accepted":  ProvisioningStateAccepted,
-		"canceled":  ProvisioningStateCanceled,
-		"deleted":   ProvisioningStateDeleted,
-		"deleting":  ProvisioningStateDeleting,
-		"failed":    ProvisioningStateFailed,
-		"succeeded": ProvisioningStateSucceeded,
-		"unknown":   ProvisioningStateUnknown,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ProvisioningState(input)
-	return &out, nil
-}
-
 type RecommendedVersion string
 
 const (
@@ -116,20 +67,6 @@ func PossibleValuesForRecommendedVersion() []string {
 		string(RecommendedVersionNotRecommended),
 		string(RecommendedVersionRecommended),
 	}
-}
-
-func parseRecommendedVersion(input string) (*RecommendedVersion, error) {
-	vals := map[string]RecommendedVersion{
-		"notrecommended": RecommendedVersionNotRecommended,
-		"recommended":    RecommendedVersionRecommended,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := RecommendedVersion(input)
-	return &out, nil
 }
 
 type VersionState string
@@ -152,22 +89,4 @@ func PossibleValuesForVersionState() []string {
 		string(VersionStateValidating),
 		string(VersionStateValidationFailed),
 	}
-}
-
-func parseVersionState(input string) (*VersionState, error) {
-	vals := map[string]VersionState{
-		"active":           VersionStateActive,
-		"deprecated":       VersionStateDeprecated,
-		"preview":          VersionStatePreview,
-		"unknown":          VersionStateUnknown,
-		"validating":       VersionStateValidating,
-		"validationfailed": VersionStateValidationFailed,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := VersionState(input)
-	return &out, nil
 }

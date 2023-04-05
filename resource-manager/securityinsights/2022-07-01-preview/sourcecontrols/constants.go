@@ -1,7 +1,5 @@
 package sourcecontrols
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -17,20 +15,6 @@ func PossibleValuesForContentType() []string {
 		string(ContentTypeAnalyticRule),
 		string(ContentTypeWorkbook),
 	}
-}
-
-func parseContentType(input string) (*ContentType, error) {
-	vals := map[string]ContentType{
-		"analyticrule": ContentTypeAnalyticRule,
-		"workbook":     ContentTypeWorkbook,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ContentType(input)
-	return &out, nil
 }
 
 type DeploymentFetchStatus string
@@ -49,21 +33,6 @@ func PossibleValuesForDeploymentFetchStatus() []string {
 	}
 }
 
-func parseDeploymentFetchStatus(input string) (*DeploymentFetchStatus, error) {
-	vals := map[string]DeploymentFetchStatus{
-		"notfound":     DeploymentFetchStatusNotFound,
-		"success":      DeploymentFetchStatusSuccess,
-		"unauthorized": DeploymentFetchStatusUnauthorized,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := DeploymentFetchStatus(input)
-	return &out, nil
-}
-
 type DeploymentResult string
 
 const (
@@ -78,21 +47,6 @@ func PossibleValuesForDeploymentResult() []string {
 		string(DeploymentResultFailed),
 		string(DeploymentResultSuccess),
 	}
-}
-
-func parseDeploymentResult(input string) (*DeploymentResult, error) {
-	vals := map[string]DeploymentResult{
-		"canceled": DeploymentResultCanceled,
-		"failed":   DeploymentResultFailed,
-		"success":  DeploymentResultSuccess,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := DeploymentResult(input)
-	return &out, nil
 }
 
 type DeploymentState string
@@ -113,22 +67,6 @@ func PossibleValuesForDeploymentState() []string {
 	}
 }
 
-func parseDeploymentState(input string) (*DeploymentState, error) {
-	vals := map[string]DeploymentState{
-		"canceling":   DeploymentStateCanceling,
-		"completed":   DeploymentStateCompleted,
-		"in_progress": DeploymentStateInProgress,
-		"queued":      DeploymentStateQueued,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := DeploymentState(input)
-	return &out, nil
-}
-
 type RepoType string
 
 const (
@@ -143,20 +81,6 @@ func PossibleValuesForRepoType() []string {
 	}
 }
 
-func parseRepoType(input string) (*RepoType, error) {
-	vals := map[string]RepoType{
-		"devops": RepoTypeDevOps,
-		"github": RepoTypeGithub,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := RepoType(input)
-	return &out, nil
-}
-
 type Version string
 
 const (
@@ -169,18 +93,4 @@ func PossibleValuesForVersion() []string {
 		string(VersionVOne),
 		string(VersionVTwo),
 	}
-}
-
-func parseVersion(input string) (*Version, error) {
-	vals := map[string]Version{
-		"v1": VersionVOne,
-		"v2": VersionVTwo,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := Version(input)
-	return &out, nil
 }

@@ -1,7 +1,5 @@
 package extensions
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -19,20 +17,6 @@ func PossibleValuesForAKSIdentityType() []string {
 	}
 }
 
-func parseAKSIdentityType(input string) (*AKSIdentityType, error) {
-	vals := map[string]AKSIdentityType{
-		"systemassigned": AKSIdentityTypeSystemAssigned,
-		"userassigned":   AKSIdentityTypeUserAssigned,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := AKSIdentityType(input)
-	return &out, nil
-}
-
 type LevelType string
 
 const (
@@ -47,21 +31,6 @@ func PossibleValuesForLevelType() []string {
 		string(LevelTypeInformation),
 		string(LevelTypeWarning),
 	}
-}
-
-func parseLevelType(input string) (*LevelType, error) {
-	vals := map[string]LevelType{
-		"error":       LevelTypeError,
-		"information": LevelTypeInformation,
-		"warning":     LevelTypeWarning,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := LevelType(input)
-	return &out, nil
 }
 
 type ProvisioningState string
@@ -84,22 +53,4 @@ func PossibleValuesForProvisioningState() []string {
 		string(ProvisioningStateSucceeded),
 		string(ProvisioningStateUpdating),
 	}
-}
-
-func parseProvisioningState(input string) (*ProvisioningState, error) {
-	vals := map[string]ProvisioningState{
-		"canceled":  ProvisioningStateCanceled,
-		"creating":  ProvisioningStateCreating,
-		"deleting":  ProvisioningStateDeleting,
-		"failed":    ProvisioningStateFailed,
-		"succeeded": ProvisioningStateSucceeded,
-		"updating":  ProvisioningStateUpdating,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ProvisioningState(input)
-	return &out, nil
 }

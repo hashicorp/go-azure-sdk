@@ -1,7 +1,5 @@
 package performconnectivitycheck
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -23,22 +21,6 @@ func PossibleValuesForConnectionStatus() []string {
 	}
 }
 
-func parseConnectionStatus(input string) (*ConnectionStatus, error) {
-	vals := map[string]ConnectionStatus{
-		"connected":    ConnectionStatusConnected,
-		"degraded":     ConnectionStatusDegraded,
-		"disconnected": ConnectionStatusDisconnected,
-		"unknown":      ConnectionStatusUnknown,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ConnectionStatus(input)
-	return &out, nil
-}
-
 type ConnectivityCheckProtocol string
 
 const (
@@ -53,21 +35,6 @@ func PossibleValuesForConnectivityCheckProtocol() []string {
 		string(ConnectivityCheckProtocolHTTPS),
 		string(ConnectivityCheckProtocolTCP),
 	}
-}
-
-func parseConnectivityCheckProtocol(input string) (*ConnectivityCheckProtocol, error) {
-	vals := map[string]ConnectivityCheckProtocol{
-		"http":  ConnectivityCheckProtocolHTTP,
-		"https": ConnectivityCheckProtocolHTTPS,
-		"tcp":   ConnectivityCheckProtocolTCP,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ConnectivityCheckProtocol(input)
-	return &out, nil
 }
 
 type IssueType string
@@ -98,27 +65,6 @@ func PossibleValuesForIssueType() []string {
 	}
 }
 
-func parseIssueType(input string) (*IssueType, error) {
-	vals := map[string]IssueType{
-		"agentstopped":        IssueTypeAgentStopped,
-		"dnsresolution":       IssueTypeDnsResolution,
-		"guestfirewall":       IssueTypeGuestFirewall,
-		"networksecurityrule": IssueTypeNetworkSecurityRule,
-		"platform":            IssueTypePlatform,
-		"portthrottled":       IssueTypePortThrottled,
-		"socketbind":          IssueTypeSocketBind,
-		"unknown":             IssueTypeUnknown,
-		"userdefinedroute":    IssueTypeUserDefinedRoute,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := IssueType(input)
-	return &out, nil
-}
-
 type Method string
 
 const (
@@ -131,20 +77,6 @@ func PossibleValuesForMethod() []string {
 		string(MethodGET),
 		string(MethodPOST),
 	}
-}
-
-func parseMethod(input string) (*Method, error) {
-	vals := map[string]Method{
-		"get":  MethodGET,
-		"post": MethodPOST,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := Method(input)
-	return &out, nil
 }
 
 type Origin string
@@ -163,21 +95,6 @@ func PossibleValuesForOrigin() []string {
 	}
 }
 
-func parseOrigin(input string) (*Origin, error) {
-	vals := map[string]Origin{
-		"inbound":  OriginInbound,
-		"local":    OriginLocal,
-		"outbound": OriginOutbound,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := Origin(input)
-	return &out, nil
-}
-
 type PreferredIPVersion string
 
 const (
@@ -188,19 +105,6 @@ func PossibleValuesForPreferredIPVersion() []string {
 	return []string{
 		string(PreferredIPVersionIPvFour),
 	}
-}
-
-func parsePreferredIPVersion(input string) (*PreferredIPVersion, error) {
-	vals := map[string]PreferredIPVersion{
-		"ipv4": PreferredIPVersionIPvFour,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PreferredIPVersion(input)
-	return &out, nil
 }
 
 type Severity string
@@ -215,18 +119,4 @@ func PossibleValuesForSeverity() []string {
 		string(SeverityError),
 		string(SeverityWarning),
 	}
-}
-
-func parseSeverity(input string) (*Severity, error) {
-	vals := map[string]Severity{
-		"error":   SeverityError,
-		"warning": SeverityWarning,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := Severity(input)
-	return &out, nil
 }

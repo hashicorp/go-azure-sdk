@@ -1,7 +1,5 @@
 package application
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -19,20 +17,6 @@ func PossibleValuesForFailureAction() []string {
 	}
 }
 
-func parseFailureAction(input string) (*FailureAction, error) {
-	vals := map[string]FailureAction{
-		"manual":   FailureActionManual,
-		"rollback": FailureActionRollback,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := FailureAction(input)
-	return &out, nil
-}
-
 type RollingUpgradeMode string
 
 const (
@@ -45,18 +29,4 @@ func PossibleValuesForRollingUpgradeMode() []string {
 		string(RollingUpgradeModeMonitored),
 		string(RollingUpgradeModeUnmonitoredAuto),
 	}
-}
-
-func parseRollingUpgradeMode(input string) (*RollingUpgradeMode, error) {
-	vals := map[string]RollingUpgradeMode{
-		"monitored":       RollingUpgradeModeMonitored,
-		"unmonitoredauto": RollingUpgradeModeUnmonitoredAuto,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := RollingUpgradeMode(input)
-	return &out, nil
 }

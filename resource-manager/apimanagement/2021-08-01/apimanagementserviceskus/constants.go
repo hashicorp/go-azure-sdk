@@ -1,7 +1,5 @@
 package apimanagementserviceskus
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -19,21 +17,6 @@ func PossibleValuesForResourceSkuCapacityScaleType() []string {
 		string(ResourceSkuCapacityScaleTypeManual),
 		string(ResourceSkuCapacityScaleTypeNone),
 	}
-}
-
-func parseResourceSkuCapacityScaleType(input string) (*ResourceSkuCapacityScaleType, error) {
-	vals := map[string]ResourceSkuCapacityScaleType{
-		"automatic": ResourceSkuCapacityScaleTypeAutomatic,
-		"manual":    ResourceSkuCapacityScaleTypeManual,
-		"none":      ResourceSkuCapacityScaleTypeNone,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ResourceSkuCapacityScaleType(input)
-	return &out, nil
 }
 
 type SkuType string
@@ -56,22 +39,4 @@ func PossibleValuesForSkuType() []string {
 		string(SkuTypePremium),
 		string(SkuTypeStandard),
 	}
-}
-
-func parseSkuType(input string) (*SkuType, error) {
-	vals := map[string]SkuType{
-		"basic":       SkuTypeBasic,
-		"consumption": SkuTypeConsumption,
-		"developer":   SkuTypeDeveloper,
-		"isolated":    SkuTypeIsolated,
-		"premium":     SkuTypePremium,
-		"standard":    SkuTypeStandard,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SkuType(input)
-	return &out, nil
 }

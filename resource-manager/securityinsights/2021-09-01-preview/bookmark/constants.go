@@ -1,7 +1,5 @@
 package bookmark
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -55,37 +53,4 @@ func PossibleValuesForEntityKind() []string {
 		string(EntityKindSubmissionMail),
 		string(EntityKindUrl),
 	}
-}
-
-func parseEntityKind(input string) (*EntityKind, error) {
-	vals := map[string]EntityKind{
-		"account":          EntityKindAccount,
-		"azureresource":    EntityKindAzureResource,
-		"bookmark":         EntityKindBookmark,
-		"cloudapplication": EntityKindCloudApplication,
-		"dnsresolution":    EntityKindDnsResolution,
-		"file":             EntityKindFile,
-		"filehash":         EntityKindFileHash,
-		"host":             EntityKindHost,
-		"ip":               EntityKindIP,
-		"iotdevice":        EntityKindIoTDevice,
-		"mailcluster":      EntityKindMailCluster,
-		"mailmessage":      EntityKindMailMessage,
-		"mailbox":          EntityKindMailbox,
-		"malware":          EntityKindMalware,
-		"process":          EntityKindProcess,
-		"registrykey":      EntityKindRegistryKey,
-		"registryvalue":    EntityKindRegistryValue,
-		"securityalert":    EntityKindSecurityAlert,
-		"securitygroup":    EntityKindSecurityGroup,
-		"submissionmail":   EntityKindSubmissionMail,
-		"url":              EntityKindUrl,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := EntityKind(input)
-	return &out, nil
 }

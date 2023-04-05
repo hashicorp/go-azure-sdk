@@ -1,6 +1,10 @@
 package automationaccount
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -21,19 +25,19 @@ func PossibleValuesForAutomationAccountState() []string {
 	}
 }
 
-func parseAutomationAccountState(input string) (*AutomationAccountState, error) {
-	vals := map[string]AutomationAccountState{
-		"ok":          AutomationAccountStateOk,
-		"suspended":   AutomationAccountStateSuspended,
-		"unavailable": AutomationAccountStateUnavailable,
+func (s *AutomationAccountState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForAutomationAccountState() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := AutomationAccountState(input)
-	return &out, nil
+	*s = AutomationAccountState(decoded)
+	return nil
 }
 
 type EncryptionKeySourceType string
@@ -50,18 +54,19 @@ func PossibleValuesForEncryptionKeySourceType() []string {
 	}
 }
 
-func parseEncryptionKeySourceType(input string) (*EncryptionKeySourceType, error) {
-	vals := map[string]EncryptionKeySourceType{
-		"microsoft.automation": EncryptionKeySourceTypeMicrosoftPointAutomation,
-		"microsoft.keyvault":   EncryptionKeySourceTypeMicrosoftPointKeyvault,
+func (s *EncryptionKeySourceType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForEncryptionKeySourceType() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := EncryptionKeySourceType(input)
-	return &out, nil
+	*s = EncryptionKeySourceType(decoded)
+	return nil
 }
 
 type SkuNameEnum string
@@ -78,16 +83,17 @@ func PossibleValuesForSkuNameEnum() []string {
 	}
 }
 
-func parseSkuNameEnum(input string) (*SkuNameEnum, error) {
-	vals := map[string]SkuNameEnum{
-		"basic": SkuNameEnumBasic,
-		"free":  SkuNameEnumFree,
+func (s *SkuNameEnum) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForSkuNameEnum() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SkuNameEnum(input)
-	return &out, nil
+	*s = SkuNameEnum(decoded)
+	return nil
 }

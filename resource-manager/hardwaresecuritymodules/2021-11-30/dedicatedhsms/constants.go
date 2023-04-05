@@ -1,7 +1,5 @@
 package dedicatedhsms
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -29,25 +27,6 @@ func PossibleValuesForJsonWebKeyType() []string {
 	}
 }
 
-func parseJsonWebKeyType(input string) (*JsonWebKeyType, error) {
-	vals := map[string]JsonWebKeyType{
-		"allocating":    JsonWebKeyTypeAllocating,
-		"checkingquota": JsonWebKeyTypeCheckingQuota,
-		"connecting":    JsonWebKeyTypeConnecting,
-		"deleting":      JsonWebKeyTypeDeleting,
-		"failed":        JsonWebKeyTypeFailed,
-		"provisioning":  JsonWebKeyTypeProvisioning,
-		"succeeded":     JsonWebKeyTypeSucceeded,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := JsonWebKeyType(input)
-	return &out, nil
-}
-
 type SkuName string
 
 const (
@@ -70,23 +49,4 @@ func PossibleValuesForSkuName() []string {
 		string(SkuNamePayShieldOneZeroKLMKTwoCPSTwoFiveZeroZero),
 		string(SkuNameSafeNetLunaNetworkHSMASevenNineZero),
 	}
-}
-
-func parseSkuName(input string) (*SkuName, error) {
-	vals := map[string]SkuName{
-		"payshield10k_lmk1_cps60":       SkuNamePayShieldOneZeroKLMKOneCPSSixZero,
-		"payshield10k_lmk1_cps250":      SkuNamePayShieldOneZeroKLMKOneCPSTwoFiveZero,
-		"payshield10k_lmk1_cps2500":     SkuNamePayShieldOneZeroKLMKOneCPSTwoFiveZeroZero,
-		"payshield10k_lmk2_cps60":       SkuNamePayShieldOneZeroKLMKTwoCPSSixZero,
-		"payshield10k_lmk2_cps250":      SkuNamePayShieldOneZeroKLMKTwoCPSTwoFiveZero,
-		"payshield10k_lmk2_cps2500":     SkuNamePayShieldOneZeroKLMKTwoCPSTwoFiveZeroZero,
-		"safenet luna network hsm a790": SkuNameSafeNetLunaNetworkHSMASevenNineZero,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SkuName(input)
-	return &out, nil
 }

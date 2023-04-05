@@ -1,7 +1,5 @@
 package links
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -25,23 +23,6 @@ func PossibleValuesForAuthType() []string {
 	}
 }
 
-func parseAuthType(input string) (*AuthType, error) {
-	vals := map[string]AuthType{
-		"secret":                      AuthTypeSecret,
-		"serviceprincipalcertificate": AuthTypeServicePrincipalCertificate,
-		"serviceprincipalsecret":      AuthTypeServicePrincipalSecret,
-		"systemassignedidentity":      AuthTypeSystemAssignedIdentity,
-		"userassignedidentity":        AuthTypeUserAssignedIdentity,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := AuthType(input)
-	return &out, nil
-}
-
 type AzureResourceType string
 
 const (
@@ -52,19 +33,6 @@ func PossibleValuesForAzureResourceType() []string {
 	return []string{
 		string(AzureResourceTypeKeyVault),
 	}
-}
-
-func parseAzureResourceType(input string) (*AzureResourceType, error) {
-	vals := map[string]AzureResourceType{
-		"keyvault": AzureResourceTypeKeyVault,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := AzureResourceType(input)
-	return &out, nil
 }
 
 type ClientType string
@@ -99,29 +67,6 @@ func PossibleValuesForClientType() []string {
 	}
 }
 
-func parseClientType(input string) (*ClientType, error) {
-	vals := map[string]ClientType{
-		"django":           ClientTypeDjango,
-		"dotnet":           ClientTypeDotnet,
-		"go":               ClientTypeGo,
-		"java":             ClientTypeJava,
-		"kafka-springboot": ClientTypeKafkaNegativespringBoot,
-		"nodejs":           ClientTypeNodejs,
-		"none":             ClientTypeNone,
-		"php":              ClientTypePhp,
-		"python":           ClientTypePython,
-		"ruby":             ClientTypeRuby,
-		"springboot":       ClientTypeSpringBoot,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ClientType(input)
-	return &out, nil
-}
-
 type SecretType string
 
 const (
@@ -136,21 +81,6 @@ func PossibleValuesForSecretType() []string {
 		string(SecretTypeKeyVaultSecretUri),
 		string(SecretTypeRawValue),
 	}
-}
-
-func parseSecretType(input string) (*SecretType, error) {
-	vals := map[string]SecretType{
-		"keyvaultsecretreference": SecretTypeKeyVaultSecretReference,
-		"keyvaultsecreturi":       SecretTypeKeyVaultSecretUri,
-		"rawvalue":                SecretTypeRawValue,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SecretType(input)
-	return &out, nil
 }
 
 type TargetServiceType string
@@ -169,21 +99,6 @@ func PossibleValuesForTargetServiceType() []string {
 	}
 }
 
-func parseTargetServiceType(input string) (*TargetServiceType, error) {
-	vals := map[string]TargetServiceType{
-		"azureresource":            TargetServiceTypeAzureResource,
-		"confluentbootstrapserver": TargetServiceTypeConfluentBootstrapServer,
-		"confluentschemaregistry":  TargetServiceTypeConfluentSchemaRegistry,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := TargetServiceType(input)
-	return &out, nil
-}
-
 type VNetSolutionType string
 
 const (
@@ -196,20 +111,6 @@ func PossibleValuesForVNetSolutionType() []string {
 		string(VNetSolutionTypePrivateLink),
 		string(VNetSolutionTypeServiceEndpoint),
 	}
-}
-
-func parseVNetSolutionType(input string) (*VNetSolutionType, error) {
-	vals := map[string]VNetSolutionType{
-		"privatelink":     VNetSolutionTypePrivateLink,
-		"serviceendpoint": VNetSolutionTypeServiceEndpoint,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := VNetSolutionType(input)
-	return &out, nil
 }
 
 type ValidationResultStatus string
@@ -226,19 +127,4 @@ func PossibleValuesForValidationResultStatus() []string {
 		string(ValidationResultStatusSuccess),
 		string(ValidationResultStatusWarning),
 	}
-}
-
-func parseValidationResultStatus(input string) (*ValidationResultStatus, error) {
-	vals := map[string]ValidationResultStatus{
-		"failure": ValidationResultStatusFailure,
-		"success": ValidationResultStatusSuccess,
-		"warning": ValidationResultStatusWarning,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ValidationResultStatus(input)
-	return &out, nil
 }

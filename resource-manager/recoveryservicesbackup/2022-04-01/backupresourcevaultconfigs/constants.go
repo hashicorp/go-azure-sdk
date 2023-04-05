@@ -1,7 +1,5 @@
 package backupresourcevaultconfigs
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -21,21 +19,6 @@ func PossibleValuesForEnhancedSecurityState() []string {
 	}
 }
 
-func parseEnhancedSecurityState(input string) (*EnhancedSecurityState, error) {
-	vals := map[string]EnhancedSecurityState{
-		"disabled": EnhancedSecurityStateDisabled,
-		"enabled":  EnhancedSecurityStateEnabled,
-		"invalid":  EnhancedSecurityStateInvalid,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := EnhancedSecurityState(input)
-	return &out, nil
-}
-
 type SoftDeleteFeatureState string
 
 const (
@@ -50,21 +33,6 @@ func PossibleValuesForSoftDeleteFeatureState() []string {
 		string(SoftDeleteFeatureStateEnabled),
 		string(SoftDeleteFeatureStateInvalid),
 	}
-}
-
-func parseSoftDeleteFeatureState(input string) (*SoftDeleteFeatureState, error) {
-	vals := map[string]SoftDeleteFeatureState{
-		"disabled": SoftDeleteFeatureStateDisabled,
-		"enabled":  SoftDeleteFeatureStateEnabled,
-		"invalid":  SoftDeleteFeatureStateInvalid,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SoftDeleteFeatureState(input)
-	return &out, nil
 }
 
 type StorageType string
@@ -87,23 +55,6 @@ func PossibleValuesForStorageType() []string {
 	}
 }
 
-func parseStorageType(input string) (*StorageType, error) {
-	vals := map[string]StorageType{
-		"georedundant":               StorageTypeGeoRedundant,
-		"invalid":                    StorageTypeInvalid,
-		"locallyredundant":           StorageTypeLocallyRedundant,
-		"readaccessgeozoneredundant": StorageTypeReadAccessGeoZoneRedundant,
-		"zoneredundant":              StorageTypeZoneRedundant,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := StorageType(input)
-	return &out, nil
-}
-
 type StorageTypeState string
 
 const (
@@ -118,19 +69,4 @@ func PossibleValuesForStorageTypeState() []string {
 		string(StorageTypeStateLocked),
 		string(StorageTypeStateUnlocked),
 	}
-}
-
-func parseStorageTypeState(input string) (*StorageTypeState, error) {
-	vals := map[string]StorageTypeState{
-		"invalid":  StorageTypeStateInvalid,
-		"locked":   StorageTypeStateLocked,
-		"unlocked": StorageTypeStateUnlocked,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := StorageTypeState(input)
-	return &out, nil
 }

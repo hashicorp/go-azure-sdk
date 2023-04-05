@@ -1,7 +1,5 @@
 package pipelines
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -21,22 +19,6 @@ func PossibleValuesForDependencyCondition() []string {
 		string(DependencyConditionSkipped),
 		string(DependencyConditionSucceeded),
 	}
-}
-
-func parseDependencyCondition(input string) (*DependencyCondition, error) {
-	vals := map[string]DependencyCondition{
-		"completed": DependencyConditionCompleted,
-		"failed":    DependencyConditionFailed,
-		"skipped":   DependencyConditionSkipped,
-		"succeeded": DependencyConditionSucceeded,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := DependencyCondition(input)
-	return &out, nil
 }
 
 type ParameterType string
@@ -63,25 +45,6 @@ func PossibleValuesForParameterType() []string {
 	}
 }
 
-func parseParameterType(input string) (*ParameterType, error) {
-	vals := map[string]ParameterType{
-		"array":        ParameterTypeArray,
-		"bool":         ParameterTypeBool,
-		"float":        ParameterTypeFloat,
-		"int":          ParameterTypeInt,
-		"object":       ParameterTypeObject,
-		"securestring": ParameterTypeSecureString,
-		"string":       ParameterTypeString,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ParameterType(input)
-	return &out, nil
-}
-
 type VariableType string
 
 const (
@@ -96,19 +59,4 @@ func PossibleValuesForVariableType() []string {
 		string(VariableTypeBool),
 		string(VariableTypeString),
 	}
-}
-
-func parseVariableType(input string) (*VariableType, error) {
-	vals := map[string]VariableType{
-		"array":  VariableTypeArray,
-		"bool":   VariableTypeBool,
-		"string": VariableTypeString,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := VariableType(input)
-	return &out, nil
 }

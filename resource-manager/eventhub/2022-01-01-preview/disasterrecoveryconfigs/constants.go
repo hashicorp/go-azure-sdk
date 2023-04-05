@@ -1,7 +1,5 @@
 package disasterrecoveryconfigs
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -21,21 +19,6 @@ func PossibleValuesForProvisioningStateDR() []string {
 	}
 }
 
-func parseProvisioningStateDR(input string) (*ProvisioningStateDR, error) {
-	vals := map[string]ProvisioningStateDR{
-		"accepted":  ProvisioningStateDRAccepted,
-		"failed":    ProvisioningStateDRFailed,
-		"succeeded": ProvisioningStateDRSucceeded,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ProvisioningStateDR(input)
-	return &out, nil
-}
-
 type RoleDisasterRecovery string
 
 const (
@@ -50,19 +33,4 @@ func PossibleValuesForRoleDisasterRecovery() []string {
 		string(RoleDisasterRecoveryPrimaryNotReplicating),
 		string(RoleDisasterRecoverySecondary),
 	}
-}
-
-func parseRoleDisasterRecovery(input string) (*RoleDisasterRecovery, error) {
-	vals := map[string]RoleDisasterRecovery{
-		"primary":               RoleDisasterRecoveryPrimary,
-		"primarynotreplicating": RoleDisasterRecoveryPrimaryNotReplicating,
-		"secondary":             RoleDisasterRecoverySecondary,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := RoleDisasterRecovery(input)
-	return &out, nil
 }

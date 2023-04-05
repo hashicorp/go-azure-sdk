@@ -1,7 +1,5 @@
 package securitymlanalyticssettings
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -49,35 +47,6 @@ func PossibleValuesForAttackTactic() []string {
 	}
 }
 
-func parseAttackTactic(input string) (*AttackTactic, error) {
-	vals := map[string]AttackTactic{
-		"collection":              AttackTacticCollection,
-		"commandandcontrol":       AttackTacticCommandAndControl,
-		"credentialaccess":        AttackTacticCredentialAccess,
-		"defenseevasion":          AttackTacticDefenseEvasion,
-		"discovery":               AttackTacticDiscovery,
-		"execution":               AttackTacticExecution,
-		"exfiltration":            AttackTacticExfiltration,
-		"impact":                  AttackTacticImpact,
-		"impairprocesscontrol":    AttackTacticImpairProcessControl,
-		"inhibitresponsefunction": AttackTacticInhibitResponseFunction,
-		"initialaccess":           AttackTacticInitialAccess,
-		"lateralmovement":         AttackTacticLateralMovement,
-		"persistence":             AttackTacticPersistence,
-		"preattack":               AttackTacticPreAttack,
-		"privilegeescalation":     AttackTacticPrivilegeEscalation,
-		"reconnaissance":          AttackTacticReconnaissance,
-		"resourcedevelopment":     AttackTacticResourceDevelopment,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := AttackTactic(input)
-	return &out, nil
-}
-
 type SecurityMLAnalyticsSettingsKind string
 
 const (
@@ -88,19 +57,6 @@ func PossibleValuesForSecurityMLAnalyticsSettingsKind() []string {
 	return []string{
 		string(SecurityMLAnalyticsSettingsKindAnomaly),
 	}
-}
-
-func parseSecurityMLAnalyticsSettingsKind(input string) (*SecurityMLAnalyticsSettingsKind, error) {
-	vals := map[string]SecurityMLAnalyticsSettingsKind{
-		"anomaly": SecurityMLAnalyticsSettingsKindAnomaly,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SecurityMLAnalyticsSettingsKind(input)
-	return &out, nil
 }
 
 type SettingsStatus string
@@ -115,18 +71,4 @@ func PossibleValuesForSettingsStatus() []string {
 		string(SettingsStatusFlighting),
 		string(SettingsStatusProduction),
 	}
-}
-
-func parseSettingsStatus(input string) (*SettingsStatus, error) {
-	vals := map[string]SettingsStatus{
-		"flighting":  SettingsStatusFlighting,
-		"production": SettingsStatusProduction,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SettingsStatus(input)
-	return &out, nil
 }

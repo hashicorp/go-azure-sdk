@@ -1,6 +1,10 @@
 package endpoints
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -19,18 +23,19 @@ func PossibleValuesForEndpointType() []string {
 	}
 }
 
-func parseEndpointType(input string) (*EndpointType, error) {
-	vals := map[string]EndpointType{
-		"azurestorageblobcontainer": EndpointTypeAzureStorageBlobContainer,
-		"nfsmount":                  EndpointTypeNfsMount,
+func (s *EndpointType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForEndpointType() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := EndpointType(input)
-	return &out, nil
+	*s = EndpointType(decoded)
+	return nil
 }
 
 type NfsVersion string
@@ -49,19 +54,19 @@ func PossibleValuesForNfsVersion() []string {
 	}
 }
 
-func parseNfsVersion(input string) (*NfsVersion, error) {
-	vals := map[string]NfsVersion{
-		"nfsauto": NfsVersionNFSauto,
-		"nfsv4":   NfsVersionNFSvFour,
-		"nfsv3":   NfsVersionNFSvThree,
+func (s *NfsVersion) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForNfsVersion() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := NfsVersion(input)
-	return &out, nil
+	*s = NfsVersion(decoded)
+	return nil
 }
 
 type ProvisioningState string
@@ -76,15 +81,17 @@ func PossibleValuesForProvisioningState() []string {
 	}
 }
 
-func parseProvisioningState(input string) (*ProvisioningState, error) {
-	vals := map[string]ProvisioningState{
-		"succeeded": ProvisioningStateSucceeded,
+func (s *ProvisioningState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForProvisioningState() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ProvisioningState(input)
-	return &out, nil
+	*s = ProvisioningState(decoded)
+	return nil
 }

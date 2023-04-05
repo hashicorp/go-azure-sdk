@@ -1,7 +1,5 @@
 package notificationrecipientuser
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -27,23 +25,4 @@ func PossibleValuesForNotificationName() []string {
 		string(NotificationNameQuotaLimitApproachingPublisherNotificationMessage),
 		string(NotificationNameRequestPublisherNotificationMessage),
 	}
-}
-
-func parseNotificationName(input string) (*NotificationName, error) {
-	vals := map[string]NotificationName{
-		"accountclosedpublisher":                            NotificationNameAccountClosedPublisher,
-		"bcc":                                               NotificationNameBCC,
-		"newapplicationnotificationmessage":                 NotificationNameNewApplicationNotificationMessage,
-		"newissuepublishernotificationmessage":              NotificationNameNewIssuePublisherNotificationMessage,
-		"purchasepublishernotificationmessage":              NotificationNamePurchasePublisherNotificationMessage,
-		"quotalimitapproachingpublishernotificationmessage": NotificationNameQuotaLimitApproachingPublisherNotificationMessage,
-		"requestpublishernotificationmessage":               NotificationNameRequestPublisherNotificationMessage,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := NotificationName(input)
-	return &out, nil
 }

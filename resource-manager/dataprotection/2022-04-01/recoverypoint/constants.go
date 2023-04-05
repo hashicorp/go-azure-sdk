@@ -1,7 +1,5 @@
 package recoverypoint
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -23,21 +21,4 @@ func PossibleValuesForRehydrationStatus() []string {
 		string(RehydrationStatusDELETEINPROGRESS),
 		string(RehydrationStatusFAILED),
 	}
-}
-
-func parseRehydrationStatus(input string) (*RehydrationStatus, error) {
-	vals := map[string]RehydrationStatus{
-		"completed":          RehydrationStatusCOMPLETED,
-		"create_in_progress": RehydrationStatusCREATEINPROGRESS,
-		"deleted":            RehydrationStatusDELETED,
-		"delete_in_progress": RehydrationStatusDELETEINPROGRESS,
-		"failed":             RehydrationStatusFAILED,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := RehydrationStatus(input)
-	return &out, nil
 }

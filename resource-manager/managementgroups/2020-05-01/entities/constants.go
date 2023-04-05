@@ -1,7 +1,5 @@
 package entities
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -23,22 +21,6 @@ func PossibleValuesForInheritedPermissions() []string {
 	}
 }
 
-func parseInheritedPermissions(input string) (*InheritedPermissions, error) {
-	vals := map[string]InheritedPermissions{
-		"delete":   InheritedPermissionsDelete,
-		"edit":     InheritedPermissionsEdit,
-		"noaccess": InheritedPermissionsNoaccess,
-		"view":     InheritedPermissionsView,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := InheritedPermissions(input)
-	return &out, nil
-}
-
 type Permissions string
 
 const (
@@ -55,22 +37,6 @@ func PossibleValuesForPermissions() []string {
 		string(PermissionsNoaccess),
 		string(PermissionsView),
 	}
-}
-
-func parsePermissions(input string) (*Permissions, error) {
-	vals := map[string]Permissions{
-		"delete":   PermissionsDelete,
-		"edit":     PermissionsEdit,
-		"noaccess": PermissionsNoaccess,
-		"view":     PermissionsView,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := Permissions(input)
-	return &out, nil
 }
 
 type Search string
@@ -93,23 +59,6 @@ func PossibleValuesForSearch() []string {
 	}
 }
 
-func parseSearch(input string) (*Search, error) {
-	vals := map[string]Search{
-		"allowedchildren":             SearchAllowedChildren,
-		"allowedparents":              SearchAllowedParents,
-		"childrenonly":                SearchChildrenOnly,
-		"parentandfirstlevelchildren": SearchParentAndFirstLevelChildren,
-		"parentonly":                  SearchParentOnly,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := Search(input)
-	return &out, nil
-}
-
 type View string
 
 const (
@@ -126,20 +75,4 @@ func PossibleValuesForView() []string {
 		string(ViewGroupsOnly),
 		string(ViewSubscriptionsOnly),
 	}
-}
-
-func parseView(input string) (*View, error) {
-	vals := map[string]View{
-		"audit":             ViewAudit,
-		"fullhierarchy":     ViewFullHierarchy,
-		"groupsonly":        ViewGroupsOnly,
-		"subscriptionsonly": ViewSubscriptionsOnly,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := View(input)
-	return &out, nil
 }

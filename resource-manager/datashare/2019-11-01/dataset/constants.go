@@ -1,7 +1,5 @@
 package dataset
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -39,30 +37,6 @@ func PossibleValuesForDataSetKind() []string {
 	}
 }
 
-func parseDataSetKind(input string) (*DataSetKind, error) {
-	vals := map[string]DataSetKind{
-		"adlsgen1file":       DataSetKindAdlsGenOneFile,
-		"adlsgen1folder":     DataSetKindAdlsGenOneFolder,
-		"adlsgen2file":       DataSetKindAdlsGenTwoFile,
-		"adlsgen2filesystem": DataSetKindAdlsGenTwoFileSystem,
-		"adlsgen2folder":     DataSetKindAdlsGenTwoFolder,
-		"blob":               DataSetKindBlob,
-		"blobfolder":         DataSetKindBlobFolder,
-		"container":          DataSetKindContainer,
-		"kustocluster":       DataSetKindKustoCluster,
-		"kustodatabase":      DataSetKindKustoDatabase,
-		"sqldbtable":         DataSetKindSqlDBTable,
-		"sqldwtable":         DataSetKindSqlDWTable,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := DataSetKind(input)
-	return &out, nil
-}
-
 type ProvisioningState string
 
 const (
@@ -81,21 +55,4 @@ func PossibleValuesForProvisioningState() []string {
 		string(ProvisioningStateMoving),
 		string(ProvisioningStateSucceeded),
 	}
-}
-
-func parseProvisioningState(input string) (*ProvisioningState, error) {
-	vals := map[string]ProvisioningState{
-		"creating":  ProvisioningStateCreating,
-		"deleting":  ProvisioningStateDeleting,
-		"failed":    ProvisioningStateFailed,
-		"moving":    ProvisioningStateMoving,
-		"succeeded": ProvisioningStateSucceeded,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ProvisioningState(input)
-	return &out, nil
 }

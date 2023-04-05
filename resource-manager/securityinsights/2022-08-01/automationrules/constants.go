@@ -1,7 +1,5 @@
 package automationrules
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -17,20 +15,6 @@ func PossibleValuesForActionType() []string {
 		string(ActionTypeModifyProperties),
 		string(ActionTypeRunPlaybook),
 	}
-}
-
-func parseActionType(input string) (*ActionType, error) {
-	vals := map[string]ActionType{
-		"modifyproperties": ActionTypeModifyProperties,
-		"runplaybook":      ActionTypeRunPlaybook,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ActionType(input)
-	return &out, nil
 }
 
 type AutomationRulePropertyConditionSupportedOperator string
@@ -57,26 +41,6 @@ func PossibleValuesForAutomationRulePropertyConditionSupportedOperator() []strin
 		string(AutomationRulePropertyConditionSupportedOperatorNotStartsWith),
 		string(AutomationRulePropertyConditionSupportedOperatorStartsWith),
 	}
-}
-
-func parseAutomationRulePropertyConditionSupportedOperator(input string) (*AutomationRulePropertyConditionSupportedOperator, error) {
-	vals := map[string]AutomationRulePropertyConditionSupportedOperator{
-		"contains":      AutomationRulePropertyConditionSupportedOperatorContains,
-		"endswith":      AutomationRulePropertyConditionSupportedOperatorEndsWith,
-		"equals":        AutomationRulePropertyConditionSupportedOperatorEquals,
-		"notcontains":   AutomationRulePropertyConditionSupportedOperatorNotContains,
-		"notendswith":   AutomationRulePropertyConditionSupportedOperatorNotEndsWith,
-		"notequals":     AutomationRulePropertyConditionSupportedOperatorNotEquals,
-		"notstartswith": AutomationRulePropertyConditionSupportedOperatorNotStartsWith,
-		"startswith":    AutomationRulePropertyConditionSupportedOperatorStartsWith,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := AutomationRulePropertyConditionSupportedOperator(input)
-	return &out, nil
 }
 
 type AutomationRulePropertyConditionSupportedProperty string
@@ -197,72 +161,6 @@ func PossibleValuesForAutomationRulePropertyConditionSupportedProperty() []strin
 	}
 }
 
-func parseAutomationRulePropertyConditionSupportedProperty(input string) (*AutomationRulePropertyConditionSupportedProperty, error) {
-	vals := map[string]AutomationRulePropertyConditionSupportedProperty{
-		"accountaadtenantid":             AutomationRulePropertyConditionSupportedPropertyAccountAadTenantId,
-		"accountaaduserid":               AutomationRulePropertyConditionSupportedPropertyAccountAadUserId,
-		"accountntdomain":                AutomationRulePropertyConditionSupportedPropertyAccountNTDomain,
-		"accountname":                    AutomationRulePropertyConditionSupportedPropertyAccountName,
-		"accountobjectguid":              AutomationRulePropertyConditionSupportedPropertyAccountObjectGuid,
-		"accountpuid":                    AutomationRulePropertyConditionSupportedPropertyAccountPUID,
-		"accountsid":                     AutomationRulePropertyConditionSupportedPropertyAccountSid,
-		"accountupnsuffix":               AutomationRulePropertyConditionSupportedPropertyAccountUPNSuffix,
-		"alertproductnames":              AutomationRulePropertyConditionSupportedPropertyAlertProductNames,
-		"azureresourceresourceid":        AutomationRulePropertyConditionSupportedPropertyAzureResourceResourceId,
-		"azureresourcesubscriptionid":    AutomationRulePropertyConditionSupportedPropertyAzureResourceSubscriptionId,
-		"cloudapplicationappid":          AutomationRulePropertyConditionSupportedPropertyCloudApplicationAppId,
-		"cloudapplicationappname":        AutomationRulePropertyConditionSupportedPropertyCloudApplicationAppName,
-		"dnsdomainname":                  AutomationRulePropertyConditionSupportedPropertyDNSDomainName,
-		"filedirectory":                  AutomationRulePropertyConditionSupportedPropertyFileDirectory,
-		"filehashvalue":                  AutomationRulePropertyConditionSupportedPropertyFileHashValue,
-		"filename":                       AutomationRulePropertyConditionSupportedPropertyFileName,
-		"hostazureid":                    AutomationRulePropertyConditionSupportedPropertyHostAzureID,
-		"hostntdomain":                   AutomationRulePropertyConditionSupportedPropertyHostNTDomain,
-		"hostname":                       AutomationRulePropertyConditionSupportedPropertyHostName,
-		"hostnetbiosname":                AutomationRulePropertyConditionSupportedPropertyHostNetBiosName,
-		"hostosversion":                  AutomationRulePropertyConditionSupportedPropertyHostOSVersion,
-		"ipaddress":                      AutomationRulePropertyConditionSupportedPropertyIPAddress,
-		"incidentdescription":            AutomationRulePropertyConditionSupportedPropertyIncidentDescription,
-		"incidentlabel":                  AutomationRulePropertyConditionSupportedPropertyIncidentLabel,
-		"incidentprovidername":           AutomationRulePropertyConditionSupportedPropertyIncidentProviderName,
-		"incidentrelatedanalyticruleids": AutomationRulePropertyConditionSupportedPropertyIncidentRelatedAnalyticRuleIds,
-		"incidentseverity":               AutomationRulePropertyConditionSupportedPropertyIncidentSeverity,
-		"incidentstatus":                 AutomationRulePropertyConditionSupportedPropertyIncidentStatus,
-		"incidenttactics":                AutomationRulePropertyConditionSupportedPropertyIncidentTactics,
-		"incidenttitle":                  AutomationRulePropertyConditionSupportedPropertyIncidentTitle,
-		"iotdeviceid":                    AutomationRulePropertyConditionSupportedPropertyIoTDeviceId,
-		"iotdevicemodel":                 AutomationRulePropertyConditionSupportedPropertyIoTDeviceModel,
-		"iotdevicename":                  AutomationRulePropertyConditionSupportedPropertyIoTDeviceName,
-		"iotdeviceoperatingsystem":       AutomationRulePropertyConditionSupportedPropertyIoTDeviceOperatingSystem,
-		"iotdevicetype":                  AutomationRulePropertyConditionSupportedPropertyIoTDeviceType,
-		"iotdevicevendor":                AutomationRulePropertyConditionSupportedPropertyIoTDeviceVendor,
-		"mailmessagedeliveryaction":      AutomationRulePropertyConditionSupportedPropertyMailMessageDeliveryAction,
-		"mailmessagedeliverylocation":    AutomationRulePropertyConditionSupportedPropertyMailMessageDeliveryLocation,
-		"mailmessagep1sender":            AutomationRulePropertyConditionSupportedPropertyMailMessagePOneSender,
-		"mailmessagep2sender":            AutomationRulePropertyConditionSupportedPropertyMailMessagePTwoSender,
-		"mailmessagerecipient":           AutomationRulePropertyConditionSupportedPropertyMailMessageRecipient,
-		"mailmessagesenderip":            AutomationRulePropertyConditionSupportedPropertyMailMessageSenderIP,
-		"mailmessagesubject":             AutomationRulePropertyConditionSupportedPropertyMailMessageSubject,
-		"mailboxdisplayname":             AutomationRulePropertyConditionSupportedPropertyMailboxDisplayName,
-		"mailboxprimaryaddress":          AutomationRulePropertyConditionSupportedPropertyMailboxPrimaryAddress,
-		"mailboxupn":                     AutomationRulePropertyConditionSupportedPropertyMailboxUPN,
-		"malwarecategory":                AutomationRulePropertyConditionSupportedPropertyMalwareCategory,
-		"malwarename":                    AutomationRulePropertyConditionSupportedPropertyMalwareName,
-		"processcommandline":             AutomationRulePropertyConditionSupportedPropertyProcessCommandLine,
-		"processid":                      AutomationRulePropertyConditionSupportedPropertyProcessId,
-		"registrykey":                    AutomationRulePropertyConditionSupportedPropertyRegistryKey,
-		"registryvaluedata":              AutomationRulePropertyConditionSupportedPropertyRegistryValueData,
-		"url":                            AutomationRulePropertyConditionSupportedPropertyUrl,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := AutomationRulePropertyConditionSupportedProperty(input)
-	return &out, nil
-}
-
 type ConditionType string
 
 const (
@@ -273,19 +171,6 @@ func PossibleValuesForConditionType() []string {
 	return []string{
 		string(ConditionTypeProperty),
 	}
-}
-
-func parseConditionType(input string) (*ConditionType, error) {
-	vals := map[string]ConditionType{
-		"property": ConditionTypeProperty,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ConditionType(input)
-	return &out, nil
 }
 
 type IncidentClassification string
@@ -306,22 +191,6 @@ func PossibleValuesForIncidentClassification() []string {
 	}
 }
 
-func parseIncidentClassification(input string) (*IncidentClassification, error) {
-	vals := map[string]IncidentClassification{
-		"benignpositive": IncidentClassificationBenignPositive,
-		"falsepositive":  IncidentClassificationFalsePositive,
-		"truepositive":   IncidentClassificationTruePositive,
-		"undetermined":   IncidentClassificationUndetermined,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := IncidentClassification(input)
-	return &out, nil
-}
-
 type IncidentClassificationReason string
 
 const (
@@ -340,22 +209,6 @@ func PossibleValuesForIncidentClassificationReason() []string {
 	}
 }
 
-func parseIncidentClassificationReason(input string) (*IncidentClassificationReason, error) {
-	vals := map[string]IncidentClassificationReason{
-		"inaccuratedata":        IncidentClassificationReasonInaccurateData,
-		"incorrectalertlogic":   IncidentClassificationReasonIncorrectAlertLogic,
-		"suspiciousactivity":    IncidentClassificationReasonSuspiciousActivity,
-		"suspiciousbutexpected": IncidentClassificationReasonSuspiciousButExpected,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := IncidentClassificationReason(input)
-	return &out, nil
-}
-
 type IncidentLabelType string
 
 const (
@@ -368,20 +221,6 @@ func PossibleValuesForIncidentLabelType() []string {
 		string(IncidentLabelTypeAutoAssigned),
 		string(IncidentLabelTypeUser),
 	}
-}
-
-func parseIncidentLabelType(input string) (*IncidentLabelType, error) {
-	vals := map[string]IncidentLabelType{
-		"autoassigned": IncidentLabelTypeAutoAssigned,
-		"user":         IncidentLabelTypeUser,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := IncidentLabelType(input)
-	return &out, nil
 }
 
 type IncidentSeverity string
@@ -402,22 +241,6 @@ func PossibleValuesForIncidentSeverity() []string {
 	}
 }
 
-func parseIncidentSeverity(input string) (*IncidentSeverity, error) {
-	vals := map[string]IncidentSeverity{
-		"high":          IncidentSeverityHigh,
-		"informational": IncidentSeverityInformational,
-		"low":           IncidentSeverityLow,
-		"medium":        IncidentSeverityMedium,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := IncidentSeverity(input)
-	return &out, nil
-}
-
 type IncidentStatus string
 
 const (
@@ -432,21 +255,6 @@ func PossibleValuesForIncidentStatus() []string {
 		string(IncidentStatusClosed),
 		string(IncidentStatusNew),
 	}
-}
-
-func parseIncidentStatus(input string) (*IncidentStatus, error) {
-	vals := map[string]IncidentStatus{
-		"active": IncidentStatusActive,
-		"closed": IncidentStatusClosed,
-		"new":    IncidentStatusNew,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := IncidentStatus(input)
-	return &out, nil
 }
 
 type OwnerType string
@@ -465,21 +273,6 @@ func PossibleValuesForOwnerType() []string {
 	}
 }
 
-func parseOwnerType(input string) (*OwnerType, error) {
-	vals := map[string]OwnerType{
-		"group":   OwnerTypeGroup,
-		"unknown": OwnerTypeUnknown,
-		"user":    OwnerTypeUser,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := OwnerType(input)
-	return &out, nil
-}
-
 type TriggersOn string
 
 const (
@@ -492,19 +285,6 @@ func PossibleValuesForTriggersOn() []string {
 	}
 }
 
-func parseTriggersOn(input string) (*TriggersOn, error) {
-	vals := map[string]TriggersOn{
-		"incidents": TriggersOnIncidents,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := TriggersOn(input)
-	return &out, nil
-}
-
 type TriggersWhen string
 
 const (
@@ -515,17 +295,4 @@ func PossibleValuesForTriggersWhen() []string {
 	return []string{
 		string(TriggersWhenCreated),
 	}
-}
-
-func parseTriggersWhen(input string) (*TriggersWhen, error) {
-	vals := map[string]TriggersWhen{
-		"created": TriggersWhenCreated,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := TriggersWhen(input)
-	return &out, nil
 }

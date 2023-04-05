@@ -1,7 +1,5 @@
 package deploymentscripts
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -21,21 +19,6 @@ func PossibleValuesForCleanupOptions() []string {
 	}
 }
 
-func parseCleanupOptions(input string) (*CleanupOptions, error) {
-	vals := map[string]CleanupOptions{
-		"always":       CleanupOptionsAlways,
-		"onexpiration": CleanupOptionsOnExpiration,
-		"onsuccess":    CleanupOptionsOnSuccess,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := CleanupOptions(input)
-	return &out, nil
-}
-
 type ManagedServiceIdentityType string
 
 const (
@@ -46,19 +29,6 @@ func PossibleValuesForManagedServiceIdentityType() []string {
 	return []string{
 		string(ManagedServiceIdentityTypeUserAssigned),
 	}
-}
-
-func parseManagedServiceIdentityType(input string) (*ManagedServiceIdentityType, error) {
-	vals := map[string]ManagedServiceIdentityType{
-		"userassigned": ManagedServiceIdentityTypeUserAssigned,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ManagedServiceIdentityType(input)
-	return &out, nil
 }
 
 type ScriptProvisioningState string
@@ -83,24 +53,6 @@ func PossibleValuesForScriptProvisioningState() []string {
 	}
 }
 
-func parseScriptProvisioningState(input string) (*ScriptProvisioningState, error) {
-	vals := map[string]ScriptProvisioningState{
-		"canceled":              ScriptProvisioningStateCanceled,
-		"creating":              ScriptProvisioningStateCreating,
-		"failed":                ScriptProvisioningStateFailed,
-		"provisioningresources": ScriptProvisioningStateProvisioningResources,
-		"running":               ScriptProvisioningStateRunning,
-		"succeeded":             ScriptProvisioningStateSucceeded,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ScriptProvisioningState(input)
-	return &out, nil
-}
-
 type ScriptType string
 
 const (
@@ -113,18 +65,4 @@ func PossibleValuesForScriptType() []string {
 		string(ScriptTypeAzureCLI),
 		string(ScriptTypeAzurePowerShell),
 	}
-}
-
-func parseScriptType(input string) (*ScriptType, error) {
-	vals := map[string]ScriptType{
-		"azurecli":        ScriptTypeAzureCLI,
-		"azurepowershell": ScriptTypeAzurePowerShell,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ScriptType(input)
-	return &out, nil
 }

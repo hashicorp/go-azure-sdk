@@ -1,7 +1,5 @@
 package application
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -17,20 +15,6 @@ func PossibleValuesForArmUpgradeFailureAction() []string {
 		string(ArmUpgradeFailureActionManual),
 		string(ArmUpgradeFailureActionRollback),
 	}
-}
-
-func parseArmUpgradeFailureAction(input string) (*ArmUpgradeFailureAction, error) {
-	vals := map[string]ArmUpgradeFailureAction{
-		"manual":   ArmUpgradeFailureActionManual,
-		"rollback": ArmUpgradeFailureActionRollback,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ArmUpgradeFailureAction(input)
-	return &out, nil
 }
 
 type RollingUpgradeMode string
@@ -49,20 +33,4 @@ func PossibleValuesForRollingUpgradeMode() []string {
 		string(RollingUpgradeModeUnmonitoredAuto),
 		string(RollingUpgradeModeUnmonitoredManual),
 	}
-}
-
-func parseRollingUpgradeMode(input string) (*RollingUpgradeMode, error) {
-	vals := map[string]RollingUpgradeMode{
-		"invalid":           RollingUpgradeModeInvalid,
-		"monitored":         RollingUpgradeModeMonitored,
-		"unmonitoredauto":   RollingUpgradeModeUnmonitoredAuto,
-		"unmonitoredmanual": RollingUpgradeModeUnmonitoredManual,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := RollingUpgradeMode(input)
-	return &out, nil
 }

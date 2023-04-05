@@ -1,7 +1,5 @@
 package addons
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -27,24 +25,6 @@ func PossibleValuesForAddonProvisioningState() []string {
 	}
 }
 
-func parseAddonProvisioningState(input string) (*AddonProvisioningState, error) {
-	vals := map[string]AddonProvisioningState{
-		"building":  AddonProvisioningStateBuilding,
-		"cancelled": AddonProvisioningStateCancelled,
-		"deleting":  AddonProvisioningStateDeleting,
-		"failed":    AddonProvisioningStateFailed,
-		"succeeded": AddonProvisioningStateSucceeded,
-		"updating":  AddonProvisioningStateUpdating,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := AddonProvisioningState(input)
-	return &out, nil
-}
-
 type AddonType string
 
 const (
@@ -59,19 +39,4 @@ func PossibleValuesForAddonType() []string {
 		string(AddonTypeSRM),
 		string(AddonTypeVR),
 	}
-}
-
-func parseAddonType(input string) (*AddonType, error) {
-	vals := map[string]AddonType{
-		"hcx": AddonTypeHCX,
-		"srm": AddonTypeSRM,
-		"vr":  AddonTypeVR,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := AddonType(input)
-	return &out, nil
 }

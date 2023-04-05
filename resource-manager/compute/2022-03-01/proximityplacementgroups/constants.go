@@ -1,7 +1,5 @@
 package proximityplacementgroups
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -19,20 +17,6 @@ func PossibleValuesForProximityPlacementGroupType() []string {
 	}
 }
 
-func parseProximityPlacementGroupType(input string) (*ProximityPlacementGroupType, error) {
-	vals := map[string]ProximityPlacementGroupType{
-		"standard": ProximityPlacementGroupTypeStandard,
-		"ultra":    ProximityPlacementGroupTypeUltra,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ProximityPlacementGroupType(input)
-	return &out, nil
-}
-
 type StatusLevelTypes string
 
 const (
@@ -47,19 +31,4 @@ func PossibleValuesForStatusLevelTypes() []string {
 		string(StatusLevelTypesInfo),
 		string(StatusLevelTypesWarning),
 	}
-}
-
-func parseStatusLevelTypes(input string) (*StatusLevelTypes, error) {
-	vals := map[string]StatusLevelTypes{
-		"error":   StatusLevelTypesError,
-		"info":    StatusLevelTypesInfo,
-		"warning": StatusLevelTypesWarning,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := StatusLevelTypes(input)
-	return &out, nil
 }

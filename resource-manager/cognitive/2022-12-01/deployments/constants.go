@@ -1,7 +1,5 @@
 package deployments
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -27,24 +25,6 @@ func PossibleValuesForDeploymentProvisioningState() []string {
 	}
 }
 
-func parseDeploymentProvisioningState(input string) (*DeploymentProvisioningState, error) {
-	vals := map[string]DeploymentProvisioningState{
-		"accepted":  DeploymentProvisioningStateAccepted,
-		"creating":  DeploymentProvisioningStateCreating,
-		"deleting":  DeploymentProvisioningStateDeleting,
-		"failed":    DeploymentProvisioningStateFailed,
-		"moving":    DeploymentProvisioningStateMoving,
-		"succeeded": DeploymentProvisioningStateSucceeded,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := DeploymentProvisioningState(input)
-	return &out, nil
-}
-
 type DeploymentScaleType string
 
 const (
@@ -57,18 +37,4 @@ func PossibleValuesForDeploymentScaleType() []string {
 		string(DeploymentScaleTypeManual),
 		string(DeploymentScaleTypeStandard),
 	}
-}
-
-func parseDeploymentScaleType(input string) (*DeploymentScaleType, error) {
-	vals := map[string]DeploymentScaleType{
-		"manual":   DeploymentScaleTypeManual,
-		"standard": DeploymentScaleTypeStandard,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := DeploymentScaleType(input)
-	return &out, nil
 }

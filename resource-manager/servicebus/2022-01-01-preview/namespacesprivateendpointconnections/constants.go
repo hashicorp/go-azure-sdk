@@ -1,6 +1,10 @@
 package namespacesprivateendpointconnections
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -27,22 +31,19 @@ func PossibleValuesForEndPointProvisioningState() []string {
 	}
 }
 
-func parseEndPointProvisioningState(input string) (*EndPointProvisioningState, error) {
-	vals := map[string]EndPointProvisioningState{
-		"canceled":  EndPointProvisioningStateCanceled,
-		"creating":  EndPointProvisioningStateCreating,
-		"deleting":  EndPointProvisioningStateDeleting,
-		"failed":    EndPointProvisioningStateFailed,
-		"succeeded": EndPointProvisioningStateSucceeded,
-		"updating":  EndPointProvisioningStateUpdating,
+func (s *EndPointProvisioningState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForEndPointProvisioningState() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := EndPointProvisioningState(input)
-	return &out, nil
+	*s = EndPointProvisioningState(decoded)
+	return nil
 }
 
 type PrivateLinkConnectionStatus string
@@ -63,18 +64,17 @@ func PossibleValuesForPrivateLinkConnectionStatus() []string {
 	}
 }
 
-func parsePrivateLinkConnectionStatus(input string) (*PrivateLinkConnectionStatus, error) {
-	vals := map[string]PrivateLinkConnectionStatus{
-		"approved":     PrivateLinkConnectionStatusApproved,
-		"disconnected": PrivateLinkConnectionStatusDisconnected,
-		"pending":      PrivateLinkConnectionStatusPending,
-		"rejected":     PrivateLinkConnectionStatusRejected,
+func (s *PrivateLinkConnectionStatus) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForPrivateLinkConnectionStatus() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PrivateLinkConnectionStatus(input)
-	return &out, nil
+	*s = PrivateLinkConnectionStatus(decoded)
+	return nil
 }

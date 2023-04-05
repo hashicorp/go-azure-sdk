@@ -1,7 +1,5 @@
 package deletedworkspaces
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -31,26 +29,6 @@ func PossibleValuesForCapacityReservationLevel() []int64 {
 	}
 }
 
-func parseCapacityReservationLevel(input int64) (*CapacityReservationLevel, error) {
-	vals := map[int64]CapacityReservationLevel{
-		500:  CapacityReservationLevelFiveHundred,
-		5000: CapacityReservationLevelFiveThousand,
-		400:  CapacityReservationLevelFourHundred,
-		100:  CapacityReservationLevelOneHundred,
-		1000: CapacityReservationLevelOneThousand,
-		300:  CapacityReservationLevelThreeHundred,
-		200:  CapacityReservationLevelTwoHundred,
-		2000: CapacityReservationLevelTwoThousand,
-	}
-	if v, ok := vals[input]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := CapacityReservationLevel(input)
-	return &out, nil
-}
-
 type DataIngestionStatus string
 
 const (
@@ -73,24 +51,6 @@ func PossibleValuesForDataIngestionStatus() []string {
 	}
 }
 
-func parseDataIngestionStatus(input string) (*DataIngestionStatus, error) {
-	vals := map[string]DataIngestionStatus{
-		"approachingquota":      DataIngestionStatusApproachingQuota,
-		"forceoff":              DataIngestionStatusForceOff,
-		"forceon":               DataIngestionStatusForceOn,
-		"overquota":             DataIngestionStatusOverQuota,
-		"respectquota":          DataIngestionStatusRespectQuota,
-		"subscriptionsuspended": DataIngestionStatusSubscriptionSuspended,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := DataIngestionStatus(input)
-	return &out, nil
-}
-
 type PublicNetworkAccessType string
 
 const (
@@ -103,20 +63,6 @@ func PossibleValuesForPublicNetworkAccessType() []string {
 		string(PublicNetworkAccessTypeDisabled),
 		string(PublicNetworkAccessTypeEnabled),
 	}
-}
-
-func parsePublicNetworkAccessType(input string) (*PublicNetworkAccessType, error) {
-	vals := map[string]PublicNetworkAccessType{
-		"disabled": PublicNetworkAccessTypeDisabled,
-		"enabled":  PublicNetworkAccessTypeEnabled,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PublicNetworkAccessType(input)
-	return &out, nil
 }
 
 type WorkspaceEntityStatus string
@@ -143,25 +89,6 @@ func PossibleValuesForWorkspaceEntityStatus() []string {
 	}
 }
 
-func parseWorkspaceEntityStatus(input string) (*WorkspaceEntityStatus, error) {
-	vals := map[string]WorkspaceEntityStatus{
-		"canceled":            WorkspaceEntityStatusCanceled,
-		"creating":            WorkspaceEntityStatusCreating,
-		"deleting":            WorkspaceEntityStatusDeleting,
-		"failed":              WorkspaceEntityStatusFailed,
-		"provisioningaccount": WorkspaceEntityStatusProvisioningAccount,
-		"succeeded":           WorkspaceEntityStatusSucceeded,
-		"updating":            WorkspaceEntityStatusUpdating,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := WorkspaceEntityStatus(input)
-	return &out, nil
-}
-
 type WorkspaceSkuNameEnum string
 
 const (
@@ -186,24 +113,4 @@ func PossibleValuesForWorkspaceSkuNameEnum() []string {
 		string(WorkspaceSkuNameEnumStandalone),
 		string(WorkspaceSkuNameEnumStandard),
 	}
-}
-
-func parseWorkspaceSkuNameEnum(input string) (*WorkspaceSkuNameEnum, error) {
-	vals := map[string]WorkspaceSkuNameEnum{
-		"capacityreservation": WorkspaceSkuNameEnumCapacityReservation,
-		"free":                WorkspaceSkuNameEnumFree,
-		"lacluster":           WorkspaceSkuNameEnumLACluster,
-		"pergb2018":           WorkspaceSkuNameEnumPerGBTwoZeroOneEight,
-		"pernode":             WorkspaceSkuNameEnumPerNode,
-		"premium":             WorkspaceSkuNameEnumPremium,
-		"standalone":          WorkspaceSkuNameEnumStandalone,
-		"standard":            WorkspaceSkuNameEnumStandard,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := WorkspaceSkuNameEnum(input)
-	return &out, nil
 }

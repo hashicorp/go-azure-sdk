@@ -1,7 +1,5 @@
 package fhirservices
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -21,21 +19,6 @@ func PossibleValuesForFhirResourceVersionPolicy() []string {
 	}
 }
 
-func parseFhirResourceVersionPolicy(input string) (*FhirResourceVersionPolicy, error) {
-	vals := map[string]FhirResourceVersionPolicy{
-		"no-version":       FhirResourceVersionPolicyNoNegativeversion,
-		"versioned":        FhirResourceVersionPolicyVersioned,
-		"versioned-update": FhirResourceVersionPolicyVersionedNegativeupdate,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := FhirResourceVersionPolicy(input)
-	return &out, nil
-}
-
 type FhirServiceKind string
 
 const (
@@ -48,20 +31,6 @@ func PossibleValuesForFhirServiceKind() []string {
 		string(FhirServiceKindFhirNegativeRFour),
 		string(FhirServiceKindFhirNegativeStuThree),
 	}
-}
-
-func parseFhirServiceKind(input string) (*FhirServiceKind, error) {
-	vals := map[string]FhirServiceKind{
-		"fhir-r4":   FhirServiceKindFhirNegativeRFour,
-		"fhir-stu3": FhirServiceKindFhirNegativeStuThree,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := FhirServiceKind(input)
-	return &out, nil
 }
 
 type PrivateEndpointConnectionProvisioningState string
@@ -82,22 +51,6 @@ func PossibleValuesForPrivateEndpointConnectionProvisioningState() []string {
 	}
 }
 
-func parsePrivateEndpointConnectionProvisioningState(input string) (*PrivateEndpointConnectionProvisioningState, error) {
-	vals := map[string]PrivateEndpointConnectionProvisioningState{
-		"creating":  PrivateEndpointConnectionProvisioningStateCreating,
-		"deleting":  PrivateEndpointConnectionProvisioningStateDeleting,
-		"failed":    PrivateEndpointConnectionProvisioningStateFailed,
-		"succeeded": PrivateEndpointConnectionProvisioningStateSucceeded,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PrivateEndpointConnectionProvisioningState(input)
-	return &out, nil
-}
-
 type PrivateEndpointServiceConnectionStatus string
 
 const (
@@ -112,21 +65,6 @@ func PossibleValuesForPrivateEndpointServiceConnectionStatus() []string {
 		string(PrivateEndpointServiceConnectionStatusPending),
 		string(PrivateEndpointServiceConnectionStatusRejected),
 	}
-}
-
-func parsePrivateEndpointServiceConnectionStatus(input string) (*PrivateEndpointServiceConnectionStatus, error) {
-	vals := map[string]PrivateEndpointServiceConnectionStatus{
-		"approved": PrivateEndpointServiceConnectionStatusApproved,
-		"pending":  PrivateEndpointServiceConnectionStatusPending,
-		"rejected": PrivateEndpointServiceConnectionStatusRejected,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PrivateEndpointServiceConnectionStatus(input)
-	return &out, nil
 }
 
 type ProvisioningState string
@@ -165,31 +103,6 @@ func PossibleValuesForProvisioningState() []string {
 	}
 }
 
-func parseProvisioningState(input string) (*ProvisioningState, error) {
-	vals := map[string]ProvisioningState{
-		"accepted":          ProvisioningStateAccepted,
-		"canceled":          ProvisioningStateCanceled,
-		"creating":          ProvisioningStateCreating,
-		"deleting":          ProvisioningStateDeleting,
-		"deprovisioned":     ProvisioningStateDeprovisioned,
-		"failed":            ProvisioningStateFailed,
-		"moving":            ProvisioningStateMoving,
-		"succeeded":         ProvisioningStateSucceeded,
-		"suspended":         ProvisioningStateSuspended,
-		"systemmaintenance": ProvisioningStateSystemMaintenance,
-		"updating":          ProvisioningStateUpdating,
-		"verifying":         ProvisioningStateVerifying,
-		"warned":            ProvisioningStateWarned,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ProvisioningState(input)
-	return &out, nil
-}
-
 type PublicNetworkAccess string
 
 const (
@@ -202,20 +115,6 @@ func PossibleValuesForPublicNetworkAccess() []string {
 		string(PublicNetworkAccessDisabled),
 		string(PublicNetworkAccessEnabled),
 	}
-}
-
-func parsePublicNetworkAccess(input string) (*PublicNetworkAccess, error) {
-	vals := map[string]PublicNetworkAccess{
-		"disabled": PublicNetworkAccessDisabled,
-		"enabled":  PublicNetworkAccessEnabled,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PublicNetworkAccess(input)
-	return &out, nil
 }
 
 type ServiceEventState string
@@ -232,19 +131,4 @@ func PossibleValuesForServiceEventState() []string {
 		string(ServiceEventStateEnabled),
 		string(ServiceEventStateUpdating),
 	}
-}
-
-func parseServiceEventState(input string) (*ServiceEventState, error) {
-	vals := map[string]ServiceEventState{
-		"disabled": ServiceEventStateDisabled,
-		"enabled":  ServiceEventStateEnabled,
-		"updating": ServiceEventStateUpdating,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ServiceEventState(input)
-	return &out, nil
 }

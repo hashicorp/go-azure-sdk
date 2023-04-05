@@ -1,7 +1,5 @@
 package dataconnectors
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -17,19 +15,6 @@ func PossibleValuesForAvailabilityStatus() []int64 {
 	}
 }
 
-func parseAvailabilityStatus(input int64) (*AvailabilityStatus, error) {
-	vals := map[int64]AvailabilityStatus{
-		1: AvailabilityStatusOne,
-	}
-	if v, ok := vals[input]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := AvailabilityStatus(input)
-	return &out, nil
-}
-
 type ConnectivityType string
 
 const (
@@ -40,19 +25,6 @@ func PossibleValuesForConnectivityType() []string {
 	return []string{
 		string(ConnectivityTypeIsConnectedQuery),
 	}
-}
-
-func parseConnectivityType(input string) (*ConnectivityType, error) {
-	vals := map[string]ConnectivityType{
-		"isconnectedquery": ConnectivityTypeIsConnectedQuery,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ConnectivityType(input)
-	return &out, nil
 }
 
 type DataConnectorKind string
@@ -99,35 +71,6 @@ func PossibleValuesForDataConnectorKind() []string {
 	}
 }
 
-func parseDataConnectorKind(input string) (*DataConnectorKind, error) {
-	vals := map[string]DataConnectorKind{
-		"apipolling":                                DataConnectorKindAPIPolling,
-		"amazonwebservicescloudtrail":               DataConnectorKindAmazonWebServicesCloudTrail,
-		"amazonwebservicess3":                       DataConnectorKindAmazonWebServicesSThree,
-		"azureactivedirectory":                      DataConnectorKindAzureActiveDirectory,
-		"azureadvancedthreatprotection":             DataConnectorKindAzureAdvancedThreatProtection,
-		"azuresecuritycenter":                       DataConnectorKindAzureSecurityCenter,
-		"dynamics365":                               DataConnectorKindDynamicsThreeSixFive,
-		"genericui":                                 DataConnectorKindGenericUI,
-		"microsoftcloudappsecurity":                 DataConnectorKindMicrosoftCloudAppSecurity,
-		"microsoftdefenderadvancedthreatprotection": DataConnectorKindMicrosoftDefenderAdvancedThreatProtection,
-		"microsoftthreatintelligence":               DataConnectorKindMicrosoftThreatIntelligence,
-		"microsoftthreatprotection":                 DataConnectorKindMicrosoftThreatProtection,
-		"officeatp":                                 DataConnectorKindOfficeATP,
-		"officeirm":                                 DataConnectorKindOfficeIRM,
-		"office365":                                 DataConnectorKindOfficeThreeSixFive,
-		"threatintelligence":                        DataConnectorKindThreatIntelligence,
-		"threatintelligencetaxii":                   DataConnectorKindThreatIntelligenceTaxii,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := DataConnectorKind(input)
-	return &out, nil
-}
-
 type DataTypeState string
 
 const (
@@ -140,20 +83,6 @@ func PossibleValuesForDataTypeState() []string {
 		string(DataTypeStateDisabled),
 		string(DataTypeStateEnabled),
 	}
-}
-
-func parseDataTypeState(input string) (*DataTypeState, error) {
-	vals := map[string]DataTypeState{
-		"disabled": DataTypeStateDisabled,
-		"enabled":  DataTypeStateEnabled,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := DataTypeState(input)
-	return &out, nil
 }
 
 type PermissionProviderScope string
@@ -172,21 +101,6 @@ func PossibleValuesForPermissionProviderScope() []string {
 	}
 }
 
-func parsePermissionProviderScope(input string) (*PermissionProviderScope, error) {
-	vals := map[string]PermissionProviderScope{
-		"resourcegroup": PermissionProviderScopeResourceGroup,
-		"subscription":  PermissionProviderScopeSubscription,
-		"workspace":     PermissionProviderScopeWorkspace,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PermissionProviderScope(input)
-	return &out, nil
-}
-
 type PollingFrequency string
 
 const (
@@ -201,21 +115,6 @@ func PossibleValuesForPollingFrequency() []string {
 		string(PollingFrequencyOnceAMinute),
 		string(PollingFrequencyOnceAnHour),
 	}
-}
-
-func parsePollingFrequency(input string) (*PollingFrequency, error) {
-	vals := map[string]PollingFrequency{
-		"onceaday":    PollingFrequencyOnceADay,
-		"onceaminute": PollingFrequencyOnceAMinute,
-		"onceanhour":  PollingFrequencyOnceAnHour,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PollingFrequency(input)
-	return &out, nil
 }
 
 type ProviderName string
@@ -240,24 +139,6 @@ func PossibleValuesForProviderName() []string {
 	}
 }
 
-func parseProviderName(input string) (*ProviderName, error) {
-	vals := map[string]ProviderName{
-		"microsoft.authorization/policyassignments":            ProviderNameMicrosoftPointAuthorizationPolicyAssignments,
-		"microsoft.operationalinsights/solutions":              ProviderNameMicrosoftPointOperationalInsightsSolutions,
-		"microsoft.operationalinsights/workspaces":             ProviderNameMicrosoftPointOperationalInsightsWorkspaces,
-		"microsoft.operationalinsights/workspaces/datasources": ProviderNameMicrosoftPointOperationalInsightsWorkspacesDatasources,
-		"microsoft.operationalinsights/workspaces/sharedkeys":  ProviderNameMicrosoftPointOperationalInsightsWorkspacesSharedKeys,
-		"microsoft.aadiam/diagnosticsettings":                  ProviderNameMicrosoftPointaadiamDiagnosticSettings,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ProviderName(input)
-	return &out, nil
-}
-
 type SettingType string
 
 const (
@@ -272,19 +153,4 @@ func PossibleValuesForSettingType() []string {
 		string(SettingTypeInfoMessage),
 		string(SettingTypeInstructionStepsGroup),
 	}
-}
-
-func parseSettingType(input string) (*SettingType, error) {
-	vals := map[string]SettingType{
-		"copyablelabel":         SettingTypeCopyableLabel,
-		"infomessage":           SettingTypeInfoMessage,
-		"instructionstepsgroup": SettingTypeInstructionStepsGroup,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SettingType(input)
-	return &out, nil
 }

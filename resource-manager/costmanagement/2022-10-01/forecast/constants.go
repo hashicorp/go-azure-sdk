@@ -1,7 +1,5 @@
 package forecast
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -19,20 +17,6 @@ func PossibleValuesForExternalCloudProviderType() []string {
 	}
 }
 
-func parseExternalCloudProviderType(input string) (*ExternalCloudProviderType, error) {
-	vals := map[string]ExternalCloudProviderType{
-		"externalbillingaccounts": ExternalCloudProviderTypeExternalBillingAccounts,
-		"externalsubscriptions":   ExternalCloudProviderTypeExternalSubscriptions,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ExternalCloudProviderType(input)
-	return &out, nil
-}
-
 type ForecastOperatorType string
 
 const (
@@ -45,19 +29,6 @@ func PossibleValuesForForecastOperatorType() []string {
 	}
 }
 
-func parseForecastOperatorType(input string) (*ForecastOperatorType, error) {
-	vals := map[string]ForecastOperatorType{
-		"in": ForecastOperatorTypeIn,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ForecastOperatorType(input)
-	return &out, nil
-}
-
 type ForecastTimeframe string
 
 const (
@@ -68,19 +39,6 @@ func PossibleValuesForForecastTimeframe() []string {
 	return []string{
 		string(ForecastTimeframeCustom),
 	}
-}
-
-func parseForecastTimeframe(input string) (*ForecastTimeframe, error) {
-	vals := map[string]ForecastTimeframe{
-		"custom": ForecastTimeframeCustom,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ForecastTimeframe(input)
-	return &out, nil
 }
 
 type ForecastType string
@@ -97,21 +55,6 @@ func PossibleValuesForForecastType() []string {
 		string(ForecastTypeAmortizedCost),
 		string(ForecastTypeUsage),
 	}
-}
-
-func parseForecastType(input string) (*ForecastType, error) {
-	vals := map[string]ForecastType{
-		"actualcost":    ForecastTypeActualCost,
-		"amortizedcost": ForecastTypeAmortizedCost,
-		"usage":         ForecastTypeUsage,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ForecastType(input)
-	return &out, nil
 }
 
 type FunctionName string
@@ -132,22 +75,6 @@ func PossibleValuesForFunctionName() []string {
 	}
 }
 
-func parseFunctionName(input string) (*FunctionName, error) {
-	vals := map[string]FunctionName{
-		"cost":          FunctionNameCost,
-		"costusd":       FunctionNameCostUSD,
-		"pretaxcost":    FunctionNamePreTaxCost,
-		"pretaxcostusd": FunctionNamePreTaxCostUSD,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := FunctionName(input)
-	return &out, nil
-}
-
 type FunctionType string
 
 const (
@@ -160,19 +87,6 @@ func PossibleValuesForFunctionType() []string {
 	}
 }
 
-func parseFunctionType(input string) (*FunctionType, error) {
-	vals := map[string]FunctionType{
-		"sum": FunctionTypeSum,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := FunctionType(input)
-	return &out, nil
-}
-
 type GranularityType string
 
 const (
@@ -183,17 +97,4 @@ func PossibleValuesForGranularityType() []string {
 	return []string{
 		string(GranularityTypeDaily),
 	}
-}
-
-func parseGranularityType(input string) (*GranularityType, error) {
-	vals := map[string]GranularityType{
-		"daily": GranularityTypeDaily,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := GranularityType(input)
-	return &out, nil
 }

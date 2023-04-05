@@ -1,6 +1,10 @@
 package runbookdraft
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -109,61 +113,17 @@ func PossibleValuesForHTTPStatusCode() []string {
 	}
 }
 
-func parseHTTPStatusCode(input string) (*HTTPStatusCode, error) {
-	vals := map[string]HTTPStatusCode{
-		"accepted":                     HTTPStatusCodeAccepted,
-		"ambiguous":                    HTTPStatusCodeAmbiguous,
-		"badgateway":                   HTTPStatusCodeBadGateway,
-		"badrequest":                   HTTPStatusCodeBadRequest,
-		"conflict":                     HTTPStatusCodeConflict,
-		"continue":                     HTTPStatusCodeContinue,
-		"created":                      HTTPStatusCodeCreated,
-		"expectationfailed":            HTTPStatusCodeExpectationFailed,
-		"forbidden":                    HTTPStatusCodeForbidden,
-		"found":                        HTTPStatusCodeFound,
-		"gatewaytimeout":               HTTPStatusCodeGatewayTimeout,
-		"gone":                         HTTPStatusCodeGone,
-		"httpversionnotsupported":      HTTPStatusCodeHTTPVersionNotSupported,
-		"internalservererror":          HTTPStatusCodeInternalServerError,
-		"lengthrequired":               HTTPStatusCodeLengthRequired,
-		"methodnotallowed":             HTTPStatusCodeMethodNotAllowed,
-		"moved":                        HTTPStatusCodeMoved,
-		"movedpermanently":             HTTPStatusCodeMovedPermanently,
-		"multiplechoices":              HTTPStatusCodeMultipleChoices,
-		"nocontent":                    HTTPStatusCodeNoContent,
-		"nonauthoritativeinformation":  HTTPStatusCodeNonAuthoritativeInformation,
-		"notacceptable":                HTTPStatusCodeNotAcceptable,
-		"notfound":                     HTTPStatusCodeNotFound,
-		"notimplemented":               HTTPStatusCodeNotImplemented,
-		"notmodified":                  HTTPStatusCodeNotModified,
-		"ok":                           HTTPStatusCodeOK,
-		"partialcontent":               HTTPStatusCodePartialContent,
-		"paymentrequired":              HTTPStatusCodePaymentRequired,
-		"preconditionfailed":           HTTPStatusCodePreconditionFailed,
-		"proxyauthenticationrequired":  HTTPStatusCodeProxyAuthenticationRequired,
-		"redirect":                     HTTPStatusCodeRedirect,
-		"redirectkeepverb":             HTTPStatusCodeRedirectKeepVerb,
-		"redirectmethod":               HTTPStatusCodeRedirectMethod,
-		"requestentitytoolarge":        HTTPStatusCodeRequestEntityTooLarge,
-		"requesttimeout":               HTTPStatusCodeRequestTimeout,
-		"requesturitoolong":            HTTPStatusCodeRequestUriTooLong,
-		"requestedrangenotsatisfiable": HTTPStatusCodeRequestedRangeNotSatisfiable,
-		"resetcontent":                 HTTPStatusCodeResetContent,
-		"seeother":                     HTTPStatusCodeSeeOther,
-		"serviceunavailable":           HTTPStatusCodeServiceUnavailable,
-		"switchingprotocols":           HTTPStatusCodeSwitchingProtocols,
-		"temporaryredirect":            HTTPStatusCodeTemporaryRedirect,
-		"unauthorized":                 HTTPStatusCodeUnauthorized,
-		"unsupportedmediatype":         HTTPStatusCodeUnsupportedMediaType,
-		"unused":                       HTTPStatusCodeUnused,
-		"upgraderequired":              HTTPStatusCodeUpgradeRequired,
-		"useproxy":                     HTTPStatusCodeUseProxy,
+func (s *HTTPStatusCode) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForHTTPStatusCode() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := HTTPStatusCode(input)
-	return &out, nil
+	*s = HTTPStatusCode(decoded)
+	return nil
 }

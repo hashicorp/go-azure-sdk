@@ -1,7 +1,5 @@
 package virtualmachines
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -17,20 +15,6 @@ func PossibleValuesForEnableStatus() []string {
 		string(EnableStatusDisabled),
 		string(EnableStatusEnabled),
 	}
-}
-
-func parseEnableStatus(input string) (*EnableStatus, error) {
-	vals := map[string]EnableStatus{
-		"disabled": EnableStatusDisabled,
-		"enabled":  EnableStatusEnabled,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := EnableStatus(input)
-	return &out, nil
 }
 
 type HostCachingOptions string
@@ -49,21 +33,6 @@ func PossibleValuesForHostCachingOptions() []string {
 	}
 }
 
-func parseHostCachingOptions(input string) (*HostCachingOptions, error) {
-	vals := map[string]HostCachingOptions{
-		"none":      HostCachingOptionsNone,
-		"readonly":  HostCachingOptionsReadOnly,
-		"readwrite": HostCachingOptionsReadWrite,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := HostCachingOptions(input)
-	return &out, nil
-}
-
 type StorageType string
 
 const (
@@ -80,21 +49,6 @@ func PossibleValuesForStorageType() []string {
 	}
 }
 
-func parseStorageType(input string) (*StorageType, error) {
-	vals := map[string]StorageType{
-		"premium":     StorageTypePremium,
-		"standard":    StorageTypeStandard,
-		"standardssd": StorageTypeStandardSSD,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := StorageType(input)
-	return &out, nil
-}
-
 type TransportProtocol string
 
 const (
@@ -107,20 +61,6 @@ func PossibleValuesForTransportProtocol() []string {
 		string(TransportProtocolTcp),
 		string(TransportProtocolUdp),
 	}
-}
-
-func parseTransportProtocol(input string) (*TransportProtocol, error) {
-	vals := map[string]TransportProtocol{
-		"tcp": TransportProtocolTcp,
-		"udp": TransportProtocolUdp,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := TransportProtocol(input)
-	return &out, nil
 }
 
 type VirtualMachineCreationSource string
@@ -137,19 +77,4 @@ func PossibleValuesForVirtualMachineCreationSource() []string {
 		string(VirtualMachineCreationSourceFromGalleryImage),
 		string(VirtualMachineCreationSourceFromSharedGalleryImage),
 	}
-}
-
-func parseVirtualMachineCreationSource(input string) (*VirtualMachineCreationSource, error) {
-	vals := map[string]VirtualMachineCreationSource{
-		"fromcustomimage":        VirtualMachineCreationSourceFromCustomImage,
-		"fromgalleryimage":       VirtualMachineCreationSourceFromGalleryImage,
-		"fromsharedgalleryimage": VirtualMachineCreationSourceFromSharedGalleryImage,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := VirtualMachineCreationSource(input)
-	return &out, nil
 }

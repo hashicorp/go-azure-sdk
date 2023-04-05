@@ -1,7 +1,5 @@
 package activityruns
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -39,30 +37,6 @@ func PossibleValuesForRunQueryFilterOperand() []string {
 	}
 }
 
-func parseRunQueryFilterOperand(input string) (*RunQueryFilterOperand, error) {
-	vals := map[string]RunQueryFilterOperand{
-		"activityname":        RunQueryFilterOperandActivityName,
-		"activityrunend":      RunQueryFilterOperandActivityRunEnd,
-		"activityrunstart":    RunQueryFilterOperandActivityRunStart,
-		"activitytype":        RunQueryFilterOperandActivityType,
-		"latestonly":          RunQueryFilterOperandLatestOnly,
-		"pipelinename":        RunQueryFilterOperandPipelineName,
-		"runend":              RunQueryFilterOperandRunEnd,
-		"rungroupid":          RunQueryFilterOperandRunGroupId,
-		"runstart":            RunQueryFilterOperandRunStart,
-		"status":              RunQueryFilterOperandStatus,
-		"triggername":         RunQueryFilterOperandTriggerName,
-		"triggerruntimestamp": RunQueryFilterOperandTriggerRunTimestamp,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := RunQueryFilterOperand(input)
-	return &out, nil
-}
-
 type RunQueryFilterOperator string
 
 const (
@@ -81,22 +55,6 @@ func PossibleValuesForRunQueryFilterOperator() []string {
 	}
 }
 
-func parseRunQueryFilterOperator(input string) (*RunQueryFilterOperator, error) {
-	vals := map[string]RunQueryFilterOperator{
-		"equals":    RunQueryFilterOperatorEquals,
-		"in":        RunQueryFilterOperatorIn,
-		"notequals": RunQueryFilterOperatorNotEquals,
-		"notin":     RunQueryFilterOperatorNotIn,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := RunQueryFilterOperator(input)
-	return &out, nil
-}
-
 type RunQueryOrder string
 
 const (
@@ -109,20 +67,6 @@ func PossibleValuesForRunQueryOrder() []string {
 		string(RunQueryOrderASC),
 		string(RunQueryOrderDESC),
 	}
-}
-
-func parseRunQueryOrder(input string) (*RunQueryOrder, error) {
-	vals := map[string]RunQueryOrder{
-		"asc":  RunQueryOrderASC,
-		"desc": RunQueryOrderDESC,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := RunQueryOrder(input)
-	return &out, nil
 }
 
 type RunQueryOrderByField string
@@ -151,25 +95,4 @@ func PossibleValuesForRunQueryOrderByField() []string {
 		string(RunQueryOrderByFieldTriggerName),
 		string(RunQueryOrderByFieldTriggerRunTimestamp),
 	}
-}
-
-func parseRunQueryOrderByField(input string) (*RunQueryOrderByField, error) {
-	vals := map[string]RunQueryOrderByField{
-		"activityname":        RunQueryOrderByFieldActivityName,
-		"activityrunend":      RunQueryOrderByFieldActivityRunEnd,
-		"activityrunstart":    RunQueryOrderByFieldActivityRunStart,
-		"pipelinename":        RunQueryOrderByFieldPipelineName,
-		"runend":              RunQueryOrderByFieldRunEnd,
-		"runstart":            RunQueryOrderByFieldRunStart,
-		"status":              RunQueryOrderByFieldStatus,
-		"triggername":         RunQueryOrderByFieldTriggerName,
-		"triggerruntimestamp": RunQueryOrderByFieldTriggerRunTimestamp,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := RunQueryOrderByField(input)
-	return &out, nil
 }

@@ -1,7 +1,5 @@
 package protectionintent
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -31,27 +29,6 @@ func PossibleValuesForBackupManagementType() []string {
 		string(BackupManagementTypeInvalid),
 		string(BackupManagementTypeMAB),
 	}
-}
-
-func parseBackupManagementType(input string) (*BackupManagementType, error) {
-	vals := map[string]BackupManagementType{
-		"azurebackupserver": BackupManagementTypeAzureBackupServer,
-		"azureiaasvm":       BackupManagementTypeAzureIaasVM,
-		"azuresql":          BackupManagementTypeAzureSql,
-		"azurestorage":      BackupManagementTypeAzureStorage,
-		"azureworkload":     BackupManagementTypeAzureWorkload,
-		"dpm":               BackupManagementTypeDPM,
-		"defaultbackup":     BackupManagementTypeDefaultBackup,
-		"invalid":           BackupManagementTypeInvalid,
-		"mab":               BackupManagementTypeMAB,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := BackupManagementType(input)
-	return &out, nil
 }
 
 type DataSourceType string
@@ -96,34 +73,6 @@ func PossibleValuesForDataSourceType() []string {
 	}
 }
 
-func parseDataSourceType(input string) (*DataSourceType, error) {
-	vals := map[string]DataSourceType{
-		"azurefileshare":    DataSourceTypeAzureFileShare,
-		"azuresqldb":        DataSourceTypeAzureSqlDb,
-		"client":            DataSourceTypeClient,
-		"exchange":          DataSourceTypeExchange,
-		"filefolder":        DataSourceTypeFileFolder,
-		"genericdatasource": DataSourceTypeGenericDataSource,
-		"invalid":           DataSourceTypeInvalid,
-		"sapasedatabase":    DataSourceTypeSAPAseDatabase,
-		"saphanadbinstance": DataSourceTypeSAPHanaDBInstance,
-		"saphanadatabase":   DataSourceTypeSAPHanaDatabase,
-		"sqldb":             DataSourceTypeSQLDB,
-		"sqldatabase":       DataSourceTypeSQLDataBase,
-		"sharepoint":        DataSourceTypeSharepoint,
-		"systemstate":       DataSourceTypeSystemState,
-		"vm":                DataSourceTypeVM,
-		"vmwarevm":          DataSourceTypeVMwareVM,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := DataSourceType(input)
-	return &out, nil
-}
-
 type ProtectionIntentItemType string
 
 const (
@@ -146,24 +95,6 @@ func PossibleValuesForProtectionIntentItemType() []string {
 	}
 }
 
-func parseProtectionIntentItemType(input string) (*ProtectionIntentItemType, error) {
-	vals := map[string]ProtectionIntentItemType{
-		"azureresourceitem":                          ProtectionIntentItemTypeAzureResourceItem,
-		"azureworkloadautoprotectionintent":          ProtectionIntentItemTypeAzureWorkloadAutoProtectionIntent,
-		"azureworkloadcontainerautoprotectionintent": ProtectionIntentItemTypeAzureWorkloadContainerAutoProtectionIntent,
-		"azureworkloadsqlautoprotectionintent":       ProtectionIntentItemTypeAzureWorkloadSQLAutoProtectionIntent,
-		"invalid":                                    ProtectionIntentItemTypeInvalid,
-		"recoveryservicevaultitem":                   ProtectionIntentItemTypeRecoveryServiceVaultItem,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ProtectionIntentItemType(input)
-	return &out, nil
-}
-
 type ProtectionStatus string
 
 const (
@@ -184,23 +115,6 @@ func PossibleValuesForProtectionStatus() []string {
 	}
 }
 
-func parseProtectionStatus(input string) (*ProtectionStatus, error) {
-	vals := map[string]ProtectionStatus{
-		"invalid":          ProtectionStatusInvalid,
-		"notprotected":     ProtectionStatusNotProtected,
-		"protected":        ProtectionStatusProtected,
-		"protecting":       ProtectionStatusProtecting,
-		"protectionfailed": ProtectionStatusProtectionFailed,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ProtectionStatus(input)
-	return &out, nil
-}
-
 type ValidationStatus string
 
 const (
@@ -215,19 +129,4 @@ func PossibleValuesForValidationStatus() []string {
 		string(ValidationStatusInvalid),
 		string(ValidationStatusSucceeded),
 	}
-}
-
-func parseValidationStatus(input string) (*ValidationStatus, error) {
-	vals := map[string]ValidationStatus{
-		"failed":    ValidationStatusFailed,
-		"invalid":   ValidationStatusInvalid,
-		"succeeded": ValidationStatusSucceeded,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ValidationStatus(input)
-	return &out, nil
 }

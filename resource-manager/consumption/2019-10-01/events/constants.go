@@ -1,7 +1,5 @@
 package events
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -27,23 +25,4 @@ func PossibleValuesForEventType() []string {
 		string(EventTypeSettledCharges),
 		string(EventTypeUnKnown),
 	}
-}
-
-func parseEventType(input string) (*EventType, error) {
-	vals := map[string]EventType{
-		"newcredit":            EventTypeNewCredit,
-		"pendingadjustments":   EventTypePendingAdjustments,
-		"pendingcharges":       EventTypePendingCharges,
-		"pendingexpiredcredit": EventTypePendingExpiredCredit,
-		"pendingnewcredit":     EventTypePendingNewCredit,
-		"settledcharges":       EventTypeSettledCharges,
-		"unknown":              EventTypeUnKnown,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := EventType(input)
-	return &out, nil
 }

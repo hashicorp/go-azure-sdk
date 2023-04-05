@@ -1,6 +1,10 @@
 package inventoryitems
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -29,23 +33,19 @@ func PossibleValuesForInventoryType() []string {
 	}
 }
 
-func parseInventoryType(input string) (*InventoryType, error) {
-	vals := map[string]InventoryType{
-		"cluster":                InventoryTypeCluster,
-		"datastore":              InventoryTypeDatastore,
-		"host":                   InventoryTypeHost,
-		"resourcepool":           InventoryTypeResourcePool,
-		"virtualmachine":         InventoryTypeVirtualMachine,
-		"virtualmachinetemplate": InventoryTypeVirtualMachineTemplate,
-		"virtualnetwork":         InventoryTypeVirtualNetwork,
+func (s *InventoryType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForInventoryType() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := InventoryType(input)
-	return &out, nil
+	*s = InventoryType(decoded)
+	return nil
 }
 
 type OsType string
@@ -64,17 +64,17 @@ func PossibleValuesForOsType() []string {
 	}
 }
 
-func parseOsType(input string) (*OsType, error) {
-	vals := map[string]OsType{
-		"linux":   OsTypeLinux,
-		"other":   OsTypeOther,
-		"windows": OsTypeWindows,
+func (s *OsType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForOsType() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := OsType(input)
-	return &out, nil
+	*s = OsType(decoded)
+	return nil
 }

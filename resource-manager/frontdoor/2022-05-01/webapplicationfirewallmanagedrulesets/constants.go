@@ -1,7 +1,5 @@
 package webapplicationfirewallmanagedrulesets
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -25,23 +23,6 @@ func PossibleValuesForActionType() []string {
 	}
 }
 
-func parseActionType(input string) (*ActionType, error) {
-	vals := map[string]ActionType{
-		"allow":          ActionTypeAllow,
-		"anomalyscoring": ActionTypeAnomalyScoring,
-		"block":          ActionTypeBlock,
-		"log":            ActionTypeLog,
-		"redirect":       ActionTypeRedirect,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ActionType(input)
-	return &out, nil
-}
-
 type ManagedRuleEnabledState string
 
 const (
@@ -54,18 +35,4 @@ func PossibleValuesForManagedRuleEnabledState() []string {
 		string(ManagedRuleEnabledStateDisabled),
 		string(ManagedRuleEnabledStateEnabled),
 	}
-}
-
-func parseManagedRuleEnabledState(input string) (*ManagedRuleEnabledState, error) {
-	vals := map[string]ManagedRuleEnabledState{
-		"disabled": ManagedRuleEnabledStateDisabled,
-		"enabled":  ManagedRuleEnabledStateEnabled,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ManagedRuleEnabledState(input)
-	return &out, nil
 }

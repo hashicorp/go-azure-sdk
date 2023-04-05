@@ -1,7 +1,5 @@
 package namespaces
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -27,24 +25,6 @@ func PossibleValuesForEndPointProvisioningState() []string {
 	}
 }
 
-func parseEndPointProvisioningState(input string) (*EndPointProvisioningState, error) {
-	vals := map[string]EndPointProvisioningState{
-		"canceled":  EndPointProvisioningStateCanceled,
-		"creating":  EndPointProvisioningStateCreating,
-		"deleting":  EndPointProvisioningStateDeleting,
-		"failed":    EndPointProvisioningStateFailed,
-		"succeeded": EndPointProvisioningStateSucceeded,
-		"updating":  EndPointProvisioningStateUpdating,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := EndPointProvisioningState(input)
-	return &out, nil
-}
-
 type KeySource string
 
 const (
@@ -55,19 +35,6 @@ func PossibleValuesForKeySource() []string {
 	return []string{
 		string(KeySourceMicrosoftPointKeyVault),
 	}
-}
-
-func parseKeySource(input string) (*KeySource, error) {
-	vals := map[string]KeySource{
-		"microsoft.keyvault": KeySourceMicrosoftPointKeyVault,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := KeySource(input)
-	return &out, nil
 }
 
 type PrivateLinkConnectionStatus string
@@ -88,22 +55,6 @@ func PossibleValuesForPrivateLinkConnectionStatus() []string {
 	}
 }
 
-func parsePrivateLinkConnectionStatus(input string) (*PrivateLinkConnectionStatus, error) {
-	vals := map[string]PrivateLinkConnectionStatus{
-		"approved":     PrivateLinkConnectionStatusApproved,
-		"disconnected": PrivateLinkConnectionStatusDisconnected,
-		"pending":      PrivateLinkConnectionStatusPending,
-		"rejected":     PrivateLinkConnectionStatusRejected,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PrivateLinkConnectionStatus(input)
-	return &out, nil
-}
-
 type PublicNetworkAccess string
 
 const (
@@ -118,21 +69,6 @@ func PossibleValuesForPublicNetworkAccess() []string {
 		string(PublicNetworkAccessEnabled),
 		string(PublicNetworkAccessSecuredByPerimeter),
 	}
-}
-
-func parsePublicNetworkAccess(input string) (*PublicNetworkAccess, error) {
-	vals := map[string]PublicNetworkAccess{
-		"disabled":           PublicNetworkAccessDisabled,
-		"enabled":            PublicNetworkAccessEnabled,
-		"securedbyperimeter": PublicNetworkAccessSecuredByPerimeter,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PublicNetworkAccess(input)
-	return &out, nil
 }
 
 type SkuName string
@@ -151,21 +87,6 @@ func PossibleValuesForSkuName() []string {
 	}
 }
 
-func parseSkuName(input string) (*SkuName, error) {
-	vals := map[string]SkuName{
-		"basic":    SkuNameBasic,
-		"premium":  SkuNamePremium,
-		"standard": SkuNameStandard,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SkuName(input)
-	return &out, nil
-}
-
 type SkuTier string
 
 const (
@@ -182,21 +103,6 @@ func PossibleValuesForSkuTier() []string {
 	}
 }
 
-func parseSkuTier(input string) (*SkuTier, error) {
-	vals := map[string]SkuTier{
-		"basic":    SkuTierBasic,
-		"premium":  SkuTierPremium,
-		"standard": SkuTierStandard,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SkuTier(input)
-	return &out, nil
-}
-
 type TlsVersion string
 
 const (
@@ -211,19 +117,4 @@ func PossibleValuesForTlsVersion() []string {
 		string(TlsVersionOnePointTwo),
 		string(TlsVersionOnePointZero),
 	}
-}
-
-func parseTlsVersion(input string) (*TlsVersion, error) {
-	vals := map[string]TlsVersion{
-		"1.1": TlsVersionOnePointOne,
-		"1.2": TlsVersionOnePointTwo,
-		"1.0": TlsVersionOnePointZero,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := TlsVersion(input)
-	return &out, nil
 }

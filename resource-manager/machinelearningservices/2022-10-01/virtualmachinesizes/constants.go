@@ -1,7 +1,5 @@
 package virtualmachinesizes
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -17,19 +15,6 @@ func PossibleValuesForBillingCurrency() []string {
 	}
 }
 
-func parseBillingCurrency(input string) (*BillingCurrency, error) {
-	vals := map[string]BillingCurrency{
-		"usd": BillingCurrencyUSD,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := BillingCurrency(input)
-	return &out, nil
-}
-
 type UnitOfMeasure string
 
 const (
@@ -40,19 +25,6 @@ func PossibleValuesForUnitOfMeasure() []string {
 	return []string{
 		string(UnitOfMeasureOneHour),
 	}
-}
-
-func parseUnitOfMeasure(input string) (*UnitOfMeasure, error) {
-	vals := map[string]UnitOfMeasure{
-		"onehour": UnitOfMeasureOneHour,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := UnitOfMeasure(input)
-	return &out, nil
 }
 
 type VMPriceOSType string
@@ -69,20 +41,6 @@ func PossibleValuesForVMPriceOSType() []string {
 	}
 }
 
-func parseVMPriceOSType(input string) (*VMPriceOSType, error) {
-	vals := map[string]VMPriceOSType{
-		"linux":   VMPriceOSTypeLinux,
-		"windows": VMPriceOSTypeWindows,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := VMPriceOSType(input)
-	return &out, nil
-}
-
 type VMTier string
 
 const (
@@ -97,19 +55,4 @@ func PossibleValuesForVMTier() []string {
 		string(VMTierSpot),
 		string(VMTierStandard),
 	}
-}
-
-func parseVMTier(input string) (*VMTier, error) {
-	vals := map[string]VMTier{
-		"lowpriority": VMTierLowPriority,
-		"spot":        VMTierSpot,
-		"standard":    VMTierStandard,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := VMTier(input)
-	return &out, nil
 }

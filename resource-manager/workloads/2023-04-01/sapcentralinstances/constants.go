@@ -1,6 +1,10 @@
 package sapcentralinstances
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -29,23 +33,19 @@ func PossibleValuesForCentralServerVirtualMachineType() []string {
 	}
 }
 
-func parseCentralServerVirtualMachineType(input string) (*CentralServerVirtualMachineType, error) {
-	vals := map[string]CentralServerVirtualMachineType{
-		"ascs":        CentralServerVirtualMachineTypeASCS,
-		"ers":         CentralServerVirtualMachineTypeERS,
-		"ersinactive": CentralServerVirtualMachineTypeERSInactive,
-		"primary":     CentralServerVirtualMachineTypePrimary,
-		"secondary":   CentralServerVirtualMachineTypeSecondary,
-		"standby":     CentralServerVirtualMachineTypeStandby,
-		"unknown":     CentralServerVirtualMachineTypeUnknown,
+func (s *CentralServerVirtualMachineType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForCentralServerVirtualMachineType() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := CentralServerVirtualMachineType(input)
-	return &out, nil
+	*s = CentralServerVirtualMachineType(decoded)
+	return nil
 }
 
 type EnqueueReplicationServerType string
@@ -62,18 +62,19 @@ func PossibleValuesForEnqueueReplicationServerType() []string {
 	}
 }
 
-func parseEnqueueReplicationServerType(input string) (*EnqueueReplicationServerType, error) {
-	vals := map[string]EnqueueReplicationServerType{
-		"enqueuereplicator1": EnqueueReplicationServerTypeEnqueueReplicatorOne,
-		"enqueuereplicator2": EnqueueReplicationServerTypeEnqueueReplicatorTwo,
+func (s *EnqueueReplicationServerType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForEnqueueReplicationServerType() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := EnqueueReplicationServerType(input)
-	return &out, nil
+	*s = EnqueueReplicationServerType(decoded)
+	return nil
 }
 
 type SAPHealthState string
@@ -94,20 +95,19 @@ func PossibleValuesForSAPHealthState() []string {
 	}
 }
 
-func parseSAPHealthState(input string) (*SAPHealthState, error) {
-	vals := map[string]SAPHealthState{
-		"degraded":  SAPHealthStateDegraded,
-		"healthy":   SAPHealthStateHealthy,
-		"unhealthy": SAPHealthStateUnhealthy,
-		"unknown":   SAPHealthStateUnknown,
+func (s *SAPHealthState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForSAPHealthState() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SAPHealthState(input)
-	return &out, nil
+	*s = SAPHealthState(decoded)
+	return nil
 }
 
 type SAPVirtualInstanceStatus string
@@ -134,23 +134,19 @@ func PossibleValuesForSAPVirtualInstanceStatus() []string {
 	}
 }
 
-func parseSAPVirtualInstanceStatus(input string) (*SAPVirtualInstanceStatus, error) {
-	vals := map[string]SAPVirtualInstanceStatus{
-		"offline":          SAPVirtualInstanceStatusOffline,
-		"partiallyrunning": SAPVirtualInstanceStatusPartiallyRunning,
-		"running":          SAPVirtualInstanceStatusRunning,
-		"softshutdown":     SAPVirtualInstanceStatusSoftShutdown,
-		"starting":         SAPVirtualInstanceStatusStarting,
-		"stopping":         SAPVirtualInstanceStatusStopping,
-		"unavailable":      SAPVirtualInstanceStatusUnavailable,
+func (s *SAPVirtualInstanceStatus) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForSAPVirtualInstanceStatus() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SAPVirtualInstanceStatus(input)
-	return &out, nil
+	*s = SAPVirtualInstanceStatus(decoded)
+	return nil
 }
 
 type SapVirtualInstanceProvisioningState string
@@ -173,19 +169,17 @@ func PossibleValuesForSapVirtualInstanceProvisioningState() []string {
 	}
 }
 
-func parseSapVirtualInstanceProvisioningState(input string) (*SapVirtualInstanceProvisioningState, error) {
-	vals := map[string]SapVirtualInstanceProvisioningState{
-		"creating":  SapVirtualInstanceProvisioningStateCreating,
-		"deleting":  SapVirtualInstanceProvisioningStateDeleting,
-		"failed":    SapVirtualInstanceProvisioningStateFailed,
-		"succeeded": SapVirtualInstanceProvisioningStateSucceeded,
-		"updating":  SapVirtualInstanceProvisioningStateUpdating,
+func (s *SapVirtualInstanceProvisioningState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForSapVirtualInstanceProvisioningState() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SapVirtualInstanceProvisioningState(input)
-	return &out, nil
+	*s = SapVirtualInstanceProvisioningState(decoded)
+	return nil
 }

@@ -1,7 +1,5 @@
 package accounts
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -17,20 +15,6 @@ func PossibleValuesForDataLakeStoreAccountState() []string {
 		string(DataLakeStoreAccountStateActive),
 		string(DataLakeStoreAccountStateSuspended),
 	}
-}
-
-func parseDataLakeStoreAccountState(input string) (*DataLakeStoreAccountState, error) {
-	vals := map[string]DataLakeStoreAccountState{
-		"active":    DataLakeStoreAccountStateActive,
-		"suspended": DataLakeStoreAccountStateSuspended,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := DataLakeStoreAccountState(input)
-	return &out, nil
 }
 
 type DataLakeStoreAccountStatus string
@@ -65,29 +49,6 @@ func PossibleValuesForDataLakeStoreAccountStatus() []string {
 	}
 }
 
-func parseDataLakeStoreAccountStatus(input string) (*DataLakeStoreAccountStatus, error) {
-	vals := map[string]DataLakeStoreAccountStatus{
-		"canceled":   DataLakeStoreAccountStatusCanceled,
-		"creating":   DataLakeStoreAccountStatusCreating,
-		"deleted":    DataLakeStoreAccountStatusDeleted,
-		"deleting":   DataLakeStoreAccountStatusDeleting,
-		"failed":     DataLakeStoreAccountStatusFailed,
-		"patching":   DataLakeStoreAccountStatusPatching,
-		"resuming":   DataLakeStoreAccountStatusResuming,
-		"running":    DataLakeStoreAccountStatusRunning,
-		"succeeded":  DataLakeStoreAccountStatusSucceeded,
-		"suspending": DataLakeStoreAccountStatusSuspending,
-		"undeleting": DataLakeStoreAccountStatusUndeleting,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := DataLakeStoreAccountStatus(input)
-	return &out, nil
-}
-
 type EncryptionConfigType string
 
 const (
@@ -100,20 +61,6 @@ func PossibleValuesForEncryptionConfigType() []string {
 		string(EncryptionConfigTypeServiceManaged),
 		string(EncryptionConfigTypeUserManaged),
 	}
-}
-
-func parseEncryptionConfigType(input string) (*EncryptionConfigType, error) {
-	vals := map[string]EncryptionConfigType{
-		"servicemanaged": EncryptionConfigTypeServiceManaged,
-		"usermanaged":    EncryptionConfigTypeUserManaged,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := EncryptionConfigType(input)
-	return &out, nil
 }
 
 type EncryptionProvisioningState string
@@ -130,20 +77,6 @@ func PossibleValuesForEncryptionProvisioningState() []string {
 	}
 }
 
-func parseEncryptionProvisioningState(input string) (*EncryptionProvisioningState, error) {
-	vals := map[string]EncryptionProvisioningState{
-		"creating":  EncryptionProvisioningStateCreating,
-		"succeeded": EncryptionProvisioningStateSucceeded,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := EncryptionProvisioningState(input)
-	return &out, nil
-}
-
 type EncryptionState string
 
 const (
@@ -156,20 +89,6 @@ func PossibleValuesForEncryptionState() []string {
 		string(EncryptionStateDisabled),
 		string(EncryptionStateEnabled),
 	}
-}
-
-func parseEncryptionState(input string) (*EncryptionState, error) {
-	vals := map[string]EncryptionState{
-		"disabled": EncryptionStateDisabled,
-		"enabled":  EncryptionStateEnabled,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := EncryptionState(input)
-	return &out, nil
 }
 
 type FirewallAllowAzureIPsState string
@@ -186,20 +105,6 @@ func PossibleValuesForFirewallAllowAzureIPsState() []string {
 	}
 }
 
-func parseFirewallAllowAzureIPsState(input string) (*FirewallAllowAzureIPsState, error) {
-	vals := map[string]FirewallAllowAzureIPsState{
-		"disabled": FirewallAllowAzureIPsStateDisabled,
-		"enabled":  FirewallAllowAzureIPsStateEnabled,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := FirewallAllowAzureIPsState(input)
-	return &out, nil
-}
-
 type FirewallState string
 
 const (
@@ -212,20 +117,6 @@ func PossibleValuesForFirewallState() []string {
 		string(FirewallStateDisabled),
 		string(FirewallStateEnabled),
 	}
-}
-
-func parseFirewallState(input string) (*FirewallState, error) {
-	vals := map[string]FirewallState{
-		"disabled": FirewallStateDisabled,
-		"enabled":  FirewallStateEnabled,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := FirewallState(input)
-	return &out, nil
 }
 
 type TierType string
@@ -252,25 +143,6 @@ func PossibleValuesForTierType() []string {
 	}
 }
 
-func parseTierType(input string) (*TierType, error) {
-	vals := map[string]TierType{
-		"commitment_500tb": TierTypeCommitmentFiveHundredTB,
-		"commitment_5pb":   TierTypeCommitmentFivePB,
-		"commitment_100tb": TierTypeCommitmentOneHundredTB,
-		"commitment_1pb":   TierTypeCommitmentOnePB,
-		"commitment_1tb":   TierTypeCommitmentOneTB,
-		"commitment_10tb":  TierTypeCommitmentOneZeroTB,
-		"consumption":      TierTypeConsumption,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := TierType(input)
-	return &out, nil
-}
-
 type TrustedIdProviderState string
 
 const (
@@ -285,20 +157,6 @@ func PossibleValuesForTrustedIdProviderState() []string {
 	}
 }
 
-func parseTrustedIdProviderState(input string) (*TrustedIdProviderState, error) {
-	vals := map[string]TrustedIdProviderState{
-		"disabled": TrustedIdProviderStateDisabled,
-		"enabled":  TrustedIdProviderStateEnabled,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := TrustedIdProviderState(input)
-	return &out, nil
-}
-
 type Type string
 
 const (
@@ -309,17 +167,4 @@ func PossibleValuesForType() []string {
 	return []string{
 		string(TypeMicrosoftPointDataLakeStoreAccounts),
 	}
-}
-
-func parseType(input string) (*Type, error) {
-	vals := map[string]Type{
-		"microsoft.datalakestore/accounts": TypeMicrosoftPointDataLakeStoreAccounts,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := Type(input)
-	return &out, nil
 }

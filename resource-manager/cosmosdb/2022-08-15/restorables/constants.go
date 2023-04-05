@@ -1,7 +1,5 @@
 package restorables
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -27,24 +25,6 @@ func PossibleValuesForApiType() []string {
 	}
 }
 
-func parseApiType(input string) (*ApiType, error) {
-	vals := map[string]ApiType{
-		"cassandra": ApiTypeCassandra,
-		"gremlin":   ApiTypeGremlin,
-		"gremlinv2": ApiTypeGremlinVTwo,
-		"mongodb":   ApiTypeMongoDB,
-		"sql":       ApiTypeSql,
-		"table":     ApiTypeTable,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ApiType(input)
-	return &out, nil
-}
-
 type CompositePathSortOrder string
 
 const (
@@ -59,20 +39,6 @@ func PossibleValuesForCompositePathSortOrder() []string {
 	}
 }
 
-func parseCompositePathSortOrder(input string) (*CompositePathSortOrder, error) {
-	vals := map[string]CompositePathSortOrder{
-		"ascending":  CompositePathSortOrderAscending,
-		"descending": CompositePathSortOrderDescending,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := CompositePathSortOrder(input)
-	return &out, nil
-}
-
 type ConflictResolutionMode string
 
 const (
@@ -85,20 +51,6 @@ func PossibleValuesForConflictResolutionMode() []string {
 		string(ConflictResolutionModeCustom),
 		string(ConflictResolutionModeLastWriterWins),
 	}
-}
-
-func parseConflictResolutionMode(input string) (*ConflictResolutionMode, error) {
-	vals := map[string]ConflictResolutionMode{
-		"custom":         ConflictResolutionModeCustom,
-		"lastwriterwins": ConflictResolutionModeLastWriterWins,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ConflictResolutionMode(input)
-	return &out, nil
 }
 
 type DataType string
@@ -123,24 +75,6 @@ func PossibleValuesForDataType() []string {
 	}
 }
 
-func parseDataType(input string) (*DataType, error) {
-	vals := map[string]DataType{
-		"linestring":   DataTypeLineString,
-		"multipolygon": DataTypeMultiPolygon,
-		"number":       DataTypeNumber,
-		"point":        DataTypePoint,
-		"polygon":      DataTypePolygon,
-		"string":       DataTypeString,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := DataType(input)
-	return &out, nil
-}
-
 type IndexKind string
 
 const (
@@ -157,21 +91,6 @@ func PossibleValuesForIndexKind() []string {
 	}
 }
 
-func parseIndexKind(input string) (*IndexKind, error) {
-	vals := map[string]IndexKind{
-		"hash":    IndexKindHash,
-		"range":   IndexKindRange,
-		"spatial": IndexKindSpatial,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := IndexKind(input)
-	return &out, nil
-}
-
 type IndexingMode string
 
 const (
@@ -186,21 +105,6 @@ func PossibleValuesForIndexingMode() []string {
 		string(IndexingModeLazy),
 		string(IndexingModeNone),
 	}
-}
-
-func parseIndexingMode(input string) (*IndexingMode, error) {
-	vals := map[string]IndexingMode{
-		"consistent": IndexingModeConsistent,
-		"lazy":       IndexingModeLazy,
-		"none":       IndexingModeNone,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := IndexingMode(input)
-	return &out, nil
 }
 
 type OperationType string
@@ -221,22 +125,6 @@ func PossibleValuesForOperationType() []string {
 	}
 }
 
-func parseOperationType(input string) (*OperationType, error) {
-	vals := map[string]OperationType{
-		"create":          OperationTypeCreate,
-		"delete":          OperationTypeDelete,
-		"replace":         OperationTypeReplace,
-		"systemoperation": OperationTypeSystemOperation,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := OperationType(input)
-	return &out, nil
-}
-
 type PartitionKind string
 
 const (
@@ -251,21 +139,6 @@ func PossibleValuesForPartitionKind() []string {
 		string(PartitionKindMultiHash),
 		string(PartitionKindRange),
 	}
-}
-
-func parsePartitionKind(input string) (*PartitionKind, error) {
-	vals := map[string]PartitionKind{
-		"hash":      PartitionKindHash,
-		"multihash": PartitionKindMultiHash,
-		"range":     PartitionKindRange,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PartitionKind(input)
-	return &out, nil
 }
 
 type SpatialType string
@@ -284,20 +157,4 @@ func PossibleValuesForSpatialType() []string {
 		string(SpatialTypePoint),
 		string(SpatialTypePolygon),
 	}
-}
-
-func parseSpatialType(input string) (*SpatialType, error) {
-	vals := map[string]SpatialType{
-		"linestring":   SpatialTypeLineString,
-		"multipolygon": SpatialTypeMultiPolygon,
-		"point":        SpatialTypePoint,
-		"polygon":      SpatialTypePolygon,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SpatialType(input)
-	return &out, nil
 }

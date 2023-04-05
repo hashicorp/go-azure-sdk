@@ -1,7 +1,5 @@
 package scripts
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -19,20 +17,6 @@ func PossibleValuesForOptionalParamEnum() []string {
 	}
 }
 
-func parseOptionalParamEnum(input string) (*OptionalParamEnum, error) {
-	vals := map[string]OptionalParamEnum{
-		"optional": OptionalParamEnumOptional,
-		"required": OptionalParamEnumRequired,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := OptionalParamEnum(input)
-	return &out, nil
-}
-
 type ScriptExecutionParameterType string
 
 const (
@@ -47,21 +31,6 @@ func PossibleValuesForScriptExecutionParameterType() []string {
 		string(ScriptExecutionParameterTypeSecureValue),
 		string(ScriptExecutionParameterTypeValue),
 	}
-}
-
-func parseScriptExecutionParameterType(input string) (*ScriptExecutionParameterType, error) {
-	vals := map[string]ScriptExecutionParameterType{
-		"credential":  ScriptExecutionParameterTypeCredential,
-		"securevalue": ScriptExecutionParameterTypeSecureValue,
-		"value":       ScriptExecutionParameterTypeValue,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ScriptExecutionParameterType(input)
-	return &out, nil
 }
 
 type ScriptExecutionProvisioningState string
@@ -90,26 +59,6 @@ func PossibleValuesForScriptExecutionProvisioningState() []string {
 	}
 }
 
-func parseScriptExecutionProvisioningState(input string) (*ScriptExecutionProvisioningState, error) {
-	vals := map[string]ScriptExecutionProvisioningState{
-		"canceled":   ScriptExecutionProvisioningStateCanceled,
-		"cancelled":  ScriptExecutionProvisioningStateCancelled,
-		"cancelling": ScriptExecutionProvisioningStateCancelling,
-		"deleting":   ScriptExecutionProvisioningStateDeleting,
-		"failed":     ScriptExecutionProvisioningStateFailed,
-		"pending":    ScriptExecutionProvisioningStatePending,
-		"running":    ScriptExecutionProvisioningStateRunning,
-		"succeeded":  ScriptExecutionProvisioningStateSucceeded,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ScriptExecutionProvisioningState(input)
-	return &out, nil
-}
-
 type ScriptOutputStreamType string
 
 const (
@@ -126,22 +75,6 @@ func PossibleValuesForScriptOutputStreamType() []string {
 		string(ScriptOutputStreamTypeOutput),
 		string(ScriptOutputStreamTypeWarning),
 	}
-}
-
-func parseScriptOutputStreamType(input string) (*ScriptOutputStreamType, error) {
-	vals := map[string]ScriptOutputStreamType{
-		"error":       ScriptOutputStreamTypeError,
-		"information": ScriptOutputStreamTypeInformation,
-		"output":      ScriptOutputStreamTypeOutput,
-		"warning":     ScriptOutputStreamTypeWarning,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ScriptOutputStreamType(input)
-	return &out, nil
 }
 
 type ScriptParameterTypes string
@@ -166,24 +99,6 @@ func PossibleValuesForScriptParameterTypes() []string {
 	}
 }
 
-func parseScriptParameterTypes(input string) (*ScriptParameterTypes, error) {
-	vals := map[string]ScriptParameterTypes{
-		"bool":         ScriptParameterTypesBool,
-		"credential":   ScriptParameterTypesCredential,
-		"float":        ScriptParameterTypesFloat,
-		"int":          ScriptParameterTypesInt,
-		"securestring": ScriptParameterTypesSecureString,
-		"string":       ScriptParameterTypesString,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ScriptParameterTypes(input)
-	return &out, nil
-}
-
 type VisibilityParameterEnum string
 
 const (
@@ -196,18 +111,4 @@ func PossibleValuesForVisibilityParameterEnum() []string {
 		string(VisibilityParameterEnumHidden),
 		string(VisibilityParameterEnumVisible),
 	}
-}
-
-func parseVisibilityParameterEnum(input string) (*VisibilityParameterEnum, error) {
-	vals := map[string]VisibilityParameterEnum{
-		"hidden":  VisibilityParameterEnumHidden,
-		"visible": VisibilityParameterEnumVisible,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := VisibilityParameterEnum(input)
-	return &out, nil
 }

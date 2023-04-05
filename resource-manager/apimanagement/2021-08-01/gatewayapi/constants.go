@@ -1,7 +1,5 @@
 package gatewayapi
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -23,22 +21,6 @@ func PossibleValuesForApiType() []string {
 	}
 }
 
-func parseApiType(input string) (*ApiType, error) {
-	vals := map[string]ApiType{
-		"graphql":   ApiTypeGraphql,
-		"http":      ApiTypeHTTP,
-		"soap":      ApiTypeSoap,
-		"websocket": ApiTypeWebsocket,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ApiType(input)
-	return &out, nil
-}
-
 type BearerTokenSendingMethods string
 
 const (
@@ -51,20 +33,6 @@ func PossibleValuesForBearerTokenSendingMethods() []string {
 		string(BearerTokenSendingMethodsAuthorizationHeader),
 		string(BearerTokenSendingMethodsQuery),
 	}
-}
-
-func parseBearerTokenSendingMethods(input string) (*BearerTokenSendingMethods, error) {
-	vals := map[string]BearerTokenSendingMethods{
-		"authorizationheader": BearerTokenSendingMethodsAuthorizationHeader,
-		"query":               BearerTokenSendingMethodsQuery,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := BearerTokenSendingMethods(input)
-	return &out, nil
 }
 
 type Protocol string
@@ -85,22 +53,6 @@ func PossibleValuesForProtocol() []string {
 	}
 }
 
-func parseProtocol(input string) (*Protocol, error) {
-	vals := map[string]Protocol{
-		"http":  ProtocolHTTP,
-		"https": ProtocolHTTPS,
-		"ws":    ProtocolWs,
-		"wss":   ProtocolWss,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := Protocol(input)
-	return &out, nil
-}
-
 type ProvisioningState string
 
 const (
@@ -111,19 +63,6 @@ func PossibleValuesForProvisioningState() []string {
 	return []string{
 		string(ProvisioningStateCreated),
 	}
-}
-
-func parseProvisioningState(input string) (*ProvisioningState, error) {
-	vals := map[string]ProvisioningState{
-		"created": ProvisioningStateCreated,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ProvisioningState(input)
-	return &out, nil
 }
 
 type VersioningScheme string
@@ -140,19 +79,4 @@ func PossibleValuesForVersioningScheme() []string {
 		string(VersioningSchemeQuery),
 		string(VersioningSchemeSegment),
 	}
-}
-
-func parseVersioningScheme(input string) (*VersioningScheme, error) {
-	vals := map[string]VersioningScheme{
-		"header":  VersioningSchemeHeader,
-		"query":   VersioningSchemeQuery,
-		"segment": VersioningSchemeSegment,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := VersioningScheme(input)
-	return &out, nil
 }

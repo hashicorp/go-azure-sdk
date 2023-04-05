@@ -1,7 +1,5 @@
 package schedule
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -27,24 +25,6 @@ func PossibleValuesForProvisioningState() []string {
 	}
 }
 
-func parseProvisioningState(input string) (*ProvisioningState, error) {
-	vals := map[string]ProvisioningState{
-		"creating":  ProvisioningStateCreating,
-		"deleting":  ProvisioningStateDeleting,
-		"failed":    ProvisioningStateFailed,
-		"locked":    ProvisioningStateLocked,
-		"succeeded": ProvisioningStateSucceeded,
-		"updating":  ProvisioningStateUpdating,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ProvisioningState(input)
-	return &out, nil
-}
-
 type RecurrenceFrequency string
 
 const (
@@ -57,20 +37,6 @@ func PossibleValuesForRecurrenceFrequency() []string {
 		string(RecurrenceFrequencyDaily),
 		string(RecurrenceFrequencyWeekly),
 	}
-}
-
-func parseRecurrenceFrequency(input string) (*RecurrenceFrequency, error) {
-	vals := map[string]RecurrenceFrequency{
-		"daily":  RecurrenceFrequencyDaily,
-		"weekly": RecurrenceFrequencyWeekly,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := RecurrenceFrequency(input)
-	return &out, nil
 }
 
 type WeekDay string
@@ -95,23 +61,4 @@ func PossibleValuesForWeekDay() []string {
 		string(WeekDayTuesday),
 		string(WeekDayWednesday),
 	}
-}
-
-func parseWeekDay(input string) (*WeekDay, error) {
-	vals := map[string]WeekDay{
-		"friday":    WeekDayFriday,
-		"monday":    WeekDayMonday,
-		"saturday":  WeekDaySaturday,
-		"sunday":    WeekDaySunday,
-		"thursday":  WeekDayThursday,
-		"tuesday":   WeekDayTuesday,
-		"wednesday": WeekDayWednesday,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := WeekDay(input)
-	return &out, nil
 }

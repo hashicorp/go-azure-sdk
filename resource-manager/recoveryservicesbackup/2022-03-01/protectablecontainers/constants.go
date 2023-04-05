@@ -1,7 +1,5 @@
 package protectablecontainers
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -31,27 +29,6 @@ func PossibleValuesForBackupManagementType() []string {
 		string(BackupManagementTypeInvalid),
 		string(BackupManagementTypeMAB),
 	}
-}
-
-func parseBackupManagementType(input string) (*BackupManagementType, error) {
-	vals := map[string]BackupManagementType{
-		"azurebackupserver": BackupManagementTypeAzureBackupServer,
-		"azureiaasvm":       BackupManagementTypeAzureIaasVM,
-		"azuresql":          BackupManagementTypeAzureSql,
-		"azurestorage":      BackupManagementTypeAzureStorage,
-		"azureworkload":     BackupManagementTypeAzureWorkload,
-		"dpm":               BackupManagementTypeDPM,
-		"defaultbackup":     BackupManagementTypeDefaultBackup,
-		"invalid":           BackupManagementTypeInvalid,
-		"mab":               BackupManagementTypeMAB,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := BackupManagementType(input)
-	return &out, nil
 }
 
 type ContainerType string
@@ -98,34 +75,4 @@ func PossibleValuesForContainerType() []string {
 		string(ContainerTypeVMAppContainer),
 		string(ContainerTypeWindows),
 	}
-}
-
-func parseContainerType(input string) (*ContainerType, error) {
-	vals := map[string]ContainerType{
-		"azurebackupservercontainer": ContainerTypeAzureBackupServerContainer,
-		"azuresqlcontainer":          ContainerTypeAzureSqlContainer,
-		"azureworkloadcontainer":     ContainerTypeAzureWorkloadContainer,
-		"cluster":                    ContainerTypeCluster,
-		"dpmcontainer":               ContainerTypeDPMContainer,
-		"genericcontainer":           ContainerTypeGenericContainer,
-		"iaasvmcontainer":            ContainerTypeIaasVMContainer,
-		"iaasvmservicecontainer":     ContainerTypeIaasVMServiceContainer,
-		"invalid":                    ContainerTypeInvalid,
-		"mabcontainer":               ContainerTypeMABContainer,
-		"microsoft.classiccompute/virtualmachines": ContainerTypeMicrosoftPointClassicComputeVirtualMachines,
-		"microsoft.compute/virtualmachines":        ContainerTypeMicrosoftPointComputeVirtualMachines,
-		"sqlagworkloadcontainer":                   ContainerTypeSQLAGWorkLoadContainer,
-		"storagecontainer":                         ContainerTypeStorageContainer,
-		"unknown":                                  ContainerTypeUnknown,
-		"vcenter":                                  ContainerTypeVCenter,
-		"vmappcontainer":                           ContainerTypeVMAppContainer,
-		"windows":                                  ContainerTypeWindows,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ContainerType(input)
-	return &out, nil
 }

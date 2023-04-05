@@ -1,7 +1,5 @@
 package eventhubs
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -21,21 +19,6 @@ func PossibleValuesForAccessRights() []string {
 	}
 }
 
-func parseAccessRights(input string) (*AccessRights, error) {
-	vals := map[string]AccessRights{
-		"listen": AccessRightsListen,
-		"manage": AccessRightsManage,
-		"send":   AccessRightsSend,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := AccessRights(input)
-	return &out, nil
-}
-
 type EncodingCaptureDescription string
 
 const (
@@ -48,20 +31,6 @@ func PossibleValuesForEncodingCaptureDescription() []string {
 		string(EncodingCaptureDescriptionAvro),
 		string(EncodingCaptureDescriptionAvroDeflate),
 	}
-}
-
-func parseEncodingCaptureDescription(input string) (*EncodingCaptureDescription, error) {
-	vals := map[string]EncodingCaptureDescription{
-		"avro":        EncodingCaptureDescriptionAvro,
-		"avrodeflate": EncodingCaptureDescriptionAvroDeflate,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := EncodingCaptureDescription(input)
-	return &out, nil
 }
 
 type EntityStatus string
@@ -90,25 +59,4 @@ func PossibleValuesForEntityStatus() []string {
 		string(EntityStatusSendDisabled),
 		string(EntityStatusUnknown),
 	}
-}
-
-func parseEntityStatus(input string) (*EntityStatus, error) {
-	vals := map[string]EntityStatus{
-		"active":          EntityStatusActive,
-		"creating":        EntityStatusCreating,
-		"deleting":        EntityStatusDeleting,
-		"disabled":        EntityStatusDisabled,
-		"receivedisabled": EntityStatusReceiveDisabled,
-		"renaming":        EntityStatusRenaming,
-		"restoring":       EntityStatusRestoring,
-		"senddisabled":    EntityStatusSendDisabled,
-		"unknown":         EntityStatusUnknown,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := EntityStatus(input)
-	return &out, nil
 }

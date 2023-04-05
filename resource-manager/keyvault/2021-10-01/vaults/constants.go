@@ -1,7 +1,5 @@
 package vaults
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -21,21 +19,6 @@ func PossibleValuesForAccessPolicyUpdateKind() []string {
 	}
 }
 
-func parseAccessPolicyUpdateKind(input string) (*AccessPolicyUpdateKind, error) {
-	vals := map[string]AccessPolicyUpdateKind{
-		"add":     AccessPolicyUpdateKindAdd,
-		"remove":  AccessPolicyUpdateKindRemove,
-		"replace": AccessPolicyUpdateKindReplace,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := AccessPolicyUpdateKind(input)
-	return &out, nil
-}
-
 type ActionsRequired string
 
 const (
@@ -46,19 +29,6 @@ func PossibleValuesForActionsRequired() []string {
 	return []string{
 		string(ActionsRequiredNone),
 	}
-}
-
-func parseActionsRequired(input string) (*ActionsRequired, error) {
-	vals := map[string]ActionsRequired{
-		"none": ActionsRequiredNone,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ActionsRequired(input)
-	return &out, nil
 }
 
 type CertificatePermissions string
@@ -105,35 +75,6 @@ func PossibleValuesForCertificatePermissions() []string {
 	}
 }
 
-func parseCertificatePermissions(input string) (*CertificatePermissions, error) {
-	vals := map[string]CertificatePermissions{
-		"all":            CertificatePermissionsAll,
-		"backup":         CertificatePermissionsBackup,
-		"create":         CertificatePermissionsCreate,
-		"delete":         CertificatePermissionsDelete,
-		"deleteissuers":  CertificatePermissionsDeleteissuers,
-		"get":            CertificatePermissionsGet,
-		"getissuers":     CertificatePermissionsGetissuers,
-		"import":         CertificatePermissionsImport,
-		"list":           CertificatePermissionsList,
-		"listissuers":    CertificatePermissionsListissuers,
-		"managecontacts": CertificatePermissionsManagecontacts,
-		"manageissuers":  CertificatePermissionsManageissuers,
-		"purge":          CertificatePermissionsPurge,
-		"recover":        CertificatePermissionsRecover,
-		"restore":        CertificatePermissionsRestore,
-		"setissuers":     CertificatePermissionsSetissuers,
-		"update":         CertificatePermissionsUpdate,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := CertificatePermissions(input)
-	return &out, nil
-}
-
 type CreateMode string
 
 const (
@@ -146,20 +87,6 @@ func PossibleValuesForCreateMode() []string {
 		string(CreateModeDefault),
 		string(CreateModeRecover),
 	}
-}
-
-func parseCreateMode(input string) (*CreateMode, error) {
-	vals := map[string]CreateMode{
-		"default": CreateModeDefault,
-		"recover": CreateModeRecover,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := CreateMode(input)
-	return &out, nil
 }
 
 type KeyPermissions string
@@ -206,35 +133,6 @@ func PossibleValuesForKeyPermissions() []string {
 	}
 }
 
-func parseKeyPermissions(input string) (*KeyPermissions, error) {
-	vals := map[string]KeyPermissions{
-		"all":       KeyPermissionsAll,
-		"backup":    KeyPermissionsBackup,
-		"create":    KeyPermissionsCreate,
-		"decrypt":   KeyPermissionsDecrypt,
-		"delete":    KeyPermissionsDelete,
-		"encrypt":   KeyPermissionsEncrypt,
-		"get":       KeyPermissionsGet,
-		"import":    KeyPermissionsImport,
-		"list":      KeyPermissionsList,
-		"purge":     KeyPermissionsPurge,
-		"recover":   KeyPermissionsRecover,
-		"restore":   KeyPermissionsRestore,
-		"sign":      KeyPermissionsSign,
-		"unwrapkey": KeyPermissionsUnwrapKey,
-		"update":    KeyPermissionsUpdate,
-		"verify":    KeyPermissionsVerify,
-		"wrapkey":   KeyPermissionsWrapKey,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := KeyPermissions(input)
-	return &out, nil
-}
-
 type NetworkRuleAction string
 
 const (
@@ -249,20 +147,6 @@ func PossibleValuesForNetworkRuleAction() []string {
 	}
 }
 
-func parseNetworkRuleAction(input string) (*NetworkRuleAction, error) {
-	vals := map[string]NetworkRuleAction{
-		"allow": NetworkRuleActionAllow,
-		"deny":  NetworkRuleActionDeny,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := NetworkRuleAction(input)
-	return &out, nil
-}
-
 type NetworkRuleBypassOptions string
 
 const (
@@ -275,20 +159,6 @@ func PossibleValuesForNetworkRuleBypassOptions() []string {
 		string(NetworkRuleBypassOptionsAzureServices),
 		string(NetworkRuleBypassOptionsNone),
 	}
-}
-
-func parseNetworkRuleBypassOptions(input string) (*NetworkRuleBypassOptions, error) {
-	vals := map[string]NetworkRuleBypassOptions{
-		"azureservices": NetworkRuleBypassOptionsAzureServices,
-		"none":          NetworkRuleBypassOptionsNone,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := NetworkRuleBypassOptions(input)
-	return &out, nil
 }
 
 type PrivateEndpointConnectionProvisioningState string
@@ -313,24 +183,6 @@ func PossibleValuesForPrivateEndpointConnectionProvisioningState() []string {
 	}
 }
 
-func parsePrivateEndpointConnectionProvisioningState(input string) (*PrivateEndpointConnectionProvisioningState, error) {
-	vals := map[string]PrivateEndpointConnectionProvisioningState{
-		"creating":     PrivateEndpointConnectionProvisioningStateCreating,
-		"deleting":     PrivateEndpointConnectionProvisioningStateDeleting,
-		"disconnected": PrivateEndpointConnectionProvisioningStateDisconnected,
-		"failed":       PrivateEndpointConnectionProvisioningStateFailed,
-		"succeeded":    PrivateEndpointConnectionProvisioningStateSucceeded,
-		"updating":     PrivateEndpointConnectionProvisioningStateUpdating,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PrivateEndpointConnectionProvisioningState(input)
-	return &out, nil
-}
-
 type PrivateEndpointServiceConnectionStatus string
 
 const (
@@ -349,22 +201,6 @@ func PossibleValuesForPrivateEndpointServiceConnectionStatus() []string {
 	}
 }
 
-func parsePrivateEndpointServiceConnectionStatus(input string) (*PrivateEndpointServiceConnectionStatus, error) {
-	vals := map[string]PrivateEndpointServiceConnectionStatus{
-		"approved":     PrivateEndpointServiceConnectionStatusApproved,
-		"disconnected": PrivateEndpointServiceConnectionStatusDisconnected,
-		"pending":      PrivateEndpointServiceConnectionStatusPending,
-		"rejected":     PrivateEndpointServiceConnectionStatusRejected,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PrivateEndpointServiceConnectionStatus(input)
-	return &out, nil
-}
-
 type Reason string
 
 const (
@@ -377,20 +213,6 @@ func PossibleValuesForReason() []string {
 		string(ReasonAccountNameInvalid),
 		string(ReasonAlreadyExists),
 	}
-}
-
-func parseReason(input string) (*Reason, error) {
-	vals := map[string]Reason{
-		"accountnameinvalid": ReasonAccountNameInvalid,
-		"alreadyexists":      ReasonAlreadyExists,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := Reason(input)
-	return &out, nil
 }
 
 type SecretPermissions string
@@ -421,27 +243,6 @@ func PossibleValuesForSecretPermissions() []string {
 	}
 }
 
-func parseSecretPermissions(input string) (*SecretPermissions, error) {
-	vals := map[string]SecretPermissions{
-		"all":     SecretPermissionsAll,
-		"backup":  SecretPermissionsBackup,
-		"delete":  SecretPermissionsDelete,
-		"get":     SecretPermissionsGet,
-		"list":    SecretPermissionsList,
-		"purge":   SecretPermissionsPurge,
-		"recover": SecretPermissionsRecover,
-		"restore": SecretPermissionsRestore,
-		"set":     SecretPermissionsSet,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SecretPermissions(input)
-	return &out, nil
-}
-
 type SkuFamily string
 
 const (
@@ -452,19 +253,6 @@ func PossibleValuesForSkuFamily() []string {
 	return []string{
 		string(SkuFamilyA),
 	}
-}
-
-func parseSkuFamily(input string) (*SkuFamily, error) {
-	vals := map[string]SkuFamily{
-		"a": SkuFamilyA,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SkuFamily(input)
-	return &out, nil
 }
 
 type SkuName string
@@ -479,20 +267,6 @@ func PossibleValuesForSkuName() []string {
 		string(SkuNamePremium),
 		string(SkuNameStandard),
 	}
-}
-
-func parseSkuName(input string) (*SkuName, error) {
-	vals := map[string]SkuName{
-		"premium":  SkuNamePremium,
-		"standard": SkuNameStandard,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SkuName(input)
-	return &out, nil
 }
 
 type StoragePermissions string
@@ -535,33 +309,6 @@ func PossibleValuesForStoragePermissions() []string {
 	}
 }
 
-func parseStoragePermissions(input string) (*StoragePermissions, error) {
-	vals := map[string]StoragePermissions{
-		"all":           StoragePermissionsAll,
-		"backup":        StoragePermissionsBackup,
-		"delete":        StoragePermissionsDelete,
-		"deletesas":     StoragePermissionsDeletesas,
-		"get":           StoragePermissionsGet,
-		"getsas":        StoragePermissionsGetsas,
-		"list":          StoragePermissionsList,
-		"listsas":       StoragePermissionsListsas,
-		"purge":         StoragePermissionsPurge,
-		"recover":       StoragePermissionsRecover,
-		"regeneratekey": StoragePermissionsRegeneratekey,
-		"restore":       StoragePermissionsRestore,
-		"set":           StoragePermissionsSet,
-		"setsas":        StoragePermissionsSetsas,
-		"update":        StoragePermissionsUpdate,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := StoragePermissions(input)
-	return &out, nil
-}
-
 type Type string
 
 const (
@@ -572,19 +319,6 @@ func PossibleValuesForType() []string {
 	return []string{
 		string(TypeMicrosoftPointKeyVaultVaults),
 	}
-}
-
-func parseType(input string) (*Type, error) {
-	vals := map[string]Type{
-		"microsoft.keyvault/vaults": TypeMicrosoftPointKeyVaultVaults,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := Type(input)
-	return &out, nil
 }
 
 type VaultListFilterTypes string
@@ -599,19 +333,6 @@ func PossibleValuesForVaultListFilterTypes() []string {
 	}
 }
 
-func parseVaultListFilterTypes(input string) (*VaultListFilterTypes, error) {
-	vals := map[string]VaultListFilterTypes{
-		"resourcetype eq 'microsoft.keyvault/vaults'": VaultListFilterTypesResourceTypeEqMicrosoftPointKeyVaultVaults,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := VaultListFilterTypes(input)
-	return &out, nil
-}
-
 type VaultProvisioningState string
 
 const (
@@ -624,18 +345,4 @@ func PossibleValuesForVaultProvisioningState() []string {
 		string(VaultProvisioningStateRegisteringDns),
 		string(VaultProvisioningStateSucceeded),
 	}
-}
-
-func parseVaultProvisioningState(input string) (*VaultProvisioningState, error) {
-	vals := map[string]VaultProvisioningState{
-		"registeringdns": VaultProvisioningStateRegisteringDns,
-		"succeeded":      VaultProvisioningStateSucceeded,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := VaultProvisioningState(input)
-	return &out, nil
 }

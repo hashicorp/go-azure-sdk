@@ -1,6 +1,10 @@
 package put
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -25,21 +29,19 @@ func PossibleValuesForPrivateEndpointConnectionProvisioningState() []string {
 	}
 }
 
-func parsePrivateEndpointConnectionProvisioningState(input string) (*PrivateEndpointConnectionProvisioningState, error) {
-	vals := map[string]PrivateEndpointConnectionProvisioningState{
-		"creating":  PrivateEndpointConnectionProvisioningStateCreating,
-		"deleting":  PrivateEndpointConnectionProvisioningStateDeleting,
-		"failed":    PrivateEndpointConnectionProvisioningStateFailed,
-		"succeeded": PrivateEndpointConnectionProvisioningStateSucceeded,
-		"updating":  PrivateEndpointConnectionProvisioningStateUpdating,
+func (s *PrivateEndpointConnectionProvisioningState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForPrivateEndpointConnectionProvisioningState() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PrivateEndpointConnectionProvisioningState(input)
-	return &out, nil
+	*s = PrivateEndpointConnectionProvisioningState(decoded)
+	return nil
 }
 
 type PrivateLinkServiceConnectionStatus string
@@ -60,18 +62,17 @@ func PossibleValuesForPrivateLinkServiceConnectionStatus() []string {
 	}
 }
 
-func parsePrivateLinkServiceConnectionStatus(input string) (*PrivateLinkServiceConnectionStatus, error) {
-	vals := map[string]PrivateLinkServiceConnectionStatus{
-		"approved":     PrivateLinkServiceConnectionStatusApproved,
-		"disconnected": PrivateLinkServiceConnectionStatusDisconnected,
-		"pending":      PrivateLinkServiceConnectionStatusPending,
-		"rejected":     PrivateLinkServiceConnectionStatusRejected,
+func (s *PrivateLinkServiceConnectionStatus) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForPrivateLinkServiceConnectionStatus() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PrivateLinkServiceConnectionStatus(input)
-	return &out, nil
+	*s = PrivateLinkServiceConnectionStatus(decoded)
+	return nil
 }

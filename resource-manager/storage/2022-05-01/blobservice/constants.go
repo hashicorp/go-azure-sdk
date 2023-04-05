@@ -1,7 +1,5 @@
 package blobservice
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -31,26 +29,6 @@ func PossibleValuesForAllowedMethods() []string {
 	}
 }
 
-func parseAllowedMethods(input string) (*AllowedMethods, error) {
-	vals := map[string]AllowedMethods{
-		"delete":  AllowedMethodsDELETE,
-		"get":     AllowedMethodsGET,
-		"head":    AllowedMethodsHEAD,
-		"merge":   AllowedMethodsMERGE,
-		"options": AllowedMethodsOPTIONS,
-		"patch":   AllowedMethodsPATCH,
-		"post":    AllowedMethodsPOST,
-		"put":     AllowedMethodsPUT,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := AllowedMethods(input)
-	return &out, nil
-}
-
 type Name string
 
 const (
@@ -61,19 +39,6 @@ func PossibleValuesForName() []string {
 	return []string{
 		string(NameAccessTimeTracking),
 	}
-}
-
-func parseName(input string) (*Name, error) {
-	vals := map[string]Name{
-		"accesstimetracking": NameAccessTimeTracking,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := Name(input)
-	return &out, nil
 }
 
 type SkuName string
@@ -102,26 +67,6 @@ func PossibleValuesForSkuName() []string {
 	}
 }
 
-func parseSkuName(input string) (*SkuName, error) {
-	vals := map[string]SkuName{
-		"premium_lrs":     SkuNamePremiumLRS,
-		"premium_zrs":     SkuNamePremiumZRS,
-		"standard_grs":    SkuNameStandardGRS,
-		"standard_gzrs":   SkuNameStandardGZRS,
-		"standard_lrs":    SkuNameStandardLRS,
-		"standard_ragrs":  SkuNameStandardRAGRS,
-		"standard_ragzrs": SkuNameStandardRAGZRS,
-		"standard_zrs":    SkuNameStandardZRS,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SkuName(input)
-	return &out, nil
-}
-
 type SkuTier string
 
 const (
@@ -134,18 +79,4 @@ func PossibleValuesForSkuTier() []string {
 		string(SkuTierPremium),
 		string(SkuTierStandard),
 	}
-}
-
-func parseSkuTier(input string) (*SkuTier, error) {
-	vals := map[string]SkuTier{
-		"premium":  SkuTierPremium,
-		"standard": SkuTierStandard,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SkuTier(input)
-	return &out, nil
 }

@@ -1,7 +1,5 @@
 package apimanagementservice
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -19,21 +17,6 @@ func PossibleValuesForAccessType() []string {
 		string(AccessTypeSystemAssignedManagedIdentity),
 		string(AccessTypeUserAssignedManagedIdentity),
 	}
-}
-
-func parseAccessType(input string) (*AccessType, error) {
-	vals := map[string]AccessType{
-		"accesskey":                     AccessTypeAccessKey,
-		"systemassignedmanagedidentity": AccessTypeSystemAssignedManagedIdentity,
-		"userassignedmanagedidentity":   AccessTypeUserAssignedManagedIdentity,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := AccessType(input)
-	return &out, nil
 }
 
 type CertificateSource string
@@ -54,22 +37,6 @@ func PossibleValuesForCertificateSource() []string {
 	}
 }
 
-func parseCertificateSource(input string) (*CertificateSource, error) {
-	vals := map[string]CertificateSource{
-		"builtin":  CertificateSourceBuiltIn,
-		"custom":   CertificateSourceCustom,
-		"keyvault": CertificateSourceKeyVault,
-		"managed":  CertificateSourceManaged,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := CertificateSource(input)
-	return &out, nil
-}
-
 type CertificateStatus string
 
 const (
@@ -84,21 +51,6 @@ func PossibleValuesForCertificateStatus() []string {
 		string(CertificateStatusFailed),
 		string(CertificateStatusInProgress),
 	}
-}
-
-func parseCertificateStatus(input string) (*CertificateStatus, error) {
-	vals := map[string]CertificateStatus{
-		"completed":  CertificateStatusCompleted,
-		"failed":     CertificateStatusFailed,
-		"inprogress": CertificateStatusInProgress,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := CertificateStatus(input)
-	return &out, nil
 }
 
 type HostnameType string
@@ -121,23 +73,6 @@ func PossibleValuesForHostnameType() []string {
 	}
 }
 
-func parseHostnameType(input string) (*HostnameType, error) {
-	vals := map[string]HostnameType{
-		"developerportal": HostnameTypeDeveloperPortal,
-		"management":      HostnameTypeManagement,
-		"portal":          HostnameTypePortal,
-		"proxy":           HostnameTypeProxy,
-		"scm":             HostnameTypeScm,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := HostnameType(input)
-	return &out, nil
-}
-
 type NameAvailabilityReason string
 
 const (
@@ -152,21 +87,6 @@ func PossibleValuesForNameAvailabilityReason() []string {
 		string(NameAvailabilityReasonInvalid),
 		string(NameAvailabilityReasonValid),
 	}
-}
-
-func parseNameAvailabilityReason(input string) (*NameAvailabilityReason, error) {
-	vals := map[string]NameAvailabilityReason{
-		"alreadyexists": NameAvailabilityReasonAlreadyExists,
-		"invalid":       NameAvailabilityReasonInvalid,
-		"valid":         NameAvailabilityReasonValid,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := NameAvailabilityReason(input)
-	return &out, nil
 }
 
 type PlatformVersion string
@@ -187,22 +107,6 @@ func PossibleValuesForPlatformVersion() []string {
 	}
 }
 
-func parsePlatformVersion(input string) (*PlatformVersion, error) {
-	vals := map[string]PlatformVersion{
-		"mtv1":         PlatformVersionMtvOne,
-		"stv1":         PlatformVersionStvOne,
-		"stv2":         PlatformVersionStvTwo,
-		"undetermined": PlatformVersionUndetermined,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PlatformVersion(input)
-	return &out, nil
-}
-
 type PrivateEndpointServiceConnectionStatus string
 
 const (
@@ -219,21 +123,6 @@ func PossibleValuesForPrivateEndpointServiceConnectionStatus() []string {
 	}
 }
 
-func parsePrivateEndpointServiceConnectionStatus(input string) (*PrivateEndpointServiceConnectionStatus, error) {
-	vals := map[string]PrivateEndpointServiceConnectionStatus{
-		"approved": PrivateEndpointServiceConnectionStatusApproved,
-		"pending":  PrivateEndpointServiceConnectionStatusPending,
-		"rejected": PrivateEndpointServiceConnectionStatusRejected,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PrivateEndpointServiceConnectionStatus(input)
-	return &out, nil
-}
-
 type PublicNetworkAccess string
 
 const (
@@ -246,20 +135,6 @@ func PossibleValuesForPublicNetworkAccess() []string {
 		string(PublicNetworkAccessDisabled),
 		string(PublicNetworkAccessEnabled),
 	}
-}
-
-func parsePublicNetworkAccess(input string) (*PublicNetworkAccess, error) {
-	vals := map[string]PublicNetworkAccess{
-		"disabled": PublicNetworkAccessDisabled,
-		"enabled":  PublicNetworkAccessEnabled,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PublicNetworkAccess(input)
-	return &out, nil
 }
 
 type SkuType string
@@ -284,24 +159,6 @@ func PossibleValuesForSkuType() []string {
 	}
 }
 
-func parseSkuType(input string) (*SkuType, error) {
-	vals := map[string]SkuType{
-		"basic":       SkuTypeBasic,
-		"consumption": SkuTypeConsumption,
-		"developer":   SkuTypeDeveloper,
-		"isolated":    SkuTypeIsolated,
-		"premium":     SkuTypePremium,
-		"standard":    SkuTypeStandard,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SkuType(input)
-	return &out, nil
-}
-
 type StoreName string
 
 const (
@@ -314,20 +171,6 @@ func PossibleValuesForStoreName() []string {
 		string(StoreNameCertificateAuthority),
 		string(StoreNameRoot),
 	}
-}
-
-func parseStoreName(input string) (*StoreName, error) {
-	vals := map[string]StoreName{
-		"certificateauthority": StoreNameCertificateAuthority,
-		"root":                 StoreNameRoot,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := StoreName(input)
-	return &out, nil
 }
 
 type VirtualNetworkType string
@@ -344,19 +187,4 @@ func PossibleValuesForVirtualNetworkType() []string {
 		string(VirtualNetworkTypeInternal),
 		string(VirtualNetworkTypeNone),
 	}
-}
-
-func parseVirtualNetworkType(input string) (*VirtualNetworkType, error) {
-	vals := map[string]VirtualNetworkType{
-		"external": VirtualNetworkTypeExternal,
-		"internal": VirtualNetworkTypeInternal,
-		"none":     VirtualNetworkTypeNone,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := VirtualNetworkType(input)
-	return &out, nil
 }

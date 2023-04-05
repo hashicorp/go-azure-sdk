@@ -1,6 +1,10 @@
 package providerinstances
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -21,19 +25,19 @@ func PossibleValuesForSslPreference() []string {
 	}
 }
 
-func parseSslPreference(input string) (*SslPreference, error) {
-	vals := map[string]SslPreference{
-		"disabled":          SslPreferenceDisabled,
-		"rootcertificate":   SslPreferenceRootCertificate,
-		"servercertificate": SslPreferenceServerCertificate,
+func (s *SslPreference) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForSslPreference() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SslPreference(input)
-	return &out, nil
+	*s = SslPreference(decoded)
+	return nil
 }
 
 type WorkloadMonitorProvisioningState string
@@ -60,21 +64,17 @@ func PossibleValuesForWorkloadMonitorProvisioningState() []string {
 	}
 }
 
-func parseWorkloadMonitorProvisioningState(input string) (*WorkloadMonitorProvisioningState, error) {
-	vals := map[string]WorkloadMonitorProvisioningState{
-		"accepted":  WorkloadMonitorProvisioningStateAccepted,
-		"creating":  WorkloadMonitorProvisioningStateCreating,
-		"deleting":  WorkloadMonitorProvisioningStateDeleting,
-		"failed":    WorkloadMonitorProvisioningStateFailed,
-		"migrating": WorkloadMonitorProvisioningStateMigrating,
-		"succeeded": WorkloadMonitorProvisioningStateSucceeded,
-		"updating":  WorkloadMonitorProvisioningStateUpdating,
+func (s *WorkloadMonitorProvisioningState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForWorkloadMonitorProvisioningState() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := WorkloadMonitorProvisioningState(input)
-	return &out, nil
+	*s = WorkloadMonitorProvisioningState(decoded)
+	return nil
 }

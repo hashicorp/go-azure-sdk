@@ -1,7 +1,5 @@
 package roles
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -21,21 +19,6 @@ func PossibleValuesForEncryptionAlgorithm() []string {
 	}
 }
 
-func parseEncryptionAlgorithm(input string) (*EncryptionAlgorithm, error) {
-	vals := map[string]EncryptionAlgorithm{
-		"aes256":            EncryptionAlgorithmAESTwoFiveSix,
-		"none":              EncryptionAlgorithmNone,
-		"rsaes_pkcs1_v_1_5": EncryptionAlgorithmRSAESPKCSOneVOneFive,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := EncryptionAlgorithm(input)
-	return &out, nil
-}
-
 type HostPlatformType string
 
 const (
@@ -48,20 +31,6 @@ func PossibleValuesForHostPlatformType() []string {
 		string(HostPlatformTypeKubernetesCluster),
 		string(HostPlatformTypeLinuxVM),
 	}
-}
-
-func parseHostPlatformType(input string) (*HostPlatformType, error) {
-	vals := map[string]HostPlatformType{
-		"kubernetescluster": HostPlatformTypeKubernetesCluster,
-		"linuxvm":           HostPlatformTypeLinuxVM,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := HostPlatformType(input)
-	return &out, nil
 }
 
 type KubernetesNodeType string
@@ -78,21 +47,6 @@ func PossibleValuesForKubernetesNodeType() []string {
 		string(KubernetesNodeTypeMaster),
 		string(KubernetesNodeTypeWorker),
 	}
-}
-
-func parseKubernetesNodeType(input string) (*KubernetesNodeType, error) {
-	vals := map[string]KubernetesNodeType{
-		"invalid": KubernetesNodeTypeInvalid,
-		"master":  KubernetesNodeTypeMaster,
-		"worker":  KubernetesNodeTypeWorker,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := KubernetesNodeType(input)
-	return &out, nil
 }
 
 type KubernetesState string
@@ -119,25 +73,6 @@ func PossibleValuesForKubernetesState() []string {
 	}
 }
 
-func parseKubernetesState(input string) (*KubernetesState, error) {
-	vals := map[string]KubernetesState{
-		"created":       KubernetesStateCreated,
-		"creating":      KubernetesStateCreating,
-		"deleting":      KubernetesStateDeleting,
-		"failed":        KubernetesStateFailed,
-		"invalid":       KubernetesStateInvalid,
-		"reconfiguring": KubernetesStateReconfiguring,
-		"updating":      KubernetesStateUpdating,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := KubernetesState(input)
-	return &out, nil
-}
-
 type MountType string
 
 const (
@@ -152,20 +87,6 @@ func PossibleValuesForMountType() []string {
 	}
 }
 
-func parseMountType(input string) (*MountType, error) {
-	vals := map[string]MountType{
-		"hostpath": MountTypeHostPath,
-		"volume":   MountTypeVolume,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := MountType(input)
-	return &out, nil
-}
-
 type PlatformType string
 
 const (
@@ -178,20 +99,6 @@ func PossibleValuesForPlatformType() []string {
 		string(PlatformTypeLinux),
 		string(PlatformTypeWindows),
 	}
-}
-
-func parsePlatformType(input string) (*PlatformType, error) {
-	vals := map[string]PlatformType{
-		"linux":   PlatformTypeLinux,
-		"windows": PlatformTypeWindows,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PlatformType(input)
-	return &out, nil
 }
 
 type PosixComplianceStatus string
@@ -210,21 +117,6 @@ func PossibleValuesForPosixComplianceStatus() []string {
 	}
 }
 
-func parsePosixComplianceStatus(input string) (*PosixComplianceStatus, error) {
-	vals := map[string]PosixComplianceStatus{
-		"disabled": PosixComplianceStatusDisabled,
-		"enabled":  PosixComplianceStatusEnabled,
-		"invalid":  PosixComplianceStatusInvalid,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PosixComplianceStatus(input)
-	return &out, nil
-}
-
 type RoleStatus string
 
 const (
@@ -237,20 +129,6 @@ func PossibleValuesForRoleStatus() []string {
 		string(RoleStatusDisabled),
 		string(RoleStatusEnabled),
 	}
-}
-
-func parseRoleStatus(input string) (*RoleStatus, error) {
-	vals := map[string]RoleStatus{
-		"disabled": RoleStatusDisabled,
-		"enabled":  RoleStatusEnabled,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := RoleStatus(input)
-	return &out, nil
 }
 
 type RoleTypes string
@@ -277,25 +155,6 @@ func PossibleValuesForRoleTypes() []string {
 	}
 }
 
-func parseRoleTypes(input string) (*RoleTypes, error) {
-	vals := map[string]RoleTypes{
-		"asa":                 RoleTypesASA,
-		"cloudedgemanagement": RoleTypesCloudEdgeManagement,
-		"cognitive":           RoleTypesCognitive,
-		"functions":           RoleTypesFunctions,
-		"iot":                 RoleTypesIOT,
-		"kubernetes":          RoleTypesKubernetes,
-		"mec":                 RoleTypesMEC,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := RoleTypes(input)
-	return &out, nil
-}
-
 type SubscriptionState string
 
 const (
@@ -314,21 +173,4 @@ func PossibleValuesForSubscriptionState() []string {
 		string(SubscriptionStateUnregistered),
 		string(SubscriptionStateWarned),
 	}
-}
-
-func parseSubscriptionState(input string) (*SubscriptionState, error) {
-	vals := map[string]SubscriptionState{
-		"deleted":      SubscriptionStateDeleted,
-		"registered":   SubscriptionStateRegistered,
-		"suspended":    SubscriptionStateSuspended,
-		"unregistered": SubscriptionStateUnregistered,
-		"warned":       SubscriptionStateWarned,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SubscriptionState(input)
-	return &out, nil
 }

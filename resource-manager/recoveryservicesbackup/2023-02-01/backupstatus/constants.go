@@ -1,7 +1,5 @@
 package backupstatus
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -47,34 +45,6 @@ func PossibleValuesForDataSourceType() []string {
 	}
 }
 
-func parseDataSourceType(input string) (*DataSourceType, error) {
-	vals := map[string]DataSourceType{
-		"azurefileshare":    DataSourceTypeAzureFileShare,
-		"azuresqldb":        DataSourceTypeAzureSqlDb,
-		"client":            DataSourceTypeClient,
-		"exchange":          DataSourceTypeExchange,
-		"filefolder":        DataSourceTypeFileFolder,
-		"genericdatasource": DataSourceTypeGenericDataSource,
-		"invalid":           DataSourceTypeInvalid,
-		"sapasedatabase":    DataSourceTypeSAPAseDatabase,
-		"saphanadbinstance": DataSourceTypeSAPHanaDBInstance,
-		"saphanadatabase":   DataSourceTypeSAPHanaDatabase,
-		"sqldb":             DataSourceTypeSQLDB,
-		"sqldatabase":       DataSourceTypeSQLDataBase,
-		"sharepoint":        DataSourceTypeSharepoint,
-		"systemstate":       DataSourceTypeSystemState,
-		"vm":                DataSourceTypeVM,
-		"vmwarevm":          DataSourceTypeVMwareVM,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := DataSourceType(input)
-	return &out, nil
-}
-
 type FabricName string
 
 const (
@@ -87,20 +57,6 @@ func PossibleValuesForFabricName() []string {
 		string(FabricNameAzure),
 		string(FabricNameInvalid),
 	}
-}
-
-func parseFabricName(input string) (*FabricName, error) {
-	vals := map[string]FabricName{
-		"azure":   FabricNameAzure,
-		"invalid": FabricNameInvalid,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := FabricName(input)
-	return &out, nil
 }
 
 type ProtectionStatus string
@@ -121,21 +77,4 @@ func PossibleValuesForProtectionStatus() []string {
 		string(ProtectionStatusProtecting),
 		string(ProtectionStatusProtectionFailed),
 	}
-}
-
-func parseProtectionStatus(input string) (*ProtectionStatus, error) {
-	vals := map[string]ProtectionStatus{
-		"invalid":          ProtectionStatusInvalid,
-		"notprotected":     ProtectionStatusNotProtected,
-		"protected":        ProtectionStatusProtected,
-		"protecting":       ProtectionStatusProtecting,
-		"protectionfailed": ProtectionStatusProtectionFailed,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ProtectionStatus(input)
-	return &out, nil
 }

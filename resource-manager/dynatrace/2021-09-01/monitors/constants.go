@@ -1,7 +1,5 @@
 package monitors
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -17,20 +15,6 @@ func PossibleValuesForAutoUpdateSetting() []string {
 		string(AutoUpdateSettingDISABLED),
 		string(AutoUpdateSettingENABLED),
 	}
-}
-
-func parseAutoUpdateSetting(input string) (*AutoUpdateSetting, error) {
-	vals := map[string]AutoUpdateSetting{
-		"disabled": AutoUpdateSettingDISABLED,
-		"enabled":  AutoUpdateSettingENABLED,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := AutoUpdateSetting(input)
-	return &out, nil
 }
 
 type AvailabilityState string
@@ -59,26 +43,6 @@ func PossibleValuesForAvailabilityState() []string {
 	}
 }
 
-func parseAvailabilityState(input string) (*AvailabilityState, error) {
-	vals := map[string]AvailabilityState{
-		"crashed":             AvailabilityStateCRASHED,
-		"lost":                AvailabilityStateLOST,
-		"monitored":           AvailabilityStateMONITORED,
-		"pre_monitored":       AvailabilityStatePREMONITORED,
-		"shutdown":            AvailabilityStateSHUTDOWN,
-		"unexpected_shutdown": AvailabilityStateUNEXPECTEDSHUTDOWN,
-		"unknown":             AvailabilityStateUNKNOWN,
-		"unmonitored":         AvailabilityStateUNMONITORED,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := AvailabilityState(input)
-	return &out, nil
-}
-
 type LiftrResourceCategories string
 
 const (
@@ -93,20 +57,6 @@ func PossibleValuesForLiftrResourceCategories() []string {
 	}
 }
 
-func parseLiftrResourceCategories(input string) (*LiftrResourceCategories, error) {
-	vals := map[string]LiftrResourceCategories{
-		"monitorlogs": LiftrResourceCategoriesMonitorLogs,
-		"unknown":     LiftrResourceCategoriesUnknown,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := LiftrResourceCategories(input)
-	return &out, nil
-}
-
 type LogModule string
 
 const (
@@ -119,20 +69,6 @@ func PossibleValuesForLogModule() []string {
 		string(LogModuleDISABLED),
 		string(LogModuleENABLED),
 	}
-}
-
-func parseLogModule(input string) (*LogModule, error) {
-	vals := map[string]LogModule{
-		"disabled": LogModuleDISABLED,
-		"enabled":  LogModuleENABLED,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := LogModule(input)
-	return &out, nil
 }
 
 type ManagedIdentityType string
@@ -151,21 +87,6 @@ func PossibleValuesForManagedIdentityType() []string {
 	}
 }
 
-func parseManagedIdentityType(input string) (*ManagedIdentityType, error) {
-	vals := map[string]ManagedIdentityType{
-		"systemanduserassigned": ManagedIdentityTypeSystemAndUserAssigned,
-		"systemassigned":        ManagedIdentityTypeSystemAssigned,
-		"userassigned":          ManagedIdentityTypeUserAssigned,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ManagedIdentityType(input)
-	return &out, nil
-}
-
 type MarketplaceSubscriptionStatus string
 
 const (
@@ -178,20 +99,6 @@ func PossibleValuesForMarketplaceSubscriptionStatus() []string {
 		string(MarketplaceSubscriptionStatusActive),
 		string(MarketplaceSubscriptionStatusSuspended),
 	}
-}
-
-func parseMarketplaceSubscriptionStatus(input string) (*MarketplaceSubscriptionStatus, error) {
-	vals := map[string]MarketplaceSubscriptionStatus{
-		"active":    MarketplaceSubscriptionStatusActive,
-		"suspended": MarketplaceSubscriptionStatusSuspended,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := MarketplaceSubscriptionStatus(input)
-	return &out, nil
 }
 
 type MonitoringStatus string
@@ -208,20 +115,6 @@ func PossibleValuesForMonitoringStatus() []string {
 	}
 }
 
-func parseMonitoringStatus(input string) (*MonitoringStatus, error) {
-	vals := map[string]MonitoringStatus{
-		"disabled": MonitoringStatusDisabled,
-		"enabled":  MonitoringStatusEnabled,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := MonitoringStatus(input)
-	return &out, nil
-}
-
 type MonitoringType string
 
 const (
@@ -234,20 +127,6 @@ func PossibleValuesForMonitoringType() []string {
 		string(MonitoringTypeCLOUDINFRASTRUCTURE),
 		string(MonitoringTypeFULLSTACK),
 	}
-}
-
-func parseMonitoringType(input string) (*MonitoringType, error) {
-	vals := map[string]MonitoringType{
-		"cloud_infrastructure": MonitoringTypeCLOUDINFRASTRUCTURE,
-		"full_stack":           MonitoringTypeFULLSTACK,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := MonitoringType(input)
-	return &out, nil
 }
 
 type ProvisioningState string
@@ -278,27 +157,6 @@ func PossibleValuesForProvisioningState() []string {
 	}
 }
 
-func parseProvisioningState(input string) (*ProvisioningState, error) {
-	vals := map[string]ProvisioningState{
-		"accepted":     ProvisioningStateAccepted,
-		"canceled":     ProvisioningStateCanceled,
-		"creating":     ProvisioningStateCreating,
-		"deleted":      ProvisioningStateDeleted,
-		"deleting":     ProvisioningStateDeleting,
-		"failed":       ProvisioningStateFailed,
-		"notspecified": ProvisioningStateNotSpecified,
-		"succeeded":    ProvisioningStateSucceeded,
-		"updating":     ProvisioningStateUpdating,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ProvisioningState(input)
-	return &out, nil
-}
-
 type SSOStatus string
 
 const (
@@ -311,20 +169,6 @@ func PossibleValuesForSSOStatus() []string {
 		string(SSOStatusDisabled),
 		string(SSOStatusEnabled),
 	}
-}
-
-func parseSSOStatus(input string) (*SSOStatus, error) {
-	vals := map[string]SSOStatus{
-		"disabled": SSOStatusDisabled,
-		"enabled":  SSOStatusEnabled,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SSOStatus(input)
-	return &out, nil
 }
 
 type SendingLogsStatus string
@@ -341,20 +185,6 @@ func PossibleValuesForSendingLogsStatus() []string {
 	}
 }
 
-func parseSendingLogsStatus(input string) (*SendingLogsStatus, error) {
-	vals := map[string]SendingLogsStatus{
-		"disabled": SendingLogsStatusDisabled,
-		"enabled":  SendingLogsStatusEnabled,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SendingLogsStatus(input)
-	return &out, nil
-}
-
 type SendingMetricsStatus string
 
 const (
@@ -367,20 +197,6 @@ func PossibleValuesForSendingMetricsStatus() []string {
 		string(SendingMetricsStatusDisabled),
 		string(SendingMetricsStatusEnabled),
 	}
-}
-
-func parseSendingMetricsStatus(input string) (*SendingMetricsStatus, error) {
-	vals := map[string]SendingMetricsStatus{
-		"disabled": SendingMetricsStatusDisabled,
-		"enabled":  SendingMetricsStatusEnabled,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SendingMetricsStatus(input)
-	return &out, nil
 }
 
 type SingleSignOnStates string
@@ -399,22 +215,6 @@ func PossibleValuesForSingleSignOnStates() []string {
 		string(SingleSignOnStatesExisting),
 		string(SingleSignOnStatesInitial),
 	}
-}
-
-func parseSingleSignOnStates(input string) (*SingleSignOnStates, error) {
-	vals := map[string]SingleSignOnStates{
-		"disable":  SingleSignOnStatesDisable,
-		"enable":   SingleSignOnStatesEnable,
-		"existing": SingleSignOnStatesExisting,
-		"initial":  SingleSignOnStatesInitial,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SingleSignOnStates(input)
-	return &out, nil
 }
 
 type UpdateStatus string
@@ -443,25 +243,4 @@ func PossibleValuesForUpdateStatus() []string {
 		string(UpdateStatusUPDATEPROBLEM),
 		string(UpdateStatusUPTwoDATE),
 	}
-}
-
-func parseUpdateStatus(input string) (*UpdateStatus, error) {
-	vals := map[string]UpdateStatus{
-		"incompatible":       UpdateStatusINCOMPATIBLE,
-		"outdated":           UpdateStatusOUTDATED,
-		"scheduled":          UpdateStatusSCHEDULED,
-		"suppressed":         UpdateStatusSUPPRESSED,
-		"unknown":            UpdateStatusUNKNOWN,
-		"update_in_progress": UpdateStatusUPDATEINPROGRESS,
-		"update_pending":     UpdateStatusUPDATEPENDING,
-		"update_problem":     UpdateStatusUPDATEPROBLEM,
-		"up2date":            UpdateStatusUPTwoDATE,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := UpdateStatus(input)
-	return &out, nil
 }

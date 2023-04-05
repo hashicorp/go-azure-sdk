@@ -1,7 +1,5 @@
 package servers
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -23,22 +21,6 @@ func PossibleValuesForCreateMode() []string {
 	}
 }
 
-func parseCreateMode(input string) (*CreateMode, error) {
-	vals := map[string]CreateMode{
-		"default":            CreateModeDefault,
-		"georestore":         CreateModeGeoRestore,
-		"pointintimerestore": CreateModePointInTimeRestore,
-		"replica":            CreateModeReplica,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := CreateMode(input)
-	return &out, nil
-}
-
 type GeoRedundantBackup string
 
 const (
@@ -51,20 +33,6 @@ func PossibleValuesForGeoRedundantBackup() []string {
 		string(GeoRedundantBackupDisabled),
 		string(GeoRedundantBackupEnabled),
 	}
-}
-
-func parseGeoRedundantBackup(input string) (*GeoRedundantBackup, error) {
-	vals := map[string]GeoRedundantBackup{
-		"disabled": GeoRedundantBackupDisabled,
-		"enabled":  GeoRedundantBackupEnabled,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := GeoRedundantBackup(input)
-	return &out, nil
 }
 
 type MinimalTlsVersionEnum string
@@ -83,22 +51,6 @@ func PossibleValuesForMinimalTlsVersionEnum() []string {
 		string(MinimalTlsVersionEnumTLSOneTwo),
 		string(MinimalTlsVersionEnumTLSOneZero),
 	}
-}
-
-func parseMinimalTlsVersionEnum(input string) (*MinimalTlsVersionEnum, error) {
-	vals := map[string]MinimalTlsVersionEnum{
-		"tlsenforcementdisabled": MinimalTlsVersionEnumTLSEnforcementDisabled,
-		"tls1_1":                 MinimalTlsVersionEnumTLSOneOne,
-		"tls1_2":                 MinimalTlsVersionEnumTLSOneTwo,
-		"tls1_0":                 MinimalTlsVersionEnumTLSOneZero,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := MinimalTlsVersionEnum(input)
-	return &out, nil
 }
 
 type PrivateEndpointProvisioningState string
@@ -121,23 +73,6 @@ func PossibleValuesForPrivateEndpointProvisioningState() []string {
 	}
 }
 
-func parsePrivateEndpointProvisioningState(input string) (*PrivateEndpointProvisioningState, error) {
-	vals := map[string]PrivateEndpointProvisioningState{
-		"approving": PrivateEndpointProvisioningStateApproving,
-		"dropping":  PrivateEndpointProvisioningStateDropping,
-		"failed":    PrivateEndpointProvisioningStateFailed,
-		"ready":     PrivateEndpointProvisioningStateReady,
-		"rejecting": PrivateEndpointProvisioningStateRejecting,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PrivateEndpointProvisioningState(input)
-	return &out, nil
-}
-
 type PrivateLinkServiceConnectionStateActionsRequire string
 
 const (
@@ -148,19 +83,6 @@ func PossibleValuesForPrivateLinkServiceConnectionStateActionsRequire() []string
 	return []string{
 		string(PrivateLinkServiceConnectionStateActionsRequireNone),
 	}
-}
-
-func parsePrivateLinkServiceConnectionStateActionsRequire(input string) (*PrivateLinkServiceConnectionStateActionsRequire, error) {
-	vals := map[string]PrivateLinkServiceConnectionStateActionsRequire{
-		"none": PrivateLinkServiceConnectionStateActionsRequireNone,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PrivateLinkServiceConnectionStateActionsRequire(input)
-	return &out, nil
 }
 
 type PrivateLinkServiceConnectionStateStatus string
@@ -181,22 +103,6 @@ func PossibleValuesForPrivateLinkServiceConnectionStateStatus() []string {
 	}
 }
 
-func parsePrivateLinkServiceConnectionStateStatus(input string) (*PrivateLinkServiceConnectionStateStatus, error) {
-	vals := map[string]PrivateLinkServiceConnectionStateStatus{
-		"approved":     PrivateLinkServiceConnectionStateStatusApproved,
-		"disconnected": PrivateLinkServiceConnectionStateStatusDisconnected,
-		"pending":      PrivateLinkServiceConnectionStateStatusPending,
-		"rejected":     PrivateLinkServiceConnectionStateStatusRejected,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PrivateLinkServiceConnectionStateStatus(input)
-	return &out, nil
-}
-
 type PublicNetworkAccessEnum string
 
 const (
@@ -209,20 +115,6 @@ func PossibleValuesForPublicNetworkAccessEnum() []string {
 		string(PublicNetworkAccessEnumDisabled),
 		string(PublicNetworkAccessEnumEnabled),
 	}
-}
-
-func parsePublicNetworkAccessEnum(input string) (*PublicNetworkAccessEnum, error) {
-	vals := map[string]PublicNetworkAccessEnum{
-		"disabled": PublicNetworkAccessEnumDisabled,
-		"enabled":  PublicNetworkAccessEnumEnabled,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PublicNetworkAccessEnum(input)
-	return &out, nil
 }
 
 type ServerState string
@@ -241,21 +133,6 @@ func PossibleValuesForServerState() []string {
 	}
 }
 
-func parseServerState(input string) (*ServerState, error) {
-	vals := map[string]ServerState{
-		"disabled": ServerStateDisabled,
-		"dropping": ServerStateDropping,
-		"ready":    ServerStateReady,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ServerState(input)
-	return &out, nil
-}
-
 type ServerVersion string
 
 const (
@@ -268,20 +145,6 @@ func PossibleValuesForServerVersion() []string {
 		string(ServerVersionOneZeroPointThree),
 		string(ServerVersionOneZeroPointTwo),
 	}
-}
-
-func parseServerVersion(input string) (*ServerVersion, error) {
-	vals := map[string]ServerVersion{
-		"10.3": ServerVersionOneZeroPointThree,
-		"10.2": ServerVersionOneZeroPointTwo,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ServerVersion(input)
-	return &out, nil
 }
 
 type SkuTier string
@@ -300,21 +163,6 @@ func PossibleValuesForSkuTier() []string {
 	}
 }
 
-func parseSkuTier(input string) (*SkuTier, error) {
-	vals := map[string]SkuTier{
-		"basic":           SkuTierBasic,
-		"generalpurpose":  SkuTierGeneralPurpose,
-		"memoryoptimized": SkuTierMemoryOptimized,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SkuTier(input)
-	return &out, nil
-}
-
 type SslEnforcementEnum string
 
 const (
@@ -329,20 +177,6 @@ func PossibleValuesForSslEnforcementEnum() []string {
 	}
 }
 
-func parseSslEnforcementEnum(input string) (*SslEnforcementEnum, error) {
-	vals := map[string]SslEnforcementEnum{
-		"disabled": SslEnforcementEnumDisabled,
-		"enabled":  SslEnforcementEnumEnabled,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SslEnforcementEnum(input)
-	return &out, nil
-}
-
 type StorageAutogrow string
 
 const (
@@ -355,18 +189,4 @@ func PossibleValuesForStorageAutogrow() []string {
 		string(StorageAutogrowDisabled),
 		string(StorageAutogrowEnabled),
 	}
-}
-
-func parseStorageAutogrow(input string) (*StorageAutogrow, error) {
-	vals := map[string]StorageAutogrow{
-		"disabled": StorageAutogrowDisabled,
-		"enabled":  StorageAutogrowEnabled,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := StorageAutogrow(input)
-	return &out, nil
 }

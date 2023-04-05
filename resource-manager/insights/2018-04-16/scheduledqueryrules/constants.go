@@ -1,7 +1,5 @@
 package scheduledqueryrules
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -25,23 +23,6 @@ func PossibleValuesForAlertSeverity() []string {
 	}
 }
 
-func parseAlertSeverity(input string) (*AlertSeverity, error) {
-	vals := map[string]AlertSeverity{
-		"4": AlertSeverityFour,
-		"1": AlertSeverityOne,
-		"3": AlertSeverityThree,
-		"2": AlertSeverityTwo,
-		"0": AlertSeverityZero,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := AlertSeverity(input)
-	return &out, nil
-}
-
 type ConditionalOperator string
 
 const (
@@ -62,23 +43,6 @@ func PossibleValuesForConditionalOperator() []string {
 	}
 }
 
-func parseConditionalOperator(input string) (*ConditionalOperator, error) {
-	vals := map[string]ConditionalOperator{
-		"equal":              ConditionalOperatorEqual,
-		"greaterthan":        ConditionalOperatorGreaterThan,
-		"greaterthanorequal": ConditionalOperatorGreaterThanOrEqual,
-		"lessthan":           ConditionalOperatorLessThan,
-		"lessthanorequal":    ConditionalOperatorLessThanOrEqual,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ConditionalOperator(input)
-	return &out, nil
-}
-
 type Enabled string
 
 const (
@@ -91,20 +55,6 @@ func PossibleValuesForEnabled() []string {
 		string(EnabledFalse),
 		string(EnabledTrue),
 	}
-}
-
-func parseEnabled(input string) (*Enabled, error) {
-	vals := map[string]Enabled{
-		"false": EnabledFalse,
-		"true":  EnabledTrue,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := Enabled(input)
-	return &out, nil
 }
 
 type MetricTriggerType string
@@ -121,20 +71,6 @@ func PossibleValuesForMetricTriggerType() []string {
 	}
 }
 
-func parseMetricTriggerType(input string) (*MetricTriggerType, error) {
-	vals := map[string]MetricTriggerType{
-		"consecutive": MetricTriggerTypeConsecutive,
-		"total":       MetricTriggerTypeTotal,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := MetricTriggerType(input)
-	return &out, nil
-}
-
 type Operator string
 
 const (
@@ -145,19 +81,6 @@ func PossibleValuesForOperator() []string {
 	return []string{
 		string(OperatorInclude),
 	}
-}
-
-func parseOperator(input string) (*Operator, error) {
-	vals := map[string]Operator{
-		"include": OperatorInclude,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := Operator(input)
-	return &out, nil
 }
 
 type ProvisioningState string
@@ -178,22 +101,6 @@ func PossibleValuesForProvisioningState() []string {
 	}
 }
 
-func parseProvisioningState(input string) (*ProvisioningState, error) {
-	vals := map[string]ProvisioningState{
-		"canceled":  ProvisioningStateCanceled,
-		"deploying": ProvisioningStateDeploying,
-		"failed":    ProvisioningStateFailed,
-		"succeeded": ProvisioningStateSucceeded,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ProvisioningState(input)
-	return &out, nil
-}
-
 type QueryType string
 
 const (
@@ -204,17 +111,4 @@ func PossibleValuesForQueryType() []string {
 	return []string{
 		string(QueryTypeResultCount),
 	}
-}
-
-func parseQueryType(input string) (*QueryType, error) {
-	vals := map[string]QueryType{
-		"resultcount": QueryTypeResultCount,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := QueryType(input)
-	return &out, nil
 }

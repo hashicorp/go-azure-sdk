@@ -1,7 +1,5 @@
 package backuppolicies
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -25,23 +23,6 @@ func PossibleValuesForAbsoluteMarker() []string {
 	}
 }
 
-func parseAbsoluteMarker(input string) (*AbsoluteMarker, error) {
-	vals := map[string]AbsoluteMarker{
-		"allbackup":    AbsoluteMarkerAllBackup,
-		"firstofday":   AbsoluteMarkerFirstOfDay,
-		"firstofmonth": AbsoluteMarkerFirstOfMonth,
-		"firstofweek":  AbsoluteMarkerFirstOfWeek,
-		"firstofyear":  AbsoluteMarkerFirstOfYear,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := AbsoluteMarker(input)
-	return &out, nil
-}
-
 type DataStoreTypes string
 
 const (
@@ -56,21 +37,6 @@ func PossibleValuesForDataStoreTypes() []string {
 		string(DataStoreTypesOperationalStore),
 		string(DataStoreTypesVaultStore),
 	}
-}
-
-func parseDataStoreTypes(input string) (*DataStoreTypes, error) {
-	vals := map[string]DataStoreTypes{
-		"archivestore":     DataStoreTypesArchiveStore,
-		"operationalstore": DataStoreTypesOperationalStore,
-		"vaultstore":       DataStoreTypesVaultStore,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := DataStoreTypes(input)
-	return &out, nil
 }
 
 type DayOfWeek string
@@ -95,25 +61,6 @@ func PossibleValuesForDayOfWeek() []string {
 		string(DayOfWeekTuesday),
 		string(DayOfWeekWednesday),
 	}
-}
-
-func parseDayOfWeek(input string) (*DayOfWeek, error) {
-	vals := map[string]DayOfWeek{
-		"friday":    DayOfWeekFriday,
-		"monday":    DayOfWeekMonday,
-		"saturday":  DayOfWeekSaturday,
-		"sunday":    DayOfWeekSunday,
-		"thursday":  DayOfWeekThursday,
-		"tuesday":   DayOfWeekTuesday,
-		"wednesday": DayOfWeekWednesday,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := DayOfWeek(input)
-	return &out, nil
 }
 
 type Month string
@@ -150,30 +97,6 @@ func PossibleValuesForMonth() []string {
 	}
 }
 
-func parseMonth(input string) (*Month, error) {
-	vals := map[string]Month{
-		"april":     MonthApril,
-		"august":    MonthAugust,
-		"december":  MonthDecember,
-		"february":  MonthFebruary,
-		"january":   MonthJanuary,
-		"july":      MonthJuly,
-		"june":      MonthJune,
-		"march":     MonthMarch,
-		"may":       MonthMay,
-		"november":  MonthNovember,
-		"october":   MonthOctober,
-		"september": MonthSeptember,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := Month(input)
-	return &out, nil
-}
-
 type WeekNumber string
 
 const (
@@ -192,21 +115,4 @@ func PossibleValuesForWeekNumber() []string {
 		string(WeekNumberSecond),
 		string(WeekNumberThird),
 	}
-}
-
-func parseWeekNumber(input string) (*WeekNumber, error) {
-	vals := map[string]WeekNumber{
-		"first":  WeekNumberFirst,
-		"fourth": WeekNumberFourth,
-		"last":   WeekNumberLast,
-		"second": WeekNumberSecond,
-		"third":  WeekNumberThird,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := WeekNumber(input)
-	return &out, nil
 }

@@ -1,7 +1,5 @@
 package post
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -25,23 +23,6 @@ func PossibleValuesForCommandState() []string {
 	}
 }
 
-func parseCommandState(input string) (*CommandState, error) {
-	vals := map[string]CommandState{
-		"accepted":  CommandStateAccepted,
-		"failed":    CommandStateFailed,
-		"running":   CommandStateRunning,
-		"succeeded": CommandStateSucceeded,
-		"unknown":   CommandStateUnknown,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := CommandState(input)
-	return &out, nil
-}
-
 type NameCheckFailureReason string
 
 const (
@@ -54,20 +35,6 @@ func PossibleValuesForNameCheckFailureReason() []string {
 		string(NameCheckFailureReasonAlreadyExists),
 		string(NameCheckFailureReasonInvalid),
 	}
-}
-
-func parseNameCheckFailureReason(input string) (*NameCheckFailureReason, error) {
-	vals := map[string]NameCheckFailureReason{
-		"alreadyexists": NameCheckFailureReasonAlreadyExists,
-		"invalid":       NameCheckFailureReasonInvalid,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := NameCheckFailureReason(input)
-	return &out, nil
 }
 
 type TaskState string
@@ -94,24 +61,4 @@ func PossibleValuesForTaskState() []string {
 		string(TaskStateSucceeded),
 		string(TaskStateUnknown),
 	}
-}
-
-func parseTaskState(input string) (*TaskState, error) {
-	vals := map[string]TaskState{
-		"canceled":              TaskStateCanceled,
-		"failed":                TaskStateFailed,
-		"failedinputvalidation": TaskStateFailedInputValidation,
-		"faulted":               TaskStateFaulted,
-		"queued":                TaskStateQueued,
-		"running":               TaskStateRunning,
-		"succeeded":             TaskStateSucceeded,
-		"unknown":               TaskStateUnknown,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := TaskState(input)
-	return &out, nil
 }

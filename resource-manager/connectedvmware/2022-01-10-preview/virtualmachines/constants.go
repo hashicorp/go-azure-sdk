@@ -1,6 +1,10 @@
 package virtualmachines
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -21,19 +25,19 @@ func PossibleValuesForDiskMode() []string {
 	}
 }
 
-func parseDiskMode(input string) (*DiskMode, error) {
-	vals := map[string]DiskMode{
-		"independent_nonpersistent": DiskModeIndependentNonpersistent,
-		"independent_persistent":    DiskModeIndependentPersistent,
-		"persistent":                DiskModePersistent,
+func (s *DiskMode) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForDiskMode() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := DiskMode(input)
-	return &out, nil
+	*s = DiskMode(decoded)
+	return nil
 }
 
 type DiskType string
@@ -60,23 +64,19 @@ func PossibleValuesForDiskType() []string {
 	}
 }
 
-func parseDiskType(input string) (*DiskType, error) {
-	vals := map[string]DiskType{
-		"flat":        DiskTypeFlat,
-		"pmem":        DiskTypePmem,
-		"rawphysical": DiskTypeRawphysical,
-		"rawvirtual":  DiskTypeRawvirtual,
-		"sesparse":    DiskTypeSesparse,
-		"sparse":      DiskTypeSparse,
-		"unknown":     DiskTypeUnknown,
+func (s *DiskType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForDiskType() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := DiskType(input)
-	return &out, nil
+	*s = DiskType(decoded)
+	return nil
 }
 
 type FirmwareType string
@@ -93,18 +93,19 @@ func PossibleValuesForFirmwareType() []string {
 	}
 }
 
-func parseFirmwareType(input string) (*FirmwareType, error) {
-	vals := map[string]FirmwareType{
-		"bios": FirmwareTypeBios,
-		"efi":  FirmwareTypeEfi,
+func (s *FirmwareType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForFirmwareType() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := FirmwareType(input)
-	return &out, nil
+	*s = FirmwareType(decoded)
+	return nil
 }
 
 type IPAddressAllocationMethod string
@@ -129,22 +130,19 @@ func PossibleValuesForIPAddressAllocationMethod() []string {
 	}
 }
 
-func parseIPAddressAllocationMethod(input string) (*IPAddressAllocationMethod, error) {
-	vals := map[string]IPAddressAllocationMethod{
-		"dynamic":   IPAddressAllocationMethodDynamic,
-		"linklayer": IPAddressAllocationMethodLinklayer,
-		"other":     IPAddressAllocationMethodOther,
-		"random":    IPAddressAllocationMethodRandom,
-		"static":    IPAddressAllocationMethodStatic,
-		"unset":     IPAddressAllocationMethodUnset,
+func (s *IPAddressAllocationMethod) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForIPAddressAllocationMethod() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := IPAddressAllocationMethod(input)
-	return &out, nil
+	*s = IPAddressAllocationMethod(decoded)
+	return nil
 }
 
 type NICType string
@@ -169,22 +167,19 @@ func PossibleValuesForNICType() []string {
 	}
 }
 
-func parseNICType(input string) (*NICType, error) {
-	vals := map[string]NICType{
-		"e1000":   NICTypeEOneThousand,
-		"e1000e":  NICTypeEOneThousande,
-		"pcnet32": NICTypePcnetThreeTwo,
-		"vmxnet":  NICTypeVMxnet,
-		"vmxnet3": NICTypeVMxnetThree,
-		"vmxnet2": NICTypeVMxnetTwo,
+func (s *NICType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForNICType() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := NICType(input)
-	return &out, nil
+	*s = NICType(decoded)
+	return nil
 }
 
 type OsType string
@@ -203,19 +198,19 @@ func PossibleValuesForOsType() []string {
 	}
 }
 
-func parseOsType(input string) (*OsType, error) {
-	vals := map[string]OsType{
-		"linux":   OsTypeLinux,
-		"other":   OsTypeOther,
-		"windows": OsTypeWindows,
+func (s *OsType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForOsType() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := OsType(input)
-	return &out, nil
+	*s = OsType(decoded)
+	return nil
 }
 
 type OsTypeUM string
@@ -232,18 +227,19 @@ func PossibleValuesForOsTypeUM() []string {
 	}
 }
 
-func parseOsTypeUM(input string) (*OsTypeUM, error) {
-	vals := map[string]OsTypeUM{
-		"linux":   OsTypeUMLinux,
-		"windows": OsTypeUMWindows,
+func (s *OsTypeUM) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForOsTypeUM() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := OsTypeUM(input)
-	return &out, nil
+	*s = OsTypeUM(decoded)
+	return nil
 }
 
 type PatchOperationStartedBy string
@@ -260,18 +256,19 @@ func PossibleValuesForPatchOperationStartedBy() []string {
 	}
 }
 
-func parsePatchOperationStartedBy(input string) (*PatchOperationStartedBy, error) {
-	vals := map[string]PatchOperationStartedBy{
-		"platform": PatchOperationStartedByPlatform,
-		"user":     PatchOperationStartedByUser,
+func (s *PatchOperationStartedBy) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForPatchOperationStartedBy() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PatchOperationStartedBy(input)
-	return &out, nil
+	*s = PatchOperationStartedBy(decoded)
+	return nil
 }
 
 type PatchOperationStatus string
@@ -294,21 +291,19 @@ func PossibleValuesForPatchOperationStatus() []string {
 	}
 }
 
-func parsePatchOperationStatus(input string) (*PatchOperationStatus, error) {
-	vals := map[string]PatchOperationStatus{
-		"completedwithwarnings": PatchOperationStatusCompletedWithWarnings,
-		"failed":                PatchOperationStatusFailed,
-		"inprogress":            PatchOperationStatusInProgress,
-		"succeeded":             PatchOperationStatusSucceeded,
-		"unknown":               PatchOperationStatusUnknown,
+func (s *PatchOperationStatus) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForPatchOperationStatus() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PatchOperationStatus(input)
-	return &out, nil
+	*s = PatchOperationStatus(decoded)
+	return nil
 }
 
 type PatchServiceUsed string
@@ -333,22 +328,19 @@ func PossibleValuesForPatchServiceUsed() []string {
 	}
 }
 
-func parsePatchServiceUsed(input string) (*PatchServiceUsed, error) {
-	vals := map[string]PatchServiceUsed{
-		"apt":     PatchServiceUsedAPT,
-		"unknown": PatchServiceUsedUnknown,
-		"wu":      PatchServiceUsedWU,
-		"wu_wsus": PatchServiceUsedWUWSUS,
-		"yum":     PatchServiceUsedYUM,
-		"zypper":  PatchServiceUsedZypper,
+func (s *PatchServiceUsed) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForPatchServiceUsed() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PatchServiceUsed(input)
-	return &out, nil
+	*s = PatchServiceUsed(decoded)
+	return nil
 }
 
 type PowerOnBootOption string
@@ -365,18 +357,19 @@ func PossibleValuesForPowerOnBootOption() []string {
 	}
 }
 
-func parsePowerOnBootOption(input string) (*PowerOnBootOption, error) {
-	vals := map[string]PowerOnBootOption{
-		"disabled": PowerOnBootOptionDisabled,
-		"enabled":  PowerOnBootOptionEnabled,
+func (s *PowerOnBootOption) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForPowerOnBootOption() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PowerOnBootOption(input)
-	return &out, nil
+	*s = PowerOnBootOption(decoded)
+	return nil
 }
 
 type SCSIControllerType string
@@ -397,20 +390,19 @@ func PossibleValuesForSCSIControllerType() []string {
 	}
 }
 
-func parseSCSIControllerType(input string) (*SCSIControllerType, error) {
-	vals := map[string]SCSIControllerType{
-		"buslogic":    SCSIControllerTypeBuslogic,
-		"lsilogic":    SCSIControllerTypeLsilogic,
-		"lsilogicsas": SCSIControllerTypeLsilogicsas,
-		"pvscsi":      SCSIControllerTypePvscsi,
+func (s *SCSIControllerType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForSCSIControllerType() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SCSIControllerType(input)
-	return &out, nil
+	*s = SCSIControllerType(decoded)
+	return nil
 }
 
 type StatusTypes string
@@ -429,19 +421,19 @@ func PossibleValuesForStatusTypes() []string {
 	}
 }
 
-func parseStatusTypes(input string) (*StatusTypes, error) {
-	vals := map[string]StatusTypes{
-		"connected":    StatusTypesConnected,
-		"disconnected": StatusTypesDisconnected,
-		"error":        StatusTypesError,
+func (s *StatusTypes) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForStatusTypes() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := StatusTypes(input)
-	return &out, nil
+	*s = StatusTypes(decoded)
+	return nil
 }
 
 type VMGuestPatchClassificationLinux string
@@ -460,19 +452,19 @@ func PossibleValuesForVMGuestPatchClassificationLinux() []string {
 	}
 }
 
-func parseVMGuestPatchClassificationLinux(input string) (*VMGuestPatchClassificationLinux, error) {
-	vals := map[string]VMGuestPatchClassificationLinux{
-		"critical": VMGuestPatchClassificationLinuxCritical,
-		"other":    VMGuestPatchClassificationLinuxOther,
-		"security": VMGuestPatchClassificationLinuxSecurity,
+func (s *VMGuestPatchClassificationLinux) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForVMGuestPatchClassificationLinux() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := VMGuestPatchClassificationLinux(input)
-	return &out, nil
+	*s = VMGuestPatchClassificationLinux(decoded)
+	return nil
 }
 
 type VMGuestPatchClassificationWindows string
@@ -501,24 +493,19 @@ func PossibleValuesForVMGuestPatchClassificationWindows() []string {
 	}
 }
 
-func parseVMGuestPatchClassificationWindows(input string) (*VMGuestPatchClassificationWindows, error) {
-	vals := map[string]VMGuestPatchClassificationWindows{
-		"critical":     VMGuestPatchClassificationWindowsCritical,
-		"definition":   VMGuestPatchClassificationWindowsDefinition,
-		"featurepack":  VMGuestPatchClassificationWindowsFeaturePack,
-		"security":     VMGuestPatchClassificationWindowsSecurity,
-		"servicepack":  VMGuestPatchClassificationWindowsServicePack,
-		"tools":        VMGuestPatchClassificationWindowsTools,
-		"updaterollup": VMGuestPatchClassificationWindowsUpdateRollUp,
-		"updates":      VMGuestPatchClassificationWindowsUpdates,
+func (s *VMGuestPatchClassificationWindows) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForVMGuestPatchClassificationWindows() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := VMGuestPatchClassificationWindows(input)
-	return &out, nil
+	*s = VMGuestPatchClassificationWindows(decoded)
+	return nil
 }
 
 type VMGuestPatchRebootSetting string
@@ -537,19 +524,19 @@ func PossibleValuesForVMGuestPatchRebootSetting() []string {
 	}
 }
 
-func parseVMGuestPatchRebootSetting(input string) (*VMGuestPatchRebootSetting, error) {
-	vals := map[string]VMGuestPatchRebootSetting{
-		"always":     VMGuestPatchRebootSettingAlways,
-		"ifrequired": VMGuestPatchRebootSettingIfRequired,
-		"never":      VMGuestPatchRebootSettingNever,
+func (s *VMGuestPatchRebootSetting) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForVMGuestPatchRebootSetting() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := VMGuestPatchRebootSetting(input)
-	return &out, nil
+	*s = VMGuestPatchRebootSetting(decoded)
+	return nil
 }
 
 type VMGuestPatchRebootStatus string
@@ -574,22 +561,19 @@ func PossibleValuesForVMGuestPatchRebootStatus() []string {
 	}
 }
 
-func parseVMGuestPatchRebootStatus(input string) (*VMGuestPatchRebootStatus, error) {
-	vals := map[string]VMGuestPatchRebootStatus{
-		"completed": VMGuestPatchRebootStatusCompleted,
-		"failed":    VMGuestPatchRebootStatusFailed,
-		"notneeded": VMGuestPatchRebootStatusNotNeeded,
-		"required":  VMGuestPatchRebootStatusRequired,
-		"started":   VMGuestPatchRebootStatusStarted,
-		"unknown":   VMGuestPatchRebootStatusUnknown,
+func (s *VMGuestPatchRebootStatus) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForVMGuestPatchRebootStatus() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := VMGuestPatchRebootStatus(input)
-	return &out, nil
+	*s = VMGuestPatchRebootStatus(decoded)
+	return nil
 }
 
 type VirtualSCSISharing string
@@ -608,17 +592,17 @@ func PossibleValuesForVirtualSCSISharing() []string {
 	}
 }
 
-func parseVirtualSCSISharing(input string) (*VirtualSCSISharing, error) {
-	vals := map[string]VirtualSCSISharing{
-		"nosharing":       VirtualSCSISharingNoSharing,
-		"physicalsharing": VirtualSCSISharingPhysicalSharing,
-		"virtualsharing":  VirtualSCSISharingVirtualSharing,
+func (s *VirtualSCSISharing) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForVirtualSCSISharing() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := VirtualSCSISharing(input)
-	return &out, nil
+	*s = VirtualSCSISharing(decoded)
+	return nil
 }

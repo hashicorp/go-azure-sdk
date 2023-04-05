@@ -1,7 +1,5 @@
 package customresourceprovider
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -15,19 +13,6 @@ func PossibleValuesForActionRouting() []string {
 	return []string{
 		string(ActionRoutingProxy),
 	}
-}
-
-func parseActionRouting(input string) (*ActionRouting, error) {
-	vals := map[string]ActionRouting{
-		"proxy": ActionRoutingProxy,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ActionRouting(input)
-	return &out, nil
 }
 
 type ProvisioningState string
@@ -50,23 +35,6 @@ func PossibleValuesForProvisioningState() []string {
 	}
 }
 
-func parseProvisioningState(input string) (*ProvisioningState, error) {
-	vals := map[string]ProvisioningState{
-		"accepted":  ProvisioningStateAccepted,
-		"deleting":  ProvisioningStateDeleting,
-		"failed":    ProvisioningStateFailed,
-		"running":   ProvisioningStateRunning,
-		"succeeded": ProvisioningStateSucceeded,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ProvisioningState(input)
-	return &out, nil
-}
-
 type ResourceTypeRouting string
 
 const (
@@ -81,20 +49,6 @@ func PossibleValuesForResourceTypeRouting() []string {
 	}
 }
 
-func parseResourceTypeRouting(input string) (*ResourceTypeRouting, error) {
-	vals := map[string]ResourceTypeRouting{
-		"proxy":       ResourceTypeRoutingProxy,
-		"proxy,cache": ResourceTypeRoutingProxyCache,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ResourceTypeRouting(input)
-	return &out, nil
-}
-
 type ValidationType string
 
 const (
@@ -105,17 +59,4 @@ func PossibleValuesForValidationType() []string {
 	return []string{
 		string(ValidationTypeSwagger),
 	}
-}
-
-func parseValidationType(input string) (*ValidationType, error) {
-	vals := map[string]ValidationType{
-		"swagger": ValidationTypeSwagger,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ValidationType(input)
-	return &out, nil
 }

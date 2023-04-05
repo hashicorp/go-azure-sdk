@@ -1,7 +1,5 @@
 package schedule
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -33,28 +31,6 @@ func PossibleValuesForBlockedTransformers() []string {
 		string(BlockedTransformersWoETargetEncoder),
 		string(BlockedTransformersWordEmbedding),
 	}
-}
-
-func parseBlockedTransformers(input string) (*BlockedTransformers, error) {
-	vals := map[string]BlockedTransformers{
-		"cattargetencoder":  BlockedTransformersCatTargetEncoder,
-		"countvectorizer":   BlockedTransformersCountVectorizer,
-		"hashonehotencoder": BlockedTransformersHashOneHotEncoder,
-		"labelencoder":      BlockedTransformersLabelEncoder,
-		"naivebayes":        BlockedTransformersNaiveBayes,
-		"onehotencoder":     BlockedTransformersOneHotEncoder,
-		"texttargetencoder": BlockedTransformersTextTargetEncoder,
-		"tfidf":             BlockedTransformersTfIdf,
-		"woetargetencoder":  BlockedTransformersWoETargetEncoder,
-		"wordembedding":     BlockedTransformersWordEmbedding,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := BlockedTransformers(input)
-	return &out, nil
 }
 
 type ClassificationModels string
@@ -93,31 +69,6 @@ func PossibleValuesForClassificationModels() []string {
 	}
 }
 
-func parseClassificationModels(input string) (*ClassificationModels, error) {
-	vals := map[string]ClassificationModels{
-		"bernoullinaivebayes":   ClassificationModelsBernoulliNaiveBayes,
-		"decisiontree":          ClassificationModelsDecisionTree,
-		"extremerandomtrees":    ClassificationModelsExtremeRandomTrees,
-		"gradientboosting":      ClassificationModelsGradientBoosting,
-		"knn":                   ClassificationModelsKNN,
-		"lightgbm":              ClassificationModelsLightGBM,
-		"linearsvm":             ClassificationModelsLinearSVM,
-		"logisticregression":    ClassificationModelsLogisticRegression,
-		"multinomialnaivebayes": ClassificationModelsMultinomialNaiveBayes,
-		"randomforest":          ClassificationModelsRandomForest,
-		"sgd":                   ClassificationModelsSGD,
-		"svm":                   ClassificationModelsSVM,
-		"xgboostclassifier":     ClassificationModelsXGBoostClassifier,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ClassificationModels(input)
-	return &out, nil
-}
-
 type ClassificationMultilabelPrimaryMetrics string
 
 const (
@@ -140,24 +91,6 @@ func PossibleValuesForClassificationMultilabelPrimaryMetrics() []string {
 	}
 }
 
-func parseClassificationMultilabelPrimaryMetrics(input string) (*ClassificationMultilabelPrimaryMetrics, error) {
-	vals := map[string]ClassificationMultilabelPrimaryMetrics{
-		"aucweighted":                   ClassificationMultilabelPrimaryMetricsAUCWeighted,
-		"accuracy":                      ClassificationMultilabelPrimaryMetricsAccuracy,
-		"averageprecisionscoreweighted": ClassificationMultilabelPrimaryMetricsAveragePrecisionScoreWeighted,
-		"iou":                           ClassificationMultilabelPrimaryMetricsIOU,
-		"normmacrorecall":               ClassificationMultilabelPrimaryMetricsNormMacroRecall,
-		"precisionscoreweighted":        ClassificationMultilabelPrimaryMetricsPrecisionScoreWeighted,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ClassificationMultilabelPrimaryMetrics(input)
-	return &out, nil
-}
-
 type ClassificationPrimaryMetrics string
 
 const (
@@ -178,23 +111,6 @@ func PossibleValuesForClassificationPrimaryMetrics() []string {
 	}
 }
 
-func parseClassificationPrimaryMetrics(input string) (*ClassificationPrimaryMetrics, error) {
-	vals := map[string]ClassificationPrimaryMetrics{
-		"aucweighted":                   ClassificationPrimaryMetricsAUCWeighted,
-		"accuracy":                      ClassificationPrimaryMetricsAccuracy,
-		"averageprecisionscoreweighted": ClassificationPrimaryMetricsAveragePrecisionScoreWeighted,
-		"normmacrorecall":               ClassificationPrimaryMetricsNormMacroRecall,
-		"precisionscoreweighted":        ClassificationPrimaryMetricsPrecisionScoreWeighted,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ClassificationPrimaryMetrics(input)
-	return &out, nil
-}
-
 type DistributionType string
 
 const (
@@ -209,21 +125,6 @@ func PossibleValuesForDistributionType() []string {
 		string(DistributionTypePyTorch),
 		string(DistributionTypeTensorFlow),
 	}
-}
-
-func parseDistributionType(input string) (*DistributionType, error) {
-	vals := map[string]DistributionType{
-		"mpi":        DistributionTypeMpi,
-		"pytorch":    DistributionTypePyTorch,
-		"tensorflow": DistributionTypeTensorFlow,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := DistributionType(input)
-	return &out, nil
 }
 
 type EarlyTerminationPolicyType string
@@ -242,21 +143,6 @@ func PossibleValuesForEarlyTerminationPolicyType() []string {
 	}
 }
 
-func parseEarlyTerminationPolicyType(input string) (*EarlyTerminationPolicyType, error) {
-	vals := map[string]EarlyTerminationPolicyType{
-		"bandit":              EarlyTerminationPolicyTypeBandit,
-		"medianstopping":      EarlyTerminationPolicyTypeMedianStopping,
-		"truncationselection": EarlyTerminationPolicyTypeTruncationSelection,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := EarlyTerminationPolicyType(input)
-	return &out, nil
-}
-
 type FeatureLags string
 
 const (
@@ -269,20 +155,6 @@ func PossibleValuesForFeatureLags() []string {
 		string(FeatureLagsAuto),
 		string(FeatureLagsNone),
 	}
-}
-
-func parseFeatureLags(input string) (*FeatureLags, error) {
-	vals := map[string]FeatureLags{
-		"auto": FeatureLagsAuto,
-		"none": FeatureLagsNone,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := FeatureLags(input)
-	return &out, nil
 }
 
 type FeaturizationMode string
@@ -301,21 +173,6 @@ func PossibleValuesForFeaturizationMode() []string {
 	}
 }
 
-func parseFeaturizationMode(input string) (*FeaturizationMode, error) {
-	vals := map[string]FeaturizationMode{
-		"auto":   FeaturizationModeAuto,
-		"custom": FeaturizationModeCustom,
-		"off":    FeaturizationModeOff,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := FeaturizationMode(input)
-	return &out, nil
-}
-
 type ForecastHorizonMode string
 
 const (
@@ -328,20 +185,6 @@ func PossibleValuesForForecastHorizonMode() []string {
 		string(ForecastHorizonModeAuto),
 		string(ForecastHorizonModeCustom),
 	}
-}
-
-func parseForecastHorizonMode(input string) (*ForecastHorizonMode, error) {
-	vals := map[string]ForecastHorizonMode{
-		"auto":   ForecastHorizonModeAuto,
-		"custom": ForecastHorizonModeCustom,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ForecastHorizonMode(input)
-	return &out, nil
 }
 
 type ForecastingModels string
@@ -392,37 +235,6 @@ func PossibleValuesForForecastingModels() []string {
 	}
 }
 
-func parseForecastingModels(input string) (*ForecastingModels, error) {
-	vals := map[string]ForecastingModels{
-		"arimax":               ForecastingModelsArimax,
-		"autoarima":            ForecastingModelsAutoArima,
-		"average":              ForecastingModelsAverage,
-		"decisiontree":         ForecastingModelsDecisionTree,
-		"elasticnet":           ForecastingModelsElasticNet,
-		"exponentialsmoothing": ForecastingModelsExponentialSmoothing,
-		"extremerandomtrees":   ForecastingModelsExtremeRandomTrees,
-		"gradientboosting":     ForecastingModelsGradientBoosting,
-		"knn":                  ForecastingModelsKNN,
-		"lassolars":            ForecastingModelsLassoLars,
-		"lightgbm":             ForecastingModelsLightGBM,
-		"naive":                ForecastingModelsNaive,
-		"prophet":              ForecastingModelsProphet,
-		"randomforest":         ForecastingModelsRandomForest,
-		"sgd":                  ForecastingModelsSGD,
-		"seasonalaverage":      ForecastingModelsSeasonalAverage,
-		"seasonalnaive":        ForecastingModelsSeasonalNaive,
-		"tcnforecaster":        ForecastingModelsTCNForecaster,
-		"xgboostregressor":     ForecastingModelsXGBoostRegressor,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ForecastingModels(input)
-	return &out, nil
-}
-
 type ForecastingPrimaryMetrics string
 
 const (
@@ -441,22 +253,6 @@ func PossibleValuesForForecastingPrimaryMetrics() []string {
 	}
 }
 
-func parseForecastingPrimaryMetrics(input string) (*ForecastingPrimaryMetrics, error) {
-	vals := map[string]ForecastingPrimaryMetrics{
-		"normalizedmeanabsoluteerror":    ForecastingPrimaryMetricsNormalizedMeanAbsoluteError,
-		"normalizedrootmeansquarederror": ForecastingPrimaryMetricsNormalizedRootMeanSquaredError,
-		"r2score":                        ForecastingPrimaryMetricsRTwoScore,
-		"spearmancorrelation":            ForecastingPrimaryMetricsSpearmanCorrelation,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ForecastingPrimaryMetrics(input)
-	return &out, nil
-}
-
 type Goal string
 
 const (
@@ -469,20 +265,6 @@ func PossibleValuesForGoal() []string {
 		string(GoalMaximize),
 		string(GoalMinimize),
 	}
-}
-
-func parseGoal(input string) (*Goal, error) {
-	vals := map[string]Goal{
-		"maximize": GoalMaximize,
-		"minimize": GoalMinimize,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := Goal(input)
-	return &out, nil
 }
 
 type IdentityConfigurationType string
@@ -499,21 +281,6 @@ func PossibleValuesForIdentityConfigurationType() []string {
 		string(IdentityConfigurationTypeManaged),
 		string(IdentityConfigurationTypeUserIdentity),
 	}
-}
-
-func parseIdentityConfigurationType(input string) (*IdentityConfigurationType, error) {
-	vals := map[string]IdentityConfigurationType{
-		"amltoken":     IdentityConfigurationTypeAMLToken,
-		"managed":      IdentityConfigurationTypeManaged,
-		"useridentity": IdentityConfigurationTypeUserIdentity,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := IdentityConfigurationType(input)
-	return &out, nil
 }
 
 type InputDeliveryMode string
@@ -538,24 +305,6 @@ func PossibleValuesForInputDeliveryMode() []string {
 	}
 }
 
-func parseInputDeliveryMode(input string) (*InputDeliveryMode, error) {
-	vals := map[string]InputDeliveryMode{
-		"direct":         InputDeliveryModeDirect,
-		"download":       InputDeliveryModeDownload,
-		"evaldownload":   InputDeliveryModeEvalDownload,
-		"evalmount":      InputDeliveryModeEvalMount,
-		"readonlymount":  InputDeliveryModeReadOnlyMount,
-		"readwritemount": InputDeliveryModeReadWriteMount,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := InputDeliveryMode(input)
-	return &out, nil
-}
-
 type InstanceSegmentationPrimaryMetrics string
 
 const (
@@ -566,19 +315,6 @@ func PossibleValuesForInstanceSegmentationPrimaryMetrics() []string {
 	return []string{
 		string(InstanceSegmentationPrimaryMetricsMeanAveragePrecision),
 	}
-}
-
-func parseInstanceSegmentationPrimaryMetrics(input string) (*InstanceSegmentationPrimaryMetrics, error) {
-	vals := map[string]InstanceSegmentationPrimaryMetrics{
-		"meanaverageprecision": InstanceSegmentationPrimaryMetricsMeanAveragePrecision,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := InstanceSegmentationPrimaryMetrics(input)
-	return &out, nil
 }
 
 type JobInputType string
@@ -605,25 +341,6 @@ func PossibleValuesForJobInputType() []string {
 	}
 }
 
-func parseJobInputType(input string) (*JobInputType, error) {
-	vals := map[string]JobInputType{
-		"custom_model": JobInputTypeCustomModel,
-		"literal":      JobInputTypeLiteral,
-		"mlflow_model": JobInputTypeMlflowModel,
-		"mltable":      JobInputTypeMltable,
-		"triton_model": JobInputTypeTritonModel,
-		"uri_file":     JobInputTypeUriFile,
-		"uri_folder":   JobInputTypeUriFolder,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := JobInputType(input)
-	return &out, nil
-}
-
 type JobLimitsType string
 
 const (
@@ -636,20 +353,6 @@ func PossibleValuesForJobLimitsType() []string {
 		string(JobLimitsTypeCommand),
 		string(JobLimitsTypeSweep),
 	}
-}
-
-func parseJobLimitsType(input string) (*JobLimitsType, error) {
-	vals := map[string]JobLimitsType{
-		"command": JobLimitsTypeCommand,
-		"sweep":   JobLimitsTypeSweep,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := JobLimitsType(input)
-	return &out, nil
 }
 
 type JobOutputType string
@@ -672,24 +375,6 @@ func PossibleValuesForJobOutputType() []string {
 		string(JobOutputTypeUriFile),
 		string(JobOutputTypeUriFolder),
 	}
-}
-
-func parseJobOutputType(input string) (*JobOutputType, error) {
-	vals := map[string]JobOutputType{
-		"custom_model": JobOutputTypeCustomModel,
-		"mlflow_model": JobOutputTypeMlflowModel,
-		"mltable":      JobOutputTypeMltable,
-		"triton_model": JobOutputTypeTritonModel,
-		"uri_file":     JobOutputTypeUriFile,
-		"uri_folder":   JobOutputTypeUriFolder,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := JobOutputType(input)
-	return &out, nil
 }
 
 type JobStatus string
@@ -730,32 +415,6 @@ func PossibleValuesForJobStatus() []string {
 	}
 }
 
-func parseJobStatus(input string) (*JobStatus, error) {
-	vals := map[string]JobStatus{
-		"cancelrequested": JobStatusCancelRequested,
-		"canceled":        JobStatusCanceled,
-		"completed":       JobStatusCompleted,
-		"failed":          JobStatusFailed,
-		"finalizing":      JobStatusFinalizing,
-		"notresponding":   JobStatusNotResponding,
-		"notstarted":      JobStatusNotStarted,
-		"paused":          JobStatusPaused,
-		"preparing":       JobStatusPreparing,
-		"provisioning":    JobStatusProvisioning,
-		"queued":          JobStatusQueued,
-		"running":         JobStatusRunning,
-		"starting":        JobStatusStarting,
-		"unknown":         JobStatusUnknown,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := JobStatus(input)
-	return &out, nil
-}
-
 type JobType string
 
 const (
@@ -774,22 +433,6 @@ func PossibleValuesForJobType() []string {
 	}
 }
 
-func parseJobType(input string) (*JobType, error) {
-	vals := map[string]JobType{
-		"automl":   JobTypeAutoML,
-		"command":  JobTypeCommand,
-		"pipeline": JobTypePipeline,
-		"sweep":    JobTypeSweep,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := JobType(input)
-	return &out, nil
-}
-
 type LearningRateScheduler string
 
 const (
@@ -804,21 +447,6 @@ func PossibleValuesForLearningRateScheduler() []string {
 		string(LearningRateSchedulerStep),
 		string(LearningRateSchedulerWarmupCosine),
 	}
-}
-
-func parseLearningRateScheduler(input string) (*LearningRateScheduler, error) {
-	vals := map[string]LearningRateScheduler{
-		"none":         LearningRateSchedulerNone,
-		"step":         LearningRateSchedulerStep,
-		"warmupcosine": LearningRateSchedulerWarmupCosine,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := LearningRateScheduler(input)
-	return &out, nil
 }
 
 type LogVerbosity string
@@ -843,24 +471,6 @@ func PossibleValuesForLogVerbosity() []string {
 	}
 }
 
-func parseLogVerbosity(input string) (*LogVerbosity, error) {
-	vals := map[string]LogVerbosity{
-		"critical": LogVerbosityCritical,
-		"debug":    LogVerbosityDebug,
-		"error":    LogVerbosityError,
-		"info":     LogVerbosityInfo,
-		"notset":   LogVerbosityNotSet,
-		"warning":  LogVerbosityWarning,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := LogVerbosity(input)
-	return &out, nil
-}
-
 type ModelSize string
 
 const (
@@ -881,23 +491,6 @@ func PossibleValuesForModelSize() []string {
 	}
 }
 
-func parseModelSize(input string) (*ModelSize, error) {
-	vals := map[string]ModelSize{
-		"extralarge": ModelSizeExtraLarge,
-		"large":      ModelSizeLarge,
-		"medium":     ModelSizeMedium,
-		"none":       ModelSizeNone,
-		"small":      ModelSizeSmall,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ModelSize(input)
-	return &out, nil
-}
-
 type NCrossValidationsMode string
 
 const (
@@ -912,20 +505,6 @@ func PossibleValuesForNCrossValidationsMode() []string {
 	}
 }
 
-func parseNCrossValidationsMode(input string) (*NCrossValidationsMode, error) {
-	vals := map[string]NCrossValidationsMode{
-		"auto":   NCrossValidationsModeAuto,
-		"custom": NCrossValidationsModeCustom,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := NCrossValidationsMode(input)
-	return &out, nil
-}
-
 type ObjectDetectionPrimaryMetrics string
 
 const (
@@ -936,19 +515,6 @@ func PossibleValuesForObjectDetectionPrimaryMetrics() []string {
 	return []string{
 		string(ObjectDetectionPrimaryMetricsMeanAveragePrecision),
 	}
-}
-
-func parseObjectDetectionPrimaryMetrics(input string) (*ObjectDetectionPrimaryMetrics, error) {
-	vals := map[string]ObjectDetectionPrimaryMetrics{
-		"meanaverageprecision": ObjectDetectionPrimaryMetricsMeanAveragePrecision,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ObjectDetectionPrimaryMetrics(input)
-	return &out, nil
 }
 
 type OutputDeliveryMode string
@@ -965,20 +531,6 @@ func PossibleValuesForOutputDeliveryMode() []string {
 	}
 }
 
-func parseOutputDeliveryMode(input string) (*OutputDeliveryMode, error) {
-	vals := map[string]OutputDeliveryMode{
-		"readwritemount": OutputDeliveryModeReadWriteMount,
-		"upload":         OutputDeliveryModeUpload,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := OutputDeliveryMode(input)
-	return &out, nil
-}
-
 type RandomSamplingAlgorithmRule string
 
 const (
@@ -991,20 +543,6 @@ func PossibleValuesForRandomSamplingAlgorithmRule() []string {
 		string(RandomSamplingAlgorithmRuleRandom),
 		string(RandomSamplingAlgorithmRuleSobol),
 	}
-}
-
-func parseRandomSamplingAlgorithmRule(input string) (*RandomSamplingAlgorithmRule, error) {
-	vals := map[string]RandomSamplingAlgorithmRule{
-		"random": RandomSamplingAlgorithmRuleRandom,
-		"sobol":  RandomSamplingAlgorithmRuleSobol,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := RandomSamplingAlgorithmRule(input)
-	return &out, nil
 }
 
 type RecurrenceFrequency string
@@ -1025,23 +563,6 @@ func PossibleValuesForRecurrenceFrequency() []string {
 		string(RecurrenceFrequencyMonth),
 		string(RecurrenceFrequencyWeek),
 	}
-}
-
-func parseRecurrenceFrequency(input string) (*RecurrenceFrequency, error) {
-	vals := map[string]RecurrenceFrequency{
-		"day":    RecurrenceFrequencyDay,
-		"hour":   RecurrenceFrequencyHour,
-		"minute": RecurrenceFrequencyMinute,
-		"month":  RecurrenceFrequencyMonth,
-		"week":   RecurrenceFrequencyWeek,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := RecurrenceFrequency(input)
-	return &out, nil
 }
 
 type RegressionModels string
@@ -1074,28 +595,6 @@ func PossibleValuesForRegressionModels() []string {
 	}
 }
 
-func parseRegressionModels(input string) (*RegressionModels, error) {
-	vals := map[string]RegressionModels{
-		"decisiontree":       RegressionModelsDecisionTree,
-		"elasticnet":         RegressionModelsElasticNet,
-		"extremerandomtrees": RegressionModelsExtremeRandomTrees,
-		"gradientboosting":   RegressionModelsGradientBoosting,
-		"knn":                RegressionModelsKNN,
-		"lassolars":          RegressionModelsLassoLars,
-		"lightgbm":           RegressionModelsLightGBM,
-		"randomforest":       RegressionModelsRandomForest,
-		"sgd":                RegressionModelsSGD,
-		"xgboostregressor":   RegressionModelsXGBoostRegressor,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := RegressionModels(input)
-	return &out, nil
-}
-
 type RegressionPrimaryMetrics string
 
 const (
@@ -1114,22 +613,6 @@ func PossibleValuesForRegressionPrimaryMetrics() []string {
 	}
 }
 
-func parseRegressionPrimaryMetrics(input string) (*RegressionPrimaryMetrics, error) {
-	vals := map[string]RegressionPrimaryMetrics{
-		"normalizedmeanabsoluteerror":    RegressionPrimaryMetricsNormalizedMeanAbsoluteError,
-		"normalizedrootmeansquarederror": RegressionPrimaryMetricsNormalizedRootMeanSquaredError,
-		"r2score":                        RegressionPrimaryMetricsRTwoScore,
-		"spearmancorrelation":            RegressionPrimaryMetricsSpearmanCorrelation,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := RegressionPrimaryMetrics(input)
-	return &out, nil
-}
-
 type SamplingAlgorithmType string
 
 const (
@@ -1146,21 +629,6 @@ func PossibleValuesForSamplingAlgorithmType() []string {
 	}
 }
 
-func parseSamplingAlgorithmType(input string) (*SamplingAlgorithmType, error) {
-	vals := map[string]SamplingAlgorithmType{
-		"bayesian": SamplingAlgorithmTypeBayesian,
-		"grid":     SamplingAlgorithmTypeGrid,
-		"random":   SamplingAlgorithmTypeRandom,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SamplingAlgorithmType(input)
-	return &out, nil
-}
-
 type ScheduleActionType string
 
 const (
@@ -1173,20 +641,6 @@ func PossibleValuesForScheduleActionType() []string {
 		string(ScheduleActionTypeCreateJob),
 		string(ScheduleActionTypeInvokeBatchEndpoint),
 	}
-}
-
-func parseScheduleActionType(input string) (*ScheduleActionType, error) {
-	vals := map[string]ScheduleActionType{
-		"createjob":           ScheduleActionTypeCreateJob,
-		"invokebatchendpoint": ScheduleActionTypeInvokeBatchEndpoint,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ScheduleActionType(input)
-	return &out, nil
 }
 
 type ScheduleListViewType string
@@ -1203,21 +657,6 @@ func PossibleValuesForScheduleListViewType() []string {
 		string(ScheduleListViewTypeDisabledOnly),
 		string(ScheduleListViewTypeEnabledOnly),
 	}
-}
-
-func parseScheduleListViewType(input string) (*ScheduleListViewType, error) {
-	vals := map[string]ScheduleListViewType{
-		"all":          ScheduleListViewTypeAll,
-		"disabledonly": ScheduleListViewTypeDisabledOnly,
-		"enabledonly":  ScheduleListViewTypeEnabledOnly,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ScheduleListViewType(input)
-	return &out, nil
 }
 
 type ScheduleProvisioningStatus string
@@ -1242,24 +681,6 @@ func PossibleValuesForScheduleProvisioningStatus() []string {
 	}
 }
 
-func parseScheduleProvisioningStatus(input string) (*ScheduleProvisioningStatus, error) {
-	vals := map[string]ScheduleProvisioningStatus{
-		"canceled":  ScheduleProvisioningStatusCanceled,
-		"creating":  ScheduleProvisioningStatusCreating,
-		"deleting":  ScheduleProvisioningStatusDeleting,
-		"failed":    ScheduleProvisioningStatusFailed,
-		"succeeded": ScheduleProvisioningStatusSucceeded,
-		"updating":  ScheduleProvisioningStatusUpdating,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ScheduleProvisioningStatus(input)
-	return &out, nil
-}
-
 type SeasonalityMode string
 
 const (
@@ -1272,20 +693,6 @@ func PossibleValuesForSeasonalityMode() []string {
 		string(SeasonalityModeAuto),
 		string(SeasonalityModeCustom),
 	}
-}
-
-func parseSeasonalityMode(input string) (*SeasonalityMode, error) {
-	vals := map[string]SeasonalityMode{
-		"auto":   SeasonalityModeAuto,
-		"custom": SeasonalityModeCustom,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SeasonalityMode(input)
-	return &out, nil
 }
 
 type ShortSeriesHandlingConfiguration string
@@ -1304,22 +711,6 @@ func PossibleValuesForShortSeriesHandlingConfiguration() []string {
 		string(ShortSeriesHandlingConfigurationNone),
 		string(ShortSeriesHandlingConfigurationPad),
 	}
-}
-
-func parseShortSeriesHandlingConfiguration(input string) (*ShortSeriesHandlingConfiguration, error) {
-	vals := map[string]ShortSeriesHandlingConfiguration{
-		"auto": ShortSeriesHandlingConfigurationAuto,
-		"drop": ShortSeriesHandlingConfigurationDrop,
-		"none": ShortSeriesHandlingConfigurationNone,
-		"pad":  ShortSeriesHandlingConfigurationPad,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ShortSeriesHandlingConfiguration(input)
-	return &out, nil
 }
 
 type StackMetaLearnerType string
@@ -1348,26 +739,6 @@ func PossibleValuesForStackMetaLearnerType() []string {
 	}
 }
 
-func parseStackMetaLearnerType(input string) (*StackMetaLearnerType, error) {
-	vals := map[string]StackMetaLearnerType{
-		"elasticnet":           StackMetaLearnerTypeElasticNet,
-		"elasticnetcv":         StackMetaLearnerTypeElasticNetCV,
-		"lightgbmclassifier":   StackMetaLearnerTypeLightGBMClassifier,
-		"lightgbmregressor":    StackMetaLearnerTypeLightGBMRegressor,
-		"linearregression":     StackMetaLearnerTypeLinearRegression,
-		"logisticregression":   StackMetaLearnerTypeLogisticRegression,
-		"logisticregressioncv": StackMetaLearnerTypeLogisticRegressionCV,
-		"none":                 StackMetaLearnerTypeNone,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := StackMetaLearnerType(input)
-	return &out, nil
-}
-
 type StochasticOptimizer string
 
 const (
@@ -1384,22 +755,6 @@ func PossibleValuesForStochasticOptimizer() []string {
 		string(StochasticOptimizerNone),
 		string(StochasticOptimizerSgd),
 	}
-}
-
-func parseStochasticOptimizer(input string) (*StochasticOptimizer, error) {
-	vals := map[string]StochasticOptimizer{
-		"adam":  StochasticOptimizerAdam,
-		"adamw": StochasticOptimizerAdamw,
-		"none":  StochasticOptimizerNone,
-		"sgd":   StochasticOptimizerSgd,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := StochasticOptimizer(input)
-	return &out, nil
 }
 
 type TargetAggregationFunction string
@@ -1422,23 +777,6 @@ func PossibleValuesForTargetAggregationFunction() []string {
 	}
 }
 
-func parseTargetAggregationFunction(input string) (*TargetAggregationFunction, error) {
-	vals := map[string]TargetAggregationFunction{
-		"max":  TargetAggregationFunctionMax,
-		"mean": TargetAggregationFunctionMean,
-		"min":  TargetAggregationFunctionMin,
-		"none": TargetAggregationFunctionNone,
-		"sum":  TargetAggregationFunctionSum,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := TargetAggregationFunction(input)
-	return &out, nil
-}
-
 type TargetLagsMode string
 
 const (
@@ -1453,20 +791,6 @@ func PossibleValuesForTargetLagsMode() []string {
 	}
 }
 
-func parseTargetLagsMode(input string) (*TargetLagsMode, error) {
-	vals := map[string]TargetLagsMode{
-		"auto":   TargetLagsModeAuto,
-		"custom": TargetLagsModeCustom,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := TargetLagsMode(input)
-	return &out, nil
-}
-
 type TargetRollingWindowSizeMode string
 
 const (
@@ -1479,20 +803,6 @@ func PossibleValuesForTargetRollingWindowSizeMode() []string {
 		string(TargetRollingWindowSizeModeAuto),
 		string(TargetRollingWindowSizeModeCustom),
 	}
-}
-
-func parseTargetRollingWindowSizeMode(input string) (*TargetRollingWindowSizeMode, error) {
-	vals := map[string]TargetRollingWindowSizeMode{
-		"auto":   TargetRollingWindowSizeModeAuto,
-		"custom": TargetRollingWindowSizeModeCustom,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := TargetRollingWindowSizeMode(input)
-	return &out, nil
 }
 
 type TaskType string
@@ -1525,28 +835,6 @@ func PossibleValuesForTaskType() []string {
 	}
 }
 
-func parseTaskType(input string) (*TaskType, error) {
-	vals := map[string]TaskType{
-		"classification":                TaskTypeClassification,
-		"forecasting":                   TaskTypeForecasting,
-		"imageclassification":           TaskTypeImageClassification,
-		"imageclassificationmultilabel": TaskTypeImageClassificationMultilabel,
-		"imageinstancesegmentation":     TaskTypeImageInstanceSegmentation,
-		"imageobjectdetection":          TaskTypeImageObjectDetection,
-		"regression":                    TaskTypeRegression,
-		"textclassification":            TaskTypeTextClassification,
-		"textclassificationmultilabel":  TaskTypeTextClassificationMultilabel,
-		"textner":                       TaskTypeTextNER,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := TaskType(input)
-	return &out, nil
-}
-
 type TriggerType string
 
 const (
@@ -1559,20 +847,6 @@ func PossibleValuesForTriggerType() []string {
 		string(TriggerTypeCron),
 		string(TriggerTypeRecurrence),
 	}
-}
-
-func parseTriggerType(input string) (*TriggerType, error) {
-	vals := map[string]TriggerType{
-		"cron":       TriggerTypeCron,
-		"recurrence": TriggerTypeRecurrence,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := TriggerType(input)
-	return &out, nil
 }
 
 type UseStl string
@@ -1591,21 +865,6 @@ func PossibleValuesForUseStl() []string {
 	}
 }
 
-func parseUseStl(input string) (*UseStl, error) {
-	vals := map[string]UseStl{
-		"none":        UseStlNone,
-		"season":      UseStlSeason,
-		"seasontrend": UseStlSeasonTrend,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := UseStl(input)
-	return &out, nil
-}
-
 type ValidationMetricType string
 
 const (
@@ -1622,22 +881,6 @@ func PossibleValuesForValidationMetricType() []string {
 		string(ValidationMetricTypeNone),
 		string(ValidationMetricTypeVoc),
 	}
-}
-
-func parseValidationMetricType(input string) (*ValidationMetricType, error) {
-	vals := map[string]ValidationMetricType{
-		"coco":    ValidationMetricTypeCoco,
-		"cocovoc": ValidationMetricTypeCocoVoc,
-		"none":    ValidationMetricTypeNone,
-		"voc":     ValidationMetricTypeVoc,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ValidationMetricType(input)
-	return &out, nil
 }
 
 type WeekDay string
@@ -1662,23 +905,4 @@ func PossibleValuesForWeekDay() []string {
 		string(WeekDayTuesday),
 		string(WeekDayWednesday),
 	}
-}
-
-func parseWeekDay(input string) (*WeekDay, error) {
-	vals := map[string]WeekDay{
-		"friday":    WeekDayFriday,
-		"monday":    WeekDayMonday,
-		"saturday":  WeekDaySaturday,
-		"sunday":    WeekDaySunday,
-		"thursday":  WeekDayThursday,
-		"tuesday":   WeekDayTuesday,
-		"wednesday": WeekDayWednesday,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := WeekDay(input)
-	return &out, nil
 }

@@ -1,7 +1,5 @@
 package snapshots
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -21,21 +19,6 @@ func PossibleValuesForAccessLevel() []string {
 	}
 }
 
-func parseAccessLevel(input string) (*AccessLevel, error) {
-	vals := map[string]AccessLevel{
-		"none":  AccessLevelNone,
-		"read":  AccessLevelRead,
-		"write": AccessLevelWrite,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := AccessLevel(input)
-	return &out, nil
-}
-
 type Architecture string
 
 const (
@@ -50,20 +33,6 @@ func PossibleValuesForArchitecture() []string {
 	}
 }
 
-func parseArchitecture(input string) (*Architecture, error) {
-	vals := map[string]Architecture{
-		"arm64": ArchitectureArmSixFour,
-		"x64":   ArchitectureXSixFour,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := Architecture(input)
-	return &out, nil
-}
-
 type CopyCompletionErrorReason string
 
 const (
@@ -74,19 +43,6 @@ func PossibleValuesForCopyCompletionErrorReason() []string {
 	return []string{
 		string(CopyCompletionErrorReasonCopySourceNotFound),
 	}
-}
-
-func parseCopyCompletionErrorReason(input string) (*CopyCompletionErrorReason, error) {
-	vals := map[string]CopyCompletionErrorReason{
-		"copysourcenotfound": CopyCompletionErrorReasonCopySourceNotFound,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := CopyCompletionErrorReason(input)
-	return &out, nil
 }
 
 type DataAccessAuthMode string
@@ -101,20 +57,6 @@ func PossibleValuesForDataAccessAuthMode() []string {
 		string(DataAccessAuthModeAzureActiveDirectory),
 		string(DataAccessAuthModeNone),
 	}
-}
-
-func parseDataAccessAuthMode(input string) (*DataAccessAuthMode, error) {
-	vals := map[string]DataAccessAuthMode{
-		"azureactivedirectory": DataAccessAuthModeAzureActiveDirectory,
-		"none":                 DataAccessAuthModeNone,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := DataAccessAuthMode(input)
-	return &out, nil
 }
 
 type DiskCreateOption string
@@ -147,28 +89,6 @@ func PossibleValuesForDiskCreateOption() []string {
 	}
 }
 
-func parseDiskCreateOption(input string) (*DiskCreateOption, error) {
-	vals := map[string]DiskCreateOption{
-		"attach":               DiskCreateOptionAttach,
-		"copy":                 DiskCreateOptionCopy,
-		"copystart":            DiskCreateOptionCopyStart,
-		"empty":                DiskCreateOptionEmpty,
-		"fromimage":            DiskCreateOptionFromImage,
-		"import":               DiskCreateOptionImport,
-		"importsecure":         DiskCreateOptionImportSecure,
-		"restore":              DiskCreateOptionRestore,
-		"upload":               DiskCreateOptionUpload,
-		"uploadpreparedsecure": DiskCreateOptionUploadPreparedSecure,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := DiskCreateOption(input)
-	return &out, nil
-}
-
 type DiskSecurityTypes string
 
 const (
@@ -185,22 +105,6 @@ func PossibleValuesForDiskSecurityTypes() []string {
 		string(DiskSecurityTypesConfidentialVMVMGuestStateOnlyEncryptedWithPlatformKey),
 		string(DiskSecurityTypesTrustedLaunch),
 	}
-}
-
-func parseDiskSecurityTypes(input string) (*DiskSecurityTypes, error) {
-	vals := map[string]DiskSecurityTypes{
-		"confidentialvm_diskencryptedwithcustomerkey":             DiskSecurityTypesConfidentialVMDiskEncryptedWithCustomerKey,
-		"confidentialvm_diskencryptedwithplatformkey":             DiskSecurityTypesConfidentialVMDiskEncryptedWithPlatformKey,
-		"confidentialvm_vmgueststateonlyencryptedwithplatformkey": DiskSecurityTypesConfidentialVMVMGuestStateOnlyEncryptedWithPlatformKey,
-		"trustedlaunch": DiskSecurityTypesTrustedLaunch,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := DiskSecurityTypes(input)
-	return &out, nil
 }
 
 type DiskState string
@@ -229,26 +133,6 @@ func PossibleValuesForDiskState() []string {
 	}
 }
 
-func parseDiskState(input string) (*DiskState, error) {
-	vals := map[string]DiskState{
-		"activesas":       DiskStateActiveSAS,
-		"activesasfrozen": DiskStateActiveSASFrozen,
-		"activeupload":    DiskStateActiveUpload,
-		"attached":        DiskStateAttached,
-		"frozen":          DiskStateFrozen,
-		"readytoupload":   DiskStateReadyToUpload,
-		"reserved":        DiskStateReserved,
-		"unattached":      DiskStateUnattached,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := DiskState(input)
-	return &out, nil
-}
-
 type EncryptionType string
 
 const (
@@ -265,21 +149,6 @@ func PossibleValuesForEncryptionType() []string {
 	}
 }
 
-func parseEncryptionType(input string) (*EncryptionType, error) {
-	vals := map[string]EncryptionType{
-		"encryptionatrestwithcustomerkey":             EncryptionTypeEncryptionAtRestWithCustomerKey,
-		"encryptionatrestwithplatformandcustomerkeys": EncryptionTypeEncryptionAtRestWithPlatformAndCustomerKeys,
-		"encryptionatrestwithplatformkey":             EncryptionTypeEncryptionAtRestWithPlatformKey,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := EncryptionType(input)
-	return &out, nil
-}
-
 type HyperVGeneration string
 
 const (
@@ -292,20 +161,6 @@ func PossibleValuesForHyperVGeneration() []string {
 		string(HyperVGenerationVOne),
 		string(HyperVGenerationVTwo),
 	}
-}
-
-func parseHyperVGeneration(input string) (*HyperVGeneration, error) {
-	vals := map[string]HyperVGeneration{
-		"v1": HyperVGenerationVOne,
-		"v2": HyperVGenerationVTwo,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := HyperVGeneration(input)
-	return &out, nil
 }
 
 type NetworkAccessPolicy string
@@ -324,21 +179,6 @@ func PossibleValuesForNetworkAccessPolicy() []string {
 	}
 }
 
-func parseNetworkAccessPolicy(input string) (*NetworkAccessPolicy, error) {
-	vals := map[string]NetworkAccessPolicy{
-		"allowall":     NetworkAccessPolicyAllowAll,
-		"allowprivate": NetworkAccessPolicyAllowPrivate,
-		"denyall":      NetworkAccessPolicyDenyAll,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := NetworkAccessPolicy(input)
-	return &out, nil
-}
-
 type OperatingSystemTypes string
 
 const (
@@ -351,20 +191,6 @@ func PossibleValuesForOperatingSystemTypes() []string {
 		string(OperatingSystemTypesLinux),
 		string(OperatingSystemTypesWindows),
 	}
-}
-
-func parseOperatingSystemTypes(input string) (*OperatingSystemTypes, error) {
-	vals := map[string]OperatingSystemTypes{
-		"linux":   OperatingSystemTypesLinux,
-		"windows": OperatingSystemTypesWindows,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := OperatingSystemTypes(input)
-	return &out, nil
 }
 
 type PublicNetworkAccess string
@@ -381,20 +207,6 @@ func PossibleValuesForPublicNetworkAccess() []string {
 	}
 }
 
-func parsePublicNetworkAccess(input string) (*PublicNetworkAccess, error) {
-	vals := map[string]PublicNetworkAccess{
-		"disabled": PublicNetworkAccessDisabled,
-		"enabled":  PublicNetworkAccessEnabled,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PublicNetworkAccess(input)
-	return &out, nil
-}
-
 type SnapshotStorageAccountTypes string
 
 const (
@@ -409,19 +221,4 @@ func PossibleValuesForSnapshotStorageAccountTypes() []string {
 		string(SnapshotStorageAccountTypesStandardLRS),
 		string(SnapshotStorageAccountTypesStandardZRS),
 	}
-}
-
-func parseSnapshotStorageAccountTypes(input string) (*SnapshotStorageAccountTypes, error) {
-	vals := map[string]SnapshotStorageAccountTypes{
-		"premium_lrs":  SnapshotStorageAccountTypesPremiumLRS,
-		"standard_lrs": SnapshotStorageAccountTypesStandardLRS,
-		"standard_zrs": SnapshotStorageAccountTypesStandardZRS,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SnapshotStorageAccountTypes(input)
-	return &out, nil
 }

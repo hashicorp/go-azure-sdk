@@ -1,7 +1,5 @@
 package service
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -17,20 +15,6 @@ func PossibleValuesForArmServicePackageActivationMode() []string {
 		string(ArmServicePackageActivationModeExclusiveProcess),
 		string(ArmServicePackageActivationModeSharedProcess),
 	}
-}
-
-func parseArmServicePackageActivationMode(input string) (*ArmServicePackageActivationMode, error) {
-	vals := map[string]ArmServicePackageActivationMode{
-		"exclusiveprocess": ArmServicePackageActivationModeExclusiveProcess,
-		"sharedprocess":    ArmServicePackageActivationModeSharedProcess,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ArmServicePackageActivationMode(input)
-	return &out, nil
 }
 
 type MoveCost string
@@ -51,22 +35,6 @@ func PossibleValuesForMoveCost() []string {
 	}
 }
 
-func parseMoveCost(input string) (*MoveCost, error) {
-	vals := map[string]MoveCost{
-		"high":   MoveCostHigh,
-		"low":    MoveCostLow,
-		"medium": MoveCostMedium,
-		"zero":   MoveCostZero,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := MoveCost(input)
-	return &out, nil
-}
-
 type PartitionScheme string
 
 const (
@@ -83,22 +51,6 @@ func PossibleValuesForPartitionScheme() []string {
 		string(PartitionSchemeSingleton),
 		string(PartitionSchemeUniformIntSixFourRange),
 	}
-}
-
-func parsePartitionScheme(input string) (*PartitionScheme, error) {
-	vals := map[string]PartitionScheme{
-		"invalid":           PartitionSchemeInvalid,
-		"named":             PartitionSchemeNamed,
-		"singleton":         PartitionSchemeSingleton,
-		"uniformint64range": PartitionSchemeUniformIntSixFourRange,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PartitionScheme(input)
-	return &out, nil
 }
 
 type ServiceCorrelationScheme string
@@ -119,22 +71,6 @@ func PossibleValuesForServiceCorrelationScheme() []string {
 	}
 }
 
-func parseServiceCorrelationScheme(input string) (*ServiceCorrelationScheme, error) {
-	vals := map[string]ServiceCorrelationScheme{
-		"affinity":           ServiceCorrelationSchemeAffinity,
-		"alignedaffinity":    ServiceCorrelationSchemeAlignedAffinity,
-		"invalid":            ServiceCorrelationSchemeInvalid,
-		"nonalignedaffinity": ServiceCorrelationSchemeNonAlignedAffinity,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ServiceCorrelationScheme(input)
-	return &out, nil
-}
-
 type ServiceKind string
 
 const (
@@ -149,21 +85,6 @@ func PossibleValuesForServiceKind() []string {
 		string(ServiceKindStateful),
 		string(ServiceKindStateless),
 	}
-}
-
-func parseServiceKind(input string) (*ServiceKind, error) {
-	vals := map[string]ServiceKind{
-		"invalid":   ServiceKindInvalid,
-		"stateful":  ServiceKindStateful,
-		"stateless": ServiceKindStateless,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ServiceKind(input)
-	return &out, nil
 }
 
 type ServiceLoadMetricWeight string
@@ -182,22 +103,6 @@ func PossibleValuesForServiceLoadMetricWeight() []string {
 		string(ServiceLoadMetricWeightMedium),
 		string(ServiceLoadMetricWeightZero),
 	}
-}
-
-func parseServiceLoadMetricWeight(input string) (*ServiceLoadMetricWeight, error) {
-	vals := map[string]ServiceLoadMetricWeight{
-		"high":   ServiceLoadMetricWeightHigh,
-		"low":    ServiceLoadMetricWeightLow,
-		"medium": ServiceLoadMetricWeightMedium,
-		"zero":   ServiceLoadMetricWeightZero,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ServiceLoadMetricWeight(input)
-	return &out, nil
 }
 
 type ServicePlacementPolicyType string
@@ -220,22 +125,4 @@ func PossibleValuesForServicePlacementPolicyType() []string {
 		string(ServicePlacementPolicyTypeRequiredDomain),
 		string(ServicePlacementPolicyTypeRequiredDomainDistribution),
 	}
-}
-
-func parseServicePlacementPolicyType(input string) (*ServicePlacementPolicyType, error) {
-	vals := map[string]ServicePlacementPolicyType{
-		"invalid":                    ServicePlacementPolicyTypeInvalid,
-		"invaliddomain":              ServicePlacementPolicyTypeInvalidDomain,
-		"nonpartiallyplaceservice":   ServicePlacementPolicyTypeNonPartiallyPlaceService,
-		"preferredprimarydomain":     ServicePlacementPolicyTypePreferredPrimaryDomain,
-		"requireddomain":             ServicePlacementPolicyTypeRequiredDomain,
-		"requireddomaindistribution": ServicePlacementPolicyTypeRequiredDomainDistribution,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ServicePlacementPolicyType(input)
-	return &out, nil
 }

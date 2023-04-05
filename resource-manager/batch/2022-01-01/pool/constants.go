@@ -1,7 +1,5 @@
 package pool
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -21,21 +19,6 @@ func PossibleValuesForAllocationState() []string {
 	}
 }
 
-func parseAllocationState(input string) (*AllocationState, error) {
-	vals := map[string]AllocationState{
-		"resizing": AllocationStateResizing,
-		"steady":   AllocationStateSteady,
-		"stopping": AllocationStateStopping,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := AllocationState(input)
-	return &out, nil
-}
-
 type AutoUserScope string
 
 const (
@@ -48,20 +31,6 @@ func PossibleValuesForAutoUserScope() []string {
 		string(AutoUserScopePool),
 		string(AutoUserScopeTask),
 	}
-}
-
-func parseAutoUserScope(input string) (*AutoUserScope, error) {
-	vals := map[string]AutoUserScope{
-		"pool": AutoUserScopePool,
-		"task": AutoUserScopeTask,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := AutoUserScope(input)
-	return &out, nil
 }
 
 type CachingType string
@@ -80,21 +49,6 @@ func PossibleValuesForCachingType() []string {
 	}
 }
 
-func parseCachingType(input string) (*CachingType, error) {
-	vals := map[string]CachingType{
-		"none":      CachingTypeNone,
-		"readonly":  CachingTypeReadOnly,
-		"readwrite": CachingTypeReadWrite,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := CachingType(input)
-	return &out, nil
-}
-
 type CertificateStoreLocation string
 
 const (
@@ -107,20 +61,6 @@ func PossibleValuesForCertificateStoreLocation() []string {
 		string(CertificateStoreLocationCurrentUser),
 		string(CertificateStoreLocationLocalMachine),
 	}
-}
-
-func parseCertificateStoreLocation(input string) (*CertificateStoreLocation, error) {
-	vals := map[string]CertificateStoreLocation{
-		"currentuser":  CertificateStoreLocationCurrentUser,
-		"localmachine": CertificateStoreLocationLocalMachine,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := CertificateStoreLocation(input)
-	return &out, nil
 }
 
 type CertificateVisibility string
@@ -137,21 +77,6 @@ func PossibleValuesForCertificateVisibility() []string {
 		string(CertificateVisibilityStartTask),
 		string(CertificateVisibilityTask),
 	}
-}
-
-func parseCertificateVisibility(input string) (*CertificateVisibility, error) {
-	vals := map[string]CertificateVisibility{
-		"remoteuser": CertificateVisibilityRemoteUser,
-		"starttask":  CertificateVisibilityStartTask,
-		"task":       CertificateVisibilityTask,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := CertificateVisibility(input)
-	return &out, nil
 }
 
 type ComputeNodeDeallocationOption string
@@ -172,22 +97,6 @@ func PossibleValuesForComputeNodeDeallocationOption() []string {
 	}
 }
 
-func parseComputeNodeDeallocationOption(input string) (*ComputeNodeDeallocationOption, error) {
-	vals := map[string]ComputeNodeDeallocationOption{
-		"requeue":        ComputeNodeDeallocationOptionRequeue,
-		"retaineddata":   ComputeNodeDeallocationOptionRetainedData,
-		"taskcompletion": ComputeNodeDeallocationOptionTaskCompletion,
-		"terminate":      ComputeNodeDeallocationOptionTerminate,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ComputeNodeDeallocationOption(input)
-	return &out, nil
-}
-
 type ComputeNodeFillType string
 
 const (
@@ -202,20 +111,6 @@ func PossibleValuesForComputeNodeFillType() []string {
 	}
 }
 
-func parseComputeNodeFillType(input string) (*ComputeNodeFillType, error) {
-	vals := map[string]ComputeNodeFillType{
-		"pack":   ComputeNodeFillTypePack,
-		"spread": ComputeNodeFillTypeSpread,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ComputeNodeFillType(input)
-	return &out, nil
-}
-
 type ContainerType string
 
 const (
@@ -226,19 +121,6 @@ func PossibleValuesForContainerType() []string {
 	return []string{
 		string(ContainerTypeDockerCompatible),
 	}
-}
-
-func parseContainerType(input string) (*ContainerType, error) {
-	vals := map[string]ContainerType{
-		"dockercompatible": ContainerTypeDockerCompatible,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ContainerType(input)
-	return &out, nil
 }
 
 type ContainerWorkingDirectory string
@@ -255,20 +137,6 @@ func PossibleValuesForContainerWorkingDirectory() []string {
 	}
 }
 
-func parseContainerWorkingDirectory(input string) (*ContainerWorkingDirectory, error) {
-	vals := map[string]ContainerWorkingDirectory{
-		"containerimagedefault": ContainerWorkingDirectoryContainerImageDefault,
-		"taskworkingdirectory":  ContainerWorkingDirectoryTaskWorkingDirectory,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ContainerWorkingDirectory(input)
-	return &out, nil
-}
-
 type DiffDiskPlacement string
 
 const (
@@ -279,19 +147,6 @@ func PossibleValuesForDiffDiskPlacement() []string {
 	return []string{
 		string(DiffDiskPlacementCacheDisk),
 	}
-}
-
-func parseDiffDiskPlacement(input string) (*DiffDiskPlacement, error) {
-	vals := map[string]DiffDiskPlacement{
-		"cachedisk": DiffDiskPlacementCacheDisk,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := DiffDiskPlacement(input)
-	return &out, nil
 }
 
 type DiskEncryptionTarget string
@@ -308,20 +163,6 @@ func PossibleValuesForDiskEncryptionTarget() []string {
 	}
 }
 
-func parseDiskEncryptionTarget(input string) (*DiskEncryptionTarget, error) {
-	vals := map[string]DiskEncryptionTarget{
-		"osdisk":        DiskEncryptionTargetOsDisk,
-		"temporarydisk": DiskEncryptionTargetTemporaryDisk,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := DiskEncryptionTarget(input)
-	return &out, nil
-}
-
 type DynamicVNetAssignmentScope string
 
 const (
@@ -336,20 +177,6 @@ func PossibleValuesForDynamicVNetAssignmentScope() []string {
 	}
 }
 
-func parseDynamicVNetAssignmentScope(input string) (*DynamicVNetAssignmentScope, error) {
-	vals := map[string]DynamicVNetAssignmentScope{
-		"job":  DynamicVNetAssignmentScopeJob,
-		"none": DynamicVNetAssignmentScopeNone,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := DynamicVNetAssignmentScope(input)
-	return &out, nil
-}
-
 type ElevationLevel string
 
 const (
@@ -362,20 +189,6 @@ func PossibleValuesForElevationLevel() []string {
 		string(ElevationLevelAdmin),
 		string(ElevationLevelNonAdmin),
 	}
-}
-
-func parseElevationLevel(input string) (*ElevationLevel, error) {
-	vals := map[string]ElevationLevel{
-		"admin":    ElevationLevelAdmin,
-		"nonadmin": ElevationLevelNonAdmin,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ElevationLevel(input)
-	return &out, nil
 }
 
 type IPAddressProvisioningType string
@@ -394,21 +207,6 @@ func PossibleValuesForIPAddressProvisioningType() []string {
 	}
 }
 
-func parseIPAddressProvisioningType(input string) (*IPAddressProvisioningType, error) {
-	vals := map[string]IPAddressProvisioningType{
-		"batchmanaged":        IPAddressProvisioningTypeBatchManaged,
-		"nopublicipaddresses": IPAddressProvisioningTypeNoPublicIPAddresses,
-		"usermanaged":         IPAddressProvisioningTypeUserManaged,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := IPAddressProvisioningType(input)
-	return &out, nil
-}
-
 type InboundEndpointProtocol string
 
 const (
@@ -421,20 +219,6 @@ func PossibleValuesForInboundEndpointProtocol() []string {
 		string(InboundEndpointProtocolTCP),
 		string(InboundEndpointProtocolUDP),
 	}
-}
-
-func parseInboundEndpointProtocol(input string) (*InboundEndpointProtocol, error) {
-	vals := map[string]InboundEndpointProtocol{
-		"tcp": InboundEndpointProtocolTCP,
-		"udp": InboundEndpointProtocolUDP,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := InboundEndpointProtocol(input)
-	return &out, nil
 }
 
 type InterNodeCommunicationState string
@@ -451,20 +235,6 @@ func PossibleValuesForInterNodeCommunicationState() []string {
 	}
 }
 
-func parseInterNodeCommunicationState(input string) (*InterNodeCommunicationState, error) {
-	vals := map[string]InterNodeCommunicationState{
-		"disabled": InterNodeCommunicationStateDisabled,
-		"enabled":  InterNodeCommunicationStateEnabled,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := InterNodeCommunicationState(input)
-	return &out, nil
-}
-
 type LoginMode string
 
 const (
@@ -477,20 +247,6 @@ func PossibleValuesForLoginMode() []string {
 		string(LoginModeBatch),
 		string(LoginModeInteractive),
 	}
-}
-
-func parseLoginMode(input string) (*LoginMode, error) {
-	vals := map[string]LoginMode{
-		"batch":       LoginModeBatch,
-		"interactive": LoginModeInteractive,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := LoginMode(input)
-	return &out, nil
 }
 
 type NetworkSecurityGroupRuleAccess string
@@ -507,20 +263,6 @@ func PossibleValuesForNetworkSecurityGroupRuleAccess() []string {
 	}
 }
 
-func parseNetworkSecurityGroupRuleAccess(input string) (*NetworkSecurityGroupRuleAccess, error) {
-	vals := map[string]NetworkSecurityGroupRuleAccess{
-		"allow": NetworkSecurityGroupRuleAccessAllow,
-		"deny":  NetworkSecurityGroupRuleAccessDeny,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := NetworkSecurityGroupRuleAccess(input)
-	return &out, nil
-}
-
 type NodePlacementPolicyType string
 
 const (
@@ -533,20 +275,6 @@ func PossibleValuesForNodePlacementPolicyType() []string {
 		string(NodePlacementPolicyTypeRegional),
 		string(NodePlacementPolicyTypeZonal),
 	}
-}
-
-func parseNodePlacementPolicyType(input string) (*NodePlacementPolicyType, error) {
-	vals := map[string]NodePlacementPolicyType{
-		"regional": NodePlacementPolicyTypeRegional,
-		"zonal":    NodePlacementPolicyTypeZonal,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := NodePlacementPolicyType(input)
-	return &out, nil
 }
 
 type PoolProvisioningState string
@@ -563,20 +291,6 @@ func PossibleValuesForPoolProvisioningState() []string {
 	}
 }
 
-func parsePoolProvisioningState(input string) (*PoolProvisioningState, error) {
-	vals := map[string]PoolProvisioningState{
-		"deleting":  PoolProvisioningStateDeleting,
-		"succeeded": PoolProvisioningStateSucceeded,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PoolProvisioningState(input)
-	return &out, nil
-}
-
 type StorageAccountType string
 
 const (
@@ -589,18 +303,4 @@ func PossibleValuesForStorageAccountType() []string {
 		string(StorageAccountTypePremiumLRS),
 		string(StorageAccountTypeStandardLRS),
 	}
-}
-
-func parseStorageAccountType(input string) (*StorageAccountType, error) {
-	vals := map[string]StorageAccountType{
-		"premium_lrs":  StorageAccountTypePremiumLRS,
-		"standard_lrs": StorageAccountTypeStandardLRS,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := StorageAccountType(input)
-	return &out, nil
 }

@@ -1,7 +1,5 @@
 package backupresourcestorageconfigsnoncrr
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -19,21 +17,6 @@ func PossibleValuesForDedupState() []string {
 		string(DedupStateEnabled),
 		string(DedupStateInvalid),
 	}
-}
-
-func parseDedupState(input string) (*DedupState, error) {
-	vals := map[string]DedupState{
-		"disabled": DedupStateDisabled,
-		"enabled":  DedupStateEnabled,
-		"invalid":  DedupStateInvalid,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := DedupState(input)
-	return &out, nil
 }
 
 type StorageType string
@@ -56,23 +39,6 @@ func PossibleValuesForStorageType() []string {
 	}
 }
 
-func parseStorageType(input string) (*StorageType, error) {
-	vals := map[string]StorageType{
-		"georedundant":               StorageTypeGeoRedundant,
-		"invalid":                    StorageTypeInvalid,
-		"locallyredundant":           StorageTypeLocallyRedundant,
-		"readaccessgeozoneredundant": StorageTypeReadAccessGeoZoneRedundant,
-		"zoneredundant":              StorageTypeZoneRedundant,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := StorageType(input)
-	return &out, nil
-}
-
 type StorageTypeState string
 
 const (
@@ -89,21 +55,6 @@ func PossibleValuesForStorageTypeState() []string {
 	}
 }
 
-func parseStorageTypeState(input string) (*StorageTypeState, error) {
-	vals := map[string]StorageTypeState{
-		"invalid":  StorageTypeStateInvalid,
-		"locked":   StorageTypeStateLocked,
-		"unlocked": StorageTypeStateUnlocked,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := StorageTypeState(input)
-	return &out, nil
-}
-
 type XcoolState string
 
 const (
@@ -118,19 +69,4 @@ func PossibleValuesForXcoolState() []string {
 		string(XcoolStateEnabled),
 		string(XcoolStateInvalid),
 	}
-}
-
-func parseXcoolState(input string) (*XcoolState, error) {
-	vals := map[string]XcoolState{
-		"disabled": XcoolStateDisabled,
-		"enabled":  XcoolStateEnabled,
-		"invalid":  XcoolStateInvalid,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := XcoolState(input)
-	return &out, nil
 }

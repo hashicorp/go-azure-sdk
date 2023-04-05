@@ -1,6 +1,10 @@
 package liveevents
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -21,19 +25,19 @@ func PossibleValuesForAsyncOperationStatus() []string {
 	}
 }
 
-func parseAsyncOperationStatus(input string) (*AsyncOperationStatus, error) {
-	vals := map[string]AsyncOperationStatus{
-		"failed":     AsyncOperationStatusFailed,
-		"inprogress": AsyncOperationStatusInProgress,
-		"succeeded":  AsyncOperationStatusSucceeded,
+func (s *AsyncOperationStatus) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForAsyncOperationStatus() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := AsyncOperationStatus(input)
-	return &out, nil
+	*s = AsyncOperationStatus(decoded)
+	return nil
 }
 
 type LiveEventEncodingType string
@@ -56,21 +60,19 @@ func PossibleValuesForLiveEventEncodingType() []string {
 	}
 }
 
-func parseLiveEventEncodingType(input string) (*LiveEventEncodingType, error) {
-	vals := map[string]LiveEventEncodingType{
-		"none":                LiveEventEncodingTypeNone,
-		"passthroughbasic":    LiveEventEncodingTypePassthroughBasic,
-		"passthroughstandard": LiveEventEncodingTypePassthroughStandard,
-		"premium1080p":        LiveEventEncodingTypePremiumOneZeroEightZerop,
-		"standard":            LiveEventEncodingTypeStandard,
+func (s *LiveEventEncodingType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForLiveEventEncodingType() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := LiveEventEncodingType(input)
-	return &out, nil
+	*s = LiveEventEncodingType(decoded)
+	return nil
 }
 
 type LiveEventInputProtocol string
@@ -87,18 +89,19 @@ func PossibleValuesForLiveEventInputProtocol() []string {
 	}
 }
 
-func parseLiveEventInputProtocol(input string) (*LiveEventInputProtocol, error) {
-	vals := map[string]LiveEventInputProtocol{
-		"fragmentedmp4": LiveEventInputProtocolFragmentedMPFour,
-		"rtmp":          LiveEventInputProtocolRTMP,
+func (s *LiveEventInputProtocol) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForLiveEventInputProtocol() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := LiveEventInputProtocol(input)
-	return &out, nil
+	*s = LiveEventInputProtocol(decoded)
+	return nil
 }
 
 type LiveEventResourceState string
@@ -125,23 +128,19 @@ func PossibleValuesForLiveEventResourceState() []string {
 	}
 }
 
-func parseLiveEventResourceState(input string) (*LiveEventResourceState, error) {
-	vals := map[string]LiveEventResourceState{
-		"allocating": LiveEventResourceStateAllocating,
-		"deleting":   LiveEventResourceStateDeleting,
-		"running":    LiveEventResourceStateRunning,
-		"standby":    LiveEventResourceStateStandBy,
-		"starting":   LiveEventResourceStateStarting,
-		"stopped":    LiveEventResourceStateStopped,
-		"stopping":   LiveEventResourceStateStopping,
+func (s *LiveEventResourceState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForLiveEventResourceState() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := LiveEventResourceState(input)
-	return &out, nil
+	*s = LiveEventResourceState(decoded)
+	return nil
 }
 
 type StreamOptionsFlag string
@@ -160,19 +159,19 @@ func PossibleValuesForStreamOptionsFlag() []string {
 	}
 }
 
-func parseStreamOptionsFlag(input string) (*StreamOptionsFlag, error) {
-	vals := map[string]StreamOptionsFlag{
-		"default":      StreamOptionsFlagDefault,
-		"lowlatency":   StreamOptionsFlagLowLatency,
-		"lowlatencyv2": StreamOptionsFlagLowLatencyVTwo,
+func (s *StreamOptionsFlag) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForStreamOptionsFlag() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := StreamOptionsFlag(input)
-	return &out, nil
+	*s = StreamOptionsFlag(decoded)
+	return nil
 }
 
 type StretchMode string
@@ -191,17 +190,17 @@ func PossibleValuesForStretchMode() []string {
 	}
 }
 
-func parseStretchMode(input string) (*StretchMode, error) {
-	vals := map[string]StretchMode{
-		"autofit":  StretchModeAutoFit,
-		"autosize": StretchModeAutoSize,
-		"none":     StretchModeNone,
+func (s *StretchMode) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForStretchMode() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := StretchMode(input)
-	return &out, nil
+	*s = StretchMode(decoded)
+	return nil
 }

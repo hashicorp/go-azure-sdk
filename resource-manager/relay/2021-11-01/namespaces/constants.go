@@ -1,7 +1,5 @@
 package namespaces
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -21,21 +19,6 @@ func PossibleValuesForAccessRights() []string {
 	}
 }
 
-func parseAccessRights(input string) (*AccessRights, error) {
-	vals := map[string]AccessRights{
-		"listen": AccessRightsListen,
-		"manage": AccessRightsManage,
-		"send":   AccessRightsSend,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := AccessRights(input)
-	return &out, nil
-}
-
 type DefaultAction string
 
 const (
@@ -48,20 +31,6 @@ func PossibleValuesForDefaultAction() []string {
 		string(DefaultActionAllow),
 		string(DefaultActionDeny),
 	}
-}
-
-func parseDefaultAction(input string) (*DefaultAction, error) {
-	vals := map[string]DefaultAction{
-		"allow": DefaultActionAllow,
-		"deny":  DefaultActionDeny,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := DefaultAction(input)
-	return &out, nil
 }
 
 type EndPointProvisioningState string
@@ -86,24 +55,6 @@ func PossibleValuesForEndPointProvisioningState() []string {
 	}
 }
 
-func parseEndPointProvisioningState(input string) (*EndPointProvisioningState, error) {
-	vals := map[string]EndPointProvisioningState{
-		"canceled":  EndPointProvisioningStateCanceled,
-		"creating":  EndPointProvisioningStateCreating,
-		"deleting":  EndPointProvisioningStateDeleting,
-		"failed":    EndPointProvisioningStateFailed,
-		"succeeded": EndPointProvisioningStateSucceeded,
-		"updating":  EndPointProvisioningStateUpdating,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := EndPointProvisioningState(input)
-	return &out, nil
-}
-
 type KeyType string
 
 const (
@@ -118,20 +69,6 @@ func PossibleValuesForKeyType() []string {
 	}
 }
 
-func parseKeyType(input string) (*KeyType, error) {
-	vals := map[string]KeyType{
-		"primarykey":   KeyTypePrimaryKey,
-		"secondarykey": KeyTypeSecondaryKey,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := KeyType(input)
-	return &out, nil
-}
-
 type NetworkRuleIPAction string
 
 const (
@@ -142,19 +79,6 @@ func PossibleValuesForNetworkRuleIPAction() []string {
 	return []string{
 		string(NetworkRuleIPActionAllow),
 	}
-}
-
-func parseNetworkRuleIPAction(input string) (*NetworkRuleIPAction, error) {
-	vals := map[string]NetworkRuleIPAction{
-		"allow": NetworkRuleIPActionAllow,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := NetworkRuleIPAction(input)
-	return &out, nil
 }
 
 type PrivateLinkConnectionStatus string
@@ -175,22 +99,6 @@ func PossibleValuesForPrivateLinkConnectionStatus() []string {
 	}
 }
 
-func parsePrivateLinkConnectionStatus(input string) (*PrivateLinkConnectionStatus, error) {
-	vals := map[string]PrivateLinkConnectionStatus{
-		"approved":     PrivateLinkConnectionStatusApproved,
-		"disconnected": PrivateLinkConnectionStatusDisconnected,
-		"pending":      PrivateLinkConnectionStatusPending,
-		"rejected":     PrivateLinkConnectionStatusRejected,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PrivateLinkConnectionStatus(input)
-	return &out, nil
-}
-
 type PublicNetworkAccess string
 
 const (
@@ -207,21 +115,6 @@ func PossibleValuesForPublicNetworkAccess() []string {
 	}
 }
 
-func parsePublicNetworkAccess(input string) (*PublicNetworkAccess, error) {
-	vals := map[string]PublicNetworkAccess{
-		"disabled":           PublicNetworkAccessDisabled,
-		"enabled":            PublicNetworkAccessEnabled,
-		"securedbyperimeter": PublicNetworkAccessSecuredByPerimeter,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PublicNetworkAccess(input)
-	return &out, nil
-}
-
 type SkuName string
 
 const (
@@ -234,19 +127,6 @@ func PossibleValuesForSkuName() []string {
 	}
 }
 
-func parseSkuName(input string) (*SkuName, error) {
-	vals := map[string]SkuName{
-		"standard": SkuNameStandard,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SkuName(input)
-	return &out, nil
-}
-
 type SkuTier string
 
 const (
@@ -257,19 +137,6 @@ func PossibleValuesForSkuTier() []string {
 	return []string{
 		string(SkuTierStandard),
 	}
-}
-
-func parseSkuTier(input string) (*SkuTier, error) {
-	vals := map[string]SkuTier{
-		"standard": SkuTierStandard,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SkuTier(input)
-	return &out, nil
 }
 
 type UnavailableReason string
@@ -292,22 +159,4 @@ func PossibleValuesForUnavailableReason() []string {
 		string(UnavailableReasonSubscriptionIsDisabled),
 		string(UnavailableReasonTooManyNamespaceInCurrentSubscription),
 	}
-}
-
-func parseUnavailableReason(input string) (*UnavailableReason, error) {
-	vals := map[string]UnavailableReason{
-		"invalidname":                           UnavailableReasonInvalidName,
-		"nameinlockdown":                        UnavailableReasonNameInLockdown,
-		"nameinuse":                             UnavailableReasonNameInUse,
-		"none":                                  UnavailableReasonNone,
-		"subscriptionisdisabled":                UnavailableReasonSubscriptionIsDisabled,
-		"toomanynamespaceincurrentsubscription": UnavailableReasonTooManyNamespaceInCurrentSubscription,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := UnavailableReason(input)
-	return &out, nil
 }

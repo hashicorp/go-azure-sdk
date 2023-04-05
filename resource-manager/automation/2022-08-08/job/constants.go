@@ -1,6 +1,10 @@
 package job
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -23,20 +27,19 @@ func PossibleValuesForJobProvisioningState() []string {
 	}
 }
 
-func parseJobProvisioningState(input string) (*JobProvisioningState, error) {
-	vals := map[string]JobProvisioningState{
-		"failed":     JobProvisioningStateFailed,
-		"processing": JobProvisioningStateProcessing,
-		"succeeded":  JobProvisioningStateSucceeded,
-		"suspended":  JobProvisioningStateSuspended,
+func (s *JobProvisioningState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForJobProvisioningState() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := JobProvisioningState(input)
-	return &out, nil
+	*s = JobProvisioningState(decoded)
+	return nil
 }
 
 type JobStatus string
@@ -75,27 +78,17 @@ func PossibleValuesForJobStatus() []string {
 	}
 }
 
-func parseJobStatus(input string) (*JobStatus, error) {
-	vals := map[string]JobStatus{
-		"activating":   JobStatusActivating,
-		"blocked":      JobStatusBlocked,
-		"completed":    JobStatusCompleted,
-		"disconnected": JobStatusDisconnected,
-		"failed":       JobStatusFailed,
-		"new":          JobStatusNew,
-		"removing":     JobStatusRemoving,
-		"resuming":     JobStatusResuming,
-		"running":      JobStatusRunning,
-		"stopped":      JobStatusStopped,
-		"stopping":     JobStatusStopping,
-		"suspended":    JobStatusSuspended,
-		"suspending":   JobStatusSuspending,
+func (s *JobStatus) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForJobStatus() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := JobStatus(input)
-	return &out, nil
+	*s = JobStatus(decoded)
+	return nil
 }

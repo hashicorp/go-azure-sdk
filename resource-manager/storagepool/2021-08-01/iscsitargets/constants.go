@@ -1,7 +1,5 @@
 package iscsitargets
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -17,20 +15,6 @@ func PossibleValuesForIscsiTargetAclMode() []string {
 		string(IscsiTargetAclModeDynamic),
 		string(IscsiTargetAclModeStatic),
 	}
-}
-
-func parseIscsiTargetAclMode(input string) (*IscsiTargetAclMode, error) {
-	vals := map[string]IscsiTargetAclMode{
-		"dynamic": IscsiTargetAclModeDynamic,
-		"static":  IscsiTargetAclModeStatic,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := IscsiTargetAclMode(input)
-	return &out, nil
 }
 
 type OperationalStatus string
@@ -59,26 +43,6 @@ func PossibleValuesForOperationalStatus() []string {
 	}
 }
 
-func parseOperationalStatus(input string) (*OperationalStatus, error) {
-	vals := map[string]OperationalStatus{
-		"healthy":               OperationalStatusHealthy,
-		"invalid":               OperationalStatusInvalid,
-		"running":               OperationalStatusRunning,
-		"stopped":               OperationalStatusStopped,
-		"stopped (deallocated)": OperationalStatusStoppedDeallocated,
-		"unhealthy":             OperationalStatusUnhealthy,
-		"unknown":               OperationalStatusUnknown,
-		"updating":              OperationalStatusUpdating,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := OperationalStatus(input)
-	return &out, nil
-}
-
 type ProvisioningStates string
 
 const (
@@ -103,24 +67,4 @@ func PossibleValuesForProvisioningStates() []string {
 		string(ProvisioningStatesSucceeded),
 		string(ProvisioningStatesUpdating),
 	}
-}
-
-func parseProvisioningStates(input string) (*ProvisioningStates, error) {
-	vals := map[string]ProvisioningStates{
-		"canceled":  ProvisioningStatesCanceled,
-		"creating":  ProvisioningStatesCreating,
-		"deleting":  ProvisioningStatesDeleting,
-		"failed":    ProvisioningStatesFailed,
-		"invalid":   ProvisioningStatesInvalid,
-		"pending":   ProvisioningStatesPending,
-		"succeeded": ProvisioningStatesSucceeded,
-		"updating":  ProvisioningStatesUpdating,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ProvisioningStates(input)
-	return &out, nil
 }

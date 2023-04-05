@@ -1,7 +1,5 @@
 package nodetype
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -19,21 +17,6 @@ func PossibleValuesForDiskType() []string {
 		string(DiskTypeStandardLRS),
 		string(DiskTypeStandardSSDLRS),
 	}
-}
-
-func parseDiskType(input string) (*DiskType, error) {
-	vals := map[string]DiskType{
-		"premium_lrs":     DiskTypePremiumLRS,
-		"standard_lrs":    DiskTypeStandardLRS,
-		"standardssd_lrs": DiskTypeStandardSSDLRS,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := DiskType(input)
-	return &out, nil
 }
 
 type ManagedResourceProvisioningState string
@@ -64,26 +47,4 @@ func PossibleValuesForManagedResourceProvisioningState() []string {
 		string(ManagedResourceProvisioningStateSucceeded),
 		string(ManagedResourceProvisioningStateUpdating),
 	}
-}
-
-func parseManagedResourceProvisioningState(input string) (*ManagedResourceProvisioningState, error) {
-	vals := map[string]ManagedResourceProvisioningState{
-		"canceled":  ManagedResourceProvisioningStateCanceled,
-		"created":   ManagedResourceProvisioningStateCreated,
-		"creating":  ManagedResourceProvisioningStateCreating,
-		"deleted":   ManagedResourceProvisioningStateDeleted,
-		"deleting":  ManagedResourceProvisioningStateDeleting,
-		"failed":    ManagedResourceProvisioningStateFailed,
-		"none":      ManagedResourceProvisioningStateNone,
-		"other":     ManagedResourceProvisioningStateOther,
-		"succeeded": ManagedResourceProvisioningStateSucceeded,
-		"updating":  ManagedResourceProvisioningStateUpdating,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ManagedResourceProvisioningState(input)
-	return &out, nil
 }

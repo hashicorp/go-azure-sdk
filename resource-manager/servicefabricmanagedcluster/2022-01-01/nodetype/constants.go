@@ -1,7 +1,5 @@
 package nodetype
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -19,20 +17,6 @@ func PossibleValuesForAccess() []string {
 	}
 }
 
-func parseAccess(input string) (*Access, error) {
-	vals := map[string]Access{
-		"allow": AccessAllow,
-		"deny":  AccessDeny,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := Access(input)
-	return &out, nil
-}
-
 type Direction string
 
 const (
@@ -45,20 +29,6 @@ func PossibleValuesForDirection() []string {
 		string(DirectionInbound),
 		string(DirectionOutbound),
 	}
-}
-
-func parseDirection(input string) (*Direction, error) {
-	vals := map[string]Direction{
-		"inbound":  DirectionInbound,
-		"outbound": DirectionOutbound,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := Direction(input)
-	return &out, nil
 }
 
 type DiskType string
@@ -77,21 +47,6 @@ func PossibleValuesForDiskType() []string {
 	}
 }
 
-func parseDiskType(input string) (*DiskType, error) {
-	vals := map[string]DiskType{
-		"premium_lrs":     DiskTypePremiumLRS,
-		"standard_lrs":    DiskTypeStandardLRS,
-		"standardssd_lrs": DiskTypeStandardSSDLRS,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := DiskType(input)
-	return &out, nil
-}
-
 type IPAddressType string
 
 const (
@@ -104,20 +59,6 @@ func PossibleValuesForIPAddressType() []string {
 		string(IPAddressTypeIPvFour),
 		string(IPAddressTypeIPvSix),
 	}
-}
-
-func parseIPAddressType(input string) (*IPAddressType, error) {
-	vals := map[string]IPAddressType{
-		"ipv4": IPAddressTypeIPvFour,
-		"ipv6": IPAddressTypeIPvSix,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := IPAddressType(input)
-	return &out, nil
 }
 
 type ManagedResourceProvisioningState string
@@ -150,28 +91,6 @@ func PossibleValuesForManagedResourceProvisioningState() []string {
 	}
 }
 
-func parseManagedResourceProvisioningState(input string) (*ManagedResourceProvisioningState, error) {
-	vals := map[string]ManagedResourceProvisioningState{
-		"canceled":  ManagedResourceProvisioningStateCanceled,
-		"created":   ManagedResourceProvisioningStateCreated,
-		"creating":  ManagedResourceProvisioningStateCreating,
-		"deleted":   ManagedResourceProvisioningStateDeleted,
-		"deleting":  ManagedResourceProvisioningStateDeleting,
-		"failed":    ManagedResourceProvisioningStateFailed,
-		"none":      ManagedResourceProvisioningStateNone,
-		"other":     ManagedResourceProvisioningStateOther,
-		"succeeded": ManagedResourceProvisioningStateSucceeded,
-		"updating":  ManagedResourceProvisioningStateUpdating,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ManagedResourceProvisioningState(input)
-	return &out, nil
-}
-
 type NodeTypeSkuScaleType string
 
 const (
@@ -186,21 +105,6 @@ func PossibleValuesForNodeTypeSkuScaleType() []string {
 		string(NodeTypeSkuScaleTypeManual),
 		string(NodeTypeSkuScaleTypeNone),
 	}
-}
-
-func parseNodeTypeSkuScaleType(input string) (*NodeTypeSkuScaleType, error) {
-	vals := map[string]NodeTypeSkuScaleType{
-		"automatic": NodeTypeSkuScaleTypeAutomatic,
-		"manual":    NodeTypeSkuScaleTypeManual,
-		"none":      NodeTypeSkuScaleTypeNone,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := NodeTypeSkuScaleType(input)
-	return &out, nil
 }
 
 type NsgProtocol string
@@ -225,23 +129,4 @@ func PossibleValuesForNsgProtocol() []string {
 		string(NsgProtocolTcp),
 		string(NsgProtocolUdp),
 	}
-}
-
-func parseNsgProtocol(input string) (*NsgProtocol, error) {
-	vals := map[string]NsgProtocol{
-		"ah":    NsgProtocolAh,
-		"esp":   NsgProtocolEsp,
-		"http":  NsgProtocolHTTP,
-		"https": NsgProtocolHTTPS,
-		"icmp":  NsgProtocolIcmp,
-		"tcp":   NsgProtocolTcp,
-		"udp":   NsgProtocolUdp,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := NsgProtocol(input)
-	return &out, nil
 }

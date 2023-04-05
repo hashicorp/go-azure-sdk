@@ -1,7 +1,5 @@
 package iotconnectors
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -19,20 +17,6 @@ func PossibleValuesForIotIdentityResolutionType() []string {
 	}
 }
 
-func parseIotIdentityResolutionType(input string) (*IotIdentityResolutionType, error) {
-	vals := map[string]IotIdentityResolutionType{
-		"create": IotIdentityResolutionTypeCreate,
-		"lookup": IotIdentityResolutionTypeLookup,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := IotIdentityResolutionType(input)
-	return &out, nil
-}
-
 type ManagedServiceIdentityType string
 
 const (
@@ -45,20 +29,6 @@ func PossibleValuesForManagedServiceIdentityType() []string {
 		string(ManagedServiceIdentityTypeNone),
 		string(ManagedServiceIdentityTypeSystemAssigned),
 	}
-}
-
-func parseManagedServiceIdentityType(input string) (*ManagedServiceIdentityType, error) {
-	vals := map[string]ManagedServiceIdentityType{
-		"none":           ManagedServiceIdentityTypeNone,
-		"systemassigned": ManagedServiceIdentityTypeSystemAssigned,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ManagedServiceIdentityType(input)
-	return &out, nil
 }
 
 type ProvisioningState string
@@ -95,29 +65,4 @@ func PossibleValuesForProvisioningState() []string {
 		string(ProvisioningStateVerifying),
 		string(ProvisioningStateWarned),
 	}
-}
-
-func parseProvisioningState(input string) (*ProvisioningState, error) {
-	vals := map[string]ProvisioningState{
-		"accepted":          ProvisioningStateAccepted,
-		"canceled":          ProvisioningStateCanceled,
-		"creating":          ProvisioningStateCreating,
-		"deleting":          ProvisioningStateDeleting,
-		"deprovisioned":     ProvisioningStateDeprovisioned,
-		"failed":            ProvisioningStateFailed,
-		"moving":            ProvisioningStateMoving,
-		"succeeded":         ProvisioningStateSucceeded,
-		"suspended":         ProvisioningStateSuspended,
-		"systemmaintenance": ProvisioningStateSystemMaintenance,
-		"updating":          ProvisioningStateUpdating,
-		"verifying":         ProvisioningStateVerifying,
-		"warned":            ProvisioningStateWarned,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ProvisioningState(input)
-	return &out, nil
 }

@@ -1,7 +1,5 @@
 package volumegroups
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -17,19 +15,6 @@ func PossibleValuesForAction() []string {
 	}
 }
 
-func parseAction(input string) (*Action, error) {
-	vals := map[string]Action{
-		"allow": ActionAllow,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := Action(input)
-	return &out, nil
-}
-
 type EncryptionType string
 
 const (
@@ -40,19 +25,6 @@ func PossibleValuesForEncryptionType() []string {
 	return []string{
 		string(EncryptionTypeEncryptionAtRestWithPlatformKey),
 	}
-}
-
-func parseEncryptionType(input string) (*EncryptionType, error) {
-	vals := map[string]EncryptionType{
-		"encryptionatrestwithplatformkey": EncryptionTypeEncryptionAtRestWithPlatformKey,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := EncryptionType(input)
-	return &out, nil
 }
 
 type ProvisioningStates string
@@ -81,26 +53,6 @@ func PossibleValuesForProvisioningStates() []string {
 	}
 }
 
-func parseProvisioningStates(input string) (*ProvisioningStates, error) {
-	vals := map[string]ProvisioningStates{
-		"canceled":  ProvisioningStatesCanceled,
-		"creating":  ProvisioningStatesCreating,
-		"deleting":  ProvisioningStatesDeleting,
-		"failed":    ProvisioningStatesFailed,
-		"invalid":   ProvisioningStatesInvalid,
-		"pending":   ProvisioningStatesPending,
-		"succeeded": ProvisioningStatesSucceeded,
-		"updating":  ProvisioningStatesUpdating,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ProvisioningStates(input)
-	return &out, nil
-}
-
 type State string
 
 const (
@@ -121,23 +73,6 @@ func PossibleValuesForState() []string {
 	}
 }
 
-func parseState(input string) (*State, error) {
-	vals := map[string]State{
-		"deprovisioning":       StateDeprovisioning,
-		"failed":               StateFailed,
-		"networksourcedeleted": StateNetworkSourceDeleted,
-		"provisioning":         StateProvisioning,
-		"succeeded":            StateSucceeded,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := State(input)
-	return &out, nil
-}
-
 type StorageTargetType string
 
 const (
@@ -150,18 +85,4 @@ func PossibleValuesForStorageTargetType() []string {
 		string(StorageTargetTypeIscsi),
 		string(StorageTargetTypeNone),
 	}
-}
-
-func parseStorageTargetType(input string) (*StorageTargetType, error) {
-	vals := map[string]StorageTargetType{
-		"iscsi": StorageTargetTypeIscsi,
-		"none":  StorageTargetTypeNone,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := StorageTargetType(input)
-	return &out, nil
 }

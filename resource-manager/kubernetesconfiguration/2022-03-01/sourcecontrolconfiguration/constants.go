@@ -1,7 +1,5 @@
 package sourcecontrolconfiguration
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -25,23 +23,6 @@ func PossibleValuesForComplianceStateType() []string {
 	}
 }
 
-func parseComplianceStateType(input string) (*ComplianceStateType, error) {
-	vals := map[string]ComplianceStateType{
-		"compliant":    ComplianceStateTypeCompliant,
-		"failed":       ComplianceStateTypeFailed,
-		"installed":    ComplianceStateTypeInstalled,
-		"noncompliant": ComplianceStateTypeNoncompliant,
-		"pending":      ComplianceStateTypePending,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ComplianceStateType(input)
-	return &out, nil
-}
-
 type MessageLevelType string
 
 const (
@@ -58,21 +39,6 @@ func PossibleValuesForMessageLevelType() []string {
 	}
 }
 
-func parseMessageLevelType(input string) (*MessageLevelType, error) {
-	vals := map[string]MessageLevelType{
-		"error":       MessageLevelTypeError,
-		"information": MessageLevelTypeInformation,
-		"warning":     MessageLevelTypeWarning,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := MessageLevelType(input)
-	return &out, nil
-}
-
 type OperatorScopeType string
 
 const (
@@ -87,20 +53,6 @@ func PossibleValuesForOperatorScopeType() []string {
 	}
 }
 
-func parseOperatorScopeType(input string) (*OperatorScopeType, error) {
-	vals := map[string]OperatorScopeType{
-		"cluster":   OperatorScopeTypeCluster,
-		"namespace": OperatorScopeTypeNamespace,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := OperatorScopeType(input)
-	return &out, nil
-}
-
 type OperatorType string
 
 const (
@@ -111,19 +63,6 @@ func PossibleValuesForOperatorType() []string {
 	return []string{
 		string(OperatorTypeFlux),
 	}
-}
-
-func parseOperatorType(input string) (*OperatorType, error) {
-	vals := map[string]OperatorType{
-		"flux": OperatorTypeFlux,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := OperatorType(input)
-	return &out, nil
 }
 
 type ProvisioningStateType string
@@ -144,21 +83,4 @@ func PossibleValuesForProvisioningStateType() []string {
 		string(ProvisioningStateTypeRunning),
 		string(ProvisioningStateTypeSucceeded),
 	}
-}
-
-func parseProvisioningStateType(input string) (*ProvisioningStateType, error) {
-	vals := map[string]ProvisioningStateType{
-		"accepted":  ProvisioningStateTypeAccepted,
-		"deleting":  ProvisioningStateTypeDeleting,
-		"failed":    ProvisioningStateTypeFailed,
-		"running":   ProvisioningStateTypeRunning,
-		"succeeded": ProvisioningStateTypeSucceeded,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ProvisioningStateType(input)
-	return &out, nil
 }

@@ -1,7 +1,5 @@
 package tenantconfiguration
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -21,20 +19,4 @@ func PossibleValuesForAsyncOperationStatus() []string {
 		string(AsyncOperationStatusStarted),
 		string(AsyncOperationStatusSucceeded),
 	}
-}
-
-func parseAsyncOperationStatus(input string) (*AsyncOperationStatus, error) {
-	vals := map[string]AsyncOperationStatus{
-		"failed":     AsyncOperationStatusFailed,
-		"inprogress": AsyncOperationStatusInProgress,
-		"started":    AsyncOperationStatusStarted,
-		"succeeded":  AsyncOperationStatusSucceeded,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := AsyncOperationStatus(input)
-	return &out, nil
 }

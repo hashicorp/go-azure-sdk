@@ -1,7 +1,5 @@
 package webpubsub
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -19,20 +17,6 @@ func PossibleValuesForACLAction() []string {
 	}
 }
 
-func parseACLAction(input string) (*ACLAction, error) {
-	vals := map[string]ACLAction{
-		"allow": ACLActionAllow,
-		"deny":  ACLActionDeny,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ACLAction(input)
-	return &out, nil
-}
-
 type EventListenerEndpointDiscriminator string
 
 const (
@@ -45,19 +29,6 @@ func PossibleValuesForEventListenerEndpointDiscriminator() []string {
 	}
 }
 
-func parseEventListenerEndpointDiscriminator(input string) (*EventListenerEndpointDiscriminator, error) {
-	vals := map[string]EventListenerEndpointDiscriminator{
-		"eventhub": EventListenerEndpointDiscriminatorEventHub,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := EventListenerEndpointDiscriminator(input)
-	return &out, nil
-}
-
 type EventListenerFilterDiscriminator string
 
 const (
@@ -68,19 +39,6 @@ func PossibleValuesForEventListenerFilterDiscriminator() []string {
 	return []string{
 		string(EventListenerFilterDiscriminatorEventName),
 	}
-}
-
-func parseEventListenerFilterDiscriminator(input string) (*EventListenerFilterDiscriminator, error) {
-	vals := map[string]EventListenerFilterDiscriminator{
-		"eventname": EventListenerFilterDiscriminatorEventName,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := EventListenerFilterDiscriminator(input)
-	return &out, nil
 }
 
 type KeyType string
@@ -99,21 +57,6 @@ func PossibleValuesForKeyType() []string {
 	}
 }
 
-func parseKeyType(input string) (*KeyType, error) {
-	vals := map[string]KeyType{
-		"primary":   KeyTypePrimary,
-		"salt":      KeyTypeSalt,
-		"secondary": KeyTypeSecondary,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := KeyType(input)
-	return &out, nil
-}
-
 type PrivateLinkServiceConnectionStatus string
 
 const (
@@ -130,22 +73,6 @@ func PossibleValuesForPrivateLinkServiceConnectionStatus() []string {
 		string(PrivateLinkServiceConnectionStatusPending),
 		string(PrivateLinkServiceConnectionStatusRejected),
 	}
-}
-
-func parsePrivateLinkServiceConnectionStatus(input string) (*PrivateLinkServiceConnectionStatus, error) {
-	vals := map[string]PrivateLinkServiceConnectionStatus{
-		"approved":     PrivateLinkServiceConnectionStatusApproved,
-		"disconnected": PrivateLinkServiceConnectionStatusDisconnected,
-		"pending":      PrivateLinkServiceConnectionStatusPending,
-		"rejected":     PrivateLinkServiceConnectionStatusRejected,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PrivateLinkServiceConnectionStatus(input)
-	return &out, nil
 }
 
 type ProvisioningState string
@@ -176,27 +103,6 @@ func PossibleValuesForProvisioningState() []string {
 	}
 }
 
-func parseProvisioningState(input string) (*ProvisioningState, error) {
-	vals := map[string]ProvisioningState{
-		"canceled":  ProvisioningStateCanceled,
-		"creating":  ProvisioningStateCreating,
-		"deleting":  ProvisioningStateDeleting,
-		"failed":    ProvisioningStateFailed,
-		"moving":    ProvisioningStateMoving,
-		"running":   ProvisioningStateRunning,
-		"succeeded": ProvisioningStateSucceeded,
-		"unknown":   ProvisioningStateUnknown,
-		"updating":  ProvisioningStateUpdating,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ProvisioningState(input)
-	return &out, nil
-}
-
 type ScaleType string
 
 const (
@@ -211,21 +117,6 @@ func PossibleValuesForScaleType() []string {
 		string(ScaleTypeManual),
 		string(ScaleTypeNone),
 	}
-}
-
-func parseScaleType(input string) (*ScaleType, error) {
-	vals := map[string]ScaleType{
-		"automatic": ScaleTypeAutomatic,
-		"manual":    ScaleTypeManual,
-		"none":      ScaleTypeNone,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ScaleType(input)
-	return &out, nil
 }
 
 type SharedPrivateLinkResourceStatus string
@@ -248,23 +139,6 @@ func PossibleValuesForSharedPrivateLinkResourceStatus() []string {
 	}
 }
 
-func parseSharedPrivateLinkResourceStatus(input string) (*SharedPrivateLinkResourceStatus, error) {
-	vals := map[string]SharedPrivateLinkResourceStatus{
-		"approved":     SharedPrivateLinkResourceStatusApproved,
-		"disconnected": SharedPrivateLinkResourceStatusDisconnected,
-		"pending":      SharedPrivateLinkResourceStatusPending,
-		"rejected":     SharedPrivateLinkResourceStatusRejected,
-		"timeout":      SharedPrivateLinkResourceStatusTimeout,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SharedPrivateLinkResourceStatus(input)
-	return &out, nil
-}
-
 type UpstreamAuthType string
 
 const (
@@ -277,20 +151,6 @@ func PossibleValuesForUpstreamAuthType() []string {
 		string(UpstreamAuthTypeManagedIdentity),
 		string(UpstreamAuthTypeNone),
 	}
-}
-
-func parseUpstreamAuthType(input string) (*UpstreamAuthType, error) {
-	vals := map[string]UpstreamAuthType{
-		"managedidentity": UpstreamAuthTypeManagedIdentity,
-		"none":            UpstreamAuthTypeNone,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := UpstreamAuthType(input)
-	return &out, nil
 }
 
 type WebPubSubRequestType string
@@ -311,22 +171,6 @@ func PossibleValuesForWebPubSubRequestType() []string {
 	}
 }
 
-func parseWebPubSubRequestType(input string) (*WebPubSubRequestType, error) {
-	vals := map[string]WebPubSubRequestType{
-		"clientconnection": WebPubSubRequestTypeClientConnection,
-		"restapi":          WebPubSubRequestTypeRESTAPI,
-		"serverconnection": WebPubSubRequestTypeServerConnection,
-		"trace":            WebPubSubRequestTypeTrace,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := WebPubSubRequestType(input)
-	return &out, nil
-}
-
 type WebPubSubSkuTier string
 
 const (
@@ -343,20 +187,4 @@ func PossibleValuesForWebPubSubSkuTier() []string {
 		string(WebPubSubSkuTierPremium),
 		string(WebPubSubSkuTierStandard),
 	}
-}
-
-func parseWebPubSubSkuTier(input string) (*WebPubSubSkuTier, error) {
-	vals := map[string]WebPubSubSkuTier{
-		"basic":    WebPubSubSkuTierBasic,
-		"free":     WebPubSubSkuTierFree,
-		"premium":  WebPubSubSkuTierPremium,
-		"standard": WebPubSubSkuTierStandard,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := WebPubSubSkuTier(input)
-	return &out, nil
 }

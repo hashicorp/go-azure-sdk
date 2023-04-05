@@ -1,7 +1,5 @@
 package addons
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -29,25 +27,6 @@ func PossibleValuesForAddonState() []string {
 	}
 }
 
-func parseAddonState(input string) (*AddonState, error) {
-	vals := map[string]AddonState{
-		"created":       AddonStateCreated,
-		"creating":      AddonStateCreating,
-		"deleting":      AddonStateDeleting,
-		"failed":        AddonStateFailed,
-		"invalid":       AddonStateInvalid,
-		"reconfiguring": AddonStateReconfiguring,
-		"updating":      AddonStateUpdating,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := AddonState(input)
-	return &out, nil
-}
-
 type AddonType string
 
 const (
@@ -60,20 +39,6 @@ func PossibleValuesForAddonType() []string {
 		string(AddonTypeArcForKubernetes),
 		string(AddonTypeIotEdge),
 	}
-}
-
-func parseAddonType(input string) (*AddonType, error) {
-	vals := map[string]AddonType{
-		"arcforkubernetes": AddonTypeArcForKubernetes,
-		"iotedge":          AddonTypeIotEdge,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := AddonType(input)
-	return &out, nil
 }
 
 type EncryptionAlgorithm string
@@ -92,21 +57,6 @@ func PossibleValuesForEncryptionAlgorithm() []string {
 	}
 }
 
-func parseEncryptionAlgorithm(input string) (*EncryptionAlgorithm, error) {
-	vals := map[string]EncryptionAlgorithm{
-		"aes256":            EncryptionAlgorithmAESTwoFiveSix,
-		"none":              EncryptionAlgorithmNone,
-		"rsaes_pkcs1_v_1_5": EncryptionAlgorithmRSAESPKCSOneVOneFive,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := EncryptionAlgorithm(input)
-	return &out, nil
-}
-
 type HostPlatformType string
 
 const (
@@ -121,20 +71,6 @@ func PossibleValuesForHostPlatformType() []string {
 	}
 }
 
-func parseHostPlatformType(input string) (*HostPlatformType, error) {
-	vals := map[string]HostPlatformType{
-		"kubernetescluster": HostPlatformTypeKubernetesCluster,
-		"linuxvm":           HostPlatformTypeLinuxVM,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := HostPlatformType(input)
-	return &out, nil
-}
-
 type PlatformType string
 
 const (
@@ -147,18 +83,4 @@ func PossibleValuesForPlatformType() []string {
 		string(PlatformTypeLinux),
 		string(PlatformTypeWindows),
 	}
-}
-
-func parsePlatformType(input string) (*PlatformType, error) {
-	vals := map[string]PlatformType{
-		"linux":   PlatformTypeLinux,
-		"windows": PlatformTypeWindows,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PlatformType(input)
-	return &out, nil
 }

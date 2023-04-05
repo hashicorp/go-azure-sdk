@@ -1,7 +1,5 @@
 package redis
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -33,27 +31,6 @@ func PossibleValuesForDayOfWeek() []string {
 	}
 }
 
-func parseDayOfWeek(input string) (*DayOfWeek, error) {
-	vals := map[string]DayOfWeek{
-		"everyday":  DayOfWeekEveryday,
-		"friday":    DayOfWeekFriday,
-		"monday":    DayOfWeekMonday,
-		"saturday":  DayOfWeekSaturday,
-		"sunday":    DayOfWeekSunday,
-		"thursday":  DayOfWeekThursday,
-		"tuesday":   DayOfWeekTuesday,
-		"wednesday": DayOfWeekWednesday,
-		"weekend":   DayOfWeekWeekend,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := DayOfWeek(input)
-	return &out, nil
-}
-
 type PrivateEndpointConnectionProvisioningState string
 
 const (
@@ -72,22 +49,6 @@ func PossibleValuesForPrivateEndpointConnectionProvisioningState() []string {
 	}
 }
 
-func parsePrivateEndpointConnectionProvisioningState(input string) (*PrivateEndpointConnectionProvisioningState, error) {
-	vals := map[string]PrivateEndpointConnectionProvisioningState{
-		"creating":  PrivateEndpointConnectionProvisioningStateCreating,
-		"deleting":  PrivateEndpointConnectionProvisioningStateDeleting,
-		"failed":    PrivateEndpointConnectionProvisioningStateFailed,
-		"succeeded": PrivateEndpointConnectionProvisioningStateSucceeded,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PrivateEndpointConnectionProvisioningState(input)
-	return &out, nil
-}
-
 type PrivateEndpointServiceConnectionStatus string
 
 const (
@@ -102,21 +63,6 @@ func PossibleValuesForPrivateEndpointServiceConnectionStatus() []string {
 		string(PrivateEndpointServiceConnectionStatusPending),
 		string(PrivateEndpointServiceConnectionStatusRejected),
 	}
-}
-
-func parsePrivateEndpointServiceConnectionStatus(input string) (*PrivateEndpointServiceConnectionStatus, error) {
-	vals := map[string]PrivateEndpointServiceConnectionStatus{
-		"approved": PrivateEndpointServiceConnectionStatusApproved,
-		"pending":  PrivateEndpointServiceConnectionStatusPending,
-		"rejected": PrivateEndpointServiceConnectionStatusRejected,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PrivateEndpointServiceConnectionStatus(input)
-	return &out, nil
 }
 
 type ProvisioningState string
@@ -153,30 +99,6 @@ func PossibleValuesForProvisioningState() []string {
 	}
 }
 
-func parseProvisioningState(input string) (*ProvisioningState, error) {
-	vals := map[string]ProvisioningState{
-		"creating":               ProvisioningStateCreating,
-		"deleting":               ProvisioningStateDeleting,
-		"disabled":               ProvisioningStateDisabled,
-		"failed":                 ProvisioningStateFailed,
-		"linking":                ProvisioningStateLinking,
-		"provisioning":           ProvisioningStateProvisioning,
-		"recoveringscalefailure": ProvisioningStateRecoveringScaleFailure,
-		"scaling":                ProvisioningStateScaling,
-		"succeeded":              ProvisioningStateSucceeded,
-		"unlinking":              ProvisioningStateUnlinking,
-		"unprovisioning":         ProvisioningStateUnprovisioning,
-		"updating":               ProvisioningStateUpdating,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ProvisioningState(input)
-	return &out, nil
-}
-
 type PublicNetworkAccess string
 
 const (
@@ -189,20 +111,6 @@ func PossibleValuesForPublicNetworkAccess() []string {
 		string(PublicNetworkAccessDisabled),
 		string(PublicNetworkAccessEnabled),
 	}
-}
-
-func parsePublicNetworkAccess(input string) (*PublicNetworkAccess, error) {
-	vals := map[string]PublicNetworkAccess{
-		"disabled": PublicNetworkAccessDisabled,
-		"enabled":  PublicNetworkAccessEnabled,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PublicNetworkAccess(input)
-	return &out, nil
 }
 
 type RebootType string
@@ -221,21 +129,6 @@ func PossibleValuesForRebootType() []string {
 	}
 }
 
-func parseRebootType(input string) (*RebootType, error) {
-	vals := map[string]RebootType{
-		"allnodes":      RebootTypeAllNodes,
-		"primarynode":   RebootTypePrimaryNode,
-		"secondarynode": RebootTypeSecondaryNode,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := RebootType(input)
-	return &out, nil
-}
-
 type RedisKeyType string
 
 const (
@@ -248,20 +141,6 @@ func PossibleValuesForRedisKeyType() []string {
 		string(RedisKeyTypePrimary),
 		string(RedisKeyTypeSecondary),
 	}
-}
-
-func parseRedisKeyType(input string) (*RedisKeyType, error) {
-	vals := map[string]RedisKeyType{
-		"primary":   RedisKeyTypePrimary,
-		"secondary": RedisKeyTypeSecondary,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := RedisKeyType(input)
-	return &out, nil
 }
 
 type ReplicationRole string
@@ -278,20 +157,6 @@ func PossibleValuesForReplicationRole() []string {
 	}
 }
 
-func parseReplicationRole(input string) (*ReplicationRole, error) {
-	vals := map[string]ReplicationRole{
-		"primary":   ReplicationRolePrimary,
-		"secondary": ReplicationRoleSecondary,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ReplicationRole(input)
-	return &out, nil
-}
-
 type SkuFamily string
 
 const (
@@ -304,20 +169,6 @@ func PossibleValuesForSkuFamily() []string {
 		string(SkuFamilyC),
 		string(SkuFamilyP),
 	}
-}
-
-func parseSkuFamily(input string) (*SkuFamily, error) {
-	vals := map[string]SkuFamily{
-		"c": SkuFamilyC,
-		"p": SkuFamilyP,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SkuFamily(input)
-	return &out, nil
 }
 
 type SkuName string
@@ -336,21 +187,6 @@ func PossibleValuesForSkuName() []string {
 	}
 }
 
-func parseSkuName(input string) (*SkuName, error) {
-	vals := map[string]SkuName{
-		"basic":    SkuNameBasic,
-		"premium":  SkuNamePremium,
-		"standard": SkuNameStandard,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SkuName(input)
-	return &out, nil
-}
-
 type TlsVersion string
 
 const (
@@ -365,19 +201,4 @@ func PossibleValuesForTlsVersion() []string {
 		string(TlsVersionOnePointTwo),
 		string(TlsVersionOnePointZero),
 	}
-}
-
-func parseTlsVersion(input string) (*TlsVersion, error) {
-	vals := map[string]TlsVersion{
-		"1.1": TlsVersionOnePointOne,
-		"1.2": TlsVersionOnePointTwo,
-		"1.0": TlsVersionOnePointZero,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := TlsVersion(input)
-	return &out, nil
 }

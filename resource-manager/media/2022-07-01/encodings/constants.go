@@ -1,6 +1,10 @@
 package encodings
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -21,19 +25,19 @@ func PossibleValuesForAacAudioProfile() []string {
 	}
 }
 
-func parseAacAudioProfile(input string) (*AacAudioProfile, error) {
-	vals := map[string]AacAudioProfile{
-		"aaclc":   AacAudioProfileAacLc,
-		"heaacv1": AacAudioProfileHeAacVOne,
-		"heaacv2": AacAudioProfileHeAacVTwo,
+func (s *AacAudioProfile) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForAacAudioProfile() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := AacAudioProfile(input)
-	return &out, nil
+	*s = AacAudioProfile(decoded)
+	return nil
 }
 
 type AnalysisResolution string
@@ -50,18 +54,19 @@ func PossibleValuesForAnalysisResolution() []string {
 	}
 }
 
-func parseAnalysisResolution(input string) (*AnalysisResolution, error) {
-	vals := map[string]AnalysisResolution{
-		"sourceresolution":   AnalysisResolutionSourceResolution,
-		"standarddefinition": AnalysisResolutionStandardDefinition,
+func (s *AnalysisResolution) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForAnalysisResolution() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := AnalysisResolution(input)
-	return &out, nil
+	*s = AnalysisResolution(decoded)
+	return nil
 }
 
 type AttributeFilter string
@@ -82,20 +87,19 @@ func PossibleValuesForAttributeFilter() []string {
 	}
 }
 
-func parseAttributeFilter(input string) (*AttributeFilter, error) {
-	vals := map[string]AttributeFilter{
-		"all":         AttributeFilterAll,
-		"bottom":      AttributeFilterBottom,
-		"top":         AttributeFilterTop,
-		"valueequals": AttributeFilterValueEquals,
+func (s *AttributeFilter) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForAttributeFilter() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := AttributeFilter(input)
-	return &out, nil
+	*s = AttributeFilter(decoded)
+	return nil
 }
 
 type AudioAnalysisMode string
@@ -112,18 +116,19 @@ func PossibleValuesForAudioAnalysisMode() []string {
 	}
 }
 
-func parseAudioAnalysisMode(input string) (*AudioAnalysisMode, error) {
-	vals := map[string]AudioAnalysisMode{
-		"basic":    AudioAnalysisModeBasic,
-		"standard": AudioAnalysisModeStandard,
+func (s *AudioAnalysisMode) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForAudioAnalysisMode() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := AudioAnalysisMode(input)
-	return &out, nil
+	*s = AudioAnalysisMode(decoded)
+	return nil
 }
 
 type BlurType string
@@ -146,21 +151,19 @@ func PossibleValuesForBlurType() []string {
 	}
 }
 
-func parseBlurType(input string) (*BlurType, error) {
-	vals := map[string]BlurType{
-		"black": BlurTypeBlack,
-		"box":   BlurTypeBox,
-		"high":  BlurTypeHigh,
-		"low":   BlurTypeLow,
-		"med":   BlurTypeMed,
+func (s *BlurType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForBlurType() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := BlurType(input)
-	return &out, nil
+	*s = BlurType(decoded)
+	return nil
 }
 
 type ChannelMapping string
@@ -189,24 +192,19 @@ func PossibleValuesForChannelMapping() []string {
 	}
 }
 
-func parseChannelMapping(input string) (*ChannelMapping, error) {
-	vals := map[string]ChannelMapping{
-		"backleft":            ChannelMappingBackLeft,
-		"backright":           ChannelMappingBackRight,
-		"center":              ChannelMappingCenter,
-		"frontleft":           ChannelMappingFrontLeft,
-		"frontright":          ChannelMappingFrontRight,
-		"lowfrequencyeffects": ChannelMappingLowFrequencyEffects,
-		"stereoleft":          ChannelMappingStereoLeft,
-		"stereoright":         ChannelMappingStereoRight,
+func (s *ChannelMapping) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForChannelMapping() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ChannelMapping(input)
-	return &out, nil
+	*s = ChannelMapping(decoded)
+	return nil
 }
 
 type Complexity string
@@ -225,19 +223,19 @@ func PossibleValuesForComplexity() []string {
 	}
 }
 
-func parseComplexity(input string) (*Complexity, error) {
-	vals := map[string]Complexity{
-		"balanced": ComplexityBalanced,
-		"quality":  ComplexityQuality,
-		"speed":    ComplexitySpeed,
+func (s *Complexity) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForComplexity() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := Complexity(input)
-	return &out, nil
+	*s = Complexity(decoded)
+	return nil
 }
 
 type DeinterlaceMode string
@@ -254,18 +252,19 @@ func PossibleValuesForDeinterlaceMode() []string {
 	}
 }
 
-func parseDeinterlaceMode(input string) (*DeinterlaceMode, error) {
-	vals := map[string]DeinterlaceMode{
-		"autopixeladaptive": DeinterlaceModeAutoPixelAdaptive,
-		"off":               DeinterlaceModeOff,
+func (s *DeinterlaceMode) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForDeinterlaceMode() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := DeinterlaceMode(input)
-	return &out, nil
+	*s = DeinterlaceMode(decoded)
+	return nil
 }
 
 type DeinterlaceParity string
@@ -284,19 +283,19 @@ func PossibleValuesForDeinterlaceParity() []string {
 	}
 }
 
-func parseDeinterlaceParity(input string) (*DeinterlaceParity, error) {
-	vals := map[string]DeinterlaceParity{
-		"auto":             DeinterlaceParityAuto,
-		"bottomfieldfirst": DeinterlaceParityBottomFieldFirst,
-		"topfieldfirst":    DeinterlaceParityTopFieldFirst,
+func (s *DeinterlaceParity) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForDeinterlaceParity() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := DeinterlaceParity(input)
-	return &out, nil
+	*s = DeinterlaceParity(decoded)
+	return nil
 }
 
 type EncoderNamedPreset string
@@ -343,33 +342,19 @@ func PossibleValuesForEncoderNamedPreset() []string {
 	}
 }
 
-func parseEncoderNamedPreset(input string) (*EncoderNamedPreset, error) {
-	vals := map[string]EncoderNamedPreset{
-		"aacgoodqualityaudio":              EncoderNamedPresetAACGoodQualityAudio,
-		"adaptivestreaming":                EncoderNamedPresetAdaptiveStreaming,
-		"contentawareencoding":             EncoderNamedPresetContentAwareEncoding,
-		"contentawareencodingexperimental": EncoderNamedPresetContentAwareEncodingExperimental,
-		"copyallbitratenoninterleaved":     EncoderNamedPresetCopyAllBitrateNonInterleaved,
-		"ddgoodqualityaudio":               EncoderNamedPresetDDGoodQualityAudio,
-		"h265adaptivestreaming":            EncoderNamedPresetHTwoSixFiveAdaptiveStreaming,
-		"h265contentawareencoding":         EncoderNamedPresetHTwoSixFiveContentAwareEncoding,
-		"h265singlebitrate4k":              EncoderNamedPresetHTwoSixFiveSingleBitrateFourK,
-		"h265singlebitrate1080p":           EncoderNamedPresetHTwoSixFiveSingleBitrateOneZeroEightZerop,
-		"h265singlebitrate720p":            EncoderNamedPresetHTwoSixFiveSingleBitrateSevenTwoZerop,
-		"h264multiplebitrate1080p":         EncoderNamedPresetHTwoSixFourMultipleBitrateOneZeroEightZerop,
-		"h264multiplebitratesd":            EncoderNamedPresetHTwoSixFourMultipleBitrateSD,
-		"h264multiplebitrate720p":          EncoderNamedPresetHTwoSixFourMultipleBitrateSevenTwoZerop,
-		"h264singlebitrate1080p":           EncoderNamedPresetHTwoSixFourSingleBitrateOneZeroEightZerop,
-		"h264singlebitratesd":              EncoderNamedPresetHTwoSixFourSingleBitrateSD,
-		"h264singlebitrate720p":            EncoderNamedPresetHTwoSixFourSingleBitrateSevenTwoZerop,
+func (s *EncoderNamedPreset) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForEncoderNamedPreset() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := EncoderNamedPreset(input)
-	return &out, nil
+	*s = EncoderNamedPreset(decoded)
+	return nil
 }
 
 type EntropyMode string
@@ -386,18 +371,19 @@ func PossibleValuesForEntropyMode() []string {
 	}
 }
 
-func parseEntropyMode(input string) (*EntropyMode, error) {
-	vals := map[string]EntropyMode{
-		"cabac": EntropyModeCabac,
-		"cavlc": EntropyModeCavlc,
+func (s *EntropyMode) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForEntropyMode() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := EntropyMode(input)
-	return &out, nil
+	*s = EntropyMode(decoded)
+	return nil
 }
 
 type FaceRedactorMode string
@@ -416,19 +402,19 @@ func PossibleValuesForFaceRedactorMode() []string {
 	}
 }
 
-func parseFaceRedactorMode(input string) (*FaceRedactorMode, error) {
-	vals := map[string]FaceRedactorMode{
-		"analyze":  FaceRedactorModeAnalyze,
-		"combined": FaceRedactorModeCombined,
-		"redact":   FaceRedactorModeRedact,
+func (s *FaceRedactorMode) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForFaceRedactorMode() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := FaceRedactorMode(input)
-	return &out, nil
+	*s = FaceRedactorMode(decoded)
+	return nil
 }
 
 type H264Complexity string
@@ -447,19 +433,19 @@ func PossibleValuesForH264Complexity() []string {
 	}
 }
 
-func parseH264Complexity(input string) (*H264Complexity, error) {
-	vals := map[string]H264Complexity{
-		"balanced": H264ComplexityBalanced,
-		"quality":  H264ComplexityQuality,
-		"speed":    H264ComplexitySpeed,
+func (s *H264Complexity) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForH264Complexity() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := H264Complexity(input)
-	return &out, nil
+	*s = H264Complexity(decoded)
+	return nil
 }
 
 type H264RateControlMode string
@@ -478,19 +464,19 @@ func PossibleValuesForH264RateControlMode() []string {
 	}
 }
 
-func parseH264RateControlMode(input string) (*H264RateControlMode, error) {
-	vals := map[string]H264RateControlMode{
-		"abr": H264RateControlModeABR,
-		"cbr": H264RateControlModeCBR,
-		"crf": H264RateControlModeCRF,
+func (s *H264RateControlMode) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForH264RateControlMode() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := H264RateControlMode(input)
-	return &out, nil
+	*s = H264RateControlMode(decoded)
+	return nil
 }
 
 type H264VideoProfile string
@@ -515,22 +501,19 @@ func PossibleValuesForH264VideoProfile() []string {
 	}
 }
 
-func parseH264VideoProfile(input string) (*H264VideoProfile, error) {
-	vals := map[string]H264VideoProfile{
-		"auto":     H264VideoProfileAuto,
-		"baseline": H264VideoProfileBaseline,
-		"high":     H264VideoProfileHigh,
-		"high444":  H264VideoProfileHighFourFourFour,
-		"high422":  H264VideoProfileHighFourTwoTwo,
-		"main":     H264VideoProfileMain,
+func (s *H264VideoProfile) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForH264VideoProfile() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := H264VideoProfile(input)
-	return &out, nil
+	*s = H264VideoProfile(decoded)
+	return nil
 }
 
 type H265Complexity string
@@ -549,19 +532,19 @@ func PossibleValuesForH265Complexity() []string {
 	}
 }
 
-func parseH265Complexity(input string) (*H265Complexity, error) {
-	vals := map[string]H265Complexity{
-		"balanced": H265ComplexityBalanced,
-		"quality":  H265ComplexityQuality,
-		"speed":    H265ComplexitySpeed,
+func (s *H265Complexity) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForH265Complexity() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := H265Complexity(input)
-	return &out, nil
+	*s = H265Complexity(decoded)
+	return nil
 }
 
 type H265VideoProfile string
@@ -580,19 +563,19 @@ func PossibleValuesForH265VideoProfile() []string {
 	}
 }
 
-func parseH265VideoProfile(input string) (*H265VideoProfile, error) {
-	vals := map[string]H265VideoProfile{
-		"auto":   H265VideoProfileAuto,
-		"main":   H265VideoProfileMain,
-		"main10": H265VideoProfileMainOneZero,
+func (s *H265VideoProfile) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForH265VideoProfile() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := H265VideoProfile(input)
-	return &out, nil
+	*s = H265VideoProfile(decoded)
+	return nil
 }
 
 type InsightsType string
@@ -611,19 +594,19 @@ func PossibleValuesForInsightsType() []string {
 	}
 }
 
-func parseInsightsType(input string) (*InsightsType, error) {
-	vals := map[string]InsightsType{
-		"allinsights":       InsightsTypeAllInsights,
-		"audioinsightsonly": InsightsTypeAudioInsightsOnly,
-		"videoinsightsonly": InsightsTypeVideoInsightsOnly,
+func (s *InsightsType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForInsightsType() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := InsightsType(input)
-	return &out, nil
+	*s = InsightsType(decoded)
+	return nil
 }
 
 type InterleaveOutput string
@@ -640,18 +623,19 @@ func PossibleValuesForInterleaveOutput() []string {
 	}
 }
 
-func parseInterleaveOutput(input string) (*InterleaveOutput, error) {
-	vals := map[string]InterleaveOutput{
-		"interleavedoutput":    InterleaveOutputInterleavedOutput,
-		"noninterleavedoutput": InterleaveOutputNonInterleavedOutput,
+func (s *InterleaveOutput) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForInterleaveOutput() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := InterleaveOutput(input)
-	return &out, nil
+	*s = InterleaveOutput(decoded)
+	return nil
 }
 
 type JobErrorCategory string
@@ -676,22 +660,19 @@ func PossibleValuesForJobErrorCategory() []string {
 	}
 }
 
-func parseJobErrorCategory(input string) (*JobErrorCategory, error) {
-	vals := map[string]JobErrorCategory{
-		"account":       JobErrorCategoryAccount,
-		"configuration": JobErrorCategoryConfiguration,
-		"content":       JobErrorCategoryContent,
-		"download":      JobErrorCategoryDownload,
-		"service":       JobErrorCategoryService,
-		"upload":        JobErrorCategoryUpload,
+func (s *JobErrorCategory) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForJobErrorCategory() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := JobErrorCategory(input)
-	return &out, nil
+	*s = JobErrorCategory(decoded)
+	return nil
 }
 
 type JobErrorCode string
@@ -724,26 +705,19 @@ func PossibleValuesForJobErrorCode() []string {
 	}
 }
 
-func parseJobErrorCode(input string) (*JobErrorCode, error) {
-	vals := map[string]JobErrorCode{
-		"configurationunsupported": JobErrorCodeConfigurationUnsupported,
-		"contentmalformed":         JobErrorCodeContentMalformed,
-		"contentunsupported":       JobErrorCodeContentUnsupported,
-		"downloadnotaccessible":    JobErrorCodeDownloadNotAccessible,
-		"downloadtransienterror":   JobErrorCodeDownloadTransientError,
-		"identityunsupported":      JobErrorCodeIdentityUnsupported,
-		"serviceerror":             JobErrorCodeServiceError,
-		"servicetransienterror":    JobErrorCodeServiceTransientError,
-		"uploadnotaccessible":      JobErrorCodeUploadNotAccessible,
-		"uploadtransienterror":     JobErrorCodeUploadTransientError,
+func (s *JobErrorCode) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForJobErrorCode() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := JobErrorCode(input)
-	return &out, nil
+	*s = JobErrorCode(decoded)
+	return nil
 }
 
 type JobRetry string
@@ -760,18 +734,19 @@ func PossibleValuesForJobRetry() []string {
 	}
 }
 
-func parseJobRetry(input string) (*JobRetry, error) {
-	vals := map[string]JobRetry{
-		"donotretry": JobRetryDoNotRetry,
-		"mayretry":   JobRetryMayRetry,
+func (s *JobRetry) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForJobRetry() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := JobRetry(input)
-	return &out, nil
+	*s = JobRetry(decoded)
+	return nil
 }
 
 type JobState string
@@ -798,23 +773,19 @@ func PossibleValuesForJobState() []string {
 	}
 }
 
-func parseJobState(input string) (*JobState, error) {
-	vals := map[string]JobState{
-		"canceled":   JobStateCanceled,
-		"canceling":  JobStateCanceling,
-		"error":      JobStateError,
-		"finished":   JobStateFinished,
-		"processing": JobStateProcessing,
-		"queued":     JobStateQueued,
-		"scheduled":  JobStateScheduled,
+func (s *JobState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForJobState() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := JobState(input)
-	return &out, nil
+	*s = JobState(decoded)
+	return nil
 }
 
 type OnErrorType string
@@ -831,18 +802,19 @@ func PossibleValuesForOnErrorType() []string {
 	}
 }
 
-func parseOnErrorType(input string) (*OnErrorType, error) {
-	vals := map[string]OnErrorType{
-		"continuejob":       OnErrorTypeContinueJob,
-		"stopprocessingjob": OnErrorTypeStopProcessingJob,
+func (s *OnErrorType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForOnErrorType() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := OnErrorType(input)
-	return &out, nil
+	*s = OnErrorType(decoded)
+	return nil
 }
 
 type Priority string
@@ -861,19 +833,19 @@ func PossibleValuesForPriority() []string {
 	}
 }
 
-func parsePriority(input string) (*Priority, error) {
-	vals := map[string]Priority{
-		"high":   PriorityHigh,
-		"low":    PriorityLow,
-		"normal": PriorityNormal,
+func (s *Priority) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForPriority() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := Priority(input)
-	return &out, nil
+	*s = Priority(decoded)
+	return nil
 }
 
 type Rotation string
@@ -898,22 +870,19 @@ func PossibleValuesForRotation() []string {
 	}
 }
 
-func parseRotation(input string) (*Rotation, error) {
-	vals := map[string]Rotation{
-		"auto":      RotationAuto,
-		"none":      RotationNone,
-		"rotate90":  RotationRotateNineZero,
-		"rotate180": RotationRotateOneEightZero,
-		"rotate270": RotationRotateTwoSevenZero,
-		"rotate0":   RotationRotateZero,
+func (s *Rotation) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForRotation() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := Rotation(input)
-	return &out, nil
+	*s = Rotation(decoded)
+	return nil
 }
 
 type StretchMode string
@@ -932,19 +901,19 @@ func PossibleValuesForStretchMode() []string {
 	}
 }
 
-func parseStretchMode(input string) (*StretchMode, error) {
-	vals := map[string]StretchMode{
-		"autofit":  StretchModeAutoFit,
-		"autosize": StretchModeAutoSize,
-		"none":     StretchModeNone,
+func (s *StretchMode) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForStretchMode() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := StretchMode(input)
-	return &out, nil
+	*s = StretchMode(decoded)
+	return nil
 }
 
 type TrackAttribute string
@@ -961,18 +930,19 @@ func PossibleValuesForTrackAttribute() []string {
 	}
 }
 
-func parseTrackAttribute(input string) (*TrackAttribute, error) {
-	vals := map[string]TrackAttribute{
-		"bitrate":  TrackAttributeBitrate,
-		"language": TrackAttributeLanguage,
+func (s *TrackAttribute) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForTrackAttribute() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := TrackAttribute(input)
-	return &out, nil
+	*s = TrackAttribute(decoded)
+	return nil
 }
 
 type VideoSyncMode string
@@ -993,18 +963,17 @@ func PossibleValuesForVideoSyncMode() []string {
 	}
 }
 
-func parseVideoSyncMode(input string) (*VideoSyncMode, error) {
-	vals := map[string]VideoSyncMode{
-		"auto":        VideoSyncModeAuto,
-		"cfr":         VideoSyncModeCfr,
-		"passthrough": VideoSyncModePassthrough,
-		"vfr":         VideoSyncModeVfr,
+func (s *VideoSyncMode) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForVideoSyncMode() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := VideoSyncMode(input)
-	return &out, nil
+	*s = VideoSyncMode(decoded)
+	return nil
 }

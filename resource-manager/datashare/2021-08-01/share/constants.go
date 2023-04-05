@@ -1,7 +1,5 @@
 package share
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -43,32 +41,6 @@ func PossibleValuesForDataSetType() []string {
 	}
 }
 
-func parseDataSetType(input string) (*DataSetType, error) {
-	vals := map[string]DataSetType{
-		"adlsgen1file":                 DataSetTypeAdlsGenOneFile,
-		"adlsgen1folder":               DataSetTypeAdlsGenOneFolder,
-		"adlsgen2file":                 DataSetTypeAdlsGenTwoFile,
-		"adlsgen2filesystem":           DataSetTypeAdlsGenTwoFileSystem,
-		"adlsgen2folder":               DataSetTypeAdlsGenTwoFolder,
-		"blob":                         DataSetTypeBlob,
-		"blobfolder":                   DataSetTypeBlobFolder,
-		"container":                    DataSetTypeContainer,
-		"kustocluster":                 DataSetTypeKustoCluster,
-		"kustodatabase":                DataSetTypeKustoDatabase,
-		"kustotable":                   DataSetTypeKustoTable,
-		"sqldbtable":                   DataSetTypeSqlDBTable,
-		"sqldwtable":                   DataSetTypeSqlDWTable,
-		"synapseworkspacesqlpooltable": DataSetTypeSynapseWorkspaceSqlPoolTable,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := DataSetType(input)
-	return &out, nil
-}
-
 type ProvisioningState string
 
 const (
@@ -89,23 +61,6 @@ func PossibleValuesForProvisioningState() []string {
 	}
 }
 
-func parseProvisioningState(input string) (*ProvisioningState, error) {
-	vals := map[string]ProvisioningState{
-		"creating":  ProvisioningStateCreating,
-		"deleting":  ProvisioningStateDeleting,
-		"failed":    ProvisioningStateFailed,
-		"moving":    ProvisioningStateMoving,
-		"succeeded": ProvisioningStateSucceeded,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ProvisioningState(input)
-	return &out, nil
-}
-
 type ShareKind string
 
 const (
@@ -118,20 +73,6 @@ func PossibleValuesForShareKind() []string {
 		string(ShareKindCopyBased),
 		string(ShareKindInPlace),
 	}
-}
-
-func parseShareKind(input string) (*ShareKind, error) {
-	vals := map[string]ShareKind{
-		"copybased": ShareKindCopyBased,
-		"inplace":   ShareKindInPlace,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ShareKind(input)
-	return &out, nil
 }
 
 type ShareSubscriptionStatus string
@@ -150,22 +91,6 @@ func PossibleValuesForShareSubscriptionStatus() []string {
 		string(ShareSubscriptionStatusRevoking),
 		string(ShareSubscriptionStatusSourceDeleted),
 	}
-}
-
-func parseShareSubscriptionStatus(input string) (*ShareSubscriptionStatus, error) {
-	vals := map[string]ShareSubscriptionStatus{
-		"active":        ShareSubscriptionStatusActive,
-		"revoked":       ShareSubscriptionStatusRevoked,
-		"revoking":      ShareSubscriptionStatusRevoking,
-		"sourcedeleted": ShareSubscriptionStatusSourceDeleted,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ShareSubscriptionStatus(input)
-	return &out, nil
 }
 
 type Status string
@@ -190,24 +115,6 @@ func PossibleValuesForStatus() []string {
 	}
 }
 
-func parseStatus(input string) (*Status, error) {
-	vals := map[string]Status{
-		"accepted":         StatusAccepted,
-		"canceled":         StatusCanceled,
-		"failed":           StatusFailed,
-		"inprogress":       StatusInProgress,
-		"succeeded":        StatusSucceeded,
-		"transientfailure": StatusTransientFailure,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := Status(input)
-	return &out, nil
-}
-
 type SynchronizationMode string
 
 const (
@@ -220,18 +127,4 @@ func PossibleValuesForSynchronizationMode() []string {
 		string(SynchronizationModeFullSync),
 		string(SynchronizationModeIncremental),
 	}
-}
-
-func parseSynchronizationMode(input string) (*SynchronizationMode, error) {
-	vals := map[string]SynchronizationMode{
-		"fullsync":    SynchronizationModeFullSync,
-		"incremental": SynchronizationModeIncremental,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SynchronizationMode(input)
-	return &out, nil
 }

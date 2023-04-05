@@ -1,7 +1,5 @@
 package checkfrontdoornameavailabilitywithsubscription
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -19,20 +17,6 @@ func PossibleValuesForAvailability() []string {
 	}
 }
 
-func parseAvailability(input string) (*Availability, error) {
-	vals := map[string]Availability{
-		"available":   AvailabilityAvailable,
-		"unavailable": AvailabilityUnavailable,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := Availability(input)
-	return &out, nil
-}
-
 type ResourceType string
 
 const (
@@ -45,18 +29,4 @@ func PossibleValuesForResourceType() []string {
 		string(ResourceTypeMicrosoftPointNetworkFrontDoors),
 		string(ResourceTypeMicrosoftPointNetworkFrontDoorsFrontendEndpoints),
 	}
-}
-
-func parseResourceType(input string) (*ResourceType, error) {
-	vals := map[string]ResourceType{
-		"microsoft.network/frontdoors":                   ResourceTypeMicrosoftPointNetworkFrontDoors,
-		"microsoft.network/frontdoors/frontendendpoints": ResourceTypeMicrosoftPointNetworkFrontDoorsFrontendEndpoints,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ResourceType(input)
-	return &out, nil
 }

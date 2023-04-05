@@ -1,7 +1,5 @@
 package protectioncontainers
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -17,20 +15,6 @@ func PossibleValuesForAcquireStorageAccountLock() []string {
 		string(AcquireStorageAccountLockAcquire),
 		string(AcquireStorageAccountLockNotAcquire),
 	}
-}
-
-func parseAcquireStorageAccountLock(input string) (*AcquireStorageAccountLock, error) {
-	vals := map[string]AcquireStorageAccountLock{
-		"acquire":    AcquireStorageAccountLockAcquire,
-		"notacquire": AcquireStorageAccountLockNotAcquire,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := AcquireStorageAccountLock(input)
-	return &out, nil
 }
 
 type BackupItemType string
@@ -73,33 +57,6 @@ func PossibleValuesForBackupItemType() []string {
 	}
 }
 
-func parseBackupItemType(input string) (*BackupItemType, error) {
-	vals := map[string]BackupItemType{
-		"azurefileshare":    BackupItemTypeAzureFileShare,
-		"azuresqldb":        BackupItemTypeAzureSqlDb,
-		"client":            BackupItemTypeClient,
-		"exchange":          BackupItemTypeExchange,
-		"filefolder":        BackupItemTypeFileFolder,
-		"genericdatasource": BackupItemTypeGenericDataSource,
-		"invalid":           BackupItemTypeInvalid,
-		"sapasedatabase":    BackupItemTypeSAPAseDatabase,
-		"saphanadatabase":   BackupItemTypeSAPHanaDatabase,
-		"sqldb":             BackupItemTypeSQLDB,
-		"sqldatabase":       BackupItemTypeSQLDataBase,
-		"sharepoint":        BackupItemTypeSharepoint,
-		"systemstate":       BackupItemTypeSystemState,
-		"vm":                BackupItemTypeVM,
-		"vmwarevm":          BackupItemTypeVMwareVM,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := BackupItemType(input)
-	return &out, nil
-}
-
 type BackupManagementType string
 
 const (
@@ -126,27 +83,6 @@ func PossibleValuesForBackupManagementType() []string {
 		string(BackupManagementTypeInvalid),
 		string(BackupManagementTypeMAB),
 	}
-}
-
-func parseBackupManagementType(input string) (*BackupManagementType, error) {
-	vals := map[string]BackupManagementType{
-		"azurebackupserver": BackupManagementTypeAzureBackupServer,
-		"azureiaasvm":       BackupManagementTypeAzureIaasVM,
-		"azuresql":          BackupManagementTypeAzureSql,
-		"azurestorage":      BackupManagementTypeAzureStorage,
-		"azureworkload":     BackupManagementTypeAzureWorkload,
-		"dpm":               BackupManagementTypeDPM,
-		"defaultbackup":     BackupManagementTypeDefaultBackup,
-		"invalid":           BackupManagementTypeInvalid,
-		"mab":               BackupManagementTypeMAB,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := BackupManagementType(input)
-	return &out, nil
 }
 
 type ContainerType string
@@ -195,36 +131,6 @@ func PossibleValuesForContainerType() []string {
 	}
 }
 
-func parseContainerType(input string) (*ContainerType, error) {
-	vals := map[string]ContainerType{
-		"azurebackupservercontainer": ContainerTypeAzureBackupServerContainer,
-		"azuresqlcontainer":          ContainerTypeAzureSqlContainer,
-		"azureworkloadcontainer":     ContainerTypeAzureWorkloadContainer,
-		"cluster":                    ContainerTypeCluster,
-		"dpmcontainer":               ContainerTypeDPMContainer,
-		"genericcontainer":           ContainerTypeGenericContainer,
-		"iaasvmcontainer":            ContainerTypeIaasVMContainer,
-		"iaasvmservicecontainer":     ContainerTypeIaasVMServiceContainer,
-		"invalid":                    ContainerTypeInvalid,
-		"mabcontainer":               ContainerTypeMABContainer,
-		"microsoft.classiccompute/virtualmachines": ContainerTypeMicrosoftPointClassicComputeVirtualMachines,
-		"microsoft.compute/virtualmachines":        ContainerTypeMicrosoftPointComputeVirtualMachines,
-		"sqlagworkloadcontainer":                   ContainerTypeSQLAGWorkLoadContainer,
-		"storagecontainer":                         ContainerTypeStorageContainer,
-		"unknown":                                  ContainerTypeUnknown,
-		"vcenter":                                  ContainerTypeVCenter,
-		"vmappcontainer":                           ContainerTypeVMAppContainer,
-		"windows":                                  ContainerTypeWindows,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ContainerType(input)
-	return &out, nil
-}
-
 type OperationType string
 
 const (
@@ -239,21 +145,6 @@ func PossibleValuesForOperationType() []string {
 		string(OperationTypeRegister),
 		string(OperationTypeReregister),
 	}
-}
-
-func parseOperationType(input string) (*OperationType, error) {
-	vals := map[string]OperationType{
-		"invalid":    OperationTypeInvalid,
-		"register":   OperationTypeRegister,
-		"reregister": OperationTypeReregister,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := OperationType(input)
-	return &out, nil
 }
 
 type WorkloadType string
@@ -294,31 +185,4 @@ func PossibleValuesForWorkloadType() []string {
 		string(WorkloadTypeVM),
 		string(WorkloadTypeVMwareVM),
 	}
-}
-
-func parseWorkloadType(input string) (*WorkloadType, error) {
-	vals := map[string]WorkloadType{
-		"azurefileshare":    WorkloadTypeAzureFileShare,
-		"azuresqldb":        WorkloadTypeAzureSqlDb,
-		"client":            WorkloadTypeClient,
-		"exchange":          WorkloadTypeExchange,
-		"filefolder":        WorkloadTypeFileFolder,
-		"genericdatasource": WorkloadTypeGenericDataSource,
-		"invalid":           WorkloadTypeInvalid,
-		"sapasedatabase":    WorkloadTypeSAPAseDatabase,
-		"saphanadatabase":   WorkloadTypeSAPHanaDatabase,
-		"sqldb":             WorkloadTypeSQLDB,
-		"sqldatabase":       WorkloadTypeSQLDataBase,
-		"sharepoint":        WorkloadTypeSharepoint,
-		"systemstate":       WorkloadTypeSystemState,
-		"vm":                WorkloadTypeVM,
-		"vmwarevm":          WorkloadTypeVMwareVM,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := WorkloadType(input)
-	return &out, nil
 }

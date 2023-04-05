@@ -1,7 +1,5 @@
 package resource
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -19,21 +17,6 @@ func PossibleValuesForKind() []string {
 		string(KindFhirNegativeRFour),
 		string(KindFhirNegativeStuThree),
 	}
-}
-
-func parseKind(input string) (*Kind, error) {
-	vals := map[string]Kind{
-		"fhir":      KindFhir,
-		"fhir-r4":   KindFhirNegativeRFour,
-		"fhir-stu3": KindFhirNegativeStuThree,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := Kind(input)
-	return &out, nil
 }
 
 type PrivateEndpointConnectionProvisioningState string
@@ -54,22 +37,6 @@ func PossibleValuesForPrivateEndpointConnectionProvisioningState() []string {
 	}
 }
 
-func parsePrivateEndpointConnectionProvisioningState(input string) (*PrivateEndpointConnectionProvisioningState, error) {
-	vals := map[string]PrivateEndpointConnectionProvisioningState{
-		"creating":  PrivateEndpointConnectionProvisioningStateCreating,
-		"deleting":  PrivateEndpointConnectionProvisioningStateDeleting,
-		"failed":    PrivateEndpointConnectionProvisioningStateFailed,
-		"succeeded": PrivateEndpointConnectionProvisioningStateSucceeded,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PrivateEndpointConnectionProvisioningState(input)
-	return &out, nil
-}
-
 type PrivateEndpointServiceConnectionStatus string
 
 const (
@@ -84,21 +51,6 @@ func PossibleValuesForPrivateEndpointServiceConnectionStatus() []string {
 		string(PrivateEndpointServiceConnectionStatusPending),
 		string(PrivateEndpointServiceConnectionStatusRejected),
 	}
-}
-
-func parsePrivateEndpointServiceConnectionStatus(input string) (*PrivateEndpointServiceConnectionStatus, error) {
-	vals := map[string]PrivateEndpointServiceConnectionStatus{
-		"approved": PrivateEndpointServiceConnectionStatusApproved,
-		"pending":  PrivateEndpointServiceConnectionStatusPending,
-		"rejected": PrivateEndpointServiceConnectionStatusRejected,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PrivateEndpointServiceConnectionStatus(input)
-	return &out, nil
 }
 
 type ProvisioningState string
@@ -137,31 +89,6 @@ func PossibleValuesForProvisioningState() []string {
 	}
 }
 
-func parseProvisioningState(input string) (*ProvisioningState, error) {
-	vals := map[string]ProvisioningState{
-		"accepted":          ProvisioningStateAccepted,
-		"canceled":          ProvisioningStateCanceled,
-		"creating":          ProvisioningStateCreating,
-		"deleting":          ProvisioningStateDeleting,
-		"deprovisioned":     ProvisioningStateDeprovisioned,
-		"failed":            ProvisioningStateFailed,
-		"moving":            ProvisioningStateMoving,
-		"succeeded":         ProvisioningStateSucceeded,
-		"suspended":         ProvisioningStateSuspended,
-		"systemmaintenance": ProvisioningStateSystemMaintenance,
-		"updating":          ProvisioningStateUpdating,
-		"verifying":         ProvisioningStateVerifying,
-		"warned":            ProvisioningStateWarned,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ProvisioningState(input)
-	return &out, nil
-}
-
 type PublicNetworkAccess string
 
 const (
@@ -174,18 +101,4 @@ func PossibleValuesForPublicNetworkAccess() []string {
 		string(PublicNetworkAccessDisabled),
 		string(PublicNetworkAccessEnabled),
 	}
-}
-
-func parsePublicNetworkAccess(input string) (*PublicNetworkAccess, error) {
-	vals := map[string]PublicNetworkAccess{
-		"disabled": PublicNetworkAccessDisabled,
-		"enabled":  PublicNetworkAccessEnabled,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PublicNetworkAccess(input)
-	return &out, nil
 }

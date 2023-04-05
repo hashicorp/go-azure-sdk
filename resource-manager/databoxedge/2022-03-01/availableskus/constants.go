@@ -1,7 +1,5 @@
 package availableskus
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -21,21 +19,6 @@ func PossibleValuesForShipmentType() []string {
 	}
 }
 
-func parseShipmentType(input string) (*ShipmentType, error) {
-	vals := map[string]ShipmentType{
-		"notapplicable":     ShipmentTypeNotApplicable,
-		"selfpickup":        ShipmentTypeSelfPickup,
-		"shippedtocustomer": ShipmentTypeShippedToCustomer,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ShipmentType(input)
-	return &out, nil
-}
-
 type SkuAvailability string
 
 const (
@@ -48,20 +31,6 @@ func PossibleValuesForSkuAvailability() []string {
 		string(SkuAvailabilityAvailable),
 		string(SkuAvailabilityUnavailable),
 	}
-}
-
-func parseSkuAvailability(input string) (*SkuAvailability, error) {
-	vals := map[string]SkuAvailability{
-		"available":   SkuAvailabilityAvailable,
-		"unavailable": SkuAvailabilityUnavailable,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SkuAvailability(input)
-	return &out, nil
 }
 
 type SkuName string
@@ -132,47 +101,6 @@ func PossibleValuesForSkuName() []string {
 	}
 }
 
-func parseSkuName(input string) (*SkuName, error) {
-	vals := map[string]SkuName{
-		"ep2_128_gpu1_mx1_w":   SkuNameEPTwoOneTwoEightGPUOneMxOneW,
-		"ep2_128_1t4_mx1_w":    SkuNameEPTwoOneTwoEightOneTFourMxOneW,
-		"ep2_64_mx1_w":         SkuNameEPTwoSixFourMxOneW,
-		"ep2_64_1vpu_w":        SkuNameEPTwoSixFourOneVPUW,
-		"ep2_256_gpu2_mx1":     SkuNameEPTwoTwoFiveSixGPUTwoMxOne,
-		"ep2_256_2t4_w":        SkuNameEPTwoTwoFiveSixTwoTFourW,
-		"edge":                 SkuNameEdge,
-		"edgemr_mini":          SkuNameEdgeMRMini,
-		"edgemr_tcp":           SkuNameEdgeMRTCP,
-		"edgep_base":           SkuNameEdgePBase,
-		"edgep_high":           SkuNameEdgePHigh,
-		"edgepr_base":          SkuNameEdgePRBase,
-		"edgepr_base_ups":      SkuNameEdgePRBaseUPS,
-		"gpu":                  SkuNameGPU,
-		"gateway":              SkuNameGateway,
-		"management":           SkuNameManagement,
-		"rca_large":            SkuNameRCALarge,
-		"rca_small":            SkuNameRCASmall,
-		"rdc":                  SkuNameRDC,
-		"tca_large":            SkuNameTCALarge,
-		"tca_small":            SkuNameTCASmall,
-		"tdc":                  SkuNameTDC,
-		"tea_4node_heater":     SkuNameTEAFourNodeHeater,
-		"tea_4node_ups_heater": SkuNameTEAFourNodeUPSHeater,
-		"tea_1node":            SkuNameTEAOneNode,
-		"tea_1node_heater":     SkuNameTEAOneNodeHeater,
-		"tea_1node_ups":        SkuNameTEAOneNodeUPS,
-		"tea_1node_ups_heater": SkuNameTEAOneNodeUPSHeater,
-		"tma":                  SkuNameTMA,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SkuName(input)
-	return &out, nil
-}
-
 type SkuSignupOption string
 
 const (
@@ -187,20 +115,6 @@ func PossibleValuesForSkuSignupOption() []string {
 	}
 }
 
-func parseSkuSignupOption(input string) (*SkuSignupOption, error) {
-	vals := map[string]SkuSignupOption{
-		"available": SkuSignupOptionAvailable,
-		"none":      SkuSignupOptionNone,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SkuSignupOption(input)
-	return &out, nil
-}
-
 type SkuTier string
 
 const (
@@ -211,19 +125,6 @@ func PossibleValuesForSkuTier() []string {
 	return []string{
 		string(SkuTierStandard),
 	}
-}
-
-func parseSkuTier(input string) (*SkuTier, error) {
-	vals := map[string]SkuTier{
-		"standard": SkuTierStandard,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SkuTier(input)
-	return &out, nil
 }
 
 type SkuVersion string
@@ -238,18 +139,4 @@ func PossibleValuesForSkuVersion() []string {
 		string(SkuVersionPreview),
 		string(SkuVersionStable),
 	}
-}
-
-func parseSkuVersion(input string) (*SkuVersion, error) {
-	vals := map[string]SkuVersion{
-		"preview": SkuVersionPreview,
-		"stable":  SkuVersionStable,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SkuVersion(input)
-	return &out, nil
 }

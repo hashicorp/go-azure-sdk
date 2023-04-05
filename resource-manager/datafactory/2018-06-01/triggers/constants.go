@@ -1,7 +1,5 @@
 package triggers
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -25,23 +23,6 @@ func PossibleValuesForEventSubscriptionStatus() []string {
 	}
 }
 
-func parseEventSubscriptionStatus(input string) (*EventSubscriptionStatus, error) {
-	vals := map[string]EventSubscriptionStatus{
-		"deprovisioning": EventSubscriptionStatusDeprovisioning,
-		"disabled":       EventSubscriptionStatusDisabled,
-		"enabled":        EventSubscriptionStatusEnabled,
-		"provisioning":   EventSubscriptionStatusProvisioning,
-		"unknown":        EventSubscriptionStatusUnknown,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := EventSubscriptionStatus(input)
-	return &out, nil
-}
-
 type TriggerRuntimeState string
 
 const (
@@ -56,19 +37,4 @@ func PossibleValuesForTriggerRuntimeState() []string {
 		string(TriggerRuntimeStateStarted),
 		string(TriggerRuntimeStateStopped),
 	}
-}
-
-func parseTriggerRuntimeState(input string) (*TriggerRuntimeState, error) {
-	vals := map[string]TriggerRuntimeState{
-		"disabled": TriggerRuntimeStateDisabled,
-		"started":  TriggerRuntimeStateStarted,
-		"stopped":  TriggerRuntimeStateStopped,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := TriggerRuntimeState(input)
-	return &out, nil
 }

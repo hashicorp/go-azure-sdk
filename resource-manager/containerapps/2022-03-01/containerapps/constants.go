@@ -1,7 +1,5 @@
 package containerapps
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -19,20 +17,6 @@ func PossibleValuesForActiveRevisionsMode() []string {
 	}
 }
 
-func parseActiveRevisionsMode(input string) (*ActiveRevisionsMode, error) {
-	vals := map[string]ActiveRevisionsMode{
-		"multiple": ActiveRevisionsModeMultiple,
-		"single":   ActiveRevisionsModeSingle,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ActiveRevisionsMode(input)
-	return &out, nil
-}
-
 type AppProtocol string
 
 const (
@@ -47,20 +31,6 @@ func PossibleValuesForAppProtocol() []string {
 	}
 }
 
-func parseAppProtocol(input string) (*AppProtocol, error) {
-	vals := map[string]AppProtocol{
-		"grpc": AppProtocolGrpc,
-		"http": AppProtocolHTTP,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := AppProtocol(input)
-	return &out, nil
-}
-
 type BindingType string
 
 const (
@@ -73,20 +43,6 @@ func PossibleValuesForBindingType() []string {
 		string(BindingTypeDisabled),
 		string(BindingTypeSniEnabled),
 	}
-}
-
-func parseBindingType(input string) (*BindingType, error) {
-	vals := map[string]BindingType{
-		"disabled":   BindingTypeDisabled,
-		"snienabled": BindingTypeSniEnabled,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := BindingType(input)
-	return &out, nil
 }
 
 type ContainerAppProvisioningState string
@@ -109,23 +65,6 @@ func PossibleValuesForContainerAppProvisioningState() []string {
 	}
 }
 
-func parseContainerAppProvisioningState(input string) (*ContainerAppProvisioningState, error) {
-	vals := map[string]ContainerAppProvisioningState{
-		"canceled":   ContainerAppProvisioningStateCanceled,
-		"deleting":   ContainerAppProvisioningStateDeleting,
-		"failed":     ContainerAppProvisioningStateFailed,
-		"inprogress": ContainerAppProvisioningStateInProgress,
-		"succeeded":  ContainerAppProvisioningStateSucceeded,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ContainerAppProvisioningState(input)
-	return &out, nil
-}
-
 type DnsVerificationTestResult string
 
 const (
@@ -140,21 +79,6 @@ func PossibleValuesForDnsVerificationTestResult() []string {
 		string(DnsVerificationTestResultPassed),
 		string(DnsVerificationTestResultSkipped),
 	}
-}
-
-func parseDnsVerificationTestResult(input string) (*DnsVerificationTestResult, error) {
-	vals := map[string]DnsVerificationTestResult{
-		"failed":  DnsVerificationTestResultFailed,
-		"passed":  DnsVerificationTestResultPassed,
-		"skipped": DnsVerificationTestResultSkipped,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := DnsVerificationTestResult(input)
-	return &out, nil
 }
 
 type IngressTransportMethod string
@@ -173,21 +97,6 @@ func PossibleValuesForIngressTransportMethod() []string {
 	}
 }
 
-func parseIngressTransportMethod(input string) (*IngressTransportMethod, error) {
-	vals := map[string]IngressTransportMethod{
-		"auto":  IngressTransportMethodAuto,
-		"http":  IngressTransportMethodHTTP,
-		"http2": IngressTransportMethodHTTPTwo,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := IngressTransportMethod(input)
-	return &out, nil
-}
-
 type Scheme string
 
 const (
@@ -200,20 +109,6 @@ func PossibleValuesForScheme() []string {
 		string(SchemeHTTP),
 		string(SchemeHTTPS),
 	}
-}
-
-func parseScheme(input string) (*Scheme, error) {
-	vals := map[string]Scheme{
-		"http":  SchemeHTTP,
-		"https": SchemeHTTPS,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := Scheme(input)
-	return &out, nil
 }
 
 type StorageType string
@@ -230,20 +125,6 @@ func PossibleValuesForStorageType() []string {
 	}
 }
 
-func parseStorageType(input string) (*StorageType, error) {
-	vals := map[string]StorageType{
-		"azurefile": StorageTypeAzureFile,
-		"emptydir":  StorageTypeEmptyDir,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := StorageType(input)
-	return &out, nil
-}
-
 type Type string
 
 const (
@@ -258,19 +139,4 @@ func PossibleValuesForType() []string {
 		string(TypeReadiness),
 		string(TypeStartup),
 	}
-}
-
-func parseType(input string) (*Type, error) {
-	vals := map[string]Type{
-		"liveness":  TypeLiveness,
-		"readiness": TypeReadiness,
-		"startup":   TypeStartup,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := Type(input)
-	return &out, nil
 }

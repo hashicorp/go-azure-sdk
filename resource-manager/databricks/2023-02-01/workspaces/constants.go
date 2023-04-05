@@ -1,6 +1,10 @@
 package workspaces
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -21,19 +25,19 @@ func PossibleValuesForCustomParameterType() []string {
 	}
 }
 
-func parseCustomParameterType(input string) (*CustomParameterType, error) {
-	vals := map[string]CustomParameterType{
-		"bool":   CustomParameterTypeBool,
-		"object": CustomParameterTypeObject,
-		"string": CustomParameterTypeString,
+func (s *CustomParameterType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForCustomParameterType() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := CustomParameterType(input)
-	return &out, nil
+	*s = CustomParameterType(decoded)
+	return nil
 }
 
 type EncryptionKeySource string
@@ -48,17 +52,19 @@ func PossibleValuesForEncryptionKeySource() []string {
 	}
 }
 
-func parseEncryptionKeySource(input string) (*EncryptionKeySource, error) {
-	vals := map[string]EncryptionKeySource{
-		"microsoft.keyvault": EncryptionKeySourceMicrosoftPointKeyvault,
+func (s *EncryptionKeySource) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForEncryptionKeySource() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := EncryptionKeySource(input)
-	return &out, nil
+	*s = EncryptionKeySource(decoded)
+	return nil
 }
 
 type KeySource string
@@ -75,18 +81,19 @@ func PossibleValuesForKeySource() []string {
 	}
 }
 
-func parseKeySource(input string) (*KeySource, error) {
-	vals := map[string]KeySource{
-		"default":            KeySourceDefault,
-		"microsoft.keyvault": KeySourceMicrosoftPointKeyvault,
+func (s *KeySource) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForKeySource() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := KeySource(input)
-	return &out, nil
+	*s = KeySource(decoded)
+	return nil
 }
 
 type PrivateEndpointConnectionProvisioningState string
@@ -109,21 +116,19 @@ func PossibleValuesForPrivateEndpointConnectionProvisioningState() []string {
 	}
 }
 
-func parsePrivateEndpointConnectionProvisioningState(input string) (*PrivateEndpointConnectionProvisioningState, error) {
-	vals := map[string]PrivateEndpointConnectionProvisioningState{
-		"creating":  PrivateEndpointConnectionProvisioningStateCreating,
-		"deleting":  PrivateEndpointConnectionProvisioningStateDeleting,
-		"failed":    PrivateEndpointConnectionProvisioningStateFailed,
-		"succeeded": PrivateEndpointConnectionProvisioningStateSucceeded,
-		"updating":  PrivateEndpointConnectionProvisioningStateUpdating,
+func (s *PrivateEndpointConnectionProvisioningState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForPrivateEndpointConnectionProvisioningState() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PrivateEndpointConnectionProvisioningState(input)
-	return &out, nil
+	*s = PrivateEndpointConnectionProvisioningState(decoded)
+	return nil
 }
 
 type PrivateLinkServiceConnectionStatus string
@@ -144,20 +149,19 @@ func PossibleValuesForPrivateLinkServiceConnectionStatus() []string {
 	}
 }
 
-func parsePrivateLinkServiceConnectionStatus(input string) (*PrivateLinkServiceConnectionStatus, error) {
-	vals := map[string]PrivateLinkServiceConnectionStatus{
-		"approved":     PrivateLinkServiceConnectionStatusApproved,
-		"disconnected": PrivateLinkServiceConnectionStatusDisconnected,
-		"pending":      PrivateLinkServiceConnectionStatusPending,
-		"rejected":     PrivateLinkServiceConnectionStatusRejected,
+func (s *PrivateLinkServiceConnectionStatus) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForPrivateLinkServiceConnectionStatus() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PrivateLinkServiceConnectionStatus(input)
-	return &out, nil
+	*s = PrivateLinkServiceConnectionStatus(decoded)
+	return nil
 }
 
 type ProvisioningState string
@@ -192,27 +196,19 @@ func PossibleValuesForProvisioningState() []string {
 	}
 }
 
-func parseProvisioningState(input string) (*ProvisioningState, error) {
-	vals := map[string]ProvisioningState{
-		"accepted":  ProvisioningStateAccepted,
-		"canceled":  ProvisioningStateCanceled,
-		"created":   ProvisioningStateCreated,
-		"creating":  ProvisioningStateCreating,
-		"deleted":   ProvisioningStateDeleted,
-		"deleting":  ProvisioningStateDeleting,
-		"failed":    ProvisioningStateFailed,
-		"ready":     ProvisioningStateReady,
-		"running":   ProvisioningStateRunning,
-		"succeeded": ProvisioningStateSucceeded,
-		"updating":  ProvisioningStateUpdating,
+func (s *ProvisioningState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForProvisioningState() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ProvisioningState(input)
-	return &out, nil
+	*s = ProvisioningState(decoded)
+	return nil
 }
 
 type PublicNetworkAccess string
@@ -229,18 +225,19 @@ func PossibleValuesForPublicNetworkAccess() []string {
 	}
 }
 
-func parsePublicNetworkAccess(input string) (*PublicNetworkAccess, error) {
-	vals := map[string]PublicNetworkAccess{
-		"disabled": PublicNetworkAccessDisabled,
-		"enabled":  PublicNetworkAccessEnabled,
+func (s *PublicNetworkAccess) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForPublicNetworkAccess() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PublicNetworkAccess(input)
-	return &out, nil
+	*s = PublicNetworkAccess(decoded)
+	return nil
 }
 
 type RequiredNsgRules string
@@ -259,17 +256,17 @@ func PossibleValuesForRequiredNsgRules() []string {
 	}
 }
 
-func parseRequiredNsgRules(input string) (*RequiredNsgRules, error) {
-	vals := map[string]RequiredNsgRules{
-		"allrules":               RequiredNsgRulesAllRules,
-		"noazuredatabricksrules": RequiredNsgRulesNoAzureDatabricksRules,
-		"noazureservicerules":    RequiredNsgRulesNoAzureServiceRules,
+func (s *RequiredNsgRules) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForRequiredNsgRules() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := RequiredNsgRules(input)
-	return &out, nil
+	*s = RequiredNsgRules(decoded)
+	return nil
 }

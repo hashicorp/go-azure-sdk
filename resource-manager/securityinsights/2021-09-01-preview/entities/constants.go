@@ -1,7 +1,5 @@
 package entities
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -23,22 +21,6 @@ func PossibleValuesForAlertSeverity() []string {
 	}
 }
 
-func parseAlertSeverity(input string) (*AlertSeverity, error) {
-	vals := map[string]AlertSeverity{
-		"high":          AlertSeverityHigh,
-		"informational": AlertSeverityInformational,
-		"low":           AlertSeverityLow,
-		"medium":        AlertSeverityMedium,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := AlertSeverity(input)
-	return &out, nil
-}
-
 type EntityItemQueryKind string
 
 const (
@@ -49,19 +31,6 @@ func PossibleValuesForEntityItemQueryKind() []string {
 	return []string{
 		string(EntityItemQueryKindInsight),
 	}
-}
-
-func parseEntityItemQueryKind(input string) (*EntityItemQueryKind, error) {
-	vals := map[string]EntityItemQueryKind{
-		"insight": EntityItemQueryKindInsight,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := EntityItemQueryKind(input)
-	return &out, nil
 }
 
 type EntityKind string
@@ -116,39 +85,6 @@ func PossibleValuesForEntityKind() []string {
 	}
 }
 
-func parseEntityKind(input string) (*EntityKind, error) {
-	vals := map[string]EntityKind{
-		"account":          EntityKindAccount,
-		"azureresource":    EntityKindAzureResource,
-		"bookmark":         EntityKindBookmark,
-		"cloudapplication": EntityKindCloudApplication,
-		"dnsresolution":    EntityKindDnsResolution,
-		"file":             EntityKindFile,
-		"filehash":         EntityKindFileHash,
-		"host":             EntityKindHost,
-		"ip":               EntityKindIP,
-		"iotdevice":        EntityKindIoTDevice,
-		"mailcluster":      EntityKindMailCluster,
-		"mailmessage":      EntityKindMailMessage,
-		"mailbox":          EntityKindMailbox,
-		"malware":          EntityKindMalware,
-		"process":          EntityKindProcess,
-		"registrykey":      EntityKindRegistryKey,
-		"registryvalue":    EntityKindRegistryValue,
-		"securityalert":    EntityKindSecurityAlert,
-		"securitygroup":    EntityKindSecurityGroup,
-		"submissionmail":   EntityKindSubmissionMail,
-		"url":              EntityKindUrl,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := EntityKind(input)
-	return &out, nil
-}
-
 type EntityQueryKind string
 
 const (
@@ -165,21 +101,6 @@ func PossibleValuesForEntityQueryKind() []string {
 	}
 }
 
-func parseEntityQueryKind(input string) (*EntityQueryKind, error) {
-	vals := map[string]EntityQueryKind{
-		"activity":  EntityQueryKindActivity,
-		"expansion": EntityQueryKindExpansion,
-		"insight":   EntityQueryKindInsight,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := EntityQueryKind(input)
-	return &out, nil
-}
-
 type EntityTimelineKind string
 
 const (
@@ -194,21 +115,6 @@ func PossibleValuesForEntityTimelineKind() []string {
 		string(EntityTimelineKindBookmark),
 		string(EntityTimelineKindSecurityAlert),
 	}
-}
-
-func parseEntityTimelineKind(input string) (*EntityTimelineKind, error) {
-	vals := map[string]EntityTimelineKind{
-		"activity":      EntityTimelineKindActivity,
-		"bookmark":      EntityTimelineKindBookmark,
-		"securityalert": EntityTimelineKindSecurityAlert,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := EntityTimelineKind(input)
-	return &out, nil
 }
 
 type EntityType string
@@ -263,39 +169,6 @@ func PossibleValuesForEntityType() []string {
 	}
 }
 
-func parseEntityType(input string) (*EntityType, error) {
-	vals := map[string]EntityType{
-		"account":          EntityTypeAccount,
-		"azureresource":    EntityTypeAzureResource,
-		"cloudapplication": EntityTypeCloudApplication,
-		"dns":              EntityTypeDNS,
-		"file":             EntityTypeFile,
-		"filehash":         EntityTypeFileHash,
-		"host":             EntityTypeHost,
-		"huntingbookmark":  EntityTypeHuntingBookmark,
-		"ip":               EntityTypeIP,
-		"iotdevice":        EntityTypeIoTDevice,
-		"mailcluster":      EntityTypeMailCluster,
-		"mailmessage":      EntityTypeMailMessage,
-		"mailbox":          EntityTypeMailbox,
-		"malware":          EntityTypeMalware,
-		"process":          EntityTypeProcess,
-		"registrykey":      EntityTypeRegistryKey,
-		"registryvalue":    EntityTypeRegistryValue,
-		"securityalert":    EntityTypeSecurityAlert,
-		"securitygroup":    EntityTypeSecurityGroup,
-		"submissionmail":   EntityTypeSubmissionMail,
-		"url":              EntityTypeURL,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := EntityType(input)
-	return &out, nil
-}
-
 type Kind string
 
 const (
@@ -306,19 +179,6 @@ func PossibleValuesForKind() []string {
 	return []string{
 		string(KindInsight),
 	}
-}
-
-func parseKind(input string) (*Kind, error) {
-	vals := map[string]Kind{
-		"insight": KindInsight,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := Kind(input)
-	return &out, nil
 }
 
 type OutputType string
@@ -337,20 +197,4 @@ func PossibleValuesForOutputType() []string {
 		string(OutputTypeNumber),
 		string(OutputTypeString),
 	}
-}
-
-func parseOutputType(input string) (*OutputType, error) {
-	vals := map[string]OutputType{
-		"date":   OutputTypeDate,
-		"entity": OutputTypeEntity,
-		"number": OutputTypeNumber,
-		"string": OutputTypeString,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := OutputType(input)
-	return &out, nil
 }

@@ -1,6 +1,10 @@
 package experiments
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -23,20 +27,19 @@ func PossibleValuesForSelectorType() []string {
 	}
 }
 
-func parseSelectorType(input string) (*SelectorType, error) {
-	vals := map[string]SelectorType{
-		"list":    SelectorTypeList,
-		"percent": SelectorTypePercent,
-		"random":  SelectorTypeRandom,
-		"tag":     SelectorTypeTag,
+func (s *SelectorType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForSelectorType() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SelectorType(input)
-	return &out, nil
+	*s = SelectorType(decoded)
+	return nil
 }
 
 type TargetReferenceType string
@@ -51,15 +54,17 @@ func PossibleValuesForTargetReferenceType() []string {
 	}
 }
 
-func parseTargetReferenceType(input string) (*TargetReferenceType, error) {
-	vals := map[string]TargetReferenceType{
-		"chaostarget": TargetReferenceTypeChaosTarget,
+func (s *TargetReferenceType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForTargetReferenceType() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := TargetReferenceType(input)
-	return &out, nil
+	*s = TargetReferenceType(decoded)
+	return nil
 }

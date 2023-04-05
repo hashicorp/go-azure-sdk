@@ -1,7 +1,5 @@
 package apipolicy
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -23,22 +21,6 @@ func PossibleValuesForPolicyContentFormat() []string {
 	}
 }
 
-func parsePolicyContentFormat(input string) (*PolicyContentFormat, error) {
-	vals := map[string]PolicyContentFormat{
-		"rawxml":      PolicyContentFormatRawxml,
-		"rawxml-link": PolicyContentFormatRawxmlNegativelink,
-		"xml":         PolicyContentFormatXml,
-		"xml-link":    PolicyContentFormatXmlNegativelink,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PolicyContentFormat(input)
-	return &out, nil
-}
-
 type PolicyExportFormat string
 
 const (
@@ -51,18 +33,4 @@ func PossibleValuesForPolicyExportFormat() []string {
 		string(PolicyExportFormatRawxml),
 		string(PolicyExportFormatXml),
 	}
-}
-
-func parsePolicyExportFormat(input string) (*PolicyExportFormat, error) {
-	vals := map[string]PolicyExportFormat{
-		"rawxml": PolicyExportFormatRawxml,
-		"xml":    PolicyExportFormatXml,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PolicyExportFormat(input)
-	return &out, nil
 }

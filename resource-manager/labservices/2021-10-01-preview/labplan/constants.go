@@ -1,7 +1,5 @@
 package labplan
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -21,21 +19,6 @@ func PossibleValuesForConnectionType() []string {
 	}
 }
 
-func parseConnectionType(input string) (*ConnectionType, error) {
-	vals := map[string]ConnectionType{
-		"none":    ConnectionTypeNone,
-		"private": ConnectionTypePrivate,
-		"public":  ConnectionTypePublic,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ConnectionType(input)
-	return &out, nil
-}
-
 type EnableState string
 
 const (
@@ -48,20 +31,6 @@ func PossibleValuesForEnableState() []string {
 		string(EnableStateDisabled),
 		string(EnableStateEnabled),
 	}
-}
-
-func parseEnableState(input string) (*EnableState, error) {
-	vals := map[string]EnableState{
-		"disabled": EnableStateDisabled,
-		"enabled":  EnableStateEnabled,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := EnableState(input)
-	return &out, nil
 }
 
 type ProvisioningState string
@@ -86,24 +55,6 @@ func PossibleValuesForProvisioningState() []string {
 	}
 }
 
-func parseProvisioningState(input string) (*ProvisioningState, error) {
-	vals := map[string]ProvisioningState{
-		"creating":  ProvisioningStateCreating,
-		"deleting":  ProvisioningStateDeleting,
-		"failed":    ProvisioningStateFailed,
-		"locked":    ProvisioningStateLocked,
-		"succeeded": ProvisioningStateSucceeded,
-		"updating":  ProvisioningStateUpdating,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ProvisioningState(input)
-	return &out, nil
-}
-
 type ShutdownOnIdleMode string
 
 const (
@@ -118,19 +69,4 @@ func PossibleValuesForShutdownOnIdleMode() []string {
 		string(ShutdownOnIdleModeNone),
 		string(ShutdownOnIdleModeUserAbsence),
 	}
-}
-
-func parseShutdownOnIdleMode(input string) (*ShutdownOnIdleMode, error) {
-	vals := map[string]ShutdownOnIdleMode{
-		"lowusage":    ShutdownOnIdleModeLowUsage,
-		"none":        ShutdownOnIdleModeNone,
-		"userabsence": ShutdownOnIdleModeUserAbsence,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ShutdownOnIdleMode(input)
-	return &out, nil
 }

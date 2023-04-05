@@ -1,6 +1,10 @@
 package sapvirtualinstances
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -21,19 +25,19 @@ func PossibleValuesForConfigurationType() []string {
 	}
 }
 
-func parseConfigurationType(input string) (*ConfigurationType, error) {
-	vals := map[string]ConfigurationType{
-		"createandmount": ConfigurationTypeCreateAndMount,
-		"mount":          ConfigurationTypeMount,
-		"skip":           ConfigurationTypeSkip,
+func (s *ConfigurationType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForConfigurationType() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ConfigurationType(input)
-	return &out, nil
+	*s = ConfigurationType(decoded)
+	return nil
 }
 
 type DiskSkuName string
@@ -60,23 +64,19 @@ func PossibleValuesForDiskSkuName() []string {
 	}
 }
 
-func parseDiskSkuName(input string) (*DiskSkuName, error) {
-	vals := map[string]DiskSkuName{
-		"premium_lrs":     DiskSkuNamePremiumLRS,
-		"premiumv2_lrs":   DiskSkuNamePremiumVTwoLRS,
-		"premium_zrs":     DiskSkuNamePremiumZRS,
-		"standard_lrs":    DiskSkuNameStandardLRS,
-		"standardssd_lrs": DiskSkuNameStandardSSDLRS,
-		"standardssd_zrs": DiskSkuNameStandardSSDZRS,
-		"ultrassd_lrs":    DiskSkuNameUltraSSDLRS,
+func (s *DiskSkuName) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForDiskSkuName() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := DiskSkuName(input)
-	return &out, nil
+	*s = DiskSkuName(decoded)
+	return nil
 }
 
 type NamingPatternType string
@@ -91,17 +91,19 @@ func PossibleValuesForNamingPatternType() []string {
 	}
 }
 
-func parseNamingPatternType(input string) (*NamingPatternType, error) {
-	vals := map[string]NamingPatternType{
-		"fullresourcename": NamingPatternTypeFullResourceName,
+func (s *NamingPatternType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForNamingPatternType() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := NamingPatternType(input)
-	return &out, nil
+	*s = NamingPatternType(decoded)
+	return nil
 }
 
 type OSType string
@@ -118,18 +120,19 @@ func PossibleValuesForOSType() []string {
 	}
 }
 
-func parseOSType(input string) (*OSType, error) {
-	vals := map[string]OSType{
-		"linux":   OSTypeLinux,
-		"windows": OSTypeWindows,
+func (s *OSType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForOSType() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := OSType(input)
-	return &out, nil
+	*s = OSType(decoded)
+	return nil
 }
 
 type SAPConfigurationType string
@@ -148,19 +151,19 @@ func PossibleValuesForSAPConfigurationType() []string {
 	}
 }
 
-func parseSAPConfigurationType(input string) (*SAPConfigurationType, error) {
-	vals := map[string]SAPConfigurationType{
-		"deployment":             SAPConfigurationTypeDeployment,
-		"deploymentwithosconfig": SAPConfigurationTypeDeploymentWithOSConfig,
-		"discovery":              SAPConfigurationTypeDiscovery,
+func (s *SAPConfigurationType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForSAPConfigurationType() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SAPConfigurationType(input)
-	return &out, nil
+	*s = SAPConfigurationType(decoded)
+	return nil
 }
 
 type SAPDatabaseType string
@@ -177,18 +180,19 @@ func PossibleValuesForSAPDatabaseType() []string {
 	}
 }
 
-func parseSAPDatabaseType(input string) (*SAPDatabaseType, error) {
-	vals := map[string]SAPDatabaseType{
-		"db2":  SAPDatabaseTypeDBTwo,
-		"hana": SAPDatabaseTypeHANA,
+func (s *SAPDatabaseType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForSAPDatabaseType() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SAPDatabaseType(input)
-	return &out, nil
+	*s = SAPDatabaseType(decoded)
+	return nil
 }
 
 type SAPDeploymentType string
@@ -205,18 +209,19 @@ func PossibleValuesForSAPDeploymentType() []string {
 	}
 }
 
-func parseSAPDeploymentType(input string) (*SAPDeploymentType, error) {
-	vals := map[string]SAPDeploymentType{
-		"singleserver": SAPDeploymentTypeSingleServer,
-		"threetier":    SAPDeploymentTypeThreeTier,
+func (s *SAPDeploymentType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForSAPDeploymentType() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SAPDeploymentType(input)
-	return &out, nil
+	*s = SAPDeploymentType(decoded)
+	return nil
 }
 
 type SAPEnvironmentType string
@@ -233,18 +238,19 @@ func PossibleValuesForSAPEnvironmentType() []string {
 	}
 }
 
-func parseSAPEnvironmentType(input string) (*SAPEnvironmentType, error) {
-	vals := map[string]SAPEnvironmentType{
-		"nonprod": SAPEnvironmentTypeNonProd,
-		"prod":    SAPEnvironmentTypeProd,
+func (s *SAPEnvironmentType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForSAPEnvironmentType() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SAPEnvironmentType(input)
-	return &out, nil
+	*s = SAPEnvironmentType(decoded)
+	return nil
 }
 
 type SAPHealthState string
@@ -265,20 +271,19 @@ func PossibleValuesForSAPHealthState() []string {
 	}
 }
 
-func parseSAPHealthState(input string) (*SAPHealthState, error) {
-	vals := map[string]SAPHealthState{
-		"degraded":  SAPHealthStateDegraded,
-		"healthy":   SAPHealthStateHealthy,
-		"unhealthy": SAPHealthStateUnhealthy,
-		"unknown":   SAPHealthStateUnknown,
+func (s *SAPHealthState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForSAPHealthState() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SAPHealthState(input)
-	return &out, nil
+	*s = SAPHealthState(decoded)
+	return nil
 }
 
 type SAPHighAvailabilityType string
@@ -295,18 +300,19 @@ func PossibleValuesForSAPHighAvailabilityType() []string {
 	}
 }
 
-func parseSAPHighAvailabilityType(input string) (*SAPHighAvailabilityType, error) {
-	vals := map[string]SAPHighAvailabilityType{
-		"availabilityset":  SAPHighAvailabilityTypeAvailabilitySet,
-		"availabilityzone": SAPHighAvailabilityTypeAvailabilityZone,
+func (s *SAPHighAvailabilityType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForSAPHighAvailabilityType() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SAPHighAvailabilityType(input)
-	return &out, nil
+	*s = SAPHighAvailabilityType(decoded)
+	return nil
 }
 
 type SAPProductType string
@@ -325,19 +331,19 @@ func PossibleValuesForSAPProductType() []string {
 	}
 }
 
-func parseSAPProductType(input string) (*SAPProductType, error) {
-	vals := map[string]SAPProductType{
-		"ecc":    SAPProductTypeECC,
-		"other":  SAPProductTypeOther,
-		"s4hana": SAPProductTypeSFourHANA,
+func (s *SAPProductType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForSAPProductType() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SAPProductType(input)
-	return &out, nil
+	*s = SAPProductType(decoded)
+	return nil
 }
 
 type SAPSoftwareInstallationType string
@@ -356,19 +362,19 @@ func PossibleValuesForSAPSoftwareInstallationType() []string {
 	}
 }
 
-func parseSAPSoftwareInstallationType(input string) (*SAPSoftwareInstallationType, error) {
-	vals := map[string]SAPSoftwareInstallationType{
-		"external":                  SAPSoftwareInstallationTypeExternal,
-		"sapinstallwithoutosconfig": SAPSoftwareInstallationTypeSAPInstallWithoutOSConfig,
-		"serviceinitiated":          SAPSoftwareInstallationTypeServiceInitiated,
+func (s *SAPSoftwareInstallationType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForSAPSoftwareInstallationType() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SAPSoftwareInstallationType(input)
-	return &out, nil
+	*s = SAPSoftwareInstallationType(decoded)
+	return nil
 }
 
 type SAPVirtualInstanceState string
@@ -405,28 +411,19 @@ func PossibleValuesForSAPVirtualInstanceState() []string {
 	}
 }
 
-func parseSAPVirtualInstanceState(input string) (*SAPVirtualInstanceState, error) {
-	vals := map[string]SAPVirtualInstanceState{
-		"discoveryfailed":                    SAPVirtualInstanceStateDiscoveryFailed,
-		"discoveryinprogress":                SAPVirtualInstanceStateDiscoveryInProgress,
-		"discoverypending":                   SAPVirtualInstanceStateDiscoveryPending,
-		"infrastructuredeploymentfailed":     SAPVirtualInstanceStateInfrastructureDeploymentFailed,
-		"infrastructuredeploymentinprogress": SAPVirtualInstanceStateInfrastructureDeploymentInProgress,
-		"infrastructuredeploymentpending":    SAPVirtualInstanceStateInfrastructureDeploymentPending,
-		"registrationcomplete":               SAPVirtualInstanceStateRegistrationComplete,
-		"softwaredetectionfailed":            SAPVirtualInstanceStateSoftwareDetectionFailed,
-		"softwaredetectioninprogress":        SAPVirtualInstanceStateSoftwareDetectionInProgress,
-		"softwareinstallationfailed":         SAPVirtualInstanceStateSoftwareInstallationFailed,
-		"softwareinstallationinprogress":     SAPVirtualInstanceStateSoftwareInstallationInProgress,
-		"softwareinstallationpending":        SAPVirtualInstanceStateSoftwareInstallationPending,
+func (s *SAPVirtualInstanceState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForSAPVirtualInstanceState() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SAPVirtualInstanceState(input)
-	return &out, nil
+	*s = SAPVirtualInstanceState(decoded)
+	return nil
 }
 
 type SAPVirtualInstanceStatus string
@@ -453,23 +450,19 @@ func PossibleValuesForSAPVirtualInstanceStatus() []string {
 	}
 }
 
-func parseSAPVirtualInstanceStatus(input string) (*SAPVirtualInstanceStatus, error) {
-	vals := map[string]SAPVirtualInstanceStatus{
-		"offline":          SAPVirtualInstanceStatusOffline,
-		"partiallyrunning": SAPVirtualInstanceStatusPartiallyRunning,
-		"running":          SAPVirtualInstanceStatusRunning,
-		"softshutdown":     SAPVirtualInstanceStatusSoftShutdown,
-		"starting":         SAPVirtualInstanceStatusStarting,
-		"stopping":         SAPVirtualInstanceStatusStopping,
-		"unavailable":      SAPVirtualInstanceStatusUnavailable,
+func (s *SAPVirtualInstanceStatus) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForSAPVirtualInstanceStatus() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SAPVirtualInstanceStatus(input)
-	return &out, nil
+	*s = SAPVirtualInstanceStatus(decoded)
+	return nil
 }
 
 type SapVirtualInstanceProvisioningState string
@@ -492,19 +485,17 @@ func PossibleValuesForSapVirtualInstanceProvisioningState() []string {
 	}
 }
 
-func parseSapVirtualInstanceProvisioningState(input string) (*SapVirtualInstanceProvisioningState, error) {
-	vals := map[string]SapVirtualInstanceProvisioningState{
-		"creating":  SapVirtualInstanceProvisioningStateCreating,
-		"deleting":  SapVirtualInstanceProvisioningStateDeleting,
-		"failed":    SapVirtualInstanceProvisioningStateFailed,
-		"succeeded": SapVirtualInstanceProvisioningStateSucceeded,
-		"updating":  SapVirtualInstanceProvisioningStateUpdating,
+func (s *SapVirtualInstanceProvisioningState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForSapVirtualInstanceProvisioningState() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SapVirtualInstanceProvisioningState(input)
-	return &out, nil
+	*s = SapVirtualInstanceProvisioningState(decoded)
+	return nil
 }

@@ -1,7 +1,5 @@
 package graphapicompute
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -19,21 +17,6 @@ func PossibleValuesForServiceSize() []string {
 		string(ServiceSizeCosmosPointDFours),
 		string(ServiceSizeCosmosPointDOneSixs),
 	}
-}
-
-func parseServiceSize(input string) (*ServiceSize, error) {
-	vals := map[string]ServiceSize{
-		"cosmos.d8s":  ServiceSizeCosmosPointDEights,
-		"cosmos.d4s":  ServiceSizeCosmosPointDFours,
-		"cosmos.d16s": ServiceSizeCosmosPointDOneSixs,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ServiceSize(input)
-	return &out, nil
 }
 
 type ServiceStatus string
@@ -58,24 +41,6 @@ func PossibleValuesForServiceStatus() []string {
 	}
 }
 
-func parseServiceStatus(input string) (*ServiceStatus, error) {
-	vals := map[string]ServiceStatus{
-		"creating": ServiceStatusCreating,
-		"deleting": ServiceStatusDeleting,
-		"error":    ServiceStatusError,
-		"running":  ServiceStatusRunning,
-		"stopped":  ServiceStatusStopped,
-		"updating": ServiceStatusUpdating,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ServiceStatus(input)
-	return &out, nil
-}
-
 type ServiceType string
 
 const (
@@ -92,20 +57,4 @@ func PossibleValuesForServiceType() []string {
 		string(ServiceTypeMaterializedViewsBuilder),
 		string(ServiceTypeSqlDedicatedGateway),
 	}
-}
-
-func parseServiceType(input string) (*ServiceType, error) {
-	vals := map[string]ServiceType{
-		"datatransfer":             ServiceTypeDataTransfer,
-		"graphapicompute":          ServiceTypeGraphAPICompute,
-		"materializedviewsbuilder": ServiceTypeMaterializedViewsBuilder,
-		"sqldedicatedgateway":      ServiceTypeSqlDedicatedGateway,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ServiceType(input)
-	return &out, nil
 }

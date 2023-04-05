@@ -1,7 +1,5 @@
 package clusters
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -19,21 +17,6 @@ func PossibleValuesForAzureScaleType() []string {
 		string(AzureScaleTypeManual),
 		string(AzureScaleTypeNone),
 	}
-}
-
-func parseAzureScaleType(input string) (*AzureScaleType, error) {
-	vals := map[string]AzureScaleType{
-		"automatic": AzureScaleTypeAutomatic,
-		"manual":    AzureScaleTypeManual,
-		"none":      AzureScaleTypeNone,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := AzureScaleType(input)
-	return &out, nil
 }
 
 type AzureSkuName string
@@ -134,62 +117,6 @@ func PossibleValuesForAzureSkuName() []string {
 	}
 }
 
-func parseAzureSkuName(input string) (*AzureSkuName, error) {
-	vals := map[string]AzureSkuName{
-		"dev(no sla)_standard_d11_v2": AzureSkuNameDevNoSLAStandardDOneOneVTwo,
-		"dev(no sla)_standard_e2a_v4": AzureSkuNameDevNoSLAStandardETwoaVFour,
-		"standard_d14_v2":             AzureSkuNameStandardDOneFourVTwo,
-		"standard_d11_v2":             AzureSkuNameStandardDOneOneVTwo,
-		"standard_d16d_v5":            AzureSkuNameStandardDOneSixdVFive,
-		"standard_d13_v2":             AzureSkuNameStandardDOneThreeVTwo,
-		"standard_d12_v2":             AzureSkuNameStandardDOneTwoVTwo,
-		"standard_ds14_v2+4tb_ps":     AzureSkuNameStandardDSOneFourVTwoPositiveFourTBPS,
-		"standard_ds14_v2+3tb_ps":     AzureSkuNameStandardDSOneFourVTwoPositiveThreeTBPS,
-		"standard_ds13_v2+1tb_ps":     AzureSkuNameStandardDSOneThreeVTwoPositiveOneTBPS,
-		"standard_ds13_v2+2tb_ps":     AzureSkuNameStandardDSOneThreeVTwoPositiveTwoTBPS,
-		"standard_d32d_v5":            AzureSkuNameStandardDThreeTwodVFive,
-		"standard_d32d_v4":            AzureSkuNameStandardDThreeTwodVFour,
-		"standard_e80ids_v4":          AzureSkuNameStandardEEightZeroidsVFour,
-		"standard_e8a_v4":             AzureSkuNameStandardEEightaVFour,
-		"standard_e8ads_v5":           AzureSkuNameStandardEEightadsVFive,
-		"standard_e8as_v5+1tb_ps":     AzureSkuNameStandardEEightasVFivePositiveOneTBPS,
-		"standard_e8as_v5+2tb_ps":     AzureSkuNameStandardEEightasVFivePositiveTwoTBPS,
-		"standard_e8as_v4+1tb_ps":     AzureSkuNameStandardEEightasVFourPositiveOneTBPS,
-		"standard_e8as_v4+2tb_ps":     AzureSkuNameStandardEEightasVFourPositiveTwoTBPS,
-		"standard_e8s_v5+1tb_ps":      AzureSkuNameStandardEEightsVFivePositiveOneTBPS,
-		"standard_e8s_v5+2tb_ps":      AzureSkuNameStandardEEightsVFivePositiveTwoTBPS,
-		"standard_e8s_v4+1tb_ps":      AzureSkuNameStandardEEightsVFourPositiveOneTBPS,
-		"standard_e8s_v4+2tb_ps":      AzureSkuNameStandardEEightsVFourPositiveTwoTBPS,
-		"standard_e4a_v4":             AzureSkuNameStandardEFouraVFour,
-		"standard_e4ads_v5":           AzureSkuNameStandardEFouradsVFive,
-		"standard_e16a_v4":            AzureSkuNameStandardEOneSixaVFour,
-		"standard_e16ads_v5":          AzureSkuNameStandardEOneSixadsVFive,
-		"standard_e16as_v5+4tb_ps":    AzureSkuNameStandardEOneSixasVFivePositiveFourTBPS,
-		"standard_e16as_v5+3tb_ps":    AzureSkuNameStandardEOneSixasVFivePositiveThreeTBPS,
-		"standard_e16as_v4+4tb_ps":    AzureSkuNameStandardEOneSixasVFourPositiveFourTBPS,
-		"standard_e16as_v4+3tb_ps":    AzureSkuNameStandardEOneSixasVFourPositiveThreeTBPS,
-		"standard_e16s_v5+4tb_ps":     AzureSkuNameStandardEOneSixsVFivePositiveFourTBPS,
-		"standard_e16s_v5+3tb_ps":     AzureSkuNameStandardEOneSixsVFivePositiveThreeTBPS,
-		"standard_e16s_v4+4tb_ps":     AzureSkuNameStandardEOneSixsVFourPositiveFourTBPS,
-		"standard_e16s_v4+3tb_ps":     AzureSkuNameStandardEOneSixsVFourPositiveThreeTBPS,
-		"standard_e64i_v3":            AzureSkuNameStandardESixFouriVThree,
-		"standard_e2a_v4":             AzureSkuNameStandardETwoaVFour,
-		"standard_e2ads_v5":           AzureSkuNameStandardETwoadsVFive,
-		"standard_l8s":                AzureSkuNameStandardLEights,
-		"standard_l8s_v2":             AzureSkuNameStandardLEightsVTwo,
-		"standard_l4s":                AzureSkuNameStandardLFours,
-		"standard_l16s":               AzureSkuNameStandardLOneSixs,
-		"standard_l16s_v2":            AzureSkuNameStandardLOneSixsVTwo,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := AzureSkuName(input)
-	return &out, nil
-}
-
 type AzureSkuTier string
 
 const (
@@ -202,20 +129,6 @@ func PossibleValuesForAzureSkuTier() []string {
 		string(AzureSkuTierBasic),
 		string(AzureSkuTierStandard),
 	}
-}
-
-func parseAzureSkuTier(input string) (*AzureSkuTier, error) {
-	vals := map[string]AzureSkuTier{
-		"basic":    AzureSkuTierBasic,
-		"standard": AzureSkuTierStandard,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := AzureSkuTier(input)
-	return &out, nil
 }
 
 type ClusterNetworkAccessFlag string
@@ -232,20 +145,6 @@ func PossibleValuesForClusterNetworkAccessFlag() []string {
 	}
 }
 
-func parseClusterNetworkAccessFlag(input string) (*ClusterNetworkAccessFlag, error) {
-	vals := map[string]ClusterNetworkAccessFlag{
-		"disabled": ClusterNetworkAccessFlagDisabled,
-		"enabled":  ClusterNetworkAccessFlagEnabled,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ClusterNetworkAccessFlag(input)
-	return &out, nil
-}
-
 type ClusterType string
 
 const (
@@ -256,19 +155,6 @@ func PossibleValuesForClusterType() []string {
 	return []string{
 		string(ClusterTypeMicrosoftPointKustoClusters),
 	}
-}
-
-func parseClusterType(input string) (*ClusterType, error) {
-	vals := map[string]ClusterType{
-		"microsoft.kusto/clusters": ClusterTypeMicrosoftPointKustoClusters,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ClusterType(input)
-	return &out, nil
 }
 
 type EngineType string
@@ -285,20 +171,6 @@ func PossibleValuesForEngineType() []string {
 	}
 }
 
-func parseEngineType(input string) (*EngineType, error) {
-	vals := map[string]EngineType{
-		"v3": EngineTypeVThree,
-		"v2": EngineTypeVTwo,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := EngineType(input)
-	return &out, nil
-}
-
 type LanguageExtensionName string
 
 const (
@@ -311,20 +183,6 @@ func PossibleValuesForLanguageExtensionName() []string {
 		string(LanguageExtensionNamePYTHON),
 		string(LanguageExtensionNameR),
 	}
-}
-
-func parseLanguageExtensionName(input string) (*LanguageExtensionName, error) {
-	vals := map[string]LanguageExtensionName{
-		"python": LanguageExtensionNamePYTHON,
-		"r":      LanguageExtensionNameR,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := LanguageExtensionName(input)
-	return &out, nil
 }
 
 type ProvisioningState string
@@ -349,24 +207,6 @@ func PossibleValuesForProvisioningState() []string {
 	}
 }
 
-func parseProvisioningState(input string) (*ProvisioningState, error) {
-	vals := map[string]ProvisioningState{
-		"creating":  ProvisioningStateCreating,
-		"deleting":  ProvisioningStateDeleting,
-		"failed":    ProvisioningStateFailed,
-		"moving":    ProvisioningStateMoving,
-		"running":   ProvisioningStateRunning,
-		"succeeded": ProvisioningStateSucceeded,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ProvisioningState(input)
-	return &out, nil
-}
-
 type PublicIPType string
 
 const (
@@ -379,20 +219,6 @@ func PossibleValuesForPublicIPType() []string {
 		string(PublicIPTypeDualStack),
 		string(PublicIPTypeIPvFour),
 	}
-}
-
-func parsePublicIPType(input string) (*PublicIPType, error) {
-	vals := map[string]PublicIPType{
-		"dualstack": PublicIPTypeDualStack,
-		"ipv4":      PublicIPTypeIPvFour,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PublicIPType(input)
-	return &out, nil
 }
 
 type PublicNetworkAccess string
@@ -409,20 +235,6 @@ func PossibleValuesForPublicNetworkAccess() []string {
 	}
 }
 
-func parsePublicNetworkAccess(input string) (*PublicNetworkAccess, error) {
-	vals := map[string]PublicNetworkAccess{
-		"disabled": PublicNetworkAccessDisabled,
-		"enabled":  PublicNetworkAccessEnabled,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PublicNetworkAccess(input)
-	return &out, nil
-}
-
 type Reason string
 
 const (
@@ -435,20 +247,6 @@ func PossibleValuesForReason() []string {
 		string(ReasonAlreadyExists),
 		string(ReasonInvalid),
 	}
-}
-
-func parseReason(input string) (*Reason, error) {
-	vals := map[string]Reason{
-		"alreadyexists": ReasonAlreadyExists,
-		"invalid":       ReasonInvalid,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := Reason(input)
-	return &out, nil
 }
 
 type State string
@@ -477,25 +275,4 @@ func PossibleValuesForState() []string {
 		string(StateUnavailable),
 		string(StateUpdating),
 	}
-}
-
-func parseState(input string) (*State, error) {
-	vals := map[string]State{
-		"creating":    StateCreating,
-		"deleted":     StateDeleted,
-		"deleting":    StateDeleting,
-		"running":     StateRunning,
-		"starting":    StateStarting,
-		"stopped":     StateStopped,
-		"stopping":    StateStopping,
-		"unavailable": StateUnavailable,
-		"updating":    StateUpdating,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := State(input)
-	return &out, nil
 }

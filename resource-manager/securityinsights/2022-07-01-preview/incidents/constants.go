@@ -1,7 +1,5 @@
 package incidents
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -49,35 +47,6 @@ func PossibleValuesForAttackTactic() []string {
 	}
 }
 
-func parseAttackTactic(input string) (*AttackTactic, error) {
-	vals := map[string]AttackTactic{
-		"collection":              AttackTacticCollection,
-		"commandandcontrol":       AttackTacticCommandAndControl,
-		"credentialaccess":        AttackTacticCredentialAccess,
-		"defenseevasion":          AttackTacticDefenseEvasion,
-		"discovery":               AttackTacticDiscovery,
-		"execution":               AttackTacticExecution,
-		"exfiltration":            AttackTacticExfiltration,
-		"impact":                  AttackTacticImpact,
-		"impairprocesscontrol":    AttackTacticImpairProcessControl,
-		"inhibitresponsefunction": AttackTacticInhibitResponseFunction,
-		"initialaccess":           AttackTacticInitialAccess,
-		"lateralmovement":         AttackTacticLateralMovement,
-		"persistence":             AttackTacticPersistence,
-		"preattack":               AttackTacticPreAttack,
-		"privilegeescalation":     AttackTacticPrivilegeEscalation,
-		"reconnaissance":          AttackTacticReconnaissance,
-		"resourcedevelopment":     AttackTacticResourceDevelopment,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := AttackTactic(input)
-	return &out, nil
-}
-
 type IncidentClassification string
 
 const (
@@ -94,22 +63,6 @@ func PossibleValuesForIncidentClassification() []string {
 		string(IncidentClassificationTruePositive),
 		string(IncidentClassificationUndetermined),
 	}
-}
-
-func parseIncidentClassification(input string) (*IncidentClassification, error) {
-	vals := map[string]IncidentClassification{
-		"benignpositive": IncidentClassificationBenignPositive,
-		"falsepositive":  IncidentClassificationFalsePositive,
-		"truepositive":   IncidentClassificationTruePositive,
-		"undetermined":   IncidentClassificationUndetermined,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := IncidentClassification(input)
-	return &out, nil
 }
 
 type IncidentClassificationReason string
@@ -130,22 +83,6 @@ func PossibleValuesForIncidentClassificationReason() []string {
 	}
 }
 
-func parseIncidentClassificationReason(input string) (*IncidentClassificationReason, error) {
-	vals := map[string]IncidentClassificationReason{
-		"inaccuratedata":        IncidentClassificationReasonInaccurateData,
-		"incorrectalertlogic":   IncidentClassificationReasonIncorrectAlertLogic,
-		"suspiciousactivity":    IncidentClassificationReasonSuspiciousActivity,
-		"suspiciousbutexpected": IncidentClassificationReasonSuspiciousButExpected,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := IncidentClassificationReason(input)
-	return &out, nil
-}
-
 type IncidentLabelType string
 
 const (
@@ -158,20 +95,6 @@ func PossibleValuesForIncidentLabelType() []string {
 		string(IncidentLabelTypeAutoAssigned),
 		string(IncidentLabelTypeUser),
 	}
-}
-
-func parseIncidentLabelType(input string) (*IncidentLabelType, error) {
-	vals := map[string]IncidentLabelType{
-		"autoassigned": IncidentLabelTypeAutoAssigned,
-		"user":         IncidentLabelTypeUser,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := IncidentLabelType(input)
-	return &out, nil
 }
 
 type IncidentSeverity string
@@ -192,22 +115,6 @@ func PossibleValuesForIncidentSeverity() []string {
 	}
 }
 
-func parseIncidentSeverity(input string) (*IncidentSeverity, error) {
-	vals := map[string]IncidentSeverity{
-		"high":          IncidentSeverityHigh,
-		"informational": IncidentSeverityInformational,
-		"low":           IncidentSeverityLow,
-		"medium":        IncidentSeverityMedium,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := IncidentSeverity(input)
-	return &out, nil
-}
-
 type IncidentStatus string
 
 const (
@@ -224,21 +131,6 @@ func PossibleValuesForIncidentStatus() []string {
 	}
 }
 
-func parseIncidentStatus(input string) (*IncidentStatus, error) {
-	vals := map[string]IncidentStatus{
-		"active": IncidentStatusActive,
-		"closed": IncidentStatusClosed,
-		"new":    IncidentStatusNew,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := IncidentStatus(input)
-	return &out, nil
-}
-
 type OwnerType string
 
 const (
@@ -253,19 +145,4 @@ func PossibleValuesForOwnerType() []string {
 		string(OwnerTypeUnknown),
 		string(OwnerTypeUser),
 	}
-}
-
-func parseOwnerType(input string) (*OwnerType, error) {
-	vals := map[string]OwnerType{
-		"group":   OwnerTypeGroup,
-		"unknown": OwnerTypeUnknown,
-		"user":    OwnerTypeUser,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := OwnerType(input)
-	return &out, nil
 }

@@ -1,7 +1,5 @@
 package datasources
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -79,49 +77,4 @@ func PossibleValuesForDataSourceKind() []string {
 		string(DataSourceKindWindowsPerformanceCounter),
 		string(DataSourceKindWindowsTelemetry),
 	}
-}
-
-func parseDataSourceKind(input string) (*DataSourceKind, error) {
-	vals := map[string]DataSourceKind{
-		"applicationinsights":                 DataSourceKindApplicationInsights,
-		"azureactivitylog":                    DataSourceKindAzureActivityLog,
-		"azureauditlog":                       DataSourceKindAzureAuditLog,
-		"changetrackingcontentlocation":       DataSourceKindChangeTrackingContentLocation,
-		"changetrackingcustompath":            DataSourceKindChangeTrackingCustomPath,
-		"changetrackingdatatypeconfiguration": DataSourceKindChangeTrackingDataTypeConfiguration,
-		"changetrackingdefaultregistry":       DataSourceKindChangeTrackingDefaultRegistry,
-		"changetrackinglinuxpath":             DataSourceKindChangeTrackingLinuxPath,
-		"changetrackingpath":                  DataSourceKindChangeTrackingPath,
-		"changetrackingregistry":              DataSourceKindChangeTrackingRegistry,
-		"changetrackingservices":              DataSourceKindChangeTrackingServices,
-		"customlog":                           DataSourceKindCustomLog,
-		"customlogcollection":                 DataSourceKindCustomLogCollection,
-		"dnsanalytics":                        DataSourceKindDnsAnalytics,
-		"genericdatasource":                   DataSourceKindGenericDataSource,
-		"iislogs":                             DataSourceKindIISLogs,
-		"importcomputergroup":                 DataSourceKindImportComputerGroup,
-		"itsm":                                DataSourceKindItsm,
-		"linuxchangetrackingpath":             DataSourceKindLinuxChangeTrackingPath,
-		"linuxperformancecollection":          DataSourceKindLinuxPerformanceCollection,
-		"linuxperformanceobject":              DataSourceKindLinuxPerformanceObject,
-		"linuxsyslog":                         DataSourceKindLinuxSyslog,
-		"linuxsyslogcollection":               DataSourceKindLinuxSyslogCollection,
-		"networkmonitoring":                   DataSourceKindNetworkMonitoring,
-		"office365":                           DataSourceKindOfficeThreeSixFive,
-		"securitycentersecuritywindowsbaselineconfiguration":   DataSourceKindSecurityCenterSecurityWindowsBaselineConfiguration,
-		"securityeventcollectionconfiguration":                 DataSourceKindSecurityEventCollectionConfiguration,
-		"securityinsightssecurityeventcollectionconfiguration": DataSourceKindSecurityInsightsSecurityEventCollectionConfiguration,
-		"securitywindowsbaselineconfiguration":                 DataSourceKindSecurityWindowsBaselineConfiguration,
-		"sqldataclassification":                                DataSourceKindSqlDataClassification,
-		"windowsevent":                                         DataSourceKindWindowsEvent,
-		"windowsperformancecounter":                            DataSourceKindWindowsPerformanceCounter,
-		"windowstelemetry":                                     DataSourceKindWindowsTelemetry,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := DataSourceKind(input)
-	return &out, nil
 }

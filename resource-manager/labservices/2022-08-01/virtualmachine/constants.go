@@ -1,7 +1,5 @@
 package virtualmachine
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -25,24 +23,6 @@ func PossibleValuesForProvisioningState() []string {
 		string(ProvisioningStateSucceeded),
 		string(ProvisioningStateUpdating),
 	}
-}
-
-func parseProvisioningState(input string) (*ProvisioningState, error) {
-	vals := map[string]ProvisioningState{
-		"creating":  ProvisioningStateCreating,
-		"deleting":  ProvisioningStateDeleting,
-		"failed":    ProvisioningStateFailed,
-		"locked":    ProvisioningStateLocked,
-		"succeeded": ProvisioningStateSucceeded,
-		"updating":  ProvisioningStateUpdating,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ProvisioningState(input)
-	return &out, nil
 }
 
 type VirtualMachineState string
@@ -69,25 +49,6 @@ func PossibleValuesForVirtualMachineState() []string {
 	}
 }
 
-func parseVirtualMachineState(input string) (*VirtualMachineState, error) {
-	vals := map[string]VirtualMachineState{
-		"redeploying":       VirtualMachineStateRedeploying,
-		"reimaging":         VirtualMachineStateReimaging,
-		"resettingpassword": VirtualMachineStateResettingPassword,
-		"running":           VirtualMachineStateRunning,
-		"starting":          VirtualMachineStateStarting,
-		"stopped":           VirtualMachineStateStopped,
-		"stopping":          VirtualMachineStateStopping,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := VirtualMachineState(input)
-	return &out, nil
-}
-
 type VirtualMachineType string
 
 const (
@@ -100,18 +61,4 @@ func PossibleValuesForVirtualMachineType() []string {
 		string(VirtualMachineTypeTemplate),
 		string(VirtualMachineTypeUser),
 	}
-}
-
-func parseVirtualMachineType(input string) (*VirtualMachineType, error) {
-	vals := map[string]VirtualMachineType{
-		"template": VirtualMachineTypeTemplate,
-		"user":     VirtualMachineTypeUser,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := VirtualMachineType(input)
-	return &out, nil
 }

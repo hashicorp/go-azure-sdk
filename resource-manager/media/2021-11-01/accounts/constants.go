@@ -1,6 +1,10 @@
 package accounts
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -19,18 +23,19 @@ func PossibleValuesForAccountEncryptionKeyType() []string {
 	}
 }
 
-func parseAccountEncryptionKeyType(input string) (*AccountEncryptionKeyType, error) {
-	vals := map[string]AccountEncryptionKeyType{
-		"customerkey": AccountEncryptionKeyTypeCustomerKey,
-		"systemkey":   AccountEncryptionKeyTypeSystemKey,
+func (s *AccountEncryptionKeyType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForAccountEncryptionKeyType() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := AccountEncryptionKeyType(input)
-	return &out, nil
+	*s = AccountEncryptionKeyType(decoded)
+	return nil
 }
 
 type DefaultAction string
@@ -47,18 +52,19 @@ func PossibleValuesForDefaultAction() []string {
 	}
 }
 
-func parseDefaultAction(input string) (*DefaultAction, error) {
-	vals := map[string]DefaultAction{
-		"allow": DefaultActionAllow,
-		"deny":  DefaultActionDeny,
+func (s *DefaultAction) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForDefaultAction() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := DefaultAction(input)
-	return &out, nil
+	*s = DefaultAction(decoded)
+	return nil
 }
 
 type PrivateEndpointConnectionProvisioningState string
@@ -79,20 +85,19 @@ func PossibleValuesForPrivateEndpointConnectionProvisioningState() []string {
 	}
 }
 
-func parsePrivateEndpointConnectionProvisioningState(input string) (*PrivateEndpointConnectionProvisioningState, error) {
-	vals := map[string]PrivateEndpointConnectionProvisioningState{
-		"creating":  PrivateEndpointConnectionProvisioningStateCreating,
-		"deleting":  PrivateEndpointConnectionProvisioningStateDeleting,
-		"failed":    PrivateEndpointConnectionProvisioningStateFailed,
-		"succeeded": PrivateEndpointConnectionProvisioningStateSucceeded,
+func (s *PrivateEndpointConnectionProvisioningState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForPrivateEndpointConnectionProvisioningState() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PrivateEndpointConnectionProvisioningState(input)
-	return &out, nil
+	*s = PrivateEndpointConnectionProvisioningState(decoded)
+	return nil
 }
 
 type PrivateEndpointServiceConnectionStatus string
@@ -111,19 +116,19 @@ func PossibleValuesForPrivateEndpointServiceConnectionStatus() []string {
 	}
 }
 
-func parsePrivateEndpointServiceConnectionStatus(input string) (*PrivateEndpointServiceConnectionStatus, error) {
-	vals := map[string]PrivateEndpointServiceConnectionStatus{
-		"approved": PrivateEndpointServiceConnectionStatusApproved,
-		"pending":  PrivateEndpointServiceConnectionStatusPending,
-		"rejected": PrivateEndpointServiceConnectionStatusRejected,
+func (s *PrivateEndpointServiceConnectionStatus) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForPrivateEndpointServiceConnectionStatus() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PrivateEndpointServiceConnectionStatus(input)
-	return &out, nil
+	*s = PrivateEndpointServiceConnectionStatus(decoded)
+	return nil
 }
 
 type ProvisioningState string
@@ -142,19 +147,19 @@ func PossibleValuesForProvisioningState() []string {
 	}
 }
 
-func parseProvisioningState(input string) (*ProvisioningState, error) {
-	vals := map[string]ProvisioningState{
-		"failed":     ProvisioningStateFailed,
-		"inprogress": ProvisioningStateInProgress,
-		"succeeded":  ProvisioningStateSucceeded,
+func (s *ProvisioningState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForProvisioningState() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ProvisioningState(input)
-	return &out, nil
+	*s = ProvisioningState(decoded)
+	return nil
 }
 
 type PublicNetworkAccess string
@@ -171,18 +176,19 @@ func PossibleValuesForPublicNetworkAccess() []string {
 	}
 }
 
-func parsePublicNetworkAccess(input string) (*PublicNetworkAccess, error) {
-	vals := map[string]PublicNetworkAccess{
-		"disabled": PublicNetworkAccessDisabled,
-		"enabled":  PublicNetworkAccessEnabled,
+func (s *PublicNetworkAccess) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForPublicNetworkAccess() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PublicNetworkAccess(input)
-	return &out, nil
+	*s = PublicNetworkAccess(decoded)
+	return nil
 }
 
 type StorageAccountType string
@@ -199,18 +205,19 @@ func PossibleValuesForStorageAccountType() []string {
 	}
 }
 
-func parseStorageAccountType(input string) (*StorageAccountType, error) {
-	vals := map[string]StorageAccountType{
-		"primary":   StorageAccountTypePrimary,
-		"secondary": StorageAccountTypeSecondary,
+func (s *StorageAccountType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForStorageAccountType() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := StorageAccountType(input)
-	return &out, nil
+	*s = StorageAccountType(decoded)
+	return nil
 }
 
 type StorageAuthentication string
@@ -227,16 +234,17 @@ func PossibleValuesForStorageAuthentication() []string {
 	}
 }
 
-func parseStorageAuthentication(input string) (*StorageAuthentication, error) {
-	vals := map[string]StorageAuthentication{
-		"managedidentity": StorageAuthenticationManagedIdentity,
-		"system":          StorageAuthenticationSystem,
+func (s *StorageAuthentication) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForStorageAuthentication() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := StorageAuthentication(input)
-	return &out, nil
+	*s = StorageAuthentication(decoded)
+	return nil
 }

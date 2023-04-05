@@ -1,6 +1,10 @@
 package webhooks
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -27,22 +31,19 @@ func PossibleValuesForProvisioningState() []string {
 	}
 }
 
-func parseProvisioningState(input string) (*ProvisioningState, error) {
-	vals := map[string]ProvisioningState{
-		"canceled":  ProvisioningStateCanceled,
-		"creating":  ProvisioningStateCreating,
-		"deleting":  ProvisioningStateDeleting,
-		"failed":    ProvisioningStateFailed,
-		"succeeded": ProvisioningStateSucceeded,
-		"updating":  ProvisioningStateUpdating,
+func (s *ProvisioningState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForProvisioningState() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ProvisioningState(input)
-	return &out, nil
+	*s = ProvisioningState(decoded)
+	return nil
 }
 
 type WebhookAction string
@@ -65,21 +66,19 @@ func PossibleValuesForWebhookAction() []string {
 	}
 }
 
-func parseWebhookAction(input string) (*WebhookAction, error) {
-	vals := map[string]WebhookAction{
-		"chart_delete": WebhookActionChartDelete,
-		"chart_push":   WebhookActionChartPush,
-		"delete":       WebhookActionDelete,
-		"push":         WebhookActionPush,
-		"quarantine":   WebhookActionQuarantine,
+func (s *WebhookAction) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForWebhookAction() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := WebhookAction(input)
-	return &out, nil
+	*s = WebhookAction(decoded)
+	return nil
 }
 
 type WebhookStatus string
@@ -96,16 +95,17 @@ func PossibleValuesForWebhookStatus() []string {
 	}
 }
 
-func parseWebhookStatus(input string) (*WebhookStatus, error) {
-	vals := map[string]WebhookStatus{
-		"disabled": WebhookStatusDisabled,
-		"enabled":  WebhookStatusEnabled,
+func (s *WebhookStatus) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForWebhookStatus() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := WebhookStatus(input)
-	return &out, nil
+	*s = WebhookStatus(decoded)
+	return nil
 }

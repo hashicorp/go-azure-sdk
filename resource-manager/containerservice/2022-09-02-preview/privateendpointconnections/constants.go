@@ -1,7 +1,5 @@
 package privateendpointconnections
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -23,22 +21,6 @@ func PossibleValuesForConnectionStatus() []string {
 	}
 }
 
-func parseConnectionStatus(input string) (*ConnectionStatus, error) {
-	vals := map[string]ConnectionStatus{
-		"approved":     ConnectionStatusApproved,
-		"disconnected": ConnectionStatusDisconnected,
-		"pending":      ConnectionStatusPending,
-		"rejected":     ConnectionStatusRejected,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ConnectionStatus(input)
-	return &out, nil
-}
-
 type PrivateEndpointConnectionProvisioningState string
 
 const (
@@ -55,20 +37,4 @@ func PossibleValuesForPrivateEndpointConnectionProvisioningState() []string {
 		string(PrivateEndpointConnectionProvisioningStateFailed),
 		string(PrivateEndpointConnectionProvisioningStateSucceeded),
 	}
-}
-
-func parsePrivateEndpointConnectionProvisioningState(input string) (*PrivateEndpointConnectionProvisioningState, error) {
-	vals := map[string]PrivateEndpointConnectionProvisioningState{
-		"creating":  PrivateEndpointConnectionProvisioningStateCreating,
-		"deleting":  PrivateEndpointConnectionProvisioningStateDeleting,
-		"failed":    PrivateEndpointConnectionProvisioningStateFailed,
-		"succeeded": PrivateEndpointConnectionProvisioningStateSucceeded,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PrivateEndpointConnectionProvisioningState(input)
-	return &out, nil
 }

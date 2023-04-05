@@ -1,7 +1,5 @@
 package backupprotecteditems
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -33,27 +31,6 @@ func PossibleValuesForBackupManagementType() []string {
 	}
 }
 
-func parseBackupManagementType(input string) (*BackupManagementType, error) {
-	vals := map[string]BackupManagementType{
-		"azurebackupserver": BackupManagementTypeAzureBackupServer,
-		"azureiaasvm":       BackupManagementTypeAzureIaasVM,
-		"azuresql":          BackupManagementTypeAzureSql,
-		"azurestorage":      BackupManagementTypeAzureStorage,
-		"azureworkload":     BackupManagementTypeAzureWorkload,
-		"dpm":               BackupManagementTypeDPM,
-		"defaultbackup":     BackupManagementTypeDefaultBackup,
-		"invalid":           BackupManagementTypeInvalid,
-		"mab":               BackupManagementTypeMAB,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := BackupManagementType(input)
-	return &out, nil
-}
-
 type CreateMode string
 
 const (
@@ -68,21 +45,6 @@ func PossibleValuesForCreateMode() []string {
 		string(CreateModeInvalid),
 		string(CreateModeRecover),
 	}
-}
-
-func parseCreateMode(input string) (*CreateMode, error) {
-	vals := map[string]CreateMode{
-		"default": CreateModeDefault,
-		"invalid": CreateModeInvalid,
-		"recover": CreateModeRecover,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := CreateMode(input)
-	return &out, nil
 }
 
 type DataSourceType string
@@ -127,34 +89,6 @@ func PossibleValuesForDataSourceType() []string {
 	}
 }
 
-func parseDataSourceType(input string) (*DataSourceType, error) {
-	vals := map[string]DataSourceType{
-		"azurefileshare":    DataSourceTypeAzureFileShare,
-		"azuresqldb":        DataSourceTypeAzureSqlDb,
-		"client":            DataSourceTypeClient,
-		"exchange":          DataSourceTypeExchange,
-		"filefolder":        DataSourceTypeFileFolder,
-		"genericdatasource": DataSourceTypeGenericDataSource,
-		"invalid":           DataSourceTypeInvalid,
-		"sapasedatabase":    DataSourceTypeSAPAseDatabase,
-		"saphanadbinstance": DataSourceTypeSAPHanaDBInstance,
-		"saphanadatabase":   DataSourceTypeSAPHanaDatabase,
-		"sqldb":             DataSourceTypeSQLDB,
-		"sqldatabase":       DataSourceTypeSQLDataBase,
-		"sharepoint":        DataSourceTypeSharepoint,
-		"systemstate":       DataSourceTypeSystemState,
-		"vm":                DataSourceTypeVM,
-		"vmwarevm":          DataSourceTypeVMwareVM,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := DataSourceType(input)
-	return &out, nil
-}
-
 type HealthStatus string
 
 const (
@@ -171,22 +105,6 @@ func PossibleValuesForHealthStatus() []string {
 		string(HealthStatusInvalid),
 		string(HealthStatusPassed),
 	}
-}
-
-func parseHealthStatus(input string) (*HealthStatus, error) {
-	vals := map[string]HealthStatus{
-		"actionrequired":  HealthStatusActionRequired,
-		"actionsuggested": HealthStatusActionSuggested,
-		"invalid":         HealthStatusInvalid,
-		"passed":          HealthStatusPassed,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := HealthStatus(input)
-	return &out, nil
 }
 
 type LastBackupStatus string
@@ -207,22 +125,6 @@ func PossibleValuesForLastBackupStatus() []string {
 	}
 }
 
-func parseLastBackupStatus(input string) (*LastBackupStatus, error) {
-	vals := map[string]LastBackupStatus{
-		"healthy":   LastBackupStatusHealthy,
-		"irpending": LastBackupStatusIRPending,
-		"invalid":   LastBackupStatusInvalid,
-		"unhealthy": LastBackupStatusUnhealthy,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := LastBackupStatus(input)
-	return &out, nil
-}
-
 type ProtectedItemHealthStatus string
 
 const (
@@ -241,23 +143,6 @@ func PossibleValuesForProtectedItemHealthStatus() []string {
 		string(ProtectedItemHealthStatusNotReachable),
 		string(ProtectedItemHealthStatusUnhealthy),
 	}
-}
-
-func parseProtectedItemHealthStatus(input string) (*ProtectedItemHealthStatus, error) {
-	vals := map[string]ProtectedItemHealthStatus{
-		"healthy":      ProtectedItemHealthStatusHealthy,
-		"irpending":    ProtectedItemHealthStatusIRPending,
-		"invalid":      ProtectedItemHealthStatusInvalid,
-		"notreachable": ProtectedItemHealthStatusNotReachable,
-		"unhealthy":    ProtectedItemHealthStatusUnhealthy,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ProtectedItemHealthStatus(input)
-	return &out, nil
 }
 
 type ProtectedItemState string
@@ -284,25 +169,6 @@ func PossibleValuesForProtectedItemState() []string {
 	}
 }
 
-func parseProtectedItemState(input string) (*ProtectedItemState, error) {
-	vals := map[string]ProtectedItemState{
-		"backupssuspended":  ProtectedItemStateBackupsSuspended,
-		"irpending":         ProtectedItemStateIRPending,
-		"invalid":           ProtectedItemStateInvalid,
-		"protected":         ProtectedItemStateProtected,
-		"protectionerror":   ProtectedItemStateProtectionError,
-		"protectionpaused":  ProtectedItemStateProtectionPaused,
-		"protectionstopped": ProtectedItemStateProtectionStopped,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ProtectedItemState(input)
-	return &out, nil
-}
-
 type ProtectionState string
 
 const (
@@ -327,25 +193,6 @@ func PossibleValuesForProtectionState() []string {
 	}
 }
 
-func parseProtectionState(input string) (*ProtectionState, error) {
-	vals := map[string]ProtectionState{
-		"backupssuspended":  ProtectionStateBackupsSuspended,
-		"irpending":         ProtectionStateIRPending,
-		"invalid":           ProtectionStateInvalid,
-		"protected":         ProtectionStateProtected,
-		"protectionerror":   ProtectionStateProtectionError,
-		"protectionpaused":  ProtectionStateProtectionPaused,
-		"protectionstopped": ProtectionStateProtectionStopped,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ProtectionState(input)
-	return &out, nil
-}
-
 type ResourceHealthStatus string
 
 const (
@@ -366,22 +213,4 @@ func PossibleValuesForResourceHealthStatus() []string {
 		string(ResourceHealthStatusTransientDegraded),
 		string(ResourceHealthStatusTransientUnhealthy),
 	}
-}
-
-func parseResourceHealthStatus(input string) (*ResourceHealthStatus, error) {
-	vals := map[string]ResourceHealthStatus{
-		"healthy":             ResourceHealthStatusHealthy,
-		"invalid":             ResourceHealthStatusInvalid,
-		"persistentdegraded":  ResourceHealthStatusPersistentDegraded,
-		"persistentunhealthy": ResourceHealthStatusPersistentUnhealthy,
-		"transientdegraded":   ResourceHealthStatusTransientDegraded,
-		"transientunhealthy":  ResourceHealthStatusTransientUnhealthy,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ResourceHealthStatus(input)
-	return &out, nil
 }

@@ -1,6 +1,10 @@
 package tokens
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -27,22 +31,19 @@ func PossibleValuesForProvisioningState() []string {
 	}
 }
 
-func parseProvisioningState(input string) (*ProvisioningState, error) {
-	vals := map[string]ProvisioningState{
-		"canceled":  ProvisioningStateCanceled,
-		"creating":  ProvisioningStateCreating,
-		"deleting":  ProvisioningStateDeleting,
-		"failed":    ProvisioningStateFailed,
-		"succeeded": ProvisioningStateSucceeded,
-		"updating":  ProvisioningStateUpdating,
+func (s *ProvisioningState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForProvisioningState() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ProvisioningState(input)
-	return &out, nil
+	*s = ProvisioningState(decoded)
+	return nil
 }
 
 type TokenCertificateName string
@@ -59,18 +60,19 @@ func PossibleValuesForTokenCertificateName() []string {
 	}
 }
 
-func parseTokenCertificateName(input string) (*TokenCertificateName, error) {
-	vals := map[string]TokenCertificateName{
-		"certificate1": TokenCertificateNameCertificateOne,
-		"certificate2": TokenCertificateNameCertificateTwo,
+func (s *TokenCertificateName) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForTokenCertificateName() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := TokenCertificateName(input)
-	return &out, nil
+	*s = TokenCertificateName(decoded)
+	return nil
 }
 
 type TokenPasswordName string
@@ -87,18 +89,19 @@ func PossibleValuesForTokenPasswordName() []string {
 	}
 }
 
-func parseTokenPasswordName(input string) (*TokenPasswordName, error) {
-	vals := map[string]TokenPasswordName{
-		"password1": TokenPasswordNamePasswordOne,
-		"password2": TokenPasswordNamePasswordTwo,
+func (s *TokenPasswordName) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForTokenPasswordName() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := TokenPasswordName(input)
-	return &out, nil
+	*s = TokenPasswordName(decoded)
+	return nil
 }
 
 type TokenStatus string
@@ -115,16 +118,17 @@ func PossibleValuesForTokenStatus() []string {
 	}
 }
 
-func parseTokenStatus(input string) (*TokenStatus, error) {
-	vals := map[string]TokenStatus{
-		"disabled": TokenStatusDisabled,
-		"enabled":  TokenStatusEnabled,
+func (s *TokenStatus) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForTokenStatus() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := TokenStatus(input)
-	return &out, nil
+	*s = TokenStatus(decoded)
+	return nil
 }

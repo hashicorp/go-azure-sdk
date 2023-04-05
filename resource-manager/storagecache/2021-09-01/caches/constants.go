@@ -1,7 +1,5 @@
 package caches
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -21,21 +19,6 @@ func PossibleValuesForDomainJoinedType() []string {
 	}
 }
 
-func parseDomainJoinedType(input string) (*DomainJoinedType, error) {
-	vals := map[string]DomainJoinedType{
-		"error": DomainJoinedTypeError,
-		"no":    DomainJoinedTypeNo,
-		"yes":   DomainJoinedTypeYes,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := DomainJoinedType(input)
-	return &out, nil
-}
-
 type FirmwareStatusType string
 
 const (
@@ -48,20 +31,6 @@ func PossibleValuesForFirmwareStatusType() []string {
 		string(FirmwareStatusTypeAvailable),
 		string(FirmwareStatusTypeUnavailable),
 	}
-}
-
-func parseFirmwareStatusType(input string) (*FirmwareStatusType, error) {
-	vals := map[string]FirmwareStatusType{
-		"available":   FirmwareStatusTypeAvailable,
-		"unavailable": FirmwareStatusTypeUnavailable,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := FirmwareStatusType(input)
-	return &out, nil
 }
 
 type HealthStateType string
@@ -92,27 +61,6 @@ func PossibleValuesForHealthStateType() []string {
 	}
 }
 
-func parseHealthStateType(input string) (*HealthStateType, error) {
-	vals := map[string]HealthStateType{
-		"degraded":      HealthStateTypeDegraded,
-		"down":          HealthStateTypeDown,
-		"flushing":      HealthStateTypeFlushing,
-		"healthy":       HealthStateTypeHealthy,
-		"stopped":       HealthStateTypeStopped,
-		"stopping":      HealthStateTypeStopping,
-		"transitioning": HealthStateTypeTransitioning,
-		"unknown":       HealthStateTypeUnknown,
-		"upgrading":     HealthStateTypeUpgrading,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := HealthStateType(input)
-	return &out, nil
-}
-
 type NfsAccessRuleAccess string
 
 const (
@@ -129,21 +77,6 @@ func PossibleValuesForNfsAccessRuleAccess() []string {
 	}
 }
 
-func parseNfsAccessRuleAccess(input string) (*NfsAccessRuleAccess, error) {
-	vals := map[string]NfsAccessRuleAccess{
-		"no": NfsAccessRuleAccessNo,
-		"ro": NfsAccessRuleAccessRo,
-		"rw": NfsAccessRuleAccessRw,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := NfsAccessRuleAccess(input)
-	return &out, nil
-}
-
 type NfsAccessRuleScope string
 
 const (
@@ -158,21 +91,6 @@ func PossibleValuesForNfsAccessRuleScope() []string {
 		string(NfsAccessRuleScopeHost),
 		string(NfsAccessRuleScopeNetwork),
 	}
-}
-
-func parseNfsAccessRuleScope(input string) (*NfsAccessRuleScope, error) {
-	vals := map[string]NfsAccessRuleScope{
-		"default": NfsAccessRuleScopeDefault,
-		"host":    NfsAccessRuleScopeHost,
-		"network": NfsAccessRuleScopeNetwork,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := NfsAccessRuleScope(input)
-	return &out, nil
 }
 
 type ProvisioningStateType string
@@ -197,24 +115,6 @@ func PossibleValuesForProvisioningStateType() []string {
 	}
 }
 
-func parseProvisioningStateType(input string) (*ProvisioningStateType, error) {
-	vals := map[string]ProvisioningStateType{
-		"cancelled": ProvisioningStateTypeCancelled,
-		"creating":  ProvisioningStateTypeCreating,
-		"deleting":  ProvisioningStateTypeDeleting,
-		"failed":    ProvisioningStateTypeFailed,
-		"succeeded": ProvisioningStateTypeSucceeded,
-		"updating":  ProvisioningStateTypeUpdating,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ProvisioningStateType(input)
-	return &out, nil
-}
-
 type UsernameDownloadedType string
 
 const (
@@ -229,21 +129,6 @@ func PossibleValuesForUsernameDownloadedType() []string {
 		string(UsernameDownloadedTypeNo),
 		string(UsernameDownloadedTypeYes),
 	}
-}
-
-func parseUsernameDownloadedType(input string) (*UsernameDownloadedType, error) {
-	vals := map[string]UsernameDownloadedType{
-		"error": UsernameDownloadedTypeError,
-		"no":    UsernameDownloadedTypeNo,
-		"yes":   UsernameDownloadedTypeYes,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := UsernameDownloadedType(input)
-	return &out, nil
 }
 
 type UsernameSource string
@@ -262,20 +147,4 @@ func PossibleValuesForUsernameSource() []string {
 		string(UsernameSourceLDAP),
 		string(UsernameSourceNone),
 	}
-}
-
-func parseUsernameSource(input string) (*UsernameSource, error) {
-	vals := map[string]UsernameSource{
-		"ad":   UsernameSourceAD,
-		"file": UsernameSourceFile,
-		"ldap": UsernameSourceLDAP,
-		"none": UsernameSourceNone,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := UsernameSource(input)
-	return &out, nil
 }

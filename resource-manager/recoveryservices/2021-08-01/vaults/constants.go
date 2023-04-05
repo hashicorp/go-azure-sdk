@@ -1,7 +1,5 @@
 package vaults
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -17,20 +15,6 @@ func PossibleValuesForInfrastructureEncryptionState() []string {
 		string(InfrastructureEncryptionStateDisabled),
 		string(InfrastructureEncryptionStateEnabled),
 	}
-}
-
-func parseInfrastructureEncryptionState(input string) (*InfrastructureEncryptionState, error) {
-	vals := map[string]InfrastructureEncryptionState{
-		"disabled": InfrastructureEncryptionStateDisabled,
-		"enabled":  InfrastructureEncryptionStateEnabled,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := InfrastructureEncryptionState(input)
-	return &out, nil
 }
 
 type PrivateEndpointConnectionStatus string
@@ -51,22 +35,6 @@ func PossibleValuesForPrivateEndpointConnectionStatus() []string {
 	}
 }
 
-func parsePrivateEndpointConnectionStatus(input string) (*PrivateEndpointConnectionStatus, error) {
-	vals := map[string]PrivateEndpointConnectionStatus{
-		"approved":     PrivateEndpointConnectionStatusApproved,
-		"disconnected": PrivateEndpointConnectionStatusDisconnected,
-		"pending":      PrivateEndpointConnectionStatusPending,
-		"rejected":     PrivateEndpointConnectionStatusRejected,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PrivateEndpointConnectionStatus(input)
-	return &out, nil
-}
-
 type ProvisioningState string
 
 const (
@@ -83,22 +51,6 @@ func PossibleValuesForProvisioningState() []string {
 		string(ProvisioningStatePending),
 		string(ProvisioningStateSucceeded),
 	}
-}
-
-func parseProvisioningState(input string) (*ProvisioningState, error) {
-	vals := map[string]ProvisioningState{
-		"deleting":  ProvisioningStateDeleting,
-		"failed":    ProvisioningStateFailed,
-		"pending":   ProvisioningStatePending,
-		"succeeded": ProvisioningStateSucceeded,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ProvisioningState(input)
-	return &out, nil
 }
 
 type ResourceMoveState string
@@ -131,28 +83,6 @@ func PossibleValuesForResourceMoveState() []string {
 	}
 }
 
-func parseResourceMoveState(input string) (*ResourceMoveState, error) {
-	vals := map[string]ResourceMoveState{
-		"commitfailed":    ResourceMoveStateCommitFailed,
-		"committimedout":  ResourceMoveStateCommitTimedout,
-		"criticalfailure": ResourceMoveStateCriticalFailure,
-		"failure":         ResourceMoveStateFailure,
-		"inprogress":      ResourceMoveStateInProgress,
-		"movesucceeded":   ResourceMoveStateMoveSucceeded,
-		"partialsuccess":  ResourceMoveStatePartialSuccess,
-		"preparefailed":   ResourceMoveStatePrepareFailed,
-		"preparetimedout": ResourceMoveStatePrepareTimedout,
-		"unknown":         ResourceMoveStateUnknown,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ResourceMoveState(input)
-	return &out, nil
-}
-
 type SkuName string
 
 const (
@@ -165,20 +95,6 @@ func PossibleValuesForSkuName() []string {
 		string(SkuNameRSZero),
 		string(SkuNameStandard),
 	}
-}
-
-func parseSkuName(input string) (*SkuName, error) {
-	vals := map[string]SkuName{
-		"rs0":      SkuNameRSZero,
-		"standard": SkuNameStandard,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SkuName(input)
-	return &out, nil
 }
 
 type TriggerType string
@@ -195,20 +111,6 @@ func PossibleValuesForTriggerType() []string {
 	}
 }
 
-func parseTriggerType(input string) (*TriggerType, error) {
-	vals := map[string]TriggerType{
-		"forcedupgrade": TriggerTypeForcedUpgrade,
-		"usertriggered": TriggerTypeUserTriggered,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := TriggerType(input)
-	return &out, nil
-}
-
 type VaultPrivateEndpointState string
 
 const (
@@ -221,20 +123,6 @@ func PossibleValuesForVaultPrivateEndpointState() []string {
 		string(VaultPrivateEndpointStateEnabled),
 		string(VaultPrivateEndpointStateNone),
 	}
-}
-
-func parseVaultPrivateEndpointState(input string) (*VaultPrivateEndpointState, error) {
-	vals := map[string]VaultPrivateEndpointState{
-		"enabled": VaultPrivateEndpointStateEnabled,
-		"none":    VaultPrivateEndpointStateNone,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := VaultPrivateEndpointState(input)
-	return &out, nil
 }
 
 type VaultUpgradeState string
@@ -253,20 +141,4 @@ func PossibleValuesForVaultUpgradeState() []string {
 		string(VaultUpgradeStateUnknown),
 		string(VaultUpgradeStateUpgraded),
 	}
-}
-
-func parseVaultUpgradeState(input string) (*VaultUpgradeState, error) {
-	vals := map[string]VaultUpgradeState{
-		"failed":     VaultUpgradeStateFailed,
-		"inprogress": VaultUpgradeStateInProgress,
-		"unknown":    VaultUpgradeStateUnknown,
-		"upgraded":   VaultUpgradeStateUpgraded,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := VaultUpgradeState(input)
-	return &out, nil
 }

@@ -1,7 +1,5 @@
 package tables
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -21,22 +19,6 @@ func PossibleValuesForColumnDataTypeHintEnum() []string {
 		string(ColumnDataTypeHintEnumIP),
 		string(ColumnDataTypeHintEnumUri),
 	}
-}
-
-func parseColumnDataTypeHintEnum(input string) (*ColumnDataTypeHintEnum, error) {
-	vals := map[string]ColumnDataTypeHintEnum{
-		"armpath": ColumnDataTypeHintEnumArmPath,
-		"guid":    ColumnDataTypeHintEnumGuid,
-		"ip":      ColumnDataTypeHintEnumIP,
-		"uri":     ColumnDataTypeHintEnumUri,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ColumnDataTypeHintEnum(input)
-	return &out, nil
 }
 
 type ColumnTypeEnum string
@@ -65,26 +47,6 @@ func PossibleValuesForColumnTypeEnum() []string {
 	}
 }
 
-func parseColumnTypeEnum(input string) (*ColumnTypeEnum, error) {
-	vals := map[string]ColumnTypeEnum{
-		"boolean":  ColumnTypeEnumBoolean,
-		"datetime": ColumnTypeEnumDateTime,
-		"dynamic":  ColumnTypeEnumDynamic,
-		"guid":     ColumnTypeEnumGuid,
-		"int":      ColumnTypeEnumInt,
-		"long":     ColumnTypeEnumLong,
-		"real":     ColumnTypeEnumReal,
-		"string":   ColumnTypeEnumString,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ColumnTypeEnum(input)
-	return &out, nil
-}
-
 type ProvisioningStateEnum string
 
 const (
@@ -103,22 +65,6 @@ func PossibleValuesForProvisioningStateEnum() []string {
 	}
 }
 
-func parseProvisioningStateEnum(input string) (*ProvisioningStateEnum, error) {
-	vals := map[string]ProvisioningStateEnum{
-		"deleting":   ProvisioningStateEnumDeleting,
-		"inprogress": ProvisioningStateEnumInProgress,
-		"succeeded":  ProvisioningStateEnumSucceeded,
-		"updating":   ProvisioningStateEnumUpdating,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ProvisioningStateEnum(input)
-	return &out, nil
-}
-
 type SourceEnum string
 
 const (
@@ -133,20 +79,6 @@ func PossibleValuesForSourceEnum() []string {
 	}
 }
 
-func parseSourceEnum(input string) (*SourceEnum, error) {
-	vals := map[string]SourceEnum{
-		"customer":  SourceEnumCustomer,
-		"microsoft": SourceEnumMicrosoft,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SourceEnum(input)
-	return &out, nil
-}
-
 type TablePlanEnum string
 
 const (
@@ -159,20 +91,6 @@ func PossibleValuesForTablePlanEnum() []string {
 		string(TablePlanEnumAnalytics),
 		string(TablePlanEnumBasic),
 	}
-}
-
-func parseTablePlanEnum(input string) (*TablePlanEnum, error) {
-	vals := map[string]TablePlanEnum{
-		"analytics": TablePlanEnumAnalytics,
-		"basic":     TablePlanEnumBasic,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := TablePlanEnum(input)
-	return &out, nil
 }
 
 type TableSubTypeEnum string
@@ -191,21 +109,6 @@ func PossibleValuesForTableSubTypeEnum() []string {
 	}
 }
 
-func parseTableSubTypeEnum(input string) (*TableSubTypeEnum, error) {
-	vals := map[string]TableSubTypeEnum{
-		"any":                     TableSubTypeEnumAny,
-		"classic":                 TableSubTypeEnumClassic,
-		"datacollectionrulebased": TableSubTypeEnumDataCollectionRuleBased,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := TableSubTypeEnum(input)
-	return &out, nil
-}
-
 type TableTypeEnum string
 
 const (
@@ -222,20 +125,4 @@ func PossibleValuesForTableTypeEnum() []string {
 		string(TableTypeEnumRestoredLogs),
 		string(TableTypeEnumSearchResults),
 	}
-}
-
-func parseTableTypeEnum(input string) (*TableTypeEnum, error) {
-	vals := map[string]TableTypeEnum{
-		"customlog":     TableTypeEnumCustomLog,
-		"microsoft":     TableTypeEnumMicrosoft,
-		"restoredlogs":  TableTypeEnumRestoredLogs,
-		"searchresults": TableTypeEnumSearchResults,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := TableTypeEnum(input)
-	return &out, nil
 }

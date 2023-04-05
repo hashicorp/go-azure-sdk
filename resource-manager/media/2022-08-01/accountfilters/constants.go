@@ -1,6 +1,10 @@
 package accountfilters
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -19,18 +23,19 @@ func PossibleValuesForFilterTrackPropertyCompareOperation() []string {
 	}
 }
 
-func parseFilterTrackPropertyCompareOperation(input string) (*FilterTrackPropertyCompareOperation, error) {
-	vals := map[string]FilterTrackPropertyCompareOperation{
-		"equal":    FilterTrackPropertyCompareOperationEqual,
-		"notequal": FilterTrackPropertyCompareOperationNotEqual,
+func (s *FilterTrackPropertyCompareOperation) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForFilterTrackPropertyCompareOperation() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := FilterTrackPropertyCompareOperation(input)
-	return &out, nil
+	*s = FilterTrackPropertyCompareOperation(decoded)
+	return nil
 }
 
 type FilterTrackPropertyType string
@@ -55,20 +60,17 @@ func PossibleValuesForFilterTrackPropertyType() []string {
 	}
 }
 
-func parseFilterTrackPropertyType(input string) (*FilterTrackPropertyType, error) {
-	vals := map[string]FilterTrackPropertyType{
-		"bitrate":  FilterTrackPropertyTypeBitrate,
-		"fourcc":   FilterTrackPropertyTypeFourCC,
-		"language": FilterTrackPropertyTypeLanguage,
-		"name":     FilterTrackPropertyTypeName,
-		"type":     FilterTrackPropertyTypeType,
-		"unknown":  FilterTrackPropertyTypeUnknown,
+func (s *FilterTrackPropertyType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForFilterTrackPropertyType() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := FilterTrackPropertyType(input)
-	return &out, nil
+	*s = FilterTrackPropertyType(decoded)
+	return nil
 }

@@ -1,7 +1,5 @@
 package updates
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -21,22 +19,6 @@ func PossibleValuesForImpactType() []string {
 		string(ImpactTypeRedeploy),
 		string(ImpactTypeRestart),
 	}
-}
-
-func parseImpactType(input string) (*ImpactType, error) {
-	vals := map[string]ImpactType{
-		"freeze":   ImpactTypeFreeze,
-		"none":     ImpactTypeNone,
-		"redeploy": ImpactTypeRedeploy,
-		"restart":  ImpactTypeRestart,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ImpactType(input)
-	return &out, nil
 }
 
 type MaintenanceScope string
@@ -61,24 +43,6 @@ func PossibleValuesForMaintenanceScope() []string {
 	}
 }
 
-func parseMaintenanceScope(input string) (*MaintenanceScope, error) {
-	vals := map[string]MaintenanceScope{
-		"extension":          MaintenanceScopeExtension,
-		"host":               MaintenanceScopeHost,
-		"inguestpatch":       MaintenanceScopeInGuestPatch,
-		"osimage":            MaintenanceScopeOSImage,
-		"sqldb":              MaintenanceScopeSQLDB,
-		"sqlmanagedinstance": MaintenanceScopeSQLManagedInstance,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := MaintenanceScope(input)
-	return &out, nil
-}
-
 type UpdateStatus string
 
 const (
@@ -97,21 +61,4 @@ func PossibleValuesForUpdateStatus() []string {
 		string(UpdateStatusRetryLater),
 		string(UpdateStatusRetryNow),
 	}
-}
-
-func parseUpdateStatus(input string) (*UpdateStatus, error) {
-	vals := map[string]UpdateStatus{
-		"completed":  UpdateStatusCompleted,
-		"inprogress": UpdateStatusInProgress,
-		"pending":    UpdateStatusPending,
-		"retrylater": UpdateStatusRetryLater,
-		"retrynow":   UpdateStatusRetryNow,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := UpdateStatus(input)
-	return &out, nil
 }

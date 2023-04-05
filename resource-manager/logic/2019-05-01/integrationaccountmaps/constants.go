@@ -1,7 +1,5 @@
 package integrationaccountmaps
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -19,21 +17,6 @@ func PossibleValuesForKeyType() []string {
 		string(KeyTypePrimary),
 		string(KeyTypeSecondary),
 	}
-}
-
-func parseKeyType(input string) (*KeyType, error) {
-	vals := map[string]KeyType{
-		"notspecified": KeyTypeNotSpecified,
-		"primary":      KeyTypePrimary,
-		"secondary":    KeyTypeSecondary,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := KeyType(input)
-	return &out, nil
 }
 
 type MapType string
@@ -54,21 +37,4 @@ func PossibleValuesForMapType() []string {
 		string(MapTypeXsltThreeZero),
 		string(MapTypeXsltTwoZero),
 	}
-}
-
-func parseMapType(input string) (*MapType, error) {
-	vals := map[string]MapType{
-		"liquid":       MapTypeLiquid,
-		"notspecified": MapTypeNotSpecified,
-		"xslt":         MapTypeXslt,
-		"xslt30":       MapTypeXsltThreeZero,
-		"xslt20":       MapTypeXsltTwoZero,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := MapType(input)
-	return &out, nil
 }

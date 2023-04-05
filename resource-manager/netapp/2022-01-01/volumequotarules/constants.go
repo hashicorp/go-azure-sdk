@@ -1,7 +1,5 @@
 package volumequotarules
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -29,25 +27,6 @@ func PossibleValuesForProvisioningState() []string {
 	}
 }
 
-func parseProvisioningState(input string) (*ProvisioningState, error) {
-	vals := map[string]ProvisioningState{
-		"accepted":  ProvisioningStateAccepted,
-		"creating":  ProvisioningStateCreating,
-		"deleting":  ProvisioningStateDeleting,
-		"failed":    ProvisioningStateFailed,
-		"moving":    ProvisioningStateMoving,
-		"patching":  ProvisioningStatePatching,
-		"succeeded": ProvisioningStateSucceeded,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ProvisioningState(input)
-	return &out, nil
-}
-
 type Type string
 
 const (
@@ -64,20 +43,4 @@ func PossibleValuesForType() []string {
 		string(TypeIndividualGroupQuota),
 		string(TypeIndividualUserQuota),
 	}
-}
-
-func parseType(input string) (*Type, error) {
-	vals := map[string]Type{
-		"defaultgroupquota":    TypeDefaultGroupQuota,
-		"defaultuserquota":     TypeDefaultUserQuota,
-		"individualgroupquota": TypeIndividualGroupQuota,
-		"individualuserquota":  TypeIndividualUserQuota,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := Type(input)
-	return &out, nil
 }

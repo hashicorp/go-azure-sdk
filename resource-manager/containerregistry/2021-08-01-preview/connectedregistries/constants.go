@@ -1,6 +1,10 @@
 package connectedregistries
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -19,18 +23,19 @@ func PossibleValuesForActivationStatus() []string {
 	}
 }
 
-func parseActivationStatus(input string) (*ActivationStatus, error) {
-	vals := map[string]ActivationStatus{
-		"active":   ActivationStatusActive,
-		"inactive": ActivationStatusInactive,
+func (s *ActivationStatus) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForActivationStatus() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ActivationStatus(input)
-	return &out, nil
+	*s = ActivationStatus(decoded)
+	return nil
 }
 
 type AuditLogStatus string
@@ -47,18 +52,19 @@ func PossibleValuesForAuditLogStatus() []string {
 	}
 }
 
-func parseAuditLogStatus(input string) (*AuditLogStatus, error) {
-	vals := map[string]AuditLogStatus{
-		"disabled": AuditLogStatusDisabled,
-		"enabled":  AuditLogStatusEnabled,
+func (s *AuditLogStatus) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForAuditLogStatus() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := AuditLogStatus(input)
-	return &out, nil
+	*s = AuditLogStatus(decoded)
+	return nil
 }
 
 type CertificateType string
@@ -73,17 +79,19 @@ func PossibleValuesForCertificateType() []string {
 	}
 }
 
-func parseCertificateType(input string) (*CertificateType, error) {
-	vals := map[string]CertificateType{
-		"localdirectory": CertificateTypeLocalDirectory,
+func (s *CertificateType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForCertificateType() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := CertificateType(input)
-	return &out, nil
+	*s = CertificateType(decoded)
+	return nil
 }
 
 type ConnectedRegistryMode string
@@ -104,20 +112,19 @@ func PossibleValuesForConnectedRegistryMode() []string {
 	}
 }
 
-func parseConnectedRegistryMode(input string) (*ConnectedRegistryMode, error) {
-	vals := map[string]ConnectedRegistryMode{
-		"mirror":    ConnectedRegistryModeMirror,
-		"readonly":  ConnectedRegistryModeReadOnly,
-		"readwrite": ConnectedRegistryModeReadWrite,
-		"registry":  ConnectedRegistryModeRegistry,
+func (s *ConnectedRegistryMode) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForConnectedRegistryMode() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ConnectedRegistryMode(input)
-	return &out, nil
+	*s = ConnectedRegistryMode(decoded)
+	return nil
 }
 
 type ConnectionState string
@@ -138,20 +145,19 @@ func PossibleValuesForConnectionState() []string {
 	}
 }
 
-func parseConnectionState(input string) (*ConnectionState, error) {
-	vals := map[string]ConnectionState{
-		"offline":   ConnectionStateOffline,
-		"online":    ConnectionStateOnline,
-		"syncing":   ConnectionStateSyncing,
-		"unhealthy": ConnectionStateUnhealthy,
+func (s *ConnectionState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForConnectionState() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ConnectionState(input)
-	return &out, nil
+	*s = ConnectionState(decoded)
+	return nil
 }
 
 type LogLevel string
@@ -174,21 +180,19 @@ func PossibleValuesForLogLevel() []string {
 	}
 }
 
-func parseLogLevel(input string) (*LogLevel, error) {
-	vals := map[string]LogLevel{
-		"debug":       LogLevelDebug,
-		"error":       LogLevelError,
-		"information": LogLevelInformation,
-		"none":        LogLevelNone,
-		"warning":     LogLevelWarning,
+func (s *LogLevel) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForLogLevel() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := LogLevel(input)
-	return &out, nil
+	*s = LogLevel(decoded)
+	return nil
 }
 
 type ProvisioningState string
@@ -213,22 +217,19 @@ func PossibleValuesForProvisioningState() []string {
 	}
 }
 
-func parseProvisioningState(input string) (*ProvisioningState, error) {
-	vals := map[string]ProvisioningState{
-		"canceled":  ProvisioningStateCanceled,
-		"creating":  ProvisioningStateCreating,
-		"deleting":  ProvisioningStateDeleting,
-		"failed":    ProvisioningStateFailed,
-		"succeeded": ProvisioningStateSucceeded,
-		"updating":  ProvisioningStateUpdating,
+func (s *ProvisioningState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForProvisioningState() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ProvisioningState(input)
-	return &out, nil
+	*s = ProvisioningState(decoded)
+	return nil
 }
 
 type TlsStatus string
@@ -245,16 +246,17 @@ func PossibleValuesForTlsStatus() []string {
 	}
 }
 
-func parseTlsStatus(input string) (*TlsStatus, error) {
-	vals := map[string]TlsStatus{
-		"disabled": TlsStatusDisabled,
-		"enabled":  TlsStatusEnabled,
+func (s *TlsStatus) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
+	for _, v := range PossibleValuesForTlsStatus() {
+		if strings.EqualFold(v, decoded) {
+			decoded = v
+			break
+		}
 	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := TlsStatus(input)
-	return &out, nil
+	*s = TlsStatus(decoded)
+	return nil
 }

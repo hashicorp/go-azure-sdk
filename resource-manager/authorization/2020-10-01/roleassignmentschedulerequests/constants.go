@@ -1,7 +1,5 @@
 package roleassignmentschedulerequests
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -23,23 +21,6 @@ func PossibleValuesForPrincipalType() []string {
 		string(PrincipalTypeServicePrincipal),
 		string(PrincipalTypeUser),
 	}
-}
-
-func parsePrincipalType(input string) (*PrincipalType, error) {
-	vals := map[string]PrincipalType{
-		"device":           PrincipalTypeDevice,
-		"foreigngroup":     PrincipalTypeForeignGroup,
-		"group":            PrincipalTypeGroup,
-		"serviceprincipal": PrincipalTypeServicePrincipal,
-		"user":             PrincipalTypeUser,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PrincipalType(input)
-	return &out, nil
 }
 
 type RequestType string
@@ -68,27 +49,6 @@ func PossibleValuesForRequestType() []string {
 		string(RequestTypeSelfExtend),
 		string(RequestTypeSelfRenew),
 	}
-}
-
-func parseRequestType(input string) (*RequestType, error) {
-	vals := map[string]RequestType{
-		"adminassign":    RequestTypeAdminAssign,
-		"adminextend":    RequestTypeAdminExtend,
-		"adminremove":    RequestTypeAdminRemove,
-		"adminrenew":     RequestTypeAdminRenew,
-		"adminupdate":    RequestTypeAdminUpdate,
-		"selfactivate":   RequestTypeSelfActivate,
-		"selfdeactivate": RequestTypeSelfDeactivate,
-		"selfextend":     RequestTypeSelfExtend,
-		"selfrenew":      RequestTypeSelfRenew,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := RequestType(input)
-	return &out, nil
 }
 
 type Status string
@@ -145,40 +105,6 @@ func PossibleValuesForStatus() []string {
 	}
 }
 
-func parseStatus(input string) (*Status, error) {
-	vals := map[string]Status{
-		"accepted":                    StatusAccepted,
-		"adminapproved":               StatusAdminApproved,
-		"admindenied":                 StatusAdminDenied,
-		"canceled":                    StatusCanceled,
-		"denied":                      StatusDenied,
-		"failed":                      StatusFailed,
-		"failedasresourceislocked":    StatusFailedAsResourceIsLocked,
-		"granted":                     StatusGranted,
-		"invalid":                     StatusInvalid,
-		"pendingadmindecision":        StatusPendingAdminDecision,
-		"pendingapproval":             StatusPendingApproval,
-		"pendingapprovalprovisioning": StatusPendingApprovalProvisioning,
-		"pendingevaluation":           StatusPendingEvaluation,
-		"pendingexternalprovisioning": StatusPendingExternalProvisioning,
-		"pendingprovisioning":         StatusPendingProvisioning,
-		"pendingrevocation":           StatusPendingRevocation,
-		"pendingschedulecreation":     StatusPendingScheduleCreation,
-		"provisioned":                 StatusProvisioned,
-		"provisioningstarted":         StatusProvisioningStarted,
-		"revoked":                     StatusRevoked,
-		"schedulecreated":             StatusScheduleCreated,
-		"timedout":                    StatusTimedOut,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := Status(input)
-	return &out, nil
-}
-
 type Type string
 
 const (
@@ -193,19 +119,4 @@ func PossibleValuesForType() []string {
 		string(TypeAfterDuration),
 		string(TypeNoExpiration),
 	}
-}
-
-func parseType(input string) (*Type, error) {
-	vals := map[string]Type{
-		"afterdatetime": TypeAfterDateTime,
-		"afterduration": TypeAfterDuration,
-		"noexpiration":  TypeNoExpiration,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := Type(input)
-	return &out, nil
 }

@@ -1,7 +1,5 @@
 package metricalerts
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -25,23 +23,6 @@ func PossibleValuesForAggregationTypeEnum() []string {
 	}
 }
 
-func parseAggregationTypeEnum(input string) (*AggregationTypeEnum, error) {
-	vals := map[string]AggregationTypeEnum{
-		"average": AggregationTypeEnumAverage,
-		"count":   AggregationTypeEnumCount,
-		"maximum": AggregationTypeEnumMaximum,
-		"minimum": AggregationTypeEnumMinimum,
-		"total":   AggregationTypeEnumTotal,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := AggregationTypeEnum(input)
-	return &out, nil
-}
-
 type CriterionType string
 
 const (
@@ -54,20 +35,6 @@ func PossibleValuesForCriterionType() []string {
 		string(CriterionTypeDynamicThresholdCriterion),
 		string(CriterionTypeStaticThresholdCriterion),
 	}
-}
-
-func parseCriterionType(input string) (*CriterionType, error) {
-	vals := map[string]CriterionType{
-		"dynamicthresholdcriterion": CriterionTypeDynamicThresholdCriterion,
-		"staticthresholdcriterion":  CriterionTypeStaticThresholdCriterion,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := CriterionType(input)
-	return &out, nil
 }
 
 type DynamicThresholdOperator string
@@ -86,21 +53,6 @@ func PossibleValuesForDynamicThresholdOperator() []string {
 	}
 }
 
-func parseDynamicThresholdOperator(input string) (*DynamicThresholdOperator, error) {
-	vals := map[string]DynamicThresholdOperator{
-		"greaterorlessthan": DynamicThresholdOperatorGreaterOrLessThan,
-		"greaterthan":       DynamicThresholdOperatorGreaterThan,
-		"lessthan":          DynamicThresholdOperatorLessThan,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := DynamicThresholdOperator(input)
-	return &out, nil
-}
-
 type DynamicThresholdSensitivity string
 
 const (
@@ -117,21 +69,6 @@ func PossibleValuesForDynamicThresholdSensitivity() []string {
 	}
 }
 
-func parseDynamicThresholdSensitivity(input string) (*DynamicThresholdSensitivity, error) {
-	vals := map[string]DynamicThresholdSensitivity{
-		"high":   DynamicThresholdSensitivityHigh,
-		"low":    DynamicThresholdSensitivityLow,
-		"medium": DynamicThresholdSensitivityMedium,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := DynamicThresholdSensitivity(input)
-	return &out, nil
-}
-
 type Odatatype string
 
 const (
@@ -146,21 +83,6 @@ func PossibleValuesForOdatatype() []string {
 		string(OdatatypeMicrosoftPointAzurePointMonitorPointSingleResourceMultipleMetricCriteria),
 		string(OdatatypeMicrosoftPointAzurePointMonitorPointWebtestLocationAvailabilityCriteria),
 	}
-}
-
-func parseOdatatype(input string) (*Odatatype, error) {
-	vals := map[string]Odatatype{
-		"microsoft.azure.monitor.multipleresourcemultiplemetriccriteria": OdatatypeMicrosoftPointAzurePointMonitorPointMultipleResourceMultipleMetricCriteria,
-		"microsoft.azure.monitor.singleresourcemultiplemetriccriteria":   OdatatypeMicrosoftPointAzurePointMonitorPointSingleResourceMultipleMetricCriteria,
-		"microsoft.azure.monitor.webtestlocationavailabilitycriteria":    OdatatypeMicrosoftPointAzurePointMonitorPointWebtestLocationAvailabilityCriteria,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := Odatatype(input)
-	return &out, nil
 }
 
 type Operator string
@@ -181,21 +103,4 @@ func PossibleValuesForOperator() []string {
 		string(OperatorLessThan),
 		string(OperatorLessThanOrEqual),
 	}
-}
-
-func parseOperator(input string) (*Operator, error) {
-	vals := map[string]Operator{
-		"equals":             OperatorEquals,
-		"greaterthan":        OperatorGreaterThan,
-		"greaterthanorequal": OperatorGreaterThanOrEqual,
-		"lessthan":           OperatorLessThan,
-		"lessthanorequal":    OperatorLessThanOrEqual,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := Operator(input)
-	return &out, nil
 }

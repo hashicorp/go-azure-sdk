@@ -1,7 +1,5 @@
 package settings
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -23,22 +21,6 @@ func PossibleValuesForSettingKind() []string {
 	}
 }
 
-func parseSettingKind(input string) (*SettingKind, error) {
-	vals := map[string]SettingKind{
-		"anomalies":       SettingKindAnomalies,
-		"entityanalytics": SettingKindEntityAnalytics,
-		"eyeson":          SettingKindEyesOn,
-		"ueba":            SettingKindUeba,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SettingKind(input)
-	return &out, nil
-}
-
 type UebaDataSources string
 
 const (
@@ -55,20 +37,4 @@ func PossibleValuesForUebaDataSources() []string {
 		string(UebaDataSourcesSecurityEvent),
 		string(UebaDataSourcesSigninLogs),
 	}
-}
-
-func parseUebaDataSources(input string) (*UebaDataSources, error) {
-	vals := map[string]UebaDataSources{
-		"auditlogs":     UebaDataSourcesAuditLogs,
-		"azureactivity": UebaDataSourcesAzureActivity,
-		"securityevent": UebaDataSourcesSecurityEvent,
-		"signinlogs":    UebaDataSourcesSigninLogs,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := UebaDataSources(input)
-	return &out, nil
 }

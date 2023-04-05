@@ -1,7 +1,5 @@
 package cosmosdb
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -17,20 +15,6 @@ func PossibleValuesForAnalyticalStorageSchemaType() []string {
 		string(AnalyticalStorageSchemaTypeFullFidelity),
 		string(AnalyticalStorageSchemaTypeWellDefined),
 	}
-}
-
-func parseAnalyticalStorageSchemaType(input string) (*AnalyticalStorageSchemaType, error) {
-	vals := map[string]AnalyticalStorageSchemaType{
-		"fullfidelity": AnalyticalStorageSchemaTypeFullFidelity,
-		"welldefined":  AnalyticalStorageSchemaTypeWellDefined,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := AnalyticalStorageSchemaType(input)
-	return &out, nil
 }
 
 type BackupPolicyMigrationStatus string
@@ -51,22 +35,6 @@ func PossibleValuesForBackupPolicyMigrationStatus() []string {
 	}
 }
 
-func parseBackupPolicyMigrationStatus(input string) (*BackupPolicyMigrationStatus, error) {
-	vals := map[string]BackupPolicyMigrationStatus{
-		"completed":  BackupPolicyMigrationStatusCompleted,
-		"failed":     BackupPolicyMigrationStatusFailed,
-		"inprogress": BackupPolicyMigrationStatusInProgress,
-		"invalid":    BackupPolicyMigrationStatusInvalid,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := BackupPolicyMigrationStatus(input)
-	return &out, nil
-}
-
 type BackupPolicyType string
 
 const (
@@ -79,20 +47,6 @@ func PossibleValuesForBackupPolicyType() []string {
 		string(BackupPolicyTypeContinuous),
 		string(BackupPolicyTypePeriodic),
 	}
-}
-
-func parseBackupPolicyType(input string) (*BackupPolicyType, error) {
-	vals := map[string]BackupPolicyType{
-		"continuous": BackupPolicyTypeContinuous,
-		"periodic":   BackupPolicyTypePeriodic,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := BackupPolicyType(input)
-	return &out, nil
 }
 
 type BackupStorageRedundancy string
@@ -111,21 +65,6 @@ func PossibleValuesForBackupStorageRedundancy() []string {
 	}
 }
 
-func parseBackupStorageRedundancy(input string) (*BackupStorageRedundancy, error) {
-	vals := map[string]BackupStorageRedundancy{
-		"geo":   BackupStorageRedundancyGeo,
-		"local": BackupStorageRedundancyLocal,
-		"zone":  BackupStorageRedundancyZone,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := BackupStorageRedundancy(input)
-	return &out, nil
-}
-
 type CompositePathSortOrder string
 
 const (
@@ -138,20 +77,6 @@ func PossibleValuesForCompositePathSortOrder() []string {
 		string(CompositePathSortOrderAscending),
 		string(CompositePathSortOrderDescending),
 	}
-}
-
-func parseCompositePathSortOrder(input string) (*CompositePathSortOrder, error) {
-	vals := map[string]CompositePathSortOrder{
-		"ascending":  CompositePathSortOrderAscending,
-		"descending": CompositePathSortOrderDescending,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := CompositePathSortOrder(input)
-	return &out, nil
 }
 
 type ConflictResolutionMode string
@@ -168,20 +93,6 @@ func PossibleValuesForConflictResolutionMode() []string {
 	}
 }
 
-func parseConflictResolutionMode(input string) (*ConflictResolutionMode, error) {
-	vals := map[string]ConflictResolutionMode{
-		"custom":         ConflictResolutionModeCustom,
-		"lastwriterwins": ConflictResolutionModeLastWriterWins,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ConflictResolutionMode(input)
-	return &out, nil
-}
-
 type ConnectorOffer string
 
 const (
@@ -192,19 +103,6 @@ func PossibleValuesForConnectorOffer() []string {
 	return []string{
 		string(ConnectorOfferSmall),
 	}
-}
-
-func parseConnectorOffer(input string) (*ConnectorOffer, error) {
-	vals := map[string]ConnectorOffer{
-		"small": ConnectorOfferSmall,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ConnectorOffer(input)
-	return &out, nil
 }
 
 type CreateMode string
@@ -219,20 +117,6 @@ func PossibleValuesForCreateMode() []string {
 		string(CreateModeDefault),
 		string(CreateModeRestore),
 	}
-}
-
-func parseCreateMode(input string) (*CreateMode, error) {
-	vals := map[string]CreateMode{
-		"default": CreateModeDefault,
-		"restore": CreateModeRestore,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := CreateMode(input)
-	return &out, nil
 }
 
 type DataType string
@@ -257,24 +141,6 @@ func PossibleValuesForDataType() []string {
 	}
 }
 
-func parseDataType(input string) (*DataType, error) {
-	vals := map[string]DataType{
-		"linestring":   DataTypeLineString,
-		"multipolygon": DataTypeMultiPolygon,
-		"number":       DataTypeNumber,
-		"point":        DataTypePoint,
-		"polygon":      DataTypePolygon,
-		"string":       DataTypeString,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := DataType(input)
-	return &out, nil
-}
-
 type DatabaseAccountKind string
 
 const (
@@ -291,21 +157,6 @@ func PossibleValuesForDatabaseAccountKind() []string {
 	}
 }
 
-func parseDatabaseAccountKind(input string) (*DatabaseAccountKind, error) {
-	vals := map[string]DatabaseAccountKind{
-		"globaldocumentdb": DatabaseAccountKindGlobalDocumentDB,
-		"mongodb":          DatabaseAccountKindMongoDB,
-		"parse":            DatabaseAccountKindParse,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := DatabaseAccountKind(input)
-	return &out, nil
-}
-
 type DatabaseAccountOfferType string
 
 const (
@@ -316,19 +167,6 @@ func PossibleValuesForDatabaseAccountOfferType() []string {
 	return []string{
 		string(DatabaseAccountOfferTypeStandard),
 	}
-}
-
-func parseDatabaseAccountOfferType(input string) (*DatabaseAccountOfferType, error) {
-	vals := map[string]DatabaseAccountOfferType{
-		"standard": DatabaseAccountOfferTypeStandard,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := DatabaseAccountOfferType(input)
-	return &out, nil
 }
 
 type DefaultConsistencyLevel string
@@ -351,23 +189,6 @@ func PossibleValuesForDefaultConsistencyLevel() []string {
 	}
 }
 
-func parseDefaultConsistencyLevel(input string) (*DefaultConsistencyLevel, error) {
-	vals := map[string]DefaultConsistencyLevel{
-		"boundedstaleness": DefaultConsistencyLevelBoundedStaleness,
-		"consistentprefix": DefaultConsistencyLevelConsistentPrefix,
-		"eventual":         DefaultConsistencyLevelEventual,
-		"session":          DefaultConsistencyLevelSession,
-		"strong":           DefaultConsistencyLevelStrong,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := DefaultConsistencyLevel(input)
-	return &out, nil
-}
-
 type IndexKind string
 
 const (
@@ -384,21 +205,6 @@ func PossibleValuesForIndexKind() []string {
 	}
 }
 
-func parseIndexKind(input string) (*IndexKind, error) {
-	vals := map[string]IndexKind{
-		"hash":    IndexKindHash,
-		"range":   IndexKindRange,
-		"spatial": IndexKindSpatial,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := IndexKind(input)
-	return &out, nil
-}
-
 type IndexingMode string
 
 const (
@@ -413,21 +219,6 @@ func PossibleValuesForIndexingMode() []string {
 		string(IndexingModeLazy),
 		string(IndexingModeNone),
 	}
-}
-
-func parseIndexingMode(input string) (*IndexingMode, error) {
-	vals := map[string]IndexingMode{
-		"consistent": IndexingModeConsistent,
-		"lazy":       IndexingModeLazy,
-		"none":       IndexingModeNone,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := IndexingMode(input)
-	return &out, nil
 }
 
 type KeyKind string
@@ -448,22 +239,6 @@ func PossibleValuesForKeyKind() []string {
 	}
 }
 
-func parseKeyKind(input string) (*KeyKind, error) {
-	vals := map[string]KeyKind{
-		"primary":           KeyKindPrimary,
-		"primaryreadonly":   KeyKindPrimaryReadonly,
-		"secondary":         KeyKindSecondary,
-		"secondaryreadonly": KeyKindSecondaryReadonly,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := KeyKind(input)
-	return &out, nil
-}
-
 type NetworkAclBypass string
 
 const (
@@ -476,20 +251,6 @@ func PossibleValuesForNetworkAclBypass() []string {
 		string(NetworkAclBypassAzureServices),
 		string(NetworkAclBypassNone),
 	}
-}
-
-func parseNetworkAclBypass(input string) (*NetworkAclBypass, error) {
-	vals := map[string]NetworkAclBypass{
-		"azureservices": NetworkAclBypassAzureServices,
-		"none":          NetworkAclBypassNone,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := NetworkAclBypass(input)
-	return &out, nil
 }
 
 type PartitionKind string
@@ -506,21 +267,6 @@ func PossibleValuesForPartitionKind() []string {
 		string(PartitionKindMultiHash),
 		string(PartitionKindRange),
 	}
-}
-
-func parsePartitionKind(input string) (*PartitionKind, error) {
-	vals := map[string]PartitionKind{
-		"hash":      PartitionKindHash,
-		"multihash": PartitionKindMultiHash,
-		"range":     PartitionKindRange,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PartitionKind(input)
-	return &out, nil
 }
 
 type PrimaryAggregationType string
@@ -545,24 +291,6 @@ func PossibleValuesForPrimaryAggregationType() []string {
 	}
 }
 
-func parsePrimaryAggregationType(input string) (*PrimaryAggregationType, error) {
-	vals := map[string]PrimaryAggregationType{
-		"average": PrimaryAggregationTypeAverage,
-		"last":    PrimaryAggregationTypeLast,
-		"maximum": PrimaryAggregationTypeMaximum,
-		"minimum": PrimaryAggregationTypeMinimum,
-		"none":    PrimaryAggregationTypeNone,
-		"total":   PrimaryAggregationTypeTotal,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PrimaryAggregationType(input)
-	return &out, nil
-}
-
 type PublicNetworkAccess string
 
 const (
@@ -577,20 +305,6 @@ func PossibleValuesForPublicNetworkAccess() []string {
 	}
 }
 
-func parsePublicNetworkAccess(input string) (*PublicNetworkAccess, error) {
-	vals := map[string]PublicNetworkAccess{
-		"disabled": PublicNetworkAccessDisabled,
-		"enabled":  PublicNetworkAccessEnabled,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PublicNetworkAccess(input)
-	return &out, nil
-}
-
 type RestoreMode string
 
 const (
@@ -601,19 +315,6 @@ func PossibleValuesForRestoreMode() []string {
 	return []string{
 		string(RestoreModePointInTime),
 	}
-}
-
-func parseRestoreMode(input string) (*RestoreMode, error) {
-	vals := map[string]RestoreMode{
-		"pointintime": RestoreModePointInTime,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := RestoreMode(input)
-	return &out, nil
 }
 
 type ServerVersion string
@@ -634,22 +335,6 @@ func PossibleValuesForServerVersion() []string {
 	}
 }
 
-func parseServerVersion(input string) (*ServerVersion, error) {
-	vals := map[string]ServerVersion{
-		"4.2": ServerVersionFourPointTwo,
-		"4.0": ServerVersionFourPointZero,
-		"3.6": ServerVersionThreePointSix,
-		"3.2": ServerVersionThreePointTwo,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ServerVersion(input)
-	return &out, nil
-}
-
 type SpatialType string
 
 const (
@@ -666,22 +351,6 @@ func PossibleValuesForSpatialType() []string {
 		string(SpatialTypePoint),
 		string(SpatialTypePolygon),
 	}
-}
-
-func parseSpatialType(input string) (*SpatialType, error) {
-	vals := map[string]SpatialType{
-		"linestring":   SpatialTypeLineString,
-		"multipolygon": SpatialTypeMultiPolygon,
-		"point":        SpatialTypePoint,
-		"polygon":      SpatialTypePolygon,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SpatialType(input)
-	return &out, nil
 }
 
 type TriggerOperation string
@@ -704,23 +373,6 @@ func PossibleValuesForTriggerOperation() []string {
 	}
 }
 
-func parseTriggerOperation(input string) (*TriggerOperation, error) {
-	vals := map[string]TriggerOperation{
-		"all":     TriggerOperationAll,
-		"create":  TriggerOperationCreate,
-		"delete":  TriggerOperationDelete,
-		"replace": TriggerOperationReplace,
-		"update":  TriggerOperationUpdate,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := TriggerOperation(input)
-	return &out, nil
-}
-
 type TriggerType string
 
 const (
@@ -733,20 +385,6 @@ func PossibleValuesForTriggerType() []string {
 		string(TriggerTypePost),
 		string(TriggerTypePre),
 	}
-}
-
-func parseTriggerType(input string) (*TriggerType, error) {
-	vals := map[string]TriggerType{
-		"post": TriggerTypePost,
-		"pre":  TriggerTypePre,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := TriggerType(input)
-	return &out, nil
 }
 
 type UnitType string
@@ -771,23 +409,4 @@ func PossibleValuesForUnitType() []string {
 		string(UnitTypePercent),
 		string(UnitTypeSeconds),
 	}
-}
-
-func parseUnitType(input string) (*UnitType, error) {
-	vals := map[string]UnitType{
-		"bytes":          UnitTypeBytes,
-		"bytespersecond": UnitTypeBytesPerSecond,
-		"count":          UnitTypeCount,
-		"countpersecond": UnitTypeCountPerSecond,
-		"milliseconds":   UnitTypeMilliseconds,
-		"percent":        UnitTypePercent,
-		"seconds":        UnitTypeSeconds,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := UnitType(input)
-	return &out, nil
 }

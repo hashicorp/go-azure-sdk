@@ -1,7 +1,5 @@
 package virtualmachinescalesetvms
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -21,21 +19,6 @@ func PossibleValuesForCachingTypes() []string {
 	}
 }
 
-func parseCachingTypes(input string) (*CachingTypes, error) {
-	vals := map[string]CachingTypes{
-		"none":      CachingTypesNone,
-		"readonly":  CachingTypesReadOnly,
-		"readwrite": CachingTypesReadWrite,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := CachingTypes(input)
-	return &out, nil
-}
-
 type ComponentNames string
 
 const (
@@ -46,19 +29,6 @@ func PossibleValuesForComponentNames() []string {
 	return []string{
 		string(ComponentNamesMicrosoftNegativeWindowsNegativeShellNegativeSetup),
 	}
-}
-
-func parseComponentNames(input string) (*ComponentNames, error) {
-	vals := map[string]ComponentNames{
-		"microsoft-windows-shell-setup": ComponentNamesMicrosoftNegativeWindowsNegativeShellNegativeSetup,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ComponentNames(input)
-	return &out, nil
 }
 
 type DeleteOptions string
@@ -75,20 +45,6 @@ func PossibleValuesForDeleteOptions() []string {
 	}
 }
 
-func parseDeleteOptions(input string) (*DeleteOptions, error) {
-	vals := map[string]DeleteOptions{
-		"delete": DeleteOptionsDelete,
-		"detach": DeleteOptionsDetach,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := DeleteOptions(input)
-	return &out, nil
-}
-
 type DiffDiskOptions string
 
 const (
@@ -99,19 +55,6 @@ func PossibleValuesForDiffDiskOptions() []string {
 	return []string{
 		string(DiffDiskOptionsLocal),
 	}
-}
-
-func parseDiffDiskOptions(input string) (*DiffDiskOptions, error) {
-	vals := map[string]DiffDiskOptions{
-		"local": DiffDiskOptionsLocal,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := DiffDiskOptions(input)
-	return &out, nil
 }
 
 type DiffDiskPlacement string
@@ -126,20 +69,6 @@ func PossibleValuesForDiffDiskPlacement() []string {
 		string(DiffDiskPlacementCacheDisk),
 		string(DiffDiskPlacementResourceDisk),
 	}
-}
-
-func parseDiffDiskPlacement(input string) (*DiffDiskPlacement, error) {
-	vals := map[string]DiffDiskPlacement{
-		"cachedisk":    DiffDiskPlacementCacheDisk,
-		"resourcedisk": DiffDiskPlacementResourceDisk,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := DiffDiskPlacement(input)
-	return &out, nil
 }
 
 type DiskCreateOptionTypes string
@@ -158,21 +87,6 @@ func PossibleValuesForDiskCreateOptionTypes() []string {
 	}
 }
 
-func parseDiskCreateOptionTypes(input string) (*DiskCreateOptionTypes, error) {
-	vals := map[string]DiskCreateOptionTypes{
-		"attach":    DiskCreateOptionTypesAttach,
-		"empty":     DiskCreateOptionTypesEmpty,
-		"fromimage": DiskCreateOptionTypesFromImage,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := DiskCreateOptionTypes(input)
-	return &out, nil
-}
-
 type DiskDeleteOptionTypes string
 
 const (
@@ -187,20 +101,6 @@ func PossibleValuesForDiskDeleteOptionTypes() []string {
 	}
 }
 
-func parseDiskDeleteOptionTypes(input string) (*DiskDeleteOptionTypes, error) {
-	vals := map[string]DiskDeleteOptionTypes{
-		"delete": DiskDeleteOptionTypesDelete,
-		"detach": DiskDeleteOptionTypesDetach,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := DiskDeleteOptionTypes(input)
-	return &out, nil
-}
-
 type DiskDetachOptionTypes string
 
 const (
@@ -211,19 +111,6 @@ func PossibleValuesForDiskDetachOptionTypes() []string {
 	return []string{
 		string(DiskDetachOptionTypesForceDetach),
 	}
-}
-
-func parseDiskDetachOptionTypes(input string) (*DiskDetachOptionTypes, error) {
-	vals := map[string]DiskDetachOptionTypes{
-		"forcedetach": DiskDetachOptionTypesForceDetach,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := DiskDetachOptionTypes(input)
-	return &out, nil
 }
 
 type IPVersion string
@@ -240,20 +127,6 @@ func PossibleValuesForIPVersion() []string {
 	}
 }
 
-func parseIPVersion(input string) (*IPVersion, error) {
-	vals := map[string]IPVersion{
-		"ipv4": IPVersionIPvFour,
-		"ipv6": IPVersionIPvSix,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := IPVersion(input)
-	return &out, nil
-}
-
 type IPVersions string
 
 const (
@@ -266,20 +139,6 @@ func PossibleValuesForIPVersions() []string {
 		string(IPVersionsIPvFour),
 		string(IPVersionsIPvSix),
 	}
-}
-
-func parseIPVersions(input string) (*IPVersions, error) {
-	vals := map[string]IPVersions{
-		"ipv4": IPVersionsIPvFour,
-		"ipv6": IPVersionsIPvSix,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := IPVersions(input)
-	return &out, nil
 }
 
 type InstanceViewTypes string
@@ -296,20 +155,6 @@ func PossibleValuesForInstanceViewTypes() []string {
 	}
 }
 
-func parseInstanceViewTypes(input string) (*InstanceViewTypes, error) {
-	vals := map[string]InstanceViewTypes{
-		"instanceview": InstanceViewTypesInstanceView,
-		"userdata":     InstanceViewTypesUserData,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := InstanceViewTypes(input)
-	return &out, nil
-}
-
 type LinuxPatchAssessmentMode string
 
 const (
@@ -322,20 +167,6 @@ func PossibleValuesForLinuxPatchAssessmentMode() []string {
 		string(LinuxPatchAssessmentModeAutomaticByPlatform),
 		string(LinuxPatchAssessmentModeImageDefault),
 	}
-}
-
-func parseLinuxPatchAssessmentMode(input string) (*LinuxPatchAssessmentMode, error) {
-	vals := map[string]LinuxPatchAssessmentMode{
-		"automaticbyplatform": LinuxPatchAssessmentModeAutomaticByPlatform,
-		"imagedefault":        LinuxPatchAssessmentModeImageDefault,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := LinuxPatchAssessmentMode(input)
-	return &out, nil
 }
 
 type LinuxVMGuestPatchAutomaticByPlatformRebootSetting string
@@ -356,22 +187,6 @@ func PossibleValuesForLinuxVMGuestPatchAutomaticByPlatformRebootSetting() []stri
 	}
 }
 
-func parseLinuxVMGuestPatchAutomaticByPlatformRebootSetting(input string) (*LinuxVMGuestPatchAutomaticByPlatformRebootSetting, error) {
-	vals := map[string]LinuxVMGuestPatchAutomaticByPlatformRebootSetting{
-		"always":     LinuxVMGuestPatchAutomaticByPlatformRebootSettingAlways,
-		"ifrequired": LinuxVMGuestPatchAutomaticByPlatformRebootSettingIfRequired,
-		"never":      LinuxVMGuestPatchAutomaticByPlatformRebootSettingNever,
-		"unknown":    LinuxVMGuestPatchAutomaticByPlatformRebootSettingUnknown,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := LinuxVMGuestPatchAutomaticByPlatformRebootSetting(input)
-	return &out, nil
-}
-
 type LinuxVMGuestPatchMode string
 
 const (
@@ -384,20 +199,6 @@ func PossibleValuesForLinuxVMGuestPatchMode() []string {
 		string(LinuxVMGuestPatchModeAutomaticByPlatform),
 		string(LinuxVMGuestPatchModeImageDefault),
 	}
-}
-
-func parseLinuxVMGuestPatchMode(input string) (*LinuxVMGuestPatchMode, error) {
-	vals := map[string]LinuxVMGuestPatchMode{
-		"automaticbyplatform": LinuxVMGuestPatchModeAutomaticByPlatform,
-		"imagedefault":        LinuxVMGuestPatchModeImageDefault,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := LinuxVMGuestPatchMode(input)
-	return &out, nil
 }
 
 type MaintenanceOperationResultCodeTypes string
@@ -418,22 +219,6 @@ func PossibleValuesForMaintenanceOperationResultCodeTypes() []string {
 	}
 }
 
-func parseMaintenanceOperationResultCodeTypes(input string) (*MaintenanceOperationResultCodeTypes, error) {
-	vals := map[string]MaintenanceOperationResultCodeTypes{
-		"maintenanceaborted":   MaintenanceOperationResultCodeTypesMaintenanceAborted,
-		"maintenancecompleted": MaintenanceOperationResultCodeTypesMaintenanceCompleted,
-		"none":                 MaintenanceOperationResultCodeTypesNone,
-		"retrylater":           MaintenanceOperationResultCodeTypesRetryLater,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := MaintenanceOperationResultCodeTypes(input)
-	return &out, nil
-}
-
 type NetworkApiVersion string
 
 const (
@@ -444,19 +229,6 @@ func PossibleValuesForNetworkApiVersion() []string {
 	return []string{
 		string(NetworkApiVersionTwoZeroTwoZeroNegativeOneOneNegativeZeroOne),
 	}
-}
-
-func parseNetworkApiVersion(input string) (*NetworkApiVersion, error) {
-	vals := map[string]NetworkApiVersion{
-		"2020-11-01": NetworkApiVersionTwoZeroTwoZeroNegativeOneOneNegativeZeroOne,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := NetworkApiVersion(input)
-	return &out, nil
 }
 
 type OperatingSystemTypes string
@@ -473,20 +245,6 @@ func PossibleValuesForOperatingSystemTypes() []string {
 	}
 }
 
-func parseOperatingSystemTypes(input string) (*OperatingSystemTypes, error) {
-	vals := map[string]OperatingSystemTypes{
-		"linux":   OperatingSystemTypesLinux,
-		"windows": OperatingSystemTypesWindows,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := OperatingSystemTypes(input)
-	return &out, nil
-}
-
 type PassNames string
 
 const (
@@ -497,19 +255,6 @@ func PossibleValuesForPassNames() []string {
 	return []string{
 		string(PassNamesOobeSystem),
 	}
-}
-
-func parsePassNames(input string) (*PassNames, error) {
-	vals := map[string]PassNames{
-		"oobesystem": PassNamesOobeSystem,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PassNames(input)
-	return &out, nil
 }
 
 type ProtocolTypes string
@@ -526,20 +271,6 @@ func PossibleValuesForProtocolTypes() []string {
 	}
 }
 
-func parseProtocolTypes(input string) (*ProtocolTypes, error) {
-	vals := map[string]ProtocolTypes{
-		"http":  ProtocolTypesHTTP,
-		"https": ProtocolTypesHTTPS,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ProtocolTypes(input)
-	return &out, nil
-}
-
 type PublicIPAddressSkuName string
 
 const (
@@ -552,20 +283,6 @@ func PossibleValuesForPublicIPAddressSkuName() []string {
 		string(PublicIPAddressSkuNameBasic),
 		string(PublicIPAddressSkuNameStandard),
 	}
-}
-
-func parsePublicIPAddressSkuName(input string) (*PublicIPAddressSkuName, error) {
-	vals := map[string]PublicIPAddressSkuName{
-		"basic":    PublicIPAddressSkuNameBasic,
-		"standard": PublicIPAddressSkuNameStandard,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PublicIPAddressSkuName(input)
-	return &out, nil
 }
 
 type PublicIPAddressSkuTier string
@@ -582,20 +299,6 @@ func PossibleValuesForPublicIPAddressSkuTier() []string {
 	}
 }
 
-func parsePublicIPAddressSkuTier(input string) (*PublicIPAddressSkuTier, error) {
-	vals := map[string]PublicIPAddressSkuTier{
-		"global":   PublicIPAddressSkuTierGlobal,
-		"regional": PublicIPAddressSkuTierRegional,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PublicIPAddressSkuTier(input)
-	return &out, nil
-}
-
 type PublicIPAllocationMethod string
 
 const (
@@ -608,20 +311,6 @@ func PossibleValuesForPublicIPAllocationMethod() []string {
 		string(PublicIPAllocationMethodDynamic),
 		string(PublicIPAllocationMethodStatic),
 	}
-}
-
-func parsePublicIPAllocationMethod(input string) (*PublicIPAllocationMethod, error) {
-	vals := map[string]PublicIPAllocationMethod{
-		"dynamic": PublicIPAllocationMethodDynamic,
-		"static":  PublicIPAllocationMethodStatic,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PublicIPAllocationMethod(input)
-	return &out, nil
 }
 
 type SecurityEncryptionTypes string
@@ -638,20 +327,6 @@ func PossibleValuesForSecurityEncryptionTypes() []string {
 	}
 }
 
-func parseSecurityEncryptionTypes(input string) (*SecurityEncryptionTypes, error) {
-	vals := map[string]SecurityEncryptionTypes{
-		"diskwithvmgueststate": SecurityEncryptionTypesDiskWithVMGuestState,
-		"vmgueststateonly":     SecurityEncryptionTypesVMGuestStateOnly,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SecurityEncryptionTypes(input)
-	return &out, nil
-}
-
 type SecurityTypes string
 
 const (
@@ -664,20 +339,6 @@ func PossibleValuesForSecurityTypes() []string {
 		string(SecurityTypesConfidentialVM),
 		string(SecurityTypesTrustedLaunch),
 	}
-}
-
-func parseSecurityTypes(input string) (*SecurityTypes, error) {
-	vals := map[string]SecurityTypes{
-		"confidentialvm": SecurityTypesConfidentialVM,
-		"trustedlaunch":  SecurityTypesTrustedLaunch,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SecurityTypes(input)
-	return &out, nil
 }
 
 type SettingNames string
@@ -694,20 +355,6 @@ func PossibleValuesForSettingNames() []string {
 	}
 }
 
-func parseSettingNames(input string) (*SettingNames, error) {
-	vals := map[string]SettingNames{
-		"autologon":          SettingNamesAutoLogon,
-		"firstlogoncommands": SettingNamesFirstLogonCommands,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SettingNames(input)
-	return &out, nil
-}
-
 type StatusLevelTypes string
 
 const (
@@ -722,21 +369,6 @@ func PossibleValuesForStatusLevelTypes() []string {
 		string(StatusLevelTypesInfo),
 		string(StatusLevelTypesWarning),
 	}
-}
-
-func parseStatusLevelTypes(input string) (*StatusLevelTypes, error) {
-	vals := map[string]StatusLevelTypes{
-		"error":   StatusLevelTypesError,
-		"info":    StatusLevelTypesInfo,
-		"warning": StatusLevelTypesWarning,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := StatusLevelTypes(input)
-	return &out, nil
 }
 
 type StorageAccountTypes string
@@ -761,25 +393,6 @@ func PossibleValuesForStorageAccountTypes() []string {
 		string(StorageAccountTypesStandardSSDZRS),
 		string(StorageAccountTypesUltraSSDLRS),
 	}
-}
-
-func parseStorageAccountTypes(input string) (*StorageAccountTypes, error) {
-	vals := map[string]StorageAccountTypes{
-		"premium_lrs":     StorageAccountTypesPremiumLRS,
-		"premiumv2_lrs":   StorageAccountTypesPremiumVTwoLRS,
-		"premium_zrs":     StorageAccountTypesPremiumZRS,
-		"standard_lrs":    StorageAccountTypesStandardLRS,
-		"standardssd_lrs": StorageAccountTypesStandardSSDLRS,
-		"standardssd_zrs": StorageAccountTypesStandardSSDZRS,
-		"ultrassd_lrs":    StorageAccountTypesUltraSSDLRS,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := StorageAccountTypes(input)
-	return &out, nil
 }
 
 type VirtualMachineSizeTypes string
@@ -1124,184 +737,6 @@ func PossibleValuesForVirtualMachineSizeTypes() []string {
 	}
 }
 
-func parseVirtualMachineSizeTypes(input string) (*VirtualMachineSizeTypes, error) {
-	vals := map[string]VirtualMachineSizeTypes{
-		"basic_a4":            VirtualMachineSizeTypesBasicAFour,
-		"basic_a1":            VirtualMachineSizeTypesBasicAOne,
-		"basic_a3":            VirtualMachineSizeTypesBasicAThree,
-		"basic_a2":            VirtualMachineSizeTypesBasicATwo,
-		"basic_a0":            VirtualMachineSizeTypesBasicAZero,
-		"standard_a8":         VirtualMachineSizeTypesStandardAEight,
-		"standard_a8_v2":      VirtualMachineSizeTypesStandardAEightVTwo,
-		"standard_a8m_v2":     VirtualMachineSizeTypesStandardAEightmVTwo,
-		"standard_a5":         VirtualMachineSizeTypesStandardAFive,
-		"standard_a4":         VirtualMachineSizeTypesStandardAFour,
-		"standard_a4_v2":      VirtualMachineSizeTypesStandardAFourVTwo,
-		"standard_a4m_v2":     VirtualMachineSizeTypesStandardAFourmVTwo,
-		"standard_a9":         VirtualMachineSizeTypesStandardANine,
-		"standard_a1":         VirtualMachineSizeTypesStandardAOne,
-		"standard_a11":        VirtualMachineSizeTypesStandardAOneOne,
-		"standard_a1_v2":      VirtualMachineSizeTypesStandardAOneVTwo,
-		"standard_a10":        VirtualMachineSizeTypesStandardAOneZero,
-		"standard_a7":         VirtualMachineSizeTypesStandardASeven,
-		"standard_a6":         VirtualMachineSizeTypesStandardASix,
-		"standard_a3":         VirtualMachineSizeTypesStandardAThree,
-		"standard_a2":         VirtualMachineSizeTypesStandardATwo,
-		"standard_a2_v2":      VirtualMachineSizeTypesStandardATwoVTwo,
-		"standard_a2m_v2":     VirtualMachineSizeTypesStandardATwomVTwo,
-		"standard_a0":         VirtualMachineSizeTypesStandardAZero,
-		"standard_b8ms":       VirtualMachineSizeTypesStandardBEightms,
-		"standard_b4ms":       VirtualMachineSizeTypesStandardBFourms,
-		"standard_b1ms":       VirtualMachineSizeTypesStandardBOnems,
-		"standard_b1s":        VirtualMachineSizeTypesStandardBOnes,
-		"standard_b2ms":       VirtualMachineSizeTypesStandardBTwoms,
-		"standard_b2s":        VirtualMachineSizeTypesStandardBTwos,
-		"standard_d8_v3":      VirtualMachineSizeTypesStandardDEightVThree,
-		"standard_d8s_v3":     VirtualMachineSizeTypesStandardDEightsVThree,
-		"standard_d5_v2":      VirtualMachineSizeTypesStandardDFiveVTwo,
-		"standard_d4":         VirtualMachineSizeTypesStandardDFour,
-		"standard_d4_v3":      VirtualMachineSizeTypesStandardDFourVThree,
-		"standard_d4_v2":      VirtualMachineSizeTypesStandardDFourVTwo,
-		"standard_d4s_v3":     VirtualMachineSizeTypesStandardDFoursVThree,
-		"standard_d1":         VirtualMachineSizeTypesStandardDOne,
-		"standard_d15_v2":     VirtualMachineSizeTypesStandardDOneFiveVTwo,
-		"standard_d14":        VirtualMachineSizeTypesStandardDOneFour,
-		"standard_d14_v2":     VirtualMachineSizeTypesStandardDOneFourVTwo,
-		"standard_d11":        VirtualMachineSizeTypesStandardDOneOne,
-		"standard_d11_v2":     VirtualMachineSizeTypesStandardDOneOneVTwo,
-		"standard_d16_v3":     VirtualMachineSizeTypesStandardDOneSixVThree,
-		"standard_d16s_v3":    VirtualMachineSizeTypesStandardDOneSixsVThree,
-		"standard_d13":        VirtualMachineSizeTypesStandardDOneThree,
-		"standard_d13_v2":     VirtualMachineSizeTypesStandardDOneThreeVTwo,
-		"standard_d12":        VirtualMachineSizeTypesStandardDOneTwo,
-		"standard_d12_v2":     VirtualMachineSizeTypesStandardDOneTwoVTwo,
-		"standard_d1_v2":      VirtualMachineSizeTypesStandardDOneVTwo,
-		"standard_ds5_v2":     VirtualMachineSizeTypesStandardDSFiveVTwo,
-		"standard_ds4":        VirtualMachineSizeTypesStandardDSFour,
-		"standard_ds4_v2":     VirtualMachineSizeTypesStandardDSFourVTwo,
-		"standard_ds1":        VirtualMachineSizeTypesStandardDSOne,
-		"standard_ds15_v2":    VirtualMachineSizeTypesStandardDSOneFiveVTwo,
-		"standard_ds14":       VirtualMachineSizeTypesStandardDSOneFour,
-		"standard_ds14-8_v2":  VirtualMachineSizeTypesStandardDSOneFourNegativeEightVTwo,
-		"standard_ds14-4_v2":  VirtualMachineSizeTypesStandardDSOneFourNegativeFourVTwo,
-		"standard_ds14_v2":    VirtualMachineSizeTypesStandardDSOneFourVTwo,
-		"standard_ds11":       VirtualMachineSizeTypesStandardDSOneOne,
-		"standard_ds11_v2":    VirtualMachineSizeTypesStandardDSOneOneVTwo,
-		"standard_ds13":       VirtualMachineSizeTypesStandardDSOneThree,
-		"standard_ds13-4_v2":  VirtualMachineSizeTypesStandardDSOneThreeNegativeFourVTwo,
-		"standard_ds13-2_v2":  VirtualMachineSizeTypesStandardDSOneThreeNegativeTwoVTwo,
-		"standard_ds13_v2":    VirtualMachineSizeTypesStandardDSOneThreeVTwo,
-		"standard_ds12":       VirtualMachineSizeTypesStandardDSOneTwo,
-		"standard_ds12_v2":    VirtualMachineSizeTypesStandardDSOneTwoVTwo,
-		"standard_ds1_v2":     VirtualMachineSizeTypesStandardDSOneVTwo,
-		"standard_ds3":        VirtualMachineSizeTypesStandardDSThree,
-		"standard_ds3_v2":     VirtualMachineSizeTypesStandardDSThreeVTwo,
-		"standard_ds2":        VirtualMachineSizeTypesStandardDSTwo,
-		"standard_ds2_v2":     VirtualMachineSizeTypesStandardDSTwoVTwo,
-		"standard_d64_v3":     VirtualMachineSizeTypesStandardDSixFourVThree,
-		"standard_d64s_v3":    VirtualMachineSizeTypesStandardDSixFoursVThree,
-		"standard_d3":         VirtualMachineSizeTypesStandardDThree,
-		"standard_d32_v3":     VirtualMachineSizeTypesStandardDThreeTwoVThree,
-		"standard_d32s_v3":    VirtualMachineSizeTypesStandardDThreeTwosVThree,
-		"standard_d3_v2":      VirtualMachineSizeTypesStandardDThreeVTwo,
-		"standard_d2":         VirtualMachineSizeTypesStandardDTwo,
-		"standard_d2_v3":      VirtualMachineSizeTypesStandardDTwoVThree,
-		"standard_d2_v2":      VirtualMachineSizeTypesStandardDTwoVTwo,
-		"standard_d2s_v3":     VirtualMachineSizeTypesStandardDTwosVThree,
-		"standard_e8_v3":      VirtualMachineSizeTypesStandardEEightVThree,
-		"standard_e8s_v3":     VirtualMachineSizeTypesStandardEEightsVThree,
-		"standard_e4_v3":      VirtualMachineSizeTypesStandardEFourVThree,
-		"standard_e4s_v3":     VirtualMachineSizeTypesStandardEFoursVThree,
-		"standard_e16_v3":     VirtualMachineSizeTypesStandardEOneSixVThree,
-		"standard_e16s_v3":    VirtualMachineSizeTypesStandardEOneSixsVThree,
-		"standard_e64-16s_v3": VirtualMachineSizeTypesStandardESixFourNegativeOneSixsVThree,
-		"standard_e64-32s_v3": VirtualMachineSizeTypesStandardESixFourNegativeThreeTwosVThree,
-		"standard_e64_v3":     VirtualMachineSizeTypesStandardESixFourVThree,
-		"standard_e64s_v3":    VirtualMachineSizeTypesStandardESixFoursVThree,
-		"standard_e32-8s_v3":  VirtualMachineSizeTypesStandardEThreeTwoNegativeEightsVThree,
-		"standard_e32-16_v3":  VirtualMachineSizeTypesStandardEThreeTwoNegativeOneSixVThree,
-		"standard_e32_v3":     VirtualMachineSizeTypesStandardEThreeTwoVThree,
-		"standard_e32s_v3":    VirtualMachineSizeTypesStandardEThreeTwosVThree,
-		"standard_e2_v3":      VirtualMachineSizeTypesStandardETwoVThree,
-		"standard_e2s_v3":     VirtualMachineSizeTypesStandardETwosVThree,
-		"standard_f8":         VirtualMachineSizeTypesStandardFEight,
-		"standard_f8s":        VirtualMachineSizeTypesStandardFEights,
-		"standard_f8s_v2":     VirtualMachineSizeTypesStandardFEightsVTwo,
-		"standard_f4":         VirtualMachineSizeTypesStandardFFour,
-		"standard_f4s":        VirtualMachineSizeTypesStandardFFours,
-		"standard_f4s_v2":     VirtualMachineSizeTypesStandardFFoursVTwo,
-		"standard_f1":         VirtualMachineSizeTypesStandardFOne,
-		"standard_f16":        VirtualMachineSizeTypesStandardFOneSix,
-		"standard_f16s":       VirtualMachineSizeTypesStandardFOneSixs,
-		"standard_f16s_v2":    VirtualMachineSizeTypesStandardFOneSixsVTwo,
-		"standard_f1s":        VirtualMachineSizeTypesStandardFOnes,
-		"standard_f72s_v2":    VirtualMachineSizeTypesStandardFSevenTwosVTwo,
-		"standard_f64s_v2":    VirtualMachineSizeTypesStandardFSixFoursVTwo,
-		"standard_f32s_v2":    VirtualMachineSizeTypesStandardFThreeTwosVTwo,
-		"standard_f2":         VirtualMachineSizeTypesStandardFTwo,
-		"standard_f2s":        VirtualMachineSizeTypesStandardFTwos,
-		"standard_f2s_v2":     VirtualMachineSizeTypesStandardFTwosVTwo,
-		"standard_g5":         VirtualMachineSizeTypesStandardGFive,
-		"standard_g4":         VirtualMachineSizeTypesStandardGFour,
-		"standard_g1":         VirtualMachineSizeTypesStandardGOne,
-		"standard_gs5":        VirtualMachineSizeTypesStandardGSFive,
-		"standard_gs5-8":      VirtualMachineSizeTypesStandardGSFiveNegativeEight,
-		"standard_gs5-16":     VirtualMachineSizeTypesStandardGSFiveNegativeOneSix,
-		"standard_gs4":        VirtualMachineSizeTypesStandardGSFour,
-		"standard_gs4-8":      VirtualMachineSizeTypesStandardGSFourNegativeEight,
-		"standard_gs4-4":      VirtualMachineSizeTypesStandardGSFourNegativeFour,
-		"standard_gs1":        VirtualMachineSizeTypesStandardGSOne,
-		"standard_gs3":        VirtualMachineSizeTypesStandardGSThree,
-		"standard_gs2":        VirtualMachineSizeTypesStandardGSTwo,
-		"standard_g3":         VirtualMachineSizeTypesStandardGThree,
-		"standard_g2":         VirtualMachineSizeTypesStandardGTwo,
-		"standard_h8":         VirtualMachineSizeTypesStandardHEight,
-		"standard_h8m":        VirtualMachineSizeTypesStandardHEightm,
-		"standard_h16":        VirtualMachineSizeTypesStandardHOneSix,
-		"standard_h16m":       VirtualMachineSizeTypesStandardHOneSixm,
-		"standard_h16mr":      VirtualMachineSizeTypesStandardHOneSixmr,
-		"standard_h16r":       VirtualMachineSizeTypesStandardHOneSixr,
-		"standard_l8s":        VirtualMachineSizeTypesStandardLEights,
-		"standard_l4s":        VirtualMachineSizeTypesStandardLFours,
-		"standard_l16s":       VirtualMachineSizeTypesStandardLOneSixs,
-		"standard_l32s":       VirtualMachineSizeTypesStandardLThreeTwos,
-		"standard_m128-64ms":  VirtualMachineSizeTypesStandardMOneTwoEightNegativeSixFourms,
-		"standard_m128-32ms":  VirtualMachineSizeTypesStandardMOneTwoEightNegativeThreeTwoms,
-		"standard_m128ms":     VirtualMachineSizeTypesStandardMOneTwoEightms,
-		"standard_m128s":      VirtualMachineSizeTypesStandardMOneTwoEights,
-		"standard_m64-16ms":   VirtualMachineSizeTypesStandardMSixFourNegativeOneSixms,
-		"standard_m64-32ms":   VirtualMachineSizeTypesStandardMSixFourNegativeThreeTwoms,
-		"standard_m64ms":      VirtualMachineSizeTypesStandardMSixFourms,
-		"standard_m64s":       VirtualMachineSizeTypesStandardMSixFours,
-		"standard_nc12":       VirtualMachineSizeTypesStandardNCOneTwo,
-		"standard_nc12s_v3":   VirtualMachineSizeTypesStandardNCOneTwosVThree,
-		"standard_nc12s_v2":   VirtualMachineSizeTypesStandardNCOneTwosVTwo,
-		"standard_nc6":        VirtualMachineSizeTypesStandardNCSix,
-		"standard_nc6s_v3":    VirtualMachineSizeTypesStandardNCSixsVThree,
-		"standard_nc6s_v2":    VirtualMachineSizeTypesStandardNCSixsVTwo,
-		"standard_nc24":       VirtualMachineSizeTypesStandardNCTwoFour,
-		"standard_nc24r":      VirtualMachineSizeTypesStandardNCTwoFourr,
-		"standard_nc24rs_v3":  VirtualMachineSizeTypesStandardNCTwoFourrsVThree,
-		"standard_nc24rs_v2":  VirtualMachineSizeTypesStandardNCTwoFourrsVTwo,
-		"standard_nc24s_v3":   VirtualMachineSizeTypesStandardNCTwoFoursVThree,
-		"standard_nc24s_v2":   VirtualMachineSizeTypesStandardNCTwoFoursVTwo,
-		"standard_nd12s":      VirtualMachineSizeTypesStandardNDOneTwos,
-		"standard_nd6s":       VirtualMachineSizeTypesStandardNDSixs,
-		"standard_nd24rs":     VirtualMachineSizeTypesStandardNDTwoFourrs,
-		"standard_nd24s":      VirtualMachineSizeTypesStandardNDTwoFours,
-		"standard_nv12":       VirtualMachineSizeTypesStandardNVOneTwo,
-		"standard_nv6":        VirtualMachineSizeTypesStandardNVSix,
-		"standard_nv24":       VirtualMachineSizeTypesStandardNVTwoFour,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := VirtualMachineSizeTypes(input)
-	return &out, nil
-}
-
 type WindowsPatchAssessmentMode string
 
 const (
@@ -1314,20 +749,6 @@ func PossibleValuesForWindowsPatchAssessmentMode() []string {
 		string(WindowsPatchAssessmentModeAutomaticByPlatform),
 		string(WindowsPatchAssessmentModeImageDefault),
 	}
-}
-
-func parseWindowsPatchAssessmentMode(input string) (*WindowsPatchAssessmentMode, error) {
-	vals := map[string]WindowsPatchAssessmentMode{
-		"automaticbyplatform": WindowsPatchAssessmentModeAutomaticByPlatform,
-		"imagedefault":        WindowsPatchAssessmentModeImageDefault,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := WindowsPatchAssessmentMode(input)
-	return &out, nil
 }
 
 type WindowsVMGuestPatchAutomaticByPlatformRebootSetting string
@@ -1348,22 +769,6 @@ func PossibleValuesForWindowsVMGuestPatchAutomaticByPlatformRebootSetting() []st
 	}
 }
 
-func parseWindowsVMGuestPatchAutomaticByPlatformRebootSetting(input string) (*WindowsVMGuestPatchAutomaticByPlatformRebootSetting, error) {
-	vals := map[string]WindowsVMGuestPatchAutomaticByPlatformRebootSetting{
-		"always":     WindowsVMGuestPatchAutomaticByPlatformRebootSettingAlways,
-		"ifrequired": WindowsVMGuestPatchAutomaticByPlatformRebootSettingIfRequired,
-		"never":      WindowsVMGuestPatchAutomaticByPlatformRebootSettingNever,
-		"unknown":    WindowsVMGuestPatchAutomaticByPlatformRebootSettingUnknown,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := WindowsVMGuestPatchAutomaticByPlatformRebootSetting(input)
-	return &out, nil
-}
-
 type WindowsVMGuestPatchMode string
 
 const (
@@ -1378,19 +783,4 @@ func PossibleValuesForWindowsVMGuestPatchMode() []string {
 		string(WindowsVMGuestPatchModeAutomaticByPlatform),
 		string(WindowsVMGuestPatchModeManual),
 	}
-}
-
-func parseWindowsVMGuestPatchMode(input string) (*WindowsVMGuestPatchMode, error) {
-	vals := map[string]WindowsVMGuestPatchMode{
-		"automaticbyos":       WindowsVMGuestPatchModeAutomaticByOS,
-		"automaticbyplatform": WindowsVMGuestPatchModeAutomaticByPlatform,
-		"manual":              WindowsVMGuestPatchModeManual,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := WindowsVMGuestPatchMode(input)
-	return &out, nil
 }

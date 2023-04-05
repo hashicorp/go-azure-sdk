@@ -1,7 +1,5 @@
 package softwareupdateconfiguration
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -23,22 +21,6 @@ func PossibleValuesForLinuxUpdateClasses() []string {
 	}
 }
 
-func parseLinuxUpdateClasses(input string) (*LinuxUpdateClasses, error) {
-	vals := map[string]LinuxUpdateClasses{
-		"critical":     LinuxUpdateClassesCritical,
-		"other":        LinuxUpdateClassesOther,
-		"security":     LinuxUpdateClassesSecurity,
-		"unclassified": LinuxUpdateClassesUnclassified,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := LinuxUpdateClasses(input)
-	return &out, nil
-}
-
 type OperatingSystemType string
 
 const (
@@ -51,20 +33,6 @@ func PossibleValuesForOperatingSystemType() []string {
 		string(OperatingSystemTypeLinux),
 		string(OperatingSystemTypeWindows),
 	}
-}
-
-func parseOperatingSystemType(input string) (*OperatingSystemType, error) {
-	vals := map[string]OperatingSystemType{
-		"linux":   OperatingSystemTypeLinux,
-		"windows": OperatingSystemTypeWindows,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := OperatingSystemType(input)
-	return &out, nil
 }
 
 type ScheduleDay string
@@ -91,25 +59,6 @@ func PossibleValuesForScheduleDay() []string {
 	}
 }
 
-func parseScheduleDay(input string) (*ScheduleDay, error) {
-	vals := map[string]ScheduleDay{
-		"friday":    ScheduleDayFriday,
-		"monday":    ScheduleDayMonday,
-		"saturday":  ScheduleDaySaturday,
-		"sunday":    ScheduleDaySunday,
-		"thursday":  ScheduleDayThursday,
-		"tuesday":   ScheduleDayTuesday,
-		"wednesday": ScheduleDayWednesday,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ScheduleDay(input)
-	return &out, nil
-}
-
 type ScheduleFrequency string
 
 const (
@@ -132,24 +81,6 @@ func PossibleValuesForScheduleFrequency() []string {
 	}
 }
 
-func parseScheduleFrequency(input string) (*ScheduleFrequency, error) {
-	vals := map[string]ScheduleFrequency{
-		"day":     ScheduleFrequencyDay,
-		"hour":    ScheduleFrequencyHour,
-		"minute":  ScheduleFrequencyMinute,
-		"month":   ScheduleFrequencyMonth,
-		"onetime": ScheduleFrequencyOneTime,
-		"week":    ScheduleFrequencyWeek,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ScheduleFrequency(input)
-	return &out, nil
-}
-
 type TagOperators string
 
 const (
@@ -162,20 +93,6 @@ func PossibleValuesForTagOperators() []string {
 		string(TagOperatorsAll),
 		string(TagOperatorsAny),
 	}
-}
-
-func parseTagOperators(input string) (*TagOperators, error) {
-	vals := map[string]TagOperators{
-		"all": TagOperatorsAll,
-		"any": TagOperatorsAny,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := TagOperators(input)
-	return &out, nil
 }
 
 type WindowsUpdateClasses string
@@ -204,25 +121,4 @@ func PossibleValuesForWindowsUpdateClasses() []string {
 		string(WindowsUpdateClassesUpdateRollup),
 		string(WindowsUpdateClassesUpdates),
 	}
-}
-
-func parseWindowsUpdateClasses(input string) (*WindowsUpdateClasses, error) {
-	vals := map[string]WindowsUpdateClasses{
-		"critical":     WindowsUpdateClassesCritical,
-		"definition":   WindowsUpdateClassesDefinition,
-		"featurepack":  WindowsUpdateClassesFeaturePack,
-		"security":     WindowsUpdateClassesSecurity,
-		"servicepack":  WindowsUpdateClassesServicePack,
-		"tools":        WindowsUpdateClassesTools,
-		"unclassified": WindowsUpdateClassesUnclassified,
-		"updaterollup": WindowsUpdateClassesUpdateRollup,
-		"updates":      WindowsUpdateClassesUpdates,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := WindowsUpdateClasses(input)
-	return &out, nil
 }

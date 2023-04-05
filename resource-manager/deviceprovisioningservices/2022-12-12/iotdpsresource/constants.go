@@ -1,7 +1,5 @@
 package iotdpsresource
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -27,24 +25,6 @@ func PossibleValuesForAccessRightsDescription() []string {
 	}
 }
 
-func parseAccessRightsDescription(input string) (*AccessRightsDescription, error) {
-	vals := map[string]AccessRightsDescription{
-		"deviceconnect":           AccessRightsDescriptionDeviceConnect,
-		"enrollmentread":          AccessRightsDescriptionEnrollmentRead,
-		"enrollmentwrite":         AccessRightsDescriptionEnrollmentWrite,
-		"registrationstatusread":  AccessRightsDescriptionRegistrationStatusRead,
-		"registrationstatuswrite": AccessRightsDescriptionRegistrationStatusWrite,
-		"serviceconfig":           AccessRightsDescriptionServiceConfig,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := AccessRightsDescription(input)
-	return &out, nil
-}
-
 type AllocationPolicy string
 
 const (
@@ -61,21 +41,6 @@ func PossibleValuesForAllocationPolicy() []string {
 	}
 }
 
-func parseAllocationPolicy(input string) (*AllocationPolicy, error) {
-	vals := map[string]AllocationPolicy{
-		"geolatency": AllocationPolicyGeoLatency,
-		"hashed":     AllocationPolicyHashed,
-		"static":     AllocationPolicyStatic,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := AllocationPolicy(input)
-	return &out, nil
-}
-
 type IPFilterActionType string
 
 const (
@@ -88,20 +53,6 @@ func PossibleValuesForIPFilterActionType() []string {
 		string(IPFilterActionTypeAccept),
 		string(IPFilterActionTypeReject),
 	}
-}
-
-func parseIPFilterActionType(input string) (*IPFilterActionType, error) {
-	vals := map[string]IPFilterActionType{
-		"accept": IPFilterActionTypeAccept,
-		"reject": IPFilterActionTypeReject,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := IPFilterActionType(input)
-	return &out, nil
 }
 
 type IPFilterTargetType string
@@ -120,21 +71,6 @@ func PossibleValuesForIPFilterTargetType() []string {
 	}
 }
 
-func parseIPFilterTargetType(input string) (*IPFilterTargetType, error) {
-	vals := map[string]IPFilterTargetType{
-		"all":        IPFilterTargetTypeAll,
-		"deviceapi":  IPFilterTargetTypeDeviceApi,
-		"serviceapi": IPFilterTargetTypeServiceApi,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := IPFilterTargetType(input)
-	return &out, nil
-}
-
 type IotDpsSku string
 
 const (
@@ -145,19 +81,6 @@ func PossibleValuesForIotDpsSku() []string {
 	return []string{
 		string(IotDpsSkuSOne),
 	}
-}
-
-func parseIotDpsSku(input string) (*IotDpsSku, error) {
-	vals := map[string]IotDpsSku{
-		"s1": IotDpsSkuSOne,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := IotDpsSku(input)
-	return &out, nil
 }
 
 type NameUnavailabilityReason string
@@ -172,20 +95,6 @@ func PossibleValuesForNameUnavailabilityReason() []string {
 		string(NameUnavailabilityReasonAlreadyExists),
 		string(NameUnavailabilityReasonInvalid),
 	}
-}
-
-func parseNameUnavailabilityReason(input string) (*NameUnavailabilityReason, error) {
-	vals := map[string]NameUnavailabilityReason{
-		"alreadyexists": NameUnavailabilityReasonAlreadyExists,
-		"invalid":       NameUnavailabilityReasonInvalid,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := NameUnavailabilityReason(input)
-	return &out, nil
 }
 
 type PrivateLinkServiceConnectionStatus string
@@ -206,22 +115,6 @@ func PossibleValuesForPrivateLinkServiceConnectionStatus() []string {
 	}
 }
 
-func parsePrivateLinkServiceConnectionStatus(input string) (*PrivateLinkServiceConnectionStatus, error) {
-	vals := map[string]PrivateLinkServiceConnectionStatus{
-		"approved":     PrivateLinkServiceConnectionStatusApproved,
-		"disconnected": PrivateLinkServiceConnectionStatusDisconnected,
-		"pending":      PrivateLinkServiceConnectionStatusPending,
-		"rejected":     PrivateLinkServiceConnectionStatusRejected,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PrivateLinkServiceConnectionStatus(input)
-	return &out, nil
-}
-
 type PublicNetworkAccess string
 
 const (
@@ -234,20 +127,6 @@ func PossibleValuesForPublicNetworkAccess() []string {
 		string(PublicNetworkAccessDisabled),
 		string(PublicNetworkAccessEnabled),
 	}
-}
-
-func parsePublicNetworkAccess(input string) (*PublicNetworkAccess, error) {
-	vals := map[string]PublicNetworkAccess{
-		"disabled": PublicNetworkAccessDisabled,
-		"enabled":  PublicNetworkAccessEnabled,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PublicNetworkAccess(input)
-	return &out, nil
 }
 
 type State string
@@ -282,28 +161,4 @@ func PossibleValuesForState() []string {
 		string(StateSuspending),
 		string(StateTransitioning),
 	}
-}
-
-func parseState(input string) (*State, error) {
-	vals := map[string]State{
-		"activating":       StateActivating,
-		"activationfailed": StateActivationFailed,
-		"active":           StateActive,
-		"deleted":          StateDeleted,
-		"deleting":         StateDeleting,
-		"deletionfailed":   StateDeletionFailed,
-		"failingover":      StateFailingOver,
-		"failoverfailed":   StateFailoverFailed,
-		"resuming":         StateResuming,
-		"suspended":        StateSuspended,
-		"suspending":       StateSuspending,
-		"transitioning":    StateTransitioning,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := State(input)
-	return &out, nil
 }

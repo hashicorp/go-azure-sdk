@@ -1,7 +1,5 @@
 package privateclouds
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -25,23 +23,6 @@ func PossibleValuesForClusterProvisioningState() []string {
 	}
 }
 
-func parseClusterProvisioningState(input string) (*ClusterProvisioningState, error) {
-	vals := map[string]ClusterProvisioningState{
-		"cancelled": ClusterProvisioningStateCancelled,
-		"deleting":  ClusterProvisioningStateDeleting,
-		"failed":    ClusterProvisioningStateFailed,
-		"succeeded": ClusterProvisioningStateSucceeded,
-		"updating":  ClusterProvisioningStateUpdating,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ClusterProvisioningState(input)
-	return &out, nil
-}
-
 type InternetEnum string
 
 const (
@@ -54,20 +35,6 @@ func PossibleValuesForInternetEnum() []string {
 		string(InternetEnumDisabled),
 		string(InternetEnumEnabled),
 	}
-}
-
-func parseInternetEnum(input string) (*InternetEnum, error) {
-	vals := map[string]InternetEnum{
-		"disabled": InternetEnumDisabled,
-		"enabled":  InternetEnumEnabled,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := InternetEnum(input)
-	return &out, nil
 }
 
 type PrivateCloudProvisioningState string
@@ -94,25 +61,6 @@ func PossibleValuesForPrivateCloudProvisioningState() []string {
 	}
 }
 
-func parsePrivateCloudProvisioningState(input string) (*PrivateCloudProvisioningState, error) {
-	vals := map[string]PrivateCloudProvisioningState{
-		"building":  PrivateCloudProvisioningStateBuilding,
-		"cancelled": PrivateCloudProvisioningStateCancelled,
-		"deleting":  PrivateCloudProvisioningStateDeleting,
-		"failed":    PrivateCloudProvisioningStateFailed,
-		"pending":   PrivateCloudProvisioningStatePending,
-		"succeeded": PrivateCloudProvisioningStateSucceeded,
-		"updating":  PrivateCloudProvisioningStateUpdating,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := PrivateCloudProvisioningState(input)
-	return &out, nil
-}
-
 type SslEnum string
 
 const (
@@ -125,18 +73,4 @@ func PossibleValuesForSslEnum() []string {
 		string(SslEnumDisabled),
 		string(SslEnumEnabled),
 	}
-}
-
-func parseSslEnum(input string) (*SslEnum, error) {
-	vals := map[string]SslEnum{
-		"disabled": SslEnumDisabled,
-		"enabled":  SslEnumEnabled,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SslEnum(input)
-	return &out, nil
 }

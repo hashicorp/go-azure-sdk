@@ -1,7 +1,5 @@
 package timeseriesdatabaseconnections
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -17,19 +15,6 @@ func PossibleValuesForConnectionType() []string {
 	}
 }
 
-func parseConnectionType(input string) (*ConnectionType, error) {
-	vals := map[string]ConnectionType{
-		"azuredataexplorer": ConnectionTypeAzureDataExplorer,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ConnectionType(input)
-	return &out, nil
-}
-
 type IdentityType string
 
 const (
@@ -42,20 +27,6 @@ func PossibleValuesForIdentityType() []string {
 		string(IdentityTypeSystemAssigned),
 		string(IdentityTypeUserAssigned),
 	}
-}
-
-func parseIdentityType(input string) (*IdentityType, error) {
-	vals := map[string]IdentityType{
-		"systemassigned": IdentityTypeSystemAssigned,
-		"userassigned":   IdentityTypeUserAssigned,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := IdentityType(input)
-	return &out, nil
 }
 
 type TimeSeriesDatabaseConnectionState string
@@ -90,28 +61,4 @@ func PossibleValuesForTimeSeriesDatabaseConnectionState() []string {
 		string(TimeSeriesDatabaseConnectionStateUpdating),
 		string(TimeSeriesDatabaseConnectionStateWarning),
 	}
-}
-
-func parseTimeSeriesDatabaseConnectionState(input string) (*TimeSeriesDatabaseConnectionState, error) {
-	vals := map[string]TimeSeriesDatabaseConnectionState{
-		"canceled":     TimeSeriesDatabaseConnectionStateCanceled,
-		"deleted":      TimeSeriesDatabaseConnectionStateDeleted,
-		"deleting":     TimeSeriesDatabaseConnectionStateDeleting,
-		"disabled":     TimeSeriesDatabaseConnectionStateDisabled,
-		"failed":       TimeSeriesDatabaseConnectionStateFailed,
-		"moving":       TimeSeriesDatabaseConnectionStateMoving,
-		"provisioning": TimeSeriesDatabaseConnectionStateProvisioning,
-		"restoring":    TimeSeriesDatabaseConnectionStateRestoring,
-		"succeeded":    TimeSeriesDatabaseConnectionStateSucceeded,
-		"suspending":   TimeSeriesDatabaseConnectionStateSuspending,
-		"updating":     TimeSeriesDatabaseConnectionStateUpdating,
-		"warning":      TimeSeriesDatabaseConnectionStateWarning,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := TimeSeriesDatabaseConnectionState(input)
-	return &out, nil
 }

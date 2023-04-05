@@ -1,7 +1,5 @@
 package sharedprivatelinkresources
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -25,23 +23,6 @@ func PossibleValuesForSharedPrivateLinkResourceProvisioningState() []string {
 	}
 }
 
-func parseSharedPrivateLinkResourceProvisioningState(input string) (*SharedPrivateLinkResourceProvisioningState, error) {
-	vals := map[string]SharedPrivateLinkResourceProvisioningState{
-		"deleting":   SharedPrivateLinkResourceProvisioningStateDeleting,
-		"failed":     SharedPrivateLinkResourceProvisioningStateFailed,
-		"incomplete": SharedPrivateLinkResourceProvisioningStateIncomplete,
-		"succeeded":  SharedPrivateLinkResourceProvisioningStateSucceeded,
-		"updating":   SharedPrivateLinkResourceProvisioningStateUpdating,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SharedPrivateLinkResourceProvisioningState(input)
-	return &out, nil
-}
-
 type SharedPrivateLinkResourceStatus string
 
 const (
@@ -58,20 +39,4 @@ func PossibleValuesForSharedPrivateLinkResourceStatus() []string {
 		string(SharedPrivateLinkResourceStatusPending),
 		string(SharedPrivateLinkResourceStatusRejected),
 	}
-}
-
-func parseSharedPrivateLinkResourceStatus(input string) (*SharedPrivateLinkResourceStatus, error) {
-	vals := map[string]SharedPrivateLinkResourceStatus{
-		"approved":     SharedPrivateLinkResourceStatusApproved,
-		"disconnected": SharedPrivateLinkResourceStatusDisconnected,
-		"pending":      SharedPrivateLinkResourceStatusPending,
-		"rejected":     SharedPrivateLinkResourceStatusRejected,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SharedPrivateLinkResourceStatus(input)
-	return &out, nil
 }

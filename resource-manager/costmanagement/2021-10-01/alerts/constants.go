@@ -1,7 +1,5 @@
 package alerts
 
-import "strings"
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -21,22 +19,6 @@ func PossibleValuesForAlertCategory() []string {
 		string(AlertCategorySystem),
 		string(AlertCategoryUsage),
 	}
-}
-
-func parseAlertCategory(input string) (*AlertCategory, error) {
-	vals := map[string]AlertCategory{
-		"billing": AlertCategoryBilling,
-		"cost":    AlertCategoryCost,
-		"system":  AlertCategorySystem,
-		"usage":   AlertCategoryUsage,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := AlertCategory(input)
-	return &out, nil
 }
 
 type AlertCriteria string
@@ -77,32 +59,6 @@ func PossibleValuesForAlertCriteria() []string {
 	}
 }
 
-func parseAlertCriteria(input string) (*AlertCriteria, error) {
-	vals := map[string]AlertCriteria{
-		"costthresholdexceeded":          AlertCriteriaCostThresholdExceeded,
-		"creditthresholdapproaching":     AlertCriteriaCreditThresholdApproaching,
-		"creditthresholdreached":         AlertCriteriaCreditThresholdReached,
-		"crosscloudcollectionerror":      AlertCriteriaCrossCloudCollectionError,
-		"crosscloudnewdataavailable":     AlertCriteriaCrossCloudNewDataAvailable,
-		"forecastcostthresholdexceeded":  AlertCriteriaForecastCostThresholdExceeded,
-		"forecastusagethresholdexceeded": AlertCriteriaForecastUsageThresholdExceeded,
-		"generalthresholderror":          AlertCriteriaGeneralThresholdError,
-		"invoiceduedateapproaching":      AlertCriteriaInvoiceDueDateApproaching,
-		"invoiceduedatereached":          AlertCriteriaInvoiceDueDateReached,
-		"multicurrency":                  AlertCriteriaMultiCurrency,
-		"quotathresholdapproaching":      AlertCriteriaQuotaThresholdApproaching,
-		"quotathresholdreached":          AlertCriteriaQuotaThresholdReached,
-		"usagethresholdexceeded":         AlertCriteriaUsageThresholdExceeded,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := AlertCriteria(input)
-	return &out, nil
-}
-
 type AlertOperator string
 
 const (
@@ -125,24 +81,6 @@ func PossibleValuesForAlertOperator() []string {
 	}
 }
 
-func parseAlertOperator(input string) (*AlertOperator, error) {
-	vals := map[string]AlertOperator{
-		"equalto":              AlertOperatorEqualTo,
-		"greaterthan":          AlertOperatorGreaterThan,
-		"greaterthanorequalto": AlertOperatorGreaterThanOrEqualTo,
-		"lessthan":             AlertOperatorLessThan,
-		"lessthanorequalto":    AlertOperatorLessThanOrEqualTo,
-		"none":                 AlertOperatorNone,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := AlertOperator(input)
-	return &out, nil
-}
-
 type AlertSource string
 
 const (
@@ -155,20 +93,6 @@ func PossibleValuesForAlertSource() []string {
 		string(AlertSourcePreset),
 		string(AlertSourceUser),
 	}
-}
-
-func parseAlertSource(input string) (*AlertSource, error) {
-	vals := map[string]AlertSource{
-		"preset": AlertSourcePreset,
-		"user":   AlertSourceUser,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := AlertSource(input)
-	return &out, nil
 }
 
 type AlertStatus string
@@ -189,23 +113,6 @@ func PossibleValuesForAlertStatus() []string {
 		string(AlertStatusOverridden),
 		string(AlertStatusResolved),
 	}
-}
-
-func parseAlertStatus(input string) (*AlertStatus, error) {
-	vals := map[string]AlertStatus{
-		"active":     AlertStatusActive,
-		"dismissed":  AlertStatusDismissed,
-		"none":       AlertStatusNone,
-		"overridden": AlertStatusOverridden,
-		"resolved":   AlertStatusResolved,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := AlertStatus(input)
-	return &out, nil
 }
 
 type AlertTimeGrainType string
@@ -232,25 +139,6 @@ func PossibleValuesForAlertTimeGrainType() []string {
 	}
 }
 
-func parseAlertTimeGrainType(input string) (*AlertTimeGrainType, error) {
-	vals := map[string]AlertTimeGrainType{
-		"annually":       AlertTimeGrainTypeAnnually,
-		"billingannual":  AlertTimeGrainTypeBillingAnnual,
-		"billingmonth":   AlertTimeGrainTypeBillingMonth,
-		"billingquarter": AlertTimeGrainTypeBillingQuarter,
-		"monthly":        AlertTimeGrainTypeMonthly,
-		"none":           AlertTimeGrainTypeNone,
-		"quarterly":      AlertTimeGrainTypeQuarterly,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := AlertTimeGrainType(input)
-	return &out, nil
-}
-
 type AlertType string
 
 const (
@@ -275,25 +163,6 @@ func PossibleValuesForAlertType() []string {
 	}
 }
 
-func parseAlertType(input string) (*AlertType, error) {
-	vals := map[string]AlertType{
-		"budget":         AlertTypeBudget,
-		"budgetforecast": AlertTypeBudgetForecast,
-		"credit":         AlertTypeCredit,
-		"general":        AlertTypeGeneral,
-		"invoice":        AlertTypeInvoice,
-		"quota":          AlertTypeQuota,
-		"xcloud":         AlertTypeXCloud,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := AlertType(input)
-	return &out, nil
-}
-
 type ExternalCloudProviderType string
 
 const (
@@ -306,18 +175,4 @@ func PossibleValuesForExternalCloudProviderType() []string {
 		string(ExternalCloudProviderTypeExternalBillingAccounts),
 		string(ExternalCloudProviderTypeExternalSubscriptions),
 	}
-}
-
-func parseExternalCloudProviderType(input string) (*ExternalCloudProviderType, error) {
-	vals := map[string]ExternalCloudProviderType{
-		"externalbillingaccounts": ExternalCloudProviderTypeExternalBillingAccounts,
-		"externalsubscriptions":   ExternalCloudProviderTypeExternalSubscriptions,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := ExternalCloudProviderType(input)
-	return &out, nil
 }
