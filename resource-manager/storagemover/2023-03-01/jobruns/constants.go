@@ -1,6 +1,10 @@
 package jobruns
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -19,6 +23,19 @@ func PossibleValuesForJobRunScanStatus() []string {
 		string(JobRunScanStatusNotStarted),
 		string(JobRunScanStatusScanning),
 	}
+}
+
+func (s *JobRunScanStatus) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseJobRunScanStatus(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseJobRunScanStatus(input string) (*JobRunScanStatus, error) {
@@ -62,6 +79,19 @@ func PossibleValuesForJobRunStatus() []string {
 	}
 }
 
+func (s *JobRunStatus) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseJobRunStatus(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseJobRunStatus(input string) (*JobRunStatus, error) {
 	vals := map[string]JobRunStatus{
 		"cancelrequested": JobRunStatusCancelRequested,
@@ -92,6 +122,19 @@ func PossibleValuesForProvisioningState() []string {
 	return []string{
 		string(ProvisioningStateSucceeded),
 	}
+}
+
+func (s *ProvisioningState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseProvisioningState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseProvisioningState(input string) (*ProvisioningState, error) {

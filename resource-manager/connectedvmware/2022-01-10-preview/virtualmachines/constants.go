@@ -1,6 +1,10 @@
 package virtualmachines
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -19,6 +23,19 @@ func PossibleValuesForDiskMode() []string {
 		string(DiskModeIndependentPersistent),
 		string(DiskModePersistent),
 	}
+}
+
+func (s *DiskMode) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseDiskMode(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseDiskMode(input string) (*DiskMode, error) {
@@ -60,6 +77,19 @@ func PossibleValuesForDiskType() []string {
 	}
 }
 
+func (s *DiskType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseDiskType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseDiskType(input string) (*DiskType, error) {
 	vals := map[string]DiskType{
 		"flat":        DiskTypeFlat,
@@ -91,6 +121,19 @@ func PossibleValuesForFirmwareType() []string {
 		string(FirmwareTypeBios),
 		string(FirmwareTypeEfi),
 	}
+}
+
+func (s *FirmwareType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseFirmwareType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseFirmwareType(input string) (*FirmwareType, error) {
@@ -127,6 +170,19 @@ func PossibleValuesForIPAddressAllocationMethod() []string {
 		string(IPAddressAllocationMethodStatic),
 		string(IPAddressAllocationMethodUnset),
 	}
+}
+
+func (s *IPAddressAllocationMethod) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseIPAddressAllocationMethod(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseIPAddressAllocationMethod(input string) (*IPAddressAllocationMethod, error) {
@@ -169,6 +225,19 @@ func PossibleValuesForNICType() []string {
 	}
 }
 
+func (s *NICType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseNICType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseNICType(input string) (*NICType, error) {
 	vals := map[string]NICType{
 		"e1000":   NICTypeEOneThousand,
@@ -203,6 +272,19 @@ func PossibleValuesForOsType() []string {
 	}
 }
 
+func (s *OsType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseOsType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseOsType(input string) (*OsType, error) {
 	vals := map[string]OsType{
 		"linux":   OsTypeLinux,
@@ -232,6 +314,19 @@ func PossibleValuesForOsTypeUM() []string {
 	}
 }
 
+func (s *OsTypeUM) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseOsTypeUM(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseOsTypeUM(input string) (*OsTypeUM, error) {
 	vals := map[string]OsTypeUM{
 		"linux":   OsTypeUMLinux,
@@ -258,6 +353,19 @@ func PossibleValuesForPatchOperationStartedBy() []string {
 		string(PatchOperationStartedByPlatform),
 		string(PatchOperationStartedByUser),
 	}
+}
+
+func (s *PatchOperationStartedBy) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parsePatchOperationStartedBy(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parsePatchOperationStartedBy(input string) (*PatchOperationStartedBy, error) {
@@ -292,6 +400,19 @@ func PossibleValuesForPatchOperationStatus() []string {
 		string(PatchOperationStatusSucceeded),
 		string(PatchOperationStatusUnknown),
 	}
+}
+
+func (s *PatchOperationStatus) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parsePatchOperationStatus(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parsePatchOperationStatus(input string) (*PatchOperationStatus, error) {
@@ -333,6 +454,19 @@ func PossibleValuesForPatchServiceUsed() []string {
 	}
 }
 
+func (s *PatchServiceUsed) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parsePatchServiceUsed(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parsePatchServiceUsed(input string) (*PatchServiceUsed, error) {
 	vals := map[string]PatchServiceUsed{
 		"apt":     PatchServiceUsedAPT,
@@ -363,6 +497,19 @@ func PossibleValuesForPowerOnBootOption() []string {
 		string(PowerOnBootOptionDisabled),
 		string(PowerOnBootOptionEnabled),
 	}
+}
+
+func (s *PowerOnBootOption) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parsePowerOnBootOption(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parsePowerOnBootOption(input string) (*PowerOnBootOption, error) {
@@ -397,6 +544,19 @@ func PossibleValuesForSCSIControllerType() []string {
 	}
 }
 
+func (s *SCSIControllerType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseSCSIControllerType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseSCSIControllerType(input string) (*SCSIControllerType, error) {
 	vals := map[string]SCSIControllerType{
 		"buslogic":    SCSIControllerTypeBuslogic,
@@ -429,6 +589,19 @@ func PossibleValuesForStatusTypes() []string {
 	}
 }
 
+func (s *StatusTypes) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseStatusTypes(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseStatusTypes(input string) (*StatusTypes, error) {
 	vals := map[string]StatusTypes{
 		"connected":    StatusTypesConnected,
@@ -458,6 +631,19 @@ func PossibleValuesForVMGuestPatchClassificationLinux() []string {
 		string(VMGuestPatchClassificationLinuxOther),
 		string(VMGuestPatchClassificationLinuxSecurity),
 	}
+}
+
+func (s *VMGuestPatchClassificationLinux) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseVMGuestPatchClassificationLinux(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseVMGuestPatchClassificationLinux(input string) (*VMGuestPatchClassificationLinux, error) {
@@ -501,6 +687,19 @@ func PossibleValuesForVMGuestPatchClassificationWindows() []string {
 	}
 }
 
+func (s *VMGuestPatchClassificationWindows) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseVMGuestPatchClassificationWindows(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseVMGuestPatchClassificationWindows(input string) (*VMGuestPatchClassificationWindows, error) {
 	vals := map[string]VMGuestPatchClassificationWindows{
 		"critical":     VMGuestPatchClassificationWindowsCritical,
@@ -535,6 +734,19 @@ func PossibleValuesForVMGuestPatchRebootSetting() []string {
 		string(VMGuestPatchRebootSettingIfRequired),
 		string(VMGuestPatchRebootSettingNever),
 	}
+}
+
+func (s *VMGuestPatchRebootSetting) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseVMGuestPatchRebootSetting(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseVMGuestPatchRebootSetting(input string) (*VMGuestPatchRebootSetting, error) {
@@ -574,6 +786,19 @@ func PossibleValuesForVMGuestPatchRebootStatus() []string {
 	}
 }
 
+func (s *VMGuestPatchRebootStatus) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseVMGuestPatchRebootStatus(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseVMGuestPatchRebootStatus(input string) (*VMGuestPatchRebootStatus, error) {
 	vals := map[string]VMGuestPatchRebootStatus{
 		"completed": VMGuestPatchRebootStatusCompleted,
@@ -606,6 +831,19 @@ func PossibleValuesForVirtualSCSISharing() []string {
 		string(VirtualSCSISharingPhysicalSharing),
 		string(VirtualSCSISharingVirtualSharing),
 	}
+}
+
+func (s *VirtualSCSISharing) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseVirtualSCSISharing(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseVirtualSCSISharing(input string) (*VirtualSCSISharing, error) {
