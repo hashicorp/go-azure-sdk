@@ -17,19 +17,6 @@ func PossibleValuesForAvailabilityStatus() []int64 {
 	}
 }
 
-func parseAvailabilityStatus(input int64) (*AvailabilityStatus, error) {
-	vals := map[int64]AvailabilityStatus{
-		1: AvailabilityStatusOne,
-	}
-	if v, ok := vals[input]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := AvailabilityStatus(input)
-	return &out, nil
-}
-
 type ConnectivityType string
 
 const (

@@ -1,6 +1,10 @@
 package virtualmachinetemplates
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -19,6 +23,19 @@ func PossibleValuesForDiskMode() []string {
 		string(DiskModeIndependentPersistent),
 		string(DiskModePersistent),
 	}
+}
+
+func (s *DiskMode) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseDiskMode(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseDiskMode(input string) (*DiskMode, error) {
@@ -60,6 +77,19 @@ func PossibleValuesForDiskType() []string {
 	}
 }
 
+func (s *DiskType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseDiskType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseDiskType(input string) (*DiskType, error) {
 	vals := map[string]DiskType{
 		"flat":        DiskTypeFlat,
@@ -91,6 +121,19 @@ func PossibleValuesForFirmwareType() []string {
 		string(FirmwareTypeBios),
 		string(FirmwareTypeEfi),
 	}
+}
+
+func (s *FirmwareType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseFirmwareType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseFirmwareType(input string) (*FirmwareType, error) {
@@ -127,6 +170,19 @@ func PossibleValuesForIPAddressAllocationMethod() []string {
 		string(IPAddressAllocationMethodStatic),
 		string(IPAddressAllocationMethodUnset),
 	}
+}
+
+func (s *IPAddressAllocationMethod) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseIPAddressAllocationMethod(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseIPAddressAllocationMethod(input string) (*IPAddressAllocationMethod, error) {
@@ -169,6 +225,19 @@ func PossibleValuesForNICType() []string {
 	}
 }
 
+func (s *NICType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseNICType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseNICType(input string) (*NICType, error) {
 	vals := map[string]NICType{
 		"e1000":   NICTypeEOneThousand,
@@ -203,6 +272,19 @@ func PossibleValuesForOsType() []string {
 	}
 }
 
+func (s *OsType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseOsType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseOsType(input string) (*OsType, error) {
 	vals := map[string]OsType{
 		"linux":   OsTypeLinux,
@@ -230,6 +312,19 @@ func PossibleValuesForPowerOnBootOption() []string {
 		string(PowerOnBootOptionDisabled),
 		string(PowerOnBootOptionEnabled),
 	}
+}
+
+func (s *PowerOnBootOption) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parsePowerOnBootOption(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parsePowerOnBootOption(input string) (*PowerOnBootOption, error) {

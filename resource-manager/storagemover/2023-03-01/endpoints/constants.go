@@ -1,6 +1,10 @@
 package endpoints
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -17,6 +21,19 @@ func PossibleValuesForEndpointType() []string {
 		string(EndpointTypeAzureStorageBlobContainer),
 		string(EndpointTypeNfsMount),
 	}
+}
+
+func (s *EndpointType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseEndpointType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseEndpointType(input string) (*EndpointType, error) {
@@ -49,6 +66,19 @@ func PossibleValuesForNfsVersion() []string {
 	}
 }
 
+func (s *NfsVersion) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseNfsVersion(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseNfsVersion(input string) (*NfsVersion, error) {
 	vals := map[string]NfsVersion{
 		"nfsauto": NfsVersionNFSauto,
@@ -74,6 +104,19 @@ func PossibleValuesForProvisioningState() []string {
 	return []string{
 		string(ProvisioningStateSucceeded),
 	}
+}
+
+func (s *ProvisioningState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseProvisioningState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseProvisioningState(input string) (*ProvisioningState, error) {
