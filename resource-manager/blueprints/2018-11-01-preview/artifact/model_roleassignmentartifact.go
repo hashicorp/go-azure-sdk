@@ -1,0 +1,44 @@
+package artifact
+
+import (
+	"encoding/json"
+	"fmt"
+)
+
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+var _ Artifact = RoleAssignmentArtifact{}
+
+type RoleAssignmentArtifact struct {
+	Properties RoleAssignmentArtifactProperties `json:"properties"`
+
+	// Fields inherited from Artifact
+	Id   *string `json:"id,omitempty"`
+	Name *string `json:"name,omitempty"`
+	Type *string `json:"type,omitempty"`
+}
+
+var _ json.Marshaler = RoleAssignmentArtifact{}
+
+func (s RoleAssignmentArtifact) MarshalJSON() ([]byte, error) {
+	type wrapper RoleAssignmentArtifact
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling RoleAssignmentArtifact: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err := json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling RoleAssignmentArtifact: %+v", err)
+	}
+	decoded["kind"] = "roleAssignment"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling RoleAssignmentArtifact: %+v", err)
+	}
+
+	return encoded, nil
+}
