@@ -1,6 +1,10 @@
 package alerts
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -21,6 +25,19 @@ func PossibleValuesForAlertCategory() []string {
 		string(AlertCategorySystem),
 		string(AlertCategoryUsage),
 	}
+}
+
+func (s *AlertCategory) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseAlertCategory(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseAlertCategory(input string) (*AlertCategory, error) {
@@ -77,6 +94,19 @@ func PossibleValuesForAlertCriteria() []string {
 	}
 }
 
+func (s *AlertCriteria) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseAlertCriteria(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseAlertCriteria(input string) (*AlertCriteria, error) {
 	vals := map[string]AlertCriteria{
 		"costthresholdexceeded":          AlertCriteriaCostThresholdExceeded,
@@ -125,6 +155,19 @@ func PossibleValuesForAlertOperator() []string {
 	}
 }
 
+func (s *AlertOperator) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseAlertOperator(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseAlertOperator(input string) (*AlertOperator, error) {
 	vals := map[string]AlertOperator{
 		"equalto":              AlertOperatorEqualTo,
@@ -155,6 +198,19 @@ func PossibleValuesForAlertSource() []string {
 		string(AlertSourcePreset),
 		string(AlertSourceUser),
 	}
+}
+
+func (s *AlertSource) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseAlertSource(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseAlertSource(input string) (*AlertSource, error) {
@@ -189,6 +245,19 @@ func PossibleValuesForAlertStatus() []string {
 		string(AlertStatusOverridden),
 		string(AlertStatusResolved),
 	}
+}
+
+func (s *AlertStatus) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseAlertStatus(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseAlertStatus(input string) (*AlertStatus, error) {
@@ -230,6 +299,19 @@ func PossibleValuesForAlertTimeGrainType() []string {
 		string(AlertTimeGrainTypeNone),
 		string(AlertTimeGrainTypeQuarterly),
 	}
+}
+
+func (s *AlertTimeGrainType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseAlertTimeGrainType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseAlertTimeGrainType(input string) (*AlertTimeGrainType, error) {
@@ -275,6 +357,19 @@ func PossibleValuesForAlertType() []string {
 	}
 }
 
+func (s *AlertType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseAlertType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseAlertType(input string) (*AlertType, error) {
 	vals := map[string]AlertType{
 		"budget":         AlertTypeBudget,
@@ -306,6 +401,19 @@ func PossibleValuesForExternalCloudProviderType() []string {
 		string(ExternalCloudProviderTypeExternalBillingAccounts),
 		string(ExternalCloudProviderTypeExternalSubscriptions),
 	}
+}
+
+func (s *ExternalCloudProviderType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseExternalCloudProviderType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseExternalCloudProviderType(input string) (*ExternalCloudProviderType, error) {

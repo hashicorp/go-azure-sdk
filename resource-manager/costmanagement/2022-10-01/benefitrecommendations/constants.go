@@ -1,6 +1,10 @@
 package benefitrecommendations
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -19,6 +23,19 @@ func PossibleValuesForBenefitKind() []string {
 		string(BenefitKindReservation),
 		string(BenefitKindSavingsPlan),
 	}
+}
+
+func (s *BenefitKind) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseBenefitKind(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseBenefitKind(input string) (*BenefitKind, error) {
@@ -52,6 +69,19 @@ func PossibleValuesForGrain() []string {
 	}
 }
 
+func (s *Grain) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseGrain(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseGrain(input string) (*Grain, error) {
 	vals := map[string]Grain{
 		"daily":   GrainDaily,
@@ -83,6 +113,19 @@ func PossibleValuesForLookBackPeriod() []string {
 	}
 }
 
+func (s *LookBackPeriod) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseLookBackPeriod(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseLookBackPeriod(input string) (*LookBackPeriod, error) {
 	vals := map[string]LookBackPeriod{
 		"last7days":  LookBackPeriodLastSevenDays,
@@ -112,6 +155,19 @@ func PossibleValuesForScope() []string {
 	}
 }
 
+func (s *Scope) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseScope(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseScope(input string) (*Scope, error) {
 	vals := map[string]Scope{
 		"shared": ScopeShared,
@@ -138,6 +194,19 @@ func PossibleValuesForTerm() []string {
 		string(TermPOneY),
 		string(TermPThreeY),
 	}
+}
+
+func (s *Term) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseTerm(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseTerm(input string) (*Term, error) {

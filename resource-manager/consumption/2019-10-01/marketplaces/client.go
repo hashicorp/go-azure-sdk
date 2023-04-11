@@ -1,18 +1,26 @@
 package marketplaces
 
-import "github.com/Azure/go-autorest/autorest"
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type MarketplacesClient struct {
-	Client  autorest.Client
-	baseUri string
+	Client *resourcemanager.Client
 }
 
-func NewMarketplacesClientWithBaseURI(endpoint string) MarketplacesClient {
-	return MarketplacesClient{
-		Client:  autorest.NewClientWithUserAgent(userAgent()),
-		baseUri: endpoint,
+func NewMarketplacesClientWithBaseURI(api environments.Api) (*MarketplacesClient, error) {
+	client, err := resourcemanager.NewResourceManagerClient(api, "marketplaces", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating MarketplacesClient: %+v", err)
 	}
+
+	return &MarketplacesClient{
+		Client: client,
+	}, nil
 }

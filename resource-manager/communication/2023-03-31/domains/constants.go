@@ -1,6 +1,10 @@
 package domains
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -19,6 +23,19 @@ func PossibleValuesForDomainManagement() []string {
 		string(DomainManagementCustomerManaged),
 		string(DomainManagementCustomerManagedInExchangeOnline),
 	}
+}
+
+func (s *DomainManagement) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseDomainManagement(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseDomainManagement(input string) (*DomainManagement, error) {
@@ -64,6 +81,19 @@ func PossibleValuesForDomainsProvisioningState() []string {
 	}
 }
 
+func (s *DomainsProvisioningState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseDomainsProvisioningState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseDomainsProvisioningState(input string) (*DomainsProvisioningState, error) {
 	vals := map[string]DomainsProvisioningState{
 		"canceled":  DomainsProvisioningStateCanceled,
@@ -97,6 +127,19 @@ func PossibleValuesForUserEngagementTracking() []string {
 		string(UserEngagementTrackingDisabled),
 		string(UserEngagementTrackingEnabled),
 	}
+}
+
+func (s *UserEngagementTracking) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseUserEngagementTracking(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseUserEngagementTracking(input string) (*UserEngagementTracking, error) {
@@ -135,6 +178,19 @@ func PossibleValuesForVerificationStatus() []string {
 	}
 }
 
+func (s *VerificationStatus) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseVerificationStatus(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseVerificationStatus(input string) (*VerificationStatus, error) {
 	vals := map[string]VerificationStatus{
 		"cancellationrequested":  VerificationStatusCancellationRequested,
@@ -171,6 +227,19 @@ func PossibleValuesForVerificationType() []string {
 		string(VerificationTypeDomain),
 		string(VerificationTypeSPF),
 	}
+}
+
+func (s *VerificationType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseVerificationType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseVerificationType(input string) (*VerificationType, error) {

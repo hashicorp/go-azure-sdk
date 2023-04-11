@@ -120,12 +120,14 @@ func parseManagedHsmSkuFamily(input string) (*ManagedHsmSkuFamily, error) {
 type ManagedHsmSkuName string
 
 const (
+	ManagedHsmSkuNameCustomBSix      ManagedHsmSkuName = "Custom_B6"
 	ManagedHsmSkuNameCustomBThreeTwo ManagedHsmSkuName = "Custom_B32"
 	ManagedHsmSkuNameStandardBOne    ManagedHsmSkuName = "Standard_B1"
 )
 
 func PossibleValuesForManagedHsmSkuName() []string {
 	return []string{
+		string(ManagedHsmSkuNameCustomBSix),
 		string(ManagedHsmSkuNameCustomBThreeTwo),
 		string(ManagedHsmSkuNameStandardBOne),
 	}
@@ -133,6 +135,7 @@ func PossibleValuesForManagedHsmSkuName() []string {
 
 func parseManagedHsmSkuName(input string) (*ManagedHsmSkuName, error) {
 	vals := map[string]ManagedHsmSkuName{
+		"custom_b6":   ManagedHsmSkuNameCustomBSix,
 		"custom_b32":  ManagedHsmSkuNameCustomBThreeTwo,
 		"standard_b1": ManagedHsmSkuNameStandardBOne,
 	}
