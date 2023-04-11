@@ -4,20 +4,25 @@ package v2022_06_01_preview
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 import (
-	"github.com/Azure/go-autorest/autorest"
+	"fmt"
+
 	"github.com/hashicorp/go-azure-sdk/resource-manager/costmanagement/2022-06-01-preview/scheduledactions"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
 	ScheduledActions *scheduledactions.ScheduledActionsClient
 }
 
-func NewClientWithBaseURI(endpoint string, configureAuthFunc func(c *autorest.Client)) Client {
-
-	scheduledActionsClient := scheduledactions.NewScheduledActionsClientWithBaseURI(endpoint)
-	configureAuthFunc(&scheduledActionsClient.Client)
-
-	return Client{
-		ScheduledActions: &scheduledActionsClient,
+func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+	scheduledActionsClient, err := scheduledactions.NewScheduledActionsClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building ScheduledActions client: %+v", err)
 	}
+	configureFunc(scheduledActionsClient.Client)
+
+	return &Client{
+		ScheduledActions: scheduledActionsClient,
+	}, nil
 }

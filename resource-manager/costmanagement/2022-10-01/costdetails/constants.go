@@ -1,6 +1,10 @@
 package costdetails
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -15,6 +19,19 @@ func PossibleValuesForCostDetailsDataFormat() []string {
 	return []string{
 		string(CostDetailsDataFormatCsv),
 	}
+}
+
+func (s *CostDetailsDataFormat) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseCostDetailsDataFormat(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseCostDetailsDataFormat(input string) (*CostDetailsDataFormat, error) {
@@ -42,6 +59,19 @@ func PossibleValuesForCostDetailsMetricType() []string {
 		string(CostDetailsMetricTypeActualCost),
 		string(CostDetailsMetricTypeAmortizedCost),
 	}
+}
+
+func (s *CostDetailsMetricType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseCostDetailsMetricType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseCostDetailsMetricType(input string) (*CostDetailsMetricType, error) {
@@ -72,6 +102,19 @@ func PossibleValuesForCostDetailsStatusType() []string {
 		string(CostDetailsStatusTypeFailed),
 		string(CostDetailsStatusTypeNoDataFound),
 	}
+}
+
+func (s *CostDetailsStatusType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseCostDetailsStatusType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseCostDetailsStatusType(input string) (*CostDetailsStatusType, error) {

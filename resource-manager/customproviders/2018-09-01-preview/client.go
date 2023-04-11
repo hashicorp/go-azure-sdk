@@ -4,9 +4,12 @@ package v2018_09_01_preview
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 import (
-	"github.com/Azure/go-autorest/autorest"
+	"fmt"
+
 	"github.com/hashicorp/go-azure-sdk/resource-manager/customproviders/2018-09-01-preview/associations"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/customproviders/2018-09-01-preview/customresourceprovider"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -14,16 +17,21 @@ type Client struct {
 	CustomResourceProvider *customresourceprovider.CustomResourceProviderClient
 }
 
-func NewClientWithBaseURI(endpoint string, configureAuthFunc func(c *autorest.Client)) Client {
-
-	associationsClient := associations.NewAssociationsClientWithBaseURI(endpoint)
-	configureAuthFunc(&associationsClient.Client)
-
-	customResourceProviderClient := customresourceprovider.NewCustomResourceProviderClientWithBaseURI(endpoint)
-	configureAuthFunc(&customResourceProviderClient.Client)
-
-	return Client{
-		Associations:           &associationsClient,
-		CustomResourceProvider: &customResourceProviderClient,
+func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+	associationsClient, err := associations.NewAssociationsClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building Associations client: %+v", err)
 	}
+	configureFunc(associationsClient.Client)
+
+	customResourceProviderClient, err := customresourceprovider.NewCustomResourceProviderClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building CustomResourceProvider client: %+v", err)
+	}
+	configureFunc(customResourceProviderClient.Client)
+
+	return &Client{
+		Associations:           associationsClient,
+		CustomResourceProvider: customResourceProviderClient,
+	}, nil
 }

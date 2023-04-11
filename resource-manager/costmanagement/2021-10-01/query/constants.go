@@ -1,6 +1,10 @@
 package query
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -19,6 +23,19 @@ func PossibleValuesForExportType() []string {
 		string(ExportTypeAmortizedCost),
 		string(ExportTypeUsage),
 	}
+}
+
+func (s *ExportType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseExportType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseExportType(input string) (*ExportType, error) {
@@ -50,6 +67,19 @@ func PossibleValuesForExternalCloudProviderType() []string {
 	}
 }
 
+func (s *ExternalCloudProviderType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseExternalCloudProviderType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseExternalCloudProviderType(input string) (*ExternalCloudProviderType, error) {
 	vals := map[string]ExternalCloudProviderType{
 		"externalbillingaccounts": ExternalCloudProviderTypeExternalBillingAccounts,
@@ -76,6 +106,19 @@ func PossibleValuesForFunctionType() []string {
 	}
 }
 
+func (s *FunctionType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseFunctionType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseFunctionType(input string) (*FunctionType, error) {
 	vals := map[string]FunctionType{
 		"sum": FunctionTypeSum,
@@ -99,6 +142,19 @@ func PossibleValuesForGranularityType() []string {
 	return []string{
 		string(GranularityTypeDaily),
 	}
+}
+
+func (s *GranularityType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseGranularityType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseGranularityType(input string) (*GranularityType, error) {
@@ -128,6 +184,19 @@ func PossibleValuesForQueryColumnType() []string {
 	}
 }
 
+func (s *QueryColumnType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseQueryColumnType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseQueryColumnType(input string) (*QueryColumnType, error) {
 	vals := map[string]QueryColumnType{
 		"dimension": QueryColumnTypeDimension,
@@ -152,6 +221,19 @@ func PossibleValuesForQueryOperatorType() []string {
 	return []string{
 		string(QueryOperatorTypeIn),
 	}
+}
+
+func (s *QueryOperatorType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseQueryOperatorType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseQueryOperatorType(input string) (*QueryOperatorType, error) {
@@ -187,6 +269,19 @@ func PossibleValuesForTimeframeType() []string {
 		string(TimeframeTypeTheLastMonth),
 		string(TimeframeTypeWeekToDate),
 	}
+}
+
+func (s *TimeframeType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseTimeframeType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseTimeframeType(input string) (*TimeframeType, error) {
