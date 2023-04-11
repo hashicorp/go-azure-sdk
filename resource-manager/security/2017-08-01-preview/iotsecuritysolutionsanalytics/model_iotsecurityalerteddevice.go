@@ -1,0 +1,9 @@
+package iotsecuritysolutionsanalytics
+
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type IoTSecurityAlertedDevice struct {
+	AlertsCount *int64  `json:"alertsCount,omitempty"`
+	DeviceId    *string `json:"deviceId,omitempty"`
+}
