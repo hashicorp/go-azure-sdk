@@ -24,6 +24,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/automation/2022-08-08/listkeys"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/automation/2022-08-08/module"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/automation/2022-08-08/objectdatatypes"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/automation/2022-08-08/operations"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/automation/2022-08-08/python2package"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/automation/2022-08-08/python3package"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/automation/2022-08-08/runbook"
@@ -63,6 +64,7 @@ type Client struct {
 	ListKeys                                           *listkeys.ListKeysClient
 	Module                                             *module.ModuleClient
 	ObjectDataTypes                                    *objectdatatypes.ObjectDataTypesClient
+	Operations                                         *operations.OperationsClient
 	Python2Package                                     *python2package.Python2PackageClient
 	Python3Package                                     *python3package.Python3PackageClient
 	Runbook                                            *runbook.RunbookClient
@@ -190,6 +192,12 @@ func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcema
 	}
 	configureFunc(objectDataTypesClient.Client)
 
+	operationsClient, err := operations.NewOperationsClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building Operations client: %+v", err)
+	}
+	configureFunc(operationsClient.Client)
+
 	python2PackageClient, err := python2package.NewPython2PackageClientWithBaseURI(api)
 	if err != nil {
 		return nil, fmt.Errorf("building Python2Package client: %+v", err)
@@ -305,6 +313,7 @@ func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcema
 		ListKeys:                              listKeysClient,
 		Module:                                moduleClient,
 		ObjectDataTypes:                       objectDataTypesClient,
+		Operations:                            operationsClient,
 		Python2Package:                        python2PackageClient,
 		Python3Package:                        python3PackageClient,
 		Runbook:                               runbookClient,

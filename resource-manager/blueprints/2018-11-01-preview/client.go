@@ -8,6 +8,7 @@ import (
 
 	"github.com/hashicorp/go-azure-sdk/resource-manager/blueprints/2018-11-01-preview/artifact"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/blueprints/2018-11-01-preview/assignment"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/blueprints/2018-11-01-preview/assignmentoperations"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/blueprints/2018-11-01-preview/blueprint"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/blueprints/2018-11-01-preview/blueprintassignments"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/blueprints/2018-11-01-preview/publishedartifact"
@@ -19,6 +20,7 @@ import (
 type Client struct {
 	Artifact             *artifact.ArtifactClient
 	Assignment           *assignment.AssignmentClient
+	AssignmentOperations *assignmentoperations.AssignmentOperationsClient
 	Blueprint            *blueprint.BlueprintClient
 	BlueprintAssignments *blueprintassignments.BlueprintAssignmentsClient
 	PublishedArtifact    *publishedartifact.PublishedArtifactClient
@@ -37,6 +39,12 @@ func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcema
 		return nil, fmt.Errorf("building Assignment client: %+v", err)
 	}
 	configureFunc(assignmentClient.Client)
+
+	assignmentOperationsClient, err := assignmentoperations.NewAssignmentOperationsClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building AssignmentOperations client: %+v", err)
+	}
+	configureFunc(assignmentOperationsClient.Client)
 
 	blueprintAssignmentsClient, err := blueprintassignments.NewBlueprintAssignmentsClientWithBaseURI(api)
 	if err != nil {
@@ -65,6 +73,7 @@ func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcema
 	return &Client{
 		Artifact:             artifactClient,
 		Assignment:           assignmentClient,
+		AssignmentOperations: assignmentOperationsClient,
 		Blueprint:            blueprintClient,
 		BlueprintAssignments: blueprintAssignmentsClient,
 		PublishedArtifact:    publishedArtifactClient,

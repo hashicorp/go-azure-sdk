@@ -6,6 +6,7 @@ package v2023_02_01
 import (
 	"github.com/Azure/go-autorest/autorest"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicessiterecovery/2023-02-01/migrationrecoverypoints"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicessiterecovery/2023-02-01/operations"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicessiterecovery/2023-02-01/recoverypoints"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicessiterecovery/2023-02-01/replicationalertsettings"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicessiterecovery/2023-02-01/replicationappliances"
@@ -36,6 +37,7 @@ import (
 
 type Client struct {
 	MigrationRecoveryPoints                  *migrationrecoverypoints.MigrationRecoveryPointsClient
+	Operations                               *operations.OperationsClient
 	RecoveryPoints                           *recoverypoints.RecoveryPointsClient
 	ReplicationAlertSettings                 *replicationalertsettings.ReplicationAlertSettingsClient
 	ReplicationAppliances                    *replicationappliances.ReplicationAppliancesClient
@@ -68,6 +70,9 @@ func NewClientWithBaseURI(endpoint string, configureAuthFunc func(c *autorest.Cl
 
 	migrationRecoveryPointsClient := migrationrecoverypoints.NewMigrationRecoveryPointsClientWithBaseURI(endpoint)
 	configureAuthFunc(&migrationRecoveryPointsClient.Client)
+
+	operationsClient := operations.NewOperationsClientWithBaseURI(endpoint)
+	configureAuthFunc(&operationsClient.Client)
 
 	recoveryPointsClient := recoverypoints.NewRecoveryPointsClientWithBaseURI(endpoint)
 	configureAuthFunc(&recoveryPointsClient.Client)
@@ -149,6 +154,7 @@ func NewClientWithBaseURI(endpoint string, configureAuthFunc func(c *autorest.Cl
 
 	return Client{
 		MigrationRecoveryPoints:                  &migrationRecoveryPointsClient,
+		Operations:                               &operationsClient,
 		RecoveryPoints:                           &recoveryPointsClient,
 		ReplicationAlertSettings:                 &replicationAlertSettingsClient,
 		ReplicationAppliances:                    &replicationAppliancesClient,

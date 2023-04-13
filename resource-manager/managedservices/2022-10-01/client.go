@@ -6,12 +6,14 @@ package v2022_10_01
 import (
 	"github.com/Azure/go-autorest/autorest"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/managedservices/2022-10-01/marketplaceregistrationdefinitions"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/managedservices/2022-10-01/operations"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/managedservices/2022-10-01/registrationassignments"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/managedservices/2022-10-01/registrationdefinitions"
 )
 
 type Client struct {
 	MarketplaceRegistrationDefinitions *marketplaceregistrationdefinitions.MarketplaceRegistrationDefinitionsClient
+	Operations                         *operations.OperationsClient
 	RegistrationAssignments            *registrationassignments.RegistrationAssignmentsClient
 	RegistrationDefinitions            *registrationdefinitions.RegistrationDefinitionsClient
 }
@@ -21,6 +23,9 @@ func NewClientWithBaseURI(endpoint string, configureAuthFunc func(c *autorest.Cl
 	marketplaceRegistrationDefinitionsClient := marketplaceregistrationdefinitions.NewMarketplaceRegistrationDefinitionsClientWithBaseURI(endpoint)
 	configureAuthFunc(&marketplaceRegistrationDefinitionsClient.Client)
 
+	operationsClient := operations.NewOperationsClientWithBaseURI(endpoint)
+	configureAuthFunc(&operationsClient.Client)
+
 	registrationAssignmentsClient := registrationassignments.NewRegistrationAssignmentsClientWithBaseURI(endpoint)
 	configureAuthFunc(&registrationAssignmentsClient.Client)
 
@@ -29,6 +34,7 @@ func NewClientWithBaseURI(endpoint string, configureAuthFunc func(c *autorest.Cl
 
 	return Client{
 		MarketplaceRegistrationDefinitions: &marketplaceRegistrationDefinitionsClient,
+		Operations:                         &operationsClient,
 		RegistrationAssignments:            &registrationAssignmentsClient,
 		RegistrationDefinitions:            &registrationDefinitionsClient,
 	}

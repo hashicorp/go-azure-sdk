@@ -5,6 +5,7 @@ package v2020_06_01
 
 import (
 	"github.com/Azure/go-autorest/autorest"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/resources/2020-06-01/deploymentoperations"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/resources/2020-06-01/deployments"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/resources/2020-06-01/providers"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/resources/2020-06-01/resourcegroups"
@@ -12,13 +13,17 @@ import (
 )
 
 type Client struct {
-	Deployments    *deployments.DeploymentsClient
-	Providers      *providers.ProvidersClient
-	ResourceGroups *resourcegroups.ResourceGroupsClient
-	Resources      *resources.ResourcesClient
+	DeploymentOperations *deploymentoperations.DeploymentOperationsClient
+	Deployments          *deployments.DeploymentsClient
+	Providers            *providers.ProvidersClient
+	ResourceGroups       *resourcegroups.ResourceGroupsClient
+	Resources            *resources.ResourcesClient
 }
 
 func NewClientWithBaseURI(endpoint string, configureAuthFunc func(c *autorest.Client)) Client {
+
+	deploymentOperationsClient := deploymentoperations.NewDeploymentOperationsClientWithBaseURI(endpoint)
+	configureAuthFunc(&deploymentOperationsClient.Client)
 
 	deploymentsClient := deployments.NewDeploymentsClientWithBaseURI(endpoint)
 	configureAuthFunc(&deploymentsClient.Client)
@@ -33,9 +38,10 @@ func NewClientWithBaseURI(endpoint string, configureAuthFunc func(c *autorest.Cl
 	configureAuthFunc(&resourcesClient.Client)
 
 	return Client{
-		Deployments:    &deploymentsClient,
-		Providers:      &providersClient,
-		ResourceGroups: &resourceGroupsClient,
-		Resources:      &resourcesClient,
+		DeploymentOperations: &deploymentOperationsClient,
+		Deployments:          &deploymentsClient,
+		Providers:            &providersClient,
+		ResourceGroups:       &resourceGroupsClient,
+		Resources:            &resourcesClient,
 	}
 }

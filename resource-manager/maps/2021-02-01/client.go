@@ -8,13 +8,15 @@ import (
 
 	"github.com/hashicorp/go-azure-sdk/resource-manager/maps/2021-02-01/accounts"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/maps/2021-02-01/creators"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/maps/2021-02-01/operations"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
 	"github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
-	Accounts *accounts.AccountsClient
-	Creators *creators.CreatorsClient
+	Accounts   *accounts.AccountsClient
+	Creators   *creators.CreatorsClient
+	Operations *operations.OperationsClient
 }
 
 func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
@@ -30,8 +32,15 @@ func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcema
 	}
 	configureFunc(creatorsClient.Client)
 
+	operationsClient, err := operations.NewOperationsClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building Operations client: %+v", err)
+	}
+	configureFunc(operationsClient.Client)
+
 	return &Client{
-		Accounts: accountsClient,
-		Creators: creatorsClient,
+		Accounts:   accountsClient,
+		Creators:   creatorsClient,
+		Operations: operationsClient,
 	}, nil
 }
