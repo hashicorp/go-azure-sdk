@@ -21,6 +21,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/logic/2019-05-01/integrationserviceenvironments"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/logic/2019-05-01/integrationserviceenvironmentskus"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/logic/2019-05-01/workflowrunactions"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/logic/2019-05-01/workflowrunoperations"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/logic/2019-05-01/workflowruns"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/logic/2019-05-01/workflows"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/logic/2019-05-01/workflowtriggerhistories"
@@ -45,6 +46,7 @@ type Client struct {
 	IntegrationServiceEnvironmentSkus          *integrationserviceenvironmentskus.IntegrationServiceEnvironmentSkusClient
 	IntegrationServiceEnvironments             *integrationserviceenvironments.IntegrationServiceEnvironmentsClient
 	WorkflowRunActions                         *workflowrunactions.WorkflowRunActionsClient
+	WorkflowRunOperations                      *workflowrunoperations.WorkflowRunOperationsClient
 	WorkflowRuns                               *workflowruns.WorkflowRunsClient
 	WorkflowTriggerHistories                   *workflowtriggerhistories.WorkflowTriggerHistoriesClient
 	WorkflowTriggers                           *workflowtriggers.WorkflowTriggersClient
@@ -102,6 +104,9 @@ func NewClientWithBaseURI(endpoint string, configureAuthFunc func(c *autorest.Cl
 	workflowRunActionsClient := workflowrunactions.NewWorkflowRunActionsClientWithBaseURI(endpoint)
 	configureAuthFunc(&workflowRunActionsClient.Client)
 
+	workflowRunOperationsClient := workflowrunoperations.NewWorkflowRunOperationsClientWithBaseURI(endpoint)
+	configureAuthFunc(&workflowRunOperationsClient.Client)
+
 	workflowRunsClient := workflowruns.NewWorkflowRunsClientWithBaseURI(endpoint)
 	configureAuthFunc(&workflowRunsClient.Client)
 
@@ -134,6 +139,7 @@ func NewClientWithBaseURI(endpoint string, configureAuthFunc func(c *autorest.Cl
 		IntegrationServiceEnvironmentSkus:          &integrationServiceEnvironmentSkusClient,
 		IntegrationServiceEnvironments:             &integrationServiceEnvironmentsClient,
 		WorkflowRunActions:                         &workflowRunActionsClient,
+		WorkflowRunOperations:                      &workflowRunOperationsClient,
 		WorkflowRuns:                               &workflowRunsClient,
 		WorkflowTriggerHistories:                   &workflowTriggerHistoriesClient,
 		WorkflowTriggers:                           &workflowTriggersClient,

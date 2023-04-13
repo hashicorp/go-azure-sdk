@@ -5,6 +5,7 @@ package v2022_11_08
 
 import (
 	"github.com/Azure/go-autorest/autorest"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/postgresqlhsc/2022-11-08/clusteroperations"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/postgresqlhsc/2022-11-08/clusters"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/postgresqlhsc/2022-11-08/configurations"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/postgresqlhsc/2022-11-08/firewallrules"
@@ -15,6 +16,7 @@ import (
 )
 
 type Client struct {
+	ClusterOperations          *clusteroperations.ClusterOperationsClient
 	Clusters                   *clusters.ClustersClient
 	Configurations             *configurations.ConfigurationsClient
 	FirewallRules              *firewallrules.FirewallRulesClient
@@ -25,6 +27,9 @@ type Client struct {
 }
 
 func NewClientWithBaseURI(endpoint string, configureAuthFunc func(c *autorest.Client)) Client {
+
+	clusterOperationsClient := clusteroperations.NewClusterOperationsClientWithBaseURI(endpoint)
+	configureAuthFunc(&clusterOperationsClient.Client)
 
 	clustersClient := clusters.NewClustersClientWithBaseURI(endpoint)
 	configureAuthFunc(&clustersClient.Client)
@@ -48,6 +53,7 @@ func NewClientWithBaseURI(endpoint string, configureAuthFunc func(c *autorest.Cl
 	configureAuthFunc(&serversClient.Client)
 
 	return Client{
+		ClusterOperations:          &clusterOperationsClient,
 		Clusters:                   &clustersClient,
 		Configurations:             &configurationsClient,
 		FirewallRules:              &firewallRulesClient,

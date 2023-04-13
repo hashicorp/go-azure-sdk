@@ -25,6 +25,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2022-05-01/operationalizationclusters"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2022-05-01/outboundnetworkdependenciesendpoints"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2022-05-01/privateendpointconnections"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2022-05-01/proxyoperations"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2022-05-01/quota"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2022-05-01/v2workspaceconnectionresource"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2022-05-01/virtualmachinesizes"
@@ -54,6 +55,7 @@ type Client struct {
 	OperationalizationClusters           *operationalizationclusters.OperationalizationClustersClient
 	OutboundNetworkDependenciesEndpoints *outboundnetworkdependenciesendpoints.OutboundNetworkDependenciesEndpointsClient
 	PrivateEndpointConnections           *privateendpointconnections.PrivateEndpointConnectionsClient
+	ProxyOperations                      *proxyoperations.ProxyOperationsClient
 	Quota                                *quota.QuotaClient
 	V2WorkspaceConnectionResource        *v2workspaceconnectionresource.V2WorkspaceConnectionResourceClient
 	VirtualMachineSizes                  *virtualmachinesizes.VirtualMachineSizesClient
@@ -124,6 +126,9 @@ func NewClientWithBaseURI(endpoint string, configureAuthFunc func(c *autorest.Cl
 	privateEndpointConnectionsClient := privateendpointconnections.NewPrivateEndpointConnectionsClientWithBaseURI(endpoint)
 	configureAuthFunc(&privateEndpointConnectionsClient.Client)
 
+	proxyOperationsClient := proxyoperations.NewProxyOperationsClientWithBaseURI(endpoint)
+	configureAuthFunc(&proxyOperationsClient.Client)
+
 	quotaClient := quota.NewQuotaClientWithBaseURI(endpoint)
 	configureAuthFunc(&quotaClient.Client)
 
@@ -163,6 +168,7 @@ func NewClientWithBaseURI(endpoint string, configureAuthFunc func(c *autorest.Cl
 		OperationalizationClusters:           &operationalizationClustersClient,
 		OutboundNetworkDependenciesEndpoints: &outboundNetworkDependenciesEndpointsClient,
 		PrivateEndpointConnections:           &privateEndpointConnectionsClient,
+		ProxyOperations:                      &proxyOperationsClient,
 		Quota:                                &quotaClient,
 		V2WorkspaceConnectionResource:        &v2WorkspaceConnectionResourceClient,
 		VirtualMachineSizes:                  &virtualMachineSizesClient,

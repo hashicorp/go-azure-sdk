@@ -9,6 +9,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/automation/2021-06-22/hybridrunbookworker"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/automation/2021-06-22/hybridrunbookworkergroup"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/automation/2021-06-22/listkeys"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/automation/2021-06-22/operations"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/automation/2021-06-22/statistics"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/automation/2021-06-22/usages"
 )
@@ -18,6 +19,7 @@ type Client struct {
 	HybridRunbookWorker      *hybridrunbookworker.HybridRunbookWorkerClient
 	HybridRunbookWorkerGroup *hybridrunbookworkergroup.HybridRunbookWorkerGroupClient
 	ListKeys                 *listkeys.ListKeysClient
+	Operations               *operations.OperationsClient
 	Statistics               *statistics.StatisticsClient
 	Usages                   *usages.UsagesClient
 }
@@ -36,6 +38,9 @@ func NewClientWithBaseURI(endpoint string, configureAuthFunc func(c *autorest.Cl
 	listKeysClient := listkeys.NewListKeysClientWithBaseURI(endpoint)
 	configureAuthFunc(&listKeysClient.Client)
 
+	operationsClient := operations.NewOperationsClientWithBaseURI(endpoint)
+	configureAuthFunc(&operationsClient.Client)
+
 	statisticsClient := statistics.NewStatisticsClientWithBaseURI(endpoint)
 	configureAuthFunc(&statisticsClient.Client)
 
@@ -47,6 +52,7 @@ func NewClientWithBaseURI(endpoint string, configureAuthFunc func(c *autorest.Cl
 		HybridRunbookWorker:      &hybridRunbookWorkerClient,
 		HybridRunbookWorkerGroup: &hybridRunbookWorkerGroupClient,
 		ListKeys:                 &listKeysClient,
+		Operations:               &operationsClient,
 		Statistics:               &statisticsClient,
 		Usages:                   &usagesClient,
 	}

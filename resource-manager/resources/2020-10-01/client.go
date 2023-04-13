@@ -5,6 +5,7 @@ package v2020_10_01
 
 import (
 	"github.com/Azure/go-autorest/autorest"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/resources/2020-10-01/deploymentoperations"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/resources/2020-10-01/deployments"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/resources/2020-10-01/deploymentscripts"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/resources/2020-10-01/providers"
@@ -13,14 +14,18 @@ import (
 )
 
 type Client struct {
-	DeploymentScripts *deploymentscripts.DeploymentScriptsClient
-	Deployments       *deployments.DeploymentsClient
-	Providers         *providers.ProvidersClient
-	ResourceGroups    *resourcegroups.ResourceGroupsClient
-	Resources         *resources.ResourcesClient
+	DeploymentOperations *deploymentoperations.DeploymentOperationsClient
+	DeploymentScripts    *deploymentscripts.DeploymentScriptsClient
+	Deployments          *deployments.DeploymentsClient
+	Providers            *providers.ProvidersClient
+	ResourceGroups       *resourcegroups.ResourceGroupsClient
+	Resources            *resources.ResourcesClient
 }
 
 func NewClientWithBaseURI(endpoint string, configureAuthFunc func(c *autorest.Client)) Client {
+
+	deploymentOperationsClient := deploymentoperations.NewDeploymentOperationsClientWithBaseURI(endpoint)
+	configureAuthFunc(&deploymentOperationsClient.Client)
 
 	deploymentScriptsClient := deploymentscripts.NewDeploymentScriptsClientWithBaseURI(endpoint)
 	configureAuthFunc(&deploymentScriptsClient.Client)
@@ -38,10 +43,11 @@ func NewClientWithBaseURI(endpoint string, configureAuthFunc func(c *autorest.Cl
 	configureAuthFunc(&resourcesClient.Client)
 
 	return Client{
-		DeploymentScripts: &deploymentScriptsClient,
-		Deployments:       &deploymentsClient,
-		Providers:         &providersClient,
-		ResourceGroups:    &resourceGroupsClient,
-		Resources:         &resourcesClient,
+		DeploymentOperations: &deploymentOperationsClient,
+		DeploymentScripts:    &deploymentScriptsClient,
+		Deployments:          &deploymentsClient,
+		Providers:            &providersClient,
+		ResourceGroups:       &resourceGroupsClient,
+		Resources:            &resourcesClient,
 	}
 }

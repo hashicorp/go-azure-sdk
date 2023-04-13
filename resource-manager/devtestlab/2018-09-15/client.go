@@ -17,6 +17,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/devtestlab/2018-09-15/globalschedules"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/devtestlab/2018-09-15/labs"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/devtestlab/2018-09-15/notificationchannels"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/devtestlab/2018-09-15/operations"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/devtestlab/2018-09-15/policies"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/devtestlab/2018-09-15/policysets"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/devtestlab/2018-09-15/schedules"
@@ -43,6 +44,7 @@ type Client struct {
 	GlobalSchedules         *globalschedules.GlobalSchedulesClient
 	Labs                    *labs.LabsClient
 	NotificationChannels    *notificationchannels.NotificationChannelsClient
+	Operations              *operations.OperationsClient
 	Policies                *policies.PoliciesClient
 	PolicySets              *policysets.PolicySetsClient
 	Schedules               *schedules.SchedulesClient
@@ -94,6 +96,9 @@ func NewClientWithBaseURI(endpoint string, configureAuthFunc func(c *autorest.Cl
 	notificationChannelsClient := notificationchannels.NewNotificationChannelsClientWithBaseURI(endpoint)
 	configureAuthFunc(&notificationChannelsClient.Client)
 
+	operationsClient := operations.NewOperationsClientWithBaseURI(endpoint)
+	configureAuthFunc(&operationsClient.Client)
+
 	policiesClient := policies.NewPoliciesClientWithBaseURI(endpoint)
 	configureAuthFunc(&policiesClient.Client)
 
@@ -140,6 +145,7 @@ func NewClientWithBaseURI(endpoint string, configureAuthFunc func(c *autorest.Cl
 		GlobalSchedules:         &globalSchedulesClient,
 		Labs:                    &labsClient,
 		NotificationChannels:    &notificationChannelsClient,
+		Operations:              &operationsClient,
 		Policies:                &policiesClient,
 		PolicySets:              &policySetsClient,
 		Schedules:               &schedulesClient,
