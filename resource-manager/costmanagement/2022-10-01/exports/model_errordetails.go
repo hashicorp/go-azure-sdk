@@ -4,6 +4,6 @@ package exports
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type ErrorDetails struct {
-	Code    *string `json:"code,omitempty"`
+	Code    *int64  `json:"code,omitempty"`
 	Message *string `json:"message,omitempty"`
 }
