@@ -11,10 +11,10 @@ import (
 var _ ProtectionPolicy = AzureFileShareProtectionPolicy{}
 
 type AzureFileShareProtectionPolicy struct {
-	RetentionPolicy RetentionPolicy `json:"retentionPolicy"`
-	SchedulePolicy  SchedulePolicy  `json:"schedulePolicy"`
-	TimeZone        *string         `json:"timeZone,omitempty"`
-	WorkLoadType    *WorkloadType   `json:"workLoadType,omitempty"`
+	RetentionPolicy *RetentionPolicy `json:"retentionPolicy,omitempty"`
+	SchedulePolicy  *SchedulePolicy  `json:"schedulePolicy,omitempty"`
+	TimeZone        *string          `json:"timeZone,omitempty"`
+	WorkLoadType    *WorkloadType    `json:"workLoadType,omitempty"`
 
 	// Fields inherited from ProtectionPolicy
 	ProtectedItemsCount            *int64    `json:"protectedItemsCount,omitempty"`

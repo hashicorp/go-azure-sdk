@@ -11,7 +11,7 @@ import (
 var _ RestoreTargetInfoBase = ItemLevelRestoreTargetInfo{}
 
 type ItemLevelRestoreTargetInfo struct {
-	DatasourceAuthCredentials AuthCredentials            `json:"datasourceAuthCredentials"`
+	DatasourceAuthCredentials *AuthCredentials           `json:"datasourceAuthCredentials,omitempty"`
 	DatasourceInfo            Datasource                 `json:"datasourceInfo"`
 	DatasourceSetInfo         *DatasourceSet             `json:"datasourceSetInfo,omitempty"`
 	RestoreCriteria           []ItemLevelRestoreCriteria `json:"restoreCriteria"`

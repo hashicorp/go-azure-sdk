@@ -11,8 +11,8 @@ import (
 var _ TargetServiceBase = AzureResource{}
 
 type AzureResource struct {
-	Id                 *string                     `json:"id,omitempty"`
-	ResourceProperties AzureResourcePropertiesBase `json:"resourceProperties"`
+	Id                 *string                      `json:"id,omitempty"`
+	ResourceProperties *AzureResourcePropertiesBase `json:"resourceProperties,omitempty"`
 
 	// Fields inherited from TargetServiceBase
 }

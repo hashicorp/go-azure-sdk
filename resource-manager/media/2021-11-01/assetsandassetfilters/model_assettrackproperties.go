@@ -10,7 +10,7 @@ import (
 
 type AssetTrackProperties struct {
 	ProvisioningState *ProvisioningState `json:"provisioningState,omitempty"`
-	Track             TrackBase          `json:"track"`
+	Track             *TrackBase         `json:"track,omitempty"`
 }
 
 var _ json.Unmarshaler = &AssetTrackProperties{}

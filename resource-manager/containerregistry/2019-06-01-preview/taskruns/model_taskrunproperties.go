@@ -11,7 +11,7 @@ import (
 type TaskRunProperties struct {
 	ForceUpdateTag    *string            `json:"forceUpdateTag,omitempty"`
 	ProvisioningState *ProvisioningState `json:"provisioningState,omitempty"`
-	RunRequest        RunRequest         `json:"runRequest"`
+	RunRequest        *RunRequest        `json:"runRequest,omitempty"`
 	RunResult         *Run               `json:"runResult,omitempty"`
 }
 

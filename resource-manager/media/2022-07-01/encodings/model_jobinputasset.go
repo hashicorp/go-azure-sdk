@@ -12,11 +12,11 @@ var _ JobInput = JobInputAsset{}
 
 type JobInputAsset struct {
 	AssetName        string             `json:"assetName"`
-	End              ClipTime           `json:"end"`
+	End              *ClipTime          `json:"end,omitempty"`
 	Files            *[]string          `json:"files,omitempty"`
 	InputDefinitions *[]InputDefinition `json:"inputDefinitions,omitempty"`
 	Label            *string            `json:"label,omitempty"`
-	Start            ClipTime           `json:"start"`
+	Start            *ClipTime          `json:"start,omitempty"`
 
 	// Fields inherited from JobInput
 }

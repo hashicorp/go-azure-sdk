@@ -11,14 +11,14 @@ import (
 var _ InputProperties = StreamInputProperties{}
 
 type StreamInputProperties struct {
-	Datasource StreamInputDataSource `json:"datasource"`
+	Datasource *StreamInputDataSource `json:"datasource,omitempty"`
 
 	// Fields inherited from InputProperties
-	Compression   *Compression  `json:"compression,omitempty"`
-	Diagnostics   *Diagnostics  `json:"diagnostics,omitempty"`
-	Etag          *string       `json:"etag,omitempty"`
-	PartitionKey  *string       `json:"partitionKey,omitempty"`
-	Serialization Serialization `json:"serialization"`
+	Compression   *Compression   `json:"compression,omitempty"`
+	Diagnostics   *Diagnostics   `json:"diagnostics,omitempty"`
+	Etag          *string        `json:"etag,omitempty"`
+	PartitionKey  *string        `json:"partitionKey,omitempty"`
+	Serialization *Serialization `json:"serialization,omitempty"`
 }
 
 var _ json.Marshaler = StreamInputProperties{}

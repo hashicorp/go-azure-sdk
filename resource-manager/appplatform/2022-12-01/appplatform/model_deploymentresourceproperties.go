@@ -13,7 +13,7 @@ type DeploymentResourceProperties struct {
 	DeploymentSettings *DeploymentSettings                  `json:"deploymentSettings,omitempty"`
 	Instances          *[]DeploymentInstance                `json:"instances,omitempty"`
 	ProvisioningState  *DeploymentResourceProvisioningState `json:"provisioningState,omitempty"`
-	Source             UserSourceInfo                       `json:"source"`
+	Source             *UserSourceInfo                      `json:"source,omitempty"`
 	Status             *DeploymentResourceStatus            `json:"status,omitempty"`
 }
 

@@ -12,17 +12,17 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type EventProperties struct {
-	AffectedObjectCorrelationId *string                      `json:"affectedObjectCorrelationId,omitempty"`
-	AffectedObjectFriendlyName  *string                      `json:"affectedObjectFriendlyName,omitempty"`
-	Description                 *string                      `json:"description,omitempty"`
-	EventCode                   *string                      `json:"eventCode,omitempty"`
-	EventSpecificDetails        EventSpecificDetails         `json:"eventSpecificDetails"`
-	EventType                   *string                      `json:"eventType,omitempty"`
-	FabricId                    *string                      `json:"fabricId,omitempty"`
-	HealthErrors                *[]HealthError               `json:"healthErrors,omitempty"`
-	ProviderSpecificDetails     EventProviderSpecificDetails `json:"providerSpecificDetails"`
-	Severity                    *string                      `json:"severity,omitempty"`
-	TimeOfOccurrence            *string                      `json:"timeOfOccurrence,omitempty"`
+	AffectedObjectCorrelationId *string                       `json:"affectedObjectCorrelationId,omitempty"`
+	AffectedObjectFriendlyName  *string                       `json:"affectedObjectFriendlyName,omitempty"`
+	Description                 *string                       `json:"description,omitempty"`
+	EventCode                   *string                       `json:"eventCode,omitempty"`
+	EventSpecificDetails        *EventSpecificDetails         `json:"eventSpecificDetails,omitempty"`
+	EventType                   *string                       `json:"eventType,omitempty"`
+	FabricId                    *string                       `json:"fabricId,omitempty"`
+	HealthErrors                *[]HealthError                `json:"healthErrors,omitempty"`
+	ProviderSpecificDetails     *EventProviderSpecificDetails `json:"providerSpecificDetails,omitempty"`
+	Severity                    *string                       `json:"severity,omitempty"`
+	TimeOfOccurrence            *string                       `json:"timeOfOccurrence,omitempty"`
 }
 
 func (o *EventProperties) GetTimeOfOccurrenceAsTime() (*time.Time, error) {

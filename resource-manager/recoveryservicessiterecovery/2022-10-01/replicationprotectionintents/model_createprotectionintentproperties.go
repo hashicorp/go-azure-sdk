@@ -9,7 +9,7 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type CreateProtectionIntentProperties struct {
-	ProviderSpecificDetails CreateProtectionIntentProviderSpecificDetails `json:"providerSpecificDetails"`
+	ProviderSpecificDetails *CreateProtectionIntentProviderSpecificDetails `json:"providerSpecificDetails,omitempty"`
 }
 
 var _ json.Unmarshaler = &CreateProtectionIntentProperties{}

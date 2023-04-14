@@ -11,7 +11,7 @@ import (
 var _ BasePolicyRule = AzureBackupRule{}
 
 type AzureBackupRule struct {
-	BackupParameters BackupParameters  `json:"backupParameters"`
+	BackupParameters *BackupParameters `json:"backupParameters,omitempty"`
 	DataStore        DataStoreInfoBase `json:"dataStore"`
 	Trigger          TriggerContext    `json:"trigger"`
 

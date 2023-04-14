@@ -9,13 +9,13 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type A2AProtectionIntentManagedDiskInputDetails struct {
-	DiskEncryptionInfo                      *DiskEncryptionInfo                `json:"diskEncryptionInfo,omitempty"`
-	DiskId                                  string                             `json:"diskId"`
-	PrimaryStagingStorageAccountCustomInput StorageAccountCustomDetails        `json:"primaryStagingStorageAccountCustomInput"`
-	RecoveryDiskEncryptionSetId             *string                            `json:"recoveryDiskEncryptionSetId,omitempty"`
-	RecoveryReplicaDiskAccountType          *string                            `json:"recoveryReplicaDiskAccountType,omitempty"`
-	RecoveryResourceGroupCustomInput        RecoveryResourceGroupCustomDetails `json:"recoveryResourceGroupCustomInput"`
-	RecoveryTargetDiskAccountType           *string                            `json:"recoveryTargetDiskAccountType,omitempty"`
+	DiskEncryptionInfo                      *DiskEncryptionInfo                 `json:"diskEncryptionInfo,omitempty"`
+	DiskId                                  string                              `json:"diskId"`
+	PrimaryStagingStorageAccountCustomInput *StorageAccountCustomDetails        `json:"primaryStagingStorageAccountCustomInput,omitempty"`
+	RecoveryDiskEncryptionSetId             *string                             `json:"recoveryDiskEncryptionSetId,omitempty"`
+	RecoveryReplicaDiskAccountType          *string                             `json:"recoveryReplicaDiskAccountType,omitempty"`
+	RecoveryResourceGroupCustomInput        *RecoveryResourceGroupCustomDetails `json:"recoveryResourceGroupCustomInput,omitempty"`
+	RecoveryTargetDiskAccountType           *string                             `json:"recoveryTargetDiskAccountType,omitempty"`
 }
 
 var _ json.Unmarshaler = &A2AProtectionIntentManagedDiskInputDetails{}

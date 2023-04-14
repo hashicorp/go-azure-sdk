@@ -12,7 +12,7 @@ type DeletedBackupInstance struct {
 	CurrentProtectionState    *CurrentProtectionState  `json:"currentProtectionState,omitempty"`
 	DataSourceInfo            Datasource               `json:"dataSourceInfo"`
 	DataSourceSetInfo         *DatasourceSet           `json:"dataSourceSetInfo,omitempty"`
-	DatasourceAuthCredentials AuthCredentials          `json:"datasourceAuthCredentials"`
+	DatasourceAuthCredentials *AuthCredentials         `json:"datasourceAuthCredentials,omitempty"`
 	DeletionInfo              *DeletionInfo            `json:"deletionInfo,omitempty"`
 	FriendlyName              *string                  `json:"friendlyName,omitempty"`
 	ObjectType                string                   `json:"objectType"`

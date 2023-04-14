@@ -21,7 +21,7 @@ type PipelineJob struct {
 	Description    *string                `json:"description,omitempty"`
 	DisplayName    *string                `json:"displayName,omitempty"`
 	ExperimentName *string                `json:"experimentName,omitempty"`
-	Identity       IdentityConfiguration  `json:"identity"`
+	Identity       *IdentityConfiguration `json:"identity,omitempty"`
 	IsArchived     *bool                  `json:"isArchived,omitempty"`
 	Properties     *map[string]string     `json:"properties,omitempty"`
 	Services       *map[string]JobService `json:"services,omitempty"`

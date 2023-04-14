@@ -17,7 +17,7 @@ type ImageModelSettingsObjectDetection struct {
 	BoxDetectionsPerImage       *int64                 `json:"boxDetectionsPerImage,omitempty"`
 	BoxScoreThreshold           *float64               `json:"boxScoreThreshold,omitempty"`
 	CheckpointFrequency         *int64                 `json:"checkpointFrequency,omitempty"`
-	CheckpointModel             JobInput               `json:"checkpointModel"`
+	CheckpointModel             *JobInput              `json:"checkpointModel,omitempty"`
 	CheckpointRunId             *string                `json:"checkpointRunId,omitempty"`
 	Distributed                 *bool                  `json:"distributed,omitempty"`
 	EarlyStopping               *bool                  `json:"earlyStopping,omitempty"`

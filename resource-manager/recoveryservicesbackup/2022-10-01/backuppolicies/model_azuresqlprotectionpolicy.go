@@ -11,7 +11,7 @@ import (
 var _ ProtectionPolicy = AzureSqlProtectionPolicy{}
 
 type AzureSqlProtectionPolicy struct {
-	RetentionPolicy RetentionPolicy `json:"retentionPolicy"`
+	RetentionPolicy *RetentionPolicy `json:"retentionPolicy,omitempty"`
 
 	// Fields inherited from ProtectionPolicy
 	ProtectedItemsCount            *int64    `json:"protectedItemsCount,omitempty"`

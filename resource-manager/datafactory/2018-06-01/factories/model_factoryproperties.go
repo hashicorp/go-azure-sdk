@@ -18,7 +18,7 @@ type FactoryProperties struct {
 	ProvisioningState    *string                                  `json:"provisioningState,omitempty"`
 	PublicNetworkAccess  *PublicNetworkAccess                     `json:"publicNetworkAccess,omitempty"`
 	PurviewConfiguration *PurviewConfiguration                    `json:"purviewConfiguration,omitempty"`
-	RepoConfiguration    FactoryRepoConfiguration                 `json:"repoConfiguration"`
+	RepoConfiguration    *FactoryRepoConfiguration                `json:"repoConfiguration,omitempty"`
 	Version              *string                                  `json:"version,omitempty"`
 }
 

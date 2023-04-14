@@ -17,7 +17,7 @@ type ThresholdRuleCondition struct {
 	WindowSize      *string                  `json:"windowSize,omitempty"`
 
 	// Fields inherited from RuleCondition
-	DataSource RuleDataSource `json:"dataSource"`
+	DataSource *RuleDataSource `json:"dataSource,omitempty"`
 }
 
 var _ json.Marshaler = ThresholdRuleCondition{}

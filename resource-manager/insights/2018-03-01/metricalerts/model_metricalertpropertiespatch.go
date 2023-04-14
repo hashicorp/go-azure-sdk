@@ -14,7 +14,7 @@ import (
 type MetricAlertPropertiesPatch struct {
 	Actions              *[]MetricAlertAction `json:"actions,omitempty"`
 	AutoMitigate         *bool                `json:"autoMitigate,omitempty"`
-	Criteria             MetricAlertCriteria  `json:"criteria"`
+	Criteria             *MetricAlertCriteria `json:"criteria,omitempty"`
 	Description          *string              `json:"description,omitempty"`
 	Enabled              *bool                `json:"enabled,omitempty"`
 	EvaluationFrequency  *string              `json:"evaluationFrequency,omitempty"`

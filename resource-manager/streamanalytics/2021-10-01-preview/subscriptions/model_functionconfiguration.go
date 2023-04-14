@@ -9,7 +9,7 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type FunctionConfiguration struct {
-	Binding FunctionBinding  `json:"binding"`
+	Binding *FunctionBinding `json:"binding,omitempty"`
 	Inputs  *[]FunctionInput `json:"inputs,omitempty"`
 	Output  *FunctionOutput  `json:"output,omitempty"`
 }

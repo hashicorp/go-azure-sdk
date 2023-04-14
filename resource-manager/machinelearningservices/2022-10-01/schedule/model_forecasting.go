@@ -15,12 +15,12 @@ type Forecasting struct {
 	FeaturizationSettings *TableVerticalFeaturizationSettings `json:"featurizationSettings,omitempty"`
 	ForecastingSettings   *ForecastingSettings                `json:"forecastingSettings,omitempty"`
 	LimitSettings         *TableVerticalLimitSettings         `json:"limitSettings,omitempty"`
-	NCrossValidations     NCrossValidations                   `json:"nCrossValidations"`
+	NCrossValidations     *NCrossValidations                  `json:"nCrossValidations,omitempty"`
 	PrimaryMetric         *ForecastingPrimaryMetrics          `json:"primaryMetric,omitempty"`
-	TestData              JobInput                            `json:"testData"`
+	TestData              *JobInput                           `json:"testData,omitempty"`
 	TestDataSize          *float64                            `json:"testDataSize,omitempty"`
 	TrainingSettings      *ForecastingTrainingSettings        `json:"trainingSettings,omitempty"`
-	ValidationData        JobInput                            `json:"validationData"`
+	ValidationData        *JobInput                           `json:"validationData,omitempty"`
 	ValidationDataSize    *float64                            `json:"validationDataSize,omitempty"`
 	WeightColumnName      *string                             `json:"weightColumnName,omitempty"`
 

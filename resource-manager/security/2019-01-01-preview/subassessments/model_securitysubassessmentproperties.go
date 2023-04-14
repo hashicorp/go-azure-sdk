@@ -12,7 +12,7 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type SecuritySubAssessmentProperties struct {
-	AdditionalData  AdditionalData       `json:"additionalData"`
+	AdditionalData  *AdditionalData      `json:"additionalData,omitempty"`
 	Category        *string              `json:"category,omitempty"`
 	Description     *string              `json:"description,omitempty"`
 	DisplayName     *string              `json:"displayName,omitempty"`

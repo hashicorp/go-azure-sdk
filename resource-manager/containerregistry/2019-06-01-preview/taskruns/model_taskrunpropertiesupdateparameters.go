@@ -9,8 +9,8 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type TaskRunPropertiesUpdateParameters struct {
-	ForceUpdateTag *string    `json:"forceUpdateTag,omitempty"`
-	RunRequest     RunRequest `json:"runRequest"`
+	ForceUpdateTag *string     `json:"forceUpdateTag,omitempty"`
+	RunRequest     *RunRequest `json:"runRequest,omitempty"`
 }
 
 var _ json.Unmarshaler = &TaskRunPropertiesUpdateParameters{}

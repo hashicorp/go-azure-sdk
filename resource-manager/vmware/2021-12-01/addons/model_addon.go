@@ -9,10 +9,10 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type Addon struct {
-	Id         *string         `json:"id,omitempty"`
-	Name       *string         `json:"name,omitempty"`
-	Properties AddonProperties `json:"properties"`
-	Type       *string         `json:"type,omitempty"`
+	Id         *string          `json:"id,omitempty"`
+	Name       *string          `json:"name,omitempty"`
+	Properties *AddonProperties `json:"properties,omitempty"`
+	Type       *string          `json:"type,omitempty"`
 }
 
 var _ json.Unmarshaler = &Addon{}

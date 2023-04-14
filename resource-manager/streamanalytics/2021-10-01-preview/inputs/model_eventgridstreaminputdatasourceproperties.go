@@ -12,7 +12,7 @@ type EventGridStreamInputDataSourceProperties struct {
 	EventTypes      *[]string                 `json:"eventTypes,omitempty"`
 	Schema          *EventGridEventSchemaType `json:"schema,omitempty"`
 	StorageAccounts *[]StorageAccount         `json:"storageAccounts,omitempty"`
-	Subscriber      StreamInputDataSource     `json:"subscriber"`
+	Subscriber      *StreamInputDataSource    `json:"subscriber,omitempty"`
 }
 
 var _ json.Unmarshaler = &EventGridStreamInputDataSourceProperties{}

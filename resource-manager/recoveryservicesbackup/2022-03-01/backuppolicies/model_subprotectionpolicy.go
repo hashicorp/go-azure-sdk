@@ -9,9 +9,9 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type SubProtectionPolicy struct {
-	PolicyType      *PolicyType     `json:"policyType,omitempty"`
-	RetentionPolicy RetentionPolicy `json:"retentionPolicy"`
-	SchedulePolicy  SchedulePolicy  `json:"schedulePolicy"`
+	PolicyType      *PolicyType      `json:"policyType,omitempty"`
+	RetentionPolicy *RetentionPolicy `json:"retentionPolicy,omitempty"`
+	SchedulePolicy  *SchedulePolicy  `json:"schedulePolicy,omitempty"`
 }
 
 var _ json.Unmarshaler = &SubProtectionPolicy{}

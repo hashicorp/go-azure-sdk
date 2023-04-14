@@ -14,7 +14,7 @@ type ManagementEventRuleCondition struct {
 	Aggregation *ManagementEventAggregationCondition `json:"aggregation,omitempty"`
 
 	// Fields inherited from RuleCondition
-	DataSource RuleDataSource `json:"dataSource"`
+	DataSource *RuleDataSource `json:"dataSource,omitempty"`
 }
 
 var _ json.Marshaler = ManagementEventRuleCondition{}

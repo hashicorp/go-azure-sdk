@@ -16,7 +16,7 @@ type ComputeResource struct {
 	Identity   *identity.LegacySystemAndUserAssignedMap `json:"identity,omitempty"`
 	Location   *string                                  `json:"location,omitempty"`
 	Name       *string                                  `json:"name,omitempty"`
-	Properties Compute                                  `json:"properties"`
+	Properties *Compute                                 `json:"properties,omitempty"`
 	Sku        *Sku                                     `json:"sku,omitempty"`
 	SystemData *systemdata.SystemData                   `json:"systemData,omitempty"`
 	Tags       *map[string]string                       `json:"tags,omitempty"`

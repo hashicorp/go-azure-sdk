@@ -9,8 +9,8 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type SwitchProviderInputProperties struct {
-	ProviderSpecificDetails SwitchProviderProviderSpecificInput `json:"providerSpecificDetails"`
-	TargetInstanceType      *string                             `json:"targetInstanceType,omitempty"`
+	ProviderSpecificDetails *SwitchProviderProviderSpecificInput `json:"providerSpecificDetails,omitempty"`
+	TargetInstanceType      *string                              `json:"targetInstanceType,omitempty"`
 }
 
 var _ json.Unmarshaler = &SwitchProviderInputProperties{}

@@ -10,7 +10,7 @@ import (
 
 type ProviderInstanceProperties struct {
 	Errors            *Error                            `json:"errors,omitempty"`
-	ProviderSettings  ProviderSpecificProperties        `json:"providerSettings"`
+	ProviderSettings  *ProviderSpecificProperties       `json:"providerSettings,omitempty"`
 	ProvisioningState *WorkloadMonitorProvisioningState `json:"provisioningState,omitempty"`
 }
 

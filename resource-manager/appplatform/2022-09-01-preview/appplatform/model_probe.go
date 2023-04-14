@@ -9,13 +9,13 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type Probe struct {
-	DisableProbe        bool        `json:"disableProbe"`
-	FailureThreshold    *int64      `json:"failureThreshold,omitempty"`
-	InitialDelaySeconds *int64      `json:"initialDelaySeconds,omitempty"`
-	PeriodSeconds       *int64      `json:"periodSeconds,omitempty"`
-	ProbeAction         ProbeAction `json:"probeAction"`
-	SuccessThreshold    *int64      `json:"successThreshold,omitempty"`
-	TimeoutSeconds      *int64      `json:"timeoutSeconds,omitempty"`
+	DisableProbe        bool         `json:"disableProbe"`
+	FailureThreshold    *int64       `json:"failureThreshold,omitempty"`
+	InitialDelaySeconds *int64       `json:"initialDelaySeconds,omitempty"`
+	PeriodSeconds       *int64       `json:"periodSeconds,omitempty"`
+	ProbeAction         *ProbeAction `json:"probeAction,omitempty"`
+	SuccessThreshold    *int64       `json:"successThreshold,omitempty"`
+	TimeoutSeconds      *int64       `json:"timeoutSeconds,omitempty"`
 }
 
 var _ json.Unmarshaler = &Probe{}

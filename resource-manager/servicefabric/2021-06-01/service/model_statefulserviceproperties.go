@@ -21,7 +21,7 @@ type StatefulServiceProperties struct {
 	// Fields inherited from ServiceResourceProperties
 	CorrelationScheme            *[]ServiceCorrelationDescription     `json:"correlationScheme,omitempty"`
 	DefaultMoveCost              *MoveCost                            `json:"defaultMoveCost,omitempty"`
-	PartitionDescription         PartitionSchemeDescription           `json:"partitionDescription"`
+	PartitionDescription         *PartitionSchemeDescription          `json:"partitionDescription,omitempty"`
 	PlacementConstraints         *string                              `json:"placementConstraints,omitempty"`
 	ProvisioningState            *string                              `json:"provisioningState,omitempty"`
 	ServiceDnsName               *string                              `json:"serviceDnsName,omitempty"`

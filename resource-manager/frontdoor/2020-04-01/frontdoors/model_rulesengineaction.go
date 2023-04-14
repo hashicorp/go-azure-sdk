@@ -9,9 +9,9 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type RulesEngineAction struct {
-	RequestHeaderActions       *[]HeaderAction    `json:"requestHeaderActions,omitempty"`
-	ResponseHeaderActions      *[]HeaderAction    `json:"responseHeaderActions,omitempty"`
-	RouteConfigurationOverride RouteConfiguration `json:"routeConfigurationOverride"`
+	RequestHeaderActions       *[]HeaderAction     `json:"requestHeaderActions,omitempty"`
+	ResponseHeaderActions      *[]HeaderAction     `json:"responseHeaderActions,omitempty"`
+	RouteConfigurationOverride *RouteConfiguration `json:"routeConfigurationOverride,omitempty"`
 }
 
 var _ json.Unmarshaler = &RulesEngineAction{}

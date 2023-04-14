@@ -12,13 +12,13 @@ type ForecastingSettings struct {
 	CountryOrRegionForHolidays *string                           `json:"countryOrRegionForHolidays,omitempty"`
 	CvStepSize                 *int64                            `json:"cvStepSize,omitempty"`
 	FeatureLags                *FeatureLags                      `json:"featureLags,omitempty"`
-	ForecastHorizon            ForecastHorizon                   `json:"forecastHorizon"`
+	ForecastHorizon            *ForecastHorizon                  `json:"forecastHorizon,omitempty"`
 	Frequency                  *string                           `json:"frequency,omitempty"`
-	Seasonality                Seasonality                       `json:"seasonality"`
+	Seasonality                *Seasonality                      `json:"seasonality,omitempty"`
 	ShortSeriesHandlingConfig  *ShortSeriesHandlingConfiguration `json:"shortSeriesHandlingConfig,omitempty"`
 	TargetAggregateFunction    *TargetAggregationFunction        `json:"targetAggregateFunction,omitempty"`
-	TargetLags                 TargetLags                        `json:"targetLags"`
-	TargetRollingWindowSize    TargetRollingWindowSize           `json:"targetRollingWindowSize"`
+	TargetLags                 *TargetLags                       `json:"targetLags,omitempty"`
+	TargetRollingWindowSize    *TargetRollingWindowSize          `json:"targetRollingWindowSize,omitempty"`
 	TimeColumnName             *string                           `json:"timeColumnName,omitempty"`
 	TimeSeriesIdColumnNames    *[]string                         `json:"timeSeriesIdColumnNames,omitempty"`
 	UseStl                     *UseStl                           `json:"useStl,omitempty"`

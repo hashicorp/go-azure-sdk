@@ -11,8 +11,8 @@ import (
 var _ AuthInfoBase = SecretAuthInfo{}
 
 type SecretAuthInfo struct {
-	Name       *string        `json:"name,omitempty"`
-	SecretInfo SecretInfoBase `json:"secretInfo"`
+	Name       *string         `json:"name,omitempty"`
+	SecretInfo *SecretInfoBase `json:"secretInfo,omitempty"`
 
 	// Fields inherited from AuthInfoBase
 }

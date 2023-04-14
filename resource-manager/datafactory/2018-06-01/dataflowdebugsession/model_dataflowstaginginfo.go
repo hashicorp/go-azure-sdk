@@ -10,7 +10,7 @@ import (
 
 type DataFlowStagingInfo struct {
 	FolderPath    *interface{} `json:"folderPath,omitempty"`
-	LinkedService Reference    `json:"linkedService"`
+	LinkedService *Reference   `json:"linkedService,omitempty"`
 }
 
 var _ json.Unmarshaler = &DataFlowStagingInfo{}

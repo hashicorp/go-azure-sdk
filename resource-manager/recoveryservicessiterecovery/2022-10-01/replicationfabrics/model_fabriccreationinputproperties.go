@@ -9,7 +9,7 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type FabricCreationInputProperties struct {
-	CustomDetails FabricSpecificCreationInput `json:"customDetails"`
+	CustomDetails *FabricSpecificCreationInput `json:"customDetails,omitempty"`
 }
 
 var _ json.Unmarshaler = &FabricCreationInputProperties{}

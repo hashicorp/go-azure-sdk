@@ -10,7 +10,7 @@ import (
 
 type LinkedService struct {
 	Annotations *[]interface{}                     `json:"annotations,omitempty"`
-	ConnectVia  Reference                          `json:"connectVia"`
+	ConnectVia  *Reference                         `json:"connectVia,omitempty"`
 	Description *string                            `json:"description,omitempty"`
 	Parameters  *map[string]ParameterSpecification `json:"parameters,omitempty"`
 	Type        string                             `json:"type"`

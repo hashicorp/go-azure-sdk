@@ -9,7 +9,7 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type RemoveDisksInputProperties struct {
-	ProviderSpecificDetails RemoveDisksProviderSpecificInput `json:"providerSpecificDetails"`
+	ProviderSpecificDetails *RemoveDisksProviderSpecificInput `json:"providerSpecificDetails,omitempty"`
 }
 
 var _ json.Unmarshaler = &RemoveDisksInputProperties{}

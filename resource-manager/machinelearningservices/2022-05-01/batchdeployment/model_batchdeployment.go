@@ -18,7 +18,7 @@ type BatchDeployment struct {
 	LoggingLevel              *BatchLoggingLevel           `json:"loggingLevel,omitempty"`
 	MaxConcurrencyPerInstance *int64                       `json:"maxConcurrencyPerInstance,omitempty"`
 	MiniBatchSize             *int64                       `json:"miniBatchSize,omitempty"`
-	Model                     AssetReferenceBase           `json:"model"`
+	Model                     *AssetReferenceBase          `json:"model,omitempty"`
 	OutputAction              *BatchOutputAction           `json:"outputAction,omitempty"`
 	OutputFileName            *string                      `json:"outputFileName,omitempty"`
 	Properties                *map[string]string           `json:"properties,omitempty"`

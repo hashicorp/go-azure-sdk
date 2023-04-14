@@ -9,9 +9,9 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type UnplannedFailoverInputProperties struct {
-	FailoverDirection       *string                                `json:"failoverDirection,omitempty"`
-	ProviderSpecificDetails UnplannedFailoverProviderSpecificInput `json:"providerSpecificDetails"`
-	SourceSiteOperations    *string                                `json:"sourceSiteOperations,omitempty"`
+	FailoverDirection       *string                                 `json:"failoverDirection,omitempty"`
+	ProviderSpecificDetails *UnplannedFailoverProviderSpecificInput `json:"providerSpecificDetails,omitempty"`
+	SourceSiteOperations    *string                                 `json:"sourceSiteOperations,omitempty"`
 }
 
 var _ json.Unmarshaler = &UnplannedFailoverInputProperties{}

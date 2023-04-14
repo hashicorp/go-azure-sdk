@@ -14,7 +14,7 @@ type RoutingRuleProperties struct {
 	FrontendEndpoints                *[]SubResource                                               `json:"frontendEndpoints,omitempty"`
 	PatternsToMatch                  *[]string                                                    `json:"patternsToMatch,omitempty"`
 	ResourceState                    *FrontDoorResourceState                                      `json:"resourceState,omitempty"`
-	RouteConfiguration               RouteConfiguration                                           `json:"routeConfiguration"`
+	RouteConfiguration               *RouteConfiguration                                          `json:"routeConfiguration,omitempty"`
 	RulesEngine                      *SubResource                                                 `json:"rulesEngine,omitempty"`
 	WebApplicationFirewallPolicyLink *RoutingRuleUpdateParametersWebApplicationFirewallPolicyLink `json:"webApplicationFirewallPolicyLink,omitempty"`
 }

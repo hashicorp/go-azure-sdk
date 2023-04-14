@@ -12,10 +12,12 @@ import (
 type ClusterReportedProperties struct {
 	ClusterId             *string          `json:"clusterId,omitempty"`
 	ClusterName           *string          `json:"clusterName,omitempty"`
+	ClusterType           *ClusterNodeType `json:"clusterType,omitempty"`
 	ClusterVersion        *string          `json:"clusterVersion,omitempty"`
 	DiagnosticLevel       *DiagnosticLevel `json:"diagnosticLevel,omitempty"`
 	ImdsAttestation       *ImdsAttestation `json:"imdsAttestation,omitempty"`
 	LastUpdated           *string          `json:"lastUpdated,omitempty"`
+	Manufacturer          *string          `json:"manufacturer,omitempty"`
 	Nodes                 *[]ClusterNode   `json:"nodes,omitempty"`
 	SupportedCapabilities *[]string        `json:"supportedCapabilities,omitempty"`
 }

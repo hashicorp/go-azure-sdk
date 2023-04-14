@@ -9,8 +9,8 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type DisableProtectionInputProperties struct {
-	DisableProtectionReason  *DisableProtectionReason               `json:"disableProtectionReason,omitempty"`
-	ReplicationProviderInput DisableProtectionProviderSpecificInput `json:"replicationProviderInput"`
+	DisableProtectionReason  *DisableProtectionReason                `json:"disableProtectionReason,omitempty"`
+	ReplicationProviderInput *DisableProtectionProviderSpecificInput `json:"replicationProviderInput,omitempty"`
 }
 
 var _ json.Unmarshaler = &DisableProtectionInputProperties{}

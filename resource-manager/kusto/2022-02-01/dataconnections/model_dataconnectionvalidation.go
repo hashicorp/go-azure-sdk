@@ -9,8 +9,8 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type DataConnectionValidation struct {
-	DataConnectionName *string        `json:"dataConnectionName,omitempty"`
-	Properties         DataConnection `json:"properties"`
+	DataConnectionName *string         `json:"dataConnectionName,omitempty"`
+	Properties         *DataConnection `json:"properties,omitempty"`
 }
 
 var _ json.Unmarshaler = &DataConnectionValidation{}

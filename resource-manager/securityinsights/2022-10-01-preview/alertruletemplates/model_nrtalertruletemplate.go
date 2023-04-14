@@ -13,7 +13,7 @@ import (
 var _ AlertRuleTemplate = NrtAlertRuleTemplate{}
 
 type NrtAlertRuleTemplate struct {
-	Properties AlertRuleTemplate `json:"properties"`
+	Properties *AlertRuleTemplate `json:"properties,omitempty"`
 
 	// Fields inherited from AlertRuleTemplate
 	Id         *string                `json:"id,omitempty"`

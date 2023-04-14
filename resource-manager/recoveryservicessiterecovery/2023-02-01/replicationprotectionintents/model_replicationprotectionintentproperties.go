@@ -9,12 +9,12 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type ReplicationProtectionIntentProperties struct {
-	CreationTimeUTC         *string                                             `json:"creationTimeUTC,omitempty"`
-	FriendlyName            *string                                             `json:"friendlyName,omitempty"`
-	IsActive                *bool                                               `json:"isActive,omitempty"`
-	JobId                   *string                                             `json:"jobId,omitempty"`
-	JobState                *string                                             `json:"jobState,omitempty"`
-	ProviderSpecificDetails ReplicationProtectionIntentProviderSpecificSettings `json:"providerSpecificDetails"`
+	CreationTimeUTC         *string                                              `json:"creationTimeUTC,omitempty"`
+	FriendlyName            *string                                              `json:"friendlyName,omitempty"`
+	IsActive                *bool                                                `json:"isActive,omitempty"`
+	JobId                   *string                                              `json:"jobId,omitempty"`
+	JobState                *string                                              `json:"jobState,omitempty"`
+	ProviderSpecificDetails *ReplicationProtectionIntentProviderSpecificSettings `json:"providerSpecificDetails,omitempty"`
 }
 
 var _ json.Unmarshaler = &ReplicationProtectionIntentProperties{}

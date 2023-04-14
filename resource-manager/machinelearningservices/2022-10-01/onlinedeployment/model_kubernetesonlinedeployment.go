@@ -28,7 +28,7 @@ type KubernetesOnlineDeployment struct {
 	ProvisioningState         *DeploymentProvisioningState   `json:"provisioningState,omitempty"`
 	ReadinessProbe            *ProbeSettings                 `json:"readinessProbe,omitempty"`
 	RequestSettings           *OnlineRequestSettings         `json:"requestSettings,omitempty"`
-	ScaleSettings             OnlineScaleSettings            `json:"scaleSettings"`
+	ScaleSettings             *OnlineScaleSettings           `json:"scaleSettings,omitempty"`
 }
 
 var _ json.Marshaler = KubernetesOnlineDeployment{}

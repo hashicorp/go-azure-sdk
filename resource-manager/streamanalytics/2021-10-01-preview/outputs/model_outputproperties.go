@@ -9,11 +9,11 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type OutputProperties struct {
-	Datasource                OutputDataSource            `json:"datasource"`
+	Datasource                *OutputDataSource           `json:"datasource,omitempty"`
 	Diagnostics               *Diagnostics                `json:"diagnostics,omitempty"`
 	Etag                      *string                     `json:"etag,omitempty"`
 	LastOutputEventTimestamps *[]LastOutputEventTimestamp `json:"lastOutputEventTimestamps,omitempty"`
-	Serialization             Serialization               `json:"serialization"`
+	Serialization             *Serialization              `json:"serialization,omitempty"`
 	SizeWindow                *int64                      `json:"sizeWindow,omitempty"`
 	TimeWindow                *string                     `json:"timeWindow,omitempty"`
 	WatermarkSettings         *OutputWatermarkProperties  `json:"watermarkSettings,omitempty"`

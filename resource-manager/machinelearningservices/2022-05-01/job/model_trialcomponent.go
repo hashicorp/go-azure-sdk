@@ -9,12 +9,12 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type TrialComponent struct {
-	CodeId               *string                   `json:"codeId,omitempty"`
-	Command              string                    `json:"command"`
-	Distribution         DistributionConfiguration `json:"distribution"`
-	EnvironmentId        string                    `json:"environmentId"`
-	EnvironmentVariables *map[string]string        `json:"environmentVariables,omitempty"`
-	Resources            *ResourceConfiguration    `json:"resources,omitempty"`
+	CodeId               *string                    `json:"codeId,omitempty"`
+	Command              string                     `json:"command"`
+	Distribution         *DistributionConfiguration `json:"distribution,omitempty"`
+	EnvironmentId        string                     `json:"environmentId"`
+	EnvironmentVariables *map[string]string         `json:"environmentVariables,omitempty"`
+	Resources            *ResourceConfiguration     `json:"resources,omitempty"`
 }
 
 var _ json.Unmarshaler = &TrialComponent{}

@@ -20,17 +20,17 @@ type A2AReplicationIntentDetails struct {
 	MultiVMGroupId                      *string                                       `json:"multiVmGroupId,omitempty"`
 	MultiVMGroupName                    *string                                       `json:"multiVmGroupName,omitempty"`
 	PrimaryLocation                     *string                                       `json:"primaryLocation,omitempty"`
-	PrimaryStagingStorageAccount        StorageAccountCustomDetails                   `json:"primaryStagingStorageAccount"`
-	ProtectionProfile                   ProtectionProfileCustomDetails                `json:"protectionProfile"`
-	RecoveryAvailabilitySet             RecoveryAvailabilitySetCustomDetails          `json:"recoveryAvailabilitySet"`
+	PrimaryStagingStorageAccount        *StorageAccountCustomDetails                  `json:"primaryStagingStorageAccount,omitempty"`
+	ProtectionProfile                   *ProtectionProfileCustomDetails               `json:"protectionProfile,omitempty"`
+	RecoveryAvailabilitySet             *RecoveryAvailabilitySetCustomDetails         `json:"recoveryAvailabilitySet,omitempty"`
 	RecoveryAvailabilityType            string                                        `json:"recoveryAvailabilityType"`
 	RecoveryAvailabilityZone            *string                                       `json:"recoveryAvailabilityZone,omitempty"`
-	RecoveryBootDiagStorageAccount      StorageAccountCustomDetails                   `json:"recoveryBootDiagStorageAccount"`
+	RecoveryBootDiagStorageAccount      *StorageAccountCustomDetails                  `json:"recoveryBootDiagStorageAccount,omitempty"`
 	RecoveryLocation                    *string                                       `json:"recoveryLocation,omitempty"`
-	RecoveryProximityPlacementGroup     RecoveryProximityPlacementGroupCustomDetails  `json:"recoveryProximityPlacementGroup"`
+	RecoveryProximityPlacementGroup     *RecoveryProximityPlacementGroupCustomDetails `json:"recoveryProximityPlacementGroup,omitempty"`
 	RecoveryResourceGroupId             *string                                       `json:"recoveryResourceGroupId,omitempty"`
 	RecoverySubscriptionId              *string                                       `json:"recoverySubscriptionId,omitempty"`
-	RecoveryVirtualNetwork              RecoveryVirtualNetworkCustomDetails           `json:"recoveryVirtualNetwork"`
+	RecoveryVirtualNetwork              *RecoveryVirtualNetworkCustomDetails          `json:"recoveryVirtualNetwork,omitempty"`
 	VMDisks                             *[]A2AProtectionIntentDiskInputDetails        `json:"vmDisks,omitempty"`
 	VMManagedDisks                      *[]A2AProtectionIntentManagedDiskInputDetails `json:"vmManagedDisks,omitempty"`
 

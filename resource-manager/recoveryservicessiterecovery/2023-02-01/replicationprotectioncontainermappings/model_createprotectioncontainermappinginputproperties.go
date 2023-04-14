@@ -9,9 +9,9 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type CreateProtectionContainerMappingInputProperties struct {
-	PolicyId                    *string                                          `json:"policyId,omitempty"`
-	ProviderSpecificInput       ReplicationProviderSpecificContainerMappingInput `json:"providerSpecificInput"`
-	TargetProtectionContainerId *string                                          `json:"targetProtectionContainerId,omitempty"`
+	PolicyId                    *string                                           `json:"policyId,omitempty"`
+	ProviderSpecificInput       *ReplicationProviderSpecificContainerMappingInput `json:"providerSpecificInput,omitempty"`
+	TargetProtectionContainerId *string                                           `json:"targetProtectionContainerId,omitempty"`
 }
 
 var _ json.Unmarshaler = &CreateProtectionContainerMappingInputProperties{}

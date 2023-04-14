@@ -9,10 +9,10 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type TestFailoverInputProperties struct {
-	FailoverDirection       *string                           `json:"failoverDirection,omitempty"`
-	NetworkId               *string                           `json:"networkId,omitempty"`
-	NetworkType             *string                           `json:"networkType,omitempty"`
-	ProviderSpecificDetails TestFailoverProviderSpecificInput `json:"providerSpecificDetails"`
+	FailoverDirection       *string                            `json:"failoverDirection,omitempty"`
+	NetworkId               *string                            `json:"networkId,omitempty"`
+	NetworkType             *string                            `json:"networkType,omitempty"`
+	ProviderSpecificDetails *TestFailoverProviderSpecificInput `json:"providerSpecificDetails,omitempty"`
 }
 
 var _ json.Unmarshaler = &TestFailoverInputProperties{}

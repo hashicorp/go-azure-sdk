@@ -13,7 +13,7 @@ var _ InfrastructureConfiguration = ThreeTierConfiguration{}
 type ThreeTierConfiguration struct {
 	ApplicationServer      ApplicationServerConfiguration `json:"applicationServer"`
 	CentralServer          CentralServerConfiguration     `json:"centralServer"`
-	CustomResourceNames    ThreeTierCustomResourceNames   `json:"customResourceNames"`
+	CustomResourceNames    *ThreeTierCustomResourceNames  `json:"customResourceNames,omitempty"`
 	DatabaseServer         DatabaseConfiguration          `json:"databaseServer"`
 	HighAvailabilityConfig *HighAvailabilityConfiguration `json:"highAvailabilityConfig,omitempty"`
 	NetworkConfiguration   *NetworkConfiguration          `json:"networkConfiguration,omitempty"`

@@ -16,7 +16,7 @@ type ImageClassification struct {
 	PrimaryMetric      *ClassificationPrimaryMetrics                   `json:"primaryMetric,omitempty"`
 	SearchSpace        *[]ImageModelDistributionSettingsClassification `json:"searchSpace,omitempty"`
 	SweepSettings      *ImageSweepSettings                             `json:"sweepSettings,omitempty"`
-	ValidationData     JobInput                                        `json:"validationData"`
+	ValidationData     *JobInput                                       `json:"validationData,omitempty"`
 	ValidationDataSize *float64                                        `json:"validationDataSize,omitempty"`
 
 	// Fields inherited from AutoMLVertical

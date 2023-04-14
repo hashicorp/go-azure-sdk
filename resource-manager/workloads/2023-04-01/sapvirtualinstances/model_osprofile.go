@@ -9,9 +9,9 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type OSProfile struct {
-	AdminPassword   *string         `json:"adminPassword,omitempty"`
-	AdminUsername   *string         `json:"adminUsername,omitempty"`
-	OsConfiguration OSConfiguration `json:"osConfiguration"`
+	AdminPassword   *string          `json:"adminPassword,omitempty"`
+	AdminUsername   *string          `json:"adminUsername,omitempty"`
+	OsConfiguration *OSConfiguration `json:"osConfiguration,omitempty"`
 }
 
 var _ json.Unmarshaler = &OSProfile{}

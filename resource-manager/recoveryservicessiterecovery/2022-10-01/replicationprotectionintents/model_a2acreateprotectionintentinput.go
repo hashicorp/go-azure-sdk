@@ -20,17 +20,17 @@ type A2ACreateProtectionIntentInput struct {
 	MultiVMGroupId                             *string                                       `json:"multiVmGroupId,omitempty"`
 	MultiVMGroupName                           *string                                       `json:"multiVmGroupName,omitempty"`
 	PrimaryLocation                            string                                        `json:"primaryLocation"`
-	PrimaryStagingStorageAccountCustomInput    StorageAccountCustomDetails                   `json:"primaryStagingStorageAccountCustomInput"`
-	ProtectionProfileCustomInput               ProtectionProfileCustomDetails                `json:"protectionProfileCustomInput"`
-	RecoveryAvailabilitySetCustomInput         RecoveryAvailabilitySetCustomDetails          `json:"recoveryAvailabilitySetCustomInput"`
+	PrimaryStagingStorageAccountCustomInput    *StorageAccountCustomDetails                  `json:"primaryStagingStorageAccountCustomInput,omitempty"`
+	ProtectionProfileCustomInput               *ProtectionProfileCustomDetails               `json:"protectionProfileCustomInput,omitempty"`
+	RecoveryAvailabilitySetCustomInput         *RecoveryAvailabilitySetCustomDetails         `json:"recoveryAvailabilitySetCustomInput,omitempty"`
 	RecoveryAvailabilityType                   A2ARecoveryAvailabilityType                   `json:"recoveryAvailabilityType"`
 	RecoveryAvailabilityZone                   *string                                       `json:"recoveryAvailabilityZone,omitempty"`
-	RecoveryBootDiagStorageAccount             StorageAccountCustomDetails                   `json:"recoveryBootDiagStorageAccount"`
+	RecoveryBootDiagStorageAccount             *StorageAccountCustomDetails                  `json:"recoveryBootDiagStorageAccount,omitempty"`
 	RecoveryLocation                           string                                        `json:"recoveryLocation"`
-	RecoveryProximityPlacementGroupCustomInput RecoveryProximityPlacementGroupCustomDetails  `json:"recoveryProximityPlacementGroupCustomInput"`
+	RecoveryProximityPlacementGroupCustomInput *RecoveryProximityPlacementGroupCustomDetails `json:"recoveryProximityPlacementGroupCustomInput,omitempty"`
 	RecoveryResourceGroupId                    string                                        `json:"recoveryResourceGroupId"`
 	RecoverySubscriptionId                     string                                        `json:"recoverySubscriptionId"`
-	RecoveryVirtualNetworkCustomInput          RecoveryVirtualNetworkCustomDetails           `json:"recoveryVirtualNetworkCustomInput"`
+	RecoveryVirtualNetworkCustomInput          *RecoveryVirtualNetworkCustomDetails          `json:"recoveryVirtualNetworkCustomInput,omitempty"`
 	VMDisks                                    *[]A2AProtectionIntentDiskInputDetails        `json:"vmDisks,omitempty"`
 	VMManagedDisks                             *[]A2AProtectionIntentManagedDiskInputDetails `json:"vmManagedDisks,omitempty"`
 

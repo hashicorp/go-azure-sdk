@@ -14,7 +14,7 @@ type TextNer struct {
 	FeaturizationSettings *FeaturizationSettings        `json:"featurizationSettings,omitempty"`
 	LimitSettings         *NlpVerticalLimitSettings     `json:"limitSettings,omitempty"`
 	PrimaryMetric         *ClassificationPrimaryMetrics `json:"primaryMetric,omitempty"`
-	ValidationData        JobInput                      `json:"validationData"`
+	ValidationData        *JobInput                     `json:"validationData,omitempty"`
 
 	// Fields inherited from AutoMLVertical
 	LogVerbosity     *LogVerbosity `json:"logVerbosity,omitempty"`

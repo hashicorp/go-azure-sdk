@@ -9,9 +9,9 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type CreateNetworkMappingInputProperties struct {
-	FabricSpecificDetails FabricSpecificCreateNetworkMappingInput `json:"fabricSpecificDetails"`
-	RecoveryFabricName    *string                                 `json:"recoveryFabricName,omitempty"`
-	RecoveryNetworkId     string                                  `json:"recoveryNetworkId"`
+	FabricSpecificDetails *FabricSpecificCreateNetworkMappingInput `json:"fabricSpecificDetails,omitempty"`
+	RecoveryFabricName    *string                                  `json:"recoveryFabricName,omitempty"`
+	RecoveryNetworkId     string                                   `json:"recoveryNetworkId"`
 }
 
 var _ json.Unmarshaler = &CreateNetworkMappingInputProperties{}

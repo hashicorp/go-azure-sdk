@@ -14,8 +14,8 @@ type AzureIaaSVMProtectionPolicy struct {
 	InstantRPDetails              *InstantRPAdditionalDetails `json:"instantRPDetails,omitempty"`
 	InstantRpRetentionRangeInDays *int64                      `json:"instantRpRetentionRangeInDays,omitempty"`
 	PolicyType                    *IAASVMPolicyType           `json:"policyType,omitempty"`
-	RetentionPolicy               RetentionPolicy             `json:"retentionPolicy"`
-	SchedulePolicy                SchedulePolicy              `json:"schedulePolicy"`
+	RetentionPolicy               *RetentionPolicy            `json:"retentionPolicy,omitempty"`
+	SchedulePolicy                *SchedulePolicy             `json:"schedulePolicy,omitempty"`
 	TimeZone                      *string                     `json:"timeZone,omitempty"`
 
 	// Fields inherited from ProtectionPolicy

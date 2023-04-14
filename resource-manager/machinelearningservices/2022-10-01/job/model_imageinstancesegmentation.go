@@ -16,7 +16,7 @@ type ImageInstanceSegmentation struct {
 	PrimaryMetric      *InstanceSegmentationPrimaryMetrics              `json:"primaryMetric,omitempty"`
 	SearchSpace        *[]ImageModelDistributionSettingsObjectDetection `json:"searchSpace,omitempty"`
 	SweepSettings      *ImageSweepSettings                              `json:"sweepSettings,omitempty"`
-	ValidationData     JobInput                                         `json:"validationData"`
+	ValidationData     *JobInput                                        `json:"validationData,omitempty"`
 	ValidationDataSize *float64                                         `json:"validationDataSize,omitempty"`
 
 	// Fields inherited from AutoMLVertical

@@ -14,13 +14,13 @@ type Classification struct {
 	CvSplitColumnNames    *[]string                           `json:"cvSplitColumnNames,omitempty"`
 	FeaturizationSettings *TableVerticalFeaturizationSettings `json:"featurizationSettings,omitempty"`
 	LimitSettings         *TableVerticalLimitSettings         `json:"limitSettings,omitempty"`
-	NCrossValidations     NCrossValidations                   `json:"nCrossValidations"`
+	NCrossValidations     *NCrossValidations                  `json:"nCrossValidations,omitempty"`
 	PositiveLabel         *string                             `json:"positiveLabel,omitempty"`
 	PrimaryMetric         *ClassificationPrimaryMetrics       `json:"primaryMetric,omitempty"`
-	TestData              JobInput                            `json:"testData"`
+	TestData              *JobInput                           `json:"testData,omitempty"`
 	TestDataSize          *float64                            `json:"testDataSize,omitempty"`
 	TrainingSettings      *ClassificationTrainingSettings     `json:"trainingSettings,omitempty"`
-	ValidationData        JobInput                            `json:"validationData"`
+	ValidationData        *JobInput                           `json:"validationData,omitempty"`
 	ValidationDataSize    *float64                            `json:"validationDataSize,omitempty"`
 	WeightColumnName      *string                             `json:"weightColumnName,omitempty"`
 

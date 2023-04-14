@@ -9,9 +9,9 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type EnableProtectionInputProperties struct {
-	PolicyId                *string                               `json:"policyId,omitempty"`
-	ProtectableItemId       *string                               `json:"protectableItemId,omitempty"`
-	ProviderSpecificDetails EnableProtectionProviderSpecificInput `json:"providerSpecificDetails"`
+	PolicyId                *string                                `json:"policyId,omitempty"`
+	ProtectableItemId       *string                                `json:"protectableItemId,omitempty"`
+	ProviderSpecificDetails *EnableProtectionProviderSpecificInput `json:"providerSpecificDetails,omitempty"`
 }
 
 var _ json.Unmarshaler = &EnableProtectionInputProperties{}

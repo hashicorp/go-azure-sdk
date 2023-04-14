@@ -12,7 +12,7 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type AlertRule struct {
-	Action            RuleAction    `json:"action"`
+	Action            *RuleAction   `json:"action,omitempty"`
 	Actions           *[]RuleAction `json:"actions,omitempty"`
 	Condition         RuleCondition `json:"condition"`
 	Description       *string       `json:"description,omitempty"`

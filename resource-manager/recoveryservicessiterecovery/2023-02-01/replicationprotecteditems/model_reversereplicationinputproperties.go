@@ -9,8 +9,8 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type ReverseReplicationInputProperties struct {
-	FailoverDirection       *string                                 `json:"failoverDirection,omitempty"`
-	ProviderSpecificDetails ReverseReplicationProviderSpecificInput `json:"providerSpecificDetails"`
+	FailoverDirection       *string                                  `json:"failoverDirection,omitempty"`
+	ProviderSpecificDetails *ReverseReplicationProviderSpecificInput `json:"providerSpecificDetails,omitempty"`
 }
 
 var _ json.Unmarshaler = &ReverseReplicationInputProperties{}

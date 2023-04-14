@@ -9,7 +9,7 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type ReplicationApplianceProperties struct {
-	ProviderSpecificDetails ApplianceSpecificDetails `json:"providerSpecificDetails"`
+	ProviderSpecificDetails *ApplianceSpecificDetails `json:"providerSpecificDetails,omitempty"`
 }
 
 var _ json.Unmarshaler = &ReplicationApplianceProperties{}

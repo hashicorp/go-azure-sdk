@@ -14,12 +14,12 @@ type Regression struct {
 	CvSplitColumnNames    *[]string                           `json:"cvSplitColumnNames,omitempty"`
 	FeaturizationSettings *TableVerticalFeaturizationSettings `json:"featurizationSettings,omitempty"`
 	LimitSettings         *TableVerticalLimitSettings         `json:"limitSettings,omitempty"`
-	NCrossValidations     NCrossValidations                   `json:"nCrossValidations"`
+	NCrossValidations     *NCrossValidations                  `json:"nCrossValidations,omitempty"`
 	PrimaryMetric         *RegressionPrimaryMetrics           `json:"primaryMetric,omitempty"`
-	TestData              JobInput                            `json:"testData"`
+	TestData              *JobInput                           `json:"testData,omitempty"`
 	TestDataSize          *float64                            `json:"testDataSize,omitempty"`
 	TrainingSettings      *RegressionTrainingSettings         `json:"trainingSettings,omitempty"`
-	ValidationData        JobInput                            `json:"validationData"`
+	ValidationData        *JobInput                           `json:"validationData,omitempty"`
 	ValidationDataSize    *float64                            `json:"validationDataSize,omitempty"`
 	WeightColumnName      *string                             `json:"weightColumnName,omitempty"`
 

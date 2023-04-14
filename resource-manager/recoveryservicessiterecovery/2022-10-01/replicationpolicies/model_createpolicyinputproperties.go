@@ -9,7 +9,7 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type CreatePolicyInputProperties struct {
-	ProviderSpecificInput PolicyProviderSpecificInput `json:"providerSpecificInput"`
+	ProviderSpecificInput *PolicyProviderSpecificInput `json:"providerSpecificInput,omitempty"`
 }
 
 var _ json.Unmarshaler = &CreatePolicyInputProperties{}

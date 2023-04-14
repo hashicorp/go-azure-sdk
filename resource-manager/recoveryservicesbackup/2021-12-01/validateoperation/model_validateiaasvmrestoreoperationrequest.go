@@ -11,7 +11,7 @@ import (
 var _ ValidateOperationRequest = ValidateIaasVMRestoreOperationRequest{}
 
 type ValidateIaasVMRestoreOperationRequest struct {
-	RestoreRequest RestoreRequest `json:"restoreRequest"`
+	RestoreRequest *RestoreRequest `json:"restoreRequest,omitempty"`
 
 	// Fields inherited from ValidateOperationRequest
 }

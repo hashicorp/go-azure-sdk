@@ -11,10 +11,10 @@ import (
 var _ SAPConfiguration = DeploymentWithOSConfiguration{}
 
 type DeploymentWithOSConfiguration struct {
-	AppLocation                 *string                     `json:"appLocation,omitempty"`
-	InfrastructureConfiguration InfrastructureConfiguration `json:"infrastructureConfiguration"`
-	OsSapConfiguration          *OsSapConfiguration         `json:"osSapConfiguration,omitempty"`
-	SoftwareConfiguration       SoftwareConfiguration       `json:"softwareConfiguration"`
+	AppLocation                 *string                      `json:"appLocation,omitempty"`
+	InfrastructureConfiguration *InfrastructureConfiguration `json:"infrastructureConfiguration,omitempty"`
+	OsSapConfiguration          *OsSapConfiguration          `json:"osSapConfiguration,omitempty"`
+	SoftwareConfiguration       *SoftwareConfiguration       `json:"softwareConfiguration,omitempty"`
 
 	// Fields inherited from SAPConfiguration
 }

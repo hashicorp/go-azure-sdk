@@ -13,7 +13,7 @@ import (
 type StorageResource struct {
 	Id         *string                `json:"id,omitempty"`
 	Name       *string                `json:"name,omitempty"`
-	Properties StorageProperties      `json:"properties"`
+	Properties *StorageProperties     `json:"properties,omitempty"`
 	SystemData *systemdata.SystemData `json:"systemData,omitempty"`
 	Type       *string                `json:"type,omitempty"`
 }

@@ -11,14 +11,14 @@ import (
 var _ InputProperties = ReferenceInputProperties{}
 
 type ReferenceInputProperties struct {
-	Datasource ReferenceInputDataSource `json:"datasource"`
+	Datasource *ReferenceInputDataSource `json:"datasource,omitempty"`
 
 	// Fields inherited from InputProperties
 	Compression       *Compression              `json:"compression,omitempty"`
 	Diagnostics       *Diagnostics              `json:"diagnostics,omitempty"`
 	Etag              *string                   `json:"etag,omitempty"`
 	PartitionKey      *string                   `json:"partitionKey,omitempty"`
-	Serialization     Serialization             `json:"serialization"`
+	Serialization     *Serialization            `json:"serialization,omitempty"`
 	WatermarkSettings *InputWatermarkProperties `json:"watermarkSettings,omitempty"`
 }
 

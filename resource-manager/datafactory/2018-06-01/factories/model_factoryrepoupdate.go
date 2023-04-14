@@ -9,8 +9,8 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type FactoryRepoUpdate struct {
-	FactoryResourceId *string                  `json:"factoryResourceId,omitempty"`
-	RepoConfiguration FactoryRepoConfiguration `json:"repoConfiguration"`
+	FactoryResourceId *string                   `json:"factoryResourceId,omitempty"`
+	RepoConfiguration *FactoryRepoConfiguration `json:"repoConfiguration,omitempty"`
 }
 
 var _ json.Unmarshaler = &FactoryRepoUpdate{}

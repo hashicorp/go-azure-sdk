@@ -13,11 +13,11 @@ import (
 
 type ASRTask struct {
 	AllowedActions         *[]string          `json:"allowedActions,omitempty"`
-	CustomDetails          TaskTypeDetails    `json:"customDetails"`
+	CustomDetails          *TaskTypeDetails   `json:"customDetails,omitempty"`
 	EndTime                *string            `json:"endTime,omitempty"`
 	Errors                 *[]JobErrorDetails `json:"errors,omitempty"`
 	FriendlyName           *string            `json:"friendlyName,omitempty"`
-	GroupTaskCustomDetails GroupTaskDetails   `json:"groupTaskCustomDetails"`
+	GroupTaskCustomDetails *GroupTaskDetails  `json:"groupTaskCustomDetails,omitempty"`
 	Name                   *string            `json:"name,omitempty"`
 	StartTime              *string            `json:"startTime,omitempty"`
 	State                  *string            `json:"state,omitempty"`

@@ -9,9 +9,9 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type A2AProtectionIntentDiskInputDetails struct {
-	DiskUri                                 string                      `json:"diskUri"`
-	PrimaryStagingStorageAccountCustomInput StorageAccountCustomDetails `json:"primaryStagingStorageAccountCustomInput"`
-	RecoveryAzureStorageAccountCustomInput  StorageAccountCustomDetails `json:"recoveryAzureStorageAccountCustomInput"`
+	DiskUri                                 string                       `json:"diskUri"`
+	PrimaryStagingStorageAccountCustomInput *StorageAccountCustomDetails `json:"primaryStagingStorageAccountCustomInput,omitempty"`
+	RecoveryAzureStorageAccountCustomInput  *StorageAccountCustomDetails `json:"recoveryAzureStorageAccountCustomInput,omitempty"`
 }
 
 var _ json.Unmarshaler = &A2AProtectionIntentDiskInputDetails{}

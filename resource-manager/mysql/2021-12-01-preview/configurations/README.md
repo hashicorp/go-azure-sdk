@@ -37,6 +37,23 @@ if err := client.BatchUpdateThenPoll(ctx, id, payload); err != nil {
 ```
 
 
+### Example Usage: `ConfigurationsClient.CreateOrUpdate`
+
+```go
+ctx := context.TODO()
+id := configurations.NewConfigurationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "flexibleServerValue", "configurationValue")
+
+payload := configurations.Configuration{
+	// ...
+}
+
+
+if err := client.CreateOrUpdateThenPoll(ctx, id, payload); err != nil {
+	// handle the error
+}
+```
+
+
 ### Example Usage: `ConfigurationsClient.Get`
 
 ```go

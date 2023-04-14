@@ -11,8 +11,8 @@ import (
 var _ ProtectionPolicy = MabProtectionPolicy{}
 
 type MabProtectionPolicy struct {
-	RetentionPolicy RetentionPolicy `json:"retentionPolicy"`
-	SchedulePolicy  SchedulePolicy  `json:"schedulePolicy"`
+	RetentionPolicy *RetentionPolicy `json:"retentionPolicy,omitempty"`
+	SchedulePolicy  *SchedulePolicy  `json:"schedulePolicy,omitempty"`
 
 	// Fields inherited from ProtectionPolicy
 	ProtectedItemsCount            *int64    `json:"protectedItemsCount,omitempty"`

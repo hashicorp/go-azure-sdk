@@ -11,14 +11,14 @@ import (
 var _ JobBase = SweepJob{}
 
 type SweepJob struct {
-	EarlyTermination  EarlyTerminationPolicy `json:"earlyTermination"`
-	Inputs            *map[string]JobInput   `json:"inputs,omitempty"`
-	Limits            JobLimits              `json:"limits"`
-	Objective         Objective              `json:"objective"`
-	Outputs           *map[string]JobOutput  `json:"outputs,omitempty"`
-	SamplingAlgorithm SamplingAlgorithm      `json:"samplingAlgorithm"`
-	SearchSpace       interface{}            `json:"searchSpace"`
-	Trial             TrialComponent         `json:"trial"`
+	EarlyTermination  *EarlyTerminationPolicy `json:"earlyTermination,omitempty"`
+	Inputs            *map[string]JobInput    `json:"inputs,omitempty"`
+	Limits            *JobLimits              `json:"limits,omitempty"`
+	Objective         Objective               `json:"objective"`
+	Outputs           *map[string]JobOutput   `json:"outputs,omitempty"`
+	SamplingAlgorithm SamplingAlgorithm       `json:"samplingAlgorithm"`
+	SearchSpace       interface{}             `json:"searchSpace"`
+	Trial             TrialComponent          `json:"trial"`
 
 	// Fields inherited from JobBase
 	ComponentId    *string                `json:"componentId,omitempty"`
@@ -26,7 +26,7 @@ type SweepJob struct {
 	Description    *string                `json:"description,omitempty"`
 	DisplayName    *string                `json:"displayName,omitempty"`
 	ExperimentName *string                `json:"experimentName,omitempty"`
-	Identity       IdentityConfiguration  `json:"identity"`
+	Identity       *IdentityConfiguration `json:"identity,omitempty"`
 	IsArchived     *bool                  `json:"isArchived,omitempty"`
 	Properties     *map[string]string     `json:"properties,omitempty"`
 	Services       *map[string]JobService `json:"services,omitempty"`
