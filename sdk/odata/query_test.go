@@ -66,7 +66,7 @@ func TestQueryValues(t *testing.T) {
 			query: odata.Query{
 				Count:  true,
 				Format: odata.FormatAtom,
-				DeltaToken: "R0usmcFuQtZdtpk4=",
+				DeltaToken: "R0usmcFuQtZdtpk4",
 				Skip:   20,
 				Top:    10,
 			},
@@ -75,7 +75,7 @@ func TestQueryValues(t *testing.T) {
 				"$format": []string{"atom"},
 				"$skip":   []string{"20"},
 				"$top":    []string{"10"},
-				"$deltatoken": []string{"R0usmcFuQtZdtpk4"},
+				"$deltatoken": []string{"R0usmcFuQtZdtpk4="},
 			},
 		},
 		{
