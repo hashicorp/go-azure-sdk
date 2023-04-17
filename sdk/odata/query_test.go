@@ -64,16 +64,18 @@ func TestQueryValues(t *testing.T) {
 		},
 		{
 			query: odata.Query{
-				Count:  true,
-				Format: odata.FormatAtom,
-				Skip:   20,
-				Top:    10,
+				Count:      true,
+				Format:     odata.FormatAtom,
+				DeltaToken: "R0usmcFuQtZdtpk4",
+				Skip:       20,
+				Top:        10,
 			},
 			expected: url.Values{
-				"$count":  []string{"true"},
-				"$format": []string{"atom"},
-				"$skip":   []string{"20"},
-				"$top":    []string{"10"},
+				"$count":      []string{"true"},
+				"$format":     []string{"atom"},
+				"$skip":       []string{"20"},
+				"$top":        []string{"10"},
+				"$deltatoken": []string{"R0usmcFuQtZdtpk4"},
 			},
 		},
 		{
@@ -120,6 +122,14 @@ func TestQueryValues(t *testing.T) {
 			},
 			expected: url.Values{
 				"$select": []string{"id,userPrincipalName"},
+			},
+		},
+		{
+			query: odata.Query{
+				DeltaToken: "R0usmcFuQtZdtpk4",
+			},
+			expected: url.Values{
+				"$deltatoken": []string{"R0usmcFuQtZdtpk4"},
 			},
 		},
 	}
