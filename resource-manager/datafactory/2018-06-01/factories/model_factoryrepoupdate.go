@@ -9,8 +9,8 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type FactoryRepoUpdate struct {
-	FactoryResourceId *string                  `json:"factoryResourceId,omitempty"`
-	RepoConfiguration FactoryRepoConfiguration `json:"repoConfiguration"`
+	FactoryResourceId *string                   `json:"factoryResourceId,omitempty"`
+	RepoConfiguration *FactoryRepoConfiguration `json:"repoConfiguration,omitempty"`
 }
 
 var _ json.Unmarshaler = &FactoryRepoUpdate{}
@@ -34,7 +34,7 @@ func (s *FactoryRepoUpdate) UnmarshalJSON(bytes []byte) error {
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'RepoConfiguration' for 'FactoryRepoUpdate': %+v", err)
 		}
-		s.RepoConfiguration = impl
+		s.RepoConfiguration = &impl
 	}
 	return nil
 }

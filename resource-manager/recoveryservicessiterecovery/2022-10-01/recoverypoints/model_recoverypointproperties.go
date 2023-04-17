@@ -12,9 +12,9 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type RecoveryPointProperties struct {
-	ProviderSpecificDetails ProviderSpecificRecoveryPointDetails `json:"providerSpecificDetails"`
-	RecoveryPointTime       *string                              `json:"recoveryPointTime,omitempty"`
-	RecoveryPointType       *string                              `json:"recoveryPointType,omitempty"`
+	ProviderSpecificDetails *ProviderSpecificRecoveryPointDetails `json:"providerSpecificDetails,omitempty"`
+	RecoveryPointTime       *string                               `json:"recoveryPointTime,omitempty"`
+	RecoveryPointType       *string                               `json:"recoveryPointType,omitempty"`
 }
 
 func (o *RecoveryPointProperties) GetRecoveryPointTimeAsTime() (*time.Time, error) {
@@ -51,7 +51,7 @@ func (s *RecoveryPointProperties) UnmarshalJSON(bytes []byte) error {
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'ProviderSpecificDetails' for 'RecoveryPointProperties': %+v", err)
 		}
-		s.ProviderSpecificDetails = impl
+		s.ProviderSpecificDetails = &impl
 	}
 	return nil
 }

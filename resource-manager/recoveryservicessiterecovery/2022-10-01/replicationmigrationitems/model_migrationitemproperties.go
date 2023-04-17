@@ -12,26 +12,26 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type MigrationItemProperties struct {
-	AllowedOperations           *[]MigrationItemOperation         `json:"allowedOperations,omitempty"`
-	CriticalJobHistory          *[]CriticalJobHistoryDetails      `json:"criticalJobHistory,omitempty"`
-	CurrentJob                  *CurrentJobDetails                `json:"currentJob,omitempty"`
-	EventCorrelationId          *string                           `json:"eventCorrelationId,omitempty"`
-	Health                      *ProtectionHealth                 `json:"health,omitempty"`
-	HealthErrors                *[]HealthError                    `json:"healthErrors,omitempty"`
-	LastMigrationStatus         *string                           `json:"lastMigrationStatus,omitempty"`
-	LastMigrationTime           *string                           `json:"lastMigrationTime,omitempty"`
-	LastTestMigrationStatus     *string                           `json:"lastTestMigrationStatus,omitempty"`
-	LastTestMigrationTime       *string                           `json:"lastTestMigrationTime,omitempty"`
-	MachineName                 *string                           `json:"machineName,omitempty"`
-	MigrationState              *MigrationState                   `json:"migrationState,omitempty"`
-	MigrationStateDescription   *string                           `json:"migrationStateDescription,omitempty"`
-	PolicyFriendlyName          *string                           `json:"policyFriendlyName,omitempty"`
-	PolicyId                    *string                           `json:"policyId,omitempty"`
-	ProviderSpecificDetails     MigrationProviderSpecificSettings `json:"providerSpecificDetails"`
-	RecoveryServicesProviderId  *string                           `json:"recoveryServicesProviderId,omitempty"`
-	ReplicationStatus           *string                           `json:"replicationStatus,omitempty"`
-	TestMigrateState            *TestMigrationState               `json:"testMigrateState,omitempty"`
-	TestMigrateStateDescription *string                           `json:"testMigrateStateDescription,omitempty"`
+	AllowedOperations           *[]MigrationItemOperation          `json:"allowedOperations,omitempty"`
+	CriticalJobHistory          *[]CriticalJobHistoryDetails       `json:"criticalJobHistory,omitempty"`
+	CurrentJob                  *CurrentJobDetails                 `json:"currentJob,omitempty"`
+	EventCorrelationId          *string                            `json:"eventCorrelationId,omitempty"`
+	Health                      *ProtectionHealth                  `json:"health,omitempty"`
+	HealthErrors                *[]HealthError                     `json:"healthErrors,omitempty"`
+	LastMigrationStatus         *string                            `json:"lastMigrationStatus,omitempty"`
+	LastMigrationTime           *string                            `json:"lastMigrationTime,omitempty"`
+	LastTestMigrationStatus     *string                            `json:"lastTestMigrationStatus,omitempty"`
+	LastTestMigrationTime       *string                            `json:"lastTestMigrationTime,omitempty"`
+	MachineName                 *string                            `json:"machineName,omitempty"`
+	MigrationState              *MigrationState                    `json:"migrationState,omitempty"`
+	MigrationStateDescription   *string                            `json:"migrationStateDescription,omitempty"`
+	PolicyFriendlyName          *string                            `json:"policyFriendlyName,omitempty"`
+	PolicyId                    *string                            `json:"policyId,omitempty"`
+	ProviderSpecificDetails     *MigrationProviderSpecificSettings `json:"providerSpecificDetails,omitempty"`
+	RecoveryServicesProviderId  *string                            `json:"recoveryServicesProviderId,omitempty"`
+	ReplicationStatus           *string                            `json:"replicationStatus,omitempty"`
+	TestMigrateState            *TestMigrationState                `json:"testMigrateState,omitempty"`
+	TestMigrateStateDescription *string                            `json:"testMigrateStateDescription,omitempty"`
 }
 
 func (o *MigrationItemProperties) GetLastMigrationTimeAsTime() (*time.Time, error) {
@@ -97,7 +97,7 @@ func (s *MigrationItemProperties) UnmarshalJSON(bytes []byte) error {
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'ProviderSpecificDetails' for 'MigrationItemProperties': %+v", err)
 		}
-		s.ProviderSpecificDetails = impl
+		s.ProviderSpecificDetails = &impl
 	}
 	return nil
 }

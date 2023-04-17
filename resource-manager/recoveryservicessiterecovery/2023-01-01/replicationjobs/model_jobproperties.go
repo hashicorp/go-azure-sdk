@@ -14,7 +14,7 @@ import (
 type JobProperties struct {
 	ActivityId         *string            `json:"activityId,omitempty"`
 	AllowedActions     *[]string          `json:"allowedActions,omitempty"`
-	CustomDetails      JobDetails         `json:"customDetails"`
+	CustomDetails      *JobDetails        `json:"customDetails,omitempty"`
 	EndTime            *string            `json:"endTime,omitempty"`
 	Errors             *[]JobErrorDetails `json:"errors,omitempty"`
 	FriendlyName       *string            `json:"friendlyName,omitempty"`
@@ -85,7 +85,7 @@ func (s *JobProperties) UnmarshalJSON(bytes []byte) error {
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'CustomDetails' for 'JobProperties': %+v", err)
 		}
-		s.CustomDetails = impl
+		s.CustomDetails = &impl
 	}
 	return nil
 }

@@ -42,7 +42,7 @@ func (s *WorkspaceConnectionPropertiesV2BasicResource) UnmarshalJSON(bytes []byt
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Properties' for 'WorkspaceConnectionPropertiesV2BasicResource': %+v", err)
 		}
-		s.Properties = impl
+		s.Properties = &impl
 	}
 	return nil
 }

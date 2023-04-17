@@ -10,7 +10,7 @@ import (
 
 type LinkedService struct {
 	Annotations *[]interface{}                     `json:"annotations,omitempty"`
-	ConnectVia  Reference                          `json:"connectVia"`
+	ConnectVia  *Reference                         `json:"connectVia,omitempty"`
 	Description *string                            `json:"description,omitempty"`
 	Parameters  *map[string]ParameterSpecification `json:"parameters,omitempty"`
 	Type        string                             `json:"type"`
@@ -40,7 +40,7 @@ func (s *LinkedService) UnmarshalJSON(bytes []byte) error {
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'ConnectVia' for 'LinkedService': %+v", err)
 		}
-		s.ConnectVia = impl
+		s.ConnectVia = &impl
 	}
 	return nil
 }

@@ -23,7 +23,7 @@ type PipelineJob struct {
 	Description    *string                `json:"description,omitempty"`
 	DisplayName    *string                `json:"displayName,omitempty"`
 	ExperimentName *string                `json:"experimentName,omitempty"`
-	Identity       IdentityConfiguration  `json:"identity"`
+	Identity       *IdentityConfiguration `json:"identity,omitempty"`
 	IsArchived     *bool                  `json:"isArchived,omitempty"`
 	Properties     *map[string]string     `json:"properties,omitempty"`
 	Services       *map[string]JobService `json:"services,omitempty"`
@@ -88,7 +88,7 @@ func (s *PipelineJob) UnmarshalJSON(bytes []byte) error {
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Identity' for 'PipelineJob': %+v", err)
 		}
-		s.Identity = impl
+		s.Identity = &impl
 	}
 
 	if v, ok := temp["inputs"]; ok {

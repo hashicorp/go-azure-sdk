@@ -54,7 +54,7 @@ func (s *JobScheduleAction) UnmarshalJSON(bytes []byte) error {
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'JobDefinition' for 'JobScheduleAction': %+v", err)
 		}
-		s.JobDefinition = impl
+		s.JobDefinition = &impl
 	}
 	return nil
 }

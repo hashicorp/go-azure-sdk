@@ -27,7 +27,7 @@ func (s *ScalingPolicy) UnmarshalJSON(bytes []byte) error {
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'ScalingMechanism' for 'ScalingPolicy': %+v", err)
 		}
-		s.ScalingMechanism = impl
+		s.ScalingMechanism = &impl
 	}
 
 	if v, ok := temp["scalingTrigger"]; ok {
@@ -35,7 +35,7 @@ func (s *ScalingPolicy) UnmarshalJSON(bytes []byte) error {
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'ScalingTrigger' for 'ScalingPolicy': %+v", err)
 		}
-		s.ScalingTrigger = impl
+		s.ScalingTrigger = &impl
 	}
 	return nil
 }
