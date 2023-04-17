@@ -13,7 +13,7 @@ import (
 type CertificateResource struct {
 	Id         *string                `json:"id,omitempty"`
 	Name       *string                `json:"name,omitempty"`
-	Properties CertificateProperties  `json:"properties"`
+	Properties *CertificateProperties `json:"properties,omitempty"`
 	SystemData *systemdata.SystemData `json:"systemData,omitempty"`
 	Type       *string                `json:"type,omitempty"`
 }
@@ -42,7 +42,7 @@ func (s *CertificateResource) UnmarshalJSON(bytes []byte) error {
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Properties' for 'CertificateResource': %+v", err)
 		}
-		s.Properties = impl
+		s.Properties = &impl
 	}
 	return nil
 }

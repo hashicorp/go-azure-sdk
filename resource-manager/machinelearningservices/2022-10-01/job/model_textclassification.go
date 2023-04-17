@@ -14,7 +14,7 @@ type TextClassification struct {
 	FeaturizationSettings *FeaturizationSettings        `json:"featurizationSettings,omitempty"`
 	LimitSettings         *NlpVerticalLimitSettings     `json:"limitSettings,omitempty"`
 	PrimaryMetric         *ClassificationPrimaryMetrics `json:"primaryMetric,omitempty"`
-	ValidationData        JobInput                      `json:"validationData"`
+	ValidationData        *JobInput                     `json:"validationData,omitempty"`
 
 	// Fields inherited from AutoMLVertical
 	LogVerbosity     *LogVerbosity `json:"logVerbosity,omitempty"`
@@ -71,7 +71,7 @@ func (s *TextClassification) UnmarshalJSON(bytes []byte) error {
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'TrainingData' for 'TextClassification': %+v", err)
 		}
-		s.TrainingData = impl
+		s.TrainingData = &impl
 	}
 
 	if v, ok := temp["validationData"]; ok {
@@ -79,7 +79,7 @@ func (s *TextClassification) UnmarshalJSON(bytes []byte) error {
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'ValidationData' for 'TextClassification': %+v", err)
 		}
-		s.ValidationData = impl
+		s.ValidationData = &impl
 	}
 	return nil
 }

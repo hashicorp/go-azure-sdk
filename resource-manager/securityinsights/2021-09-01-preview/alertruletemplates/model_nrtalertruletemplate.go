@@ -13,7 +13,7 @@ import (
 var _ AlertRuleTemplate = NrtAlertRuleTemplate{}
 
 type NrtAlertRuleTemplate struct {
-	Properties AlertRuleTemplate `json:"properties"`
+	Properties *AlertRuleTemplate `json:"properties,omitempty"`
 
 	// Fields inherited from AlertRuleTemplate
 	Id         *string                `json:"id,omitempty"`
@@ -70,7 +70,7 @@ func (s *NrtAlertRuleTemplate) UnmarshalJSON(bytes []byte) error {
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Properties' for 'NrtAlertRuleTemplate': %+v", err)
 		}
-		s.Properties = impl
+		s.Properties = &impl
 	}
 	return nil
 }

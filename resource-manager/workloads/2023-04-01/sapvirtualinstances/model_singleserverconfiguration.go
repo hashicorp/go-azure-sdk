@@ -11,12 +11,12 @@ import (
 var _ InfrastructureConfiguration = SingleServerConfiguration{}
 
 type SingleServerConfiguration struct {
-	CustomResourceNames         SingleServerCustomResourceNames `json:"customResourceNames"`
-	DatabaseType                *SAPDatabaseType                `json:"databaseType,omitempty"`
-	DbDiskConfiguration         *DiskConfiguration              `json:"dbDiskConfiguration,omitempty"`
-	NetworkConfiguration        *NetworkConfiguration           `json:"networkConfiguration,omitempty"`
-	SubnetId                    string                          `json:"subnetId"`
-	VirtualMachineConfiguration VirtualMachineConfiguration     `json:"virtualMachineConfiguration"`
+	CustomResourceNames         *SingleServerCustomResourceNames `json:"customResourceNames,omitempty"`
+	DatabaseType                *SAPDatabaseType                 `json:"databaseType,omitempty"`
+	DbDiskConfiguration         *DiskConfiguration               `json:"dbDiskConfiguration,omitempty"`
+	NetworkConfiguration        *NetworkConfiguration            `json:"networkConfiguration,omitempty"`
+	SubnetId                    string                           `json:"subnetId"`
+	VirtualMachineConfiguration VirtualMachineConfiguration      `json:"virtualMachineConfiguration"`
 
 	// Fields inherited from InfrastructureConfiguration
 	AppResourceGroup string `json:"appResourceGroup"`
@@ -72,7 +72,7 @@ func (s *SingleServerConfiguration) UnmarshalJSON(bytes []byte) error {
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'CustomResourceNames' for 'SingleServerConfiguration': %+v", err)
 		}
-		s.CustomResourceNames = impl
+		s.CustomResourceNames = &impl
 	}
 	return nil
 }

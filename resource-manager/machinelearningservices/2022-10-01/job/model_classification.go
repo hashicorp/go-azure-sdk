@@ -14,13 +14,13 @@ type Classification struct {
 	CvSplitColumnNames    *[]string                           `json:"cvSplitColumnNames,omitempty"`
 	FeaturizationSettings *TableVerticalFeaturizationSettings `json:"featurizationSettings,omitempty"`
 	LimitSettings         *TableVerticalLimitSettings         `json:"limitSettings,omitempty"`
-	NCrossValidations     NCrossValidations                   `json:"nCrossValidations"`
+	NCrossValidations     *NCrossValidations                  `json:"nCrossValidations,omitempty"`
 	PositiveLabel         *string                             `json:"positiveLabel,omitempty"`
 	PrimaryMetric         *ClassificationPrimaryMetrics       `json:"primaryMetric,omitempty"`
-	TestData              JobInput                            `json:"testData"`
+	TestData              *JobInput                           `json:"testData,omitempty"`
 	TestDataSize          *float64                            `json:"testDataSize,omitempty"`
 	TrainingSettings      *ClassificationTrainingSettings     `json:"trainingSettings,omitempty"`
-	ValidationData        JobInput                            `json:"validationData"`
+	ValidationData        *JobInput                           `json:"validationData,omitempty"`
 	ValidationDataSize    *float64                            `json:"validationDataSize,omitempty"`
 	WeightColumnName      *string                             `json:"weightColumnName,omitempty"`
 
@@ -85,7 +85,7 @@ func (s *Classification) UnmarshalJSON(bytes []byte) error {
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'NCrossValidations' for 'Classification': %+v", err)
 		}
-		s.NCrossValidations = impl
+		s.NCrossValidations = &impl
 	}
 
 	if v, ok := temp["testData"]; ok {
@@ -93,7 +93,7 @@ func (s *Classification) UnmarshalJSON(bytes []byte) error {
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'TestData' for 'Classification': %+v", err)
 		}
-		s.TestData = impl
+		s.TestData = &impl
 	}
 
 	if v, ok := temp["trainingData"]; ok {
@@ -101,7 +101,7 @@ func (s *Classification) UnmarshalJSON(bytes []byte) error {
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'TrainingData' for 'Classification': %+v", err)
 		}
-		s.TrainingData = impl
+		s.TrainingData = &impl
 	}
 
 	if v, ok := temp["validationData"]; ok {
@@ -109,7 +109,7 @@ func (s *Classification) UnmarshalJSON(bytes []byte) error {
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'ValidationData' for 'Classification': %+v", err)
 		}
-		s.ValidationData = impl
+		s.ValidationData = &impl
 	}
 	return nil
 }

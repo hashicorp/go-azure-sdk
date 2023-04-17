@@ -10,7 +10,7 @@ import (
 
 type ProviderInstanceProperties struct {
 	Errors            *Error                            `json:"errors,omitempty"`
-	ProviderSettings  ProviderSpecificProperties        `json:"providerSettings"`
+	ProviderSettings  *ProviderSpecificProperties       `json:"providerSettings,omitempty"`
 	ProvisioningState *WorkloadMonitorProvisioningState `json:"provisioningState,omitempty"`
 }
 
@@ -36,7 +36,7 @@ func (s *ProviderInstanceProperties) UnmarshalJSON(bytes []byte) error {
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'ProviderSettings' for 'ProviderInstanceProperties': %+v", err)
 		}
-		s.ProviderSettings = impl
+		s.ProviderSettings = &impl
 	}
 	return nil
 }

@@ -12,13 +12,13 @@ type ForecastingSettings struct {
 	CountryOrRegionForHolidays *string                           `json:"countryOrRegionForHolidays,omitempty"`
 	CvStepSize                 *int64                            `json:"cvStepSize,omitempty"`
 	FeatureLags                *FeatureLags                      `json:"featureLags,omitempty"`
-	ForecastHorizon            ForecastHorizon                   `json:"forecastHorizon"`
+	ForecastHorizon            *ForecastHorizon                  `json:"forecastHorizon,omitempty"`
 	Frequency                  *string                           `json:"frequency,omitempty"`
-	Seasonality                Seasonality                       `json:"seasonality"`
+	Seasonality                *Seasonality                      `json:"seasonality,omitempty"`
 	ShortSeriesHandlingConfig  *ShortSeriesHandlingConfiguration `json:"shortSeriesHandlingConfig,omitempty"`
 	TargetAggregateFunction    *TargetAggregationFunction        `json:"targetAggregateFunction,omitempty"`
-	TargetLags                 TargetLags                        `json:"targetLags"`
-	TargetRollingWindowSize    TargetRollingWindowSize           `json:"targetRollingWindowSize"`
+	TargetLags                 *TargetLags                       `json:"targetLags,omitempty"`
+	TargetRollingWindowSize    *TargetRollingWindowSize          `json:"targetRollingWindowSize,omitempty"`
 	TimeColumnName             *string                           `json:"timeColumnName,omitempty"`
 	TimeSeriesIdColumnNames    *[]string                         `json:"timeSeriesIdColumnNames,omitempty"`
 	UseStl                     *UseStl                           `json:"useStl,omitempty"`
@@ -53,7 +53,7 @@ func (s *ForecastingSettings) UnmarshalJSON(bytes []byte) error {
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'ForecastHorizon' for 'ForecastingSettings': %+v", err)
 		}
-		s.ForecastHorizon = impl
+		s.ForecastHorizon = &impl
 	}
 
 	if v, ok := temp["seasonality"]; ok {
@@ -61,7 +61,7 @@ func (s *ForecastingSettings) UnmarshalJSON(bytes []byte) error {
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Seasonality' for 'ForecastingSettings': %+v", err)
 		}
-		s.Seasonality = impl
+		s.Seasonality = &impl
 	}
 
 	if v, ok := temp["targetLags"]; ok {
@@ -69,7 +69,7 @@ func (s *ForecastingSettings) UnmarshalJSON(bytes []byte) error {
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'TargetLags' for 'ForecastingSettings': %+v", err)
 		}
-		s.TargetLags = impl
+		s.TargetLags = &impl
 	}
 
 	if v, ok := temp["targetRollingWindowSize"]; ok {
@@ -77,7 +77,7 @@ func (s *ForecastingSettings) UnmarshalJSON(bytes []byte) error {
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'TargetRollingWindowSize' for 'ForecastingSettings': %+v", err)
 		}
-		s.TargetRollingWindowSize = impl
+		s.TargetRollingWindowSize = &impl
 	}
 	return nil
 }

@@ -9,8 +9,8 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type CustomPersistentDiskResource struct {
-	CustomPersistentDiskProperties CustomPersistentDiskProperties `json:"customPersistentDiskProperties"`
-	StorageId                      string                         `json:"storageId"`
+	CustomPersistentDiskProperties *CustomPersistentDiskProperties `json:"customPersistentDiskProperties,omitempty"`
+	StorageId                      string                          `json:"storageId"`
 }
 
 var _ json.Unmarshaler = &CustomPersistentDiskResource{}
@@ -34,7 +34,7 @@ func (s *CustomPersistentDiskResource) UnmarshalJSON(bytes []byte) error {
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'CustomPersistentDiskProperties' for 'CustomPersistentDiskResource': %+v", err)
 		}
-		s.CustomPersistentDiskProperties = impl
+		s.CustomPersistentDiskProperties = &impl
 	}
 	return nil
 }

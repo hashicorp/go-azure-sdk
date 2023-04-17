@@ -15,7 +15,7 @@ type LocationThresholdRuleCondition struct {
 	WindowSize          *string `json:"windowSize,omitempty"`
 
 	// Fields inherited from RuleCondition
-	DataSource RuleDataSource `json:"dataSource"`
+	DataSource *RuleDataSource `json:"dataSource,omitempty"`
 }
 
 var _ json.Marshaler = LocationThresholdRuleCondition{}
@@ -64,7 +64,7 @@ func (s *LocationThresholdRuleCondition) UnmarshalJSON(bytes []byte) error {
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'DataSource' for 'LocationThresholdRuleCondition': %+v", err)
 		}
-		s.DataSource = impl
+		s.DataSource = &impl
 	}
 	return nil
 }

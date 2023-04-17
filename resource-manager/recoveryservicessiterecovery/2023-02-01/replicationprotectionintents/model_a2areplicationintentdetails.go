@@ -20,17 +20,17 @@ type A2AReplicationIntentDetails struct {
 	MultiVMGroupId                      *string                                       `json:"multiVmGroupId,omitempty"`
 	MultiVMGroupName                    *string                                       `json:"multiVmGroupName,omitempty"`
 	PrimaryLocation                     *string                                       `json:"primaryLocation,omitempty"`
-	PrimaryStagingStorageAccount        StorageAccountCustomDetails                   `json:"primaryStagingStorageAccount"`
-	ProtectionProfile                   ProtectionProfileCustomDetails                `json:"protectionProfile"`
-	RecoveryAvailabilitySet             RecoveryAvailabilitySetCustomDetails          `json:"recoveryAvailabilitySet"`
+	PrimaryStagingStorageAccount        *StorageAccountCustomDetails                  `json:"primaryStagingStorageAccount,omitempty"`
+	ProtectionProfile                   *ProtectionProfileCustomDetails               `json:"protectionProfile,omitempty"`
+	RecoveryAvailabilitySet             *RecoveryAvailabilitySetCustomDetails         `json:"recoveryAvailabilitySet,omitempty"`
 	RecoveryAvailabilityType            string                                        `json:"recoveryAvailabilityType"`
 	RecoveryAvailabilityZone            *string                                       `json:"recoveryAvailabilityZone,omitempty"`
-	RecoveryBootDiagStorageAccount      StorageAccountCustomDetails                   `json:"recoveryBootDiagStorageAccount"`
+	RecoveryBootDiagStorageAccount      *StorageAccountCustomDetails                  `json:"recoveryBootDiagStorageAccount,omitempty"`
 	RecoveryLocation                    *string                                       `json:"recoveryLocation,omitempty"`
-	RecoveryProximityPlacementGroup     RecoveryProximityPlacementGroupCustomDetails  `json:"recoveryProximityPlacementGroup"`
+	RecoveryProximityPlacementGroup     *RecoveryProximityPlacementGroupCustomDetails `json:"recoveryProximityPlacementGroup,omitempty"`
 	RecoveryResourceGroupId             *string                                       `json:"recoveryResourceGroupId,omitempty"`
 	RecoverySubscriptionId              *string                                       `json:"recoverySubscriptionId,omitempty"`
-	RecoveryVirtualNetwork              RecoveryVirtualNetworkCustomDetails           `json:"recoveryVirtualNetwork"`
+	RecoveryVirtualNetwork              *RecoveryVirtualNetworkCustomDetails          `json:"recoveryVirtualNetwork,omitempty"`
 	VMDisks                             *[]A2AProtectionIntentDiskInputDetails        `json:"vmDisks,omitempty"`
 	VMManagedDisks                      *[]A2AProtectionIntentManagedDiskInputDetails `json:"vmManagedDisks,omitempty"`
 
@@ -97,7 +97,7 @@ func (s *A2AReplicationIntentDetails) UnmarshalJSON(bytes []byte) error {
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'PrimaryStagingStorageAccount' for 'A2AReplicationIntentDetails': %+v", err)
 		}
-		s.PrimaryStagingStorageAccount = impl
+		s.PrimaryStagingStorageAccount = &impl
 	}
 
 	if v, ok := temp["protectionProfile"]; ok {
@@ -105,7 +105,7 @@ func (s *A2AReplicationIntentDetails) UnmarshalJSON(bytes []byte) error {
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'ProtectionProfile' for 'A2AReplicationIntentDetails': %+v", err)
 		}
-		s.ProtectionProfile = impl
+		s.ProtectionProfile = &impl
 	}
 
 	if v, ok := temp["recoveryAvailabilitySet"]; ok {
@@ -113,7 +113,7 @@ func (s *A2AReplicationIntentDetails) UnmarshalJSON(bytes []byte) error {
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'RecoveryAvailabilitySet' for 'A2AReplicationIntentDetails': %+v", err)
 		}
-		s.RecoveryAvailabilitySet = impl
+		s.RecoveryAvailabilitySet = &impl
 	}
 
 	if v, ok := temp["recoveryBootDiagStorageAccount"]; ok {
@@ -121,7 +121,7 @@ func (s *A2AReplicationIntentDetails) UnmarshalJSON(bytes []byte) error {
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'RecoveryBootDiagStorageAccount' for 'A2AReplicationIntentDetails': %+v", err)
 		}
-		s.RecoveryBootDiagStorageAccount = impl
+		s.RecoveryBootDiagStorageAccount = &impl
 	}
 
 	if v, ok := temp["recoveryProximityPlacementGroup"]; ok {
@@ -129,7 +129,7 @@ func (s *A2AReplicationIntentDetails) UnmarshalJSON(bytes []byte) error {
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'RecoveryProximityPlacementGroup' for 'A2AReplicationIntentDetails': %+v", err)
 		}
-		s.RecoveryProximityPlacementGroup = impl
+		s.RecoveryProximityPlacementGroup = &impl
 	}
 
 	if v, ok := temp["recoveryVirtualNetwork"]; ok {
@@ -137,7 +137,7 @@ func (s *A2AReplicationIntentDetails) UnmarshalJSON(bytes []byte) error {
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'RecoveryVirtualNetwork' for 'A2AReplicationIntentDetails': %+v", err)
 		}
-		s.RecoveryVirtualNetwork = impl
+		s.RecoveryVirtualNetwork = &impl
 	}
 	return nil
 }
