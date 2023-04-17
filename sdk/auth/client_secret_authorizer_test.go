@@ -12,7 +12,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/sdk/internal/test"
 )
 
-func TestAccClientSecretAuthorizerV1(t *testing.T) {
+func TestAccClientSecretAuthorizer(t *testing.T) {
 	test.AccTest(t)
 
 	env, err := environments.FromName(test.Environment)
