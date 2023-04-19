@@ -10,6 +10,7 @@ import (
 	"encoding/xml"
 	"fmt"
 	"io"
+	"log"
 	"math"
 	"net"
 	"net/http"
@@ -535,7 +536,7 @@ func (c *Client) retryableClient(checkRetry retryablehttp.CheckRetry) (r *retrya
 
 	r.CheckRetry = checkRetry
 	r.ErrorHandler = RetryableErrorHandler
-	r.Logger = nil
+	r.Logger = log.Default()
 
 	r.HTTPClient = &http.Client{
 		Transport: &http.Transport{
