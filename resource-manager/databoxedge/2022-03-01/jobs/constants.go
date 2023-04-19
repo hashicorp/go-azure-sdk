@@ -1,6 +1,10 @@
 package jobs
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -21,6 +25,19 @@ func PossibleValuesForDownloadPhase() []string {
 		string(DownloadPhaseUnknown),
 		string(DownloadPhaseVerifying),
 	}
+}
+
+func (s *DownloadPhase) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseDownloadPhase(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseDownloadPhase(input string) (*DownloadPhase, error) {
@@ -61,6 +78,19 @@ func PossibleValuesForJobStatus() []string {
 		string(JobStatusScheduled),
 		string(JobStatusSucceeded),
 	}
+}
+
+func (s *JobStatus) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseJobStatus(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseJobStatus(input string) (*JobStatus, error) {
@@ -108,6 +138,19 @@ func PossibleValuesForJobType() []string {
 		string(JobTypeScanForUpdates),
 		string(JobTypeTriggerSupportPackage),
 	}
+}
+
+func (s *JobType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseJobType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseJobType(input string) (*JobType, error) {
@@ -173,6 +216,19 @@ func PossibleValuesForUpdateOperationStage() []string {
 		string(UpdateOperationStageSuccess),
 		string(UpdateOperationStageUnknown),
 	}
+}
+
+func (s *UpdateOperationStage) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseUpdateOperationStage(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseUpdateOperationStage(input string) (*UpdateOperationStage, error) {

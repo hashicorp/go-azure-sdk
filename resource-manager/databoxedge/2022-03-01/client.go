@@ -4,7 +4,8 @@ package v2022_03_01
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 import (
-	"github.com/Azure/go-autorest/autorest"
+	"fmt"
+
 	"github.com/hashicorp/go-azure-sdk/resource-manager/databoxedge/2022-03-01/addons"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/databoxedge/2022-03-01/alerts"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/databoxedge/2022-03-01/availableskus"
@@ -25,6 +26,8 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/databoxedge/2022-03-01/supportpackages"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/databoxedge/2022-03-01/triggers"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/databoxedge/2022-03-01/users"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -50,88 +53,147 @@ type Client struct {
 	Users                     *users.UsersClient
 }
 
-func NewClientWithBaseURI(endpoint string, configureAuthFunc func(c *autorest.Client)) Client {
-
-	addonsClient := addons.NewAddonsClientWithBaseURI(endpoint)
-	configureAuthFunc(&addonsClient.Client)
-
-	alertsClient := alerts.NewAlertsClientWithBaseURI(endpoint)
-	configureAuthFunc(&alertsClient.Client)
-
-	availableSkusClient := availableskus.NewAvailableSkusClientWithBaseURI(endpoint)
-	configureAuthFunc(&availableSkusClient.Client)
-
-	bandwidthSchedulesClient := bandwidthschedules.NewBandwidthSchedulesClientWithBaseURI(endpoint)
-	configureAuthFunc(&bandwidthSchedulesClient.Client)
-
-	containersClient := containers.NewContainersClientWithBaseURI(endpoint)
-	configureAuthFunc(&containersClient.Client)
-
-	deviceCapacityCheckClient := devicecapacitycheck.NewDeviceCapacityCheckClientWithBaseURI(endpoint)
-	configureAuthFunc(&deviceCapacityCheckClient.Client)
-
-	deviceCapacityInfoClient := devicecapacityinfo.NewDeviceCapacityInfoClientWithBaseURI(endpoint)
-	configureAuthFunc(&deviceCapacityInfoClient.Client)
-
-	devicesClient := devices.NewDevicesClientWithBaseURI(endpoint)
-	configureAuthFunc(&devicesClient.Client)
-
-	diagnosticSettingsClient := diagnosticsettings.NewDiagnosticSettingsClientWithBaseURI(endpoint)
-	configureAuthFunc(&diagnosticSettingsClient.Client)
-
-	jobsClient := jobs.NewJobsClientWithBaseURI(endpoint)
-	configureAuthFunc(&jobsClient.Client)
-
-	monitoringConfigClient := monitoringconfig.NewMonitoringConfigClientWithBaseURI(endpoint)
-	configureAuthFunc(&monitoringConfigClient.Client)
-
-	nodesClient := nodes.NewNodesClientWithBaseURI(endpoint)
-	configureAuthFunc(&nodesClient.Client)
-
-	ordersClient := orders.NewOrdersClientWithBaseURI(endpoint)
-	configureAuthFunc(&ordersClient.Client)
-
-	rolesClient := roles.NewRolesClientWithBaseURI(endpoint)
-	configureAuthFunc(&rolesClient.Client)
-
-	sharesClient := shares.NewSharesClientWithBaseURI(endpoint)
-	configureAuthFunc(&sharesClient.Client)
-
-	storageAccountCredentialsClient := storageaccountcredentials.NewStorageAccountCredentialsClientWithBaseURI(endpoint)
-	configureAuthFunc(&storageAccountCredentialsClient.Client)
-
-	storageAccountsClient := storageaccounts.NewStorageAccountsClientWithBaseURI(endpoint)
-	configureAuthFunc(&storageAccountsClient.Client)
-
-	supportPackagesClient := supportpackages.NewSupportPackagesClientWithBaseURI(endpoint)
-	configureAuthFunc(&supportPackagesClient.Client)
-
-	triggersClient := triggers.NewTriggersClientWithBaseURI(endpoint)
-	configureAuthFunc(&triggersClient.Client)
-
-	usersClient := users.NewUsersClientWithBaseURI(endpoint)
-	configureAuthFunc(&usersClient.Client)
-
-	return Client{
-		Addons:                    &addonsClient,
-		Alerts:                    &alertsClient,
-		AvailableSkus:             &availableSkusClient,
-		BandwidthSchedules:        &bandwidthSchedulesClient,
-		Containers:                &containersClient,
-		DeviceCapacityCheck:       &deviceCapacityCheckClient,
-		DeviceCapacityInfo:        &deviceCapacityInfoClient,
-		Devices:                   &devicesClient,
-		DiagnosticSettings:        &diagnosticSettingsClient,
-		Jobs:                      &jobsClient,
-		MonitoringConfig:          &monitoringConfigClient,
-		Nodes:                     &nodesClient,
-		Orders:                    &ordersClient,
-		Roles:                     &rolesClient,
-		Shares:                    &sharesClient,
-		StorageAccountCredentials: &storageAccountCredentialsClient,
-		StorageAccounts:           &storageAccountsClient,
-		SupportPackages:           &supportPackagesClient,
-		Triggers:                  &triggersClient,
-		Users:                     &usersClient,
+func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+	addonsClient, err := addons.NewAddonsClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building Addons client: %+v", err)
 	}
+	configureFunc(addonsClient.Client)
+
+	alertsClient, err := alerts.NewAlertsClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building Alerts client: %+v", err)
+	}
+	configureFunc(alertsClient.Client)
+
+	availableSkusClient, err := availableskus.NewAvailableSkusClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building AvailableSkus client: %+v", err)
+	}
+	configureFunc(availableSkusClient.Client)
+
+	bandwidthSchedulesClient, err := bandwidthschedules.NewBandwidthSchedulesClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building BandwidthSchedules client: %+v", err)
+	}
+	configureFunc(bandwidthSchedulesClient.Client)
+
+	containersClient, err := containers.NewContainersClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building Containers client: %+v", err)
+	}
+	configureFunc(containersClient.Client)
+
+	deviceCapacityCheckClient, err := devicecapacitycheck.NewDeviceCapacityCheckClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building DeviceCapacityCheck client: %+v", err)
+	}
+	configureFunc(deviceCapacityCheckClient.Client)
+
+	deviceCapacityInfoClient, err := devicecapacityinfo.NewDeviceCapacityInfoClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building DeviceCapacityInfo client: %+v", err)
+	}
+	configureFunc(deviceCapacityInfoClient.Client)
+
+	devicesClient, err := devices.NewDevicesClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building Devices client: %+v", err)
+	}
+	configureFunc(devicesClient.Client)
+
+	diagnosticSettingsClient, err := diagnosticsettings.NewDiagnosticSettingsClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building DiagnosticSettings client: %+v", err)
+	}
+	configureFunc(diagnosticSettingsClient.Client)
+
+	jobsClient, err := jobs.NewJobsClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building Jobs client: %+v", err)
+	}
+	configureFunc(jobsClient.Client)
+
+	monitoringConfigClient, err := monitoringconfig.NewMonitoringConfigClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building MonitoringConfig client: %+v", err)
+	}
+	configureFunc(monitoringConfigClient.Client)
+
+	nodesClient, err := nodes.NewNodesClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building Nodes client: %+v", err)
+	}
+	configureFunc(nodesClient.Client)
+
+	ordersClient, err := orders.NewOrdersClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building Orders client: %+v", err)
+	}
+	configureFunc(ordersClient.Client)
+
+	rolesClient, err := roles.NewRolesClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building Roles client: %+v", err)
+	}
+	configureFunc(rolesClient.Client)
+
+	sharesClient, err := shares.NewSharesClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building Shares client: %+v", err)
+	}
+	configureFunc(sharesClient.Client)
+
+	storageAccountCredentialsClient, err := storageaccountcredentials.NewStorageAccountCredentialsClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building StorageAccountCredentials client: %+v", err)
+	}
+	configureFunc(storageAccountCredentialsClient.Client)
+
+	storageAccountsClient, err := storageaccounts.NewStorageAccountsClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building StorageAccounts client: %+v", err)
+	}
+	configureFunc(storageAccountsClient.Client)
+
+	supportPackagesClient, err := supportpackages.NewSupportPackagesClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building SupportPackages client: %+v", err)
+	}
+	configureFunc(supportPackagesClient.Client)
+
+	triggersClient, err := triggers.NewTriggersClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building Triggers client: %+v", err)
+	}
+	configureFunc(triggersClient.Client)
+
+	usersClient, err := users.NewUsersClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building Users client: %+v", err)
+	}
+	configureFunc(usersClient.Client)
+
+	return &Client{
+		Addons:                    addonsClient,
+		Alerts:                    alertsClient,
+		AvailableSkus:             availableSkusClient,
+		BandwidthSchedules:        bandwidthSchedulesClient,
+		Containers:                containersClient,
+		DeviceCapacityCheck:       deviceCapacityCheckClient,
+		DeviceCapacityInfo:        deviceCapacityInfoClient,
+		Devices:                   devicesClient,
+		DiagnosticSettings:        diagnosticSettingsClient,
+		Jobs:                      jobsClient,
+		MonitoringConfig:          monitoringConfigClient,
+		Nodes:                     nodesClient,
+		Orders:                    ordersClient,
+		Roles:                     rolesClient,
+		Shares:                    sharesClient,
+		StorageAccountCredentials: storageAccountCredentialsClient,
+		StorageAccounts:           storageAccountsClient,
+		SupportPackages:           supportPackagesClient,
+		Triggers:                  triggersClient,
+		Users:                     usersClient,
+	}, nil
 }

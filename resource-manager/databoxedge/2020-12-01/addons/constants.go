@@ -1,6 +1,10 @@
 package addons
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -27,6 +31,19 @@ func PossibleValuesForAddonState() []string {
 		string(AddonStateReconfiguring),
 		string(AddonStateUpdating),
 	}
+}
+
+func (s *AddonState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseAddonState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseAddonState(input string) (*AddonState, error) {
@@ -62,6 +79,19 @@ func PossibleValuesForAddonType() []string {
 	}
 }
 
+func (s *AddonType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseAddonType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseAddonType(input string) (*AddonType, error) {
 	vals := map[string]AddonType{
 		"arcforkubernetes": AddonTypeArcForKubernetes,
@@ -90,6 +120,19 @@ func PossibleValuesForEncryptionAlgorithm() []string {
 		string(EncryptionAlgorithmNone),
 		string(EncryptionAlgorithmRSAESPKCSOneVOneFive),
 	}
+}
+
+func (s *EncryptionAlgorithm) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseEncryptionAlgorithm(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseEncryptionAlgorithm(input string) (*EncryptionAlgorithm, error) {
@@ -121,6 +164,19 @@ func PossibleValuesForHostPlatformType() []string {
 	}
 }
 
+func (s *HostPlatformType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseHostPlatformType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseHostPlatformType(input string) (*HostPlatformType, error) {
 	vals := map[string]HostPlatformType{
 		"kubernetescluster": HostPlatformTypeKubernetesCluster,
@@ -147,6 +203,19 @@ func PossibleValuesForPlatformType() []string {
 		string(PlatformTypeLinux),
 		string(PlatformTypeWindows),
 	}
+}
+
+func (s *PlatformType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parsePlatformType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parsePlatformType(input string) (*PlatformType, error) {

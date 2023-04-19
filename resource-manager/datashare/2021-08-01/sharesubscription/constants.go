@@ -1,6 +1,10 @@
 package sharesubscription
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -41,6 +45,19 @@ func PossibleValuesForDataSetType() []string {
 		string(DataSetTypeSqlDWTable),
 		string(DataSetTypeSynapseWorkspaceSqlPoolTable),
 	}
+}
+
+func (s *DataSetType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseDataSetType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseDataSetType(input string) (*DataSetType, error) {
@@ -89,6 +106,19 @@ func PossibleValuesForProvisioningState() []string {
 	}
 }
 
+func (s *ProvisioningState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseProvisioningState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseProvisioningState(input string) (*ProvisioningState, error) {
 	vals := map[string]ProvisioningState{
 		"creating":  ProvisioningStateCreating,
@@ -120,6 +150,19 @@ func PossibleValuesForRecurrenceInterval() []string {
 	}
 }
 
+func (s *RecurrenceInterval) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseRecurrenceInterval(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseRecurrenceInterval(input string) (*RecurrenceInterval, error) {
 	vals := map[string]RecurrenceInterval{
 		"day":  RecurrenceIntervalDay,
@@ -146,6 +189,19 @@ func PossibleValuesForShareKind() []string {
 		string(ShareKindCopyBased),
 		string(ShareKindInPlace),
 	}
+}
+
+func (s *ShareKind) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseShareKind(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseShareKind(input string) (*ShareKind, error) {
@@ -180,6 +236,19 @@ func PossibleValuesForShareSubscriptionStatus() []string {
 	}
 }
 
+func (s *ShareSubscriptionStatus) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseShareSubscriptionStatus(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseShareSubscriptionStatus(input string) (*ShareSubscriptionStatus, error) {
 	vals := map[string]ShareSubscriptionStatus{
 		"active":        ShareSubscriptionStatusActive,
@@ -206,6 +275,19 @@ func PossibleValuesForSourceShareSynchronizationSettingKind() []string {
 	return []string{
 		string(SourceShareSynchronizationSettingKindScheduleBased),
 	}
+}
+
+func (s *SourceShareSynchronizationSettingKind) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseSourceShareSynchronizationSettingKind(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseSourceShareSynchronizationSettingKind(input string) (*SourceShareSynchronizationSettingKind, error) {
@@ -243,6 +325,19 @@ func PossibleValuesForStatus() []string {
 	}
 }
 
+func (s *Status) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseStatus(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseStatus(input string) (*Status, error) {
 	vals := map[string]Status{
 		"accepted":         StatusAccepted,
@@ -273,6 +368,19 @@ func PossibleValuesForSynchronizationMode() []string {
 		string(SynchronizationModeFullSync),
 		string(SynchronizationModeIncremental),
 	}
+}
+
+func (s *SynchronizationMode) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseSynchronizationMode(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseSynchronizationMode(input string) (*SynchronizationMode, error) {

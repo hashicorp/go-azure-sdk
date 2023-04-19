@@ -1,6 +1,10 @@
 package roles
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -19,6 +23,19 @@ func PossibleValuesForEncryptionAlgorithm() []string {
 		string(EncryptionAlgorithmNone),
 		string(EncryptionAlgorithmRSAESPKCSOneVOneFive),
 	}
+}
+
+func (s *EncryptionAlgorithm) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseEncryptionAlgorithm(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseEncryptionAlgorithm(input string) (*EncryptionAlgorithm, error) {
@@ -50,6 +67,19 @@ func PossibleValuesForHostPlatformType() []string {
 	}
 }
 
+func (s *HostPlatformType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseHostPlatformType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseHostPlatformType(input string) (*HostPlatformType, error) {
 	vals := map[string]HostPlatformType{
 		"kubernetescluster": HostPlatformTypeKubernetesCluster,
@@ -78,6 +108,19 @@ func PossibleValuesForKubernetesNodeType() []string {
 		string(KubernetesNodeTypeMaster),
 		string(KubernetesNodeTypeWorker),
 	}
+}
+
+func (s *KubernetesNodeType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseKubernetesNodeType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseKubernetesNodeType(input string) (*KubernetesNodeType, error) {
@@ -119,6 +162,19 @@ func PossibleValuesForKubernetesState() []string {
 	}
 }
 
+func (s *KubernetesState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseKubernetesState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseKubernetesState(input string) (*KubernetesState, error) {
 	vals := map[string]KubernetesState{
 		"created":       KubernetesStateCreated,
@@ -152,6 +208,19 @@ func PossibleValuesForMountType() []string {
 	}
 }
 
+func (s *MountType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseMountType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseMountType(input string) (*MountType, error) {
 	vals := map[string]MountType{
 		"hostpath": MountTypeHostPath,
@@ -178,6 +247,19 @@ func PossibleValuesForPlatformType() []string {
 		string(PlatformTypeLinux),
 		string(PlatformTypeWindows),
 	}
+}
+
+func (s *PlatformType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parsePlatformType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parsePlatformType(input string) (*PlatformType, error) {
@@ -210,6 +292,19 @@ func PossibleValuesForPosixComplianceStatus() []string {
 	}
 }
 
+func (s *PosixComplianceStatus) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parsePosixComplianceStatus(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parsePosixComplianceStatus(input string) (*PosixComplianceStatus, error) {
 	vals := map[string]PosixComplianceStatus{
 		"disabled": PosixComplianceStatusDisabled,
@@ -237,6 +332,19 @@ func PossibleValuesForRoleStatus() []string {
 		string(RoleStatusDisabled),
 		string(RoleStatusEnabled),
 	}
+}
+
+func (s *RoleStatus) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseRoleStatus(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseRoleStatus(input string) (*RoleStatus, error) {
@@ -277,6 +385,19 @@ func PossibleValuesForRoleTypes() []string {
 	}
 }
 
+func (s *RoleTypes) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseRoleTypes(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseRoleTypes(input string) (*RoleTypes, error) {
 	vals := map[string]RoleTypes{
 		"asa":                 RoleTypesASA,
@@ -314,6 +435,19 @@ func PossibleValuesForSubscriptionState() []string {
 		string(SubscriptionStateUnregistered),
 		string(SubscriptionStateWarned),
 	}
+}
+
+func (s *SubscriptionState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseSubscriptionState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseSubscriptionState(input string) (*SubscriptionState, error) {

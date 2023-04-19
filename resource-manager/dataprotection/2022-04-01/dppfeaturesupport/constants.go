@@ -1,6 +1,10 @@
 package dppfeaturesupport
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -25,6 +29,19 @@ func PossibleValuesForFeatureSupportStatus() []string {
 		string(FeatureSupportStatusPrivatePreview),
 		string(FeatureSupportStatusPublicPreview),
 	}
+}
+
+func (s *FeatureSupportStatus) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseFeatureSupportStatus(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseFeatureSupportStatus(input string) (*FeatureSupportStatus, error) {
@@ -57,6 +74,19 @@ func PossibleValuesForFeatureType() []string {
 		string(FeatureTypeDataSourceType),
 		string(FeatureTypeInvalid),
 	}
+}
+
+func (s *FeatureType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseFeatureType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseFeatureType(input string) (*FeatureType, error) {
