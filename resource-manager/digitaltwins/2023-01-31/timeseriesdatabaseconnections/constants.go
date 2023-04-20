@@ -1,6 +1,10 @@
 package timeseriesdatabaseconnections
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -17,6 +21,19 @@ func PossibleValuesForCleanupConnectionArtifacts() []string {
 		string(CleanupConnectionArtifactsFalse),
 		string(CleanupConnectionArtifactsTrue),
 	}
+}
+
+func (s *CleanupConnectionArtifacts) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseCleanupConnectionArtifacts(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseCleanupConnectionArtifacts(input string) (*CleanupConnectionArtifacts, error) {
@@ -43,6 +60,19 @@ func PossibleValuesForConnectionType() []string {
 	return []string{
 		string(ConnectionTypeAzureDataExplorer),
 	}
+}
+
+func (s *ConnectionType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseConnectionType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseConnectionType(input string) (*ConnectionType, error) {
@@ -72,6 +102,19 @@ func PossibleValuesForIdentityType() []string {
 	}
 }
 
+func (s *IdentityType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseIdentityType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseIdentityType(input string) (*IdentityType, error) {
 	vals := map[string]IdentityType{
 		"systemassigned": IdentityTypeSystemAssigned,
@@ -98,6 +141,19 @@ func PossibleValuesForRecordPropertyAndItemRemovals() []string {
 		string(RecordPropertyAndItemRemovalsFalse),
 		string(RecordPropertyAndItemRemovalsTrue),
 	}
+}
+
+func (s *RecordPropertyAndItemRemovals) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseRecordPropertyAndItemRemovals(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseRecordPropertyAndItemRemovals(input string) (*RecordPropertyAndItemRemovals, error) {
@@ -146,6 +202,19 @@ func PossibleValuesForTimeSeriesDatabaseConnectionState() []string {
 		string(TimeSeriesDatabaseConnectionStateUpdating),
 		string(TimeSeriesDatabaseConnectionStateWarning),
 	}
+}
+
+func (s *TimeSeriesDatabaseConnectionState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseTimeSeriesDatabaseConnectionState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseTimeSeriesDatabaseConnectionState(input string) (*TimeSeriesDatabaseConnectionState, error) {

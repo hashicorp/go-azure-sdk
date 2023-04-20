@@ -1,6 +1,10 @@
 package users
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -19,6 +23,19 @@ func PossibleValuesForEncryptionAlgorithm() []string {
 		string(EncryptionAlgorithmNone),
 		string(EncryptionAlgorithmRSAESPKCSOneVOneFive),
 	}
+}
+
+func (s *EncryptionAlgorithm) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseEncryptionAlgorithm(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseEncryptionAlgorithm(input string) (*EncryptionAlgorithm, error) {
@@ -52,6 +69,19 @@ func PossibleValuesForShareAccessType() []string {
 	}
 }
 
+func (s *ShareAccessType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseShareAccessType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseShareAccessType(input string) (*ShareAccessType, error) {
 	vals := map[string]ShareAccessType{
 		"change": ShareAccessTypeChange,
@@ -81,6 +111,19 @@ func PossibleValuesForUserType() []string {
 		string(UserTypeLocalManagement),
 		string(UserTypeShare),
 	}
+}
+
+func (s *UserType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseUserType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseUserType(input string) (*UserType, error) {

@@ -1,18 +1,26 @@
 package privatelink
 
-import "github.com/Azure/go-autorest/autorest"
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type PrivateLinkClient struct {
-	Client  autorest.Client
-	baseUri string
+	Client *resourcemanager.Client
 }
 
-func NewPrivateLinkClientWithBaseURI(endpoint string) PrivateLinkClient {
-	return PrivateLinkClient{
-		Client:  autorest.NewClientWithUserAgent(userAgent()),
-		baseUri: endpoint,
+func NewPrivateLinkClientWithBaseURI(api environments.Api) (*PrivateLinkClient, error) {
+	client, err := resourcemanager.NewResourceManagerClient(api, "privatelink", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating PrivateLinkClient: %+v", err)
 	}
+
+	return &PrivateLinkClient{
+		Client: client,
+	}, nil
 }

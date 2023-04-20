@@ -4,7 +4,8 @@ package v2022_04_01
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 import (
-	"github.com/Azure/go-autorest/autorest"
+	"fmt"
+
 	"github.com/hashicorp/go-azure-sdk/resource-manager/dataprotection/2022-04-01/azurebackupjob"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/dataprotection/2022-04-01/azurebackupjobs"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/dataprotection/2022-04-01/backupinstances"
@@ -14,6 +15,8 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/dataprotection/2022-04-01/findrestorabletimeranges"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/dataprotection/2022-04-01/recoverypoint"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/dataprotection/2022-04-01/resourceguards"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -28,44 +31,70 @@ type Client struct {
 	ResourceGuards           *resourceguards.ResourceGuardsClient
 }
 
-func NewClientWithBaseURI(endpoint string, configureAuthFunc func(c *autorest.Client)) Client {
-
-	azureBackupJobClient := azurebackupjob.NewAzureBackupJobClientWithBaseURI(endpoint)
-	configureAuthFunc(&azureBackupJobClient.Client)
-
-	azureBackupJobsClient := azurebackupjobs.NewAzureBackupJobsClientWithBaseURI(endpoint)
-	configureAuthFunc(&azureBackupJobsClient.Client)
-
-	backupInstancesClient := backupinstances.NewBackupInstancesClientWithBaseURI(endpoint)
-	configureAuthFunc(&backupInstancesClient.Client)
-
-	backupPoliciesClient := backuppolicies.NewBackupPoliciesClientWithBaseURI(endpoint)
-	configureAuthFunc(&backupPoliciesClient.Client)
-
-	backupVaultsClient := backupvaults.NewBackupVaultsClientWithBaseURI(endpoint)
-	configureAuthFunc(&backupVaultsClient.Client)
-
-	dppFeatureSupportClient := dppfeaturesupport.NewDppFeatureSupportClientWithBaseURI(endpoint)
-	configureAuthFunc(&dppFeatureSupportClient.Client)
-
-	findRestorableTimeRangesClient := findrestorabletimeranges.NewFindRestorableTimeRangesClientWithBaseURI(endpoint)
-	configureAuthFunc(&findRestorableTimeRangesClient.Client)
-
-	recoveryPointClient := recoverypoint.NewRecoveryPointClientWithBaseURI(endpoint)
-	configureAuthFunc(&recoveryPointClient.Client)
-
-	resourceGuardsClient := resourceguards.NewResourceGuardsClientWithBaseURI(endpoint)
-	configureAuthFunc(&resourceGuardsClient.Client)
-
-	return Client{
-		AzureBackupJob:           &azureBackupJobClient,
-		AzureBackupJobs:          &azureBackupJobsClient,
-		BackupInstances:          &backupInstancesClient,
-		BackupPolicies:           &backupPoliciesClient,
-		BackupVaults:             &backupVaultsClient,
-		DppFeatureSupport:        &dppFeatureSupportClient,
-		FindRestorableTimeRanges: &findRestorableTimeRangesClient,
-		RecoveryPoint:            &recoveryPointClient,
-		ResourceGuards:           &resourceGuardsClient,
+func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+	azureBackupJobClient, err := azurebackupjob.NewAzureBackupJobClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building AzureBackupJob client: %+v", err)
 	}
+	configureFunc(azureBackupJobClient.Client)
+
+	azureBackupJobsClient, err := azurebackupjobs.NewAzureBackupJobsClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building AzureBackupJobs client: %+v", err)
+	}
+	configureFunc(azureBackupJobsClient.Client)
+
+	backupInstancesClient, err := backupinstances.NewBackupInstancesClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building BackupInstances client: %+v", err)
+	}
+	configureFunc(backupInstancesClient.Client)
+
+	backupPoliciesClient, err := backuppolicies.NewBackupPoliciesClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building BackupPolicies client: %+v", err)
+	}
+	configureFunc(backupPoliciesClient.Client)
+
+	backupVaultsClient, err := backupvaults.NewBackupVaultsClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building BackupVaults client: %+v", err)
+	}
+	configureFunc(backupVaultsClient.Client)
+
+	dppFeatureSupportClient, err := dppfeaturesupport.NewDppFeatureSupportClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building DppFeatureSupport client: %+v", err)
+	}
+	configureFunc(dppFeatureSupportClient.Client)
+
+	findRestorableTimeRangesClient, err := findrestorabletimeranges.NewFindRestorableTimeRangesClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building FindRestorableTimeRanges client: %+v", err)
+	}
+	configureFunc(findRestorableTimeRangesClient.Client)
+
+	recoveryPointClient, err := recoverypoint.NewRecoveryPointClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building RecoveryPoint client: %+v", err)
+	}
+	configureFunc(recoveryPointClient.Client)
+
+	resourceGuardsClient, err := resourceguards.NewResourceGuardsClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building ResourceGuards client: %+v", err)
+	}
+	configureFunc(resourceGuardsClient.Client)
+
+	return &Client{
+		AzureBackupJob:           azureBackupJobClient,
+		AzureBackupJobs:          azureBackupJobsClient,
+		BackupInstances:          backupInstancesClient,
+		BackupPolicies:           backupPoliciesClient,
+		BackupVaults:             backupVaultsClient,
+		DppFeatureSupport:        dppFeatureSupportClient,
+		FindRestorableTimeRanges: findRestorableTimeRangesClient,
+		RecoveryPoint:            recoveryPointClient,
+		ResourceGuards:           resourceGuardsClient,
+	}, nil
 }

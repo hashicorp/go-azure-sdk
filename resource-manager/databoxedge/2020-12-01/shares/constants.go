@@ -1,6 +1,10 @@
 package shares
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -19,6 +23,19 @@ func PossibleValuesForAzureContainerDataFormat() []string {
 		string(AzureContainerDataFormatBlockBlob),
 		string(AzureContainerDataFormatPageBlob),
 	}
+}
+
+func (s *AzureContainerDataFormat) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseAzureContainerDataFormat(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseAzureContainerDataFormat(input string) (*AzureContainerDataFormat, error) {
@@ -52,6 +69,19 @@ func PossibleValuesForClientPermissionType() []string {
 	}
 }
 
+func (s *ClientPermissionType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseClientPermissionType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseClientPermissionType(input string) (*ClientPermissionType, error) {
 	vals := map[string]ClientPermissionType{
 		"noaccess":  ClientPermissionTypeNoAccess,
@@ -79,6 +109,19 @@ func PossibleValuesForDataPolicy() []string {
 		string(DataPolicyCloud),
 		string(DataPolicyLocal),
 	}
+}
+
+func (s *DataPolicy) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseDataPolicy(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseDataPolicy(input string) (*DataPolicy, error) {
@@ -109,6 +152,19 @@ func PossibleValuesForMonitoringStatus() []string {
 	}
 }
 
+func (s *MonitoringStatus) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseMonitoringStatus(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseMonitoringStatus(input string) (*MonitoringStatus, error) {
 	vals := map[string]MonitoringStatus{
 		"disabled": MonitoringStatusDisabled,
@@ -135,6 +191,19 @@ func PossibleValuesForMountType() []string {
 		string(MountTypeHostPath),
 		string(MountTypeVolume),
 	}
+}
+
+func (s *MountType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseMountType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseMountType(input string) (*MountType, error) {
@@ -175,6 +244,19 @@ func PossibleValuesForRoleTypes() []string {
 	}
 }
 
+func (s *RoleTypes) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseRoleTypes(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseRoleTypes(input string) (*RoleTypes, error) {
 	vals := map[string]RoleTypes{
 		"asa":                 RoleTypesASA,
@@ -208,6 +290,19 @@ func PossibleValuesForShareAccessProtocol() []string {
 	}
 }
 
+func (s *ShareAccessProtocol) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseShareAccessProtocol(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseShareAccessProtocol(input string) (*ShareAccessProtocol, error) {
 	vals := map[string]ShareAccessProtocol{
 		"nfs": ShareAccessProtocolNFS,
@@ -236,6 +331,19 @@ func PossibleValuesForShareAccessType() []string {
 		string(ShareAccessTypeCustom),
 		string(ShareAccessTypeRead),
 	}
+}
+
+func (s *ShareAccessType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseShareAccessType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseShareAccessType(input string) (*ShareAccessType, error) {
@@ -271,6 +379,19 @@ func PossibleValuesForShareStatus() []string {
 		string(ShareStatusUnknown),
 		string(ShareStatusUpdating),
 	}
+}
+
+func (s *ShareStatus) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseShareStatus(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseShareStatus(input string) (*ShareStatus, error) {

@@ -1,6 +1,10 @@
 package deletedbackupinstances
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -37,6 +41,19 @@ func PossibleValuesForCurrentProtectionState() []string {
 		string(CurrentProtectionStateSoftDeleting),
 		string(CurrentProtectionStateUpdatingProtection),
 	}
+}
+
+func (s *CurrentProtectionState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseCurrentProtectionState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseCurrentProtectionState(input string) (*CurrentProtectionState, error) {
@@ -79,6 +96,19 @@ func PossibleValuesForDataStoreTypes() []string {
 	}
 }
 
+func (s *DataStoreTypes) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseDataStoreTypes(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseDataStoreTypes(input string) (*DataStoreTypes, error) {
 	vals := map[string]DataStoreTypes{
 		"archivestore":     DataStoreTypesArchiveStore,
@@ -106,6 +136,19 @@ func PossibleValuesForSecretStoreType() []string {
 		string(SecretStoreTypeAzureKeyVault),
 		string(SecretStoreTypeInvalid),
 	}
+}
+
+func (s *SecretStoreType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseSecretStoreType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseSecretStoreType(input string) (*SecretStoreType, error) {
@@ -144,6 +187,19 @@ func PossibleValuesForStatus() []string {
 	}
 }
 
+func (s *Status) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseStatus(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseStatus(input string) (*Status, error) {
 	vals := map[string]Status{
 		"configuringprotection":       StatusConfiguringProtection,
@@ -174,6 +230,19 @@ func PossibleValuesForValidationType() []string {
 		string(ValidationTypeDeepValidation),
 		string(ValidationTypeShallowValidation),
 	}
+}
+
+func (s *ValidationType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseValidationType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseValidationType(input string) (*ValidationType, error) {
