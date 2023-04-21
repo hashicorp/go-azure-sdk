@@ -67,10 +67,9 @@ func RequestRetryAll(retryFuncs ...RequestRetryFunc) func(resp *http.Response, o
 	}
 }
 
-// RetryableErrorHandler ensures that the response is returned after exhausting retries for a request
-// We mustn't return an error here, or net/http will not return the response
-func RetryableErrorHandler(resp *http.Response, _ error, _ int) (*http.Response, error) {
-	return resp, nil
+// RetryableErrorHandler simply returns the resp and err, this is needed to makes the retryablehttp client's Do() return early with the response body not drained.
+func RetryableErrorHandler(resp *http.Response, err error, _ int) (*http.Response, error) {
+	return resp, err
 }
 
 // Request embeds *http.Request and adds useful metadata
