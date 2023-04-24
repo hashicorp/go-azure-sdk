@@ -4,7 +4,7 @@ package privateendpointconnection
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type PrivateLinkServiceConnectionState struct {
-	ActionRequired *string                          `json:"actionRequired,omitempty"`
-	Description    *string                          `json:"description,omitempty"`
-	Status         *PrivateEndpointConnectionStatus `json:"status,omitempty"`
+	ActionsRequired *string                          `json:"actionsRequired,omitempty"`
+	Description     *string                          `json:"description,omitempty"`
+	Status          *PrivateEndpointConnectionStatus `json:"status,omitempty"`
 }
