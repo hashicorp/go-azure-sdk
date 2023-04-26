@@ -21,8 +21,6 @@ var (
 	GitHubToken                   = os.Getenv("ACTIONS_ID_TOKEN_REQUEST_TOKEN")
 	IdToken                       = os.Getenv("ARM_OIDC_TOKEN")
 	CustomManagedIdentityEndpoint = os.Getenv("ARM_MSI_ENDPOINT")
-	DummyAccessToken              = os.Getenv("ARM_DUMMY_ACCESS_TOKEN")
-	DummyIDToken                  = os.Getenv("ARM_DUMMY_ID_TOKEN")
 )
 
 func envDefault(key, def string) (ret string) {

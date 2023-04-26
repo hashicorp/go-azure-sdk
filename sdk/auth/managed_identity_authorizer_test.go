@@ -13,10 +13,6 @@ import (
 )
 
 func TestManagedIdentityAuthorizer(t *testing.T) {
-	if test.DummyAccessToken == "" {
-		t.Skip("test.DummyAccessToken was empty")
-	}
-
 	ctx := context.Background()
 	env := environments.AzurePublic()
 
@@ -46,8 +42,11 @@ func TestManagedIdentityAuthorizer(t *testing.T) {
 func TestAccManagedIdentityAuthorizer(t *testing.T) {
 	test.AccTest(t)
 
+	if test.CustomManagedIdentityEndpoint == "" {
+		t.Skip("test.CustomManagedIdentityEndpoint was empty")
+	}
+
 	ctx := context.Background()
-	managedIdentityEndpoint := test.CustomManagedIdentityEndpoint
 
 	env, err := environments.FromName(test.Environment)
 	if err != nil {
@@ -57,7 +56,7 @@ func TestAccManagedIdentityAuthorizer(t *testing.T) {
 	opts := auth.ManagedIdentityAuthorizerOptions{
 		Api:                           env.MicrosoftGraph,
 		ClientId:                      test.ClientId,
-		CustomManagedIdentityEndpoint: managedIdentityEndpoint,
+		CustomManagedIdentityEndpoint: test.CustomManagedIdentityEndpoint,
 	}
 
 	authorizer, err := auth.NewManagedIdentityAuthorizer(ctx, opts)

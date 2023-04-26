@@ -18,13 +18,6 @@ import (
 )
 
 func TestGitHubOIDCAuthorizer(t *testing.T) {
-	if test.DummyAccessToken == "" {
-		t.Skip("test.DummyAccessToken was empty")
-	}
-	if test.DummyIDToken == "" {
-		t.Skip("test.DummyIDToken was empty")
-	}
-
 	ctx := context.Background()
 	env := environments.AzurePublic()
 

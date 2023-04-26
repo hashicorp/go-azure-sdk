@@ -13,10 +13,6 @@ import (
 )
 
 func TestOIDCAuthorizer(t *testing.T) {
-	if test.DummyIDToken == "" {
-		t.Skip("test.DummyIDToken was empty")
-	}
-
 	ctx := context.Background()
 	env := environments.AzurePublic()
 

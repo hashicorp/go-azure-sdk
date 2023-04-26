@@ -13,10 +13,6 @@ import (
 )
 
 func TestClientSecretAuthorizer(t *testing.T) {
-	if test.DummyAccessToken == "" {
-		t.Skip("test.DummyAccessToken was empty")
-	}
-
 	ctx := context.Background()
 	env := environments.AzurePublic()
 
