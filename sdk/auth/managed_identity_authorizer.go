@@ -1,3 +1,6 @@
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MPL-2.0 License. See NOTICE.txt in the project root for license information.
+
 package auth
 
 import (
@@ -14,9 +17,6 @@ import (
 	"github.com/hashicorp/go-azure-sdk/sdk/environments"
 	"golang.org/x/oauth2"
 )
-
-// Copyright (c) HashiCorp Inc. All rights reserved.
-// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type ManagedIdentityAuthorizerOptions struct {
 	// Api describes the Azure API being used

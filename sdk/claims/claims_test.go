@@ -1,3 +1,6 @@
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MPL-2.0 License. See NOTICE.txt in the project root for license information.
+
 package claims_test
 
 import (
@@ -10,9 +13,6 @@ import (
 	"github.com/hashicorp/go-azure-sdk/sdk/environments"
 	"github.com/hashicorp/go-azure-sdk/sdk/internal/test"
 )
-
-// Copyright (c) HashiCorp Inc. All rights reserved.
-// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 func TestAccParseClaims_azureCli(t *testing.T) {
 	ctx := context.Background()
