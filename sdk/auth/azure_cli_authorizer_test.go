@@ -5,21 +5,51 @@ package auth_test
 
 import (
 	"context"
+	"fmt"
 	"testing"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/auth"
 	"github.com/hashicorp/go-azure-sdk/sdk/environments"
 	"github.com/hashicorp/go-azure-sdk/sdk/internal/test"
-	"golang.org/x/oauth2"
 )
 
 func TestAccAzureCliAuthorizer(t *testing.T) {
+	test.AccTest(t)
+
 	ctx := context.Background()
-	testAzureCliAuthorizer(ctx, t)
+
+	env, err := environments.FromName(test.Environment)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	opts := auth.AzureCliAuthorizerOptions{
+		Api: env.MicrosoftGraph,
+	}
+
+	authorizer, err := auth.NewAzureCliAuthorizer(ctx, opts)
+	if err != nil {
+		t.Fatalf("NewAzureCliAuthorizer(): %v", err)
+	}
+
+	cliAuth, err := testCheckAzureCliAuthorizer(authorizer)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	if cliAuth.TenantID == "" {
+		t.Fatal("cliAuth.TenantID has unexpected empty value (should have been auto-detected)")
+	}
+
+	if _, err = testObtainAccessToken(ctx, authorizer); err != nil {
+		t.Fatal(err)
+	}
 }
 
-func testAzureCliAuthorizer(ctx context.Context, t *testing.T) (token *oauth2.Token) {
+func TestAccAzureCliAuthorizerWithTenant(t *testing.T) {
 	test.AccTest(t)
+
+	ctx := context.Background()
 
 	env, err := environments.FromName(test.Environment)
 	if err != nil {
@@ -30,24 +60,44 @@ func testAzureCliAuthorizer(ctx context.Context, t *testing.T) (token *oauth2.To
 		Api:      env.MicrosoftGraph,
 		TenantId: test.TenantId,
 	}
+
 	authorizer, err := auth.NewAzureCliAuthorizer(ctx, opts)
 	if err != nil {
 		t.Fatalf("NewAzureCliAuthorizer(): %v", err)
 	}
-	if authorizer == nil {
-		t.Fatal("authorizer is nil, expected Authorizer")
-	}
 
-	token, err = authorizer.Token(ctx, nil)
+	cliAuth, err := testCheckAzureCliAuthorizer(authorizer)
 	if err != nil {
-		t.Fatalf("authorizer.Token(): %v", err)
-	}
-	if token == nil {
-		t.Fatalf("token was nil")
-	}
-	if token.AccessToken == "" {
-		t.Fatalf("token.AccessToken was empty")
+		t.Fatal(err)
 	}
 
-	return
+	if cliAuth.TenantID != test.TenantId {
+		t.Fatalf("cliAuth.TenantID has unexpected value %q", cliAuth.TenantID)
+	}
+
+	if _, err = testObtainAccessToken(ctx, authorizer); err != nil {
+		t.Fatal(err)
+	}
+}
+
+func testCheckAzureCliAuthorizer(authorizer auth.Authorizer) (*auth.AzureCliAuthorizer, error) {
+	if authorizer == nil {
+		return nil, fmt.Errorf("authorizer is nil, expected Authorizer")
+	}
+
+	cachedAuth, ok := authorizer.(*auth.CachedAuthorizer)
+	if !ok {
+		return nil, fmt.Errorf("authorizer is not a *CachedAuthorizer")
+	}
+
+	cliAuth, ok := cachedAuth.Source.(*auth.AzureCliAuthorizer)
+	if !ok {
+		return nil, fmt.Errorf("cachedAuth.Source is not an *AzureCliAuthorizer")
+	}
+
+	if cliAuth.DefaultSubscriptionID == "" {
+		return cliAuth, fmt.Errorf("cliAuth.DefaultSubscriptionID has unexpected empty value (should have been auto-detected)")
+	}
+
+	return cliAuth, nil
 }

@@ -166,18 +166,9 @@ func azureMetadata(ctx context.Context, url string) (body []byte, err error) {
 		"Metadata": []string{"true"},
 	}
 
-	client := httpClient(httpClientParams{
-		instanceMetadataService: true,
-
-		retryWaitMin:  2 * time.Second,
-		retryWaitMax:  60 * time.Second,
-		retryMaxCount: 5,
-		useProxy:      false,
-	})
-
 	var resp *http.Response
 	log.Printf("[DEBUG] Performing %s Request to %q", req.Method, url)
-	resp, err = client.Do(req)
+	resp, err = MetadataClient.Do(req)
 	if err != nil {
 		return
 	}

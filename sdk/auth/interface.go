@@ -16,3 +16,8 @@ type Authorizer interface {
 
 	AuxiliaryTokens(ctx context.Context, request *http.Request) ([]*oauth2.Token, error)
 }
+
+// HTTPClient is an HTTP client used for sending authentication requests and obtaining tokens
+type HTTPClient interface {
+	Do(req *http.Request) (*http.Response, error)
+}

@@ -17,6 +17,24 @@ import (
 	"github.com/hashicorp/go-retryablehttp"
 )
 
+// Client is the HTTP client used for sending authentication requests and obtaining tokens
+var (
+	Client         HTTPClient
+	MetadataClient HTTPClient
+)
+
+func init() {
+	Client = httpClient(defaultHttpClientParams())
+	MetadataClient = httpClient(httpClientParams{
+		instanceMetadataService: true,
+
+		retryWaitMin:  2 * time.Second,
+		retryWaitMax:  60 * time.Second,
+		retryMaxCount: 5,
+		useProxy:      false,
+	})
+}
+
 type httpClientParams struct {
 	instanceMetadataService bool
 

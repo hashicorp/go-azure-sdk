@@ -199,6 +199,14 @@ type clientAssertionAuthorizer struct {
 }
 
 func (a *clientAssertionAuthorizer) assertion(tokenUrl string) (*string, error) {
+	if a.conf == nil {
+		return nil, fmt.Errorf("internal-error: clientAssertionAuthorizer not configured")
+	}
+
+	if a.conf.Certificate == nil {
+		return nil, fmt.Errorf("internal-error: clientAssertionAuthorizer misconfigured; Certificate was nil")
+	}
+
 	keySig := sha1.Sum(a.conf.Certificate.Raw)
 	keyId := base64.URLEncoding.EncodeToString(keySig[:])
 
@@ -218,6 +226,7 @@ func (a *clientAssertionAuthorizer) assertion(tokenUrl string) (*string, error) 
 			Subject:  a.conf.ClientID,
 		},
 	}
+
 	assertion, err := t.encode(a.conf.PrivateKey)
 	if err != nil {
 		return nil, fmt.Errorf("clientAssertionAuthorizer: failed to encode and sign JWT assertion: %v", err)
@@ -227,6 +236,10 @@ func (a *clientAssertionAuthorizer) assertion(tokenUrl string) (*string, error) 
 }
 
 func (a *clientAssertionAuthorizer) token(ctx context.Context, tokenUrl string) (*oauth2.Token, error) {
+	if a.conf == nil {
+		return nil, fmt.Errorf("internal-error: clientAssertionAuthorizer not configured")
+	}
+
 	assertion := a.conf.FederatedAssertion
 	if assertion == "" {
 		a, err := a.assertion(tokenUrl)
@@ -310,8 +323,7 @@ func clientCredentialsToken(ctx context.Context, endpoint string, params *url.Va
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
 
-	client := httpClient(defaultHttpClientParams())
-	resp, err := client.Do(req)
+	resp, err := Client.Do(req)
 	if err != nil {
 		return nil, fmt.Errorf("clientCredentialsToken: cannot request token: %v", err)
 	}
