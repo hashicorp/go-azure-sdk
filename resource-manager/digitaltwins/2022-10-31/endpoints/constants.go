@@ -1,10 +1,6 @@
 package endpoints
 
-import (
-	"encoding/json"
-	"fmt"
-	"strings"
-)
+import "strings"
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -21,19 +17,6 @@ func PossibleValuesForAuthenticationType() []string {
 		string(AuthenticationTypeIdentityBased),
 		string(AuthenticationTypeKeyBased),
 	}
-}
-
-func (s *AuthenticationType) UnmarshalJSON(bytes []byte) error {
-	var decoded string
-	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling: %+v", err)
-	}
-	out, err := parseAuthenticationType(decoded)
-	if err != nil {
-		return fmt.Errorf("parsing %q: %+v", decoded, err)
-	}
-	*s = *out
-	return nil
 }
 
 func parseAuthenticationType(input string) (*AuthenticationType, error) {
@@ -84,19 +67,6 @@ func PossibleValuesForEndpointProvisioningState() []string {
 	}
 }
 
-func (s *EndpointProvisioningState) UnmarshalJSON(bytes []byte) error {
-	var decoded string
-	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling: %+v", err)
-	}
-	out, err := parseEndpointProvisioningState(decoded)
-	if err != nil {
-		return fmt.Errorf("parsing %q: %+v", decoded, err)
-	}
-	*s = *out
-	return nil
-}
-
 func parseEndpointProvisioningState(input string) (*EndpointProvisioningState, error) {
 	vals := map[string]EndpointProvisioningState{
 		"canceled":     EndpointProvisioningStateCanceled,
@@ -137,19 +107,6 @@ func PossibleValuesForEndpointType() []string {
 	}
 }
 
-func (s *EndpointType) UnmarshalJSON(bytes []byte) error {
-	var decoded string
-	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling: %+v", err)
-	}
-	out, err := parseEndpointType(decoded)
-	if err != nil {
-		return fmt.Errorf("parsing %q: %+v", decoded, err)
-	}
-	*s = *out
-	return nil
-}
-
 func parseEndpointType(input string) (*EndpointType, error) {
 	vals := map[string]EndpointType{
 		"eventgrid":  EndpointTypeEventGrid,
@@ -177,19 +134,6 @@ func PossibleValuesForIdentityType() []string {
 		string(IdentityTypeSystemAssigned),
 		string(IdentityTypeUserAssigned),
 	}
-}
-
-func (s *IdentityType) UnmarshalJSON(bytes []byte) error {
-	var decoded string
-	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling: %+v", err)
-	}
-	out, err := parseIdentityType(decoded)
-	if err != nil {
-		return fmt.Errorf("parsing %q: %+v", decoded, err)
-	}
-	*s = *out
-	return nil
 }
 
 func parseIdentityType(input string) (*IdentityType, error) {

@@ -1,10 +1,6 @@
 package datasetmapping
 
-import (
-	"encoding/json"
-	"fmt"
-	"strings"
-)
+import "strings"
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -41,19 +37,6 @@ func PossibleValuesForDataSetMappingKind() []string {
 		string(DataSetMappingKindSqlDWTable),
 		string(DataSetMappingKindSynapseWorkspaceSqlPoolTable),
 	}
-}
-
-func (s *DataSetMappingKind) UnmarshalJSON(bytes []byte) error {
-	var decoded string
-	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling: %+v", err)
-	}
-	out, err := parseDataSetMappingKind(decoded)
-	if err != nil {
-		return fmt.Errorf("parsing %q: %+v", decoded, err)
-	}
-	*s = *out
-	return nil
 }
 
 func parseDataSetMappingKind(input string) (*DataSetMappingKind, error) {
@@ -94,19 +77,6 @@ func PossibleValuesForDataSetMappingStatus() []string {
 	}
 }
 
-func (s *DataSetMappingStatus) UnmarshalJSON(bytes []byte) error {
-	var decoded string
-	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling: %+v", err)
-	}
-	out, err := parseDataSetMappingStatus(decoded)
-	if err != nil {
-		return fmt.Errorf("parsing %q: %+v", decoded, err)
-	}
-	*s = *out
-	return nil
-}
-
 func parseDataSetMappingStatus(input string) (*DataSetMappingStatus, error) {
 	vals := map[string]DataSetMappingStatus{
 		"broken": DataSetMappingStatusBroken,
@@ -133,19 +103,6 @@ func PossibleValuesForOutputType() []string {
 		string(OutputTypeCsv),
 		string(OutputTypeParquet),
 	}
-}
-
-func (s *OutputType) UnmarshalJSON(bytes []byte) error {
-	var decoded string
-	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling: %+v", err)
-	}
-	out, err := parseOutputType(decoded)
-	if err != nil {
-		return fmt.Errorf("parsing %q: %+v", decoded, err)
-	}
-	*s = *out
-	return nil
 }
 
 func parseOutputType(input string) (*OutputType, error) {
@@ -180,19 +137,6 @@ func PossibleValuesForProvisioningState() []string {
 		string(ProvisioningStateMoving),
 		string(ProvisioningStateSucceeded),
 	}
-}
-
-func (s *ProvisioningState) UnmarshalJSON(bytes []byte) error {
-	var decoded string
-	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling: %+v", err)
-	}
-	out, err := parseProvisioningState(decoded)
-	if err != nil {
-		return fmt.Errorf("parsing %q: %+v", decoded, err)
-	}
-	*s = *out
-	return nil
 }
 
 func parseProvisioningState(input string) (*ProvisioningState, error) {
