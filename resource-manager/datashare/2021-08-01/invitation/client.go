@@ -1,26 +1,18 @@
 package invitation
 
-import (
-	"fmt"
-
-	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
-)
+import "github.com/Azure/go-autorest/autorest"
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type InvitationClient struct {
-	Client *resourcemanager.Client
+	Client  autorest.Client
+	baseUri string
 }
 
-func NewInvitationClientWithBaseURI(api environments.Api) (*InvitationClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(api, "invitation", defaultApiVersion)
-	if err != nil {
-		return nil, fmt.Errorf("instantiating InvitationClient: %+v", err)
+func NewInvitationClientWithBaseURI(endpoint string) InvitationClient {
+	return InvitationClient{
+		Client:  autorest.NewClientWithUserAgent(userAgent()),
+		baseUri: endpoint,
 	}
-
-	return &InvitationClient{
-		Client: client,
-	}, nil
 }

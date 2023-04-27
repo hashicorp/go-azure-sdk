@@ -1,10 +1,6 @@
 package trigger
 
-import (
-	"encoding/json"
-	"fmt"
-	"strings"
-)
+import "strings"
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -27,19 +23,6 @@ func PossibleValuesForProvisioningState() []string {
 		string(ProvisioningStateMoving),
 		string(ProvisioningStateSucceeded),
 	}
-}
-
-func (s *ProvisioningState) UnmarshalJSON(bytes []byte) error {
-	var decoded string
-	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling: %+v", err)
-	}
-	out, err := parseProvisioningState(decoded)
-	if err != nil {
-		return fmt.Errorf("parsing %q: %+v", decoded, err)
-	}
-	*s = *out
-	return nil
 }
 
 func parseProvisioningState(input string) (*ProvisioningState, error) {
@@ -71,19 +54,6 @@ func PossibleValuesForRecurrenceInterval() []string {
 		string(RecurrenceIntervalDay),
 		string(RecurrenceIntervalHour),
 	}
-}
-
-func (s *RecurrenceInterval) UnmarshalJSON(bytes []byte) error {
-	var decoded string
-	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling: %+v", err)
-	}
-	out, err := parseRecurrenceInterval(decoded)
-	if err != nil {
-		return fmt.Errorf("parsing %q: %+v", decoded, err)
-	}
-	*s = *out
-	return nil
 }
 
 func parseRecurrenceInterval(input string) (*RecurrenceInterval, error) {
@@ -122,19 +92,6 @@ func PossibleValuesForStatus() []string {
 	}
 }
 
-func (s *Status) UnmarshalJSON(bytes []byte) error {
-	var decoded string
-	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling: %+v", err)
-	}
-	out, err := parseStatus(decoded)
-	if err != nil {
-		return fmt.Errorf("parsing %q: %+v", decoded, err)
-	}
-	*s = *out
-	return nil
-}
-
 func parseStatus(input string) (*Status, error) {
 	vals := map[string]Status{
 		"accepted":         StatusAccepted,
@@ -167,19 +124,6 @@ func PossibleValuesForSynchronizationMode() []string {
 	}
 }
 
-func (s *SynchronizationMode) UnmarshalJSON(bytes []byte) error {
-	var decoded string
-	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling: %+v", err)
-	}
-	out, err := parseSynchronizationMode(decoded)
-	if err != nil {
-		return fmt.Errorf("parsing %q: %+v", decoded, err)
-	}
-	*s = *out
-	return nil
-}
-
 func parseSynchronizationMode(input string) (*SynchronizationMode, error) {
 	vals := map[string]SynchronizationMode{
 		"fullsync":    SynchronizationModeFullSync,
@@ -204,19 +148,6 @@ func PossibleValuesForTriggerKind() []string {
 	return []string{
 		string(TriggerKindScheduleBased),
 	}
-}
-
-func (s *TriggerKind) UnmarshalJSON(bytes []byte) error {
-	var decoded string
-	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling: %+v", err)
-	}
-	out, err := parseTriggerKind(decoded)
-	if err != nil {
-		return fmt.Errorf("parsing %q: %+v", decoded, err)
-	}
-	*s = *out
-	return nil
 }
 
 func parseTriggerKind(input string) (*TriggerKind, error) {
@@ -246,19 +177,6 @@ func PossibleValuesForTriggerStatus() []string {
 		string(TriggerStatusInactive),
 		string(TriggerStatusSourceSynchronizationSettingDeleted),
 	}
-}
-
-func (s *TriggerStatus) UnmarshalJSON(bytes []byte) error {
-	var decoded string
-	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling: %+v", err)
-	}
-	out, err := parseTriggerStatus(decoded)
-	if err != nil {
-		return fmt.Errorf("parsing %q: %+v", decoded, err)
-	}
-	*s = *out
-	return nil
 }
 
 func parseTriggerStatus(input string) (*TriggerStatus, error) {

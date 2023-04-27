@@ -1,26 +1,18 @@
 package privateendpoints
 
-import (
-	"fmt"
-
-	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
-)
+import "github.com/Azure/go-autorest/autorest"
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type PrivateEndpointsClient struct {
-	Client *resourcemanager.Client
+	Client  autorest.Client
+	baseUri string
 }
 
-func NewPrivateEndpointsClientWithBaseURI(api environments.Api) (*PrivateEndpointsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(api, "privateendpoints", defaultApiVersion)
-	if err != nil {
-		return nil, fmt.Errorf("instantiating PrivateEndpointsClient: %+v", err)
+func NewPrivateEndpointsClientWithBaseURI(endpoint string) PrivateEndpointsClient {
+	return PrivateEndpointsClient{
+		Client:  autorest.NewClientWithUserAgent(userAgent()),
+		baseUri: endpoint,
 	}
-
-	return &PrivateEndpointsClient{
-		Client: client,
-	}, nil
 }

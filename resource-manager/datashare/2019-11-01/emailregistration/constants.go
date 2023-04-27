@@ -1,10 +1,6 @@
 package emailregistration
 
-import (
-	"encoding/json"
-	"fmt"
-	"strings"
-)
+import "strings"
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -23,19 +19,6 @@ func PossibleValuesForRegistrationStatus() []string {
 		string(RegistrationStatusActivationAttemptsExhausted),
 		string(RegistrationStatusActivationPending),
 	}
-}
-
-func (s *RegistrationStatus) UnmarshalJSON(bytes []byte) error {
-	var decoded string
-	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling: %+v", err)
-	}
-	out, err := parseRegistrationStatus(decoded)
-	if err != nil {
-		return fmt.Errorf("parsing %q: %+v", decoded, err)
-	}
-	*s = *out
-	return nil
 }
 
 func parseRegistrationStatus(input string) (*RegistrationStatus, error) {

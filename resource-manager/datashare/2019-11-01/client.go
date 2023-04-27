@@ -4,8 +4,7 @@ package v2019_11_01
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 import (
-	"fmt"
-
+	"github.com/Azure/go-autorest/autorest"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/datashare/2019-11-01/account"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/datashare/2019-11-01/consumerinvitation"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/datashare/2019-11-01/dataset"
@@ -16,8 +15,6 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/datashare/2019-11-01/sharesubscription"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/datashare/2019-11-01/synchronizationsetting"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/datashare/2019-11-01/trigger"
-	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -33,77 +30,48 @@ type Client struct {
 	Trigger                *trigger.TriggerClient
 }
 
-func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
-	accountClient, err := account.NewAccountClientWithBaseURI(api)
-	if err != nil {
-		return nil, fmt.Errorf("building Account client: %+v", err)
-	}
-	configureFunc(accountClient.Client)
+func NewClientWithBaseURI(endpoint string, configureAuthFunc func(c *autorest.Client)) Client {
 
-	consumerInvitationClient, err := consumerinvitation.NewConsumerInvitationClientWithBaseURI(api)
-	if err != nil {
-		return nil, fmt.Errorf("building ConsumerInvitation client: %+v", err)
-	}
-	configureFunc(consumerInvitationClient.Client)
+	accountClient := account.NewAccountClientWithBaseURI(endpoint)
+	configureAuthFunc(&accountClient.Client)
 
-	dataSetClient, err := dataset.NewDataSetClientWithBaseURI(api)
-	if err != nil {
-		return nil, fmt.Errorf("building DataSet client: %+v", err)
-	}
-	configureFunc(dataSetClient.Client)
+	consumerInvitationClient := consumerinvitation.NewConsumerInvitationClientWithBaseURI(endpoint)
+	configureAuthFunc(&consumerInvitationClient.Client)
 
-	dataSetMappingClient, err := datasetmapping.NewDataSetMappingClientWithBaseURI(api)
-	if err != nil {
-		return nil, fmt.Errorf("building DataSetMapping client: %+v", err)
-	}
-	configureFunc(dataSetMappingClient.Client)
+	dataSetClient := dataset.NewDataSetClientWithBaseURI(endpoint)
+	configureAuthFunc(&dataSetClient.Client)
 
-	emailRegistrationClient, err := emailregistration.NewEmailRegistrationClientWithBaseURI(api)
-	if err != nil {
-		return nil, fmt.Errorf("building EmailRegistration client: %+v", err)
-	}
-	configureFunc(emailRegistrationClient.Client)
+	dataSetMappingClient := datasetmapping.NewDataSetMappingClientWithBaseURI(endpoint)
+	configureAuthFunc(&dataSetMappingClient.Client)
 
-	invitationClient, err := invitation.NewInvitationClientWithBaseURI(api)
-	if err != nil {
-		return nil, fmt.Errorf("building Invitation client: %+v", err)
-	}
-	configureFunc(invitationClient.Client)
+	emailRegistrationClient := emailregistration.NewEmailRegistrationClientWithBaseURI(endpoint)
+	configureAuthFunc(&emailRegistrationClient.Client)
 
-	shareClient, err := share.NewShareClientWithBaseURI(api)
-	if err != nil {
-		return nil, fmt.Errorf("building Share client: %+v", err)
-	}
-	configureFunc(shareClient.Client)
+	invitationClient := invitation.NewInvitationClientWithBaseURI(endpoint)
+	configureAuthFunc(&invitationClient.Client)
 
-	shareSubscriptionClient, err := sharesubscription.NewShareSubscriptionClientWithBaseURI(api)
-	if err != nil {
-		return nil, fmt.Errorf("building ShareSubscription client: %+v", err)
-	}
-	configureFunc(shareSubscriptionClient.Client)
+	shareClient := share.NewShareClientWithBaseURI(endpoint)
+	configureAuthFunc(&shareClient.Client)
 
-	synchronizationSettingClient, err := synchronizationsetting.NewSynchronizationSettingClientWithBaseURI(api)
-	if err != nil {
-		return nil, fmt.Errorf("building SynchronizationSetting client: %+v", err)
-	}
-	configureFunc(synchronizationSettingClient.Client)
+	shareSubscriptionClient := sharesubscription.NewShareSubscriptionClientWithBaseURI(endpoint)
+	configureAuthFunc(&shareSubscriptionClient.Client)
 
-	triggerClient, err := trigger.NewTriggerClientWithBaseURI(api)
-	if err != nil {
-		return nil, fmt.Errorf("building Trigger client: %+v", err)
-	}
-	configureFunc(triggerClient.Client)
+	synchronizationSettingClient := synchronizationsetting.NewSynchronizationSettingClientWithBaseURI(endpoint)
+	configureAuthFunc(&synchronizationSettingClient.Client)
 
-	return &Client{
-		Account:                accountClient,
-		ConsumerInvitation:     consumerInvitationClient,
-		DataSet:                dataSetClient,
-		DataSetMapping:         dataSetMappingClient,
-		EmailRegistration:      emailRegistrationClient,
-		Invitation:             invitationClient,
-		Share:                  shareClient,
-		ShareSubscription:      shareSubscriptionClient,
-		SynchronizationSetting: synchronizationSettingClient,
-		Trigger:                triggerClient,
-	}, nil
+	triggerClient := trigger.NewTriggerClientWithBaseURI(endpoint)
+	configureAuthFunc(&triggerClient.Client)
+
+	return Client{
+		Account:                &accountClient,
+		ConsumerInvitation:     &consumerInvitationClient,
+		DataSet:                &dataSetClient,
+		DataSetMapping:         &dataSetMappingClient,
+		EmailRegistration:      &emailRegistrationClient,
+		Invitation:             &invitationClient,
+		Share:                  &shareClient,
+		ShareSubscription:      &shareSubscriptionClient,
+		SynchronizationSetting: &synchronizationSettingClient,
+		Trigger:                &triggerClient,
+	}
 }

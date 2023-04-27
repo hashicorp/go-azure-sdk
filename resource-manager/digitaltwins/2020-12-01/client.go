@@ -4,14 +4,11 @@ package v2020_12_01
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 import (
-	"fmt"
-
+	"github.com/Azure/go-autorest/autorest"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/digitaltwins/2020-12-01/checknameavailability"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/digitaltwins/2020-12-01/digitaltwinsinstance"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/digitaltwins/2020-12-01/endpoints"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/digitaltwins/2020-12-01/privateendpoints"
-	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -21,35 +18,24 @@ type Client struct {
 	PrivateEndpoints      *privateendpoints.PrivateEndpointsClient
 }
 
-func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
-	checkNameAvailabilityClient, err := checknameavailability.NewCheckNameAvailabilityClientWithBaseURI(api)
-	if err != nil {
-		return nil, fmt.Errorf("building CheckNameAvailability client: %+v", err)
-	}
-	configureFunc(checkNameAvailabilityClient.Client)
+func NewClientWithBaseURI(endpoint string, configureAuthFunc func(c *autorest.Client)) Client {
 
-	digitalTwinsInstanceClient, err := digitaltwinsinstance.NewDigitalTwinsInstanceClientWithBaseURI(api)
-	if err != nil {
-		return nil, fmt.Errorf("building DigitalTwinsInstance client: %+v", err)
-	}
-	configureFunc(digitalTwinsInstanceClient.Client)
+	checkNameAvailabilityClient := checknameavailability.NewCheckNameAvailabilityClientWithBaseURI(endpoint)
+	configureAuthFunc(&checkNameAvailabilityClient.Client)
 
-	endpointsClient, err := endpoints.NewEndpointsClientWithBaseURI(api)
-	if err != nil {
-		return nil, fmt.Errorf("building Endpoints client: %+v", err)
-	}
-	configureFunc(endpointsClient.Client)
+	digitalTwinsInstanceClient := digitaltwinsinstance.NewDigitalTwinsInstanceClientWithBaseURI(endpoint)
+	configureAuthFunc(&digitalTwinsInstanceClient.Client)
 
-	privateEndpointsClient, err := privateendpoints.NewPrivateEndpointsClientWithBaseURI(api)
-	if err != nil {
-		return nil, fmt.Errorf("building PrivateEndpoints client: %+v", err)
-	}
-	configureFunc(privateEndpointsClient.Client)
+	endpointsClient := endpoints.NewEndpointsClientWithBaseURI(endpoint)
+	configureAuthFunc(&endpointsClient.Client)
 
-	return &Client{
-		CheckNameAvailability: checkNameAvailabilityClient,
-		DigitalTwinsInstance:  digitalTwinsInstanceClient,
-		Endpoints:             endpointsClient,
-		PrivateEndpoints:      privateEndpointsClient,
-	}, nil
+	privateEndpointsClient := privateendpoints.NewPrivateEndpointsClientWithBaseURI(endpoint)
+	configureAuthFunc(&privateEndpointsClient.Client)
+
+	return Client{
+		CheckNameAvailability: &checkNameAvailabilityClient,
+		DigitalTwinsInstance:  &digitalTwinsInstanceClient,
+		Endpoints:             &endpointsClient,
+		PrivateEndpoints:      &privateEndpointsClient,
+	}
 }
