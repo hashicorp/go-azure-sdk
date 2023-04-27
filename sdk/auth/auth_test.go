@@ -39,12 +39,30 @@ func TestNewAuthorizerFromCredentials(t *testing.T) {
 	testCases := []struct {
 		credentials func() auth.Credentials
 		shouldError bool
+		check       func(authorizer auth.Authorizer) error
 	}{
 		{
 			credentials: func() (ret auth.Credentials) {
 				ret = credentials
 				ret.EnableAuthenticatingUsingAzureCLI = true
 				return
+			},
+			check: func(a auth.Authorizer) error {
+				b, ok := a.(*auth.CachedAuthorizer)
+				if !ok {
+					return fmt.Errorf("authorizer was not an *auth.CachedAuthorizer")
+				}
+
+				c, ok := b.Source.(*auth.AzureCliAuthorizer)
+				if !ok {
+					return fmt.Errorf("authorizer source was not an *auth.AzureCliAuthorizer")
+				}
+
+				if c.TenantID != "00000000-1111-0000-0000-000000000000" {
+					return fmt.Errorf("unexpected value for authorizer TenantID, expected: %q, saw: %q", "00000000-1111-0000-0000-000000000000", c.TenantID)
+				}
+
+				return nil
 			},
 		},
 		{
@@ -82,20 +100,31 @@ func TestNewAuthorizerFromCredentials(t *testing.T) {
 				return
 			},
 		},
+		{
+			credentials: func() auth.Credentials {
+				return credentials
+			},
+			shouldError: true,
+		},
 	}
 
 	for i, testCase := range testCases {
 		authorizer, err := auth.NewAuthorizerFromCredentials(ctx, testCase.credentials(), env.MicrosoftGraph)
 		if testCase.shouldError {
 			if err == nil {
-				t.Fatalf("Test Case #%d: NewAuthorizerFromCredentials() should have errored but no error was returned", i)
+				t.Errorf("Test Case #%d: NewAuthorizerFromCredentials() should have errored but no error was returned", i)
 			}
 		} else {
 			if err != nil {
-				t.Fatalf("Test Case #%d: NewAuthorizerFromCredentials() returned an error: %+v", i, err)
+				t.Errorf("Test Case #%d: NewAuthorizerFromCredentials() returned an error: %+v", i, err)
 			}
 			if authorizer == nil {
-				t.Fatalf("Test Case #%d: NewAuthorizerFromCredentials() returned a nil Authorizer", i)
+				t.Errorf("Test Case #%d: NewAuthorizerFromCredentials() returned a nil Authorizer", i)
+			}
+			if testCase.check != nil {
+				if err = testCase.check(authorizer); err != nil {
+					t.Error(err)
+				}
 			}
 		}
 	}
