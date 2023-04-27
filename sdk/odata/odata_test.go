@@ -1,3 +1,6 @@
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MPL-2.0 License. See NOTICE.txt in the project root for license information.
+
 package odata_test
 
 import (
@@ -9,9 +12,6 @@ import (
 	"github.com/davecgh/go-spew/spew"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
-
-// Copyright (c) HashiCorp Inc. All rights reserved.
-// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 func TestODataId(t *testing.T) {
 	type testCase struct {

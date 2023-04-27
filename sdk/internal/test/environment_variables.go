@@ -3,10 +3,14 @@
 
 package test
 
-import "os"
+import (
+	"os"
+	"strings"
+)
 
 var (
 	TenantId                      = os.Getenv("ARM_TENANT_ID")
+	AuxiliaryTenantIds            = strings.Split(os.Getenv("ARM_AUXILIARY_TENANT_IDS"), ";")
 	ClientId                      = os.Getenv("ARM_CLIENT_ID")
 	ClientCertificate             = os.Getenv("ARM_CLIENT_CERTIFICATE")
 	ClientCertificatePath         = os.Getenv("ARM_CLIENT_CERTIFICATE_PATH")
@@ -17,7 +21,6 @@ var (
 	GitHubToken                   = os.Getenv("ACTIONS_ID_TOKEN_REQUEST_TOKEN")
 	IdToken                       = os.Getenv("ARM_OIDC_TOKEN")
 	CustomManagedIdentityEndpoint = os.Getenv("ARM_MSI_ENDPOINT")
-	ManagedIdentityToken          = os.Getenv("ARM_MSI_TOKEN")
 )
 
 func envDefault(key, def string) (ret string) {

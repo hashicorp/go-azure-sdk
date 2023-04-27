@@ -5,8 +5,6 @@ package auth_test
 
 import (
 	"context"
-	"fmt"
-	"math/rand"
 	"testing"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/auth"
@@ -14,19 +12,41 @@ import (
 	"github.com/hashicorp/go-azure-sdk/sdk/internal/test"
 )
 
+func TestManagedIdentityAuthorizer(t *testing.T) {
+	ctx := context.Background()
+	env := environments.AzurePublic()
+
+	auth.MetadataClient = &test.AzureADAccessTokenMockClient{
+		Authorization: *env.Authorization,
+	}
+
+	opts := auth.ManagedIdentityAuthorizerOptions{
+		Api:      env.MicrosoftGraph,
+		ClientId: "11111111-0000-0000-0000-0000000000000000",
+	}
+
+	authorizer, err := auth.NewManagedIdentityAuthorizer(ctx, opts)
+	if err != nil {
+		t.Fatalf("NewManagedIdentityAuthorizer(): %v", err)
+	}
+
+	if authorizer == nil {
+		t.Fatal("auth is nil, expected Authorizer")
+	}
+
+	if _, err = testObtainAccessToken(ctx, authorizer); err != nil {
+		t.Fatal(err)
+	}
+}
+
 func TestAccManagedIdentityAuthorizer(t *testing.T) {
 	test.AccTest(t)
 
-	ctx := context.Background()
-	port := 8000 + rand.Intn(999)
-	managedIdentityEndpoint := test.CustomManagedIdentityEndpoint
-	if test.ManagedIdentityToken != "" {
-		managedIdentityEndpoint = fmt.Sprintf("http://localhost:%d/metadata/identity/oauth2/token", port)
-		done := test.ManagedIdentityStubServer(ctx, port, test.ManagedIdentityToken)
-		defer func() {
-			done <- true
-		}()
+	if test.CustomManagedIdentityEndpoint == "" {
+		t.Skip("test.CustomManagedIdentityEndpoint was empty")
 	}
+
+	ctx := context.Background()
 
 	env, err := environments.FromName(test.Environment)
 	if err != nil {
@@ -36,24 +56,19 @@ func TestAccManagedIdentityAuthorizer(t *testing.T) {
 	opts := auth.ManagedIdentityAuthorizerOptions{
 		Api:                           env.MicrosoftGraph,
 		ClientId:                      test.ClientId,
-		CustomManagedIdentityEndpoint: managedIdentityEndpoint,
+		CustomManagedIdentityEndpoint: test.CustomManagedIdentityEndpoint,
 	}
-	auth, err := auth.NewManagedIdentityAuthorizer(ctx, opts)
+
+	authorizer, err := auth.NewManagedIdentityAuthorizer(ctx, opts)
 	if err != nil {
 		t.Fatalf("NewManagedIdentityAuthorizer(): %v", err)
 	}
-	if auth == nil {
+
+	if authorizer == nil {
 		t.Fatal("auth is nil, expected Authorizer")
 	}
 
-	token, err := auth.Token(ctx, nil)
-	if err != nil {
-		t.Fatalf("auth.Token(): %v", err)
-	}
-	if token == nil {
-		t.Fatal("token was nil")
-	}
-	if token.AccessToken == "" {
-		t.Fatal("token.AccessToken was empty")
+	if _, err = testObtainAccessToken(ctx, authorizer); err != nil {
+		t.Fatal(err)
 	}
 }

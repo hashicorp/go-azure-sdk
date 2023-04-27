@@ -12,6 +12,37 @@ import (
 	"github.com/hashicorp/go-azure-sdk/sdk/internal/test"
 )
 
+func TestOIDCAuthorizer(t *testing.T) {
+	ctx := context.Background()
+	env := environments.AzurePublic()
+
+	auth.Client = &test.AzureADAccessTokenMockClient{
+		Authorization: *env.Authorization,
+	}
+
+	opts := auth.OIDCAuthorizerOptions{
+		Environment:        *env,
+		Api:                env.MicrosoftGraph,
+		TenantId:           "00000000-1111-0000-0000-000000000000",
+		AuxiliaryTenantIds: test.AuxiliaryTenantIds,
+		ClientId:           "11111111-0000-0000-0000-000000000000",
+		FederatedAssertion: test.DummyIDToken,
+	}
+
+	authorizer, err := auth.NewOIDCAuthorizer(ctx, opts)
+	if err != nil {
+		t.Fatalf("NewOIDCAuthorizer(): %v", err)
+	}
+
+	if authorizer == nil {
+		t.Fatal("authorizer is nil, expected Authorizer")
+	}
+
+	if _, err = testObtainAccessToken(ctx, authorizer); err != nil {
+		t.Fatal(err)
+	}
+}
+
 func TestAccOIDCAuthorizer(t *testing.T) {
 	test.AccTest(t)
 
@@ -19,36 +50,32 @@ func TestAccOIDCAuthorizer(t *testing.T) {
 		t.Skip("test.IdToken was empty")
 	}
 
+	ctx := context.Background()
+
 	env, err := environments.FromName(test.Environment)
 	if err != nil {
 		t.Fatal(err)
 	}
 
-	ctx := context.Background()
 	opts := auth.OIDCAuthorizerOptions{
 		Environment:        *env,
 		Api:                env.MicrosoftGraph,
 		TenantId:           test.TenantId,
-		AuxiliaryTenantIds: []string{},
+		AuxiliaryTenantIds: test.AuxiliaryTenantIds,
 		ClientId:           test.ClientId,
 		FederatedAssertion: test.IdToken,
 	}
+
 	authorizer, err := auth.NewOIDCAuthorizer(ctx, opts)
 	if err != nil {
 		t.Fatalf("NewOIDCAuthorizer(): %v", err)
 	}
+
 	if authorizer == nil {
 		t.Fatal("authorizer is nil, expected Authorizer")
 	}
 
-	token, err := authorizer.Token(ctx, nil)
-	if err != nil {
-		t.Fatalf("authorizer.Token(): %v", err)
-	}
-	if token == nil {
-		t.Fatal("token was nil")
-	}
-	if token.AccessToken == "" {
-		t.Fatal("token.AccessToken was empty")
+	if _, err = testObtainAccessToken(ctx, authorizer); err != nil {
+		t.Fatal(err)
 	}
 }
