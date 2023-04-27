@@ -47,12 +47,38 @@ func TestNewAuthorizerFromCredentials(t *testing.T) {
 				ret.EnableAuthenticatingUsingClientCertificate = true
 				return
 			},
+			check: func(a auth.Authorizer) error {
+				b, ok := a.(*auth.CachedAuthorizer)
+				if !ok {
+					return fmt.Errorf("authorizer was not an *auth.CachedAuthorizer")
+				}
+
+				_, ok = b.Source.(*auth.ClientAssertionAuthorizer)
+				if !ok {
+					return fmt.Errorf("authorizer source was not an *auth.ClientAssertionAuthorizer")
+				}
+
+				return nil
+			},
 		},
 		{
 			credentials: func() (ret auth.Credentials) {
 				ret = credentials
 				ret.EnableAuthenticatingUsingClientSecret = true
 				return
+			},
+			check: func(a auth.Authorizer) error {
+				b, ok := a.(*auth.CachedAuthorizer)
+				if !ok {
+					return fmt.Errorf("authorizer was not an *auth.CachedAuthorizer")
+				}
+
+				_, ok = b.Source.(*auth.ClientSecretAuthorizer)
+				if !ok {
+					return fmt.Errorf("authorizer source was not an *auth.ClientSecretAuthorizer")
+				}
+
+				return nil
 			},
 		},
 		{
@@ -61,6 +87,19 @@ func TestNewAuthorizerFromCredentials(t *testing.T) {
 				ret.EnableAuthenticatingUsingManagedIdentity = true
 				return
 			},
+			check: func(a auth.Authorizer) error {
+				b, ok := a.(*auth.CachedAuthorizer)
+				if !ok {
+					return fmt.Errorf("authorizer was not an *auth.CachedAuthorizer")
+				}
+
+				_, ok = b.Source.(*auth.ManagedIdentityAuthorizer)
+				if !ok {
+					return fmt.Errorf("authorizer source was not an *auth.ManagedIdentityAuthorizer")
+				}
+
+				return nil
+			},
 		},
 		{
 			credentials: func() (ret auth.Credentials) {
@@ -68,12 +107,38 @@ func TestNewAuthorizerFromCredentials(t *testing.T) {
 				ret.EnableAuthenticationUsingGitHubOIDC = true
 				return
 			},
+			check: func(a auth.Authorizer) error {
+				b, ok := a.(*auth.CachedAuthorizer)
+				if !ok {
+					return fmt.Errorf("authorizer was not an *auth.CachedAuthorizer")
+				}
+
+				_, ok = b.Source.(*auth.GitHubOIDCAuthorizer)
+				if !ok {
+					return fmt.Errorf("authorizer source was not an *auth.GitHubOIDCAuthorizer")
+				}
+
+				return nil
+			},
 		},
 		{
 			credentials: func() (ret auth.Credentials) {
 				ret = credentials
 				ret.EnableAuthenticationUsingOIDC = true
 				return
+			},
+			check: func(a auth.Authorizer) error {
+				b, ok := a.(*auth.CachedAuthorizer)
+				if !ok {
+					return fmt.Errorf("authorizer was not an *auth.CachedAuthorizer")
+				}
+
+				_, ok = b.Source.(*auth.ClientAssertionAuthorizer)
+				if !ok {
+					return fmt.Errorf("authorizer source was not an *auth.ClientAssertionAuthorizer")
+				}
+
+				return nil
 			},
 		},
 		{
