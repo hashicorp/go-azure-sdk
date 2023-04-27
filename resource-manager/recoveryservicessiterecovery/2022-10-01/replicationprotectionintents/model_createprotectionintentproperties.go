@@ -9,7 +9,7 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type CreateProtectionIntentProperties struct {
-	ProviderSpecificDetails *CreateProtectionIntentProviderSpecificDetails `json:"providerSpecificDetails,omitempty"`
+	ProviderSpecificDetails CreateProtectionIntentProviderSpecificDetails `json:"providerSpecificDetails"`
 }
 
 var _ json.Unmarshaler = &CreateProtectionIntentProperties{}
@@ -26,7 +26,7 @@ func (s *CreateProtectionIntentProperties) UnmarshalJSON(bytes []byte) error {
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'ProviderSpecificDetails' for 'CreateProtectionIntentProperties': %+v", err)
 		}
-		s.ProviderSpecificDetails = &impl
+		s.ProviderSpecificDetails = impl
 	}
 	return nil
 }

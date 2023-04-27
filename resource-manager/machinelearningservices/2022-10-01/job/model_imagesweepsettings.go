@@ -9,8 +9,8 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type ImageSweepSettings struct {
-	EarlyTermination  *EarlyTerminationPolicy `json:"earlyTermination,omitempty"`
-	SamplingAlgorithm SamplingAlgorithmType   `json:"samplingAlgorithm"`
+	EarlyTermination  EarlyTerminationPolicy `json:"earlyTermination"`
+	SamplingAlgorithm SamplingAlgorithmType  `json:"samplingAlgorithm"`
 }
 
 var _ json.Unmarshaler = &ImageSweepSettings{}
@@ -34,7 +34,7 @@ func (s *ImageSweepSettings) UnmarshalJSON(bytes []byte) error {
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'EarlyTermination' for 'ImageSweepSettings': %+v", err)
 		}
-		s.EarlyTermination = &impl
+		s.EarlyTermination = impl
 	}
 	return nil
 }

@@ -9,7 +9,7 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type ReplicationApplianceProperties struct {
-	ProviderSpecificDetails *ApplianceSpecificDetails `json:"providerSpecificDetails,omitempty"`
+	ProviderSpecificDetails ApplianceSpecificDetails `json:"providerSpecificDetails"`
 }
 
 var _ json.Unmarshaler = &ReplicationApplianceProperties{}
@@ -26,7 +26,7 @@ func (s *ReplicationApplianceProperties) UnmarshalJSON(bytes []byte) error {
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'ProviderSpecificDetails' for 'ReplicationApplianceProperties': %+v", err)
 		}
-		s.ProviderSpecificDetails = &impl
+		s.ProviderSpecificDetails = impl
 	}
 	return nil
 }

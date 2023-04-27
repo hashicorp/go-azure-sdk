@@ -27,7 +27,7 @@ type KubernetesOnlineDeployment struct {
 	ProvisioningState    *DeploymentProvisioningState `json:"provisioningState,omitempty"`
 	ReadinessProbe       *ProbeSettings               `json:"readinessProbe,omitempty"`
 	RequestSettings      *OnlineRequestSettings       `json:"requestSettings,omitempty"`
-	ScaleSettings        *OnlineScaleSettings         `json:"scaleSettings,omitempty"`
+	ScaleSettings        OnlineScaleSettings          `json:"scaleSettings"`
 }
 
 var _ json.Marshaler = KubernetesOnlineDeployment{}
@@ -88,7 +88,7 @@ func (s *KubernetesOnlineDeployment) UnmarshalJSON(bytes []byte) error {
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'ScaleSettings' for 'KubernetesOnlineDeployment': %+v", err)
 		}
-		s.ScaleSettings = &impl
+		s.ScaleSettings = impl
 	}
 	return nil
 }

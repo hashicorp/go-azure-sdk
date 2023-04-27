@@ -11,9 +11,9 @@ import (
 var _ SAPConfiguration = DeploymentConfiguration{}
 
 type DeploymentConfiguration struct {
-	AppLocation                 *string                      `json:"appLocation,omitempty"`
-	InfrastructureConfiguration *InfrastructureConfiguration `json:"infrastructureConfiguration,omitempty"`
-	SoftwareConfiguration       *SoftwareConfiguration       `json:"softwareConfiguration,omitempty"`
+	AppLocation                 *string                     `json:"appLocation,omitempty"`
+	InfrastructureConfiguration InfrastructureConfiguration `json:"infrastructureConfiguration"`
+	SoftwareConfiguration       SoftwareConfiguration       `json:"softwareConfiguration"`
 
 	// Fields inherited from SAPConfiguration
 }
@@ -63,7 +63,7 @@ func (s *DeploymentConfiguration) UnmarshalJSON(bytes []byte) error {
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'InfrastructureConfiguration' for 'DeploymentConfiguration': %+v", err)
 		}
-		s.InfrastructureConfiguration = &impl
+		s.InfrastructureConfiguration = impl
 	}
 
 	if v, ok := temp["softwareConfiguration"]; ok {
@@ -71,7 +71,7 @@ func (s *DeploymentConfiguration) UnmarshalJSON(bytes []byte) error {
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'SoftwareConfiguration' for 'DeploymentConfiguration': %+v", err)
 		}
-		s.SoftwareConfiguration = &impl
+		s.SoftwareConfiguration = impl
 	}
 	return nil
 }

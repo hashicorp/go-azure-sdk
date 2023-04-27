@@ -11,7 +11,7 @@ import (
 var _ ValidateOperationRequest = ValidateIaasVMRestoreOperationRequest{}
 
 type ValidateIaasVMRestoreOperationRequest struct {
-	RestoreRequest *RestoreRequest `json:"restoreRequest,omitempty"`
+	RestoreRequest RestoreRequest `json:"restoreRequest"`
 
 	// Fields inherited from ValidateOperationRequest
 }
@@ -54,7 +54,7 @@ func (s *ValidateIaasVMRestoreOperationRequest) UnmarshalJSON(bytes []byte) erro
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'RestoreRequest' for 'ValidateIaasVMRestoreOperationRequest': %+v", err)
 		}
-		s.RestoreRequest = &impl
+		s.RestoreRequest = impl
 	}
 	return nil
 }

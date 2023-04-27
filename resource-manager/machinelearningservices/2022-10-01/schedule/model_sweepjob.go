@@ -11,14 +11,14 @@ import (
 var _ JobBase = SweepJob{}
 
 type SweepJob struct {
-	EarlyTermination  *EarlyTerminationPolicy `json:"earlyTermination,omitempty"`
-	Inputs            *map[string]JobInput    `json:"inputs,omitempty"`
-	Limits            *JobLimits              `json:"limits,omitempty"`
-	Objective         Objective               `json:"objective"`
-	Outputs           *map[string]JobOutput   `json:"outputs,omitempty"`
-	SamplingAlgorithm SamplingAlgorithm       `json:"samplingAlgorithm"`
-	SearchSpace       interface{}             `json:"searchSpace"`
-	Trial             TrialComponent          `json:"trial"`
+	EarlyTermination  EarlyTerminationPolicy `json:"earlyTermination"`
+	Inputs            *map[string]JobInput   `json:"inputs,omitempty"`
+	Limits            JobLimits              `json:"limits"`
+	Objective         Objective              `json:"objective"`
+	Outputs           *map[string]JobOutput  `json:"outputs,omitempty"`
+	SamplingAlgorithm SamplingAlgorithm      `json:"samplingAlgorithm"`
+	SearchSpace       interface{}            `json:"searchSpace"`
+	Trial             TrialComponent         `json:"trial"`
 
 	// Fields inherited from JobBase
 	ComponentId    *string                `json:"componentId,omitempty"`
@@ -26,7 +26,7 @@ type SweepJob struct {
 	Description    *string                `json:"description,omitempty"`
 	DisplayName    *string                `json:"displayName,omitempty"`
 	ExperimentName *string                `json:"experimentName,omitempty"`
-	Identity       *IdentityConfiguration `json:"identity,omitempty"`
+	Identity       IdentityConfiguration  `json:"identity"`
 	IsArchived     *bool                  `json:"isArchived,omitempty"`
 	Properties     *map[string]string     `json:"properties,omitempty"`
 	Services       *map[string]JobService `json:"services,omitempty"`
@@ -91,7 +91,7 @@ func (s *SweepJob) UnmarshalJSON(bytes []byte) error {
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'EarlyTermination' for 'SweepJob': %+v", err)
 		}
-		s.EarlyTermination = &impl
+		s.EarlyTermination = impl
 	}
 
 	if v, ok := temp["identity"]; ok {
@@ -99,7 +99,7 @@ func (s *SweepJob) UnmarshalJSON(bytes []byte) error {
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Identity' for 'SweepJob': %+v", err)
 		}
-		s.Identity = &impl
+		s.Identity = impl
 	}
 
 	if v, ok := temp["inputs"]; ok {
@@ -124,7 +124,7 @@ func (s *SweepJob) UnmarshalJSON(bytes []byte) error {
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Limits' for 'SweepJob': %+v", err)
 		}
-		s.Limits = &impl
+		s.Limits = impl
 	}
 
 	if v, ok := temp["outputs"]; ok {
@@ -149,7 +149,7 @@ func (s *SweepJob) UnmarshalJSON(bytes []byte) error {
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'SamplingAlgorithm' for 'SweepJob': %+v", err)
 		}
-		s.SamplingAlgorithm = &impl
+		s.SamplingAlgorithm = impl
 	}
 	return nil
 }

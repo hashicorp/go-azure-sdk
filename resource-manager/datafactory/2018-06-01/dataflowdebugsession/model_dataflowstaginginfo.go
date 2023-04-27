@@ -10,7 +10,7 @@ import (
 
 type DataFlowStagingInfo struct {
 	FolderPath    *interface{} `json:"folderPath,omitempty"`
-	LinkedService *Reference   `json:"linkedService,omitempty"`
+	LinkedService Reference    `json:"linkedService"`
 }
 
 var _ json.Unmarshaler = &DataFlowStagingInfo{}
@@ -34,7 +34,7 @@ func (s *DataFlowStagingInfo) UnmarshalJSON(bytes []byte) error {
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'LinkedService' for 'DataFlowStagingInfo': %+v", err)
 		}
-		s.LinkedService = &impl
+		s.LinkedService = impl
 	}
 	return nil
 }

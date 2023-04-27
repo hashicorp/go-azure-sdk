@@ -44,7 +44,7 @@ func (s *InventoryItem) UnmarshalJSON(bytes []byte) error {
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Properties' for 'InventoryItem': %+v", err)
 		}
-		s.Properties = &impl
+		s.Properties = impl
 	}
 	return nil
 }

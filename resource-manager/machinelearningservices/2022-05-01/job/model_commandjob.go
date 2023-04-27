@@ -11,23 +11,23 @@ import (
 var _ JobBase = CommandJob{}
 
 type CommandJob struct {
-	CodeId               *string                    `json:"codeId,omitempty"`
-	Command              string                     `json:"command"`
-	Distribution         *DistributionConfiguration `json:"distribution,omitempty"`
-	EnvironmentId        string                     `json:"environmentId"`
-	EnvironmentVariables *map[string]string         `json:"environmentVariables,omitempty"`
-	Inputs               *map[string]JobInput       `json:"inputs,omitempty"`
-	Limits               *JobLimits                 `json:"limits,omitempty"`
-	Outputs              *map[string]JobOutput      `json:"outputs,omitempty"`
-	Parameters           *interface{}               `json:"parameters,omitempty"`
-	Resources            *ResourceConfiguration     `json:"resources,omitempty"`
+	CodeId               *string                   `json:"codeId,omitempty"`
+	Command              string                    `json:"command"`
+	Distribution         DistributionConfiguration `json:"distribution"`
+	EnvironmentId        string                    `json:"environmentId"`
+	EnvironmentVariables *map[string]string        `json:"environmentVariables,omitempty"`
+	Inputs               *map[string]JobInput      `json:"inputs,omitempty"`
+	Limits               JobLimits                 `json:"limits"`
+	Outputs              *map[string]JobOutput     `json:"outputs,omitempty"`
+	Parameters           *interface{}              `json:"parameters,omitempty"`
+	Resources            *ResourceConfiguration    `json:"resources,omitempty"`
 
 	// Fields inherited from JobBase
 	ComputeId      *string                `json:"computeId,omitempty"`
 	Description    *string                `json:"description,omitempty"`
 	DisplayName    *string                `json:"displayName,omitempty"`
 	ExperimentName *string                `json:"experimentName,omitempty"`
-	Identity       *IdentityConfiguration `json:"identity,omitempty"`
+	Identity       IdentityConfiguration  `json:"identity"`
 	IsArchived     *bool                  `json:"isArchived,omitempty"`
 	Properties     *map[string]string     `json:"properties,omitempty"`
 	Services       *map[string]JobService `json:"services,omitempty"`
@@ -94,7 +94,7 @@ func (s *CommandJob) UnmarshalJSON(bytes []byte) error {
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Distribution' for 'CommandJob': %+v", err)
 		}
-		s.Distribution = &impl
+		s.Distribution = impl
 	}
 
 	if v, ok := temp["identity"]; ok {
@@ -102,7 +102,7 @@ func (s *CommandJob) UnmarshalJSON(bytes []byte) error {
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Identity' for 'CommandJob': %+v", err)
 		}
-		s.Identity = &impl
+		s.Identity = impl
 	}
 
 	if v, ok := temp["inputs"]; ok {
@@ -127,7 +127,7 @@ func (s *CommandJob) UnmarshalJSON(bytes []byte) error {
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Limits' for 'CommandJob': %+v", err)
 		}
-		s.Limits = &impl
+		s.Limits = impl
 	}
 
 	if v, ok := temp["outputs"]; ok {

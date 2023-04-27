@@ -13,7 +13,7 @@ type RecoveryPointResource struct {
 	Id         *string            `json:"id,omitempty"`
 	Location   *string            `json:"location,omitempty"`
 	Name       *string            `json:"name,omitempty"`
-	Properties *RecoveryPoint     `json:"properties,omitempty"`
+	Properties RecoveryPoint      `json:"properties"`
 	Tags       *map[string]string `json:"tags,omitempty"`
 	Type       *string            `json:"type,omitempty"`
 }
@@ -44,7 +44,7 @@ func (s *RecoveryPointResource) UnmarshalJSON(bytes []byte) error {
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Properties' for 'RecoveryPointResource': %+v", err)
 		}
-		s.Properties = &impl
+		s.Properties = impl
 	}
 	return nil
 }

@@ -12,7 +12,7 @@ type JobService struct {
 	Endpoint       *string            `json:"endpoint,omitempty"`
 	ErrorMessage   *string            `json:"errorMessage,omitempty"`
 	JobServiceType *string            `json:"jobServiceType,omitempty"`
-	Nodes          *Nodes             `json:"nodes,omitempty"`
+	Nodes          Nodes              `json:"nodes"`
 	Port           *int64             `json:"port,omitempty"`
 	Properties     *map[string]string `json:"properties,omitempty"`
 	Status         *string            `json:"status,omitempty"`
@@ -44,7 +44,7 @@ func (s *JobService) UnmarshalJSON(bytes []byte) error {
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Nodes' for 'JobService': %+v", err)
 		}
-		s.Nodes = &impl
+		s.Nodes = impl
 	}
 	return nil
 }

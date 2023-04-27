@@ -15,12 +15,12 @@ type Forecasting struct {
 	FeaturizationSettings *TableVerticalFeaturizationSettings `json:"featurizationSettings,omitempty"`
 	ForecastingSettings   *ForecastingSettings                `json:"forecastingSettings,omitempty"`
 	LimitSettings         *TableVerticalLimitSettings         `json:"limitSettings,omitempty"`
-	NCrossValidations     *NCrossValidations                  `json:"nCrossValidations,omitempty"`
+	NCrossValidations     NCrossValidations                   `json:"nCrossValidations"`
 	PrimaryMetric         *ForecastingPrimaryMetrics          `json:"primaryMetric,omitempty"`
-	TestData              *JobInput                           `json:"testData,omitempty"`
+	TestData              JobInput                            `json:"testData"`
 	TestDataSize          *float64                            `json:"testDataSize,omitempty"`
 	TrainingSettings      *ForecastingTrainingSettings        `json:"trainingSettings,omitempty"`
-	ValidationData        *JobInput                           `json:"validationData,omitempty"`
+	ValidationData        JobInput                            `json:"validationData"`
 	ValidationDataSize    *float64                            `json:"validationDataSize,omitempty"`
 	WeightColumnName      *string                             `json:"weightColumnName,omitempty"`
 
@@ -85,7 +85,7 @@ func (s *Forecasting) UnmarshalJSON(bytes []byte) error {
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'NCrossValidations' for 'Forecasting': %+v", err)
 		}
-		s.NCrossValidations = &impl
+		s.NCrossValidations = impl
 	}
 
 	if v, ok := temp["testData"]; ok {
@@ -93,7 +93,7 @@ func (s *Forecasting) UnmarshalJSON(bytes []byte) error {
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'TestData' for 'Forecasting': %+v", err)
 		}
-		s.TestData = &impl
+		s.TestData = impl
 	}
 
 	if v, ok := temp["trainingData"]; ok {
@@ -101,7 +101,7 @@ func (s *Forecasting) UnmarshalJSON(bytes []byte) error {
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'TrainingData' for 'Forecasting': %+v", err)
 		}
-		s.TrainingData = &impl
+		s.TrainingData = impl
 	}
 
 	if v, ok := temp["validationData"]; ok {
@@ -109,7 +109,7 @@ func (s *Forecasting) UnmarshalJSON(bytes []byte) error {
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'ValidationData' for 'Forecasting': %+v", err)
 		}
-		s.ValidationData = &impl
+		s.ValidationData = impl
 	}
 	return nil
 }

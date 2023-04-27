@@ -26,7 +26,7 @@ func (s *MigrateInputProperties) UnmarshalJSON(bytes []byte) error {
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'ProviderSpecificDetails' for 'MigrateInputProperties': %+v", err)
 		}
-		s.ProviderSpecificDetails = &impl
+		s.ProviderSpecificDetails = impl
 	}
 	return nil
 }

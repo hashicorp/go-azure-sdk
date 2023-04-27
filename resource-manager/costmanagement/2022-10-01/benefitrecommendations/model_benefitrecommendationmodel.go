@@ -9,11 +9,11 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type BenefitRecommendationModel struct {
-	Id         *string                          `json:"id,omitempty"`
-	Kind       *BenefitKind                     `json:"kind,omitempty"`
-	Name       *string                          `json:"name,omitempty"`
-	Properties *BenefitRecommendationProperties `json:"properties,omitempty"`
-	Type       *string                          `json:"type,omitempty"`
+	Id         *string                         `json:"id,omitempty"`
+	Kind       *BenefitKind                    `json:"kind,omitempty"`
+	Name       *string                         `json:"name,omitempty"`
+	Properties BenefitRecommendationProperties `json:"properties"`
+	Type       *string                         `json:"type,omitempty"`
 }
 
 var _ json.Unmarshaler = &BenefitRecommendationModel{}
@@ -40,7 +40,7 @@ func (s *BenefitRecommendationModel) UnmarshalJSON(bytes []byte) error {
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Properties' for 'BenefitRecommendationModel': %+v", err)
 		}
-		s.Properties = &impl
+		s.Properties = impl
 	}
 	return nil
 }

@@ -20,17 +20,17 @@ type A2ACreateProtectionIntentInput struct {
 	MultiVMGroupId                             *string                                       `json:"multiVmGroupId,omitempty"`
 	MultiVMGroupName                           *string                                       `json:"multiVmGroupName,omitempty"`
 	PrimaryLocation                            string                                        `json:"primaryLocation"`
-	PrimaryStagingStorageAccountCustomInput    *StorageAccountCustomDetails                  `json:"primaryStagingStorageAccountCustomInput,omitempty"`
-	ProtectionProfileCustomInput               *ProtectionProfileCustomDetails               `json:"protectionProfileCustomInput,omitempty"`
-	RecoveryAvailabilitySetCustomInput         *RecoveryAvailabilitySetCustomDetails         `json:"recoveryAvailabilitySetCustomInput,omitempty"`
+	PrimaryStagingStorageAccountCustomInput    StorageAccountCustomDetails                   `json:"primaryStagingStorageAccountCustomInput"`
+	ProtectionProfileCustomInput               ProtectionProfileCustomDetails                `json:"protectionProfileCustomInput"`
+	RecoveryAvailabilitySetCustomInput         RecoveryAvailabilitySetCustomDetails          `json:"recoveryAvailabilitySetCustomInput"`
 	RecoveryAvailabilityType                   A2ARecoveryAvailabilityType                   `json:"recoveryAvailabilityType"`
 	RecoveryAvailabilityZone                   *string                                       `json:"recoveryAvailabilityZone,omitempty"`
-	RecoveryBootDiagStorageAccount             *StorageAccountCustomDetails                  `json:"recoveryBootDiagStorageAccount,omitempty"`
+	RecoveryBootDiagStorageAccount             StorageAccountCustomDetails                   `json:"recoveryBootDiagStorageAccount"`
 	RecoveryLocation                           string                                        `json:"recoveryLocation"`
-	RecoveryProximityPlacementGroupCustomInput *RecoveryProximityPlacementGroupCustomDetails `json:"recoveryProximityPlacementGroupCustomInput,omitempty"`
+	RecoveryProximityPlacementGroupCustomInput RecoveryProximityPlacementGroupCustomDetails  `json:"recoveryProximityPlacementGroupCustomInput"`
 	RecoveryResourceGroupId                    string                                        `json:"recoveryResourceGroupId"`
 	RecoverySubscriptionId                     string                                        `json:"recoverySubscriptionId"`
-	RecoveryVirtualNetworkCustomInput          *RecoveryVirtualNetworkCustomDetails          `json:"recoveryVirtualNetworkCustomInput,omitempty"`
+	RecoveryVirtualNetworkCustomInput          RecoveryVirtualNetworkCustomDetails           `json:"recoveryVirtualNetworkCustomInput"`
 	VMDisks                                    *[]A2AProtectionIntentDiskInputDetails        `json:"vmDisks,omitempty"`
 	VMManagedDisks                             *[]A2AProtectionIntentManagedDiskInputDetails `json:"vmManagedDisks,omitempty"`
 
@@ -97,7 +97,7 @@ func (s *A2ACreateProtectionIntentInput) UnmarshalJSON(bytes []byte) error {
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'PrimaryStagingStorageAccountCustomInput' for 'A2ACreateProtectionIntentInput': %+v", err)
 		}
-		s.PrimaryStagingStorageAccountCustomInput = &impl
+		s.PrimaryStagingStorageAccountCustomInput = impl
 	}
 
 	if v, ok := temp["protectionProfileCustomInput"]; ok {
@@ -105,7 +105,7 @@ func (s *A2ACreateProtectionIntentInput) UnmarshalJSON(bytes []byte) error {
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'ProtectionProfileCustomInput' for 'A2ACreateProtectionIntentInput': %+v", err)
 		}
-		s.ProtectionProfileCustomInput = &impl
+		s.ProtectionProfileCustomInput = impl
 	}
 
 	if v, ok := temp["recoveryAvailabilitySetCustomInput"]; ok {
@@ -113,7 +113,7 @@ func (s *A2ACreateProtectionIntentInput) UnmarshalJSON(bytes []byte) error {
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'RecoveryAvailabilitySetCustomInput' for 'A2ACreateProtectionIntentInput': %+v", err)
 		}
-		s.RecoveryAvailabilitySetCustomInput = &impl
+		s.RecoveryAvailabilitySetCustomInput = impl
 	}
 
 	if v, ok := temp["recoveryBootDiagStorageAccount"]; ok {
@@ -121,7 +121,7 @@ func (s *A2ACreateProtectionIntentInput) UnmarshalJSON(bytes []byte) error {
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'RecoveryBootDiagStorageAccount' for 'A2ACreateProtectionIntentInput': %+v", err)
 		}
-		s.RecoveryBootDiagStorageAccount = &impl
+		s.RecoveryBootDiagStorageAccount = impl
 	}
 
 	if v, ok := temp["recoveryProximityPlacementGroupCustomInput"]; ok {
@@ -129,7 +129,7 @@ func (s *A2ACreateProtectionIntentInput) UnmarshalJSON(bytes []byte) error {
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'RecoveryProximityPlacementGroupCustomInput' for 'A2ACreateProtectionIntentInput': %+v", err)
 		}
-		s.RecoveryProximityPlacementGroupCustomInput = &impl
+		s.RecoveryProximityPlacementGroupCustomInput = impl
 	}
 
 	if v, ok := temp["recoveryVirtualNetworkCustomInput"]; ok {
@@ -137,7 +137,7 @@ func (s *A2ACreateProtectionIntentInput) UnmarshalJSON(bytes []byte) error {
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'RecoveryVirtualNetworkCustomInput' for 'A2ACreateProtectionIntentInput': %+v", err)
 		}
-		s.RecoveryVirtualNetworkCustomInput = &impl
+		s.RecoveryVirtualNetworkCustomInput = impl
 	}
 	return nil
 }

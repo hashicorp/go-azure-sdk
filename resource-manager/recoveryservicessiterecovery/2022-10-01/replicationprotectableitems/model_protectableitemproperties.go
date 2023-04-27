@@ -9,13 +9,13 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type ProtectableItemProperties struct {
-	CustomDetails                 *ConfigurationSettings `json:"customDetails,omitempty"`
-	FriendlyName                  *string                `json:"friendlyName,omitempty"`
-	ProtectionReadinessErrors     *[]string              `json:"protectionReadinessErrors,omitempty"`
-	ProtectionStatus              *string                `json:"protectionStatus,omitempty"`
-	RecoveryServicesProviderId    *string                `json:"recoveryServicesProviderId,omitempty"`
-	ReplicationProtectedItemId    *string                `json:"replicationProtectedItemId,omitempty"`
-	SupportedReplicationProviders *[]string              `json:"supportedReplicationProviders,omitempty"`
+	CustomDetails                 ConfigurationSettings `json:"customDetails"`
+	FriendlyName                  *string               `json:"friendlyName,omitempty"`
+	ProtectionReadinessErrors     *[]string             `json:"protectionReadinessErrors,omitempty"`
+	ProtectionStatus              *string               `json:"protectionStatus,omitempty"`
+	RecoveryServicesProviderId    *string               `json:"recoveryServicesProviderId,omitempty"`
+	ReplicationProtectedItemId    *string               `json:"replicationProtectedItemId,omitempty"`
+	SupportedReplicationProviders *[]string             `json:"supportedReplicationProviders,omitempty"`
 }
 
 var _ json.Unmarshaler = &ProtectableItemProperties{}
@@ -44,7 +44,7 @@ func (s *ProtectableItemProperties) UnmarshalJSON(bytes []byte) error {
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'CustomDetails' for 'ProtectableItemProperties': %+v", err)
 		}
-		s.CustomDetails = &impl
+		s.CustomDetails = impl
 	}
 	return nil
 }

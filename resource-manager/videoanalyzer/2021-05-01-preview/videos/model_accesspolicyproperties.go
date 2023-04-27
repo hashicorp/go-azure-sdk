@@ -9,8 +9,8 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type AccessPolicyProperties struct {
-	Authentication *AuthenticationBase `json:"authentication,omitempty"`
-	Role           *AccessPolicyRole   `json:"role,omitempty"`
+	Authentication AuthenticationBase `json:"authentication"`
+	Role           *AccessPolicyRole  `json:"role,omitempty"`
 }
 
 var _ json.Unmarshaler = &AccessPolicyProperties{}
@@ -34,7 +34,7 @@ func (s *AccessPolicyProperties) UnmarshalJSON(bytes []byte) error {
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Authentication' for 'AccessPolicyProperties': %+v", err)
 		}
-		s.Authentication = &impl
+		s.Authentication = impl
 	}
 	return nil
 }
