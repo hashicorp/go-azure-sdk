@@ -17,9 +17,11 @@ import (
 	"github.com/hashicorp/go-retryablehttp"
 )
 
-// Client is the HTTP client used for sending authentication requests and obtaining tokens
 var (
-	Client         HTTPClient
+	// Client is the HTTP client used for sending authentication requests and obtaining tokens
+	Client HTTPClient
+
+	// MetadataClient is the HTTP client used for obtaining tokens from the Instance Metadata Service
 	MetadataClient HTTPClient
 )
 
