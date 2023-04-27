@@ -18,7 +18,7 @@ type FactoryProperties struct {
 	ProvisioningState    *string                                  `json:"provisioningState,omitempty"`
 	PublicNetworkAccess  *PublicNetworkAccess                     `json:"publicNetworkAccess,omitempty"`
 	PurviewConfiguration *PurviewConfiguration                    `json:"purviewConfiguration,omitempty"`
-	RepoConfiguration    *FactoryRepoConfiguration                `json:"repoConfiguration,omitempty"`
+	RepoConfiguration    FactoryRepoConfiguration                 `json:"repoConfiguration"`
 	Version              *string                                  `json:"version,omitempty"`
 }
 
@@ -61,7 +61,7 @@ func (s *FactoryProperties) UnmarshalJSON(bytes []byte) error {
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'RepoConfiguration' for 'FactoryProperties': %+v", err)
 		}
-		s.RepoConfiguration = &impl
+		s.RepoConfiguration = impl
 	}
 	return nil
 }

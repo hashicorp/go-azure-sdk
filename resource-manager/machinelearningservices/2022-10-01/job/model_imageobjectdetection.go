@@ -16,7 +16,7 @@ type ImageObjectDetection struct {
 	PrimaryMetric      *ObjectDetectionPrimaryMetrics                   `json:"primaryMetric,omitempty"`
 	SearchSpace        *[]ImageModelDistributionSettingsObjectDetection `json:"searchSpace,omitempty"`
 	SweepSettings      *ImageSweepSettings                              `json:"sweepSettings,omitempty"`
-	ValidationData     *JobInput                                        `json:"validationData,omitempty"`
+	ValidationData     JobInput                                         `json:"validationData"`
 	ValidationDataSize *float64                                         `json:"validationDataSize,omitempty"`
 
 	// Fields inherited from AutoMLVertical
@@ -77,7 +77,7 @@ func (s *ImageObjectDetection) UnmarshalJSON(bytes []byte) error {
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'TrainingData' for 'ImageObjectDetection': %+v", err)
 		}
-		s.TrainingData = &impl
+		s.TrainingData = impl
 	}
 
 	if v, ok := temp["validationData"]; ok {
@@ -85,7 +85,7 @@ func (s *ImageObjectDetection) UnmarshalJSON(bytes []byte) error {
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'ValidationData' for 'ImageObjectDetection': %+v", err)
 		}
-		s.ValidationData = &impl
+		s.ValidationData = impl
 	}
 	return nil
 }

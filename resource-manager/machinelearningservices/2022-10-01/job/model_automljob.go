@@ -23,7 +23,7 @@ type AutoMLJob struct {
 	Description    *string                `json:"description,omitempty"`
 	DisplayName    *string                `json:"displayName,omitempty"`
 	ExperimentName *string                `json:"experimentName,omitempty"`
-	Identity       *IdentityConfiguration `json:"identity,omitempty"`
+	Identity       IdentityConfiguration  `json:"identity"`
 	IsArchived     *bool                  `json:"isArchived,omitempty"`
 	Properties     *map[string]string     `json:"properties,omitempty"`
 	Services       *map[string]JobService `json:"services,omitempty"`
@@ -88,7 +88,7 @@ func (s *AutoMLJob) UnmarshalJSON(bytes []byte) error {
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Identity' for 'AutoMLJob': %+v", err)
 		}
-		s.Identity = &impl
+		s.Identity = impl
 	}
 
 	if v, ok := temp["outputs"]; ok {
@@ -113,7 +113,7 @@ func (s *AutoMLJob) UnmarshalJSON(bytes []byte) error {
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'TaskDetails' for 'AutoMLJob': %+v", err)
 		}
-		s.TaskDetails = &impl
+		s.TaskDetails = impl
 	}
 	return nil
 }

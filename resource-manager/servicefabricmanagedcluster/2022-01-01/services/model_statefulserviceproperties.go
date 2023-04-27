@@ -91,7 +91,7 @@ func (s *StatefulServiceProperties) UnmarshalJSON(bytes []byte) error {
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'PartitionDescription' for 'StatefulServiceProperties': %+v", err)
 		}
-		s.PartitionDescription = &impl
+		s.PartitionDescription = impl
 	}
 
 	if v, ok := temp["servicePlacementPolicies"]; ok {

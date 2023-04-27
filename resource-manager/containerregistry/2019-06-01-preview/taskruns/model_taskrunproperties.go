@@ -11,7 +11,7 @@ import (
 type TaskRunProperties struct {
 	ForceUpdateTag    *string            `json:"forceUpdateTag,omitempty"`
 	ProvisioningState *ProvisioningState `json:"provisioningState,omitempty"`
-	RunRequest        *RunRequest        `json:"runRequest,omitempty"`
+	RunRequest        RunRequest         `json:"runRequest"`
 	RunResult         *Run               `json:"runResult,omitempty"`
 }
 
@@ -38,7 +38,7 @@ func (s *TaskRunProperties) UnmarshalJSON(bytes []byte) error {
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'RunRequest' for 'TaskRunProperties': %+v", err)
 		}
-		s.RunRequest = &impl
+		s.RunRequest = impl
 	}
 	return nil
 }

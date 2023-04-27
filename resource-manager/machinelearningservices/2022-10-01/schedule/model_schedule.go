@@ -45,7 +45,7 @@ func (s *Schedule) UnmarshalJSON(bytes []byte) error {
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Action' for 'Schedule': %+v", err)
 		}
-		s.Action = &impl
+		s.Action = impl
 	}
 
 	if v, ok := temp["trigger"]; ok {
@@ -53,7 +53,7 @@ func (s *Schedule) UnmarshalJSON(bytes []byte) error {
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Trigger' for 'Schedule': %+v", err)
 		}
-		s.Trigger = &impl
+		s.Trigger = impl
 	}
 	return nil
 }

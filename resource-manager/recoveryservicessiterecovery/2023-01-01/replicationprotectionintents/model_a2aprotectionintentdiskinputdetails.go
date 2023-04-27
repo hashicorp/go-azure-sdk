@@ -9,9 +9,9 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type A2AProtectionIntentDiskInputDetails struct {
-	DiskUri                                 string                       `json:"diskUri"`
-	PrimaryStagingStorageAccountCustomInput *StorageAccountCustomDetails `json:"primaryStagingStorageAccountCustomInput,omitempty"`
-	RecoveryAzureStorageAccountCustomInput  *StorageAccountCustomDetails `json:"recoveryAzureStorageAccountCustomInput,omitempty"`
+	DiskUri                                 string                      `json:"diskUri"`
+	PrimaryStagingStorageAccountCustomInput StorageAccountCustomDetails `json:"primaryStagingStorageAccountCustomInput"`
+	RecoveryAzureStorageAccountCustomInput  StorageAccountCustomDetails `json:"recoveryAzureStorageAccountCustomInput"`
 }
 
 var _ json.Unmarshaler = &A2AProtectionIntentDiskInputDetails{}
@@ -35,7 +35,7 @@ func (s *A2AProtectionIntentDiskInputDetails) UnmarshalJSON(bytes []byte) error 
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'PrimaryStagingStorageAccountCustomInput' for 'A2AProtectionIntentDiskInputDetails': %+v", err)
 		}
-		s.PrimaryStagingStorageAccountCustomInput = &impl
+		s.PrimaryStagingStorageAccountCustomInput = impl
 	}
 
 	if v, ok := temp["recoveryAzureStorageAccountCustomInput"]; ok {
@@ -43,7 +43,7 @@ func (s *A2AProtectionIntentDiskInputDetails) UnmarshalJSON(bytes []byte) error 
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'RecoveryAzureStorageAccountCustomInput' for 'A2AProtectionIntentDiskInputDetails': %+v", err)
 		}
-		s.RecoveryAzureStorageAccountCustomInput = &impl
+		s.RecoveryAzureStorageAccountCustomInput = impl
 	}
 	return nil
 }

@@ -14,12 +14,12 @@ type Regression struct {
 	CvSplitColumnNames    *[]string                           `json:"cvSplitColumnNames,omitempty"`
 	FeaturizationSettings *TableVerticalFeaturizationSettings `json:"featurizationSettings,omitempty"`
 	LimitSettings         *TableVerticalLimitSettings         `json:"limitSettings,omitempty"`
-	NCrossValidations     *NCrossValidations                  `json:"nCrossValidations,omitempty"`
+	NCrossValidations     NCrossValidations                   `json:"nCrossValidations"`
 	PrimaryMetric         *RegressionPrimaryMetrics           `json:"primaryMetric,omitempty"`
-	TestData              *JobInput                           `json:"testData,omitempty"`
+	TestData              JobInput                            `json:"testData"`
 	TestDataSize          *float64                            `json:"testDataSize,omitempty"`
 	TrainingSettings      *RegressionTrainingSettings         `json:"trainingSettings,omitempty"`
-	ValidationData        *JobInput                           `json:"validationData,omitempty"`
+	ValidationData        JobInput                            `json:"validationData"`
 	ValidationDataSize    *float64                            `json:"validationDataSize,omitempty"`
 	WeightColumnName      *string                             `json:"weightColumnName,omitempty"`
 
@@ -83,7 +83,7 @@ func (s *Regression) UnmarshalJSON(bytes []byte) error {
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'NCrossValidations' for 'Regression': %+v", err)
 		}
-		s.NCrossValidations = &impl
+		s.NCrossValidations = impl
 	}
 
 	if v, ok := temp["testData"]; ok {
@@ -91,7 +91,7 @@ func (s *Regression) UnmarshalJSON(bytes []byte) error {
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'TestData' for 'Regression': %+v", err)
 		}
-		s.TestData = &impl
+		s.TestData = impl
 	}
 
 	if v, ok := temp["trainingData"]; ok {
@@ -99,7 +99,7 @@ func (s *Regression) UnmarshalJSON(bytes []byte) error {
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'TrainingData' for 'Regression': %+v", err)
 		}
-		s.TrainingData = &impl
+		s.TrainingData = impl
 	}
 
 	if v, ok := temp["validationData"]; ok {
@@ -107,7 +107,7 @@ func (s *Regression) UnmarshalJSON(bytes []byte) error {
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'ValidationData' for 'Regression': %+v", err)
 		}
-		s.ValidationData = &impl
+		s.ValidationData = impl
 	}
 	return nil
 }

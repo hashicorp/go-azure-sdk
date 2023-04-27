@@ -15,7 +15,7 @@ type ImageModelSettingsClassification struct {
 	Beta1                      *float64               `json:"beta1,omitempty"`
 	Beta2                      *float64               `json:"beta2,omitempty"`
 	CheckpointFrequency        *int64                 `json:"checkpointFrequency,omitempty"`
-	CheckpointModel            *JobInput              `json:"checkpointModel,omitempty"`
+	CheckpointModel            JobInput               `json:"checkpointModel"`
 	CheckpointRunId            *string                `json:"checkpointRunId,omitempty"`
 	Distributed                *bool                  `json:"distributed,omitempty"`
 	EarlyStopping              *bool                  `json:"earlyStopping,omitempty"`
@@ -102,7 +102,7 @@ func (s *ImageModelSettingsClassification) UnmarshalJSON(bytes []byte) error {
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'CheckpointModel' for 'ImageModelSettingsClassification': %+v", err)
 		}
-		s.CheckpointModel = &impl
+		s.CheckpointModel = impl
 	}
 	return nil
 }

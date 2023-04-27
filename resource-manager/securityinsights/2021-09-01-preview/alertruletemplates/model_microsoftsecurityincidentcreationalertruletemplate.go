@@ -13,7 +13,7 @@ import (
 var _ AlertRuleTemplate = MicrosoftSecurityIncidentCreationAlertRuleTemplate{}
 
 type MicrosoftSecurityIncidentCreationAlertRuleTemplate struct {
-	Properties *AlertRuleTemplate `json:"properties,omitempty"`
+	Properties AlertRuleTemplate `json:"properties"`
 
 	// Fields inherited from AlertRuleTemplate
 	Id         *string                `json:"id,omitempty"`
@@ -70,7 +70,7 @@ func (s *MicrosoftSecurityIncidentCreationAlertRuleTemplate) UnmarshalJSON(bytes
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Properties' for 'MicrosoftSecurityIncidentCreationAlertRuleTemplate': %+v", err)
 		}
-		s.Properties = &impl
+		s.Properties = impl
 	}
 	return nil
 }

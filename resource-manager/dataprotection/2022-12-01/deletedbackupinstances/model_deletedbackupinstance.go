@@ -12,7 +12,7 @@ type DeletedBackupInstance struct {
 	CurrentProtectionState    *CurrentProtectionState  `json:"currentProtectionState,omitempty"`
 	DataSourceInfo            Datasource               `json:"dataSourceInfo"`
 	DataSourceSetInfo         *DatasourceSet           `json:"dataSourceSetInfo,omitempty"`
-	DatasourceAuthCredentials *AuthCredentials         `json:"datasourceAuthCredentials,omitempty"`
+	DatasourceAuthCredentials AuthCredentials          `json:"datasourceAuthCredentials"`
 	DeletionInfo              *DeletionInfo            `json:"deletionInfo,omitempty"`
 	FriendlyName              *string                  `json:"friendlyName,omitempty"`
 	ObjectType                string                   `json:"objectType"`
@@ -54,7 +54,7 @@ func (s *DeletedBackupInstance) UnmarshalJSON(bytes []byte) error {
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'DatasourceAuthCredentials' for 'DeletedBackupInstance': %+v", err)
 		}
-		s.DatasourceAuthCredentials = &impl
+		s.DatasourceAuthCredentials = impl
 	}
 	return nil
 }

@@ -21,7 +21,7 @@ type StatefulServiceProperties struct {
 	// Fields inherited from ServiceResourceProperties
 	CorrelationScheme            *[]ServiceCorrelationDescription     `json:"correlationScheme,omitempty"`
 	DefaultMoveCost              *MoveCost                            `json:"defaultMoveCost,omitempty"`
-	PartitionDescription         *PartitionSchemeDescription          `json:"partitionDescription,omitempty"`
+	PartitionDescription         PartitionSchemeDescription           `json:"partitionDescription"`
 	PlacementConstraints         *string                              `json:"placementConstraints,omitempty"`
 	ProvisioningState            *string                              `json:"provisioningState,omitempty"`
 	ServiceDnsName               *string                              `json:"serviceDnsName,omitempty"`
@@ -90,7 +90,7 @@ func (s *StatefulServiceProperties) UnmarshalJSON(bytes []byte) error {
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'PartitionDescription' for 'StatefulServiceProperties': %+v", err)
 		}
-		s.PartitionDescription = &impl
+		s.PartitionDescription = impl
 	}
 	return nil
 }

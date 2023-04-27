@@ -12,7 +12,7 @@ type EventGridStreamInputDataSourceProperties struct {
 	EventTypes      *[]string                 `json:"eventTypes,omitempty"`
 	Schema          *EventGridEventSchemaType `json:"schema,omitempty"`
 	StorageAccounts *[]StorageAccount         `json:"storageAccounts,omitempty"`
-	Subscriber      *StreamInputDataSource    `json:"subscriber,omitempty"`
+	Subscriber      StreamInputDataSource     `json:"subscriber"`
 }
 
 var _ json.Unmarshaler = &EventGridStreamInputDataSourceProperties{}
@@ -38,7 +38,7 @@ func (s *EventGridStreamInputDataSourceProperties) UnmarshalJSON(bytes []byte) e
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Subscriber' for 'EventGridStreamInputDataSourceProperties': %+v", err)
 		}
-		s.Subscriber = &impl
+		s.Subscriber = impl
 	}
 	return nil
 }

@@ -13,11 +13,11 @@ import (
 
 type ASRTask struct {
 	AllowedActions         *[]string          `json:"allowedActions,omitempty"`
-	CustomDetails          *TaskTypeDetails   `json:"customDetails,omitempty"`
+	CustomDetails          TaskTypeDetails    `json:"customDetails"`
 	EndTime                *string            `json:"endTime,omitempty"`
 	Errors                 *[]JobErrorDetails `json:"errors,omitempty"`
 	FriendlyName           *string            `json:"friendlyName,omitempty"`
-	GroupTaskCustomDetails *GroupTaskDetails  `json:"groupTaskCustomDetails,omitempty"`
+	GroupTaskCustomDetails GroupTaskDetails   `json:"groupTaskCustomDetails"`
 	Name                   *string            `json:"name,omitempty"`
 	StartTime              *string            `json:"startTime,omitempty"`
 	State                  *string            `json:"state,omitempty"`
@@ -80,7 +80,7 @@ func (s *ASRTask) UnmarshalJSON(bytes []byte) error {
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'CustomDetails' for 'ASRTask': %+v", err)
 		}
-		s.CustomDetails = &impl
+		s.CustomDetails = impl
 	}
 
 	if v, ok := temp["groupTaskCustomDetails"]; ok {
@@ -88,7 +88,7 @@ func (s *ASRTask) UnmarshalJSON(bytes []byte) error {
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'GroupTaskCustomDetails' for 'ASRTask': %+v", err)
 		}
-		s.GroupTaskCustomDetails = &impl
+		s.GroupTaskCustomDetails = impl
 	}
 	return nil
 }

@@ -9,7 +9,7 @@ import (
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type StorageConfiguration struct {
-	TransportFileShareConfiguration *FileShareConfiguration `json:"transportFileShareConfiguration,omitempty"`
+	TransportFileShareConfiguration FileShareConfiguration `json:"transportFileShareConfiguration"`
 }
 
 var _ json.Unmarshaler = &StorageConfiguration{}
@@ -26,7 +26,7 @@ func (s *StorageConfiguration) UnmarshalJSON(bytes []byte) error {
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'TransportFileShareConfiguration' for 'StorageConfiguration': %+v", err)
 		}
-		s.TransportFileShareConfiguration = &impl
+		s.TransportFileShareConfiguration = impl
 	}
 	return nil
 }

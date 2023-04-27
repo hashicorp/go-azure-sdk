@@ -11,14 +11,14 @@ import (
 var _ InputProperties = StreamInputProperties{}
 
 type StreamInputProperties struct {
-	Datasource *StreamInputDataSource `json:"datasource,omitempty"`
+	Datasource StreamInputDataSource `json:"datasource"`
 
 	// Fields inherited from InputProperties
 	Compression       *Compression              `json:"compression,omitempty"`
 	Diagnostics       *Diagnostics              `json:"diagnostics,omitempty"`
 	Etag              *string                   `json:"etag,omitempty"`
 	PartitionKey      *string                   `json:"partitionKey,omitempty"`
-	Serialization     *Serialization            `json:"serialization,omitempty"`
+	Serialization     Serialization             `json:"serialization"`
 	WatermarkSettings *InputWatermarkProperties `json:"watermarkSettings,omitempty"`
 }
 
@@ -71,7 +71,7 @@ func (s *StreamInputProperties) UnmarshalJSON(bytes []byte) error {
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Datasource' for 'StreamInputProperties': %+v", err)
 		}
-		s.Datasource = &impl
+		s.Datasource = impl
 	}
 
 	if v, ok := temp["serialization"]; ok {
@@ -79,7 +79,7 @@ func (s *StreamInputProperties) UnmarshalJSON(bytes []byte) error {
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'Serialization' for 'StreamInputProperties': %+v", err)
 		}
-		s.Serialization = &impl
+		s.Serialization = impl
 	}
 	return nil
 }

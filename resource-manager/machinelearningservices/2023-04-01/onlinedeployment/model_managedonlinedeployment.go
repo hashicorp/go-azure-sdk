@@ -27,7 +27,7 @@ type ManagedOnlineDeployment struct {
 	ProvisioningState         *DeploymentProvisioningState   `json:"provisioningState,omitempty"`
 	ReadinessProbe            *ProbeSettings                 `json:"readinessProbe,omitempty"`
 	RequestSettings           *OnlineRequestSettings         `json:"requestSettings,omitempty"`
-	ScaleSettings             *OnlineScaleSettings           `json:"scaleSettings,omitempty"`
+	ScaleSettings             OnlineScaleSettings            `json:"scaleSettings"`
 }
 
 var _ json.Marshaler = ManagedOnlineDeployment{}
@@ -88,7 +88,7 @@ func (s *ManagedOnlineDeployment) UnmarshalJSON(bytes []byte) error {
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'ScaleSettings' for 'ManagedOnlineDeployment': %+v", err)
 		}
-		s.ScaleSettings = &impl
+		s.ScaleSettings = impl
 	}
 	return nil
 }

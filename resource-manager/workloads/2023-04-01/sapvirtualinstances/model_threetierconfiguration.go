@@ -13,7 +13,7 @@ var _ InfrastructureConfiguration = ThreeTierConfiguration{}
 type ThreeTierConfiguration struct {
 	ApplicationServer      ApplicationServerConfiguration `json:"applicationServer"`
 	CentralServer          CentralServerConfiguration     `json:"centralServer"`
-	CustomResourceNames    *ThreeTierCustomResourceNames  `json:"customResourceNames,omitempty"`
+	CustomResourceNames    ThreeTierCustomResourceNames   `json:"customResourceNames"`
 	DatabaseServer         DatabaseConfiguration          `json:"databaseServer"`
 	HighAvailabilityConfig *HighAvailabilityConfiguration `json:"highAvailabilityConfig,omitempty"`
 	NetworkConfiguration   *NetworkConfiguration          `json:"networkConfiguration,omitempty"`
@@ -74,7 +74,7 @@ func (s *ThreeTierConfiguration) UnmarshalJSON(bytes []byte) error {
 		if err != nil {
 			return fmt.Errorf("unmarshaling field 'CustomResourceNames' for 'ThreeTierConfiguration': %+v", err)
 		}
-		s.CustomResourceNames = &impl
+		s.CustomResourceNames = impl
 	}
 	return nil
 }
