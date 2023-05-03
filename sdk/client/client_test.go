@@ -9,6 +9,7 @@ import (
 	"encoding/json"
 	"encoding/xml"
 	"fmt"
+	"github.com/hashicorp/go-azure-helpers/lang/pointer"
 	"io"
 	"net/http"
 	"reflect"
@@ -187,12 +188,12 @@ func TestUnmarshalByteStreamAndPowerShell(t *testing.T) {
 				Body: io.NopCloser(bytes.NewReader(expected)),
 			},
 		}
-		unmarshaled := make([]byte, 0)
+		var unmarshaled = pointer.To(make([]byte, 0))
 		if err := r.Unmarshal(&unmarshaled); err != nil {
 			t.Fatalf("unmarshaling: %+v", err)
 		}
-		if string(unmarshaled) != "you serve butter" {
-			t.Fatalf("unexpected difference in decoded objects. Expected %q\n\nGot: %q", string(expected), string(unmarshaled))
+		if string(*unmarshaled) != "you serve butter" {
+			t.Fatalf("unexpected difference in decoded objects. Expected %q\n\nGot: %q", string(expected), string(*unmarshaled))
 		}
 	}
 }

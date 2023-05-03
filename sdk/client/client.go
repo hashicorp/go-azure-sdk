@@ -206,12 +206,8 @@ func (r *Response) Unmarshal(model interface{}) error {
 	}
 
 	if strings.Contains(contentType, "application/octet-stream") || strings.Contains(contentType, "text/powershell") {
-		val := reflect.ValueOf(model)
-		if val.Kind() != reflect.Pointer {
-			return fmt.Errorf("internal-error: `model` must be a pointer but it wasn't")
-		}
-		if _, ok := model.(*[]byte); !ok {
-			return fmt.Errorf("internal-error: `model` must be *[]byte but got %+v", model)
+		if _, ok := model.(**[]byte); !ok {
+			return fmt.Errorf("internal-error: `model` must be **[]byte but got %+v", model)
 		}
 
 		// Read the response body and close it
@@ -225,7 +221,7 @@ func (r *Response) Unmarshal(model interface{}) error {
 		respBody = bytes.TrimPrefix(respBody, []byte("\xef\xbb\xbf"))
 
 		// copy the byte stream across
-		reflect.Indirect(reflect.ValueOf(model)).SetBytes(respBody)
+		reflect.ValueOf(model).Elem().Elem().SetBytes(respBody)
 
 		// Reassign the response body as downstream code may expect it
 		r.Body = io.NopCloser(bytes.NewBuffer(respBody))
