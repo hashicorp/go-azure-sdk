@@ -13,7 +13,7 @@ import (
 var _ AlertRuleTemplate = NrtAlertRuleTemplate{}
 
 type NrtAlertRuleTemplate struct {
-	Properties AlertRuleTemplate `json:"properties"`
+	Properties *NrtAlertRuleTemplateProperties `json:"properties,omitempty"`
 
 	// Fields inherited from AlertRuleTemplate
 	Id         *string                `json:"id,omitempty"`
@@ -44,33 +44,4 @@ func (s NrtAlertRuleTemplate) MarshalJSON() ([]byte, error) {
 	}
 
 	return encoded, nil
-}
-
-var _ json.Unmarshaler = &NrtAlertRuleTemplate{}
-
-func (s *NrtAlertRuleTemplate) UnmarshalJSON(bytes []byte) error {
-	type alias NrtAlertRuleTemplate
-	var decoded alias
-	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into NrtAlertRuleTemplate: %+v", err)
-	}
-
-	s.Id = decoded.Id
-	s.Name = decoded.Name
-	s.SystemData = decoded.SystemData
-	s.Type = decoded.Type
-
-	var temp map[string]json.RawMessage
-	if err := json.Unmarshal(bytes, &temp); err != nil {
-		return fmt.Errorf("unmarshaling NrtAlertRuleTemplate into map[string]json.RawMessage: %+v", err)
-	}
-
-	if v, ok := temp["properties"]; ok {
-		impl, err := unmarshalAlertRuleTemplateImplementation(v)
-		if err != nil {
-			return fmt.Errorf("unmarshaling field 'Properties' for 'NrtAlertRuleTemplate': %+v", err)
-		}
-		s.Properties = impl
-	}
-	return nil
 }

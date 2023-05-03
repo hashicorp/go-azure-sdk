@@ -4,5 +4,5 @@ package cosmosdb
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type ClientEncryptionKeyGetProperties struct {
-	Resource *ClientEncryptionKeyGetProperties `json:"resource,omitempty"`
+	Resource *ClientEncryptionKeyGetPropertiesResource `json:"resource,omitempty"`
 }

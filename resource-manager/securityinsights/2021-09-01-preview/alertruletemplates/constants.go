@@ -244,6 +244,49 @@ func parseEventGroupingAggregationKind(input string) (*EventGroupingAggregationK
 	return &out, nil
 }
 
+type MicrosoftSecurityProductName string
+
+const (
+	MicrosoftSecurityProductNameAzureActiveDirectoryIdentityProtection     MicrosoftSecurityProductName = "Azure Active Directory Identity Protection"
+	MicrosoftSecurityProductNameAzureAdvancedThreatProtection              MicrosoftSecurityProductName = "Azure Advanced Threat Protection"
+	MicrosoftSecurityProductNameAzureSecurityCenter                        MicrosoftSecurityProductName = "Azure Security Center"
+	MicrosoftSecurityProductNameAzureSecurityCenterForIoT                  MicrosoftSecurityProductName = "Azure Security Center for IoT"
+	MicrosoftSecurityProductNameMicrosoftCloudAppSecurity                  MicrosoftSecurityProductName = "Microsoft Cloud App Security"
+	MicrosoftSecurityProductNameMicrosoftDefenderAdvancedThreatProtection  MicrosoftSecurityProductName = "Microsoft Defender Advanced Threat Protection"
+	MicrosoftSecurityProductNameOfficeThreeSixFiveAdvancedThreatProtection MicrosoftSecurityProductName = "Office 365 Advanced Threat Protection"
+)
+
+func PossibleValuesForMicrosoftSecurityProductName() []string {
+	return []string{
+		string(MicrosoftSecurityProductNameAzureActiveDirectoryIdentityProtection),
+		string(MicrosoftSecurityProductNameAzureAdvancedThreatProtection),
+		string(MicrosoftSecurityProductNameAzureSecurityCenter),
+		string(MicrosoftSecurityProductNameAzureSecurityCenterForIoT),
+		string(MicrosoftSecurityProductNameMicrosoftCloudAppSecurity),
+		string(MicrosoftSecurityProductNameMicrosoftDefenderAdvancedThreatProtection),
+		string(MicrosoftSecurityProductNameOfficeThreeSixFiveAdvancedThreatProtection),
+	}
+}
+
+func parseMicrosoftSecurityProductName(input string) (*MicrosoftSecurityProductName, error) {
+	vals := map[string]MicrosoftSecurityProductName{
+		"azure active directory identity protection":    MicrosoftSecurityProductNameAzureActiveDirectoryIdentityProtection,
+		"azure advanced threat protection":              MicrosoftSecurityProductNameAzureAdvancedThreatProtection,
+		"azure security center":                         MicrosoftSecurityProductNameAzureSecurityCenter,
+		"azure security center for iot":                 MicrosoftSecurityProductNameAzureSecurityCenterForIoT,
+		"microsoft cloud app security":                  MicrosoftSecurityProductNameMicrosoftCloudAppSecurity,
+		"microsoft defender advanced threat protection": MicrosoftSecurityProductNameMicrosoftDefenderAdvancedThreatProtection,
+		"office 365 advanced threat protection":         MicrosoftSecurityProductNameOfficeThreeSixFiveAdvancedThreatProtection,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := MicrosoftSecurityProductName(input)
+	return &out, nil
+}
+
 type TemplateStatus string
 
 const (
