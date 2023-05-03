@@ -19,7 +19,7 @@ type ReplaceContentOperationResponse struct {
 }
 
 // ReplaceContent ...
-func (c RunbookDraftClient) ReplaceContent(ctx context.Context, id RunbookId, input interface{}) (result ReplaceContentOperationResponse, err error) {
+func (c RunbookDraftClient) ReplaceContent(ctx context.Context, id RunbookId, input []byte) (result ReplaceContentOperationResponse, err error) {
 	req, err := c.preparerForReplaceContent(ctx, id, input)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "runbookdraft.RunbookDraftClient", "ReplaceContent", nil, "Failure preparing request")
@@ -36,7 +36,7 @@ func (c RunbookDraftClient) ReplaceContent(ctx context.Context, id RunbookId, in
 }
 
 // ReplaceContentThenPoll performs ReplaceContent then polls until it's completed
-func (c RunbookDraftClient) ReplaceContentThenPoll(ctx context.Context, id RunbookId, input interface{}) error {
+func (c RunbookDraftClient) ReplaceContentThenPoll(ctx context.Context, id RunbookId, input []byte) error {
 	result, err := c.ReplaceContent(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing ReplaceContent: %+v", err)
@@ -50,7 +50,7 @@ func (c RunbookDraftClient) ReplaceContentThenPoll(ctx context.Context, id Runbo
 }
 
 // preparerForReplaceContent prepares the ReplaceContent request.
-func (c RunbookDraftClient) preparerForReplaceContent(ctx context.Context, id RunbookId, input interface{}) (*http.Request, error) {
+func (c RunbookDraftClient) preparerForReplaceContent(ctx context.Context, id RunbookId, input []byte) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}
