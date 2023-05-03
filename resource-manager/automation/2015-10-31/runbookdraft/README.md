@@ -69,7 +69,7 @@ if err := client.PublishThenPoll(ctx, id); err != nil {
 ```go
 ctx := context.TODO()
 id := runbookdraft.NewRunbookID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountValue", "runbookValue")
-var payload interface{}
+var payload []byte
 
 if err := client.ReplaceContentThenPoll(ctx, id, payload); err != nil {
 	// handle the error
