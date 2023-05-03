@@ -2,6 +2,7 @@ package triggers
 
 import (
 	"context"
+	"encoding/json"
 	"net/http"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
@@ -43,9 +44,15 @@ func (c TriggersClient) Get(ctx context.Context, id TriggerId) (result GetOperat
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var respObj json.RawMessage
+	if err = resp.Unmarshal(&respObj); err != nil {
 		return
 	}
+	model, err := unmarshalTriggerImplementation(respObj)
+	if err != nil {
+		return
+	}
+	result.Model = &model
 
 	return
 }

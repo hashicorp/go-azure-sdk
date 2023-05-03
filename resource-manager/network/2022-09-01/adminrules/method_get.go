@@ -2,6 +2,7 @@ package adminrules
 
 import (
 	"context"
+	"encoding/json"
 	"net/http"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
@@ -43,9 +44,15 @@ func (c AdminRulesClient) Get(ctx context.Context, id RuleId) (result GetOperati
 		return
 	}
 
-	if err = resp.Unmarshal(&result.Model); err != nil {
+	var respObj json.RawMessage
+	if err = resp.Unmarshal(&respObj); err != nil {
 		return
 	}
+	model, err := unmarshalBaseAdminRuleImplementation(respObj)
+	if err != nil {
+		return
+	}
+	result.Model = &model
 
 	return
 }
