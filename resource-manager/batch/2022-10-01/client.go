@@ -4,7 +4,8 @@ package v2022_10_01
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 import (
-	"github.com/Azure/go-autorest/autorest"
+	"fmt"
+
 	"github.com/hashicorp/go-azure-sdk/resource-manager/batch/2022-10-01/application"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/batch/2022-10-01/applicationpackage"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/batch/2022-10-01/batchaccount"
@@ -14,6 +15,8 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/batch/2022-10-01/pool"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/batch/2022-10-01/privateendpointconnection"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/batch/2022-10-01/privatelinkresource"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -28,44 +31,70 @@ type Client struct {
 	PrivateLinkResource       *privatelinkresource.PrivateLinkResourceClient
 }
 
-func NewClientWithBaseURI(endpoint string, configureAuthFunc func(c *autorest.Client)) Client {
-
-	applicationClient := application.NewApplicationClientWithBaseURI(endpoint)
-	configureAuthFunc(&applicationClient.Client)
-
-	applicationPackageClient := applicationpackage.NewApplicationPackageClientWithBaseURI(endpoint)
-	configureAuthFunc(&applicationPackageClient.Client)
-
-	batchAccountClient := batchaccount.NewBatchAccountClientWithBaseURI(endpoint)
-	configureAuthFunc(&batchAccountClient.Client)
-
-	batchManagementsClient := batchmanagements.NewBatchManagementsClientWithBaseURI(endpoint)
-	configureAuthFunc(&batchManagementsClient.Client)
-
-	certificateClient := certificate.NewCertificateClientWithBaseURI(endpoint)
-	configureAuthFunc(&certificateClient.Client)
-
-	locationClient := location.NewLocationClientWithBaseURI(endpoint)
-	configureAuthFunc(&locationClient.Client)
-
-	poolClient := pool.NewPoolClientWithBaseURI(endpoint)
-	configureAuthFunc(&poolClient.Client)
-
-	privateEndpointConnectionClient := privateendpointconnection.NewPrivateEndpointConnectionClientWithBaseURI(endpoint)
-	configureAuthFunc(&privateEndpointConnectionClient.Client)
-
-	privateLinkResourceClient := privatelinkresource.NewPrivateLinkResourceClientWithBaseURI(endpoint)
-	configureAuthFunc(&privateLinkResourceClient.Client)
-
-	return Client{
-		Application:               &applicationClient,
-		ApplicationPackage:        &applicationPackageClient,
-		BatchAccount:              &batchAccountClient,
-		BatchManagements:          &batchManagementsClient,
-		Certificate:               &certificateClient,
-		Location:                  &locationClient,
-		Pool:                      &poolClient,
-		PrivateEndpointConnection: &privateEndpointConnectionClient,
-		PrivateLinkResource:       &privateLinkResourceClient,
+func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+	applicationClient, err := application.NewApplicationClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building Application client: %+v", err)
 	}
+	configureFunc(applicationClient.Client)
+
+	applicationPackageClient, err := applicationpackage.NewApplicationPackageClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building ApplicationPackage client: %+v", err)
+	}
+	configureFunc(applicationPackageClient.Client)
+
+	batchAccountClient, err := batchaccount.NewBatchAccountClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building BatchAccount client: %+v", err)
+	}
+	configureFunc(batchAccountClient.Client)
+
+	batchManagementsClient, err := batchmanagements.NewBatchManagementsClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building BatchManagements client: %+v", err)
+	}
+	configureFunc(batchManagementsClient.Client)
+
+	certificateClient, err := certificate.NewCertificateClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building Certificate client: %+v", err)
+	}
+	configureFunc(certificateClient.Client)
+
+	locationClient, err := location.NewLocationClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building Location client: %+v", err)
+	}
+	configureFunc(locationClient.Client)
+
+	poolClient, err := pool.NewPoolClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building Pool client: %+v", err)
+	}
+	configureFunc(poolClient.Client)
+
+	privateEndpointConnectionClient, err := privateendpointconnection.NewPrivateEndpointConnectionClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building PrivateEndpointConnection client: %+v", err)
+	}
+	configureFunc(privateEndpointConnectionClient.Client)
+
+	privateLinkResourceClient, err := privatelinkresource.NewPrivateLinkResourceClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building PrivateLinkResource client: %+v", err)
+	}
+	configureFunc(privateLinkResourceClient.Client)
+
+	return &Client{
+		Application:               applicationClient,
+		ApplicationPackage:        applicationPackageClient,
+		BatchAccount:              batchAccountClient,
+		BatchManagements:          batchManagementsClient,
+		Certificate:               certificateClient,
+		Location:                  locationClient,
+		Pool:                      poolClient,
+		PrivateEndpointConnection: privateEndpointConnectionClient,
+		PrivateLinkResource:       privateLinkResourceClient,
+	}, nil
 }

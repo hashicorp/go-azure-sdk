@@ -4,20 +4,25 @@ package v2022_06_15
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 import (
-	"github.com/Azure/go-autorest/autorest"
+	"fmt"
+
 	"github.com/hashicorp/go-azure-sdk/resource-manager/applicationinsights/2022-06-15/webtestsapis"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
 	WebTestsAPIs *webtestsapis.WebTestsAPIsClient
 }
 
-func NewClientWithBaseURI(endpoint string, configureAuthFunc func(c *autorest.Client)) Client {
-
-	webTestsAPIsClient := webtestsapis.NewWebTestsAPIsClientWithBaseURI(endpoint)
-	configureAuthFunc(&webTestsAPIsClient.Client)
-
-	return Client{
-		WebTestsAPIs: &webTestsAPIsClient,
+func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+	webTestsAPIsClient, err := webtestsapis.NewWebTestsAPIsClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building WebTestsAPIs client: %+v", err)
 	}
+	configureFunc(webTestsAPIsClient.Client)
+
+	return &Client{
+		WebTestsAPIs: webTestsAPIsClient,
+	}, nil
 }
