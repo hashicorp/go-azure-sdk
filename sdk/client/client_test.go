@@ -9,12 +9,12 @@ import (
 	"encoding/json"
 	"encoding/xml"
 	"fmt"
-	"github.com/hashicorp/go-azure-helpers/lang/pointer"
 	"io"
 	"net/http"
 	"reflect"
 	"testing"
 
+	"github.com/hashicorp/go-azure-helpers/lang/pointer"
 	"github.com/hashicorp/go-azure-sdk/sdk/internal/test"
 )
 
