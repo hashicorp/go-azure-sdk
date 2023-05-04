@@ -51,6 +51,22 @@ func unmarshalRestoreRequestImplementation(input []byte) (RestoreRequest, error)
 		return out, nil
 	}
 
+	if strings.EqualFold(value, "AzureWorkloadSAPHanaPointInTimeRestoreRequest") {
+		var out AzureWorkloadSAPHanaPointInTimeRestoreRequest
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into AzureWorkloadSAPHanaPointInTimeRestoreRequest: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "AzureWorkloadSAPHanaPointInTimeRestoreWithRehydrateRequest") {
+		var out AzureWorkloadSAPHanaPointInTimeRestoreWithRehydrateRequest
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into AzureWorkloadSAPHanaPointInTimeRestoreWithRehydrateRequest: %+v", err)
+		}
+		return out, nil
+	}
+
 	if strings.EqualFold(value, "AzureWorkloadSAPHanaRestoreRequest") {
 		var out AzureWorkloadSAPHanaRestoreRequest
 		if err := json.Unmarshal(input, &out); err != nil {
@@ -59,10 +75,42 @@ func unmarshalRestoreRequestImplementation(input []byte) (RestoreRequest, error)
 		return out, nil
 	}
 
+	if strings.EqualFold(value, "AzureWorkloadSAPHanaRestoreWithRehydrateRequest") {
+		var out AzureWorkloadSAPHanaRestoreWithRehydrateRequest
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into AzureWorkloadSAPHanaRestoreWithRehydrateRequest: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "AzureWorkloadSQLPointInTimeRestoreRequest") {
+		var out AzureWorkloadSQLPointInTimeRestoreRequest
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into AzureWorkloadSQLPointInTimeRestoreRequest: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "AzureWorkloadSQLPointInTimeRestoreWithRehydrateRequest") {
+		var out AzureWorkloadSQLPointInTimeRestoreWithRehydrateRequest
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into AzureWorkloadSQLPointInTimeRestoreWithRehydrateRequest: %+v", err)
+		}
+		return out, nil
+	}
+
 	if strings.EqualFold(value, "AzureWorkloadSQLRestoreRequest") {
 		var out AzureWorkloadSQLRestoreRequest
 		if err := json.Unmarshal(input, &out); err != nil {
 			return nil, fmt.Errorf("unmarshaling into AzureWorkloadSQLRestoreRequest: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "AzureWorkloadSQLRestoreWithRehydrateRequest") {
+		var out AzureWorkloadSQLRestoreWithRehydrateRequest
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into AzureWorkloadSQLRestoreWithRehydrateRequest: %+v", err)
 		}
 		return out, nil
 	}

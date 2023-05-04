@@ -59,6 +59,14 @@ func unmarshalProtectionIntentImplementation(input []byte) (ProtectionIntent, er
 		return out, nil
 	}
 
+	if strings.EqualFold(value, "AzureWorkloadSQLAutoProtectionIntent") {
+		var out AzureWorkloadSQLAutoProtectionIntent
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into AzureWorkloadSQLAutoProtectionIntent: %+v", err)
+		}
+		return out, nil
+	}
+
 	type RawProtectionIntentImpl struct {
 		Type   string                 `json:"-"`
 		Values map[string]interface{} `json:"-"`
