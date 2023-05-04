@@ -320,20 +320,21 @@ func (c *Client) Execute(ctx context.Context, req *Request) (*Response, error) {
 
 	var err error
 
-	// Ensure the Content-Lenght header is set for methods that define a meaning for enclosed content, i.e. POST and PUT.
-	// https://www.rfc-editor.org/rfc/rfc9110#section-8.6-5
-	if req.Method == "POST" || req.Method == "PUT" {
-		req.Header.Set("Content-Length", fmt.Sprintf("%d", req.ContentLength))
-	}
-
 	// Check we can read the request body and set a default empty body
 	var reqBody []byte
+	contentLength := 0
 	if req.Body != nil {
 		reqBody, err = io.ReadAll(req.Body)
 		if err != nil {
 			return nil, fmt.Errorf("reading request body: %v", err)
 		}
 		req.Body = io.NopCloser(bytes.NewBuffer(reqBody))
+		contentLength = len(reqBody)
+	}
+	// Ensure the Content-Length header is set for methods that define a meaning for enclosed content, i.e. POST and PUT.
+	// https://www.rfc-editor.org/rfc/rfc9110#section-8.6-5
+	if strings.EqualFold(req.Method, http.MethodDelete) || strings.EqualFold(req.Method, http.MethodPatch) || strings.EqualFold(req.Method, http.MethodPost) || strings.EqualFold(req.Method, http.MethodPut) {
+		req.Header.Set("Content-Length", fmt.Sprintf("%d", contentLength))
 	}
 
 	// Instantiate a RetryableHttp client and configure its CheckRetry func
