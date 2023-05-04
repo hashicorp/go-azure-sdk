@@ -1,6 +1,10 @@
 package services
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -17,6 +21,19 @@ func PossibleValuesForHostingMode() []string {
 		string(HostingModeDefault),
 		string(HostingModeHighDensity),
 	}
+}
+
+func (s *HostingMode) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseHostingMode(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseHostingMode(input string) (*HostingMode, error) {
@@ -51,6 +68,19 @@ func PossibleValuesForPrivateLinkServiceConnectionStatus() []string {
 	}
 }
 
+func (s *PrivateLinkServiceConnectionStatus) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parsePrivateLinkServiceConnectionStatus(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parsePrivateLinkServiceConnectionStatus(input string) (*PrivateLinkServiceConnectionStatus, error) {
 	vals := map[string]PrivateLinkServiceConnectionStatus{
 		"approved":     PrivateLinkServiceConnectionStatusApproved,
@@ -83,6 +113,19 @@ func PossibleValuesForProvisioningState() []string {
 	}
 }
 
+func (s *ProvisioningState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseProvisioningState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseProvisioningState(input string) (*ProvisioningState, error) {
 	vals := map[string]ProvisioningState{
 		"failed":       ProvisioningStateFailed,
@@ -112,6 +155,19 @@ func PossibleValuesForPublicNetworkAccess() []string {
 	}
 }
 
+func (s *PublicNetworkAccess) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parsePublicNetworkAccess(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parsePublicNetworkAccess(input string) (*PublicNetworkAccess, error) {
 	vals := map[string]PublicNetworkAccess{
 		"disabled": PublicNetworkAccessDisabled,
@@ -136,6 +192,19 @@ func PossibleValuesForResourceType() []string {
 	return []string{
 		string(ResourceTypeSearchServices),
 	}
+}
+
+func (s *ResourceType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseResourceType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseResourceType(input string) (*ResourceType, error) {
@@ -171,6 +240,19 @@ func PossibleValuesForSearchServiceStatus() []string {
 		string(SearchServiceStatusProvisioning),
 		string(SearchServiceStatusRunning),
 	}
+}
+
+func (s *SearchServiceStatus) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseSearchServiceStatus(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseSearchServiceStatus(input string) (*SearchServiceStatus, error) {
@@ -211,6 +293,19 @@ func PossibleValuesForSharedPrivateLinkResourceProvisioningState() []string {
 	}
 }
 
+func (s *SharedPrivateLinkResourceProvisioningState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseSharedPrivateLinkResourceProvisioningState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseSharedPrivateLinkResourceProvisioningState(input string) (*SharedPrivateLinkResourceProvisioningState, error) {
 	vals := map[string]SharedPrivateLinkResourceProvisioningState{
 		"deleting":   SharedPrivateLinkResourceProvisioningStateDeleting,
@@ -244,6 +339,19 @@ func PossibleValuesForSharedPrivateLinkResourceStatus() []string {
 		string(SharedPrivateLinkResourceStatusPending),
 		string(SharedPrivateLinkResourceStatusRejected),
 	}
+}
+
+func (s *SharedPrivateLinkResourceStatus) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseSharedPrivateLinkResourceStatus(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseSharedPrivateLinkResourceStatus(input string) (*SharedPrivateLinkResourceStatus, error) {
@@ -286,6 +394,19 @@ func PossibleValuesForSkuName() []string {
 	}
 }
 
+func (s *SkuName) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseSkuName(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseSkuName(input string) (*SkuName, error) {
 	vals := map[string]SkuName{
 		"basic":                SkuNameBasic,
@@ -317,6 +438,19 @@ func PossibleValuesForUnavailableNameReason() []string {
 		string(UnavailableNameReasonAlreadyExists),
 		string(UnavailableNameReasonInvalid),
 	}
+}
+
+func (s *UnavailableNameReason) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseUnavailableNameReason(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseUnavailableNameReason(input string) (*UnavailableNameReason, error) {
