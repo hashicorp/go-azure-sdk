@@ -231,3 +231,49 @@ func parseValidationStatus(input string) (*ValidationStatus, error) {
 	out := ValidationStatus(input)
 	return &out, nil
 }
+
+type WorkloadItemType string
+
+const (
+	WorkloadItemTypeInvalid           WorkloadItemType = "Invalid"
+	WorkloadItemTypeSAPAseDatabase    WorkloadItemType = "SAPAseDatabase"
+	WorkloadItemTypeSAPAseSystem      WorkloadItemType = "SAPAseSystem"
+	WorkloadItemTypeSAPHanaDBInstance WorkloadItemType = "SAPHanaDBInstance"
+	WorkloadItemTypeSAPHanaDatabase   WorkloadItemType = "SAPHanaDatabase"
+	WorkloadItemTypeSAPHanaSystem     WorkloadItemType = "SAPHanaSystem"
+	WorkloadItemTypeSQLDataBase       WorkloadItemType = "SQLDataBase"
+	WorkloadItemTypeSQLInstance       WorkloadItemType = "SQLInstance"
+)
+
+func PossibleValuesForWorkloadItemType() []string {
+	return []string{
+		string(WorkloadItemTypeInvalid),
+		string(WorkloadItemTypeSAPAseDatabase),
+		string(WorkloadItemTypeSAPAseSystem),
+		string(WorkloadItemTypeSAPHanaDBInstance),
+		string(WorkloadItemTypeSAPHanaDatabase),
+		string(WorkloadItemTypeSAPHanaSystem),
+		string(WorkloadItemTypeSQLDataBase),
+		string(WorkloadItemTypeSQLInstance),
+	}
+}
+
+func parseWorkloadItemType(input string) (*WorkloadItemType, error) {
+	vals := map[string]WorkloadItemType{
+		"invalid":           WorkloadItemTypeInvalid,
+		"sapasedatabase":    WorkloadItemTypeSAPAseDatabase,
+		"sapasesystem":      WorkloadItemTypeSAPAseSystem,
+		"saphanadbinstance": WorkloadItemTypeSAPHanaDBInstance,
+		"saphanadatabase":   WorkloadItemTypeSAPHanaDatabase,
+		"saphanasystem":     WorkloadItemTypeSAPHanaSystem,
+		"sqldatabase":       WorkloadItemTypeSQLDataBase,
+		"sqlinstance":       WorkloadItemTypeSQLInstance,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := WorkloadItemType(input)
+	return &out, nil
+}

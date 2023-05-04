@@ -51,10 +51,26 @@ func unmarshalRecoveryPointImplementation(input []byte) (RecoveryPoint, error) {
 		return out, nil
 	}
 
+	if strings.EqualFold(value, "AzureWorkloadSAPHanaPointInTimeRecoveryPoint") {
+		var out AzureWorkloadSAPHanaPointInTimeRecoveryPoint
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into AzureWorkloadSAPHanaPointInTimeRecoveryPoint: %+v", err)
+		}
+		return out, nil
+	}
+
 	if strings.EqualFold(value, "AzureWorkloadSAPHanaRecoveryPoint") {
 		var out AzureWorkloadSAPHanaRecoveryPoint
 		if err := json.Unmarshal(input, &out); err != nil {
 			return nil, fmt.Errorf("unmarshaling into AzureWorkloadSAPHanaRecoveryPoint: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "AzureWorkloadSQLPointInTimeRecoveryPoint") {
+		var out AzureWorkloadSQLPointInTimeRecoveryPoint
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into AzureWorkloadSQLPointInTimeRecoveryPoint: %+v", err)
 		}
 		return out, nil
 	}
