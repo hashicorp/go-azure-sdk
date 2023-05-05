@@ -198,6 +198,34 @@ func TestUnmarshalByteStreamAndPowerShell(t *testing.T) {
 	}
 }
 
+func TestUnmarshalByteStreamAndPowerShellWithModel(t *testing.T) {
+	contentTypes := []string{
+		"application/octet-stream",
+		"text/powershell",
+	}
+	var respModel = struct {
+		HttpResponse *http.Response
+		Model        *[]byte
+	}{}
+	expected := []byte("you serve butter")
+	for _, contentType := range contentTypes {
+		r := &Response{
+			Response: &http.Response{
+				Header: map[string][]string{
+					"Content-Type": {contentType},
+				},
+				Body: io.NopCloser(bytes.NewReader(expected)),
+			},
+		}
+		if err := r.Unmarshal(&respModel.Model); err != nil {
+			t.Fatalf("unmarshaling: %+v", err)
+		}
+		if string(*respModel.Model) != "you serve butter" {
+			t.Fatalf("unexpected difference in decoded objects. Expected %q\n\nGot: %q", string(expected), string(*respModel.Model))
+		}
+	}
+}
+
 func TestUnmarshalJson(t *testing.T) {
 	type sampleObj struct {
 		Name   string `json:"name"`
