@@ -1,6 +1,10 @@
 package applicationgroup
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -15,6 +19,19 @@ func PossibleValuesForApplicationGroupPolicyType() []string {
 	return []string{
 		string(ApplicationGroupPolicyTypeThrottlingPolicy),
 	}
+}
+
+func (s *ApplicationGroupPolicyType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseApplicationGroupPolicyType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseApplicationGroupPolicyType(input string) (*ApplicationGroupPolicyType, error) {
@@ -46,6 +63,19 @@ func PossibleValuesForMetricId() []string {
 		string(MetricIdOutgoingBytes),
 		string(MetricIdOutgoingMessages),
 	}
+}
+
+func (s *MetricId) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseMetricId(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseMetricId(input string) (*MetricId, error) {
