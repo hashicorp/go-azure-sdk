@@ -1,6 +1,10 @@
 package sourcecontrolconfiguration
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -23,6 +27,19 @@ func PossibleValuesForComplianceStateType() []string {
 		string(ComplianceStateTypeNoncompliant),
 		string(ComplianceStateTypePending),
 	}
+}
+
+func (s *ComplianceStateType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseComplianceStateType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseComplianceStateType(input string) (*ComplianceStateType, error) {
@@ -58,6 +75,19 @@ func PossibleValuesForMessageLevelType() []string {
 	}
 }
 
+func (s *MessageLevelType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseMessageLevelType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseMessageLevelType(input string) (*MessageLevelType, error) {
 	vals := map[string]MessageLevelType{
 		"error":       MessageLevelTypeError,
@@ -87,6 +117,19 @@ func PossibleValuesForOperatorScopeType() []string {
 	}
 }
 
+func (s *OperatorScopeType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseOperatorScopeType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseOperatorScopeType(input string) (*OperatorScopeType, error) {
 	vals := map[string]OperatorScopeType{
 		"cluster":   OperatorScopeTypeCluster,
@@ -111,6 +154,19 @@ func PossibleValuesForOperatorType() []string {
 	return []string{
 		string(OperatorTypeFlux),
 	}
+}
+
+func (s *OperatorType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseOperatorType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseOperatorType(input string) (*OperatorType, error) {
@@ -144,6 +200,19 @@ func PossibleValuesForProvisioningStateType() []string {
 		string(ProvisioningStateTypeRunning),
 		string(ProvisioningStateTypeSucceeded),
 	}
+}
+
+func (s *ProvisioningStateType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseProvisioningStateType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseProvisioningStateType(input string) (*ProvisioningStateType, error) {

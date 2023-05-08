@@ -1,6 +1,10 @@
 package fhirservices
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -17,6 +21,19 @@ func PossibleValuesForFhirServiceKind() []string {
 		string(FhirServiceKindFhirNegativeRFour),
 		string(FhirServiceKindFhirNegativeStuThree),
 	}
+}
+
+func (s *FhirServiceKind) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseFhirServiceKind(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseFhirServiceKind(input string) (*FhirServiceKind, error) {
@@ -45,6 +62,19 @@ func PossibleValuesForManagedServiceIdentityType() []string {
 		string(ManagedServiceIdentityTypeNone),
 		string(ManagedServiceIdentityTypeSystemAssigned),
 	}
+}
+
+func (s *ManagedServiceIdentityType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseManagedServiceIdentityType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseManagedServiceIdentityType(input string) (*ManagedServiceIdentityType, error) {
@@ -95,6 +125,19 @@ func PossibleValuesForProvisioningState() []string {
 		string(ProvisioningStateVerifying),
 		string(ProvisioningStateWarned),
 	}
+}
+
+func (s *ProvisioningState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseProvisioningState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseProvisioningState(input string) (*ProvisioningState, error) {

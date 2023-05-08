@@ -1,6 +1,10 @@
 package namespacesprivateendpointconnections
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -25,6 +29,19 @@ func PossibleValuesForEndPointProvisioningState() []string {
 		string(EndPointProvisioningStateSucceeded),
 		string(EndPointProvisioningStateUpdating),
 	}
+}
+
+func (s *EndPointProvisioningState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseEndPointProvisioningState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseEndPointProvisioningState(input string) (*EndPointProvisioningState, error) {
@@ -61,6 +78,19 @@ func PossibleValuesForPrivateLinkConnectionStatus() []string {
 		string(PrivateLinkConnectionStatusPending),
 		string(PrivateLinkConnectionStatusRejected),
 	}
+}
+
+func (s *PrivateLinkConnectionStatus) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parsePrivateLinkConnectionStatus(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parsePrivateLinkConnectionStatus(input string) (*PrivateLinkConnectionStatus, error) {

@@ -1,18 +1,26 @@
 package eventhubsclustersavailableclusterregions
 
-import "github.com/Azure/go-autorest/autorest"
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type EventHubsClustersAvailableClusterRegionsClient struct {
-	Client  autorest.Client
-	baseUri string
+	Client *resourcemanager.Client
 }
 
-func NewEventHubsClustersAvailableClusterRegionsClientWithBaseURI(endpoint string) EventHubsClustersAvailableClusterRegionsClient {
-	return EventHubsClustersAvailableClusterRegionsClient{
-		Client:  autorest.NewClientWithUserAgent(userAgent()),
-		baseUri: endpoint,
+func NewEventHubsClustersAvailableClusterRegionsClientWithBaseURI(api environments.Api) (*EventHubsClustersAvailableClusterRegionsClient, error) {
+	client, err := resourcemanager.NewResourceManagerClient(api, "eventhubsclustersavailableclusterregions", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating EventHubsClustersAvailableClusterRegionsClient: %+v", err)
 	}
+
+	return &EventHubsClustersAvailableClusterRegionsClient{
+		Client: client,
+	}, nil
 }

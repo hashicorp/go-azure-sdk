@@ -4,7 +4,8 @@ package v2022_11_01
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 import (
-	"github.com/Azure/go-autorest/autorest"
+	"fmt"
+
 	"github.com/hashicorp/go-azure-sdk/resource-manager/kubernetesconfiguration/2022-11-01/clusterextensions"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/kubernetesconfiguration/2022-11-01/extensionoperationstatus"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/kubernetesconfiguration/2022-11-01/extensions"
@@ -13,6 +14,8 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/kubernetesconfiguration/2022-11-01/fluxconfigurationoperationstatus"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/kubernetesconfiguration/2022-11-01/operationsinacluster"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/kubernetesconfiguration/2022-11-01/sourcecontrolconfiguration"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -26,40 +29,63 @@ type Client struct {
 	SourceControlConfiguration       *sourcecontrolconfiguration.SourceControlConfigurationClient
 }
 
-func NewClientWithBaseURI(endpoint string, configureAuthFunc func(c *autorest.Client)) Client {
-
-	clusterExtensionsClient := clusterextensions.NewClusterExtensionsClientWithBaseURI(endpoint)
-	configureAuthFunc(&clusterExtensionsClient.Client)
-
-	extensionOperationStatusClient := extensionoperationstatus.NewExtensionOperationStatusClientWithBaseURI(endpoint)
-	configureAuthFunc(&extensionOperationStatusClient.Client)
-
-	extensionsClient := extensions.NewExtensionsClientWithBaseURI(endpoint)
-	configureAuthFunc(&extensionsClient.Client)
-
-	fluxClient := flux.NewFluxClientWithBaseURI(endpoint)
-	configureAuthFunc(&fluxClient.Client)
-
-	fluxConfigurationClient := fluxconfiguration.NewFluxConfigurationClientWithBaseURI(endpoint)
-	configureAuthFunc(&fluxConfigurationClient.Client)
-
-	fluxConfigurationOperationStatusClient := fluxconfigurationoperationstatus.NewFluxConfigurationOperationStatusClientWithBaseURI(endpoint)
-	configureAuthFunc(&fluxConfigurationOperationStatusClient.Client)
-
-	operationsInAClusterClient := operationsinacluster.NewOperationsInAClusterClientWithBaseURI(endpoint)
-	configureAuthFunc(&operationsInAClusterClient.Client)
-
-	sourceControlConfigurationClient := sourcecontrolconfiguration.NewSourceControlConfigurationClientWithBaseURI(endpoint)
-	configureAuthFunc(&sourceControlConfigurationClient.Client)
-
-	return Client{
-		ClusterExtensions:                &clusterExtensionsClient,
-		ExtensionOperationStatus:         &extensionOperationStatusClient,
-		Extensions:                       &extensionsClient,
-		Flux:                             &fluxClient,
-		FluxConfiguration:                &fluxConfigurationClient,
-		FluxConfigurationOperationStatus: &fluxConfigurationOperationStatusClient,
-		OperationsInACluster:             &operationsInAClusterClient,
-		SourceControlConfiguration:       &sourceControlConfigurationClient,
+func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+	clusterExtensionsClient, err := clusterextensions.NewClusterExtensionsClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building ClusterExtensions client: %+v", err)
 	}
+	configureFunc(clusterExtensionsClient.Client)
+
+	extensionOperationStatusClient, err := extensionoperationstatus.NewExtensionOperationStatusClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building ExtensionOperationStatus client: %+v", err)
+	}
+	configureFunc(extensionOperationStatusClient.Client)
+
+	extensionsClient, err := extensions.NewExtensionsClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building Extensions client: %+v", err)
+	}
+	configureFunc(extensionsClient.Client)
+
+	fluxClient, err := flux.NewFluxClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building Flux client: %+v", err)
+	}
+	configureFunc(fluxClient.Client)
+
+	fluxConfigurationClient, err := fluxconfiguration.NewFluxConfigurationClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building FluxConfiguration client: %+v", err)
+	}
+	configureFunc(fluxConfigurationClient.Client)
+
+	fluxConfigurationOperationStatusClient, err := fluxconfigurationoperationstatus.NewFluxConfigurationOperationStatusClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building FluxConfigurationOperationStatus client: %+v", err)
+	}
+	configureFunc(fluxConfigurationOperationStatusClient.Client)
+
+	operationsInAClusterClient, err := operationsinacluster.NewOperationsInAClusterClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building OperationsInACluster client: %+v", err)
+	}
+	configureFunc(operationsInAClusterClient.Client)
+
+	sourceControlConfigurationClient, err := sourcecontrolconfiguration.NewSourceControlConfigurationClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building SourceControlConfiguration client: %+v", err)
+	}
+	configureFunc(sourceControlConfigurationClient.Client)
+
+	return &Client{
+		ClusterExtensions:                clusterExtensionsClient,
+		ExtensionOperationStatus:         extensionOperationStatusClient,
+		Extensions:                       extensionsClient,
+		Flux:                             fluxClient,
+		FluxConfiguration:                fluxConfigurationClient,
+		FluxConfigurationOperationStatus: fluxConfigurationOperationStatusClient,
+		OperationsInACluster:             operationsInAClusterClient,
+		SourceControlConfiguration:       sourceControlConfigurationClient,
+	}, nil
 }
