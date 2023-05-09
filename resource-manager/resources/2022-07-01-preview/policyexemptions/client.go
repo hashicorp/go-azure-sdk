@@ -1,18 +1,26 @@
 package policyexemptions
 
-import "github.com/Azure/go-autorest/autorest"
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type PolicyExemptionsClient struct {
-	Client  autorest.Client
-	baseUri string
+	Client *resourcemanager.Client
 }
 
-func NewPolicyExemptionsClientWithBaseURI(endpoint string) PolicyExemptionsClient {
-	return PolicyExemptionsClient{
-		Client:  autorest.NewClientWithUserAgent(userAgent()),
-		baseUri: endpoint,
+func NewPolicyExemptionsClientWithBaseURI(api environments.Api) (*PolicyExemptionsClient, error) {
+	client, err := resourcemanager.NewResourceManagerClient(api, "policyexemptions", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating PolicyExemptionsClient: %+v", err)
 	}
+
+	return &PolicyExemptionsClient{
+		Client: client,
+	}, nil
 }
