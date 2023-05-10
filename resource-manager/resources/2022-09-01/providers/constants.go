@@ -1,10 +1,6 @@
 package providers
 
-import (
-	"encoding/json"
-	"fmt"
-	"strings"
-)
+import "strings"
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -21,19 +17,6 @@ func PossibleValuesForAliasPathAttributes() []string {
 		string(AliasPathAttributesModifiable),
 		string(AliasPathAttributesNone),
 	}
-}
-
-func (s *AliasPathAttributes) UnmarshalJSON(bytes []byte) error {
-	var decoded string
-	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling: %+v", err)
-	}
-	out, err := parseAliasPathAttributes(decoded)
-	if err != nil {
-		return fmt.Errorf("parsing %q: %+v", decoded, err)
-	}
-	*s = *out
-	return nil
 }
 
 func parseAliasPathAttributes(input string) (*AliasPathAttributes, error) {
@@ -76,19 +59,6 @@ func PossibleValuesForAliasPathTokenType() []string {
 	}
 }
 
-func (s *AliasPathTokenType) UnmarshalJSON(bytes []byte) error {
-	var decoded string
-	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling: %+v", err)
-	}
-	out, err := parseAliasPathTokenType(decoded)
-	if err != nil {
-		return fmt.Errorf("parsing %q: %+v", decoded, err)
-	}
-	*s = *out
-	return nil
-}
-
 func parseAliasPathTokenType(input string) (*AliasPathTokenType, error) {
 	vals := map[string]AliasPathTokenType{
 		"any":          AliasPathTokenTypeAny,
@@ -123,19 +93,6 @@ func PossibleValuesForAliasPatternType() []string {
 	}
 }
 
-func (s *AliasPatternType) UnmarshalJSON(bytes []byte) error {
-	var decoded string
-	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling: %+v", err)
-	}
-	out, err := parseAliasPatternType(decoded)
-	if err != nil {
-		return fmt.Errorf("parsing %q: %+v", decoded, err)
-	}
-	*s = *out
-	return nil
-}
-
 func parseAliasPatternType(input string) (*AliasPatternType, error) {
 	vals := map[string]AliasPatternType{
 		"extract":      AliasPatternTypeExtract,
@@ -164,19 +121,6 @@ func PossibleValuesForAliasType() []string {
 		string(AliasTypeNotSpecified),
 		string(AliasTypePlainText),
 	}
-}
-
-func (s *AliasType) UnmarshalJSON(bytes []byte) error {
-	var decoded string
-	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling: %+v", err)
-	}
-	out, err := parseAliasType(decoded)
-	if err != nil {
-		return fmt.Errorf("parsing %q: %+v", decoded, err)
-	}
-	*s = *out
-	return nil
 }
 
 func parseAliasType(input string) (*AliasType, error) {
@@ -210,19 +154,6 @@ func PossibleValuesForProviderAuthorizationConsentState() []string {
 		string(ProviderAuthorizationConsentStateNotSpecified),
 		string(ProviderAuthorizationConsentStateRequired),
 	}
-}
-
-func (s *ProviderAuthorizationConsentState) UnmarshalJSON(bytes []byte) error {
-	var decoded string
-	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling: %+v", err)
-	}
-	out, err := parseProviderAuthorizationConsentState(decoded)
-	if err != nil {
-		return fmt.Errorf("parsing %q: %+v", decoded, err)
-	}
-	*s = *out
-	return nil
 }
 
 func parseProviderAuthorizationConsentState(input string) (*ProviderAuthorizationConsentState, error) {

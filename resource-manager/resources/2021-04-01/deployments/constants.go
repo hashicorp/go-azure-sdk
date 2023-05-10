@@ -1,10 +1,6 @@
 package deployments
 
-import (
-	"encoding/json"
-	"fmt"
-	"strings"
-)
+import "strings"
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -21,19 +17,6 @@ func PossibleValuesForAliasPathAttributes() []string {
 		string(AliasPathAttributesModifiable),
 		string(AliasPathAttributesNone),
 	}
-}
-
-func (s *AliasPathAttributes) UnmarshalJSON(bytes []byte) error {
-	var decoded string
-	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling: %+v", err)
-	}
-	out, err := parseAliasPathAttributes(decoded)
-	if err != nil {
-		return fmt.Errorf("parsing %q: %+v", decoded, err)
-	}
-	*s = *out
-	return nil
 }
 
 func parseAliasPathAttributes(input string) (*AliasPathAttributes, error) {
@@ -76,19 +59,6 @@ func PossibleValuesForAliasPathTokenType() []string {
 	}
 }
 
-func (s *AliasPathTokenType) UnmarshalJSON(bytes []byte) error {
-	var decoded string
-	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling: %+v", err)
-	}
-	out, err := parseAliasPathTokenType(decoded)
-	if err != nil {
-		return fmt.Errorf("parsing %q: %+v", decoded, err)
-	}
-	*s = *out
-	return nil
-}
-
 func parseAliasPathTokenType(input string) (*AliasPathTokenType, error) {
 	vals := map[string]AliasPathTokenType{
 		"any":          AliasPathTokenTypeAny,
@@ -123,19 +93,6 @@ func PossibleValuesForAliasPatternType() []string {
 	}
 }
 
-func (s *AliasPatternType) UnmarshalJSON(bytes []byte) error {
-	var decoded string
-	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling: %+v", err)
-	}
-	out, err := parseAliasPatternType(decoded)
-	if err != nil {
-		return fmt.Errorf("parsing %q: %+v", decoded, err)
-	}
-	*s = *out
-	return nil
-}
-
 func parseAliasPatternType(input string) (*AliasPatternType, error) {
 	vals := map[string]AliasPatternType{
 		"extract":      AliasPatternTypeExtract,
@@ -164,19 +121,6 @@ func PossibleValuesForAliasType() []string {
 		string(AliasTypeNotSpecified),
 		string(AliasTypePlainText),
 	}
-}
-
-func (s *AliasType) UnmarshalJSON(bytes []byte) error {
-	var decoded string
-	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling: %+v", err)
-	}
-	out, err := parseAliasType(decoded)
-	if err != nil {
-		return fmt.Errorf("parsing %q: %+v", decoded, err)
-	}
-	*s = *out
-	return nil
 }
 
 func parseAliasType(input string) (*AliasType, error) {
@@ -218,19 +162,6 @@ func PossibleValuesForChangeType() []string {
 	}
 }
 
-func (s *ChangeType) UnmarshalJSON(bytes []byte) error {
-	var decoded string
-	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling: %+v", err)
-	}
-	out, err := parseChangeType(decoded)
-	if err != nil {
-		return fmt.Errorf("parsing %q: %+v", decoded, err)
-	}
-	*s = *out
-	return nil
-}
-
 func parseChangeType(input string) (*ChangeType, error) {
 	vals := map[string]ChangeType{
 		"create":      ChangeTypeCreate,
@@ -264,19 +195,6 @@ func PossibleValuesForDeploymentMode() []string {
 	}
 }
 
-func (s *DeploymentMode) UnmarshalJSON(bytes []byte) error {
-	var decoded string
-	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling: %+v", err)
-	}
-	out, err := parseDeploymentMode(decoded)
-	if err != nil {
-		return fmt.Errorf("parsing %q: %+v", decoded, err)
-	}
-	*s = *out
-	return nil
-}
-
 func parseDeploymentMode(input string) (*DeploymentMode, error) {
 	vals := map[string]DeploymentMode{
 		"complete":    DeploymentModeComplete,
@@ -307,19 +225,6 @@ func PossibleValuesForExpressionEvaluationOptionsScopeType() []string {
 	}
 }
 
-func (s *ExpressionEvaluationOptionsScopeType) UnmarshalJSON(bytes []byte) error {
-	var decoded string
-	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling: %+v", err)
-	}
-	out, err := parseExpressionEvaluationOptionsScopeType(decoded)
-	if err != nil {
-		return fmt.Errorf("parsing %q: %+v", decoded, err)
-	}
-	*s = *out
-	return nil
-}
-
 func parseExpressionEvaluationOptionsScopeType(input string) (*ExpressionEvaluationOptionsScopeType, error) {
 	vals := map[string]ExpressionEvaluationOptionsScopeType{
 		"inner":        ExpressionEvaluationOptionsScopeTypeInner,
@@ -347,19 +252,6 @@ func PossibleValuesForOnErrorDeploymentType() []string {
 		string(OnErrorDeploymentTypeLastSuccessful),
 		string(OnErrorDeploymentTypeSpecificDeployment),
 	}
-}
-
-func (s *OnErrorDeploymentType) UnmarshalJSON(bytes []byte) error {
-	var decoded string
-	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling: %+v", err)
-	}
-	out, err := parseOnErrorDeploymentType(decoded)
-	if err != nil {
-		return fmt.Errorf("parsing %q: %+v", decoded, err)
-	}
-	*s = *out
-	return nil
 }
 
 func parseOnErrorDeploymentType(input string) (*OnErrorDeploymentType, error) {
@@ -396,19 +288,6 @@ func PossibleValuesForPropertyChangeType() []string {
 	}
 }
 
-func (s *PropertyChangeType) UnmarshalJSON(bytes []byte) error {
-	var decoded string
-	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling: %+v", err)
-	}
-	out, err := parsePropertyChangeType(decoded)
-	if err != nil {
-		return fmt.Errorf("parsing %q: %+v", decoded, err)
-	}
-	*s = *out
-	return nil
-}
-
 func parsePropertyChangeType(input string) (*PropertyChangeType, error) {
 	vals := map[string]PropertyChangeType{
 		"array":    PropertyChangeTypeArray,
@@ -442,19 +321,6 @@ func PossibleValuesForProviderAuthorizationConsentState() []string {
 		string(ProviderAuthorizationConsentStateNotSpecified),
 		string(ProviderAuthorizationConsentStateRequired),
 	}
-}
-
-func (s *ProviderAuthorizationConsentState) UnmarshalJSON(bytes []byte) error {
-	var decoded string
-	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling: %+v", err)
-	}
-	out, err := parseProviderAuthorizationConsentState(decoded)
-	if err != nil {
-		return fmt.Errorf("parsing %q: %+v", decoded, err)
-	}
-	*s = *out
-	return nil
 }
 
 func parseProviderAuthorizationConsentState(input string) (*ProviderAuthorizationConsentState, error) {
@@ -507,19 +373,6 @@ func PossibleValuesForProvisioningState() []string {
 	}
 }
 
-func (s *ProvisioningState) UnmarshalJSON(bytes []byte) error {
-	var decoded string
-	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling: %+v", err)
-	}
-	out, err := parseProvisioningState(decoded)
-	if err != nil {
-		return fmt.Errorf("parsing %q: %+v", decoded, err)
-	}
-	*s = *out
-	return nil
-}
-
 func parseProvisioningState(input string) (*ProvisioningState, error) {
 	vals := map[string]ProvisioningState{
 		"accepted":     ProvisioningStateAccepted,
@@ -556,19 +409,6 @@ func PossibleValuesForWhatIfResultFormat() []string {
 		string(WhatIfResultFormatFullResourcePayloads),
 		string(WhatIfResultFormatResourceIdOnly),
 	}
-}
-
-func (s *WhatIfResultFormat) UnmarshalJSON(bytes []byte) error {
-	var decoded string
-	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling: %+v", err)
-	}
-	out, err := parseWhatIfResultFormat(decoded)
-	if err != nil {
-		return fmt.Errorf("parsing %q: %+v", decoded, err)
-	}
-	*s = *out
-	return nil
 }
 
 func parseWhatIfResultFormat(input string) (*WhatIfResultFormat, error) {

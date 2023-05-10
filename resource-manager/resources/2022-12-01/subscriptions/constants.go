@@ -1,10 +1,6 @@
 package subscriptions
 
-import (
-	"encoding/json"
-	"fmt"
-	"strings"
-)
+import "strings"
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -21,19 +17,6 @@ func PossibleValuesForLocationType() []string {
 		string(LocationTypeEdgeZone),
 		string(LocationTypeRegion),
 	}
-}
-
-func (s *LocationType) UnmarshalJSON(bytes []byte) error {
-	var decoded string
-	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling: %+v", err)
-	}
-	out, err := parseLocationType(decoded)
-	if err != nil {
-		return fmt.Errorf("parsing %q: %+v", decoded, err)
-	}
-	*s = *out
-	return nil
 }
 
 func parseLocationType(input string) (*LocationType, error) {
@@ -66,19 +49,6 @@ func PossibleValuesForRegionCategory() []string {
 	}
 }
 
-func (s *RegionCategory) UnmarshalJSON(bytes []byte) error {
-	var decoded string
-	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling: %+v", err)
-	}
-	out, err := parseRegionCategory(decoded)
-	if err != nil {
-		return fmt.Errorf("parsing %q: %+v", decoded, err)
-	}
-	*s = *out
-	return nil
-}
-
 func parseRegionCategory(input string) (*RegionCategory, error) {
 	vals := map[string]RegionCategory{
 		"extended":    RegionCategoryExtended,
@@ -106,19 +76,6 @@ func PossibleValuesForRegionType() []string {
 		string(RegionTypeLogical),
 		string(RegionTypePhysical),
 	}
-}
-
-func (s *RegionType) UnmarshalJSON(bytes []byte) error {
-	var decoded string
-	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling: %+v", err)
-	}
-	out, err := parseRegionType(decoded)
-	if err != nil {
-		return fmt.Errorf("parsing %q: %+v", decoded, err)
-	}
-	*s = *out
-	return nil
 }
 
 func parseRegionType(input string) (*RegionType, error) {
@@ -149,19 +106,6 @@ func PossibleValuesForSpendingLimit() []string {
 		string(SpendingLimitOff),
 		string(SpendingLimitOn),
 	}
-}
-
-func (s *SpendingLimit) UnmarshalJSON(bytes []byte) error {
-	var decoded string
-	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling: %+v", err)
-	}
-	out, err := parseSpendingLimit(decoded)
-	if err != nil {
-		return fmt.Errorf("parsing %q: %+v", decoded, err)
-	}
-	*s = *out
-	return nil
 }
 
 func parseSpendingLimit(input string) (*SpendingLimit, error) {
@@ -197,19 +141,6 @@ func PossibleValuesForSubscriptionState() []string {
 		string(SubscriptionStatePastDue),
 		string(SubscriptionStateWarned),
 	}
-}
-
-func (s *SubscriptionState) UnmarshalJSON(bytes []byte) error {
-	var decoded string
-	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling: %+v", err)
-	}
-	out, err := parseSubscriptionState(decoded)
-	if err != nil {
-		return fmt.Errorf("parsing %q: %+v", decoded, err)
-	}
-	*s = *out
-	return nil
 }
 
 func parseSubscriptionState(input string) (*SubscriptionState, error) {

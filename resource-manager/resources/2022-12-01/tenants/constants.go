@@ -1,10 +1,6 @@
 package tenants
 
-import (
-	"encoding/json"
-	"fmt"
-	"strings"
-)
+import "strings"
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -21,19 +17,6 @@ func PossibleValuesForResourceNameStatus() []string {
 		string(ResourceNameStatusAllowed),
 		string(ResourceNameStatusReserved),
 	}
-}
-
-func (s *ResourceNameStatus) UnmarshalJSON(bytes []byte) error {
-	var decoded string
-	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling: %+v", err)
-	}
-	out, err := parseResourceNameStatus(decoded)
-	if err != nil {
-		return fmt.Errorf("parsing %q: %+v", decoded, err)
-	}
-	*s = *out
-	return nil
 }
 
 func parseResourceNameStatus(input string) (*ResourceNameStatus, error) {
@@ -64,19 +47,6 @@ func PossibleValuesForTenantCategory() []string {
 		string(TenantCategoryManagedBy),
 		string(TenantCategoryProjectedBy),
 	}
-}
-
-func (s *TenantCategory) UnmarshalJSON(bytes []byte) error {
-	var decoded string
-	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling: %+v", err)
-	}
-	out, err := parseTenantCategory(decoded)
-	if err != nil {
-		return fmt.Errorf("parsing %q: %+v", decoded, err)
-	}
-	*s = *out
-	return nil
 }
 
 func parseTenantCategory(input string) (*TenantCategory, error) {
