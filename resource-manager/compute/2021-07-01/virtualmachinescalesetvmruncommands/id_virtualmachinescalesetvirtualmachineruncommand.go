@@ -44,23 +44,23 @@ func ParseVirtualMachineScaleSetVirtualMachineRunCommandID(input string) (*Virtu
 	id := VirtualMachineScaleSetVirtualMachineRunCommandId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.VirtualMachineScaleSetName, ok = parsed.Parsed["virtualMachineScaleSetName"]; !ok {
-		return nil, fmt.Errorf("the segment 'virtualMachineScaleSetName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "virtualMachineScaleSetName", *parsed)
 	}
 
 	if id.InstanceId, ok = parsed.Parsed["instanceId"]; !ok {
-		return nil, fmt.Errorf("the segment 'instanceId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "instanceId", *parsed)
 	}
 
 	if id.RunCommandName, ok = parsed.Parsed["runCommandName"]; !ok {
-		return nil, fmt.Errorf("the segment 'runCommandName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "runCommandName", *parsed)
 	}
 
 	return &id, nil
@@ -79,23 +79,23 @@ func ParseVirtualMachineScaleSetVirtualMachineRunCommandIDInsensitively(input st
 	id := VirtualMachineScaleSetVirtualMachineRunCommandId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.VirtualMachineScaleSetName, ok = parsed.Parsed["virtualMachineScaleSetName"]; !ok {
-		return nil, fmt.Errorf("the segment 'virtualMachineScaleSetName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "virtualMachineScaleSetName", *parsed)
 	}
 
 	if id.InstanceId, ok = parsed.Parsed["instanceId"]; !ok {
-		return nil, fmt.Errorf("the segment 'instanceId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "instanceId", *parsed)
 	}
 
 	if id.RunCommandName, ok = parsed.Parsed["runCommandName"]; !ok {
-		return nil, fmt.Errorf("the segment 'runCommandName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "runCommandName", *parsed)
 	}
 
 	return &id, nil

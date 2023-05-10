@@ -42,19 +42,19 @@ func ParseUpgradeGraphID(input string) (*UpgradeGraphId, error) {
 	id := UpgradeGraphId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.ApplianceName, ok = parsed.Parsed["applianceName"]; !ok {
-		return nil, fmt.Errorf("the segment 'applianceName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "applianceName", *parsed)
 	}
 
 	if id.UpgradeGraphName, ok = parsed.Parsed["upgradeGraphName"]; !ok {
-		return nil, fmt.Errorf("the segment 'upgradeGraphName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "upgradeGraphName", *parsed)
 	}
 
 	return &id, nil
@@ -73,19 +73,19 @@ func ParseUpgradeGraphIDInsensitively(input string) (*UpgradeGraphId, error) {
 	id := UpgradeGraphId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.ApplianceName, ok = parsed.Parsed["applianceName"]; !ok {
-		return nil, fmt.Errorf("the segment 'applianceName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "applianceName", *parsed)
 	}
 
 	if id.UpgradeGraphName, ok = parsed.Parsed["upgradeGraphName"]; !ok {
-		return nil, fmt.Errorf("the segment 'upgradeGraphName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "upgradeGraphName", *parsed)
 	}
 
 	return &id, nil

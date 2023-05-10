@@ -46,27 +46,27 @@ func ParseRuleID(input string) (*RuleId, error) {
 	id := RuleId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.NetworkManagerName, ok = parsed.Parsed["networkManagerName"]; !ok {
-		return nil, fmt.Errorf("the segment 'networkManagerName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "networkManagerName", *parsed)
 	}
 
 	if id.SecurityAdminConfigurationName, ok = parsed.Parsed["securityAdminConfigurationName"]; !ok {
-		return nil, fmt.Errorf("the segment 'securityAdminConfigurationName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "securityAdminConfigurationName", *parsed)
 	}
 
 	if id.RuleCollectionName, ok = parsed.Parsed["ruleCollectionName"]; !ok {
-		return nil, fmt.Errorf("the segment 'ruleCollectionName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "ruleCollectionName", *parsed)
 	}
 
 	if id.RuleName, ok = parsed.Parsed["ruleName"]; !ok {
-		return nil, fmt.Errorf("the segment 'ruleName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "ruleName", *parsed)
 	}
 
 	return &id, nil
@@ -85,27 +85,27 @@ func ParseRuleIDInsensitively(input string) (*RuleId, error) {
 	id := RuleId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.NetworkManagerName, ok = parsed.Parsed["networkManagerName"]; !ok {
-		return nil, fmt.Errorf("the segment 'networkManagerName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "networkManagerName", *parsed)
 	}
 
 	if id.SecurityAdminConfigurationName, ok = parsed.Parsed["securityAdminConfigurationName"]; !ok {
-		return nil, fmt.Errorf("the segment 'securityAdminConfigurationName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "securityAdminConfigurationName", *parsed)
 	}
 
 	if id.RuleCollectionName, ok = parsed.Parsed["ruleCollectionName"]; !ok {
-		return nil, fmt.Errorf("the segment 'ruleCollectionName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "ruleCollectionName", *parsed)
 	}
 
 	if id.RuleName, ok = parsed.Parsed["ruleName"]; !ok {
-		return nil, fmt.Errorf("the segment 'ruleName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "ruleName", *parsed)
 	}
 
 	return &id, nil

@@ -42,19 +42,19 @@ func ParseHybridIdentityMetadataID(input string) (*HybridIdentityMetadataId, err
 	id := HybridIdentityMetadataId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.VirtualMachineName, ok = parsed.Parsed["virtualMachineName"]; !ok {
-		return nil, fmt.Errorf("the segment 'virtualMachineName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "virtualMachineName", *parsed)
 	}
 
 	if id.HybridIdentityMetadataName, ok = parsed.Parsed["hybridIdentityMetadataName"]; !ok {
-		return nil, fmt.Errorf("the segment 'hybridIdentityMetadataName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "hybridIdentityMetadataName", *parsed)
 	}
 
 	return &id, nil
@@ -73,19 +73,19 @@ func ParseHybridIdentityMetadataIDInsensitively(input string) (*HybridIdentityMe
 	id := HybridIdentityMetadataId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.VirtualMachineName, ok = parsed.Parsed["virtualMachineName"]; !ok {
-		return nil, fmt.Errorf("the segment 'virtualMachineName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "virtualMachineName", *parsed)
 	}
 
 	if id.HybridIdentityMetadataName, ok = parsed.Parsed["hybridIdentityMetadataName"]; !ok {
-		return nil, fmt.Errorf("the segment 'hybridIdentityMetadataName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "hybridIdentityMetadataName", *parsed)
 	}
 
 	return &id, nil

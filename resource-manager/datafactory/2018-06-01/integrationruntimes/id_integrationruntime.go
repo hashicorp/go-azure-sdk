@@ -42,19 +42,19 @@ func ParseIntegrationRuntimeID(input string) (*IntegrationRuntimeId, error) {
 	id := IntegrationRuntimeId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.FactoryName, ok = parsed.Parsed["factoryName"]; !ok {
-		return nil, fmt.Errorf("the segment 'factoryName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "factoryName", *parsed)
 	}
 
 	if id.IntegrationRuntimeName, ok = parsed.Parsed["integrationRuntimeName"]; !ok {
-		return nil, fmt.Errorf("the segment 'integrationRuntimeName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "integrationRuntimeName", *parsed)
 	}
 
 	return &id, nil
@@ -73,19 +73,19 @@ func ParseIntegrationRuntimeIDInsensitively(input string) (*IntegrationRuntimeId
 	id := IntegrationRuntimeId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.FactoryName, ok = parsed.Parsed["factoryName"]; !ok {
-		return nil, fmt.Errorf("the segment 'factoryName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "factoryName", *parsed)
 	}
 
 	if id.IntegrationRuntimeName, ok = parsed.Parsed["integrationRuntimeName"]; !ok {
-		return nil, fmt.Errorf("the segment 'integrationRuntimeName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "integrationRuntimeName", *parsed)
 	}
 
 	return &id, nil

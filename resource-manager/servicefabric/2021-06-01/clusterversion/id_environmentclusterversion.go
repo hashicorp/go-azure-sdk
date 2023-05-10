@@ -42,16 +42,16 @@ func ParseEnvironmentClusterVersionID(input string) (*EnvironmentClusterVersionI
 	id := EnvironmentClusterVersionId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.LocationName, ok = parsed.Parsed["locationName"]; !ok {
-		return nil, fmt.Errorf("the segment 'locationName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "locationName", *parsed)
 	}
 
 	if v, ok := parsed.Parsed["environment"]; true {
 		if !ok {
-			return nil, fmt.Errorf("the segment 'environment' was not found in the resource id %q", input)
+			return nil, resourceids.NewSegmentNotSpecifiedError(id, "environment", *parsed)
 		}
 
 		environment, err := parseClusterVersionsEnvironment(v)
@@ -62,7 +62,7 @@ func ParseEnvironmentClusterVersionID(input string) (*EnvironmentClusterVersionI
 	}
 
 	if id.ClusterVersionName, ok = parsed.Parsed["clusterVersionName"]; !ok {
-		return nil, fmt.Errorf("the segment 'clusterVersionName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "clusterVersionName", *parsed)
 	}
 
 	return &id, nil
@@ -81,16 +81,16 @@ func ParseEnvironmentClusterVersionIDInsensitively(input string) (*EnvironmentCl
 	id := EnvironmentClusterVersionId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.LocationName, ok = parsed.Parsed["locationName"]; !ok {
-		return nil, fmt.Errorf("the segment 'locationName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "locationName", *parsed)
 	}
 
 	if v, ok := parsed.Parsed["environment"]; true {
 		if !ok {
-			return nil, fmt.Errorf("the segment 'environment' was not found in the resource id %q", input)
+			return nil, resourceids.NewSegmentNotSpecifiedError(id, "environment", *parsed)
 		}
 
 		environment, err := parseClusterVersionsEnvironment(v)
@@ -101,7 +101,7 @@ func ParseEnvironmentClusterVersionIDInsensitively(input string) (*EnvironmentCl
 	}
 
 	if id.ClusterVersionName, ok = parsed.Parsed["clusterVersionName"]; !ok {
-		return nil, fmt.Errorf("the segment 'clusterVersionName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "clusterVersionName", *parsed)
 	}
 
 	return &id, nil

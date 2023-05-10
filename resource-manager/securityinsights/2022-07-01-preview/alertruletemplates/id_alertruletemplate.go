@@ -42,19 +42,19 @@ func ParseAlertRuleTemplateID(input string) (*AlertRuleTemplateId, error) {
 	id := AlertRuleTemplateId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.WorkspaceName, ok = parsed.Parsed["workspaceName"]; !ok {
-		return nil, fmt.Errorf("the segment 'workspaceName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "workspaceName", *parsed)
 	}
 
 	if id.AlertRuleTemplateId, ok = parsed.Parsed["alertRuleTemplateId"]; !ok {
-		return nil, fmt.Errorf("the segment 'alertRuleTemplateId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "alertRuleTemplateId", *parsed)
 	}
 
 	return &id, nil
@@ -73,19 +73,19 @@ func ParseAlertRuleTemplateIDInsensitively(input string) (*AlertRuleTemplateId, 
 	id := AlertRuleTemplateId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.WorkspaceName, ok = parsed.Parsed["workspaceName"]; !ok {
-		return nil, fmt.Errorf("the segment 'workspaceName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "workspaceName", *parsed)
 	}
 
 	if id.AlertRuleTemplateId, ok = parsed.Parsed["alertRuleTemplateId"]; !ok {
-		return nil, fmt.Errorf("the segment 'alertRuleTemplateId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "alertRuleTemplateId", *parsed)
 	}
 
 	return &id, nil

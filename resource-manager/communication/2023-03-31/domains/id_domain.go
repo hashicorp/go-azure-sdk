@@ -42,19 +42,19 @@ func ParseDomainID(input string) (*DomainId, error) {
 	id := DomainId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.EmailServiceName, ok = parsed.Parsed["emailServiceName"]; !ok {
-		return nil, fmt.Errorf("the segment 'emailServiceName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "emailServiceName", *parsed)
 	}
 
 	if id.DomainName, ok = parsed.Parsed["domainName"]; !ok {
-		return nil, fmt.Errorf("the segment 'domainName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "domainName", *parsed)
 	}
 
 	return &id, nil
@@ -73,19 +73,19 @@ func ParseDomainIDInsensitively(input string) (*DomainId, error) {
 	id := DomainId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.EmailServiceName, ok = parsed.Parsed["emailServiceName"]; !ok {
-		return nil, fmt.Errorf("the segment 'emailServiceName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "emailServiceName", *parsed)
 	}
 
 	if id.DomainName, ok = parsed.Parsed["domainName"]; !ok {
-		return nil, fmt.Errorf("the segment 'domainName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "domainName", *parsed)
 	}
 
 	return &id, nil

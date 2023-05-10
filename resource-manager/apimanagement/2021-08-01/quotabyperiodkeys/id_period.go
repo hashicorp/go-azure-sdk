@@ -44,23 +44,23 @@ func ParsePeriodID(input string) (*PeriodId, error) {
 	id := PeriodId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.ServiceName, ok = parsed.Parsed["serviceName"]; !ok {
-		return nil, fmt.Errorf("the segment 'serviceName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "serviceName", *parsed)
 	}
 
 	if id.QuotaCounterKey, ok = parsed.Parsed["quotaCounterKey"]; !ok {
-		return nil, fmt.Errorf("the segment 'quotaCounterKey' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "quotaCounterKey", *parsed)
 	}
 
 	if id.QuotaPeriodKey, ok = parsed.Parsed["quotaPeriodKey"]; !ok {
-		return nil, fmt.Errorf("the segment 'quotaPeriodKey' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "quotaPeriodKey", *parsed)
 	}
 
 	return &id, nil
@@ -79,23 +79,23 @@ func ParsePeriodIDInsensitively(input string) (*PeriodId, error) {
 	id := PeriodId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.ServiceName, ok = parsed.Parsed["serviceName"]; !ok {
-		return nil, fmt.Errorf("the segment 'serviceName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "serviceName", *parsed)
 	}
 
 	if id.QuotaCounterKey, ok = parsed.Parsed["quotaCounterKey"]; !ok {
-		return nil, fmt.Errorf("the segment 'quotaCounterKey' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "quotaCounterKey", *parsed)
 	}
 
 	if id.QuotaPeriodKey, ok = parsed.Parsed["quotaPeriodKey"]; !ok {
-		return nil, fmt.Errorf("the segment 'quotaPeriodKey' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "quotaPeriodKey", *parsed)
 	}
 
 	return &id, nil

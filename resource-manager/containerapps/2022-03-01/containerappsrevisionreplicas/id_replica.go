@@ -44,23 +44,23 @@ func ParseReplicaID(input string) (*ReplicaId, error) {
 	id := ReplicaId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.ContainerAppName, ok = parsed.Parsed["containerAppName"]; !ok {
-		return nil, fmt.Errorf("the segment 'containerAppName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "containerAppName", *parsed)
 	}
 
 	if id.RevisionName, ok = parsed.Parsed["revisionName"]; !ok {
-		return nil, fmt.Errorf("the segment 'revisionName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "revisionName", *parsed)
 	}
 
 	if id.ReplicaName, ok = parsed.Parsed["replicaName"]; !ok {
-		return nil, fmt.Errorf("the segment 'replicaName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "replicaName", *parsed)
 	}
 
 	return &id, nil
@@ -79,23 +79,23 @@ func ParseReplicaIDInsensitively(input string) (*ReplicaId, error) {
 	id := ReplicaId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.ContainerAppName, ok = parsed.Parsed["containerAppName"]; !ok {
-		return nil, fmt.Errorf("the segment 'containerAppName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "containerAppName", *parsed)
 	}
 
 	if id.RevisionName, ok = parsed.Parsed["revisionName"]; !ok {
-		return nil, fmt.Errorf("the segment 'revisionName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "revisionName", *parsed)
 	}
 
 	if id.ReplicaName, ok = parsed.Parsed["replicaName"]; !ok {
-		return nil, fmt.Errorf("the segment 'replicaName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "replicaName", *parsed)
 	}
 
 	return &id, nil

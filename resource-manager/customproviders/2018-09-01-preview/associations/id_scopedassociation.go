@@ -38,11 +38,11 @@ func ParseScopedAssociationID(input string) (*ScopedAssociationId, error) {
 	id := ScopedAssociationId{}
 
 	if id.Scope, ok = parsed.Parsed["scope"]; !ok {
-		return nil, fmt.Errorf("the segment 'scope' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "scope", *parsed)
 	}
 
 	if id.AssociationName, ok = parsed.Parsed["associationName"]; !ok {
-		return nil, fmt.Errorf("the segment 'associationName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "associationName", *parsed)
 	}
 
 	return &id, nil
@@ -61,11 +61,11 @@ func ParseScopedAssociationIDInsensitively(input string) (*ScopedAssociationId, 
 	id := ScopedAssociationId{}
 
 	if id.Scope, ok = parsed.Parsed["scope"]; !ok {
-		return nil, fmt.Errorf("the segment 'scope' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "scope", *parsed)
 	}
 
 	if id.AssociationName, ok = parsed.Parsed["associationName"]; !ok {
-		return nil, fmt.Errorf("the segment 'associationName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "associationName", *parsed)
 	}
 
 	return &id, nil

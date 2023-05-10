@@ -42,19 +42,19 @@ func ParseSecurityRuleID(input string) (*SecurityRuleId, error) {
 	id := SecurityRuleId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.NetworkSecurityGroupName, ok = parsed.Parsed["networkSecurityGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'networkSecurityGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "networkSecurityGroupName", *parsed)
 	}
 
 	if id.SecurityRuleName, ok = parsed.Parsed["securityRuleName"]; !ok {
-		return nil, fmt.Errorf("the segment 'securityRuleName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "securityRuleName", *parsed)
 	}
 
 	return &id, nil
@@ -73,19 +73,19 @@ func ParseSecurityRuleIDInsensitively(input string) (*SecurityRuleId, error) {
 	id := SecurityRuleId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.NetworkSecurityGroupName, ok = parsed.Parsed["networkSecurityGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'networkSecurityGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "networkSecurityGroupName", *parsed)
 	}
 
 	if id.SecurityRuleName, ok = parsed.Parsed["securityRuleName"]; !ok {
-		return nil, fmt.Errorf("the segment 'securityRuleName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "securityRuleName", *parsed)
 	}
 
 	return &id, nil

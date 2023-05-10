@@ -36,7 +36,7 @@ func ParseMarketplaceRegistrationDefinitionID(input string) (*MarketplaceRegistr
 	id := MarketplaceRegistrationDefinitionId{}
 
 	if id.MarketplaceIdentifier, ok = parsed.Parsed["marketplaceIdentifier"]; !ok {
-		return nil, fmt.Errorf("the segment 'marketplaceIdentifier' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "marketplaceIdentifier", *parsed)
 	}
 
 	return &id, nil
@@ -55,7 +55,7 @@ func ParseMarketplaceRegistrationDefinitionIDInsensitively(input string) (*Marke
 	id := MarketplaceRegistrationDefinitionId{}
 
 	if id.MarketplaceIdentifier, ok = parsed.Parsed["marketplaceIdentifier"]; !ok {
-		return nil, fmt.Errorf("the segment 'marketplaceIdentifier' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "marketplaceIdentifier", *parsed)
 	}
 
 	return &id, nil

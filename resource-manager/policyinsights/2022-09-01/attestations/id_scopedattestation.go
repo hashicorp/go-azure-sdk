@@ -38,11 +38,11 @@ func ParseScopedAttestationID(input string) (*ScopedAttestationId, error) {
 	id := ScopedAttestationId{}
 
 	if id.ResourceId, ok = parsed.Parsed["resourceId"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceId", *parsed)
 	}
 
 	if id.AttestationName, ok = parsed.Parsed["attestationName"]; !ok {
-		return nil, fmt.Errorf("the segment 'attestationName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "attestationName", *parsed)
 	}
 
 	return &id, nil
@@ -61,11 +61,11 @@ func ParseScopedAttestationIDInsensitively(input string) (*ScopedAttestationId, 
 	id := ScopedAttestationId{}
 
 	if id.ResourceId, ok = parsed.Parsed["resourceId"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceId", *parsed)
 	}
 
 	if id.AttestationName, ok = parsed.Parsed["attestationName"]; !ok {
-		return nil, fmt.Errorf("the segment 'attestationName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "attestationName", *parsed)
 	}
 
 	return &id, nil

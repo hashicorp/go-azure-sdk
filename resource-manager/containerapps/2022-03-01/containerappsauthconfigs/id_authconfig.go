@@ -42,19 +42,19 @@ func ParseAuthConfigID(input string) (*AuthConfigId, error) {
 	id := AuthConfigId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.ContainerAppName, ok = parsed.Parsed["containerAppName"]; !ok {
-		return nil, fmt.Errorf("the segment 'containerAppName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "containerAppName", *parsed)
 	}
 
 	if id.AuthConfigName, ok = parsed.Parsed["authConfigName"]; !ok {
-		return nil, fmt.Errorf("the segment 'authConfigName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "authConfigName", *parsed)
 	}
 
 	return &id, nil
@@ -73,19 +73,19 @@ func ParseAuthConfigIDInsensitively(input string) (*AuthConfigId, error) {
 	id := AuthConfigId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.ContainerAppName, ok = parsed.Parsed["containerAppName"]; !ok {
-		return nil, fmt.Errorf("the segment 'containerAppName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "containerAppName", *parsed)
 	}
 
 	if id.AuthConfigName, ok = parsed.Parsed["authConfigName"]; !ok {
-		return nil, fmt.Errorf("the segment 'authConfigName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "authConfigName", *parsed)
 	}
 
 	return &id, nil

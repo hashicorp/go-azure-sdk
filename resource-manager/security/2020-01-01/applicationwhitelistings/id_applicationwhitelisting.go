@@ -40,15 +40,15 @@ func ParseApplicationWhitelistingID(input string) (*ApplicationWhitelistingId, e
 	id := ApplicationWhitelistingId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.LocationName, ok = parsed.Parsed["locationName"]; !ok {
-		return nil, fmt.Errorf("the segment 'locationName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "locationName", *parsed)
 	}
 
 	if id.ApplicationWhitelistingName, ok = parsed.Parsed["applicationWhitelistingName"]; !ok {
-		return nil, fmt.Errorf("the segment 'applicationWhitelistingName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "applicationWhitelistingName", *parsed)
 	}
 
 	return &id, nil
@@ -67,15 +67,15 @@ func ParseApplicationWhitelistingIDInsensitively(input string) (*ApplicationWhit
 	id := ApplicationWhitelistingId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.LocationName, ok = parsed.Parsed["locationName"]; !ok {
-		return nil, fmt.Errorf("the segment 'locationName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "locationName", *parsed)
 	}
 
 	if id.ApplicationWhitelistingName, ok = parsed.Parsed["applicationWhitelistingName"]; !ok {
-		return nil, fmt.Errorf("the segment 'applicationWhitelistingName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "applicationWhitelistingName", *parsed)
 	}
 
 	return &id, nil

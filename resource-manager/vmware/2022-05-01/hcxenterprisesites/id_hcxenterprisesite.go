@@ -42,19 +42,19 @@ func ParseHcxEnterpriseSiteID(input string) (*HcxEnterpriseSiteId, error) {
 	id := HcxEnterpriseSiteId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.PrivateCloudName, ok = parsed.Parsed["privateCloudName"]; !ok {
-		return nil, fmt.Errorf("the segment 'privateCloudName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "privateCloudName", *parsed)
 	}
 
 	if id.HcxEnterpriseSiteName, ok = parsed.Parsed["hcxEnterpriseSiteName"]; !ok {
-		return nil, fmt.Errorf("the segment 'hcxEnterpriseSiteName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "hcxEnterpriseSiteName", *parsed)
 	}
 
 	return &id, nil
@@ -73,19 +73,19 @@ func ParseHcxEnterpriseSiteIDInsensitively(input string) (*HcxEnterpriseSiteId, 
 	id := HcxEnterpriseSiteId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.PrivateCloudName, ok = parsed.Parsed["privateCloudName"]; !ok {
-		return nil, fmt.Errorf("the segment 'privateCloudName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "privateCloudName", *parsed)
 	}
 
 	if id.HcxEnterpriseSiteName, ok = parsed.Parsed["hcxEnterpriseSiteName"]; !ok {
-		return nil, fmt.Errorf("the segment 'hcxEnterpriseSiteName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "hcxEnterpriseSiteName", *parsed)
 	}
 
 	return &id, nil

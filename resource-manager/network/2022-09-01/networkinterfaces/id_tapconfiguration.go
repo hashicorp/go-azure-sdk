@@ -42,19 +42,19 @@ func ParseTapConfigurationID(input string) (*TapConfigurationId, error) {
 	id := TapConfigurationId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.NetworkInterfaceName, ok = parsed.Parsed["networkInterfaceName"]; !ok {
-		return nil, fmt.Errorf("the segment 'networkInterfaceName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "networkInterfaceName", *parsed)
 	}
 
 	if id.TapConfigurationName, ok = parsed.Parsed["tapConfigurationName"]; !ok {
-		return nil, fmt.Errorf("the segment 'tapConfigurationName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "tapConfigurationName", *parsed)
 	}
 
 	return &id, nil
@@ -73,19 +73,19 @@ func ParseTapConfigurationIDInsensitively(input string) (*TapConfigurationId, er
 	id := TapConfigurationId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.NetworkInterfaceName, ok = parsed.Parsed["networkInterfaceName"]; !ok {
-		return nil, fmt.Errorf("the segment 'networkInterfaceName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "networkInterfaceName", *parsed)
 	}
 
 	if id.TapConfigurationName, ok = parsed.Parsed["tapConfigurationName"]; !ok {
-		return nil, fmt.Errorf("the segment 'tapConfigurationName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "tapConfigurationName", *parsed)
 	}
 
 	return &id, nil

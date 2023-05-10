@@ -44,23 +44,23 @@ func ParseStaticMemberID(input string) (*StaticMemberId, error) {
 	id := StaticMemberId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.NetworkManagerName, ok = parsed.Parsed["networkManagerName"]; !ok {
-		return nil, fmt.Errorf("the segment 'networkManagerName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "networkManagerName", *parsed)
 	}
 
 	if id.NetworkGroupName, ok = parsed.Parsed["networkGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'networkGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "networkGroupName", *parsed)
 	}
 
 	if id.StaticMemberName, ok = parsed.Parsed["staticMemberName"]; !ok {
-		return nil, fmt.Errorf("the segment 'staticMemberName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "staticMemberName", *parsed)
 	}
 
 	return &id, nil
@@ -79,23 +79,23 @@ func ParseStaticMemberIDInsensitively(input string) (*StaticMemberId, error) {
 	id := StaticMemberId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.NetworkManagerName, ok = parsed.Parsed["networkManagerName"]; !ok {
-		return nil, fmt.Errorf("the segment 'networkManagerName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "networkManagerName", *parsed)
 	}
 
 	if id.NetworkGroupName, ok = parsed.Parsed["networkGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'networkGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "networkGroupName", *parsed)
 	}
 
 	if id.StaticMemberName, ok = parsed.Parsed["staticMemberName"]; !ok {
-		return nil, fmt.Errorf("the segment 'staticMemberName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "staticMemberName", *parsed)
 	}
 
 	return &id, nil

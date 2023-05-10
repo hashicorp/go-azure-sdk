@@ -42,19 +42,19 @@ func ParseDataflowID(input string) (*DataflowId, error) {
 	id := DataflowId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.FactoryName, ok = parsed.Parsed["factoryName"]; !ok {
-		return nil, fmt.Errorf("the segment 'factoryName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "factoryName", *parsed)
 	}
 
 	if id.DataflowName, ok = parsed.Parsed["dataflowName"]; !ok {
-		return nil, fmt.Errorf("the segment 'dataflowName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "dataflowName", *parsed)
 	}
 
 	return &id, nil
@@ -73,19 +73,19 @@ func ParseDataflowIDInsensitively(input string) (*DataflowId, error) {
 	id := DataflowId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.FactoryName, ok = parsed.Parsed["factoryName"]; !ok {
-		return nil, fmt.Errorf("the segment 'factoryName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "factoryName", *parsed)
 	}
 
 	if id.DataflowName, ok = parsed.Parsed["dataflowName"]; !ok {
-		return nil, fmt.Errorf("the segment 'dataflowName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "dataflowName", *parsed)
 	}
 
 	return &id, nil

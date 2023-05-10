@@ -40,15 +40,15 @@ func ParseScopedOperationID(input string) (*ScopedOperationId, error) {
 	id := ScopedOperationId{}
 
 	if id.Scope, ok = parsed.Parsed["scope"]; !ok {
-		return nil, fmt.Errorf("the segment 'scope' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "scope", *parsed)
 	}
 
 	if id.DeploymentName, ok = parsed.Parsed["deploymentName"]; !ok {
-		return nil, fmt.Errorf("the segment 'deploymentName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "deploymentName", *parsed)
 	}
 
 	if id.OperationId, ok = parsed.Parsed["operationId"]; !ok {
-		return nil, fmt.Errorf("the segment 'operationId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "operationId", *parsed)
 	}
 
 	return &id, nil
@@ -67,15 +67,15 @@ func ParseScopedOperationIDInsensitively(input string) (*ScopedOperationId, erro
 	id := ScopedOperationId{}
 
 	if id.Scope, ok = parsed.Parsed["scope"]; !ok {
-		return nil, fmt.Errorf("the segment 'scope' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "scope", *parsed)
 	}
 
 	if id.DeploymentName, ok = parsed.Parsed["deploymentName"]; !ok {
-		return nil, fmt.Errorf("the segment 'deploymentName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "deploymentName", *parsed)
 	}
 
 	if id.OperationId, ok = parsed.Parsed["operationId"]; !ok {
-		return nil, fmt.Errorf("the segment 'operationId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "operationId", *parsed)
 	}
 
 	return &id, nil

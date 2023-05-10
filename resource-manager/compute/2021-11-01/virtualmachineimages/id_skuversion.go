@@ -46,27 +46,27 @@ func ParseSkuVersionID(input string) (*SkuVersionId, error) {
 	id := SkuVersionId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.LocationName, ok = parsed.Parsed["locationName"]; !ok {
-		return nil, fmt.Errorf("the segment 'locationName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "locationName", *parsed)
 	}
 
 	if id.PublisherName, ok = parsed.Parsed["publisherName"]; !ok {
-		return nil, fmt.Errorf("the segment 'publisherName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "publisherName", *parsed)
 	}
 
 	if id.OfferName, ok = parsed.Parsed["offerName"]; !ok {
-		return nil, fmt.Errorf("the segment 'offerName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "offerName", *parsed)
 	}
 
 	if id.SkuName, ok = parsed.Parsed["skuName"]; !ok {
-		return nil, fmt.Errorf("the segment 'skuName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "skuName", *parsed)
 	}
 
 	if id.VersionName, ok = parsed.Parsed["versionName"]; !ok {
-		return nil, fmt.Errorf("the segment 'versionName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "versionName", *parsed)
 	}
 
 	return &id, nil
@@ -85,27 +85,27 @@ func ParseSkuVersionIDInsensitively(input string) (*SkuVersionId, error) {
 	id := SkuVersionId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.LocationName, ok = parsed.Parsed["locationName"]; !ok {
-		return nil, fmt.Errorf("the segment 'locationName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "locationName", *parsed)
 	}
 
 	if id.PublisherName, ok = parsed.Parsed["publisherName"]; !ok {
-		return nil, fmt.Errorf("the segment 'publisherName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "publisherName", *parsed)
 	}
 
 	if id.OfferName, ok = parsed.Parsed["offerName"]; !ok {
-		return nil, fmt.Errorf("the segment 'offerName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "offerName", *parsed)
 	}
 
 	if id.SkuName, ok = parsed.Parsed["skuName"]; !ok {
-		return nil, fmt.Errorf("the segment 'skuName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "skuName", *parsed)
 	}
 
 	if id.VersionName, ok = parsed.Parsed["versionName"]; !ok {
-		return nil, fmt.Errorf("the segment 'versionName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "versionName", *parsed)
 	}
 
 	return &id, nil

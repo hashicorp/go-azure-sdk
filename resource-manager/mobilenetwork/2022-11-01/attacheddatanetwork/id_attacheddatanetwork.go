@@ -44,23 +44,23 @@ func ParseAttachedDataNetworkID(input string) (*AttachedDataNetworkId, error) {
 	id := AttachedDataNetworkId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.PacketCoreControlPlaneName, ok = parsed.Parsed["packetCoreControlPlaneName"]; !ok {
-		return nil, fmt.Errorf("the segment 'packetCoreControlPlaneName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "packetCoreControlPlaneName", *parsed)
 	}
 
 	if id.PacketCoreDataPlaneName, ok = parsed.Parsed["packetCoreDataPlaneName"]; !ok {
-		return nil, fmt.Errorf("the segment 'packetCoreDataPlaneName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "packetCoreDataPlaneName", *parsed)
 	}
 
 	if id.AttachedDataNetworkName, ok = parsed.Parsed["attachedDataNetworkName"]; !ok {
-		return nil, fmt.Errorf("the segment 'attachedDataNetworkName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "attachedDataNetworkName", *parsed)
 	}
 
 	return &id, nil
@@ -79,23 +79,23 @@ func ParseAttachedDataNetworkIDInsensitively(input string) (*AttachedDataNetwork
 	id := AttachedDataNetworkId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.PacketCoreControlPlaneName, ok = parsed.Parsed["packetCoreControlPlaneName"]; !ok {
-		return nil, fmt.Errorf("the segment 'packetCoreControlPlaneName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "packetCoreControlPlaneName", *parsed)
 	}
 
 	if id.PacketCoreDataPlaneName, ok = parsed.Parsed["packetCoreDataPlaneName"]; !ok {
-		return nil, fmt.Errorf("the segment 'packetCoreDataPlaneName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "packetCoreDataPlaneName", *parsed)
 	}
 
 	if id.AttachedDataNetworkName, ok = parsed.Parsed["attachedDataNetworkName"]; !ok {
-		return nil, fmt.Errorf("the segment 'attachedDataNetworkName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "attachedDataNetworkName", *parsed)
 	}
 
 	return &id, nil

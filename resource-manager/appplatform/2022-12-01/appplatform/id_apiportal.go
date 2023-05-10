@@ -42,19 +42,19 @@ func ParseApiPortalID(input string) (*ApiPortalId, error) {
 	id := ApiPortalId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.SpringName, ok = parsed.Parsed["springName"]; !ok {
-		return nil, fmt.Errorf("the segment 'springName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "springName", *parsed)
 	}
 
 	if id.ApiPortalName, ok = parsed.Parsed["apiPortalName"]; !ok {
-		return nil, fmt.Errorf("the segment 'apiPortalName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "apiPortalName", *parsed)
 	}
 
 	return &id, nil
@@ -73,19 +73,19 @@ func ParseApiPortalIDInsensitively(input string) (*ApiPortalId, error) {
 	id := ApiPortalId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.SpringName, ok = parsed.Parsed["springName"]; !ok {
-		return nil, fmt.Errorf("the segment 'springName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "springName", *parsed)
 	}
 
 	if id.ApiPortalName, ok = parsed.Parsed["apiPortalName"]; !ok {
-		return nil, fmt.Errorf("the segment 'apiPortalName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "apiPortalName", *parsed)
 	}
 
 	return &id, nil

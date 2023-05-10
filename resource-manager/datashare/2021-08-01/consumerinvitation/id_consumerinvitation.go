@@ -38,11 +38,11 @@ func ParseConsumerInvitationID(input string) (*ConsumerInvitationId, error) {
 	id := ConsumerInvitationId{}
 
 	if id.LocationName, ok = parsed.Parsed["locationName"]; !ok {
-		return nil, fmt.Errorf("the segment 'locationName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "locationName", *parsed)
 	}
 
 	if id.InvitationId, ok = parsed.Parsed["invitationId"]; !ok {
-		return nil, fmt.Errorf("the segment 'invitationId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "invitationId", *parsed)
 	}
 
 	return &id, nil
@@ -61,11 +61,11 @@ func ParseConsumerInvitationIDInsensitively(input string) (*ConsumerInvitationId
 	id := ConsumerInvitationId{}
 
 	if id.LocationName, ok = parsed.Parsed["locationName"]; !ok {
-		return nil, fmt.Errorf("the segment 'locationName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "locationName", *parsed)
 	}
 
 	if id.InvitationId, ok = parsed.Parsed["invitationId"]; !ok {
-		return nil, fmt.Errorf("the segment 'invitationId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "invitationId", *parsed)
 	}
 
 	return &id, nil

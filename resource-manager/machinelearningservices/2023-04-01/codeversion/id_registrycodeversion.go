@@ -44,23 +44,23 @@ func ParseRegistryCodeVersionID(input string) (*RegistryCodeVersionId, error) {
 	id := RegistryCodeVersionId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.RegistryName, ok = parsed.Parsed["registryName"]; !ok {
-		return nil, fmt.Errorf("the segment 'registryName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "registryName", *parsed)
 	}
 
 	if id.CodeName, ok = parsed.Parsed["codeName"]; !ok {
-		return nil, fmt.Errorf("the segment 'codeName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "codeName", *parsed)
 	}
 
 	if id.VersionName, ok = parsed.Parsed["versionName"]; !ok {
-		return nil, fmt.Errorf("the segment 'versionName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "versionName", *parsed)
 	}
 
 	return &id, nil
@@ -79,23 +79,23 @@ func ParseRegistryCodeVersionIDInsensitively(input string) (*RegistryCodeVersion
 	id := RegistryCodeVersionId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.RegistryName, ok = parsed.Parsed["registryName"]; !ok {
-		return nil, fmt.Errorf("the segment 'registryName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "registryName", *parsed)
 	}
 
 	if id.CodeName, ok = parsed.Parsed["codeName"]; !ok {
-		return nil, fmt.Errorf("the segment 'codeName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "codeName", *parsed)
 	}
 
 	if id.VersionName, ok = parsed.Parsed["versionName"]; !ok {
-		return nil, fmt.Errorf("the segment 'versionName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "versionName", *parsed)
 	}
 
 	return &id, nil

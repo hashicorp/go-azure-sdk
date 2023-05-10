@@ -40,15 +40,15 @@ func ParseCustomIPPrefixID(input string) (*CustomIPPrefixId, error) {
 	id := CustomIPPrefixId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.CustomIPPrefixName, ok = parsed.Parsed["customIPPrefixName"]; !ok {
-		return nil, fmt.Errorf("the segment 'customIPPrefixName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "customIPPrefixName", *parsed)
 	}
 
 	return &id, nil
@@ -67,15 +67,15 @@ func ParseCustomIPPrefixIDInsensitively(input string) (*CustomIPPrefixId, error)
 	id := CustomIPPrefixId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.CustomIPPrefixName, ok = parsed.Parsed["customIPPrefixName"]; !ok {
-		return nil, fmt.Errorf("the segment 'customIPPrefixName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "customIPPrefixName", *parsed)
 	}
 
 	return &id, nil

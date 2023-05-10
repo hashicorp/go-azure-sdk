@@ -38,11 +38,11 @@ func ParseExpressRouteProviderPortID(input string) (*ExpressRouteProviderPortId,
 	id := ExpressRouteProviderPortId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ExpressRouteProviderPortName, ok = parsed.Parsed["expressRouteProviderPortName"]; !ok {
-		return nil, fmt.Errorf("the segment 'expressRouteProviderPortName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "expressRouteProviderPortName", *parsed)
 	}
 
 	return &id, nil
@@ -61,11 +61,11 @@ func ParseExpressRouteProviderPortIDInsensitively(input string) (*ExpressRoutePr
 	id := ExpressRouteProviderPortId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ExpressRouteProviderPortName, ok = parsed.Parsed["expressRouteProviderPortName"]; !ok {
-		return nil, fmt.Errorf("the segment 'expressRouteProviderPortName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "expressRouteProviderPortName", *parsed)
 	}
 
 	return &id, nil

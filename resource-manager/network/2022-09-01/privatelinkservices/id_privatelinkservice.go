@@ -40,15 +40,15 @@ func ParsePrivateLinkServiceID(input string) (*PrivateLinkServiceId, error) {
 	id := PrivateLinkServiceId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.PrivateLinkServiceName, ok = parsed.Parsed["privateLinkServiceName"]; !ok {
-		return nil, fmt.Errorf("the segment 'privateLinkServiceName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "privateLinkServiceName", *parsed)
 	}
 
 	return &id, nil
@@ -67,15 +67,15 @@ func ParsePrivateLinkServiceIDInsensitively(input string) (*PrivateLinkServiceId
 	id := PrivateLinkServiceId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.PrivateLinkServiceName, ok = parsed.Parsed["privateLinkServiceName"]; !ok {
-		return nil, fmt.Errorf("the segment 'privateLinkServiceName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "privateLinkServiceName", *parsed)
 	}
 
 	return &id, nil

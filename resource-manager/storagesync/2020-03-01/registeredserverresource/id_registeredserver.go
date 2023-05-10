@@ -42,19 +42,19 @@ func ParseRegisteredServerID(input string) (*RegisteredServerId, error) {
 	id := RegisteredServerId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.StorageSyncServiceName, ok = parsed.Parsed["storageSyncServiceName"]; !ok {
-		return nil, fmt.Errorf("the segment 'storageSyncServiceName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "storageSyncServiceName", *parsed)
 	}
 
 	if id.ServerId, ok = parsed.Parsed["serverId"]; !ok {
-		return nil, fmt.Errorf("the segment 'serverId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "serverId", *parsed)
 	}
 
 	return &id, nil
@@ -73,19 +73,19 @@ func ParseRegisteredServerIDInsensitively(input string) (*RegisteredServerId, er
 	id := RegisteredServerId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.StorageSyncServiceName, ok = parsed.Parsed["storageSyncServiceName"]; !ok {
-		return nil, fmt.Errorf("the segment 'storageSyncServiceName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "storageSyncServiceName", *parsed)
 	}
 
 	if id.ServerId, ok = parsed.Parsed["serverId"]; !ok {
-		return nil, fmt.Errorf("the segment 'serverId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "serverId", *parsed)
 	}
 
 	return &id, nil

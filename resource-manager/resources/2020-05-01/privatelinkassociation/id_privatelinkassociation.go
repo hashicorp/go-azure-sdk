@@ -38,11 +38,11 @@ func ParsePrivateLinkAssociationID(input string) (*PrivateLinkAssociationId, err
 	id := PrivateLinkAssociationId{}
 
 	if id.GroupId, ok = parsed.Parsed["groupId"]; !ok {
-		return nil, fmt.Errorf("the segment 'groupId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "groupId", *parsed)
 	}
 
 	if id.PlaId, ok = parsed.Parsed["plaId"]; !ok {
-		return nil, fmt.Errorf("the segment 'plaId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "plaId", *parsed)
 	}
 
 	return &id, nil
@@ -61,11 +61,11 @@ func ParsePrivateLinkAssociationIDInsensitively(input string) (*PrivateLinkAssoc
 	id := PrivateLinkAssociationId{}
 
 	if id.GroupId, ok = parsed.Parsed["groupId"]; !ok {
-		return nil, fmt.Errorf("the segment 'groupId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "groupId", *parsed)
 	}
 
 	if id.PlaId, ok = parsed.Parsed["plaId"]; !ok {
-		return nil, fmt.Errorf("the segment 'plaId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "plaId", *parsed)
 	}
 
 	return &id, nil

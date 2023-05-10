@@ -42,19 +42,19 @@ func ParsePython2PackageID(input string) (*Python2PackageId, error) {
 	id := Python2PackageId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.AutomationAccountName, ok = parsed.Parsed["automationAccountName"]; !ok {
-		return nil, fmt.Errorf("the segment 'automationAccountName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "automationAccountName", *parsed)
 	}
 
 	if id.Python2PackageName, ok = parsed.Parsed["python2PackageName"]; !ok {
-		return nil, fmt.Errorf("the segment 'python2PackageName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "python2PackageName", *parsed)
 	}
 
 	return &id, nil
@@ -73,19 +73,19 @@ func ParsePython2PackageIDInsensitively(input string) (*Python2PackageId, error)
 	id := Python2PackageId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.AutomationAccountName, ok = parsed.Parsed["automationAccountName"]; !ok {
-		return nil, fmt.Errorf("the segment 'automationAccountName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "automationAccountName", *parsed)
 	}
 
 	if id.Python2PackageName, ok = parsed.Parsed["python2PackageName"]; !ok {
-		return nil, fmt.Errorf("the segment 'python2PackageName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "python2PackageName", *parsed)
 	}
 
 	return &id, nil

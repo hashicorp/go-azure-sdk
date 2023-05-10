@@ -42,19 +42,19 @@ func ParseKeyValueID(input string) (*KeyValueId, error) {
 	id := KeyValueId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.ConfigurationStoreName, ok = parsed.Parsed["configurationStoreName"]; !ok {
-		return nil, fmt.Errorf("the segment 'configurationStoreName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "configurationStoreName", *parsed)
 	}
 
 	if id.KeyValueName, ok = parsed.Parsed["keyValueName"]; !ok {
-		return nil, fmt.Errorf("the segment 'keyValueName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "keyValueName", *parsed)
 	}
 
 	return &id, nil
@@ -73,19 +73,19 @@ func ParseKeyValueIDInsensitively(input string) (*KeyValueId, error) {
 	id := KeyValueId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.ConfigurationStoreName, ok = parsed.Parsed["configurationStoreName"]; !ok {
-		return nil, fmt.Errorf("the segment 'configurationStoreName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "configurationStoreName", *parsed)
 	}
 
 	if id.KeyValueName, ok = parsed.Parsed["keyValueName"]; !ok {
-		return nil, fmt.Errorf("the segment 'keyValueName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "keyValueName", *parsed)
 	}
 
 	return &id, nil

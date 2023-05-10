@@ -42,19 +42,19 @@ func ParseSyncGroupID(input string) (*SyncGroupId, error) {
 	id := SyncGroupId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.StorageSyncServiceName, ok = parsed.Parsed["storageSyncServiceName"]; !ok {
-		return nil, fmt.Errorf("the segment 'storageSyncServiceName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "storageSyncServiceName", *parsed)
 	}
 
 	if id.SyncGroupName, ok = parsed.Parsed["syncGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'syncGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "syncGroupName", *parsed)
 	}
 
 	return &id, nil
@@ -73,19 +73,19 @@ func ParseSyncGroupIDInsensitively(input string) (*SyncGroupId, error) {
 	id := SyncGroupId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.StorageSyncServiceName, ok = parsed.Parsed["storageSyncServiceName"]; !ok {
-		return nil, fmt.Errorf("the segment 'storageSyncServiceName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "storageSyncServiceName", *parsed)
 	}
 
 	if id.SyncGroupName, ok = parsed.Parsed["syncGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'syncGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "syncGroupName", *parsed)
 	}
 
 	return &id, nil

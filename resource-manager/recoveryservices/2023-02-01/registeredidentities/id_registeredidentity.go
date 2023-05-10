@@ -42,19 +42,19 @@ func ParseRegisteredIdentityID(input string) (*RegisteredIdentityId, error) {
 	id := RegisteredIdentityId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.VaultName, ok = parsed.Parsed["vaultName"]; !ok {
-		return nil, fmt.Errorf("the segment 'vaultName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "vaultName", *parsed)
 	}
 
 	if id.RegisteredIdentityName, ok = parsed.Parsed["registeredIdentityName"]; !ok {
-		return nil, fmt.Errorf("the segment 'registeredIdentityName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "registeredIdentityName", *parsed)
 	}
 
 	return &id, nil
@@ -73,19 +73,19 @@ func ParseRegisteredIdentityIDInsensitively(input string) (*RegisteredIdentityId
 	id := RegisteredIdentityId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.VaultName, ok = parsed.Parsed["vaultName"]; !ok {
-		return nil, fmt.Errorf("the segment 'vaultName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "vaultName", *parsed)
 	}
 
 	if id.RegisteredIdentityName, ok = parsed.Parsed["registeredIdentityName"]; !ok {
-		return nil, fmt.Errorf("the segment 'registeredIdentityName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "registeredIdentityName", *parsed)
 	}
 
 	return &id, nil
