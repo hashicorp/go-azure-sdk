@@ -1,26 +1,18 @@
 package policysetdefinitions
 
-import (
-	"fmt"
-
-	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
-)
+import "github.com/Azure/go-autorest/autorest"
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type PolicySetDefinitionsClient struct {
-	Client *resourcemanager.Client
+	Client  autorest.Client
+	baseUri string
 }
 
-func NewPolicySetDefinitionsClientWithBaseURI(api environments.Api) (*PolicySetDefinitionsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(api, "policysetdefinitions", defaultApiVersion)
-	if err != nil {
-		return nil, fmt.Errorf("instantiating PolicySetDefinitionsClient: %+v", err)
+func NewPolicySetDefinitionsClientWithBaseURI(endpoint string) PolicySetDefinitionsClient {
+	return PolicySetDefinitionsClient{
+		Client:  autorest.NewClientWithUserAgent(userAgent()),
+		baseUri: endpoint,
 	}
-
-	return &PolicySetDefinitionsClient{
-		Client: client,
-	}, nil
 }

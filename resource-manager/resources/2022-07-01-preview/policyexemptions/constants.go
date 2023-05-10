@@ -1,10 +1,6 @@
 package policyexemptions
 
-import (
-	"encoding/json"
-	"fmt"
-	"strings"
-)
+import "strings"
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -21,19 +17,6 @@ func PossibleValuesForAssignmentScopeValidation() []string {
 		string(AssignmentScopeValidationDefault),
 		string(AssignmentScopeValidationDoNotValidate),
 	}
-}
-
-func (s *AssignmentScopeValidation) UnmarshalJSON(bytes []byte) error {
-	var decoded string
-	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling: %+v", err)
-	}
-	out, err := parseAssignmentScopeValidation(decoded)
-	if err != nil {
-		return fmt.Errorf("parsing %q: %+v", decoded, err)
-	}
-	*s = *out
-	return nil
 }
 
 func parseAssignmentScopeValidation(input string) (*AssignmentScopeValidation, error) {
@@ -62,19 +45,6 @@ func PossibleValuesForExemptionCategory() []string {
 		string(ExemptionCategoryMitigated),
 		string(ExemptionCategoryWaiver),
 	}
-}
-
-func (s *ExemptionCategory) UnmarshalJSON(bytes []byte) error {
-	var decoded string
-	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling: %+v", err)
-	}
-	out, err := parseExemptionCategory(decoded)
-	if err != nil {
-		return fmt.Errorf("parsing %q: %+v", decoded, err)
-	}
-	*s = *out
-	return nil
 }
 
 func parseExemptionCategory(input string) (*ExemptionCategory, error) {
@@ -107,19 +77,6 @@ func PossibleValuesForSelectorKind() []string {
 		string(SelectorKindResourceType),
 		string(SelectorKindResourceWithoutLocation),
 	}
-}
-
-func (s *SelectorKind) UnmarshalJSON(bytes []byte) error {
-	var decoded string
-	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling: %+v", err)
-	}
-	out, err := parseSelectorKind(decoded)
-	if err != nil {
-		return fmt.Errorf("parsing %q: %+v", decoded, err)
-	}
-	*s = *out
-	return nil
 }
 
 func parseSelectorKind(input string) (*SelectorKind, error) {
