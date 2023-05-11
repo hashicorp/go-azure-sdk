@@ -44,23 +44,23 @@ func ParseVirtualMachineScheduleID(input string) (*VirtualMachineScheduleId, err
 	id := VirtualMachineScheduleId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.LabName, ok = parsed.Parsed["labName"]; !ok {
-		return nil, fmt.Errorf("the segment 'labName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "labName", *parsed)
 	}
 
 	if id.VirtualMachineName, ok = parsed.Parsed["virtualMachineName"]; !ok {
-		return nil, fmt.Errorf("the segment 'virtualMachineName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "virtualMachineName", *parsed)
 	}
 
 	if id.ScheduleName, ok = parsed.Parsed["scheduleName"]; !ok {
-		return nil, fmt.Errorf("the segment 'scheduleName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "scheduleName", *parsed)
 	}
 
 	return &id, nil
@@ -79,23 +79,23 @@ func ParseVirtualMachineScheduleIDInsensitively(input string) (*VirtualMachineSc
 	id := VirtualMachineScheduleId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.LabName, ok = parsed.Parsed["labName"]; !ok {
-		return nil, fmt.Errorf("the segment 'labName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "labName", *parsed)
 	}
 
 	if id.VirtualMachineName, ok = parsed.Parsed["virtualMachineName"]; !ok {
-		return nil, fmt.Errorf("the segment 'virtualMachineName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "virtualMachineName", *parsed)
 	}
 
 	if id.ScheduleName, ok = parsed.Parsed["scheduleName"]; !ok {
-		return nil, fmt.Errorf("the segment 'scheduleName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "scheduleName", *parsed)
 	}
 
 	return &id, nil

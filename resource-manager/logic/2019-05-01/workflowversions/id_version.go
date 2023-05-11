@@ -42,19 +42,19 @@ func ParseVersionID(input string) (*VersionId, error) {
 	id := VersionId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.WorkflowName, ok = parsed.Parsed["workflowName"]; !ok {
-		return nil, fmt.Errorf("the segment 'workflowName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "workflowName", *parsed)
 	}
 
 	if id.VersionId, ok = parsed.Parsed["versionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'versionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "versionId", *parsed)
 	}
 
 	return &id, nil
@@ -73,19 +73,19 @@ func ParseVersionIDInsensitively(input string) (*VersionId, error) {
 	id := VersionId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.WorkflowName, ok = parsed.Parsed["workflowName"]; !ok {
-		return nil, fmt.Errorf("the segment 'workflowName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "workflowName", *parsed)
 	}
 
 	if id.VersionId, ok = parsed.Parsed["versionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'versionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "versionId", *parsed)
 	}
 
 	return &id, nil

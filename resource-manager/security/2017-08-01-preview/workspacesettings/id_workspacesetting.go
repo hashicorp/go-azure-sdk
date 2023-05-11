@@ -38,11 +38,11 @@ func ParseWorkspaceSettingID(input string) (*WorkspaceSettingId, error) {
 	id := WorkspaceSettingId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.WorkspaceSettingName, ok = parsed.Parsed["workspaceSettingName"]; !ok {
-		return nil, fmt.Errorf("the segment 'workspaceSettingName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "workspaceSettingName", *parsed)
 	}
 
 	return &id, nil
@@ -61,11 +61,11 @@ func ParseWorkspaceSettingIDInsensitively(input string) (*WorkspaceSettingId, er
 	id := WorkspaceSettingId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.WorkspaceSettingName, ok = parsed.Parsed["workspaceSettingName"]; !ok {
-		return nil, fmt.Errorf("the segment 'workspaceSettingName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "workspaceSettingName", *parsed)
 	}
 
 	return &id, nil

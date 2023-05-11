@@ -42,19 +42,19 @@ func ParseSecurityAdminConfigurationID(input string) (*SecurityAdminConfiguratio
 	id := SecurityAdminConfigurationId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.NetworkManagerName, ok = parsed.Parsed["networkManagerName"]; !ok {
-		return nil, fmt.Errorf("the segment 'networkManagerName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "networkManagerName", *parsed)
 	}
 
 	if id.SecurityAdminConfigurationName, ok = parsed.Parsed["securityAdminConfigurationName"]; !ok {
-		return nil, fmt.Errorf("the segment 'securityAdminConfigurationName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "securityAdminConfigurationName", *parsed)
 	}
 
 	return &id, nil
@@ -73,19 +73,19 @@ func ParseSecurityAdminConfigurationIDInsensitively(input string) (*SecurityAdmi
 	id := SecurityAdminConfigurationId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.NetworkManagerName, ok = parsed.Parsed["networkManagerName"]; !ok {
-		return nil, fmt.Errorf("the segment 'networkManagerName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "networkManagerName", *parsed)
 	}
 
 	if id.SecurityAdminConfigurationName, ok = parsed.Parsed["securityAdminConfigurationName"]; !ok {
-		return nil, fmt.Errorf("the segment 'securityAdminConfigurationName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "securityAdminConfigurationName", *parsed)
 	}
 
 	return &id, nil

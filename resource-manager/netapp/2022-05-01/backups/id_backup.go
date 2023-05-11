@@ -46,27 +46,27 @@ func ParseBackupID(input string) (*BackupId, error) {
 	id := BackupId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.NetAppAccountName, ok = parsed.Parsed["netAppAccountName"]; !ok {
-		return nil, fmt.Errorf("the segment 'netAppAccountName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "netAppAccountName", *parsed)
 	}
 
 	if id.CapacityPoolName, ok = parsed.Parsed["capacityPoolName"]; !ok {
-		return nil, fmt.Errorf("the segment 'capacityPoolName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "capacityPoolName", *parsed)
 	}
 
 	if id.VolumeName, ok = parsed.Parsed["volumeName"]; !ok {
-		return nil, fmt.Errorf("the segment 'volumeName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "volumeName", *parsed)
 	}
 
 	if id.BackupName, ok = parsed.Parsed["backupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'backupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "backupName", *parsed)
 	}
 
 	return &id, nil
@@ -85,27 +85,27 @@ func ParseBackupIDInsensitively(input string) (*BackupId, error) {
 	id := BackupId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.NetAppAccountName, ok = parsed.Parsed["netAppAccountName"]; !ok {
-		return nil, fmt.Errorf("the segment 'netAppAccountName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "netAppAccountName", *parsed)
 	}
 
 	if id.CapacityPoolName, ok = parsed.Parsed["capacityPoolName"]; !ok {
-		return nil, fmt.Errorf("the segment 'capacityPoolName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "capacityPoolName", *parsed)
 	}
 
 	if id.VolumeName, ok = parsed.Parsed["volumeName"]; !ok {
-		return nil, fmt.Errorf("the segment 'volumeName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "volumeName", *parsed)
 	}
 
 	if id.BackupName, ok = parsed.Parsed["backupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'backupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "backupName", *parsed)
 	}
 
 	return &id, nil

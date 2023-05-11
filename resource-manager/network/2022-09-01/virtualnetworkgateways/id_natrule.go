@@ -42,19 +42,19 @@ func ParseNatRuleID(input string) (*NatRuleId, error) {
 	id := NatRuleId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.VpnGatewayName, ok = parsed.Parsed["vpnGatewayName"]; !ok {
-		return nil, fmt.Errorf("the segment 'vpnGatewayName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "vpnGatewayName", *parsed)
 	}
 
 	if id.NatRuleName, ok = parsed.Parsed["natRuleName"]; !ok {
-		return nil, fmt.Errorf("the segment 'natRuleName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "natRuleName", *parsed)
 	}
 
 	return &id, nil
@@ -73,19 +73,19 @@ func ParseNatRuleIDInsensitively(input string) (*NatRuleId, error) {
 	id := NatRuleId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.VpnGatewayName, ok = parsed.Parsed["vpnGatewayName"]; !ok {
-		return nil, fmt.Errorf("the segment 'vpnGatewayName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "vpnGatewayName", *parsed)
 	}
 
 	if id.NatRuleName, ok = parsed.Parsed["natRuleName"]; !ok {
-		return nil, fmt.Errorf("the segment 'natRuleName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "natRuleName", *parsed)
 	}
 
 	return &id, nil

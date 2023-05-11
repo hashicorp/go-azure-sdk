@@ -42,19 +42,19 @@ func ParseConnectionMonitorID(input string) (*ConnectionMonitorId, error) {
 	id := ConnectionMonitorId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.NetworkWatcherName, ok = parsed.Parsed["networkWatcherName"]; !ok {
-		return nil, fmt.Errorf("the segment 'networkWatcherName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "networkWatcherName", *parsed)
 	}
 
 	if id.ConnectionMonitorName, ok = parsed.Parsed["connectionMonitorName"]; !ok {
-		return nil, fmt.Errorf("the segment 'connectionMonitorName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "connectionMonitorName", *parsed)
 	}
 
 	return &id, nil
@@ -73,19 +73,19 @@ func ParseConnectionMonitorIDInsensitively(input string) (*ConnectionMonitorId, 
 	id := ConnectionMonitorId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.NetworkWatcherName, ok = parsed.Parsed["networkWatcherName"]; !ok {
-		return nil, fmt.Errorf("the segment 'networkWatcherName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "networkWatcherName", *parsed)
 	}
 
 	if id.ConnectionMonitorName, ok = parsed.Parsed["connectionMonitorName"]; !ok {
-		return nil, fmt.Errorf("the segment 'connectionMonitorName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "connectionMonitorName", *parsed)
 	}
 
 	return &id, nil

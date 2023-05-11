@@ -44,23 +44,23 @@ func ParseWatchlistItemID(input string) (*WatchlistItemId, error) {
 	id := WatchlistItemId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.WorkspaceName, ok = parsed.Parsed["workspaceName"]; !ok {
-		return nil, fmt.Errorf("the segment 'workspaceName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "workspaceName", *parsed)
 	}
 
 	if id.WatchlistAlias, ok = parsed.Parsed["watchlistAlias"]; !ok {
-		return nil, fmt.Errorf("the segment 'watchlistAlias' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "watchlistAlias", *parsed)
 	}
 
 	if id.WatchlistItemId, ok = parsed.Parsed["watchlistItemId"]; !ok {
-		return nil, fmt.Errorf("the segment 'watchlistItemId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "watchlistItemId", *parsed)
 	}
 
 	return &id, nil
@@ -79,23 +79,23 @@ func ParseWatchlistItemIDInsensitively(input string) (*WatchlistItemId, error) {
 	id := WatchlistItemId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.WorkspaceName, ok = parsed.Parsed["workspaceName"]; !ok {
-		return nil, fmt.Errorf("the segment 'workspaceName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "workspaceName", *parsed)
 	}
 
 	if id.WatchlistAlias, ok = parsed.Parsed["watchlistAlias"]; !ok {
-		return nil, fmt.Errorf("the segment 'watchlistAlias' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "watchlistAlias", *parsed)
 	}
 
 	if id.WatchlistItemId, ok = parsed.Parsed["watchlistItemId"]; !ok {
-		return nil, fmt.Errorf("the segment 'watchlistItemId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "watchlistItemId", *parsed)
 	}
 
 	return &id, nil

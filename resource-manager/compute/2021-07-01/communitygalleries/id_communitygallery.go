@@ -40,15 +40,15 @@ func ParseCommunityGalleryID(input string) (*CommunityGalleryId, error) {
 	id := CommunityGalleryId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.LocationName, ok = parsed.Parsed["locationName"]; !ok {
-		return nil, fmt.Errorf("the segment 'locationName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "locationName", *parsed)
 	}
 
 	if id.CommunityGalleryName, ok = parsed.Parsed["communityGalleryName"]; !ok {
-		return nil, fmt.Errorf("the segment 'communityGalleryName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "communityGalleryName", *parsed)
 	}
 
 	return &id, nil
@@ -67,15 +67,15 @@ func ParseCommunityGalleryIDInsensitively(input string) (*CommunityGalleryId, er
 	id := CommunityGalleryId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.LocationName, ok = parsed.Parsed["locationName"]; !ok {
-		return nil, fmt.Errorf("the segment 'locationName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "locationName", *parsed)
 	}
 
 	if id.CommunityGalleryName, ok = parsed.Parsed["communityGalleryName"]; !ok {
-		return nil, fmt.Errorf("the segment 'communityGalleryName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "communityGalleryName", *parsed)
 	}
 
 	return &id, nil

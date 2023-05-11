@@ -44,23 +44,23 @@ func ParseVolumeID(input string) (*VolumeId, error) {
 	id := VolumeId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.ElasticSanName, ok = parsed.Parsed["elasticSanName"]; !ok {
-		return nil, fmt.Errorf("the segment 'elasticSanName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "elasticSanName", *parsed)
 	}
 
 	if id.VolumeGroupName, ok = parsed.Parsed["volumeGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'volumeGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "volumeGroupName", *parsed)
 	}
 
 	if id.VolumeName, ok = parsed.Parsed["volumeName"]; !ok {
-		return nil, fmt.Errorf("the segment 'volumeName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "volumeName", *parsed)
 	}
 
 	return &id, nil
@@ -79,23 +79,23 @@ func ParseVolumeIDInsensitively(input string) (*VolumeId, error) {
 	id := VolumeId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.ElasticSanName, ok = parsed.Parsed["elasticSanName"]; !ok {
-		return nil, fmt.Errorf("the segment 'elasticSanName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "elasticSanName", *parsed)
 	}
 
 	if id.VolumeGroupName, ok = parsed.Parsed["volumeGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'volumeGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "volumeGroupName", *parsed)
 	}
 
 	if id.VolumeName, ok = parsed.Parsed["volumeName"]; !ok {
-		return nil, fmt.Errorf("the segment 'volumeName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "volumeName", *parsed)
 	}
 
 	return &id, nil

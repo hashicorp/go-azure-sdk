@@ -44,23 +44,23 @@ func ParseSourceControlSyncJobID(input string) (*SourceControlSyncJobId, error) 
 	id := SourceControlSyncJobId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.AutomationAccountName, ok = parsed.Parsed["automationAccountName"]; !ok {
-		return nil, fmt.Errorf("the segment 'automationAccountName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "automationAccountName", *parsed)
 	}
 
 	if id.SourceControlName, ok = parsed.Parsed["sourceControlName"]; !ok {
-		return nil, fmt.Errorf("the segment 'sourceControlName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "sourceControlName", *parsed)
 	}
 
 	if id.SourceControlSyncJobId, ok = parsed.Parsed["sourceControlSyncJobId"]; !ok {
-		return nil, fmt.Errorf("the segment 'sourceControlSyncJobId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "sourceControlSyncJobId", *parsed)
 	}
 
 	return &id, nil
@@ -79,23 +79,23 @@ func ParseSourceControlSyncJobIDInsensitively(input string) (*SourceControlSyncJ
 	id := SourceControlSyncJobId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.AutomationAccountName, ok = parsed.Parsed["automationAccountName"]; !ok {
-		return nil, fmt.Errorf("the segment 'automationAccountName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "automationAccountName", *parsed)
 	}
 
 	if id.SourceControlName, ok = parsed.Parsed["sourceControlName"]; !ok {
-		return nil, fmt.Errorf("the segment 'sourceControlName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "sourceControlName", *parsed)
 	}
 
 	if id.SourceControlSyncJobId, ok = parsed.Parsed["sourceControlSyncJobId"]; !ok {
-		return nil, fmt.Errorf("the segment 'sourceControlSyncJobId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "sourceControlSyncJobId", *parsed)
 	}
 
 	return &id, nil

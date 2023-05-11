@@ -38,11 +38,11 @@ func ParseScopedComplianceID(input string) (*ScopedComplianceId, error) {
 	id := ScopedComplianceId{}
 
 	if id.Scope, ok = parsed.Parsed["scope"]; !ok {
-		return nil, fmt.Errorf("the segment 'scope' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "scope", *parsed)
 	}
 
 	if id.ComplianceName, ok = parsed.Parsed["complianceName"]; !ok {
-		return nil, fmt.Errorf("the segment 'complianceName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "complianceName", *parsed)
 	}
 
 	return &id, nil
@@ -61,11 +61,11 @@ func ParseScopedComplianceIDInsensitively(input string) (*ScopedComplianceId, er
 	id := ScopedComplianceId{}
 
 	if id.Scope, ok = parsed.Parsed["scope"]; !ok {
-		return nil, fmt.Errorf("the segment 'scope' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "scope", *parsed)
 	}
 
 	if id.ComplianceName, ok = parsed.Parsed["complianceName"]; !ok {
-		return nil, fmt.Errorf("the segment 'complianceName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "complianceName", *parsed)
 	}
 
 	return &id, nil

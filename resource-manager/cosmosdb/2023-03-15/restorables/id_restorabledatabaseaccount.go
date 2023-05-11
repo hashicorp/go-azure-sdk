@@ -40,15 +40,15 @@ func ParseRestorableDatabaseAccountID(input string) (*RestorableDatabaseAccountI
 	id := RestorableDatabaseAccountId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.LocationName, ok = parsed.Parsed["locationName"]; !ok {
-		return nil, fmt.Errorf("the segment 'locationName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "locationName", *parsed)
 	}
 
 	if id.InstanceId, ok = parsed.Parsed["instanceId"]; !ok {
-		return nil, fmt.Errorf("the segment 'instanceId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "instanceId", *parsed)
 	}
 
 	return &id, nil
@@ -67,15 +67,15 @@ func ParseRestorableDatabaseAccountIDInsensitively(input string) (*RestorableDat
 	id := RestorableDatabaseAccountId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.LocationName, ok = parsed.Parsed["locationName"]; !ok {
-		return nil, fmt.Errorf("the segment 'locationName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "locationName", *parsed)
 	}
 
 	if id.InstanceId, ok = parsed.Parsed["instanceId"]; !ok {
-		return nil, fmt.Errorf("the segment 'instanceId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "instanceId", *parsed)
 	}
 
 	return &id, nil

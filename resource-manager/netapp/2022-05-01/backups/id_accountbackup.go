@@ -42,19 +42,19 @@ func ParseAccountBackupID(input string) (*AccountBackupId, error) {
 	id := AccountBackupId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.NetAppAccountName, ok = parsed.Parsed["netAppAccountName"]; !ok {
-		return nil, fmt.Errorf("the segment 'netAppAccountName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "netAppAccountName", *parsed)
 	}
 
 	if id.AccountBackupName, ok = parsed.Parsed["accountBackupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'accountBackupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "accountBackupName", *parsed)
 	}
 
 	return &id, nil
@@ -73,19 +73,19 @@ func ParseAccountBackupIDInsensitively(input string) (*AccountBackupId, error) {
 	id := AccountBackupId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.NetAppAccountName, ok = parsed.Parsed["netAppAccountName"]; !ok {
-		return nil, fmt.Errorf("the segment 'netAppAccountName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "netAppAccountName", *parsed)
 	}
 
 	if id.AccountBackupName, ok = parsed.Parsed["accountBackupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'accountBackupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "accountBackupName", *parsed)
 	}
 
 	return &id, nil

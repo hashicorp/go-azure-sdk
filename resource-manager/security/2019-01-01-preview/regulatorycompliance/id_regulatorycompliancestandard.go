@@ -38,11 +38,11 @@ func ParseRegulatoryComplianceStandardID(input string) (*RegulatoryComplianceSta
 	id := RegulatoryComplianceStandardId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.RegulatoryComplianceStandardName, ok = parsed.Parsed["regulatoryComplianceStandardName"]; !ok {
-		return nil, fmt.Errorf("the segment 'regulatoryComplianceStandardName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "regulatoryComplianceStandardName", *parsed)
 	}
 
 	return &id, nil
@@ -61,11 +61,11 @@ func ParseRegulatoryComplianceStandardIDInsensitively(input string) (*Regulatory
 	id := RegulatoryComplianceStandardId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.RegulatoryComplianceStandardName, ok = parsed.Parsed["regulatoryComplianceStandardName"]; !ok {
-		return nil, fmt.Errorf("the segment 'regulatoryComplianceStandardName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "regulatoryComplianceStandardName", *parsed)
 	}
 
 	return &id, nil

@@ -38,11 +38,11 @@ func ParseAzureWebCategoryID(input string) (*AzureWebCategoryId, error) {
 	id := AzureWebCategoryId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.AzureWebCategoryName, ok = parsed.Parsed["azureWebCategoryName"]; !ok {
-		return nil, fmt.Errorf("the segment 'azureWebCategoryName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "azureWebCategoryName", *parsed)
 	}
 
 	return &id, nil
@@ -61,11 +61,11 @@ func ParseAzureWebCategoryIDInsensitively(input string) (*AzureWebCategoryId, er
 	id := AzureWebCategoryId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.AzureWebCategoryName, ok = parsed.Parsed["azureWebCategoryName"]; !ok {
-		return nil, fmt.Errorf("the segment 'azureWebCategoryName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "azureWebCategoryName", *parsed)
 	}
 
 	return &id, nil

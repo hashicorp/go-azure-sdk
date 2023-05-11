@@ -44,23 +44,23 @@ func ParseSupportedBuildPackID(input string) (*SupportedBuildPackId, error) {
 	id := SupportedBuildPackId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.SpringName, ok = parsed.Parsed["springName"]; !ok {
-		return nil, fmt.Errorf("the segment 'springName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "springName", *parsed)
 	}
 
 	if id.BuildServiceName, ok = parsed.Parsed["buildServiceName"]; !ok {
-		return nil, fmt.Errorf("the segment 'buildServiceName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "buildServiceName", *parsed)
 	}
 
 	if id.SupportedBuildPackName, ok = parsed.Parsed["supportedBuildPackName"]; !ok {
-		return nil, fmt.Errorf("the segment 'supportedBuildPackName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "supportedBuildPackName", *parsed)
 	}
 
 	return &id, nil
@@ -79,23 +79,23 @@ func ParseSupportedBuildPackIDInsensitively(input string) (*SupportedBuildPackId
 	id := SupportedBuildPackId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.SpringName, ok = parsed.Parsed["springName"]; !ok {
-		return nil, fmt.Errorf("the segment 'springName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "springName", *parsed)
 	}
 
 	if id.BuildServiceName, ok = parsed.Parsed["buildServiceName"]; !ok {
-		return nil, fmt.Errorf("the segment 'buildServiceName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "buildServiceName", *parsed)
 	}
 
 	if id.SupportedBuildPackName, ok = parsed.Parsed["supportedBuildPackName"]; !ok {
-		return nil, fmt.Errorf("the segment 'supportedBuildPackName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "supportedBuildPackName", *parsed)
 	}
 
 	return &id, nil

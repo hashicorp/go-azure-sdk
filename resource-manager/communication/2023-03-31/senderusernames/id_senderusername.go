@@ -44,23 +44,23 @@ func ParseSenderUsernameID(input string) (*SenderUsernameId, error) {
 	id := SenderUsernameId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.EmailServiceName, ok = parsed.Parsed["emailServiceName"]; !ok {
-		return nil, fmt.Errorf("the segment 'emailServiceName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "emailServiceName", *parsed)
 	}
 
 	if id.DomainName, ok = parsed.Parsed["domainName"]; !ok {
-		return nil, fmt.Errorf("the segment 'domainName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "domainName", *parsed)
 	}
 
 	if id.SenderUsernameName, ok = parsed.Parsed["senderUsernameName"]; !ok {
-		return nil, fmt.Errorf("the segment 'senderUsernameName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "senderUsernameName", *parsed)
 	}
 
 	return &id, nil
@@ -79,23 +79,23 @@ func ParseSenderUsernameIDInsensitively(input string) (*SenderUsernameId, error)
 	id := SenderUsernameId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.EmailServiceName, ok = parsed.Parsed["emailServiceName"]; !ok {
-		return nil, fmt.Errorf("the segment 'emailServiceName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "emailServiceName", *parsed)
 	}
 
 	if id.DomainName, ok = parsed.Parsed["domainName"]; !ok {
-		return nil, fmt.Errorf("the segment 'domainName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "domainName", *parsed)
 	}
 
 	if id.SenderUsernameName, ok = parsed.Parsed["senderUsernameName"]; !ok {
-		return nil, fmt.Errorf("the segment 'senderUsernameName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "senderUsernameName", *parsed)
 	}
 
 	return &id, nil

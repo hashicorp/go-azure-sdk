@@ -38,11 +38,11 @@ func ParseNetworkManagerConnectionID(input string) (*NetworkManagerConnectionId,
 	id := NetworkManagerConnectionId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.NetworkManagerConnectionName, ok = parsed.Parsed["networkManagerConnectionName"]; !ok {
-		return nil, fmt.Errorf("the segment 'networkManagerConnectionName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "networkManagerConnectionName", *parsed)
 	}
 
 	return &id, nil
@@ -61,11 +61,11 @@ func ParseNetworkManagerConnectionIDInsensitively(input string) (*NetworkManager
 	id := NetworkManagerConnectionId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.NetworkManagerConnectionName, ok = parsed.Parsed["networkManagerConnectionName"]; !ok {
-		return nil, fmt.Errorf("the segment 'networkManagerConnectionName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "networkManagerConnectionName", *parsed)
 	}
 
 	return &id, nil

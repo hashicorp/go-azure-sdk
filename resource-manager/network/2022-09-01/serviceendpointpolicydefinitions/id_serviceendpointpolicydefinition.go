@@ -42,19 +42,19 @@ func ParseServiceEndpointPolicyDefinitionID(input string) (*ServiceEndpointPolic
 	id := ServiceEndpointPolicyDefinitionId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.ServiceEndpointPolicyName, ok = parsed.Parsed["serviceEndpointPolicyName"]; !ok {
-		return nil, fmt.Errorf("the segment 'serviceEndpointPolicyName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "serviceEndpointPolicyName", *parsed)
 	}
 
 	if id.ServiceEndpointPolicyDefinitionName, ok = parsed.Parsed["serviceEndpointPolicyDefinitionName"]; !ok {
-		return nil, fmt.Errorf("the segment 'serviceEndpointPolicyDefinitionName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "serviceEndpointPolicyDefinitionName", *parsed)
 	}
 
 	return &id, nil
@@ -73,19 +73,19 @@ func ParseServiceEndpointPolicyDefinitionIDInsensitively(input string) (*Service
 	id := ServiceEndpointPolicyDefinitionId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.ServiceEndpointPolicyName, ok = parsed.Parsed["serviceEndpointPolicyName"]; !ok {
-		return nil, fmt.Errorf("the segment 'serviceEndpointPolicyName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "serviceEndpointPolicyName", *parsed)
 	}
 
 	if id.ServiceEndpointPolicyDefinitionName, ok = parsed.Parsed["serviceEndpointPolicyDefinitionName"]; !ok {
-		return nil, fmt.Errorf("the segment 'serviceEndpointPolicyDefinitionName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "serviceEndpointPolicyDefinitionName", *parsed)
 	}
 
 	return &id, nil

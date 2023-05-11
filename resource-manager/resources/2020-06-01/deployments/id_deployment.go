@@ -36,7 +36,7 @@ func ParseDeploymentID(input string) (*DeploymentId, error) {
 	id := DeploymentId{}
 
 	if id.DeploymentName, ok = parsed.Parsed["deploymentName"]; !ok {
-		return nil, fmt.Errorf("the segment 'deploymentName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "deploymentName", *parsed)
 	}
 
 	return &id, nil
@@ -55,7 +55,7 @@ func ParseDeploymentIDInsensitively(input string) (*DeploymentId, error) {
 	id := DeploymentId{}
 
 	if id.DeploymentName, ok = parsed.Parsed["deploymentName"]; !ok {
-		return nil, fmt.Errorf("the segment 'deploymentName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "deploymentName", *parsed)
 	}
 
 	return &id, nil

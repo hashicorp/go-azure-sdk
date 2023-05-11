@@ -40,15 +40,15 @@ func ParseMasterSiteID(input string) (*MasterSiteId, error) {
 	id := MasterSiteId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.MasterSiteName, ok = parsed.Parsed["masterSiteName"]; !ok {
-		return nil, fmt.Errorf("the segment 'masterSiteName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "masterSiteName", *parsed)
 	}
 
 	return &id, nil
@@ -67,15 +67,15 @@ func ParseMasterSiteIDInsensitively(input string) (*MasterSiteId, error) {
 	id := MasterSiteId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.MasterSiteName, ok = parsed.Parsed["masterSiteName"]; !ok {
-		return nil, fmt.Errorf("the segment 'masterSiteName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "masterSiteName", *parsed)
 	}
 
 	return &id, nil

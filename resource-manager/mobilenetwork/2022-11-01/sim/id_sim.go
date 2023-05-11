@@ -42,19 +42,19 @@ func ParseSimID(input string) (*SimId, error) {
 	id := SimId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.SimGroupName, ok = parsed.Parsed["simGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'simGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "simGroupName", *parsed)
 	}
 
 	if id.SimName, ok = parsed.Parsed["simName"]; !ok {
-		return nil, fmt.Errorf("the segment 'simName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "simName", *parsed)
 	}
 
 	return &id, nil
@@ -73,19 +73,19 @@ func ParseSimIDInsensitively(input string) (*SimId, error) {
 	id := SimId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.SimGroupName, ok = parsed.Parsed["simGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'simGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "simGroupName", *parsed)
 	}
 
 	if id.SimName, ok = parsed.Parsed["simName"]; !ok {
-		return nil, fmt.Errorf("the segment 'simName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "simName", *parsed)
 	}
 
 	return &id, nil

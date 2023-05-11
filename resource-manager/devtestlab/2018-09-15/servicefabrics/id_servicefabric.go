@@ -44,23 +44,23 @@ func ParseServiceFabricID(input string) (*ServiceFabricId, error) {
 	id := ServiceFabricId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.LabName, ok = parsed.Parsed["labName"]; !ok {
-		return nil, fmt.Errorf("the segment 'labName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "labName", *parsed)
 	}
 
 	if id.UserName, ok = parsed.Parsed["userName"]; !ok {
-		return nil, fmt.Errorf("the segment 'userName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "userName", *parsed)
 	}
 
 	if id.ServiceFabricName, ok = parsed.Parsed["serviceFabricName"]; !ok {
-		return nil, fmt.Errorf("the segment 'serviceFabricName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "serviceFabricName", *parsed)
 	}
 
 	return &id, nil
@@ -79,23 +79,23 @@ func ParseServiceFabricIDInsensitively(input string) (*ServiceFabricId, error) {
 	id := ServiceFabricId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.LabName, ok = parsed.Parsed["labName"]; !ok {
-		return nil, fmt.Errorf("the segment 'labName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "labName", *parsed)
 	}
 
 	if id.UserName, ok = parsed.Parsed["userName"]; !ok {
-		return nil, fmt.Errorf("the segment 'userName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "userName", *parsed)
 	}
 
 	if id.ServiceFabricName, ok = parsed.Parsed["serviceFabricName"]; !ok {
-		return nil, fmt.Errorf("the segment 'serviceFabricName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "serviceFabricName", *parsed)
 	}
 
 	return &id, nil

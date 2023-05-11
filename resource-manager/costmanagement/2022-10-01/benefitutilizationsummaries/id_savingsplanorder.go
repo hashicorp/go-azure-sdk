@@ -36,7 +36,7 @@ func ParseSavingsPlanOrderID(input string) (*SavingsPlanOrderId, error) {
 	id := SavingsPlanOrderId{}
 
 	if id.SavingsPlanOrderId, ok = parsed.Parsed["savingsPlanOrderId"]; !ok {
-		return nil, fmt.Errorf("the segment 'savingsPlanOrderId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "savingsPlanOrderId", *parsed)
 	}
 
 	return &id, nil
@@ -55,7 +55,7 @@ func ParseSavingsPlanOrderIDInsensitively(input string) (*SavingsPlanOrderId, er
 	id := SavingsPlanOrderId{}
 
 	if id.SavingsPlanOrderId, ok = parsed.Parsed["savingsPlanOrderId"]; !ok {
-		return nil, fmt.Errorf("the segment 'savingsPlanOrderId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "savingsPlanOrderId", *parsed)
 	}
 
 	return &id, nil

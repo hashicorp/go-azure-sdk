@@ -42,19 +42,19 @@ func ParseSourceControlID(input string) (*SourceControlId, error) {
 	id := SourceControlId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.ContainerAppName, ok = parsed.Parsed["containerAppName"]; !ok {
-		return nil, fmt.Errorf("the segment 'containerAppName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "containerAppName", *parsed)
 	}
 
 	if id.SourceControlName, ok = parsed.Parsed["sourceControlName"]; !ok {
-		return nil, fmt.Errorf("the segment 'sourceControlName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "sourceControlName", *parsed)
 	}
 
 	return &id, nil
@@ -73,19 +73,19 @@ func ParseSourceControlIDInsensitively(input string) (*SourceControlId, error) {
 	id := SourceControlId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.ContainerAppName, ok = parsed.Parsed["containerAppName"]; !ok {
-		return nil, fmt.Errorf("the segment 'containerAppName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "containerAppName", *parsed)
 	}
 
 	if id.SourceControlName, ok = parsed.Parsed["sourceControlName"]; !ok {
-		return nil, fmt.Errorf("the segment 'sourceControlName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "sourceControlName", *parsed)
 	}
 
 	return &id, nil

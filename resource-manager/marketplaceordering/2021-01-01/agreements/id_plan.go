@@ -42,19 +42,19 @@ func ParsePlanID(input string) (*PlanId, error) {
 	id := PlanId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.PublisherId, ok = parsed.Parsed["publisherId"]; !ok {
-		return nil, fmt.Errorf("the segment 'publisherId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "publisherId", *parsed)
 	}
 
 	if id.OfferId, ok = parsed.Parsed["offerId"]; !ok {
-		return nil, fmt.Errorf("the segment 'offerId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "offerId", *parsed)
 	}
 
 	if id.PlanId, ok = parsed.Parsed["planId"]; !ok {
-		return nil, fmt.Errorf("the segment 'planId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "planId", *parsed)
 	}
 
 	return &id, nil
@@ -73,19 +73,19 @@ func ParsePlanIDInsensitively(input string) (*PlanId, error) {
 	id := PlanId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.PublisherId, ok = parsed.Parsed["publisherId"]; !ok {
-		return nil, fmt.Errorf("the segment 'publisherId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "publisherId", *parsed)
 	}
 
 	if id.OfferId, ok = parsed.Parsed["offerId"]; !ok {
-		return nil, fmt.Errorf("the segment 'offerId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "offerId", *parsed)
 	}
 
 	if id.PlanId, ok = parsed.Parsed["planId"]; !ok {
-		return nil, fmt.Errorf("the segment 'planId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "planId", *parsed)
 	}
 
 	return &id, nil

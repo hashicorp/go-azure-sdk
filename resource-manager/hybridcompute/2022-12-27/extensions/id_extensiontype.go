@@ -42,19 +42,19 @@ func ParseExtensionTypeID(input string) (*ExtensionTypeId, error) {
 	id := ExtensionTypeId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.LocationName, ok = parsed.Parsed["locationName"]; !ok {
-		return nil, fmt.Errorf("the segment 'locationName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "locationName", *parsed)
 	}
 
 	if id.PublisherName, ok = parsed.Parsed["publisherName"]; !ok {
-		return nil, fmt.Errorf("the segment 'publisherName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "publisherName", *parsed)
 	}
 
 	if id.ExtensionTypeName, ok = parsed.Parsed["extensionTypeName"]; !ok {
-		return nil, fmt.Errorf("the segment 'extensionTypeName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "extensionTypeName", *parsed)
 	}
 
 	return &id, nil
@@ -73,19 +73,19 @@ func ParseExtensionTypeIDInsensitively(input string) (*ExtensionTypeId, error) {
 	id := ExtensionTypeId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.LocationName, ok = parsed.Parsed["locationName"]; !ok {
-		return nil, fmt.Errorf("the segment 'locationName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "locationName", *parsed)
 	}
 
 	if id.PublisherName, ok = parsed.Parsed["publisherName"]; !ok {
-		return nil, fmt.Errorf("the segment 'publisherName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "publisherName", *parsed)
 	}
 
 	if id.ExtensionTypeName, ok = parsed.Parsed["extensionTypeName"]; !ok {
-		return nil, fmt.Errorf("the segment 'extensionTypeName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "extensionTypeName", *parsed)
 	}
 
 	return &id, nil

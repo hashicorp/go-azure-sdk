@@ -36,7 +36,7 @@ func ParseMetadataID(input string) (*MetadataId, error) {
 	id := MetadataId{}
 
 	if id.MetadataName, ok = parsed.Parsed["metadataName"]; !ok {
-		return nil, fmt.Errorf("the segment 'metadataName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "metadataName", *parsed)
 	}
 
 	return &id, nil
@@ -55,7 +55,7 @@ func ParseMetadataIDInsensitively(input string) (*MetadataId, error) {
 	id := MetadataId{}
 
 	if id.MetadataName, ok = parsed.Parsed["metadataName"]; !ok {
-		return nil, fmt.Errorf("the segment 'metadataName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "metadataName", *parsed)
 	}
 
 	return &id, nil

@@ -42,19 +42,19 @@ func ParseImageID(input string) (*ImageId, error) {
 	id := ImageId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.LocationName, ok = parsed.Parsed["locationName"]; !ok {
-		return nil, fmt.Errorf("the segment 'locationName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "locationName", *parsed)
 	}
 
 	if id.SharedGalleryName, ok = parsed.Parsed["sharedGalleryName"]; !ok {
-		return nil, fmt.Errorf("the segment 'sharedGalleryName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "sharedGalleryName", *parsed)
 	}
 
 	if id.ImageName, ok = parsed.Parsed["imageName"]; !ok {
-		return nil, fmt.Errorf("the segment 'imageName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "imageName", *parsed)
 	}
 
 	return &id, nil
@@ -73,19 +73,19 @@ func ParseImageIDInsensitively(input string) (*ImageId, error) {
 	id := ImageId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.LocationName, ok = parsed.Parsed["locationName"]; !ok {
-		return nil, fmt.Errorf("the segment 'locationName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "locationName", *parsed)
 	}
 
 	if id.SharedGalleryName, ok = parsed.Parsed["sharedGalleryName"]; !ok {
-		return nil, fmt.Errorf("the segment 'sharedGalleryName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "sharedGalleryName", *parsed)
 	}
 
 	if id.ImageName, ok = parsed.Parsed["imageName"]; !ok {
-		return nil, fmt.Errorf("the segment 'imageName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "imageName", *parsed)
 	}
 
 	return &id, nil

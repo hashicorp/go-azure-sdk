@@ -40,15 +40,15 @@ func ParseInvoiceID(input string) (*InvoiceId, error) {
 	id := InvoiceId{}
 
 	if id.BillingAccountName, ok = parsed.Parsed["billingAccountName"]; !ok {
-		return nil, fmt.Errorf("the segment 'billingAccountName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "billingAccountName", *parsed)
 	}
 
 	if id.BillingProfileName, ok = parsed.Parsed["billingProfileName"]; !ok {
-		return nil, fmt.Errorf("the segment 'billingProfileName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "billingProfileName", *parsed)
 	}
 
 	if id.InvoiceName, ok = parsed.Parsed["invoiceName"]; !ok {
-		return nil, fmt.Errorf("the segment 'invoiceName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "invoiceName", *parsed)
 	}
 
 	return &id, nil
@@ -67,15 +67,15 @@ func ParseInvoiceIDInsensitively(input string) (*InvoiceId, error) {
 	id := InvoiceId{}
 
 	if id.BillingAccountName, ok = parsed.Parsed["billingAccountName"]; !ok {
-		return nil, fmt.Errorf("the segment 'billingAccountName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "billingAccountName", *parsed)
 	}
 
 	if id.BillingProfileName, ok = parsed.Parsed["billingProfileName"]; !ok {
-		return nil, fmt.Errorf("the segment 'billingProfileName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "billingProfileName", *parsed)
 	}
 
 	if id.InvoiceName, ok = parsed.Parsed["invoiceName"]; !ok {
-		return nil, fmt.Errorf("the segment 'invoiceName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "invoiceName", *parsed)
 	}
 
 	return &id, nil

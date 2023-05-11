@@ -40,15 +40,15 @@ func ParseArtifactScopedID(input string) (*ArtifactScopedId, error) {
 	id := ArtifactScopedId{}
 
 	if id.ResourceScope, ok = parsed.Parsed["resourceScope"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceScope' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceScope", *parsed)
 	}
 
 	if id.BlueprintName, ok = parsed.Parsed["blueprintName"]; !ok {
-		return nil, fmt.Errorf("the segment 'blueprintName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "blueprintName", *parsed)
 	}
 
 	if id.ArtifactName, ok = parsed.Parsed["artifactName"]; !ok {
-		return nil, fmt.Errorf("the segment 'artifactName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "artifactName", *parsed)
 	}
 
 	return &id, nil
@@ -67,15 +67,15 @@ func ParseArtifactScopedIDInsensitively(input string) (*ArtifactScopedId, error)
 	id := ArtifactScopedId{}
 
 	if id.ResourceScope, ok = parsed.Parsed["resourceScope"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceScope' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceScope", *parsed)
 	}
 
 	if id.BlueprintName, ok = parsed.Parsed["blueprintName"]; !ok {
-		return nil, fmt.Errorf("the segment 'blueprintName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "blueprintName", *parsed)
 	}
 
 	if id.ArtifactName, ok = parsed.Parsed["artifactName"]; !ok {
-		return nil, fmt.Errorf("the segment 'artifactName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "artifactName", *parsed)
 	}
 
 	return &id, nil

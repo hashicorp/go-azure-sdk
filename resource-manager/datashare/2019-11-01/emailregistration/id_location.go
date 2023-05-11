@@ -36,7 +36,7 @@ func ParseLocationID(input string) (*LocationId, error) {
 	id := LocationId{}
 
 	if id.LocationName, ok = parsed.Parsed["locationName"]; !ok {
-		return nil, fmt.Errorf("the segment 'locationName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "locationName", *parsed)
 	}
 
 	return &id, nil
@@ -55,7 +55,7 @@ func ParseLocationIDInsensitively(input string) (*LocationId, error) {
 	id := LocationId{}
 
 	if id.LocationName, ok = parsed.Parsed["locationName"]; !ok {
-		return nil, fmt.Errorf("the segment 'locationName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "locationName", *parsed)
 	}
 
 	return &id, nil

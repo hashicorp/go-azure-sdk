@@ -42,19 +42,19 @@ func ParseOuContainerID(input string) (*OuContainerId, error) {
 	id := OuContainerId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.DomainServiceName, ok = parsed.Parsed["domainServiceName"]; !ok {
-		return nil, fmt.Errorf("the segment 'domainServiceName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "domainServiceName", *parsed)
 	}
 
 	if id.OuContainerName, ok = parsed.Parsed["ouContainerName"]; !ok {
-		return nil, fmt.Errorf("the segment 'ouContainerName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "ouContainerName", *parsed)
 	}
 
 	return &id, nil
@@ -73,19 +73,19 @@ func ParseOuContainerIDInsensitively(input string) (*OuContainerId, error) {
 	id := OuContainerId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.DomainServiceName, ok = parsed.Parsed["domainServiceName"]; !ok {
-		return nil, fmt.Errorf("the segment 'domainServiceName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "domainServiceName", *parsed)
 	}
 
 	if id.OuContainerName, ok = parsed.Parsed["ouContainerName"]; !ok {
-		return nil, fmt.Errorf("the segment 'ouContainerName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "ouContainerName", *parsed)
 	}
 
 	return &id, nil

@@ -44,23 +44,23 @@ func ParseRecoveryPointID(input string) (*RecoveryPointId, error) {
 	id := RecoveryPointId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.BackupVaultName, ok = parsed.Parsed["backupVaultName"]; !ok {
-		return nil, fmt.Errorf("the segment 'backupVaultName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "backupVaultName", *parsed)
 	}
 
 	if id.BackupInstanceName, ok = parsed.Parsed["backupInstanceName"]; !ok {
-		return nil, fmt.Errorf("the segment 'backupInstanceName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "backupInstanceName", *parsed)
 	}
 
 	if id.RecoveryPointId, ok = parsed.Parsed["recoveryPointId"]; !ok {
-		return nil, fmt.Errorf("the segment 'recoveryPointId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "recoveryPointId", *parsed)
 	}
 
 	return &id, nil
@@ -79,23 +79,23 @@ func ParseRecoveryPointIDInsensitively(input string) (*RecoveryPointId, error) {
 	id := RecoveryPointId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.BackupVaultName, ok = parsed.Parsed["backupVaultName"]; !ok {
-		return nil, fmt.Errorf("the segment 'backupVaultName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "backupVaultName", *parsed)
 	}
 
 	if id.BackupInstanceName, ok = parsed.Parsed["backupInstanceName"]; !ok {
-		return nil, fmt.Errorf("the segment 'backupInstanceName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "backupInstanceName", *parsed)
 	}
 
 	if id.RecoveryPointId, ok = parsed.Parsed["recoveryPointId"]; !ok {
-		return nil, fmt.Errorf("the segment 'recoveryPointId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "recoveryPointId", *parsed)
 	}
 
 	return &id, nil
