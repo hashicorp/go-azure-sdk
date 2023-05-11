@@ -42,19 +42,19 @@ func ParseScopeConnectionID(input string) (*ScopeConnectionId, error) {
 	id := ScopeConnectionId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.NetworkManagerName, ok = parsed.Parsed["networkManagerName"]; !ok {
-		return nil, fmt.Errorf("the segment 'networkManagerName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "networkManagerName", *parsed)
 	}
 
 	if id.ScopeConnectionName, ok = parsed.Parsed["scopeConnectionName"]; !ok {
-		return nil, fmt.Errorf("the segment 'scopeConnectionName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "scopeConnectionName", *parsed)
 	}
 
 	return &id, nil
@@ -73,19 +73,19 @@ func ParseScopeConnectionIDInsensitively(input string) (*ScopeConnectionId, erro
 	id := ScopeConnectionId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.NetworkManagerName, ok = parsed.Parsed["networkManagerName"]; !ok {
-		return nil, fmt.Errorf("the segment 'networkManagerName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "networkManagerName", *parsed)
 	}
 
 	if id.ScopeConnectionName, ok = parsed.Parsed["scopeConnectionName"]; !ok {
-		return nil, fmt.Errorf("the segment 'scopeConnectionName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "scopeConnectionName", *parsed)
 	}
 
 	return &id, nil

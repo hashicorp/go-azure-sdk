@@ -40,15 +40,15 @@ func ParseVirtualNetworkTapID(input string) (*VirtualNetworkTapId, error) {
 	id := VirtualNetworkTapId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.VirtualNetworkTapName, ok = parsed.Parsed["virtualNetworkTapName"]; !ok {
-		return nil, fmt.Errorf("the segment 'virtualNetworkTapName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "virtualNetworkTapName", *parsed)
 	}
 
 	return &id, nil
@@ -67,15 +67,15 @@ func ParseVirtualNetworkTapIDInsensitively(input string) (*VirtualNetworkTapId, 
 	id := VirtualNetworkTapId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.VirtualNetworkTapName, ok = parsed.Parsed["virtualNetworkTapName"]; !ok {
-		return nil, fmt.Errorf("the segment 'virtualNetworkTapName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "virtualNetworkTapName", *parsed)
 	}
 
 	return &id, nil

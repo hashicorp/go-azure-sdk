@@ -40,15 +40,15 @@ func ParseScopedSubAssessmentID(input string) (*ScopedSubAssessmentId, error) {
 	id := ScopedSubAssessmentId{}
 
 	if id.Scope, ok = parsed.Parsed["scope"]; !ok {
-		return nil, fmt.Errorf("the segment 'scope' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "scope", *parsed)
 	}
 
 	if id.AssessmentName, ok = parsed.Parsed["assessmentName"]; !ok {
-		return nil, fmt.Errorf("the segment 'assessmentName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "assessmentName", *parsed)
 	}
 
 	if id.SubAssessmentName, ok = parsed.Parsed["subAssessmentName"]; !ok {
-		return nil, fmt.Errorf("the segment 'subAssessmentName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subAssessmentName", *parsed)
 	}
 
 	return &id, nil
@@ -67,15 +67,15 @@ func ParseScopedSubAssessmentIDInsensitively(input string) (*ScopedSubAssessment
 	id := ScopedSubAssessmentId{}
 
 	if id.Scope, ok = parsed.Parsed["scope"]; !ok {
-		return nil, fmt.Errorf("the segment 'scope' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "scope", *parsed)
 	}
 
 	if id.AssessmentName, ok = parsed.Parsed["assessmentName"]; !ok {
-		return nil, fmt.Errorf("the segment 'assessmentName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "assessmentName", *parsed)
 	}
 
 	if id.SubAssessmentName, ok = parsed.Parsed["subAssessmentName"]; !ok {
-		return nil, fmt.Errorf("the segment 'subAssessmentName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subAssessmentName", *parsed)
 	}
 
 	return &id, nil

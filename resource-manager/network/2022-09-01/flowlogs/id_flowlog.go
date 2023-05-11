@@ -42,19 +42,19 @@ func ParseFlowLogID(input string) (*FlowLogId, error) {
 	id := FlowLogId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.NetworkWatcherName, ok = parsed.Parsed["networkWatcherName"]; !ok {
-		return nil, fmt.Errorf("the segment 'networkWatcherName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "networkWatcherName", *parsed)
 	}
 
 	if id.FlowLogName, ok = parsed.Parsed["flowLogName"]; !ok {
-		return nil, fmt.Errorf("the segment 'flowLogName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "flowLogName", *parsed)
 	}
 
 	return &id, nil
@@ -73,19 +73,19 @@ func ParseFlowLogIDInsensitively(input string) (*FlowLogId, error) {
 	id := FlowLogId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.NetworkWatcherName, ok = parsed.Parsed["networkWatcherName"]; !ok {
-		return nil, fmt.Errorf("the segment 'networkWatcherName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "networkWatcherName", *parsed)
 	}
 
 	if id.FlowLogName, ok = parsed.Parsed["flowLogName"]; !ok {
-		return nil, fmt.Errorf("the segment 'flowLogName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "flowLogName", *parsed)
 	}
 
 	return &id, nil

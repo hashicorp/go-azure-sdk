@@ -38,11 +38,11 @@ func ParseConfigurationAssignmentID(input string) (*ConfigurationAssignmentId, e
 	id := ConfigurationAssignmentId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ConfigurationAssignmentName, ok = parsed.Parsed["configurationAssignmentName"]; !ok {
-		return nil, fmt.Errorf("the segment 'configurationAssignmentName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "configurationAssignmentName", *parsed)
 	}
 
 	return &id, nil
@@ -61,11 +61,11 @@ func ParseConfigurationAssignmentIDInsensitively(input string) (*ConfigurationAs
 	id := ConfigurationAssignmentId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ConfigurationAssignmentName, ok = parsed.Parsed["configurationAssignmentName"]; !ok {
-		return nil, fmt.Errorf("the segment 'configurationAssignmentName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "configurationAssignmentName", *parsed)
 	}
 
 	return &id, nil

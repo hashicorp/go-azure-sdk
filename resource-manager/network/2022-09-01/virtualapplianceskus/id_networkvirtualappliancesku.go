@@ -38,11 +38,11 @@ func ParseNetworkVirtualApplianceSkuID(input string) (*NetworkVirtualApplianceSk
 	id := NetworkVirtualApplianceSkuId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.NetworkVirtualApplianceSkuName, ok = parsed.Parsed["networkVirtualApplianceSkuName"]; !ok {
-		return nil, fmt.Errorf("the segment 'networkVirtualApplianceSkuName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "networkVirtualApplianceSkuName", *parsed)
 	}
 
 	return &id, nil
@@ -61,11 +61,11 @@ func ParseNetworkVirtualApplianceSkuIDInsensitively(input string) (*NetworkVirtu
 	id := NetworkVirtualApplianceSkuId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.NetworkVirtualApplianceSkuName, ok = parsed.Parsed["networkVirtualApplianceSkuName"]; !ok {
-		return nil, fmt.Errorf("the segment 'networkVirtualApplianceSkuName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "networkVirtualApplianceSkuName", *parsed)
 	}
 
 	return &id, nil

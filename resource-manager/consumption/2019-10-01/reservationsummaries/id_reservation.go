@@ -38,11 +38,11 @@ func ParseReservationID(input string) (*ReservationId, error) {
 	id := ReservationId{}
 
 	if id.ReservationOrderId, ok = parsed.Parsed["reservationOrderId"]; !ok {
-		return nil, fmt.Errorf("the segment 'reservationOrderId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "reservationOrderId", *parsed)
 	}
 
 	if id.ReservationId, ok = parsed.Parsed["reservationId"]; !ok {
-		return nil, fmt.Errorf("the segment 'reservationId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "reservationId", *parsed)
 	}
 
 	return &id, nil
@@ -61,11 +61,11 @@ func ParseReservationIDInsensitively(input string) (*ReservationId, error) {
 	id := ReservationId{}
 
 	if id.ReservationOrderId, ok = parsed.Parsed["reservationOrderId"]; !ok {
-		return nil, fmt.Errorf("the segment 'reservationOrderId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "reservationOrderId", *parsed)
 	}
 
 	if id.ReservationId, ok = parsed.Parsed["reservationId"]; !ok {
-		return nil, fmt.Errorf("the segment 'reservationId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "reservationId", *parsed)
 	}
 
 	return &id, nil

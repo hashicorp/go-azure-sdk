@@ -40,15 +40,15 @@ func ParseConnectionGatewayID(input string) (*ConnectionGatewayId, error) {
 	id := ConnectionGatewayId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.ConnectionGatewayName, ok = parsed.Parsed["connectionGatewayName"]; !ok {
-		return nil, fmt.Errorf("the segment 'connectionGatewayName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "connectionGatewayName", *parsed)
 	}
 
 	return &id, nil
@@ -67,15 +67,15 @@ func ParseConnectionGatewayIDInsensitively(input string) (*ConnectionGatewayId, 
 	id := ConnectionGatewayId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.ConnectionGatewayName, ok = parsed.Parsed["connectionGatewayName"]; !ok {
-		return nil, fmt.Errorf("the segment 'connectionGatewayName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "connectionGatewayName", *parsed)
 	}
 
 	return &id, nil

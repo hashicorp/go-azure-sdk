@@ -40,15 +40,15 @@ func ParseScopedSuppressionID(input string) (*ScopedSuppressionId, error) {
 	id := ScopedSuppressionId{}
 
 	if id.ResourceUri, ok = parsed.Parsed["resourceUri"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceUri' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceUri", *parsed)
 	}
 
 	if id.RecommendationId, ok = parsed.Parsed["recommendationId"]; !ok {
-		return nil, fmt.Errorf("the segment 'recommendationId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "recommendationId", *parsed)
 	}
 
 	if id.SuppressionName, ok = parsed.Parsed["suppressionName"]; !ok {
-		return nil, fmt.Errorf("the segment 'suppressionName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "suppressionName", *parsed)
 	}
 
 	return &id, nil
@@ -67,15 +67,15 @@ func ParseScopedSuppressionIDInsensitively(input string) (*ScopedSuppressionId, 
 	id := ScopedSuppressionId{}
 
 	if id.ResourceUri, ok = parsed.Parsed["resourceUri"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceUri' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceUri", *parsed)
 	}
 
 	if id.RecommendationId, ok = parsed.Parsed["recommendationId"]; !ok {
-		return nil, fmt.Errorf("the segment 'recommendationId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "recommendationId", *parsed)
 	}
 
 	if id.SuppressionName, ok = parsed.Parsed["suppressionName"]; !ok {
-		return nil, fmt.Errorf("the segment 'suppressionName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "suppressionName", *parsed)
 	}
 
 	return &id, nil

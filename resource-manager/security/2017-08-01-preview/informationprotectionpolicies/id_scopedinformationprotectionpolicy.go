@@ -38,12 +38,12 @@ func ParseScopedInformationProtectionPolicyID(input string) (*ScopedInformationP
 	id := ScopedInformationProtectionPolicyId{}
 
 	if id.Scope, ok = parsed.Parsed["scope"]; !ok {
-		return nil, fmt.Errorf("the segment 'scope' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "scope", *parsed)
 	}
 
 	if v, ok := parsed.Parsed["informationProtectionPolicyName"]; true {
 		if !ok {
-			return nil, fmt.Errorf("the segment 'informationProtectionPolicyName' was not found in the resource id %q", input)
+			return nil, resourceids.NewSegmentNotSpecifiedError(id, "informationProtectionPolicyName", *parsed)
 		}
 
 		informationProtectionPolicyName, err := parseInformationProtectionPolicyName(v)
@@ -69,12 +69,12 @@ func ParseScopedInformationProtectionPolicyIDInsensitively(input string) (*Scope
 	id := ScopedInformationProtectionPolicyId{}
 
 	if id.Scope, ok = parsed.Parsed["scope"]; !ok {
-		return nil, fmt.Errorf("the segment 'scope' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "scope", *parsed)
 	}
 
 	if v, ok := parsed.Parsed["informationProtectionPolicyName"]; true {
 		if !ok {
-			return nil, fmt.Errorf("the segment 'informationProtectionPolicyName' was not found in the resource id %q", input)
+			return nil, resourceids.NewSegmentNotSpecifiedError(id, "informationProtectionPolicyName", *parsed)
 		}
 
 		informationProtectionPolicyName, err := parseInformationProtectionPolicyName(v)

@@ -38,11 +38,11 @@ func ParseProviders2PolicySetDefinitionID(input string) (*Providers2PolicySetDef
 	id := Providers2PolicySetDefinitionId{}
 
 	if id.ManagementGroupId, ok = parsed.Parsed["managementGroupId"]; !ok {
-		return nil, fmt.Errorf("the segment 'managementGroupId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "managementGroupId", *parsed)
 	}
 
 	if id.PolicySetDefinitionName, ok = parsed.Parsed["policySetDefinitionName"]; !ok {
-		return nil, fmt.Errorf("the segment 'policySetDefinitionName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "policySetDefinitionName", *parsed)
 	}
 
 	return &id, nil
@@ -61,11 +61,11 @@ func ParseProviders2PolicySetDefinitionIDInsensitively(input string) (*Providers
 	id := Providers2PolicySetDefinitionId{}
 
 	if id.ManagementGroupId, ok = parsed.Parsed["managementGroupId"]; !ok {
-		return nil, fmt.Errorf("the segment 'managementGroupId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "managementGroupId", *parsed)
 	}
 
 	if id.PolicySetDefinitionName, ok = parsed.Parsed["policySetDefinitionName"]; !ok {
-		return nil, fmt.Errorf("the segment 'policySetDefinitionName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "policySetDefinitionName", *parsed)
 	}
 
 	return &id, nil

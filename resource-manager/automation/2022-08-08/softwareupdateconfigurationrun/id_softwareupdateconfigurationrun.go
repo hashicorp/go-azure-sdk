@@ -42,19 +42,19 @@ func ParseSoftwareUpdateConfigurationRunID(input string) (*SoftwareUpdateConfigu
 	id := SoftwareUpdateConfigurationRunId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.AutomationAccountName, ok = parsed.Parsed["automationAccountName"]; !ok {
-		return nil, fmt.Errorf("the segment 'automationAccountName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "automationAccountName", *parsed)
 	}
 
 	if id.SoftwareUpdateConfigurationRunId, ok = parsed.Parsed["softwareUpdateConfigurationRunId"]; !ok {
-		return nil, fmt.Errorf("the segment 'softwareUpdateConfigurationRunId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "softwareUpdateConfigurationRunId", *parsed)
 	}
 
 	return &id, nil
@@ -73,19 +73,19 @@ func ParseSoftwareUpdateConfigurationRunIDInsensitively(input string) (*Software
 	id := SoftwareUpdateConfigurationRunId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.AutomationAccountName, ok = parsed.Parsed["automationAccountName"]; !ok {
-		return nil, fmt.Errorf("the segment 'automationAccountName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "automationAccountName", *parsed)
 	}
 
 	if id.SoftwareUpdateConfigurationRunId, ok = parsed.Parsed["softwareUpdateConfigurationRunId"]; !ok {
-		return nil, fmt.Errorf("the segment 'softwareUpdateConfigurationRunId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "softwareUpdateConfigurationRunId", *parsed)
 	}
 
 	return &id, nil

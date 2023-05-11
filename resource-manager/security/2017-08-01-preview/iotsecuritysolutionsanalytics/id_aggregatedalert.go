@@ -42,19 +42,19 @@ func ParseAggregatedAlertID(input string) (*AggregatedAlertId, error) {
 	id := AggregatedAlertId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.IotSecuritySolutionName, ok = parsed.Parsed["iotSecuritySolutionName"]; !ok {
-		return nil, fmt.Errorf("the segment 'iotSecuritySolutionName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "iotSecuritySolutionName", *parsed)
 	}
 
 	if id.AggregatedAlertName, ok = parsed.Parsed["aggregatedAlertName"]; !ok {
-		return nil, fmt.Errorf("the segment 'aggregatedAlertName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "aggregatedAlertName", *parsed)
 	}
 
 	return &id, nil
@@ -73,19 +73,19 @@ func ParseAggregatedAlertIDInsensitively(input string) (*AggregatedAlertId, erro
 	id := AggregatedAlertId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.IotSecuritySolutionName, ok = parsed.Parsed["iotSecuritySolutionName"]; !ok {
-		return nil, fmt.Errorf("the segment 'iotSecuritySolutionName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "iotSecuritySolutionName", *parsed)
 	}
 
 	if id.AggregatedAlertName, ok = parsed.Parsed["aggregatedAlertName"]; !ok {
-		return nil, fmt.Errorf("the segment 'aggregatedAlertName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "aggregatedAlertName", *parsed)
 	}
 
 	return &id, nil

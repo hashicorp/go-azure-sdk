@@ -38,12 +38,12 @@ func ParseSettingID(input string) (*SettingId, error) {
 	id := SettingId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if v, ok := parsed.Parsed["settingName"]; true {
 		if !ok {
-			return nil, fmt.Errorf("the segment 'settingName' was not found in the resource id %q", input)
+			return nil, resourceids.NewSegmentNotSpecifiedError(id, "settingName", *parsed)
 		}
 
 		settingName, err := parseSettingName(v)
@@ -69,12 +69,12 @@ func ParseSettingIDInsensitively(input string) (*SettingId, error) {
 	id := SettingId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if v, ok := parsed.Parsed["settingName"]; true {
 		if !ok {
-			return nil, fmt.Errorf("the segment 'settingName' was not found in the resource id %q", input)
+			return nil, resourceids.NewSegmentNotSpecifiedError(id, "settingName", *parsed)
 		}
 
 		settingName, err := parseSettingName(v)

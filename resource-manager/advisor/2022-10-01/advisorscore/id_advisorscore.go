@@ -38,11 +38,11 @@ func ParseAdvisorScoreID(input string) (*AdvisorScoreId, error) {
 	id := AdvisorScoreId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.AdvisorScoreName, ok = parsed.Parsed["advisorScoreName"]; !ok {
-		return nil, fmt.Errorf("the segment 'advisorScoreName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "advisorScoreName", *parsed)
 	}
 
 	return &id, nil
@@ -61,11 +61,11 @@ func ParseAdvisorScoreIDInsensitively(input string) (*AdvisorScoreId, error) {
 	id := AdvisorScoreId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.AdvisorScoreName, ok = parsed.Parsed["advisorScoreName"]; !ok {
-		return nil, fmt.Errorf("the segment 'advisorScoreName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "advisorScoreName", *parsed)
 	}
 
 	return &id, nil

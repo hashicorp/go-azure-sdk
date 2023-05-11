@@ -42,19 +42,19 @@ func ParseOfficeConsentID(input string) (*OfficeConsentId, error) {
 	id := OfficeConsentId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.WorkspaceName, ok = parsed.Parsed["workspaceName"]; !ok {
-		return nil, fmt.Errorf("the segment 'workspaceName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "workspaceName", *parsed)
 	}
 
 	if id.ConsentId, ok = parsed.Parsed["consentId"]; !ok {
-		return nil, fmt.Errorf("the segment 'consentId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "consentId", *parsed)
 	}
 
 	return &id, nil
@@ -73,19 +73,19 @@ func ParseOfficeConsentIDInsensitively(input string) (*OfficeConsentId, error) {
 	id := OfficeConsentId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.WorkspaceName, ok = parsed.Parsed["workspaceName"]; !ok {
-		return nil, fmt.Errorf("the segment 'workspaceName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "workspaceName", *parsed)
 	}
 
 	if id.ConsentId, ok = parsed.Parsed["consentId"]; !ok {
-		return nil, fmt.Errorf("the segment 'consentId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "consentId", *parsed)
 	}
 
 	return &id, nil

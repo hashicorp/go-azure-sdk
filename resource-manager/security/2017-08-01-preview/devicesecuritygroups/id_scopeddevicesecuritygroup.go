@@ -38,11 +38,11 @@ func ParseScopedDeviceSecurityGroupID(input string) (*ScopedDeviceSecurityGroupI
 	id := ScopedDeviceSecurityGroupId{}
 
 	if id.ResourceId, ok = parsed.Parsed["resourceId"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceId", *parsed)
 	}
 
 	if id.DeviceSecurityGroupName, ok = parsed.Parsed["deviceSecurityGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'deviceSecurityGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "deviceSecurityGroupName", *parsed)
 	}
 
 	return &id, nil
@@ -61,11 +61,11 @@ func ParseScopedDeviceSecurityGroupIDInsensitively(input string) (*ScopedDeviceS
 	id := ScopedDeviceSecurityGroupId{}
 
 	if id.ResourceId, ok = parsed.Parsed["resourceId"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceId", *parsed)
 	}
 
 	if id.DeviceSecurityGroupName, ok = parsed.Parsed["deviceSecurityGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'deviceSecurityGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "deviceSecurityGroupName", *parsed)
 	}
 
 	return &id, nil

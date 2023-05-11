@@ -38,11 +38,11 @@ func ParseScopedAlertID(input string) (*ScopedAlertId, error) {
 	id := ScopedAlertId{}
 
 	if id.Scope, ok = parsed.Parsed["scope"]; !ok {
-		return nil, fmt.Errorf("the segment 'scope' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "scope", *parsed)
 	}
 
 	if id.AlertId, ok = parsed.Parsed["alertId"]; !ok {
-		return nil, fmt.Errorf("the segment 'alertId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "alertId", *parsed)
 	}
 
 	return &id, nil
@@ -61,11 +61,11 @@ func ParseScopedAlertIDInsensitively(input string) (*ScopedAlertId, error) {
 	id := ScopedAlertId{}
 
 	if id.Scope, ok = parsed.Parsed["scope"]; !ok {
-		return nil, fmt.Errorf("the segment 'scope' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "scope", *parsed)
 	}
 
 	if id.AlertId, ok = parsed.Parsed["alertId"]; !ok {
-		return nil, fmt.Errorf("the segment 'alertId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "alertId", *parsed)
 	}
 
 	return &id, nil

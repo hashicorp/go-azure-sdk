@@ -44,23 +44,23 @@ func ParseTriggerRunID(input string) (*TriggerRunId, error) {
 	id := TriggerRunId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.FactoryName, ok = parsed.Parsed["factoryName"]; !ok {
-		return nil, fmt.Errorf("the segment 'factoryName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "factoryName", *parsed)
 	}
 
 	if id.TriggerName, ok = parsed.Parsed["triggerName"]; !ok {
-		return nil, fmt.Errorf("the segment 'triggerName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "triggerName", *parsed)
 	}
 
 	if id.RunId, ok = parsed.Parsed["runId"]; !ok {
-		return nil, fmt.Errorf("the segment 'runId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "runId", *parsed)
 	}
 
 	return &id, nil
@@ -79,23 +79,23 @@ func ParseTriggerRunIDInsensitively(input string) (*TriggerRunId, error) {
 	id := TriggerRunId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.FactoryName, ok = parsed.Parsed["factoryName"]; !ok {
-		return nil, fmt.Errorf("the segment 'factoryName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "factoryName", *parsed)
 	}
 
 	if id.TriggerName, ok = parsed.Parsed["triggerName"]; !ok {
-		return nil, fmt.Errorf("the segment 'triggerName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "triggerName", *parsed)
 	}
 
 	if id.RunId, ok = parsed.Parsed["runId"]; !ok {
-		return nil, fmt.Errorf("the segment 'runId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "runId", *parsed)
 	}
 
 	return &id, nil

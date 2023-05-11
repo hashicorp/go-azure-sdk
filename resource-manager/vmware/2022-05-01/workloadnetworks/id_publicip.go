@@ -42,19 +42,19 @@ func ParsePublicIPID(input string) (*PublicIPId, error) {
 	id := PublicIPId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.PrivateCloudName, ok = parsed.Parsed["privateCloudName"]; !ok {
-		return nil, fmt.Errorf("the segment 'privateCloudName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "privateCloudName", *parsed)
 	}
 
 	if id.PublicIPId, ok = parsed.Parsed["publicIPId"]; !ok {
-		return nil, fmt.Errorf("the segment 'publicIPId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "publicIPId", *parsed)
 	}
 
 	return &id, nil
@@ -73,19 +73,19 @@ func ParsePublicIPIDInsensitively(input string) (*PublicIPId, error) {
 	id := PublicIPId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.PrivateCloudName, ok = parsed.Parsed["privateCloudName"]; !ok {
-		return nil, fmt.Errorf("the segment 'privateCloudName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "privateCloudName", *parsed)
 	}
 
 	if id.PublicIPId, ok = parsed.Parsed["publicIPId"]; !ok {
-		return nil, fmt.Errorf("the segment 'publicIPId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "publicIPId", *parsed)
 	}
 
 	return &id, nil

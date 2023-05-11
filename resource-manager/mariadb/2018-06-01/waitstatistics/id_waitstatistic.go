@@ -42,19 +42,19 @@ func ParseWaitStatisticID(input string) (*WaitStatisticId, error) {
 	id := WaitStatisticId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.ServerName, ok = parsed.Parsed["serverName"]; !ok {
-		return nil, fmt.Errorf("the segment 'serverName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "serverName", *parsed)
 	}
 
 	if id.WaitStatisticsId, ok = parsed.Parsed["waitStatisticsId"]; !ok {
-		return nil, fmt.Errorf("the segment 'waitStatisticsId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "waitStatisticsId", *parsed)
 	}
 
 	return &id, nil
@@ -73,19 +73,19 @@ func ParseWaitStatisticIDInsensitively(input string) (*WaitStatisticId, error) {
 	id := WaitStatisticId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.ServerName, ok = parsed.Parsed["serverName"]; !ok {
-		return nil, fmt.Errorf("the segment 'serverName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "serverName", *parsed)
 	}
 
 	if id.WaitStatisticsId, ok = parsed.Parsed["waitStatisticsId"]; !ok {
-		return nil, fmt.Errorf("the segment 'waitStatisticsId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "waitStatisticsId", *parsed)
 	}
 
 	return &id, nil

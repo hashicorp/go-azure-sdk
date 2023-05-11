@@ -36,7 +36,7 @@ func ParsePacketCoreControlPlaneVersionID(input string) (*PacketCoreControlPlane
 	id := PacketCoreControlPlaneVersionId{}
 
 	if id.PacketCoreControlPlaneVersionName, ok = parsed.Parsed["packetCoreControlPlaneVersionName"]; !ok {
-		return nil, fmt.Errorf("the segment 'packetCoreControlPlaneVersionName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "packetCoreControlPlaneVersionName", *parsed)
 	}
 
 	return &id, nil
@@ -55,7 +55,7 @@ func ParsePacketCoreControlPlaneVersionIDInsensitively(input string) (*PacketCor
 	id := PacketCoreControlPlaneVersionId{}
 
 	if id.PacketCoreControlPlaneVersionName, ok = parsed.Parsed["packetCoreControlPlaneVersionName"]; !ok {
-		return nil, fmt.Errorf("the segment 'packetCoreControlPlaneVersionName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "packetCoreControlPlaneVersionName", *parsed)
 	}
 
 	return &id, nil

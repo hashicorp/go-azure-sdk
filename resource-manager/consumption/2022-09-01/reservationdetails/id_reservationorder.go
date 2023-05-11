@@ -36,7 +36,7 @@ func ParseReservationOrderID(input string) (*ReservationOrderId, error) {
 	id := ReservationOrderId{}
 
 	if id.ReservationOrderId, ok = parsed.Parsed["reservationOrderId"]; !ok {
-		return nil, fmt.Errorf("the segment 'reservationOrderId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "reservationOrderId", *parsed)
 	}
 
 	return &id, nil
@@ -55,7 +55,7 @@ func ParseReservationOrderIDInsensitively(input string) (*ReservationOrderId, er
 	id := ReservationOrderId{}
 
 	if id.ReservationOrderId, ok = parsed.Parsed["reservationOrderId"]; !ok {
-		return nil, fmt.Errorf("the segment 'reservationOrderId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "reservationOrderId", *parsed)
 	}
 
 	return &id, nil

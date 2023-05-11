@@ -42,19 +42,19 @@ func ParseNotificationChannelID(input string) (*NotificationChannelId, error) {
 	id := NotificationChannelId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.LabName, ok = parsed.Parsed["labName"]; !ok {
-		return nil, fmt.Errorf("the segment 'labName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "labName", *parsed)
 	}
 
 	if id.NotificationChannelName, ok = parsed.Parsed["notificationChannelName"]; !ok {
-		return nil, fmt.Errorf("the segment 'notificationChannelName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "notificationChannelName", *parsed)
 	}
 
 	return &id, nil
@@ -73,19 +73,19 @@ func ParseNotificationChannelIDInsensitively(input string) (*NotificationChannel
 	id := NotificationChannelId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.LabName, ok = parsed.Parsed["labName"]; !ok {
-		return nil, fmt.Errorf("the segment 'labName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "labName", *parsed)
 	}
 
 	if id.NotificationChannelName, ok = parsed.Parsed["notificationChannelName"]; !ok {
-		return nil, fmt.Errorf("the segment 'notificationChannelName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "notificationChannelName", *parsed)
 	}
 
 	return &id, nil

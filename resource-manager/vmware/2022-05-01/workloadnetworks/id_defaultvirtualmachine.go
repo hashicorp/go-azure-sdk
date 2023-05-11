@@ -42,19 +42,19 @@ func ParseDefaultVirtualMachineID(input string) (*DefaultVirtualMachineId, error
 	id := DefaultVirtualMachineId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.PrivateCloudName, ok = parsed.Parsed["privateCloudName"]; !ok {
-		return nil, fmt.Errorf("the segment 'privateCloudName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "privateCloudName", *parsed)
 	}
 
 	if id.VirtualMachineId, ok = parsed.Parsed["virtualMachineId"]; !ok {
-		return nil, fmt.Errorf("the segment 'virtualMachineId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "virtualMachineId", *parsed)
 	}
 
 	return &id, nil
@@ -73,19 +73,19 @@ func ParseDefaultVirtualMachineIDInsensitively(input string) (*DefaultVirtualMac
 	id := DefaultVirtualMachineId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.PrivateCloudName, ok = parsed.Parsed["privateCloudName"]; !ok {
-		return nil, fmt.Errorf("the segment 'privateCloudName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "privateCloudName", *parsed)
 	}
 
 	if id.VirtualMachineId, ok = parsed.Parsed["virtualMachineId"]; !ok {
-		return nil, fmt.Errorf("the segment 'virtualMachineId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "virtualMachineId", *parsed)
 	}
 
 	return &id, nil

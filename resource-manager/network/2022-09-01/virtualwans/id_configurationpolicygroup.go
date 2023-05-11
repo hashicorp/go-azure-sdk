@@ -42,19 +42,19 @@ func ParseConfigurationPolicyGroupID(input string) (*ConfigurationPolicyGroupId,
 	id := ConfigurationPolicyGroupId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.VpnServerConfigurationName, ok = parsed.Parsed["vpnServerConfigurationName"]; !ok {
-		return nil, fmt.Errorf("the segment 'vpnServerConfigurationName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "vpnServerConfigurationName", *parsed)
 	}
 
 	if id.ConfigurationPolicyGroupName, ok = parsed.Parsed["configurationPolicyGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'configurationPolicyGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "configurationPolicyGroupName", *parsed)
 	}
 
 	return &id, nil
@@ -73,19 +73,19 @@ func ParseConfigurationPolicyGroupIDInsensitively(input string) (*ConfigurationP
 	id := ConfigurationPolicyGroupId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.VpnServerConfigurationName, ok = parsed.Parsed["vpnServerConfigurationName"]; !ok {
-		return nil, fmt.Errorf("the segment 'vpnServerConfigurationName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "vpnServerConfigurationName", *parsed)
 	}
 
 	if id.ConfigurationPolicyGroupName, ok = parsed.Parsed["configurationPolicyGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'configurationPolicyGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "configurationPolicyGroupName", *parsed)
 	}
 
 	return &id, nil

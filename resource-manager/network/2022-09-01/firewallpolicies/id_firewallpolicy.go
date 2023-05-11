@@ -40,15 +40,15 @@ func ParseFirewallPolicyID(input string) (*FirewallPolicyId, error) {
 	id := FirewallPolicyId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.FirewallPolicyName, ok = parsed.Parsed["firewallPolicyName"]; !ok {
-		return nil, fmt.Errorf("the segment 'firewallPolicyName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "firewallPolicyName", *parsed)
 	}
 
 	return &id, nil
@@ -67,15 +67,15 @@ func ParseFirewallPolicyIDInsensitively(input string) (*FirewallPolicyId, error)
 	id := FirewallPolicyId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.FirewallPolicyName, ok = parsed.Parsed["firewallPolicyName"]; !ok {
-		return nil, fmt.Errorf("the segment 'firewallPolicyName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "firewallPolicyName", *parsed)
 	}
 
 	return &id, nil

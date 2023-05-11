@@ -40,15 +40,15 @@ func ParseVirtualNetworkGatewayID(input string) (*VirtualNetworkGatewayId, error
 	id := VirtualNetworkGatewayId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.VirtualNetworkGatewayName, ok = parsed.Parsed["virtualNetworkGatewayName"]; !ok {
-		return nil, fmt.Errorf("the segment 'virtualNetworkGatewayName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "virtualNetworkGatewayName", *parsed)
 	}
 
 	return &id, nil
@@ -67,15 +67,15 @@ func ParseVirtualNetworkGatewayIDInsensitively(input string) (*VirtualNetworkGat
 	id := VirtualNetworkGatewayId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.VirtualNetworkGatewayName, ok = parsed.Parsed["virtualNetworkGatewayName"]; !ok {
-		return nil, fmt.Errorf("the segment 'virtualNetworkGatewayName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "virtualNetworkGatewayName", *parsed)
 	}
 
 	return &id, nil

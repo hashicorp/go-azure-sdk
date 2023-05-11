@@ -38,11 +38,11 @@ func ParseScopedRoleManagementPolicyID(input string) (*ScopedRoleManagementPolic
 	id := ScopedRoleManagementPolicyId{}
 
 	if id.Scope, ok = parsed.Parsed["scope"]; !ok {
-		return nil, fmt.Errorf("the segment 'scope' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "scope", *parsed)
 	}
 
 	if id.RoleManagementPolicyName, ok = parsed.Parsed["roleManagementPolicyName"]; !ok {
-		return nil, fmt.Errorf("the segment 'roleManagementPolicyName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "roleManagementPolicyName", *parsed)
 	}
 
 	return &id, nil
@@ -61,11 +61,11 @@ func ParseScopedRoleManagementPolicyIDInsensitively(input string) (*ScopedRoleMa
 	id := ScopedRoleManagementPolicyId{}
 
 	if id.Scope, ok = parsed.Parsed["scope"]; !ok {
-		return nil, fmt.Errorf("the segment 'scope' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "scope", *parsed)
 	}
 
 	if id.RoleManagementPolicyName, ok = parsed.Parsed["roleManagementPolicyName"]; !ok {
-		return nil, fmt.Errorf("the segment 'roleManagementPolicyName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "roleManagementPolicyName", *parsed)
 	}
 
 	return &id, nil

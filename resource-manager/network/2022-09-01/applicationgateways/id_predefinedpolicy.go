@@ -38,11 +38,11 @@ func ParsePredefinedPolicyID(input string) (*PredefinedPolicyId, error) {
 	id := PredefinedPolicyId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.PredefinedPolicyName, ok = parsed.Parsed["predefinedPolicyName"]; !ok {
-		return nil, fmt.Errorf("the segment 'predefinedPolicyName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "predefinedPolicyName", *parsed)
 	}
 
 	return &id, nil
@@ -61,11 +61,11 @@ func ParsePredefinedPolicyIDInsensitively(input string) (*PredefinedPolicyId, er
 	id := PredefinedPolicyId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.PredefinedPolicyName, ok = parsed.Parsed["predefinedPolicyName"]; !ok {
-		return nil, fmt.Errorf("the segment 'predefinedPolicyName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "predefinedPolicyName", *parsed)
 	}
 
 	return &id, nil

@@ -38,11 +38,11 @@ func ParseAlertsSuppressionRuleID(input string) (*AlertsSuppressionRuleId, error
 	id := AlertsSuppressionRuleId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.AlertsSuppressionRuleName, ok = parsed.Parsed["alertsSuppressionRuleName"]; !ok {
-		return nil, fmt.Errorf("the segment 'alertsSuppressionRuleName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "alertsSuppressionRuleName", *parsed)
 	}
 
 	return &id, nil
@@ -61,11 +61,11 @@ func ParseAlertsSuppressionRuleIDInsensitively(input string) (*AlertsSuppression
 	id := AlertsSuppressionRuleId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.AlertsSuppressionRuleName, ok = parsed.Parsed["alertsSuppressionRuleName"]; !ok {
-		return nil, fmt.Errorf("the segment 'alertsSuppressionRuleName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "alertsSuppressionRuleName", *parsed)
 	}
 
 	return &id, nil

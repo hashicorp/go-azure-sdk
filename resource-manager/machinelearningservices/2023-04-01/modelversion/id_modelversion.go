@@ -44,23 +44,23 @@ func ParseModelVersionID(input string) (*ModelVersionId, error) {
 	id := ModelVersionId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.WorkspaceName, ok = parsed.Parsed["workspaceName"]; !ok {
-		return nil, fmt.Errorf("the segment 'workspaceName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "workspaceName", *parsed)
 	}
 
 	if id.ModelName, ok = parsed.Parsed["modelName"]; !ok {
-		return nil, fmt.Errorf("the segment 'modelName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "modelName", *parsed)
 	}
 
 	if id.VersionName, ok = parsed.Parsed["versionName"]; !ok {
-		return nil, fmt.Errorf("the segment 'versionName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "versionName", *parsed)
 	}
 
 	return &id, nil
@@ -79,23 +79,23 @@ func ParseModelVersionIDInsensitively(input string) (*ModelVersionId, error) {
 	id := ModelVersionId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.WorkspaceName, ok = parsed.Parsed["workspaceName"]; !ok {
-		return nil, fmt.Errorf("the segment 'workspaceName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "workspaceName", *parsed)
 	}
 
 	if id.ModelName, ok = parsed.Parsed["modelName"]; !ok {
-		return nil, fmt.Errorf("the segment 'modelName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "modelName", *parsed)
 	}
 
 	if id.VersionName, ok = parsed.Parsed["versionName"]; !ok {
-		return nil, fmt.Errorf("the segment 'versionName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "versionName", *parsed)
 	}
 
 	return &id, nil

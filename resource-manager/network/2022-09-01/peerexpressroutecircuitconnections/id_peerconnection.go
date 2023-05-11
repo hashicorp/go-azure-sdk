@@ -44,23 +44,23 @@ func ParsePeerConnectionID(input string) (*PeerConnectionId, error) {
 	id := PeerConnectionId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.ExpressRouteCircuitName, ok = parsed.Parsed["expressRouteCircuitName"]; !ok {
-		return nil, fmt.Errorf("the segment 'expressRouteCircuitName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "expressRouteCircuitName", *parsed)
 	}
 
 	if id.PeeringName, ok = parsed.Parsed["peeringName"]; !ok {
-		return nil, fmt.Errorf("the segment 'peeringName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "peeringName", *parsed)
 	}
 
 	if id.PeerConnectionName, ok = parsed.Parsed["peerConnectionName"]; !ok {
-		return nil, fmt.Errorf("the segment 'peerConnectionName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "peerConnectionName", *parsed)
 	}
 
 	return &id, nil
@@ -79,23 +79,23 @@ func ParsePeerConnectionIDInsensitively(input string) (*PeerConnectionId, error)
 	id := PeerConnectionId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.ExpressRouteCircuitName, ok = parsed.Parsed["expressRouteCircuitName"]; !ok {
-		return nil, fmt.Errorf("the segment 'expressRouteCircuitName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "expressRouteCircuitName", *parsed)
 	}
 
 	if id.PeeringName, ok = parsed.Parsed["peeringName"]; !ok {
-		return nil, fmt.Errorf("the segment 'peeringName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "peeringName", *parsed)
 	}
 
 	if id.PeerConnectionName, ok = parsed.Parsed["peerConnectionName"]; !ok {
-		return nil, fmt.Errorf("the segment 'peerConnectionName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "peerConnectionName", *parsed)
 	}
 
 	return &id, nil

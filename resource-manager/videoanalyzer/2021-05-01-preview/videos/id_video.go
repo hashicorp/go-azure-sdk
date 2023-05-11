@@ -42,19 +42,19 @@ func ParseVideoID(input string) (*VideoId, error) {
 	id := VideoId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.VideoAnalyzerName, ok = parsed.Parsed["videoAnalyzerName"]; !ok {
-		return nil, fmt.Errorf("the segment 'videoAnalyzerName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "videoAnalyzerName", *parsed)
 	}
 
 	if id.VideoName, ok = parsed.Parsed["videoName"]; !ok {
-		return nil, fmt.Errorf("the segment 'videoName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "videoName", *parsed)
 	}
 
 	return &id, nil
@@ -73,19 +73,19 @@ func ParseVideoIDInsensitively(input string) (*VideoId, error) {
 	id := VideoId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.VideoAnalyzerName, ok = parsed.Parsed["videoAnalyzerName"]; !ok {
-		return nil, fmt.Errorf("the segment 'videoAnalyzerName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "videoAnalyzerName", *parsed)
 	}
 
 	if id.VideoName, ok = parsed.Parsed["videoName"]; !ok {
-		return nil, fmt.Errorf("the segment 'videoName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "videoName", *parsed)
 	}
 
 	return &id, nil

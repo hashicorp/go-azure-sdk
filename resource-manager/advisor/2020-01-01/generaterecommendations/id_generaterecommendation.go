@@ -38,11 +38,11 @@ func ParseGenerateRecommendationID(input string) (*GenerateRecommendationId, err
 	id := GenerateRecommendationId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.OperationId, ok = parsed.Parsed["operationId"]; !ok {
-		return nil, fmt.Errorf("the segment 'operationId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "operationId", *parsed)
 	}
 
 	return &id, nil
@@ -61,11 +61,11 @@ func ParseGenerateRecommendationIDInsensitively(input string) (*GenerateRecommen
 	id := GenerateRecommendationId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.OperationId, ok = parsed.Parsed["operationId"]; !ok {
-		return nil, fmt.Errorf("the segment 'operationId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "operationId", *parsed)
 	}
 
 	return &id, nil

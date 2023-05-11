@@ -42,19 +42,19 @@ func ParsePacketCoreDataPlaneID(input string) (*PacketCoreDataPlaneId, error) {
 	id := PacketCoreDataPlaneId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.PacketCoreControlPlaneName, ok = parsed.Parsed["packetCoreControlPlaneName"]; !ok {
-		return nil, fmt.Errorf("the segment 'packetCoreControlPlaneName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "packetCoreControlPlaneName", *parsed)
 	}
 
 	if id.PacketCoreDataPlaneName, ok = parsed.Parsed["packetCoreDataPlaneName"]; !ok {
-		return nil, fmt.Errorf("the segment 'packetCoreDataPlaneName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "packetCoreDataPlaneName", *parsed)
 	}
 
 	return &id, nil
@@ -73,19 +73,19 @@ func ParsePacketCoreDataPlaneIDInsensitively(input string) (*PacketCoreDataPlane
 	id := PacketCoreDataPlaneId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.PacketCoreControlPlaneName, ok = parsed.Parsed["packetCoreControlPlaneName"]; !ok {
-		return nil, fmt.Errorf("the segment 'packetCoreControlPlaneName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "packetCoreControlPlaneName", *parsed)
 	}
 
 	if id.PacketCoreDataPlaneName, ok = parsed.Parsed["packetCoreDataPlaneName"]; !ok {
-		return nil, fmt.Errorf("the segment 'packetCoreDataPlaneName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "packetCoreDataPlaneName", *parsed)
 	}
 
 	return &id, nil

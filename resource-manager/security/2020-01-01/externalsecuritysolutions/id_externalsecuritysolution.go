@@ -42,19 +42,19 @@ func ParseExternalSecuritySolutionID(input string) (*ExternalSecuritySolutionId,
 	id := ExternalSecuritySolutionId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.LocationName, ok = parsed.Parsed["locationName"]; !ok {
-		return nil, fmt.Errorf("the segment 'locationName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "locationName", *parsed)
 	}
 
 	if id.ExternalSecuritySolutionName, ok = parsed.Parsed["externalSecuritySolutionName"]; !ok {
-		return nil, fmt.Errorf("the segment 'externalSecuritySolutionName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "externalSecuritySolutionName", *parsed)
 	}
 
 	return &id, nil
@@ -73,19 +73,19 @@ func ParseExternalSecuritySolutionIDInsensitively(input string) (*ExternalSecuri
 	id := ExternalSecuritySolutionId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.LocationName, ok = parsed.Parsed["locationName"]; !ok {
-		return nil, fmt.Errorf("the segment 'locationName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "locationName", *parsed)
 	}
 
 	if id.ExternalSecuritySolutionName, ok = parsed.Parsed["externalSecuritySolutionName"]; !ok {
-		return nil, fmt.Errorf("the segment 'externalSecuritySolutionName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "externalSecuritySolutionName", *parsed)
 	}
 
 	return &id, nil

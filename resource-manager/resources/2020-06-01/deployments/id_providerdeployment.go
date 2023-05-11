@@ -38,11 +38,11 @@ func ParseProviderDeploymentID(input string) (*ProviderDeploymentId, error) {
 	id := ProviderDeploymentId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.DeploymentName, ok = parsed.Parsed["deploymentName"]; !ok {
-		return nil, fmt.Errorf("the segment 'deploymentName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "deploymentName", *parsed)
 	}
 
 	return &id, nil
@@ -61,11 +61,11 @@ func ParseProviderDeploymentIDInsensitively(input string) (*ProviderDeploymentId
 	id := ProviderDeploymentId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.DeploymentName, ok = parsed.Parsed["deploymentName"]; !ok {
-		return nil, fmt.Errorf("the segment 'deploymentName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "deploymentName", *parsed)
 	}
 
 	return &id, nil

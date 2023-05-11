@@ -42,19 +42,19 @@ func ParseOpenidConnectProviderID(input string) (*OpenidConnectProviderId, error
 	id := OpenidConnectProviderId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.ServiceName, ok = parsed.Parsed["serviceName"]; !ok {
-		return nil, fmt.Errorf("the segment 'serviceName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "serviceName", *parsed)
 	}
 
 	if id.OpenidConnectProviderName, ok = parsed.Parsed["openidConnectProviderName"]; !ok {
-		return nil, fmt.Errorf("the segment 'openidConnectProviderName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "openidConnectProviderName", *parsed)
 	}
 
 	return &id, nil
@@ -73,19 +73,19 @@ func ParseOpenidConnectProviderIDInsensitively(input string) (*OpenidConnectProv
 	id := OpenidConnectProviderId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.ServiceName, ok = parsed.Parsed["serviceName"]; !ok {
-		return nil, fmt.Errorf("the segment 'serviceName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "serviceName", *parsed)
 	}
 
 	if id.OpenidConnectProviderName, ok = parsed.Parsed["openidConnectProviderName"]; !ok {
-		return nil, fmt.Errorf("the segment 'openidConnectProviderName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "openidConnectProviderName", *parsed)
 	}
 
 	return &id, nil

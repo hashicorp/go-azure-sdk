@@ -40,15 +40,15 @@ func ParseDscpConfigurationID(input string) (*DscpConfigurationId, error) {
 	id := DscpConfigurationId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.DscpConfigurationName, ok = parsed.Parsed["dscpConfigurationName"]; !ok {
-		return nil, fmt.Errorf("the segment 'dscpConfigurationName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "dscpConfigurationName", *parsed)
 	}
 
 	return &id, nil
@@ -67,15 +67,15 @@ func ParseDscpConfigurationIDInsensitively(input string) (*DscpConfigurationId, 
 	id := DscpConfigurationId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, fmt.Errorf("the segment 'resourceGroupName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
 	if id.DscpConfigurationName, ok = parsed.Parsed["dscpConfigurationName"]; !ok {
-		return nil, fmt.Errorf("the segment 'dscpConfigurationName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "dscpConfigurationName", *parsed)
 	}
 
 	return &id, nil

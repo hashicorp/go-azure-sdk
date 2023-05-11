@@ -39,7 +39,7 @@ func ParseExternalCloudProviderTypeID(input string) (*ExternalCloudProviderTypeI
 
 	if v, ok := parsed.Parsed["externalCloudProviderType"]; true {
 		if !ok {
-			return nil, fmt.Errorf("the segment 'externalCloudProviderType' was not found in the resource id %q", input)
+			return nil, resourceids.NewSegmentNotSpecifiedError(id, "externalCloudProviderType", *parsed)
 		}
 
 		externalCloudProviderType, err := parseExternalCloudProviderType(v)
@@ -50,7 +50,7 @@ func ParseExternalCloudProviderTypeID(input string) (*ExternalCloudProviderTypeI
 	}
 
 	if id.ExternalCloudProviderId, ok = parsed.Parsed["externalCloudProviderId"]; !ok {
-		return nil, fmt.Errorf("the segment 'externalCloudProviderId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "externalCloudProviderId", *parsed)
 	}
 
 	return &id, nil
@@ -70,7 +70,7 @@ func ParseExternalCloudProviderTypeIDInsensitively(input string) (*ExternalCloud
 
 	if v, ok := parsed.Parsed["externalCloudProviderType"]; true {
 		if !ok {
-			return nil, fmt.Errorf("the segment 'externalCloudProviderType' was not found in the resource id %q", input)
+			return nil, resourceids.NewSegmentNotSpecifiedError(id, "externalCloudProviderType", *parsed)
 		}
 
 		externalCloudProviderType, err := parseExternalCloudProviderType(v)
@@ -81,7 +81,7 @@ func ParseExternalCloudProviderTypeIDInsensitively(input string) (*ExternalCloud
 	}
 
 	if id.ExternalCloudProviderId, ok = parsed.Parsed["externalCloudProviderId"]; !ok {
-		return nil, fmt.Errorf("the segment 'externalCloudProviderId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "externalCloudProviderId", *parsed)
 	}
 
 	return &id, nil

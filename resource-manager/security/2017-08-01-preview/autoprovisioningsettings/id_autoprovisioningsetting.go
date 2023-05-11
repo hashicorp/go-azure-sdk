@@ -38,11 +38,11 @@ func ParseAutoProvisioningSettingID(input string) (*AutoProvisioningSettingId, e
 	id := AutoProvisioningSettingId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.AutoProvisioningSettingName, ok = parsed.Parsed["autoProvisioningSettingName"]; !ok {
-		return nil, fmt.Errorf("the segment 'autoProvisioningSettingName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "autoProvisioningSettingName", *parsed)
 	}
 
 	return &id, nil
@@ -61,11 +61,11 @@ func ParseAutoProvisioningSettingIDInsensitively(input string) (*AutoProvisionin
 	id := AutoProvisioningSettingId{}
 
 	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, fmt.Errorf("the segment 'subscriptionId' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
 	}
 
 	if id.AutoProvisioningSettingName, ok = parsed.Parsed["autoProvisioningSettingName"]; !ok {
-		return nil, fmt.Errorf("the segment 'autoProvisioningSettingName' was not found in the resource id %q", input)
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "autoProvisioningSettingName", *parsed)
 	}
 
 	return &id, nil
