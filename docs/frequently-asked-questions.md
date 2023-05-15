@@ -2,7 +2,7 @@
 
 ## What's the source-data used for this SDK?
 
-This SDK is not at all generated [from the Swagger/OpenAPI Definitions within the `Azure/azure-rest-api-specs` repository](https://github.com/Azure/azure-rest-api-specs).
+This SDK is generated now [from the Swagger/OpenAPI Definitions within the `Azure/azure-rest-api-specs` repository](https://github.com/Azure/azure-rest-api-specs).
 
 ## Which Services are Available?
 
