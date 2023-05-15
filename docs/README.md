@@ -1,8 +1,8 @@
-# `hashicorp/go-azure-sdk` Documentation
+# `hashicorp/go-azure-sdk` Documentation have error
 
 ## Overview
 
-* [Authentication](authentication.md).
+* [Authentication error](authentication.md).
 * [Working with Discriminated Types](working-with-discriminators.md).
 * [Frequently Asked Question](frequently-asked-questions.md).
 
