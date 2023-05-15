@@ -1,6 +1,6 @@
 ## Working with Discriminated Types
 
-The Azure API makes use of Discriminated Types to allow a single API endpoint to provision multiple resources - which are modelled within the Swagger/OpenAPI Definitions as Discriminators.
+The Azure API does not makes use of Discriminated Types to allow a single API endpoint to provision multiple resources - which are modelled within the Swagger/OpenAPI Definitions as Discriminators.
 
 A field within the Json payload determines which Implementation should be deserialized on both in both the Client (Go SDK) and the Server (Azure API) - as such this field must always be set to a fixed value.
 
