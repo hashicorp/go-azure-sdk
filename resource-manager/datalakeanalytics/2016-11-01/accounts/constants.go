@@ -1,6 +1,10 @@
 package accounts
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -19,6 +23,19 @@ func PossibleValuesForAADObjectType() []string {
 		string(AADObjectTypeServicePrincipal),
 		string(AADObjectTypeUser),
 	}
+}
+
+func (s *AADObjectType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseAADObjectType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseAADObjectType(input string) (*AADObjectType, error) {
@@ -48,6 +65,19 @@ func PossibleValuesForDataLakeAnalyticsAccountState() []string {
 		string(DataLakeAnalyticsAccountStateActive),
 		string(DataLakeAnalyticsAccountStateSuspended),
 	}
+}
+
+func (s *DataLakeAnalyticsAccountState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseDataLakeAnalyticsAccountState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseDataLakeAnalyticsAccountState(input string) (*DataLakeAnalyticsAccountState, error) {
@@ -96,6 +126,19 @@ func PossibleValuesForDataLakeAnalyticsAccountStatus() []string {
 	}
 }
 
+func (s *DataLakeAnalyticsAccountStatus) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseDataLakeAnalyticsAccountStatus(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseDataLakeAnalyticsAccountStatus(input string) (*DataLakeAnalyticsAccountStatus, error) {
 	vals := map[string]DataLakeAnalyticsAccountStatus{
 		"canceled":   DataLakeAnalyticsAccountStatusCanceled,
@@ -135,6 +178,19 @@ func PossibleValuesForDebugDataAccessLevel() []string {
 	}
 }
 
+func (s *DebugDataAccessLevel) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseDebugDataAccessLevel(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseDebugDataAccessLevel(input string) (*DebugDataAccessLevel, error) {
 	vals := map[string]DebugDataAccessLevel{
 		"all":      DebugDataAccessLevelAll,
@@ -162,6 +218,19 @@ func PossibleValuesForFirewallAllowAzureIPsState() []string {
 		string(FirewallAllowAzureIPsStateDisabled),
 		string(FirewallAllowAzureIPsStateEnabled),
 	}
+}
+
+func (s *FirewallAllowAzureIPsState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseFirewallAllowAzureIPsState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseFirewallAllowAzureIPsState(input string) (*FirewallAllowAzureIPsState, error) {
@@ -192,6 +261,19 @@ func PossibleValuesForFirewallState() []string {
 	}
 }
 
+func (s *FirewallState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseFirewallState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseFirewallState(input string) (*FirewallState, error) {
 	vals := map[string]FirewallState{
 		"disabled": FirewallStateDisabled,
@@ -220,6 +302,19 @@ func PossibleValuesForNestedResourceProvisioningState() []string {
 		string(NestedResourceProvisioningStateFailed),
 		string(NestedResourceProvisioningStateSucceeded),
 	}
+}
+
+func (s *NestedResourceProvisioningState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseNestedResourceProvisioningState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseNestedResourceProvisioningState(input string) (*NestedResourceProvisioningState, error) {
@@ -265,6 +360,19 @@ func PossibleValuesForTierType() []string {
 	}
 }
 
+func (s *TierType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseTierType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseTierType(input string) (*TierType, error) {
 	vals := map[string]TierType{
 		"commitment_500auhours":    TierTypeCommitmentFiveHundredAUHours,
@@ -298,6 +406,19 @@ func PossibleValuesForType() []string {
 	}
 }
 
+func (s *Type) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseType(input string) (*Type, error) {
 	vals := map[string]Type{
 		"microsoft.datalakeanalytics/accounts": TypeMicrosoftPointDataLakeAnalyticsAccounts,
@@ -325,6 +446,19 @@ func PossibleValuesForVirtualNetworkRuleState() []string {
 		string(VirtualNetworkRuleStateFailed),
 		string(VirtualNetworkRuleStateNetworkSourceDeleted),
 	}
+}
+
+func (s *VirtualNetworkRuleState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseVirtualNetworkRuleState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseVirtualNetworkRuleState(input string) (*VirtualNetworkRuleState, error) {

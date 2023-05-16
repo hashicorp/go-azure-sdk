@@ -1,6 +1,10 @@
 package tagrules
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -31,6 +35,19 @@ func PossibleValuesForProvisioningState() []string {
 		string(ProvisioningStateSucceeded),
 		string(ProvisioningStateUpdating),
 	}
+}
+
+func (s *ProvisioningState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseProvisioningState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseProvisioningState(input string) (*ProvisioningState, error) {
@@ -68,6 +85,19 @@ func PossibleValuesForSendAadLogsStatus() []string {
 	}
 }
 
+func (s *SendAadLogsStatus) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseSendAadLogsStatus(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseSendAadLogsStatus(input string) (*SendAadLogsStatus, error) {
 	vals := map[string]SendAadLogsStatus{
 		"disabled": SendAadLogsStatusDisabled,
@@ -94,6 +124,19 @@ func PossibleValuesForSendActivityLogsStatus() []string {
 		string(SendActivityLogsStatusDisabled),
 		string(SendActivityLogsStatusEnabled),
 	}
+}
+
+func (s *SendActivityLogsStatus) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseSendActivityLogsStatus(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseSendActivityLogsStatus(input string) (*SendActivityLogsStatus, error) {
@@ -124,6 +167,19 @@ func PossibleValuesForSendSubscriptionLogsStatus() []string {
 	}
 }
 
+func (s *SendSubscriptionLogsStatus) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseSendSubscriptionLogsStatus(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseSendSubscriptionLogsStatus(input string) (*SendSubscriptionLogsStatus, error) {
 	vals := map[string]SendSubscriptionLogsStatus{
 		"disabled": SendSubscriptionLogsStatusDisabled,
@@ -150,6 +206,19 @@ func PossibleValuesForTagAction() []string {
 		string(TagActionExclude),
 		string(TagActionInclude),
 	}
+}
+
+func (s *TagAction) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseTagAction(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseTagAction(input string) (*TagAction, error) {

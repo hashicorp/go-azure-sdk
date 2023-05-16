@@ -4,7 +4,8 @@ package v2020_07_07
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 import (
-	"github.com/Azure/go-autorest/autorest"
+	"fmt"
+
 	"github.com/hashicorp/go-azure-sdk/resource-manager/migrate/2020-07-07/hypervcluster"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/migrate/2020-07-07/hypervhost"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/migrate/2020-07-07/hypervjobs"
@@ -20,6 +21,8 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/migrate/2020-07-07/runasaccounts"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/migrate/2020-07-07/sites"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/migrate/2020-07-07/vcenter"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -40,68 +43,112 @@ type Client struct {
 	VCenter                   *vcenter.VCenterClient
 }
 
-func NewClientWithBaseURI(endpoint string, configureAuthFunc func(c *autorest.Client)) Client {
-
-	hyperVClusterClient := hypervcluster.NewHyperVClusterClientWithBaseURI(endpoint)
-	configureAuthFunc(&hyperVClusterClient.Client)
-
-	hyperVHostClient := hypervhost.NewHyperVHostClientWithBaseURI(endpoint)
-	configureAuthFunc(&hyperVHostClient.Client)
-
-	hyperVJobsClient := hypervjobs.NewHyperVJobsClientWithBaseURI(endpoint)
-	configureAuthFunc(&hyperVJobsClient.Client)
-
-	hyperVMachinesClient := hypervmachines.NewHyperVMachinesClientWithBaseURI(endpoint)
-	configureAuthFunc(&hyperVMachinesClient.Client)
-
-	hyperVRunAsAccountsClient := hypervrunasaccounts.NewHyperVRunAsAccountsClientWithBaseURI(endpoint)
-	configureAuthFunc(&hyperVRunAsAccountsClient.Client)
-
-	hyperVSitesClient := hypervsites.NewHyperVSitesClientWithBaseURI(endpoint)
-	configureAuthFunc(&hyperVSitesClient.Client)
-
-	jobsClient := jobs.NewJobsClientWithBaseURI(endpoint)
-	configureAuthFunc(&jobsClient.Client)
-
-	machinesClient := machines.NewMachinesClientWithBaseURI(endpoint)
-	configureAuthFunc(&machinesClient.Client)
-
-	masterSitesClient := mastersites.NewMasterSitesClientWithBaseURI(endpoint)
-	configureAuthFunc(&masterSitesClient.Client)
-
-	migratesClient := migrates.NewMigratesClientWithBaseURI(endpoint)
-	configureAuthFunc(&migratesClient.Client)
-
-	privateEndpointConnectionClient := privateendpointconnection.NewPrivateEndpointConnectionClientWithBaseURI(endpoint)
-	configureAuthFunc(&privateEndpointConnectionClient.Client)
-
-	privateLinkResourcesClient := privatelinkresources.NewPrivateLinkResourcesClientWithBaseURI(endpoint)
-	configureAuthFunc(&privateLinkResourcesClient.Client)
-
-	runAsAccountsClient := runasaccounts.NewRunAsAccountsClientWithBaseURI(endpoint)
-	configureAuthFunc(&runAsAccountsClient.Client)
-
-	sitesClient := sites.NewSitesClientWithBaseURI(endpoint)
-	configureAuthFunc(&sitesClient.Client)
-
-	vCenterClient := vcenter.NewVCenterClientWithBaseURI(endpoint)
-	configureAuthFunc(&vCenterClient.Client)
-
-	return Client{
-		HyperVCluster:             &hyperVClusterClient,
-		HyperVHost:                &hyperVHostClient,
-		HyperVJobs:                &hyperVJobsClient,
-		HyperVMachines:            &hyperVMachinesClient,
-		HyperVRunAsAccounts:       &hyperVRunAsAccountsClient,
-		HyperVSites:               &hyperVSitesClient,
-		Jobs:                      &jobsClient,
-		Machines:                  &machinesClient,
-		MasterSites:               &masterSitesClient,
-		Migrates:                  &migratesClient,
-		PrivateEndpointConnection: &privateEndpointConnectionClient,
-		PrivateLinkResources:      &privateLinkResourcesClient,
-		RunAsAccounts:             &runAsAccountsClient,
-		Sites:                     &sitesClient,
-		VCenter:                   &vCenterClient,
+func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+	hyperVClusterClient, err := hypervcluster.NewHyperVClusterClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building HyperVCluster client: %+v", err)
 	}
+	configureFunc(hyperVClusterClient.Client)
+
+	hyperVHostClient, err := hypervhost.NewHyperVHostClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building HyperVHost client: %+v", err)
+	}
+	configureFunc(hyperVHostClient.Client)
+
+	hyperVJobsClient, err := hypervjobs.NewHyperVJobsClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building HyperVJobs client: %+v", err)
+	}
+	configureFunc(hyperVJobsClient.Client)
+
+	hyperVMachinesClient, err := hypervmachines.NewHyperVMachinesClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building HyperVMachines client: %+v", err)
+	}
+	configureFunc(hyperVMachinesClient.Client)
+
+	hyperVRunAsAccountsClient, err := hypervrunasaccounts.NewHyperVRunAsAccountsClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building HyperVRunAsAccounts client: %+v", err)
+	}
+	configureFunc(hyperVRunAsAccountsClient.Client)
+
+	hyperVSitesClient, err := hypervsites.NewHyperVSitesClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building HyperVSites client: %+v", err)
+	}
+	configureFunc(hyperVSitesClient.Client)
+
+	jobsClient, err := jobs.NewJobsClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building Jobs client: %+v", err)
+	}
+	configureFunc(jobsClient.Client)
+
+	machinesClient, err := machines.NewMachinesClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building Machines client: %+v", err)
+	}
+	configureFunc(machinesClient.Client)
+
+	masterSitesClient, err := mastersites.NewMasterSitesClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building MasterSites client: %+v", err)
+	}
+	configureFunc(masterSitesClient.Client)
+
+	migratesClient, err := migrates.NewMigratesClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building Migrates client: %+v", err)
+	}
+	configureFunc(migratesClient.Client)
+
+	privateEndpointConnectionClient, err := privateendpointconnection.NewPrivateEndpointConnectionClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building PrivateEndpointConnection client: %+v", err)
+	}
+	configureFunc(privateEndpointConnectionClient.Client)
+
+	privateLinkResourcesClient, err := privatelinkresources.NewPrivateLinkResourcesClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building PrivateLinkResources client: %+v", err)
+	}
+	configureFunc(privateLinkResourcesClient.Client)
+
+	runAsAccountsClient, err := runasaccounts.NewRunAsAccountsClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building RunAsAccounts client: %+v", err)
+	}
+	configureFunc(runAsAccountsClient.Client)
+
+	sitesClient, err := sites.NewSitesClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building Sites client: %+v", err)
+	}
+	configureFunc(sitesClient.Client)
+
+	vCenterClient, err := vcenter.NewVCenterClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building VCenter client: %+v", err)
+	}
+	configureFunc(vCenterClient.Client)
+
+	return &Client{
+		HyperVCluster:             hyperVClusterClient,
+		HyperVHost:                hyperVHostClient,
+		HyperVJobs:                hyperVJobsClient,
+		HyperVMachines:            hyperVMachinesClient,
+		HyperVRunAsAccounts:       hyperVRunAsAccountsClient,
+		HyperVSites:               hyperVSitesClient,
+		Jobs:                      jobsClient,
+		Machines:                  machinesClient,
+		MasterSites:               masterSitesClient,
+		Migrates:                  migratesClient,
+		PrivateEndpointConnection: privateEndpointConnectionClient,
+		PrivateLinkResources:      privateLinkResourcesClient,
+		RunAsAccounts:             runAsAccountsClient,
+		Sites:                     sitesClient,
+		VCenter:                   vCenterClient,
+	}, nil
 }

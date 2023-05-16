@@ -1,6 +1,10 @@
 package integrationruntimes
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -17,6 +21,19 @@ func PossibleValuesForIntegrationRuntimeAuthKeyName() []string {
 		string(IntegrationRuntimeAuthKeyNameAuthKeyOne),
 		string(IntegrationRuntimeAuthKeyNameAuthKeyTwo),
 	}
+}
+
+func (s *IntegrationRuntimeAuthKeyName) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseIntegrationRuntimeAuthKeyName(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseIntegrationRuntimeAuthKeyName(input string) (*IntegrationRuntimeAuthKeyName, error) {
@@ -45,6 +62,19 @@ func PossibleValuesForIntegrationRuntimeAutoUpdate() []string {
 		string(IntegrationRuntimeAutoUpdateOff),
 		string(IntegrationRuntimeAutoUpdateOn),
 	}
+}
+
+func (s *IntegrationRuntimeAutoUpdate) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseIntegrationRuntimeAutoUpdate(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseIntegrationRuntimeAutoUpdate(input string) (*IntegrationRuntimeAutoUpdate, error) {
@@ -91,6 +121,19 @@ func PossibleValuesForIntegrationRuntimeState() []string {
 	}
 }
 
+func (s *IntegrationRuntimeState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseIntegrationRuntimeState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseIntegrationRuntimeState(input string) (*IntegrationRuntimeState, error) {
 	vals := map[string]IntegrationRuntimeState{
 		"accessdenied":     IntegrationRuntimeStateAccessDenied,
@@ -125,6 +168,19 @@ func PossibleValuesForIntegrationRuntimeType() []string {
 		string(IntegrationRuntimeTypeManaged),
 		string(IntegrationRuntimeTypeSelfHosted),
 	}
+}
+
+func (s *IntegrationRuntimeType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseIntegrationRuntimeType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseIntegrationRuntimeType(input string) (*IntegrationRuntimeType, error) {

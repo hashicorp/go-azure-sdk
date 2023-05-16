@@ -1,6 +1,10 @@
 package serverendpointresource
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -17,6 +21,19 @@ func PossibleValuesForFeatureStatus() []string {
 		string(FeatureStatusOff),
 		string(FeatureStatusOn),
 	}
+}
+
+func (s *FeatureStatus) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseFeatureStatus(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseFeatureStatus(input string) (*FeatureStatus, error) {
@@ -49,6 +66,19 @@ func PossibleValuesForInitialDownloadPolicy() []string {
 	}
 }
 
+func (s *InitialDownloadPolicy) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseInitialDownloadPolicy(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseInitialDownloadPolicy(input string) (*InitialDownloadPolicy, error) {
 	vals := map[string]InitialDownloadPolicy{
 		"avoidtieredfiles":           InitialDownloadPolicyAvoidTieredFiles,
@@ -78,6 +108,19 @@ func PossibleValuesForLocalCacheMode() []string {
 	}
 }
 
+func (s *LocalCacheMode) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseLocalCacheMode(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseLocalCacheMode(input string) (*LocalCacheMode, error) {
 	vals := map[string]LocalCacheMode{
 		"downloadnewandmodifiedfiles": LocalCacheModeDownloadNewAndModifiedFiles,
@@ -104,6 +147,19 @@ func PossibleValuesForServerEndpointCloudTieringHealthState() []string {
 		string(ServerEndpointCloudTieringHealthStateError),
 		string(ServerEndpointCloudTieringHealthStateHealthy),
 	}
+}
+
+func (s *ServerEndpointCloudTieringHealthState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseServerEndpointCloudTieringHealthState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseServerEndpointCloudTieringHealthState(input string) (*ServerEndpointCloudTieringHealthState, error) {
@@ -138,6 +194,19 @@ func PossibleValuesForServerEndpointOfflineDataTransferState() []string {
 	}
 }
 
+func (s *ServerEndpointOfflineDataTransferState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseServerEndpointOfflineDataTransferState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseServerEndpointOfflineDataTransferState(input string) (*ServerEndpointOfflineDataTransferState, error) {
 	vals := map[string]ServerEndpointOfflineDataTransferState{
 		"complete":   ServerEndpointOfflineDataTransferStateComplete,
@@ -168,6 +237,19 @@ func PossibleValuesForServerEndpointSyncActivityState() []string {
 		string(ServerEndpointSyncActivityStateUpload),
 		string(ServerEndpointSyncActivityStateUploadAndDownload),
 	}
+}
+
+func (s *ServerEndpointSyncActivityState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseServerEndpointSyncActivityState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseServerEndpointSyncActivityState(input string) (*ServerEndpointSyncActivityState, error) {
@@ -205,6 +287,19 @@ func PossibleValuesForServerEndpointSyncHealthState() []string {
 	}
 }
 
+func (s *ServerEndpointSyncHealthState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseServerEndpointSyncHealthState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseServerEndpointSyncHealthState(input string) (*ServerEndpointSyncHealthState, error) {
 	vals := map[string]ServerEndpointSyncHealthState{
 		"error":      ServerEndpointSyncHealthStateError,
@@ -240,6 +335,19 @@ func PossibleValuesForServerEndpointSyncMode() []string {
 		string(ServerEndpointSyncModeRegular),
 		string(ServerEndpointSyncModeSnapshotUpload),
 	}
+}
+
+func (s *ServerEndpointSyncMode) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseServerEndpointSyncMode(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseServerEndpointSyncMode(input string) (*ServerEndpointSyncMode, error) {
