@@ -4,7 +4,8 @@ package v2020_01_01
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 import (
-	"github.com/Azure/go-autorest/autorest"
+	"fmt"
+
 	"github.com/hashicorp/go-azure-sdk/resource-manager/migrate/2020-01-01/hypervcluster"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/migrate/2020-01-01/hypervhost"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/migrate/2020-01-01/hypervjobs"
@@ -16,6 +17,8 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/migrate/2020-01-01/runasaccounts"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/migrate/2020-01-01/sites"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/migrate/2020-01-01/vcenter"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -32,52 +35,84 @@ type Client struct {
 	VCenter             *vcenter.VCenterClient
 }
 
-func NewClientWithBaseURI(endpoint string, configureAuthFunc func(c *autorest.Client)) Client {
-
-	hyperVClusterClient := hypervcluster.NewHyperVClusterClientWithBaseURI(endpoint)
-	configureAuthFunc(&hyperVClusterClient.Client)
-
-	hyperVHostClient := hypervhost.NewHyperVHostClientWithBaseURI(endpoint)
-	configureAuthFunc(&hyperVHostClient.Client)
-
-	hyperVJobsClient := hypervjobs.NewHyperVJobsClientWithBaseURI(endpoint)
-	configureAuthFunc(&hyperVJobsClient.Client)
-
-	hyperVMachinesClient := hypervmachines.NewHyperVMachinesClientWithBaseURI(endpoint)
-	configureAuthFunc(&hyperVMachinesClient.Client)
-
-	hyperVRunAsAccountsClient := hypervrunasaccounts.NewHyperVRunAsAccountsClientWithBaseURI(endpoint)
-	configureAuthFunc(&hyperVRunAsAccountsClient.Client)
-
-	hyperVSitesClient := hypervsites.NewHyperVSitesClientWithBaseURI(endpoint)
-	configureAuthFunc(&hyperVSitesClient.Client)
-
-	jobsClient := jobs.NewJobsClientWithBaseURI(endpoint)
-	configureAuthFunc(&jobsClient.Client)
-
-	machinesClient := machines.NewMachinesClientWithBaseURI(endpoint)
-	configureAuthFunc(&machinesClient.Client)
-
-	runAsAccountsClient := runasaccounts.NewRunAsAccountsClientWithBaseURI(endpoint)
-	configureAuthFunc(&runAsAccountsClient.Client)
-
-	sitesClient := sites.NewSitesClientWithBaseURI(endpoint)
-	configureAuthFunc(&sitesClient.Client)
-
-	vCenterClient := vcenter.NewVCenterClientWithBaseURI(endpoint)
-	configureAuthFunc(&vCenterClient.Client)
-
-	return Client{
-		HyperVCluster:       &hyperVClusterClient,
-		HyperVHost:          &hyperVHostClient,
-		HyperVJobs:          &hyperVJobsClient,
-		HyperVMachines:      &hyperVMachinesClient,
-		HyperVRunAsAccounts: &hyperVRunAsAccountsClient,
-		HyperVSites:         &hyperVSitesClient,
-		Jobs:                &jobsClient,
-		Machines:            &machinesClient,
-		RunAsAccounts:       &runAsAccountsClient,
-		Sites:               &sitesClient,
-		VCenter:             &vCenterClient,
+func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+	hyperVClusterClient, err := hypervcluster.NewHyperVClusterClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building HyperVCluster client: %+v", err)
 	}
+	configureFunc(hyperVClusterClient.Client)
+
+	hyperVHostClient, err := hypervhost.NewHyperVHostClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building HyperVHost client: %+v", err)
+	}
+	configureFunc(hyperVHostClient.Client)
+
+	hyperVJobsClient, err := hypervjobs.NewHyperVJobsClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building HyperVJobs client: %+v", err)
+	}
+	configureFunc(hyperVJobsClient.Client)
+
+	hyperVMachinesClient, err := hypervmachines.NewHyperVMachinesClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building HyperVMachines client: %+v", err)
+	}
+	configureFunc(hyperVMachinesClient.Client)
+
+	hyperVRunAsAccountsClient, err := hypervrunasaccounts.NewHyperVRunAsAccountsClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building HyperVRunAsAccounts client: %+v", err)
+	}
+	configureFunc(hyperVRunAsAccountsClient.Client)
+
+	hyperVSitesClient, err := hypervsites.NewHyperVSitesClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building HyperVSites client: %+v", err)
+	}
+	configureFunc(hyperVSitesClient.Client)
+
+	jobsClient, err := jobs.NewJobsClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building Jobs client: %+v", err)
+	}
+	configureFunc(jobsClient.Client)
+
+	machinesClient, err := machines.NewMachinesClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building Machines client: %+v", err)
+	}
+	configureFunc(machinesClient.Client)
+
+	runAsAccountsClient, err := runasaccounts.NewRunAsAccountsClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building RunAsAccounts client: %+v", err)
+	}
+	configureFunc(runAsAccountsClient.Client)
+
+	sitesClient, err := sites.NewSitesClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building Sites client: %+v", err)
+	}
+	configureFunc(sitesClient.Client)
+
+	vCenterClient, err := vcenter.NewVCenterClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building VCenter client: %+v", err)
+	}
+	configureFunc(vCenterClient.Client)
+
+	return &Client{
+		HyperVCluster:       hyperVClusterClient,
+		HyperVHost:          hyperVHostClient,
+		HyperVJobs:          hyperVJobsClient,
+		HyperVMachines:      hyperVMachinesClient,
+		HyperVRunAsAccounts: hyperVRunAsAccountsClient,
+		HyperVSites:         hyperVSitesClient,
+		Jobs:                jobsClient,
+		Machines:            machinesClient,
+		RunAsAccounts:       runAsAccountsClient,
+		Sites:               sitesClient,
+		VCenter:             vCenterClient,
+	}, nil
 }

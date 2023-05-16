@@ -1,6 +1,10 @@
 package triggers
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -23,6 +27,19 @@ func PossibleValuesForEventSubscriptionStatus() []string {
 		string(EventSubscriptionStatusProvisioning),
 		string(EventSubscriptionStatusUnknown),
 	}
+}
+
+func (s *EventSubscriptionStatus) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseEventSubscriptionStatus(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseEventSubscriptionStatus(input string) (*EventSubscriptionStatus, error) {
@@ -56,6 +73,19 @@ func PossibleValuesForTriggerRuntimeState() []string {
 		string(TriggerRuntimeStateStarted),
 		string(TriggerRuntimeStateStopped),
 	}
+}
+
+func (s *TriggerRuntimeState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseTriggerRuntimeState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseTriggerRuntimeState(input string) (*TriggerRuntimeState, error) {

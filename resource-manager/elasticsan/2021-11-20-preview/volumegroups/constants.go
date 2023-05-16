@@ -1,6 +1,10 @@
 package volumegroups
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -15,6 +19,19 @@ func PossibleValuesForAction() []string {
 	return []string{
 		string(ActionAllow),
 	}
+}
+
+func (s *Action) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseAction(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseAction(input string) (*Action, error) {
@@ -40,6 +57,19 @@ func PossibleValuesForEncryptionType() []string {
 	return []string{
 		string(EncryptionTypeEncryptionAtRestWithPlatformKey),
 	}
+}
+
+func (s *EncryptionType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseEncryptionType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseEncryptionType(input string) (*EncryptionType, error) {
@@ -79,6 +109,19 @@ func PossibleValuesForProvisioningStates() []string {
 		string(ProvisioningStatesSucceeded),
 		string(ProvisioningStatesUpdating),
 	}
+}
+
+func (s *ProvisioningStates) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseProvisioningStates(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseProvisioningStates(input string) (*ProvisioningStates, error) {
@@ -121,6 +164,19 @@ func PossibleValuesForState() []string {
 	}
 }
 
+func (s *State) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseState(input string) (*State, error) {
 	vals := map[string]State{
 		"deprovisioning":       StateDeprovisioning,
@@ -150,6 +206,19 @@ func PossibleValuesForStorageTargetType() []string {
 		string(StorageTargetTypeIscsi),
 		string(StorageTargetTypeNone),
 	}
+}
+
+func (s *StorageTargetType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseStorageTargetType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseStorageTargetType(input string) (*StorageTargetType, error) {

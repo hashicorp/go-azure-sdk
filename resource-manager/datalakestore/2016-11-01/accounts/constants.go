@@ -1,6 +1,10 @@
 package accounts
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -17,6 +21,19 @@ func PossibleValuesForDataLakeStoreAccountState() []string {
 		string(DataLakeStoreAccountStateActive),
 		string(DataLakeStoreAccountStateSuspended),
 	}
+}
+
+func (s *DataLakeStoreAccountState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseDataLakeStoreAccountState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseDataLakeStoreAccountState(input string) (*DataLakeStoreAccountState, error) {
@@ -65,6 +82,19 @@ func PossibleValuesForDataLakeStoreAccountStatus() []string {
 	}
 }
 
+func (s *DataLakeStoreAccountStatus) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseDataLakeStoreAccountStatus(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseDataLakeStoreAccountStatus(input string) (*DataLakeStoreAccountStatus, error) {
 	vals := map[string]DataLakeStoreAccountStatus{
 		"canceled":   DataLakeStoreAccountStatusCanceled,
@@ -102,6 +132,19 @@ func PossibleValuesForEncryptionConfigType() []string {
 	}
 }
 
+func (s *EncryptionConfigType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseEncryptionConfigType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseEncryptionConfigType(input string) (*EncryptionConfigType, error) {
 	vals := map[string]EncryptionConfigType{
 		"servicemanaged": EncryptionConfigTypeServiceManaged,
@@ -128,6 +171,19 @@ func PossibleValuesForEncryptionProvisioningState() []string {
 		string(EncryptionProvisioningStateCreating),
 		string(EncryptionProvisioningStateSucceeded),
 	}
+}
+
+func (s *EncryptionProvisioningState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseEncryptionProvisioningState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseEncryptionProvisioningState(input string) (*EncryptionProvisioningState, error) {
@@ -158,6 +214,19 @@ func PossibleValuesForEncryptionState() []string {
 	}
 }
 
+func (s *EncryptionState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseEncryptionState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseEncryptionState(input string) (*EncryptionState, error) {
 	vals := map[string]EncryptionState{
 		"disabled": EncryptionStateDisabled,
@@ -186,6 +255,19 @@ func PossibleValuesForFirewallAllowAzureIPsState() []string {
 	}
 }
 
+func (s *FirewallAllowAzureIPsState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseFirewallAllowAzureIPsState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseFirewallAllowAzureIPsState(input string) (*FirewallAllowAzureIPsState, error) {
 	vals := map[string]FirewallAllowAzureIPsState{
 		"disabled": FirewallAllowAzureIPsStateDisabled,
@@ -212,6 +294,19 @@ func PossibleValuesForFirewallState() []string {
 		string(FirewallStateDisabled),
 		string(FirewallStateEnabled),
 	}
+}
+
+func (s *FirewallState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseFirewallState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseFirewallState(input string) (*FirewallState, error) {
@@ -252,6 +347,19 @@ func PossibleValuesForTierType() []string {
 	}
 }
 
+func (s *TierType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseTierType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseTierType(input string) (*TierType, error) {
 	vals := map[string]TierType{
 		"commitment_500tb": TierTypeCommitmentFiveHundredTB,
@@ -285,6 +393,19 @@ func PossibleValuesForTrustedIdProviderState() []string {
 	}
 }
 
+func (s *TrustedIdProviderState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseTrustedIdProviderState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseTrustedIdProviderState(input string) (*TrustedIdProviderState, error) {
 	vals := map[string]TrustedIdProviderState{
 		"disabled": TrustedIdProviderStateDisabled,
@@ -309,6 +430,19 @@ func PossibleValuesForType() []string {
 	return []string{
 		string(TypeMicrosoftPointDataLakeStoreAccounts),
 	}
+}
+
+func (s *Type) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseType(input string) (*Type, error) {

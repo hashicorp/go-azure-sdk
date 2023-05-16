@@ -1,6 +1,10 @@
 package pipelineruns
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -37,6 +41,19 @@ func PossibleValuesForRunQueryFilterOperand() []string {
 		string(RunQueryFilterOperandTriggerName),
 		string(RunQueryFilterOperandTriggerRunTimestamp),
 	}
+}
+
+func (s *RunQueryFilterOperand) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseRunQueryFilterOperand(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseRunQueryFilterOperand(input string) (*RunQueryFilterOperand, error) {
@@ -81,6 +98,19 @@ func PossibleValuesForRunQueryFilterOperator() []string {
 	}
 }
 
+func (s *RunQueryFilterOperator) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseRunQueryFilterOperator(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseRunQueryFilterOperator(input string) (*RunQueryFilterOperator, error) {
 	vals := map[string]RunQueryFilterOperator{
 		"equals":    RunQueryFilterOperatorEquals,
@@ -109,6 +139,19 @@ func PossibleValuesForRunQueryOrder() []string {
 		string(RunQueryOrderASC),
 		string(RunQueryOrderDESC),
 	}
+}
+
+func (s *RunQueryOrder) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseRunQueryOrder(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseRunQueryOrder(input string) (*RunQueryOrder, error) {
@@ -151,6 +194,19 @@ func PossibleValuesForRunQueryOrderByField() []string {
 		string(RunQueryOrderByFieldTriggerName),
 		string(RunQueryOrderByFieldTriggerRunTimestamp),
 	}
+}
+
+func (s *RunQueryOrderByField) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseRunQueryOrderByField(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseRunQueryOrderByField(input string) (*RunQueryOrderByField, error) {

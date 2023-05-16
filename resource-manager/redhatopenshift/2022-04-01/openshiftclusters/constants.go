@@ -1,6 +1,10 @@
 package openshiftclusters
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -17,6 +21,19 @@ func PossibleValuesForEncryptionAtHost() []string {
 		string(EncryptionAtHostDisabled),
 		string(EncryptionAtHostEnabled),
 	}
+}
+
+func (s *EncryptionAtHost) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseEncryptionAtHost(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseEncryptionAtHost(input string) (*EncryptionAtHost, error) {
@@ -45,6 +62,19 @@ func PossibleValuesForFipsValidatedModules() []string {
 		string(FipsValidatedModulesDisabled),
 		string(FipsValidatedModulesEnabled),
 	}
+}
+
+func (s *FipsValidatedModules) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseFipsValidatedModules(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseFipsValidatedModules(input string) (*FipsValidatedModules, error) {
@@ -83,6 +113,19 @@ func PossibleValuesForProvisioningState() []string {
 	}
 }
 
+func (s *ProvisioningState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseProvisioningState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseProvisioningState(input string) (*ProvisioningState, error) {
 	vals := map[string]ProvisioningState{
 		"adminupdating": ProvisioningStateAdminUpdating,
@@ -113,6 +156,19 @@ func PossibleValuesForVisibility() []string {
 		string(VisibilityPrivate),
 		string(VisibilityPublic),
 	}
+}
+
+func (s *Visibility) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseVisibility(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseVisibility(input string) (*Visibility, error) {

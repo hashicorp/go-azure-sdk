@@ -1,6 +1,10 @@
 package monitors
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -17,6 +21,19 @@ func PossibleValuesForAutoUpdateSetting() []string {
 		string(AutoUpdateSettingDISABLED),
 		string(AutoUpdateSettingENABLED),
 	}
+}
+
+func (s *AutoUpdateSetting) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseAutoUpdateSetting(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseAutoUpdateSetting(input string) (*AutoUpdateSetting, error) {
@@ -59,6 +76,19 @@ func PossibleValuesForAvailabilityState() []string {
 	}
 }
 
+func (s *AvailabilityState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseAvailabilityState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseAvailabilityState(input string) (*AvailabilityState, error) {
 	vals := map[string]AvailabilityState{
 		"crashed":             AvailabilityStateCRASHED,
@@ -93,6 +123,19 @@ func PossibleValuesForLiftrResourceCategories() []string {
 	}
 }
 
+func (s *LiftrResourceCategories) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseLiftrResourceCategories(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseLiftrResourceCategories(input string) (*LiftrResourceCategories, error) {
 	vals := map[string]LiftrResourceCategories{
 		"monitorlogs": LiftrResourceCategoriesMonitorLogs,
@@ -119,6 +162,19 @@ func PossibleValuesForLogModule() []string {
 		string(LogModuleDISABLED),
 		string(LogModuleENABLED),
 	}
+}
+
+func (s *LogModule) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseLogModule(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseLogModule(input string) (*LogModule, error) {
@@ -151,6 +207,19 @@ func PossibleValuesForManagedIdentityType() []string {
 	}
 }
 
+func (s *ManagedIdentityType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseManagedIdentityType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseManagedIdentityType(input string) (*ManagedIdentityType, error) {
 	vals := map[string]ManagedIdentityType{
 		"systemanduserassigned": ManagedIdentityTypeSystemAndUserAssigned,
@@ -178,6 +247,19 @@ func PossibleValuesForMarketplaceSubscriptionStatus() []string {
 		string(MarketplaceSubscriptionStatusActive),
 		string(MarketplaceSubscriptionStatusSuspended),
 	}
+}
+
+func (s *MarketplaceSubscriptionStatus) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseMarketplaceSubscriptionStatus(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseMarketplaceSubscriptionStatus(input string) (*MarketplaceSubscriptionStatus, error) {
@@ -208,6 +290,19 @@ func PossibleValuesForMonitoringStatus() []string {
 	}
 }
 
+func (s *MonitoringStatus) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseMonitoringStatus(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseMonitoringStatus(input string) (*MonitoringStatus, error) {
 	vals := map[string]MonitoringStatus{
 		"disabled": MonitoringStatusDisabled,
@@ -234,6 +329,19 @@ func PossibleValuesForMonitoringType() []string {
 		string(MonitoringTypeCLOUDINFRASTRUCTURE),
 		string(MonitoringTypeFULLSTACK),
 	}
+}
+
+func (s *MonitoringType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseMonitoringType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseMonitoringType(input string) (*MonitoringType, error) {
@@ -278,6 +386,19 @@ func PossibleValuesForProvisioningState() []string {
 	}
 }
 
+func (s *ProvisioningState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseProvisioningState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseProvisioningState(input string) (*ProvisioningState, error) {
 	vals := map[string]ProvisioningState{
 		"accepted":     ProvisioningStateAccepted,
@@ -313,6 +434,19 @@ func PossibleValuesForSSOStatus() []string {
 	}
 }
 
+func (s *SSOStatus) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseSSOStatus(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseSSOStatus(input string) (*SSOStatus, error) {
 	vals := map[string]SSOStatus{
 		"disabled": SSOStatusDisabled,
@@ -341,6 +475,19 @@ func PossibleValuesForSendingLogsStatus() []string {
 	}
 }
 
+func (s *SendingLogsStatus) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseSendingLogsStatus(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseSendingLogsStatus(input string) (*SendingLogsStatus, error) {
 	vals := map[string]SendingLogsStatus{
 		"disabled": SendingLogsStatusDisabled,
@@ -367,6 +514,19 @@ func PossibleValuesForSendingMetricsStatus() []string {
 		string(SendingMetricsStatusDisabled),
 		string(SendingMetricsStatusEnabled),
 	}
+}
+
+func (s *SendingMetricsStatus) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseSendingMetricsStatus(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseSendingMetricsStatus(input string) (*SendingMetricsStatus, error) {
@@ -399,6 +559,19 @@ func PossibleValuesForSingleSignOnStates() []string {
 		string(SingleSignOnStatesExisting),
 		string(SingleSignOnStatesInitial),
 	}
+}
+
+func (s *SingleSignOnStates) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseSingleSignOnStates(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseSingleSignOnStates(input string) (*SingleSignOnStates, error) {
@@ -443,6 +616,19 @@ func PossibleValuesForUpdateStatus() []string {
 		string(UpdateStatusUPDATEPROBLEM),
 		string(UpdateStatusUPTwoDATE),
 	}
+}
+
+func (s *UpdateStatus) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseUpdateStatus(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseUpdateStatus(input string) (*UpdateStatus, error) {

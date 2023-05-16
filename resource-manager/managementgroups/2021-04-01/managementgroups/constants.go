@@ -1,6 +1,10 @@
 package managementgroups
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -17,6 +21,19 @@ func PossibleValuesForManagementGroupChildType() []string {
 		string(ManagementGroupChildTypeMicrosoftPointManagementManagementGroups),
 		string(ManagementGroupChildTypeSubscriptions),
 	}
+}
+
+func (s *ManagementGroupChildType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseManagementGroupChildType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseManagementGroupChildType(input string) (*ManagementGroupChildType, error) {
@@ -47,6 +64,19 @@ func PossibleValuesForManagementGroupExpandType() []string {
 		string(ManagementGroupExpandTypeChildren),
 		string(ManagementGroupExpandTypePath),
 	}
+}
+
+func (s *ManagementGroupExpandType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseManagementGroupExpandType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseManagementGroupExpandType(input string) (*ManagementGroupExpandType, error) {

@@ -1,6 +1,10 @@
 package entities
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -23,6 +27,19 @@ func PossibleValuesForEntitySearchType() []string {
 		string(EntitySearchTypeParentAndFirstLevelChildren),
 		string(EntitySearchTypeParentOnly),
 	}
+}
+
+func (s *EntitySearchType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseEntitySearchType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseEntitySearchType(input string) (*EntitySearchType, error) {
@@ -60,6 +77,19 @@ func PossibleValuesForEntityViewParameterType() []string {
 	}
 }
 
+func (s *EntityViewParameterType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseEntityViewParameterType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseEntityViewParameterType(input string) (*EntityViewParameterType, error) {
 	vals := map[string]EntityViewParameterType{
 		"audit":             EntityViewParameterTypeAudit,
@@ -92,6 +122,19 @@ func PossibleValuesForPermissions() []string {
 		string(PermissionsNoaccess),
 		string(PermissionsView),
 	}
+}
+
+func (s *Permissions) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parsePermissions(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parsePermissions(input string) (*Permissions, error) {

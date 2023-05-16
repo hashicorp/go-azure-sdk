@@ -1,6 +1,10 @@
 package factories
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -19,6 +23,19 @@ func PossibleValuesForFactoryIdentityType() []string {
 		string(FactoryIdentityTypeSystemAssignedUserAssigned),
 		string(FactoryIdentityTypeUserAssigned),
 	}
+}
+
+func (s *FactoryIdentityType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseFactoryIdentityType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseFactoryIdentityType(input string) (*FactoryIdentityType, error) {
@@ -58,6 +75,19 @@ func PossibleValuesForGlobalParameterType() []string {
 	}
 }
 
+func (s *GlobalParameterType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseGlobalParameterType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseGlobalParameterType(input string) (*GlobalParameterType, error) {
 	vals := map[string]GlobalParameterType{
 		"array":  GlobalParameterTypeArray,
@@ -88,6 +118,19 @@ func PossibleValuesForPublicNetworkAccess() []string {
 		string(PublicNetworkAccessDisabled),
 		string(PublicNetworkAccessEnabled),
 	}
+}
+
+func (s *PublicNetworkAccess) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parsePublicNetworkAccess(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parsePublicNetworkAccess(input string) (*PublicNetworkAccess, error) {

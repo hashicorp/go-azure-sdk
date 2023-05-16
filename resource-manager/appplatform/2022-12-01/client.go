@@ -4,20 +4,25 @@ package v2022_12_01
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 import (
-	"github.com/Azure/go-autorest/autorest"
+	"fmt"
+
 	"github.com/hashicorp/go-azure-sdk/resource-manager/appplatform/2022-12-01/appplatform"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
 	AppPlatform *appplatform.AppPlatformClient
 }
 
-func NewClientWithBaseURI(endpoint string, configureAuthFunc func(c *autorest.Client)) Client {
-
-	appPlatformClient := appplatform.NewAppPlatformClientWithBaseURI(endpoint)
-	configureAuthFunc(&appPlatformClient.Client)
-
-	return Client{
-		AppPlatform: &appPlatformClient,
+func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+	appPlatformClient, err := appplatform.NewAppPlatformClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building AppPlatform client: %+v", err)
 	}
+	configureFunc(appPlatformClient.Client)
+
+	return &Client{
+		AppPlatform: appPlatformClient,
+	}, nil
 }

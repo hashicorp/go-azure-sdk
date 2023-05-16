@@ -1,6 +1,10 @@
 package dataflowdebugsession
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -19,6 +23,19 @@ func PossibleValuesForDataFlowDebugCommandType() []string {
 		string(DataFlowDebugCommandTypeExecutePreviewQuery),
 		string(DataFlowDebugCommandTypeExecuteStatisticsQuery),
 	}
+}
+
+func (s *DataFlowDebugCommandType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseDataFlowDebugCommandType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseDataFlowDebugCommandType(input string) (*DataFlowDebugCommandType, error) {
@@ -48,6 +65,19 @@ func PossibleValuesForIntegrationRuntimeType() []string {
 		string(IntegrationRuntimeTypeManaged),
 		string(IntegrationRuntimeTypeSelfHosted),
 	}
+}
+
+func (s *IntegrationRuntimeType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseIntegrationRuntimeType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseIntegrationRuntimeType(input string) (*IntegrationRuntimeType, error) {
@@ -86,6 +116,19 @@ func PossibleValuesForParameterType() []string {
 		string(ParameterTypeSecureString),
 		string(ParameterTypeString),
 	}
+}
+
+func (s *ParameterType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseParameterType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseParameterType(input string) (*ParameterType, error) {

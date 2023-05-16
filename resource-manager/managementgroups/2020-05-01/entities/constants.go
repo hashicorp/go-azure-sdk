@@ -1,6 +1,10 @@
 package entities
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -21,6 +25,19 @@ func PossibleValuesForInheritedPermissions() []string {
 		string(InheritedPermissionsNoaccess),
 		string(InheritedPermissionsView),
 	}
+}
+
+func (s *InheritedPermissions) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseInheritedPermissions(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseInheritedPermissions(input string) (*InheritedPermissions, error) {
@@ -55,6 +72,19 @@ func PossibleValuesForPermissions() []string {
 		string(PermissionsNoaccess),
 		string(PermissionsView),
 	}
+}
+
+func (s *Permissions) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parsePermissions(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parsePermissions(input string) (*Permissions, error) {
@@ -93,6 +123,19 @@ func PossibleValuesForSearch() []string {
 	}
 }
 
+func (s *Search) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseSearch(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseSearch(input string) (*Search, error) {
 	vals := map[string]Search{
 		"allowedchildren":             SearchAllowedChildren,
@@ -126,6 +169,19 @@ func PossibleValuesForView() []string {
 		string(ViewGroupsOnly),
 		string(ViewSubscriptionsOnly),
 	}
+}
+
+func (s *View) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseView(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseView(input string) (*View, error) {
