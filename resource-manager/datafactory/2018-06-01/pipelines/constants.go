@@ -9,6 +9,91 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
+type ActivityOnInactiveMarkAs string
+
+const (
+	ActivityOnInactiveMarkAsFailed    ActivityOnInactiveMarkAs = "Failed"
+	ActivityOnInactiveMarkAsSkipped   ActivityOnInactiveMarkAs = "Skipped"
+	ActivityOnInactiveMarkAsSucceeded ActivityOnInactiveMarkAs = "Succeeded"
+)
+
+func PossibleValuesForActivityOnInactiveMarkAs() []string {
+	return []string{
+		string(ActivityOnInactiveMarkAsFailed),
+		string(ActivityOnInactiveMarkAsSkipped),
+		string(ActivityOnInactiveMarkAsSucceeded),
+	}
+}
+
+func (s *ActivityOnInactiveMarkAs) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseActivityOnInactiveMarkAs(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
+func parseActivityOnInactiveMarkAs(input string) (*ActivityOnInactiveMarkAs, error) {
+	vals := map[string]ActivityOnInactiveMarkAs{
+		"failed":    ActivityOnInactiveMarkAsFailed,
+		"skipped":   ActivityOnInactiveMarkAsSkipped,
+		"succeeded": ActivityOnInactiveMarkAsSucceeded,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ActivityOnInactiveMarkAs(input)
+	return &out, nil
+}
+
+type ActivityState string
+
+const (
+	ActivityStateActive   ActivityState = "Active"
+	ActivityStateInactive ActivityState = "Inactive"
+)
+
+func PossibleValuesForActivityState() []string {
+	return []string{
+		string(ActivityStateActive),
+		string(ActivityStateInactive),
+	}
+}
+
+func (s *ActivityState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseActivityState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
+func parseActivityState(input string) (*ActivityState, error) {
+	vals := map[string]ActivityState{
+		"active":   ActivityStateActive,
+		"inactive": ActivityStateInactive,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ActivityState(input)
+	return &out, nil
+}
+
 type DependencyCondition string
 
 const (
