@@ -53,7 +53,7 @@ func parseErrorFromApiResponse(response http.Response) (*Error, error) {
 	// there's a number of internal Azure error types, we should attempt unmarshalling into each
 	// for now we're implementing the simple case we can add to
 	var err1 lroErrorType1
-	if err = json.Unmarshal(respBody, &err1); err == nil && err1.Error.Code != "" && err1.Error.Message != "" {
+	if err = json.Unmarshal(respBody, &err1); err == nil && err1.Id != "" && err1.Error.Code != "" && err1.Error.Message != "" {
 		e := Error{
 			Code:         err1.Error.Code,
 			Message:      err1.Error.Message,
@@ -102,6 +102,35 @@ func parseErrorFromApiResponse(response http.Response) (*Error, error) {
 		}, nil
 	}
 
+	var err3 resourceManagerErrorType2
+	if err = json.Unmarshal(respBody, &err3); err == nil && err3.Error.Code != "" && err3.Error.Message != "" {
+		activityId := ""
+		code := err3.Error.Code
+		messages := []string{
+			err3.Error.Message,
+		}
+		for _, v := range err3.Error.Details {
+			code = v.Code
+			if v.PossibleCauses != "" {
+				messages = append(messages, fmt.Sprintf("Possible Causes: %q", v.PossibleCauses))
+			}
+			if v.RecommendedAction != "" {
+				messages = append(messages, fmt.Sprintf("Recommended Action: %q", v.RecommendedAction))
+			}
+			if v.ActivityId != "" {
+				activityId = v.ActivityId
+			}
+			break
+		}
+		return &Error{
+			ActivityId:   activityId,
+			Code:         code,
+			Message:      strings.Join(messages, "\n"),
+			Status:       "Unknown",
+			FullHttpBody: string(respBody),
+		}, nil
+	}
+
 	return &Error{
 		Code:         "internal-error",
 		Message:      "Couldn't parse Azure API Response into a friendly error - please see the original HTTP Response for more details (and file a bug so we can fix this!).",
@@ -116,6 +145,7 @@ type lroErrorType1 struct {
 		Message        string        `json:"message"`
 		AdditionalInfo []interface{} `json:"additionalInfo"`
 	} `json:"error"`
+	Id     string `json:"id"`
 	Status string `json:"status"`
 }
 
@@ -126,4 +156,18 @@ type resourceManagerErrorType1 struct {
 		Message string `json:"message,omitempty"`
 		Code    string `json:"code,omitempty"`
 	} `json:"details"`
+}
+
+type resourceManagerErrorType2 struct {
+	Error struct {
+		Code    string `json:"code"`
+		Details []struct {
+			ActivityId        string `json:"activityId"`
+			Code              string `json:"code"`
+			Message           string `json:"message"`
+			PossibleCauses    string `json:"possibleCauses"`
+			RecommendedAction string `json:"recommendedAction"`
+		} `json:"details"`
+		Message string `json:"message"`
+	} `json:"error"`
 }

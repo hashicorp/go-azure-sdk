@@ -33,7 +33,7 @@ func TestParseErrorFromApiResponse_LongRunningOperation(t *testing.T) {
 	}
 }
 
-func TestParseErrorFromApiResponse_ResourceManager(t *testing.T) {
+func TestParseErrorFromApiResponse_ResourceManagerType1(t *testing.T) {
 	// Resource Manager specific response from https://github.com/hashicorp/terraform-provider-azurerm/issues/10858
 	body := `{"Code":"Conflict","Message":"Cannot update the site 'func-tfbug-b78d100425' because it uses AlwaysOn feature which is not allowed in the target compute mode.","Target":null,"Details":[{"Message":"Cannot update the site 'func-tfbug-b78d100425' because it uses AlwaysOn feature which is not allowed in the target compute mode."},{"Code":"Conflict"},{"ErrorEntity":{"ExtendedCode":"04068","MessageTemplate":"Cannot update the site '{0}' because it uses AlwaysOn feature which is not allowed in the target compute mode.","Parameters":["func-tfbug-b78d100425"],"Code":"Conflict","Message":"Cannot update the site 'func-tfbug-b78d100425' because it uses AlwaysOn feature which is not allowed in the target compute mode."}}],"Innererror":null}`
 	input := http.Response{
@@ -44,6 +44,31 @@ func TestParseErrorFromApiResponse_ResourceManager(t *testing.T) {
 		Code:         "Conflict",
 		FullHttpBody: body,
 		Message:      "Cannot update the site 'func-tfbug-b78d100425' because it uses AlwaysOn feature which is not allowed in the target compute mode.",
+		Status:       "Unknown",
+	}
+	actual, err := parseErrorFromApiResponse(input)
+	if err != nil {
+		t.Fatalf("parsing error from api response: %+v", err)
+	}
+	if actual == nil {
+		t.Fatalf("`actual` was nil")
+	}
+	if !reflect.DeepEqual(*actual, expected) {
+		t.Fatalf("expected and actual didn't match. Expected: %+v\n\n Actual: %+v", expected, actual)
+	}
+}
+
+func TestParseErrorFromApiResponse_ResourceManagerType2(t *testing.T) {
+	// Resource Manager specific response from https://github.com/hashicorp/go-azure-sdk/issues/387
+	body := `{"error": {"code": "BadRequest","details": [{"activityId": "abc123","clientRequestId": "xxxx","code": "FailedToStartOperation","message": "Failed to start operation. Verify input and try operation again.","possibleCauses": "Invalid parameters were specified.","recommendedAction": "Verify the input and try again."}],"message": "Failed to start operation. Verify input and try operation again."}}`
+	input := http.Response{
+		Body: io.NopCloser(bytes.NewReader([]byte(body))),
+	}
+	expected := Error{
+		ActivityId:   "abc123",
+		Code:         "FailedToStartOperation",
+		FullHttpBody: body,
+		Message:      "Failed to start operation. Verify input and try operation again.\nPossible Causes: \"Invalid parameters were specified.\"\nRecommended Action: \"Verify the input and try again.\"",
 		Status:       "Unknown",
 	}
 	actual, err := parseErrorFromApiResponse(input)
