@@ -179,12 +179,14 @@ func (p *longRunningOperationPoller) Poll(ctx context.Context) (result *pollers.
 		if result.Status == pollers.PollingStatusFailed {
 			err = pollers.PollingFailedError{
 				HttpResponse: result.HttpResponse,
+				Message:      string(respBody),
 			}
 		}
 
 		if result.Status == pollers.PollingStatusCancelled {
 			err = pollers.PollingCancelledError{
 				HttpResponse: result.HttpResponse,
+				Message:      string(respBody),
 			}
 		}
 
