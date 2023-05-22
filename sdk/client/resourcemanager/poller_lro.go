@@ -146,8 +146,6 @@ func (p *longRunningOperationPoller) Poll(ctx context.Context) (result *pollers.
 			return nil, fmt.Errorf("expected either `provisioningState` or `status` to be returned from the LRO API but both were empty")
 		}
 
-		// TODO: raising an error if this is Cancelled or Failed
-
 		statuses := map[status]pollers.PollingStatus{
 			statusCanceled:   pollers.PollingStatusCancelled,
 			statusCancelled:  pollers.PollingStatusCancelled,
@@ -170,11 +168,23 @@ func (p *longRunningOperationPoller) Poll(ctx context.Context) (result *pollers.
 		for k, v := range statuses {
 			if strings.EqualFold(string(op.Properties.ProvisioningState), string(k)) {
 				result.Status = v
-				return
+				break
 			}
 			if strings.EqualFold(string(op.Status), string(k)) {
 				result.Status = v
-				return
+				break
+			}
+		}
+
+		if result.Status == pollers.PollingStatusFailed {
+			err = pollers.PollingFailedError{
+				HttpResponse: result.HttpResponse,
+			}
+		}
+
+		if result.Status == pollers.PollingStatusCancelled {
+			err = pollers.PollingCancelledError{
+				HttpResponse: result.HttpResponse,
 			}
 		}
 
