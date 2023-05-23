@@ -42,7 +42,7 @@ func (o RetrieveBootDiagnosticsDataOperationOptions) toQueryString() map[string]
 }
 
 // RetrieveBootDiagnosticsData ...
-func (c VirtualMachineScaleSetVMsClient) RetrieveBootDiagnosticsData(ctx context.Context, id VirtualMachineId, options RetrieveBootDiagnosticsDataOperationOptions) (result RetrieveBootDiagnosticsDataOperationResponse, err error) {
+func (c VirtualMachineScaleSetVMsClient) RetrieveBootDiagnosticsData(ctx context.Context, id VirtualMachineScaleSetVirtualMachineId, options RetrieveBootDiagnosticsDataOperationOptions) (result RetrieveBootDiagnosticsDataOperationResponse, err error) {
 	req, err := c.preparerForRetrieveBootDiagnosticsData(ctx, id, options)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "virtualmachinescalesetvms.VirtualMachineScaleSetVMsClient", "RetrieveBootDiagnosticsData", nil, "Failure preparing request")
@@ -65,7 +65,7 @@ func (c VirtualMachineScaleSetVMsClient) RetrieveBootDiagnosticsData(ctx context
 }
 
 // preparerForRetrieveBootDiagnosticsData prepares the RetrieveBootDiagnosticsData request.
-func (c VirtualMachineScaleSetVMsClient) preparerForRetrieveBootDiagnosticsData(ctx context.Context, id VirtualMachineId, options RetrieveBootDiagnosticsDataOperationOptions) (*http.Request, error) {
+func (c VirtualMachineScaleSetVMsClient) preparerForRetrieveBootDiagnosticsData(ctx context.Context, id VirtualMachineScaleSetVirtualMachineId, options RetrieveBootDiagnosticsDataOperationOptions) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

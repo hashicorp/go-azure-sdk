@@ -19,7 +19,7 @@ type UpdateOperationResponse struct {
 }
 
 // Update ...
-func (c GalleryImageVersionsClient) Update(ctx context.Context, id VersionId, input GalleryImageVersionUpdate) (result UpdateOperationResponse, err error) {
+func (c GalleryImageVersionsClient) Update(ctx context.Context, id ImageVersionId, input GalleryImageVersionUpdate) (result UpdateOperationResponse, err error) {
 	req, err := c.preparerForUpdate(ctx, id, input)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "galleryimageversions.GalleryImageVersionsClient", "Update", nil, "Failure preparing request")
@@ -36,7 +36,7 @@ func (c GalleryImageVersionsClient) Update(ctx context.Context, id VersionId, in
 }
 
 // UpdateThenPoll performs Update then polls until it's completed
-func (c GalleryImageVersionsClient) UpdateThenPoll(ctx context.Context, id VersionId, input GalleryImageVersionUpdate) error {
+func (c GalleryImageVersionsClient) UpdateThenPoll(ctx context.Context, id ImageVersionId, input GalleryImageVersionUpdate) error {
 	result, err := c.Update(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing Update: %+v", err)
@@ -50,7 +50,7 @@ func (c GalleryImageVersionsClient) UpdateThenPoll(ctx context.Context, id Versi
 }
 
 // preparerForUpdate prepares the Update request.
-func (c GalleryImageVersionsClient) preparerForUpdate(ctx context.Context, id VersionId, input GalleryImageVersionUpdate) (*http.Request, error) {
+func (c GalleryImageVersionsClient) preparerForUpdate(ctx context.Context, id ImageVersionId, input GalleryImageVersionUpdate) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

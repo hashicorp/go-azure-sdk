@@ -21,7 +21,7 @@ type DeleteOperationResponse struct {
 }
 
 // Delete ...
-func (c ExpressRoutePortAuthorizationsClient) Delete(ctx context.Context, id AuthorizationId) (result DeleteOperationResponse, err error) {
+func (c ExpressRoutePortAuthorizationsClient) Delete(ctx context.Context, id ExpressRoutePortAuthorizationId) (result DeleteOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json",
 		ExpectedStatusCodes: []int{
@@ -57,7 +57,7 @@ func (c ExpressRoutePortAuthorizationsClient) Delete(ctx context.Context, id Aut
 }
 
 // DeleteThenPoll performs Delete then polls until it's completed
-func (c ExpressRoutePortAuthorizationsClient) DeleteThenPoll(ctx context.Context, id AuthorizationId) error {
+func (c ExpressRoutePortAuthorizationsClient) DeleteThenPoll(ctx context.Context, id ExpressRoutePortAuthorizationId) error {
 	result, err := c.Delete(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing Delete: %+v", err)

@@ -19,7 +19,7 @@ type RedeployOperationResponse struct {
 }
 
 // Redeploy ...
-func (c VirtualMachineScaleSetVMsClient) Redeploy(ctx context.Context, id VirtualMachineId) (result RedeployOperationResponse, err error) {
+func (c VirtualMachineScaleSetVMsClient) Redeploy(ctx context.Context, id VirtualMachineScaleSetVirtualMachineId) (result RedeployOperationResponse, err error) {
 	req, err := c.preparerForRedeploy(ctx, id)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "virtualmachinescalesetvms.VirtualMachineScaleSetVMsClient", "Redeploy", nil, "Failure preparing request")
@@ -36,7 +36,7 @@ func (c VirtualMachineScaleSetVMsClient) Redeploy(ctx context.Context, id Virtua
 }
 
 // RedeployThenPoll performs Redeploy then polls until it's completed
-func (c VirtualMachineScaleSetVMsClient) RedeployThenPoll(ctx context.Context, id VirtualMachineId) error {
+func (c VirtualMachineScaleSetVMsClient) RedeployThenPoll(ctx context.Context, id VirtualMachineScaleSetVirtualMachineId) error {
 	result, err := c.Redeploy(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing Redeploy: %+v", err)
@@ -50,7 +50,7 @@ func (c VirtualMachineScaleSetVMsClient) RedeployThenPoll(ctx context.Context, i
 }
 
 // preparerForRedeploy prepares the Redeploy request.
-func (c VirtualMachineScaleSetVMsClient) preparerForRedeploy(ctx context.Context, id VirtualMachineId) (*http.Request, error) {
+func (c VirtualMachineScaleSetVMsClient) preparerForRedeploy(ctx context.Context, id VirtualMachineScaleSetVirtualMachineId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

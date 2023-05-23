@@ -21,7 +21,7 @@ type CreateOrUpdateOperationResponse struct {
 }
 
 // CreateOrUpdate ...
-func (c ExpressRoutePortAuthorizationsClient) CreateOrUpdate(ctx context.Context, id AuthorizationId, input ExpressRoutePortAuthorization) (result CreateOrUpdateOperationResponse, err error) {
+func (c ExpressRoutePortAuthorizationsClient) CreateOrUpdate(ctx context.Context, id ExpressRoutePortAuthorizationId, input ExpressRoutePortAuthorization) (result CreateOrUpdateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json",
 		ExpectedStatusCodes: []int{
@@ -60,7 +60,7 @@ func (c ExpressRoutePortAuthorizationsClient) CreateOrUpdate(ctx context.Context
 }
 
 // CreateOrUpdateThenPoll performs CreateOrUpdate then polls until it's completed
-func (c ExpressRoutePortAuthorizationsClient) CreateOrUpdateThenPoll(ctx context.Context, id AuthorizationId, input ExpressRoutePortAuthorization) error {
+func (c ExpressRoutePortAuthorizationsClient) CreateOrUpdateThenPoll(ctx context.Context, id ExpressRoutePortAuthorizationId, input ExpressRoutePortAuthorization) error {
 	result, err := c.CreateOrUpdate(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing CreateOrUpdate: %+v", err)

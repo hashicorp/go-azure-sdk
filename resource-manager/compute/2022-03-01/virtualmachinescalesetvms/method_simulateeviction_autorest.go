@@ -17,7 +17,7 @@ type SimulateEvictionOperationResponse struct {
 }
 
 // SimulateEviction ...
-func (c VirtualMachineScaleSetVMsClient) SimulateEviction(ctx context.Context, id VirtualMachineId) (result SimulateEvictionOperationResponse, err error) {
+func (c VirtualMachineScaleSetVMsClient) SimulateEviction(ctx context.Context, id VirtualMachineScaleSetVirtualMachineId) (result SimulateEvictionOperationResponse, err error) {
 	req, err := c.preparerForSimulateEviction(ctx, id)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "virtualmachinescalesetvms.VirtualMachineScaleSetVMsClient", "SimulateEviction", nil, "Failure preparing request")
@@ -40,7 +40,7 @@ func (c VirtualMachineScaleSetVMsClient) SimulateEviction(ctx context.Context, i
 }
 
 // preparerForSimulateEviction prepares the SimulateEviction request.
-func (c VirtualMachineScaleSetVMsClient) preparerForSimulateEviction(ctx context.Context, id VirtualMachineId) (*http.Request, error) {
+func (c VirtualMachineScaleSetVMsClient) preparerForSimulateEviction(ctx context.Context, id VirtualMachineScaleSetVirtualMachineId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

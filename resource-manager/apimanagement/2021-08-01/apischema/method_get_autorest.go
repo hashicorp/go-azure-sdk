@@ -17,7 +17,7 @@ type GetOperationResponse struct {
 }
 
 // Get ...
-func (c ApiSchemaClient) Get(ctx context.Context, id SchemaId) (result GetOperationResponse, err error) {
+func (c ApiSchemaClient) Get(ctx context.Context, id ApiSchemaId) (result GetOperationResponse, err error) {
 	req, err := c.preparerForGet(ctx, id)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "apischema.ApiSchemaClient", "Get", nil, "Failure preparing request")
@@ -40,7 +40,7 @@ func (c ApiSchemaClient) Get(ctx context.Context, id SchemaId) (result GetOperat
 }
 
 // preparerForGet prepares the Get request.
-func (c ApiSchemaClient) preparerForGet(ctx context.Context, id SchemaId) (*http.Request, error) {
+func (c ApiSchemaClient) preparerForGet(ctx context.Context, id ApiSchemaId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

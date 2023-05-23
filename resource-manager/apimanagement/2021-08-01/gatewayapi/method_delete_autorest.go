@@ -16,7 +16,7 @@ type DeleteOperationResponse struct {
 }
 
 // Delete ...
-func (c GatewayApiClient) Delete(ctx context.Context, id ApiId) (result DeleteOperationResponse, err error) {
+func (c GatewayApiClient) Delete(ctx context.Context, id GatewayApiId) (result DeleteOperationResponse, err error) {
 	req, err := c.preparerForDelete(ctx, id)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "gatewayapi.GatewayApiClient", "Delete", nil, "Failure preparing request")
@@ -39,7 +39,7 @@ func (c GatewayApiClient) Delete(ctx context.Context, id ApiId) (result DeleteOp
 }
 
 // preparerForDelete prepares the Delete request.
-func (c GatewayApiClient) preparerForDelete(ctx context.Context, id ApiId) (*http.Request, error) {
+func (c GatewayApiClient) preparerForDelete(ctx context.Context, id GatewayApiId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

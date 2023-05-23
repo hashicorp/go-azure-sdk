@@ -16,7 +16,7 @@ type DeleteOperationResponse struct {
 }
 
 // Delete ...
-func (c BookmarkRelationsClient) Delete(ctx context.Context, id RelationId) (result DeleteOperationResponse, err error) {
+func (c BookmarkRelationsClient) Delete(ctx context.Context, id BookmarkRelationId) (result DeleteOperationResponse, err error) {
 	req, err := c.preparerForDelete(ctx, id)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "bookmarkrelations.BookmarkRelationsClient", "Delete", nil, "Failure preparing request")
@@ -39,7 +39,7 @@ func (c BookmarkRelationsClient) Delete(ctx context.Context, id RelationId) (res
 }
 
 // preparerForDelete prepares the Delete request.
-func (c BookmarkRelationsClient) preparerForDelete(ctx context.Context, id RelationId) (*http.Request, error) {
+func (c BookmarkRelationsClient) preparerForDelete(ctx context.Context, id BookmarkRelationId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

@@ -43,7 +43,7 @@ func (o DeleteOperationOptions) toQueryString() map[string]interface{} {
 }
 
 // Delete ...
-func (c VirtualMachineScaleSetVMsClient) Delete(ctx context.Context, id VirtualMachineId, options DeleteOperationOptions) (result DeleteOperationResponse, err error) {
+func (c VirtualMachineScaleSetVMsClient) Delete(ctx context.Context, id VirtualMachineScaleSetVirtualMachineId, options DeleteOperationOptions) (result DeleteOperationResponse, err error) {
 	req, err := c.preparerForDelete(ctx, id, options)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "virtualmachinescalesetvms.VirtualMachineScaleSetVMsClient", "Delete", nil, "Failure preparing request")
@@ -60,7 +60,7 @@ func (c VirtualMachineScaleSetVMsClient) Delete(ctx context.Context, id VirtualM
 }
 
 // DeleteThenPoll performs Delete then polls until it's completed
-func (c VirtualMachineScaleSetVMsClient) DeleteThenPoll(ctx context.Context, id VirtualMachineId, options DeleteOperationOptions) error {
+func (c VirtualMachineScaleSetVMsClient) DeleteThenPoll(ctx context.Context, id VirtualMachineScaleSetVirtualMachineId, options DeleteOperationOptions) error {
 	result, err := c.Delete(ctx, id, options)
 	if err != nil {
 		return fmt.Errorf("performing Delete: %+v", err)
@@ -74,7 +74,7 @@ func (c VirtualMachineScaleSetVMsClient) DeleteThenPoll(ctx context.Context, id 
 }
 
 // preparerForDelete prepares the Delete request.
-func (c VirtualMachineScaleSetVMsClient) preparerForDelete(ctx context.Context, id VirtualMachineId, options DeleteOperationOptions) (*http.Request, error) {
+func (c VirtualMachineScaleSetVMsClient) preparerForDelete(ctx context.Context, id VirtualMachineScaleSetVirtualMachineId, options DeleteOperationOptions) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

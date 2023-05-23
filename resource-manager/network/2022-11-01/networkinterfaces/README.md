@@ -69,7 +69,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := networkinterfaces.NewNetworkInterfaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "networkInterfaceValue")
+id := networkinterfaces.NewRoleInstanceNetworkInterfaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "cloudServiceValue", "roleInstanceValue", "networkInterfaceValue")
 
 read, err := client.GetCloudServiceNetworkInterface(ctx, id, networkinterfaces.DefaultGetCloudServiceNetworkInterfaceOperationOptions())
 if err != nil {
@@ -163,7 +163,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := networkinterfaces.NewCloudServiceID("12345678-1234-9876-4563-123456789012", "resourceGroupValue", "cloudServiceValue")
+id := networkinterfaces.NewProviderCloudServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "cloudServiceValue")
 
 // alternatively `client.ListCloudServiceNetworkInterfaces(ctx, id)` can be used to do batched pagination
 items, err := client.ListCloudServiceNetworkInterfacesComplete(ctx, id)

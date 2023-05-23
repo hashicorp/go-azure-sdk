@@ -17,7 +17,7 @@ type CreateOperationResponse struct {
 }
 
 // Create ...
-func (c GroupUserClient) Create(ctx context.Context, id UserId) (result CreateOperationResponse, err error) {
+func (c GroupUserClient) Create(ctx context.Context, id GroupUserId) (result CreateOperationResponse, err error) {
 	req, err := c.preparerForCreate(ctx, id)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "groupuser.GroupUserClient", "Create", nil, "Failure preparing request")
@@ -40,7 +40,7 @@ func (c GroupUserClient) Create(ctx context.Context, id UserId) (result CreateOp
 }
 
 // preparerForCreate prepares the Create request.
-func (c GroupUserClient) preparerForCreate(ctx context.Context, id UserId) (*http.Request, error) {
+func (c GroupUserClient) preparerForCreate(ctx context.Context, id GroupUserId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

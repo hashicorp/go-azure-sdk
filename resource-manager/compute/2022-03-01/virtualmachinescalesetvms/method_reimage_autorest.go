@@ -19,7 +19,7 @@ type ReimageOperationResponse struct {
 }
 
 // Reimage ...
-func (c VirtualMachineScaleSetVMsClient) Reimage(ctx context.Context, id VirtualMachineId, input VirtualMachineReimageParameters) (result ReimageOperationResponse, err error) {
+func (c VirtualMachineScaleSetVMsClient) Reimage(ctx context.Context, id VirtualMachineScaleSetVirtualMachineId, input VirtualMachineReimageParameters) (result ReimageOperationResponse, err error) {
 	req, err := c.preparerForReimage(ctx, id, input)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "virtualmachinescalesetvms.VirtualMachineScaleSetVMsClient", "Reimage", nil, "Failure preparing request")
@@ -36,7 +36,7 @@ func (c VirtualMachineScaleSetVMsClient) Reimage(ctx context.Context, id Virtual
 }
 
 // ReimageThenPoll performs Reimage then polls until it's completed
-func (c VirtualMachineScaleSetVMsClient) ReimageThenPoll(ctx context.Context, id VirtualMachineId, input VirtualMachineReimageParameters) error {
+func (c VirtualMachineScaleSetVMsClient) ReimageThenPoll(ctx context.Context, id VirtualMachineScaleSetVirtualMachineId, input VirtualMachineReimageParameters) error {
 	result, err := c.Reimage(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing Reimage: %+v", err)
@@ -50,7 +50,7 @@ func (c VirtualMachineScaleSetVMsClient) ReimageThenPoll(ctx context.Context, id
 }
 
 // preparerForReimage prepares the Reimage request.
-func (c VirtualMachineScaleSetVMsClient) preparerForReimage(ctx context.Context, id VirtualMachineId, input VirtualMachineReimageParameters) (*http.Request, error) {
+func (c VirtualMachineScaleSetVMsClient) preparerForReimage(ctx context.Context, id VirtualMachineScaleSetVirtualMachineId, input VirtualMachineReimageParameters) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

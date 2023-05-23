@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := incidentrelations.NewRelationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "entityIdValue", "relationValue")
+id := incidentrelations.NewIncidentRelationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "incidentIdValue", "relationValue")
 
 payload := incidentrelations.Relation{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := incidentrelations.NewRelationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "entityIdValue", "relationValue")
+id := incidentrelations.NewIncidentRelationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "incidentIdValue", "relationValue")
 
 read, err := client.Delete(ctx, id)
 if err != nil {
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := incidentrelations.NewRelationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "entityIdValue", "relationValue")
+id := incidentrelations.NewIncidentRelationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "incidentIdValue", "relationValue")
 
 read, err := client.Get(ctx, id)
 if err != nil {

@@ -17,7 +17,7 @@ type TagGetByProductOperationResponse struct {
 }
 
 // TagGetByProduct ...
-func (c ProductTagClient) TagGetByProduct(ctx context.Context, id TagId) (result TagGetByProductOperationResponse, err error) {
+func (c ProductTagClient) TagGetByProduct(ctx context.Context, id ProductTagId) (result TagGetByProductOperationResponse, err error) {
 	req, err := c.preparerForTagGetByProduct(ctx, id)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "producttag.ProductTagClient", "TagGetByProduct", nil, "Failure preparing request")
@@ -40,7 +40,7 @@ func (c ProductTagClient) TagGetByProduct(ctx context.Context, id TagId) (result
 }
 
 // preparerForTagGetByProduct prepares the TagGetByProduct request.
-func (c ProductTagClient) preparerForTagGetByProduct(ctx context.Context, id TagId) (*http.Request, error) {
+func (c ProductTagClient) preparerForTagGetByProduct(ctx context.Context, id ProductTagId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

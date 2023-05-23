@@ -17,7 +17,7 @@ type EdgeZoneGetOperationResponse struct {
 }
 
 // EdgeZoneGet ...
-func (c VirtualMachineImagesClient) EdgeZoneGet(ctx context.Context, id SkuVersionId) (result EdgeZoneGetOperationResponse, err error) {
+func (c VirtualMachineImagesClient) EdgeZoneGet(ctx context.Context, id OfferSkuVersionId) (result EdgeZoneGetOperationResponse, err error) {
 	req, err := c.preparerForEdgeZoneGet(ctx, id)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "virtualmachineimages.VirtualMachineImagesClient", "EdgeZoneGet", nil, "Failure preparing request")
@@ -40,7 +40,7 @@ func (c VirtualMachineImagesClient) EdgeZoneGet(ctx context.Context, id SkuVersi
 }
 
 // preparerForEdgeZoneGet prepares the EdgeZoneGet request.
-func (c VirtualMachineImagesClient) preparerForEdgeZoneGet(ctx context.Context, id SkuVersionId) (*http.Request, error) {
+func (c VirtualMachineImagesClient) preparerForEdgeZoneGet(ctx context.Context, id OfferSkuVersionId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

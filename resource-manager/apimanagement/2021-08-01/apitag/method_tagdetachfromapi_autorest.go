@@ -16,7 +16,7 @@ type TagDetachFromApiOperationResponse struct {
 }
 
 // TagDetachFromApi ...
-func (c ApiTagClient) TagDetachFromApi(ctx context.Context, id TagId) (result TagDetachFromApiOperationResponse, err error) {
+func (c ApiTagClient) TagDetachFromApi(ctx context.Context, id ApiTagId) (result TagDetachFromApiOperationResponse, err error) {
 	req, err := c.preparerForTagDetachFromApi(ctx, id)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "apitag.ApiTagClient", "TagDetachFromApi", nil, "Failure preparing request")
@@ -39,7 +39,7 @@ func (c ApiTagClient) TagDetachFromApi(ctx context.Context, id TagId) (result Ta
 }
 
 // preparerForTagDetachFromApi prepares the TagDetachFromApi request.
-func (c ApiTagClient) preparerForTagDetachFromApi(ctx context.Context, id TagId) (*http.Request, error) {
+func (c ApiTagClient) preparerForTagDetachFromApi(ctx context.Context, id ApiTagId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

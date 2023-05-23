@@ -19,7 +19,7 @@ type UpdateOperationResponse struct {
 }
 
 // Update ...
-func (c VirtualMachineScaleSetVMsClient) Update(ctx context.Context, id VirtualMachineId, input VirtualMachineScaleSetVM) (result UpdateOperationResponse, err error) {
+func (c VirtualMachineScaleSetVMsClient) Update(ctx context.Context, id VirtualMachineScaleSetVirtualMachineId, input VirtualMachineScaleSetVM) (result UpdateOperationResponse, err error) {
 	req, err := c.preparerForUpdate(ctx, id, input)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "virtualmachinescalesetvms.VirtualMachineScaleSetVMsClient", "Update", nil, "Failure preparing request")
@@ -36,7 +36,7 @@ func (c VirtualMachineScaleSetVMsClient) Update(ctx context.Context, id VirtualM
 }
 
 // UpdateThenPoll performs Update then polls until it's completed
-func (c VirtualMachineScaleSetVMsClient) UpdateThenPoll(ctx context.Context, id VirtualMachineId, input VirtualMachineScaleSetVM) error {
+func (c VirtualMachineScaleSetVMsClient) UpdateThenPoll(ctx context.Context, id VirtualMachineScaleSetVirtualMachineId, input VirtualMachineScaleSetVM) error {
 	result, err := c.Update(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing Update: %+v", err)
@@ -50,7 +50,7 @@ func (c VirtualMachineScaleSetVMsClient) UpdateThenPoll(ctx context.Context, id 
 }
 
 // preparerForUpdate prepares the Update request.
-func (c VirtualMachineScaleSetVMsClient) preparerForUpdate(ctx context.Context, id VirtualMachineId, input VirtualMachineScaleSetVM) (*http.Request, error) {
+func (c VirtualMachineScaleSetVMsClient) preparerForUpdate(ctx context.Context, id VirtualMachineScaleSetVirtualMachineId, input VirtualMachineScaleSetVM) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

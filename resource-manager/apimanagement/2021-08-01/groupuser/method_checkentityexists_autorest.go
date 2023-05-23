@@ -16,7 +16,7 @@ type CheckEntityExistsOperationResponse struct {
 }
 
 // CheckEntityExists ...
-func (c GroupUserClient) CheckEntityExists(ctx context.Context, id UserId) (result CheckEntityExistsOperationResponse, err error) {
+func (c GroupUserClient) CheckEntityExists(ctx context.Context, id GroupUserId) (result CheckEntityExistsOperationResponse, err error) {
 	req, err := c.preparerForCheckEntityExists(ctx, id)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "groupuser.GroupUserClient", "CheckEntityExists", nil, "Failure preparing request")
@@ -39,7 +39,7 @@ func (c GroupUserClient) CheckEntityExists(ctx context.Context, id UserId) (resu
 }
 
 // preparerForCheckEntityExists prepares the CheckEntityExists request.
-func (c GroupUserClient) preparerForCheckEntityExists(ctx context.Context, id UserId) (*http.Request, error) {
+func (c GroupUserClient) preparerForCheckEntityExists(ctx context.Context, id GroupUserId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

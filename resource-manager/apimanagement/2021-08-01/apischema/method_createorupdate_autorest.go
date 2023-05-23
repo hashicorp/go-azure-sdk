@@ -43,7 +43,7 @@ func (o CreateOrUpdateOperationOptions) toQueryString() map[string]interface{} {
 }
 
 // CreateOrUpdate ...
-func (c ApiSchemaClient) CreateOrUpdate(ctx context.Context, id SchemaId, input SchemaContract, options CreateOrUpdateOperationOptions) (result CreateOrUpdateOperationResponse, err error) {
+func (c ApiSchemaClient) CreateOrUpdate(ctx context.Context, id ApiSchemaId, input SchemaContract, options CreateOrUpdateOperationOptions) (result CreateOrUpdateOperationResponse, err error) {
 	req, err := c.preparerForCreateOrUpdate(ctx, id, input, options)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "apischema.ApiSchemaClient", "CreateOrUpdate", nil, "Failure preparing request")
@@ -60,7 +60,7 @@ func (c ApiSchemaClient) CreateOrUpdate(ctx context.Context, id SchemaId, input 
 }
 
 // CreateOrUpdateThenPoll performs CreateOrUpdate then polls until it's completed
-func (c ApiSchemaClient) CreateOrUpdateThenPoll(ctx context.Context, id SchemaId, input SchemaContract, options CreateOrUpdateOperationOptions) error {
+func (c ApiSchemaClient) CreateOrUpdateThenPoll(ctx context.Context, id ApiSchemaId, input SchemaContract, options CreateOrUpdateOperationOptions) error {
 	result, err := c.CreateOrUpdate(ctx, id, input, options)
 	if err != nil {
 		return fmt.Errorf("performing CreateOrUpdate: %+v", err)
@@ -74,7 +74,7 @@ func (c ApiSchemaClient) CreateOrUpdateThenPoll(ctx context.Context, id SchemaId
 }
 
 // preparerForCreateOrUpdate prepares the CreateOrUpdate request.
-func (c ApiSchemaClient) preparerForCreateOrUpdate(ctx context.Context, id SchemaId, input SchemaContract, options CreateOrUpdateOperationOptions) (*http.Request, error) {
+func (c ApiSchemaClient) preparerForCreateOrUpdate(ctx context.Context, id ApiSchemaId, input SchemaContract, options CreateOrUpdateOperationOptions) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

@@ -18,7 +18,7 @@ type GetOperationResponse struct {
 }
 
 // Get ...
-func (c ExpressRoutePortAuthorizationsClient) Get(ctx context.Context, id AuthorizationId) (result GetOperationResponse, err error) {
+func (c ExpressRoutePortAuthorizationsClient) Get(ctx context.Context, id ExpressRoutePortAuthorizationId) (result GetOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json",
 		ExpectedStatusCodes: []int{

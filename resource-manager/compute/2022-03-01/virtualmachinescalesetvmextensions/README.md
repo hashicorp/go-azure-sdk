@@ -69,7 +69,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := virtualmachinescalesetvmextensions.NewVirtualMachineID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineValue")
+id := virtualmachinescalesetvmextensions.NewVirtualMachineScaleSetVirtualMachineID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualMachineScaleSetValue", "instanceIdValue")
 
 read, err := client.List(ctx, id, virtualmachinescalesetvmextensions.DefaultListOperationOptions())
 if err != nil {

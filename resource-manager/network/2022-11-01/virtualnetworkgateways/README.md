@@ -334,7 +334,7 @@ if err := client.UpdateTagsThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := virtualnetworkgateways.NewNatRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vpnGatewayValue", "natRuleValue")
+id := virtualnetworkgateways.NewVirtualNetworkGatewayNatRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualNetworkGatewayValue", "natRuleValue")
 
 payload := virtualnetworkgateways.VirtualNetworkGatewayNatRule{
 	// ...
@@ -351,7 +351,7 @@ if err := client.VirtualNetworkGatewayNatRulesCreateOrUpdateThenPoll(ctx, id, pa
 
 ```go
 ctx := context.TODO()
-id := virtualnetworkgateways.NewNatRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vpnGatewayValue", "natRuleValue")
+id := virtualnetworkgateways.NewVirtualNetworkGatewayNatRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualNetworkGatewayValue", "natRuleValue")
 
 if err := client.VirtualNetworkGatewayNatRulesDeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -363,7 +363,7 @@ if err := client.VirtualNetworkGatewayNatRulesDeleteThenPoll(ctx, id); err != ni
 
 ```go
 ctx := context.TODO()
-id := virtualnetworkgateways.NewNatRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vpnGatewayValue", "natRuleValue")
+id := virtualnetworkgateways.NewVirtualNetworkGatewayNatRuleID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualNetworkGatewayValue", "natRuleValue")
 
 read, err := client.VirtualNetworkGatewayNatRulesGet(ctx, id)
 if err != nil {

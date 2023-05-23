@@ -21,7 +21,7 @@ type VirtualNetworkGatewayNatRulesCreateOrUpdateOperationResponse struct {
 }
 
 // VirtualNetworkGatewayNatRulesCreateOrUpdate ...
-func (c VirtualNetworkGatewaysClient) VirtualNetworkGatewayNatRulesCreateOrUpdate(ctx context.Context, id NatRuleId, input VirtualNetworkGatewayNatRule) (result VirtualNetworkGatewayNatRulesCreateOrUpdateOperationResponse, err error) {
+func (c VirtualNetworkGatewaysClient) VirtualNetworkGatewayNatRulesCreateOrUpdate(ctx context.Context, id VirtualNetworkGatewayNatRuleId, input VirtualNetworkGatewayNatRule) (result VirtualNetworkGatewayNatRulesCreateOrUpdateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json",
 		ExpectedStatusCodes: []int{
@@ -60,7 +60,7 @@ func (c VirtualNetworkGatewaysClient) VirtualNetworkGatewayNatRulesCreateOrUpdat
 }
 
 // VirtualNetworkGatewayNatRulesCreateOrUpdateThenPoll performs VirtualNetworkGatewayNatRulesCreateOrUpdate then polls until it's completed
-func (c VirtualNetworkGatewaysClient) VirtualNetworkGatewayNatRulesCreateOrUpdateThenPoll(ctx context.Context, id NatRuleId, input VirtualNetworkGatewayNatRule) error {
+func (c VirtualNetworkGatewaysClient) VirtualNetworkGatewayNatRulesCreateOrUpdateThenPoll(ctx context.Context, id VirtualNetworkGatewayNatRuleId, input VirtualNetworkGatewayNatRule) error {
 	result, err := c.VirtualNetworkGatewayNatRulesCreateOrUpdate(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing VirtualNetworkGatewayNatRulesCreateOrUpdate: %+v", err)

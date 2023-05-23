@@ -17,7 +17,7 @@ type TagAssignToProductOperationResponse struct {
 }
 
 // TagAssignToProduct ...
-func (c ProductTagClient) TagAssignToProduct(ctx context.Context, id TagId) (result TagAssignToProductOperationResponse, err error) {
+func (c ProductTagClient) TagAssignToProduct(ctx context.Context, id ProductTagId) (result TagAssignToProductOperationResponse, err error) {
 	req, err := c.preparerForTagAssignToProduct(ctx, id)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "producttag.ProductTagClient", "TagAssignToProduct", nil, "Failure preparing request")
@@ -40,7 +40,7 @@ func (c ProductTagClient) TagAssignToProduct(ctx context.Context, id TagId) (res
 }
 
 // preparerForTagAssignToProduct prepares the TagAssignToProduct request.
-func (c ProductTagClient) preparerForTagAssignToProduct(ctx context.Context, id TagId) (*http.Request, error) {
+func (c ProductTagClient) preparerForTagAssignToProduct(ctx context.Context, id ProductTagId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

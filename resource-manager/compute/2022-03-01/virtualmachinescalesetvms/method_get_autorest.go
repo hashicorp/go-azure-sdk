@@ -41,7 +41,7 @@ func (o GetOperationOptions) toQueryString() map[string]interface{} {
 }
 
 // Get ...
-func (c VirtualMachineScaleSetVMsClient) Get(ctx context.Context, id VirtualMachineId, options GetOperationOptions) (result GetOperationResponse, err error) {
+func (c VirtualMachineScaleSetVMsClient) Get(ctx context.Context, id VirtualMachineScaleSetVirtualMachineId, options GetOperationOptions) (result GetOperationResponse, err error) {
 	req, err := c.preparerForGet(ctx, id, options)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "virtualmachinescalesetvms.VirtualMachineScaleSetVMsClient", "Get", nil, "Failure preparing request")
@@ -64,7 +64,7 @@ func (c VirtualMachineScaleSetVMsClient) Get(ctx context.Context, id VirtualMach
 }
 
 // preparerForGet prepares the Get request.
-func (c VirtualMachineScaleSetVMsClient) preparerForGet(ctx context.Context, id VirtualMachineId, options GetOperationOptions) (*http.Request, error) {
+func (c VirtualMachineScaleSetVMsClient) preparerForGet(ctx context.Context, id VirtualMachineScaleSetVirtualMachineId, options GetOperationOptions) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

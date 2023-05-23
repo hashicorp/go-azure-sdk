@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := apitag.NewTagID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "tagIdValue")
+id := apitag.NewApiTagID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "apiIdValue", "tagIdValue")
 
 read, err := client.TagAssignToApi(ctx, id)
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := apitag.NewTagID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "tagIdValue")
+id := apitag.NewApiTagID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "apiIdValue", "tagIdValue")
 
 read, err := client.TagDetachFromApi(ctx, id)
 if err != nil {
@@ -56,7 +56,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := apitag.NewTagID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "tagIdValue")
+id := apitag.NewApiTagID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "apiIdValue", "tagIdValue")
 
 read, err := client.TagGetByApi(ctx, id)
 if err != nil {
@@ -72,7 +72,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := apitag.NewTagID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "tagIdValue")
+id := apitag.NewApiTagID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "apiIdValue", "tagIdValue")
 
 read, err := client.TagGetEntityStateByApi(ctx, id)
 if err != nil {

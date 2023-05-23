@@ -21,7 +21,7 @@ type VirtualHubRouteTableV2sDeleteOperationResponse struct {
 }
 
 // VirtualHubRouteTableV2sDelete ...
-func (c VirtualWANsClient) VirtualHubRouteTableV2sDelete(ctx context.Context, id RouteTableId) (result VirtualHubRouteTableV2sDeleteOperationResponse, err error) {
+func (c VirtualWANsClient) VirtualHubRouteTableV2sDelete(ctx context.Context, id VirtualHubRouteTableId) (result VirtualHubRouteTableV2sDeleteOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json",
 		ExpectedStatusCodes: []int{
@@ -57,7 +57,7 @@ func (c VirtualWANsClient) VirtualHubRouteTableV2sDelete(ctx context.Context, id
 }
 
 // VirtualHubRouteTableV2sDeleteThenPoll performs VirtualHubRouteTableV2sDelete then polls until it's completed
-func (c VirtualWANsClient) VirtualHubRouteTableV2sDeleteThenPoll(ctx context.Context, id RouteTableId) error {
+func (c VirtualWANsClient) VirtualHubRouteTableV2sDeleteThenPoll(ctx context.Context, id VirtualHubRouteTableId) error {
 	result, err := c.VirtualHubRouteTableV2sDelete(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing VirtualHubRouteTableV2sDelete: %+v", err)

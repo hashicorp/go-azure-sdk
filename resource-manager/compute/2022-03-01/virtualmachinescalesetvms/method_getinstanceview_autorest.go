@@ -18,7 +18,7 @@ type GetInstanceViewOperationResponse struct {
 }
 
 // GetInstanceView ...
-func (c VirtualMachineScaleSetVMsClient) GetInstanceView(ctx context.Context, id VirtualMachineId) (result GetInstanceViewOperationResponse, err error) {
+func (c VirtualMachineScaleSetVMsClient) GetInstanceView(ctx context.Context, id VirtualMachineScaleSetVirtualMachineId) (result GetInstanceViewOperationResponse, err error) {
 	req, err := c.preparerForGetInstanceView(ctx, id)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "virtualmachinescalesetvms.VirtualMachineScaleSetVMsClient", "GetInstanceView", nil, "Failure preparing request")
@@ -41,7 +41,7 @@ func (c VirtualMachineScaleSetVMsClient) GetInstanceView(ctx context.Context, id
 }
 
 // preparerForGetInstanceView prepares the GetInstanceView request.
-func (c VirtualMachineScaleSetVMsClient) preparerForGetInstanceView(ctx context.Context, id VirtualMachineId) (*http.Request, error) {
+func (c VirtualMachineScaleSetVMsClient) preparerForGetInstanceView(ctx context.Context, id VirtualMachineScaleSetVirtualMachineId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

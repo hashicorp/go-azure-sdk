@@ -17,7 +17,7 @@ type TagAssignToApiOperationResponse struct {
 }
 
 // TagAssignToApi ...
-func (c ApiTagClient) TagAssignToApi(ctx context.Context, id TagId) (result TagAssignToApiOperationResponse, err error) {
+func (c ApiTagClient) TagAssignToApi(ctx context.Context, id ApiTagId) (result TagAssignToApiOperationResponse, err error) {
 	req, err := c.preparerForTagAssignToApi(ctx, id)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "apitag.ApiTagClient", "TagAssignToApi", nil, "Failure preparing request")
@@ -40,7 +40,7 @@ func (c ApiTagClient) TagAssignToApi(ctx context.Context, id TagId) (result TagA
 }
 
 // preparerForTagAssignToApi prepares the TagAssignToApi request.
-func (c ApiTagClient) preparerForTagAssignToApi(ctx context.Context, id TagId) (*http.Request, error) {
+func (c ApiTagClient) preparerForTagAssignToApi(ctx context.Context, id ApiTagId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

@@ -18,7 +18,7 @@ type GetOperationResponse struct {
 }
 
 // Get ...
-func (c ExpressRouteCircuitConnectionsClient) Get(ctx context.Context, id ConnectionId) (result GetOperationResponse, err error) {
+func (c ExpressRouteCircuitConnectionsClient) Get(ctx context.Context, id PeeringConnectionId) (result GetOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json",
 		ExpectedStatusCodes: []int{

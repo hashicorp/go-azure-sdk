@@ -19,7 +19,7 @@ type MongoDBResourcesRetrieveContinuousBackupInformationOperationResponse struct
 }
 
 // MongoDBResourcesRetrieveContinuousBackupInformation ...
-func (c RestorablesClient) MongoDBResourcesRetrieveContinuousBackupInformation(ctx context.Context, id CollectionId, input ContinuousBackupRestoreLocation) (result MongoDBResourcesRetrieveContinuousBackupInformationOperationResponse, err error) {
+func (c RestorablesClient) MongoDBResourcesRetrieveContinuousBackupInformation(ctx context.Context, id MongodbDatabaseCollectionId, input ContinuousBackupRestoreLocation) (result MongoDBResourcesRetrieveContinuousBackupInformationOperationResponse, err error) {
 	req, err := c.preparerForMongoDBResourcesRetrieveContinuousBackupInformation(ctx, id, input)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "restorables.RestorablesClient", "MongoDBResourcesRetrieveContinuousBackupInformation", nil, "Failure preparing request")
@@ -36,7 +36,7 @@ func (c RestorablesClient) MongoDBResourcesRetrieveContinuousBackupInformation(c
 }
 
 // MongoDBResourcesRetrieveContinuousBackupInformationThenPoll performs MongoDBResourcesRetrieveContinuousBackupInformation then polls until it's completed
-func (c RestorablesClient) MongoDBResourcesRetrieveContinuousBackupInformationThenPoll(ctx context.Context, id CollectionId, input ContinuousBackupRestoreLocation) error {
+func (c RestorablesClient) MongoDBResourcesRetrieveContinuousBackupInformationThenPoll(ctx context.Context, id MongodbDatabaseCollectionId, input ContinuousBackupRestoreLocation) error {
 	result, err := c.MongoDBResourcesRetrieveContinuousBackupInformation(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing MongoDBResourcesRetrieveContinuousBackupInformation: %+v", err)
@@ -50,7 +50,7 @@ func (c RestorablesClient) MongoDBResourcesRetrieveContinuousBackupInformationTh
 }
 
 // preparerForMongoDBResourcesRetrieveContinuousBackupInformation prepares the MongoDBResourcesRetrieveContinuousBackupInformation request.
-func (c RestorablesClient) preparerForMongoDBResourcesRetrieveContinuousBackupInformation(ctx context.Context, id CollectionId, input ContinuousBackupRestoreLocation) (*http.Request, error) {
+func (c RestorablesClient) preparerForMongoDBResourcesRetrieveContinuousBackupInformation(ctx context.Context, id MongodbDatabaseCollectionId, input ContinuousBackupRestoreLocation) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

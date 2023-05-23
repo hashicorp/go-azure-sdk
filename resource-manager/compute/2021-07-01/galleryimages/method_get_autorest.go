@@ -17,7 +17,7 @@ type GetOperationResponse struct {
 }
 
 // Get ...
-func (c GalleryImagesClient) Get(ctx context.Context, id ImageId) (result GetOperationResponse, err error) {
+func (c GalleryImagesClient) Get(ctx context.Context, id GalleryImageId) (result GetOperationResponse, err error) {
 	req, err := c.preparerForGet(ctx, id)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "galleryimages.GalleryImagesClient", "Get", nil, "Failure preparing request")
@@ -40,7 +40,7 @@ func (c GalleryImagesClient) Get(ctx context.Context, id ImageId) (result GetOpe
 }
 
 // preparerForGet prepares the Get request.
-func (c GalleryImagesClient) preparerForGet(ctx context.Context, id ImageId) (*http.Request, error) {
+func (c GalleryImagesClient) preparerForGet(ctx context.Context, id GalleryImageId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

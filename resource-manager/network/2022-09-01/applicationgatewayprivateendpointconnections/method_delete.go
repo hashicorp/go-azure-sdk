@@ -21,7 +21,7 @@ type DeleteOperationResponse struct {
 }
 
 // Delete ...
-func (c ApplicationGatewayPrivateEndpointConnectionsClient) Delete(ctx context.Context, id PrivateEndpointConnectionId) (result DeleteOperationResponse, err error) {
+func (c ApplicationGatewayPrivateEndpointConnectionsClient) Delete(ctx context.Context, id ApplicationGatewayPrivateEndpointConnectionId) (result DeleteOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json",
 		ExpectedStatusCodes: []int{
@@ -57,7 +57,7 @@ func (c ApplicationGatewayPrivateEndpointConnectionsClient) Delete(ctx context.C
 }
 
 // DeleteThenPoll performs Delete then polls until it's completed
-func (c ApplicationGatewayPrivateEndpointConnectionsClient) DeleteThenPoll(ctx context.Context, id PrivateEndpointConnectionId) error {
+func (c ApplicationGatewayPrivateEndpointConnectionsClient) DeleteThenPoll(ctx context.Context, id ApplicationGatewayPrivateEndpointConnectionId) error {
 	result, err := c.Delete(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing Delete: %+v", err)

@@ -16,7 +16,7 @@ type DeleteOperationResponse struct {
 }
 
 // Delete ...
-func (c GroupUserClient) Delete(ctx context.Context, id UserId) (result DeleteOperationResponse, err error) {
+func (c GroupUserClient) Delete(ctx context.Context, id GroupUserId) (result DeleteOperationResponse, err error) {
 	req, err := c.preparerForDelete(ctx, id)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "groupuser.GroupUserClient", "Delete", nil, "Failure preparing request")
@@ -39,7 +39,7 @@ func (c GroupUserClient) Delete(ctx context.Context, id UserId) (result DeleteOp
 }
 
 // preparerForDelete prepares the Delete request.
-func (c GroupUserClient) preparerForDelete(ctx context.Context, id UserId) (*http.Request, error) {
+func (c GroupUserClient) preparerForDelete(ctx context.Context, id GroupUserId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

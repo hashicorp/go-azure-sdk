@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := gatewayapi.NewApiID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "apiIdValue")
+id := gatewayapi.NewGatewayApiID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "gatewayIdValue", "apiIdValue")
 
 payload := gatewayapi.AssociationContract{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := gatewayapi.NewApiID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "apiIdValue")
+id := gatewayapi.NewGatewayApiID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "gatewayIdValue", "apiIdValue")
 
 read, err := client.Delete(ctx, id)
 if err != nil {
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := gatewayapi.NewApiID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "apiIdValue")
+id := gatewayapi.NewGatewayApiID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "gatewayIdValue", "apiIdValue")
 
 read, err := client.GetEntityTag(ctx, id)
 if err != nil {

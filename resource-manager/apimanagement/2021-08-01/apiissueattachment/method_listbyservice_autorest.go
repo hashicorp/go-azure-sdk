@@ -72,7 +72,7 @@ func (o ListByServiceOperationOptions) toQueryString() map[string]interface{} {
 }
 
 // ListByService ...
-func (c ApiIssueAttachmentClient) ListByService(ctx context.Context, id IssueId, options ListByServiceOperationOptions) (resp ListByServiceOperationResponse, err error) {
+func (c ApiIssueAttachmentClient) ListByService(ctx context.Context, id ApiIssueId, options ListByServiceOperationOptions) (resp ListByServiceOperationResponse, err error) {
 	req, err := c.preparerForListByService(ctx, id, options)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "apiissueattachment.ApiIssueAttachmentClient", "ListByService", nil, "Failure preparing request")
@@ -94,7 +94,7 @@ func (c ApiIssueAttachmentClient) ListByService(ctx context.Context, id IssueId,
 }
 
 // preparerForListByService prepares the ListByService request.
-func (c ApiIssueAttachmentClient) preparerForListByService(ctx context.Context, id IssueId, options ListByServiceOperationOptions) (*http.Request, error) {
+func (c ApiIssueAttachmentClient) preparerForListByService(ctx context.Context, id ApiIssueId, options ListByServiceOperationOptions) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}
@@ -181,12 +181,12 @@ func (c ApiIssueAttachmentClient) responderForListByService(resp *http.Response)
 }
 
 // ListByServiceComplete retrieves all of the results into a single object
-func (c ApiIssueAttachmentClient) ListByServiceComplete(ctx context.Context, id IssueId, options ListByServiceOperationOptions) (ListByServiceCompleteResult, error) {
+func (c ApiIssueAttachmentClient) ListByServiceComplete(ctx context.Context, id ApiIssueId, options ListByServiceOperationOptions) (ListByServiceCompleteResult, error) {
 	return c.ListByServiceCompleteMatchingPredicate(ctx, id, options, IssueAttachmentContractOperationPredicate{})
 }
 
 // ListByServiceCompleteMatchingPredicate retrieves all of the results and then applied the predicate
-func (c ApiIssueAttachmentClient) ListByServiceCompleteMatchingPredicate(ctx context.Context, id IssueId, options ListByServiceOperationOptions, predicate IssueAttachmentContractOperationPredicate) (resp ListByServiceCompleteResult, err error) {
+func (c ApiIssueAttachmentClient) ListByServiceCompleteMatchingPredicate(ctx context.Context, id ApiIssueId, options ListByServiceOperationOptions, predicate IssueAttachmentContractOperationPredicate) (resp ListByServiceCompleteResult, err error) {
 	items := make([]IssueAttachmentContract, 0)
 
 	page, err := c.ListByService(ctx, id, options)

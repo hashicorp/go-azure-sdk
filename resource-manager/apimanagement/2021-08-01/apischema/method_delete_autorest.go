@@ -45,7 +45,7 @@ func (o DeleteOperationOptions) toQueryString() map[string]interface{} {
 }
 
 // Delete ...
-func (c ApiSchemaClient) Delete(ctx context.Context, id SchemaId, options DeleteOperationOptions) (result DeleteOperationResponse, err error) {
+func (c ApiSchemaClient) Delete(ctx context.Context, id ApiSchemaId, options DeleteOperationOptions) (result DeleteOperationResponse, err error) {
 	req, err := c.preparerForDelete(ctx, id, options)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "apischema.ApiSchemaClient", "Delete", nil, "Failure preparing request")
@@ -68,7 +68,7 @@ func (c ApiSchemaClient) Delete(ctx context.Context, id SchemaId, options Delete
 }
 
 // preparerForDelete prepares the Delete request.
-func (c ApiSchemaClient) preparerForDelete(ctx context.Context, id SchemaId, options DeleteOperationOptions) (*http.Request, error) {
+func (c ApiSchemaClient) preparerForDelete(ctx context.Context, id ApiSchemaId, options DeleteOperationOptions) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

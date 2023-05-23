@@ -16,7 +16,7 @@ type DeleteOperationResponse struct {
 }
 
 // Delete ...
-func (c ManagementGroupDiagnosticSettingsClient) Delete(ctx context.Context, id DiagnosticSettingId) (result DeleteOperationResponse, err error) {
+func (c ManagementGroupDiagnosticSettingsClient) Delete(ctx context.Context, id Providers2DiagnosticSettingId) (result DeleteOperationResponse, err error) {
 	req, err := c.preparerForDelete(ctx, id)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "managementgroupdiagnosticsettings.ManagementGroupDiagnosticSettingsClient", "Delete", nil, "Failure preparing request")
@@ -39,7 +39,7 @@ func (c ManagementGroupDiagnosticSettingsClient) Delete(ctx context.Context, id 
 }
 
 // preparerForDelete prepares the Delete request.
-func (c ManagementGroupDiagnosticSettingsClient) preparerForDelete(ctx context.Context, id DiagnosticSettingId) (*http.Request, error) {
+func (c ManagementGroupDiagnosticSettingsClient) preparerForDelete(ctx context.Context, id Providers2DiagnosticSettingId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

@@ -17,7 +17,7 @@ type CreateOrUpdateOperationResponse struct {
 }
 
 // CreateOrUpdate ...
-func (c ProductGroupClient) CreateOrUpdate(ctx context.Context, id GroupId) (result CreateOrUpdateOperationResponse, err error) {
+func (c ProductGroupClient) CreateOrUpdate(ctx context.Context, id ProductGroupId) (result CreateOrUpdateOperationResponse, err error) {
 	req, err := c.preparerForCreateOrUpdate(ctx, id)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "productgroup.ProductGroupClient", "CreateOrUpdate", nil, "Failure preparing request")
@@ -40,7 +40,7 @@ func (c ProductGroupClient) CreateOrUpdate(ctx context.Context, id GroupId) (res
 }
 
 // preparerForCreateOrUpdate prepares the CreateOrUpdate request.
-func (c ProductGroupClient) preparerForCreateOrUpdate(ctx context.Context, id GroupId) (*http.Request, error) {
+func (c ProductGroupClient) preparerForCreateOrUpdate(ctx context.Context, id ProductGroupId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

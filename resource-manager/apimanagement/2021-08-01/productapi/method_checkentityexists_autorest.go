@@ -16,7 +16,7 @@ type CheckEntityExistsOperationResponse struct {
 }
 
 // CheckEntityExists ...
-func (c ProductApiClient) CheckEntityExists(ctx context.Context, id ApiId) (result CheckEntityExistsOperationResponse, err error) {
+func (c ProductApiClient) CheckEntityExists(ctx context.Context, id ProductApiId) (result CheckEntityExistsOperationResponse, err error) {
 	req, err := c.preparerForCheckEntityExists(ctx, id)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "productapi.ProductApiClient", "CheckEntityExists", nil, "Failure preparing request")
@@ -39,7 +39,7 @@ func (c ProductApiClient) CheckEntityExists(ctx context.Context, id ApiId) (resu
 }
 
 // preparerForCheckEntityExists prepares the CheckEntityExists request.
-func (c ProductApiClient) preparerForCheckEntityExists(ctx context.Context, id ApiId) (*http.Request, error) {
+func (c ProductApiClient) preparerForCheckEntityExists(ctx context.Context, id ProductApiId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

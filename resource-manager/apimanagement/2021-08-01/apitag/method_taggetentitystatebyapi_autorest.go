@@ -16,7 +16,7 @@ type TagGetEntityStateByApiOperationResponse struct {
 }
 
 // TagGetEntityStateByApi ...
-func (c ApiTagClient) TagGetEntityStateByApi(ctx context.Context, id TagId) (result TagGetEntityStateByApiOperationResponse, err error) {
+func (c ApiTagClient) TagGetEntityStateByApi(ctx context.Context, id ApiTagId) (result TagGetEntityStateByApiOperationResponse, err error) {
 	req, err := c.preparerForTagGetEntityStateByApi(ctx, id)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "apitag.ApiTagClient", "TagGetEntityStateByApi", nil, "Failure preparing request")
@@ -39,7 +39,7 @@ func (c ApiTagClient) TagGetEntityStateByApi(ctx context.Context, id TagId) (res
 }
 
 // preparerForTagGetEntityStateByApi prepares the TagGetEntityStateByApi request.
-func (c ApiTagClient) preparerForTagGetEntityStateByApi(ctx context.Context, id TagId) (*http.Request, error) {
+func (c ApiTagClient) preparerForTagGetEntityStateByApi(ctx context.Context, id ApiTagId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

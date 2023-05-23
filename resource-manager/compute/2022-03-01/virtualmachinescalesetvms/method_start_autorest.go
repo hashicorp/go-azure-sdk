@@ -19,7 +19,7 @@ type StartOperationResponse struct {
 }
 
 // Start ...
-func (c VirtualMachineScaleSetVMsClient) Start(ctx context.Context, id VirtualMachineId) (result StartOperationResponse, err error) {
+func (c VirtualMachineScaleSetVMsClient) Start(ctx context.Context, id VirtualMachineScaleSetVirtualMachineId) (result StartOperationResponse, err error) {
 	req, err := c.preparerForStart(ctx, id)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "virtualmachinescalesetvms.VirtualMachineScaleSetVMsClient", "Start", nil, "Failure preparing request")
@@ -36,7 +36,7 @@ func (c VirtualMachineScaleSetVMsClient) Start(ctx context.Context, id VirtualMa
 }
 
 // StartThenPoll performs Start then polls until it's completed
-func (c VirtualMachineScaleSetVMsClient) StartThenPoll(ctx context.Context, id VirtualMachineId) error {
+func (c VirtualMachineScaleSetVMsClient) StartThenPoll(ctx context.Context, id VirtualMachineScaleSetVirtualMachineId) error {
 	result, err := c.Start(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing Start: %+v", err)
@@ -50,7 +50,7 @@ func (c VirtualMachineScaleSetVMsClient) StartThenPoll(ctx context.Context, id V
 }
 
 // preparerForStart prepares the Start request.
-func (c VirtualMachineScaleSetVMsClient) preparerForStart(ctx context.Context, id VirtualMachineId) (*http.Request, error) {
+func (c VirtualMachineScaleSetVMsClient) preparerForStart(ctx context.Context, id VirtualMachineScaleSetVirtualMachineId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

@@ -19,7 +19,7 @@ type CreateOrUpdateOperationResponse struct {
 }
 
 // CreateOrUpdate ...
-func (c GalleryImageVersionsClient) CreateOrUpdate(ctx context.Context, id VersionId, input GalleryImageVersion) (result CreateOrUpdateOperationResponse, err error) {
+func (c GalleryImageVersionsClient) CreateOrUpdate(ctx context.Context, id ImageVersionId, input GalleryImageVersion) (result CreateOrUpdateOperationResponse, err error) {
 	req, err := c.preparerForCreateOrUpdate(ctx, id, input)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "galleryimageversions.GalleryImageVersionsClient", "CreateOrUpdate", nil, "Failure preparing request")
@@ -36,7 +36,7 @@ func (c GalleryImageVersionsClient) CreateOrUpdate(ctx context.Context, id Versi
 }
 
 // CreateOrUpdateThenPoll performs CreateOrUpdate then polls until it's completed
-func (c GalleryImageVersionsClient) CreateOrUpdateThenPoll(ctx context.Context, id VersionId, input GalleryImageVersion) error {
+func (c GalleryImageVersionsClient) CreateOrUpdateThenPoll(ctx context.Context, id ImageVersionId, input GalleryImageVersion) error {
 	result, err := c.CreateOrUpdate(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing CreateOrUpdate: %+v", err)
@@ -50,7 +50,7 @@ func (c GalleryImageVersionsClient) CreateOrUpdateThenPoll(ctx context.Context, 
 }
 
 // preparerForCreateOrUpdate prepares the CreateOrUpdate request.
-func (c GalleryImageVersionsClient) preparerForCreateOrUpdate(ctx context.Context, id VersionId, input GalleryImageVersion) (*http.Request, error) {
+func (c GalleryImageVersionsClient) preparerForCreateOrUpdate(ctx context.Context, id ImageVersionId, input GalleryImageVersion) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

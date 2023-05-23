@@ -19,7 +19,7 @@ type CreateOrUpdateOperationResponse struct {
 }
 
 // CreateOrUpdate ...
-func (c VirtualMachineScaleSetExtensionsClient) CreateOrUpdate(ctx context.Context, id ExtensionId, input VirtualMachineScaleSetExtension) (result CreateOrUpdateOperationResponse, err error) {
+func (c VirtualMachineScaleSetExtensionsClient) CreateOrUpdate(ctx context.Context, id VirtualMachineScaleSetExtensionId, input VirtualMachineScaleSetExtension) (result CreateOrUpdateOperationResponse, err error) {
 	req, err := c.preparerForCreateOrUpdate(ctx, id, input)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "virtualmachinescalesetextensions.VirtualMachineScaleSetExtensionsClient", "CreateOrUpdate", nil, "Failure preparing request")
@@ -36,7 +36,7 @@ func (c VirtualMachineScaleSetExtensionsClient) CreateOrUpdate(ctx context.Conte
 }
 
 // CreateOrUpdateThenPoll performs CreateOrUpdate then polls until it's completed
-func (c VirtualMachineScaleSetExtensionsClient) CreateOrUpdateThenPoll(ctx context.Context, id ExtensionId, input VirtualMachineScaleSetExtension) error {
+func (c VirtualMachineScaleSetExtensionsClient) CreateOrUpdateThenPoll(ctx context.Context, id VirtualMachineScaleSetExtensionId, input VirtualMachineScaleSetExtension) error {
 	result, err := c.CreateOrUpdate(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing CreateOrUpdate: %+v", err)
@@ -50,7 +50,7 @@ func (c VirtualMachineScaleSetExtensionsClient) CreateOrUpdateThenPoll(ctx conte
 }
 
 // preparerForCreateOrUpdate prepares the CreateOrUpdate request.
-func (c VirtualMachineScaleSetExtensionsClient) preparerForCreateOrUpdate(ctx context.Context, id ExtensionId, input VirtualMachineScaleSetExtension) (*http.Request, error) {
+func (c VirtualMachineScaleSetExtensionsClient) preparerForCreateOrUpdate(ctx context.Context, id VirtualMachineScaleSetExtensionId, input VirtualMachineScaleSetExtension) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}
