@@ -17,7 +17,7 @@ type CreateOrUpdateOperationResponse struct {
 }
 
 // CreateOrUpdate ...
-func (c GatewayApiClient) CreateOrUpdate(ctx context.Context, id ApiId, input AssociationContract) (result CreateOrUpdateOperationResponse, err error) {
+func (c GatewayApiClient) CreateOrUpdate(ctx context.Context, id GatewayApiId, input AssociationContract) (result CreateOrUpdateOperationResponse, err error) {
 	req, err := c.preparerForCreateOrUpdate(ctx, id, input)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "gatewayapi.GatewayApiClient", "CreateOrUpdate", nil, "Failure preparing request")
@@ -40,7 +40,7 @@ func (c GatewayApiClient) CreateOrUpdate(ctx context.Context, id ApiId, input As
 }
 
 // preparerForCreateOrUpdate prepares the CreateOrUpdate request.
-func (c GatewayApiClient) preparerForCreateOrUpdate(ctx context.Context, id ApiId, input AssociationContract) (*http.Request, error) {
+func (c GatewayApiClient) preparerForCreateOrUpdate(ctx context.Context, id GatewayApiId, input AssociationContract) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

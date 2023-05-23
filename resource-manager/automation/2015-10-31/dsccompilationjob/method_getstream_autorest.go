@@ -17,7 +17,7 @@ type GetStreamOperationResponse struct {
 }
 
 // GetStream ...
-func (c DscCompilationJobClient) GetStream(ctx context.Context, id StreamId) (result GetStreamOperationResponse, err error) {
+func (c DscCompilationJobClient) GetStream(ctx context.Context, id CompilationJobStreamId) (result GetStreamOperationResponse, err error) {
 	req, err := c.preparerForGetStream(ctx, id)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "dsccompilationjob.DscCompilationJobClient", "GetStream", nil, "Failure preparing request")
@@ -40,7 +40,7 @@ func (c DscCompilationJobClient) GetStream(ctx context.Context, id StreamId) (re
 }
 
 // preparerForGetStream prepares the GetStream request.
-func (c DscCompilationJobClient) preparerForGetStream(ctx context.Context, id StreamId) (*http.Request, error) {
+func (c DscCompilationJobClient) preparerForGetStream(ctx context.Context, id CompilationJobStreamId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

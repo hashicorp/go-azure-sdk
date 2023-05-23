@@ -41,7 +41,7 @@ func (o GetOperationOptions) toQueryString() map[string]interface{} {
 }
 
 // Get ...
-func (c ApiIssueClient) Get(ctx context.Context, id IssueId, options GetOperationOptions) (result GetOperationResponse, err error) {
+func (c ApiIssueClient) Get(ctx context.Context, id ApiIssueId, options GetOperationOptions) (result GetOperationResponse, err error) {
 	req, err := c.preparerForGet(ctx, id, options)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "apiissue.ApiIssueClient", "Get", nil, "Failure preparing request")
@@ -64,7 +64,7 @@ func (c ApiIssueClient) Get(ctx context.Context, id IssueId, options GetOperatio
 }
 
 // preparerForGet prepares the Get request.
-func (c ApiIssueClient) preparerForGet(ctx context.Context, id IssueId, options GetOperationOptions) (*http.Request, error) {
+func (c ApiIssueClient) preparerForGet(ctx context.Context, id ApiIssueId, options GetOperationOptions) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

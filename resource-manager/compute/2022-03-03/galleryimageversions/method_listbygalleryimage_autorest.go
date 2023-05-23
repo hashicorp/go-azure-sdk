@@ -38,7 +38,7 @@ func (r ListByGalleryImageOperationResponse) LoadMore(ctx context.Context) (resp
 }
 
 // ListByGalleryImage ...
-func (c GalleryImageVersionsClient) ListByGalleryImage(ctx context.Context, id ImageId) (resp ListByGalleryImageOperationResponse, err error) {
+func (c GalleryImageVersionsClient) ListByGalleryImage(ctx context.Context, id GalleryImageId) (resp ListByGalleryImageOperationResponse, err error) {
 	req, err := c.preparerForListByGalleryImage(ctx, id)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "galleryimageversions.GalleryImageVersionsClient", "ListByGalleryImage", nil, "Failure preparing request")
@@ -60,7 +60,7 @@ func (c GalleryImageVersionsClient) ListByGalleryImage(ctx context.Context, id I
 }
 
 // preparerForListByGalleryImage prepares the ListByGalleryImage request.
-func (c GalleryImageVersionsClient) preparerForListByGalleryImage(ctx context.Context, id ImageId) (*http.Request, error) {
+func (c GalleryImageVersionsClient) preparerForListByGalleryImage(ctx context.Context, id GalleryImageId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}
@@ -142,12 +142,12 @@ func (c GalleryImageVersionsClient) responderForListByGalleryImage(resp *http.Re
 }
 
 // ListByGalleryImageComplete retrieves all of the results into a single object
-func (c GalleryImageVersionsClient) ListByGalleryImageComplete(ctx context.Context, id ImageId) (ListByGalleryImageCompleteResult, error) {
+func (c GalleryImageVersionsClient) ListByGalleryImageComplete(ctx context.Context, id GalleryImageId) (ListByGalleryImageCompleteResult, error) {
 	return c.ListByGalleryImageCompleteMatchingPredicate(ctx, id, GalleryImageVersionOperationPredicate{})
 }
 
 // ListByGalleryImageCompleteMatchingPredicate retrieves all of the results and then applied the predicate
-func (c GalleryImageVersionsClient) ListByGalleryImageCompleteMatchingPredicate(ctx context.Context, id ImageId, predicate GalleryImageVersionOperationPredicate) (resp ListByGalleryImageCompleteResult, err error) {
+func (c GalleryImageVersionsClient) ListByGalleryImageCompleteMatchingPredicate(ctx context.Context, id GalleryImageId, predicate GalleryImageVersionOperationPredicate) (resp ListByGalleryImageCompleteResult, err error) {
 	items := make([]GalleryImageVersion, 0)
 
 	page, err := c.ListByGalleryImage(ctx, id)

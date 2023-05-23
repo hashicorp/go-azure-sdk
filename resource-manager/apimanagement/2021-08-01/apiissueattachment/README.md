@@ -93,7 +93,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := apiissueattachment.NewIssueID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "issueIdValue")
+id := apiissueattachment.NewApiIssueID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "apiIdValue", "issueIdValue")
 
 // alternatively `client.ListByService(ctx, id, apiissueattachment.DefaultListByServiceOperationOptions())` can be used to do batched pagination
 items, err := client.ListByServiceComplete(ctx, id, apiissueattachment.DefaultListByServiceOperationOptions())

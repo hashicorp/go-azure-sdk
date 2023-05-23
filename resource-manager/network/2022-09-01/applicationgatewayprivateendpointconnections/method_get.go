@@ -18,7 +18,7 @@ type GetOperationResponse struct {
 }
 
 // Get ...
-func (c ApplicationGatewayPrivateEndpointConnectionsClient) Get(ctx context.Context, id PrivateEndpointConnectionId) (result GetOperationResponse, err error) {
+func (c ApplicationGatewayPrivateEndpointConnectionsClient) Get(ctx context.Context, id ApplicationGatewayPrivateEndpointConnectionId) (result GetOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json",
 		ExpectedStatusCodes: []int{

@@ -21,7 +21,7 @@ type UpdateOperationResponse struct {
 }
 
 // Update ...
-func (c ApplicationGatewayPrivateEndpointConnectionsClient) Update(ctx context.Context, id PrivateEndpointConnectionId, input ApplicationGatewayPrivateEndpointConnection) (result UpdateOperationResponse, err error) {
+func (c ApplicationGatewayPrivateEndpointConnectionsClient) Update(ctx context.Context, id ApplicationGatewayPrivateEndpointConnectionId, input ApplicationGatewayPrivateEndpointConnection) (result UpdateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json",
 		ExpectedStatusCodes: []int{
@@ -60,7 +60,7 @@ func (c ApplicationGatewayPrivateEndpointConnectionsClient) Update(ctx context.C
 }
 
 // UpdateThenPoll performs Update then polls until it's completed
-func (c ApplicationGatewayPrivateEndpointConnectionsClient) UpdateThenPoll(ctx context.Context, id PrivateEndpointConnectionId, input ApplicationGatewayPrivateEndpointConnection) error {
+func (c ApplicationGatewayPrivateEndpointConnectionsClient) UpdateThenPoll(ctx context.Context, id ApplicationGatewayPrivateEndpointConnectionId, input ApplicationGatewayPrivateEndpointConnection) error {
 	result, err := c.Update(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing Update: %+v", err)

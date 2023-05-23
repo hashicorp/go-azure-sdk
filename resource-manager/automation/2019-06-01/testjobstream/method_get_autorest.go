@@ -17,7 +17,7 @@ type GetOperationResponse struct {
 }
 
 // Get ...
-func (c TestJobStreamClient) Get(ctx context.Context, id StreamId) (result GetOperationResponse, err error) {
+func (c TestJobStreamClient) Get(ctx context.Context, id TestJobStreamId) (result GetOperationResponse, err error) {
 	req, err := c.preparerForGet(ctx, id)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "testjobstream.TestJobStreamClient", "Get", nil, "Failure preparing request")
@@ -40,7 +40,7 @@ func (c TestJobStreamClient) Get(ctx context.Context, id StreamId) (result GetOp
 }
 
 // preparerForGet prepares the Get request.
-func (c TestJobStreamClient) preparerForGet(ctx context.Context, id StreamId) (*http.Request, error) {
+func (c TestJobStreamClient) preparerForGet(ctx context.Context, id TestJobStreamId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

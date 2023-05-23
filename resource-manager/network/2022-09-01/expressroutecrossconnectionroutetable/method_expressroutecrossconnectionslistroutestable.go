@@ -21,7 +21,7 @@ type ExpressRouteCrossConnectionsListRoutesTableOperationResponse struct {
 }
 
 // ExpressRouteCrossConnectionsListRoutesTable ...
-func (c ExpressRouteCrossConnectionRouteTableClient) ExpressRouteCrossConnectionsListRoutesTable(ctx context.Context, id RouteTableId) (result ExpressRouteCrossConnectionsListRoutesTableOperationResponse, err error) {
+func (c ExpressRouteCrossConnectionRouteTableClient) ExpressRouteCrossConnectionsListRoutesTable(ctx context.Context, id ExpressRouteCrossConnectionPeeringRouteTableId) (result ExpressRouteCrossConnectionsListRoutesTableOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json",
 		ExpectedStatusCodes: []int{
@@ -56,7 +56,7 @@ func (c ExpressRouteCrossConnectionRouteTableClient) ExpressRouteCrossConnection
 }
 
 // ExpressRouteCrossConnectionsListRoutesTableThenPoll performs ExpressRouteCrossConnectionsListRoutesTable then polls until it's completed
-func (c ExpressRouteCrossConnectionRouteTableClient) ExpressRouteCrossConnectionsListRoutesTableThenPoll(ctx context.Context, id RouteTableId) error {
+func (c ExpressRouteCrossConnectionRouteTableClient) ExpressRouteCrossConnectionsListRoutesTableThenPoll(ctx context.Context, id ExpressRouteCrossConnectionPeeringRouteTableId) error {
 	result, err := c.ExpressRouteCrossConnectionsListRoutesTable(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing ExpressRouteCrossConnectionsListRoutesTable: %+v", err)

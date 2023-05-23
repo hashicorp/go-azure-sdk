@@ -21,7 +21,7 @@ type VirtualHubRouteTableV2sCreateOrUpdateOperationResponse struct {
 }
 
 // VirtualHubRouteTableV2sCreateOrUpdate ...
-func (c VirtualWANsClient) VirtualHubRouteTableV2sCreateOrUpdate(ctx context.Context, id RouteTableId, input VirtualHubRouteTableV2) (result VirtualHubRouteTableV2sCreateOrUpdateOperationResponse, err error) {
+func (c VirtualWANsClient) VirtualHubRouteTableV2sCreateOrUpdate(ctx context.Context, id VirtualHubRouteTableId, input VirtualHubRouteTableV2) (result VirtualHubRouteTableV2sCreateOrUpdateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json",
 		ExpectedStatusCodes: []int{
@@ -60,7 +60,7 @@ func (c VirtualWANsClient) VirtualHubRouteTableV2sCreateOrUpdate(ctx context.Con
 }
 
 // VirtualHubRouteTableV2sCreateOrUpdateThenPoll performs VirtualHubRouteTableV2sCreateOrUpdate then polls until it's completed
-func (c VirtualWANsClient) VirtualHubRouteTableV2sCreateOrUpdateThenPoll(ctx context.Context, id RouteTableId, input VirtualHubRouteTableV2) error {
+func (c VirtualWANsClient) VirtualHubRouteTableV2sCreateOrUpdateThenPoll(ctx context.Context, id VirtualHubRouteTableId, input VirtualHubRouteTableV2) error {
 	result, err := c.VirtualHubRouteTableV2sCreateOrUpdate(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing VirtualHubRouteTableV2sCreateOrUpdate: %+v", err)

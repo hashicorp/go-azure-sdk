@@ -21,7 +21,7 @@ type VirtualNetworkGatewayNatRulesDeleteOperationResponse struct {
 }
 
 // VirtualNetworkGatewayNatRulesDelete ...
-func (c VirtualNetworkGatewaysClient) VirtualNetworkGatewayNatRulesDelete(ctx context.Context, id NatRuleId) (result VirtualNetworkGatewayNatRulesDeleteOperationResponse, err error) {
+func (c VirtualNetworkGatewaysClient) VirtualNetworkGatewayNatRulesDelete(ctx context.Context, id VirtualNetworkGatewayNatRuleId) (result VirtualNetworkGatewayNatRulesDeleteOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json",
 		ExpectedStatusCodes: []int{
@@ -57,7 +57,7 @@ func (c VirtualNetworkGatewaysClient) VirtualNetworkGatewayNatRulesDelete(ctx co
 }
 
 // VirtualNetworkGatewayNatRulesDeleteThenPoll performs VirtualNetworkGatewayNatRulesDelete then polls until it's completed
-func (c VirtualNetworkGatewaysClient) VirtualNetworkGatewayNatRulesDeleteThenPoll(ctx context.Context, id NatRuleId) error {
+func (c VirtualNetworkGatewaysClient) VirtualNetworkGatewayNatRulesDeleteThenPoll(ctx context.Context, id VirtualNetworkGatewayNatRuleId) error {
 	result, err := c.VirtualNetworkGatewayNatRulesDelete(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing VirtualNetworkGatewayNatRulesDelete: %+v", err)

@@ -21,7 +21,7 @@ type ExpressRouteCircuitsListRoutesTableOperationResponse struct {
 }
 
 // ExpressRouteCircuitsListRoutesTable ...
-func (c ExpressRouteCircuitRoutesTableClient) ExpressRouteCircuitsListRoutesTable(ctx context.Context, id RouteTableId) (result ExpressRouteCircuitsListRoutesTableOperationResponse, err error) {
+func (c ExpressRouteCircuitRoutesTableClient) ExpressRouteCircuitsListRoutesTable(ctx context.Context, id PeeringRouteTableId) (result ExpressRouteCircuitsListRoutesTableOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json",
 		ExpectedStatusCodes: []int{
@@ -56,7 +56,7 @@ func (c ExpressRouteCircuitRoutesTableClient) ExpressRouteCircuitsListRoutesTabl
 }
 
 // ExpressRouteCircuitsListRoutesTableThenPoll performs ExpressRouteCircuitsListRoutesTable then polls until it's completed
-func (c ExpressRouteCircuitRoutesTableClient) ExpressRouteCircuitsListRoutesTableThenPoll(ctx context.Context, id RouteTableId) error {
+func (c ExpressRouteCircuitRoutesTableClient) ExpressRouteCircuitsListRoutesTableThenPoll(ctx context.Context, id PeeringRouteTableId) error {
 	result, err := c.ExpressRouteCircuitsListRoutesTable(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing ExpressRouteCircuitsListRoutesTable: %+v", err)

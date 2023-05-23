@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := apiissue.NewIssueID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "issueIdValue")
+id := apiissue.NewApiIssueID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "apiIdValue", "issueIdValue")
 
 payload := apiissue.IssueContract{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := apiissue.NewIssueID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "issueIdValue")
+id := apiissue.NewApiIssueID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "apiIdValue", "issueIdValue")
 
 read, err := client.Delete(ctx, id, apiissue.DefaultDeleteOperationOptions())
 if err != nil {
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := apiissue.NewIssueID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "issueIdValue")
+id := apiissue.NewApiIssueID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "apiIdValue", "issueIdValue")
 
 read, err := client.Get(ctx, id, apiissue.DefaultGetOperationOptions())
 if err != nil {
@@ -77,7 +77,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := apiissue.NewIssueID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "issueIdValue")
+id := apiissue.NewApiIssueID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "apiIdValue", "issueIdValue")
 
 read, err := client.GetEntityTag(ctx, id)
 if err != nil {
@@ -110,7 +110,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := apiissue.NewIssueID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "issueIdValue")
+id := apiissue.NewApiIssueID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "apiIdValue", "issueIdValue")
 
 payload := apiissue.IssueUpdateContract{
 	// ...

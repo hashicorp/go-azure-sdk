@@ -23,7 +23,7 @@ type ListCloudServiceNetworkInterfacesCompleteResult struct {
 }
 
 // ListCloudServiceNetworkInterfaces ...
-func (c NetworkInterfacesClient) ListCloudServiceNetworkInterfaces(ctx context.Context, id CloudServiceId) (result ListCloudServiceNetworkInterfacesOperationResponse, err error) {
+func (c NetworkInterfacesClient) ListCloudServiceNetworkInterfaces(ctx context.Context, id ProviderCloudServiceId) (result ListCloudServiceNetworkInterfacesOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json",
 		ExpectedStatusCodes: []int{
@@ -61,12 +61,12 @@ func (c NetworkInterfacesClient) ListCloudServiceNetworkInterfaces(ctx context.C
 }
 
 // ListCloudServiceNetworkInterfacesComplete retrieves all the results into a single object
-func (c NetworkInterfacesClient) ListCloudServiceNetworkInterfacesComplete(ctx context.Context, id CloudServiceId) (ListCloudServiceNetworkInterfacesCompleteResult, error) {
+func (c NetworkInterfacesClient) ListCloudServiceNetworkInterfacesComplete(ctx context.Context, id ProviderCloudServiceId) (ListCloudServiceNetworkInterfacesCompleteResult, error) {
 	return c.ListCloudServiceNetworkInterfacesCompleteMatchingPredicate(ctx, id, NetworkInterfaceOperationPredicate{})
 }
 
 // ListCloudServiceNetworkInterfacesCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c NetworkInterfacesClient) ListCloudServiceNetworkInterfacesCompleteMatchingPredicate(ctx context.Context, id CloudServiceId, predicate NetworkInterfaceOperationPredicate) (result ListCloudServiceNetworkInterfacesCompleteResult, err error) {
+func (c NetworkInterfacesClient) ListCloudServiceNetworkInterfacesCompleteMatchingPredicate(ctx context.Context, id ProviderCloudServiceId, predicate NetworkInterfaceOperationPredicate) (result ListCloudServiceNetworkInterfacesCompleteResult, err error) {
 	items := make([]NetworkInterface, 0)
 
 	resp, err := c.ListCloudServiceNetworkInterfaces(ctx, id)

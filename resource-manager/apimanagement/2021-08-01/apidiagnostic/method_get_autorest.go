@@ -17,7 +17,7 @@ type GetOperationResponse struct {
 }
 
 // Get ...
-func (c ApiDiagnosticClient) Get(ctx context.Context, id DiagnosticId) (result GetOperationResponse, err error) {
+func (c ApiDiagnosticClient) Get(ctx context.Context, id ApiDiagnosticId) (result GetOperationResponse, err error) {
 	req, err := c.preparerForGet(ctx, id)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "apidiagnostic.ApiDiagnosticClient", "Get", nil, "Failure preparing request")
@@ -40,7 +40,7 @@ func (c ApiDiagnosticClient) Get(ctx context.Context, id DiagnosticId) (result G
 }
 
 // preparerForGet prepares the Get request.
-func (c ApiDiagnosticClient) preparerForGet(ctx context.Context, id DiagnosticId) (*http.Request, error) {
+func (c ApiDiagnosticClient) preparerForGet(ctx context.Context, id ApiDiagnosticId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

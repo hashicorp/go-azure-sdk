@@ -17,7 +17,7 @@ type CreateOrUpdateOperationResponse struct {
 }
 
 // CreateOrUpdate ...
-func (c ProductApiClient) CreateOrUpdate(ctx context.Context, id ApiId) (result CreateOrUpdateOperationResponse, err error) {
+func (c ProductApiClient) CreateOrUpdate(ctx context.Context, id ProductApiId) (result CreateOrUpdateOperationResponse, err error) {
 	req, err := c.preparerForCreateOrUpdate(ctx, id)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "productapi.ProductApiClient", "CreateOrUpdate", nil, "Failure preparing request")
@@ -40,7 +40,7 @@ func (c ProductApiClient) CreateOrUpdate(ctx context.Context, id ApiId) (result 
 }
 
 // preparerForCreateOrUpdate prepares the CreateOrUpdate request.
-func (c ProductApiClient) preparerForCreateOrUpdate(ctx context.Context, id ApiId) (*http.Request, error) {
+func (c ProductApiClient) preparerForCreateOrUpdate(ctx context.Context, id ProductApiId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

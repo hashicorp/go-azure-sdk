@@ -17,7 +17,7 @@ type CreateOrUpdateOperationResponse struct {
 }
 
 // CreateOrUpdate ...
-func (c ManagementGroupDiagnosticSettingsClient) CreateOrUpdate(ctx context.Context, id DiagnosticSettingId, input ManagementGroupDiagnosticSettingsResource) (result CreateOrUpdateOperationResponse, err error) {
+func (c ManagementGroupDiagnosticSettingsClient) CreateOrUpdate(ctx context.Context, id Providers2DiagnosticSettingId, input ManagementGroupDiagnosticSettingsResource) (result CreateOrUpdateOperationResponse, err error) {
 	req, err := c.preparerForCreateOrUpdate(ctx, id, input)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "managementgroupdiagnosticsettings.ManagementGroupDiagnosticSettingsClient", "CreateOrUpdate", nil, "Failure preparing request")
@@ -40,7 +40,7 @@ func (c ManagementGroupDiagnosticSettingsClient) CreateOrUpdate(ctx context.Cont
 }
 
 // preparerForCreateOrUpdate prepares the CreateOrUpdate request.
-func (c ManagementGroupDiagnosticSettingsClient) preparerForCreateOrUpdate(ctx context.Context, id DiagnosticSettingId, input ManagementGroupDiagnosticSettingsResource) (*http.Request, error) {
+func (c ManagementGroupDiagnosticSettingsClient) preparerForCreateOrUpdate(ctx context.Context, id Providers2DiagnosticSettingId, input ManagementGroupDiagnosticSettingsResource) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

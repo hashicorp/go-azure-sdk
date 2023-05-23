@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := productapi.NewApiID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "apiIdValue")
+id := productapi.NewProductApiID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "productIdValue", "apiIdValue")
 
 read, err := client.CheckEntityExists(ctx, id)
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := productapi.NewApiID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "apiIdValue")
+id := productapi.NewProductApiID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "productIdValue", "apiIdValue")
 
 read, err := client.CreateOrUpdate(ctx, id)
 if err != nil {
@@ -56,7 +56,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := productapi.NewApiID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "apiIdValue")
+id := productapi.NewProductApiID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "productIdValue", "apiIdValue")
 
 read, err := client.Delete(ctx, id)
 if err != nil {

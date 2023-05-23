@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := restorables.NewCollectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "databaseAccountValue", "databaseValue", "collectionValue")
+id := restorables.NewMongodbDatabaseCollectionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "databaseAccountValue", "mongodbDatabaseValue", "collectionValue")
 
 payload := restorables.ContinuousBackupRestoreLocation{
 	// ...

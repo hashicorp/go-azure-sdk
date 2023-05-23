@@ -42,7 +42,7 @@ func (o ListOperationOptions) toQueryString() map[string]interface{} {
 }
 
 // List ...
-func (c VirtualMachineScaleSetVMExtensionsClient) List(ctx context.Context, id VirtualMachineId, options ListOperationOptions) (result ListOperationResponse, err error) {
+func (c VirtualMachineScaleSetVMExtensionsClient) List(ctx context.Context, id VirtualMachineScaleSetVirtualMachineId, options ListOperationOptions) (result ListOperationResponse, err error) {
 	req, err := c.preparerForList(ctx, id, options)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "virtualmachinescalesetvmextensions.VirtualMachineScaleSetVMExtensionsClient", "List", nil, "Failure preparing request")
@@ -65,7 +65,7 @@ func (c VirtualMachineScaleSetVMExtensionsClient) List(ctx context.Context, id V
 }
 
 // preparerForList prepares the List request.
-func (c VirtualMachineScaleSetVMExtensionsClient) preparerForList(ctx context.Context, id VirtualMachineId, options ListOperationOptions) (*http.Request, error) {
+func (c VirtualMachineScaleSetVMExtensionsClient) preparerForList(ctx context.Context, id VirtualMachineScaleSetVirtualMachineId, options ListOperationOptions) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

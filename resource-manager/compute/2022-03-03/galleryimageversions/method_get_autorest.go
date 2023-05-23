@@ -41,7 +41,7 @@ func (o GetOperationOptions) toQueryString() map[string]interface{} {
 }
 
 // Get ...
-func (c GalleryImageVersionsClient) Get(ctx context.Context, id VersionId, options GetOperationOptions) (result GetOperationResponse, err error) {
+func (c GalleryImageVersionsClient) Get(ctx context.Context, id ImageVersionId, options GetOperationOptions) (result GetOperationResponse, err error) {
 	req, err := c.preparerForGet(ctx, id, options)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "galleryimageversions.GalleryImageVersionsClient", "Get", nil, "Failure preparing request")
@@ -64,7 +64,7 @@ func (c GalleryImageVersionsClient) Get(ctx context.Context, id VersionId, optio
 }
 
 // preparerForGet prepares the Get request.
-func (c GalleryImageVersionsClient) preparerForGet(ctx context.Context, id VersionId, options GetOperationOptions) (*http.Request, error) {
+func (c GalleryImageVersionsClient) preparerForGet(ctx context.Context, id ImageVersionId, options GetOperationOptions) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

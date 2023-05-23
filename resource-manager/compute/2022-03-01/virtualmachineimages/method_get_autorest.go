@@ -17,7 +17,7 @@ type GetOperationResponse struct {
 }
 
 // Get ...
-func (c VirtualMachineImagesClient) Get(ctx context.Context, id VersionId) (result GetOperationResponse, err error) {
+func (c VirtualMachineImagesClient) Get(ctx context.Context, id SkuVersionId) (result GetOperationResponse, err error) {
 	req, err := c.preparerForGet(ctx, id)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "virtualmachineimages.VirtualMachineImagesClient", "Get", nil, "Failure preparing request")
@@ -40,7 +40,7 @@ func (c VirtualMachineImagesClient) Get(ctx context.Context, id VersionId) (resu
 }
 
 // preparerForGet prepares the Get request.
-func (c VirtualMachineImagesClient) preparerForGet(ctx context.Context, id VersionId) (*http.Request, error) {
+func (c VirtualMachineImagesClient) preparerForGet(ctx context.Context, id SkuVersionId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

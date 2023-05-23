@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -47,7 +46,7 @@ func (o GetCloudServiceNetworkInterfaceOperationOptions) ToQuery() *client.Query
 }
 
 // GetCloudServiceNetworkInterface ...
-func (c NetworkInterfacesClient) GetCloudServiceNetworkInterface(ctx context.Context, id commonids.NetworkInterfaceId, options GetCloudServiceNetworkInterfaceOperationOptions) (result GetCloudServiceNetworkInterfaceOperationResponse, err error) {
+func (c NetworkInterfacesClient) GetCloudServiceNetworkInterface(ctx context.Context, id RoleInstanceNetworkInterfaceId, options GetCloudServiceNetworkInterfaceOperationOptions) (result GetCloudServiceNetworkInterfaceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json",
 		ExpectedStatusCodes: []int{

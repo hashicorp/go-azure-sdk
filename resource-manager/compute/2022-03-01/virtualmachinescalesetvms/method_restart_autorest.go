@@ -19,7 +19,7 @@ type RestartOperationResponse struct {
 }
 
 // Restart ...
-func (c VirtualMachineScaleSetVMsClient) Restart(ctx context.Context, id VirtualMachineId) (result RestartOperationResponse, err error) {
+func (c VirtualMachineScaleSetVMsClient) Restart(ctx context.Context, id VirtualMachineScaleSetVirtualMachineId) (result RestartOperationResponse, err error) {
 	req, err := c.preparerForRestart(ctx, id)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "virtualmachinescalesetvms.VirtualMachineScaleSetVMsClient", "Restart", nil, "Failure preparing request")
@@ -36,7 +36,7 @@ func (c VirtualMachineScaleSetVMsClient) Restart(ctx context.Context, id Virtual
 }
 
 // RestartThenPoll performs Restart then polls until it's completed
-func (c VirtualMachineScaleSetVMsClient) RestartThenPoll(ctx context.Context, id VirtualMachineId) error {
+func (c VirtualMachineScaleSetVMsClient) RestartThenPoll(ctx context.Context, id VirtualMachineScaleSetVirtualMachineId) error {
 	result, err := c.Restart(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing Restart: %+v", err)
@@ -50,7 +50,7 @@ func (c VirtualMachineScaleSetVMsClient) RestartThenPoll(ctx context.Context, id
 }
 
 // preparerForRestart prepares the Restart request.
-func (c VirtualMachineScaleSetVMsClient) preparerForRestart(ctx context.Context, id VirtualMachineId) (*http.Request, error) {
+func (c VirtualMachineScaleSetVMsClient) preparerForRestart(ctx context.Context, id VirtualMachineScaleSetVirtualMachineId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

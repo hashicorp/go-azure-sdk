@@ -17,7 +17,7 @@ type CreateOrUpdateOperationResponse struct {
 }
 
 // CreateOrUpdate ...
-func (c BookmarkRelationsClient) CreateOrUpdate(ctx context.Context, id RelationId, input Relation) (result CreateOrUpdateOperationResponse, err error) {
+func (c BookmarkRelationsClient) CreateOrUpdate(ctx context.Context, id BookmarkRelationId, input Relation) (result CreateOrUpdateOperationResponse, err error) {
 	req, err := c.preparerForCreateOrUpdate(ctx, id, input)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "bookmarkrelations.BookmarkRelationsClient", "CreateOrUpdate", nil, "Failure preparing request")
@@ -40,7 +40,7 @@ func (c BookmarkRelationsClient) CreateOrUpdate(ctx context.Context, id Relation
 }
 
 // preparerForCreateOrUpdate prepares the CreateOrUpdate request.
-func (c BookmarkRelationsClient) preparerForCreateOrUpdate(ctx context.Context, id RelationId, input Relation) (*http.Request, error) {
+func (c BookmarkRelationsClient) preparerForCreateOrUpdate(ctx context.Context, id BookmarkRelationId, input Relation) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

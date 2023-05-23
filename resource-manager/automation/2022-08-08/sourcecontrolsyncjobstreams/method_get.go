@@ -18,7 +18,7 @@ type GetOperationResponse struct {
 }
 
 // Get ...
-func (c SourceControlSyncJobStreamsClient) Get(ctx context.Context, id StreamId) (result GetOperationResponse, err error) {
+func (c SourceControlSyncJobStreamsClient) Get(ctx context.Context, id SourceControlSyncJobStreamId) (result GetOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json",
 		ExpectedStatusCodes: []int{

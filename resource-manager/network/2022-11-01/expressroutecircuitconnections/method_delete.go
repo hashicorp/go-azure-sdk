@@ -21,7 +21,7 @@ type DeleteOperationResponse struct {
 }
 
 // Delete ...
-func (c ExpressRouteCircuitConnectionsClient) Delete(ctx context.Context, id ConnectionId) (result DeleteOperationResponse, err error) {
+func (c ExpressRouteCircuitConnectionsClient) Delete(ctx context.Context, id PeeringConnectionId) (result DeleteOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json",
 		ExpectedStatusCodes: []int{
@@ -57,7 +57,7 @@ func (c ExpressRouteCircuitConnectionsClient) Delete(ctx context.Context, id Con
 }
 
 // DeleteThenPoll performs Delete then polls until it's completed
-func (c ExpressRouteCircuitConnectionsClient) DeleteThenPoll(ctx context.Context, id ConnectionId) error {
+func (c ExpressRouteCircuitConnectionsClient) DeleteThenPoll(ctx context.Context, id PeeringConnectionId) error {
 	result, err := c.Delete(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing Delete: %+v", err)

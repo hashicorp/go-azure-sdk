@@ -19,7 +19,7 @@ type DeallocateOperationResponse struct {
 }
 
 // Deallocate ...
-func (c VirtualMachineScaleSetVMsClient) Deallocate(ctx context.Context, id VirtualMachineId) (result DeallocateOperationResponse, err error) {
+func (c VirtualMachineScaleSetVMsClient) Deallocate(ctx context.Context, id VirtualMachineScaleSetVirtualMachineId) (result DeallocateOperationResponse, err error) {
 	req, err := c.preparerForDeallocate(ctx, id)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "virtualmachinescalesetvms.VirtualMachineScaleSetVMsClient", "Deallocate", nil, "Failure preparing request")
@@ -36,7 +36,7 @@ func (c VirtualMachineScaleSetVMsClient) Deallocate(ctx context.Context, id Virt
 }
 
 // DeallocateThenPoll performs Deallocate then polls until it's completed
-func (c VirtualMachineScaleSetVMsClient) DeallocateThenPoll(ctx context.Context, id VirtualMachineId) error {
+func (c VirtualMachineScaleSetVMsClient) DeallocateThenPoll(ctx context.Context, id VirtualMachineScaleSetVirtualMachineId) error {
 	result, err := c.Deallocate(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing Deallocate: %+v", err)
@@ -50,7 +50,7 @@ func (c VirtualMachineScaleSetVMsClient) DeallocateThenPoll(ctx context.Context,
 }
 
 // preparerForDeallocate prepares the Deallocate request.
-func (c VirtualMachineScaleSetVMsClient) preparerForDeallocate(ctx context.Context, id VirtualMachineId) (*http.Request, error) {
+func (c VirtualMachineScaleSetVMsClient) preparerForDeallocate(ctx context.Context, id VirtualMachineScaleSetVirtualMachineId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

@@ -41,7 +41,7 @@ func (o UpdateOperationOptions) toQueryString() map[string]interface{} {
 }
 
 // Update ...
-func (c ApiDiagnosticClient) Update(ctx context.Context, id DiagnosticId, input DiagnosticContract, options UpdateOperationOptions) (result UpdateOperationResponse, err error) {
+func (c ApiDiagnosticClient) Update(ctx context.Context, id ApiDiagnosticId, input DiagnosticContract, options UpdateOperationOptions) (result UpdateOperationResponse, err error) {
 	req, err := c.preparerForUpdate(ctx, id, input, options)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "apidiagnostic.ApiDiagnosticClient", "Update", nil, "Failure preparing request")
@@ -64,7 +64,7 @@ func (c ApiDiagnosticClient) Update(ctx context.Context, id DiagnosticId, input 
 }
 
 // preparerForUpdate prepares the Update request.
-func (c ApiDiagnosticClient) preparerForUpdate(ctx context.Context, id DiagnosticId, input DiagnosticContract, options UpdateOperationOptions) (*http.Request, error) {
+func (c ApiDiagnosticClient) preparerForUpdate(ctx context.Context, id ApiDiagnosticId, input DiagnosticContract, options UpdateOperationOptions) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

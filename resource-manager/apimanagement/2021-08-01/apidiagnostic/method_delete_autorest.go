@@ -40,7 +40,7 @@ func (o DeleteOperationOptions) toQueryString() map[string]interface{} {
 }
 
 // Delete ...
-func (c ApiDiagnosticClient) Delete(ctx context.Context, id DiagnosticId, options DeleteOperationOptions) (result DeleteOperationResponse, err error) {
+func (c ApiDiagnosticClient) Delete(ctx context.Context, id ApiDiagnosticId, options DeleteOperationOptions) (result DeleteOperationResponse, err error) {
 	req, err := c.preparerForDelete(ctx, id, options)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "apidiagnostic.ApiDiagnosticClient", "Delete", nil, "Failure preparing request")
@@ -63,7 +63,7 @@ func (c ApiDiagnosticClient) Delete(ctx context.Context, id DiagnosticId, option
 }
 
 // preparerForDelete prepares the Delete request.
-func (c ApiDiagnosticClient) preparerForDelete(ctx context.Context, id DiagnosticId, options DeleteOperationOptions) (*http.Request, error) {
+func (c ApiDiagnosticClient) preparerForDelete(ctx context.Context, id ApiDiagnosticId, options DeleteOperationOptions) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

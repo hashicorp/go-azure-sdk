@@ -18,7 +18,7 @@ type VirtualNetworkGatewayNatRulesGetOperationResponse struct {
 }
 
 // VirtualNetworkGatewayNatRulesGet ...
-func (c VirtualNetworkGatewaysClient) VirtualNetworkGatewayNatRulesGet(ctx context.Context, id NatRuleId) (result VirtualNetworkGatewayNatRulesGetOperationResponse, err error) {
+func (c VirtualNetworkGatewaysClient) VirtualNetworkGatewayNatRulesGet(ctx context.Context, id VirtualNetworkGatewayNatRuleId) (result VirtualNetworkGatewayNatRulesGetOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json",
 		ExpectedStatusCodes: []int{

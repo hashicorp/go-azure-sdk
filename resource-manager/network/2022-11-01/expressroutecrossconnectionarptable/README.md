@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := expressroutecrossconnectionarptable.NewArpTableID("12345678-1234-9876-4563-123456789012", "example-resource-group", "expressRouteCircuitValue", "peeringValue", "arpTableValue")
+id := expressroutecrossconnectionarptable.NewPeeringArpTableID("12345678-1234-9876-4563-123456789012", "example-resource-group", "expressRouteCrossConnectionValue", "peeringValue", "arpTableValue")
 
 if err := client.ExpressRouteCrossConnectionsListArpTableThenPoll(ctx, id); err != nil {
 	// handle the error

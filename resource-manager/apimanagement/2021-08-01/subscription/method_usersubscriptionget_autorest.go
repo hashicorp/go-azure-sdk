@@ -17,7 +17,7 @@ type UserSubscriptionGetOperationResponse struct {
 }
 
 // UserSubscriptionGet ...
-func (c SubscriptionClient) UserSubscriptionGet(ctx context.Context, id Subscriptions2Id) (result UserSubscriptionGetOperationResponse, err error) {
+func (c SubscriptionClient) UserSubscriptionGet(ctx context.Context, id UserSubscriptions2Id) (result UserSubscriptionGetOperationResponse, err error) {
 	req, err := c.preparerForUserSubscriptionGet(ctx, id)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "subscription.SubscriptionClient", "UserSubscriptionGet", nil, "Failure preparing request")
@@ -40,7 +40,7 @@ func (c SubscriptionClient) UserSubscriptionGet(ctx context.Context, id Subscrip
 }
 
 // preparerForUserSubscriptionGet prepares the UserSubscriptionGet request.
-func (c SubscriptionClient) preparerForUserSubscriptionGet(ctx context.Context, id Subscriptions2Id) (*http.Request, error) {
+func (c SubscriptionClient) preparerForUserSubscriptionGet(ctx context.Context, id UserSubscriptions2Id) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

@@ -739,7 +739,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := virtualwans.NewRouteTableID("12345678-1234-9876-4563-123456789012", "example-resource-group", "routeTableValue")
+id := virtualwans.NewVirtualHubRouteTableID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualHubValue", "routeTableValue")
 
 payload := virtualwans.VirtualHubRouteTableV2{
 	// ...
@@ -756,7 +756,7 @@ if err := client.VirtualHubRouteTableV2sCreateOrUpdateThenPoll(ctx, id, payload)
 
 ```go
 ctx := context.TODO()
-id := virtualwans.NewRouteTableID("12345678-1234-9876-4563-123456789012", "example-resource-group", "routeTableValue")
+id := virtualwans.NewVirtualHubRouteTableID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualHubValue", "routeTableValue")
 
 if err := client.VirtualHubRouteTableV2sDeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -768,7 +768,7 @@ if err := client.VirtualHubRouteTableV2sDeleteThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := virtualwans.NewRouteTableID("12345678-1234-9876-4563-123456789012", "example-resource-group", "routeTableValue")
+id := virtualwans.NewVirtualHubRouteTableID("12345678-1234-9876-4563-123456789012", "example-resource-group", "virtualHubValue", "routeTableValue")
 
 read, err := client.VirtualHubRouteTableV2sGet(ctx, id)
 if err != nil {

@@ -43,7 +43,7 @@ func (o PowerOffOperationOptions) toQueryString() map[string]interface{} {
 }
 
 // PowerOff ...
-func (c VirtualMachineScaleSetVMsClient) PowerOff(ctx context.Context, id VirtualMachineId, options PowerOffOperationOptions) (result PowerOffOperationResponse, err error) {
+func (c VirtualMachineScaleSetVMsClient) PowerOff(ctx context.Context, id VirtualMachineScaleSetVirtualMachineId, options PowerOffOperationOptions) (result PowerOffOperationResponse, err error) {
 	req, err := c.preparerForPowerOff(ctx, id, options)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "virtualmachinescalesetvms.VirtualMachineScaleSetVMsClient", "PowerOff", nil, "Failure preparing request")
@@ -60,7 +60,7 @@ func (c VirtualMachineScaleSetVMsClient) PowerOff(ctx context.Context, id Virtua
 }
 
 // PowerOffThenPoll performs PowerOff then polls until it's completed
-func (c VirtualMachineScaleSetVMsClient) PowerOffThenPoll(ctx context.Context, id VirtualMachineId, options PowerOffOperationOptions) error {
+func (c VirtualMachineScaleSetVMsClient) PowerOffThenPoll(ctx context.Context, id VirtualMachineScaleSetVirtualMachineId, options PowerOffOperationOptions) error {
 	result, err := c.PowerOff(ctx, id, options)
 	if err != nil {
 		return fmt.Errorf("performing PowerOff: %+v", err)
@@ -74,7 +74,7 @@ func (c VirtualMachineScaleSetVMsClient) PowerOffThenPoll(ctx context.Context, i
 }
 
 // preparerForPowerOff prepares the PowerOff request.
-func (c VirtualMachineScaleSetVMsClient) preparerForPowerOff(ctx context.Context, id VirtualMachineId, options PowerOffOperationOptions) (*http.Request, error) {
+func (c VirtualMachineScaleSetVMsClient) preparerForPowerOff(ctx context.Context, id VirtualMachineScaleSetVirtualMachineId, options PowerOffOperationOptions) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

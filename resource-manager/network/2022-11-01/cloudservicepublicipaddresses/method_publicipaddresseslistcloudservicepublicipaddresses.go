@@ -23,7 +23,7 @@ type PublicIPAddressesListCloudServicePublicIPAddressesCompleteResult struct {
 }
 
 // PublicIPAddressesListCloudServicePublicIPAddresses ...
-func (c CloudServicePublicIPAddressesClient) PublicIPAddressesListCloudServicePublicIPAddresses(ctx context.Context, id CloudServiceId) (result PublicIPAddressesListCloudServicePublicIPAddressesOperationResponse, err error) {
+func (c CloudServicePublicIPAddressesClient) PublicIPAddressesListCloudServicePublicIPAddresses(ctx context.Context, id ProviderCloudServiceId) (result PublicIPAddressesListCloudServicePublicIPAddressesOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json",
 		ExpectedStatusCodes: []int{
@@ -61,12 +61,12 @@ func (c CloudServicePublicIPAddressesClient) PublicIPAddressesListCloudServicePu
 }
 
 // PublicIPAddressesListCloudServicePublicIPAddressesComplete retrieves all the results into a single object
-func (c CloudServicePublicIPAddressesClient) PublicIPAddressesListCloudServicePublicIPAddressesComplete(ctx context.Context, id CloudServiceId) (PublicIPAddressesListCloudServicePublicIPAddressesCompleteResult, error) {
+func (c CloudServicePublicIPAddressesClient) PublicIPAddressesListCloudServicePublicIPAddressesComplete(ctx context.Context, id ProviderCloudServiceId) (PublicIPAddressesListCloudServicePublicIPAddressesCompleteResult, error) {
 	return c.PublicIPAddressesListCloudServicePublicIPAddressesCompleteMatchingPredicate(ctx, id, PublicIPAddressOperationPredicate{})
 }
 
 // PublicIPAddressesListCloudServicePublicIPAddressesCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c CloudServicePublicIPAddressesClient) PublicIPAddressesListCloudServicePublicIPAddressesCompleteMatchingPredicate(ctx context.Context, id CloudServiceId, predicate PublicIPAddressOperationPredicate) (result PublicIPAddressesListCloudServicePublicIPAddressesCompleteResult, err error) {
+func (c CloudServicePublicIPAddressesClient) PublicIPAddressesListCloudServicePublicIPAddressesCompleteMatchingPredicate(ctx context.Context, id ProviderCloudServiceId, predicate PublicIPAddressOperationPredicate) (result PublicIPAddressesListCloudServicePublicIPAddressesCompleteResult, err error) {
 	items := make([]PublicIPAddress, 0)
 
 	resp, err := c.PublicIPAddressesListCloudServicePublicIPAddresses(ctx, id)

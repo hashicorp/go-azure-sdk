@@ -19,7 +19,7 @@ type PerformMaintenanceOperationResponse struct {
 }
 
 // PerformMaintenance ...
-func (c VirtualMachineScaleSetVMsClient) PerformMaintenance(ctx context.Context, id VirtualMachineId) (result PerformMaintenanceOperationResponse, err error) {
+func (c VirtualMachineScaleSetVMsClient) PerformMaintenance(ctx context.Context, id VirtualMachineScaleSetVirtualMachineId) (result PerformMaintenanceOperationResponse, err error) {
 	req, err := c.preparerForPerformMaintenance(ctx, id)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "virtualmachinescalesetvms.VirtualMachineScaleSetVMsClient", "PerformMaintenance", nil, "Failure preparing request")
@@ -36,7 +36,7 @@ func (c VirtualMachineScaleSetVMsClient) PerformMaintenance(ctx context.Context,
 }
 
 // PerformMaintenanceThenPoll performs PerformMaintenance then polls until it's completed
-func (c VirtualMachineScaleSetVMsClient) PerformMaintenanceThenPoll(ctx context.Context, id VirtualMachineId) error {
+func (c VirtualMachineScaleSetVMsClient) PerformMaintenanceThenPoll(ctx context.Context, id VirtualMachineScaleSetVirtualMachineId) error {
 	result, err := c.PerformMaintenance(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing PerformMaintenance: %+v", err)
@@ -50,7 +50,7 @@ func (c VirtualMachineScaleSetVMsClient) PerformMaintenanceThenPoll(ctx context.
 }
 
 // preparerForPerformMaintenance prepares the PerformMaintenance request.
-func (c VirtualMachineScaleSetVMsClient) preparerForPerformMaintenance(ctx context.Context, id VirtualMachineId) (*http.Request, error) {
+func (c VirtualMachineScaleSetVMsClient) preparerForPerformMaintenance(ctx context.Context, id VirtualMachineScaleSetVirtualMachineId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

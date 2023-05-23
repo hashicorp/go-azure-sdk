@@ -72,7 +72,7 @@ func (o ListByServiceOperationOptions) toQueryString() map[string]interface{} {
 }
 
 // ListByService ...
-func (c ApiIssueCommentClient) ListByService(ctx context.Context, id IssueId, options ListByServiceOperationOptions) (resp ListByServiceOperationResponse, err error) {
+func (c ApiIssueCommentClient) ListByService(ctx context.Context, id ApiIssueId, options ListByServiceOperationOptions) (resp ListByServiceOperationResponse, err error) {
 	req, err := c.preparerForListByService(ctx, id, options)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "apiissuecomment.ApiIssueCommentClient", "ListByService", nil, "Failure preparing request")
@@ -94,7 +94,7 @@ func (c ApiIssueCommentClient) ListByService(ctx context.Context, id IssueId, op
 }
 
 // preparerForListByService prepares the ListByService request.
-func (c ApiIssueCommentClient) preparerForListByService(ctx context.Context, id IssueId, options ListByServiceOperationOptions) (*http.Request, error) {
+func (c ApiIssueCommentClient) preparerForListByService(ctx context.Context, id ApiIssueId, options ListByServiceOperationOptions) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}
@@ -181,12 +181,12 @@ func (c ApiIssueCommentClient) responderForListByService(resp *http.Response) (r
 }
 
 // ListByServiceComplete retrieves all of the results into a single object
-func (c ApiIssueCommentClient) ListByServiceComplete(ctx context.Context, id IssueId, options ListByServiceOperationOptions) (ListByServiceCompleteResult, error) {
+func (c ApiIssueCommentClient) ListByServiceComplete(ctx context.Context, id ApiIssueId, options ListByServiceOperationOptions) (ListByServiceCompleteResult, error) {
 	return c.ListByServiceCompleteMatchingPredicate(ctx, id, options, IssueCommentContractOperationPredicate{})
 }
 
 // ListByServiceCompleteMatchingPredicate retrieves all of the results and then applied the predicate
-func (c ApiIssueCommentClient) ListByServiceCompleteMatchingPredicate(ctx context.Context, id IssueId, options ListByServiceOperationOptions, predicate IssueCommentContractOperationPredicate) (resp ListByServiceCompleteResult, err error) {
+func (c ApiIssueCommentClient) ListByServiceCompleteMatchingPredicate(ctx context.Context, id ApiIssueId, options ListByServiceOperationOptions, predicate IssueCommentContractOperationPredicate) (resp ListByServiceCompleteResult, err error) {
 	items := make([]IssueCommentContract, 0)
 
 	page, err := c.ListByService(ctx, id, options)

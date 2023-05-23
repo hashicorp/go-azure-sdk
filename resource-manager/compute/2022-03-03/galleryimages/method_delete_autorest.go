@@ -19,7 +19,7 @@ type DeleteOperationResponse struct {
 }
 
 // Delete ...
-func (c GalleryImagesClient) Delete(ctx context.Context, id ImageId) (result DeleteOperationResponse, err error) {
+func (c GalleryImagesClient) Delete(ctx context.Context, id GalleryImageId) (result DeleteOperationResponse, err error) {
 	req, err := c.preparerForDelete(ctx, id)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "galleryimages.GalleryImagesClient", "Delete", nil, "Failure preparing request")
@@ -36,7 +36,7 @@ func (c GalleryImagesClient) Delete(ctx context.Context, id ImageId) (result Del
 }
 
 // DeleteThenPoll performs Delete then polls until it's completed
-func (c GalleryImagesClient) DeleteThenPoll(ctx context.Context, id ImageId) error {
+func (c GalleryImagesClient) DeleteThenPoll(ctx context.Context, id GalleryImageId) error {
 	result, err := c.Delete(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing Delete: %+v", err)
@@ -50,7 +50,7 @@ func (c GalleryImagesClient) DeleteThenPoll(ctx context.Context, id ImageId) err
 }
 
 // preparerForDelete prepares the Delete request.
-func (c GalleryImagesClient) preparerForDelete(ctx context.Context, id ImageId) (*http.Request, error) {
+func (c GalleryImagesClient) preparerForDelete(ctx context.Context, id GalleryImageId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

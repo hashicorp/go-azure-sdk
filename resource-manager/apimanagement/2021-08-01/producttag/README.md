@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := producttag.NewTagID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "tagIdValue")
+id := producttag.NewProductTagID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "productIdValue", "tagIdValue")
 
 read, err := client.TagAssignToProduct(ctx, id)
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := producttag.NewTagID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "tagIdValue")
+id := producttag.NewProductTagID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "productIdValue", "tagIdValue")
 
 read, err := client.TagDetachFromProduct(ctx, id)
 if err != nil {
@@ -56,7 +56,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := producttag.NewTagID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "tagIdValue")
+id := producttag.NewProductTagID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "productIdValue", "tagIdValue")
 
 read, err := client.TagGetByProduct(ctx, id)
 if err != nil {
@@ -72,7 +72,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := producttag.NewTagID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "tagIdValue")
+id := producttag.NewProductTagID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serviceValue", "productIdValue", "tagIdValue")
 
 read, err := client.TagGetEntityStateByProduct(ctx, id)
 if err != nil {

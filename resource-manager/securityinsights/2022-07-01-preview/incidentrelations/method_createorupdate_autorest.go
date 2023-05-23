@@ -17,7 +17,7 @@ type CreateOrUpdateOperationResponse struct {
 }
 
 // CreateOrUpdate ...
-func (c IncidentRelationsClient) CreateOrUpdate(ctx context.Context, id RelationId, input Relation) (result CreateOrUpdateOperationResponse, err error) {
+func (c IncidentRelationsClient) CreateOrUpdate(ctx context.Context, id IncidentRelationId, input Relation) (result CreateOrUpdateOperationResponse, err error) {
 	req, err := c.preparerForCreateOrUpdate(ctx, id, input)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "incidentrelations.IncidentRelationsClient", "CreateOrUpdate", nil, "Failure preparing request")
@@ -40,7 +40,7 @@ func (c IncidentRelationsClient) CreateOrUpdate(ctx context.Context, id Relation
 }
 
 // preparerForCreateOrUpdate prepares the CreateOrUpdate request.
-func (c IncidentRelationsClient) preparerForCreateOrUpdate(ctx context.Context, id RelationId, input Relation) (*http.Request, error) {
+func (c IncidentRelationsClient) preparerForCreateOrUpdate(ctx context.Context, id IncidentRelationId, input Relation) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

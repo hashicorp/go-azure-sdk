@@ -41,7 +41,7 @@ func (o CreateOrUpdateOperationOptions) toQueryString() map[string]interface{} {
 }
 
 // CreateOrUpdate ...
-func (c ApiDiagnosticClient) CreateOrUpdate(ctx context.Context, id DiagnosticId, input DiagnosticContract, options CreateOrUpdateOperationOptions) (result CreateOrUpdateOperationResponse, err error) {
+func (c ApiDiagnosticClient) CreateOrUpdate(ctx context.Context, id ApiDiagnosticId, input DiagnosticContract, options CreateOrUpdateOperationOptions) (result CreateOrUpdateOperationResponse, err error) {
 	req, err := c.preparerForCreateOrUpdate(ctx, id, input, options)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "apidiagnostic.ApiDiagnosticClient", "CreateOrUpdate", nil, "Failure preparing request")
@@ -64,7 +64,7 @@ func (c ApiDiagnosticClient) CreateOrUpdate(ctx context.Context, id DiagnosticId
 }
 
 // preparerForCreateOrUpdate prepares the CreateOrUpdate request.
-func (c ApiDiagnosticClient) preparerForCreateOrUpdate(ctx context.Context, id DiagnosticId, input DiagnosticContract, options CreateOrUpdateOperationOptions) (*http.Request, error) {
+func (c ApiDiagnosticClient) preparerForCreateOrUpdate(ctx context.Context, id ApiDiagnosticId, input DiagnosticContract, options CreateOrUpdateOperationOptions) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

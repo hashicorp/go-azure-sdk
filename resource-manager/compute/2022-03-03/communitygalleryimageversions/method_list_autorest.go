@@ -38,7 +38,7 @@ func (r ListOperationResponse) LoadMore(ctx context.Context) (resp ListOperation
 }
 
 // List ...
-func (c CommunityGalleryImageVersionsClient) List(ctx context.Context, id ImageId) (resp ListOperationResponse, err error) {
+func (c CommunityGalleryImageVersionsClient) List(ctx context.Context, id CommunityGalleryImageId) (resp ListOperationResponse, err error) {
 	req, err := c.preparerForList(ctx, id)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "communitygalleryimageversions.CommunityGalleryImageVersionsClient", "List", nil, "Failure preparing request")
@@ -60,7 +60,7 @@ func (c CommunityGalleryImageVersionsClient) List(ctx context.Context, id ImageI
 }
 
 // preparerForList prepares the List request.
-func (c CommunityGalleryImageVersionsClient) preparerForList(ctx context.Context, id ImageId) (*http.Request, error) {
+func (c CommunityGalleryImageVersionsClient) preparerForList(ctx context.Context, id CommunityGalleryImageId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}
@@ -142,12 +142,12 @@ func (c CommunityGalleryImageVersionsClient) responderForList(resp *http.Respons
 }
 
 // ListComplete retrieves all of the results into a single object
-func (c CommunityGalleryImageVersionsClient) ListComplete(ctx context.Context, id ImageId) (ListCompleteResult, error) {
+func (c CommunityGalleryImageVersionsClient) ListComplete(ctx context.Context, id CommunityGalleryImageId) (ListCompleteResult, error) {
 	return c.ListCompleteMatchingPredicate(ctx, id, CommunityGalleryImageVersionOperationPredicate{})
 }
 
 // ListCompleteMatchingPredicate retrieves all of the results and then applied the predicate
-func (c CommunityGalleryImageVersionsClient) ListCompleteMatchingPredicate(ctx context.Context, id ImageId, predicate CommunityGalleryImageVersionOperationPredicate) (resp ListCompleteResult, err error) {
+func (c CommunityGalleryImageVersionsClient) ListCompleteMatchingPredicate(ctx context.Context, id CommunityGalleryImageId, predicate CommunityGalleryImageVersionOperationPredicate) (resp ListCompleteResult, err error) {
 	items := make([]CommunityGalleryImageVersion, 0)
 
 	page, err := c.List(ctx, id)
