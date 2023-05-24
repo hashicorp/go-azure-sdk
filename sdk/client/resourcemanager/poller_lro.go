@@ -118,6 +118,8 @@ func (p *longRunningOperationPoller) Poll(ctx context.Context) (result *pollers.
 		}
 		result.HttpResponse.Body.Close()
 
+		result.HttpResponse.Body = io.NopCloser(bytes.NewReader(respBody))
+
 		// update the poll interval if a Retry-After header is returned
 		if s, ok := result.HttpResponse.Header["Retry-After"]; ok {
 			if sleep, err := strconv.ParseInt(s[0], 10, 64); err == nil {
@@ -178,7 +180,6 @@ func (p *longRunningOperationPoller) Poll(ctx context.Context) (result *pollers.
 		}
 
 		if result.Status == pollers.PollingStatusFailed {
-			result.HttpResponse.Body = io.NopCloser(bytes.NewReader(respBody))
 			lroError, parseError := parseErrorFromApiResponse(*result.HttpResponse.Response)
 			if parseError != nil {
 				return nil, parseError
@@ -191,7 +192,6 @@ func (p *longRunningOperationPoller) Poll(ctx context.Context) (result *pollers.
 		}
 
 		if result.Status == pollers.PollingStatusCancelled {
-			result.HttpResponse.Body = io.NopCloser(bytes.NewReader(respBody))
 			lroError, parseError := parseErrorFromApiResponse(*result.HttpResponse.Response)
 			if parseError != nil {
 				return nil, parseError
