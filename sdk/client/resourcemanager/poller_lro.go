@@ -4,6 +4,7 @@
 package resourcemanager
 
 import (
+	"bytes"
 	"context"
 	"encoding/json"
 	"fmt"
@@ -177,16 +178,32 @@ func (p *longRunningOperationPoller) Poll(ctx context.Context) (result *pollers.
 		}
 
 		if result.Status == pollers.PollingStatusFailed {
+			apiResponse := http.Response{
+				Body: io.NopCloser(bytes.NewReader(respBody)),
+			}
+			lroError, parseError := parseErrorFromApiResponse(apiResponse)
+			if parseError != nil {
+				return nil, parseError
+			}
+
 			err = pollers.PollingFailedError{
 				HttpResponse: result.HttpResponse,
-				Message:      string(respBody),
+				Message:      lroError.Error(),
 			}
 		}
 
 		if result.Status == pollers.PollingStatusCancelled {
+			apiResponse := http.Response{
+				Body: io.NopCloser(bytes.NewReader(respBody)),
+			}
+			lroError, parseError := parseErrorFromApiResponse(apiResponse)
+			if parseError != nil {
+				return nil, parseError
+			}
+
 			err = pollers.PollingCancelledError{
 				HttpResponse: result.HttpResponse,
-				Message:      string(respBody),
+				Message:      lroError.Error(),
 			}
 		}
 
