@@ -7,6 +7,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/resource-manager/datafactory/2018-06-01/activityruns"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/datafactory/2018-06-01/changedatacapture"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/datafactory/2018-06-01/credentials"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/datafactory/2018-06-01/dataflowdebugsession"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/datafactory/2018-06-01/dataflows"
@@ -33,6 +34,7 @@ import (
 
 type Client struct {
 	Activityruns                     *activityruns.ActivityrunsClient
+	ChangeDataCapture                *changedatacapture.ChangeDataCaptureClient
 	Credentials                      *credentials.CredentialsClient
 	DataFlowDebugSession             *dataflowdebugsession.DataFlowDebugSessionClient
 	DataFlows                        *dataflows.DataFlowsClient
@@ -61,6 +63,12 @@ func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcema
 		return nil, fmt.Errorf("building Activityruns client: %+v", err)
 	}
 	configureFunc(activityrunsClient.Client)
+
+	changeDataCaptureClient, err := changedatacapture.NewChangeDataCaptureClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building ChangeDataCapture client: %+v", err)
+	}
+	configureFunc(changeDataCaptureClient.Client)
 
 	credentialsClient, err := credentials.NewCredentialsClientWithBaseURI(api)
 	if err != nil {
@@ -184,6 +192,7 @@ func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcema
 
 	return &Client{
 		Activityruns:                     activityrunsClient,
+		ChangeDataCapture:                changeDataCaptureClient,
 		Credentials:                      credentialsClient,
 		DataFlowDebugSession:             dataFlowDebugSessionClient,
 		DataFlows:                        dataFlowsClient,
