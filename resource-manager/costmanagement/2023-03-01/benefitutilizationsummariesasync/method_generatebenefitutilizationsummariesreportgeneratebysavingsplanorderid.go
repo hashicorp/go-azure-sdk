@@ -14,14 +14,14 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-type BillingProfileScopeGenerateBenefitUtilizationSummariesReportOperationResponse struct {
+type GenerateBenefitUtilizationSummariesReportGenerateBySavingsPlanOrderIdOperationResponse struct {
 	Poller       pollers.Poller
 	HttpResponse *http.Response
 	OData        *odata.OData
 }
 
-// BillingProfileScopeGenerateBenefitUtilizationSummariesReport ...
-func (c BenefitUtilizationSummariesAsyncClient) BillingProfileScopeGenerateBenefitUtilizationSummariesReport(ctx context.Context, id BillingProfileId, input BenefitUtilizationSummariesRequest) (result BillingProfileScopeGenerateBenefitUtilizationSummariesReportOperationResponse, err error) {
+// GenerateBenefitUtilizationSummariesReportGenerateBySavingsPlanOrderId ...
+func (c BenefitUtilizationSummariesAsyncClient) GenerateBenefitUtilizationSummariesReportGenerateBySavingsPlanOrderId(ctx context.Context, id SavingsPlanOrderId, input BenefitUtilizationSummariesRequest) (result GenerateBenefitUtilizationSummariesReportGenerateBySavingsPlanOrderIdOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json",
 		ExpectedStatusCodes: []int{
@@ -59,15 +59,15 @@ func (c BenefitUtilizationSummariesAsyncClient) BillingProfileScopeGenerateBenef
 	return
 }
 
-// BillingProfileScopeGenerateBenefitUtilizationSummariesReportThenPoll performs BillingProfileScopeGenerateBenefitUtilizationSummariesReport then polls until it's completed
-func (c BenefitUtilizationSummariesAsyncClient) BillingProfileScopeGenerateBenefitUtilizationSummariesReportThenPoll(ctx context.Context, id BillingProfileId, input BenefitUtilizationSummariesRequest) error {
-	result, err := c.BillingProfileScopeGenerateBenefitUtilizationSummariesReport(ctx, id, input)
+// GenerateBenefitUtilizationSummariesReportGenerateBySavingsPlanOrderIdThenPoll performs GenerateBenefitUtilizationSummariesReportGenerateBySavingsPlanOrderId then polls until it's completed
+func (c BenefitUtilizationSummariesAsyncClient) GenerateBenefitUtilizationSummariesReportGenerateBySavingsPlanOrderIdThenPoll(ctx context.Context, id SavingsPlanOrderId, input BenefitUtilizationSummariesRequest) error {
+	result, err := c.GenerateBenefitUtilizationSummariesReportGenerateBySavingsPlanOrderId(ctx, id, input)
 	if err != nil {
-		return fmt.Errorf("performing BillingProfileScopeGenerateBenefitUtilizationSummariesReport: %+v", err)
+		return fmt.Errorf("performing GenerateBenefitUtilizationSummariesReportGenerateBySavingsPlanOrderId: %+v", err)
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {
-		return fmt.Errorf("polling after BillingProfileScopeGenerateBenefitUtilizationSummariesReport: %+v", err)
+		return fmt.Errorf("polling after GenerateBenefitUtilizationSummariesReportGenerateBySavingsPlanOrderId: %+v", err)
 	}
 
 	return nil
