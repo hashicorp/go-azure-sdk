@@ -211,6 +211,27 @@ func TestError(t *testing.T) {
 }`,
 			expected: "BadRequest: The server could not process the request because it is malformed or incorrect.: 1034: Policy contains invalid applications: {\"499b84ac-1321-427f-aa17-267ca6975798\":\"ServicePrincipalNotFound\"}",
 		},
+		{
+			response: `{
+	"error": {
+		"code": "-2134347772",
+		"message": "SyncGroup '/subscriptions/1a6092a6-137e-4025-9a7c-ef77f76f2c02/resourceGroups/acctestRG-SS-230605162007979449/providers/Microsoft.StorageSync/storageSyncServices/acctest-StorageSync-230605162007979449/syncGroups/acctest-StorageSyncGroup-230605162007979449' does not exist.",
+		"target": "InvalidResource",
+		"details": {
+			"httpErrorCode": "NotFound",
+			"exceptionType": "FilesCommon.Diagnostics.BackendException",
+			"hashedMessage": "SyncGroup '/subscriptions/1a6092a6-137e-4025-9a7c-ef77f76f2c02/resourceGroups/acctestRG-SS-230605162007979449/providers/Microsoft.StorageSync/storageSyncServices/acctest-StorageSync-230605162007979449/syncGroups/acctest-StorageSyncGroup-230605162007979449' does not exist.",
+			"httpMethod": "GET",
+			"requestUri": "http://10.0.0.7:9081/2020-03-01/subscriptions/1a6092a6-137e-4025-9a7c-ef77f76f2c02/resourceGroups/acctestRG-SS-230605162007979449/providers/Microsoft.StorageSync/storageSyncServices/acctest-StorageSync-230605162007979449/syncGroups/acctest-StorageSyncGroup-230605162007979449?api-version=2020-03-01"
+		},
+		"innererror": {
+			"callStack": "   at StorageFiles.Foundation.Diagnostics.Tracer.TraceAndThrow(Exception ex, EventLevel level, String msg, UseInterpolatedStringOrStringDotFormat guard, String file, String member, Int32 line)\r\n   at FilesCommon.Diagnostics.ErrorHelper.CheckAndThrowException(Boolean condition, ErrorCodeCommon errorCode, ExceptionMessage errorMessage, String errorTarget, Exception innerException)\r\n   at Kailani.Hfs.V1.Actions.Services.SyncGroupProvider.InternalGet(String resourceId, String name, StorageSyncServiceResource parentResource, Boolean throwIfNotFound) in C:\\__w\\1\\s\\src\\Kailani\\DotNetCore\\Kailani.Afs.Services\\Services\\DataSetProvider.cs:line 347\r\n   at Kailani.Hfs.V1.Actions.Services.SyncGroupProvider.<>c__DisplayClass10_0.<<DoGet>b__1>d.MoveNext() in C:\\__w\\1\\s\\src\\Kailani\\DotNetCore\\Kailani.Afs.Services\\Services\\DataSetProvider.cs:line 235\r\n--- End of stack trace from previous location ---\r\n   at Kailani.Hfs.V1.Actions.Services.BaseResourceProvider'1.ExecuteGet[TParent](T resource, Func'3 getParentAction, Func'3 getResourceAction, Boolean bThrowIfNotFound) in C:\\__w\\1\\s\\src\\Kailani\\DotNetCore\\Kailani.Afs.Services\\Services\\BaseResourceProvider.cs:line 349\r\n   at Kailani.Hfs.V1.Actions.Services.SyncGroupProvider.DoGet(SyncGroupResource resource, Boolean bThrowIfNotFound) in C:\\__w\\1\\s\\src\\Kailani\\DotNetCore\\Kailani.Afs.Services\\Services\\DataSetProvider.cs:line 237\r\n   at Kailani.Hfs.V1.Actions.CloudActions.GetSyncGroupAction.ExecuteAction(SyncGroupResource syncGroup, AbstractOperation op) in C:\\__w\\1\\s\\src\\Kailani\\DotNetCore\\Kailani.Hfs.CloudActions\\CloudActions\\SyncGroup\\GetSyncGroupAction.cs:line 95\r\n   at FilesCommon.ActionFramework.GetTemplateAction'1.ExecuteAsync(TResource inputResource, AbstractOperation op)\r\n   at FilesCommon.ActionFramework.BaseCloudAction'1.ExecuteRequestAsync(AbstractOperation op)\r\n   at FilesCommon.ActionFramework.BaseCloudAction.ExecuteAsync()",
+			"message": "SyncGroup '/subscriptions/1a6092a6-137e-4025-9a7c-ef77f76f2c02/resourceGroups/acctestRG-SS-230605162007979449/providers/Microsoft.StorageSync/storageSyncServices/acctest-StorageSync-230605162007979449/syncGroups/acctest-StorageSyncGroup-230605162007979449' does not exist."
+		}
+	}
+}`,
+			expected: "-2134347772: SyncGroup '/subscriptions/1a6092a6-137e-4025-9a7c-ef77f76f2c02/resourceGroups/acctestRG-SS-230605162007979449/providers/Microsoft.StorageSync/storageSyncServices/acctest-StorageSync-230605162007979449/syncGroups/acctest-StorageSyncGroup-230605162007979449' does not exist.: SyncGroup '/subscriptions/1a6092a6-137e-4025-9a7c-ef77f76f2c02/resourceGroups/acctestRG-SS-230605162007979449/providers/Microsoft.StorageSync/storageSyncServices/acctest-StorageSync-230605162007979449/syncGroups/acctest-StorageSyncGroup-230605162007979449' does not exist.",
+		},
 	}
 
 	for n, c := range testCases {
