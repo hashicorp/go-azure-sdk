@@ -207,7 +207,7 @@ func (r *Response) Unmarshal(model interface{}) error {
 	if strings.Contains(contentType, "application/octet-stream") || strings.Contains(contentType, "text/powershell") {
 		ptr, ok := model.(**[]byte)
 		if !ok || ptr == nil {
-			return fmt.Errorf("internal-error: `model` must be **[]byte not not nil but got %+v", model)
+			return fmt.Errorf("internal-error: `model` must be a non-nil `**[]byte` but got %+v", model)
 		}
 
 		// Read the response body and close it
