@@ -4,6 +4,6 @@ package changedatacapture
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type MapperSourceConnectionsInfo struct {
-	Connection     *MapperConnection `json:"Connection,omitempty"`
-	SourceEntities *[]MapperTable    `json:"SourceEntities,omitempty"`
+	Connection     *MapperConnection `json:"connection,omitempty"`
+	SourceEntities *[]MapperTable    `json:"sourceEntities,omitempty"`
 }
