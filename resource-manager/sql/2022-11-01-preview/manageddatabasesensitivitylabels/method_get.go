@@ -18,7 +18,7 @@ type GetOperationResponse struct {
 }
 
 // Get ...
-func (c ManagedDatabaseSensitivityLabelsClient) Get(ctx context.Context, id SensitivityLabelSensitivityLabelSourceId) (result GetOperationResponse, err error) {
+func (c ManagedDatabaseSensitivityLabelsClient) Get(ctx context.Context, id SensitivityLabelSourceId) (result GetOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json",
 		ExpectedStatusCodes: []int{

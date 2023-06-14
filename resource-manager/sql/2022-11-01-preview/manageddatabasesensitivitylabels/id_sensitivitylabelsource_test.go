@@ -9,10 +9,10 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = SensitivityLabelSensitivityLabelSourceId{}
+var _ resourceids.ResourceId = SensitivityLabelSourceId{}
 
-func TestNewSensitivityLabelSensitivityLabelSourceID(t *testing.T) {
-	id := NewSensitivityLabelSensitivityLabelSourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedInstanceValue", "databaseValue", "schemaValue", "tableValue", "columnValue", "current")
+func TestNewSensitivityLabelSourceID(t *testing.T) {
+	id := NewSensitivityLabelSourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedInstanceValue", "databaseValue", "schemaValue", "tableValue", "columnValue", "current")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -47,19 +47,19 @@ func TestNewSensitivityLabelSensitivityLabelSourceID(t *testing.T) {
 	}
 }
 
-func TestFormatSensitivityLabelSensitivityLabelSourceID(t *testing.T) {
-	actual := NewSensitivityLabelSensitivityLabelSourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedInstanceValue", "databaseValue", "schemaValue", "tableValue", "columnValue", "current").ID()
+func TestFormatSensitivityLabelSourceID(t *testing.T) {
+	actual := NewSensitivityLabelSourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedInstanceValue", "databaseValue", "schemaValue", "tableValue", "columnValue", "current").ID()
 	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/managedInstances/managedInstanceValue/databases/databaseValue/schemas/schemaValue/tables/tableValue/columns/columnValue/sensitivityLabels/current"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
 }
 
-func TestParseSensitivityLabelSensitivityLabelSourceID(t *testing.T) {
+func TestParseSensitivityLabelSourceID(t *testing.T) {
 	testData := []struct {
 		Input    string
 		Error    bool
-		Expected *SensitivityLabelSensitivityLabelSourceId
+		Expected *SensitivityLabelSourceId
 	}{
 		{
 			// Incomplete URI
@@ -154,7 +154,7 @@ func TestParseSensitivityLabelSensitivityLabelSourceID(t *testing.T) {
 		{
 			// Valid URI
 			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/managedInstances/managedInstanceValue/databases/databaseValue/schemas/schemaValue/tables/tableValue/columns/columnValue/sensitivityLabels/current",
-			Expected: &SensitivityLabelSensitivityLabelSourceId{
+			Expected: &SensitivityLabelSourceId{
 				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:      "example-resource-group",
 				ManagedInstanceName:    "managedInstanceValue",
@@ -174,7 +174,7 @@ func TestParseSensitivityLabelSensitivityLabelSourceID(t *testing.T) {
 	for _, v := range testData {
 		t.Logf("[DEBUG] Testing %q", v.Input)
 
-		actual, err := ParseSensitivityLabelSensitivityLabelSourceID(v.Input)
+		actual, err := ParseSensitivityLabelSourceID(v.Input)
 		if err != nil {
 			if v.Error {
 				continue
@@ -221,11 +221,11 @@ func TestParseSensitivityLabelSensitivityLabelSourceID(t *testing.T) {
 	}
 }
 
-func TestParseSensitivityLabelSensitivityLabelSourceIDInsensitively(t *testing.T) {
+func TestParseSensitivityLabelSourceIDInsensitively(t *testing.T) {
 	testData := []struct {
 		Input    string
 		Error    bool
-		Expected *SensitivityLabelSensitivityLabelSourceId
+		Expected *SensitivityLabelSourceId
 	}{
 		{
 			// Incomplete URI
@@ -405,7 +405,7 @@ func TestParseSensitivityLabelSensitivityLabelSourceIDInsensitively(t *testing.T
 		{
 			// Valid URI
 			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.Sql/managedInstances/managedInstanceValue/databases/databaseValue/schemas/schemaValue/tables/tableValue/columns/columnValue/sensitivityLabels/current",
-			Expected: &SensitivityLabelSensitivityLabelSourceId{
+			Expected: &SensitivityLabelSourceId{
 				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:      "example-resource-group",
 				ManagedInstanceName:    "managedInstanceValue",
@@ -424,7 +424,7 @@ func TestParseSensitivityLabelSensitivityLabelSourceIDInsensitively(t *testing.T
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
 			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/mIcRoSoFt.sQl/mAnAgEdInStAnCeS/mAnAgEdInStAnCeVaLuE/dAtAbAsEs/dAtAbAsEvAlUe/sChEmAs/sChEmAvAlUe/tAbLeS/tAbLeVaLuE/cOlUmNs/cOlUmNvAlUe/sEnSiTiViTyLaBeLs/cUrReNt",
-			Expected: &SensitivityLabelSensitivityLabelSourceId{
+			Expected: &SensitivityLabelSourceId{
 				SubscriptionId:         "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:      "eXaMpLe-rEsOuRcE-GrOuP",
 				ManagedInstanceName:    "mAnAgEdInStAnCeVaLuE",
@@ -444,7 +444,7 @@ func TestParseSensitivityLabelSensitivityLabelSourceIDInsensitively(t *testing.T
 	for _, v := range testData {
 		t.Logf("[DEBUG] Testing %q", v.Input)
 
-		actual, err := ParseSensitivityLabelSensitivityLabelSourceIDInsensitively(v.Input)
+		actual, err := ParseSensitivityLabelSourceIDInsensitively(v.Input)
 		if err != nil {
 			if v.Error {
 				continue
@@ -491,10 +491,10 @@ func TestParseSensitivityLabelSensitivityLabelSourceIDInsensitively(t *testing.T
 	}
 }
 
-func TestSegmentsForSensitivityLabelSensitivityLabelSourceId(t *testing.T) {
-	segments := SensitivityLabelSensitivityLabelSourceId{}.Segments()
+func TestSegmentsForSensitivityLabelSourceId(t *testing.T) {
+	segments := SensitivityLabelSourceId{}.Segments()
 	if len(segments) == 0 {
-		t.Fatalf("SensitivityLabelSensitivityLabelSourceId has no segments")
+		t.Fatalf("SensitivityLabelSourceId has no segments")
 	}
 
 	uniqueNames := make(map[string]struct{}, 0)

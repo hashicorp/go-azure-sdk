@@ -2,6 +2,7 @@ package sensitivitylabels
 
 import (
 	"context"
+	"fmt"
 	"net/http"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
@@ -18,14 +19,14 @@ type GetOperationResponse struct {
 }
 
 // Get ...
-func (c SensitivityLabelsClient) Get(ctx context.Context, id SensitivityLabelSourceId) (result GetOperationResponse, err error) {
+func (c SensitivityLabelsClient) Get(ctx context.Context, id ColumnId) (result GetOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       id.ID(),
+		Path:       fmt.Sprintf("%s/sensitivityLabels/current", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

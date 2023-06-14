@@ -2,6 +2,7 @@ package sensitivitylabels
 
 import (
 	"context"
+	"fmt"
 	"net/http"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
@@ -18,7 +19,7 @@ type CreateOrUpdateOperationResponse struct {
 }
 
 // CreateOrUpdate ...
-func (c SensitivityLabelsClient) CreateOrUpdate(ctx context.Context, id SensitivityLabelSourceId, input SensitivityLabel) (result CreateOrUpdateOperationResponse, err error) {
+func (c SensitivityLabelsClient) CreateOrUpdate(ctx context.Context, id ColumnId, input SensitivityLabel) (result CreateOrUpdateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json",
 		ExpectedStatusCodes: []int{
@@ -26,7 +27,7 @@ func (c SensitivityLabelsClient) CreateOrUpdate(ctx context.Context, id Sensitiv
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+		Path:       fmt.Sprintf("%s/sensitivityLabels/current", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)
