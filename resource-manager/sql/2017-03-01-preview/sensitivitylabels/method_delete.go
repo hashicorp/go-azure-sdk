@@ -2,6 +2,7 @@ package sensitivitylabels
 
 import (
 	"context"
+	"fmt"
 	"net/http"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
@@ -17,14 +18,14 @@ type DeleteOperationResponse struct {
 }
 
 // Delete ...
-func (c SensitivityLabelsClient) Delete(ctx context.Context, id SensitivityLabelSourceId) (result DeleteOperationResponse, err error) {
+func (c SensitivityLabelsClient) Delete(ctx context.Context, id ColumnId) (result DeleteOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodDelete,
-		Path:       id.ID(),
+		Path:       fmt.Sprintf("%s/sensitivityLabels/current", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

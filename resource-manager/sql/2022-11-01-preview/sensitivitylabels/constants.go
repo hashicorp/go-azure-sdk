@@ -100,47 +100,6 @@ func parseSensitivityLabelRank(input string) (*SensitivityLabelRank, error) {
 	return &out, nil
 }
 
-type SensitivityLabelSource string
-
-const (
-	SensitivityLabelSourceCurrent     SensitivityLabelSource = "current"
-	SensitivityLabelSourceRecommended SensitivityLabelSource = "recommended"
-)
-
-func PossibleValuesForSensitivityLabelSource() []string {
-	return []string{
-		string(SensitivityLabelSourceCurrent),
-		string(SensitivityLabelSourceRecommended),
-	}
-}
-
-func (s *SensitivityLabelSource) UnmarshalJSON(bytes []byte) error {
-	var decoded string
-	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling: %+v", err)
-	}
-	out, err := parseSensitivityLabelSource(decoded)
-	if err != nil {
-		return fmt.Errorf("parsing %q: %+v", decoded, err)
-	}
-	*s = *out
-	return nil
-}
-
-func parseSensitivityLabelSource(input string) (*SensitivityLabelSource, error) {
-	vals := map[string]SensitivityLabelSource{
-		"current":     SensitivityLabelSourceCurrent,
-		"recommended": SensitivityLabelSourceRecommended,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := SensitivityLabelSource(input)
-	return &out, nil
-}
-
 type SensitivityLabelUpdateKind string
 
 const (

@@ -18,7 +18,7 @@ type CreateOrUpdateOperationResponse struct {
 }
 
 // CreateOrUpdate ...
-func (c ManagedDatabaseSensitivityLabelsClient) CreateOrUpdate(ctx context.Context, id SensitivityLabelSensitivityLabelSourceId, input SensitivityLabel) (result CreateOrUpdateOperationResponse, err error) {
+func (c ManagedDatabaseSensitivityLabelsClient) CreateOrUpdate(ctx context.Context, id SensitivityLabelSourceId, input SensitivityLabel) (result CreateOrUpdateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json",
 		ExpectedStatusCodes: []int{

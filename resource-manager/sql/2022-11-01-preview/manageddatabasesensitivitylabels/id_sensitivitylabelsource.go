@@ -1,4 +1,4 @@
-package sensitivitylabels
+package manageddatabasesensitivitylabels
 
 import (
 	"fmt"
@@ -16,7 +16,7 @@ var _ resourceids.ResourceId = SensitivityLabelSourceId{}
 type SensitivityLabelSourceId struct {
 	SubscriptionId         string
 	ResourceGroupName      string
-	ServerName             string
+	ManagedInstanceName    string
 	DatabaseName           string
 	SchemaName             string
 	TableName              string
@@ -25,11 +25,11 @@ type SensitivityLabelSourceId struct {
 }
 
 // NewSensitivityLabelSourceID returns a new SensitivityLabelSourceId struct
-func NewSensitivityLabelSourceID(subscriptionId string, resourceGroupName string, serverName string, databaseName string, schemaName string, tableName string, columnName string, sensitivityLabelSource SensitivityLabelSource) SensitivityLabelSourceId {
+func NewSensitivityLabelSourceID(subscriptionId string, resourceGroupName string, managedInstanceName string, databaseName string, schemaName string, tableName string, columnName string, sensitivityLabelSource SensitivityLabelSource) SensitivityLabelSourceId {
 	return SensitivityLabelSourceId{
 		SubscriptionId:         subscriptionId,
 		ResourceGroupName:      resourceGroupName,
-		ServerName:             serverName,
+		ManagedInstanceName:    managedInstanceName,
 		DatabaseName:           databaseName,
 		SchemaName:             schemaName,
 		TableName:              tableName,
@@ -57,8 +57,8 @@ func ParseSensitivityLabelSourceID(input string) (*SensitivityLabelSourceId, err
 		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
-	if id.ServerName, ok = parsed.Parsed["serverName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "serverName", *parsed)
+	if id.ManagedInstanceName, ok = parsed.Parsed["managedInstanceName"]; !ok {
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "managedInstanceName", *parsed)
 	}
 
 	if id.DatabaseName, ok = parsed.Parsed["databaseName"]; !ok {
@@ -112,8 +112,8 @@ func ParseSensitivityLabelSourceIDInsensitively(input string) (*SensitivityLabel
 		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
 	}
 
-	if id.ServerName, ok = parsed.Parsed["serverName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "serverName", *parsed)
+	if id.ManagedInstanceName, ok = parsed.Parsed["managedInstanceName"]; !ok {
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "managedInstanceName", *parsed)
 	}
 
 	if id.DatabaseName, ok = parsed.Parsed["databaseName"]; !ok {
@@ -164,8 +164,8 @@ func ValidateSensitivityLabelSourceID(input interface{}, key string) (warnings [
 
 // ID returns the formatted Sensitivity Label Source ID
 func (id SensitivityLabelSourceId) ID() string {
-	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.Sql/servers/%s/databases/%s/schemas/%s/tables/%s/columns/%s/sensitivityLabels/%s"
-	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.ServerName, id.DatabaseName, id.SchemaName, id.TableName, id.ColumnName, string(id.SensitivityLabelSource))
+	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.Sql/managedInstances/%s/databases/%s/schemas/%s/tables/%s/columns/%s/sensitivityLabels/%s"
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.ManagedInstanceName, id.DatabaseName, id.SchemaName, id.TableName, id.ColumnName, string(id.SensitivityLabelSource))
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Sensitivity Label Source ID
@@ -177,8 +177,8 @@ func (id SensitivityLabelSourceId) Segments() []resourceids.Segment {
 		resourceids.ResourceGroupSegment("resourceGroupName", "example-resource-group"),
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
 		resourceids.ResourceProviderSegment("staticMicrosoftSql", "Microsoft.Sql", "Microsoft.Sql"),
-		resourceids.StaticSegment("staticServers", "servers", "servers"),
-		resourceids.UserSpecifiedSegment("serverName", "serverValue"),
+		resourceids.StaticSegment("staticManagedInstances", "managedInstances", "managedInstances"),
+		resourceids.UserSpecifiedSegment("managedInstanceName", "managedInstanceValue"),
 		resourceids.StaticSegment("staticDatabases", "databases", "databases"),
 		resourceids.UserSpecifiedSegment("databaseName", "databaseValue"),
 		resourceids.StaticSegment("staticSchemas", "schemas", "schemas"),
@@ -197,7 +197,7 @@ func (id SensitivityLabelSourceId) String() string {
 	components := []string{
 		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
 		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
-		fmt.Sprintf("Server Name: %q", id.ServerName),
+		fmt.Sprintf("Managed Instance Name: %q", id.ManagedInstanceName),
 		fmt.Sprintf("Database Name: %q", id.DatabaseName),
 		fmt.Sprintf("Schema Name: %q", id.SchemaName),
 		fmt.Sprintf("Table Name: %q", id.TableName),
