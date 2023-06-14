@@ -7,8 +7,8 @@ type ChangeDataCapture struct {
 	AllowVNetOverride     *bool                         `json:"allowVNetOverride,omitempty"`
 	Description           *string                       `json:"description,omitempty"`
 	Folder                *ChangeDataCaptureFolder      `json:"folder,omitempty"`
-	Policy                MapperPolicy                  `json:"Policy"`
-	SourceConnectionsInfo []MapperSourceConnectionsInfo `json:"SourceConnectionsInfo"`
+	Policy                MapperPolicy                  `json:"policy"`
+	SourceConnectionsInfo []MapperSourceConnectionsInfo `json:"sourceConnectionsInfo"`
 	Status                *string                       `json:"status,omitempty"`
-	TargetConnectionsInfo []MapperTargetConnectionsInfo `json:"TargetConnectionsInfo"`
+	TargetConnectionsInfo []MapperTargetConnectionsInfo `json:"targetConnectionsInfo"`
 }
