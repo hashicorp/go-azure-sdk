@@ -17,7 +17,7 @@ type DeleteOperationResponse struct {
 }
 
 // Delete ...
-func (c ManagedDatabaseSensitivityLabelsClient) Delete(ctx context.Context, id SensitivityLabelSourceId) (result DeleteOperationResponse, err error) {
+func (c ManagedDatabaseSensitivityLabelsClient) Delete(ctx context.Context, id SensitivityLabelSensitivityLabelSourceId) (result DeleteOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json",
 		ExpectedStatusCodes: []int{

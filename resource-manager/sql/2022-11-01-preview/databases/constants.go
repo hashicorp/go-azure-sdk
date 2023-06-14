@@ -250,47 +250,6 @@ func parseCreateMode(input string) (*CreateMode, error) {
 	return &out, nil
 }
 
-type DatabaseIdentityType string
-
-const (
-	DatabaseIdentityTypeNone         DatabaseIdentityType = "None"
-	DatabaseIdentityTypeUserAssigned DatabaseIdentityType = "UserAssigned"
-)
-
-func PossibleValuesForDatabaseIdentityType() []string {
-	return []string{
-		string(DatabaseIdentityTypeNone),
-		string(DatabaseIdentityTypeUserAssigned),
-	}
-}
-
-func (s *DatabaseIdentityType) UnmarshalJSON(bytes []byte) error {
-	var decoded string
-	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling: %+v", err)
-	}
-	out, err := parseDatabaseIdentityType(decoded)
-	if err != nil {
-		return fmt.Errorf("parsing %q: %+v", decoded, err)
-	}
-	*s = *out
-	return nil
-}
-
-func parseDatabaseIdentityType(input string) (*DatabaseIdentityType, error) {
-	vals := map[string]DatabaseIdentityType{
-		"none":         DatabaseIdentityTypeNone,
-		"userassigned": DatabaseIdentityTypeUserAssigned,
-	}
-	if v, ok := vals[strings.ToLower(input)]; ok {
-		return &v, nil
-	}
-
-	// otherwise presume it's an undefined value and best-effort it
-	out := DatabaseIdentityType(input)
-	return &out, nil
-}
-
 type DatabaseKeyType string
 
 const (
