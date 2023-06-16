@@ -4,8 +4,8 @@ package subscriptions
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type Identity struct {
-	PrincipalId            *string      `json:"principalId,omitempty"`
-	TenantId               *string      `json:"tenantId,omitempty"`
-	Type                   *string      `json:"type,omitempty"`
-	UserAssignedIdentities *interface{} `json:"userAssignedIdentities,omitempty"`
+	PrincipalId            *string                 `json:"principalId,omitempty"`
+	TenantId               *string                 `json:"tenantId,omitempty"`
+	Type                   *string                 `json:"type,omitempty"`
+	UserAssignedIdentities *map[string]interface{} `json:"userAssignedIdentities,omitempty"`
 }
