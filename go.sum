@@ -41,8 +41,8 @@ github.com/google/go-cmp v0.5.9/go.mod h1:17dUlkBOakJ0+DkrSSNjCkIjxS6bF9zb3elmeN
 github.com/hashicorp/errwrap v1.0.0/go.mod h1:YH+1FKiLXxHSkmPseP+kNlulaMuP3n2brvKWEqk/Jc4=
 github.com/hashicorp/errwrap v1.1.0 h1:OxrOeh75EUXMY8TBjag2fzXGZ40LB6IKw45YeGUDY2I=
 github.com/hashicorp/errwrap v1.1.0/go.mod h1:YH+1FKiLXxHSkmPseP+kNlulaMuP3n2brvKWEqk/Jc4=
-github.com/hashicorp/go-azure-helpers v0.56.0 h1:KxDXISHwWe4PKEz6FSSPG8vCXNrFGsCcCn/AI94ccig=
-github.com/hashicorp/go-azure-helpers v0.56.0/go.mod h1:MbnCV9jPmlkbdH7VsoBK8IbCHvo3pLWRbRvq+F6u9sI=
+github.com/hashicorp/go-azure-helpers v0.57.0 h1:85CWEUtIjMtx8DaXisFbEb2GCWR4S2UZlYvJpSPYoZ4=
+github.com/hashicorp/go-azure-helpers v0.57.0/go.mod h1:BQUQp5udwbJ8pnzl0wByCLVEEyPMAFpJ9vOREiCzObo=
 github.com/hashicorp/go-cleanhttp v0.5.2 h1:035FKYIWjmULyFRBKPs8TBQoi0x6d9G4xc9neXJWAZQ=
 github.com/hashicorp/go-cleanhttp v0.5.2/go.mod h1:kO/YDlP8L1346E6Sodw+PrpBSV4/SoxCXGY6BqNFT48=
 github.com/hashicorp/go-cty v1.4.1-0.20200414143053-d3edf31b6320 h1:1/D3zfFHttUKaCaGKZ/dR2roBXv0vKbSCnssIldfQdI=
