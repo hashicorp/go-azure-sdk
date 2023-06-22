@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -23,7 +24,7 @@ type VirtualNetworksListUsageCompleteResult struct {
 }
 
 // VirtualNetworksListUsage ...
-func (c VirtualNetworksClient) VirtualNetworksListUsage(ctx context.Context, id VirtualNetworkId) (result VirtualNetworksListUsageOperationResponse, err error) {
+func (c VirtualNetworksClient) VirtualNetworksListUsage(ctx context.Context, id commonids.VirtualNetworkId) (result VirtualNetworksListUsageOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json",
 		ExpectedStatusCodes: []int{
@@ -61,12 +62,12 @@ func (c VirtualNetworksClient) VirtualNetworksListUsage(ctx context.Context, id 
 }
 
 // VirtualNetworksListUsageComplete retrieves all the results into a single object
-func (c VirtualNetworksClient) VirtualNetworksListUsageComplete(ctx context.Context, id VirtualNetworkId) (VirtualNetworksListUsageCompleteResult, error) {
+func (c VirtualNetworksClient) VirtualNetworksListUsageComplete(ctx context.Context, id commonids.VirtualNetworkId) (VirtualNetworksListUsageCompleteResult, error) {
 	return c.VirtualNetworksListUsageCompleteMatchingPredicate(ctx, id, VirtualNetworkUsageOperationPredicate{})
 }
 
 // VirtualNetworksListUsageCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c VirtualNetworksClient) VirtualNetworksListUsageCompleteMatchingPredicate(ctx context.Context, id VirtualNetworkId, predicate VirtualNetworkUsageOperationPredicate) (result VirtualNetworksListUsageCompleteResult, err error) {
+func (c VirtualNetworksClient) VirtualNetworksListUsageCompleteMatchingPredicate(ctx context.Context, id commonids.VirtualNetworkId, predicate VirtualNetworkUsageOperationPredicate) (result VirtualNetworksListUsageCompleteResult, err error) {
 	items := make([]VirtualNetworkUsage, 0)
 
 	resp, err := c.VirtualNetworksListUsage(ctx, id)

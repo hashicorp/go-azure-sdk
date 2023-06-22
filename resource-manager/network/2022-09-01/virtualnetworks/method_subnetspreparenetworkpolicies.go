@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
@@ -21,7 +22,7 @@ type SubnetsPrepareNetworkPoliciesOperationResponse struct {
 }
 
 // SubnetsPrepareNetworkPolicies ...
-func (c VirtualNetworksClient) SubnetsPrepareNetworkPolicies(ctx context.Context, id SubnetId, input PrepareNetworkPoliciesRequest) (result SubnetsPrepareNetworkPoliciesOperationResponse, err error) {
+func (c VirtualNetworksClient) SubnetsPrepareNetworkPolicies(ctx context.Context, id commonids.SubnetId, input PrepareNetworkPoliciesRequest) (result SubnetsPrepareNetworkPoliciesOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json",
 		ExpectedStatusCodes: []int{
@@ -60,7 +61,7 @@ func (c VirtualNetworksClient) SubnetsPrepareNetworkPolicies(ctx context.Context
 }
 
 // SubnetsPrepareNetworkPoliciesThenPoll performs SubnetsPrepareNetworkPolicies then polls until it's completed
-func (c VirtualNetworksClient) SubnetsPrepareNetworkPoliciesThenPoll(ctx context.Context, id SubnetId, input PrepareNetworkPoliciesRequest) error {
+func (c VirtualNetworksClient) SubnetsPrepareNetworkPoliciesThenPoll(ctx context.Context, id commonids.SubnetId, input PrepareNetworkPoliciesRequest) error {
 	result, err := c.SubnetsPrepareNetworkPolicies(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing SubnetsPrepareNetworkPolicies: %+v", err)

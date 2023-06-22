@@ -7,6 +7,7 @@ import (
 
 	"github.com/Azure/go-autorest/autorest"
 	"github.com/Azure/go-autorest/autorest/azure"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -18,7 +19,7 @@ type ListClusterAdminCredentialsOperationResponse struct {
 }
 
 // ListClusterAdminCredentials ...
-func (c ManagedClustersClient) ListClusterAdminCredentials(ctx context.Context, id ManagedClusterId) (result ListClusterAdminCredentialsOperationResponse, err error) {
+func (c ManagedClustersClient) ListClusterAdminCredentials(ctx context.Context, id commonids.KubernetesClusterId) (result ListClusterAdminCredentialsOperationResponse, err error) {
 	req, err := c.preparerForListClusterAdminCredentials(ctx, id)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "managedclusters.ManagedClustersClient", "ListClusterAdminCredentials", nil, "Failure preparing request")
@@ -41,7 +42,7 @@ func (c ManagedClustersClient) ListClusterAdminCredentials(ctx context.Context, 
 }
 
 // preparerForListClusterAdminCredentials prepares the ListClusterAdminCredentials request.
-func (c ManagedClustersClient) preparerForListClusterAdminCredentials(ctx context.Context, id ManagedClusterId) (*http.Request, error) {
+func (c ManagedClustersClient) preparerForListClusterAdminCredentials(ctx context.Context, id commonids.KubernetesClusterId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

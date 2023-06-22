@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
@@ -21,7 +22,7 @@ type DeleteOperationResponse struct {
 }
 
 // Delete ...
-func (c VirtualNetworksClient) Delete(ctx context.Context, id VirtualNetworkId) (result DeleteOperationResponse, err error) {
+func (c VirtualNetworksClient) Delete(ctx context.Context, id commonids.VirtualNetworkId) (result DeleteOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json",
 		ExpectedStatusCodes: []int{
@@ -57,7 +58,7 @@ func (c VirtualNetworksClient) Delete(ctx context.Context, id VirtualNetworkId) 
 }
 
 // DeleteThenPoll performs Delete then polls until it's completed
-func (c VirtualNetworksClient) DeleteThenPoll(ctx context.Context, id VirtualNetworkId) error {
+func (c VirtualNetworksClient) DeleteThenPoll(ctx context.Context, id commonids.VirtualNetworkId) error {
 	result, err := c.Delete(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing Delete: %+v", err)

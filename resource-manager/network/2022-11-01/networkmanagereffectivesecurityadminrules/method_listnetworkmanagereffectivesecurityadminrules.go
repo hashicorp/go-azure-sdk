@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -19,7 +20,7 @@ type ListNetworkManagerEffectiveSecurityAdminRulesOperationResponse struct {
 }
 
 // ListNetworkManagerEffectiveSecurityAdminRules ...
-func (c NetworkManagerEffectiveSecurityAdminRulesClient) ListNetworkManagerEffectiveSecurityAdminRules(ctx context.Context, id VirtualNetworkId, input QueryRequestOptions) (result ListNetworkManagerEffectiveSecurityAdminRulesOperationResponse, err error) {
+func (c NetworkManagerEffectiveSecurityAdminRulesClient) ListNetworkManagerEffectiveSecurityAdminRules(ctx context.Context, id commonids.VirtualNetworkId, input QueryRequestOptions) (result ListNetworkManagerEffectiveSecurityAdminRulesOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json",
 		ExpectedStatusCodes: []int{
