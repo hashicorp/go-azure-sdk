@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -19,7 +20,7 @@ type ListNetworkManagerEffectiveConnectivityConfigurationsOperationResponse stru
 }
 
 // ListNetworkManagerEffectiveConnectivityConfigurations ...
-func (c NetworkManagerEffectiveConnectivityConfigurationClient) ListNetworkManagerEffectiveConnectivityConfigurations(ctx context.Context, id VirtualNetworkId, input QueryRequestOptions) (result ListNetworkManagerEffectiveConnectivityConfigurationsOperationResponse, err error) {
+func (c NetworkManagerEffectiveConnectivityConfigurationClient) ListNetworkManagerEffectiveConnectivityConfigurations(ctx context.Context, id commonids.VirtualNetworkId, input QueryRequestOptions) (result ListNetworkManagerEffectiveConnectivityConfigurationsOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json",
 		ExpectedStatusCodes: []int{

@@ -4,6 +4,7 @@ import (
 	"context"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -18,7 +19,7 @@ type UpdateTagsOperationResponse struct {
 }
 
 // UpdateTags ...
-func (c VirtualNetworksClient) UpdateTags(ctx context.Context, id VirtualNetworkId, input TagsObject) (result UpdateTagsOperationResponse, err error) {
+func (c VirtualNetworksClient) UpdateTags(ctx context.Context, id commonids.VirtualNetworkId, input TagsObject) (result UpdateTagsOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json",
 		ExpectedStatusCodes: []int{

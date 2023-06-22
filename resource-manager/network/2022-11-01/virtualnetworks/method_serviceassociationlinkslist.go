@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -19,7 +20,7 @@ type ServiceAssociationLinksListOperationResponse struct {
 }
 
 // ServiceAssociationLinksList ...
-func (c VirtualNetworksClient) ServiceAssociationLinksList(ctx context.Context, id SubnetId) (result ServiceAssociationLinksListOperationResponse, err error) {
+func (c VirtualNetworksClient) ServiceAssociationLinksList(ctx context.Context, id commonids.SubnetId) (result ServiceAssociationLinksListOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json",
 		ExpectedStatusCodes: []int{

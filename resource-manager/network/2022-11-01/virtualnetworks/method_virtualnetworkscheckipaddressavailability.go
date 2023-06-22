@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -46,7 +47,7 @@ func (o VirtualNetworksCheckIPAddressAvailabilityOperationOptions) ToQuery() *cl
 }
 
 // VirtualNetworksCheckIPAddressAvailability ...
-func (c VirtualNetworksClient) VirtualNetworksCheckIPAddressAvailability(ctx context.Context, id VirtualNetworkId, options VirtualNetworksCheckIPAddressAvailabilityOperationOptions) (result VirtualNetworksCheckIPAddressAvailabilityOperationResponse, err error) {
+func (c VirtualNetworksClient) VirtualNetworksCheckIPAddressAvailability(ctx context.Context, id commonids.VirtualNetworkId, options VirtualNetworksCheckIPAddressAvailabilityOperationOptions) (result VirtualNetworksCheckIPAddressAvailabilityOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json",
 		ExpectedStatusCodes: []int{

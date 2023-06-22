@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
@@ -57,7 +58,7 @@ func (o VirtualNetworksListDdosProtectionStatusOperationOptions) ToQuery() *clie
 }
 
 // VirtualNetworksListDdosProtectionStatus ...
-func (c VirtualNetworksClient) VirtualNetworksListDdosProtectionStatus(ctx context.Context, id VirtualNetworkId, options VirtualNetworksListDdosProtectionStatusOperationOptions) (result VirtualNetworksListDdosProtectionStatusOperationResponse, err error) {
+func (c VirtualNetworksClient) VirtualNetworksListDdosProtectionStatus(ctx context.Context, id commonids.VirtualNetworkId, options VirtualNetworksListDdosProtectionStatusOperationOptions) (result VirtualNetworksListDdosProtectionStatusOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json",
 		ExpectedStatusCodes: []int{
@@ -102,7 +103,7 @@ func (c VirtualNetworksClient) VirtualNetworksListDdosProtectionStatus(ctx conte
 }
 
 // VirtualNetworksListDdosProtectionStatusThenPoll performs VirtualNetworksListDdosProtectionStatus then polls until it's completed
-func (c VirtualNetworksClient) VirtualNetworksListDdosProtectionStatusThenPoll(ctx context.Context, id VirtualNetworkId, options VirtualNetworksListDdosProtectionStatusOperationOptions) error {
+func (c VirtualNetworksClient) VirtualNetworksListDdosProtectionStatusThenPoll(ctx context.Context, id commonids.VirtualNetworkId, options VirtualNetworksListDdosProtectionStatusOperationOptions) error {
 	result, err := c.VirtualNetworksListDdosProtectionStatus(ctx, id, options)
 	if err != nil {
 		return fmt.Errorf("performing VirtualNetworksListDdosProtectionStatus: %+v", err)

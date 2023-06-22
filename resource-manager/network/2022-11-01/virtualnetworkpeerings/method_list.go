@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -23,7 +24,7 @@ type ListCompleteResult struct {
 }
 
 // List ...
-func (c VirtualNetworkPeeringsClient) List(ctx context.Context, id VirtualNetworkId) (result ListOperationResponse, err error) {
+func (c VirtualNetworkPeeringsClient) List(ctx context.Context, id commonids.VirtualNetworkId) (result ListOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json",
 		ExpectedStatusCodes: []int{
@@ -61,12 +62,12 @@ func (c VirtualNetworkPeeringsClient) List(ctx context.Context, id VirtualNetwor
 }
 
 // ListComplete retrieves all the results into a single object
-func (c VirtualNetworkPeeringsClient) ListComplete(ctx context.Context, id VirtualNetworkId) (ListCompleteResult, error) {
+func (c VirtualNetworkPeeringsClient) ListComplete(ctx context.Context, id commonids.VirtualNetworkId) (ListCompleteResult, error) {
 	return c.ListCompleteMatchingPredicate(ctx, id, VirtualNetworkPeeringOperationPredicate{})
 }
 
 // ListCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c VirtualNetworkPeeringsClient) ListCompleteMatchingPredicate(ctx context.Context, id VirtualNetworkId, predicate VirtualNetworkPeeringOperationPredicate) (result ListCompleteResult, err error) {
+func (c VirtualNetworkPeeringsClient) ListCompleteMatchingPredicate(ctx context.Context, id commonids.VirtualNetworkId, predicate VirtualNetworkPeeringOperationPredicate) (result ListCompleteResult, err error) {
 	items := make([]VirtualNetworkPeering, 0)
 
 	resp, err := c.List(ctx, id)
