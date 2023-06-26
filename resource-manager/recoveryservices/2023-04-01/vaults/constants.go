@@ -182,6 +182,37 @@ func parseInfrastructureEncryptionState(input string) (*InfrastructureEncryption
 	return &out, nil
 }
 
+type MultiUserAuthorization string
+
+const (
+	MultiUserAuthorizationDisabled MultiUserAuthorization = "Disabled"
+	MultiUserAuthorizationEnabled  MultiUserAuthorization = "Enabled"
+	MultiUserAuthorizationInvalid  MultiUserAuthorization = "Invalid"
+)
+
+func PossibleValuesForMultiUserAuthorization() []string {
+	return []string{
+		string(MultiUserAuthorizationDisabled),
+		string(MultiUserAuthorizationEnabled),
+		string(MultiUserAuthorizationInvalid),
+	}
+}
+
+func parseMultiUserAuthorization(input string) (*MultiUserAuthorization, error) {
+	vals := map[string]MultiUserAuthorization{
+		"disabled": MultiUserAuthorizationDisabled,
+		"enabled":  MultiUserAuthorizationEnabled,
+		"invalid":  MultiUserAuthorizationInvalid,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := MultiUserAuthorization(input)
+	return &out, nil
+}
+
 type PrivateEndpointConnectionStatus string
 
 const (
@@ -389,6 +420,40 @@ func parseSkuName(input string) (*SkuName, error) {
 
 	// otherwise presume it's an undefined value and best-effort it
 	out := SkuName(input)
+	return &out, nil
+}
+
+type SoftDeleteState string
+
+const (
+	SoftDeleteStateAlwaysON SoftDeleteState = "AlwaysON"
+	SoftDeleteStateDisabled SoftDeleteState = "Disabled"
+	SoftDeleteStateEnabled  SoftDeleteState = "Enabled"
+	SoftDeleteStateInvalid  SoftDeleteState = "Invalid"
+)
+
+func PossibleValuesForSoftDeleteState() []string {
+	return []string{
+		string(SoftDeleteStateAlwaysON),
+		string(SoftDeleteStateDisabled),
+		string(SoftDeleteStateEnabled),
+		string(SoftDeleteStateInvalid),
+	}
+}
+
+func parseSoftDeleteState(input string) (*SoftDeleteState, error) {
+	vals := map[string]SoftDeleteState{
+		"alwayson": SoftDeleteStateAlwaysON,
+		"disabled": SoftDeleteStateDisabled,
+		"enabled":  SoftDeleteStateEnabled,
+		"invalid":  SoftDeleteStateInvalid,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SoftDeleteState(input)
 	return &out, nil
 }
 
