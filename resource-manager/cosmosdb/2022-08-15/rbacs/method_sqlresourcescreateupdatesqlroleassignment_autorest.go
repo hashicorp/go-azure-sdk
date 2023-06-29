@@ -19,7 +19,7 @@ type SqlResourcesCreateUpdateSqlRoleAssignmentOperationResponse struct {
 }
 
 // SqlResourcesCreateUpdateSqlRoleAssignment ...
-func (c RbacsClient) SqlResourcesCreateUpdateSqlRoleAssignment(ctx context.Context, id SqlRoleAssignmentId, input SqlRoleAssignmentCreateUpdateParameters) (result SqlResourcesCreateUpdateSqlRoleAssignmentOperationResponse, err error) {
+func (c RbacsClient) SqlResourcesCreateUpdateSqlRoleAssignment(ctx context.Context, id AccountId, input SqlRoleAssignmentCreateUpdateParameters) (result SqlResourcesCreateUpdateSqlRoleAssignmentOperationResponse, err error) {
 	req, err := c.preparerForSqlResourcesCreateUpdateSqlRoleAssignment(ctx, id, input)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "rbacs.RbacsClient", "SqlResourcesCreateUpdateSqlRoleAssignment", nil, "Failure preparing request")
@@ -36,7 +36,7 @@ func (c RbacsClient) SqlResourcesCreateUpdateSqlRoleAssignment(ctx context.Conte
 }
 
 // SqlResourcesCreateUpdateSqlRoleAssignmentThenPoll performs SqlResourcesCreateUpdateSqlRoleAssignment then polls until it's completed
-func (c RbacsClient) SqlResourcesCreateUpdateSqlRoleAssignmentThenPoll(ctx context.Context, id SqlRoleAssignmentId, input SqlRoleAssignmentCreateUpdateParameters) error {
+func (c RbacsClient) SqlResourcesCreateUpdateSqlRoleAssignmentThenPoll(ctx context.Context, id AccountId, input SqlRoleAssignmentCreateUpdateParameters) error {
 	result, err := c.SqlResourcesCreateUpdateSqlRoleAssignment(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing SqlResourcesCreateUpdateSqlRoleAssignment: %+v", err)
@@ -50,7 +50,7 @@ func (c RbacsClient) SqlResourcesCreateUpdateSqlRoleAssignmentThenPoll(ctx conte
 }
 
 // preparerForSqlResourcesCreateUpdateSqlRoleAssignment prepares the SqlResourcesCreateUpdateSqlRoleAssignment request.
-func (c RbacsClient) preparerForSqlResourcesCreateUpdateSqlRoleAssignment(ctx context.Context, id SqlRoleAssignmentId, input SqlRoleAssignmentCreateUpdateParameters) (*http.Request, error) {
+func (c RbacsClient) preparerForSqlResourcesCreateUpdateSqlRoleAssignment(ctx context.Context, id AccountId, input SqlRoleAssignmentCreateUpdateParameters) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}
