@@ -17,7 +17,7 @@ type SqlResourcesGetSqlRoleAssignmentOperationResponse struct {
 }
 
 // SqlResourcesGetSqlRoleAssignment ...
-func (c RbacsClient) SqlResourcesGetSqlRoleAssignment(ctx context.Context, id SqlRoleAssignmentId) (result SqlResourcesGetSqlRoleAssignmentOperationResponse, err error) {
+func (c RbacsClient) SqlResourcesGetSqlRoleAssignment(ctx context.Context, id AccountId) (result SqlResourcesGetSqlRoleAssignmentOperationResponse, err error) {
 	req, err := c.preparerForSqlResourcesGetSqlRoleAssignment(ctx, id)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "rbacs.RbacsClient", "SqlResourcesGetSqlRoleAssignment", nil, "Failure preparing request")
@@ -40,7 +40,7 @@ func (c RbacsClient) SqlResourcesGetSqlRoleAssignment(ctx context.Context, id Sq
 }
 
 // preparerForSqlResourcesGetSqlRoleAssignment prepares the SqlResourcesGetSqlRoleAssignment request.
-func (c RbacsClient) preparerForSqlResourcesGetSqlRoleAssignment(ctx context.Context, id SqlRoleAssignmentId) (*http.Request, error) {
+func (c RbacsClient) preparerForSqlResourcesGetSqlRoleAssignment(ctx context.Context, id AccountId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}
