@@ -19,7 +19,7 @@ type SqlResourcesDeleteSqlRoleAssignmentOperationResponse struct {
 }
 
 // SqlResourcesDeleteSqlRoleAssignment ...
-func (c RbacsClient) SqlResourcesDeleteSqlRoleAssignment(ctx context.Context, id SqlRoleAssignmentId) (result SqlResourcesDeleteSqlRoleAssignmentOperationResponse, err error) {
+func (c RbacsClient) SqlResourcesDeleteSqlRoleAssignment(ctx context.Context, id AccountId) (result SqlResourcesDeleteSqlRoleAssignmentOperationResponse, err error) {
 	req, err := c.preparerForSqlResourcesDeleteSqlRoleAssignment(ctx, id)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "rbacs.RbacsClient", "SqlResourcesDeleteSqlRoleAssignment", nil, "Failure preparing request")
@@ -36,7 +36,7 @@ func (c RbacsClient) SqlResourcesDeleteSqlRoleAssignment(ctx context.Context, id
 }
 
 // SqlResourcesDeleteSqlRoleAssignmentThenPoll performs SqlResourcesDeleteSqlRoleAssignment then polls until it's completed
-func (c RbacsClient) SqlResourcesDeleteSqlRoleAssignmentThenPoll(ctx context.Context, id SqlRoleAssignmentId) error {
+func (c RbacsClient) SqlResourcesDeleteSqlRoleAssignmentThenPoll(ctx context.Context, id AccountId) error {
 	result, err := c.SqlResourcesDeleteSqlRoleAssignment(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing SqlResourcesDeleteSqlRoleAssignment: %+v", err)
@@ -50,7 +50,7 @@ func (c RbacsClient) SqlResourcesDeleteSqlRoleAssignmentThenPoll(ctx context.Con
 }
 
 // preparerForSqlResourcesDeleteSqlRoleAssignment prepares the SqlResourcesDeleteSqlRoleAssignment request.
-func (c RbacsClient) preparerForSqlResourcesDeleteSqlRoleAssignment(ctx context.Context, id SqlRoleAssignmentId) (*http.Request, error) {
+func (c RbacsClient) preparerForSqlResourcesDeleteSqlRoleAssignment(ctx context.Context, id AccountId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}
