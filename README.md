@@ -18,4 +18,3 @@ In addition, a `README.md` file can be found within each Service / API Version i
 ## Further Documentation
 
 Further information [can be found in the `./docs` directory](./docs), and also the `README.md` file within each Service / API Version in the `./resource-manager` directory ([example](https://github.com/hashicorp/go-azure-sdk/tree/main/resource-manager/aadb2c/2021-04-01-preview/tenants)).
-
