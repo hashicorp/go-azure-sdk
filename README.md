@@ -1,6 +1,6 @@
 # `hashicorp/go-azure-sdk`
 
-This SDK is an opinionated Go SDK for Azure Resource Manager, primarily intended to be used [in the Terraform AzureRM Provider](https://github.com/hashicorp/terraform-provider-azurerm).
+This SDK is an opinionated Go SDK for Azure Resource Manager, primarily intended to be used in the [Terraform AzureRM Provider](https://github.com/hashicorp/terraform-provider-azurerm) and the [Packer Azure Plugin](https://github.com/hashicorp/packer-plugin-azure).
 
 The SDKs within this repository are generated using the data in [the Azure Rest API Specifications repository](https://github.com/Azure/azure-rest-api-specs).
 
