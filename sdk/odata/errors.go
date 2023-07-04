@@ -83,19 +83,20 @@ func (e *Error) UnmarshalJSON(data []byte) error {
 
 	// Unmarshal the details, which should be an array but might be an object
 	if raw := e.RawDetails; raw != nil && len(*raw) > 0 {
-		if string((*raw)[0]) != "[" {
-			var details ErrorDetails
-			if err := json.Unmarshal(*raw, &details); err != nil {
-				return err
+		var details ErrorDetails
+		err := json.Unmarshal(*raw, &details)
+		if err == nil {
+			e.Details = &[]ErrorDetails{
+				details,
 			}
-			e.Details = &[]ErrorDetails{details}
-		} else {
-			var details []ErrorDetails
-			if err := json.Unmarshal(*raw, &details); err != nil {
-				return err
-			}
-			e.Details = &details
+			return nil
 		}
+
+		var detailsSlice []ErrorDetails
+		if errSlice := json.Unmarshal(*raw, &detailsSlice); errSlice != nil {
+			return fmt.Errorf("failed to unmarshal `RawDetails` as either `ErrorDetails` (%+v) or `[]ErrorDetails` (%+v) - type: %+v", err, errSlice, *raw)
+		}
+		e.Details = &detailsSlice
 	}
 
 	return nil
