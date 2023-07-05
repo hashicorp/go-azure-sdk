@@ -44,7 +44,7 @@ func TestNewGetRequest(t *testing.T) {
 		Path:          "/applications",
 	}
 	localApi := environments.NewApiEndpoint("Example", "http://localhost", pointer.To("00000000-0000-000-0000-000000000000"))
-	msGraphClient, err := msgraph.NewMsGraphClient(localApi, msgraph.VersionOnePointZero)
+	msGraphClient, err := msgraph.NewMsGraphClient(localApi, "application", msgraph.VersionOnePointZero)
 	if err != nil {
 		t.Fatalf("building client: %+v", err)
 	}
