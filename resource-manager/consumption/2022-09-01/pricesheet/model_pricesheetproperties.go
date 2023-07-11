@@ -11,6 +11,7 @@ type PriceSheetProperties struct {
 	MeterId          *string       `json:"meterId,omitempty"`
 	OfferId          *string       `json:"offerId,omitempty"`
 	PartNumber       *string       `json:"partNumber,omitempty"`
+	SavingsPlan      *SavingsPlan  `json:"savingsPlan,omitempty"`
 	UnitOfMeasure    *string       `json:"unitOfMeasure,omitempty"`
 	UnitPrice        *float64      `json:"unitPrice,omitempty"`
 }
