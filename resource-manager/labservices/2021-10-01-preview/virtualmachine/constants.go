@@ -1,6 +1,10 @@
 package virtualmachine
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -25,6 +29,19 @@ func PossibleValuesForProvisioningState() []string {
 		string(ProvisioningStateSucceeded),
 		string(ProvisioningStateUpdating),
 	}
+}
+
+func (s *ProvisioningState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseProvisioningState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseProvisioningState(input string) (*ProvisioningState, error) {
@@ -69,6 +86,19 @@ func PossibleValuesForVirtualMachineState() []string {
 	}
 }
 
+func (s *VirtualMachineState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseVirtualMachineState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseVirtualMachineState(input string) (*VirtualMachineState, error) {
 	vals := map[string]VirtualMachineState{
 		"redeploying":       VirtualMachineStateRedeploying,
@@ -100,6 +130,19 @@ func PossibleValuesForVirtualMachineType() []string {
 		string(VirtualMachineTypeTemplate),
 		string(VirtualMachineTypeUser),
 	}
+}
+
+func (s *VirtualMachineType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseVirtualMachineType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseVirtualMachineType(input string) (*VirtualMachineType, error) {

@@ -4,7 +4,8 @@ package v2019_05_01
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 import (
-	"github.com/Azure/go-autorest/autorest"
+	"fmt"
+
 	"github.com/hashicorp/go-azure-sdk/resource-manager/logic/2019-05-01/integrationaccountagreements"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/logic/2019-05-01/integrationaccountassemblies"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/logic/2019-05-01/integrationaccountbatchconfigurations"
@@ -27,6 +28,8 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/logic/2019-05-01/workflowtriggerhistories"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/logic/2019-05-01/workflowtriggers"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/logic/2019-05-01/workflowversions"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -54,96 +57,161 @@ type Client struct {
 	Workflows                                  *workflows.WorkflowsClient
 }
 
-func NewClientWithBaseURI(endpoint string, configureAuthFunc func(c *autorest.Client)) Client {
-
-	integrationAccountAgreementsClient := integrationaccountagreements.NewIntegrationAccountAgreementsClientWithBaseURI(endpoint)
-	configureAuthFunc(&integrationAccountAgreementsClient.Client)
-
-	integrationAccountAssembliesClient := integrationaccountassemblies.NewIntegrationAccountAssembliesClientWithBaseURI(endpoint)
-	configureAuthFunc(&integrationAccountAssembliesClient.Client)
-
-	integrationAccountBatchConfigurationsClient := integrationaccountbatchconfigurations.NewIntegrationAccountBatchConfigurationsClientWithBaseURI(endpoint)
-	configureAuthFunc(&integrationAccountBatchConfigurationsClient.Client)
-
-	integrationAccountCertificatesClient := integrationaccountcertificates.NewIntegrationAccountCertificatesClientWithBaseURI(endpoint)
-	configureAuthFunc(&integrationAccountCertificatesClient.Client)
-
-	integrationAccountMapsClient := integrationaccountmaps.NewIntegrationAccountMapsClientWithBaseURI(endpoint)
-	configureAuthFunc(&integrationAccountMapsClient.Client)
-
-	integrationAccountPartnersClient := integrationaccountpartners.NewIntegrationAccountPartnersClientWithBaseURI(endpoint)
-	configureAuthFunc(&integrationAccountPartnersClient.Client)
-
-	integrationAccountSchemasClient := integrationaccountschemas.NewIntegrationAccountSchemasClientWithBaseURI(endpoint)
-	configureAuthFunc(&integrationAccountSchemasClient.Client)
-
-	integrationAccountSessionsClient := integrationaccountsessions.NewIntegrationAccountSessionsClientWithBaseURI(endpoint)
-	configureAuthFunc(&integrationAccountSessionsClient.Client)
-
-	integrationAccountsClient := integrationaccounts.NewIntegrationAccountsClientWithBaseURI(endpoint)
-	configureAuthFunc(&integrationAccountsClient.Client)
-
-	integrationServiceEnvironmentManagedApiClient := integrationserviceenvironmentmanagedapi.NewIntegrationServiceEnvironmentManagedApiClientWithBaseURI(endpoint)
-	configureAuthFunc(&integrationServiceEnvironmentManagedApiClient.Client)
-
-	integrationServiceEnvironmentManagedApisClient := integrationserviceenvironmentmanagedapis.NewIntegrationServiceEnvironmentManagedApisClientWithBaseURI(endpoint)
-	configureAuthFunc(&integrationServiceEnvironmentManagedApisClient.Client)
-
-	integrationServiceEnvironmentNetworkHealthClient := integrationserviceenvironmentnetworkhealth.NewIntegrationServiceEnvironmentNetworkHealthClientWithBaseURI(endpoint)
-	configureAuthFunc(&integrationServiceEnvironmentNetworkHealthClient.Client)
-
-	integrationServiceEnvironmentRestartClient := integrationserviceenvironmentrestart.NewIntegrationServiceEnvironmentRestartClientWithBaseURI(endpoint)
-	configureAuthFunc(&integrationServiceEnvironmentRestartClient.Client)
-
-	integrationServiceEnvironmentSkusClient := integrationserviceenvironmentskus.NewIntegrationServiceEnvironmentSkusClientWithBaseURI(endpoint)
-	configureAuthFunc(&integrationServiceEnvironmentSkusClient.Client)
-
-	integrationServiceEnvironmentsClient := integrationserviceenvironments.NewIntegrationServiceEnvironmentsClientWithBaseURI(endpoint)
-	configureAuthFunc(&integrationServiceEnvironmentsClient.Client)
-
-	workflowRunActionsClient := workflowrunactions.NewWorkflowRunActionsClientWithBaseURI(endpoint)
-	configureAuthFunc(&workflowRunActionsClient.Client)
-
-	workflowRunOperationsClient := workflowrunoperations.NewWorkflowRunOperationsClientWithBaseURI(endpoint)
-	configureAuthFunc(&workflowRunOperationsClient.Client)
-
-	workflowRunsClient := workflowruns.NewWorkflowRunsClientWithBaseURI(endpoint)
-	configureAuthFunc(&workflowRunsClient.Client)
-
-	workflowTriggerHistoriesClient := workflowtriggerhistories.NewWorkflowTriggerHistoriesClientWithBaseURI(endpoint)
-	configureAuthFunc(&workflowTriggerHistoriesClient.Client)
-
-	workflowTriggersClient := workflowtriggers.NewWorkflowTriggersClientWithBaseURI(endpoint)
-	configureAuthFunc(&workflowTriggersClient.Client)
-
-	workflowVersionsClient := workflowversions.NewWorkflowVersionsClientWithBaseURI(endpoint)
-	configureAuthFunc(&workflowVersionsClient.Client)
-
-	workflowsClient := workflows.NewWorkflowsClientWithBaseURI(endpoint)
-	configureAuthFunc(&workflowsClient.Client)
-
-	return Client{
-		IntegrationAccountAgreements:               &integrationAccountAgreementsClient,
-		IntegrationAccountAssemblies:               &integrationAccountAssembliesClient,
-		IntegrationAccountBatchConfigurations:      &integrationAccountBatchConfigurationsClient,
-		IntegrationAccountCertificates:             &integrationAccountCertificatesClient,
-		IntegrationAccountMaps:                     &integrationAccountMapsClient,
-		IntegrationAccountPartners:                 &integrationAccountPartnersClient,
-		IntegrationAccountSchemas:                  &integrationAccountSchemasClient,
-		IntegrationAccountSessions:                 &integrationAccountSessionsClient,
-		IntegrationAccounts:                        &integrationAccountsClient,
-		IntegrationServiceEnvironmentManagedApi:    &integrationServiceEnvironmentManagedApiClient,
-		IntegrationServiceEnvironmentManagedApis:   &integrationServiceEnvironmentManagedApisClient,
-		IntegrationServiceEnvironmentNetworkHealth: &integrationServiceEnvironmentNetworkHealthClient,
-		IntegrationServiceEnvironmentRestart:       &integrationServiceEnvironmentRestartClient,
-		IntegrationServiceEnvironmentSkus:          &integrationServiceEnvironmentSkusClient,
-		IntegrationServiceEnvironments:             &integrationServiceEnvironmentsClient,
-		WorkflowRunActions:                         &workflowRunActionsClient,
-		WorkflowRunOperations:                      &workflowRunOperationsClient,
-		WorkflowRuns:                               &workflowRunsClient,
-		WorkflowTriggerHistories:                   &workflowTriggerHistoriesClient,
-		WorkflowTriggers:                           &workflowTriggersClient,
-		WorkflowVersions:                           &workflowVersionsClient,
-		Workflows:                                  &workflowsClient,
+func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+	integrationAccountAgreementsClient, err := integrationaccountagreements.NewIntegrationAccountAgreementsClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building IntegrationAccountAgreements client: %+v", err)
 	}
+	configureFunc(integrationAccountAgreementsClient.Client)
+
+	integrationAccountAssembliesClient, err := integrationaccountassemblies.NewIntegrationAccountAssembliesClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building IntegrationAccountAssemblies client: %+v", err)
+	}
+	configureFunc(integrationAccountAssembliesClient.Client)
+
+	integrationAccountBatchConfigurationsClient, err := integrationaccountbatchconfigurations.NewIntegrationAccountBatchConfigurationsClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building IntegrationAccountBatchConfigurations client: %+v", err)
+	}
+	configureFunc(integrationAccountBatchConfigurationsClient.Client)
+
+	integrationAccountCertificatesClient, err := integrationaccountcertificates.NewIntegrationAccountCertificatesClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building IntegrationAccountCertificates client: %+v", err)
+	}
+	configureFunc(integrationAccountCertificatesClient.Client)
+
+	integrationAccountMapsClient, err := integrationaccountmaps.NewIntegrationAccountMapsClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building IntegrationAccountMaps client: %+v", err)
+	}
+	configureFunc(integrationAccountMapsClient.Client)
+
+	integrationAccountPartnersClient, err := integrationaccountpartners.NewIntegrationAccountPartnersClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building IntegrationAccountPartners client: %+v", err)
+	}
+	configureFunc(integrationAccountPartnersClient.Client)
+
+	integrationAccountSchemasClient, err := integrationaccountschemas.NewIntegrationAccountSchemasClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building IntegrationAccountSchemas client: %+v", err)
+	}
+	configureFunc(integrationAccountSchemasClient.Client)
+
+	integrationAccountSessionsClient, err := integrationaccountsessions.NewIntegrationAccountSessionsClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building IntegrationAccountSessions client: %+v", err)
+	}
+	configureFunc(integrationAccountSessionsClient.Client)
+
+	integrationAccountsClient, err := integrationaccounts.NewIntegrationAccountsClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building IntegrationAccounts client: %+v", err)
+	}
+	configureFunc(integrationAccountsClient.Client)
+
+	integrationServiceEnvironmentManagedApiClient, err := integrationserviceenvironmentmanagedapi.NewIntegrationServiceEnvironmentManagedApiClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building IntegrationServiceEnvironmentManagedApi client: %+v", err)
+	}
+	configureFunc(integrationServiceEnvironmentManagedApiClient.Client)
+
+	integrationServiceEnvironmentManagedApisClient, err := integrationserviceenvironmentmanagedapis.NewIntegrationServiceEnvironmentManagedApisClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building IntegrationServiceEnvironmentManagedApis client: %+v", err)
+	}
+	configureFunc(integrationServiceEnvironmentManagedApisClient.Client)
+
+	integrationServiceEnvironmentNetworkHealthClient, err := integrationserviceenvironmentnetworkhealth.NewIntegrationServiceEnvironmentNetworkHealthClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building IntegrationServiceEnvironmentNetworkHealth client: %+v", err)
+	}
+	configureFunc(integrationServiceEnvironmentNetworkHealthClient.Client)
+
+	integrationServiceEnvironmentRestartClient, err := integrationserviceenvironmentrestart.NewIntegrationServiceEnvironmentRestartClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building IntegrationServiceEnvironmentRestart client: %+v", err)
+	}
+	configureFunc(integrationServiceEnvironmentRestartClient.Client)
+
+	integrationServiceEnvironmentSkusClient, err := integrationserviceenvironmentskus.NewIntegrationServiceEnvironmentSkusClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building IntegrationServiceEnvironmentSkus client: %+v", err)
+	}
+	configureFunc(integrationServiceEnvironmentSkusClient.Client)
+
+	integrationServiceEnvironmentsClient, err := integrationserviceenvironments.NewIntegrationServiceEnvironmentsClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building IntegrationServiceEnvironments client: %+v", err)
+	}
+	configureFunc(integrationServiceEnvironmentsClient.Client)
+
+	workflowRunActionsClient, err := workflowrunactions.NewWorkflowRunActionsClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building WorkflowRunActions client: %+v", err)
+	}
+	configureFunc(workflowRunActionsClient.Client)
+
+	workflowRunOperationsClient, err := workflowrunoperations.NewWorkflowRunOperationsClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building WorkflowRunOperations client: %+v", err)
+	}
+	configureFunc(workflowRunOperationsClient.Client)
+
+	workflowRunsClient, err := workflowruns.NewWorkflowRunsClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building WorkflowRuns client: %+v", err)
+	}
+	configureFunc(workflowRunsClient.Client)
+
+	workflowTriggerHistoriesClient, err := workflowtriggerhistories.NewWorkflowTriggerHistoriesClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building WorkflowTriggerHistories client: %+v", err)
+	}
+	configureFunc(workflowTriggerHistoriesClient.Client)
+
+	workflowTriggersClient, err := workflowtriggers.NewWorkflowTriggersClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building WorkflowTriggers client: %+v", err)
+	}
+	configureFunc(workflowTriggersClient.Client)
+
+	workflowVersionsClient, err := workflowversions.NewWorkflowVersionsClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building WorkflowVersions client: %+v", err)
+	}
+	configureFunc(workflowVersionsClient.Client)
+
+	workflowsClient, err := workflows.NewWorkflowsClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building Workflows client: %+v", err)
+	}
+	configureFunc(workflowsClient.Client)
+
+	return &Client{
+		IntegrationAccountAgreements:               integrationAccountAgreementsClient,
+		IntegrationAccountAssemblies:               integrationAccountAssembliesClient,
+		IntegrationAccountBatchConfigurations:      integrationAccountBatchConfigurationsClient,
+		IntegrationAccountCertificates:             integrationAccountCertificatesClient,
+		IntegrationAccountMaps:                     integrationAccountMapsClient,
+		IntegrationAccountPartners:                 integrationAccountPartnersClient,
+		IntegrationAccountSchemas:                  integrationAccountSchemasClient,
+		IntegrationAccountSessions:                 integrationAccountSessionsClient,
+		IntegrationAccounts:                        integrationAccountsClient,
+		IntegrationServiceEnvironmentManagedApi:    integrationServiceEnvironmentManagedApiClient,
+		IntegrationServiceEnvironmentManagedApis:   integrationServiceEnvironmentManagedApisClient,
+		IntegrationServiceEnvironmentNetworkHealth: integrationServiceEnvironmentNetworkHealthClient,
+		IntegrationServiceEnvironmentRestart:       integrationServiceEnvironmentRestartClient,
+		IntegrationServiceEnvironmentSkus:          integrationServiceEnvironmentSkusClient,
+		IntegrationServiceEnvironments:             integrationServiceEnvironmentsClient,
+		WorkflowRunActions:                         workflowRunActionsClient,
+		WorkflowRunOperations:                      workflowRunOperationsClient,
+		WorkflowRuns:                               workflowRunsClient,
+		WorkflowTriggerHistories:                   workflowTriggerHistoriesClient,
+		WorkflowTriggers:                           workflowTriggersClient,
+		WorkflowVersions:                           workflowVersionsClient,
+		Workflows:                                  workflowsClient,
+	}, nil
 }

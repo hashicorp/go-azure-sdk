@@ -1,6 +1,10 @@
 package netappresource
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -21,6 +25,19 @@ func PossibleValuesForCheckNameResourceTypes() []string {
 		string(CheckNameResourceTypesMicrosoftPointNetAppNetAppAccountsCapacityPoolsVolumes),
 		string(CheckNameResourceTypesMicrosoftPointNetAppNetAppAccountsCapacityPoolsVolumesSnapshots),
 	}
+}
+
+func (s *CheckNameResourceTypes) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseCheckNameResourceTypes(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseCheckNameResourceTypes(input string) (*CheckNameResourceTypes, error) {
@@ -57,6 +74,19 @@ func PossibleValuesForCheckQuotaNameResourceTypes() []string {
 	}
 }
 
+func (s *CheckQuotaNameResourceTypes) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseCheckQuotaNameResourceTypes(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseCheckQuotaNameResourceTypes(input string) (*CheckQuotaNameResourceTypes, error) {
 	vals := map[string]CheckQuotaNameResourceTypes{
 		"microsoft.netapp/netappaccounts":                                 CheckQuotaNameResourceTypesMicrosoftPointNetAppNetAppAccounts,
@@ -85,6 +115,19 @@ func PossibleValuesForInAvailabilityReasonType() []string {
 		string(InAvailabilityReasonTypeAlreadyExists),
 		string(InAvailabilityReasonTypeInvalid),
 	}
+}
+
+func (s *InAvailabilityReasonType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseInAvailabilityReasonType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseInAvailabilityReasonType(input string) (*InAvailabilityReasonType, error) {

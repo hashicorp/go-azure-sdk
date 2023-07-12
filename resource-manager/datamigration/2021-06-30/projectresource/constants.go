@@ -1,6 +1,10 @@
 package projectresource
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -17,6 +21,19 @@ func PossibleValuesForProjectProvisioningState() []string {
 		string(ProjectProvisioningStateDeleting),
 		string(ProjectProvisioningStateSucceeded),
 	}
+}
+
+func (s *ProjectProvisioningState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseProjectProvisioningState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseProjectProvisioningState(input string) (*ProjectProvisioningState, error) {
@@ -51,6 +68,19 @@ func PossibleValuesForProjectSourcePlatform() []string {
 		string(ProjectSourcePlatformSQL),
 		string(ProjectSourcePlatformUnknown),
 	}
+}
+
+func (s *ProjectSourcePlatform) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseProjectSourcePlatform(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseProjectSourcePlatform(input string) (*ProjectSourcePlatform, error) {
@@ -90,6 +120,19 @@ func PossibleValuesForProjectTargetPlatform() []string {
 		string(ProjectTargetPlatformSQLMI),
 		string(ProjectTargetPlatformUnknown),
 	}
+}
+
+func (s *ProjectTargetPlatform) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseProjectTargetPlatform(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseProjectTargetPlatform(input string) (*ProjectTargetPlatform, error) {
