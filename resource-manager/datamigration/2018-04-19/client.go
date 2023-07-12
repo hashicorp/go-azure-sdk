@@ -4,7 +4,8 @@ package v2018_04_19
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 import (
-	"github.com/Azure/go-autorest/autorest"
+	"fmt"
+
 	"github.com/hashicorp/go-azure-sdk/resource-manager/datamigration/2018-04-19/customoperation"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/datamigration/2018-04-19/delete"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/datamigration/2018-04-19/get"
@@ -15,6 +16,8 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/datamigration/2018-04-19/serviceresource"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/datamigration/2018-04-19/standardoperation"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/datamigration/2018-04-19/taskresource"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -30,48 +33,77 @@ type Client struct {
 	TaskResource      *taskresource.TaskResourceClient
 }
 
-func NewClientWithBaseURI(endpoint string, configureAuthFunc func(c *autorest.Client)) Client {
-
-	customOperationClient := customoperation.NewCustomOperationClientWithBaseURI(endpoint)
-	configureAuthFunc(&customOperationClient.Client)
-
-	dELETEClient := delete.NewDELETEClientWithBaseURI(endpoint)
-	configureAuthFunc(&dELETEClient.Client)
-
-	gETClient := get.NewGETClientWithBaseURI(endpoint)
-	configureAuthFunc(&gETClient.Client)
-
-	pATCHClient := patch.NewPATCHClientWithBaseURI(endpoint)
-	configureAuthFunc(&pATCHClient.Client)
-
-	pOSTClient := post.NewPOSTClientWithBaseURI(endpoint)
-	configureAuthFunc(&pOSTClient.Client)
-
-	pUTClient := put.NewPUTClientWithBaseURI(endpoint)
-	configureAuthFunc(&pUTClient.Client)
-
-	projectResourceClient := projectresource.NewProjectResourceClientWithBaseURI(endpoint)
-	configureAuthFunc(&projectResourceClient.Client)
-
-	serviceResourceClient := serviceresource.NewServiceResourceClientWithBaseURI(endpoint)
-	configureAuthFunc(&serviceResourceClient.Client)
-
-	standardOperationClient := standardoperation.NewStandardOperationClientWithBaseURI(endpoint)
-	configureAuthFunc(&standardOperationClient.Client)
-
-	taskResourceClient := taskresource.NewTaskResourceClientWithBaseURI(endpoint)
-	configureAuthFunc(&taskResourceClient.Client)
-
-	return Client{
-		CustomOperation:   &customOperationClient,
-		DELETE:            &dELETEClient,
-		GET:               &gETClient,
-		PATCH:             &pATCHClient,
-		POST:              &pOSTClient,
-		PUT:               &pUTClient,
-		ProjectResource:   &projectResourceClient,
-		ServiceResource:   &serviceResourceClient,
-		StandardOperation: &standardOperationClient,
-		TaskResource:      &taskResourceClient,
+func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+	customOperationClient, err := customoperation.NewCustomOperationClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building CustomOperation client: %+v", err)
 	}
+	configureFunc(customOperationClient.Client)
+
+	dELETEClient, err := delete.NewDELETEClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building DELETE client: %+v", err)
+	}
+	configureFunc(dELETEClient.Client)
+
+	gETClient, err := get.NewGETClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building GET client: %+v", err)
+	}
+	configureFunc(gETClient.Client)
+
+	pATCHClient, err := patch.NewPATCHClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building PATCH client: %+v", err)
+	}
+	configureFunc(pATCHClient.Client)
+
+	pOSTClient, err := post.NewPOSTClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building POST client: %+v", err)
+	}
+	configureFunc(pOSTClient.Client)
+
+	pUTClient, err := put.NewPUTClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building PUT client: %+v", err)
+	}
+	configureFunc(pUTClient.Client)
+
+	projectResourceClient, err := projectresource.NewProjectResourceClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building ProjectResource client: %+v", err)
+	}
+	configureFunc(projectResourceClient.Client)
+
+	serviceResourceClient, err := serviceresource.NewServiceResourceClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building ServiceResource client: %+v", err)
+	}
+	configureFunc(serviceResourceClient.Client)
+
+	standardOperationClient, err := standardoperation.NewStandardOperationClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building StandardOperation client: %+v", err)
+	}
+	configureFunc(standardOperationClient.Client)
+
+	taskResourceClient, err := taskresource.NewTaskResourceClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building TaskResource client: %+v", err)
+	}
+	configureFunc(taskResourceClient.Client)
+
+	return &Client{
+		CustomOperation:   customOperationClient,
+		DELETE:            dELETEClient,
+		GET:               gETClient,
+		PATCH:             pATCHClient,
+		POST:              pOSTClient,
+		PUT:               pUTClient,
+		ProjectResource:   projectResourceClient,
+		ServiceResource:   serviceResourceClient,
+		StandardOperation: standardOperationClient,
+		TaskResource:      taskResourceClient,
+	}, nil
 }

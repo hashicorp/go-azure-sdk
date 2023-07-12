@@ -1,18 +1,26 @@
 package fileresource
 
-import "github.com/Azure/go-autorest/autorest"
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type FileResourceClient struct {
-	Client  autorest.Client
-	baseUri string
+	Client *resourcemanager.Client
 }
 
-func NewFileResourceClientWithBaseURI(endpoint string) FileResourceClient {
-	return FileResourceClient{
-		Client:  autorest.NewClientWithUserAgent(userAgent()),
-		baseUri: endpoint,
+func NewFileResourceClientWithBaseURI(api environments.Api) (*FileResourceClient, error) {
+	client, err := resourcemanager.NewResourceManagerClient(api, "fileresource", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating FileResourceClient: %+v", err)
 	}
+
+	return &FileResourceClient{
+		Client: client,
+	}, nil
 }

@@ -4,7 +4,8 @@ package v2022_11_01
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 import (
-	"github.com/Azure/go-autorest/autorest"
+	"fmt"
+
 	"github.com/hashicorp/go-azure-sdk/resource-manager/netapp/2022-11-01/backuppolicy"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/netapp/2022-11-01/backups"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/netapp/2022-11-01/capacitypools"
@@ -25,6 +26,8 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/netapp/2022-11-01/volumesrelocation"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/netapp/2022-11-01/volumesreplication"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/netapp/2022-11-01/volumesrevert"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -50,88 +53,147 @@ type Client struct {
 	VolumesRevert             *volumesrevert.VolumesRevertClient
 }
 
-func NewClientWithBaseURI(endpoint string, configureAuthFunc func(c *autorest.Client)) Client {
-
-	backupPolicyClient := backuppolicy.NewBackupPolicyClientWithBaseURI(endpoint)
-	configureAuthFunc(&backupPolicyClient.Client)
-
-	backupsClient := backups.NewBackupsClientWithBaseURI(endpoint)
-	configureAuthFunc(&backupsClient.Client)
-
-	capacityPoolsClient := capacitypools.NewCapacityPoolsClientWithBaseURI(endpoint)
-	configureAuthFunc(&capacityPoolsClient.Client)
-
-	fileLocksClient := filelocks.NewFileLocksClientWithBaseURI(endpoint)
-	configureAuthFunc(&fileLocksClient.Client)
-
-	groupIdListForLDAPUserClient := groupidlistforldapuser.NewGroupIdListForLDAPUserClientWithBaseURI(endpoint)
-	configureAuthFunc(&groupIdListForLDAPUserClient.Client)
-
-	netAppAccountsClient := netappaccounts.NewNetAppAccountsClientWithBaseURI(endpoint)
-	configureAuthFunc(&netAppAccountsClient.Client)
-
-	netAppResourceClient := netappresource.NewNetAppResourceClientWithBaseURI(endpoint)
-	configureAuthFunc(&netAppResourceClient.Client)
-
-	poolChangeClient := poolchange.NewPoolChangeClientWithBaseURI(endpoint)
-	configureAuthFunc(&poolChangeClient.Client)
-
-	resetCifsPasswordClient := resetcifspassword.NewResetCifsPasswordClientWithBaseURI(endpoint)
-	configureAuthFunc(&resetCifsPasswordClient.Client)
-
-	restoreClient := restore.NewRestoreClientWithBaseURI(endpoint)
-	configureAuthFunc(&restoreClient.Client)
-
-	snapshotPolicyClient := snapshotpolicy.NewSnapshotPolicyClientWithBaseURI(endpoint)
-	configureAuthFunc(&snapshotPolicyClient.Client)
-
-	snapshotPolicyListVolumesClient := snapshotpolicylistvolumes.NewSnapshotPolicyListVolumesClientWithBaseURI(endpoint)
-	configureAuthFunc(&snapshotPolicyListVolumesClient.Client)
-
-	snapshotsClient := snapshots.NewSnapshotsClientWithBaseURI(endpoint)
-	configureAuthFunc(&snapshotsClient.Client)
-
-	subVolumesClient := subvolumes.NewSubVolumesClientWithBaseURI(endpoint)
-	configureAuthFunc(&subVolumesClient.Client)
-
-	volumeGroupsClient := volumegroups.NewVolumeGroupsClientWithBaseURI(endpoint)
-	configureAuthFunc(&volumeGroupsClient.Client)
-
-	volumeQuotaRulesClient := volumequotarules.NewVolumeQuotaRulesClientWithBaseURI(endpoint)
-	configureAuthFunc(&volumeQuotaRulesClient.Client)
-
-	volumesClient := volumes.NewVolumesClientWithBaseURI(endpoint)
-	configureAuthFunc(&volumesClient.Client)
-
-	volumesRelocationClient := volumesrelocation.NewVolumesRelocationClientWithBaseURI(endpoint)
-	configureAuthFunc(&volumesRelocationClient.Client)
-
-	volumesReplicationClient := volumesreplication.NewVolumesReplicationClientWithBaseURI(endpoint)
-	configureAuthFunc(&volumesReplicationClient.Client)
-
-	volumesRevertClient := volumesrevert.NewVolumesRevertClientWithBaseURI(endpoint)
-	configureAuthFunc(&volumesRevertClient.Client)
-
-	return Client{
-		BackupPolicy:              &backupPolicyClient,
-		Backups:                   &backupsClient,
-		CapacityPools:             &capacityPoolsClient,
-		FileLocks:                 &fileLocksClient,
-		GroupIdListForLDAPUser:    &groupIdListForLDAPUserClient,
-		NetAppAccounts:            &netAppAccountsClient,
-		NetAppResource:            &netAppResourceClient,
-		PoolChange:                &poolChangeClient,
-		ResetCifsPassword:         &resetCifsPasswordClient,
-		Restore:                   &restoreClient,
-		SnapshotPolicy:            &snapshotPolicyClient,
-		SnapshotPolicyListVolumes: &snapshotPolicyListVolumesClient,
-		Snapshots:                 &snapshotsClient,
-		SubVolumes:                &subVolumesClient,
-		VolumeGroups:              &volumeGroupsClient,
-		VolumeQuotaRules:          &volumeQuotaRulesClient,
-		Volumes:                   &volumesClient,
-		VolumesRelocation:         &volumesRelocationClient,
-		VolumesReplication:        &volumesReplicationClient,
-		VolumesRevert:             &volumesRevertClient,
+func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+	backupPolicyClient, err := backuppolicy.NewBackupPolicyClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building BackupPolicy client: %+v", err)
 	}
+	configureFunc(backupPolicyClient.Client)
+
+	backupsClient, err := backups.NewBackupsClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building Backups client: %+v", err)
+	}
+	configureFunc(backupsClient.Client)
+
+	capacityPoolsClient, err := capacitypools.NewCapacityPoolsClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building CapacityPools client: %+v", err)
+	}
+	configureFunc(capacityPoolsClient.Client)
+
+	fileLocksClient, err := filelocks.NewFileLocksClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building FileLocks client: %+v", err)
+	}
+	configureFunc(fileLocksClient.Client)
+
+	groupIdListForLDAPUserClient, err := groupidlistforldapuser.NewGroupIdListForLDAPUserClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building GroupIdListForLDAPUser client: %+v", err)
+	}
+	configureFunc(groupIdListForLDAPUserClient.Client)
+
+	netAppAccountsClient, err := netappaccounts.NewNetAppAccountsClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building NetAppAccounts client: %+v", err)
+	}
+	configureFunc(netAppAccountsClient.Client)
+
+	netAppResourceClient, err := netappresource.NewNetAppResourceClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building NetAppResource client: %+v", err)
+	}
+	configureFunc(netAppResourceClient.Client)
+
+	poolChangeClient, err := poolchange.NewPoolChangeClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building PoolChange client: %+v", err)
+	}
+	configureFunc(poolChangeClient.Client)
+
+	resetCifsPasswordClient, err := resetcifspassword.NewResetCifsPasswordClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building ResetCifsPassword client: %+v", err)
+	}
+	configureFunc(resetCifsPasswordClient.Client)
+
+	restoreClient, err := restore.NewRestoreClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building Restore client: %+v", err)
+	}
+	configureFunc(restoreClient.Client)
+
+	snapshotPolicyClient, err := snapshotpolicy.NewSnapshotPolicyClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building SnapshotPolicy client: %+v", err)
+	}
+	configureFunc(snapshotPolicyClient.Client)
+
+	snapshotPolicyListVolumesClient, err := snapshotpolicylistvolumes.NewSnapshotPolicyListVolumesClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building SnapshotPolicyListVolumes client: %+v", err)
+	}
+	configureFunc(snapshotPolicyListVolumesClient.Client)
+
+	snapshotsClient, err := snapshots.NewSnapshotsClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building Snapshots client: %+v", err)
+	}
+	configureFunc(snapshotsClient.Client)
+
+	subVolumesClient, err := subvolumes.NewSubVolumesClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building SubVolumes client: %+v", err)
+	}
+	configureFunc(subVolumesClient.Client)
+
+	volumeGroupsClient, err := volumegroups.NewVolumeGroupsClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building VolumeGroups client: %+v", err)
+	}
+	configureFunc(volumeGroupsClient.Client)
+
+	volumeQuotaRulesClient, err := volumequotarules.NewVolumeQuotaRulesClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building VolumeQuotaRules client: %+v", err)
+	}
+	configureFunc(volumeQuotaRulesClient.Client)
+
+	volumesClient, err := volumes.NewVolumesClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building Volumes client: %+v", err)
+	}
+	configureFunc(volumesClient.Client)
+
+	volumesRelocationClient, err := volumesrelocation.NewVolumesRelocationClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building VolumesRelocation client: %+v", err)
+	}
+	configureFunc(volumesRelocationClient.Client)
+
+	volumesReplicationClient, err := volumesreplication.NewVolumesReplicationClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building VolumesReplication client: %+v", err)
+	}
+	configureFunc(volumesReplicationClient.Client)
+
+	volumesRevertClient, err := volumesrevert.NewVolumesRevertClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building VolumesRevert client: %+v", err)
+	}
+	configureFunc(volumesRevertClient.Client)
+
+	return &Client{
+		BackupPolicy:              backupPolicyClient,
+		Backups:                   backupsClient,
+		CapacityPools:             capacityPoolsClient,
+		FileLocks:                 fileLocksClient,
+		GroupIdListForLDAPUser:    groupIdListForLDAPUserClient,
+		NetAppAccounts:            netAppAccountsClient,
+		NetAppResource:            netAppResourceClient,
+		PoolChange:                poolChangeClient,
+		ResetCifsPassword:         resetCifsPasswordClient,
+		Restore:                   restoreClient,
+		SnapshotPolicy:            snapshotPolicyClient,
+		SnapshotPolicyListVolumes: snapshotPolicyListVolumesClient,
+		Snapshots:                 snapshotsClient,
+		SubVolumes:                subVolumesClient,
+		VolumeGroups:              volumeGroupsClient,
+		VolumeQuotaRules:          volumeQuotaRulesClient,
+		Volumes:                   volumesClient,
+		VolumesRelocation:         volumesRelocationClient,
+		VolumesReplication:        volumesReplicationClient,
+		VolumesRevert:             volumesRevertClient,
+	}, nil
 }

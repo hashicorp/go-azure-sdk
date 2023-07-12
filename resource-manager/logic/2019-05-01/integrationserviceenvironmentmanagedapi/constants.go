@@ -1,6 +1,10 @@
 package integrationserviceenvironmentmanagedapi
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -19,6 +23,19 @@ func PossibleValuesForApiDeploymentParameterVisibility() []string {
 		string(ApiDeploymentParameterVisibilityInternal),
 		string(ApiDeploymentParameterVisibilityNotSpecified),
 	}
+}
+
+func (s *ApiDeploymentParameterVisibility) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseApiDeploymentParameterVisibility(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseApiDeploymentParameterVisibility(input string) (*ApiDeploymentParameterVisibility, error) {
@@ -54,6 +71,19 @@ func PossibleValuesForApiTier() []string {
 	}
 }
 
+func (s *ApiTier) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseApiTier(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseApiTier(input string) (*ApiTier, error) {
 	vals := map[string]ApiTier{
 		"enterprise":   ApiTierEnterprise,
@@ -84,6 +114,19 @@ func PossibleValuesForApiType() []string {
 		string(ApiTypeRest),
 		string(ApiTypeSoap),
 	}
+}
+
+func (s *ApiType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseApiType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseApiType(input string) (*ApiType, error) {
@@ -155,6 +198,19 @@ func PossibleValuesForWorkflowProvisioningState() []string {
 	}
 }
 
+func (s *WorkflowProvisioningState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseWorkflowProvisioningState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseWorkflowProvisioningState(input string) (*WorkflowProvisioningState, error) {
 	vals := map[string]WorkflowProvisioningState{
 		"accepted":      WorkflowProvisioningStateAccepted,
@@ -203,6 +259,19 @@ func PossibleValuesForWsdlImportMethod() []string {
 		string(WsdlImportMethodSoapPassThrough),
 		string(WsdlImportMethodSoapToRest),
 	}
+}
+
+func (s *WsdlImportMethod) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseWsdlImportMethod(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseWsdlImportMethod(input string) (*WsdlImportMethod, error) {

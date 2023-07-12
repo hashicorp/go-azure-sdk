@@ -4,13 +4,16 @@ package v2022_07_01
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 import (
-	"github.com/Azure/go-autorest/autorest"
+	"fmt"
+
 	"github.com/hashicorp/go-azure-sdk/resource-manager/dnsresolver/2022-07-01/dnsforwardingrulesets"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/dnsresolver/2022-07-01/dnsresolvers"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/dnsresolver/2022-07-01/forwardingrules"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/dnsresolver/2022-07-01/inboundendpoints"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/dnsresolver/2022-07-01/outboundendpoints"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/dnsresolver/2022-07-01/virtualnetworklinks"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -22,32 +25,49 @@ type Client struct {
 	VirtualNetworkLinks   *virtualnetworklinks.VirtualNetworkLinksClient
 }
 
-func NewClientWithBaseURI(endpoint string, configureAuthFunc func(c *autorest.Client)) Client {
-
-	dnsForwardingRulesetsClient := dnsforwardingrulesets.NewDnsForwardingRulesetsClientWithBaseURI(endpoint)
-	configureAuthFunc(&dnsForwardingRulesetsClient.Client)
-
-	dnsResolversClient := dnsresolvers.NewDnsResolversClientWithBaseURI(endpoint)
-	configureAuthFunc(&dnsResolversClient.Client)
-
-	forwardingRulesClient := forwardingrules.NewForwardingRulesClientWithBaseURI(endpoint)
-	configureAuthFunc(&forwardingRulesClient.Client)
-
-	inboundEndpointsClient := inboundendpoints.NewInboundEndpointsClientWithBaseURI(endpoint)
-	configureAuthFunc(&inboundEndpointsClient.Client)
-
-	outboundEndpointsClient := outboundendpoints.NewOutboundEndpointsClientWithBaseURI(endpoint)
-	configureAuthFunc(&outboundEndpointsClient.Client)
-
-	virtualNetworkLinksClient := virtualnetworklinks.NewVirtualNetworkLinksClientWithBaseURI(endpoint)
-	configureAuthFunc(&virtualNetworkLinksClient.Client)
-
-	return Client{
-		DnsForwardingRulesets: &dnsForwardingRulesetsClient,
-		DnsResolvers:          &dnsResolversClient,
-		ForwardingRules:       &forwardingRulesClient,
-		InboundEndpoints:      &inboundEndpointsClient,
-		OutboundEndpoints:     &outboundEndpointsClient,
-		VirtualNetworkLinks:   &virtualNetworkLinksClient,
+func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+	dnsForwardingRulesetsClient, err := dnsforwardingrulesets.NewDnsForwardingRulesetsClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building DnsForwardingRulesets client: %+v", err)
 	}
+	configureFunc(dnsForwardingRulesetsClient.Client)
+
+	dnsResolversClient, err := dnsresolvers.NewDnsResolversClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building DnsResolvers client: %+v", err)
+	}
+	configureFunc(dnsResolversClient.Client)
+
+	forwardingRulesClient, err := forwardingrules.NewForwardingRulesClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building ForwardingRules client: %+v", err)
+	}
+	configureFunc(forwardingRulesClient.Client)
+
+	inboundEndpointsClient, err := inboundendpoints.NewInboundEndpointsClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building InboundEndpoints client: %+v", err)
+	}
+	configureFunc(inboundEndpointsClient.Client)
+
+	outboundEndpointsClient, err := outboundendpoints.NewOutboundEndpointsClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building OutboundEndpoints client: %+v", err)
+	}
+	configureFunc(outboundEndpointsClient.Client)
+
+	virtualNetworkLinksClient, err := virtualnetworklinks.NewVirtualNetworkLinksClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building VirtualNetworkLinks client: %+v", err)
+	}
+	configureFunc(virtualNetworkLinksClient.Client)
+
+	return &Client{
+		DnsForwardingRulesets: dnsForwardingRulesetsClient,
+		DnsResolvers:          dnsResolversClient,
+		ForwardingRules:       forwardingRulesClient,
+		InboundEndpoints:      inboundEndpointsClient,
+		OutboundEndpoints:     outboundEndpointsClient,
+		VirtualNetworkLinks:   virtualNetworkLinksClient,
+	}, nil
 }

@@ -1,6 +1,10 @@
 package integrationserviceenvironmentnetworkhealth
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -21,6 +25,19 @@ func PossibleValuesForErrorResponseCode() []string {
 		string(ErrorResponseCodeInvalidOperationId),
 		string(ErrorResponseCodeNotSpecified),
 	}
+}
+
+func (s *ErrorResponseCode) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseErrorResponseCode(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseErrorResponseCode(input string) (*ErrorResponseCode, error) {
@@ -73,6 +90,19 @@ func PossibleValuesForIntegrationServiceEnvironmentNetworkDependencyCategoryType
 	}
 }
 
+func (s *IntegrationServiceEnvironmentNetworkDependencyCategoryType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseIntegrationServiceEnvironmentNetworkDependencyCategoryType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseIntegrationServiceEnvironmentNetworkDependencyCategoryType(input string) (*IntegrationServiceEnvironmentNetworkDependencyCategoryType, error) {
 	vals := map[string]IntegrationServiceEnvironmentNetworkDependencyCategoryType{
 		"accessendpoints":                         IntegrationServiceEnvironmentNetworkDependencyCategoryTypeAccessEndpoints,
@@ -115,6 +145,19 @@ func PossibleValuesForIntegrationServiceEnvironmentNetworkDependencyHealthState(
 	}
 }
 
+func (s *IntegrationServiceEnvironmentNetworkDependencyHealthState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseIntegrationServiceEnvironmentNetworkDependencyHealthState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseIntegrationServiceEnvironmentNetworkDependencyHealthState(input string) (*IntegrationServiceEnvironmentNetworkDependencyHealthState, error) {
 	vals := map[string]IntegrationServiceEnvironmentNetworkDependencyHealthState{
 		"healthy":      IntegrationServiceEnvironmentNetworkDependencyHealthStateHealthy,
@@ -147,6 +190,19 @@ func PossibleValuesForIntegrationServiceEnvironmentNetworkEndPointAccessibilityS
 		string(IntegrationServiceEnvironmentNetworkEndPointAccessibilityStateNotSpecified),
 		string(IntegrationServiceEnvironmentNetworkEndPointAccessibilityStateUnknown),
 	}
+}
+
+func (s *IntegrationServiceEnvironmentNetworkEndPointAccessibilityState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseIntegrationServiceEnvironmentNetworkEndPointAccessibilityState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseIntegrationServiceEnvironmentNetworkEndPointAccessibilityState(input string) (*IntegrationServiceEnvironmentNetworkEndPointAccessibilityState, error) {

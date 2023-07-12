@@ -1,6 +1,10 @@
 package skus
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -17,6 +21,19 @@ func PossibleValuesForLabServicesSkuTier() []string {
 		string(LabServicesSkuTierPremium),
 		string(LabServicesSkuTierStandard),
 	}
+}
+
+func (s *LabServicesSkuTier) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseLabServicesSkuTier(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseLabServicesSkuTier(input string) (*LabServicesSkuTier, error) {
@@ -47,6 +64,19 @@ func PossibleValuesForRestrictionReasonCode() []string {
 	}
 }
 
+func (s *RestrictionReasonCode) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseRestrictionReasonCode(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseRestrictionReasonCode(input string) (*RestrictionReasonCode, error) {
 	vals := map[string]RestrictionReasonCode{
 		"notavailableforsubscription": RestrictionReasonCodeNotAvailableForSubscription,
@@ -71,6 +101,19 @@ func PossibleValuesForRestrictionType() []string {
 	return []string{
 		string(RestrictionTypeLocation),
 	}
+}
+
+func (s *RestrictionType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseRestrictionType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseRestrictionType(input string) (*RestrictionType, error) {
@@ -100,6 +143,19 @@ func PossibleValuesForScaleType() []string {
 		string(ScaleTypeManual),
 		string(ScaleTypeNone),
 	}
+}
+
+func (s *ScaleType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseScaleType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseScaleType(input string) (*ScaleType, error) {
