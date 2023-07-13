@@ -1,6 +1,10 @@
 package v2workspaceconnectionresource
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -23,6 +27,19 @@ func PossibleValuesForConnectionAuthType() []string {
 		string(ConnectionAuthTypeSAS),
 		string(ConnectionAuthTypeUsernamePassword),
 	}
+}
+
+func (s *ConnectionAuthType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseConnectionAuthType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseConnectionAuthType(input string) (*ConnectionAuthType, error) {
@@ -58,6 +75,19 @@ func PossibleValuesForConnectionCategory() []string {
 	}
 }
 
+func (s *ConnectionCategory) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseConnectionCategory(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseConnectionCategory(input string) (*ConnectionCategory, error) {
 	vals := map[string]ConnectionCategory{
 		"containerregistry": ConnectionCategoryContainerRegistry,
@@ -83,6 +113,19 @@ func PossibleValuesForValueFormat() []string {
 	return []string{
 		string(ValueFormatJSON),
 	}
+}
+
+func (s *ValueFormat) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseValueFormat(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseValueFormat(input string) (*ValueFormat, error) {

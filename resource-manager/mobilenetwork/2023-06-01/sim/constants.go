@@ -1,6 +1,10 @@
 package sim
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -27,6 +31,19 @@ func PossibleValuesForProvisioningState() []string {
 		string(ProvisioningStateSucceeded),
 		string(ProvisioningStateUnknown),
 	}
+}
+
+func (s *ProvisioningState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseProvisioningState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseProvisioningState(input string) (*ProvisioningState, error) {
@@ -64,6 +81,19 @@ func PossibleValuesForSimState() []string {
 	}
 }
 
+func (s *SimState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseSimState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseSimState(input string) (*SimState, error) {
 	vals := map[string]SimState{
 		"disabled": SimStateDisabled,
@@ -99,6 +129,19 @@ func PossibleValuesForSiteProvisioningState() []string {
 		string(SiteProvisioningStateProvisioned),
 		string(SiteProvisioningStateUpdating),
 	}
+}
+
+func (s *SiteProvisioningState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseSiteProvisioningState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseSiteProvisioningState(input string) (*SiteProvisioningState, error) {

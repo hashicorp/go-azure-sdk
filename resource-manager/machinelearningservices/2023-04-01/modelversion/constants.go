@@ -1,6 +1,10 @@
 package modelversion
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -25,6 +29,19 @@ func PossibleValuesForAssetProvisioningState() []string {
 		string(AssetProvisioningStateSucceeded),
 		string(AssetProvisioningStateUpdating),
 	}
+}
+
+func (s *AssetProvisioningState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseAssetProvisioningState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseAssetProvisioningState(input string) (*AssetProvisioningState, error) {
@@ -61,6 +78,19 @@ func PossibleValuesForListViewType() []string {
 	}
 }
 
+func (s *ListViewType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseListViewType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseListViewType(input string) (*ListViewType, error) {
 	vals := map[string]ListViewType{
 		"activeonly":   ListViewTypeActiveOnly,
@@ -88,6 +118,19 @@ func PossibleValuesForPendingUploadCredentialType() []string {
 	}
 }
 
+func (s *PendingUploadCredentialType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parsePendingUploadCredentialType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parsePendingUploadCredentialType(input string) (*PendingUploadCredentialType, error) {
 	vals := map[string]PendingUploadCredentialType{
 		"sas": PendingUploadCredentialTypeSAS,
@@ -113,6 +156,19 @@ func PossibleValuesForPendingUploadType() []string {
 		string(PendingUploadTypeNone),
 		string(PendingUploadTypeTemporaryBlobReference),
 	}
+}
+
+func (s *PendingUploadType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parsePendingUploadType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parsePendingUploadType(input string) (*PendingUploadType, error) {

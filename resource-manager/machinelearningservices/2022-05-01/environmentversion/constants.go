@@ -1,6 +1,10 @@
 package environmentversion
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -17,6 +21,19 @@ func PossibleValuesForEnvironmentType() []string {
 		string(EnvironmentTypeCurated),
 		string(EnvironmentTypeUserCreated),
 	}
+}
+
+func (s *EnvironmentType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseEnvironmentType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseEnvironmentType(input string) (*EnvironmentType, error) {
@@ -49,6 +66,19 @@ func PossibleValuesForListViewType() []string {
 	}
 }
 
+func (s *ListViewType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseListViewType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseListViewType(input string) (*ListViewType, error) {
 	vals := map[string]ListViewType{
 		"activeonly":   ListViewTypeActiveOnly,
@@ -76,6 +106,19 @@ func PossibleValuesForOperatingSystemType() []string {
 		string(OperatingSystemTypeLinux),
 		string(OperatingSystemTypeWindows),
 	}
+}
+
+func (s *OperatingSystemType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseOperatingSystemType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseOperatingSystemType(input string) (*OperatingSystemType, error) {

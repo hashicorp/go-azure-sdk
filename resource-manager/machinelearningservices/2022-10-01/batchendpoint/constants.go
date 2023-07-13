@@ -1,6 +1,10 @@
 package batchendpoint
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -19,6 +23,19 @@ func PossibleValuesForEndpointAuthMode() []string {
 		string(EndpointAuthModeAMLToken),
 		string(EndpointAuthModeKey),
 	}
+}
+
+func (s *EndpointAuthMode) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseEndpointAuthMode(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseEndpointAuthMode(input string) (*EndpointAuthMode, error) {
@@ -58,6 +75,19 @@ func PossibleValuesForEndpointProvisioningState() []string {
 	}
 }
 
+func (s *EndpointProvisioningState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseEndpointProvisioningState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseEndpointProvisioningState(input string) (*EndpointProvisioningState, error) {
 	vals := map[string]EndpointProvisioningState{
 		"canceled":  EndpointProvisioningStateCanceled,
@@ -94,6 +124,19 @@ func PossibleValuesForManagedServiceIdentityType() []string {
 	}
 }
 
+func (s *ManagedServiceIdentityType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseManagedServiceIdentityType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseManagedServiceIdentityType(input string) (*ManagedServiceIdentityType, error) {
 	vals := map[string]ManagedServiceIdentityType{
 		"none":                        ManagedServiceIdentityTypeNone,
@@ -126,6 +169,19 @@ func PossibleValuesForSkuTier() []string {
 		string(SkuTierPremium),
 		string(SkuTierStandard),
 	}
+}
+
+func (s *SkuTier) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseSkuTier(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseSkuTier(input string) (*SkuTier, error) {
