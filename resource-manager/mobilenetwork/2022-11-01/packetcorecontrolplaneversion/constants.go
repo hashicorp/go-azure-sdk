@@ -1,6 +1,10 @@
 package packetcorecontrolplaneversion
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -17,6 +21,19 @@ func PossibleValuesForObsoleteVersion() []string {
 		string(ObsoleteVersionNotObsolete),
 		string(ObsoleteVersionObsolete),
 	}
+}
+
+func (s *ObsoleteVersion) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseObsoleteVersion(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseObsoleteVersion(input string) (*ObsoleteVersion, error) {
@@ -45,6 +62,19 @@ func PossibleValuesForPlatformType() []string {
 		string(PlatformTypeAKSNegativeHCI),
 		string(PlatformTypeThreePNegativeAZURENegativeSTACKNegativeHCI),
 	}
+}
+
+func (s *PlatformType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parsePlatformType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parsePlatformType(input string) (*PlatformType, error) {
@@ -85,6 +115,19 @@ func PossibleValuesForProvisioningState() []string {
 	}
 }
 
+func (s *ProvisioningState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseProvisioningState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseProvisioningState(input string) (*ProvisioningState, error) {
 	vals := map[string]ProvisioningState{
 		"accepted":  ProvisioningStateAccepted,
@@ -116,6 +159,19 @@ func PossibleValuesForRecommendedVersion() []string {
 		string(RecommendedVersionNotRecommended),
 		string(RecommendedVersionRecommended),
 	}
+}
+
+func (s *RecommendedVersion) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseRecommendedVersion(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseRecommendedVersion(input string) (*RecommendedVersion, error) {
@@ -152,6 +208,19 @@ func PossibleValuesForVersionState() []string {
 		string(VersionStateValidating),
 		string(VersionStateValidationFailed),
 	}
+}
+
+func (s *VersionState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseVersionState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseVersionState(input string) (*VersionState, error) {

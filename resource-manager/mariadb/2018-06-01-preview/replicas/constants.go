@@ -1,6 +1,10 @@
 package replicas
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -17,6 +21,19 @@ func PossibleValuesForGeoRedundantBackup() []string {
 		string(GeoRedundantBackupDisabled),
 		string(GeoRedundantBackupEnabled),
 	}
+}
+
+func (s *GeoRedundantBackup) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseGeoRedundantBackup(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseGeoRedundantBackup(input string) (*GeoRedundantBackup, error) {
@@ -51,6 +68,19 @@ func PossibleValuesForMinimalTlsVersionEnum() []string {
 	}
 }
 
+func (s *MinimalTlsVersionEnum) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseMinimalTlsVersionEnum(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseMinimalTlsVersionEnum(input string) (*MinimalTlsVersionEnum, error) {
 	vals := map[string]MinimalTlsVersionEnum{
 		"tlsenforcementdisabled": MinimalTlsVersionEnumTLSEnforcementDisabled,
@@ -83,6 +113,19 @@ func PossibleValuesForServerState() []string {
 	}
 }
 
+func (s *ServerState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseServerState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseServerState(input string) (*ServerState, error) {
 	vals := map[string]ServerState{
 		"disabled": ServerStateDisabled,
@@ -110,6 +153,19 @@ func PossibleValuesForServerVersion() []string {
 		string(ServerVersionOneZeroPointThree),
 		string(ServerVersionOneZeroPointTwo),
 	}
+}
+
+func (s *ServerVersion) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseServerVersion(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseServerVersion(input string) (*ServerVersion, error) {
@@ -142,6 +198,19 @@ func PossibleValuesForSkuTier() []string {
 	}
 }
 
+func (s *SkuTier) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseSkuTier(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseSkuTier(input string) (*SkuTier, error) {
 	vals := map[string]SkuTier{
 		"basic":           SkuTierBasic,
@@ -171,6 +240,19 @@ func PossibleValuesForSslEnforcementEnum() []string {
 	}
 }
 
+func (s *SslEnforcementEnum) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseSslEnforcementEnum(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseSslEnforcementEnum(input string) (*SslEnforcementEnum, error) {
 	vals := map[string]SslEnforcementEnum{
 		"disabled": SslEnforcementEnumDisabled,
@@ -197,6 +279,19 @@ func PossibleValuesForStorageAutogrow() []string {
 		string(StorageAutogrowDisabled),
 		string(StorageAutogrowEnabled),
 	}
+}
+
+func (s *StorageAutogrow) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseStorageAutogrow(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseStorageAutogrow(input string) (*StorageAutogrow, error) {

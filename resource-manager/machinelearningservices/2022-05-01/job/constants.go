@@ -1,6 +1,10 @@
 package job
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -19,6 +23,19 @@ func PossibleValuesForDistributionType() []string {
 		string(DistributionTypePyTorch),
 		string(DistributionTypeTensorFlow),
 	}
+}
+
+func (s *DistributionType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseDistributionType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseDistributionType(input string) (*DistributionType, error) {
@@ -52,6 +69,19 @@ func PossibleValuesForEarlyTerminationPolicyType() []string {
 	}
 }
 
+func (s *EarlyTerminationPolicyType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseEarlyTerminationPolicyType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseEarlyTerminationPolicyType(input string) (*EarlyTerminationPolicyType, error) {
 	vals := map[string]EarlyTerminationPolicyType{
 		"bandit":              EarlyTerminationPolicyTypeBandit,
@@ -79,6 +109,19 @@ func PossibleValuesForGoal() []string {
 		string(GoalMaximize),
 		string(GoalMinimize),
 	}
+}
+
+func (s *Goal) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseGoal(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseGoal(input string) (*Goal, error) {
@@ -109,6 +152,19 @@ func PossibleValuesForIdentityConfigurationType() []string {
 		string(IdentityConfigurationTypeManaged),
 		string(IdentityConfigurationTypeUserIdentity),
 	}
+}
+
+func (s *IdentityConfigurationType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseIdentityConfigurationType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseIdentityConfigurationType(input string) (*IdentityConfigurationType, error) {
@@ -146,6 +202,19 @@ func PossibleValuesForInputDeliveryMode() []string {
 		string(InputDeliveryModeReadOnlyMount),
 		string(InputDeliveryModeReadWriteMount),
 	}
+}
+
+func (s *InputDeliveryMode) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseInputDeliveryMode(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseInputDeliveryMode(input string) (*InputDeliveryMode, error) {
@@ -190,6 +259,19 @@ func PossibleValuesForJobInputType() []string {
 	}
 }
 
+func (s *JobInputType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseJobInputType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseJobInputType(input string) (*JobInputType, error) {
 	vals := map[string]JobInputType{
 		"custom_model": JobInputTypeCustomModel,
@@ -221,6 +303,19 @@ func PossibleValuesForJobLimitsType() []string {
 		string(JobLimitsTypeCommand),
 		string(JobLimitsTypeSweep),
 	}
+}
+
+func (s *JobLimitsType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseJobLimitsType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseJobLimitsType(input string) (*JobLimitsType, error) {
@@ -257,6 +352,19 @@ func PossibleValuesForJobOutputType() []string {
 		string(JobOutputTypeUriFile),
 		string(JobOutputTypeUriFolder),
 	}
+}
+
+func (s *JobOutputType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseJobOutputType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseJobOutputType(input string) (*JobOutputType, error) {
@@ -315,6 +423,19 @@ func PossibleValuesForJobStatus() []string {
 	}
 }
 
+func (s *JobStatus) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseJobStatus(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseJobStatus(input string) (*JobStatus, error) {
 	vals := map[string]JobStatus{
 		"cancelrequested": JobStatusCancelRequested,
@@ -357,6 +478,19 @@ func PossibleValuesForJobType() []string {
 	}
 }
 
+func (s *JobType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseJobType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseJobType(input string) (*JobType, error) {
 	vals := map[string]JobType{
 		"command":  JobTypeCommand,
@@ -388,6 +522,19 @@ func PossibleValuesForListViewType() []string {
 	}
 }
 
+func (s *ListViewType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseListViewType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseListViewType(input string) (*ListViewType, error) {
 	vals := map[string]ListViewType{
 		"activeonly":   ListViewTypeActiveOnly,
@@ -415,6 +562,19 @@ func PossibleValuesForOutputDeliveryMode() []string {
 		string(OutputDeliveryModeReadWriteMount),
 		string(OutputDeliveryModeUpload),
 	}
+}
+
+func (s *OutputDeliveryMode) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseOutputDeliveryMode(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseOutputDeliveryMode(input string) (*OutputDeliveryMode, error) {
@@ -445,6 +605,19 @@ func PossibleValuesForRandomSamplingAlgorithmRule() []string {
 	}
 }
 
+func (s *RandomSamplingAlgorithmRule) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseRandomSamplingAlgorithmRule(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseRandomSamplingAlgorithmRule(input string) (*RandomSamplingAlgorithmRule, error) {
 	vals := map[string]RandomSamplingAlgorithmRule{
 		"random": RandomSamplingAlgorithmRuleRandom,
@@ -473,6 +646,19 @@ func PossibleValuesForSamplingAlgorithmType() []string {
 		string(SamplingAlgorithmTypeGrid),
 		string(SamplingAlgorithmTypeRandom),
 	}
+}
+
+func (s *SamplingAlgorithmType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseSamplingAlgorithmType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseSamplingAlgorithmType(input string) (*SamplingAlgorithmType, error) {

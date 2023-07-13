@@ -4,9 +4,12 @@ package v2020_01_01
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 import (
-	"github.com/Azure/go-autorest/autorest"
+	"fmt"
+
 	"github.com/hashicorp/go-azure-sdk/resource-manager/mariadb/2020-01-01/serverstart"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/mariadb/2020-01-01/serverstop"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -14,16 +17,21 @@ type Client struct {
 	ServerStop  *serverstop.ServerStopClient
 }
 
-func NewClientWithBaseURI(endpoint string, configureAuthFunc func(c *autorest.Client)) Client {
-
-	serverStartClient := serverstart.NewServerStartClientWithBaseURI(endpoint)
-	configureAuthFunc(&serverStartClient.Client)
-
-	serverStopClient := serverstop.NewServerStopClientWithBaseURI(endpoint)
-	configureAuthFunc(&serverStopClient.Client)
-
-	return Client{
-		ServerStart: &serverStartClient,
-		ServerStop:  &serverStopClient,
+func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+	serverStartClient, err := serverstart.NewServerStartClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building ServerStart client: %+v", err)
 	}
+	configureFunc(serverStartClient.Client)
+
+	serverStopClient, err := serverstop.NewServerStopClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building ServerStop client: %+v", err)
+	}
+	configureFunc(serverStopClient.Client)
+
+	return &Client{
+		ServerStart: serverStartClient,
+		ServerStop:  serverStopClient,
+	}, nil
 }

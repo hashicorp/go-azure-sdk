@@ -1,6 +1,10 @@
 package onlineendpoint
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -19,6 +23,19 @@ func PossibleValuesForEndpointAuthMode() []string {
 		string(EndpointAuthModeAMLToken),
 		string(EndpointAuthModeKey),
 	}
+}
+
+func (s *EndpointAuthMode) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseEndpointAuthMode(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseEndpointAuthMode(input string) (*EndpointAuthMode, error) {
@@ -50,6 +67,19 @@ func PossibleValuesForEndpointComputeType() []string {
 		string(EndpointComputeTypeKubernetes),
 		string(EndpointComputeTypeManaged),
 	}
+}
+
+func (s *EndpointComputeType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseEndpointComputeType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseEndpointComputeType(input string) (*EndpointComputeType, error) {
@@ -89,6 +119,19 @@ func PossibleValuesForEndpointProvisioningState() []string {
 	}
 }
 
+func (s *EndpointProvisioningState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseEndpointProvisioningState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseEndpointProvisioningState(input string) (*EndpointProvisioningState, error) {
 	vals := map[string]EndpointProvisioningState{
 		"canceled":  EndpointProvisioningStateCanceled,
@@ -121,6 +164,19 @@ func PossibleValuesForKeyType() []string {
 	}
 }
 
+func (s *KeyType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseKeyType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseKeyType(input string) (*KeyType, error) {
 	vals := map[string]KeyType{
 		"primary":   KeyTypePrimary,
@@ -151,6 +207,19 @@ func PossibleValuesForManagedServiceIdentityType() []string {
 		string(ManagedServiceIdentityTypeSystemAssignedUserAssigned),
 		string(ManagedServiceIdentityTypeUserAssigned),
 	}
+}
+
+func (s *ManagedServiceIdentityType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseManagedServiceIdentityType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseManagedServiceIdentityType(input string) (*ManagedServiceIdentityType, error) {
@@ -187,6 +256,19 @@ func PossibleValuesForOrderString() []string {
 	}
 }
 
+func (s *OrderString) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseOrderString(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseOrderString(input string) (*OrderString, error) {
 	vals := map[string]OrderString{
 		"createdatasc":  OrderStringCreatedAtAsc,
@@ -215,6 +297,19 @@ func PossibleValuesForPublicNetworkAccessType() []string {
 		string(PublicNetworkAccessTypeDisabled),
 		string(PublicNetworkAccessTypeEnabled),
 	}
+}
+
+func (s *PublicNetworkAccessType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parsePublicNetworkAccessType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parsePublicNetworkAccessType(input string) (*PublicNetworkAccessType, error) {
@@ -247,6 +342,19 @@ func PossibleValuesForSkuTier() []string {
 		string(SkuTierPremium),
 		string(SkuTierStandard),
 	}
+}
+
+func (s *SkuTier) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseSkuTier(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseSkuTier(input string) (*SkuTier, error) {

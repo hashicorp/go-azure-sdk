@@ -1,6 +1,10 @@
 package schedule
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -33,6 +37,19 @@ func PossibleValuesForBlockedTransformers() []string {
 		string(BlockedTransformersWoETargetEncoder),
 		string(BlockedTransformersWordEmbedding),
 	}
+}
+
+func (s *BlockedTransformers) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseBlockedTransformers(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseBlockedTransformers(input string) (*BlockedTransformers, error) {
@@ -93,6 +110,19 @@ func PossibleValuesForClassificationModels() []string {
 	}
 }
 
+func (s *ClassificationModels) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseClassificationModels(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseClassificationModels(input string) (*ClassificationModels, error) {
 	vals := map[string]ClassificationModels{
 		"bernoullinaivebayes":   ClassificationModelsBernoulliNaiveBayes,
@@ -140,6 +170,19 @@ func PossibleValuesForClassificationMultilabelPrimaryMetrics() []string {
 	}
 }
 
+func (s *ClassificationMultilabelPrimaryMetrics) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseClassificationMultilabelPrimaryMetrics(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseClassificationMultilabelPrimaryMetrics(input string) (*ClassificationMultilabelPrimaryMetrics, error) {
 	vals := map[string]ClassificationMultilabelPrimaryMetrics{
 		"aucweighted":                   ClassificationMultilabelPrimaryMetricsAUCWeighted,
@@ -178,6 +221,19 @@ func PossibleValuesForClassificationPrimaryMetrics() []string {
 	}
 }
 
+func (s *ClassificationPrimaryMetrics) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseClassificationPrimaryMetrics(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseClassificationPrimaryMetrics(input string) (*ClassificationPrimaryMetrics, error) {
 	vals := map[string]ClassificationPrimaryMetrics{
 		"aucweighted":                   ClassificationPrimaryMetricsAUCWeighted,
@@ -211,6 +267,19 @@ func PossibleValuesForDistributionType() []string {
 	}
 }
 
+func (s *DistributionType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseDistributionType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseDistributionType(input string) (*DistributionType, error) {
 	vals := map[string]DistributionType{
 		"mpi":        DistributionTypeMpi,
@@ -242,6 +311,19 @@ func PossibleValuesForEarlyTerminationPolicyType() []string {
 	}
 }
 
+func (s *EarlyTerminationPolicyType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseEarlyTerminationPolicyType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseEarlyTerminationPolicyType(input string) (*EarlyTerminationPolicyType, error) {
 	vals := map[string]EarlyTerminationPolicyType{
 		"bandit":              EarlyTerminationPolicyTypeBandit,
@@ -269,6 +351,19 @@ func PossibleValuesForFeatureLags() []string {
 		string(FeatureLagsAuto),
 		string(FeatureLagsNone),
 	}
+}
+
+func (s *FeatureLags) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseFeatureLags(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseFeatureLags(input string) (*FeatureLags, error) {
@@ -301,6 +396,19 @@ func PossibleValuesForFeaturizationMode() []string {
 	}
 }
 
+func (s *FeaturizationMode) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseFeaturizationMode(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseFeaturizationMode(input string) (*FeaturizationMode, error) {
 	vals := map[string]FeaturizationMode{
 		"auto":   FeaturizationModeAuto,
@@ -328,6 +436,19 @@ func PossibleValuesForForecastHorizonMode() []string {
 		string(ForecastHorizonModeAuto),
 		string(ForecastHorizonModeCustom),
 	}
+}
+
+func (s *ForecastHorizonMode) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseForecastHorizonMode(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseForecastHorizonMode(input string) (*ForecastHorizonMode, error) {
@@ -392,6 +513,19 @@ func PossibleValuesForForecastingModels() []string {
 	}
 }
 
+func (s *ForecastingModels) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseForecastingModels(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseForecastingModels(input string) (*ForecastingModels, error) {
 	vals := map[string]ForecastingModels{
 		"arimax":               ForecastingModelsArimax,
@@ -441,6 +575,19 @@ func PossibleValuesForForecastingPrimaryMetrics() []string {
 	}
 }
 
+func (s *ForecastingPrimaryMetrics) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseForecastingPrimaryMetrics(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseForecastingPrimaryMetrics(input string) (*ForecastingPrimaryMetrics, error) {
 	vals := map[string]ForecastingPrimaryMetrics{
 		"normalizedmeanabsoluteerror":    ForecastingPrimaryMetricsNormalizedMeanAbsoluteError,
@@ -471,6 +618,19 @@ func PossibleValuesForGoal() []string {
 	}
 }
 
+func (s *Goal) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseGoal(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseGoal(input string) (*Goal, error) {
 	vals := map[string]Goal{
 		"maximize": GoalMaximize,
@@ -499,6 +659,19 @@ func PossibleValuesForIdentityConfigurationType() []string {
 		string(IdentityConfigurationTypeManaged),
 		string(IdentityConfigurationTypeUserIdentity),
 	}
+}
+
+func (s *IdentityConfigurationType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseIdentityConfigurationType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseIdentityConfigurationType(input string) (*IdentityConfigurationType, error) {
@@ -538,6 +711,19 @@ func PossibleValuesForInputDeliveryMode() []string {
 	}
 }
 
+func (s *InputDeliveryMode) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseInputDeliveryMode(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseInputDeliveryMode(input string) (*InputDeliveryMode, error) {
 	vals := map[string]InputDeliveryMode{
 		"direct":         InputDeliveryModeDirect,
@@ -566,6 +752,19 @@ func PossibleValuesForInstanceSegmentationPrimaryMetrics() []string {
 	return []string{
 		string(InstanceSegmentationPrimaryMetricsMeanAveragePrecision),
 	}
+}
+
+func (s *InstanceSegmentationPrimaryMetrics) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseInstanceSegmentationPrimaryMetrics(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseInstanceSegmentationPrimaryMetrics(input string) (*InstanceSegmentationPrimaryMetrics, error) {
@@ -605,6 +804,19 @@ func PossibleValuesForJobInputType() []string {
 	}
 }
 
+func (s *JobInputType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseJobInputType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseJobInputType(input string) (*JobInputType, error) {
 	vals := map[string]JobInputType{
 		"custom_model": JobInputTypeCustomModel,
@@ -636,6 +848,19 @@ func PossibleValuesForJobLimitsType() []string {
 		string(JobLimitsTypeCommand),
 		string(JobLimitsTypeSweep),
 	}
+}
+
+func (s *JobLimitsType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseJobLimitsType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseJobLimitsType(input string) (*JobLimitsType, error) {
@@ -672,6 +897,19 @@ func PossibleValuesForJobOutputType() []string {
 		string(JobOutputTypeUriFile),
 		string(JobOutputTypeUriFolder),
 	}
+}
+
+func (s *JobOutputType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseJobOutputType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseJobOutputType(input string) (*JobOutputType, error) {
@@ -730,6 +968,19 @@ func PossibleValuesForJobStatus() []string {
 	}
 }
 
+func (s *JobStatus) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseJobStatus(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseJobStatus(input string) (*JobStatus, error) {
 	vals := map[string]JobStatus{
 		"cancelrequested": JobStatusCancelRequested,
@@ -774,6 +1025,19 @@ func PossibleValuesForJobType() []string {
 	}
 }
 
+func (s *JobType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseJobType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseJobType(input string) (*JobType, error) {
 	vals := map[string]JobType{
 		"automl":   JobTypeAutoML,
@@ -804,6 +1068,19 @@ func PossibleValuesForLearningRateScheduler() []string {
 		string(LearningRateSchedulerStep),
 		string(LearningRateSchedulerWarmupCosine),
 	}
+}
+
+func (s *LearningRateScheduler) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseLearningRateScheduler(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseLearningRateScheduler(input string) (*LearningRateScheduler, error) {
@@ -841,6 +1118,19 @@ func PossibleValuesForLogVerbosity() []string {
 		string(LogVerbosityNotSet),
 		string(LogVerbosityWarning),
 	}
+}
+
+func (s *LogVerbosity) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseLogVerbosity(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseLogVerbosity(input string) (*LogVerbosity, error) {
@@ -881,6 +1171,19 @@ func PossibleValuesForModelSize() []string {
 	}
 }
 
+func (s *ModelSize) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseModelSize(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseModelSize(input string) (*ModelSize, error) {
 	vals := map[string]ModelSize{
 		"extralarge": ModelSizeExtraLarge,
@@ -912,6 +1215,19 @@ func PossibleValuesForNCrossValidationsMode() []string {
 	}
 }
 
+func (s *NCrossValidationsMode) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseNCrossValidationsMode(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseNCrossValidationsMode(input string) (*NCrossValidationsMode, error) {
 	vals := map[string]NCrossValidationsMode{
 		"auto":   NCrossValidationsModeAuto,
@@ -938,6 +1254,19 @@ func PossibleValuesForNodesValueType() []string {
 	}
 }
 
+func (s *NodesValueType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseNodesValueType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseNodesValueType(input string) (*NodesValueType, error) {
 	vals := map[string]NodesValueType{
 		"all": NodesValueTypeAll,
@@ -961,6 +1290,19 @@ func PossibleValuesForObjectDetectionPrimaryMetrics() []string {
 	return []string{
 		string(ObjectDetectionPrimaryMetricsMeanAveragePrecision),
 	}
+}
+
+func (s *ObjectDetectionPrimaryMetrics) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseObjectDetectionPrimaryMetrics(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseObjectDetectionPrimaryMetrics(input string) (*ObjectDetectionPrimaryMetrics, error) {
@@ -990,6 +1332,19 @@ func PossibleValuesForOutputDeliveryMode() []string {
 	}
 }
 
+func (s *OutputDeliveryMode) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseOutputDeliveryMode(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseOutputDeliveryMode(input string) (*OutputDeliveryMode, error) {
 	vals := map[string]OutputDeliveryMode{
 		"readwritemount": OutputDeliveryModeReadWriteMount,
@@ -1016,6 +1371,19 @@ func PossibleValuesForRandomSamplingAlgorithmRule() []string {
 		string(RandomSamplingAlgorithmRuleRandom),
 		string(RandomSamplingAlgorithmRuleSobol),
 	}
+}
+
+func (s *RandomSamplingAlgorithmRule) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseRandomSamplingAlgorithmRule(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseRandomSamplingAlgorithmRule(input string) (*RandomSamplingAlgorithmRule, error) {
@@ -1050,6 +1418,19 @@ func PossibleValuesForRecurrenceFrequency() []string {
 		string(RecurrenceFrequencyMonth),
 		string(RecurrenceFrequencyWeek),
 	}
+}
+
+func (s *RecurrenceFrequency) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseRecurrenceFrequency(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseRecurrenceFrequency(input string) (*RecurrenceFrequency, error) {
@@ -1099,6 +1480,19 @@ func PossibleValuesForRegressionModels() []string {
 	}
 }
 
+func (s *RegressionModels) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseRegressionModels(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseRegressionModels(input string) (*RegressionModels, error) {
 	vals := map[string]RegressionModels{
 		"decisiontree":       RegressionModelsDecisionTree,
@@ -1139,6 +1533,19 @@ func PossibleValuesForRegressionPrimaryMetrics() []string {
 	}
 }
 
+func (s *RegressionPrimaryMetrics) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseRegressionPrimaryMetrics(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseRegressionPrimaryMetrics(input string) (*RegressionPrimaryMetrics, error) {
 	vals := map[string]RegressionPrimaryMetrics{
 		"normalizedmeanabsoluteerror":    RegressionPrimaryMetricsNormalizedMeanAbsoluteError,
@@ -1171,6 +1578,19 @@ func PossibleValuesForSamplingAlgorithmType() []string {
 	}
 }
 
+func (s *SamplingAlgorithmType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseSamplingAlgorithmType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseSamplingAlgorithmType(input string) (*SamplingAlgorithmType, error) {
 	vals := map[string]SamplingAlgorithmType{
 		"bayesian": SamplingAlgorithmTypeBayesian,
@@ -1198,6 +1618,19 @@ func PossibleValuesForScheduleActionType() []string {
 		string(ScheduleActionTypeCreateJob),
 		string(ScheduleActionTypeInvokeBatchEndpoint),
 	}
+}
+
+func (s *ScheduleActionType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseScheduleActionType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseScheduleActionType(input string) (*ScheduleActionType, error) {
@@ -1228,6 +1661,19 @@ func PossibleValuesForScheduleListViewType() []string {
 		string(ScheduleListViewTypeDisabledOnly),
 		string(ScheduleListViewTypeEnabledOnly),
 	}
+}
+
+func (s *ScheduleListViewType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseScheduleListViewType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseScheduleListViewType(input string) (*ScheduleListViewType, error) {
@@ -1267,6 +1713,19 @@ func PossibleValuesForScheduleProvisioningStatus() []string {
 	}
 }
 
+func (s *ScheduleProvisioningStatus) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseScheduleProvisioningStatus(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseScheduleProvisioningStatus(input string) (*ScheduleProvisioningStatus, error) {
 	vals := map[string]ScheduleProvisioningStatus{
 		"canceled":  ScheduleProvisioningStatusCanceled,
@@ -1299,6 +1758,19 @@ func PossibleValuesForSeasonalityMode() []string {
 	}
 }
 
+func (s *SeasonalityMode) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseSeasonalityMode(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseSeasonalityMode(input string) (*SeasonalityMode, error) {
 	vals := map[string]SeasonalityMode{
 		"auto":   SeasonalityModeAuto,
@@ -1329,6 +1801,19 @@ func PossibleValuesForShortSeriesHandlingConfiguration() []string {
 		string(ShortSeriesHandlingConfigurationNone),
 		string(ShortSeriesHandlingConfigurationPad),
 	}
+}
+
+func (s *ShortSeriesHandlingConfiguration) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseShortSeriesHandlingConfiguration(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseShortSeriesHandlingConfiguration(input string) (*ShortSeriesHandlingConfiguration, error) {
@@ -1373,6 +1858,19 @@ func PossibleValuesForStackMetaLearnerType() []string {
 	}
 }
 
+func (s *StackMetaLearnerType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseStackMetaLearnerType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseStackMetaLearnerType(input string) (*StackMetaLearnerType, error) {
 	vals := map[string]StackMetaLearnerType{
 		"elasticnet":           StackMetaLearnerTypeElasticNet,
@@ -1411,6 +1909,19 @@ func PossibleValuesForStochasticOptimizer() []string {
 	}
 }
 
+func (s *StochasticOptimizer) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseStochasticOptimizer(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseStochasticOptimizer(input string) (*StochasticOptimizer, error) {
 	vals := map[string]StochasticOptimizer{
 		"adam":  StochasticOptimizerAdam,
@@ -1447,6 +1958,19 @@ func PossibleValuesForTargetAggregationFunction() []string {
 	}
 }
 
+func (s *TargetAggregationFunction) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseTargetAggregationFunction(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseTargetAggregationFunction(input string) (*TargetAggregationFunction, error) {
 	vals := map[string]TargetAggregationFunction{
 		"max":  TargetAggregationFunctionMax,
@@ -1478,6 +2002,19 @@ func PossibleValuesForTargetLagsMode() []string {
 	}
 }
 
+func (s *TargetLagsMode) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseTargetLagsMode(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseTargetLagsMode(input string) (*TargetLagsMode, error) {
 	vals := map[string]TargetLagsMode{
 		"auto":   TargetLagsModeAuto,
@@ -1504,6 +2041,19 @@ func PossibleValuesForTargetRollingWindowSizeMode() []string {
 		string(TargetRollingWindowSizeModeAuto),
 		string(TargetRollingWindowSizeModeCustom),
 	}
+}
+
+func (s *TargetRollingWindowSizeMode) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseTargetRollingWindowSizeMode(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseTargetRollingWindowSizeMode(input string) (*TargetRollingWindowSizeMode, error) {
@@ -1550,6 +2100,19 @@ func PossibleValuesForTaskType() []string {
 	}
 }
 
+func (s *TaskType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseTaskType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseTaskType(input string) (*TaskType, error) {
 	vals := map[string]TaskType{
 		"classification":                TaskTypeClassification,
@@ -1586,6 +2149,19 @@ func PossibleValuesForTriggerType() []string {
 	}
 }
 
+func (s *TriggerType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseTriggerType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseTriggerType(input string) (*TriggerType, error) {
 	vals := map[string]TriggerType{
 		"cron":       TriggerTypeCron,
@@ -1614,6 +2190,19 @@ func PossibleValuesForUseStl() []string {
 		string(UseStlSeason),
 		string(UseStlSeasonTrend),
 	}
+}
+
+func (s *UseStl) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseUseStl(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseUseStl(input string) (*UseStl, error) {
@@ -1647,6 +2236,19 @@ func PossibleValuesForValidationMetricType() []string {
 		string(ValidationMetricTypeNone),
 		string(ValidationMetricTypeVoc),
 	}
+}
+
+func (s *ValidationMetricType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseValidationMetricType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseValidationMetricType(input string) (*ValidationMetricType, error) {
@@ -1687,6 +2289,19 @@ func PossibleValuesForWeekDay() []string {
 		string(WeekDayTuesday),
 		string(WeekDayWednesday),
 	}
+}
+
+func (s *WeekDay) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseWeekDay(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseWeekDay(input string) (*WeekDay, error) {

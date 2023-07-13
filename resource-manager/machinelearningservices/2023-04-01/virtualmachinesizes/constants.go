@@ -1,6 +1,10 @@
 package virtualmachinesizes
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -15,6 +19,19 @@ func PossibleValuesForBillingCurrency() []string {
 	return []string{
 		string(BillingCurrencyUSD),
 	}
+}
+
+func (s *BillingCurrency) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseBillingCurrency(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseBillingCurrency(input string) (*BillingCurrency, error) {
@@ -42,6 +59,19 @@ func PossibleValuesForUnitOfMeasure() []string {
 	}
 }
 
+func (s *UnitOfMeasure) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseUnitOfMeasure(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseUnitOfMeasure(input string) (*UnitOfMeasure, error) {
 	vals := map[string]UnitOfMeasure{
 		"onehour": UnitOfMeasureOneHour,
@@ -67,6 +97,19 @@ func PossibleValuesForVMPriceOSType() []string {
 		string(VMPriceOSTypeLinux),
 		string(VMPriceOSTypeWindows),
 	}
+}
+
+func (s *VMPriceOSType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseVMPriceOSType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseVMPriceOSType(input string) (*VMPriceOSType, error) {
@@ -97,6 +140,19 @@ func PossibleValuesForVMTier() []string {
 		string(VMTierSpot),
 		string(VMTierStandard),
 	}
+}
+
+func (s *VMTier) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseVMTier(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseVMTier(input string) (*VMTier, error) {

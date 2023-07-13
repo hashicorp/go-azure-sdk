@@ -1,6 +1,10 @@
 package batchdeployment
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -19,6 +23,19 @@ func PossibleValuesForBatchLoggingLevel() []string {
 		string(BatchLoggingLevelInfo),
 		string(BatchLoggingLevelWarning),
 	}
+}
+
+func (s *BatchLoggingLevel) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseBatchLoggingLevel(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseBatchLoggingLevel(input string) (*BatchLoggingLevel, error) {
@@ -48,6 +65,19 @@ func PossibleValuesForBatchOutputAction() []string {
 		string(BatchOutputActionAppendRow),
 		string(BatchOutputActionSummaryOnly),
 	}
+}
+
+func (s *BatchOutputAction) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseBatchOutputAction(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseBatchOutputAction(input string) (*BatchOutputAction, error) {
@@ -88,6 +118,19 @@ func PossibleValuesForDeploymentProvisioningState() []string {
 	}
 }
 
+func (s *DeploymentProvisioningState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseDeploymentProvisioningState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseDeploymentProvisioningState(input string) (*DeploymentProvisioningState, error) {
 	vals := map[string]DeploymentProvisioningState{
 		"canceled":  DeploymentProvisioningStateCanceled,
@@ -123,6 +166,19 @@ func PossibleValuesForReferenceType() []string {
 	}
 }
 
+func (s *ReferenceType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseReferenceType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseReferenceType(input string) (*ReferenceType, error) {
 	vals := map[string]ReferenceType{
 		"datapath":   ReferenceTypeDataPath,
@@ -154,6 +210,19 @@ func PossibleValuesForSkuTier() []string {
 		string(SkuTierPremium),
 		string(SkuTierStandard),
 	}
+}
+
+func (s *SkuTier) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseSkuTier(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseSkuTier(input string) (*SkuTier, error) {

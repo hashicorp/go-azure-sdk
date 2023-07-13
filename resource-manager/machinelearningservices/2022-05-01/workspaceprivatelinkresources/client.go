@@ -1,18 +1,26 @@
 package workspaceprivatelinkresources
 
-import "github.com/Azure/go-autorest/autorest"
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type WorkspacePrivateLinkResourcesClient struct {
-	Client  autorest.Client
-	baseUri string
+	Client *resourcemanager.Client
 }
 
-func NewWorkspacePrivateLinkResourcesClientWithBaseURI(endpoint string) WorkspacePrivateLinkResourcesClient {
-	return WorkspacePrivateLinkResourcesClient{
-		Client:  autorest.NewClientWithUserAgent(userAgent()),
-		baseUri: endpoint,
+func NewWorkspacePrivateLinkResourcesClientWithBaseURI(api environments.Api) (*WorkspacePrivateLinkResourcesClient, error) {
+	client, err := resourcemanager.NewResourceManagerClient(api, "workspaceprivatelinkresources", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating WorkspacePrivateLinkResourcesClient: %+v", err)
 	}
+
+	return &WorkspacePrivateLinkResourcesClient{
+		Client: client,
+	}, nil
 }
