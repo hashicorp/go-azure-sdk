@@ -17,7 +17,7 @@ type GetOperationResponse struct {
 }
 
 // Get ...
-func (c AdaptiveNetworkHardeningsClient) Get(ctx context.Context, id AdaptiveNetworkHardeningId) (result GetOperationResponse, err error) {
+func (c AdaptiveNetworkHardeningsClient) Get(ctx context.Context, id ScopedAdaptiveNetworkHardeningId) (result GetOperationResponse, err error) {
 	req, err := c.preparerForGet(ctx, id)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "adaptivenetworkhardenings.AdaptiveNetworkHardeningsClient", "Get", nil, "Failure preparing request")
@@ -40,7 +40,7 @@ func (c AdaptiveNetworkHardeningsClient) Get(ctx context.Context, id AdaptiveNet
 }
 
 // preparerForGet prepares the Get request.
-func (c AdaptiveNetworkHardeningsClient) preparerForGet(ctx context.Context, id AdaptiveNetworkHardeningId) (*http.Request, error) {
+func (c AdaptiveNetworkHardeningsClient) preparerForGet(ctx context.Context, id ScopedAdaptiveNetworkHardeningId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

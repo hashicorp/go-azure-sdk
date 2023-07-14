@@ -6,6 +6,7 @@ import (
 
 	"github.com/Azure/go-autorest/autorest"
 	"github.com/Azure/go-autorest/autorest/azure"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -17,7 +18,7 @@ type GetOperationResponse struct {
 }
 
 // Get ...
-func (c ResourcesClient) Get(ctx context.Context, id ResourceId) (result GetOperationResponse, err error) {
+func (c ResourcesClient) Get(ctx context.Context, id commonids.ScopeId) (result GetOperationResponse, err error) {
 	req, err := c.preparerForGet(ctx, id)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "resources.ResourcesClient", "Get", nil, "Failure preparing request")
@@ -40,7 +41,7 @@ func (c ResourcesClient) Get(ctx context.Context, id ResourceId) (result GetOper
 }
 
 // preparerForGet prepares the Get request.
-func (c ResourcesClient) preparerForGet(ctx context.Context, id ResourceId) (*http.Request, error) {
+func (c ResourcesClient) preparerForGet(ctx context.Context, id commonids.ScopeId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

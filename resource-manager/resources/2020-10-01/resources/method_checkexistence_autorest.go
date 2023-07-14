@@ -6,6 +6,7 @@ import (
 
 	"github.com/Azure/go-autorest/autorest"
 	"github.com/Azure/go-autorest/autorest/azure"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -16,7 +17,7 @@ type CheckExistenceOperationResponse struct {
 }
 
 // CheckExistence ...
-func (c ResourcesClient) CheckExistence(ctx context.Context, id ResourceId) (result CheckExistenceOperationResponse, err error) {
+func (c ResourcesClient) CheckExistence(ctx context.Context, id commonids.ScopeId) (result CheckExistenceOperationResponse, err error) {
 	req, err := c.preparerForCheckExistence(ctx, id)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "resources.ResourcesClient", "CheckExistence", nil, "Failure preparing request")
@@ -39,7 +40,7 @@ func (c ResourcesClient) CheckExistence(ctx context.Context, id ResourceId) (res
 }
 
 // preparerForCheckExistence prepares the CheckExistence request.
-func (c ResourcesClient) preparerForCheckExistence(ctx context.Context, id ResourceId) (*http.Request, error) {
+func (c ResourcesClient) preparerForCheckExistence(ctx context.Context, id commonids.ScopeId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

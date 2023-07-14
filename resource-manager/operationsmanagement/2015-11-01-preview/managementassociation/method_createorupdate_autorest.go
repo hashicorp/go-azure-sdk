@@ -17,7 +17,7 @@ type CreateOrUpdateOperationResponse struct {
 }
 
 // CreateOrUpdate ...
-func (c ManagementAssociationClient) CreateOrUpdate(ctx context.Context, id ManagementAssociationId, input ManagementAssociation) (result CreateOrUpdateOperationResponse, err error) {
+func (c ManagementAssociationClient) CreateOrUpdate(ctx context.Context, id ScopedManagementAssociationId, input ManagementAssociation) (result CreateOrUpdateOperationResponse, err error) {
 	req, err := c.preparerForCreateOrUpdate(ctx, id, input)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "managementassociation.ManagementAssociationClient", "CreateOrUpdate", nil, "Failure preparing request")
@@ -40,7 +40,7 @@ func (c ManagementAssociationClient) CreateOrUpdate(ctx context.Context, id Mana
 }
 
 // preparerForCreateOrUpdate prepares the CreateOrUpdate request.
-func (c ManagementAssociationClient) preparerForCreateOrUpdate(ctx context.Context, id ManagementAssociationId, input ManagementAssociation) (*http.Request, error) {
+func (c ManagementAssociationClient) preparerForCreateOrUpdate(ctx context.Context, id ScopedManagementAssociationId, input ManagementAssociation) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

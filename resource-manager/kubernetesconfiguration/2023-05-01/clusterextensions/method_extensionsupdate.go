@@ -21,7 +21,7 @@ type ExtensionsUpdateOperationResponse struct {
 }
 
 // ExtensionsUpdate ...
-func (c ClusterExtensionsClient) ExtensionsUpdate(ctx context.Context, id ExtensionId, input PatchExtension) (result ExtensionsUpdateOperationResponse, err error) {
+func (c ClusterExtensionsClient) ExtensionsUpdate(ctx context.Context, id ScopedExtensionId, input PatchExtension) (result ExtensionsUpdateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json",
 		ExpectedStatusCodes: []int{
@@ -60,7 +60,7 @@ func (c ClusterExtensionsClient) ExtensionsUpdate(ctx context.Context, id Extens
 }
 
 // ExtensionsUpdateThenPoll performs ExtensionsUpdate then polls until it's completed
-func (c ClusterExtensionsClient) ExtensionsUpdateThenPoll(ctx context.Context, id ExtensionId, input PatchExtension) error {
+func (c ClusterExtensionsClient) ExtensionsUpdateThenPoll(ctx context.Context, id ScopedExtensionId, input PatchExtension) error {
 	result, err := c.ExtensionsUpdate(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing ExtensionsUpdate: %+v", err)

@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -19,7 +20,7 @@ type CreateOrUpdateParentOperationResponse struct {
 }
 
 // CreateOrUpdateParent ...
-func (c ApplyUpdatesClient) CreateOrUpdateParent(ctx context.Context, id ResourceGroupProviderId) (result CreateOrUpdateParentOperationResponse, err error) {
+func (c ApplyUpdatesClient) CreateOrUpdateParent(ctx context.Context, id commonids.ScopeId) (result CreateOrUpdateParentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json",
 		ExpectedStatusCodes: []int{

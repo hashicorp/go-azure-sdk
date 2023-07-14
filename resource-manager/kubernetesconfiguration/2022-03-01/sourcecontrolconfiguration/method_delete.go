@@ -21,7 +21,7 @@ type DeleteOperationResponse struct {
 }
 
 // Delete ...
-func (c SourceControlConfigurationClient) Delete(ctx context.Context, id SourceControlConfigurationId) (result DeleteOperationResponse, err error) {
+func (c SourceControlConfigurationClient) Delete(ctx context.Context, id ScopedSourceControlConfigurationId) (result DeleteOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json",
 		ExpectedStatusCodes: []int{
@@ -56,7 +56,7 @@ func (c SourceControlConfigurationClient) Delete(ctx context.Context, id SourceC
 }
 
 // DeleteThenPoll performs Delete then polls until it's completed
-func (c SourceControlConfigurationClient) DeleteThenPoll(ctx context.Context, id SourceControlConfigurationId) error {
+func (c SourceControlConfigurationClient) DeleteThenPoll(ctx context.Context, id ScopedSourceControlConfigurationId) error {
 	result, err := c.Delete(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing Delete: %+v", err)
