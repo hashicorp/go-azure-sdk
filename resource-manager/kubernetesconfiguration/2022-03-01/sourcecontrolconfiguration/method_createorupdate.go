@@ -18,7 +18,7 @@ type CreateOrUpdateOperationResponse struct {
 }
 
 // CreateOrUpdate ...
-func (c SourceControlConfigurationClient) CreateOrUpdate(ctx context.Context, id SourceControlConfigurationId, input SourceControlConfiguration) (result CreateOrUpdateOperationResponse, err error) {
+func (c SourceControlConfigurationClient) CreateOrUpdate(ctx context.Context, id ScopedSourceControlConfigurationId, input SourceControlConfiguration) (result CreateOrUpdateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json",
 		ExpectedStatusCodes: []int{

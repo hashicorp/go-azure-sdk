@@ -48,7 +48,7 @@ func (o ConfigurationsDeleteOperationOptions) ToQuery() *client.QueryParams {
 }
 
 // ConfigurationsDelete ...
-func (c FluxClient) ConfigurationsDelete(ctx context.Context, id FluxConfigurationId, options ConfigurationsDeleteOperationOptions) (result ConfigurationsDeleteOperationResponse, err error) {
+func (c FluxClient) ConfigurationsDelete(ctx context.Context, id ScopedFluxConfigurationId, options ConfigurationsDeleteOperationOptions) (result ConfigurationsDeleteOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json",
 		ExpectedStatusCodes: []int{
@@ -85,7 +85,7 @@ func (c FluxClient) ConfigurationsDelete(ctx context.Context, id FluxConfigurati
 }
 
 // ConfigurationsDeleteThenPoll performs ConfigurationsDelete then polls until it's completed
-func (c FluxClient) ConfigurationsDeleteThenPoll(ctx context.Context, id FluxConfigurationId, options ConfigurationsDeleteOperationOptions) error {
+func (c FluxClient) ConfigurationsDeleteThenPoll(ctx context.Context, id ScopedFluxConfigurationId, options ConfigurationsDeleteOperationOptions) error {
 	result, err := c.ConfigurationsDelete(ctx, id, options)
 	if err != nil {
 		return fmt.Errorf("performing ConfigurationsDelete: %+v", err)

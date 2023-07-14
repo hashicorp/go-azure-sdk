@@ -8,6 +8,7 @@ import (
 
 	"github.com/Azure/go-autorest/autorest"
 	"github.com/Azure/go-autorest/autorest/azure"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -38,7 +39,7 @@ func (r ListByExtendedResourceOperationResponse) LoadMore(ctx context.Context) (
 }
 
 // ListByExtendedResource ...
-func (c AdaptiveNetworkHardeningsClient) ListByExtendedResource(ctx context.Context, id ProviderId) (resp ListByExtendedResourceOperationResponse, err error) {
+func (c AdaptiveNetworkHardeningsClient) ListByExtendedResource(ctx context.Context, id commonids.ScopeId) (resp ListByExtendedResourceOperationResponse, err error) {
 	req, err := c.preparerForListByExtendedResource(ctx, id)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "adaptivenetworkhardenings.AdaptiveNetworkHardeningsClient", "ListByExtendedResource", nil, "Failure preparing request")
@@ -60,7 +61,7 @@ func (c AdaptiveNetworkHardeningsClient) ListByExtendedResource(ctx context.Cont
 }
 
 // preparerForListByExtendedResource prepares the ListByExtendedResource request.
-func (c AdaptiveNetworkHardeningsClient) preparerForListByExtendedResource(ctx context.Context, id ProviderId) (*http.Request, error) {
+func (c AdaptiveNetworkHardeningsClient) preparerForListByExtendedResource(ctx context.Context, id commonids.ScopeId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}
@@ -142,12 +143,12 @@ func (c AdaptiveNetworkHardeningsClient) responderForListByExtendedResource(resp
 }
 
 // ListByExtendedResourceComplete retrieves all of the results into a single object
-func (c AdaptiveNetworkHardeningsClient) ListByExtendedResourceComplete(ctx context.Context, id ProviderId) (ListByExtendedResourceCompleteResult, error) {
+func (c AdaptiveNetworkHardeningsClient) ListByExtendedResourceComplete(ctx context.Context, id commonids.ScopeId) (ListByExtendedResourceCompleteResult, error) {
 	return c.ListByExtendedResourceCompleteMatchingPredicate(ctx, id, AdaptiveNetworkHardeningOperationPredicate{})
 }
 
 // ListByExtendedResourceCompleteMatchingPredicate retrieves all of the results and then applied the predicate
-func (c AdaptiveNetworkHardeningsClient) ListByExtendedResourceCompleteMatchingPredicate(ctx context.Context, id ProviderId, predicate AdaptiveNetworkHardeningOperationPredicate) (resp ListByExtendedResourceCompleteResult, err error) {
+func (c AdaptiveNetworkHardeningsClient) ListByExtendedResourceCompleteMatchingPredicate(ctx context.Context, id commonids.ScopeId, predicate AdaptiveNetworkHardeningOperationPredicate) (resp ListByExtendedResourceCompleteResult, err error) {
 	items := make([]AdaptiveNetworkHardening, 0)
 
 	page, err := c.ListByExtendedResource(ctx, id)

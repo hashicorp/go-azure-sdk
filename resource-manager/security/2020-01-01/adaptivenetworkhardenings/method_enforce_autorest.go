@@ -19,7 +19,7 @@ type EnforceOperationResponse struct {
 }
 
 // Enforce ...
-func (c AdaptiveNetworkHardeningsClient) Enforce(ctx context.Context, id AdaptiveNetworkHardeningId, input AdaptiveNetworkHardeningEnforceRequest) (result EnforceOperationResponse, err error) {
+func (c AdaptiveNetworkHardeningsClient) Enforce(ctx context.Context, id ScopedAdaptiveNetworkHardeningId, input AdaptiveNetworkHardeningEnforceRequest) (result EnforceOperationResponse, err error) {
 	req, err := c.preparerForEnforce(ctx, id, input)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "adaptivenetworkhardenings.AdaptiveNetworkHardeningsClient", "Enforce", nil, "Failure preparing request")
@@ -36,7 +36,7 @@ func (c AdaptiveNetworkHardeningsClient) Enforce(ctx context.Context, id Adaptiv
 }
 
 // EnforceThenPoll performs Enforce then polls until it's completed
-func (c AdaptiveNetworkHardeningsClient) EnforceThenPoll(ctx context.Context, id AdaptiveNetworkHardeningId, input AdaptiveNetworkHardeningEnforceRequest) error {
+func (c AdaptiveNetworkHardeningsClient) EnforceThenPoll(ctx context.Context, id ScopedAdaptiveNetworkHardeningId, input AdaptiveNetworkHardeningEnforceRequest) error {
 	result, err := c.Enforce(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing Enforce: %+v", err)
@@ -50,7 +50,7 @@ func (c AdaptiveNetworkHardeningsClient) EnforceThenPoll(ctx context.Context, id
 }
 
 // preparerForEnforce prepares the Enforce request.
-func (c AdaptiveNetworkHardeningsClient) preparerForEnforce(ctx context.Context, id AdaptiveNetworkHardeningId, input AdaptiveNetworkHardeningEnforceRequest) (*http.Request, error) {
+func (c AdaptiveNetworkHardeningsClient) preparerForEnforce(ctx context.Context, id ScopedAdaptiveNetworkHardeningId, input AdaptiveNetworkHardeningEnforceRequest) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -50,7 +51,7 @@ func (o ListOperationOptions) ToQuery() *client.QueryParams {
 }
 
 // List ...
-func (c TargetsClient) List(ctx context.Context, id ProviderId, options ListOperationOptions) (result ListOperationResponse, err error) {
+func (c TargetsClient) List(ctx context.Context, id commonids.ScopeId, options ListOperationOptions) (result ListOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json",
 		ExpectedStatusCodes: []int{
@@ -89,12 +90,12 @@ func (c TargetsClient) List(ctx context.Context, id ProviderId, options ListOper
 }
 
 // ListComplete retrieves all the results into a single object
-func (c TargetsClient) ListComplete(ctx context.Context, id ProviderId, options ListOperationOptions) (ListCompleteResult, error) {
+func (c TargetsClient) ListComplete(ctx context.Context, id commonids.ScopeId, options ListOperationOptions) (ListCompleteResult, error) {
 	return c.ListCompleteMatchingPredicate(ctx, id, options, TargetOperationPredicate{})
 }
 
 // ListCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c TargetsClient) ListCompleteMatchingPredicate(ctx context.Context, id ProviderId, options ListOperationOptions, predicate TargetOperationPredicate) (result ListCompleteResult, err error) {
+func (c TargetsClient) ListCompleteMatchingPredicate(ctx context.Context, id commonids.ScopeId, options ListOperationOptions, predicate TargetOperationPredicate) (result ListCompleteResult, err error) {
 	items := make([]Target, 0)
 
 	resp, err := c.List(ctx, id, options)

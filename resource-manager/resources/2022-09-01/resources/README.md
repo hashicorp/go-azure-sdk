@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := resources.NewResourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "providerValue", "parentResourcePathValue", "resourceTypeValue", "resourceValue")
+id := resources.NewScopeID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
 
 read, err := client.CheckExistence(ctx, id)
 if err != nil {
@@ -56,7 +56,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := resources.NewResourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "providerValue", "parentResourcePathValue", "resourceTypeValue", "resourceValue")
+id := resources.NewScopeID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
 
 payload := resources.GenericResource{
 	// ...
@@ -90,7 +90,7 @@ if err := client.CreateOrUpdateByIdThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := resources.NewResourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "providerValue", "parentResourcePathValue", "resourceTypeValue", "resourceValue")
+id := resources.NewScopeID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
 
 if err := client.DeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -114,7 +114,7 @@ if err := client.DeleteByIdThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := resources.NewResourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "providerValue", "parentResourcePathValue", "resourceTypeValue", "resourceValue")
+id := resources.NewScopeID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -180,7 +180,7 @@ if err := client.MoveResourcesThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := resources.NewResourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "providerValue", "parentResourcePathValue", "resourceTypeValue", "resourceValue")
+id := resources.NewScopeID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
 
 payload := resources.GenericResource{
 	// ...

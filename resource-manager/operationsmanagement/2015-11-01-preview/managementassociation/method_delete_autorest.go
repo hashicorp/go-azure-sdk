@@ -16,7 +16,7 @@ type DeleteOperationResponse struct {
 }
 
 // Delete ...
-func (c ManagementAssociationClient) Delete(ctx context.Context, id ManagementAssociationId) (result DeleteOperationResponse, err error) {
+func (c ManagementAssociationClient) Delete(ctx context.Context, id ScopedManagementAssociationId) (result DeleteOperationResponse, err error) {
 	req, err := c.preparerForDelete(ctx, id)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "managementassociation.ManagementAssociationClient", "Delete", nil, "Failure preparing request")
@@ -39,7 +39,7 @@ func (c ManagementAssociationClient) Delete(ctx context.Context, id ManagementAs
 }
 
 // preparerForDelete prepares the Delete request.
-func (c ManagementAssociationClient) preparerForDelete(ctx context.Context, id ManagementAssociationId) (*http.Request, error) {
+func (c ManagementAssociationClient) preparerForDelete(ctx context.Context, id ScopedManagementAssociationId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

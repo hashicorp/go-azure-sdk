@@ -18,7 +18,7 @@ type GetOperationResponse struct {
 }
 
 // Get ...
-func (c ApplyUpdatesClient) Get(ctx context.Context, id ApplyUpdateId) (result GetOperationResponse, err error) {
+func (c ApplyUpdatesClient) Get(ctx context.Context, id ScopedApplyUpdateId) (result GetOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json",
 		ExpectedStatusCodes: []int{

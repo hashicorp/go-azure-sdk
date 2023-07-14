@@ -17,7 +17,7 @@ type GetOperationResponse struct {
 }
 
 // Get ...
-func (c ManagementAssociationClient) Get(ctx context.Context, id ManagementAssociationId) (result GetOperationResponse, err error) {
+func (c ManagementAssociationClient) Get(ctx context.Context, id ScopedManagementAssociationId) (result GetOperationResponse, err error) {
 	req, err := c.preparerForGet(ctx, id)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "managementassociation.ManagementAssociationClient", "Get", nil, "Failure preparing request")
@@ -40,7 +40,7 @@ func (c ManagementAssociationClient) Get(ctx context.Context, id ManagementAssoc
 }
 
 // preparerForGet prepares the Get request.
-func (c ManagementAssociationClient) preparerForGet(ctx context.Context, id ManagementAssociationId) (*http.Request, error) {
+func (c ManagementAssociationClient) preparerForGet(ctx context.Context, id ScopedManagementAssociationId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

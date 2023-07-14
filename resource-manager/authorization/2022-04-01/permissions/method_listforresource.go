@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -23,7 +24,7 @@ type ListForResourceCompleteResult struct {
 }
 
 // ListForResource ...
-func (c PermissionsClient) ListForResource(ctx context.Context, id ResourceId) (result ListForResourceOperationResponse, err error) {
+func (c PermissionsClient) ListForResource(ctx context.Context, id commonids.ScopeId) (result ListForResourceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json",
 		ExpectedStatusCodes: []int{
@@ -61,12 +62,12 @@ func (c PermissionsClient) ListForResource(ctx context.Context, id ResourceId) (
 }
 
 // ListForResourceComplete retrieves all the results into a single object
-func (c PermissionsClient) ListForResourceComplete(ctx context.Context, id ResourceId) (ListForResourceCompleteResult, error) {
+func (c PermissionsClient) ListForResourceComplete(ctx context.Context, id commonids.ScopeId) (ListForResourceCompleteResult, error) {
 	return c.ListForResourceCompleteMatchingPredicate(ctx, id, PermissionOperationPredicate{})
 }
 
 // ListForResourceCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c PermissionsClient) ListForResourceCompleteMatchingPredicate(ctx context.Context, id ResourceId, predicate PermissionOperationPredicate) (result ListForResourceCompleteResult, err error) {
+func (c PermissionsClient) ListForResourceCompleteMatchingPredicate(ctx context.Context, id commonids.ScopeId, predicate PermissionOperationPredicate) (result ListForResourceCompleteResult, err error) {
 	items := make([]Permission, 0)
 
 	resp, err := c.ListForResource(ctx, id)

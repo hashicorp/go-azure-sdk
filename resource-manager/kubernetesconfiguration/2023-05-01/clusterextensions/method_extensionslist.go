@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -23,7 +24,7 @@ type ExtensionsListCompleteResult struct {
 }
 
 // ExtensionsList ...
-func (c ClusterExtensionsClient) ExtensionsList(ctx context.Context, id ProviderId) (result ExtensionsListOperationResponse, err error) {
+func (c ClusterExtensionsClient) ExtensionsList(ctx context.Context, id commonids.ScopeId) (result ExtensionsListOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json",
 		ExpectedStatusCodes: []int{
@@ -61,12 +62,12 @@ func (c ClusterExtensionsClient) ExtensionsList(ctx context.Context, id Provider
 }
 
 // ExtensionsListComplete retrieves all the results into a single object
-func (c ClusterExtensionsClient) ExtensionsListComplete(ctx context.Context, id ProviderId) (ExtensionsListCompleteResult, error) {
+func (c ClusterExtensionsClient) ExtensionsListComplete(ctx context.Context, id commonids.ScopeId) (ExtensionsListCompleteResult, error) {
 	return c.ExtensionsListCompleteMatchingPredicate(ctx, id, ExtensionOperationPredicate{})
 }
 
 // ExtensionsListCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c ClusterExtensionsClient) ExtensionsListCompleteMatchingPredicate(ctx context.Context, id ProviderId, predicate ExtensionOperationPredicate) (result ExtensionsListCompleteResult, err error) {
+func (c ClusterExtensionsClient) ExtensionsListCompleteMatchingPredicate(ctx context.Context, id commonids.ScopeId, predicate ExtensionOperationPredicate) (result ExtensionsListCompleteResult, err error) {
 	items := make([]Extension, 0)
 
 	resp, err := c.ExtensionsList(ctx, id)

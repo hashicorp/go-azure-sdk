@@ -18,7 +18,7 @@ type ExtensionsGetOperationResponse struct {
 }
 
 // ExtensionsGet ...
-func (c ClusterExtensionsClient) ExtensionsGet(ctx context.Context, id ExtensionId) (result ExtensionsGetOperationResponse, err error) {
+func (c ClusterExtensionsClient) ExtensionsGet(ctx context.Context, id ScopedExtensionId) (result ExtensionsGetOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json",
 		ExpectedStatusCodes: []int{
