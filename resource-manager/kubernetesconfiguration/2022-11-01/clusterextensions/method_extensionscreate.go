@@ -21,7 +21,7 @@ type ExtensionsCreateOperationResponse struct {
 }
 
 // ExtensionsCreate ...
-func (c ClusterExtensionsClient) ExtensionsCreate(ctx context.Context, id ExtensionId, input Extension) (result ExtensionsCreateOperationResponse, err error) {
+func (c ClusterExtensionsClient) ExtensionsCreate(ctx context.Context, id ScopedExtensionId, input Extension) (result ExtensionsCreateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json",
 		ExpectedStatusCodes: []int{
@@ -60,7 +60,7 @@ func (c ClusterExtensionsClient) ExtensionsCreate(ctx context.Context, id Extens
 }
 
 // ExtensionsCreateThenPoll performs ExtensionsCreate then polls until it's completed
-func (c ClusterExtensionsClient) ExtensionsCreateThenPoll(ctx context.Context, id ExtensionId, input Extension) error {
+func (c ClusterExtensionsClient) ExtensionsCreateThenPoll(ctx context.Context, id ScopedExtensionId, input Extension) error {
 	result, err := c.ExtensionsCreate(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing ExtensionsCreate: %+v", err)

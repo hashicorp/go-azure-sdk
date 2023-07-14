@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := managementlocks.NewResourceLockID("12345678-1234-9876-4563-123456789012", "example-resource-group", "providerValue", "parentResourcePathValue", "resourceTypeValue", "resourceValue", "lockValue")
+id := managementlocks.NewResourceLockScopedID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "resourceValue", "lockValue")
 
 payload := managementlocks.ManagementLockObject{
 	// ...
@@ -87,7 +87,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := managementlocks.NewScopedLockID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "lockValue")
+id := managementlocks.NewLockScopedID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "lockValue")
 
 payload := managementlocks.ManagementLockObject{
 	// ...
@@ -124,7 +124,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := managementlocks.NewResourceLockID("12345678-1234-9876-4563-123456789012", "example-resource-group", "providerValue", "parentResourcePathValue", "resourceTypeValue", "resourceValue", "lockValue")
+id := managementlocks.NewResourceLockScopedID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "resourceValue", "lockValue")
 
 read, err := client.DeleteAtResourceLevel(ctx, id)
 if err != nil {
@@ -156,7 +156,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := managementlocks.NewScopedLockID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "lockValue")
+id := managementlocks.NewLockScopedID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "lockValue")
 
 read, err := client.DeleteByScope(ctx, id)
 if err != nil {
@@ -188,7 +188,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := managementlocks.NewResourceLockID("12345678-1234-9876-4563-123456789012", "example-resource-group", "providerValue", "parentResourcePathValue", "resourceTypeValue", "resourceValue", "lockValue")
+id := managementlocks.NewResourceLockScopedID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "resourceValue", "lockValue")
 
 read, err := client.GetAtResourceLevel(ctx, id)
 if err != nil {
@@ -220,7 +220,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := managementlocks.NewScopedLockID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "lockValue")
+id := managementlocks.NewLockScopedID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "lockValue")
 
 read, err := client.GetByScope(ctx, id)
 if err != nil {
@@ -253,7 +253,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := managementlocks.NewResourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "providerValue", "parentResourcePathValue", "resourceTypeValue", "resourceValue")
+id := managementlocks.NewScopedResourceID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "resourceValue")
 
 // alternatively `client.ListAtResourceLevel(ctx, id, managementlocks.DefaultListAtResourceLevelOperationOptions())` can be used to do batched pagination
 items, err := client.ListAtResourceLevelComplete(ctx, id, managementlocks.DefaultListAtResourceLevelOperationOptions())

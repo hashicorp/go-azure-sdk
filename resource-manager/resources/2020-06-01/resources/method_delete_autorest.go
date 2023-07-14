@@ -19,7 +19,7 @@ type DeleteOperationResponse struct {
 }
 
 // Delete ...
-func (c ResourcesClient) Delete(ctx context.Context, id ResourceId) (result DeleteOperationResponse, err error) {
+func (c ResourcesClient) Delete(ctx context.Context, id ScopedResourceId) (result DeleteOperationResponse, err error) {
 	req, err := c.preparerForDelete(ctx, id)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "resources.ResourcesClient", "Delete", nil, "Failure preparing request")
@@ -36,7 +36,7 @@ func (c ResourcesClient) Delete(ctx context.Context, id ResourceId) (result Dele
 }
 
 // DeleteThenPoll performs Delete then polls until it's completed
-func (c ResourcesClient) DeleteThenPoll(ctx context.Context, id ResourceId) error {
+func (c ResourcesClient) DeleteThenPoll(ctx context.Context, id ScopedResourceId) error {
 	result, err := c.Delete(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing Delete: %+v", err)
@@ -50,7 +50,7 @@ func (c ResourcesClient) DeleteThenPoll(ctx context.Context, id ResourceId) erro
 }
 
 // preparerForDelete prepares the Delete request.
-func (c ResourcesClient) preparerForDelete(ctx context.Context, id ResourceId) (*http.Request, error) {
+func (c ResourcesClient) preparerForDelete(ctx context.Context, id ScopedResourceId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

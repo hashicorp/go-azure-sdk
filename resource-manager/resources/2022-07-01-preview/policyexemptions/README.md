@@ -111,7 +111,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := policyexemptions.NewResourceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "providerValue", "parentResourcePathValue", "resourceTypeValue", "resourceValue")
+id := policyexemptions.NewScopedResourceID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "resourceValue")
 
 // alternatively `client.ListForResource(ctx, id, policyexemptions.DefaultListForResourceOperationOptions())` can be used to do batched pagination
 items, err := client.ListForResourceComplete(ctx, id, policyexemptions.DefaultListForResourceOperationOptions())

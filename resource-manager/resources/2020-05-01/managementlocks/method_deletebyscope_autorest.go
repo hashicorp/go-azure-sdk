@@ -16,7 +16,7 @@ type DeleteByScopeOperationResponse struct {
 }
 
 // DeleteByScope ...
-func (c ManagementLocksClient) DeleteByScope(ctx context.Context, id ScopedLockId) (result DeleteByScopeOperationResponse, err error) {
+func (c ManagementLocksClient) DeleteByScope(ctx context.Context, id LockScopedId) (result DeleteByScopeOperationResponse, err error) {
 	req, err := c.preparerForDeleteByScope(ctx, id)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "managementlocks.ManagementLocksClient", "DeleteByScope", nil, "Failure preparing request")
@@ -39,7 +39,7 @@ func (c ManagementLocksClient) DeleteByScope(ctx context.Context, id ScopedLockI
 }
 
 // preparerForDeleteByScope prepares the DeleteByScope request.
-func (c ManagementLocksClient) preparerForDeleteByScope(ctx context.Context, id ScopedLockId) (*http.Request, error) {
+func (c ManagementLocksClient) preparerForDeleteByScope(ctx context.Context, id LockScopedId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

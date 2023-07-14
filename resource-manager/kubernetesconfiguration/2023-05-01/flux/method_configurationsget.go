@@ -18,7 +18,7 @@ type ConfigurationsGetOperationResponse struct {
 }
 
 // ConfigurationsGet ...
-func (c FluxClient) ConfigurationsGet(ctx context.Context, id FluxConfigurationId) (result ConfigurationsGetOperationResponse, err error) {
+func (c FluxClient) ConfigurationsGet(ctx context.Context, id ScopedFluxConfigurationId) (result ConfigurationsGetOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json",
 		ExpectedStatusCodes: []int{

@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := applyupdates.NewProviderID("12345678-1234-9876-4563-123456789012", "example-resource-group", "providerValue", "resourceTypeValue", "resourceValue")
+id := applyupdates.NewScopeID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
 
 read, err := client.CreateOrUpdate(ctx, id)
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := applyupdates.NewResourceGroupProviderID("12345678-1234-9876-4563-123456789012", "example-resource-group", "providerValue", "resourceParentTypeValue", "resourceParentValue", "resourceTypeValue", "resourceValue")
+id := applyupdates.NewScopeID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
 
 read, err := client.CreateOrUpdateParent(ctx, id)
 if err != nil {
@@ -56,7 +56,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := applyupdates.NewApplyUpdateID("12345678-1234-9876-4563-123456789012", "example-resource-group", "providerValue", "resourceTypeValue", "resourceValue", "applyUpdateValue")
+id := applyupdates.NewScopedApplyUpdateID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "applyUpdateValue")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -72,7 +72,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := applyupdates.NewProviders2ApplyUpdateID("12345678-1234-9876-4563-123456789012", "example-resource-group", "providerValue", "resourceParentTypeValue", "resourceParentValue", "resourceTypeValue", "resourceValue", "applyUpdateValue")
+id := applyupdates.NewScopedApplyUpdateID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "applyUpdateValue")
 
 read, err := client.GetParent(ctx, id)
 if err != nil {

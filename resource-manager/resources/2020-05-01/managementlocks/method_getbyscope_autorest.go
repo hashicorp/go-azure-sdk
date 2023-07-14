@@ -17,7 +17,7 @@ type GetByScopeOperationResponse struct {
 }
 
 // GetByScope ...
-func (c ManagementLocksClient) GetByScope(ctx context.Context, id ScopedLockId) (result GetByScopeOperationResponse, err error) {
+func (c ManagementLocksClient) GetByScope(ctx context.Context, id LockScopedId) (result GetByScopeOperationResponse, err error) {
 	req, err := c.preparerForGetByScope(ctx, id)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "managementlocks.ManagementLocksClient", "GetByScope", nil, "Failure preparing request")
@@ -40,7 +40,7 @@ func (c ManagementLocksClient) GetByScope(ctx context.Context, id ScopedLockId) 
 }
 
 // preparerForGetByScope prepares the GetByScope request.
-func (c ManagementLocksClient) preparerForGetByScope(ctx context.Context, id ScopedLockId) (*http.Request, error) {
+func (c ManagementLocksClient) preparerForGetByScope(ctx context.Context, id LockScopedId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

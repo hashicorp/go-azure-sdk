@@ -19,7 +19,7 @@ type CreateOrUpdateOperationResponse struct {
 }
 
 // CreateOrUpdate ...
-func (c ResourcesClient) CreateOrUpdate(ctx context.Context, id ResourceId, input GenericResource) (result CreateOrUpdateOperationResponse, err error) {
+func (c ResourcesClient) CreateOrUpdate(ctx context.Context, id ScopedResourceId, input GenericResource) (result CreateOrUpdateOperationResponse, err error) {
 	req, err := c.preparerForCreateOrUpdate(ctx, id, input)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "resources.ResourcesClient", "CreateOrUpdate", nil, "Failure preparing request")
@@ -36,7 +36,7 @@ func (c ResourcesClient) CreateOrUpdate(ctx context.Context, id ResourceId, inpu
 }
 
 // CreateOrUpdateThenPoll performs CreateOrUpdate then polls until it's completed
-func (c ResourcesClient) CreateOrUpdateThenPoll(ctx context.Context, id ResourceId, input GenericResource) error {
+func (c ResourcesClient) CreateOrUpdateThenPoll(ctx context.Context, id ScopedResourceId, input GenericResource) error {
 	result, err := c.CreateOrUpdate(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing CreateOrUpdate: %+v", err)
@@ -50,7 +50,7 @@ func (c ResourcesClient) CreateOrUpdateThenPoll(ctx context.Context, id Resource
 }
 
 // preparerForCreateOrUpdate prepares the CreateOrUpdate request.
-func (c ResourcesClient) preparerForCreateOrUpdate(ctx context.Context, id ResourceId, input GenericResource) (*http.Request, error) {
+func (c ResourcesClient) preparerForCreateOrUpdate(ctx context.Context, id ScopedResourceId, input GenericResource) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

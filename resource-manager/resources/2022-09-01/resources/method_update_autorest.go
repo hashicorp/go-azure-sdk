@@ -19,7 +19,7 @@ type UpdateOperationResponse struct {
 }
 
 // Update ...
-func (c ResourcesClient) Update(ctx context.Context, id ResourceId, input GenericResource) (result UpdateOperationResponse, err error) {
+func (c ResourcesClient) Update(ctx context.Context, id ScopedResourceId, input GenericResource) (result UpdateOperationResponse, err error) {
 	req, err := c.preparerForUpdate(ctx, id, input)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "resources.ResourcesClient", "Update", nil, "Failure preparing request")
@@ -36,7 +36,7 @@ func (c ResourcesClient) Update(ctx context.Context, id ResourceId, input Generi
 }
 
 // UpdateThenPoll performs Update then polls until it's completed
-func (c ResourcesClient) UpdateThenPoll(ctx context.Context, id ResourceId, input GenericResource) error {
+func (c ResourcesClient) UpdateThenPoll(ctx context.Context, id ScopedResourceId, input GenericResource) error {
 	result, err := c.Update(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing Update: %+v", err)
@@ -50,7 +50,7 @@ func (c ResourcesClient) UpdateThenPoll(ctx context.Context, id ResourceId, inpu
 }
 
 // preparerForUpdate prepares the Update request.
-func (c ResourcesClient) preparerForUpdate(ctx context.Context, id ResourceId, input GenericResource) (*http.Request, error) {
+func (c ResourcesClient) preparerForUpdate(ctx context.Context, id ScopedResourceId, input GenericResource) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

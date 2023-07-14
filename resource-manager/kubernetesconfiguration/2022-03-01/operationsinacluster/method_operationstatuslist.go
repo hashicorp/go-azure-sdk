@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -23,7 +24,7 @@ type OperationStatusListCompleteResult struct {
 }
 
 // OperationStatusList ...
-func (c OperationsInAClusterClient) OperationStatusList(ctx context.Context, id ProviderId) (result OperationStatusListOperationResponse, err error) {
+func (c OperationsInAClusterClient) OperationStatusList(ctx context.Context, id commonids.ScopeId) (result OperationStatusListOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json",
 		ExpectedStatusCodes: []int{
@@ -61,12 +62,12 @@ func (c OperationsInAClusterClient) OperationStatusList(ctx context.Context, id 
 }
 
 // OperationStatusListComplete retrieves all the results into a single object
-func (c OperationsInAClusterClient) OperationStatusListComplete(ctx context.Context, id ProviderId) (OperationStatusListCompleteResult, error) {
+func (c OperationsInAClusterClient) OperationStatusListComplete(ctx context.Context, id commonids.ScopeId) (OperationStatusListCompleteResult, error) {
 	return c.OperationStatusListCompleteMatchingPredicate(ctx, id, OperationStatusResultOperationPredicate{})
 }
 
 // OperationStatusListCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c OperationsInAClusterClient) OperationStatusListCompleteMatchingPredicate(ctx context.Context, id ProviderId, predicate OperationStatusResultOperationPredicate) (result OperationStatusListCompleteResult, err error) {
+func (c OperationsInAClusterClient) OperationStatusListCompleteMatchingPredicate(ctx context.Context, id commonids.ScopeId, predicate OperationStatusResultOperationPredicate) (result OperationStatusListCompleteResult, err error) {
 	items := make([]OperationStatusResult, 0)
 
 	resp, err := c.OperationStatusList(ctx, id)

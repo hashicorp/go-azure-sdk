@@ -50,7 +50,7 @@ func (o ListForResourceOperationOptions) ToQuery() *client.QueryParams {
 }
 
 // ListForResource ...
-func (c DenyAssignmentsClient) ListForResource(ctx context.Context, id ResourceId, options ListForResourceOperationOptions) (result ListForResourceOperationResponse, err error) {
+func (c DenyAssignmentsClient) ListForResource(ctx context.Context, id ScopedResourceId, options ListForResourceOperationOptions) (result ListForResourceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json",
 		ExpectedStatusCodes: []int{
@@ -89,12 +89,12 @@ func (c DenyAssignmentsClient) ListForResource(ctx context.Context, id ResourceI
 }
 
 // ListForResourceComplete retrieves all the results into a single object
-func (c DenyAssignmentsClient) ListForResourceComplete(ctx context.Context, id ResourceId, options ListForResourceOperationOptions) (ListForResourceCompleteResult, error) {
+func (c DenyAssignmentsClient) ListForResourceComplete(ctx context.Context, id ScopedResourceId, options ListForResourceOperationOptions) (ListForResourceCompleteResult, error) {
 	return c.ListForResourceCompleteMatchingPredicate(ctx, id, options, DenyAssignmentOperationPredicate{})
 }
 
 // ListForResourceCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c DenyAssignmentsClient) ListForResourceCompleteMatchingPredicate(ctx context.Context, id ResourceId, options ListForResourceOperationOptions, predicate DenyAssignmentOperationPredicate) (result ListForResourceCompleteResult, err error) {
+func (c DenyAssignmentsClient) ListForResourceCompleteMatchingPredicate(ctx context.Context, id ScopedResourceId, options ListForResourceOperationOptions, predicate DenyAssignmentOperationPredicate) (result ListForResourceCompleteResult, err error) {
 	items := make([]DenyAssignment, 0)
 
 	resp, err := c.ListForResource(ctx, id, options)

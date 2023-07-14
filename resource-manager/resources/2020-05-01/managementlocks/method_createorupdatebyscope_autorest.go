@@ -17,7 +17,7 @@ type CreateOrUpdateByScopeOperationResponse struct {
 }
 
 // CreateOrUpdateByScope ...
-func (c ManagementLocksClient) CreateOrUpdateByScope(ctx context.Context, id ScopedLockId, input ManagementLockObject) (result CreateOrUpdateByScopeOperationResponse, err error) {
+func (c ManagementLocksClient) CreateOrUpdateByScope(ctx context.Context, id LockScopedId, input ManagementLockObject) (result CreateOrUpdateByScopeOperationResponse, err error) {
 	req, err := c.preparerForCreateOrUpdateByScope(ctx, id, input)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "managementlocks.ManagementLocksClient", "CreateOrUpdateByScope", nil, "Failure preparing request")
@@ -40,7 +40,7 @@ func (c ManagementLocksClient) CreateOrUpdateByScope(ctx context.Context, id Sco
 }
 
 // preparerForCreateOrUpdateByScope prepares the CreateOrUpdateByScope request.
-func (c ManagementLocksClient) preparerForCreateOrUpdateByScope(ctx context.Context, id ScopedLockId, input ManagementLockObject) (*http.Request, error) {
+func (c ManagementLocksClient) preparerForCreateOrUpdateByScope(ctx context.Context, id LockScopedId, input ManagementLockObject) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

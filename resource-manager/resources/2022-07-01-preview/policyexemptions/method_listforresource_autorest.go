@@ -62,7 +62,7 @@ func (o ListForResourceOperationOptions) toQueryString() map[string]interface{} 
 }
 
 // ListForResource ...
-func (c PolicyExemptionsClient) ListForResource(ctx context.Context, id ResourceId, options ListForResourceOperationOptions) (resp ListForResourceOperationResponse, err error) {
+func (c PolicyExemptionsClient) ListForResource(ctx context.Context, id ScopedResourceId, options ListForResourceOperationOptions) (resp ListForResourceOperationResponse, err error) {
 	req, err := c.preparerForListForResource(ctx, id, options)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "policyexemptions.PolicyExemptionsClient", "ListForResource", nil, "Failure preparing request")
@@ -84,7 +84,7 @@ func (c PolicyExemptionsClient) ListForResource(ctx context.Context, id Resource
 }
 
 // preparerForListForResource prepares the ListForResource request.
-func (c PolicyExemptionsClient) preparerForListForResource(ctx context.Context, id ResourceId, options ListForResourceOperationOptions) (*http.Request, error) {
+func (c PolicyExemptionsClient) preparerForListForResource(ctx context.Context, id ScopedResourceId, options ListForResourceOperationOptions) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}
@@ -171,12 +171,12 @@ func (c PolicyExemptionsClient) responderForListForResource(resp *http.Response)
 }
 
 // ListForResourceComplete retrieves all of the results into a single object
-func (c PolicyExemptionsClient) ListForResourceComplete(ctx context.Context, id ResourceId, options ListForResourceOperationOptions) (ListForResourceCompleteResult, error) {
+func (c PolicyExemptionsClient) ListForResourceComplete(ctx context.Context, id ScopedResourceId, options ListForResourceOperationOptions) (ListForResourceCompleteResult, error) {
 	return c.ListForResourceCompleteMatchingPredicate(ctx, id, options, PolicyExemptionOperationPredicate{})
 }
 
 // ListForResourceCompleteMatchingPredicate retrieves all of the results and then applied the predicate
-func (c PolicyExemptionsClient) ListForResourceCompleteMatchingPredicate(ctx context.Context, id ResourceId, options ListForResourceOperationOptions, predicate PolicyExemptionOperationPredicate) (resp ListForResourceCompleteResult, err error) {
+func (c PolicyExemptionsClient) ListForResourceCompleteMatchingPredicate(ctx context.Context, id ScopedResourceId, options ListForResourceOperationOptions, predicate PolicyExemptionOperationPredicate) (resp ListForResourceCompleteResult, err error) {
 	items := make([]PolicyExemption, 0)
 
 	page, err := c.ListForResource(ctx, id, options)

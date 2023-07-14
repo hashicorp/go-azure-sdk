@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -23,7 +24,7 @@ type ConfigurationsListCompleteResult struct {
 }
 
 // ConfigurationsList ...
-func (c FluxClient) ConfigurationsList(ctx context.Context, id ProviderId) (result ConfigurationsListOperationResponse, err error) {
+func (c FluxClient) ConfigurationsList(ctx context.Context, id commonids.ScopeId) (result ConfigurationsListOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json",
 		ExpectedStatusCodes: []int{
@@ -61,12 +62,12 @@ func (c FluxClient) ConfigurationsList(ctx context.Context, id ProviderId) (resu
 }
 
 // ConfigurationsListComplete retrieves all the results into a single object
-func (c FluxClient) ConfigurationsListComplete(ctx context.Context, id ProviderId) (ConfigurationsListCompleteResult, error) {
+func (c FluxClient) ConfigurationsListComplete(ctx context.Context, id commonids.ScopeId) (ConfigurationsListCompleteResult, error) {
 	return c.ConfigurationsListCompleteMatchingPredicate(ctx, id, FluxConfigurationOperationPredicate{})
 }
 
 // ConfigurationsListCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c FluxClient) ConfigurationsListCompleteMatchingPredicate(ctx context.Context, id ProviderId, predicate FluxConfigurationOperationPredicate) (result ConfigurationsListCompleteResult, err error) {
+func (c FluxClient) ConfigurationsListCompleteMatchingPredicate(ctx context.Context, id commonids.ScopeId, predicate FluxConfigurationOperationPredicate) (result ConfigurationsListCompleteResult, err error) {
 	items := make([]FluxConfiguration, 0)
 
 	resp, err := c.ConfigurationsList(ctx, id)

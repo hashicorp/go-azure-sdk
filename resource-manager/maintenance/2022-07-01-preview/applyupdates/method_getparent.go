@@ -18,7 +18,7 @@ type GetParentOperationResponse struct {
 }
 
 // GetParent ...
-func (c ApplyUpdatesClient) GetParent(ctx context.Context, id Providers2ApplyUpdateId) (result GetParentOperationResponse, err error) {
+func (c ApplyUpdatesClient) GetParent(ctx context.Context, id ScopedApplyUpdateId) (result GetParentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json",
 		ExpectedStatusCodes: []int{

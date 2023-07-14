@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := clusterextensions.NewExtensionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "providerValue", "clusterResourceValue", "clusterValue", "extensionValue")
+id := clusterextensions.NewScopedExtensionID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "extensionValue")
 
 payload := clusterextensions.Extension{
 	// ...
@@ -41,7 +41,7 @@ if err := client.ExtensionsCreateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := clusterextensions.NewExtensionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "providerValue", "clusterResourceValue", "clusterValue", "extensionValue")
+id := clusterextensions.NewScopedExtensionID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "extensionValue")
 
 if err := client.ExtensionsDeleteThenPoll(ctx, id, clusterextensions.DefaultExtensionsDeleteOperationOptions()); err != nil {
 	// handle the error
@@ -53,7 +53,7 @@ if err := client.ExtensionsDeleteThenPoll(ctx, id, clusterextensions.DefaultExte
 
 ```go
 ctx := context.TODO()
-id := clusterextensions.NewExtensionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "providerValue", "clusterResourceValue", "clusterValue", "extensionValue")
+id := clusterextensions.NewScopedExtensionID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "extensionValue")
 
 read, err := client.ExtensionsGet(ctx, id)
 if err != nil {
@@ -69,7 +69,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := clusterextensions.NewProviderID("12345678-1234-9876-4563-123456789012", "example-resource-group", "providerValue", "clusterResourceValue", "clusterValue")
+id := clusterextensions.NewScopeID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
 
 // alternatively `client.ExtensionsList(ctx, id)` can be used to do batched pagination
 items, err := client.ExtensionsListComplete(ctx, id)
@@ -86,7 +86,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := clusterextensions.NewExtensionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "providerValue", "clusterResourceValue", "clusterValue", "extensionValue")
+id := clusterextensions.NewScopedExtensionID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "extensionValue")
 
 payload := clusterextensions.PatchExtension{
 	// ...

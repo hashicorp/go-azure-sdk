@@ -21,7 +21,7 @@ type ConfigurationsCreateOrUpdateOperationResponse struct {
 }
 
 // ConfigurationsCreateOrUpdate ...
-func (c FluxClient) ConfigurationsCreateOrUpdate(ctx context.Context, id FluxConfigurationId, input FluxConfiguration) (result ConfigurationsCreateOrUpdateOperationResponse, err error) {
+func (c FluxClient) ConfigurationsCreateOrUpdate(ctx context.Context, id ScopedFluxConfigurationId, input FluxConfiguration) (result ConfigurationsCreateOrUpdateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json",
 		ExpectedStatusCodes: []int{
@@ -60,7 +60,7 @@ func (c FluxClient) ConfigurationsCreateOrUpdate(ctx context.Context, id FluxCon
 }
 
 // ConfigurationsCreateOrUpdateThenPoll performs ConfigurationsCreateOrUpdate then polls until it's completed
-func (c FluxClient) ConfigurationsCreateOrUpdateThenPoll(ctx context.Context, id FluxConfigurationId, input FluxConfiguration) error {
+func (c FluxClient) ConfigurationsCreateOrUpdateThenPoll(ctx context.Context, id ScopedFluxConfigurationId, input FluxConfiguration) error {
 	result, err := c.ConfigurationsCreateOrUpdate(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing ConfigurationsCreateOrUpdate: %+v", err)

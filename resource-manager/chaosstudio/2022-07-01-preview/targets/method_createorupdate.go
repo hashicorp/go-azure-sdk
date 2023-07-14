@@ -18,7 +18,7 @@ type CreateOrUpdateOperationResponse struct {
 }
 
 // CreateOrUpdate ...
-func (c TargetsClient) CreateOrUpdate(ctx context.Context, id TargetId, input Target) (result CreateOrUpdateOperationResponse, err error) {
+func (c TargetsClient) CreateOrUpdate(ctx context.Context, id ScopedTargetId, input Target) (result CreateOrUpdateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json",
 		ExpectedStatusCodes: []int{
