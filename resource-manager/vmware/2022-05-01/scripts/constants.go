@@ -1,6 +1,10 @@
 package scripts
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -17,6 +21,19 @@ func PossibleValuesForOptionalParamEnum() []string {
 		string(OptionalParamEnumOptional),
 		string(OptionalParamEnumRequired),
 	}
+}
+
+func (s *OptionalParamEnum) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseOptionalParamEnum(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseOptionalParamEnum(input string) (*OptionalParamEnum, error) {
@@ -47,6 +64,19 @@ func PossibleValuesForScriptExecutionParameterType() []string {
 		string(ScriptExecutionParameterTypeSecureValue),
 		string(ScriptExecutionParameterTypeValue),
 	}
+}
+
+func (s *ScriptExecutionParameterType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseScriptExecutionParameterType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseScriptExecutionParameterType(input string) (*ScriptExecutionParameterType, error) {
@@ -90,6 +120,19 @@ func PossibleValuesForScriptExecutionProvisioningState() []string {
 	}
 }
 
+func (s *ScriptExecutionProvisioningState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseScriptExecutionProvisioningState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseScriptExecutionProvisioningState(input string) (*ScriptExecutionProvisioningState, error) {
 	vals := map[string]ScriptExecutionProvisioningState{
 		"canceled":   ScriptExecutionProvisioningStateCanceled,
@@ -126,6 +169,19 @@ func PossibleValuesForScriptOutputStreamType() []string {
 		string(ScriptOutputStreamTypeOutput),
 		string(ScriptOutputStreamTypeWarning),
 	}
+}
+
+func (s *ScriptOutputStreamType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseScriptOutputStreamType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseScriptOutputStreamType(input string) (*ScriptOutputStreamType, error) {
@@ -166,6 +222,19 @@ func PossibleValuesForScriptParameterTypes() []string {
 	}
 }
 
+func (s *ScriptParameterTypes) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseScriptParameterTypes(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseScriptParameterTypes(input string) (*ScriptParameterTypes, error) {
 	vals := map[string]ScriptParameterTypes{
 		"bool":         ScriptParameterTypesBool,
@@ -196,6 +265,19 @@ func PossibleValuesForVisibilityParameterEnum() []string {
 		string(VisibilityParameterEnumHidden),
 		string(VisibilityParameterEnumVisible),
 	}
+}
+
+func (s *VisibilityParameterEnum) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseVisibilityParameterEnum(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseVisibilityParameterEnum(input string) (*VisibilityParameterEnum, error) {
