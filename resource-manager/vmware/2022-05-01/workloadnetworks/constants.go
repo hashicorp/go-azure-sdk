@@ -1,6 +1,10 @@
 package workloadnetworks
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -17,6 +21,19 @@ func PossibleValuesForDhcpTypeEnum() []string {
 		string(DhcpTypeEnumRELAY),
 		string(DhcpTypeEnumSERVER),
 	}
+}
+
+func (s *DhcpTypeEnum) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseDhcpTypeEnum(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseDhcpTypeEnum(input string) (*DhcpTypeEnum, error) {
@@ -53,6 +70,19 @@ func PossibleValuesForDnsServiceLogLevelEnum() []string {
 	}
 }
 
+func (s *DnsServiceLogLevelEnum) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseDnsServiceLogLevelEnum(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseDnsServiceLogLevelEnum(input string) (*DnsServiceLogLevelEnum, error) {
 	vals := map[string]DnsServiceLogLevelEnum{
 		"debug":   DnsServiceLogLevelEnumDEBUG,
@@ -82,6 +112,19 @@ func PossibleValuesForDnsServiceStatusEnum() []string {
 		string(DnsServiceStatusEnumFAILURE),
 		string(DnsServiceStatusEnumSUCCESS),
 	}
+}
+
+func (s *DnsServiceStatusEnum) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseDnsServiceStatusEnum(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseDnsServiceStatusEnum(input string) (*DnsServiceStatusEnum, error) {
@@ -114,6 +157,19 @@ func PossibleValuesForPortMirroringDirectionEnum() []string {
 	}
 }
 
+func (s *PortMirroringDirectionEnum) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parsePortMirroringDirectionEnum(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parsePortMirroringDirectionEnum(input string) (*PortMirroringDirectionEnum, error) {
 	vals := map[string]PortMirroringDirectionEnum{
 		"bidirectional": PortMirroringDirectionEnumBIDIRECTIONAL,
@@ -141,6 +197,19 @@ func PossibleValuesForPortMirroringStatusEnum() []string {
 		string(PortMirroringStatusEnumFAILURE),
 		string(PortMirroringStatusEnumSUCCESS),
 	}
+}
+
+func (s *PortMirroringStatusEnum) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parsePortMirroringStatusEnum(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parsePortMirroringStatusEnum(input string) (*PortMirroringStatusEnum, error) {
@@ -171,6 +240,19 @@ func PossibleValuesForSegmentStatusEnum() []string {
 	}
 }
 
+func (s *SegmentStatusEnum) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseSegmentStatusEnum(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseSegmentStatusEnum(input string) (*SegmentStatusEnum, error) {
 	vals := map[string]SegmentStatusEnum{
 		"failure": SegmentStatusEnumFAILURE,
@@ -197,6 +279,19 @@ func PossibleValuesForVMGroupStatusEnum() []string {
 		string(VMGroupStatusEnumFAILURE),
 		string(VMGroupStatusEnumSUCCESS),
 	}
+}
+
+func (s *VMGroupStatusEnum) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseVMGroupStatusEnum(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseVMGroupStatusEnum(input string) (*VMGroupStatusEnum, error) {
@@ -227,6 +322,19 @@ func PossibleValuesForVMTypeEnum() []string {
 		string(VMTypeEnumREGULAR),
 		string(VMTypeEnumSERVICE),
 	}
+}
+
+func (s *VMTypeEnum) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseVMTypeEnum(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseVMTypeEnum(input string) (*VMTypeEnum, error) {
@@ -264,6 +372,19 @@ func PossibleValuesForWorkloadNetworkDhcpProvisioningState() []string {
 		string(WorkloadNetworkDhcpProvisioningStateSucceeded),
 		string(WorkloadNetworkDhcpProvisioningStateUpdating),
 	}
+}
+
+func (s *WorkloadNetworkDhcpProvisioningState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseWorkloadNetworkDhcpProvisioningState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseWorkloadNetworkDhcpProvisioningState(input string) (*WorkloadNetworkDhcpProvisioningState, error) {
@@ -306,6 +427,19 @@ func PossibleValuesForWorkloadNetworkDnsServiceProvisioningState() []string {
 	}
 }
 
+func (s *WorkloadNetworkDnsServiceProvisioningState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseWorkloadNetworkDnsServiceProvisioningState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseWorkloadNetworkDnsServiceProvisioningState(input string) (*WorkloadNetworkDnsServiceProvisioningState, error) {
 	vals := map[string]WorkloadNetworkDnsServiceProvisioningState{
 		"building":  WorkloadNetworkDnsServiceProvisioningStateBuilding,
@@ -344,6 +478,19 @@ func PossibleValuesForWorkloadNetworkDnsZoneProvisioningState() []string {
 		string(WorkloadNetworkDnsZoneProvisioningStateSucceeded),
 		string(WorkloadNetworkDnsZoneProvisioningStateUpdating),
 	}
+}
+
+func (s *WorkloadNetworkDnsZoneProvisioningState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseWorkloadNetworkDnsZoneProvisioningState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseWorkloadNetworkDnsZoneProvisioningState(input string) (*WorkloadNetworkDnsZoneProvisioningState, error) {
@@ -386,6 +533,19 @@ func PossibleValuesForWorkloadNetworkPortMirroringProvisioningState() []string {
 	}
 }
 
+func (s *WorkloadNetworkPortMirroringProvisioningState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseWorkloadNetworkPortMirroringProvisioningState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseWorkloadNetworkPortMirroringProvisioningState(input string) (*WorkloadNetworkPortMirroringProvisioningState, error) {
 	vals := map[string]WorkloadNetworkPortMirroringProvisioningState{
 		"building":  WorkloadNetworkPortMirroringProvisioningStateBuilding,
@@ -424,6 +584,19 @@ func PossibleValuesForWorkloadNetworkPublicIPProvisioningState() []string {
 		string(WorkloadNetworkPublicIPProvisioningStateSucceeded),
 		string(WorkloadNetworkPublicIPProvisioningStateUpdating),
 	}
+}
+
+func (s *WorkloadNetworkPublicIPProvisioningState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseWorkloadNetworkPublicIPProvisioningState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseWorkloadNetworkPublicIPProvisioningState(input string) (*WorkloadNetworkPublicIPProvisioningState, error) {
@@ -466,6 +639,19 @@ func PossibleValuesForWorkloadNetworkSegmentProvisioningState() []string {
 	}
 }
 
+func (s *WorkloadNetworkSegmentProvisioningState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseWorkloadNetworkSegmentProvisioningState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseWorkloadNetworkSegmentProvisioningState(input string) (*WorkloadNetworkSegmentProvisioningState, error) {
 	vals := map[string]WorkloadNetworkSegmentProvisioningState{
 		"building":  WorkloadNetworkSegmentProvisioningStateBuilding,
@@ -504,6 +690,19 @@ func PossibleValuesForWorkloadNetworkVMGroupProvisioningState() []string {
 		string(WorkloadNetworkVMGroupProvisioningStateSucceeded),
 		string(WorkloadNetworkVMGroupProvisioningStateUpdating),
 	}
+}
+
+func (s *WorkloadNetworkVMGroupProvisioningState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseWorkloadNetworkVMGroupProvisioningState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseWorkloadNetworkVMGroupProvisioningState(input string) (*WorkloadNetworkVMGroupProvisioningState, error) {

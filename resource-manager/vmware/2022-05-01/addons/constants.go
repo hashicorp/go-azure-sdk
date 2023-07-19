@@ -1,6 +1,10 @@
 package addons
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -27,6 +31,19 @@ func PossibleValuesForAddonProvisioningState() []string {
 		string(AddonProvisioningStateSucceeded),
 		string(AddonProvisioningStateUpdating),
 	}
+}
+
+func (s *AddonProvisioningState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseAddonProvisioningState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseAddonProvisioningState(input string) (*AddonProvisioningState, error) {
@@ -64,6 +81,19 @@ func PossibleValuesForAddonType() []string {
 		string(AddonTypeSRM),
 		string(AddonTypeVR),
 	}
+}
+
+func (s *AddonType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseAddonType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseAddonType(input string) (*AddonType, error) {

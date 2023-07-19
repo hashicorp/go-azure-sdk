@@ -1,6 +1,10 @@
 package videos
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -19,6 +23,19 @@ func PossibleValuesForAccessPolicyEccAlgo() []string {
 		string(AccessPolicyEccAlgoESThreeEightFour),
 		string(AccessPolicyEccAlgoESTwoFiveSix),
 	}
+}
+
+func (s *AccessPolicyEccAlgo) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseAccessPolicyEccAlgo(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseAccessPolicyEccAlgo(input string) (*AccessPolicyEccAlgo, error) {
@@ -46,6 +63,19 @@ func PossibleValuesForAccessPolicyRole() []string {
 	return []string{
 		string(AccessPolicyRoleReader),
 	}
+}
+
+func (s *AccessPolicyRole) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseAccessPolicyRole(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseAccessPolicyRole(input string) (*AccessPolicyRole, error) {
@@ -77,6 +107,19 @@ func PossibleValuesForAccessPolicyRsaAlgo() []string {
 	}
 }
 
+func (s *AccessPolicyRsaAlgo) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseAccessPolicyRsaAlgo(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseAccessPolicyRsaAlgo(input string) (*AccessPolicyRsaAlgo, error) {
 	vals := map[string]AccessPolicyRsaAlgo{
 		"rs512": AccessPolicyRsaAlgoRSFiveOneTwo,
@@ -102,6 +145,19 @@ func PossibleValuesForVideoType() []string {
 	return []string{
 		string(VideoTypeArchive),
 	}
+}
+
+func (s *VideoType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseVideoType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseVideoType(input string) (*VideoType, error) {
