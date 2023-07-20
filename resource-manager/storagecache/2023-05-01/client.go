@@ -4,13 +4,16 @@ package v2023_05_01
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 import (
-	"github.com/Azure/go-autorest/autorest"
+	"fmt"
+
 	"github.com/hashicorp/go-azure-sdk/resource-manager/storagecache/2023-05-01/amlfilesystems"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/storagecache/2023-05-01/ascusages"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/storagecache/2023-05-01/caches"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/storagecache/2023-05-01/skus"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/storagecache/2023-05-01/storagetargets"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/storagecache/2023-05-01/usagemodels"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -22,32 +25,49 @@ type Client struct {
 	UsageModels    *usagemodels.UsageModelsClient
 }
 
-func NewClientWithBaseURI(endpoint string, configureAuthFunc func(c *autorest.Client)) Client {
-
-	amlFilesystemsClient := amlfilesystems.NewAmlFilesystemsClientWithBaseURI(endpoint)
-	configureAuthFunc(&amlFilesystemsClient.Client)
-
-	ascUsagesClient := ascusages.NewAscUsagesClientWithBaseURI(endpoint)
-	configureAuthFunc(&ascUsagesClient.Client)
-
-	cachesClient := caches.NewCachesClientWithBaseURI(endpoint)
-	configureAuthFunc(&cachesClient.Client)
-
-	sKUsClient := skus.NewSKUsClientWithBaseURI(endpoint)
-	configureAuthFunc(&sKUsClient.Client)
-
-	storageTargetsClient := storagetargets.NewStorageTargetsClientWithBaseURI(endpoint)
-	configureAuthFunc(&storageTargetsClient.Client)
-
-	usageModelsClient := usagemodels.NewUsageModelsClientWithBaseURI(endpoint)
-	configureAuthFunc(&usageModelsClient.Client)
-
-	return Client{
-		AmlFilesystems: &amlFilesystemsClient,
-		AscUsages:      &ascUsagesClient,
-		Caches:         &cachesClient,
-		SKUs:           &sKUsClient,
-		StorageTargets: &storageTargetsClient,
-		UsageModels:    &usageModelsClient,
+func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+	amlFilesystemsClient, err := amlfilesystems.NewAmlFilesystemsClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building AmlFilesystems client: %+v", err)
 	}
+	configureFunc(amlFilesystemsClient.Client)
+
+	ascUsagesClient, err := ascusages.NewAscUsagesClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building AscUsages client: %+v", err)
+	}
+	configureFunc(ascUsagesClient.Client)
+
+	cachesClient, err := caches.NewCachesClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building Caches client: %+v", err)
+	}
+	configureFunc(cachesClient.Client)
+
+	sKUsClient, err := skus.NewSKUsClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building SKUs client: %+v", err)
+	}
+	configureFunc(sKUsClient.Client)
+
+	storageTargetsClient, err := storagetargets.NewStorageTargetsClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building StorageTargets client: %+v", err)
+	}
+	configureFunc(storageTargetsClient.Client)
+
+	usageModelsClient, err := usagemodels.NewUsageModelsClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building UsageModels client: %+v", err)
+	}
+	configureFunc(usageModelsClient.Client)
+
+	return &Client{
+		AmlFilesystems: amlFilesystemsClient,
+		AscUsages:      ascUsagesClient,
+		Caches:         cachesClient,
+		SKUs:           sKUsClient,
+		StorageTargets: storageTargetsClient,
+		UsageModels:    usageModelsClient,
+	}, nil
 }
