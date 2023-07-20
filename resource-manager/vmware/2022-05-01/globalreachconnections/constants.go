@@ -1,6 +1,10 @@
 package globalreachconnections
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -21,6 +25,19 @@ func PossibleValuesForGlobalReachConnectionProvisioningState() []string {
 		string(GlobalReachConnectionProvisioningStateSucceeded),
 		string(GlobalReachConnectionProvisioningStateUpdating),
 	}
+}
+
+func (s *GlobalReachConnectionProvisioningState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseGlobalReachConnectionProvisioningState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseGlobalReachConnectionProvisioningState(input string) (*GlobalReachConnectionProvisioningState, error) {
@@ -53,6 +70,19 @@ func PossibleValuesForGlobalReachConnectionStatus() []string {
 		string(GlobalReachConnectionStatusConnecting),
 		string(GlobalReachConnectionStatusDisconnected),
 	}
+}
+
+func (s *GlobalReachConnectionStatus) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseGlobalReachConnectionStatus(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseGlobalReachConnectionStatus(input string) (*GlobalReachConnectionStatus, error) {

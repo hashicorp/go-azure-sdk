@@ -1,18 +1,26 @@
 package videos
 
-import "github.com/Azure/go-autorest/autorest"
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type VideosClient struct {
-	Client  autorest.Client
-	baseUri string
+	Client *resourcemanager.Client
 }
 
-func NewVideosClientWithBaseURI(endpoint string) VideosClient {
-	return VideosClient{
-		Client:  autorest.NewClientWithUserAgent(userAgent()),
-		baseUri: endpoint,
+func NewVideosClientWithBaseURI(api environments.Api) (*VideosClient, error) {
+	client, err := resourcemanager.NewResourceManagerClient(api, "videos", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating VideosClient: %+v", err)
 	}
+
+	return &VideosClient{
+		Client: client,
+	}, nil
 }
