@@ -163,8 +163,9 @@ func (r *Response) Unmarshal(model interface{}) error {
 			contentType = strings.ToLower(r.Request.Header.Get("Content-Type"))
 		}
 	}
-	// the maintenance API returns a 200 for a delete with no content-type and no content length
-	if r.ContentLength == 0 {
+	// the maintenance API returns a 200 for a delete with no content-type and no content length so we should skip
+	// trying to unmarshal this
+	if r.ContentLength == 0 && (r.Body == nil || r.Body == http.NoBody) {
 		return nil
 	}
 	if strings.Contains(contentType, "application/json") {
