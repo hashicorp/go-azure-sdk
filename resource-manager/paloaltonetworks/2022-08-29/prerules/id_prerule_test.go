@@ -12,10 +12,10 @@ import (
 var _ resourceids.ResourceId = PreRuleId{}
 
 func TestNewPreRuleID(t *testing.T) {
-	id := NewPreRuleID("globalRuleStackValue", "preRuleValue")
+	id := NewPreRuleID("globalRulestackValue", "preRuleValue")
 
-	if id.GlobalRuleStackName != "globalRuleStackValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'GlobalRuleStackName'", id.GlobalRuleStackName, "globalRuleStackValue")
+	if id.GlobalRulestackName != "globalRulestackValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'GlobalRulestackName'", id.GlobalRulestackName, "globalRulestackValue")
 	}
 
 	if id.PreRuleName != "preRuleValue" {
@@ -24,8 +24,8 @@ func TestNewPreRuleID(t *testing.T) {
 }
 
 func TestFormatPreRuleID(t *testing.T) {
-	actual := NewPreRuleID("globalRuleStackValue", "preRuleValue").ID()
-	expected := "/providers/PaloAltoNetworks.CloudNGFW/globalRuleStacks/globalRuleStackValue/preRules/preRuleValue"
+	actual := NewPreRuleID("globalRulestackValue", "preRuleValue").ID()
+	expected := "/providers/PaloAltoNetworks.Cloudngfw/globalRulestacks/globalRulestackValue/preRules/preRuleValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,35 +49,35 @@ func TestParsePreRuleID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/PaloAltoNetworks.CloudNGFW",
+			Input: "/providers/PaloAltoNetworks.Cloudngfw",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/PaloAltoNetworks.CloudNGFW/globalRuleStacks",
+			Input: "/providers/PaloAltoNetworks.Cloudngfw/globalRulestacks",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/PaloAltoNetworks.CloudNGFW/globalRuleStacks/globalRuleStackValue",
+			Input: "/providers/PaloAltoNetworks.Cloudngfw/globalRulestacks/globalRulestackValue",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/PaloAltoNetworks.CloudNGFW/globalRuleStacks/globalRuleStackValue/preRules",
+			Input: "/providers/PaloAltoNetworks.Cloudngfw/globalRulestacks/globalRulestackValue/preRules",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/providers/PaloAltoNetworks.CloudNGFW/globalRuleStacks/globalRuleStackValue/preRules/preRuleValue",
+			Input: "/providers/PaloAltoNetworks.Cloudngfw/globalRulestacks/globalRulestackValue/preRules/preRuleValue",
 			Expected: &PreRuleId{
-				GlobalRuleStackName: "globalRuleStackValue",
+				GlobalRulestackName: "globalRulestackValue",
 				PreRuleName:         "preRuleValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/PaloAltoNetworks.CloudNGFW/globalRuleStacks/globalRuleStackValue/preRules/preRuleValue/extra",
+			Input: "/providers/PaloAltoNetworks.Cloudngfw/globalRulestacks/globalRulestackValue/preRules/preRuleValue/extra",
 			Error: true,
 		},
 	}
@@ -96,8 +96,8 @@ func TestParsePreRuleID(t *testing.T) {
 			t.Fatal("Expect an error but didn't get one")
 		}
 
-		if actual.GlobalRuleStackName != v.Expected.GlobalRuleStackName {
-			t.Fatalf("Expected %q but got %q for GlobalRuleStackName", v.Expected.GlobalRuleStackName, actual.GlobalRuleStackName)
+		if actual.GlobalRulestackName != v.Expected.GlobalRulestackName {
+			t.Fatalf("Expected %q but got %q for GlobalRulestackName", v.Expected.GlobalRulestackName, actual.GlobalRulestackName)
 		}
 
 		if actual.PreRuleName != v.Expected.PreRuleName {
@@ -130,7 +130,7 @@ func TestParsePreRuleIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/PaloAltoNetworks.CloudNGFW",
+			Input: "/providers/PaloAltoNetworks.Cloudngfw",
 			Error: true,
 		},
 		{
@@ -140,7 +140,7 @@ func TestParsePreRuleIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/PaloAltoNetworks.CloudNGFW/globalRuleStacks",
+			Input: "/providers/PaloAltoNetworks.Cloudngfw/globalRulestacks",
 			Error: true,
 		},
 		{
@@ -150,7 +150,7 @@ func TestParsePreRuleIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/PaloAltoNetworks.CloudNGFW/globalRuleStacks/globalRuleStackValue",
+			Input: "/providers/PaloAltoNetworks.Cloudngfw/globalRulestacks/globalRulestackValue",
 			Error: true,
 		},
 		{
@@ -160,7 +160,7 @@ func TestParsePreRuleIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/PaloAltoNetworks.CloudNGFW/globalRuleStacks/globalRuleStackValue/preRules",
+			Input: "/providers/PaloAltoNetworks.Cloudngfw/globalRulestacks/globalRulestackValue/preRules",
 			Error: true,
 		},
 		{
@@ -170,22 +170,22 @@ func TestParsePreRuleIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/providers/PaloAltoNetworks.CloudNGFW/globalRuleStacks/globalRuleStackValue/preRules/preRuleValue",
+			Input: "/providers/PaloAltoNetworks.Cloudngfw/globalRulestacks/globalRulestackValue/preRules/preRuleValue",
 			Expected: &PreRuleId{
-				GlobalRuleStackName: "globalRuleStackValue",
+				GlobalRulestackName: "globalRulestackValue",
 				PreRuleName:         "preRuleValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/PaloAltoNetworks.CloudNGFW/globalRuleStacks/globalRuleStackValue/preRules/preRuleValue/extra",
+			Input: "/providers/PaloAltoNetworks.Cloudngfw/globalRulestacks/globalRulestackValue/preRules/preRuleValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
 			Input: "/pRoViDeRs/pAlOaLtOnEtWoRkS.ClOuDnGfW/gLoBaLrUlEsTaCkS/gLoBaLrUlEsTaCkVaLuE/pReRuLeS/pReRuLeVaLuE",
 			Expected: &PreRuleId{
-				GlobalRuleStackName: "gLoBaLrUlEsTaCkVaLuE",
+				GlobalRulestackName: "gLoBaLrUlEsTaCkVaLuE",
 				PreRuleName:         "pReRuLeVaLuE",
 			},
 		},
@@ -210,8 +210,8 @@ func TestParsePreRuleIDInsensitively(t *testing.T) {
 			t.Fatal("Expect an error but didn't get one")
 		}
 
-		if actual.GlobalRuleStackName != v.Expected.GlobalRuleStackName {
-			t.Fatalf("Expected %q but got %q for GlobalRuleStackName", v.Expected.GlobalRuleStackName, actual.GlobalRuleStackName)
+		if actual.GlobalRulestackName != v.Expected.GlobalRulestackName {
+			t.Fatalf("Expected %q but got %q for GlobalRulestackName", v.Expected.GlobalRulestackName, actual.GlobalRulestackName)
 		}
 
 		if actual.PreRuleName != v.Expected.PreRuleName {

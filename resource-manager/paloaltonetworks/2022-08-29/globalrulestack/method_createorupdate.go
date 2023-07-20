@@ -21,7 +21,7 @@ type CreateOrUpdateOperationResponse struct {
 }
 
 // CreateOrUpdate ...
-func (c GlobalRulestackClient) CreateOrUpdate(ctx context.Context, id GlobalRuleStackId, input GlobalRulestackResource) (result CreateOrUpdateOperationResponse, err error) {
+func (c GlobalRulestackClient) CreateOrUpdate(ctx context.Context, id GlobalRulestackId, input GlobalRulestackResource) (result CreateOrUpdateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json",
 		ExpectedStatusCodes: []int{
@@ -60,7 +60,7 @@ func (c GlobalRulestackClient) CreateOrUpdate(ctx context.Context, id GlobalRule
 }
 
 // CreateOrUpdateThenPoll performs CreateOrUpdate then polls until it's completed
-func (c GlobalRulestackClient) CreateOrUpdateThenPoll(ctx context.Context, id GlobalRuleStackId, input GlobalRulestackResource) error {
+func (c GlobalRulestackClient) CreateOrUpdateThenPoll(ctx context.Context, id GlobalRulestackId, input GlobalRulestackResource) error {
 	result, err := c.CreateOrUpdate(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing CreateOrUpdate: %+v", err)

@@ -23,7 +23,7 @@ type ListCompleteResult struct {
 }
 
 // List ...
-func (c FqdnListGlobalRulestackClient) List(ctx context.Context, id GlobalRuleStackId) (result ListOperationResponse, err error) {
+func (c FqdnListGlobalRulestackClient) List(ctx context.Context, id GlobalRulestackId) (result ListOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json",
 		ExpectedStatusCodes: []int{
@@ -61,12 +61,12 @@ func (c FqdnListGlobalRulestackClient) List(ctx context.Context, id GlobalRuleSt
 }
 
 // ListComplete retrieves all the results into a single object
-func (c FqdnListGlobalRulestackClient) ListComplete(ctx context.Context, id GlobalRuleStackId) (ListCompleteResult, error) {
+func (c FqdnListGlobalRulestackClient) ListComplete(ctx context.Context, id GlobalRulestackId) (ListCompleteResult, error) {
 	return c.ListCompleteMatchingPredicate(ctx, id, FqdnListGlobalRulestackResourceOperationPredicate{})
 }
 
 // ListCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c FqdnListGlobalRulestackClient) ListCompleteMatchingPredicate(ctx context.Context, id GlobalRuleStackId, predicate FqdnListGlobalRulestackResourceOperationPredicate) (result ListCompleteResult, err error) {
+func (c FqdnListGlobalRulestackClient) ListCompleteMatchingPredicate(ctx context.Context, id GlobalRulestackId, predicate FqdnListGlobalRulestackResourceOperationPredicate) (result ListCompleteResult, err error) {
 	items := make([]FqdnListGlobalRulestackResource, 0)
 
 	resp, err := c.List(ctx, id)

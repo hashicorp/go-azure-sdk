@@ -23,7 +23,7 @@ type ListCompleteResult struct {
 }
 
 // List ...
-func (c PostRulesClient) List(ctx context.Context, id GlobalRuleStackId) (result ListOperationResponse, err error) {
+func (c PostRulesClient) List(ctx context.Context, id GlobalRulestackId) (result ListOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json",
 		ExpectedStatusCodes: []int{
@@ -61,12 +61,12 @@ func (c PostRulesClient) List(ctx context.Context, id GlobalRuleStackId) (result
 }
 
 // ListComplete retrieves all the results into a single object
-func (c PostRulesClient) ListComplete(ctx context.Context, id GlobalRuleStackId) (ListCompleteResult, error) {
+func (c PostRulesClient) ListComplete(ctx context.Context, id GlobalRulestackId) (ListCompleteResult, error) {
 	return c.ListCompleteMatchingPredicate(ctx, id, PostRulesResourceOperationPredicate{})
 }
 
 // ListCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c PostRulesClient) ListCompleteMatchingPredicate(ctx context.Context, id GlobalRuleStackId, predicate PostRulesResourceOperationPredicate) (result ListCompleteResult, err error) {
+func (c PostRulesClient) ListCompleteMatchingPredicate(ctx context.Context, id GlobalRulestackId, predicate PostRulesResourceOperationPredicate) (result ListCompleteResult, err error) {
 	items := make([]PostRulesResource, 0)
 
 	resp, err := c.List(ctx, id)

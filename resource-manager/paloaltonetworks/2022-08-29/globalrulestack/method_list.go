@@ -30,7 +30,7 @@ func (c GlobalRulestackClient) List(ctx context.Context) (result ListOperationRe
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodGet,
-		Path:       "/providers/PaloAltoNetworks.CloudNGFW/globalRuleStacks",
+		Path:       "/providers/PaloAltoNetworks.Cloudngfw/globalRulestacks",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

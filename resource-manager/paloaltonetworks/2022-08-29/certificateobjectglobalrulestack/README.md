@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := certificateobjectglobalrulestack.NewCertificateID("globalRuleStackValue", "certificateValue")
+id := certificateobjectglobalrulestack.NewCertificateID("globalRulestackValue", "certificateValue")
 
 payload := certificateobjectglobalrulestack.CertificateObjectGlobalRulestackResource{
 	// ...
@@ -41,7 +41,7 @@ if err := client.CreateOrUpdateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := certificateobjectglobalrulestack.NewCertificateID("globalRuleStackValue", "certificateValue")
+id := certificateobjectglobalrulestack.NewCertificateID("globalRulestackValue", "certificateValue")
 
 if err := client.DeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -53,7 +53,7 @@ if err := client.DeleteThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := certificateobjectglobalrulestack.NewCertificateID("globalRuleStackValue", "certificateValue")
+id := certificateobjectglobalrulestack.NewCertificateID("globalRulestackValue", "certificateValue")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -69,7 +69,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := certificateobjectglobalrulestack.NewGlobalRuleStackID("globalRuleStackValue")
+id := certificateobjectglobalrulestack.NewGlobalRulestackID("globalRulestackValue")
 
 // alternatively `client.List(ctx, id)` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id)

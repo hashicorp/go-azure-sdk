@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := globalrulestack.NewGlobalRuleStackID("globalRuleStackValue")
+id := globalrulestack.NewGlobalRulestackID("globalRulestackValue")
 
 if err := client.CommitThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -36,7 +36,7 @@ if err := client.CommitThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := globalrulestack.NewGlobalRuleStackID("globalRuleStackValue")
+id := globalrulestack.NewGlobalRulestackID("globalRulestackValue")
 
 payload := globalrulestack.GlobalRulestackResource{
 	// ...
@@ -53,7 +53,7 @@ if err := client.CreateOrUpdateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := globalrulestack.NewGlobalRuleStackID("globalRuleStackValue")
+id := globalrulestack.NewGlobalRulestackID("globalRulestackValue")
 
 if err := client.DeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -65,7 +65,7 @@ if err := client.DeleteThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := globalrulestack.NewGlobalRuleStackID("globalRuleStackValue")
+id := globalrulestack.NewGlobalRulestackID("globalRulestackValue")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -81,7 +81,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := globalrulestack.NewGlobalRuleStackID("globalRuleStackValue")
+id := globalrulestack.NewGlobalRulestackID("globalRulestackValue")
 
 read, err := client.GetChangeLog(ctx, id)
 if err != nil {
@@ -114,7 +114,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := globalrulestack.NewGlobalRuleStackID("globalRuleStackValue")
+id := globalrulestack.NewGlobalRulestackID("globalRulestackValue")
 
 read, err := client.ListAdvancedSecurityObjects(ctx, id, globalrulestack.DefaultListAdvancedSecurityObjectsOperationOptions())
 if err != nil {
@@ -130,7 +130,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := globalrulestack.NewGlobalRuleStackID("globalRuleStackValue")
+id := globalrulestack.NewGlobalRulestackID("globalRulestackValue")
 
 read, err := client.ListAppIds(ctx, id, globalrulestack.DefaultListAppIdsOperationOptions())
 if err != nil {
@@ -146,7 +146,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := globalrulestack.NewGlobalRuleStackID("globalRuleStackValue")
+id := globalrulestack.NewGlobalRulestackID("globalRulestackValue")
 
 read, err := client.ListCountries(ctx, id, globalrulestack.DefaultListCountriesOperationOptions())
 if err != nil {
@@ -162,7 +162,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := globalrulestack.NewGlobalRuleStackID("globalRuleStackValue")
+id := globalrulestack.NewGlobalRulestackID("globalRulestackValue")
 
 read, err := client.ListFirewalls(ctx, id)
 if err != nil {
@@ -178,7 +178,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := globalrulestack.NewGlobalRuleStackID("globalRuleStackValue")
+id := globalrulestack.NewGlobalRulestackID("globalRulestackValue")
 
 read, err := client.ListPredefinedUrlCategories(ctx, id, globalrulestack.DefaultListPredefinedUrlCategoriesOperationOptions())
 if err != nil {
@@ -194,7 +194,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := globalrulestack.NewGlobalRuleStackID("globalRuleStackValue")
+id := globalrulestack.NewGlobalRulestackID("globalRulestackValue")
 
 read, err := client.ListSecurityServices(ctx, id, globalrulestack.DefaultListSecurityServicesOperationOptions())
 if err != nil {
@@ -210,7 +210,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := globalrulestack.NewGlobalRuleStackID("globalRuleStackValue")
+id := globalrulestack.NewGlobalRulestackID("globalRulestackValue")
 
 read, err := client.Revert(ctx, id)
 if err != nil {
@@ -226,7 +226,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := globalrulestack.NewGlobalRuleStackID("globalRuleStackValue")
+id := globalrulestack.NewGlobalRulestackID("globalRulestackValue")
 
 payload := globalrulestack.GlobalRulestackResourceUpdate{
 	// ...

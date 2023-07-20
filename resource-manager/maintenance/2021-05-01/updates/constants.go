@@ -1,10 +1,6 @@
 package updates
 
-import (
-	"encoding/json"
-	"fmt"
-	"strings"
-)
+import "strings"
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -25,19 +21,6 @@ func PossibleValuesForImpactType() []string {
 		string(ImpactTypeRedeploy),
 		string(ImpactTypeRestart),
 	}
-}
-
-func (s *ImpactType) UnmarshalJSON(bytes []byte) error {
-	var decoded string
-	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling: %+v", err)
-	}
-	out, err := parseImpactType(decoded)
-	if err != nil {
-		return fmt.Errorf("parsing %q: %+v", decoded, err)
-	}
-	*s = *out
-	return nil
 }
 
 func parseImpactType(input string) (*ImpactType, error) {
@@ -78,19 +61,6 @@ func PossibleValuesForMaintenanceScope() []string {
 	}
 }
 
-func (s *MaintenanceScope) UnmarshalJSON(bytes []byte) error {
-	var decoded string
-	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling: %+v", err)
-	}
-	out, err := parseMaintenanceScope(decoded)
-	if err != nil {
-		return fmt.Errorf("parsing %q: %+v", decoded, err)
-	}
-	*s = *out
-	return nil
-}
-
 func parseMaintenanceScope(input string) (*MaintenanceScope, error) {
 	vals := map[string]MaintenanceScope{
 		"extension":          MaintenanceScopeExtension,
@@ -127,19 +97,6 @@ func PossibleValuesForUpdateStatus() []string {
 		string(UpdateStatusRetryLater),
 		string(UpdateStatusRetryNow),
 	}
-}
-
-func (s *UpdateStatus) UnmarshalJSON(bytes []byte) error {
-	var decoded string
-	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling: %+v", err)
-	}
-	out, err := parseUpdateStatus(decoded)
-	if err != nil {
-		return fmt.Errorf("parsing %q: %+v", decoded, err)
-	}
-	*s = *out
-	return nil
 }
 
 func parseUpdateStatus(input string) (*UpdateStatus, error) {

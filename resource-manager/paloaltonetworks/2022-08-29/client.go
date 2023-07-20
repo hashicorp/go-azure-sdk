@@ -31,8 +31,8 @@ type Client struct {
 	FqdnListGlobalRulestack          *fqdnlistglobalrulestack.FqdnListGlobalRulestackClient
 	FqdnListLocalRulestack           *fqdnlistlocalrulestack.FqdnListLocalRulestackClient
 	GlobalRulestack                  *globalrulestack.GlobalRulestackClient
-	LocalRuleStacks                  *localrulestacks.LocalRuleStacksClient
 	LocalRules                       *localrules.LocalRulesClient
+	LocalRulestacks                  *localrulestacks.LocalRulestacksClient
 	PostRules                        *postrules.PostRulesClient
 	PreRules                         *prerules.PreRulesClient
 	PrefixListGlobalRulestack        *prefixlistglobalrulestack.PrefixListGlobalRulestackClient
@@ -82,17 +82,17 @@ func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcema
 	}
 	configureFunc(globalRulestackClient.Client)
 
-	localRuleStacksClient, err := localrulestacks.NewLocalRuleStacksClientWithBaseURI(api)
-	if err != nil {
-		return nil, fmt.Errorf("building LocalRuleStacks client: %+v", err)
-	}
-	configureFunc(localRuleStacksClient.Client)
-
 	localRulesClient, err := localrules.NewLocalRulesClientWithBaseURI(api)
 	if err != nil {
 		return nil, fmt.Errorf("building LocalRules client: %+v", err)
 	}
 	configureFunc(localRulesClient.Client)
+
+	localRulestacksClient, err := localrulestacks.NewLocalRulestacksClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building LocalRulestacks client: %+v", err)
+	}
+	configureFunc(localRulestacksClient.Client)
 
 	postRulesClient, err := postrules.NewPostRulesClientWithBaseURI(api)
 	if err != nil {
@@ -126,8 +126,8 @@ func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcema
 		FqdnListGlobalRulestack:          fqdnListGlobalRulestackClient,
 		FqdnListLocalRulestack:           fqdnListLocalRulestackClient,
 		GlobalRulestack:                  globalRulestackClient,
-		LocalRuleStacks:                  localRuleStacksClient,
 		LocalRules:                       localRulesClient,
+		LocalRulestacks:                  localRulestacksClient,
 		PostRules:                        postRulesClient,
 		PreRules:                         preRulesClient,
 		PrefixListGlobalRulestack:        prefixListGlobalRulestackClient,

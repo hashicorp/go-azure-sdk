@@ -14,14 +14,14 @@ var _ resourceids.ResourceId = PrefixListId{}
 
 // PrefixListId is a struct representing the Resource ID for a Prefix List
 type PrefixListId struct {
-	GlobalRuleStackName string
+	GlobalRulestackName string
 	PrefixListName      string
 }
 
 // NewPrefixListID returns a new PrefixListId struct
-func NewPrefixListID(globalRuleStackName string, prefixListName string) PrefixListId {
+func NewPrefixListID(globalRulestackName string, prefixListName string) PrefixListId {
 	return PrefixListId{
-		GlobalRuleStackName: globalRuleStackName,
+		GlobalRulestackName: globalRulestackName,
 		PrefixListName:      prefixListName,
 	}
 }
@@ -37,8 +37,8 @@ func ParsePrefixListID(input string) (*PrefixListId, error) {
 	var ok bool
 	id := PrefixListId{}
 
-	if id.GlobalRuleStackName, ok = parsed.Parsed["globalRuleStackName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "globalRuleStackName", *parsed)
+	if id.GlobalRulestackName, ok = parsed.Parsed["globalRulestackName"]; !ok {
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "globalRulestackName", *parsed)
 	}
 
 	if id.PrefixListName, ok = parsed.Parsed["prefixListName"]; !ok {
@@ -60,8 +60,8 @@ func ParsePrefixListIDInsensitively(input string) (*PrefixListId, error) {
 	var ok bool
 	id := PrefixListId{}
 
-	if id.GlobalRuleStackName, ok = parsed.Parsed["globalRuleStackName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "globalRuleStackName", *parsed)
+	if id.GlobalRulestackName, ok = parsed.Parsed["globalRulestackName"]; !ok {
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "globalRulestackName", *parsed)
 	}
 
 	if id.PrefixListName, ok = parsed.Parsed["prefixListName"]; !ok {
@@ -88,17 +88,17 @@ func ValidatePrefixListID(input interface{}, key string) (warnings []string, err
 
 // ID returns the formatted Prefix List ID
 func (id PrefixListId) ID() string {
-	fmtString := "/providers/PaloAltoNetworks.CloudNGFW/globalRuleStacks/%s/prefixLists/%s"
-	return fmt.Sprintf(fmtString, id.GlobalRuleStackName, id.PrefixListName)
+	fmtString := "/providers/PaloAltoNetworks.Cloudngfw/globalRulestacks/%s/prefixLists/%s"
+	return fmt.Sprintf(fmtString, id.GlobalRulestackName, id.PrefixListName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Prefix List ID
 func (id PrefixListId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
-		resourceids.ResourceProviderSegment("staticPaloAltoNetworksCloudNGFW", "PaloAltoNetworks.CloudNGFW", "PaloAltoNetworks.CloudNGFW"),
-		resourceids.StaticSegment("staticGlobalRuleStacks", "globalRuleStacks", "globalRuleStacks"),
-		resourceids.UserSpecifiedSegment("globalRuleStackName", "globalRuleStackValue"),
+		resourceids.ResourceProviderSegment("staticPaloAltoNetworksCloudngfw", "PaloAltoNetworks.Cloudngfw", "PaloAltoNetworks.Cloudngfw"),
+		resourceids.StaticSegment("staticGlobalRulestacks", "globalRulestacks", "globalRulestacks"),
+		resourceids.UserSpecifiedSegment("globalRulestackName", "globalRulestackValue"),
 		resourceids.StaticSegment("staticPrefixLists", "prefixLists", "prefixLists"),
 		resourceids.UserSpecifiedSegment("prefixListName", "prefixListValue"),
 	}
@@ -107,7 +107,7 @@ func (id PrefixListId) Segments() []resourceids.Segment {
 // String returns a human-readable description of this Prefix List ID
 func (id PrefixListId) String() string {
 	components := []string{
-		fmt.Sprintf("Global Rule Stack Name: %q", id.GlobalRuleStackName),
+		fmt.Sprintf("Global Rulestack Name: %q", id.GlobalRulestackName),
 		fmt.Sprintf("Prefix List Name: %q", id.PrefixListName),
 	}
 	return fmt.Sprintf("Prefix List (%s)", strings.Join(components, "\n"))

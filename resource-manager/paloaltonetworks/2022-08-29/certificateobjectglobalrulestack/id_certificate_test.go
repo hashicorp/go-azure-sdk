@@ -12,10 +12,10 @@ import (
 var _ resourceids.ResourceId = CertificateId{}
 
 func TestNewCertificateID(t *testing.T) {
-	id := NewCertificateID("globalRuleStackValue", "certificateValue")
+	id := NewCertificateID("globalRulestackValue", "certificateValue")
 
-	if id.GlobalRuleStackName != "globalRuleStackValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'GlobalRuleStackName'", id.GlobalRuleStackName, "globalRuleStackValue")
+	if id.GlobalRulestackName != "globalRulestackValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'GlobalRulestackName'", id.GlobalRulestackName, "globalRulestackValue")
 	}
 
 	if id.CertificateName != "certificateValue" {
@@ -24,8 +24,8 @@ func TestNewCertificateID(t *testing.T) {
 }
 
 func TestFormatCertificateID(t *testing.T) {
-	actual := NewCertificateID("globalRuleStackValue", "certificateValue").ID()
-	expected := "/providers/PaloAltoNetworks.CloudNGFW/globalRuleStacks/globalRuleStackValue/certificates/certificateValue"
+	actual := NewCertificateID("globalRulestackValue", "certificateValue").ID()
+	expected := "/providers/PaloAltoNetworks.Cloudngfw/globalRulestacks/globalRulestackValue/certificates/certificateValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,35 +49,35 @@ func TestParseCertificateID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/PaloAltoNetworks.CloudNGFW",
+			Input: "/providers/PaloAltoNetworks.Cloudngfw",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/PaloAltoNetworks.CloudNGFW/globalRuleStacks",
+			Input: "/providers/PaloAltoNetworks.Cloudngfw/globalRulestacks",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/PaloAltoNetworks.CloudNGFW/globalRuleStacks/globalRuleStackValue",
+			Input: "/providers/PaloAltoNetworks.Cloudngfw/globalRulestacks/globalRulestackValue",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/PaloAltoNetworks.CloudNGFW/globalRuleStacks/globalRuleStackValue/certificates",
+			Input: "/providers/PaloAltoNetworks.Cloudngfw/globalRulestacks/globalRulestackValue/certificates",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/providers/PaloAltoNetworks.CloudNGFW/globalRuleStacks/globalRuleStackValue/certificates/certificateValue",
+			Input: "/providers/PaloAltoNetworks.Cloudngfw/globalRulestacks/globalRulestackValue/certificates/certificateValue",
 			Expected: &CertificateId{
-				GlobalRuleStackName: "globalRuleStackValue",
+				GlobalRulestackName: "globalRulestackValue",
 				CertificateName:     "certificateValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/PaloAltoNetworks.CloudNGFW/globalRuleStacks/globalRuleStackValue/certificates/certificateValue/extra",
+			Input: "/providers/PaloAltoNetworks.Cloudngfw/globalRulestacks/globalRulestackValue/certificates/certificateValue/extra",
 			Error: true,
 		},
 	}
@@ -96,8 +96,8 @@ func TestParseCertificateID(t *testing.T) {
 			t.Fatal("Expect an error but didn't get one")
 		}
 
-		if actual.GlobalRuleStackName != v.Expected.GlobalRuleStackName {
-			t.Fatalf("Expected %q but got %q for GlobalRuleStackName", v.Expected.GlobalRuleStackName, actual.GlobalRuleStackName)
+		if actual.GlobalRulestackName != v.Expected.GlobalRulestackName {
+			t.Fatalf("Expected %q but got %q for GlobalRulestackName", v.Expected.GlobalRulestackName, actual.GlobalRulestackName)
 		}
 
 		if actual.CertificateName != v.Expected.CertificateName {
@@ -130,7 +130,7 @@ func TestParseCertificateIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/PaloAltoNetworks.CloudNGFW",
+			Input: "/providers/PaloAltoNetworks.Cloudngfw",
 			Error: true,
 		},
 		{
@@ -140,7 +140,7 @@ func TestParseCertificateIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/PaloAltoNetworks.CloudNGFW/globalRuleStacks",
+			Input: "/providers/PaloAltoNetworks.Cloudngfw/globalRulestacks",
 			Error: true,
 		},
 		{
@@ -150,7 +150,7 @@ func TestParseCertificateIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/PaloAltoNetworks.CloudNGFW/globalRuleStacks/globalRuleStackValue",
+			Input: "/providers/PaloAltoNetworks.Cloudngfw/globalRulestacks/globalRulestackValue",
 			Error: true,
 		},
 		{
@@ -160,7 +160,7 @@ func TestParseCertificateIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/PaloAltoNetworks.CloudNGFW/globalRuleStacks/globalRuleStackValue/certificates",
+			Input: "/providers/PaloAltoNetworks.Cloudngfw/globalRulestacks/globalRulestackValue/certificates",
 			Error: true,
 		},
 		{
@@ -170,22 +170,22 @@ func TestParseCertificateIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/providers/PaloAltoNetworks.CloudNGFW/globalRuleStacks/globalRuleStackValue/certificates/certificateValue",
+			Input: "/providers/PaloAltoNetworks.Cloudngfw/globalRulestacks/globalRulestackValue/certificates/certificateValue",
 			Expected: &CertificateId{
-				GlobalRuleStackName: "globalRuleStackValue",
+				GlobalRulestackName: "globalRulestackValue",
 				CertificateName:     "certificateValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/PaloAltoNetworks.CloudNGFW/globalRuleStacks/globalRuleStackValue/certificates/certificateValue/extra",
+			Input: "/providers/PaloAltoNetworks.Cloudngfw/globalRulestacks/globalRulestackValue/certificates/certificateValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
 			Input: "/pRoViDeRs/pAlOaLtOnEtWoRkS.ClOuDnGfW/gLoBaLrUlEsTaCkS/gLoBaLrUlEsTaCkVaLuE/cErTiFiCaTeS/cErTiFiCaTeVaLuE",
 			Expected: &CertificateId{
-				GlobalRuleStackName: "gLoBaLrUlEsTaCkVaLuE",
+				GlobalRulestackName: "gLoBaLrUlEsTaCkVaLuE",
 				CertificateName:     "cErTiFiCaTeVaLuE",
 			},
 		},
@@ -210,8 +210,8 @@ func TestParseCertificateIDInsensitively(t *testing.T) {
 			t.Fatal("Expect an error but didn't get one")
 		}
 
-		if actual.GlobalRuleStackName != v.Expected.GlobalRuleStackName {
-			t.Fatalf("Expected %q but got %q for GlobalRuleStackName", v.Expected.GlobalRuleStackName, actual.GlobalRuleStackName)
+		if actual.GlobalRulestackName != v.Expected.GlobalRulestackName {
+			t.Fatalf("Expected %q but got %q for GlobalRulestackName", v.Expected.GlobalRulestackName, actual.GlobalRulestackName)
 		}
 
 		if actual.CertificateName != v.Expected.CertificateName {
