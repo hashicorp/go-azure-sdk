@@ -12,10 +12,10 @@ import (
 var _ resourceids.ResourceId = FqdnListId{}
 
 func TestNewFqdnListID(t *testing.T) {
-	id := NewFqdnListID("globalRuleStackValue", "fqdnListValue")
+	id := NewFqdnListID("globalRulestackValue", "fqdnListValue")
 
-	if id.GlobalRuleStackName != "globalRuleStackValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'GlobalRuleStackName'", id.GlobalRuleStackName, "globalRuleStackValue")
+	if id.GlobalRulestackName != "globalRulestackValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'GlobalRulestackName'", id.GlobalRulestackName, "globalRulestackValue")
 	}
 
 	if id.FqdnListName != "fqdnListValue" {
@@ -24,8 +24,8 @@ func TestNewFqdnListID(t *testing.T) {
 }
 
 func TestFormatFqdnListID(t *testing.T) {
-	actual := NewFqdnListID("globalRuleStackValue", "fqdnListValue").ID()
-	expected := "/providers/PaloAltoNetworks.CloudNGFW/globalRuleStacks/globalRuleStackValue/fqdnLists/fqdnListValue"
+	actual := NewFqdnListID("globalRulestackValue", "fqdnListValue").ID()
+	expected := "/providers/PaloAltoNetworks.Cloudngfw/globalRulestacks/globalRulestackValue/fqdnLists/fqdnListValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,35 +49,35 @@ func TestParseFqdnListID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/PaloAltoNetworks.CloudNGFW",
+			Input: "/providers/PaloAltoNetworks.Cloudngfw",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/PaloAltoNetworks.CloudNGFW/globalRuleStacks",
+			Input: "/providers/PaloAltoNetworks.Cloudngfw/globalRulestacks",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/PaloAltoNetworks.CloudNGFW/globalRuleStacks/globalRuleStackValue",
+			Input: "/providers/PaloAltoNetworks.Cloudngfw/globalRulestacks/globalRulestackValue",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/PaloAltoNetworks.CloudNGFW/globalRuleStacks/globalRuleStackValue/fqdnLists",
+			Input: "/providers/PaloAltoNetworks.Cloudngfw/globalRulestacks/globalRulestackValue/fqdnLists",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/providers/PaloAltoNetworks.CloudNGFW/globalRuleStacks/globalRuleStackValue/fqdnLists/fqdnListValue",
+			Input: "/providers/PaloAltoNetworks.Cloudngfw/globalRulestacks/globalRulestackValue/fqdnLists/fqdnListValue",
 			Expected: &FqdnListId{
-				GlobalRuleStackName: "globalRuleStackValue",
+				GlobalRulestackName: "globalRulestackValue",
 				FqdnListName:        "fqdnListValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/PaloAltoNetworks.CloudNGFW/globalRuleStacks/globalRuleStackValue/fqdnLists/fqdnListValue/extra",
+			Input: "/providers/PaloAltoNetworks.Cloudngfw/globalRulestacks/globalRulestackValue/fqdnLists/fqdnListValue/extra",
 			Error: true,
 		},
 	}
@@ -96,8 +96,8 @@ func TestParseFqdnListID(t *testing.T) {
 			t.Fatal("Expect an error but didn't get one")
 		}
 
-		if actual.GlobalRuleStackName != v.Expected.GlobalRuleStackName {
-			t.Fatalf("Expected %q but got %q for GlobalRuleStackName", v.Expected.GlobalRuleStackName, actual.GlobalRuleStackName)
+		if actual.GlobalRulestackName != v.Expected.GlobalRulestackName {
+			t.Fatalf("Expected %q but got %q for GlobalRulestackName", v.Expected.GlobalRulestackName, actual.GlobalRulestackName)
 		}
 
 		if actual.FqdnListName != v.Expected.FqdnListName {
@@ -130,7 +130,7 @@ func TestParseFqdnListIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/PaloAltoNetworks.CloudNGFW",
+			Input: "/providers/PaloAltoNetworks.Cloudngfw",
 			Error: true,
 		},
 		{
@@ -140,7 +140,7 @@ func TestParseFqdnListIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/PaloAltoNetworks.CloudNGFW/globalRuleStacks",
+			Input: "/providers/PaloAltoNetworks.Cloudngfw/globalRulestacks",
 			Error: true,
 		},
 		{
@@ -150,7 +150,7 @@ func TestParseFqdnListIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/PaloAltoNetworks.CloudNGFW/globalRuleStacks/globalRuleStackValue",
+			Input: "/providers/PaloAltoNetworks.Cloudngfw/globalRulestacks/globalRulestackValue",
 			Error: true,
 		},
 		{
@@ -160,7 +160,7 @@ func TestParseFqdnListIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/PaloAltoNetworks.CloudNGFW/globalRuleStacks/globalRuleStackValue/fqdnLists",
+			Input: "/providers/PaloAltoNetworks.Cloudngfw/globalRulestacks/globalRulestackValue/fqdnLists",
 			Error: true,
 		},
 		{
@@ -170,22 +170,22 @@ func TestParseFqdnListIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/providers/PaloAltoNetworks.CloudNGFW/globalRuleStacks/globalRuleStackValue/fqdnLists/fqdnListValue",
+			Input: "/providers/PaloAltoNetworks.Cloudngfw/globalRulestacks/globalRulestackValue/fqdnLists/fqdnListValue",
 			Expected: &FqdnListId{
-				GlobalRuleStackName: "globalRuleStackValue",
+				GlobalRulestackName: "globalRulestackValue",
 				FqdnListName:        "fqdnListValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/PaloAltoNetworks.CloudNGFW/globalRuleStacks/globalRuleStackValue/fqdnLists/fqdnListValue/extra",
+			Input: "/providers/PaloAltoNetworks.Cloudngfw/globalRulestacks/globalRulestackValue/fqdnLists/fqdnListValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
 			Input: "/pRoViDeRs/pAlOaLtOnEtWoRkS.ClOuDnGfW/gLoBaLrUlEsTaCkS/gLoBaLrUlEsTaCkVaLuE/fQdNlIsTs/fQdNlIsTvAlUe",
 			Expected: &FqdnListId{
-				GlobalRuleStackName: "gLoBaLrUlEsTaCkVaLuE",
+				GlobalRulestackName: "gLoBaLrUlEsTaCkVaLuE",
 				FqdnListName:        "fQdNlIsTvAlUe",
 			},
 		},
@@ -210,8 +210,8 @@ func TestParseFqdnListIDInsensitively(t *testing.T) {
 			t.Fatal("Expect an error but didn't get one")
 		}
 
-		if actual.GlobalRuleStackName != v.Expected.GlobalRuleStackName {
-			t.Fatalf("Expected %q but got %q for GlobalRuleStackName", v.Expected.GlobalRuleStackName, actual.GlobalRuleStackName)
+		if actual.GlobalRulestackName != v.Expected.GlobalRulestackName {
+			t.Fatalf("Expected %q but got %q for GlobalRulestackName", v.Expected.GlobalRulestackName, actual.GlobalRulestackName)
 		}
 
 		if actual.FqdnListName != v.Expected.FqdnListName {

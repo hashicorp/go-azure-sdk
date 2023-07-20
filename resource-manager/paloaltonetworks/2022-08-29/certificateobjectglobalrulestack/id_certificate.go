@@ -14,14 +14,14 @@ var _ resourceids.ResourceId = CertificateId{}
 
 // CertificateId is a struct representing the Resource ID for a Certificate
 type CertificateId struct {
-	GlobalRuleStackName string
+	GlobalRulestackName string
 	CertificateName     string
 }
 
 // NewCertificateID returns a new CertificateId struct
-func NewCertificateID(globalRuleStackName string, certificateName string) CertificateId {
+func NewCertificateID(globalRulestackName string, certificateName string) CertificateId {
 	return CertificateId{
-		GlobalRuleStackName: globalRuleStackName,
+		GlobalRulestackName: globalRulestackName,
 		CertificateName:     certificateName,
 	}
 }
@@ -37,8 +37,8 @@ func ParseCertificateID(input string) (*CertificateId, error) {
 	var ok bool
 	id := CertificateId{}
 
-	if id.GlobalRuleStackName, ok = parsed.Parsed["globalRuleStackName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "globalRuleStackName", *parsed)
+	if id.GlobalRulestackName, ok = parsed.Parsed["globalRulestackName"]; !ok {
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "globalRulestackName", *parsed)
 	}
 
 	if id.CertificateName, ok = parsed.Parsed["certificateName"]; !ok {
@@ -60,8 +60,8 @@ func ParseCertificateIDInsensitively(input string) (*CertificateId, error) {
 	var ok bool
 	id := CertificateId{}
 
-	if id.GlobalRuleStackName, ok = parsed.Parsed["globalRuleStackName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "globalRuleStackName", *parsed)
+	if id.GlobalRulestackName, ok = parsed.Parsed["globalRulestackName"]; !ok {
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "globalRulestackName", *parsed)
 	}
 
 	if id.CertificateName, ok = parsed.Parsed["certificateName"]; !ok {
@@ -88,17 +88,17 @@ func ValidateCertificateID(input interface{}, key string) (warnings []string, er
 
 // ID returns the formatted Certificate ID
 func (id CertificateId) ID() string {
-	fmtString := "/providers/PaloAltoNetworks.CloudNGFW/globalRuleStacks/%s/certificates/%s"
-	return fmt.Sprintf(fmtString, id.GlobalRuleStackName, id.CertificateName)
+	fmtString := "/providers/PaloAltoNetworks.Cloudngfw/globalRulestacks/%s/certificates/%s"
+	return fmt.Sprintf(fmtString, id.GlobalRulestackName, id.CertificateName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Certificate ID
 func (id CertificateId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
-		resourceids.ResourceProviderSegment("staticPaloAltoNetworksCloudNGFW", "PaloAltoNetworks.CloudNGFW", "PaloAltoNetworks.CloudNGFW"),
-		resourceids.StaticSegment("staticGlobalRuleStacks", "globalRuleStacks", "globalRuleStacks"),
-		resourceids.UserSpecifiedSegment("globalRuleStackName", "globalRuleStackValue"),
+		resourceids.ResourceProviderSegment("staticPaloAltoNetworksCloudngfw", "PaloAltoNetworks.Cloudngfw", "PaloAltoNetworks.Cloudngfw"),
+		resourceids.StaticSegment("staticGlobalRulestacks", "globalRulestacks", "globalRulestacks"),
+		resourceids.UserSpecifiedSegment("globalRulestackName", "globalRulestackValue"),
 		resourceids.StaticSegment("staticCertificates", "certificates", "certificates"),
 		resourceids.UserSpecifiedSegment("certificateName", "certificateValue"),
 	}
@@ -107,7 +107,7 @@ func (id CertificateId) Segments() []resourceids.Segment {
 // String returns a human-readable description of this Certificate ID
 func (id CertificateId) String() string {
 	components := []string{
-		fmt.Sprintf("Global Rule Stack Name: %q", id.GlobalRuleStackName),
+		fmt.Sprintf("Global Rulestack Name: %q", id.GlobalRulestackName),
 		fmt.Sprintf("Certificate Name: %q", id.CertificateName),
 	}
 	return fmt.Sprintf("Certificate (%s)", strings.Join(components, "\n"))

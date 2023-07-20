@@ -9,10 +9,10 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = LocalRuleStackFqdnListId{}
+var _ resourceids.ResourceId = LocalRulestackFqdnListId{}
 
-func TestNewLocalRuleStackFqdnListID(t *testing.T) {
-	id := NewLocalRuleStackFqdnListID("12345678-1234-9876-4563-123456789012", "example-resource-group", "localRuleStackValue", "fqdnListValue")
+func TestNewLocalRulestackFqdnListID(t *testing.T) {
+	id := NewLocalRulestackFqdnListID("12345678-1234-9876-4563-123456789012", "example-resource-group", "localRulestackValue", "fqdnListValue")
 
 	if id.SubscriptionId != "12345678-1234-9876-4563-123456789012" {
 		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "12345678-1234-9876-4563-123456789012")
@@ -22,8 +22,8 @@ func TestNewLocalRuleStackFqdnListID(t *testing.T) {
 		t.Fatalf("Expected %q but got %q for Segment 'ResourceGroupName'", id.ResourceGroupName, "example-resource-group")
 	}
 
-	if id.LocalRuleStackName != "localRuleStackValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'LocalRuleStackName'", id.LocalRuleStackName, "localRuleStackValue")
+	if id.LocalRulestackName != "localRulestackValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'LocalRulestackName'", id.LocalRulestackName, "localRulestackValue")
 	}
 
 	if id.FqdnListName != "fqdnListValue" {
@@ -31,19 +31,19 @@ func TestNewLocalRuleStackFqdnListID(t *testing.T) {
 	}
 }
 
-func TestFormatLocalRuleStackFqdnListID(t *testing.T) {
-	actual := NewLocalRuleStackFqdnListID("12345678-1234-9876-4563-123456789012", "example-resource-group", "localRuleStackValue", "fqdnListValue").ID()
-	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/PaloAltoNetworks.CloudNGFW/localRuleStacks/localRuleStackValue/fqdnLists/fqdnListValue"
+func TestFormatLocalRulestackFqdnListID(t *testing.T) {
+	actual := NewLocalRulestackFqdnListID("12345678-1234-9876-4563-123456789012", "example-resource-group", "localRulestackValue", "fqdnListValue").ID()
+	expected := "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/PaloAltoNetworks.Cloudngfw/localRulestacks/localRulestackValue/fqdnLists/fqdnListValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
 }
 
-func TestParseLocalRuleStackFqdnListID(t *testing.T) {
+func TestParseLocalRulestackFqdnListID(t *testing.T) {
 	testData := []struct {
 		Input    string
 		Error    bool
-		Expected *LocalRuleStackFqdnListId
+		Expected *LocalRulestackFqdnListId
 	}{
 		{
 			// Incomplete URI
@@ -77,44 +77,44 @@ func TestParseLocalRuleStackFqdnListID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/PaloAltoNetworks.CloudNGFW",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/PaloAltoNetworks.Cloudngfw",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/PaloAltoNetworks.CloudNGFW/localRuleStacks",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/PaloAltoNetworks.Cloudngfw/localRulestacks",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/PaloAltoNetworks.CloudNGFW/localRuleStacks/localRuleStackValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/PaloAltoNetworks.Cloudngfw/localRulestacks/localRulestackValue",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/PaloAltoNetworks.CloudNGFW/localRuleStacks/localRuleStackValue/fqdnLists",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/PaloAltoNetworks.Cloudngfw/localRulestacks/localRulestackValue/fqdnLists",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/PaloAltoNetworks.CloudNGFW/localRuleStacks/localRuleStackValue/fqdnLists/fqdnListValue",
-			Expected: &LocalRuleStackFqdnListId{
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/PaloAltoNetworks.Cloudngfw/localRulestacks/localRulestackValue/fqdnLists/fqdnListValue",
+			Expected: &LocalRulestackFqdnListId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "example-resource-group",
-				LocalRuleStackName: "localRuleStackValue",
+				LocalRulestackName: "localRulestackValue",
 				FqdnListName:       "fqdnListValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/PaloAltoNetworks.CloudNGFW/localRuleStacks/localRuleStackValue/fqdnLists/fqdnListValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/PaloAltoNetworks.Cloudngfw/localRulestacks/localRulestackValue/fqdnLists/fqdnListValue/extra",
 			Error: true,
 		},
 	}
 	for _, v := range testData {
 		t.Logf("[DEBUG] Testing %q", v.Input)
 
-		actual, err := ParseLocalRuleStackFqdnListID(v.Input)
+		actual, err := ParseLocalRulestackFqdnListID(v.Input)
 		if err != nil {
 			if v.Error {
 				continue
@@ -134,8 +134,8 @@ func TestParseLocalRuleStackFqdnListID(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.LocalRuleStackName != v.Expected.LocalRuleStackName {
-			t.Fatalf("Expected %q but got %q for LocalRuleStackName", v.Expected.LocalRuleStackName, actual.LocalRuleStackName)
+		if actual.LocalRulestackName != v.Expected.LocalRulestackName {
+			t.Fatalf("Expected %q but got %q for LocalRulestackName", v.Expected.LocalRulestackName, actual.LocalRulestackName)
 		}
 
 		if actual.FqdnListName != v.Expected.FqdnListName {
@@ -145,11 +145,11 @@ func TestParseLocalRuleStackFqdnListID(t *testing.T) {
 	}
 }
 
-func TestParseLocalRuleStackFqdnListIDInsensitively(t *testing.T) {
+func TestParseLocalRulestackFqdnListIDInsensitively(t *testing.T) {
 	testData := []struct {
 		Input    string
 		Error    bool
-		Expected *LocalRuleStackFqdnListId
+		Expected *LocalRulestackFqdnListId
 	}{
 		{
 			// Incomplete URI
@@ -208,7 +208,7 @@ func TestParseLocalRuleStackFqdnListIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/PaloAltoNetworks.CloudNGFW",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/PaloAltoNetworks.Cloudngfw",
 			Error: true,
 		},
 		{
@@ -218,7 +218,7 @@ func TestParseLocalRuleStackFqdnListIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/PaloAltoNetworks.CloudNGFW/localRuleStacks",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/PaloAltoNetworks.Cloudngfw/localRulestacks",
 			Error: true,
 		},
 		{
@@ -228,7 +228,7 @@ func TestParseLocalRuleStackFqdnListIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/PaloAltoNetworks.CloudNGFW/localRuleStacks/localRuleStackValue",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/PaloAltoNetworks.Cloudngfw/localRulestacks/localRulestackValue",
 			Error: true,
 		},
 		{
@@ -238,7 +238,7 @@ func TestParseLocalRuleStackFqdnListIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/PaloAltoNetworks.CloudNGFW/localRuleStacks/localRuleStackValue/fqdnLists",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/PaloAltoNetworks.Cloudngfw/localRulestacks/localRulestackValue/fqdnLists",
 			Error: true,
 		},
 		{
@@ -248,26 +248,26 @@ func TestParseLocalRuleStackFqdnListIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/PaloAltoNetworks.CloudNGFW/localRuleStacks/localRuleStackValue/fqdnLists/fqdnListValue",
-			Expected: &LocalRuleStackFqdnListId{
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/PaloAltoNetworks.Cloudngfw/localRulestacks/localRulestackValue/fqdnLists/fqdnListValue",
+			Expected: &LocalRulestackFqdnListId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "example-resource-group",
-				LocalRuleStackName: "localRuleStackValue",
+				LocalRulestackName: "localRulestackValue",
 				FqdnListName:       "fqdnListValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/PaloAltoNetworks.CloudNGFW/localRuleStacks/localRuleStackValue/fqdnLists/fqdnListValue/extra",
+			Input: "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/PaloAltoNetworks.Cloudngfw/localRulestacks/localRulestackValue/fqdnLists/fqdnListValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
 			Input: "/sUbScRiPtIoNs/12345678-1234-9876-4563-123456789012/rEsOuRcEgRoUpS/eXaMpLe-rEsOuRcE-GrOuP/pRoViDeRs/pAlOaLtOnEtWoRkS.ClOuDnGfW/lOcAlRuLeStAcKs/lOcAlRuLeStAcKvAlUe/fQdNlIsTs/fQdNlIsTvAlUe",
-			Expected: &LocalRuleStackFqdnListId{
+			Expected: &LocalRulestackFqdnListId{
 				SubscriptionId:     "12345678-1234-9876-4563-123456789012",
 				ResourceGroupName:  "eXaMpLe-rEsOuRcE-GrOuP",
-				LocalRuleStackName: "lOcAlRuLeStAcKvAlUe",
+				LocalRulestackName: "lOcAlRuLeStAcKvAlUe",
 				FqdnListName:       "fQdNlIsTvAlUe",
 			},
 		},
@@ -280,7 +280,7 @@ func TestParseLocalRuleStackFqdnListIDInsensitively(t *testing.T) {
 	for _, v := range testData {
 		t.Logf("[DEBUG] Testing %q", v.Input)
 
-		actual, err := ParseLocalRuleStackFqdnListIDInsensitively(v.Input)
+		actual, err := ParseLocalRulestackFqdnListIDInsensitively(v.Input)
 		if err != nil {
 			if v.Error {
 				continue
@@ -300,8 +300,8 @@ func TestParseLocalRuleStackFqdnListIDInsensitively(t *testing.T) {
 			t.Fatalf("Expected %q but got %q for ResourceGroupName", v.Expected.ResourceGroupName, actual.ResourceGroupName)
 		}
 
-		if actual.LocalRuleStackName != v.Expected.LocalRuleStackName {
-			t.Fatalf("Expected %q but got %q for LocalRuleStackName", v.Expected.LocalRuleStackName, actual.LocalRuleStackName)
+		if actual.LocalRulestackName != v.Expected.LocalRulestackName {
+			t.Fatalf("Expected %q but got %q for LocalRulestackName", v.Expected.LocalRulestackName, actual.LocalRulestackName)
 		}
 
 		if actual.FqdnListName != v.Expected.FqdnListName {
@@ -311,10 +311,10 @@ func TestParseLocalRuleStackFqdnListIDInsensitively(t *testing.T) {
 	}
 }
 
-func TestSegmentsForLocalRuleStackFqdnListId(t *testing.T) {
-	segments := LocalRuleStackFqdnListId{}.Segments()
+func TestSegmentsForLocalRulestackFqdnListId(t *testing.T) {
+	segments := LocalRulestackFqdnListId{}.Segments()
 	if len(segments) == 0 {
-		t.Fatalf("LocalRuleStackFqdnListId has no segments")
+		t.Fatalf("LocalRulestackFqdnListId has no segments")
 	}
 
 	uniqueNames := make(map[string]struct{}, 0)

@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := postrules.NewPostRuleID("globalRuleStackValue", "postRuleValue")
+id := postrules.NewPostRuleID("globalRulestackValue", "postRuleValue")
 
 payload := postrules.PostRulesResource{
 	// ...
@@ -41,7 +41,7 @@ if err := client.CreateOrUpdateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := postrules.NewPostRuleID("globalRuleStackValue", "postRuleValue")
+id := postrules.NewPostRuleID("globalRulestackValue", "postRuleValue")
 
 if err := client.DeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -53,7 +53,7 @@ if err := client.DeleteThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := postrules.NewPostRuleID("globalRuleStackValue", "postRuleValue")
+id := postrules.NewPostRuleID("globalRulestackValue", "postRuleValue")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -69,7 +69,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := postrules.NewPostRuleID("globalRuleStackValue", "postRuleValue")
+id := postrules.NewPostRuleID("globalRulestackValue", "postRuleValue")
 
 read, err := client.GetCounters(ctx, id, postrules.DefaultGetCountersOperationOptions())
 if err != nil {
@@ -85,7 +85,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := postrules.NewGlobalRuleStackID("globalRuleStackValue")
+id := postrules.NewGlobalRulestackID("globalRulestackValue")
 
 // alternatively `client.List(ctx, id)` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id)
@@ -102,7 +102,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := postrules.NewPostRuleID("globalRuleStackValue", "postRuleValue")
+id := postrules.NewPostRuleID("globalRulestackValue", "postRuleValue")
 
 read, err := client.RefreshCounters(ctx, id, postrules.DefaultRefreshCountersOperationOptions())
 if err != nil {
@@ -118,7 +118,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := postrules.NewPostRuleID("globalRuleStackValue", "postRuleValue")
+id := postrules.NewPostRuleID("globalRulestackValue", "postRuleValue")
 
 read, err := client.ResetCounters(ctx, id, postrules.DefaultResetCountersOperationOptions())
 if err != nil {

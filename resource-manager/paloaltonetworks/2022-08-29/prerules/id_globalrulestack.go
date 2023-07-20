@@ -10,92 +10,92 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = GlobalRuleStackId{}
+var _ resourceids.ResourceId = GlobalRulestackId{}
 
-// GlobalRuleStackId is a struct representing the Resource ID for a Global Rule Stack
-type GlobalRuleStackId struct {
-	GlobalRuleStackName string
+// GlobalRulestackId is a struct representing the Resource ID for a Global Rulestack
+type GlobalRulestackId struct {
+	GlobalRulestackName string
 }
 
-// NewGlobalRuleStackID returns a new GlobalRuleStackId struct
-func NewGlobalRuleStackID(globalRuleStackName string) GlobalRuleStackId {
-	return GlobalRuleStackId{
-		GlobalRuleStackName: globalRuleStackName,
+// NewGlobalRulestackID returns a new GlobalRulestackId struct
+func NewGlobalRulestackID(globalRulestackName string) GlobalRulestackId {
+	return GlobalRulestackId{
+		GlobalRulestackName: globalRulestackName,
 	}
 }
 
-// ParseGlobalRuleStackID parses 'input' into a GlobalRuleStackId
-func ParseGlobalRuleStackID(input string) (*GlobalRuleStackId, error) {
-	parser := resourceids.NewParserFromResourceIdType(GlobalRuleStackId{})
+// ParseGlobalRulestackID parses 'input' into a GlobalRulestackId
+func ParseGlobalRulestackID(input string) (*GlobalRulestackId, error) {
+	parser := resourceids.NewParserFromResourceIdType(GlobalRulestackId{})
 	parsed, err := parser.Parse(input, false)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
 	var ok bool
-	id := GlobalRuleStackId{}
+	id := GlobalRulestackId{}
 
-	if id.GlobalRuleStackName, ok = parsed.Parsed["globalRuleStackName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "globalRuleStackName", *parsed)
+	if id.GlobalRulestackName, ok = parsed.Parsed["globalRulestackName"]; !ok {
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "globalRulestackName", *parsed)
 	}
 
 	return &id, nil
 }
 
-// ParseGlobalRuleStackIDInsensitively parses 'input' case-insensitively into a GlobalRuleStackId
+// ParseGlobalRulestackIDInsensitively parses 'input' case-insensitively into a GlobalRulestackId
 // note: this method should only be used for API response data and not user input
-func ParseGlobalRuleStackIDInsensitively(input string) (*GlobalRuleStackId, error) {
-	parser := resourceids.NewParserFromResourceIdType(GlobalRuleStackId{})
+func ParseGlobalRulestackIDInsensitively(input string) (*GlobalRulestackId, error) {
+	parser := resourceids.NewParserFromResourceIdType(GlobalRulestackId{})
 	parsed, err := parser.Parse(input, true)
 	if err != nil {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
 	var ok bool
-	id := GlobalRuleStackId{}
+	id := GlobalRulestackId{}
 
-	if id.GlobalRuleStackName, ok = parsed.Parsed["globalRuleStackName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "globalRuleStackName", *parsed)
+	if id.GlobalRulestackName, ok = parsed.Parsed["globalRulestackName"]; !ok {
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "globalRulestackName", *parsed)
 	}
 
 	return &id, nil
 }
 
-// ValidateGlobalRuleStackID checks that 'input' can be parsed as a Global Rule Stack ID
-func ValidateGlobalRuleStackID(input interface{}, key string) (warnings []string, errors []error) {
+// ValidateGlobalRulestackID checks that 'input' can be parsed as a Global Rulestack ID
+func ValidateGlobalRulestackID(input interface{}, key string) (warnings []string, errors []error) {
 	v, ok := input.(string)
 	if !ok {
 		errors = append(errors, fmt.Errorf("expected %q to be a string", key))
 		return
 	}
 
-	if _, err := ParseGlobalRuleStackID(v); err != nil {
+	if _, err := ParseGlobalRulestackID(v); err != nil {
 		errors = append(errors, err)
 	}
 
 	return
 }
 
-// ID returns the formatted Global Rule Stack ID
-func (id GlobalRuleStackId) ID() string {
-	fmtString := "/providers/PaloAltoNetworks.CloudNGFW/globalRuleStacks/%s"
-	return fmt.Sprintf(fmtString, id.GlobalRuleStackName)
+// ID returns the formatted Global Rulestack ID
+func (id GlobalRulestackId) ID() string {
+	fmtString := "/providers/PaloAltoNetworks.Cloudngfw/globalRulestacks/%s"
+	return fmt.Sprintf(fmtString, id.GlobalRulestackName)
 }
 
-// Segments returns a slice of Resource ID Segments which comprise this Global Rule Stack ID
-func (id GlobalRuleStackId) Segments() []resourceids.Segment {
+// Segments returns a slice of Resource ID Segments which comprise this Global Rulestack ID
+func (id GlobalRulestackId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
-		resourceids.ResourceProviderSegment("staticPaloAltoNetworksCloudNGFW", "PaloAltoNetworks.CloudNGFW", "PaloAltoNetworks.CloudNGFW"),
-		resourceids.StaticSegment("staticGlobalRuleStacks", "globalRuleStacks", "globalRuleStacks"),
-		resourceids.UserSpecifiedSegment("globalRuleStackName", "globalRuleStackValue"),
+		resourceids.ResourceProviderSegment("staticPaloAltoNetworksCloudngfw", "PaloAltoNetworks.Cloudngfw", "PaloAltoNetworks.Cloudngfw"),
+		resourceids.StaticSegment("staticGlobalRulestacks", "globalRulestacks", "globalRulestacks"),
+		resourceids.UserSpecifiedSegment("globalRulestackName", "globalRulestackValue"),
 	}
 }
 
-// String returns a human-readable description of this Global Rule Stack ID
-func (id GlobalRuleStackId) String() string {
+// String returns a human-readable description of this Global Rulestack ID
+func (id GlobalRulestackId) String() string {
 	components := []string{
-		fmt.Sprintf("Global Rule Stack Name: %q", id.GlobalRuleStackName),
+		fmt.Sprintf("Global Rulestack Name: %q", id.GlobalRulestackName),
 	}
-	return fmt.Sprintf("Global Rule Stack (%s)", strings.Join(components, "\n"))
+	return fmt.Sprintf("Global Rulestack (%s)", strings.Join(components, "\n"))
 }

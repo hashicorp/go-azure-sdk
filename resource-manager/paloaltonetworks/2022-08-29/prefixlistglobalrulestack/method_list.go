@@ -23,7 +23,7 @@ type ListCompleteResult struct {
 }
 
 // List ...
-func (c PrefixListGlobalRulestackClient) List(ctx context.Context, id GlobalRuleStackId) (result ListOperationResponse, err error) {
+func (c PrefixListGlobalRulestackClient) List(ctx context.Context, id GlobalRulestackId) (result ListOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json",
 		ExpectedStatusCodes: []int{
@@ -61,12 +61,12 @@ func (c PrefixListGlobalRulestackClient) List(ctx context.Context, id GlobalRule
 }
 
 // ListComplete retrieves all the results into a single object
-func (c PrefixListGlobalRulestackClient) ListComplete(ctx context.Context, id GlobalRuleStackId) (ListCompleteResult, error) {
+func (c PrefixListGlobalRulestackClient) ListComplete(ctx context.Context, id GlobalRulestackId) (ListCompleteResult, error) {
 	return c.ListCompleteMatchingPredicate(ctx, id, PrefixListGlobalRulestackResourceOperationPredicate{})
 }
 
 // ListCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c PrefixListGlobalRulestackClient) ListCompleteMatchingPredicate(ctx context.Context, id GlobalRuleStackId, predicate PrefixListGlobalRulestackResourceOperationPredicate) (result ListCompleteResult, err error) {
+func (c PrefixListGlobalRulestackClient) ListCompleteMatchingPredicate(ctx context.Context, id GlobalRulestackId, predicate PrefixListGlobalRulestackResourceOperationPredicate) (result ListCompleteResult, err error) {
 	items := make([]PrefixListGlobalRulestackResource, 0)
 
 	resp, err := c.List(ctx, id)

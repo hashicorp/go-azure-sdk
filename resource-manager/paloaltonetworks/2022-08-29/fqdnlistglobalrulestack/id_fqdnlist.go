@@ -14,14 +14,14 @@ var _ resourceids.ResourceId = FqdnListId{}
 
 // FqdnListId is a struct representing the Resource ID for a Fqdn List
 type FqdnListId struct {
-	GlobalRuleStackName string
+	GlobalRulestackName string
 	FqdnListName        string
 }
 
 // NewFqdnListID returns a new FqdnListId struct
-func NewFqdnListID(globalRuleStackName string, fqdnListName string) FqdnListId {
+func NewFqdnListID(globalRulestackName string, fqdnListName string) FqdnListId {
 	return FqdnListId{
-		GlobalRuleStackName: globalRuleStackName,
+		GlobalRulestackName: globalRulestackName,
 		FqdnListName:        fqdnListName,
 	}
 }
@@ -37,8 +37,8 @@ func ParseFqdnListID(input string) (*FqdnListId, error) {
 	var ok bool
 	id := FqdnListId{}
 
-	if id.GlobalRuleStackName, ok = parsed.Parsed["globalRuleStackName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "globalRuleStackName", *parsed)
+	if id.GlobalRulestackName, ok = parsed.Parsed["globalRulestackName"]; !ok {
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "globalRulestackName", *parsed)
 	}
 
 	if id.FqdnListName, ok = parsed.Parsed["fqdnListName"]; !ok {
@@ -60,8 +60,8 @@ func ParseFqdnListIDInsensitively(input string) (*FqdnListId, error) {
 	var ok bool
 	id := FqdnListId{}
 
-	if id.GlobalRuleStackName, ok = parsed.Parsed["globalRuleStackName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "globalRuleStackName", *parsed)
+	if id.GlobalRulestackName, ok = parsed.Parsed["globalRulestackName"]; !ok {
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "globalRulestackName", *parsed)
 	}
 
 	if id.FqdnListName, ok = parsed.Parsed["fqdnListName"]; !ok {
@@ -88,17 +88,17 @@ func ValidateFqdnListID(input interface{}, key string) (warnings []string, error
 
 // ID returns the formatted Fqdn List ID
 func (id FqdnListId) ID() string {
-	fmtString := "/providers/PaloAltoNetworks.CloudNGFW/globalRuleStacks/%s/fqdnLists/%s"
-	return fmt.Sprintf(fmtString, id.GlobalRuleStackName, id.FqdnListName)
+	fmtString := "/providers/PaloAltoNetworks.Cloudngfw/globalRulestacks/%s/fqdnLists/%s"
+	return fmt.Sprintf(fmtString, id.GlobalRulestackName, id.FqdnListName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Fqdn List ID
 func (id FqdnListId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
-		resourceids.ResourceProviderSegment("staticPaloAltoNetworksCloudNGFW", "PaloAltoNetworks.CloudNGFW", "PaloAltoNetworks.CloudNGFW"),
-		resourceids.StaticSegment("staticGlobalRuleStacks", "globalRuleStacks", "globalRuleStacks"),
-		resourceids.UserSpecifiedSegment("globalRuleStackName", "globalRuleStackValue"),
+		resourceids.ResourceProviderSegment("staticPaloAltoNetworksCloudngfw", "PaloAltoNetworks.Cloudngfw", "PaloAltoNetworks.Cloudngfw"),
+		resourceids.StaticSegment("staticGlobalRulestacks", "globalRulestacks", "globalRulestacks"),
+		resourceids.UserSpecifiedSegment("globalRulestackName", "globalRulestackValue"),
 		resourceids.StaticSegment("staticFqdnLists", "fqdnLists", "fqdnLists"),
 		resourceids.UserSpecifiedSegment("fqdnListName", "fqdnListValue"),
 	}
@@ -107,7 +107,7 @@ func (id FqdnListId) Segments() []resourceids.Segment {
 // String returns a human-readable description of this Fqdn List ID
 func (id FqdnListId) String() string {
 	components := []string{
-		fmt.Sprintf("Global Rule Stack Name: %q", id.GlobalRuleStackName),
+		fmt.Sprintf("Global Rulestack Name: %q", id.GlobalRulestackName),
 		fmt.Sprintf("Fqdn List Name: %q", id.FqdnListName),
 	}
 	return fmt.Sprintf("Fqdn List (%s)", strings.Join(components, "\n"))

@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := prerules.NewPreRuleID("globalRuleStackValue", "preRuleValue")
+id := prerules.NewPreRuleID("globalRulestackValue", "preRuleValue")
 
 payload := prerules.PreRulesResource{
 	// ...
@@ -41,7 +41,7 @@ if err := client.CreateOrUpdateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := prerules.NewPreRuleID("globalRuleStackValue", "preRuleValue")
+id := prerules.NewPreRuleID("globalRulestackValue", "preRuleValue")
 
 if err := client.DeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -53,7 +53,7 @@ if err := client.DeleteThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := prerules.NewPreRuleID("globalRuleStackValue", "preRuleValue")
+id := prerules.NewPreRuleID("globalRulestackValue", "preRuleValue")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -69,7 +69,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := prerules.NewPreRuleID("globalRuleStackValue", "preRuleValue")
+id := prerules.NewPreRuleID("globalRulestackValue", "preRuleValue")
 
 read, err := client.GetCounters(ctx, id, prerules.DefaultGetCountersOperationOptions())
 if err != nil {
@@ -85,7 +85,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := prerules.NewGlobalRuleStackID("globalRuleStackValue")
+id := prerules.NewGlobalRulestackID("globalRulestackValue")
 
 // alternatively `client.List(ctx, id)` can be used to do batched pagination
 items, err := client.ListComplete(ctx, id)
@@ -102,7 +102,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := prerules.NewPreRuleID("globalRuleStackValue", "preRuleValue")
+id := prerules.NewPreRuleID("globalRulestackValue", "preRuleValue")
 
 read, err := client.RefreshCounters(ctx, id, prerules.DefaultRefreshCountersOperationOptions())
 if err != nil {
@@ -118,7 +118,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := prerules.NewPreRuleID("globalRuleStackValue", "preRuleValue")
+id := prerules.NewPreRuleID("globalRulestackValue", "preRuleValue")
 
 read, err := client.ResetCounters(ctx, id, prerules.DefaultResetCountersOperationOptions())
 if err != nil {

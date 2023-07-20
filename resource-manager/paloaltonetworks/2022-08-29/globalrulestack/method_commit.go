@@ -21,7 +21,7 @@ type CommitOperationResponse struct {
 }
 
 // Commit ...
-func (c GlobalRulestackClient) Commit(ctx context.Context, id GlobalRuleStackId) (result CommitOperationResponse, err error) {
+func (c GlobalRulestackClient) Commit(ctx context.Context, id GlobalRulestackId) (result CommitOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json",
 		ExpectedStatusCodes: []int{
@@ -55,7 +55,7 @@ func (c GlobalRulestackClient) Commit(ctx context.Context, id GlobalRuleStackId)
 }
 
 // CommitThenPoll performs Commit then polls until it's completed
-func (c GlobalRulestackClient) CommitThenPoll(ctx context.Context, id GlobalRuleStackId) error {
+func (c GlobalRulestackClient) CommitThenPoll(ctx context.Context, id GlobalRulestackId) error {
 	result, err := c.Commit(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing Commit: %+v", err)

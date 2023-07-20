@@ -1,26 +1,18 @@
 package applyupdates
 
-import (
-	"fmt"
-
-	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
-)
+import "github.com/Azure/go-autorest/autorest"
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type ApplyUpdatesClient struct {
-	Client *resourcemanager.Client
+	Client  autorest.Client
+	baseUri string
 }
 
-func NewApplyUpdatesClientWithBaseURI(api environments.Api) (*ApplyUpdatesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(api, "applyupdates", defaultApiVersion)
-	if err != nil {
-		return nil, fmt.Errorf("instantiating ApplyUpdatesClient: %+v", err)
+func NewApplyUpdatesClientWithBaseURI(endpoint string) ApplyUpdatesClient {
+	return ApplyUpdatesClient{
+		Client:  autorest.NewClientWithUserAgent(userAgent()),
+		baseUri: endpoint,
 	}
-
-	return &ApplyUpdatesClient{
-		Client: client,
-	}, nil
 }

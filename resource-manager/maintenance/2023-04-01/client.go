@@ -4,16 +4,13 @@ package v2023_04_01
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 import (
-	"fmt"
-
+	"github.com/Azure/go-autorest/autorest"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/maintenance/2023-04-01/applyupdate"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/maintenance/2023-04-01/applyupdates"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/maintenance/2023-04-01/configurationassignments"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/maintenance/2023-04-01/maintenanceconfigurations"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/maintenance/2023-04-01/publicmaintenanceconfigurations"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/maintenance/2023-04-01/updates"
-	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -25,49 +22,32 @@ type Client struct {
 	Updates                         *updates.UpdatesClient
 }
 
-func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
-	applyUpdateClient, err := applyupdate.NewApplyUpdateClientWithBaseURI(api)
-	if err != nil {
-		return nil, fmt.Errorf("building ApplyUpdate client: %+v", err)
-	}
-	configureFunc(applyUpdateClient.Client)
+func NewClientWithBaseURI(endpoint string, configureAuthFunc func(c *autorest.Client)) Client {
 
-	applyUpdatesClient, err := applyupdates.NewApplyUpdatesClientWithBaseURI(api)
-	if err != nil {
-		return nil, fmt.Errorf("building ApplyUpdates client: %+v", err)
-	}
-	configureFunc(applyUpdatesClient.Client)
+	applyUpdateClient := applyupdate.NewApplyUpdateClientWithBaseURI(endpoint)
+	configureAuthFunc(&applyUpdateClient.Client)
 
-	configurationAssignmentsClient, err := configurationassignments.NewConfigurationAssignmentsClientWithBaseURI(api)
-	if err != nil {
-		return nil, fmt.Errorf("building ConfigurationAssignments client: %+v", err)
-	}
-	configureFunc(configurationAssignmentsClient.Client)
+	applyUpdatesClient := applyupdates.NewApplyUpdatesClientWithBaseURI(endpoint)
+	configureAuthFunc(&applyUpdatesClient.Client)
 
-	maintenanceConfigurationsClient, err := maintenanceconfigurations.NewMaintenanceConfigurationsClientWithBaseURI(api)
-	if err != nil {
-		return nil, fmt.Errorf("building MaintenanceConfigurations client: %+v", err)
-	}
-	configureFunc(maintenanceConfigurationsClient.Client)
+	configurationAssignmentsClient := configurationassignments.NewConfigurationAssignmentsClientWithBaseURI(endpoint)
+	configureAuthFunc(&configurationAssignmentsClient.Client)
 
-	publicMaintenanceConfigurationsClient, err := publicmaintenanceconfigurations.NewPublicMaintenanceConfigurationsClientWithBaseURI(api)
-	if err != nil {
-		return nil, fmt.Errorf("building PublicMaintenanceConfigurations client: %+v", err)
-	}
-	configureFunc(publicMaintenanceConfigurationsClient.Client)
+	maintenanceConfigurationsClient := maintenanceconfigurations.NewMaintenanceConfigurationsClientWithBaseURI(endpoint)
+	configureAuthFunc(&maintenanceConfigurationsClient.Client)
 
-	updatesClient, err := updates.NewUpdatesClientWithBaseURI(api)
-	if err != nil {
-		return nil, fmt.Errorf("building Updates client: %+v", err)
-	}
-	configureFunc(updatesClient.Client)
+	publicMaintenanceConfigurationsClient := publicmaintenanceconfigurations.NewPublicMaintenanceConfigurationsClientWithBaseURI(endpoint)
+	configureAuthFunc(&publicMaintenanceConfigurationsClient.Client)
 
-	return &Client{
-		ApplyUpdate:                     applyUpdateClient,
-		ApplyUpdates:                    applyUpdatesClient,
-		ConfigurationAssignments:        configurationAssignmentsClient,
-		MaintenanceConfigurations:       maintenanceConfigurationsClient,
-		PublicMaintenanceConfigurations: publicMaintenanceConfigurationsClient,
-		Updates:                         updatesClient,
-	}, nil
+	updatesClient := updates.NewUpdatesClientWithBaseURI(endpoint)
+	configureAuthFunc(&updatesClient.Client)
+
+	return Client{
+		ApplyUpdate:                     &applyUpdateClient,
+		ApplyUpdates:                    &applyUpdatesClient,
+		ConfigurationAssignments:        &configurationAssignmentsClient,
+		MaintenanceConfigurations:       &maintenanceConfigurationsClient,
+		PublicMaintenanceConfigurations: &publicMaintenanceConfigurationsClient,
+		Updates:                         &updatesClient,
+	}
 }

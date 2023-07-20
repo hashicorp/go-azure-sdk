@@ -9,29 +9,29 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-var _ resourceids.ResourceId = GlobalRuleStackId{}
+var _ resourceids.ResourceId = GlobalRulestackId{}
 
-func TestNewGlobalRuleStackID(t *testing.T) {
-	id := NewGlobalRuleStackID("globalRuleStackValue")
+func TestNewGlobalRulestackID(t *testing.T) {
+	id := NewGlobalRulestackID("globalRulestackValue")
 
-	if id.GlobalRuleStackName != "globalRuleStackValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'GlobalRuleStackName'", id.GlobalRuleStackName, "globalRuleStackValue")
+	if id.GlobalRulestackName != "globalRulestackValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'GlobalRulestackName'", id.GlobalRulestackName, "globalRulestackValue")
 	}
 }
 
-func TestFormatGlobalRuleStackID(t *testing.T) {
-	actual := NewGlobalRuleStackID("globalRuleStackValue").ID()
-	expected := "/providers/PaloAltoNetworks.CloudNGFW/globalRuleStacks/globalRuleStackValue"
+func TestFormatGlobalRulestackID(t *testing.T) {
+	actual := NewGlobalRulestackID("globalRulestackValue").ID()
+	expected := "/providers/PaloAltoNetworks.Cloudngfw/globalRulestacks/globalRulestackValue"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
 }
 
-func TestParseGlobalRuleStackID(t *testing.T) {
+func TestParseGlobalRulestackID(t *testing.T) {
 	testData := []struct {
 		Input    string
 		Error    bool
-		Expected *GlobalRuleStackId
+		Expected *GlobalRulestackId
 	}{
 		{
 			// Incomplete URI
@@ -45,31 +45,31 @@ func TestParseGlobalRuleStackID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/PaloAltoNetworks.CloudNGFW",
+			Input: "/providers/PaloAltoNetworks.Cloudngfw",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/PaloAltoNetworks.CloudNGFW/globalRuleStacks",
+			Input: "/providers/PaloAltoNetworks.Cloudngfw/globalRulestacks",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/providers/PaloAltoNetworks.CloudNGFW/globalRuleStacks/globalRuleStackValue",
-			Expected: &GlobalRuleStackId{
-				GlobalRuleStackName: "globalRuleStackValue",
+			Input: "/providers/PaloAltoNetworks.Cloudngfw/globalRulestacks/globalRulestackValue",
+			Expected: &GlobalRulestackId{
+				GlobalRulestackName: "globalRulestackValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/PaloAltoNetworks.CloudNGFW/globalRuleStacks/globalRuleStackValue/extra",
+			Input: "/providers/PaloAltoNetworks.Cloudngfw/globalRulestacks/globalRulestackValue/extra",
 			Error: true,
 		},
 	}
 	for _, v := range testData {
 		t.Logf("[DEBUG] Testing %q", v.Input)
 
-		actual, err := ParseGlobalRuleStackID(v.Input)
+		actual, err := ParseGlobalRulestackID(v.Input)
 		if err != nil {
 			if v.Error {
 				continue
@@ -81,18 +81,18 @@ func TestParseGlobalRuleStackID(t *testing.T) {
 			t.Fatal("Expect an error but didn't get one")
 		}
 
-		if actual.GlobalRuleStackName != v.Expected.GlobalRuleStackName {
-			t.Fatalf("Expected %q but got %q for GlobalRuleStackName", v.Expected.GlobalRuleStackName, actual.GlobalRuleStackName)
+		if actual.GlobalRulestackName != v.Expected.GlobalRulestackName {
+			t.Fatalf("Expected %q but got %q for GlobalRulestackName", v.Expected.GlobalRulestackName, actual.GlobalRulestackName)
 		}
 
 	}
 }
 
-func TestParseGlobalRuleStackIDInsensitively(t *testing.T) {
+func TestParseGlobalRulestackIDInsensitively(t *testing.T) {
 	testData := []struct {
 		Input    string
 		Error    bool
-		Expected *GlobalRuleStackId
+		Expected *GlobalRulestackId
 	}{
 		{
 			// Incomplete URI
@@ -111,7 +111,7 @@ func TestParseGlobalRuleStackIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/PaloAltoNetworks.CloudNGFW",
+			Input: "/providers/PaloAltoNetworks.Cloudngfw",
 			Error: true,
 		},
 		{
@@ -121,7 +121,7 @@ func TestParseGlobalRuleStackIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/providers/PaloAltoNetworks.CloudNGFW/globalRuleStacks",
+			Input: "/providers/PaloAltoNetworks.Cloudngfw/globalRulestacks",
 			Error: true,
 		},
 		{
@@ -131,21 +131,21 @@ func TestParseGlobalRuleStackIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/providers/PaloAltoNetworks.CloudNGFW/globalRuleStacks/globalRuleStackValue",
-			Expected: &GlobalRuleStackId{
-				GlobalRuleStackName: "globalRuleStackValue",
+			Input: "/providers/PaloAltoNetworks.Cloudngfw/globalRulestacks/globalRulestackValue",
+			Expected: &GlobalRulestackId{
+				GlobalRulestackName: "globalRulestackValue",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/providers/PaloAltoNetworks.CloudNGFW/globalRuleStacks/globalRuleStackValue/extra",
+			Input: "/providers/PaloAltoNetworks.Cloudngfw/globalRulestacks/globalRulestackValue/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
 			Input: "/pRoViDeRs/pAlOaLtOnEtWoRkS.ClOuDnGfW/gLoBaLrUlEsTaCkS/gLoBaLrUlEsTaCkVaLuE",
-			Expected: &GlobalRuleStackId{
-				GlobalRuleStackName: "gLoBaLrUlEsTaCkVaLuE",
+			Expected: &GlobalRulestackId{
+				GlobalRulestackName: "gLoBaLrUlEsTaCkVaLuE",
 			},
 		},
 		{
@@ -157,7 +157,7 @@ func TestParseGlobalRuleStackIDInsensitively(t *testing.T) {
 	for _, v := range testData {
 		t.Logf("[DEBUG] Testing %q", v.Input)
 
-		actual, err := ParseGlobalRuleStackIDInsensitively(v.Input)
+		actual, err := ParseGlobalRulestackIDInsensitively(v.Input)
 		if err != nil {
 			if v.Error {
 				continue
@@ -169,17 +169,17 @@ func TestParseGlobalRuleStackIDInsensitively(t *testing.T) {
 			t.Fatal("Expect an error but didn't get one")
 		}
 
-		if actual.GlobalRuleStackName != v.Expected.GlobalRuleStackName {
-			t.Fatalf("Expected %q but got %q for GlobalRuleStackName", v.Expected.GlobalRuleStackName, actual.GlobalRuleStackName)
+		if actual.GlobalRulestackName != v.Expected.GlobalRulestackName {
+			t.Fatalf("Expected %q but got %q for GlobalRulestackName", v.Expected.GlobalRulestackName, actual.GlobalRulestackName)
 		}
 
 	}
 }
 
-func TestSegmentsForGlobalRuleStackId(t *testing.T) {
-	segments := GlobalRuleStackId{}.Segments()
+func TestSegmentsForGlobalRulestackId(t *testing.T) {
+	segments := GlobalRulestackId{}.Segments()
 	if len(segments) == 0 {
-		t.Fatalf("GlobalRuleStackId has no segments")
+		t.Fatalf("GlobalRulestackId has no segments")
 	}
 
 	uniqueNames := make(map[string]struct{}, 0)

@@ -21,7 +21,7 @@ type DeleteOperationResponse struct {
 }
 
 // Delete ...
-func (c GlobalRulestackClient) Delete(ctx context.Context, id GlobalRuleStackId) (result DeleteOperationResponse, err error) {
+func (c GlobalRulestackClient) Delete(ctx context.Context, id GlobalRulestackId) (result DeleteOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json",
 		ExpectedStatusCodes: []int{
@@ -57,7 +57,7 @@ func (c GlobalRulestackClient) Delete(ctx context.Context, id GlobalRuleStackId)
 }
 
 // DeleteThenPoll performs Delete then polls until it's completed
-func (c GlobalRulestackClient) DeleteThenPoll(ctx context.Context, id GlobalRuleStackId) error {
+func (c GlobalRulestackClient) DeleteThenPoll(ctx context.Context, id GlobalRulestackId) error {
 	result, err := c.Delete(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing Delete: %+v", err)

@@ -19,7 +19,7 @@ type GetChangeLogOperationResponse struct {
 }
 
 // GetChangeLog ...
-func (c GlobalRulestackClient) GetChangeLog(ctx context.Context, id GlobalRuleStackId) (result GetChangeLogOperationResponse, err error) {
+func (c GlobalRulestackClient) GetChangeLog(ctx context.Context, id GlobalRulestackId) (result GetChangeLogOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json",
 		ExpectedStatusCodes: []int{

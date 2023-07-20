@@ -58,7 +58,7 @@ func (o ListAppIdsOperationOptions) ToQuery() *client.QueryParams {
 }
 
 // ListAppIds ...
-func (c GlobalRulestackClient) ListAppIds(ctx context.Context, id GlobalRuleStackId, options ListAppIdsOperationOptions) (result ListAppIdsOperationResponse, err error) {
+func (c GlobalRulestackClient) ListAppIds(ctx context.Context, id GlobalRulestackId, options ListAppIdsOperationOptions) (result ListAppIdsOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json",
 		ExpectedStatusCodes: []int{

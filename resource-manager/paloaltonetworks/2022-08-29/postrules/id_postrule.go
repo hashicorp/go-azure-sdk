@@ -14,14 +14,14 @@ var _ resourceids.ResourceId = PostRuleId{}
 
 // PostRuleId is a struct representing the Resource ID for a Post Rule
 type PostRuleId struct {
-	GlobalRuleStackName string
+	GlobalRulestackName string
 	PostRuleName        string
 }
 
 // NewPostRuleID returns a new PostRuleId struct
-func NewPostRuleID(globalRuleStackName string, postRuleName string) PostRuleId {
+func NewPostRuleID(globalRulestackName string, postRuleName string) PostRuleId {
 	return PostRuleId{
-		GlobalRuleStackName: globalRuleStackName,
+		GlobalRulestackName: globalRulestackName,
 		PostRuleName:        postRuleName,
 	}
 }
@@ -37,8 +37,8 @@ func ParsePostRuleID(input string) (*PostRuleId, error) {
 	var ok bool
 	id := PostRuleId{}
 
-	if id.GlobalRuleStackName, ok = parsed.Parsed["globalRuleStackName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "globalRuleStackName", *parsed)
+	if id.GlobalRulestackName, ok = parsed.Parsed["globalRulestackName"]; !ok {
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "globalRulestackName", *parsed)
 	}
 
 	if id.PostRuleName, ok = parsed.Parsed["postRuleName"]; !ok {
@@ -60,8 +60,8 @@ func ParsePostRuleIDInsensitively(input string) (*PostRuleId, error) {
 	var ok bool
 	id := PostRuleId{}
 
-	if id.GlobalRuleStackName, ok = parsed.Parsed["globalRuleStackName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "globalRuleStackName", *parsed)
+	if id.GlobalRulestackName, ok = parsed.Parsed["globalRulestackName"]; !ok {
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "globalRulestackName", *parsed)
 	}
 
 	if id.PostRuleName, ok = parsed.Parsed["postRuleName"]; !ok {
@@ -88,17 +88,17 @@ func ValidatePostRuleID(input interface{}, key string) (warnings []string, error
 
 // ID returns the formatted Post Rule ID
 func (id PostRuleId) ID() string {
-	fmtString := "/providers/PaloAltoNetworks.CloudNGFW/globalRuleStacks/%s/postRules/%s"
-	return fmt.Sprintf(fmtString, id.GlobalRuleStackName, id.PostRuleName)
+	fmtString := "/providers/PaloAltoNetworks.Cloudngfw/globalRulestacks/%s/postRules/%s"
+	return fmt.Sprintf(fmtString, id.GlobalRulestackName, id.PostRuleName)
 }
 
 // Segments returns a slice of Resource ID Segments which comprise this Post Rule ID
 func (id PostRuleId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
 		resourceids.StaticSegment("staticProviders", "providers", "providers"),
-		resourceids.ResourceProviderSegment("staticPaloAltoNetworksCloudNGFW", "PaloAltoNetworks.CloudNGFW", "PaloAltoNetworks.CloudNGFW"),
-		resourceids.StaticSegment("staticGlobalRuleStacks", "globalRuleStacks", "globalRuleStacks"),
-		resourceids.UserSpecifiedSegment("globalRuleStackName", "globalRuleStackValue"),
+		resourceids.ResourceProviderSegment("staticPaloAltoNetworksCloudngfw", "PaloAltoNetworks.Cloudngfw", "PaloAltoNetworks.Cloudngfw"),
+		resourceids.StaticSegment("staticGlobalRulestacks", "globalRulestacks", "globalRulestacks"),
+		resourceids.UserSpecifiedSegment("globalRulestackName", "globalRulestackValue"),
 		resourceids.StaticSegment("staticPostRules", "postRules", "postRules"),
 		resourceids.UserSpecifiedSegment("postRuleName", "postRuleValue"),
 	}
@@ -107,7 +107,7 @@ func (id PostRuleId) Segments() []resourceids.Segment {
 // String returns a human-readable description of this Post Rule ID
 func (id PostRuleId) String() string {
 	components := []string{
-		fmt.Sprintf("Global Rule Stack Name: %q", id.GlobalRuleStackName),
+		fmt.Sprintf("Global Rulestack Name: %q", id.GlobalRulestackName),
 		fmt.Sprintf("Post Rule Name: %q", id.PostRuleName),
 	}
 	return fmt.Sprintf("Post Rule (%s)", strings.Join(components, "\n"))

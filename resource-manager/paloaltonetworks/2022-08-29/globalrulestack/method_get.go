@@ -18,7 +18,7 @@ type GetOperationResponse struct {
 }
 
 // Get ...
-func (c GlobalRulestackClient) Get(ctx context.Context, id GlobalRuleStackId) (result GetOperationResponse, err error) {
+func (c GlobalRulestackClient) Get(ctx context.Context, id GlobalRulestackId) (result GetOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json",
 		ExpectedStatusCodes: []int{
