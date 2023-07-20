@@ -151,11 +151,6 @@ func (r *Response) Unmarshal(model interface{}) error {
 
 	contentType := strings.ToLower(r.Header.Get("Content-Type"))
 	if contentType == "" {
-		// the maintenance API returns a 200 for a delete with no content-type and no content length so we should skip
-		// trying to unmarshal this
-		if r.ContentLength == 0 {
-			return nil
-		}
 		// some APIs (e.g. Storage Data Plane) don't return a content type... so we'll assume from the Accept header
 		acc, err := accept.FromString(r.Request.Header.Get("Accept"))
 		if err != nil {
@@ -167,6 +162,10 @@ func (r *Response) Unmarshal(model interface{}) error {
 			// fall back on request media type
 			contentType = strings.ToLower(r.Request.Header.Get("Content-Type"))
 		}
+	}
+	// the maintenance API returns a 200 for a delete with no content-type and no content length
+	if r.ContentLength == 0 {
+		return nil
 	}
 	if strings.Contains(contentType, "application/json") {
 		// Read the response body and close it
