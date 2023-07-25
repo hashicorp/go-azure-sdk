@@ -1,6 +1,10 @@
 package domains
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -17,6 +21,19 @@ func PossibleValuesForAzureResourceType() []string {
 		string(AzureResourceTypeTrafficManager),
 		string(AzureResourceTypeWebsite),
 	}
+}
+
+func (s *AzureResourceType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseAzureResourceType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseAzureResourceType(input string) (*AzureResourceType, error) {
@@ -47,6 +64,19 @@ func PossibleValuesForCustomHostNameDnsRecordType() []string {
 	}
 }
 
+func (s *CustomHostNameDnsRecordType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseCustomHostNameDnsRecordType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseCustomHostNameDnsRecordType(input string) (*CustomHostNameDnsRecordType, error) {
 	vals := map[string]CustomHostNameDnsRecordType{
 		"a":     CustomHostNameDnsRecordTypeA,
@@ -73,6 +103,19 @@ func PossibleValuesForDnsType() []string {
 		string(DnsTypeAzureDns),
 		string(DnsTypeDefaultDomainRegistrarDns),
 	}
+}
+
+func (s *DnsType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseDnsType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseDnsType(input string) (*DnsType, error) {
@@ -141,6 +184,19 @@ func PossibleValuesForDomainStatus() []string {
 	}
 }
 
+func (s *DomainStatus) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseDomainStatus(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseDomainStatus(input string) (*DomainStatus, error) {
 	vals := map[string]DomainStatus{
 		"active":              DomainStatusActive,
@@ -188,6 +244,19 @@ func PossibleValuesForDomainType() []string {
 	}
 }
 
+func (s *DomainType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseDomainType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseDomainType(input string) (*DomainType, error) {
 	vals := map[string]DomainType{
 		"regular":     DomainTypeRegular,
@@ -214,6 +283,19 @@ func PossibleValuesForHostNameType() []string {
 		string(HostNameTypeManaged),
 		string(HostNameTypeVerified),
 	}
+}
+
+func (s *HostNameType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseHostNameType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseHostNameType(input string) (*HostNameType, error) {
@@ -250,6 +332,19 @@ func PossibleValuesForProvisioningState() []string {
 	}
 }
 
+func (s *ProvisioningState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseProvisioningState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseProvisioningState(input string) (*ProvisioningState, error) {
 	vals := map[string]ProvisioningState{
 		"canceled":   ProvisioningStateCanceled,
@@ -281,6 +376,19 @@ func PossibleValuesForResourceNotRenewableReason() []string {
 		string(ResourceNotRenewableReasonRegistrationStatusNotSupportedForRenewal),
 		string(ResourceNotRenewableReasonSubscriptionNotActive),
 	}
+}
+
+func (s *ResourceNotRenewableReason) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseResourceNotRenewableReason(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseResourceNotRenewableReason(input string) (*ResourceNotRenewableReason, error) {

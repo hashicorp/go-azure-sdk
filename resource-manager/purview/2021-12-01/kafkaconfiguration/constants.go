@@ -1,6 +1,10 @@
 package kafkaconfiguration
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -19,6 +23,19 @@ func PossibleValuesForCredentialsType() []string {
 		string(CredentialsTypeSystemAssigned),
 		string(CredentialsTypeUserAssigned),
 	}
+}
+
+func (s *CredentialsType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseCredentialsType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseCredentialsType(input string) (*CredentialsType, error) {
@@ -50,6 +67,19 @@ func PossibleValuesForEventHubType() []string {
 	}
 }
 
+func (s *EventHubType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseEventHubType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseEventHubType(input string) (*EventHubType, error) {
 	vals := map[string]EventHubType{
 		"hook":         EventHubTypeHook,
@@ -76,6 +106,19 @@ func PossibleValuesForEventStreamingState() []string {
 		string(EventStreamingStateDisabled),
 		string(EventStreamingStateEnabled),
 	}
+}
+
+func (s *EventStreamingState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseEventStreamingState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseEventStreamingState(input string) (*EventStreamingState, error) {
@@ -106,6 +149,19 @@ func PossibleValuesForEventStreamingType() []string {
 		string(EventStreamingTypeManaged),
 		string(EventStreamingTypeNone),
 	}
+}
+
+func (s *EventStreamingType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseEventStreamingType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseEventStreamingType(input string) (*EventStreamingType, error) {

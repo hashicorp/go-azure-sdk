@@ -1,18 +1,26 @@
 package certificateordersdiagnostics
 
-import "github.com/Azure/go-autorest/autorest"
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type CertificateOrdersDiagnosticsClient struct {
-	Client  autorest.Client
-	baseUri string
+	Client *resourcemanager.Client
 }
 
-func NewCertificateOrdersDiagnosticsClientWithBaseURI(endpoint string) CertificateOrdersDiagnosticsClient {
-	return CertificateOrdersDiagnosticsClient{
-		Client:  autorest.NewClientWithUserAgent(userAgent()),
-		baseUri: endpoint,
+func NewCertificateOrdersDiagnosticsClientWithBaseURI(api environments.Api) (*CertificateOrdersDiagnosticsClient, error) {
+	client, err := resourcemanager.NewResourceManagerClient(api, "certificateordersdiagnostics", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating CertificateOrdersDiagnosticsClient: %+v", err)
 	}
+
+	return &CertificateOrdersDiagnosticsClient{
+		Client: client,
+	}, nil
 }

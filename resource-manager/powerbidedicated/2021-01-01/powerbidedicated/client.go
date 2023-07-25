@@ -1,18 +1,26 @@
 package powerbidedicated
 
-import "github.com/Azure/go-autorest/autorest"
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type PowerBIDedicatedClient struct {
-	Client  autorest.Client
-	baseUri string
+	Client *resourcemanager.Client
 }
 
-func NewPowerBIDedicatedClientWithBaseURI(endpoint string) PowerBIDedicatedClient {
-	return PowerBIDedicatedClient{
-		Client:  autorest.NewClientWithUserAgent(userAgent()),
-		baseUri: endpoint,
+func NewPowerBIDedicatedClientWithBaseURI(api environments.Api) (*PowerBIDedicatedClient, error) {
+	client, err := resourcemanager.NewResourceManagerClient(api, "powerbidedicated", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating PowerBIDedicatedClient: %+v", err)
 	}
+
+	return &PowerBIDedicatedClient{
+		Client: client,
+	}, nil
 }
