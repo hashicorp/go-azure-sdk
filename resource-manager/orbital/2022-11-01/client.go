@@ -4,11 +4,14 @@ package v2022_11_01
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 import (
-	"github.com/Azure/go-autorest/autorest"
+	"fmt"
+
 	"github.com/hashicorp/go-azure-sdk/resource-manager/orbital/2022-11-01/contact"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/orbital/2022-11-01/contactprofile"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/orbital/2022-11-01/groundstation"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/orbital/2022-11-01/spacecraft"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -18,24 +21,35 @@ type Client struct {
 	Spacecraft     *spacecraft.SpacecraftClient
 }
 
-func NewClientWithBaseURI(endpoint string, configureAuthFunc func(c *autorest.Client)) Client {
-
-	contactClient := contact.NewContactClientWithBaseURI(endpoint)
-	configureAuthFunc(&contactClient.Client)
-
-	contactProfileClient := contactprofile.NewContactProfileClientWithBaseURI(endpoint)
-	configureAuthFunc(&contactProfileClient.Client)
-
-	groundStationClient := groundstation.NewGroundStationClientWithBaseURI(endpoint)
-	configureAuthFunc(&groundStationClient.Client)
-
-	spacecraftClient := spacecraft.NewSpacecraftClientWithBaseURI(endpoint)
-	configureAuthFunc(&spacecraftClient.Client)
-
-	return Client{
-		Contact:        &contactClient,
-		ContactProfile: &contactProfileClient,
-		GroundStation:  &groundStationClient,
-		Spacecraft:     &spacecraftClient,
+func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+	contactClient, err := contact.NewContactClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building Contact client: %+v", err)
 	}
+	configureFunc(contactClient.Client)
+
+	contactProfileClient, err := contactprofile.NewContactProfileClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building ContactProfile client: %+v", err)
+	}
+	configureFunc(contactProfileClient.Client)
+
+	groundStationClient, err := groundstation.NewGroundStationClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building GroundStation client: %+v", err)
+	}
+	configureFunc(groundStationClient.Client)
+
+	spacecraftClient, err := spacecraft.NewSpacecraftClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building Spacecraft client: %+v", err)
+	}
+	configureFunc(spacecraftClient.Client)
+
+	return &Client{
+		Contact:        contactClient,
+		ContactProfile: contactProfileClient,
+		GroundStation:  groundStationClient,
+		Spacecraft:     spacecraftClient,
+	}, nil
 }

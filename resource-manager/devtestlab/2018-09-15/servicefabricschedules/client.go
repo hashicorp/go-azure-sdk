@@ -1,18 +1,26 @@
 package servicefabricschedules
 
-import "github.com/Azure/go-autorest/autorest"
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type ServiceFabricSchedulesClient struct {
-	Client  autorest.Client
-	baseUri string
+	Client *resourcemanager.Client
 }
 
-func NewServiceFabricSchedulesClientWithBaseURI(endpoint string) ServiceFabricSchedulesClient {
-	return ServiceFabricSchedulesClient{
-		Client:  autorest.NewClientWithUserAgent(userAgent()),
-		baseUri: endpoint,
+func NewServiceFabricSchedulesClientWithBaseURI(api environments.Api) (*ServiceFabricSchedulesClient, error) {
+	client, err := resourcemanager.NewResourceManagerClient(api, "servicefabricschedules", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ServiceFabricSchedulesClient: %+v", err)
 	}
+
+	return &ServiceFabricSchedulesClient{
+		Client: client,
+	}, nil
 }

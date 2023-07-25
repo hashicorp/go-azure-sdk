@@ -1,6 +1,10 @@
 package recommendations
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -23,6 +27,19 @@ func PossibleValuesForChannels() []string {
 		string(ChannelsNotification),
 		string(ChannelsWebhook),
 	}
+}
+
+func (s *Channels) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseChannels(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseChannels(input string) (*Channels, error) {
@@ -60,6 +77,19 @@ func PossibleValuesForNotificationLevel() []string {
 	}
 }
 
+func (s *NotificationLevel) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseNotificationLevel(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseNotificationLevel(input string) (*NotificationLevel, error) {
 	vals := map[string]NotificationLevel{
 		"critical":            NotificationLevelCritical,
@@ -90,6 +120,19 @@ func PossibleValuesForResourceScopeType() []string {
 		string(ResourceScopeTypeSubscription),
 		string(ResourceScopeTypeWebSite),
 	}
+}
+
+func (s *ResourceScopeType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseResourceScopeType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseResourceScopeType(input string) (*ResourceScopeType, error) {

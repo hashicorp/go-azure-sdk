@@ -1,6 +1,10 @@
 package appservicecertificateorders
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -41,6 +45,19 @@ func PossibleValuesForCertificateOrderActionType() []string {
 		string(CertificateOrderActionTypeSanDrop),
 		string(CertificateOrderActionTypeUnknown),
 	}
+}
+
+func (s *CertificateOrderActionType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseCertificateOrderActionType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseCertificateOrderActionType(input string) (*CertificateOrderActionType, error) {
@@ -99,6 +116,19 @@ func PossibleValuesForCertificateOrderStatus() []string {
 	}
 }
 
+func (s *CertificateOrderStatus) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseCertificateOrderStatus(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseCertificateOrderStatus(input string) (*CertificateOrderStatus, error) {
 	vals := map[string]CertificateOrderStatus{
 		"canceled":          CertificateOrderStatusCanceled,
@@ -133,6 +163,19 @@ func PossibleValuesForCertificateProductType() []string {
 		string(CertificateProductTypeStandardDomainValidatedSsl),
 		string(CertificateProductTypeStandardDomainValidatedWildCardSsl),
 	}
+}
+
+func (s *CertificateProductType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseCertificateProductType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseCertificateProductType(input string) (*CertificateProductType, error) {
@@ -181,6 +224,19 @@ func PossibleValuesForKeyVaultSecretStatus() []string {
 	}
 }
 
+func (s *KeyVaultSecretStatus) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseKeyVaultSecretStatus(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseKeyVaultSecretStatus(input string) (*KeyVaultSecretStatus, error) {
 	vals := map[string]KeyVaultSecretStatus{
 		"azureserviceunauthorizedtoaccesskeyvault": KeyVaultSecretStatusAzureServiceUnauthorizedToAccessKeyVault,
@@ -224,6 +280,19 @@ func PossibleValuesForProvisioningState() []string {
 	}
 }
 
+func (s *ProvisioningState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseProvisioningState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseProvisioningState(input string) (*ProvisioningState, error) {
 	vals := map[string]ProvisioningState{
 		"canceled":   ProvisioningStateCanceled,
@@ -255,6 +324,19 @@ func PossibleValuesForResourceNotRenewableReason() []string {
 		string(ResourceNotRenewableReasonRegistrationStatusNotSupportedForRenewal),
 		string(ResourceNotRenewableReasonSubscriptionNotActive),
 	}
+}
+
+func (s *ResourceNotRenewableReason) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseResourceNotRenewableReason(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseResourceNotRenewableReason(input string) (*ResourceNotRenewableReason, error) {

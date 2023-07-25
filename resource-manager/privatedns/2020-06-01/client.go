@@ -4,10 +4,13 @@ package v2020_06_01
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 import (
-	"github.com/Azure/go-autorest/autorest"
+	"fmt"
+
 	"github.com/hashicorp/go-azure-sdk/resource-manager/privatedns/2020-06-01/privatezones"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/privatedns/2020-06-01/recordsets"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/privatedns/2020-06-01/virtualnetworklinks"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -16,20 +19,28 @@ type Client struct {
 	VirtualNetworkLinks *virtualnetworklinks.VirtualNetworkLinksClient
 }
 
-func NewClientWithBaseURI(endpoint string, configureAuthFunc func(c *autorest.Client)) Client {
-
-	privateZonesClient := privatezones.NewPrivateZonesClientWithBaseURI(endpoint)
-	configureAuthFunc(&privateZonesClient.Client)
-
-	recordSetsClient := recordsets.NewRecordSetsClientWithBaseURI(endpoint)
-	configureAuthFunc(&recordSetsClient.Client)
-
-	virtualNetworkLinksClient := virtualnetworklinks.NewVirtualNetworkLinksClientWithBaseURI(endpoint)
-	configureAuthFunc(&virtualNetworkLinksClient.Client)
-
-	return Client{
-		PrivateZones:        &privateZonesClient,
-		RecordSets:          &recordSetsClient,
-		VirtualNetworkLinks: &virtualNetworkLinksClient,
+func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+	privateZonesClient, err := privatezones.NewPrivateZonesClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building PrivateZones client: %+v", err)
 	}
+	configureFunc(privateZonesClient.Client)
+
+	recordSetsClient, err := recordsets.NewRecordSetsClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building RecordSets client: %+v", err)
+	}
+	configureFunc(recordSetsClient.Client)
+
+	virtualNetworkLinksClient, err := virtualnetworklinks.NewVirtualNetworkLinksClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building VirtualNetworkLinks client: %+v", err)
+	}
+	configureFunc(virtualNetworkLinksClient.Client)
+
+	return &Client{
+		PrivateZones:        privateZonesClient,
+		RecordSets:          recordSetsClient,
+		VirtualNetworkLinks: virtualNetworkLinksClient,
+	}, nil
 }

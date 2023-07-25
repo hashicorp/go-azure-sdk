@@ -1,6 +1,10 @@
 package containerapps
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -17,6 +21,19 @@ func PossibleValuesForActiveRevisionsMode() []string {
 		string(ActiveRevisionsModeMultiple),
 		string(ActiveRevisionsModeSingle),
 	}
+}
+
+func (s *ActiveRevisionsMode) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseActiveRevisionsMode(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseActiveRevisionsMode(input string) (*ActiveRevisionsMode, error) {
@@ -51,6 +68,19 @@ func PossibleValuesForContainerAppProvisioningState() []string {
 	}
 }
 
+func (s *ContainerAppProvisioningState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseContainerAppProvisioningState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseContainerAppProvisioningState(input string) (*ContainerAppProvisioningState, error) {
 	vals := map[string]ContainerAppProvisioningState{
 		"canceled":   ContainerAppProvisioningStateCanceled,
@@ -81,6 +111,19 @@ func PossibleValuesForIngressTransportMethod() []string {
 		string(IngressTransportMethodHTTP),
 		string(IngressTransportMethodHTTPTwo),
 	}
+}
+
+func (s *IngressTransportMethod) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseIngressTransportMethod(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseIngressTransportMethod(input string) (*IngressTransportMethod, error) {
