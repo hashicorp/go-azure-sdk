@@ -4,11 +4,14 @@ package v2016_06_01
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 import (
-	"github.com/Azure/go-autorest/autorest"
+	"fmt"
+
 	"github.com/hashicorp/go-azure-sdk/resource-manager/web/2016-06-01/connectiongateways"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/web/2016-06-01/connections"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/web/2016-06-01/customapis"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/web/2016-06-01/managedapis"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -18,24 +21,35 @@ type Client struct {
 	ManagedAPIs        *managedapis.ManagedAPIsClient
 }
 
-func NewClientWithBaseURI(endpoint string, configureAuthFunc func(c *autorest.Client)) Client {
-
-	connectionGatewaysClient := connectiongateways.NewConnectionGatewaysClientWithBaseURI(endpoint)
-	configureAuthFunc(&connectionGatewaysClient.Client)
-
-	connectionsClient := connections.NewConnectionsClientWithBaseURI(endpoint)
-	configureAuthFunc(&connectionsClient.Client)
-
-	customAPIsClient := customapis.NewCustomAPIsClientWithBaseURI(endpoint)
-	configureAuthFunc(&customAPIsClient.Client)
-
-	managedAPIsClient := managedapis.NewManagedAPIsClientWithBaseURI(endpoint)
-	configureAuthFunc(&managedAPIsClient.Client)
-
-	return Client{
-		ConnectionGateways: &connectionGatewaysClient,
-		Connections:        &connectionsClient,
-		CustomAPIs:         &customAPIsClient,
-		ManagedAPIs:        &managedAPIsClient,
+func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+	connectionGatewaysClient, err := connectiongateways.NewConnectionGatewaysClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building ConnectionGateways client: %+v", err)
 	}
+	configureFunc(connectionGatewaysClient.Client)
+
+	connectionsClient, err := connections.NewConnectionsClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building Connections client: %+v", err)
+	}
+	configureFunc(connectionsClient.Client)
+
+	customAPIsClient, err := customapis.NewCustomAPIsClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building CustomAPIs client: %+v", err)
+	}
+	configureFunc(customAPIsClient.Client)
+
+	managedAPIsClient, err := managedapis.NewManagedAPIsClientWithBaseURI(api)
+	if err != nil {
+		return nil, fmt.Errorf("building ManagedAPIs client: %+v", err)
+	}
+	configureFunc(managedAPIsClient.Client)
+
+	return &Client{
+		ConnectionGateways: connectionGatewaysClient,
+		Connections:        connectionsClient,
+		CustomAPIs:         customAPIsClient,
+		ManagedAPIs:        managedAPIsClient,
+	}, nil
 }

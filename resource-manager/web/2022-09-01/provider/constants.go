@@ -1,6 +1,10 @@
 package provider
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -23,6 +27,19 @@ func PossibleValuesForProviderOsTypeSelected() []string {
 		string(ProviderOsTypeSelectedWindows),
 		string(ProviderOsTypeSelectedWindowsFunctions),
 	}
+}
+
+func (s *ProviderOsTypeSelected) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseProviderOsTypeSelected(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseProviderOsTypeSelected(input string) (*ProviderOsTypeSelected, error) {
@@ -58,6 +75,19 @@ func PossibleValuesForProviderStackOsType() []string {
 	}
 }
 
+func (s *ProviderStackOsType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseProviderStackOsType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseProviderStackOsType(input string) (*ProviderStackOsType, error) {
 	vals := map[string]ProviderStackOsType{
 		"all":     ProviderStackOsTypeAll,
@@ -85,6 +115,19 @@ func PossibleValuesForStackPreferredOs() []string {
 		string(StackPreferredOsLinux),
 		string(StackPreferredOsWindows),
 	}
+}
+
+func (s *StackPreferredOs) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseStackPreferredOs(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseStackPreferredOs(input string) (*StackPreferredOs, error) {

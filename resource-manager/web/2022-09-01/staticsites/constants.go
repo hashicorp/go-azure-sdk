@@ -1,6 +1,10 @@
 package staticsites
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -27,6 +31,19 @@ func PossibleValuesForBuildStatus() []string {
 		string(BuildStatusUploading),
 		string(BuildStatusWaitingForDeployment),
 	}
+}
+
+func (s *BuildStatus) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseBuildStatus(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseBuildStatus(input string) (*BuildStatus, error) {
@@ -72,6 +89,19 @@ func PossibleValuesForCustomDomainStatus() []string {
 	}
 }
 
+func (s *CustomDomainStatus) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseCustomDomainStatus(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseCustomDomainStatus(input string) (*CustomDomainStatus, error) {
 	vals := map[string]CustomDomainStatus{
 		"adding":                    CustomDomainStatusAdding,
@@ -109,6 +139,19 @@ func PossibleValuesForEnterpriseGradeCdnStatus() []string {
 	}
 }
 
+func (s *EnterpriseGradeCdnStatus) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseEnterpriseGradeCdnStatus(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseEnterpriseGradeCdnStatus(input string) (*EnterpriseGradeCdnStatus, error) {
 	vals := map[string]EnterpriseGradeCdnStatus{
 		"disabled":  EnterpriseGradeCdnStatusDisabled,
@@ -139,6 +182,19 @@ func PossibleValuesForStagingEnvironmentPolicy() []string {
 	}
 }
 
+func (s *StagingEnvironmentPolicy) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseStagingEnvironmentPolicy(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseStagingEnvironmentPolicy(input string) (*StagingEnvironmentPolicy, error) {
 	vals := map[string]StagingEnvironmentPolicy{
 		"disabled": StagingEnvironmentPolicyDisabled,
@@ -165,6 +221,19 @@ func PossibleValuesForTriggerTypes() []string {
 		string(TriggerTypesHTTPTrigger),
 		string(TriggerTypesUnknown),
 	}
+}
+
+func (s *TriggerTypes) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseTriggerTypes(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseTriggerTypes(input string) (*TriggerTypes, error) {

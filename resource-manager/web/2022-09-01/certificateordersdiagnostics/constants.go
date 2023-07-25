@@ -1,6 +1,10 @@
 package certificateordersdiagnostics
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -19,6 +23,19 @@ func PossibleValuesForDetectorType() []string {
 		string(DetectorTypeCategoryOverview),
 		string(DetectorTypeDetector),
 	}
+}
+
+func (s *DetectorType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseDetectorType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseDetectorType(input string) (*DetectorType, error) {
@@ -54,6 +71,19 @@ func PossibleValuesForInsightStatus() []string {
 		string(InsightStatusSuccess),
 		string(InsightStatusWarning),
 	}
+}
+
+func (s *InsightStatus) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseInsightStatus(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseInsightStatus(input string) (*InsightStatus, error) {
@@ -131,6 +161,19 @@ func PossibleValuesForRenderingType() []string {
 		string(RenderingTypeTimeSeries),
 		string(RenderingTypeTimeSeriesPerInstance),
 	}
+}
+
+func (s *RenderingType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseRenderingType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseRenderingType(input string) (*RenderingType, error) {

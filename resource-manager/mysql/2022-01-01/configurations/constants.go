@@ -1,6 +1,10 @@
 package configurations
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -17,6 +21,19 @@ func PossibleValuesForConfigurationSource() []string {
 		string(ConfigurationSourceSystemNegativedefault),
 		string(ConfigurationSourceUserNegativeoverride),
 	}
+}
+
+func (s *ConfigurationSource) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseConfigurationSource(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseConfigurationSource(input string) (*ConfigurationSource, error) {
@@ -47,6 +64,19 @@ func PossibleValuesForIsConfigPendingRestart() []string {
 	}
 }
 
+func (s *IsConfigPendingRestart) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseIsConfigPendingRestart(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseIsConfigPendingRestart(input string) (*IsConfigPendingRestart, error) {
 	vals := map[string]IsConfigPendingRestart{
 		"false": IsConfigPendingRestartFalse,
@@ -73,6 +103,19 @@ func PossibleValuesForIsDynamicConfig() []string {
 		string(IsDynamicConfigFalse),
 		string(IsDynamicConfigTrue),
 	}
+}
+
+func (s *IsDynamicConfig) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseIsDynamicConfig(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseIsDynamicConfig(input string) (*IsDynamicConfig, error) {
@@ -103,6 +146,19 @@ func PossibleValuesForIsReadOnly() []string {
 	}
 }
 
+func (s *IsReadOnly) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseIsReadOnly(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseIsReadOnly(input string) (*IsReadOnly, error) {
 	vals := map[string]IsReadOnly{
 		"false": IsReadOnlyFalse,
@@ -129,6 +185,19 @@ func PossibleValuesForResetAllToDefault() []string {
 		string(ResetAllToDefaultFalse),
 		string(ResetAllToDefaultTrue),
 	}
+}
+
+func (s *ResetAllToDefault) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseResetAllToDefault(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseResetAllToDefault(input string) (*ResetAllToDefault, error) {

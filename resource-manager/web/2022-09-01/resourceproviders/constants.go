@@ -1,6 +1,10 @@
 package resourceproviders
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -25,6 +29,19 @@ func PossibleValuesForAppServicePlanRestrictions() []string {
 		string(AppServicePlanRestrictionsShared),
 		string(AppServicePlanRestrictionsStandard),
 	}
+}
+
+func (s *AppServicePlanRestrictions) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseAppServicePlanRestrictions(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseAppServicePlanRestrictions(input string) (*AppServicePlanRestrictions, error) {
@@ -71,6 +88,19 @@ func PossibleValuesForCheckNameResourceTypes() []string {
 	}
 }
 
+func (s *CheckNameResourceTypes) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseCheckNameResourceTypes(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseCheckNameResourceTypes(input string) (*CheckNameResourceTypes, error) {
 	vals := map[string]CheckNameResourceTypes{
 		"hostingenvironment":                CheckNameResourceTypesHostingEnvironment,
@@ -109,6 +139,19 @@ func PossibleValuesForCustomDnsSuffixProvisioningState() []string {
 	}
 }
 
+func (s *CustomDnsSuffixProvisioningState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseCustomDnsSuffixProvisioningState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseCustomDnsSuffixProvisioningState(input string) (*CustomDnsSuffixProvisioningState, error) {
 	vals := map[string]CustomDnsSuffixProvisioningState{
 		"degraded":   CustomDnsSuffixProvisioningStateDegraded,
@@ -143,6 +186,19 @@ func PossibleValuesForHostingEnvironmentStatus() []string {
 	}
 }
 
+func (s *HostingEnvironmentStatus) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseHostingEnvironmentStatus(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseHostingEnvironmentStatus(input string) (*HostingEnvironmentStatus, error) {
 	vals := map[string]HostingEnvironmentStatus{
 		"deleting":  HostingEnvironmentStatusDeleting,
@@ -171,6 +227,19 @@ func PossibleValuesForInAvailabilityReasonType() []string {
 		string(InAvailabilityReasonTypeAlreadyExists),
 		string(InAvailabilityReasonTypeInvalid),
 	}
+}
+
+func (s *InAvailabilityReasonType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseInAvailabilityReasonType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseInAvailabilityReasonType(input string) (*InAvailabilityReasonType, error) {
@@ -203,6 +272,19 @@ func PossibleValuesForLoadBalancingMode() []string {
 		string(LoadBalancingModeWeb),
 		string(LoadBalancingModeWebPublishing),
 	}
+}
+
+func (s *LoadBalancingMode) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseLoadBalancingMode(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseLoadBalancingMode(input string) (*LoadBalancingMode, error) {
@@ -239,6 +321,19 @@ func PossibleValuesForProvisioningState() []string {
 		string(ProvisioningStateInProgress),
 		string(ProvisioningStateSucceeded),
 	}
+}
+
+func (s *ProvisioningState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseProvisioningState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseProvisioningState(input string) (*ProvisioningState, error) {
@@ -294,6 +389,19 @@ func PossibleValuesForSkuName() []string {
 	}
 }
 
+func (s *SkuName) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseSkuName(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseSkuName(input string) (*SkuName, error) {
 	vals := map[string]SkuName{
 		"basic":            SkuNameBasic,
@@ -333,6 +441,19 @@ func PossibleValuesForUpgradeAvailability() []string {
 	}
 }
 
+func (s *UpgradeAvailability) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseUpgradeAvailability(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseUpgradeAvailability(input string) (*UpgradeAvailability, error) {
 	vals := map[string]UpgradeAvailability{
 		"none":  UpgradeAvailabilityNone,
@@ -365,6 +486,19 @@ func PossibleValuesForUpgradePreference() []string {
 	}
 }
 
+func (s *UpgradePreference) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseUpgradePreference(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseUpgradePreference(input string) (*UpgradePreference, error) {
 	vals := map[string]UpgradePreference{
 		"early":  UpgradePreferenceEarly,
@@ -395,6 +529,19 @@ func PossibleValuesForValidateResourceTypes() []string {
 		string(ValidateResourceTypesServerFarm),
 		string(ValidateResourceTypesSite),
 	}
+}
+
+func (s *ValidateResourceTypes) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseValidateResourceTypes(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseValidateResourceTypes(input string) (*ValidateResourceTypes, error) {
