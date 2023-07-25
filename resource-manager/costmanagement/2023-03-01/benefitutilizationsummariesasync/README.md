@@ -20,23 +20,6 @@ client.Client.Authorizer = authorizer
 ```
 
 
-### Example Usage: `BenefitUtilizationSummariesAsyncClient.GenerateBenefitUtilizationSummariesReportAsyncGenerateBySavingsPlanId`
-
-```go
-ctx := context.TODO()
-id := benefitutilizationsummariesasync.NewSavingsPlanID("savingsPlanOrderIdValue", "savingsPlanIdValue")
-
-payload := benefitutilizationsummariesasync.BenefitUtilizationSummariesRequest{
-	// ...
-}
-
-
-if err := client.GenerateBenefitUtilizationSummariesReportAsyncGenerateBySavingsPlanIdThenPoll(ctx, id, payload); err != nil {
-	// handle the error
-}
-```
-
-
 ### Example Usage: `BenefitUtilizationSummariesAsyncClient.GenerateBenefitUtilizationSummariesReportGenerateByBillingAccount`
 
 ```go
@@ -100,6 +83,23 @@ payload := benefitutilizationsummariesasync.BenefitUtilizationSummariesRequest{
 
 
 if err := client.GenerateBenefitUtilizationSummariesReportGenerateByReservationOrderIdThenPoll(ctx, id, payload); err != nil {
+	// handle the error
+}
+```
+
+
+### Example Usage: `BenefitUtilizationSummariesAsyncClient.GenerateBenefitUtilizationSummariesReportGenerateBySavingsPlanId`
+
+```go
+ctx := context.TODO()
+id := benefitutilizationsummariesasync.NewSavingsPlanID("savingsPlanOrderIdValue", "savingsPlanIdValue")
+
+payload := benefitutilizationsummariesasync.BenefitUtilizationSummariesRequest{
+	// ...
+}
+
+
+if err := client.GenerateBenefitUtilizationSummariesReportGenerateBySavingsPlanIdThenPoll(ctx, id, payload); err != nil {
 	// handle the error
 }
 ```

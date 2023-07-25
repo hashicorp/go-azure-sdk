@@ -14,14 +14,14 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-type GenerateBenefitUtilizationSummariesReportAsyncGenerateBySavingsPlanIdOperationResponse struct {
+type GenerateBenefitUtilizationSummariesReportGenerateBySavingsPlanIdOperationResponse struct {
 	Poller       pollers.Poller
 	HttpResponse *http.Response
 	OData        *odata.OData
 }
 
-// GenerateBenefitUtilizationSummariesReportAsyncGenerateBySavingsPlanId ...
-func (c BenefitUtilizationSummariesAsyncClient) GenerateBenefitUtilizationSummariesReportAsyncGenerateBySavingsPlanId(ctx context.Context, id SavingsPlanId, input BenefitUtilizationSummariesRequest) (result GenerateBenefitUtilizationSummariesReportAsyncGenerateBySavingsPlanIdOperationResponse, err error) {
+// GenerateBenefitUtilizationSummariesReportGenerateBySavingsPlanId ...
+func (c BenefitUtilizationSummariesAsyncClient) GenerateBenefitUtilizationSummariesReportGenerateBySavingsPlanId(ctx context.Context, id SavingsPlanId, input BenefitUtilizationSummariesRequest) (result GenerateBenefitUtilizationSummariesReportGenerateBySavingsPlanIdOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json",
 		ExpectedStatusCodes: []int{
@@ -59,15 +59,15 @@ func (c BenefitUtilizationSummariesAsyncClient) GenerateBenefitUtilizationSummar
 	return
 }
 
-// GenerateBenefitUtilizationSummariesReportAsyncGenerateBySavingsPlanIdThenPoll performs GenerateBenefitUtilizationSummariesReportAsyncGenerateBySavingsPlanId then polls until it's completed
-func (c BenefitUtilizationSummariesAsyncClient) GenerateBenefitUtilizationSummariesReportAsyncGenerateBySavingsPlanIdThenPoll(ctx context.Context, id SavingsPlanId, input BenefitUtilizationSummariesRequest) error {
-	result, err := c.GenerateBenefitUtilizationSummariesReportAsyncGenerateBySavingsPlanId(ctx, id, input)
+// GenerateBenefitUtilizationSummariesReportGenerateBySavingsPlanIdThenPoll performs GenerateBenefitUtilizationSummariesReportGenerateBySavingsPlanId then polls until it's completed
+func (c BenefitUtilizationSummariesAsyncClient) GenerateBenefitUtilizationSummariesReportGenerateBySavingsPlanIdThenPoll(ctx context.Context, id SavingsPlanId, input BenefitUtilizationSummariesRequest) error {
+	result, err := c.GenerateBenefitUtilizationSummariesReportGenerateBySavingsPlanId(ctx, id, input)
 	if err != nil {
-		return fmt.Errorf("performing GenerateBenefitUtilizationSummariesReportAsyncGenerateBySavingsPlanId: %+v", err)
+		return fmt.Errorf("performing GenerateBenefitUtilizationSummariesReportGenerateBySavingsPlanId: %+v", err)
 	}
 
 	if err := result.Poller.PollUntilDone(ctx); err != nil {
-		return fmt.Errorf("polling after GenerateBenefitUtilizationSummariesReportAsyncGenerateBySavingsPlanId: %+v", err)
+		return fmt.Errorf("polling after GenerateBenefitUtilizationSummariesReportGenerateBySavingsPlanId: %+v", err)
 	}
 
 	return nil
