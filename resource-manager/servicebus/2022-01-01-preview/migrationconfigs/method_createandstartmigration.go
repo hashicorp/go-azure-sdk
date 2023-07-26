@@ -23,7 +23,7 @@ type CreateAndStartMigrationOperationResponse struct {
 // CreateAndStartMigration ...
 func (c MigrationConfigsClient) CreateAndStartMigration(ctx context.Context, id NamespaceId, input MigrationConfigProperties) (result CreateAndStartMigrationOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 			http.StatusOK,

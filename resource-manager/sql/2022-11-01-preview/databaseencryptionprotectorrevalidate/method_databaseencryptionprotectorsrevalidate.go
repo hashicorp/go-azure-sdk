@@ -23,7 +23,7 @@ type DatabaseEncryptionProtectorsRevalidateOperationResponse struct {
 // DatabaseEncryptionProtectorsRevalidate ...
 func (c DatabaseEncryptionProtectorRevalidateClient) DatabaseEncryptionProtectorsRevalidate(ctx context.Context, id DatabaseId) (result DatabaseEncryptionProtectorsRevalidateOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusOK,

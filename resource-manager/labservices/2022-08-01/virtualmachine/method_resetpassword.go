@@ -23,7 +23,7 @@ type ResetPasswordOperationResponse struct {
 // ResetPassword ...
 func (c VirtualMachineClient) ResetPassword(ctx context.Context, id VirtualMachineId, input ResetPasswordBody) (result ResetPasswordOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusOK,

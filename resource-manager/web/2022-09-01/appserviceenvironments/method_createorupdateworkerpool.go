@@ -23,7 +23,7 @@ type CreateOrUpdateWorkerPoolOperationResponse struct {
 // CreateOrUpdateWorkerPool ...
 func (c AppServiceEnvironmentsClient) CreateOrUpdateWorkerPool(ctx context.Context, id WorkerPoolId, input WorkerPoolResource) (result CreateOrUpdateWorkerPoolOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusOK,

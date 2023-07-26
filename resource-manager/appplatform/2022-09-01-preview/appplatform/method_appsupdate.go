@@ -23,7 +23,7 @@ type AppsUpdateOperationResponse struct {
 // AppsUpdate ...
 func (c AppPlatformClient) AppsUpdate(ctx context.Context, id AppId, input AppResource) (result AppsUpdateOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusOK,

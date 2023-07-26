@@ -25,7 +25,7 @@ type ListSlotDifferencesFromProductionCompleteResult struct {
 // ListSlotDifferencesFromProduction ...
 func (c WebAppsClient) ListSlotDifferencesFromProduction(ctx context.Context, id SiteId, input CsmSlotEntity) (result ListSlotDifferencesFromProductionOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

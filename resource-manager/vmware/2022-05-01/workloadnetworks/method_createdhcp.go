@@ -23,7 +23,7 @@ type CreateDhcpOperationResponse struct {
 // CreateDhcp ...
 func (c WorkloadNetworksClient) CreateDhcp(ctx context.Context, id DhcpConfigurationId, input WorkloadNetworkDhcp) (result CreateDhcpOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 			http.StatusOK,

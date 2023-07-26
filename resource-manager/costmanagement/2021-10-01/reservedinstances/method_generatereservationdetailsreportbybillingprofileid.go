@@ -54,7 +54,7 @@ func (o GenerateReservationDetailsReportByBillingProfileIdOperationOptions) ToQu
 // GenerateReservationDetailsReportByBillingProfileId ...
 func (c ReservedInstancesClient) GenerateReservationDetailsReportByBillingProfileId(ctx context.Context, id BillingProfileId, options GenerateReservationDetailsReportByBillingProfileIdOperationOptions) (result GenerateReservationDetailsReportByBillingProfileIdOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusOK,

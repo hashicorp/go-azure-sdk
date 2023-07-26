@@ -21,7 +21,7 @@ type GetSitePhpErrorLogFlagSlotOperationResponse struct {
 // GetSitePhpErrorLogFlagSlot ...
 func (c WebAppsClient) GetSitePhpErrorLogFlagSlot(ctx context.Context, id SlotId) (result GetSitePhpErrorLogFlagSlotOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

@@ -21,7 +21,7 @@ type PutPrivateAccessVnetOperationResponse struct {
 // PutPrivateAccessVnet ...
 func (c WebAppsClient) PutPrivateAccessVnet(ctx context.Context, id SiteId, input PrivateAccess) (result PutPrivateAccessVnetOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

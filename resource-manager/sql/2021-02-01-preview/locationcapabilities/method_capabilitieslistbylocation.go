@@ -48,7 +48,7 @@ func (o CapabilitiesListByLocationOperationOptions) ToQuery() *client.QueryParam
 // CapabilitiesListByLocation ...
 func (c LocationCapabilitiesClient) CapabilitiesListByLocation(ctx context.Context, id LocationId, options CapabilitiesListByLocationOperationOptions) (result CapabilitiesListByLocationOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

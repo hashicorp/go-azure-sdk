@@ -23,7 +23,7 @@ type ApiPortalsCreateOrUpdateOperationResponse struct {
 // ApiPortalsCreateOrUpdate ...
 func (c AppPlatformClient) ApiPortalsCreateOrUpdate(ctx context.Context, id ApiPortalId, input ApiPortalResource) (result ApiPortalsCreateOrUpdateOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 			http.StatusOK,

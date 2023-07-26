@@ -23,7 +23,7 @@ type LinkBackendOperationResponse struct {
 // LinkBackend ...
 func (c StaticSitesClient) LinkBackend(ctx context.Context, id LinkedBackendId, input StaticSiteLinkedBackendARMResource) (result LinkBackendOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

@@ -23,7 +23,7 @@ type MonitoringSettingsUpdatePutOperationResponse struct {
 // MonitoringSettingsUpdatePut ...
 func (c AppPlatformClient) MonitoringSettingsUpdatePut(ctx context.Context, id SpringId, input MonitoringSettingResource) (result MonitoringSettingsUpdatePutOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusOK,

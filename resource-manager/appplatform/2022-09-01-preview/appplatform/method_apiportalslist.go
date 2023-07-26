@@ -25,7 +25,7 @@ type ApiPortalsListCompleteResult struct {
 // ApiPortalsList ...
 func (c AppPlatformClient) ApiPortalsList(ctx context.Context, id SpringId) (result ApiPortalsListOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

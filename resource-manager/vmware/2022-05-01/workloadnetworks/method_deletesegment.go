@@ -23,7 +23,7 @@ type DeleteSegmentOperationResponse struct {
 // DeleteSegment ...
 func (c WorkloadNetworksClient) DeleteSegment(ctx context.Context, id SegmentId) (result DeleteSegmentOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusNoContent,

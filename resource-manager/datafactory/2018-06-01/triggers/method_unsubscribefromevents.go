@@ -23,7 +23,7 @@ type UnsubscribeFromEventsOperationResponse struct {
 // UnsubscribeFromEvents ...
 func (c TriggersClient) UnsubscribeFromEvents(ctx context.Context, id TriggerId) (result UnsubscribeFromEventsOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusOK,

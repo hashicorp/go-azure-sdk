@@ -21,7 +21,7 @@ type WorkspacesListOutboundNetworkDependenciesEndpointsOperationResponse struct 
 // WorkspacesListOutboundNetworkDependenciesEndpoints ...
 func (c OutboundNetworkDependenciesEndpointsClient) WorkspacesListOutboundNetworkDependenciesEndpoints(ctx context.Context, id WorkspaceId) (result WorkspacesListOutboundNetworkDependenciesEndpointsOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

@@ -47,7 +47,7 @@ func (o RestartWebAppsOperationOptions) ToQuery() *client.QueryParams {
 // RestartWebApps ...
 func (c AppServicePlansClient) RestartWebApps(ctx context.Context, id ServerFarmId, options RestartWebAppsOperationOptions) (result RestartWebAppsOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},

@@ -19,7 +19,7 @@ type DeleteSiteExtensionSlotOperationResponse struct {
 // DeleteSiteExtensionSlot ...
 func (c WebAppsClient) DeleteSiteExtensionSlot(ctx context.Context, id SlotSiteExtensionId) (result DeleteSiteExtensionSlotOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},

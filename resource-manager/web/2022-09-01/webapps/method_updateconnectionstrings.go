@@ -21,7 +21,7 @@ type UpdateConnectionStringsOperationResponse struct {
 // UpdateConnectionStrings ...
 func (c WebAppsClient) UpdateConnectionStrings(ctx context.Context, id SiteId, input ConnectionStringDictionary) (result UpdateConnectionStringsOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

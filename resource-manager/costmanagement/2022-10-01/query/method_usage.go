@@ -22,7 +22,7 @@ type UsageOperationResponse struct {
 // Usage ...
 func (c QueryClient) Usage(ctx context.Context, id commonids.ScopeId, input QueryDefinition) (result UsageOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 			http.StatusOK,

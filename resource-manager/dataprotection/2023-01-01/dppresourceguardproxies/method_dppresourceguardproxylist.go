@@ -25,7 +25,7 @@ type DppResourceGuardProxyListCompleteResult struct {
 // DppResourceGuardProxyList ...
 func (c DppResourceGuardProxiesClient) DppResourceGuardProxyList(ctx context.Context, id BackupVaultId) (result DppResourceGuardProxyListOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

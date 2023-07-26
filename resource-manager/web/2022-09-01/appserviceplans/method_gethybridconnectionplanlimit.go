@@ -21,7 +21,7 @@ type GetHybridConnectionPlanLimitOperationResponse struct {
 // GetHybridConnectionPlanLimit ...
 func (c AppServicePlansClient) GetHybridConnectionPlanLimit(ctx context.Context, id ServerFarmId) (result GetHybridConnectionPlanLimitOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

@@ -25,7 +25,7 @@ type ListSasTokensCompleteResult struct {
 // ListSasTokens ...
 func (c StorageAccountsClient) ListSasTokens(ctx context.Context, id ContainerId) (result ListSasTokensOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

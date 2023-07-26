@@ -21,7 +21,7 @@ type UpdateSwiftVirtualNetworkConnectionWithCheckSlotOperationResponse struct {
 // UpdateSwiftVirtualNetworkConnectionWithCheckSlot ...
 func (c WebAppsClient) UpdateSwiftVirtualNetworkConnectionWithCheckSlot(ctx context.Context, id SlotId, input SwiftVirtualNetwork) (result UpdateSwiftVirtualNetworkConnectionWithCheckSlotOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

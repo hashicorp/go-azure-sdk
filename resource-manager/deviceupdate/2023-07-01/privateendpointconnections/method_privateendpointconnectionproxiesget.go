@@ -20,7 +20,7 @@ type PrivateEndpointConnectionProxiesGetOperationResponse struct {
 // PrivateEndpointConnectionProxiesGet ...
 func (c PrivateEndpointConnectionsClient) PrivateEndpointConnectionProxiesGet(ctx context.Context, id PrivateEndpointConnectionProxyId) (result PrivateEndpointConnectionProxiesGetOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

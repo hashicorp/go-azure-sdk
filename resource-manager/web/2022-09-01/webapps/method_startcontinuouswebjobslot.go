@@ -20,7 +20,7 @@ type StartContinuousWebJobSlotOperationResponse struct {
 // StartContinuousWebJobSlot ...
 func (c WebAppsClient) StartContinuousWebJobSlot(ctx context.Context, id SlotContinuousWebJobId) (result StartContinuousWebJobSlotOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

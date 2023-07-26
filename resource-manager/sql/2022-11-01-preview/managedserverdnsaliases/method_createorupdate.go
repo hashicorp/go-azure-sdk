@@ -23,7 +23,7 @@ type CreateOrUpdateOperationResponse struct {
 // CreateOrUpdate ...
 func (c ManagedServerDnsAliasesClient) CreateOrUpdate(ctx context.Context, id ManagedInstanceDnsAliasId, input ManagedServerDnsAliasCreation) (result CreateOrUpdateOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusCreated,

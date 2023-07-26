@@ -25,7 +25,7 @@ type ListSyncDatabaseIdsCompleteResult struct {
 // ListSyncDatabaseIds ...
 func (c SyncGroupsClient) ListSyncDatabaseIds(ctx context.Context, id LocationId) (result ListSyncDatabaseIdsOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

@@ -21,7 +21,7 @@ type GetMachineOperationResponse struct {
 // GetMachine ...
 func (c HyperVMachinesClient) GetMachine(ctx context.Context, id commonids.HyperVSiteMachineId) (result GetMachineOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

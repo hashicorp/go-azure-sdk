@@ -21,7 +21,7 @@ type TasksCommandOperationResponse struct {
 // TasksCommand ...
 func (c CustomOperationClient) TasksCommand(ctx context.Context, id TaskId, input CommandProperties) (result TasksCommandOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

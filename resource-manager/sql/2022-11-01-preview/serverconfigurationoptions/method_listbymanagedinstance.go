@@ -25,7 +25,7 @@ type ListByManagedInstanceCompleteResult struct {
 // ListByManagedInstance ...
 func (c ServerConfigurationOptionsClient) ListByManagedInstance(ctx context.Context, id ManagedInstanceId) (result ListByManagedInstanceOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

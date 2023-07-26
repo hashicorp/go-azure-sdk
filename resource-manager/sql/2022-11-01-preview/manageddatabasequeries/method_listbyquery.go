@@ -60,7 +60,7 @@ func (o ListByQueryOperationOptions) ToQuery() *client.QueryParams {
 // ListByQuery ...
 func (c ManagedDatabaseQueriesClient) ListByQuery(ctx context.Context, id QueryId, options ListByQueryOperationOptions) (result ListByQueryOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

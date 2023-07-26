@@ -25,7 +25,7 @@ type ListExecutionDetailsCompleteResult struct {
 // ListExecutionDetails ...
 func (c ExperimentsClient) ListExecutionDetails(ctx context.Context, id ExperimentId) (result ListExecutionDetailsOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

@@ -20,7 +20,7 @@ type GetSiteOperationResponse struct {
 // GetSite ...
 func (c MasterSitesClient) GetSite(ctx context.Context, id MasterSiteId) (result GetSiteOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

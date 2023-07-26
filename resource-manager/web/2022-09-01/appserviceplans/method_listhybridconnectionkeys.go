@@ -21,7 +21,7 @@ type ListHybridConnectionKeysOperationResponse struct {
 // ListHybridConnectionKeys ...
 func (c AppServicePlansClient) ListHybridConnectionKeys(ctx context.Context, id HybridConnectionNamespaceRelayId) (result ListHybridConnectionKeysOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

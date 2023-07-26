@@ -48,7 +48,7 @@ func (o ListSupportedOperationOptions) ToQuery() *client.QueryParams {
 // ListSupported ...
 func (c PrivateLinkResourcesClient) ListSupported(ctx context.Context, id SearchServiceId, options ListSupportedOperationOptions) (result ListSupportedOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

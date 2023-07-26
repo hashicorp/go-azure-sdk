@@ -20,7 +20,7 @@ type GetRouteForVnetOperationResponse struct {
 // GetRouteForVnet ...
 func (c AppServicePlansClient) GetRouteForVnet(ctx context.Context, id RouteId) (result GetRouteForVnetOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

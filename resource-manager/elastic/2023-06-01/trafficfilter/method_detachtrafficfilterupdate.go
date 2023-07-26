@@ -50,7 +50,7 @@ func (o DetachTrafficFilterUpdateOperationOptions) ToQuery() *client.QueryParams
 // DetachTrafficFilterUpdate ...
 func (c TrafficFilterClient) DetachTrafficFilterUpdate(ctx context.Context, id MonitorId, options DetachTrafficFilterUpdateOperationOptions) (result DetachTrafficFilterUpdateOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 		},

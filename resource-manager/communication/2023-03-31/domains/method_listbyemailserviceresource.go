@@ -25,7 +25,7 @@ type ListByEmailServiceResourceCompleteResult struct {
 // ListByEmailServiceResource ...
 func (c DomainsClient) ListByEmailServiceResource(ctx context.Context, id EmailServiceId) (result ListByEmailServiceResourceOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

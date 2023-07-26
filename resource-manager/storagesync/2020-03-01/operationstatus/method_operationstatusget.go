@@ -20,7 +20,7 @@ type OperationStatusGetOperationResponse struct {
 // OperationStatusGet ...
 func (c OperationStatusClient) OperationStatusGet(ctx context.Context, id WorkflowOperationId) (result OperationStatusGetOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

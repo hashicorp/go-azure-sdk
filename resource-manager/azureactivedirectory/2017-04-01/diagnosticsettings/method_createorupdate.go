@@ -20,7 +20,7 @@ type CreateOrUpdateOperationResponse struct {
 // CreateOrUpdate ...
 func (c DiagnosticSettingsClient) CreateOrUpdate(ctx context.Context, id DiagnosticSettingId, input DiagnosticSettingsResource) (result CreateOrUpdateOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

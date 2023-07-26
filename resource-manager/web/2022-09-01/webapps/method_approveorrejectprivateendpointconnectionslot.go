@@ -23,7 +23,7 @@ type ApproveOrRejectPrivateEndpointConnectionSlotOperationResponse struct {
 // ApproveOrRejectPrivateEndpointConnectionSlot ...
 func (c WebAppsClient) ApproveOrRejectPrivateEndpointConnectionSlot(ctx context.Context, id SlotPrivateEndpointConnectionId, input PrivateLinkConnectionApprovalRequestResource) (result ApproveOrRejectPrivateEndpointConnectionSlotOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusOK,

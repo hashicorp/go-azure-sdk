@@ -25,7 +25,7 @@ type ListInstanceProcessThreadsCompleteResult struct {
 // ListInstanceProcessThreads ...
 func (c WebAppsClient) ListInstanceProcessThreads(ctx context.Context, id InstanceProcessId) (result ListInstanceProcessThreadsOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

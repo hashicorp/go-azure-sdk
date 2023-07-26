@@ -23,7 +23,7 @@ type UpdateSegmentsOperationResponse struct {
 // UpdateSegments ...
 func (c WorkloadNetworksClient) UpdateSegments(ctx context.Context, id SegmentId, input WorkloadNetworkSegment) (result UpdateSegmentsOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusOK,

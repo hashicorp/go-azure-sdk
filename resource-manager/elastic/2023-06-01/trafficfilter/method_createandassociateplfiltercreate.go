@@ -58,7 +58,7 @@ func (o CreateAndAssociatePLFilterCreateOperationOptions) ToQuery() *client.Quer
 // CreateAndAssociatePLFilterCreate ...
 func (c TrafficFilterClient) CreateAndAssociatePLFilterCreate(ctx context.Context, id MonitorId, options CreateAndAssociatePLFilterCreateOperationOptions) (result CreateAndAssociatePLFilterCreateOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusOK,

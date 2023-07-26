@@ -23,7 +23,7 @@ type CreateOrUpdateOperationResponse struct {
 // CreateOrUpdate ...
 func (c MachineExtensionsClient) CreateOrUpdate(ctx context.Context, id ExtensionId, input MachineExtension) (result CreateOrUpdateOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 			http.StatusOK,

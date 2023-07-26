@@ -25,7 +25,7 @@ type ExtendedDatabaseBlobAuditingPoliciesListByDatabaseCompleteResult struct {
 // ExtendedDatabaseBlobAuditingPoliciesListByDatabase ...
 func (c BlobAuditingClient) ExtendedDatabaseBlobAuditingPoliciesListByDatabase(ctx context.Context, id DatabaseId) (result ExtendedDatabaseBlobAuditingPoliciesListByDatabaseOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

@@ -25,7 +25,7 @@ type ListDnsServicesCompleteResult struct {
 // ListDnsServices ...
 func (c WorkloadNetworksClient) ListDnsServices(ctx context.Context, id PrivateCloudId) (result ListDnsServicesOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

@@ -21,7 +21,7 @@ type ListConnectionStringsSlotOperationResponse struct {
 // ListConnectionStringsSlot ...
 func (c WebAppsClient) ListConnectionStringsSlot(ctx context.Context, id SlotId) (result ListConnectionStringsSlotOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

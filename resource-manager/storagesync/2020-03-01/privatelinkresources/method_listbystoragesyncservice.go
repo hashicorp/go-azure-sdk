@@ -21,7 +21,7 @@ type ListByStorageSyncServiceOperationResponse struct {
 // ListByStorageSyncService ...
 func (c PrivateLinkResourcesClient) ListByStorageSyncService(ctx context.Context, id StorageSyncServiceId) (result ListByStorageSyncServiceOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

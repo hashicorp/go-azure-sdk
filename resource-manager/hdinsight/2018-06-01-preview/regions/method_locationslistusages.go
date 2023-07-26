@@ -21,7 +21,7 @@ type LocationsListUsagesOperationResponse struct {
 // LocationsListUsages ...
 func (c RegionsClient) LocationsListUsages(ctx context.Context, id LocationId) (result LocationsListUsagesOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

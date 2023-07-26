@@ -23,7 +23,7 @@ type DatabaseEncryptionProtectorsRevertOperationResponse struct {
 // DatabaseEncryptionProtectorsRevert ...
 func (c DatabaseEncryptionProtectorRevertClient) DatabaseEncryptionProtectorsRevert(ctx context.Context, id DatabaseId) (result DatabaseEncryptionProtectorsRevertOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusOK,

@@ -23,7 +23,7 @@ type CreateOrUpdateOperationResponse struct {
 // CreateOrUpdate ...
 func (c WorkloadClassifiersClient) CreateOrUpdate(ctx context.Context, id WorkloadClassifierId, input WorkloadClassifier) (result CreateOrUpdateOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusCreated,

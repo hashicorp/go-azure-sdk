@@ -65,7 +65,7 @@ func (o GetOperationOptions) ToQuery() *client.QueryParams {
 // Get ...
 func (c ReservationRecommendationDetailsClient) Get(ctx context.Context, id commonids.ScopeId, options GetOperationOptions) (result GetOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 			http.StatusOK,

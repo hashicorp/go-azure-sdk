@@ -23,7 +23,7 @@ type ServerEndpointsCreateOperationResponse struct {
 // ServerEndpointsCreate ...
 func (c ServerEndpointResourceClient) ServerEndpointsCreate(ctx context.Context, id ServerEndpointId, input ServerEndpointCreateParameters) (result ServerEndpointsCreateOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusOK,

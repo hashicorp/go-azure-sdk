@@ -23,7 +23,7 @@ type CopyByResourceGroupOperationResponse struct {
 // CopyByResourceGroup ...
 func (c LongTermRetentionBackupsClient) CopyByResourceGroup(ctx context.Context, id LongTermRetentionDatabaseLongTermRetentionBackupId, input CopyLongTermRetentionBackupParameters) (result CopyByResourceGroupOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusOK,

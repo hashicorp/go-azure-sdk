@@ -20,7 +20,7 @@ type GetOperationResponse struct {
 // Get ...
 func (c SyncMembersClient) Get(ctx context.Context, id SyncMemberId) (result GetOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

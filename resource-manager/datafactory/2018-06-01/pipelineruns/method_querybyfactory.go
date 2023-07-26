@@ -21,7 +21,7 @@ type QueryByFactoryOperationResponse struct {
 // QueryByFactory ...
 func (c PipelineRunsClient) QueryByFactory(ctx context.Context, id FactoryId, input RunFilterParameters) (result QueryByFactoryOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

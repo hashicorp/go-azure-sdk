@@ -20,7 +20,7 @@ type UpdateOperationResponse struct {
 // Update ...
 func (c ImageClient) Update(ctx context.Context, id ImageId, input ImageUpdate) (result UpdateOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

@@ -20,7 +20,7 @@ type DeleteOperationResponse struct {
 // Delete ...
 func (c MigrationConfigsClient) Delete(ctx context.Context, id NamespaceId) (result DeleteOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 			http.StatusOK,

@@ -20,7 +20,7 @@ type RecommendedSensitivityLabelsUpdateOperationResponse struct {
 // RecommendedSensitivityLabelsUpdate ...
 func (c SensitivityLabelsClient) RecommendedSensitivityLabelsUpdate(ctx context.Context, id DatabaseId, input RecommendedSensitivityLabelUpdateList) (result RecommendedSensitivityLabelsUpdateOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

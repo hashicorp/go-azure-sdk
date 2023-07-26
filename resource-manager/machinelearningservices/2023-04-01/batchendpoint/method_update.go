@@ -23,7 +23,7 @@ type UpdateOperationResponse struct {
 // Update ...
 func (c BatchEndpointClient) Update(ctx context.Context, id BatchEndpointId, input PartialMinimalTrackedResourceWithIdentity) (result UpdateOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusOK,

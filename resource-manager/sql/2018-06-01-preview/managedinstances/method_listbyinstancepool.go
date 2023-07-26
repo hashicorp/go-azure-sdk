@@ -25,7 +25,7 @@ type ListByInstancePoolCompleteResult struct {
 // ListByInstancePool ...
 func (c ManagedInstancesClient) ListByInstancePool(ctx context.Context, id InstancePoolId) (result ListByInstancePoolOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

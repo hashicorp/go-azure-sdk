@@ -25,7 +25,7 @@ type ListSegmentsCompleteResult struct {
 // ListSegments ...
 func (c WorkloadNetworksClient) ListSegments(ctx context.Context, id PrivateCloudId) (result ListSegmentsOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

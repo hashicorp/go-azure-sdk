@@ -19,7 +19,7 @@ type DeleteTriggeredWebJobSlotOperationResponse struct {
 // DeleteTriggeredWebJobSlot ...
 func (c WebAppsClient) DeleteTriggeredWebJobSlot(ctx context.Context, id SlotTriggeredWebJobId) (result DeleteTriggeredWebJobSlotOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 			http.StatusOK,

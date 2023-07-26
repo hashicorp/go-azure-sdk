@@ -19,7 +19,7 @@ type AddOperationResponse struct {
 // Add ...
 func (c DataLakeStoreAccountsClient) Add(ctx context.Context, id DataLakeStoreAccountId, input AddDataLakeStoreParameters) (result AddOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

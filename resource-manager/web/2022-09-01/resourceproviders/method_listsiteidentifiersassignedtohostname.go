@@ -26,7 +26,7 @@ type ListSiteIdentifiersAssignedToHostNameCompleteResult struct {
 // ListSiteIdentifiersAssignedToHostName ...
 func (c ResourceProvidersClient) ListSiteIdentifiersAssignedToHostName(ctx context.Context, id commonids.SubscriptionId, input NameIdentifier) (result ListSiteIdentifiersAssignedToHostNameOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

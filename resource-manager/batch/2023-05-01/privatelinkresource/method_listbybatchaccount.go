@@ -52,7 +52,7 @@ func (o ListByBatchAccountOperationOptions) ToQuery() *client.QueryParams {
 // ListByBatchAccount ...
 func (c PrivateLinkResourceClient) ListByBatchAccount(ctx context.Context, id BatchAccountId, options ListByBatchAccountOperationOptions) (result ListByBatchAccountOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

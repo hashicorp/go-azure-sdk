@@ -20,7 +20,7 @@ type PatchSiteOperationResponse struct {
 // PatchSite ...
 func (c HyperVSitesClient) PatchSite(ctx context.Context, id HyperVSiteId, input HyperVSite) (result PatchSiteOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 			http.StatusOK,

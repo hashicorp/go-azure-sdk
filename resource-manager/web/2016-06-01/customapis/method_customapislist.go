@@ -53,7 +53,7 @@ func (o CustomApisListOperationOptions) ToQuery() *client.QueryParams {
 // CustomApisList ...
 func (c CustomAPIsClient) CustomApisList(ctx context.Context, id commonids.SubscriptionId, options CustomApisListOperationOptions) (result CustomApisListOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

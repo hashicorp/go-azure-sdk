@@ -48,7 +48,7 @@ func (o GetCountersOperationOptions) ToQuery() *client.QueryParams {
 // GetCounters ...
 func (c PreRulesClient) GetCounters(ctx context.Context, id PreRuleId, options GetCountersOperationOptions) (result GetCountersOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

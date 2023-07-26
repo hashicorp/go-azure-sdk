@@ -56,7 +56,7 @@ func (o ListHistoryForHostingEnvironmentOperationOptions) ToQuery() *client.Quer
 // ListHistoryForHostingEnvironment ...
 func (c RecommendationsClient) ListHistoryForHostingEnvironment(ctx context.Context, id HostingEnvironmentId, options ListHistoryForHostingEnvironmentOperationOptions) (result ListHistoryForHostingEnvironmentOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

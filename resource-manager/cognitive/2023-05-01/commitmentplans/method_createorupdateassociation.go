@@ -23,7 +23,7 @@ type CreateOrUpdateAssociationOperationResponse struct {
 // CreateOrUpdateAssociation ...
 func (c CommitmentPlansClient) CreateOrUpdateAssociation(ctx context.Context, id AccountAssociationId, input CommitmentPlanAccountAssociation) (result CreateOrUpdateAssociationOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 			http.StatusOK,

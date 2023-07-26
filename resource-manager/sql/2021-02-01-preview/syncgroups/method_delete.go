@@ -23,7 +23,7 @@ type DeleteOperationResponse struct {
 // Delete ...
 func (c SyncGroupsClient) Delete(ctx context.Context, id SyncGroupId) (result DeleteOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusNoContent,

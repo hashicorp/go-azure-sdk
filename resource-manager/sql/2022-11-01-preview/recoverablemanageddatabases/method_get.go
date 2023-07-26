@@ -20,7 +20,7 @@ type GetOperationResponse struct {
 // Get ...
 func (c RecoverableManagedDatabasesClient) Get(ctx context.Context, id ManagedInstanceRecoverableDatabaseId) (result GetOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

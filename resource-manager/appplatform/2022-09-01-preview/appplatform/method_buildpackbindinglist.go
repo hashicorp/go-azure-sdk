@@ -25,7 +25,7 @@ type BuildpackBindingListCompleteResult struct {
 // BuildpackBindingList ...
 func (c AppPlatformClient) BuildpackBindingList(ctx context.Context, id BuilderId) (result BuildpackBindingListOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

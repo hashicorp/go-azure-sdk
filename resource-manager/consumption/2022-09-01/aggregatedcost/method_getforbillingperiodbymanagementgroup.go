@@ -21,7 +21,7 @@ type GetForBillingPeriodByManagementGroupOperationResponse struct {
 // GetForBillingPeriodByManagementGroup ...
 func (c AggregatedCostClient) GetForBillingPeriodByManagementGroup(ctx context.Context, id Providers2BillingPeriodId) (result GetForBillingPeriodByManagementGroupOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

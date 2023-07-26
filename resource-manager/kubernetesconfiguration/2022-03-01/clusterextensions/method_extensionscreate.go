@@ -23,7 +23,7 @@ type ExtensionsCreateOperationResponse struct {
 // ExtensionsCreate ...
 func (c ClusterExtensionsClient) ExtensionsCreate(ctx context.Context, id ScopedExtensionId, input Extension) (result ExtensionsCreateOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 			http.StatusOK,

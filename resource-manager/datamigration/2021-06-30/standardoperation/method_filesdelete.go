@@ -19,7 +19,7 @@ type FilesDeleteOperationResponse struct {
 // FilesDelete ...
 func (c StandardOperationClient) FilesDelete(ctx context.Context, id FileId) (result FilesDeleteOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 			http.StatusOK,

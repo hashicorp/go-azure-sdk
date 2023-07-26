@@ -25,7 +25,7 @@ type ResourcesListByWorkspaceCompleteResult struct {
 // ResourcesListByWorkspace ...
 func (c PrivateLinkClient) ResourcesListByWorkspace(ctx context.Context, id WorkspaceId) (result ResourcesListByWorkspaceOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

@@ -23,7 +23,7 @@ type ConfigurationServicesValidateOperationResponse struct {
 // ConfigurationServicesValidate ...
 func (c AppPlatformClient) ConfigurationServicesValidate(ctx context.Context, id ConfigurationServiceId, input ConfigurationServiceSettings) (result ConfigurationServicesValidateOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusOK,

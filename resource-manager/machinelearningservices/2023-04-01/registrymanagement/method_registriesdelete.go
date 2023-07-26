@@ -23,7 +23,7 @@ type RegistriesDeleteOperationResponse struct {
 // RegistriesDelete ...
 func (c RegistryManagementClient) RegistriesDelete(ctx context.Context, id RegistryId) (result RegistriesDeleteOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusNoContent,

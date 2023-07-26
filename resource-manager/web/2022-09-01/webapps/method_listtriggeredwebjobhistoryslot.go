@@ -25,7 +25,7 @@ type ListTriggeredWebJobHistorySlotCompleteResult struct {
 // ListTriggeredWebJobHistorySlot ...
 func (c WebAppsClient) ListTriggeredWebJobHistorySlot(ctx context.Context, id SlotTriggeredWebJobId) (result ListTriggeredWebJobHistorySlotOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

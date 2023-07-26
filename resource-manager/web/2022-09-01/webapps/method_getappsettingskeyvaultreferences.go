@@ -25,7 +25,7 @@ type GetAppSettingsKeyVaultReferencesCompleteResult struct {
 // GetAppSettingsKeyVaultReferences ...
 func (c WebAppsClient) GetAppSettingsKeyVaultReferences(ctx context.Context, id SiteId) (result GetAppSettingsKeyVaultReferencesOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

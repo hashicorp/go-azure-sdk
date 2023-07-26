@@ -25,7 +25,7 @@ type ListHostingEnvironmentDetectorResponsesCompleteResult struct {
 // ListHostingEnvironmentDetectorResponses ...
 func (c DiagnosticsClient) ListHostingEnvironmentDetectorResponses(ctx context.Context, id HostingEnvironmentId) (result ListHostingEnvironmentDetectorResponsesOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

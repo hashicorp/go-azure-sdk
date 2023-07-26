@@ -23,7 +23,7 @@ type FailoverOperationResponse struct {
 // Failover ...
 func (c ReplicationLinksClient) Failover(ctx context.Context, id ReplicationLinkId) (result FailoverOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusOK,

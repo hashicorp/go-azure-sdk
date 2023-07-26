@@ -25,7 +25,7 @@ type ListRevisionsCompleteResult struct {
 // ListRevisions ...
 func (c ContainerAppsRevisionsClient) ListRevisions(ctx context.Context, id ProviderContainerAppId) (result ListRevisionsOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

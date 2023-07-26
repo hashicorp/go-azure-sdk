@@ -20,7 +20,7 @@ type SyncFunctionsSlotOperationResponse struct {
 // SyncFunctionsSlot ...
 func (c WebAppsClient) SyncFunctionsSlot(ctx context.Context, id SlotId) (result SyncFunctionsSlotOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},

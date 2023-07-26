@@ -25,7 +25,7 @@ type CustomDomainsListCompleteResult struct {
 // CustomDomainsList ...
 func (c AppPlatformClient) CustomDomainsList(ctx context.Context, id AppId) (result CustomDomainsListOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

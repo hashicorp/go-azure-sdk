@@ -57,7 +57,7 @@ func (o ListBillingMetersOperationOptions) ToQuery() *client.QueryParams {
 // ListBillingMeters ...
 func (c ResourceProvidersClient) ListBillingMeters(ctx context.Context, id commonids.SubscriptionId, options ListBillingMetersOperationOptions) (result ListBillingMetersOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

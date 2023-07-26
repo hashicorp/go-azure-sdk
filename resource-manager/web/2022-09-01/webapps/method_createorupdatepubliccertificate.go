@@ -20,7 +20,7 @@ type CreateOrUpdatePublicCertificateOperationResponse struct {
 // CreateOrUpdatePublicCertificate ...
 func (c WebAppsClient) CreateOrUpdatePublicCertificate(ctx context.Context, id PublicCertificateId, input PublicCertificate) (result CreateOrUpdatePublicCertificateOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

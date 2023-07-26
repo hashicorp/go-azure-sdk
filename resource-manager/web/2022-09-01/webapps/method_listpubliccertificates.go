@@ -25,7 +25,7 @@ type ListPublicCertificatesCompleteResult struct {
 // ListPublicCertificates ...
 func (c WebAppsClient) ListPublicCertificates(ctx context.Context, id SiteId) (result ListPublicCertificatesOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

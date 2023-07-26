@@ -52,7 +52,7 @@ func (o GetByBillingPeriodOperationOptions) ToQuery() *client.QueryParams {
 // GetByBillingPeriod ...
 func (c PriceSheetClient) GetByBillingPeriod(ctx context.Context, id BillingPeriodId, options GetByBillingPeriodOperationOptions) (result GetByBillingPeriodOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

@@ -23,7 +23,7 @@ type AppsSetActiveDeploymentsOperationResponse struct {
 // AppsSetActiveDeployments ...
 func (c AppPlatformClient) AppsSetActiveDeployments(ctx context.Context, id AppId, input ActiveDeploymentCollection) (result AppsSetActiveDeploymentsOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusOK,

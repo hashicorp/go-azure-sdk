@@ -23,7 +23,7 @@ type CommitmentPlansDeletePlanOperationResponse struct {
 // CommitmentPlansDeletePlan ...
 func (c CognitiveServicesCommitmentPlansClient) CommitmentPlansDeletePlan(ctx context.Context, id CommitmentPlanId) (result CommitmentPlansDeletePlanOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusNoContent,

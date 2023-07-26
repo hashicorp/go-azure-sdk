@@ -20,7 +20,7 @@ type DeleteSwiftVirtualNetworkSlotOperationResponse struct {
 // DeleteSwiftVirtualNetworkSlot ...
 func (c WebAppsClient) DeleteSwiftVirtualNetworkSlot(ctx context.Context, id SlotId) (result DeleteSwiftVirtualNetworkSlotOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

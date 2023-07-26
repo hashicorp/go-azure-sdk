@@ -21,7 +21,7 @@ type GetConnectionInfoOperationResponse struct {
 // GetConnectionInfo ...
 func (c IntegrationRuntimesClient) GetConnectionInfo(ctx context.Context, id IntegrationRuntimeId) (result GetConnectionInfoOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

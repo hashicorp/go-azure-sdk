@@ -20,7 +20,7 @@ type CustomApisMoveOperationResponse struct {
 // CustomApisMove ...
 func (c CustomAPIsClient) CustomApisMove(ctx context.Context, id CustomApiId, input CustomApiReference) (result CustomApisMoveOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

@@ -21,7 +21,7 @@ type TransferOutOperationResponse struct {
 // TransferOut ...
 func (c DomainsClient) TransferOut(ctx context.Context, id DomainId) (result TransferOutOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

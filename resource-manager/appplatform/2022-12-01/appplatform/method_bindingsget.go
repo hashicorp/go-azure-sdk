@@ -20,7 +20,7 @@ type BindingsGetOperationResponse struct {
 // BindingsGet ...
 func (c AppPlatformClient) BindingsGet(ctx context.Context, id BindingId) (result BindingsGetOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

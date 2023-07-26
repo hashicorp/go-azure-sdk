@@ -52,7 +52,7 @@ func (o ListByServerOperationOptions) ToQuery() *client.QueryParams {
 // ListByServer ...
 func (c RecommendedActionsClient) ListByServer(ctx context.Context, id AdvisorId, options ListByServerOperationOptions) (result ListByServerOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

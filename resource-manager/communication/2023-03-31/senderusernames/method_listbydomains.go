@@ -25,7 +25,7 @@ type ListByDomainsCompleteResult struct {
 // ListByDomains ...
 func (c SenderUsernamesClient) ListByDomains(ctx context.Context, id DomainId) (result ListByDomainsOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

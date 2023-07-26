@@ -23,7 +23,7 @@ type DeploymentsCreateOrUpdateOperationResponse struct {
 // DeploymentsCreateOrUpdate ...
 func (c AppPlatformClient) DeploymentsCreateOrUpdate(ctx context.Context, id DeploymentId, input DeploymentResource) (result DeploymentsCreateOrUpdateOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusCreated,

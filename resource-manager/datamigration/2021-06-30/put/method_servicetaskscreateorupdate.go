@@ -20,7 +20,7 @@ type ServiceTasksCreateOrUpdateOperationResponse struct {
 // ServiceTasksCreateOrUpdate ...
 func (c PUTClient) ServiceTasksCreateOrUpdate(ctx context.Context, id ServiceTaskId, input ProjectTask) (result ServiceTasksCreateOrUpdateOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 			http.StatusOK,

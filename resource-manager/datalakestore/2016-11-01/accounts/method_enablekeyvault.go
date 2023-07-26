@@ -20,7 +20,7 @@ type EnableKeyVaultOperationResponse struct {
 // EnableKeyVault ...
 func (c AccountsClient) EnableKeyVault(ctx context.Context, id AccountId) (result EnableKeyVaultOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

@@ -23,7 +23,7 @@ type AcquireOperationResponse struct {
 // Acquire ...
 func (c ServerDnsAliasesClient) Acquire(ctx context.Context, id DnsAliasId, input ServerDnsAliasAcquisition) (result AcquireOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusOK,

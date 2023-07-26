@@ -25,7 +25,7 @@ type ListVirtualMachinesCompleteResult struct {
 // ListVirtualMachines ...
 func (c WorkloadNetworksClient) ListVirtualMachines(ctx context.Context, id PrivateCloudId) (result ListVirtualMachinesOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

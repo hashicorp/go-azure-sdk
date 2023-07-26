@@ -21,7 +21,7 @@ type GetInstanceProcessDumpSlotOperationResponse struct {
 // GetInstanceProcessDumpSlot ...
 func (c WebAppsClient) GetInstanceProcessDumpSlot(ctx context.Context, id SlotInstanceProcessId) (result GetInstanceProcessDumpSlotOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

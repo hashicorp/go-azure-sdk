@@ -20,7 +20,7 @@ type CreateOrUpdateOperationResponse struct {
 // CreateOrUpdate ...
 func (c TargetsClient) CreateOrUpdate(ctx context.Context, id ScopedTargetId, input Target) (result CreateOrUpdateOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

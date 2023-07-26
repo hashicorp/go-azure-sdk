@@ -23,7 +23,7 @@ type DeleteOperationResponse struct {
 // Delete ...
 func (c ManagedDatabasesClient) Delete(ctx context.Context, id ManagedInstanceDatabaseId) (result DeleteOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusNoContent,

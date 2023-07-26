@@ -20,7 +20,7 @@ type ConnectionGatewayInstallationsGetOperationResponse struct {
 // ConnectionGatewayInstallationsGet ...
 func (c ConnectionGatewaysClient) ConnectionGatewayInstallationsGet(ctx context.Context, id ConnectionGatewayInstallationId) (result ConnectionGatewayInstallationsGetOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

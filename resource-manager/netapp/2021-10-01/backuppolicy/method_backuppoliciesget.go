@@ -20,7 +20,7 @@ type BackupPoliciesGetOperationResponse struct {
 // BackupPoliciesGet ...
 func (c BackupPolicyClient) BackupPoliciesGet(ctx context.Context, id BackupPolicyId) (result BackupPoliciesGetOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

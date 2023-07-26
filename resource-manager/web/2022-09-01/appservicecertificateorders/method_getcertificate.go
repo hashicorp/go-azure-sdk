@@ -20,7 +20,7 @@ type GetCertificateOperationResponse struct {
 // GetCertificate ...
 func (c AppServiceCertificateOrdersClient) GetCertificate(ctx context.Context, id CertificateId) (result GetCertificateOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

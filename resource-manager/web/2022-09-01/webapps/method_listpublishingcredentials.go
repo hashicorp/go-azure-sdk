@@ -23,7 +23,7 @@ type ListPublishingCredentialsOperationResponse struct {
 // ListPublishingCredentials ...
 func (c WebAppsClient) ListPublishingCredentials(ctx context.Context, id SiteId) (result ListPublishingCredentialsOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

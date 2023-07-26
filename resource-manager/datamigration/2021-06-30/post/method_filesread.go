@@ -21,7 +21,7 @@ type FilesReadOperationResponse struct {
 // FilesRead ...
 func (c POSTClient) FilesRead(ctx context.Context, id FileId) (result FilesReadOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

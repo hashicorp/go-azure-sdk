@@ -23,7 +23,7 @@ type DeploymentsGenerateThreadDumpOperationResponse struct {
 // DeploymentsGenerateThreadDump ...
 func (c AppPlatformClient) DeploymentsGenerateThreadDump(ctx context.Context, id DeploymentId, input DiagnosticParameters) (result DeploymentsGenerateThreadDumpOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusOK,

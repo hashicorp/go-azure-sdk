@@ -23,7 +23,7 @@ type DeploymentsStartJFROperationResponse struct {
 // DeploymentsStartJFR ...
 func (c AppPlatformClient) DeploymentsStartJFR(ctx context.Context, id DeploymentId, input DiagnosticParameters) (result DeploymentsStartJFROperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusOK,

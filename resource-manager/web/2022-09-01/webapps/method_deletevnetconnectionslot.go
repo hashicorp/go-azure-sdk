@@ -19,7 +19,7 @@ type DeleteVnetConnectionSlotOperationResponse struct {
 // DeleteVnetConnectionSlot ...
 func (c WebAppsClient) DeleteVnetConnectionSlot(ctx context.Context, id SlotVirtualNetworkConnectionId) (result DeleteVnetConnectionSlotOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

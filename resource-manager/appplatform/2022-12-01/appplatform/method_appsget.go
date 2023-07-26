@@ -48,7 +48,7 @@ func (o AppsGetOperationOptions) ToQuery() *client.QueryParams {
 // AppsGet ...
 func (c AppPlatformClient) AppsGet(ctx context.Context, id AppId, options AppsGetOperationOptions) (result AppsGetOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

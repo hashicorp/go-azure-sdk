@@ -21,7 +21,7 @@ type CustomApisListWsdlInterfacesOperationResponse struct {
 // CustomApisListWsdlInterfaces ...
 func (c CustomAPIsClient) CustomApisListWsdlInterfaces(ctx context.Context, id LocationId, input WsdlDefinition) (result CustomApisListWsdlInterfacesOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

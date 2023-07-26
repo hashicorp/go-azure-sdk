@@ -20,7 +20,7 @@ type RevertOperationResponse struct {
 // Revert ...
 func (c GlobalRulestackClient) Revert(ctx context.Context, id GlobalRulestackId) (result RevertOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},

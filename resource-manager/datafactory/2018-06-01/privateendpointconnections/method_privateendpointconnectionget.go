@@ -48,7 +48,7 @@ func (o PrivateEndpointConnectionGetOperationOptions) ToQuery() *client.QueryPar
 // PrivateEndpointConnectionGet ...
 func (c PrivateEndpointConnectionsClient) PrivateEndpointConnectionGet(ctx context.Context, id PrivateEndpointConnectionId, options PrivateEndpointConnectionGetOperationOptions) (result PrivateEndpointConnectionGetOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

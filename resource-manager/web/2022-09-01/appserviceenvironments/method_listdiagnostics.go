@@ -21,7 +21,7 @@ type ListDiagnosticsOperationResponse struct {
 // ListDiagnostics ...
 func (c AppServiceEnvironmentsClient) ListDiagnostics(ctx context.Context, id HostingEnvironmentId) (result ListDiagnosticsOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

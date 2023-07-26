@@ -21,7 +21,7 @@ type UpdateBackupConfigurationOperationResponse struct {
 // UpdateBackupConfiguration ...
 func (c WebAppsClient) UpdateBackupConfiguration(ctx context.Context, id SiteId, input BackupRequest) (result UpdateBackupConfigurationOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

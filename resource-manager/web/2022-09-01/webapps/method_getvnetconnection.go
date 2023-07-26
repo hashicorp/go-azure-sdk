@@ -20,7 +20,7 @@ type GetVnetConnectionOperationResponse struct {
 // GetVnetConnection ...
 func (c WebAppsClient) GetVnetConnection(ctx context.Context, id VirtualNetworkConnectionId) (result GetVnetConnectionOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

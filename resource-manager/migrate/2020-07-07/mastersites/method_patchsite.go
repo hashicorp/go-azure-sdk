@@ -20,7 +20,7 @@ type PatchSiteOperationResponse struct {
 // PatchSite ...
 func (c MasterSitesClient) PatchSite(ctx context.Context, id MasterSiteId, input MasterSite) (result PatchSiteOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusOK,

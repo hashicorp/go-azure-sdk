@@ -23,7 +23,7 @@ type DeploymentsRestartOperationResponse struct {
 // DeploymentsRestart ...
 func (c AppPlatformClient) DeploymentsRestart(ctx context.Context, id DeploymentId) (result DeploymentsRestartOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusOK,

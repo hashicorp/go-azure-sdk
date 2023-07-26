@@ -25,7 +25,7 @@ type ListByFirewallsCompleteResult struct {
 // ListByFirewalls ...
 func (c FirewallStatusClient) ListByFirewalls(ctx context.Context, id FirewallId) (result ListByFirewallsOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

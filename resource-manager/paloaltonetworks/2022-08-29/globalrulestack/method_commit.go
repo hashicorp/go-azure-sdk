@@ -23,7 +23,7 @@ type CommitOperationResponse struct {
 // Commit ...
 func (c GlobalRulestackClient) Commit(ctx context.Context, id GlobalRulestackId) (result CommitOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 		},

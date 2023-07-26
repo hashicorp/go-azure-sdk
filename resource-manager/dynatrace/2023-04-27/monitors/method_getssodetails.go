@@ -21,7 +21,7 @@ type GetSSODetailsOperationResponse struct {
 // GetSSODetails ...
 func (c MonitorsClient) GetSSODetails(ctx context.Context, id MonitorId, input SSODetailsRequest) (result GetSSODetailsOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

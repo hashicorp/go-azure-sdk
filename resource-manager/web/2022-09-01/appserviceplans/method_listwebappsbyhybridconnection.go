@@ -25,7 +25,7 @@ type ListWebAppsByHybridConnectionCompleteResult struct {
 // ListWebAppsByHybridConnection ...
 func (c AppServicePlansClient) ListWebAppsByHybridConnection(ctx context.Context, id HybridConnectionNamespaceRelayId) (result ListWebAppsByHybridConnectionOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

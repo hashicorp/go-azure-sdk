@@ -23,7 +23,7 @@ type RefreshMemberSchemaOperationResponse struct {
 // RefreshMemberSchema ...
 func (c SyncMembersClient) RefreshMemberSchema(ctx context.Context, id SyncMemberId) (result RefreshMemberSchemaOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusOK,

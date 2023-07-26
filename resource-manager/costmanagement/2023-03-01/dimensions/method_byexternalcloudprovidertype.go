@@ -56,7 +56,7 @@ func (o ByExternalCloudProviderTypeOperationOptions) ToQuery() *client.QueryPara
 // ByExternalCloudProviderType ...
 func (c DimensionsClient) ByExternalCloudProviderType(ctx context.Context, id ExternalCloudProviderTypeId, options ByExternalCloudProviderTypeOperationOptions) (result ByExternalCloudProviderTypeOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

@@ -23,7 +23,7 @@ type GenerateBenefitUtilizationSummariesReportGenerateByBillingProfileOperationR
 // GenerateBenefitUtilizationSummariesReportGenerateByBillingProfile ...
 func (c BenefitUtilizationSummariesAsyncClient) GenerateBenefitUtilizationSummariesReportGenerateByBillingProfile(ctx context.Context, id BillingProfileId, input BenefitUtilizationSummariesRequest) (result GenerateBenefitUtilizationSummariesReportGenerateByBillingProfileOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusOK,

@@ -21,7 +21,7 @@ type MonitoringSettingsGetOperationResponse struct {
 // MonitoringSettingsGet ...
 func (c AppPlatformClient) MonitoringSettingsGet(ctx context.Context, id SpringId) (result MonitoringSettingsGetOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

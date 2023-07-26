@@ -47,7 +47,7 @@ func (o StopOperationOptions) ToQuery() *client.QueryParams {
 // Stop ...
 func (c JobClient) Stop(ctx context.Context, id JobId, options StopOperationOptions) (result StopOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

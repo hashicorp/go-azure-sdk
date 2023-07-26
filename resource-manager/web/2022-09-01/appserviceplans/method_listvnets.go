@@ -21,7 +21,7 @@ type ListVnetsOperationResponse struct {
 // ListVnets ...
 func (c AppServicePlansClient) ListVnets(ctx context.Context, id ServerFarmId) (result ListVnetsOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

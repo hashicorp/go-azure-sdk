@@ -21,7 +21,7 @@ type NameAvailabilityCheckLocalOperationResponse struct {
 // NameAvailabilityCheckLocal ...
 func (c VoiceservicesClient) NameAvailabilityCheckLocal(ctx context.Context, id LocationId, input CheckNameAvailabilityRequest) (result NameAvailabilityCheckLocalOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

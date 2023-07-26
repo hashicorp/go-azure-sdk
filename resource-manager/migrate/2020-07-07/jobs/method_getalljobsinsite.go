@@ -25,7 +25,7 @@ type GetAllJobsInSiteCompleteResult struct {
 // GetAllJobsInSite ...
 func (c JobsClient) GetAllJobsInSite(ctx context.Context, id VMwareSiteId) (result GetAllJobsInSiteOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

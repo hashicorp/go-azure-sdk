@@ -25,7 +25,7 @@ type ListStorageContainersCompleteResult struct {
 // ListStorageContainers ...
 func (c StorageAccountsClient) ListStorageContainers(ctx context.Context, id StorageAccountId) (result ListStorageContainersOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

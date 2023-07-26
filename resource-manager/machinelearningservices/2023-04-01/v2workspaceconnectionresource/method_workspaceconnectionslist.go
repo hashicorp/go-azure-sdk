@@ -56,7 +56,7 @@ func (o WorkspaceConnectionsListOperationOptions) ToQuery() *client.QueryParams 
 // WorkspaceConnectionsList ...
 func (c V2WorkspaceConnectionResourceClient) WorkspaceConnectionsList(ctx context.Context, id WorkspaceId, options WorkspaceConnectionsListOperationOptions) (result WorkspaceConnectionsListOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

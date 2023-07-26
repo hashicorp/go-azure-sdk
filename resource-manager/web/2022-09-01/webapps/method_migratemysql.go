@@ -23,7 +23,7 @@ type MigrateMySqlOperationResponse struct {
 // MigrateMySql ...
 func (c WebAppsClient) MigrateMySql(ctx context.Context, id SiteId, input MigrateMySqlRequest) (result MigrateMySqlOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

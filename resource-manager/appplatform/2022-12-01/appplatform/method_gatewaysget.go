@@ -20,7 +20,7 @@ type GatewaysGetOperationResponse struct {
 // GatewaysGet ...
 func (c AppPlatformClient) GatewaysGet(ctx context.Context, id GatewayId) (result GatewaysGetOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

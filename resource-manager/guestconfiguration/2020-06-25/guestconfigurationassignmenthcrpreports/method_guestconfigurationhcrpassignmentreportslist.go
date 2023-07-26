@@ -21,7 +21,7 @@ type GuestConfigurationHCRPAssignmentReportsListOperationResponse struct {
 // GuestConfigurationHCRPAssignmentReportsList ...
 func (c GuestConfigurationAssignmentHCRPReportsClient) GuestConfigurationHCRPAssignmentReportsList(ctx context.Context, id GuestConfigurationAssignmentId) (result GuestConfigurationHCRPAssignmentReportsListOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

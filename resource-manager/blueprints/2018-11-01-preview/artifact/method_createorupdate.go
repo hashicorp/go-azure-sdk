@@ -21,7 +21,7 @@ type CreateOrUpdateOperationResponse struct {
 // CreateOrUpdate ...
 func (c ArtifactClient) CreateOrUpdate(ctx context.Context, id ArtifactScopedId, input Artifact) (result CreateOrUpdateOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},

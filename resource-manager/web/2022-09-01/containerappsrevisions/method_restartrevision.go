@@ -20,7 +20,7 @@ type RestartRevisionOperationResponse struct {
 // RestartRevision ...
 func (c ContainerAppsRevisionsClient) RestartRevision(ctx context.Context, id RevisionId) (result RestartRevisionOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

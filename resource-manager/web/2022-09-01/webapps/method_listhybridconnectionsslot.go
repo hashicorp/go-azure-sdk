@@ -21,7 +21,7 @@ type ListHybridConnectionsSlotOperationResponse struct {
 // ListHybridConnectionsSlot ...
 func (c WebAppsClient) ListHybridConnectionsSlot(ctx context.Context, id SlotId) (result ListHybridConnectionsSlotOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

@@ -20,7 +20,7 @@ type ResetStaticSiteApiKeyOperationResponse struct {
 // ResetStaticSiteApiKey ...
 func (c StaticSitesClient) ResetStaticSiteApiKey(ctx context.Context, id StaticSiteId, input StaticSiteResetPropertiesARMResource) (result ResetStaticSiteApiKeyOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

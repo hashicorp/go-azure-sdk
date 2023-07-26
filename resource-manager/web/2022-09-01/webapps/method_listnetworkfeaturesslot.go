@@ -20,7 +20,7 @@ type ListNetworkFeaturesSlotOperationResponse struct {
 // ListNetworkFeaturesSlot ...
 func (c WebAppsClient) ListNetworkFeaturesSlot(ctx context.Context, id SlotNetworkFeatureId) (result ListNetworkFeaturesSlotOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

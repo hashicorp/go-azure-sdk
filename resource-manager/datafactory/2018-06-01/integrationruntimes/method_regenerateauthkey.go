@@ -21,7 +21,7 @@ type RegenerateAuthKeyOperationResponse struct {
 // RegenerateAuthKey ...
 func (c IntegrationRuntimesClient) RegenerateAuthKey(ctx context.Context, id IntegrationRuntimeId, input IntegrationRuntimeRegenerateKeyParameters) (result RegenerateAuthKeyOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

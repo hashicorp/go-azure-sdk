@@ -19,7 +19,7 @@ type DeleteVnetRouteOperationResponse struct {
 // DeleteVnetRoute ...
 func (c AppServicePlansClient) DeleteVnetRoute(ctx context.Context, id RouteId) (result DeleteVnetRouteOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

@@ -22,7 +22,7 @@ type GetMarketplaceSaaSResourceDetailsOperationResponse struct {
 // GetMarketplaceSaaSResourceDetails ...
 func (c MonitorsClient) GetMarketplaceSaaSResourceDetails(ctx context.Context, id commonids.SubscriptionId, input MarketplaceSaaSResourceDetailsRequest) (result GetMarketplaceSaaSResourceDetailsOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

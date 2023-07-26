@@ -22,7 +22,7 @@ type OrganizationsGetApiKeyOperationResponse struct {
 // OrganizationsGetApiKey ...
 func (c ApiKeyClient) OrganizationsGetApiKey(ctx context.Context, id commonids.SubscriptionId, input UserEmailId) (result OrganizationsGetApiKeyOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

@@ -23,7 +23,7 @@ type InstallPatchesOperationResponse struct {
 // InstallPatches ...
 func (c VirtualMachinesClient) InstallPatches(ctx context.Context, id VirtualMachineId, input VirtualMachineInstallPatchesParameters) (result InstallPatchesOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusOK,

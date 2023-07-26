@@ -23,7 +23,7 @@ type RegistryComponentContainersCreateOrUpdateOperationResponse struct {
 // RegistryComponentContainersCreateOrUpdate ...
 func (c ComponentContainerClient) RegistryComponentContainersCreateOrUpdate(ctx context.Context, id RegistryComponentId, input ComponentContainerResource) (result RegistryComponentContainersCreateOrUpdateOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 			http.StatusOK,

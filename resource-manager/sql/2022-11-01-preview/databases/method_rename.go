@@ -20,7 +20,7 @@ type RenameOperationResponse struct {
 // Rename ...
 func (c DatabasesClient) Rename(ctx context.Context, id DatabaseId, input ResourceMoveDefinition) (result RenameOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

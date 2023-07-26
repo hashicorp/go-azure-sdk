@@ -59,7 +59,7 @@ func (o SoftwareUpdateConfigurationMachineRunsListOperationOptions) ToQuery() *c
 // SoftwareUpdateConfigurationMachineRunsList ...
 func (c SoftwareUpdateConfigurationMachineRunClient) SoftwareUpdateConfigurationMachineRunsList(ctx context.Context, id AutomationAccountId, options SoftwareUpdateConfigurationMachineRunsListOperationOptions) (result SoftwareUpdateConfigurationMachineRunsListOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

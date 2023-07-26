@@ -21,7 +21,7 @@ type CreateOrUpdateOperationResponse struct {
 // CreateOrUpdate ...
 func (c ManagedDatabaseAdvancedThreatProtectionSettingsClient) CreateOrUpdate(ctx context.Context, id ManagedInstanceDatabaseId, input ManagedDatabaseAdvancedThreatProtection) (result CreateOrUpdateOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 			http.StatusOK,

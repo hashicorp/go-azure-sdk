@@ -21,7 +21,7 @@ type RemoteRenderingAccountsRegenerateKeysOperationResponse struct {
 // RemoteRenderingAccountsRegenerateKeys ...
 func (c KeyClient) RemoteRenderingAccountsRegenerateKeys(ctx context.Context, id RemoteRenderingAccountId, input AccountKeyRegenerateRequest) (result RemoteRenderingAccountsRegenerateKeysOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

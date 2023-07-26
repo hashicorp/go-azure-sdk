@@ -21,7 +21,7 @@ type UpdateAseCustomDnsSuffixConfigurationOperationResponse struct {
 // UpdateAseCustomDnsSuffixConfiguration ...
 func (c AppServiceEnvironmentsClient) UpdateAseCustomDnsSuffixConfiguration(ctx context.Context, id HostingEnvironmentId, input CustomDnsSuffixConfiguration) (result UpdateAseCustomDnsSuffixConfigurationOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

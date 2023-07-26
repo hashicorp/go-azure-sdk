@@ -21,7 +21,7 @@ type GetDiagnosticProactiveLogCollectionSettingsOperationResponse struct {
 // GetDiagnosticProactiveLogCollectionSettings ...
 func (c DiagnosticSettingsClient) GetDiagnosticProactiveLogCollectionSettings(ctx context.Context, id DataBoxEdgeDeviceId) (result GetDiagnosticProactiveLogCollectionSettingsOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

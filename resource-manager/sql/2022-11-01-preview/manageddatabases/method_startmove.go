@@ -23,7 +23,7 @@ type StartMoveOperationResponse struct {
 // StartMove ...
 func (c ManagedDatabasesClient) StartMove(ctx context.Context, id ManagedInstanceDatabaseId, input ManagedDatabaseStartMoveDefinition) (result StartMoveOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusOK,

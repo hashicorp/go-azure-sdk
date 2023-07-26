@@ -23,7 +23,7 @@ type RegistryModelContainersDeleteOperationResponse struct {
 // RegistryModelContainersDelete ...
 func (c ModelContainerClient) RegistryModelContainersDelete(ctx context.Context, id RegistryModelId) (result RegistryModelContainersDeleteOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusNoContent,

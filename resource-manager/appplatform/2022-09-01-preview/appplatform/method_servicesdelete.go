@@ -23,7 +23,7 @@ type ServicesDeleteOperationResponse struct {
 // ServicesDelete ...
 func (c AppPlatformClient) ServicesDelete(ctx context.Context, id SpringId) (result ServicesDeleteOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusNoContent,

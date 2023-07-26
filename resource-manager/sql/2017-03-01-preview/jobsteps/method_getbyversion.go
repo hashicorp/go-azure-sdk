@@ -20,7 +20,7 @@ type GetByVersionOperationResponse struct {
 // GetByVersion ...
 func (c JobStepsClient) GetByVersion(ctx context.Context, id VersionStepId) (result GetByVersionOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

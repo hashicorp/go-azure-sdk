@@ -21,7 +21,7 @@ type GetBackupConfigurationSlotOperationResponse struct {
 // GetBackupConfigurationSlot ...
 func (c WebAppsClient) GetBackupConfigurationSlot(ctx context.Context, id SlotId) (result GetBackupConfigurationSlotOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

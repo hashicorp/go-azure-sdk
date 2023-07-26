@@ -25,7 +25,7 @@ type ResourcesListByHostPoolCompleteResult struct {
 // ResourcesListByHostPool ...
 func (c PrivateLinkClient) ResourcesListByHostPool(ctx context.Context, id HostPoolId) (result ResourcesListByHostPoolOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

@@ -25,7 +25,7 @@ type DatabaseBlobAuditingPoliciesListByDatabaseCompleteResult struct {
 // DatabaseBlobAuditingPoliciesListByDatabase ...
 func (c BlobAuditingClient) DatabaseBlobAuditingPoliciesListByDatabase(ctx context.Context, id DatabaseId) (result DatabaseBlobAuditingPoliciesListByDatabaseOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

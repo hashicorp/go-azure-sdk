@@ -50,7 +50,7 @@ func (o CheckResourceCreationFeasibilityOperationOptions) ToQuery() *client.Quer
 // CheckResourceCreationFeasibility ...
 func (c DeviceCapacityCheckClient) CheckResourceCreationFeasibility(ctx context.Context, id DataBoxEdgeDeviceId, input DeviceCapacityRequestInfo, options CheckResourceCreationFeasibilityOperationOptions) (result CheckResourceCreationFeasibilityOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusOK,

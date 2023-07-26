@@ -19,7 +19,7 @@ type DeleteFunctionSecretSlotOperationResponse struct {
 // DeleteFunctionSecretSlot ...
 func (c WebAppsClient) DeleteFunctionSecretSlot(ctx context.Context, id FunctionKeyId) (result DeleteFunctionSecretSlotOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},

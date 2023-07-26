@@ -21,7 +21,7 @@ type SubscriptionGetOperationResponse struct {
 // SubscriptionGet ...
 func (c FeatureClient) SubscriptionGet(ctx context.Context, id LocationId, input BatchFeatureRequest) (result SubscriptionGetOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

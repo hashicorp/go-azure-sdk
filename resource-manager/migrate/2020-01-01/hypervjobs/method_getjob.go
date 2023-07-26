@@ -21,7 +21,7 @@ type GetJobOperationResponse struct {
 // GetJob ...
 func (c HyperVJobsClient) GetJob(ctx context.Context, id commonids.HyperVSiteJobId) (result GetJobOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

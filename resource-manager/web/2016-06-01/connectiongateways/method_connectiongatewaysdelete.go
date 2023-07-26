@@ -19,7 +19,7 @@ type ConnectionGatewaysDeleteOperationResponse struct {
 // ConnectionGatewaysDelete ...
 func (c ConnectionGatewaysClient) ConnectionGatewaysDelete(ctx context.Context, id ConnectionGatewayId) (result ConnectionGatewaysDeleteOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 			http.StatusOK,

@@ -25,7 +25,7 @@ type ProjectsListCompleteResult struct {
 // ProjectsList ...
 func (c GETClient) ProjectsList(ctx context.Context, id ServiceId) (result ProjectsListOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

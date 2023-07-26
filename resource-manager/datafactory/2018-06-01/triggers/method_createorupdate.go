@@ -48,7 +48,7 @@ func (o CreateOrUpdateOperationOptions) ToQuery() *client.QueryParams {
 // CreateOrUpdate ...
 func (c TriggersClient) CreateOrUpdate(ctx context.Context, id TriggerId, input TriggerResource, options CreateOrUpdateOperationOptions) (result CreateOrUpdateOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

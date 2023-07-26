@@ -21,7 +21,7 @@ type AccountGetOperationResponse struct {
 // AccountGet ...
 func (c FeatureClient) AccountGet(ctx context.Context, id AccountId, input BatchFeatureRequest) (result AccountGetOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

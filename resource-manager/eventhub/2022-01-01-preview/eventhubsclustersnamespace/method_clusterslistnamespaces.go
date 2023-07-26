@@ -21,7 +21,7 @@ type ClustersListNamespacesOperationResponse struct {
 // ClustersListNamespaces ...
 func (c EventHubsClustersNamespaceClient) ClustersListNamespaces(ctx context.Context, id ClusterId) (result ClustersListNamespacesOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

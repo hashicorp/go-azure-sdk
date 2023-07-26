@@ -22,7 +22,7 @@ type ListSkusOperationResponse struct {
 // ListSkus ...
 func (c ResourceProvidersClient) ListSkus(ctx context.Context, id commonids.SubscriptionId) (result ListSkusOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

@@ -23,7 +23,7 @@ type AppsCreateOrUpdateOperationResponse struct {
 // AppsCreateOrUpdate ...
 func (c AppPlatformClient) AppsCreateOrUpdate(ctx context.Context, id AppId, input AppResource) (result AppsCreateOrUpdateOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusCreated,

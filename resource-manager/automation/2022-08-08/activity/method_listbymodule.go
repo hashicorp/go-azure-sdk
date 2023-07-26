@@ -25,7 +25,7 @@ type ListByModuleCompleteResult struct {
 // ListByModule ...
 func (c ActivityClient) ListByModule(ctx context.Context, id ModuleId) (result ListByModuleOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

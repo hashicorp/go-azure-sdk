@@ -20,7 +20,7 @@ type AccountBackupsGetOperationResponse struct {
 // AccountBackupsGet ...
 func (c BackupsClient) AccountBackupsGet(ctx context.Context, id AccountBackupId) (result AccountBackupsGetOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

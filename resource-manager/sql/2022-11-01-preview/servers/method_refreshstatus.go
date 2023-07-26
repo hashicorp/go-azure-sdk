@@ -23,7 +23,7 @@ type RefreshStatusOperationResponse struct {
 // RefreshStatus ...
 func (c ServersClient) RefreshStatus(ctx context.Context, id ServerId) (result RefreshStatusOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusOK,

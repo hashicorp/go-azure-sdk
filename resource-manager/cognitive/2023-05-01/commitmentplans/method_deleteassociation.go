@@ -23,7 +23,7 @@ type DeleteAssociationOperationResponse struct {
 // DeleteAssociation ...
 func (c CommitmentPlansClient) DeleteAssociation(ctx context.Context, id AccountAssociationId) (result DeleteAssociationOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusNoContent,

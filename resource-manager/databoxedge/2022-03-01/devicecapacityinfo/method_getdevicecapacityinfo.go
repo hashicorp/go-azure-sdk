@@ -21,7 +21,7 @@ type GetDeviceCapacityInfoOperationResponse struct {
 // GetDeviceCapacityInfo ...
 func (c DeviceCapacityInfoClient) GetDeviceCapacityInfo(ctx context.Context, id DataBoxEdgeDeviceId) (result GetDeviceCapacityInfoOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

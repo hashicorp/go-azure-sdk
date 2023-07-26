@@ -47,7 +47,7 @@ func (o CancelOperationOptions) ToQuery() *client.QueryParams {
 // Cancel ...
 func (c PipelineRunsClient) Cancel(ctx context.Context, id PipelineRunId, options CancelOperationOptions) (result CancelOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

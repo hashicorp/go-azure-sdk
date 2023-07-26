@@ -21,7 +21,7 @@ type ListHybridConnectionsOperationResponse struct {
 // ListHybridConnections ...
 func (c WebAppsClient) ListHybridConnections(ctx context.Context, id SiteId) (result ListHybridConnectionsOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

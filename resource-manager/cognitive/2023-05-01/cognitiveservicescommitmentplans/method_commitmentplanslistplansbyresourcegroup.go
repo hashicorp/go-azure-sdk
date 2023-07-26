@@ -26,7 +26,7 @@ type CommitmentPlansListPlansByResourceGroupCompleteResult struct {
 // CommitmentPlansListPlansByResourceGroup ...
 func (c CognitiveServicesCommitmentPlansClient) CommitmentPlansListPlansByResourceGroup(ctx context.Context, id commonids.ResourceGroupId) (result CommitmentPlansListPlansByResourceGroupOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

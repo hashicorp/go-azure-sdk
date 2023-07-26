@@ -20,7 +20,7 @@ type CreateOrUpdateHostSecretOperationResponse struct {
 // CreateOrUpdateHostSecret ...
 func (c WebAppsClient) CreateOrUpdateHostSecret(ctx context.Context, id DefaultId, input KeyInfo) (result CreateOrUpdateHostSecretOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 			http.StatusOK,

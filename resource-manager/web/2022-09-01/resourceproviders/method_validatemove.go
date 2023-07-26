@@ -21,7 +21,7 @@ type ValidateMoveOperationResponse struct {
 // ValidateMove ...
 func (c ResourceProvidersClient) ValidateMove(ctx context.Context, id commonids.ResourceGroupId, input CsmMoveResourceEnvelope) (result ValidateMoveOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},

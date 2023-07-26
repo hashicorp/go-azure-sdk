@@ -26,7 +26,7 @@ type ListAllCompleteResult struct {
 // ListAll ...
 func (c AssociationsClient) ListAll(ctx context.Context, id commonids.ScopeId) (result ListAllOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

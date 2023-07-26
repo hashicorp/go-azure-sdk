@@ -23,7 +23,7 @@ type RegistryEnvironmentContainersCreateOrUpdateOperationResponse struct {
 // RegistryEnvironmentContainersCreateOrUpdate ...
 func (c EnvironmentContainerClient) RegistryEnvironmentContainersCreateOrUpdate(ctx context.Context, id RegistryEnvironmentId, input EnvironmentContainerResource) (result RegistryEnvironmentContainersCreateOrUpdateOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 			http.StatusOK,

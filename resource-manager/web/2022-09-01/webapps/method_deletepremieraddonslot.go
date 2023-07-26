@@ -19,7 +19,7 @@ type DeletePremierAddOnSlotOperationResponse struct {
 // DeletePremierAddOnSlot ...
 func (c WebAppsClient) DeletePremierAddOnSlot(ctx context.Context, id SlotPremierAddonId) (result DeletePremierAddOnSlotOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

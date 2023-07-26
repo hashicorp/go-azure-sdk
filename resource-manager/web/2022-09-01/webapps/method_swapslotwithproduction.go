@@ -23,7 +23,7 @@ type SwapSlotWithProductionOperationResponse struct {
 // SwapSlotWithProduction ...
 func (c WebAppsClient) SwapSlotWithProduction(ctx context.Context, id SiteId, input CsmSlotEntity) (result SwapSlotWithProductionOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusOK,

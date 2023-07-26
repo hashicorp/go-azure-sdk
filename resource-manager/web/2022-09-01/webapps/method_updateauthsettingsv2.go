@@ -21,7 +21,7 @@ type UpdateAuthSettingsV2OperationResponse struct {
 // UpdateAuthSettingsV2 ...
 func (c WebAppsClient) UpdateAuthSettingsV2(ctx context.Context, id SiteId, input SiteAuthSettingsV2) (result UpdateAuthSettingsV2OperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

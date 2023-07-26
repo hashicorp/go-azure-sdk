@@ -23,7 +23,7 @@ type ConfigurationsUpdateOperationResponse struct {
 // ConfigurationsUpdate ...
 func (c FluxClient) ConfigurationsUpdate(ctx context.Context, id ScopedFluxConfigurationId, input FluxConfigurationPatch) (result ConfigurationsUpdateOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusOK,

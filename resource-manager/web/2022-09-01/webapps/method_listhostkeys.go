@@ -21,7 +21,7 @@ type ListHostKeysOperationResponse struct {
 // ListHostKeys ...
 func (c WebAppsClient) ListHostKeys(ctx context.Context, id SiteId) (result ListHostKeysOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

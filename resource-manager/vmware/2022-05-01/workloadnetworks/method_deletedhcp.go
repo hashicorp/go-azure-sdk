@@ -23,7 +23,7 @@ type DeleteDhcpOperationResponse struct {
 // DeleteDhcp ...
 func (c WorkloadNetworksClient) DeleteDhcp(ctx context.Context, id DhcpConfigurationId) (result DeleteDhcpOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusNoContent,

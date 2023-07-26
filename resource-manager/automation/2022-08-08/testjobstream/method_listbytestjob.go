@@ -52,7 +52,7 @@ func (o ListByTestJobOperationOptions) ToQuery() *client.QueryParams {
 // ListByTestJob ...
 func (c TestJobStreamClient) ListByTestJob(ctx context.Context, id RunbookId, options ListByTestJobOperationOptions) (result ListByTestJobOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

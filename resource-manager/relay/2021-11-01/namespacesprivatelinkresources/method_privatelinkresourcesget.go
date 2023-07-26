@@ -20,7 +20,7 @@ type PrivateLinkResourcesGetOperationResponse struct {
 // PrivateLinkResourcesGet ...
 func (c NamespacesPrivateLinkResourcesClient) PrivateLinkResourcesGet(ctx context.Context, id PrivateLinkResourceId) (result PrivateLinkResourcesGetOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

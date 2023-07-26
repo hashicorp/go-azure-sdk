@@ -22,7 +22,7 @@ type VerifyHostingEnvironmentVnetOperationResponse struct {
 // VerifyHostingEnvironmentVnet ...
 func (c ResourceProvidersClient) VerifyHostingEnvironmentVnet(ctx context.Context, id commonids.SubscriptionId, input VnetParameters) (result VerifyHostingEnvironmentVnetOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

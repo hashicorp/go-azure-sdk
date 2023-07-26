@@ -19,7 +19,7 @@ type DeleteHybridConnectionOperationResponse struct {
 // DeleteHybridConnection ...
 func (c AppServicePlansClient) DeleteHybridConnection(ctx context.Context, id HybridConnectionNamespaceRelayId) (result DeleteHybridConnectionOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 			http.StatusOK,

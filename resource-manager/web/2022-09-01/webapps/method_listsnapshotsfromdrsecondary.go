@@ -25,7 +25,7 @@ type ListSnapshotsFromDRSecondaryCompleteResult struct {
 // ListSnapshotsFromDRSecondary ...
 func (c WebAppsClient) ListSnapshotsFromDRSecondary(ctx context.Context, id SiteId) (result ListSnapshotsFromDRSecondaryOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

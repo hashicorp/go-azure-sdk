@@ -23,7 +23,7 @@ type DeploymentsStopOperationResponse struct {
 // DeploymentsStop ...
 func (c AppPlatformClient) DeploymentsStop(ctx context.Context, id DeploymentId) (result DeploymentsStopOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusOK,

@@ -21,7 +21,7 @@ type ActivateOperationResponse struct {
 // Activate ...
 func (c ApplicationPackageClient) Activate(ctx context.Context, id VersionId, input ActivateApplicationPackageParameters) (result ActivateOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

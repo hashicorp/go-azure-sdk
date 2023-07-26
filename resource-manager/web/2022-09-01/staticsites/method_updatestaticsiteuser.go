@@ -20,7 +20,7 @@ type UpdateStaticSiteUserOperationResponse struct {
 // UpdateStaticSiteUser ...
 func (c StaticSitesClient) UpdateStaticSiteUser(ctx context.Context, id UserId, input StaticSiteUserARMResource) (result UpdateStaticSiteUserOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

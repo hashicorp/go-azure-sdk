@@ -25,7 +25,7 @@ type ListAppServiceCertificateOrderDetectorResponseCompleteResult struct {
 // ListAppServiceCertificateOrderDetectorResponse ...
 func (c CertificateOrdersDiagnosticsClient) ListAppServiceCertificateOrderDetectorResponse(ctx context.Context, id CertificateOrderId) (result ListAppServiceCertificateOrderDetectorResponseOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

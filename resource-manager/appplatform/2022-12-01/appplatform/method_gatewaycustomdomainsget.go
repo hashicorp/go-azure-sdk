@@ -20,7 +20,7 @@ type GatewayCustomDomainsGetOperationResponse struct {
 // GatewayCustomDomainsGet ...
 func (c AppPlatformClient) GatewayCustomDomainsGet(ctx context.Context, id GatewayDomainId) (result GatewayCustomDomainsGetOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

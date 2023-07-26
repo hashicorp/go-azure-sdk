@@ -47,7 +47,7 @@ func (o ResumeOperationOptions) ToQuery() *client.QueryParams {
 // Resume ...
 func (c JobClient) Resume(ctx context.Context, id JobId, options ResumeOperationOptions) (result ResumeOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

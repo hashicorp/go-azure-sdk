@@ -19,7 +19,7 @@ type DeleteOperationResponse struct {
 // Delete ...
 func (c GuestConfigurationConnectedVMwarevSphereAssignmentsClient) Delete(ctx context.Context, id VirtualMachineProviders2GuestConfigurationAssignmentId) (result DeleteOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 			http.StatusOK,

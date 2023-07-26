@@ -21,7 +21,7 @@ type CreateOrUpdateSwiftVirtualNetworkConnectionWithCheckOperationResponse struc
 // CreateOrUpdateSwiftVirtualNetworkConnectionWithCheck ...
 func (c WebAppsClient) CreateOrUpdateSwiftVirtualNetworkConnectionWithCheck(ctx context.Context, id SiteId, input SwiftVirtualNetwork) (result CreateOrUpdateSwiftVirtualNetworkConnectionWithCheckOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

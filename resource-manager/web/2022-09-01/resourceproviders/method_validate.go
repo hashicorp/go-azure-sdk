@@ -22,7 +22,7 @@ type ValidateOperationResponse struct {
 // Validate ...
 func (c ResourceProvidersClient) Validate(ctx context.Context, id commonids.ResourceGroupId, input ValidateRequest) (result ValidateOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

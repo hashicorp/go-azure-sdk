@@ -50,7 +50,7 @@ func (o MigrateStorageOperationOptions) ToQuery() *client.QueryParams {
 // MigrateStorage ...
 func (c WebAppsClient) MigrateStorage(ctx context.Context, id SiteId, input StorageMigrationOptions, options MigrateStorageOperationOptions) (result MigrateStorageOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

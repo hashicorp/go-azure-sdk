@@ -20,7 +20,7 @@ type GetTriggeredWebJobHistoryOperationResponse struct {
 // GetTriggeredWebJobHistory ...
 func (c WebAppsClient) GetTriggeredWebJobHistory(ctx context.Context, id HistoryId) (result GetTriggeredWebJobHistoryOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

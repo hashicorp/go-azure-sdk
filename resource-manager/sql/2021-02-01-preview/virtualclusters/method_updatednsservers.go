@@ -21,7 +21,7 @@ type UpdateDnsServersOperationResponse struct {
 // UpdateDnsServers ...
 func (c VirtualClustersClient) UpdateDnsServers(ctx context.Context, id VirtualClusterId) (result UpdateDnsServersOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

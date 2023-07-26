@@ -21,7 +21,7 @@ type GetJobOperationResponse struct {
 // GetJob ...
 func (c JobsClient) GetJob(ctx context.Context, id commonids.VMwareSiteJobId) (result GetJobOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

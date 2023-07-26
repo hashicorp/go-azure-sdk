@@ -25,7 +25,7 @@ type ListBySyncGroupCompleteResult struct {
 // ListBySyncGroup ...
 func (c SyncMembersClient) ListBySyncGroup(ctx context.Context, id SyncGroupId) (result ListBySyncGroupOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

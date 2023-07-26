@@ -25,7 +25,7 @@ type ListDomainOwnershipIdentifiersSlotCompleteResult struct {
 // ListDomainOwnershipIdentifiersSlot ...
 func (c WebAppsClient) ListDomainOwnershipIdentifiersSlot(ctx context.Context, id SlotId) (result ListDomainOwnershipIdentifiersSlotOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

@@ -20,7 +20,7 @@ type NetAppResourceQuotaLimitsGetOperationResponse struct {
 // NetAppResourceQuotaLimitsGet ...
 func (c NetAppResourceClient) NetAppResourceQuotaLimitsGet(ctx context.Context, id QuotaLimitId) (result NetAppResourceQuotaLimitsGetOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

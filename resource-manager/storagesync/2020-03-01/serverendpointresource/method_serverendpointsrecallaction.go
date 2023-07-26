@@ -23,7 +23,7 @@ type ServerEndpointsrecallActionOperationResponse struct {
 // ServerEndpointsrecallAction ...
 func (c ServerEndpointResourceClient) ServerEndpointsrecallAction(ctx context.Context, id ServerEndpointId, input RecallActionParameters) (result ServerEndpointsrecallActionOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusOK,

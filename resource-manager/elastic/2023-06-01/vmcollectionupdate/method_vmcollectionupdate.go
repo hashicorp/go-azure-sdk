@@ -20,7 +20,7 @@ type VMCollectionUpdateOperationResponse struct {
 // VMCollectionUpdate ...
 func (c VMCollectionUpdateClient) VMCollectionUpdate(ctx context.Context, id MonitorId, input VMCollectionUpdate) (result VMCollectionUpdateOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

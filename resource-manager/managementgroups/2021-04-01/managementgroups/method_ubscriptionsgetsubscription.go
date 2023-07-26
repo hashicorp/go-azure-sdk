@@ -48,7 +48,7 @@ func (o UbscriptionsGetSubscriptionOperationOptions) ToQuery() *client.QueryPara
 // UbscriptionsGetSubscription ...
 func (c ManagementGroupsClient) UbscriptionsGetSubscription(ctx context.Context, id SubscriptionId, options UbscriptionsGetSubscriptionOperationOptions) (result UbscriptionsGetSubscriptionOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

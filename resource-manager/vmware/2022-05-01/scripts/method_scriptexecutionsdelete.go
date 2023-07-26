@@ -23,7 +23,7 @@ type ScriptExecutionsDeleteOperationResponse struct {
 // ScriptExecutionsDelete ...
 func (c ScriptsClient) ScriptExecutionsDelete(ctx context.Context, id ScriptExecutionId) (result ScriptExecutionsDeleteOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusNoContent,

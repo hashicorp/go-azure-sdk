@@ -20,7 +20,7 @@ type GetOperationResponse struct {
 // Get ...
 func (c OnlineDeploymentClient) Get(ctx context.Context, id OnlineEndpointDeploymentId) (result GetOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

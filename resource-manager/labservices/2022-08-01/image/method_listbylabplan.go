@@ -25,7 +25,7 @@ type ListByLabPlanCompleteResult struct {
 // ListByLabPlan ...
 func (c ImageClient) ListByLabPlan(ctx context.Context, id LabPlanId) (result ListByLabPlanOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

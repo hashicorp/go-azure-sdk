@@ -20,7 +20,7 @@ type CreateOrUpdateVnetConnectionGatewaySlotOperationResponse struct {
 // CreateOrUpdateVnetConnectionGatewaySlot ...
 func (c WebAppsClient) CreateOrUpdateVnetConnectionGatewaySlot(ctx context.Context, id SlotVirtualNetworkConnectionGatewayId, input VnetGateway) (result CreateOrUpdateVnetConnectionGatewaySlotOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

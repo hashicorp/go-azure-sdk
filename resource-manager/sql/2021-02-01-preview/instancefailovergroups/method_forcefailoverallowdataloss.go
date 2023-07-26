@@ -23,7 +23,7 @@ type ForceFailoverAllowDataLossOperationResponse struct {
 // ForceFailoverAllowDataLoss ...
 func (c InstanceFailoverGroupsClient) ForceFailoverAllowDataLoss(ctx context.Context, id InstanceFailoverGroupId) (result ForceFailoverAllowDataLossOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusOK,

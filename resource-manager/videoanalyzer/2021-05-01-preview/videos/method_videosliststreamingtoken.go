@@ -21,7 +21,7 @@ type VideosListStreamingTokenOperationResponse struct {
 // VideosListStreamingToken ...
 func (c VideosClient) VideosListStreamingToken(ctx context.Context, id VideoId) (result VideosListStreamingTokenOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

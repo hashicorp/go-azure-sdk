@@ -19,7 +19,7 @@ type PutVCenterOperationResponse struct {
 // PutVCenter ...
 func (c VCenterClient) PutVCenter(ctx context.Context, id VCenterId, input VCenter) (result PutVCenterOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 		},

@@ -25,7 +25,7 @@ type ListOutboundNetworkDependenciesByManagedInstanceCompleteResult struct {
 // ListOutboundNetworkDependenciesByManagedInstance ...
 func (c ManagedInstancesClient) ListOutboundNetworkDependenciesByManagedInstance(ctx context.Context, id ManagedInstanceId) (result ListOutboundNetworkDependenciesByManagedInstanceOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

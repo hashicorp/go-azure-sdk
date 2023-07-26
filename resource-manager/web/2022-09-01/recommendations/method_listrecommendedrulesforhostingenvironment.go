@@ -56,7 +56,7 @@ func (o ListRecommendedRulesForHostingEnvironmentOperationOptions) ToQuery() *cl
 // ListRecommendedRulesForHostingEnvironment ...
 func (c RecommendationsClient) ListRecommendedRulesForHostingEnvironment(ctx context.Context, id HostingEnvironmentId, options ListRecommendedRulesForHostingEnvironmentOperationOptions) (result ListRecommendedRulesForHostingEnvironmentOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

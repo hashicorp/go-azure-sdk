@@ -23,7 +23,7 @@ type VolumesPoolChangeOperationResponse struct {
 // VolumesPoolChange ...
 func (c PoolChangeClient) VolumesPoolChange(ctx context.Context, id VolumeId, input PoolChangeRequest) (result VolumesPoolChangeOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusOK,

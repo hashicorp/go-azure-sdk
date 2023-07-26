@@ -25,7 +25,7 @@ type GetBuildDatabaseConnectionsWithDetailsCompleteResult struct {
 // GetBuildDatabaseConnectionsWithDetails ...
 func (c StaticSitesClient) GetBuildDatabaseConnectionsWithDetails(ctx context.Context, id BuildId) (result GetBuildDatabaseConnectionsWithDetailsOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

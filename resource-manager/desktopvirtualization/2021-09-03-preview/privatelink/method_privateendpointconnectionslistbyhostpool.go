@@ -25,7 +25,7 @@ type PrivateEndpointConnectionsListByHostPoolCompleteResult struct {
 // PrivateEndpointConnectionsListByHostPool ...
 func (c PrivateLinkClient) PrivateEndpointConnectionsListByHostPool(ctx context.Context, id HostPoolId) (result PrivateEndpointConnectionsListByHostPoolOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

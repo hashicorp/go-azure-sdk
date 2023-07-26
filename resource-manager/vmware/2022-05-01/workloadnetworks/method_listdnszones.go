@@ -25,7 +25,7 @@ type ListDnsZonesCompleteResult struct {
 // ListDnsZones ...
 func (c WorkloadNetworksClient) ListDnsZones(ctx context.Context, id PrivateCloudId) (result ListDnsZonesOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

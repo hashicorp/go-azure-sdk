@@ -52,7 +52,7 @@ func (o ListBySyncJobOperationOptions) ToQuery() *client.QueryParams {
 // ListBySyncJob ...
 func (c SourceControlSyncJobStreamsClient) ListBySyncJob(ctx context.Context, id SourceControlSyncJobId, options ListBySyncJobOperationOptions) (result ListBySyncJobOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

@@ -21,7 +21,7 @@ type GetQuotasOperationResponse struct {
 // GetQuotas ...
 func (c LocationClient) GetQuotas(ctx context.Context, id LocationId) (result GetQuotasOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

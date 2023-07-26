@@ -21,7 +21,7 @@ type NetAppResourceCheckQuotaAvailabilityOperationResponse struct {
 // NetAppResourceCheckQuotaAvailability ...
 func (c NetAppResourceClient) NetAppResourceCheckQuotaAvailability(ctx context.Context, id LocationId, input QuotaAvailabilityRequest) (result NetAppResourceCheckQuotaAvailabilityOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

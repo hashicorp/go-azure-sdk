@@ -21,7 +21,7 @@ type SubAccountVMHostPayloadOperationResponse struct {
 // SubAccountVMHostPayload ...
 func (c VMHostClient) SubAccountVMHostPayload(ctx context.Context, id AccountId) (result SubAccountVMHostPayloadOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

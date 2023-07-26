@@ -21,7 +21,7 @@ type SnapshotPoliciesListVolumesOperationResponse struct {
 // SnapshotPoliciesListVolumes ...
 func (c SnapshotPolicyListVolumesClient) SnapshotPoliciesListVolumes(ctx context.Context, id SnapshotPolicyId) (result SnapshotPoliciesListVolumesOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

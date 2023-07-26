@@ -23,7 +23,7 @@ type ServerParametersListUpdateConfigurationsOperationResponse struct {
 // ServerParametersListUpdateConfigurations ...
 func (c ConfigurationsUpdateClient) ServerParametersListUpdateConfigurations(ctx context.Context, id ServerId, input ConfigurationListResult) (result ServerParametersListUpdateConfigurationsOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusOK,

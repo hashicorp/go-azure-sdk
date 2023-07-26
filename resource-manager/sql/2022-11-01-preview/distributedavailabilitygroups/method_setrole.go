@@ -23,7 +23,7 @@ type SetRoleOperationResponse struct {
 // SetRole ...
 func (c DistributedAvailabilityGroupsClient) SetRole(ctx context.Context, id DistributedAvailabilityGroupId, input DistributedAvailabilityGroupSetRole) (result SetRoleOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusOK,

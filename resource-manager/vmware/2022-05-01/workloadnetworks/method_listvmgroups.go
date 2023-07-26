@@ -25,7 +25,7 @@ type ListVMGroupsCompleteResult struct {
 // ListVMGroups ...
 func (c WorkloadNetworksClient) ListVMGroups(ctx context.Context, id PrivateCloudId) (result ListVMGroupsOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

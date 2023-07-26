@@ -21,7 +21,7 @@ type GetMSDeployStatusSlotOperationResponse struct {
 // GetMSDeployStatusSlot ...
 func (c WebAppsClient) GetMSDeployStatusSlot(ctx context.Context, id SlotId) (result GetMSDeployStatusSlotOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

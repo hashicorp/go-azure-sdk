@@ -21,7 +21,7 @@ type ListFieldsByModuleAndTypeOperationResponse struct {
 // ListFieldsByModuleAndType ...
 func (c ObjectDataTypesClient) ListFieldsByModuleAndType(ctx context.Context, id ModuleObjectDataTypeId) (result ListFieldsByModuleAndTypeOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

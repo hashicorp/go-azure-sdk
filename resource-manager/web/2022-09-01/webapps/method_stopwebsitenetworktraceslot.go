@@ -20,7 +20,7 @@ type StopWebSiteNetworkTraceSlotOperationResponse struct {
 // StopWebSiteNetworkTraceSlot ...
 func (c WebAppsClient) StopWebSiteNetworkTraceSlot(ctx context.Context, id SlotId) (result StopWebSiteNetworkTraceSlotOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 			http.StatusOK,

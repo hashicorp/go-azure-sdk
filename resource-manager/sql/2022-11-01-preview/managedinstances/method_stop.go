@@ -23,7 +23,7 @@ type StopOperationResponse struct {
 // Stop ...
 func (c ManagedInstancesClient) Stop(ctx context.Context, id ManagedInstanceId) (result StopOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusOK,

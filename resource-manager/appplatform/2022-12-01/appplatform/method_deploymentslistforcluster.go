@@ -52,7 +52,7 @@ func (o DeploymentsListForClusterOperationOptions) ToQuery() *client.QueryParams
 // DeploymentsListForCluster ...
 func (c AppPlatformClient) DeploymentsListForCluster(ctx context.Context, id SpringId, options DeploymentsListForClusterOperationOptions) (result DeploymentsListForClusterOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

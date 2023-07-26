@@ -23,7 +23,7 @@ type RegisteredServersCreateOperationResponse struct {
 // RegisteredServersCreate ...
 func (c RegisteredServerResourceClient) RegisteredServersCreate(ctx context.Context, id RegisteredServerId, input RegisteredServerCreateParameters) (result RegisteredServersCreateOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusOK,

@@ -21,7 +21,7 @@ type PrivateLinkResourcesListOperationResponse struct {
 // PrivateLinkResourcesList ...
 func (c PrivateEndpointsClient) PrivateLinkResourcesList(ctx context.Context, id DigitalTwinsInstanceId) (result PrivateLinkResourcesListOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

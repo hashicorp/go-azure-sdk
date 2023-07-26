@@ -52,7 +52,7 @@ func (o ListBySchemaOperationOptions) ToQuery() *client.QueryParams {
 // ListBySchema ...
 func (c ManagedDatabaseTablesClient) ListBySchema(ctx context.Context, id DatabaseSchemaId, options ListBySchemaOperationOptions) (result ListBySchemaOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

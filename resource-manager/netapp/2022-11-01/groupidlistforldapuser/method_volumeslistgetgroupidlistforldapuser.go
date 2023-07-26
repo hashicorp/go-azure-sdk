@@ -23,7 +23,7 @@ type VolumesListGetGroupIdListForLdapUserOperationResponse struct {
 // VolumesListGetGroupIdListForLdapUser ...
 func (c GroupIdListForLDAPUserClient) VolumesListGetGroupIdListForLdapUser(ctx context.Context, id VolumeId, input GetGroupIdListForLDAPUserRequest) (result VolumesListGetGroupIdListForLdapUserOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusOK,

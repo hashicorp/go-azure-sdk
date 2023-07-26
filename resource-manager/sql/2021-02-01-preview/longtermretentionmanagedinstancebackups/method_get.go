@@ -20,7 +20,7 @@ type GetOperationResponse struct {
 // Get ...
 func (c LongTermRetentionManagedInstanceBackupsClient) Get(ctx context.Context, id LongTermRetentionManagedInstanceBackupId) (result GetOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

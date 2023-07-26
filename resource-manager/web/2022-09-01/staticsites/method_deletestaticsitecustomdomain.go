@@ -23,7 +23,7 @@ type DeleteStaticSiteCustomDomainOperationResponse struct {
 // DeleteStaticSiteCustomDomain ...
 func (c StaticSitesClient) DeleteStaticSiteCustomDomain(ctx context.Context, id CustomDomainId) (result DeleteStaticSiteCustomDomainOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusOK,

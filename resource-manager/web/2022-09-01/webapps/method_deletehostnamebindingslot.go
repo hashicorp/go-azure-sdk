@@ -19,7 +19,7 @@ type DeleteHostNameBindingSlotOperationResponse struct {
 // DeleteHostNameBindingSlot ...
 func (c WebAppsClient) DeleteHostNameBindingSlot(ctx context.Context, id SlotHostNameBindingId) (result DeleteHostNameBindingSlotOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 			http.StatusOK,

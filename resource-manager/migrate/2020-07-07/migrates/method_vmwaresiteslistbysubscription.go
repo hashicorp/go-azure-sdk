@@ -26,7 +26,7 @@ type VMwareSitesListBySubscriptionCompleteResult struct {
 // VMwareSitesListBySubscription ...
 func (c MigratesClient) VMwareSitesListBySubscription(ctx context.Context, id commonids.SubscriptionId) (result VMwareSitesListBySubscriptionOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

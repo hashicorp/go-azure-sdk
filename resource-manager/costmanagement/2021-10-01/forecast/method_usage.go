@@ -49,7 +49,7 @@ func (o UsageOperationOptions) ToQuery() *client.QueryParams {
 // Usage ...
 func (c ForecastClient) Usage(ctx context.Context, id commonids.ScopeId, input ForecastDefinition, options UsageOperationOptions) (result UsageOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 			http.StatusOK,

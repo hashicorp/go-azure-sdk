@@ -20,7 +20,7 @@ type ExtensionsGetOperationResponse struct {
 // ExtensionsGet ...
 func (c ClusterExtensionsClient) ExtensionsGet(ctx context.Context, id ScopedExtensionId) (result ExtensionsGetOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

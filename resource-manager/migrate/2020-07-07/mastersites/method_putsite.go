@@ -19,7 +19,7 @@ type PutSiteOperationResponse struct {
 // PutSite ...
 func (c MasterSitesClient) PutSite(ctx context.Context, id MasterSiteId, input MasterSite) (result PutSiteOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 		},

@@ -25,7 +25,7 @@ type ListDhcpCompleteResult struct {
 // ListDhcp ...
 func (c WorkloadNetworksClient) ListDhcp(ctx context.Context, id PrivateCloudId) (result ListDhcpOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

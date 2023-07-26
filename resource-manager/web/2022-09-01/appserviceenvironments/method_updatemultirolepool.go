@@ -21,7 +21,7 @@ type UpdateMultiRolePoolOperationResponse struct {
 // UpdateMultiRolePool ...
 func (c AppServiceEnvironmentsClient) UpdateMultiRolePool(ctx context.Context, id HostingEnvironmentId, input WorkerPoolResource) (result UpdateMultiRolePoolOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusOK,

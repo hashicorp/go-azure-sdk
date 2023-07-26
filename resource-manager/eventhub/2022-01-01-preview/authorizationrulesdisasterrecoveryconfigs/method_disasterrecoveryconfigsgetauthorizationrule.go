@@ -20,7 +20,7 @@ type DisasterRecoveryConfigsGetAuthorizationRuleOperationResponse struct {
 // DisasterRecoveryConfigsGetAuthorizationRule ...
 func (c AuthorizationRulesDisasterRecoveryConfigsClient) DisasterRecoveryConfigsGetAuthorizationRule(ctx context.Context, id DisasterRecoveryConfigAuthorizationRuleId) (result DisasterRecoveryConfigsGetAuthorizationRuleOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

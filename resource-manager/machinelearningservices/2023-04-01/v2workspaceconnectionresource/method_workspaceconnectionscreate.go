@@ -20,7 +20,7 @@ type WorkspaceConnectionsCreateOperationResponse struct {
 // WorkspaceConnectionsCreate ...
 func (c V2WorkspaceConnectionResourceClient) WorkspaceConnectionsCreate(ctx context.Context, id ConnectionId, input WorkspaceConnectionPropertiesV2BasicResource) (result WorkspaceConnectionsCreateOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

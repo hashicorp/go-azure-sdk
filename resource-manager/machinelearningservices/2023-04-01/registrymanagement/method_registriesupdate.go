@@ -20,7 +20,7 @@ type RegistriesUpdateOperationResponse struct {
 // RegistriesUpdate ...
 func (c RegistryManagementClient) RegistriesUpdate(ctx context.Context, id RegistryId, input PartialRegistryPartialTrackedResource) (result RegistriesUpdateOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

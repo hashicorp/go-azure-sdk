@@ -53,7 +53,7 @@ func (o ListForResourceOperationOptions) ToQuery() *client.QueryParams {
 // ListForResource ...
 func (c DenyAssignmentsClient) ListForResource(ctx context.Context, id commonids.ScopeId, options ListForResourceOperationOptions) (result ListForResourceOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

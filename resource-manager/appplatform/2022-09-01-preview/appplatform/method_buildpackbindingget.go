@@ -20,7 +20,7 @@ type BuildpackBindingGetOperationResponse struct {
 // BuildpackBindingGet ...
 func (c AppPlatformClient) BuildpackBindingGet(ctx context.Context, id BuildPackBindingId) (result BuildpackBindingGetOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

@@ -19,7 +19,7 @@ type DeletePublicCertificateOperationResponse struct {
 // DeletePublicCertificate ...
 func (c WebAppsClient) DeletePublicCertificate(ctx context.Context, id PublicCertificateId) (result DeletePublicCertificateOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 			http.StatusOK,

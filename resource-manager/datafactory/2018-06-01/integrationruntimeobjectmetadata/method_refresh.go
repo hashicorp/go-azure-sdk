@@ -23,7 +23,7 @@ type RefreshOperationResponse struct {
 // Refresh ...
 func (c IntegrationRuntimeObjectMetadataClient) Refresh(ctx context.Context, id IntegrationRuntimeId) (result RefreshOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusOK,

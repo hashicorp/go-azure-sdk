@@ -49,7 +49,7 @@ func (o GetByManagementGroupOperationOptions) ToQuery() *client.QueryParams {
 // GetByManagementGroup ...
 func (c AggregatedCostClient) GetByManagementGroup(ctx context.Context, id commonids.ManagementGroupId, options GetByManagementGroupOperationOptions) (result GetByManagementGroupOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

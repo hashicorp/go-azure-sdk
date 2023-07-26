@@ -25,7 +25,7 @@ type ListByPolicyNameCompleteResult struct {
 // ListByPolicyName ...
 func (c PrivateEndpointConnectionsClient) ListByPolicyName(ctx context.Context, id PrivateLinkForAzureAdId) (result ListByPolicyNameOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

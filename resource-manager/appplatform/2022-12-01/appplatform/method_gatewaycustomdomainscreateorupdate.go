@@ -23,7 +23,7 @@ type GatewayCustomDomainsCreateOrUpdateOperationResponse struct {
 // GatewayCustomDomainsCreateOrUpdate ...
 func (c AppPlatformClient) GatewayCustomDomainsCreateOrUpdate(ctx context.Context, id GatewayDomainId, input GatewayCustomDomainResource) (result GatewayCustomDomainsCreateOrUpdateOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 			http.StatusOK,

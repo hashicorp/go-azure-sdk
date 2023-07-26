@@ -52,7 +52,7 @@ func (o GetRuleDetailsByHostingEnvironmentOperationOptions) ToQuery() *client.Qu
 // GetRuleDetailsByHostingEnvironment ...
 func (c RecommendationsClient) GetRuleDetailsByHostingEnvironment(ctx context.Context, id HostingEnvironmentRecommendationId, options GetRuleDetailsByHostingEnvironmentOperationOptions) (result GetRuleDetailsByHostingEnvironmentOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

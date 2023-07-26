@@ -23,7 +23,7 @@ type StartOperationResponse struct {
 // Start ...
 func (c VirtualMachinesClient) Start(ctx context.Context, id VirtualMachineId) (result StartOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusOK,

@@ -21,7 +21,7 @@ type ListOutboundNetworkDependenciesEndpointsOperationResponse struct {
 // ListOutboundNetworkDependenciesEndpoints ...
 func (c IntegrationRuntimesClient) ListOutboundNetworkDependenciesEndpoints(ctx context.Context, id IntegrationRuntimeId) (result ListOutboundNetworkDependenciesEndpointsOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

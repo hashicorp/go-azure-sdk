@@ -21,7 +21,7 @@ type CreateOrGetStartPendingUploadOperationResponse struct {
 // CreateOrGetStartPendingUpload ...
 func (c CodeVersionClient) CreateOrGetStartPendingUpload(ctx context.Context, id CodeVersionId, input PendingUploadRequestDto) (result CreateOrGetStartPendingUploadOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

@@ -21,7 +21,7 @@ type CheckTrialAvailabilityOperationResponse struct {
 // CheckTrialAvailability ...
 func (c LocationsClient) CheckTrialAvailability(ctx context.Context, id LocationId, input Sku) (result CheckTrialAvailabilityOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

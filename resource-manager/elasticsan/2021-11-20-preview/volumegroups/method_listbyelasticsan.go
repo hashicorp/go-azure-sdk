@@ -25,7 +25,7 @@ type ListByElasticSanCompleteResult struct {
 // ListByElasticSan ...
 func (c VolumeGroupsClient) ListByElasticSan(ctx context.Context, id ElasticSanId) (result ListByElasticSanOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

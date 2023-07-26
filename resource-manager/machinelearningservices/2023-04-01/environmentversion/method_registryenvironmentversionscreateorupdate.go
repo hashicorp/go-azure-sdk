@@ -23,7 +23,7 @@ type RegistryEnvironmentVersionsCreateOrUpdateOperationResponse struct {
 // RegistryEnvironmentVersionsCreateOrUpdate ...
 func (c EnvironmentVersionClient) RegistryEnvironmentVersionsCreateOrUpdate(ctx context.Context, id RegistryEnvironmentVersionId, input EnvironmentVersionResource) (result RegistryEnvironmentVersionsCreateOrUpdateOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 			http.StatusOK,

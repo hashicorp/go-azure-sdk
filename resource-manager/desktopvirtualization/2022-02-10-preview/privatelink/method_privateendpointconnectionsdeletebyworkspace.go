@@ -19,7 +19,7 @@ type PrivateEndpointConnectionsDeleteByWorkspaceOperationResponse struct {
 // PrivateEndpointConnectionsDeleteByWorkspace ...
 func (c PrivateLinkClient) PrivateEndpointConnectionsDeleteByWorkspace(ctx context.Context, id WorkspacePrivateEndpointConnectionId) (result PrivateEndpointConnectionsDeleteByWorkspaceOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 			http.StatusOK,

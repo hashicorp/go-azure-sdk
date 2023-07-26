@@ -25,7 +25,7 @@ type StoragesListCompleteResult struct {
 // StoragesList ...
 func (c AppPlatformClient) StoragesList(ctx context.Context, id SpringId) (result StoragesListOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

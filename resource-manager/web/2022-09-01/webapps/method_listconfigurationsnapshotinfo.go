@@ -25,7 +25,7 @@ type ListConfigurationSnapshotInfoCompleteResult struct {
 // ListConfigurationSnapshotInfo ...
 func (c WebAppsClient) ListConfigurationSnapshotInfo(ctx context.Context, id SiteId) (result ListConfigurationSnapshotInfoOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

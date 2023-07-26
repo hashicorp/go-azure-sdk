@@ -47,7 +47,7 @@ func (o TasksDeleteOperationOptions) ToQuery() *client.QueryParams {
 // TasksDelete ...
 func (c DELETEClient) TasksDelete(ctx context.Context, id TaskId, options TasksDeleteOperationOptions) (result TasksDeleteOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 			http.StatusOK,

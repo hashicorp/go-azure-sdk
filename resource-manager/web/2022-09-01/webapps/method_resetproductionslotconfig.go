@@ -20,7 +20,7 @@ type ResetProductionSlotConfigOperationResponse struct {
 // ResetProductionSlotConfig ...
 func (c WebAppsClient) ResetProductionSlotConfig(ctx context.Context, id SiteId) (result ResetProductionSlotConfigOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

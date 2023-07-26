@@ -23,7 +23,7 @@ type GetMetadataOperationResponse struct {
 // GetMetadata ...
 func (c SubVolumesClient) GetMetadata(ctx context.Context, id SubVolumeId) (result GetMetadataOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusOK,

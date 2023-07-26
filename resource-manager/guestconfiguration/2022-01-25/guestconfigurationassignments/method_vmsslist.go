@@ -21,7 +21,7 @@ type VMSSListOperationResponse struct {
 // VMSSList ...
 func (c GuestConfigurationAssignmentsClient) VMSSList(ctx context.Context, id VirtualMachineScaleSetId) (result VMSSListOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

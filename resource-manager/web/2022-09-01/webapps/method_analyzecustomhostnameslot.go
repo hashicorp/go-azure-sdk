@@ -48,7 +48,7 @@ func (o AnalyzeCustomHostnameSlotOperationOptions) ToQuery() *client.QueryParams
 // AnalyzeCustomHostnameSlot ...
 func (c WebAppsClient) AnalyzeCustomHostnameSlot(ctx context.Context, id SlotId, options AnalyzeCustomHostnameSlotOperationOptions) (result AnalyzeCustomHostnameSlotOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

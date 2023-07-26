@@ -56,7 +56,7 @@ func (o ListBySavingsPlanOrderOperationOptions) ToQuery() *client.QueryParams {
 // ListBySavingsPlanOrder ...
 func (c BenefitUtilizationSummariesClient) ListBySavingsPlanOrder(ctx context.Context, id SavingsPlanOrderId, options ListBySavingsPlanOrderOperationOptions) (result ListBySavingsPlanOrderOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

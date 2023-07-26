@@ -20,7 +20,7 @@ type ExportJobsOperationResultGetOperationResponse struct {
 // ExportJobsOperationResultGet ...
 func (c AzureBackupJobClient) ExportJobsOperationResultGet(ctx context.Context, id OperationIdId) (result ExportJobsOperationResultGetOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusOK,

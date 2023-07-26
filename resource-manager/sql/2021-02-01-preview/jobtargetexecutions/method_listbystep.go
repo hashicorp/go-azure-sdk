@@ -76,7 +76,7 @@ func (o ListByStepOperationOptions) ToQuery() *client.QueryParams {
 // ListByStep ...
 func (c JobTargetExecutionsClient) ListByStep(ctx context.Context, id ExecutionStepId, options ListByStepOperationOptions) (result ListByStepOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

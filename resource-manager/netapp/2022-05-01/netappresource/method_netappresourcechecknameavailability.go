@@ -21,7 +21,7 @@ type NetAppResourceCheckNameAvailabilityOperationResponse struct {
 // NetAppResourceCheckNameAvailability ...
 func (c NetAppResourceClient) NetAppResourceCheckNameAvailability(ctx context.Context, id LocationId, input ResourceNameAvailabilityRequest) (result NetAppResourceCheckNameAvailabilityOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

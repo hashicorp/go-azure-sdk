@@ -20,7 +20,7 @@ type UpdateVnetConnectionSlotOperationResponse struct {
 // UpdateVnetConnectionSlot ...
 func (c WebAppsClient) UpdateVnetConnectionSlot(ctx context.Context, id SlotVirtualNetworkConnectionId, input VnetInfoResource) (result UpdateVnetConnectionSlotOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

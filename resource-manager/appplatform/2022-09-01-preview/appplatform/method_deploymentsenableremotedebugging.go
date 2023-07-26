@@ -23,7 +23,7 @@ type DeploymentsEnableRemoteDebuggingOperationResponse struct {
 // DeploymentsEnableRemoteDebugging ...
 func (c AppPlatformClient) DeploymentsEnableRemoteDebugging(ctx context.Context, id DeploymentId, input RemoteDebuggingPayload) (result DeploymentsEnableRemoteDebuggingOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusOK,

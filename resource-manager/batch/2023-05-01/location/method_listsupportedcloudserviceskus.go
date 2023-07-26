@@ -56,7 +56,7 @@ func (o ListSupportedCloudServiceSkusOperationOptions) ToQuery() *client.QueryPa
 // ListSupportedCloudServiceSkus ...
 func (c LocationClient) ListSupportedCloudServiceSkus(ctx context.Context, id LocationId, options ListSupportedCloudServiceSkusOperationOptions) (result ListSupportedCloudServiceSkusOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

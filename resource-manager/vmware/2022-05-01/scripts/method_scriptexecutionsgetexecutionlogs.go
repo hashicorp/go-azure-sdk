@@ -21,7 +21,7 @@ type ScriptExecutionsGetExecutionLogsOperationResponse struct {
 // ScriptExecutionsGetExecutionLogs ...
 func (c ScriptsClient) ScriptExecutionsGetExecutionLogs(ctx context.Context, id ScriptExecutionId, input []ScriptOutputStreamType) (result ScriptExecutionsGetExecutionLogsOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

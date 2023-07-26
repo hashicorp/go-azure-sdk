@@ -23,7 +23,7 @@ type CreateDnsServiceOperationResponse struct {
 // CreateDnsService ...
 func (c WorkloadNetworksClient) CreateDnsService(ctx context.Context, id DnsServiceId, input WorkloadNetworkDnsService) (result CreateDnsServiceOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 			http.StatusOK,

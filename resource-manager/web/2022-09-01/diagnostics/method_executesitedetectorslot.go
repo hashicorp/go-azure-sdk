@@ -56,7 +56,7 @@ func (o ExecuteSiteDetectorSlotOperationOptions) ToQuery() *client.QueryParams {
 // ExecuteSiteDetectorSlot ...
 func (c DiagnosticsClient) ExecuteSiteDetectorSlot(ctx context.Context, id SlotDiagnosticDetectorId, options ExecuteSiteDetectorSlotOperationOptions) (result ExecuteSiteDetectorSlotOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

@@ -20,7 +20,7 @@ type CustomApisCreateOrUpdateOperationResponse struct {
 // CustomApisCreateOrUpdate ...
 func (c CustomAPIsClient) CustomApisCreateOrUpdate(ctx context.Context, id CustomApiId, input CustomApiDefinition) (result CustomApisCreateOrUpdateOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

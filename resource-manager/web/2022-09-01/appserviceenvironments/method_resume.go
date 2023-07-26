@@ -28,7 +28,7 @@ type ResumeCompleteResult struct {
 // Resume ...
 func (c AppServiceEnvironmentsClient) Resume(ctx context.Context, id HostingEnvironmentId) (result ResumeOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusOK,

@@ -25,7 +25,7 @@ type ListGatewaysCompleteResult struct {
 // ListGateways ...
 func (c WorkloadNetworksClient) ListGateways(ctx context.Context, id PrivateCloudId) (result ListGatewaysOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

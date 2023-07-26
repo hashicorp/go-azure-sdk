@@ -21,7 +21,7 @@ type ListSitePushSettingsOperationResponse struct {
 // ListSitePushSettings ...
 func (c WebAppsClient) ListSitePushSettings(ctx context.Context, id SiteId) (result ListSitePushSettingsOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

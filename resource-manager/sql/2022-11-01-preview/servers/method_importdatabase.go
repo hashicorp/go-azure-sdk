@@ -23,7 +23,7 @@ type ImportDatabaseOperationResponse struct {
 // ImportDatabase ...
 func (c ServersClient) ImportDatabase(ctx context.Context, id ServerId, input ImportNewDatabaseDefinition) (result ImportDatabaseOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusOK,

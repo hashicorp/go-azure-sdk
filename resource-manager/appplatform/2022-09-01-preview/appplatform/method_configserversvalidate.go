@@ -23,7 +23,7 @@ type ConfigServersValidateOperationResponse struct {
 // ConfigServersValidate ...
 func (c AppPlatformClient) ConfigServersValidate(ctx context.Context, id SpringId, input ConfigServerSettings) (result ConfigServersValidateOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusOK,

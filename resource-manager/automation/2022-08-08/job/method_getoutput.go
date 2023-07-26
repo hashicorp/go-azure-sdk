@@ -48,7 +48,7 @@ func (o GetOutputOperationOptions) ToQuery() *client.QueryParams {
 // GetOutput ...
 func (c JobClient) GetOutput(ctx context.Context, id JobId, options GetOutputOperationOptions) (result GetOutputOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "text/plain",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

@@ -23,7 +23,7 @@ type GatewayCustomDomainsDeleteOperationResponse struct {
 // GatewayCustomDomainsDelete ...
 func (c AppPlatformClient) GatewayCustomDomainsDelete(ctx context.Context, id GatewayDomainId) (result GatewayCustomDomainsDeleteOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusNoContent,

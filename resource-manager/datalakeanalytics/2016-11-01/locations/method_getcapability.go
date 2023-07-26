@@ -21,7 +21,7 @@ type GetCapabilityOperationResponse struct {
 // GetCapability ...
 func (c LocationsClient) GetCapability(ctx context.Context, id LocationId) (result GetCapabilityOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

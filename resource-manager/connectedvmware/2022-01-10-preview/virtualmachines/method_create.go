@@ -23,7 +23,7 @@ type CreateOperationResponse struct {
 // Create ...
 func (c VirtualMachinesClient) Create(ctx context.Context, id VirtualMachineId, input VirtualMachine) (result CreateOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 			http.StatusOK,

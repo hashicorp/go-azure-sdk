@@ -25,7 +25,7 @@ type BatchAccountListDetectorsCompleteResult struct {
 // BatchAccountListDetectors ...
 func (c BatchManagementsClient) BatchAccountListDetectors(ctx context.Context, id BatchAccountId) (result BatchAccountListDetectorsOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

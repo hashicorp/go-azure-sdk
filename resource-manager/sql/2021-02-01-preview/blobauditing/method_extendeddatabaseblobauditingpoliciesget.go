@@ -21,7 +21,7 @@ type ExtendedDatabaseBlobAuditingPoliciesGetOperationResponse struct {
 // ExtendedDatabaseBlobAuditingPoliciesGet ...
 func (c BlobAuditingClient) ExtendedDatabaseBlobAuditingPoliciesGet(ctx context.Context, id DatabaseId) (result ExtendedDatabaseBlobAuditingPoliciesGetOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

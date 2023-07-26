@@ -20,7 +20,7 @@ type GetAppSettingKeyVaultReferenceSlotOperationResponse struct {
 // GetAppSettingKeyVaultReferenceSlot ...
 func (c WebAppsClient) GetAppSettingKeyVaultReferenceSlot(ctx context.Context, id ConfigReferenceAppSettingId) (result GetAppSettingKeyVaultReferenceSlotOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

@@ -25,7 +25,7 @@ type ListWorkerPoolSkusCompleteResult struct {
 // ListWorkerPoolSkus ...
 func (c AppServiceEnvironmentsClient) ListWorkerPoolSkus(ctx context.Context, id WorkerPoolId) (result ListWorkerPoolSkusOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

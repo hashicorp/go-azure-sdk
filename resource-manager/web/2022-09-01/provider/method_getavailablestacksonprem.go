@@ -53,7 +53,7 @@ func (o GetAvailableStacksOnPremOperationOptions) ToQuery() *client.QueryParams 
 // GetAvailableStacksOnPrem ...
 func (c ProviderClient) GetAvailableStacksOnPrem(ctx context.Context, id commonids.SubscriptionId, options GetAvailableStacksOnPremOperationOptions) (result GetAvailableStacksOnPremOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

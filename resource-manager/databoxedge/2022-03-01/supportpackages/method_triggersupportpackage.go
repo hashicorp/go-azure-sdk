@@ -23,7 +23,7 @@ type TriggerSupportPackageOperationResponse struct {
 // TriggerSupportPackage ...
 func (c SupportPackagesClient) TriggerSupportPackage(ctx context.Context, id DataBoxEdgeDeviceId, input TriggerSupportPackageRequest) (result TriggerSupportPackageOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusOK,

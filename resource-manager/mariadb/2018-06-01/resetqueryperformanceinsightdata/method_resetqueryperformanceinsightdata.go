@@ -21,7 +21,7 @@ type ResetQueryPerformanceInsightDataOperationResponse struct {
 // ResetQueryPerformanceInsightData ...
 func (c ResetQueryPerformanceInsightDataClient) ResetQueryPerformanceInsightData(ctx context.Context, id ServerId) (result ResetQueryPerformanceInsightDataOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

@@ -20,7 +20,7 @@ type GetHybridConnectionSlotOperationResponse struct {
 // GetHybridConnectionSlot ...
 func (c WebAppsClient) GetHybridConnectionSlot(ctx context.Context, id SlotHybridConnectionNamespaceRelayId) (result GetHybridConnectionSlotOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

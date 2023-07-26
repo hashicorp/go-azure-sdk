@@ -19,7 +19,7 @@ type DeleteInstanceProcessOperationResponse struct {
 // DeleteInstanceProcess ...
 func (c WebAppsClient) DeleteInstanceProcess(ctx context.Context, id InstanceProcessId) (result DeleteInstanceProcessOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},

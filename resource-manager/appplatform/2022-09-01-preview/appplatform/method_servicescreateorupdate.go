@@ -23,7 +23,7 @@ type ServicesCreateOrUpdateOperationResponse struct {
 // ServicesCreateOrUpdate ...
 func (c AppPlatformClient) ServicesCreateOrUpdate(ctx context.Context, id SpringId, input ServiceResource) (result ServicesCreateOrUpdateOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusCreated,

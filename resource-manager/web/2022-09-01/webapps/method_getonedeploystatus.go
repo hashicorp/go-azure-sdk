@@ -21,7 +21,7 @@ type GetOneDeployStatusOperationResponse struct {
 // GetOneDeployStatus ...
 func (c WebAppsClient) GetOneDeployStatus(ctx context.Context, id SiteId) (result GetOneDeployStatusOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

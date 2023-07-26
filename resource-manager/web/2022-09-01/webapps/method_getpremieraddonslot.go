@@ -20,7 +20,7 @@ type GetPremierAddOnSlotOperationResponse struct {
 // GetPremierAddOnSlot ...
 func (c WebAppsClient) GetPremierAddOnSlot(ctx context.Context, id SlotPremierAddonId) (result GetPremierAddOnSlotOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

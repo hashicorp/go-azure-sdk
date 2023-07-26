@@ -21,7 +21,7 @@ type ListVnetConnectionsOperationResponse struct {
 // ListVnetConnections ...
 func (c WebAppsClient) ListVnetConnections(ctx context.Context, id SiteId) (result ListVnetConnectionsOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

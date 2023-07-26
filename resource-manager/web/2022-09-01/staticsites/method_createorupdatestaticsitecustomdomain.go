@@ -23,7 +23,7 @@ type CreateOrUpdateStaticSiteCustomDomainOperationResponse struct {
 // CreateOrUpdateStaticSiteCustomDomain ...
 func (c StaticSitesClient) CreateOrUpdateStaticSiteCustomDomain(ctx context.Context, id CustomDomainId, input StaticSiteCustomDomainRequestPropertiesARMResource) (result CreateOrUpdateStaticSiteCustomDomainOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusOK,

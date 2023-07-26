@@ -19,7 +19,7 @@ type DeleteHybridConnectionSlotOperationResponse struct {
 // DeleteHybridConnectionSlot ...
 func (c WebAppsClient) DeleteHybridConnectionSlot(ctx context.Context, id SlotHybridConnectionNamespaceRelayId) (result DeleteHybridConnectionSlotOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

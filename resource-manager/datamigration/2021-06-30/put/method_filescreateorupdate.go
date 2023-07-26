@@ -20,7 +20,7 @@ type FilesCreateOrUpdateOperationResponse struct {
 // FilesCreateOrUpdate ...
 func (c PUTClient) FilesCreateOrUpdate(ctx context.Context, id FileId, input ProjectFile) (result FilesCreateOrUpdateOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 			http.StatusOK,

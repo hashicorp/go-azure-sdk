@@ -21,7 +21,7 @@ type GetAuthSettingsSlotOperationResponse struct {
 // GetAuthSettingsSlot ...
 func (c WebAppsClient) GetAuthSettingsSlot(ctx context.Context, id SlotId) (result GetAuthSettingsSlotOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

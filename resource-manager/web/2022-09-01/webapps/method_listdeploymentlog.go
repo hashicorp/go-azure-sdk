@@ -21,7 +21,7 @@ type ListDeploymentLogOperationResponse struct {
 // ListDeploymentLog ...
 func (c WebAppsClient) ListDeploymentLog(ctx context.Context, id DeploymentId) (result ListDeploymentLogOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

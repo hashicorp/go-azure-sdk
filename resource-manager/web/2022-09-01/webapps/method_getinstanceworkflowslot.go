@@ -20,7 +20,7 @@ type GetInstanceWorkflowSlotOperationResponse struct {
 // GetInstanceWorkflowSlot ...
 func (c WebAppsClient) GetInstanceWorkflowSlot(ctx context.Context, id SlotWorkflowId) (result GetInstanceWorkflowSlotOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

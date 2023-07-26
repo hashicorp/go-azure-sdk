@@ -21,7 +21,7 @@ type GetPrivateLinkResourcesSlotOperationResponse struct {
 // GetPrivateLinkResourcesSlot ...
 func (c WebAppsClient) GetPrivateLinkResourcesSlot(ctx context.Context, id SlotId) (result GetPrivateLinkResourcesSlotOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

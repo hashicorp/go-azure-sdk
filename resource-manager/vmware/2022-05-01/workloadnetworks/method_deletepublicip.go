@@ -23,7 +23,7 @@ type DeletePublicIPOperationResponse struct {
 // DeletePublicIP ...
 func (c WorkloadNetworksClient) DeletePublicIP(ctx context.Context, id PublicIPId) (result DeletePublicIPOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusNoContent,

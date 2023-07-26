@@ -21,7 +21,7 @@ type AssignmentsWhoIsBlueprintOperationResponse struct {
 // AssignmentsWhoIsBlueprint ...
 func (c BlueprintAssignmentsClient) AssignmentsWhoIsBlueprint(ctx context.Context, id ScopedBlueprintAssignmentId) (result AssignmentsWhoIsBlueprintOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

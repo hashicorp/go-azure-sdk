@@ -23,7 +23,7 @@ type CommitmentPlansCreateOrUpdatePlanOperationResponse struct {
 // CommitmentPlansCreateOrUpdatePlan ...
 func (c CognitiveServicesCommitmentPlansClient) CommitmentPlansCreateOrUpdatePlan(ctx context.Context, id CommitmentPlanId, input CommitmentPlan) (result CommitmentPlansCreateOrUpdatePlanOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 			http.StatusOK,

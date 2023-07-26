@@ -20,7 +20,7 @@ type DppResourceGuardProxyCreateOrUpdateOperationResponse struct {
 // DppResourceGuardProxyCreateOrUpdate ...
 func (c DppResourceGuardProxiesClient) DppResourceGuardProxyCreateOrUpdate(ctx context.Context, id BackupResourceGuardProxyId, input ResourceGuardProxyBaseResource) (result DppResourceGuardProxyCreateOrUpdateOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

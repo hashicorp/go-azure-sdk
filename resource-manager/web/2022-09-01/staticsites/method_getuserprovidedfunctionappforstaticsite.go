@@ -20,7 +20,7 @@ type GetUserProvidedFunctionAppForStaticSiteOperationResponse struct {
 // GetUserProvidedFunctionAppForStaticSite ...
 func (c StaticSitesClient) GetUserProvidedFunctionAppForStaticSite(ctx context.Context, id UserProvidedFunctionAppId) (result GetUserProvidedFunctionAppForStaticSiteOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

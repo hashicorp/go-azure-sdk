@@ -23,7 +23,7 @@ type RegistryDataVersionsDeleteOperationResponse struct {
 // RegistryDataVersionsDelete ...
 func (c DataVersionRegistryClient) RegistryDataVersionsDelete(ctx context.Context, id VersionId) (result RegistryDataVersionsDeleteOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusNoContent,

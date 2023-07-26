@@ -20,7 +20,7 @@ type RefreshSiteOperationResponse struct {
 // RefreshSite ...
 func (c HyperVSitesClient) RefreshSite(ctx context.Context, id HyperVSiteId) (result RefreshSiteOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 		},

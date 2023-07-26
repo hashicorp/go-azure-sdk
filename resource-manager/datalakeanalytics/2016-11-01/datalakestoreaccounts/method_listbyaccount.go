@@ -72,7 +72,7 @@ func (o ListByAccountOperationOptions) ToQuery() *client.QueryParams {
 // ListByAccount ...
 func (c DataLakeStoreAccountsClient) ListByAccount(ctx context.Context, id AccountId, options ListByAccountOperationOptions) (result ListByAccountOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

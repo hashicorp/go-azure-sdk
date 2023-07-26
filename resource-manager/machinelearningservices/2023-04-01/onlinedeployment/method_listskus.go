@@ -56,7 +56,7 @@ func (o ListSkusOperationOptions) ToQuery() *client.QueryParams {
 // ListSkus ...
 func (c OnlineDeploymentClient) ListSkus(ctx context.Context, id OnlineEndpointDeploymentId, options ListSkusOperationOptions) (result ListSkusOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

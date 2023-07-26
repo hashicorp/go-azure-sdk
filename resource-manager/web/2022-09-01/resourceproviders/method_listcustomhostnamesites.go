@@ -53,7 +53,7 @@ func (o ListCustomHostNameSitesOperationOptions) ToQuery() *client.QueryParams {
 // ListCustomHostNameSites ...
 func (c ResourceProvidersClient) ListCustomHostNameSites(ctx context.Context, id commonids.SubscriptionId, options ListCustomHostNameSitesOperationOptions) (result ListCustomHostNameSitesOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

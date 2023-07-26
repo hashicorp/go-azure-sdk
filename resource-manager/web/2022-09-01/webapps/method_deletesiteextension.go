@@ -19,7 +19,7 @@ type DeleteSiteExtensionOperationResponse struct {
 // DeleteSiteExtension ...
 func (c WebAppsClient) DeleteSiteExtension(ctx context.Context, id SiteExtensionId) (result DeleteSiteExtensionOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},

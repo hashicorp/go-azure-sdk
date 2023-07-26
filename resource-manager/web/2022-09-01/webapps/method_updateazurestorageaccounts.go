@@ -21,7 +21,7 @@ type UpdateAzureStorageAccountsOperationResponse struct {
 // UpdateAzureStorageAccounts ...
 func (c WebAppsClient) UpdateAzureStorageAccounts(ctx context.Context, id SiteId, input AzureStoragePropertyDictionaryResource) (result UpdateAzureStorageAccountsOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

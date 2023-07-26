@@ -20,7 +20,7 @@ type RemoveLinksOperationResponse struct {
 // RemoveLinks ...
 func (c IntegrationRuntimesClient) RemoveLinks(ctx context.Context, id IntegrationRuntimeId, input LinkedIntegrationRuntimeRequest) (result RemoveLinksOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

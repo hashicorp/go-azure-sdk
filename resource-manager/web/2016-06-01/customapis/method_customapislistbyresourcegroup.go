@@ -53,7 +53,7 @@ func (o CustomApisListByResourceGroupOperationOptions) ToQuery() *client.QueryPa
 // CustomApisListByResourceGroup ...
 func (c CustomAPIsClient) CustomApisListByResourceGroup(ctx context.Context, id commonids.ResourceGroupId, options CustomApisListByResourceGroupOperationOptions) (result CustomApisListByResourceGroupOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

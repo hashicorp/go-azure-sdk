@@ -25,7 +25,7 @@ type ListPortMirroringCompleteResult struct {
 // ListPortMirroring ...
 func (c WorkloadNetworksClient) ListPortMirroring(ctx context.Context, id PrivateCloudId) (result ListPortMirroringOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

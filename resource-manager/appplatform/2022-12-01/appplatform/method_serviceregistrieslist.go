@@ -25,7 +25,7 @@ type ServiceRegistriesListCompleteResult struct {
 // ServiceRegistriesList ...
 func (c AppPlatformClient) ServiceRegistriesList(ctx context.Context, id SpringId) (result ServiceRegistriesListOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

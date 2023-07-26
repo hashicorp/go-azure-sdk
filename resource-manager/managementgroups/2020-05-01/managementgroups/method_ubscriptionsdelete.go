@@ -47,7 +47,7 @@ func (o UbscriptionsDeleteOperationOptions) ToQuery() *client.QueryParams {
 // UbscriptionsDelete ...
 func (c ManagementGroupsClient) UbscriptionsDelete(ctx context.Context, id SubscriptionId, options UbscriptionsDeleteOperationOptions) (result UbscriptionsDeleteOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 			http.StatusOK,

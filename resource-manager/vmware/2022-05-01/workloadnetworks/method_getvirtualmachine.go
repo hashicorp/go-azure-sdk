@@ -20,7 +20,7 @@ type GetVirtualMachineOperationResponse struct {
 // GetVirtualMachine ...
 func (c WorkloadNetworksClient) GetVirtualMachine(ctx context.Context, id DefaultVirtualMachineId) (result GetVirtualMachineOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

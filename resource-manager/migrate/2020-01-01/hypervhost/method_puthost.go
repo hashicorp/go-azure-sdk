@@ -19,7 +19,7 @@ type PutHostOperationResponse struct {
 // PutHost ...
 func (c HyperVHostClient) PutHost(ctx context.Context, id HostId, input HyperVHost) (result PutHostOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 		},

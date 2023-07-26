@@ -25,7 +25,7 @@ type ListByLocationCompleteResult struct {
 // ListByLocation ...
 func (c DeletedWebAppsClient) ListByLocation(ctx context.Context, id ProviderLocationId) (result ListByLocationOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

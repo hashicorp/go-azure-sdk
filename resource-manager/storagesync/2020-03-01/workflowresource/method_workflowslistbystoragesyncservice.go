@@ -21,7 +21,7 @@ type WorkflowsListByStorageSyncServiceOperationResponse struct {
 // WorkflowsListByStorageSyncService ...
 func (c WorkflowResourceClient) WorkflowsListByStorageSyncService(ctx context.Context, id StorageSyncServiceId) (result WorkflowsListByStorageSyncServiceOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

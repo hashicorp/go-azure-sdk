@@ -56,7 +56,7 @@ func (o ListHistoryForWebAppOperationOptions) ToQuery() *client.QueryParams {
 // ListHistoryForWebApp ...
 func (c RecommendationsClient) ListHistoryForWebApp(ctx context.Context, id SiteId, options ListHistoryForWebAppOperationOptions) (result ListHistoryForWebAppOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

@@ -25,7 +25,7 @@ type ListMultiRoleUsagesCompleteResult struct {
 // ListMultiRoleUsages ...
 func (c AppServiceEnvironmentsClient) ListMultiRoleUsages(ctx context.Context, id HostingEnvironmentId) (result ListMultiRoleUsagesOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

@@ -24,7 +24,7 @@ type GenerateCostDetailsReportCreateOperationOperationResponse struct {
 // GenerateCostDetailsReportCreateOperation ...
 func (c CostDetailsClient) GenerateCostDetailsReportCreateOperation(ctx context.Context, id commonids.ScopeId, input GenerateCostDetailsReportRequestDefinition) (result GenerateCostDetailsReportCreateOperationOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusNoContent,

@@ -19,7 +19,7 @@ type HybridRunbookWorkerGroupDeleteOperationResponse struct {
 // HybridRunbookWorkerGroupDelete ...
 func (c ListAllHybridRunbookWorkerGroupInAutomationAccountClient) HybridRunbookWorkerGroupDelete(ctx context.Context, id HybridRunbookWorkerGroupId) (result HybridRunbookWorkerGroupDeleteOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

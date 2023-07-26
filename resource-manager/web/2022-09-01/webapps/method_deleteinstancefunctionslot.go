@@ -19,7 +19,7 @@ type DeleteInstanceFunctionSlotOperationResponse struct {
 // DeleteInstanceFunctionSlot ...
 func (c WebAppsClient) DeleteInstanceFunctionSlot(ctx context.Context, id SlotFunctionId) (result DeleteInstanceFunctionSlotOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},

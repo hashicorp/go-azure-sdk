@@ -21,7 +21,7 @@ type UpdateFtpAllowedOperationResponse struct {
 // UpdateFtpAllowed ...
 func (c WebAppsClient) UpdateFtpAllowed(ctx context.Context, id SiteId, input CsmPublishingCredentialsPoliciesEntity) (result UpdateFtpAllowedOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

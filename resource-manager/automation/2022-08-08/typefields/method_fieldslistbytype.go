@@ -21,7 +21,7 @@ type FieldsListByTypeOperationResponse struct {
 // FieldsListByType ...
 func (c TypeFieldsClient) FieldsListByType(ctx context.Context, id TypeId) (result FieldsListByTypeOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

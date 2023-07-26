@@ -25,7 +25,7 @@ type ListSiteDiagnosticCategoriesSlotCompleteResult struct {
 // ListSiteDiagnosticCategoriesSlot ...
 func (c DiagnosticsClient) ListSiteDiagnosticCategoriesSlot(ctx context.Context, id SlotId) (result ListSiteDiagnosticCategoriesSlotOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

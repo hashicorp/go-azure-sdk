@@ -21,7 +21,7 @@ type ListPublishingProfileXmlWithSecretsSlotOperationResponse struct {
 // ListPublishingProfileXmlWithSecretsSlot ...
 func (c WebAppsClient) ListPublishingProfileXmlWithSecretsSlot(ctx context.Context, id SlotId, input CsmPublishingProfileOptions) (result ListPublishingProfileXmlWithSecretsSlotOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

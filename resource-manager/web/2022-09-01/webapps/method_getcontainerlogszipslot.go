@@ -21,7 +21,7 @@ type GetContainerLogsZipSlotOperationResponse struct {
 // GetContainerLogsZipSlot ...
 func (c WebAppsClient) GetContainerLogsZipSlot(ctx context.Context, id SlotId) (result GetContainerLogsZipSlotOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 			http.StatusOK,

@@ -23,7 +23,7 @@ type WorkspacesPrepareNotebookOperationResponse struct {
 // WorkspacesPrepareNotebook ...
 func (c ProxyOperationsClient) WorkspacesPrepareNotebook(ctx context.Context, id WorkspaceId) (result WorkspacesPrepareNotebookOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusOK,

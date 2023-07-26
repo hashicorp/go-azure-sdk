@@ -20,7 +20,7 @@ type GetSegmentOperationResponse struct {
 // GetSegment ...
 func (c WorkloadNetworksClient) GetSegment(ctx context.Context, id SegmentId) (result GetSegmentOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

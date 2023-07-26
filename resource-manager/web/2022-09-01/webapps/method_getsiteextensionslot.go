@@ -20,7 +20,7 @@ type GetSiteExtensionSlotOperationResponse struct {
 // GetSiteExtensionSlot ...
 func (c WebAppsClient) GetSiteExtensionSlot(ctx context.Context, id SlotSiteExtensionId) (result GetSiteExtensionSlotOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

@@ -53,7 +53,7 @@ func (o GetDescendantsOperationOptions) ToQuery() *client.QueryParams {
 // GetDescendants ...
 func (c ManagementGroupsClient) GetDescendants(ctx context.Context, id commonids.ManagementGroupId, options GetDescendantsOperationOptions) (result GetDescendantsOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

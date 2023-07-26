@@ -20,7 +20,7 @@ type ApiPortalCustomDomainsGetOperationResponse struct {
 // ApiPortalCustomDomainsGet ...
 func (c AppPlatformClient) ApiPortalCustomDomainsGet(ctx context.Context, id ApiPortalDomainId) (result ApiPortalCustomDomainsGetOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

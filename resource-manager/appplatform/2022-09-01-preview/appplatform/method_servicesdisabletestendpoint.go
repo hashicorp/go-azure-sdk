@@ -20,7 +20,7 @@ type ServicesDisableTestEndpointOperationResponse struct {
 // ServicesDisableTestEndpoint ...
 func (c AppPlatformClient) ServicesDisableTestEndpoint(ctx context.Context, id SpringId) (result ServicesDisableTestEndpointOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

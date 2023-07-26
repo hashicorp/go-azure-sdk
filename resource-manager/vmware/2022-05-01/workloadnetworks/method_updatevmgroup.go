@@ -23,7 +23,7 @@ type UpdateVMGroupOperationResponse struct {
 // UpdateVMGroup ...
 func (c WorkloadNetworksClient) UpdateVMGroup(ctx context.Context, id VMGroupId, input WorkloadNetworkVMGroup) (result UpdateVMGroupOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusOK,

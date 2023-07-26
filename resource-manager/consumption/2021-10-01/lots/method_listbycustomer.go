@@ -52,7 +52,7 @@ func (o ListByCustomerOperationOptions) ToQuery() *client.QueryParams {
 // ListByCustomer ...
 func (c LotsClient) ListByCustomer(ctx context.Context, id CustomerId, options ListByCustomerOperationOptions) (result ListByCustomerOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

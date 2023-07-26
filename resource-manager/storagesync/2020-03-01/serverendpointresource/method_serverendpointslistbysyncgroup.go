@@ -21,7 +21,7 @@ type ServerEndpointsListBySyncGroupOperationResponse struct {
 // ServerEndpointsListBySyncGroup ...
 func (c ServerEndpointResourceClient) ServerEndpointsListBySyncGroup(ctx context.Context, id SyncGroupId) (result ServerEndpointsListBySyncGroupOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

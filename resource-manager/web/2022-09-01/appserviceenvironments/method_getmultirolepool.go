@@ -21,7 +21,7 @@ type GetMultiRolePoolOperationResponse struct {
 // GetMultiRolePool ...
 func (c AppServiceEnvironmentsClient) GetMultiRolePool(ctx context.Context, id HostingEnvironmentId) (result GetMultiRolePoolOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

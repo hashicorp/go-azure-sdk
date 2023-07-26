@@ -20,7 +20,7 @@ type EnableRecommendationOperationResponse struct {
 // EnableRecommendation ...
 func (c ManagedDatabaseSensitivityLabelsClient) EnableRecommendation(ctx context.Context, id TableColumnId) (result EnableRecommendationOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

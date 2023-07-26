@@ -20,7 +20,7 @@ type RenewOperationResponse struct {
 // Renew ...
 func (c DomainsClient) Renew(ctx context.Context, id DomainId) (result RenewOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusNoContent,

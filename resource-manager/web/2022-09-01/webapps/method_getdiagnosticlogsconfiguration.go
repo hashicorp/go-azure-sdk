@@ -21,7 +21,7 @@ type GetDiagnosticLogsConfigurationOperationResponse struct {
 // GetDiagnosticLogsConfiguration ...
 func (c WebAppsClient) GetDiagnosticLogsConfiguration(ctx context.Context, id SiteId) (result GetDiagnosticLogsConfigurationOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

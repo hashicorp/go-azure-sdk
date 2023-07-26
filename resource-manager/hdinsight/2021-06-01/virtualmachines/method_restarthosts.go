@@ -23,7 +23,7 @@ type RestartHostsOperationResponse struct {
 // RestartHosts ...
 func (c VirtualMachinesClient) RestartHosts(ctx context.Context, id ClusterId, input []string) (result RestartHostsOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusOK,

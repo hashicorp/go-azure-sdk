@@ -25,7 +25,7 @@ type ExpandCompleteResult struct {
 // Expand ...
 func (c MsixImageClient) Expand(ctx context.Context, id HostPoolId, input MSIXImageURI) (result ExpandOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

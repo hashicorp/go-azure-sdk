@@ -21,7 +21,7 @@ type GetDatabaseConnectionWithDetailsOperationResponse struct {
 // GetDatabaseConnectionWithDetails ...
 func (c StaticSitesClient) GetDatabaseConnectionWithDetails(ctx context.Context, id DatabaseConnectionId) (result GetDatabaseConnectionWithDetailsOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

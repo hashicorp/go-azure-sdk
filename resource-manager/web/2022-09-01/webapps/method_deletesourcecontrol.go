@@ -47,7 +47,7 @@ func (o DeleteSourceControlOperationOptions) ToQuery() *client.QueryParams {
 // DeleteSourceControl ...
 func (c WebAppsClient) DeleteSourceControl(ctx context.Context, id SiteId, options DeleteSourceControlOperationOptions) (result DeleteSourceControlOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusOK,

@@ -23,7 +23,7 @@ type DeploymentsStartOperationResponse struct {
 // DeploymentsStart ...
 func (c AppPlatformClient) DeploymentsStart(ctx context.Context, id DeploymentId) (result DeploymentsStartOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusOK,

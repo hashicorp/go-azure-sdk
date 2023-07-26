@@ -25,7 +25,7 @@ type ListAppServicePlansCompleteResult struct {
 // ListAppServicePlans ...
 func (c AppServiceEnvironmentsClient) ListAppServicePlans(ctx context.Context, id HostingEnvironmentId) (result ListAppServicePlansOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

@@ -23,7 +23,7 @@ type PacketCoreControlPlanesCollectDiagnosticsPackageOperationResponse struct {
 // PacketCoreControlPlanesCollectDiagnosticsPackage ...
 func (c PacketCoreControlPlaneCollectDiagnosticsPackageClient) PacketCoreControlPlanesCollectDiagnosticsPackage(ctx context.Context, id PacketCoreControlPlaneId, input PacketCoreControlPlaneCollectDiagnosticsPackage) (result PacketCoreControlPlanesCollectDiagnosticsPackageOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusOK,

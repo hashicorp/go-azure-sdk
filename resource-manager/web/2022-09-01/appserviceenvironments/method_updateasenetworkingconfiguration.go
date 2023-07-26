@@ -21,7 +21,7 @@ type UpdateAseNetworkingConfigurationOperationResponse struct {
 // UpdateAseNetworkingConfiguration ...
 func (c AppServiceEnvironmentsClient) UpdateAseNetworkingConfiguration(ctx context.Context, id HostingEnvironmentId, input AseV3NetworkingConfiguration) (result UpdateAseNetworkingConfigurationOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

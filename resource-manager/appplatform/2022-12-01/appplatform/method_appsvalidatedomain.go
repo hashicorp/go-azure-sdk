@@ -21,7 +21,7 @@ type AppsValidateDomainOperationResponse struct {
 // AppsValidateDomain ...
 func (c AppPlatformClient) AppsValidateDomain(ctx context.Context, id AppId, input CustomDomainValidatePayload) (result AppsValidateDomainOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

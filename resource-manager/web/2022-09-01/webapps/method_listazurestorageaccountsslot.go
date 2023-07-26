@@ -21,7 +21,7 @@ type ListAzureStorageAccountsSlotOperationResponse struct {
 // ListAzureStorageAccountsSlot ...
 func (c WebAppsClient) ListAzureStorageAccountsSlot(ctx context.Context, id SlotId) (result ListAzureStorageAccountsSlotOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

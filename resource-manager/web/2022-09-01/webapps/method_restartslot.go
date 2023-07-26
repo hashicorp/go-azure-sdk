@@ -51,7 +51,7 @@ func (o RestartSlotOperationOptions) ToQuery() *client.QueryParams {
 // RestartSlot ...
 func (c WebAppsClient) RestartSlot(ctx context.Context, id SlotId, options RestartSlotOperationOptions) (result RestartSlotOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

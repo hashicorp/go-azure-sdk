@@ -56,7 +56,7 @@ func (o RegistryModelContainersListOperationOptions) ToQuery() *client.QueryPara
 // RegistryModelContainersList ...
 func (c ModelContainerClient) RegistryModelContainersList(ctx context.Context, id RegistryId, options RegistryModelContainersListOperationOptions) (result RegistryModelContainersListOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

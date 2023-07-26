@@ -21,7 +21,7 @@ type GetScmAllowedOperationResponse struct {
 // GetScmAllowed ...
 func (c WebAppsClient) GetScmAllowed(ctx context.Context, id SiteId) (result GetScmAllowedOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

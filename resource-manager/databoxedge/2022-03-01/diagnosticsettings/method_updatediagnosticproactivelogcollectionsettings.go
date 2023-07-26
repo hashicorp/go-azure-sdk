@@ -23,7 +23,7 @@ type UpdateDiagnosticProactiveLogCollectionSettingsOperationResponse struct {
 // UpdateDiagnosticProactiveLogCollectionSettings ...
 func (c DiagnosticSettingsClient) UpdateDiagnosticProactiveLogCollectionSettings(ctx context.Context, id DataBoxEdgeDeviceId, input DiagnosticProactiveLogCollectionSettings) (result UpdateDiagnosticProactiveLogCollectionSettingsOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusOK,

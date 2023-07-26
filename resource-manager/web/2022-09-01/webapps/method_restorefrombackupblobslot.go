@@ -23,7 +23,7 @@ type RestoreFromBackupBlobSlotOperationResponse struct {
 // RestoreFromBackupBlobSlot ...
 func (c WebAppsClient) RestoreFromBackupBlobSlot(ctx context.Context, id SlotId, input RestoreRequest) (result RestoreFromBackupBlobSlotOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusOK,

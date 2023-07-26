@@ -20,7 +20,7 @@ type UpdateOwnershipIdentifierOperationResponse struct {
 // UpdateOwnershipIdentifier ...
 func (c DomainsClient) UpdateOwnershipIdentifier(ctx context.Context, id DomainOwnershipIdentifierId, input DomainOwnershipIdentifier) (result UpdateOwnershipIdentifierOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

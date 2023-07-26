@@ -20,7 +20,7 @@ type GetNetworkTracesSlotV2OperationResponse struct {
 // GetNetworkTracesSlotV2 ...
 func (c WebAppsClient) GetNetworkTracesSlotV2(ctx context.Context, id SiteSlotNetworkTraceId) (result GetNetworkTracesSlotV2OperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

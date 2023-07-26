@@ -23,7 +23,7 @@ type BackupPoliciesDeleteOperationResponse struct {
 // BackupPoliciesDelete ...
 func (c BackupPolicyClient) BackupPoliciesDelete(ctx context.Context, id BackupPolicyId) (result BackupPoliciesDeleteOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusNoContent,

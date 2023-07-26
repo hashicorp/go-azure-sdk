@@ -19,7 +19,7 @@ type DeleteHostSecretSlotOperationResponse struct {
 // DeleteHostSecretSlot ...
 func (c WebAppsClient) DeleteHostSecretSlot(ctx context.Context, id HostDefaultId) (result DeleteHostSecretSlotOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},

@@ -25,7 +25,7 @@ type QueryByFactoryCompleteResult struct {
 // QueryByFactory ...
 func (c DataFlowDebugSessionClient) QueryByFactory(ctx context.Context, id FactoryId) (result QueryByFactoryOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

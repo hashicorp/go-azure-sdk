@@ -20,7 +20,7 @@ type GetPublicCertificateSlotOperationResponse struct {
 // GetPublicCertificateSlot ...
 func (c WebAppsClient) GetPublicCertificateSlot(ctx context.Context, id SlotPublicCertificateId) (result GetPublicCertificateSlotOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

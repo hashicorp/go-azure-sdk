@@ -21,7 +21,7 @@ type GetStatusOperationResponse struct {
 // GetStatus ...
 func (c IntegrationRuntimesClient) GetStatus(ctx context.Context, id IntegrationRuntimeId) (result GetStatusOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

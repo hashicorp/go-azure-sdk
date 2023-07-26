@@ -20,7 +20,7 @@ type RebootWorkerOperationResponse struct {
 // RebootWorker ...
 func (c AppServicePlansClient) RebootWorker(ctx context.Context, id WorkerId) (result RebootWorkerOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},

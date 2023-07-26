@@ -21,7 +21,7 @@ type ListByProviderOperationResponse struct {
 // ListByProvider ...
 func (c PrivateLinkResourcesClient) ListByProvider(ctx context.Context, id AttestationProvidersId) (result ListByProviderOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

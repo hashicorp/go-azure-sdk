@@ -23,7 +23,7 @@ type RegistryCodeVersionsCreateOrUpdateOperationResponse struct {
 // RegistryCodeVersionsCreateOrUpdate ...
 func (c CodeVersionClient) RegistryCodeVersionsCreateOrUpdate(ctx context.Context, id RegistryCodeVersionId, input CodeVersionResource) (result RegistryCodeVersionsCreateOrUpdateOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 			http.StatusOK,

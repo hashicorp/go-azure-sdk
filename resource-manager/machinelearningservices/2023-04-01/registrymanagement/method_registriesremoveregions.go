@@ -23,7 +23,7 @@ type RegistriesRemoveRegionsOperationResponse struct {
 // RegistriesRemoveRegions ...
 func (c RegistryManagementClient) RegistriesRemoveRegions(ctx context.Context, id RegistryId, input RegistryTrackedResource) (result RegistriesRemoveRegionsOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusOK,

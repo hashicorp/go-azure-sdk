@@ -23,7 +23,7 @@ type RecoverOperationResponse struct {
 // Recover ...
 func (c DeletedServersClient) Recover(ctx context.Context, id DeletedServerId) (result RecoverOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusOK,

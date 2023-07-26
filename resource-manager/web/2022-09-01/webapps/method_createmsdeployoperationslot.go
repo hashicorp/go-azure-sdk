@@ -23,7 +23,7 @@ type CreateMSDeployOperationSlotOperationResponse struct {
 // CreateMSDeployOperationSlot ...
 func (c WebAppsClient) CreateMSDeployOperationSlot(ctx context.Context, id SlotId, input MSDeploy) (result CreateMSDeployOperationSlotOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},

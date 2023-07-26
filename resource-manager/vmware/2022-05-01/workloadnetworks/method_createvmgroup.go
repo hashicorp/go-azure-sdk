@@ -23,7 +23,7 @@ type CreateVMGroupOperationResponse struct {
 // CreateVMGroup ...
 func (c WorkloadNetworksClient) CreateVMGroup(ctx context.Context, id VMGroupId, input WorkloadNetworkVMGroup) (result CreateVMGroupOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 			http.StatusOK,

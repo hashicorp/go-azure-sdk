@@ -20,7 +20,7 @@ type RefreshSiteOperationResponse struct {
 // RefreshSite ...
 func (c SitesClient) RefreshSite(ctx context.Context, id VMwareSiteId) (result RefreshSiteOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 		},

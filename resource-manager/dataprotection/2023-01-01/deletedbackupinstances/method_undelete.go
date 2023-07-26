@@ -23,7 +23,7 @@ type UndeleteOperationResponse struct {
 // Undelete ...
 func (c DeletedBackupInstancesClient) Undelete(ctx context.Context, id DeletedBackupInstanceId) (result UndeleteOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusOK,

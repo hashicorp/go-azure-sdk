@@ -20,7 +20,7 @@ type StartOperationResponse struct {
 // Start ...
 func (c ChangeDataCaptureClient) Start(ctx context.Context, id AdfcdcId) (result StartOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

@@ -23,7 +23,7 @@ type ValidateBackendForBuildOperationResponse struct {
 // ValidateBackendForBuild ...
 func (c StaticSitesClient) ValidateBackendForBuild(ctx context.Context, id BuildLinkedBackendId, input StaticSiteLinkedBackendARMResource) (result ValidateBackendForBuildOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusNoContent,

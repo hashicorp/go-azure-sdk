@@ -20,7 +20,7 @@ type GetProcessModuleOperationResponse struct {
 // GetProcessModule ...
 func (c WebAppsClient) GetProcessModule(ctx context.Context, id ModuleId) (result GetProcessModuleOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

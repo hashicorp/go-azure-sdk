@@ -19,7 +19,7 @@ type CredentialOperationsDeleteOperationResponse struct {
 // CredentialOperationsDelete ...
 func (c CredentialsClient) CredentialOperationsDelete(ctx context.Context, id CredentialId) (result CredentialOperationsDeleteOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 			http.StatusOK,

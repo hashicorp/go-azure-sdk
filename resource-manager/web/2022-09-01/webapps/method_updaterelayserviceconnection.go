@@ -20,7 +20,7 @@ type UpdateRelayServiceConnectionOperationResponse struct {
 // UpdateRelayServiceConnection ...
 func (c WebAppsClient) UpdateRelayServiceConnection(ctx context.Context, id HybridConnectionId, input RelayServiceConnectionEntity) (result UpdateRelayServiceConnectionOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

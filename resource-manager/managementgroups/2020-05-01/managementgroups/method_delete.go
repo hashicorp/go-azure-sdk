@@ -51,7 +51,7 @@ func (o DeleteOperationOptions) ToQuery() *client.QueryParams {
 // Delete ...
 func (c ManagementGroupsClient) Delete(ctx context.Context, id commonids.ManagementGroupId, options DeleteOperationOptions) (result DeleteOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusNoContent,

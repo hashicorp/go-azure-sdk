@@ -20,7 +20,7 @@ type GetOperationResponse struct {
 // Get ...
 func (c TopQueryStatisticsClient) Get(ctx context.Context, id TopQueryStatisticId) (result GetOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
