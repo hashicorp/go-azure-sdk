@@ -20,7 +20,7 @@ type RegistryDataContainersGetOperationResponse struct {
 // RegistryDataContainersGet ...
 func (c DataContainerRegistryClient) RegistryDataContainersGet(ctx context.Context, id DataId) (result RegistryDataContainersGetOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

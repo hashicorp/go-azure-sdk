@@ -20,7 +20,7 @@ type FilesUpdateOperationResponse struct {
 // FilesUpdate ...
 func (c PATCHClient) FilesUpdate(ctx context.Context, id FileId, input ProjectFile) (result FilesUpdateOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

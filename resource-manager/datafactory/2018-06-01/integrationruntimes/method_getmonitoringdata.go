@@ -21,7 +21,7 @@ type GetMonitoringDataOperationResponse struct {
 // GetMonitoringData ...
 func (c IntegrationRuntimesClient) GetMonitoringData(ctx context.Context, id IntegrationRuntimeId) (result GetMonitoringDataOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

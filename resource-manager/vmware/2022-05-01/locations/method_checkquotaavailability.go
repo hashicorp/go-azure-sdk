@@ -21,7 +21,7 @@ type CheckQuotaAvailabilityOperationResponse struct {
 // CheckQuotaAvailability ...
 func (c LocationsClient) CheckQuotaAvailability(ctx context.Context, id LocationId) (result CheckQuotaAvailabilityOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

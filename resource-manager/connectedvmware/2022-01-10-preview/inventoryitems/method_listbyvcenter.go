@@ -25,7 +25,7 @@ type ListByVCenterCompleteResult struct {
 // ListByVCenter ...
 func (c InventoryItemsClient) ListByVCenter(ctx context.Context, id VCenterId) (result ListByVCenterOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

@@ -20,7 +20,7 @@ type AccessPoliciesCreateOrUpdateOperationResponse struct {
 // AccessPoliciesCreateOrUpdate ...
 func (c VideosClient) AccessPoliciesCreateOrUpdate(ctx context.Context, id AccessPolicyId, input AccessPolicyEntity) (result AccessPoliciesCreateOrUpdateOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 			http.StatusOK,

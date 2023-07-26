@@ -21,7 +21,7 @@ type NetworkSecurityPerimeterConfigurationListOperationResponse struct {
 // NetworkSecurityPerimeterConfigurationList ...
 func (c NamespacesNetworkSecurityPerimeterConfigurationsClient) NetworkSecurityPerimeterConfigurationList(ctx context.Context, id NamespaceId) (result NetworkSecurityPerimeterConfigurationListOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

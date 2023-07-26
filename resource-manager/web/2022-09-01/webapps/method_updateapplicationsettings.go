@@ -21,7 +21,7 @@ type UpdateApplicationSettingsOperationResponse struct {
 // UpdateApplicationSettings ...
 func (c WebAppsClient) UpdateApplicationSettings(ctx context.Context, id SiteId, input StringDictionary) (result UpdateApplicationSettingsOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

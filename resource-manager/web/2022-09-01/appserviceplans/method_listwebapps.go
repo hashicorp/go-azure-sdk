@@ -56,7 +56,7 @@ func (o ListWebAppsOperationOptions) ToQuery() *client.QueryParams {
 // ListWebApps ...
 func (c AppServicePlansClient) ListWebApps(ctx context.Context, id ServerFarmId, options ListWebAppsOperationOptions) (result ListWebAppsOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

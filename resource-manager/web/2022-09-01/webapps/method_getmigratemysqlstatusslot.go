@@ -21,7 +21,7 @@ type GetMigrateMySqlStatusSlotOperationResponse struct {
 // GetMigrateMySqlStatusSlot ...
 func (c WebAppsClient) GetMigrateMySqlStatusSlot(ctx context.Context, id SlotId) (result GetMigrateMySqlStatusSlotOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

@@ -56,7 +56,7 @@ func (o StartWebSiteNetworkTraceSlotOperationOptions) ToQuery() *client.QueryPar
 // StartWebSiteNetworkTraceSlot ...
 func (c WebAppsClient) StartWebSiteNetworkTraceSlot(ctx context.Context, id SlotId, options StartWebSiteNetworkTraceSlotOperationOptions) (result StartWebSiteNetworkTraceSlotOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

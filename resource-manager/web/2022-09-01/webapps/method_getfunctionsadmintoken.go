@@ -21,7 +21,7 @@ type GetFunctionsAdminTokenOperationResponse struct {
 // GetFunctionsAdminToken ...
 func (c WebAppsClient) GetFunctionsAdminToken(ctx context.Context, id SiteId) (result GetFunctionsAdminTokenOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

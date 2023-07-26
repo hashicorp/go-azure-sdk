@@ -23,7 +23,7 @@ type CreateOperationResponse struct {
 // Create ...
 func (c RestorePointsClient) Create(ctx context.Context, id DatabaseId, input CreateDatabaseRestorePointDefinition) (result CreateOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusCreated,

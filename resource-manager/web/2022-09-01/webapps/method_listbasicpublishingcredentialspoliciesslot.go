@@ -25,7 +25,7 @@ type ListBasicPublishingCredentialsPoliciesSlotCompleteResult struct {
 // ListBasicPublishingCredentialsPoliciesSlot ...
 func (c WebAppsClient) ListBasicPublishingCredentialsPoliciesSlot(ctx context.Context, id SlotId) (result ListBasicPublishingCredentialsPoliciesSlotOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

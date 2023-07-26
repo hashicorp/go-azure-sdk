@@ -20,7 +20,7 @@ type GetPrivateEndpointConnectionOperationResponse struct {
 // GetPrivateEndpointConnection ...
 func (c StaticSitesClient) GetPrivateEndpointConnection(ctx context.Context, id StaticSitePrivateEndpointConnectionId) (result GetPrivateEndpointConnectionOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

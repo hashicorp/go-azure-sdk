@@ -52,7 +52,7 @@ func (o GetAllClustersInSiteOperationOptions) ToQuery() *client.QueryParams {
 // GetAllClustersInSite ...
 func (c HyperVClusterClient) GetAllClustersInSite(ctx context.Context, id HyperVSiteId, options GetAllClustersInSiteOperationOptions) (result GetAllClustersInSiteOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

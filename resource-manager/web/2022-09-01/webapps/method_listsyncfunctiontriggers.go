@@ -21,7 +21,7 @@ type ListSyncFunctionTriggersOperationResponse struct {
 // ListSyncFunctionTriggers ...
 func (c WebAppsClient) ListSyncFunctionTriggers(ctx context.Context, id SiteId) (result ListSyncFunctionTriggersOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

@@ -23,7 +23,7 @@ type UpdateOperationResponse struct {
 // Update ...
 func (c LongTermRetentionBackupsClient) Update(ctx context.Context, id LongTermRetentionBackupId, input UpdateLongTermRetentionBackupParameters) (result UpdateOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusOK,

@@ -21,7 +21,7 @@ type GetAuthSettingsV2WithoutSecretsOperationResponse struct {
 // GetAuthSettingsV2WithoutSecrets ...
 func (c WebAppsClient) GetAuthSettingsV2WithoutSecrets(ctx context.Context, id SiteId) (result GetAuthSettingsV2WithoutSecretsOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

@@ -20,7 +20,7 @@ type UpdateVnetConnectionGatewayOperationResponse struct {
 // UpdateVnetConnectionGateway ...
 func (c WebAppsClient) UpdateVnetConnectionGateway(ctx context.Context, id GatewayId, input VnetGateway) (result UpdateVnetConnectionGatewayOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

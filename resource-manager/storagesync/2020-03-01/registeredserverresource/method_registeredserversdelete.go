@@ -23,7 +23,7 @@ type RegisteredServersDeleteOperationResponse struct {
 // RegisteredServersDelete ...
 func (c RegisteredServerResourceClient) RegisteredServersDelete(ctx context.Context, id RegisteredServerId) (result RegisteredServersDeleteOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusNoContent,

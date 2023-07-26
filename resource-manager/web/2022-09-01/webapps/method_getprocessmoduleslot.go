@@ -20,7 +20,7 @@ type GetProcessModuleSlotOperationResponse struct {
 // GetProcessModuleSlot ...
 func (c WebAppsClient) GetProcessModuleSlot(ctx context.Context, id ProcessModuleId) (result GetProcessModuleSlotOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

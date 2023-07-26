@@ -20,7 +20,7 @@ type GetBySubscriptionOperationResponse struct {
 // GetBySubscription ...
 func (c PacketCoreControlPlaneVersionClient) GetBySubscription(ctx context.Context, id ProviderPacketCoreControlPlaneVersionId) (result GetBySubscriptionOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

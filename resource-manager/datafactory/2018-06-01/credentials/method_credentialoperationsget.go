@@ -48,7 +48,7 @@ func (o CredentialOperationsGetOperationOptions) ToQuery() *client.QueryParams {
 // CredentialOperationsGet ...
 func (c CredentialsClient) CredentialOperationsGet(ctx context.Context, id CredentialId, options CredentialOperationsGetOperationOptions) (result CredentialOperationsGetOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

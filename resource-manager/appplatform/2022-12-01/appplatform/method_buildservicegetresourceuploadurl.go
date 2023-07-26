@@ -21,7 +21,7 @@ type BuildServiceGetResourceUploadUrlOperationResponse struct {
 // BuildServiceGetResourceUploadUrl ...
 func (c AppPlatformClient) BuildServiceGetResourceUploadUrl(ctx context.Context, id BuildServiceId) (result BuildServiceGetResourceUploadUrlOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

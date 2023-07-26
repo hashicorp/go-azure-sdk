@@ -23,7 +23,7 @@ type DeleteStaticSiteBuildOperationResponse struct {
 // DeleteStaticSiteBuild ...
 func (c StaticSitesClient) DeleteStaticSiteBuild(ctx context.Context, id BuildId) (result DeleteStaticSiteBuildOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusNoContent,

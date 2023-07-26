@@ -21,7 +21,7 @@ type CreateOrUpdateStaticSiteFunctionAppSettingsOperationResponse struct {
 // CreateOrUpdateStaticSiteFunctionAppSettings ...
 func (c StaticSitesClient) CreateOrUpdateStaticSiteFunctionAppSettings(ctx context.Context, id StaticSiteId, input StringDictionary) (result CreateOrUpdateStaticSiteFunctionAppSettingsOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

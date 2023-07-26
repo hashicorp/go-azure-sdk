@@ -56,7 +56,7 @@ func (o ListSecurityServicesOperationOptions) ToQuery() *client.QueryParams {
 // ListSecurityServices ...
 func (c GlobalRulestackClient) ListSecurityServices(ctx context.Context, id GlobalRulestackId, options ListSecurityServicesOperationOptions) (result ListSecurityServicesOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

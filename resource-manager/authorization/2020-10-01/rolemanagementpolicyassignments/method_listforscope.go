@@ -26,7 +26,7 @@ type ListForScopeCompleteResult struct {
 // ListForScope ...
 func (c RoleManagementPolicyAssignmentsClient) ListForScope(ctx context.Context, id commonids.ScopeId) (result ListForScopeOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

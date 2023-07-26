@@ -19,7 +19,7 @@ type DeleteBackupSlotOperationResponse struct {
 // DeleteBackupSlot ...
 func (c WebAppsClient) DeleteBackupSlot(ctx context.Context, id SlotBackupId) (result DeleteBackupSlotOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

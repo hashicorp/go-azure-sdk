@@ -22,7 +22,7 @@ type ListOperationResponse struct {
 // List ...
 func (c AlertsClient) List(ctx context.Context, id commonids.ScopeId) (result ListOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

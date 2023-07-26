@@ -20,7 +20,7 @@ type ScriptActionsGetExecutionDetailOperationResponse struct {
 // ScriptActionsGetExecutionDetail ...
 func (c ScriptExecutionHistoryClient) ScriptActionsGetExecutionDetail(ctx context.Context, id ScriptExecutionHistoryId) (result ScriptActionsGetExecutionDetailOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

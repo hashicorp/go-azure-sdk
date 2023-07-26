@@ -21,7 +21,7 @@ type GetTokenOperationResponse struct {
 // GetToken ...
 func (c OnlineEndpointClient) GetToken(ctx context.Context, id OnlineEndpointId) (result GetTokenOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

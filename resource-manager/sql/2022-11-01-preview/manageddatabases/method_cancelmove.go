@@ -23,7 +23,7 @@ type CancelMoveOperationResponse struct {
 // CancelMove ...
 func (c ManagedDatabasesClient) CancelMove(ctx context.Context, id ManagedInstanceDatabaseId, input ManagedDatabaseMoveDefinition) (result CancelMoveOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusOK,

@@ -23,7 +23,7 @@ type ResubmitOperationResponse struct {
 // Resubmit ...
 func (c WorkflowTriggerHistoriesClient) Resubmit(ctx context.Context, id TriggerHistoryId) (result ResubmitOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 		},

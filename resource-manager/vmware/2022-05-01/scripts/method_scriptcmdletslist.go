@@ -25,7 +25,7 @@ type ScriptCmdletsListCompleteResult struct {
 // ScriptCmdletsList ...
 func (c ScriptsClient) ScriptCmdletsList(ctx context.Context, id ScriptPackageId) (result ScriptCmdletsListOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

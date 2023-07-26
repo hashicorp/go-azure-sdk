@@ -21,7 +21,7 @@ type DppResourceGuardProxyUnlockDeleteOperationResponse struct {
 // DppResourceGuardProxyUnlockDelete ...
 func (c DppResourceGuardProxiesClient) DppResourceGuardProxyUnlockDelete(ctx context.Context, id BackupResourceGuardProxyId, input UnlockDeleteRequest) (result DppResourceGuardProxyUnlockDeleteOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

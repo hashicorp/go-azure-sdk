@@ -21,7 +21,7 @@ type GetFtpAllowedSlotOperationResponse struct {
 // GetFtpAllowedSlot ...
 func (c WebAppsClient) GetFtpAllowedSlot(ctx context.Context, id SlotId) (result GetFtpAllowedSlotOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

@@ -23,7 +23,7 @@ type CreateZipDeploymentForStaticSiteBuildOperationResponse struct {
 // CreateZipDeploymentForStaticSiteBuild ...
 func (c StaticSitesClient) CreateZipDeploymentForStaticSiteBuild(ctx context.Context, id BuildId, input StaticSiteZipDeploymentARMResource) (result CreateZipDeploymentForStaticSiteBuildOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusOK,

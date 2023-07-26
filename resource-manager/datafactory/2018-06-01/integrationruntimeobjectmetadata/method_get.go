@@ -21,7 +21,7 @@ type GetOperationResponse struct {
 // Get ...
 func (c IntegrationRuntimeObjectMetadataClient) Get(ctx context.Context, id IntegrationRuntimeId, input GetSsisObjectMetadataRequest) (result GetOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

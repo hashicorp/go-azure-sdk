@@ -20,7 +20,7 @@ type GetOperationResponse struct {
 // Get ...
 func (c ElasticPoolsClient) Get(ctx context.Context, id ElasticPoolId) (result GetOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

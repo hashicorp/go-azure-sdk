@@ -25,7 +25,7 @@ type ListInstanceIdentifiersCompleteResult struct {
 // ListInstanceIdentifiers ...
 func (c WebAppsClient) ListInstanceIdentifiers(ctx context.Context, id SiteId) (result ListInstanceIdentifiersOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

@@ -20,7 +20,7 @@ type JobsGetOperationResponse struct {
 // JobsGet ...
 func (c AzureBackupJobClient) JobsGet(ctx context.Context, id BackupJobId) (result JobsGetOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

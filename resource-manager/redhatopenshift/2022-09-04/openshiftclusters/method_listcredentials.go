@@ -21,7 +21,7 @@ type ListCredentialsOperationResponse struct {
 // ListCredentials ...
 func (c OpenShiftClustersClient) ListCredentials(ctx context.Context, id ProviderOpenShiftClusterId) (result ListCredentialsOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

@@ -20,7 +20,7 @@ type SyncRepositoryOperationResponse struct {
 // SyncRepository ...
 func (c WebAppsClient) SyncRepository(ctx context.Context, id SiteId) (result SyncRepositoryOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

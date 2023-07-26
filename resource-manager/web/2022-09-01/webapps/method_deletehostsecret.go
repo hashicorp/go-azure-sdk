@@ -19,7 +19,7 @@ type DeleteHostSecretOperationResponse struct {
 // DeleteHostSecret ...
 func (c WebAppsClient) DeleteHostSecret(ctx context.Context, id DefaultId) (result DeleteHostSecretOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},

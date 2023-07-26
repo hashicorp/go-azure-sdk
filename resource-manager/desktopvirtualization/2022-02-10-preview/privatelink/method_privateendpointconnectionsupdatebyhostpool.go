@@ -20,7 +20,7 @@ type PrivateEndpointConnectionsUpdateByHostPoolOperationResponse struct {
 // PrivateEndpointConnectionsUpdateByHostPool ...
 func (c PrivateLinkClient) PrivateEndpointConnectionsUpdateByHostPool(ctx context.Context, id PrivateEndpointConnectionId, input PrivateEndpointConnection) (result PrivateEndpointConnectionsUpdateByHostPoolOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

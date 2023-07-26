@@ -20,7 +20,7 @@ type CreateOperationResponse struct {
 // Create ...
 func (c InventoryItemsClient) Create(ctx context.Context, id InventoryItemId, input InventoryItem) (result CreateOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

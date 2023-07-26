@@ -50,7 +50,7 @@ func (o CreateRecommendedActionSessionOperationOptions) ToQuery() *client.QueryP
 // CreateRecommendedActionSession ...
 func (c RecommendedActionSessionsClient) CreateRecommendedActionSession(ctx context.Context, id AdvisorId, options CreateRecommendedActionSessionOperationOptions) (result CreateRecommendedActionSessionOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusOK,

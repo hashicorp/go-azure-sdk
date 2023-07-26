@@ -19,7 +19,7 @@ type CustomApisDeleteOperationResponse struct {
 // CustomApisDelete ...
 func (c CustomAPIsClient) CustomApisDelete(ctx context.Context, id CustomApiId) (result CustomApisDeleteOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 			http.StatusOK,

@@ -21,7 +21,7 @@ type ExternalUserCreateOrUpdateOperationResponse struct {
 // ExternalUserCreateOrUpdate ...
 func (c DeploymentInfoClient) ExternalUserCreateOrUpdate(ctx context.Context, id MonitorId, input ExternalUserInfo) (result ExternalUserCreateOrUpdateOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

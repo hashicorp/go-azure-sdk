@@ -23,7 +23,7 @@ type UpdateOperationResponse struct {
 // Update ...
 func (c JobAgentsClient) Update(ctx context.Context, id JobAgentId, input JobAgentUpdate) (result UpdateOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusOK,

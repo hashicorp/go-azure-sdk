@@ -60,7 +60,7 @@ func (o CreateRunOperationOptions) ToQuery() *client.QueryParams {
 // CreateRun ...
 func (c PipelinesClient) CreateRun(ctx context.Context, id PipelineId, input map[string]interface{}, options CreateRunOperationOptions) (result CreateRunOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

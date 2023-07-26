@@ -56,7 +56,7 @@ func (o ListByBillingProfileOperationOptions) ToQuery() *client.QueryParams {
 // ListByBillingProfile ...
 func (c EventsClient) ListByBillingProfile(ctx context.Context, id BillingProfileId, options ListByBillingProfileOperationOptions) (result ListByBillingProfileOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

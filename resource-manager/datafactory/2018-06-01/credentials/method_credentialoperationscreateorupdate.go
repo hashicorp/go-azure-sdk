@@ -48,7 +48,7 @@ func (o CredentialOperationsCreateOrUpdateOperationOptions) ToQuery() *client.Qu
 // CredentialOperationsCreateOrUpdate ...
 func (c CredentialsClient) CredentialOperationsCreateOrUpdate(ctx context.Context, id CredentialId, input ManagedIdentityCredentialResource, options CredentialOperationsCreateOrUpdateOperationOptions) (result CredentialOperationsCreateOrUpdateOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

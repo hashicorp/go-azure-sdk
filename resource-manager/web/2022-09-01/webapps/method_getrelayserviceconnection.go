@@ -20,7 +20,7 @@ type GetRelayServiceConnectionOperationResponse struct {
 // GetRelayServiceConnection ...
 func (c WebAppsClient) GetRelayServiceConnection(ctx context.Context, id HybridConnectionId) (result GetRelayServiceConnectionOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

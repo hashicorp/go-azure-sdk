@@ -23,7 +23,7 @@ type ServiceRegistriesDeleteOperationResponse struct {
 // ServiceRegistriesDelete ...
 func (c AppPlatformClient) ServiceRegistriesDelete(ctx context.Context, id ServiceRegistryId) (result ServiceRegistriesDeleteOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusNoContent,

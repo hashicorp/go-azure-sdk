@@ -22,7 +22,7 @@ type AccountsCheckNameAvailabilityOperationResponse struct {
 // AccountsCheckNameAvailability ...
 func (c ProviderClient) AccountsCheckNameAvailability(ctx context.Context, id commonids.SubscriptionId, input CheckNameAvailabilityRequest) (result AccountsCheckNameAvailabilityOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

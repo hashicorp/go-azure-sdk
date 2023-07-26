@@ -20,7 +20,7 @@ type RegistryEnvironmentVersionsGetOperationResponse struct {
 // RegistryEnvironmentVersionsGet ...
 func (c EnvironmentVersionClient) RegistryEnvironmentVersionsGet(ctx context.Context, id RegistryEnvironmentVersionId) (result RegistryEnvironmentVersionsGetOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

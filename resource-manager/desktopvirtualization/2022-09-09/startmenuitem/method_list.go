@@ -60,7 +60,7 @@ func (o ListOperationOptions) ToQuery() *client.QueryParams {
 // List ...
 func (c StartMenuItemClient) List(ctx context.Context, id ApplicationGroupId, options ListOperationOptions) (result ListOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

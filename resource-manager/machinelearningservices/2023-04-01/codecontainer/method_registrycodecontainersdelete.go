@@ -23,7 +23,7 @@ type RegistryCodeContainersDeleteOperationResponse struct {
 // RegistryCodeContainersDelete ...
 func (c CodeContainerClient) RegistryCodeContainersDelete(ctx context.Context, id RegistryCodeId) (result RegistryCodeContainersDeleteOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusNoContent,

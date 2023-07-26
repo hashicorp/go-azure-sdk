@@ -19,7 +19,7 @@ type DetachUserProvidedFunctionAppFromStaticSiteOperationResponse struct {
 // DetachUserProvidedFunctionAppFromStaticSite ...
 func (c StaticSitesClient) DetachUserProvidedFunctionAppFromStaticSite(ctx context.Context, id UserProvidedFunctionAppId) (result DetachUserProvidedFunctionAppFromStaticSiteOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 			http.StatusOK,

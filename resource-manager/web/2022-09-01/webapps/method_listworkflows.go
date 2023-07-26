@@ -25,7 +25,7 @@ type ListWorkflowsCompleteResult struct {
 // ListWorkflows ...
 func (c WebAppsClient) ListWorkflows(ctx context.Context, id SiteId) (result ListWorkflowsOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

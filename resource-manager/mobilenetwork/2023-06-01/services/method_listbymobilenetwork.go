@@ -25,7 +25,7 @@ type ListByMobileNetworkCompleteResult struct {
 // ListByMobileNetwork ...
 func (c ServicesClient) ListByMobileNetwork(ctx context.Context, id MobileNetworkId) (result ListByMobileNetworkOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

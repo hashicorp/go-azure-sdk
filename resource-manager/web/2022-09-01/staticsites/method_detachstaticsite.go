@@ -23,7 +23,7 @@ type DetachStaticSiteOperationResponse struct {
 // DetachStaticSite ...
 func (c StaticSitesClient) DetachStaticSite(ctx context.Context, id StaticSiteId) (result DetachStaticSiteOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusOK,

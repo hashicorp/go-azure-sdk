@@ -21,7 +21,7 @@ type ClustersListZonesOperationResponse struct {
 // ClustersListZones ...
 func (c ZoneClient) ClustersListZones(ctx context.Context, id ClusterId) (result ClustersListZonesOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

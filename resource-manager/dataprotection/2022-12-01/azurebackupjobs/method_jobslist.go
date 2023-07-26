@@ -25,7 +25,7 @@ type JobsListCompleteResult struct {
 // JobsList ...
 func (c AzureBackupJobsClient) JobsList(ctx context.Context, id BackupVaultId) (result JobsListOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

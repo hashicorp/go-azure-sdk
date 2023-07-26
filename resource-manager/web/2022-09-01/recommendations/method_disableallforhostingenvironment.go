@@ -47,7 +47,7 @@ func (o DisableAllForHostingEnvironmentOperationOptions) ToQuery() *client.Query
 // DisableAllForHostingEnvironment ...
 func (c RecommendationsClient) DisableAllForHostingEnvironment(ctx context.Context, id HostingEnvironmentId, options DisableAllForHostingEnvironmentOperationOptions) (result DisableAllForHostingEnvironmentOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},

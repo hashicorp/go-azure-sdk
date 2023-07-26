@@ -20,7 +20,7 @@ type GetSourceControlOperationResponse struct {
 // GetSourceControl ...
 func (c ResourceProvidersClient) GetSourceControl(ctx context.Context, id SourceControlId) (result GetSourceControlOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

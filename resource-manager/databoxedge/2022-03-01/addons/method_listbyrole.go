@@ -25,7 +25,7 @@ type ListByRoleCompleteResult struct {
 // ListByRole ...
 func (c AddonsClient) ListByRole(ctx context.Context, id RoleId) (result ListByRoleOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

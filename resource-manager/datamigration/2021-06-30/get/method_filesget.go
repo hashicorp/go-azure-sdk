@@ -20,7 +20,7 @@ type FilesGetOperationResponse struct {
 // FilesGet ...
 func (c GETClient) FilesGet(ctx context.Context, id FileId) (result FilesGetOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

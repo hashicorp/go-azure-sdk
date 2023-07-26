@@ -20,7 +20,7 @@ type ResetAllFiltersForWebAppOperationResponse struct {
 // ResetAllFiltersForWebApp ...
 func (c RecommendationsClient) ResetAllFiltersForWebApp(ctx context.Context, id SiteId) (result ResetAllFiltersForWebAppOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},

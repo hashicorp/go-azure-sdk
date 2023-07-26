@@ -25,7 +25,7 @@ type ListMultiRolePoolSkusCompleteResult struct {
 // ListMultiRolePoolSkus ...
 func (c AppServiceEnvironmentsClient) ListMultiRolePoolSkus(ctx context.Context, id HostingEnvironmentId) (result ListMultiRolePoolSkusOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

@@ -20,7 +20,7 @@ type CreateDeploymentOperationResponse struct {
 // CreateDeployment ...
 func (c WebAppsClient) CreateDeployment(ctx context.Context, id DeploymentId, input Deployment) (result CreateDeploymentOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

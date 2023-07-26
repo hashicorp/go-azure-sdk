@@ -23,7 +23,7 @@ type RevalidateOperationResponse struct {
 // Revalidate ...
 func (c EncryptionProtectorsClient) Revalidate(ctx context.Context, id ServerId) (result RevalidateOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusOK,

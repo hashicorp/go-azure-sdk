@@ -25,7 +25,7 @@ type ListByGroupCompleteResult struct {
 // ListByGroup ...
 func (c SIMsClient) ListByGroup(ctx context.Context, id SimGroupId) (result ListByGroupOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

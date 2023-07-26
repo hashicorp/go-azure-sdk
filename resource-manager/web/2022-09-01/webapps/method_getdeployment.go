@@ -20,7 +20,7 @@ type GetDeploymentOperationResponse struct {
 // GetDeployment ...
 func (c WebAppsClient) GetDeployment(ctx context.Context, id DeploymentId) (result GetDeploymentOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

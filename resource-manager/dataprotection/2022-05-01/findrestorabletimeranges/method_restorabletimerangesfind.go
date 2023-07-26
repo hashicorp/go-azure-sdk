@@ -21,7 +21,7 @@ type RestorableTimeRangesFindOperationResponse struct {
 // RestorableTimeRangesFind ...
 func (c FindRestorableTimeRangesClient) RestorableTimeRangesFind(ctx context.Context, id BackupInstanceId, input AzureBackupFindRestorableTimeRangesRequest) (result RestorableTimeRangesFindOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

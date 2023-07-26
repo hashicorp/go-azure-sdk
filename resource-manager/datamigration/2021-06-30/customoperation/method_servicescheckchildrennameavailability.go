@@ -21,7 +21,7 @@ type ServicesCheckChildrenNameAvailabilityOperationResponse struct {
 // ServicesCheckChildrenNameAvailability ...
 func (c CustomOperationClient) ServicesCheckChildrenNameAvailability(ctx context.Context, id ServiceId, input NameAvailabilityRequest) (result ServicesCheckChildrenNameAvailabilityOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

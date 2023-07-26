@@ -20,7 +20,7 @@ type GetExecutionDetailsOperationResponse struct {
 // GetExecutionDetails ...
 func (c ExperimentsClient) GetExecutionDetails(ctx context.Context, id ExecutionDetailId) (result GetExecutionDetailsOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

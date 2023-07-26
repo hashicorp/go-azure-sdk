@@ -23,7 +23,7 @@ type RegistryEnvironmentContainersDeleteOperationResponse struct {
 // RegistryEnvironmentContainersDelete ...
 func (c EnvironmentContainerClient) RegistryEnvironmentContainersDelete(ctx context.Context, id RegistryEnvironmentId) (result RegistryEnvironmentContainersDeleteOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusNoContent,

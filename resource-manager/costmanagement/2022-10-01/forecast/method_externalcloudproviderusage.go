@@ -48,7 +48,7 @@ func (o ExternalCloudProviderUsageOperationOptions) ToQuery() *client.QueryParam
 // ExternalCloudProviderUsage ...
 func (c ForecastClient) ExternalCloudProviderUsage(ctx context.Context, id ExternalCloudProviderTypeId, input ForecastDefinition, options ExternalCloudProviderUsageOperationOptions) (result ExternalCloudProviderUsageOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

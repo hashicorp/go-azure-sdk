@@ -23,7 +23,7 @@ type DeleteDnsZoneOperationResponse struct {
 // DeleteDnsZone ...
 func (c WorkloadNetworksClient) DeleteDnsZone(ctx context.Context, id DnsZoneId) (result DeleteDnsZoneOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusNoContent,

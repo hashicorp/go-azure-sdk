@@ -21,7 +21,7 @@ type GetAseV3NetworkingConfigurationOperationResponse struct {
 // GetAseV3NetworkingConfiguration ...
 func (c AppServiceEnvironmentsClient) GetAseV3NetworkingConfiguration(ctx context.Context, id HostingEnvironmentId) (result GetAseV3NetworkingConfigurationOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

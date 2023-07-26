@@ -23,7 +23,7 @@ type SettingsCreateOrUpdateOperationResponse struct {
 // SettingsCreateOrUpdate ...
 func (c ServerDevOpsAuditClient) SettingsCreateOrUpdate(ctx context.Context, id ServerId, input ServerDevOpsAuditingSettings) (result SettingsCreateOrUpdateOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusOK,

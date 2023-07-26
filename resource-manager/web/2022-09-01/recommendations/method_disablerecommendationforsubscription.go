@@ -20,7 +20,7 @@ type DisableRecommendationForSubscriptionOperationResponse struct {
 // DisableRecommendationForSubscription ...
 func (c RecommendationsClient) DisableRecommendationForSubscription(ctx context.Context, id RecommendationId) (result DisableRecommendationForSubscriptionOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

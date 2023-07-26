@@ -50,7 +50,7 @@ func (o AssociateTrafficFilterAssociateOperationOptions) ToQuery() *client.Query
 // AssociateTrafficFilterAssociate ...
 func (c TrafficFilterClient) AssociateTrafficFilterAssociate(ctx context.Context, id MonitorId, options AssociateTrafficFilterAssociateOperationOptions) (result AssociateTrafficFilterAssociateOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 		},

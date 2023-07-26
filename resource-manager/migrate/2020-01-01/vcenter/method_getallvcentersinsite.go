@@ -52,7 +52,7 @@ func (o GetAllVCentersInSiteOperationOptions) ToQuery() *client.QueryParams {
 // GetAllVCentersInSite ...
 func (c VCenterClient) GetAllVCentersInSite(ctx context.Context, id VMwareSiteId, options GetAllVCentersInSiteOperationOptions) (result GetAllVCentersInSiteOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

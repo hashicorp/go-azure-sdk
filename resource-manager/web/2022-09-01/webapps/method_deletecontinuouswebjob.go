@@ -19,7 +19,7 @@ type DeleteContinuousWebJobOperationResponse struct {
 // DeleteContinuousWebJob ...
 func (c WebAppsClient) DeleteContinuousWebJob(ctx context.Context, id ContinuousWebJobId) (result DeleteContinuousWebJobOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 			http.StatusOK,

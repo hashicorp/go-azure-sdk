@@ -23,7 +23,7 @@ type CreateInstanceFunctionSlotOperationResponse struct {
 // CreateInstanceFunctionSlot ...
 func (c WebAppsClient) CreateInstanceFunctionSlot(ctx context.Context, id SlotFunctionId, input FunctionEnvelope) (result CreateInstanceFunctionSlotOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},

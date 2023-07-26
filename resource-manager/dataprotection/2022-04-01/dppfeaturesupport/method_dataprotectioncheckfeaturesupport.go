@@ -22,7 +22,7 @@ type DataProtectionCheckFeatureSupportOperationResponse struct {
 // DataProtectionCheckFeatureSupport ...
 func (c DppFeatureSupportClient) DataProtectionCheckFeatureSupport(ctx context.Context, id LocationId, input FeatureValidationRequestBase) (result DataProtectionCheckFeatureSupportOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

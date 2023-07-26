@@ -56,7 +56,7 @@ func (o GetSiteDetectorResponseSlotOperationOptions) ToQuery() *client.QueryPara
 // GetSiteDetectorResponseSlot ...
 func (c DiagnosticsClient) GetSiteDetectorResponseSlot(ctx context.Context, id SlotDetectorId, options GetSiteDetectorResponseSlotOperationOptions) (result GetSiteDetectorResponseSlotOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

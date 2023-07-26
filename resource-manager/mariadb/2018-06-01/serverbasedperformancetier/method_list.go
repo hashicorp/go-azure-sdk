@@ -21,7 +21,7 @@ type ListOperationResponse struct {
 // List ...
 func (c ServerBasedPerformanceTierClient) List(ctx context.Context, id ServerId) (result ListOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

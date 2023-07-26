@@ -21,7 +21,7 @@ type GetDiagnosticRemoteSupportSettingsOperationResponse struct {
 // GetDiagnosticRemoteSupportSettings ...
 func (c DiagnosticSettingsClient) GetDiagnosticRemoteSupportSettings(ctx context.Context, id DataBoxEdgeDeviceId) (result GetDiagnosticRemoteSupportSettingsOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

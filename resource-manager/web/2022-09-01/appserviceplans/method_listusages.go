@@ -52,7 +52,7 @@ func (o ListUsagesOperationOptions) ToQuery() *client.QueryParams {
 // ListUsages ...
 func (c AppServicePlansClient) ListUsages(ctx context.Context, id ServerFarmId, options ListUsagesOperationOptions) (result ListUsagesOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

@@ -56,7 +56,7 @@ func (o ListRecommendedByDatabaseOperationOptions) ToQuery() *client.QueryParams
 // ListRecommendedByDatabase ...
 func (c ManagedDatabaseSensitivityLabelsClient) ListRecommendedByDatabase(ctx context.Context, id ManagedInstanceDatabaseId, options ListRecommendedByDatabaseOperationOptions) (result ListRecommendedByDatabaseOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

@@ -25,7 +25,7 @@ type ListLinkableEnvironmentsCompleteResult struct {
 // ListLinkableEnvironments ...
 func (c MonitorsClient) ListLinkableEnvironments(ctx context.Context, id MonitorId, input LinkableEnvironmentRequest) (result ListLinkableEnvironmentsOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

@@ -20,7 +20,7 @@ type GetHostNameBindingOperationResponse struct {
 // GetHostNameBinding ...
 func (c WebAppsClient) GetHostNameBinding(ctx context.Context, id HostNameBindingId) (result GetHostNameBindingOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

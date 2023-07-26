@@ -21,7 +21,7 @@ type DisasterRecoveryConfigsListKeysOperationResponse struct {
 // DisasterRecoveryConfigsListKeys ...
 func (c AuthorizationRulesDisasterRecoveryConfigsClient) DisasterRecoveryConfigsListKeys(ctx context.Context, id DisasterRecoveryConfigAuthorizationRuleId) (result DisasterRecoveryConfigsListKeysOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

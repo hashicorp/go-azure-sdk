@@ -26,7 +26,7 @@ type ServicesListByResourceGroupCompleteResult struct {
 // ServicesListByResourceGroup ...
 func (c CollectionClient) ServicesListByResourceGroup(ctx context.Context, id commonids.ResourceGroupId) (result ServicesListByResourceGroupOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

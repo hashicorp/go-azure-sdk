@@ -20,7 +20,7 @@ type RegistriesGetOperationResponse struct {
 // RegistriesGet ...
 func (c RegistryManagementClient) RegistriesGet(ctx context.Context, id RegistryId) (result RegistriesGetOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

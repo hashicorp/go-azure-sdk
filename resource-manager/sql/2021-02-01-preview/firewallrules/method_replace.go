@@ -21,7 +21,7 @@ type ReplaceOperationResponse struct {
 // Replace ...
 func (c FirewallRulesClient) Replace(ctx context.Context, id ServerId, input FirewallRuleList) (result ReplaceOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusOK,

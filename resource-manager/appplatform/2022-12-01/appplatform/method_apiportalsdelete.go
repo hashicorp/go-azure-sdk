@@ -23,7 +23,7 @@ type ApiPortalsDeleteOperationResponse struct {
 // ApiPortalsDelete ...
 func (c AppPlatformClient) ApiPortalsDelete(ctx context.Context, id ApiPortalId) (result ApiPortalsDeleteOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusNoContent,

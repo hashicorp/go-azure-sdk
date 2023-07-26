@@ -47,7 +47,7 @@ func (o ResetAllFiltersForHostingEnvironmentOperationOptions) ToQuery() *client.
 // ResetAllFiltersForHostingEnvironment ...
 func (c RecommendationsClient) ResetAllFiltersForHostingEnvironment(ctx context.Context, id HostingEnvironmentId, options ResetAllFiltersForHostingEnvironmentOperationOptions) (result ResetAllFiltersForHostingEnvironmentOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},

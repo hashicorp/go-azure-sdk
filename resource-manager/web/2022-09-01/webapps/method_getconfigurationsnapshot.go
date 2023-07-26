@@ -20,7 +20,7 @@ type GetConfigurationSnapshotOperationResponse struct {
 // GetConfigurationSnapshot ...
 func (c WebAppsClient) GetConfigurationSnapshot(ctx context.Context, id SnapshotId) (result GetConfigurationSnapshotOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

@@ -23,7 +23,7 @@ type ConfigurationServicesCreateOrUpdateOperationResponse struct {
 // ConfigurationServicesCreateOrUpdate ...
 func (c AppPlatformClient) ConfigurationServicesCreateOrUpdate(ctx context.Context, id ConfigurationServiceId, input ConfigurationServiceResource) (result ConfigurationServicesCreateOrUpdateOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 			http.StatusOK,

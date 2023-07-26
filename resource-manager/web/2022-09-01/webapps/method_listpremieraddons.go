@@ -21,7 +21,7 @@ type ListPremierAddOnsOperationResponse struct {
 // ListPremierAddOns ...
 func (c WebAppsClient) ListPremierAddOns(ctx context.Context, id SiteId) (result ListPremierAddOnsOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

@@ -23,7 +23,7 @@ type RegistriesCreateOrUpdateOperationResponse struct {
 // RegistriesCreateOrUpdate ...
 func (c RegistryManagementClient) RegistriesCreateOrUpdate(ctx context.Context, id RegistryId, input RegistryTrackedResource) (result RegistriesCreateOrUpdateOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 			http.StatusOK,

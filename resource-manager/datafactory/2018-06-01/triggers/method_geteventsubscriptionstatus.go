@@ -21,7 +21,7 @@ type GetEventSubscriptionStatusOperationResponse struct {
 // GetEventSubscriptionStatus ...
 func (c TriggersClient) GetEventSubscriptionStatus(ctx context.Context, id TriggerId) (result GetEventSubscriptionStatusOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

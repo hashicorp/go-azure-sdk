@@ -23,7 +23,7 @@ type CancelVerificationOperationResponse struct {
 // CancelVerification ...
 func (c DomainsClient) CancelVerification(ctx context.Context, id DomainId, input VerificationParameter) (result CancelVerificationOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 		},

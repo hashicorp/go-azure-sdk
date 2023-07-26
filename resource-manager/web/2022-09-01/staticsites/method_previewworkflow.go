@@ -21,7 +21,7 @@ type PreviewWorkflowOperationResponse struct {
 // PreviewWorkflow ...
 func (c StaticSitesClient) PreviewWorkflow(ctx context.Context, id ProviderLocationId, input StaticSitesWorkflowPreviewRequest) (result PreviewWorkflowOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

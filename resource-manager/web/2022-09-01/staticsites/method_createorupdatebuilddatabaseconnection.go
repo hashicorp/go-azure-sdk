@@ -20,7 +20,7 @@ type CreateOrUpdateBuildDatabaseConnectionOperationResponse struct {
 // CreateOrUpdateBuildDatabaseConnection ...
 func (c StaticSitesClient) CreateOrUpdateBuildDatabaseConnection(ctx context.Context, id BuildDatabaseConnectionId, input DatabaseConnection) (result CreateOrUpdateBuildDatabaseConnectionOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

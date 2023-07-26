@@ -21,7 +21,7 @@ type ListAuthKeysOperationResponse struct {
 // ListAuthKeys ...
 func (c IntegrationRuntimesClient) ListAuthKeys(ctx context.Context, id IntegrationRuntimeId) (result ListAuthKeysOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

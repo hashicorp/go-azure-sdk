@@ -21,7 +21,7 @@ type QueryByPipelineRunOperationResponse struct {
 // QueryByPipelineRun ...
 func (c ActivityrunsClient) QueryByPipelineRun(ctx context.Context, id PipelineRunId, input RunFilterParameters) (result QueryByPipelineRunOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

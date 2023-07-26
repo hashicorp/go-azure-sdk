@@ -25,7 +25,7 @@ type CredentialOperationsListByFactoryCompleteResult struct {
 // CredentialOperationsListByFactory ...
 func (c CredentialsClient) CredentialOperationsListByFactory(ctx context.Context, id FactoryId) (result CredentialOperationsListByFactoryOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

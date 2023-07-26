@@ -23,7 +23,7 @@ type BuildServiceBuilderDeleteOperationResponse struct {
 // BuildServiceBuilderDelete ...
 func (c AppPlatformClient) BuildServiceBuilderDelete(ctx context.Context, id BuilderId) (result BuildServiceBuilderDeleteOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusNoContent,

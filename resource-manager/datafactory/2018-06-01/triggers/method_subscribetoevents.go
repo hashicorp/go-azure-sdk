@@ -23,7 +23,7 @@ type SubscribeToEventsOperationResponse struct {
 // SubscribeToEvents ...
 func (c TriggersClient) SubscribeToEvents(ctx context.Context, id TriggerId) (result SubscribeToEventsOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusOK,

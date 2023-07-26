@@ -52,7 +52,7 @@ func (o GetAllHostsInSiteOperationOptions) ToQuery() *client.QueryParams {
 // GetAllHostsInSite ...
 func (c HyperVHostClient) GetAllHostsInSite(ctx context.Context, id HyperVSiteId, options GetAllHostsInSiteOperationOptions) (result GetAllHostsInSiteOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

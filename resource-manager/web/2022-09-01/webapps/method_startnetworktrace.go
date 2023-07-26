@@ -58,7 +58,7 @@ func (o StartNetworkTraceOperationOptions) ToQuery() *client.QueryParams {
 // StartNetworkTrace ...
 func (c WebAppsClient) StartNetworkTrace(ctx context.Context, id SiteId, options StartNetworkTraceOperationOptions) (result StartNetworkTraceOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusOK,

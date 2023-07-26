@@ -23,7 +23,7 @@ type CommitmentPlansUpdatePlanOperationResponse struct {
 // CommitmentPlansUpdatePlan ...
 func (c CognitiveServicesCommitmentPlansClient) CommitmentPlansUpdatePlan(ctx context.Context, id CommitmentPlanId, input PatchResourceTagsAndSku) (result CommitmentPlansUpdatePlanOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusOK,

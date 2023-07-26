@@ -76,7 +76,7 @@ func (o ListByAgentOperationOptions) ToQuery() *client.QueryParams {
 // ListByAgent ...
 func (c JobExecutionsClient) ListByAgent(ctx context.Context, id JobAgentId, options ListByAgentOperationOptions) (result ListByAgentOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

@@ -20,7 +20,7 @@ type GetDnsZoneOperationResponse struct {
 // GetDnsZone ...
 func (c WorkloadNetworksClient) GetDnsZone(ctx context.Context, id DnsZoneId) (result GetDnsZoneOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

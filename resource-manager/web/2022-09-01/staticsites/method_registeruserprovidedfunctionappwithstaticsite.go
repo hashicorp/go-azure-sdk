@@ -50,7 +50,7 @@ func (o RegisterUserProvidedFunctionAppWithStaticSiteOperationOptions) ToQuery()
 // RegisterUserProvidedFunctionAppWithStaticSite ...
 func (c StaticSitesClient) RegisterUserProvidedFunctionAppWithStaticSite(ctx context.Context, id UserProvidedFunctionAppId, input StaticSiteUserProvidedFunctionAppARMResource, options RegisterUserProvidedFunctionAppWithStaticSiteOperationOptions) (result RegisterUserProvidedFunctionAppWithStaticSiteOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusOK,

@@ -25,7 +25,7 @@ type ListBySiteSlotCompleteResult struct {
 // ListBySiteSlot ...
 func (c ResourceHealthMetadataClient) ListBySiteSlot(ctx context.Context, id SlotId) (result ListBySiteSlotOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

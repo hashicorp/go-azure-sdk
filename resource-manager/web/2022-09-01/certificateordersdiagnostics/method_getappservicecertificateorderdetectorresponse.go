@@ -56,7 +56,7 @@ func (o GetAppServiceCertificateOrderDetectorResponseOperationOptions) ToQuery()
 // GetAppServiceCertificateOrderDetectorResponse ...
 func (c CertificateOrdersDiagnosticsClient) GetAppServiceCertificateOrderDetectorResponse(ctx context.Context, id DetectorId, options GetAppServiceCertificateOrderDetectorResponseOperationOptions) (result GetAppServiceCertificateOrderDetectorResponseOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

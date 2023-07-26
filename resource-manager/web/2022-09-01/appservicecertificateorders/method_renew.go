@@ -20,7 +20,7 @@ type RenewOperationResponse struct {
 // Renew ...
 func (c AppServiceCertificateOrdersClient) Renew(ctx context.Context, id CertificateOrderId, input RenewCertificateOrderRequest) (result RenewOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},

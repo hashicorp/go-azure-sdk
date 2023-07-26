@@ -20,7 +20,7 @@ type GetStaticSiteCustomDomainOperationResponse struct {
 // GetStaticSiteCustomDomain ...
 func (c StaticSitesClient) GetStaticSiteCustomDomain(ctx context.Context, id CustomDomainId) (result GetStaticSiteCustomDomainOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

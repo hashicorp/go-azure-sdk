@@ -21,7 +21,7 @@ type ServicesCheckNameAvailabilityOperationResponse struct {
 // ServicesCheckNameAvailability ...
 func (c POSTClient) ServicesCheckNameAvailability(ctx context.Context, id LocationId, input NameAvailabilityRequest) (result ServicesCheckNameAvailabilityOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

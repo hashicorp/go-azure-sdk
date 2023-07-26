@@ -50,7 +50,7 @@ func (o ExtensionsDeleteOperationOptions) ToQuery() *client.QueryParams {
 // ExtensionsDelete ...
 func (c ClusterExtensionsClient) ExtensionsDelete(ctx context.Context, id ScopedExtensionId, options ExtensionsDeleteOperationOptions) (result ExtensionsDeleteOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusNoContent,

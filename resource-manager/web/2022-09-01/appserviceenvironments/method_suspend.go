@@ -28,7 +28,7 @@ type SuspendCompleteResult struct {
 // Suspend ...
 func (c AppServiceEnvironmentsClient) Suspend(ctx context.Context, id HostingEnvironmentId) (result SuspendOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusOK,

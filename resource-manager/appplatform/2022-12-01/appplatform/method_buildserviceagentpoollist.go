@@ -25,7 +25,7 @@ type BuildServiceAgentPoolListCompleteResult struct {
 // BuildServiceAgentPoolList ...
 func (c AppPlatformClient) BuildServiceAgentPoolList(ctx context.Context, id BuildServiceId) (result BuildServiceAgentPoolListOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

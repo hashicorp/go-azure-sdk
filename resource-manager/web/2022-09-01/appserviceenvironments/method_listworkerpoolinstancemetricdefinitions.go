@@ -25,7 +25,7 @@ type ListWorkerPoolInstanceMetricDefinitionsCompleteResult struct {
 // ListWorkerPoolInstanceMetricDefinitions ...
 func (c AppServiceEnvironmentsClient) ListWorkerPoolInstanceMetricDefinitions(ctx context.Context, id WorkerPoolInstanceId) (result ListWorkerPoolInstanceMetricDefinitionsOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

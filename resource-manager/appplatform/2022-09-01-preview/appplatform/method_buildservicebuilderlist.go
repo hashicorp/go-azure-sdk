@@ -25,7 +25,7 @@ type BuildServiceBuilderListCompleteResult struct {
 // BuildServiceBuilderList ...
 func (c AppPlatformClient) BuildServiceBuilderList(ctx context.Context, id BuildServiceId) (result BuildServiceBuilderListOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

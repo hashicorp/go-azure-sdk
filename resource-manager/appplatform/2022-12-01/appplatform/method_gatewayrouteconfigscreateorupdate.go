@@ -23,7 +23,7 @@ type GatewayRouteConfigsCreateOrUpdateOperationResponse struct {
 // GatewayRouteConfigsCreateOrUpdate ...
 func (c AppPlatformClient) GatewayRouteConfigsCreateOrUpdate(ctx context.Context, id RouteConfigId, input GatewayRouteConfigResource) (result GatewayRouteConfigsCreateOrUpdateOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 			http.StatusOK,

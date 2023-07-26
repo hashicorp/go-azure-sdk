@@ -21,7 +21,7 @@ type ListFunctionKeysOperationResponse struct {
 // ListFunctionKeys ...
 func (c WebAppsClient) ListFunctionKeys(ctx context.Context, id FunctionId) (result ListFunctionKeysOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

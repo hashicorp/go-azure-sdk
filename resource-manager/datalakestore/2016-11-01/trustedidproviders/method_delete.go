@@ -19,7 +19,7 @@ type DeleteOperationResponse struct {
 // Delete ...
 func (c TrustedIdProvidersClient) Delete(ctx context.Context, id TrustedIdProviderId) (result DeleteOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 			http.StatusOK,

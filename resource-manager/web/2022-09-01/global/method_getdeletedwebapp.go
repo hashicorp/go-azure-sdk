@@ -20,7 +20,7 @@ type GetDeletedWebAppOperationResponse struct {
 // GetDeletedWebApp ...
 func (c GlobalClient) GetDeletedWebApp(ctx context.Context, id DeletedSiteId) (result GetDeletedWebAppOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

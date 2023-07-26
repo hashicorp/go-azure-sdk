@@ -20,7 +20,7 @@ type PutPrivateEndpointConnectionOperationResponse struct {
 // PutPrivateEndpointConnection ...
 func (c PrivateEndpointConnectionClient) PutPrivateEndpointConnection(ctx context.Context, id PrivateEndpointConnectionId, input PrivateEndpointConnection) (result PutPrivateEndpointConnectionOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

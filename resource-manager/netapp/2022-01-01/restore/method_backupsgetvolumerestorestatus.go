@@ -21,7 +21,7 @@ type BackupsGetVolumeRestoreStatusOperationResponse struct {
 // BackupsGetVolumeRestoreStatus ...
 func (c RestoreClient) BackupsGetVolumeRestoreStatus(ctx context.Context, id VolumeId) (result BackupsGetVolumeRestoreStatusOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

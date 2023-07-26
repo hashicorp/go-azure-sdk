@@ -20,7 +20,7 @@ type CancelSyncOperationResponse struct {
 // CancelSync ...
 func (c SyncGroupsClient) CancelSync(ctx context.Context, id SyncGroupId) (result CancelSyncOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

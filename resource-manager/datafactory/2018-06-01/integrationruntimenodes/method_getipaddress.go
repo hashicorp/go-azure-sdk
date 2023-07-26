@@ -21,7 +21,7 @@ type GetIPAddressOperationResponse struct {
 // GetIPAddress ...
 func (c IntegrationRuntimeNodesClient) GetIPAddress(ctx context.Context, id NodeId) (result GetIPAddressOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

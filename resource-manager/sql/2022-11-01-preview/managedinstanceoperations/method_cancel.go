@@ -20,7 +20,7 @@ type CancelOperationResponse struct {
 // Cancel ...
 func (c ManagedInstanceOperationsClient) Cancel(ctx context.Context, id OperationId) (result CancelOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

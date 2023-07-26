@@ -21,7 +21,7 @@ type GetFeatureValueByFactoryOperationResponse struct {
 // GetFeatureValueByFactory ...
 func (c ExposureControlClient) GetFeatureValueByFactory(ctx context.Context, id FactoryId, input ExposureControlRequest) (result GetFeatureValueByFactoryOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

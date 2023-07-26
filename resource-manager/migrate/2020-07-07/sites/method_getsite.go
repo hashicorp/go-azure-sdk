@@ -20,7 +20,7 @@ type GetSiteOperationResponse struct {
 // GetSite ...
 func (c SitesClient) GetSite(ctx context.Context, id VMwareSiteId) (result GetSiteOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

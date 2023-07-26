@@ -20,7 +20,7 @@ type GetOperationResponse struct {
 // Get ...
 func (c ManagedInstanceKeysClient) Get(ctx context.Context, id ManagedInstanceKeyId) (result GetOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

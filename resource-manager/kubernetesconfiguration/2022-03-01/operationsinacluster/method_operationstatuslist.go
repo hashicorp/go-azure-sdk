@@ -26,7 +26,7 @@ type OperationStatusListCompleteResult struct {
 // OperationStatusList ...
 func (c OperationsInAClusterClient) OperationStatusList(ctx context.Context, id commonids.ScopeId) (result OperationStatusListOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

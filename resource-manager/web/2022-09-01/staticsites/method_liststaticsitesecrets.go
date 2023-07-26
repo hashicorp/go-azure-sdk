@@ -21,7 +21,7 @@ type ListStaticSiteSecretsOperationResponse struct {
 // ListStaticSiteSecrets ...
 func (c StaticSitesClient) ListStaticSiteSecrets(ctx context.Context, id StaticSiteId) (result ListStaticSiteSecretsOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

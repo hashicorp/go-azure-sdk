@@ -23,7 +23,7 @@ type BulkUploadOperationResponse struct {
 // BulkUpload ...
 func (c SIMsClient) BulkUpload(ctx context.Context, id SimGroupId, input SimUploadList) (result BulkUploadOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusOK,

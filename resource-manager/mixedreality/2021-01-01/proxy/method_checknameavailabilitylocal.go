@@ -21,7 +21,7 @@ type CheckNameAvailabilityLocalOperationResponse struct {
 // CheckNameAvailabilityLocal ...
 func (c ProxyClient) CheckNameAvailabilityLocal(ctx context.Context, id LocationId, input CheckNameAvailabilityRequest) (result CheckNameAvailabilityLocalOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

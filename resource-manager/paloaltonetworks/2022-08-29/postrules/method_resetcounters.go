@@ -48,7 +48,7 @@ func (o ResetCountersOperationOptions) ToQuery() *client.QueryParams {
 // ResetCounters ...
 func (c PostRulesClient) ResetCounters(ctx context.Context, id PostRuleId, options ResetCountersOperationOptions) (result ResetCountersOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

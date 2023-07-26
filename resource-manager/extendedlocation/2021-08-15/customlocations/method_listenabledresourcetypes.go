@@ -25,7 +25,7 @@ type ListEnabledResourceTypesCompleteResult struct {
 // ListEnabledResourceTypes ...
 func (c CustomLocationsClient) ListEnabledResourceTypes(ctx context.Context, id CustomLocationId) (result ListEnabledResourceTypesOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

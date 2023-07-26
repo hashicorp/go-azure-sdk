@@ -22,7 +22,7 @@ type ClustersListAvailableClusterRegionOperationResponse struct {
 // ClustersListAvailableClusterRegion ...
 func (c EventHubsClustersAvailableClusterRegionsClient) ClustersListAvailableClusterRegion(ctx context.Context, id commonids.SubscriptionId) (result ClustersListAvailableClusterRegionOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

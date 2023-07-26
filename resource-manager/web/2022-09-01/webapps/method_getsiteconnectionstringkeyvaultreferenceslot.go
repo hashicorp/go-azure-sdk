@@ -20,7 +20,7 @@ type GetSiteConnectionStringKeyVaultReferenceSlotOperationResponse struct {
 // GetSiteConnectionStringKeyVaultReferenceSlot ...
 func (c WebAppsClient) GetSiteConnectionStringKeyVaultReferenceSlot(ctx context.Context, id ConfigReferenceConnectionStringId) (result GetSiteConnectionStringKeyVaultReferenceSlotOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

@@ -20,7 +20,7 @@ type SetOperationResponse struct {
 // Set ...
 func (c DefaultAccountClient) Set(ctx context.Context, input DefaultAccountPayload) (result SetOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

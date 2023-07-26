@@ -22,7 +22,7 @@ type HierarchySettingsListOperationResponse struct {
 // HierarchySettingsList ...
 func (c ManagementGroupsClient) HierarchySettingsList(ctx context.Context, id commonids.ManagementGroupId) (result HierarchySettingsListOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

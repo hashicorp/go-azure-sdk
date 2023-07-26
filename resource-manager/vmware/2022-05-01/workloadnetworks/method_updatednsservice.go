@@ -23,7 +23,7 @@ type UpdateDnsServiceOperationResponse struct {
 // UpdateDnsService ...
 func (c WorkloadNetworksClient) UpdateDnsService(ctx context.Context, id DnsServiceId, input WorkloadNetworkDnsService) (result UpdateDnsServiceOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusOK,

@@ -20,7 +20,7 @@ type GetDhcpOperationResponse struct {
 // GetDhcp ...
 func (c WorkloadNetworksClient) GetDhcp(ctx context.Context, id DhcpConfigurationId) (result GetDhcpOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

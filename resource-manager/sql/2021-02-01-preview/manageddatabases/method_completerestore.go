@@ -23,7 +23,7 @@ type CompleteRestoreOperationResponse struct {
 // CompleteRestore ...
 func (c ManagedDatabasesClient) CompleteRestore(ctx context.Context, id ManagedInstanceDatabaseId, input CompleteDatabaseRestoreDefinition) (result CompleteRestoreOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusOK,

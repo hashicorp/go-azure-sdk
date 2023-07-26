@@ -51,7 +51,7 @@ func (o DeleteSlotOperationOptions) ToQuery() *client.QueryParams {
 // DeleteSlot ...
 func (c WebAppsClient) DeleteSlot(ctx context.Context, id SlotId, options DeleteSlotOperationOptions) (result DeleteSlotOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 			http.StatusOK,

@@ -23,7 +23,7 @@ type CreatePortMirroringOperationResponse struct {
 // CreatePortMirroring ...
 func (c WorkloadNetworksClient) CreatePortMirroring(ctx context.Context, id PortMirroringProfileId, input WorkloadNetworkPortMirroring) (result CreatePortMirroringOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 			http.StatusOK,

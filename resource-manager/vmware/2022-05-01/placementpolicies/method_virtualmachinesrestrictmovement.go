@@ -23,7 +23,7 @@ type VirtualMachinesRestrictMovementOperationResponse struct {
 // VirtualMachinesRestrictMovement ...
 func (c PlacementPoliciesClient) VirtualMachinesRestrictMovement(ctx context.Context, id VirtualMachineId, input VirtualMachineRestrictMovement) (result VirtualMachinesRestrictMovementOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 		},

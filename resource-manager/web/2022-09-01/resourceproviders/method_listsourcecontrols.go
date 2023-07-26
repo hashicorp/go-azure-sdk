@@ -25,7 +25,7 @@ type ListSourceControlsCompleteResult struct {
 // ListSourceControls ...
 func (c ResourceProvidersClient) ListSourceControls(ctx context.Context) (result ListSourceControlsOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

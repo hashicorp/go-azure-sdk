@@ -25,7 +25,7 @@ type ListAssociationsCompleteResult struct {
 // ListAssociations ...
 func (c CommitmentPlansClient) ListAssociations(ctx context.Context, id CommitmentPlanId) (result ListAssociationsOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

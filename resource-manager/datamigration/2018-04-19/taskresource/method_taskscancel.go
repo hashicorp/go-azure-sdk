@@ -21,7 +21,7 @@ type TasksCancelOperationResponse struct {
 // TasksCancel ...
 func (c TaskResourceClient) TasksCancel(ctx context.Context, id TaskId) (result TasksCancelOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

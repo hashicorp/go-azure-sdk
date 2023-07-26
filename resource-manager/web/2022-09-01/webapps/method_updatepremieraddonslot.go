@@ -20,7 +20,7 @@ type UpdatePremierAddOnSlotOperationResponse struct {
 // UpdatePremierAddOnSlot ...
 func (c WebAppsClient) UpdatePremierAddOnSlot(ctx context.Context, id SlotPremierAddonId, input PremierAddOnPatchResource) (result UpdatePremierAddOnSlotOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

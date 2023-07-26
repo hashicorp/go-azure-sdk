@@ -23,7 +23,7 @@ type CreateOrUpdateOperationResponse struct {
 // CreateOrUpdate ...
 func (c WorkspacePrivateEndpointConnectionsClient) CreateOrUpdate(ctx context.Context, id WorkspacePrivateEndpointConnectionId, input PrivateEndpointConnectionDescription) (result CreateOrUpdateOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

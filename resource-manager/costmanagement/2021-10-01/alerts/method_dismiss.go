@@ -20,7 +20,7 @@ type DismissOperationResponse struct {
 // Dismiss ...
 func (c AlertsClient) Dismiss(ctx context.Context, id ScopedAlertId, input DismissAlertPayload) (result DismissOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

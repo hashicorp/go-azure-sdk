@@ -23,7 +23,7 @@ type UpgradeDataWarehouseOperationResponse struct {
 // UpgradeDataWarehouse ...
 func (c DatabasesClient) UpgradeDataWarehouse(ctx context.Context, id DatabaseId) (result UpgradeDataWarehouseOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusOK,

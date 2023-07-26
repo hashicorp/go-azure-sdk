@@ -23,7 +23,7 @@ type DownloadByBillingAccountPeriodOperationResponse struct {
 // DownloadByBillingAccountPeriod ...
 func (c PriceSheetClient) DownloadByBillingAccountPeriod(ctx context.Context, id BillingAccountBillingPeriodId) (result DownloadByBillingAccountPeriodOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusOK,

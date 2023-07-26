@@ -23,7 +23,7 @@ type ReconcileOperationResponse struct {
 // Reconcile ...
 func (c NetworkSecurityPerimeterConfigurationsClient) Reconcile(ctx context.Context, id NetworkSecurityPerimeterConfigurationId) (result ReconcileOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusOK,

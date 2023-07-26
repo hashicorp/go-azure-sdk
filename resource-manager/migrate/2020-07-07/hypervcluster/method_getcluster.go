@@ -20,7 +20,7 @@ type GetClusterOperationResponse struct {
 // GetCluster ...
 func (c HyperVClusterClient) GetCluster(ctx context.Context, id ClusterId) (result GetClusterOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

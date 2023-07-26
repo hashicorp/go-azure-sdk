@@ -21,7 +21,7 @@ type PrivateEndpointConnectionsListOperationResponse struct {
 // PrivateEndpointConnectionsList ...
 func (c NetworkingClient) PrivateEndpointConnectionsList(ctx context.Context, id IotAppId) (result PrivateEndpointConnectionsListOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

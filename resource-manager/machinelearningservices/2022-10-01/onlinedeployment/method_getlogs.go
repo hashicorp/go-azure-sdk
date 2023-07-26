@@ -21,7 +21,7 @@ type GetLogsOperationResponse struct {
 // GetLogs ...
 func (c OnlineDeploymentClient) GetLogs(ctx context.Context, id OnlineEndpointDeploymentId, input DeploymentLogsRequest) (result GetLogsOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

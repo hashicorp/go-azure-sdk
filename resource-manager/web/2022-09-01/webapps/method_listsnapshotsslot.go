@@ -25,7 +25,7 @@ type ListSnapshotsSlotCompleteResult struct {
 // ListSnapshotsSlot ...
 func (c WebAppsClient) ListSnapshotsSlot(ctx context.Context, id SlotId) (result ListSnapshotsSlotOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

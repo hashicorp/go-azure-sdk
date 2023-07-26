@@ -52,7 +52,7 @@ func (o ListUsagesSlotOperationOptions) ToQuery() *client.QueryParams {
 // ListUsagesSlot ...
 func (c WebAppsClient) ListUsagesSlot(ctx context.Context, id SlotId, options ListUsagesSlotOperationOptions) (result ListUsagesSlotOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

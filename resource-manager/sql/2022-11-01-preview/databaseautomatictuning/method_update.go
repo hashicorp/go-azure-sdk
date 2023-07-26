@@ -21,7 +21,7 @@ type UpdateOperationResponse struct {
 // Update ...
 func (c DatabaseAutomaticTuningClient) Update(ctx context.Context, id DatabaseId, input DatabaseAutomaticTuning) (result UpdateOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

@@ -50,7 +50,7 @@ func (o FailoverOperationOptions) ToQuery() *client.QueryParams {
 // Failover ...
 func (c DatabasesClient) Failover(ctx context.Context, id DatabaseId, options FailoverOperationOptions) (result FailoverOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusOK,

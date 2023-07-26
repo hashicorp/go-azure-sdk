@@ -52,7 +52,7 @@ func (o ReservationsDetailsListByReservationOrderAndReservationOperationOptions)
 // ReservationsDetailsListByReservationOrderAndReservation ...
 func (c ReservationDetailsClient) ReservationsDetailsListByReservationOrderAndReservation(ctx context.Context, id ReservationId, options ReservationsDetailsListByReservationOrderAndReservationOperationOptions) (result ReservationsDetailsListByReservationOrderAndReservationOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

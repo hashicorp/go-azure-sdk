@@ -21,7 +21,7 @@ type UpgradableVersionsDetailsOperationResponse struct {
 // UpgradableVersionsDetails ...
 func (c MonitorUpgradableVersionsClient) UpgradableVersionsDetails(ctx context.Context, id MonitorId) (result UpgradableVersionsDetailsOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

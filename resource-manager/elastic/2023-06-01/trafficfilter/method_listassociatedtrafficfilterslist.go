@@ -21,7 +21,7 @@ type ListAssociatedTrafficFilterslistOperationResponse struct {
 // ListAssociatedTrafficFilterslist ...
 func (c TrafficFilterClient) ListAssociatedTrafficFilterslist(ctx context.Context, id MonitorId) (result ListAssociatedTrafficFilterslistOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

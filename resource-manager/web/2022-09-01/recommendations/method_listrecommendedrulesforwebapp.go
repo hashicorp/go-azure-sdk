@@ -56,7 +56,7 @@ func (o ListRecommendedRulesForWebAppOperationOptions) ToQuery() *client.QueryPa
 // ListRecommendedRulesForWebApp ...
 func (c RecommendationsClient) ListRecommendedRulesForWebApp(ctx context.Context, id SiteId, options ListRecommendedRulesForWebAppOperationOptions) (result ListRecommendedRulesForWebAppOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

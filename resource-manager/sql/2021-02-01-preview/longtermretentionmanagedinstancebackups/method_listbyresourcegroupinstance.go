@@ -56,7 +56,7 @@ func (o ListByResourceGroupInstanceOperationOptions) ToQuery() *client.QueryPara
 // ListByResourceGroupInstance ...
 func (c LongTermRetentionManagedInstanceBackupsClient) ListByResourceGroupInstance(ctx context.Context, id LocationLongTermRetentionManagedInstanceId, options ListByResourceGroupInstanceOperationOptions) (result ListByResourceGroupInstanceOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

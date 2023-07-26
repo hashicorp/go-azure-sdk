@@ -68,7 +68,7 @@ func (o RegistryDataVersionsListOperationOptions) ToQuery() *client.QueryParams 
 // RegistryDataVersionsList ...
 func (c DataVersionRegistryClient) RegistryDataVersionsList(ctx context.Context, id DataId, options RegistryDataVersionsListOperationOptions) (result RegistryDataVersionsListOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

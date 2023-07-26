@@ -23,7 +23,7 @@ type BindingsDeleteOperationResponse struct {
 // BindingsDelete ...
 func (c AppPlatformClient) BindingsDelete(ctx context.Context, id BindingId) (result BindingsDeleteOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusNoContent,

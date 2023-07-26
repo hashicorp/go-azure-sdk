@@ -25,7 +25,7 @@ type ListProcessModulesCompleteResult struct {
 // ListProcessModules ...
 func (c WebAppsClient) ListProcessModules(ctx context.Context, id ProcessId) (result ListProcessModulesOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

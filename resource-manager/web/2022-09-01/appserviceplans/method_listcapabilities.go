@@ -21,7 +21,7 @@ type ListCapabilitiesOperationResponse struct {
 // ListCapabilities ...
 func (c AppServicePlansClient) ListCapabilities(ctx context.Context, id ServerFarmId) (result ListCapabilitiesOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

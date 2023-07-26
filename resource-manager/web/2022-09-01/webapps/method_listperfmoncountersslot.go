@@ -52,7 +52,7 @@ func (o ListPerfMonCountersSlotOperationOptions) ToQuery() *client.QueryParams {
 // ListPerfMonCountersSlot ...
 func (c WebAppsClient) ListPerfMonCountersSlot(ctx context.Context, id SlotId, options ListPerfMonCountersSlotOperationOptions) (result ListPerfMonCountersSlotOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

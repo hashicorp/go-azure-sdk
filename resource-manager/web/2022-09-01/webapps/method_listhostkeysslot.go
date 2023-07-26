@@ -21,7 +21,7 @@ type ListHostKeysSlotOperationResponse struct {
 // ListHostKeysSlot ...
 func (c WebAppsClient) ListHostKeysSlot(ctx context.Context, id SlotId) (result ListHostKeysSlotOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

@@ -52,7 +52,7 @@ func (o RegistryCodeContainersListOperationOptions) ToQuery() *client.QueryParam
 // RegistryCodeContainersList ...
 func (c CodeContainerClient) RegistryCodeContainersList(ctx context.Context, id RegistryId, options RegistryCodeContainersListOperationOptions) (result RegistryCodeContainersListOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

@@ -20,7 +20,7 @@ type TestUpgradeAvailableNotificationOperationResponse struct {
 // TestUpgradeAvailableNotification ...
 func (c AppServiceEnvironmentsClient) TestUpgradeAvailableNotification(ctx context.Context, id HostingEnvironmentId) (result TestUpgradeAvailableNotificationOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

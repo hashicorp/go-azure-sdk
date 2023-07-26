@@ -23,7 +23,7 @@ type RegenerateKeysOperationResponse struct {
 // RegenerateKeys ...
 func (c OnlineEndpointClient) RegenerateKeys(ctx context.Context, id OnlineEndpointId, input RegenerateEndpointKeysRequest) (result RegenerateKeysOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusOK,

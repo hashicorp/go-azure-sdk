@@ -20,7 +20,7 @@ type RegistryModelVersionsGetOperationResponse struct {
 // RegistryModelVersionsGet ...
 func (c ModelVersionClient) RegistryModelVersionsGet(ctx context.Context, id RegistryModelVersionId) (result RegistryModelVersionsGetOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

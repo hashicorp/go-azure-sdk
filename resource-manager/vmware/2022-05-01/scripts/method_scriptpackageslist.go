@@ -25,7 +25,7 @@ type ScriptPackagesListCompleteResult struct {
 // ScriptPackagesList ...
 func (c ScriptsClient) ScriptPackagesList(ctx context.Context, id PrivateCloudId) (result ScriptPackagesListOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

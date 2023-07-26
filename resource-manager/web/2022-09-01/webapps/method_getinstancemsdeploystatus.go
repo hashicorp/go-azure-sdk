@@ -21,7 +21,7 @@ type GetInstanceMsDeployStatusOperationResponse struct {
 // GetInstanceMsDeployStatus ...
 func (c WebAppsClient) GetInstanceMsDeployStatus(ctx context.Context, id InstanceId) (result GetInstanceMsDeployStatusOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

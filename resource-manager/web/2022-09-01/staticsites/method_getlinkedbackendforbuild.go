@@ -20,7 +20,7 @@ type GetLinkedBackendForBuildOperationResponse struct {
 // GetLinkedBackendForBuild ...
 func (c StaticSitesClient) GetLinkedBackendForBuild(ctx context.Context, id BuildLinkedBackendId) (result GetLinkedBackendForBuildOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

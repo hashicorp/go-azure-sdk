@@ -25,7 +25,7 @@ type ListDeploymentsSlotCompleteResult struct {
 // ListDeploymentsSlot ...
 func (c WebAppsClient) ListDeploymentsSlot(ctx context.Context, id SlotId) (result ListDeploymentsSlotOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

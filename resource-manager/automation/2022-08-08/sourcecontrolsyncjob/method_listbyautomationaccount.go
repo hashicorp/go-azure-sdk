@@ -52,7 +52,7 @@ func (o ListByAutomationAccountOperationOptions) ToQuery() *client.QueryParams {
 // ListByAutomationAccount ...
 func (c SourceControlSyncJobClient) ListByAutomationAccount(ctx context.Context, id SourceControlId, options ListByAutomationAccountOperationOptions) (result ListByAutomationAccountOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

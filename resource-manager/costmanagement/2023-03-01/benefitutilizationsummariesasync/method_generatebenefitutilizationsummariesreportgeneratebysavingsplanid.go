@@ -23,7 +23,7 @@ type GenerateBenefitUtilizationSummariesReportGenerateBySavingsPlanIdOperationRe
 // GenerateBenefitUtilizationSummariesReportGenerateBySavingsPlanId ...
 func (c BenefitUtilizationSummariesAsyncClient) GenerateBenefitUtilizationSummariesReportGenerateBySavingsPlanId(ctx context.Context, id SavingsPlanId, input BenefitUtilizationSummariesRequest) (result GenerateBenefitUtilizationSummariesReportGenerateBySavingsPlanIdOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusOK,

@@ -19,7 +19,7 @@ type WorkspaceConnectionsDeleteOperationResponse struct {
 // WorkspaceConnectionsDelete ...
 func (c V2WorkspaceConnectionResourceClient) WorkspaceConnectionsDelete(ctx context.Context, id ConnectionId) (result WorkspaceConnectionsDeleteOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 			http.StatusOK,

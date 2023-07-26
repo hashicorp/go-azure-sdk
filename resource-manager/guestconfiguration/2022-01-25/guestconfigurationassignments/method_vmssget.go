@@ -20,7 +20,7 @@ type VMSSGetOperationResponse struct {
 // VMSSGet ...
 func (c GuestConfigurationAssignmentsClient) VMSSGet(ctx context.Context, id GuestConfigurationAssignmentId) (result VMSSGetOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

@@ -56,7 +56,7 @@ func (o RegistryEnvironmentContainersListOperationOptions) ToQuery() *client.Que
 // RegistryEnvironmentContainersList ...
 func (c EnvironmentContainerClient) RegistryEnvironmentContainersList(ctx context.Context, id RegistryId, options RegistryEnvironmentContainersListOperationOptions) (result RegistryEnvironmentContainersListOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

@@ -23,7 +23,7 @@ type TryPlannedBeforeForcedFailoverOperationResponse struct {
 // TryPlannedBeforeForcedFailover ...
 func (c FailoverGroupsClient) TryPlannedBeforeForcedFailover(ctx context.Context, id FailoverGroupId) (result TryPlannedBeforeForcedFailoverOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusOK,

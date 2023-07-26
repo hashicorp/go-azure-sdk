@@ -20,7 +20,7 @@ type GetPrivateEndpointConnectionSlotOperationResponse struct {
 // GetPrivateEndpointConnectionSlot ...
 func (c WebAppsClient) GetPrivateEndpointConnectionSlot(ctx context.Context, id SlotPrivateEndpointConnectionId) (result GetPrivateEndpointConnectionSlotOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

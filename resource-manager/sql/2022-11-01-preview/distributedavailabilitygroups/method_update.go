@@ -23,7 +23,7 @@ type UpdateOperationResponse struct {
 // Update ...
 func (c DistributedAvailabilityGroupsClient) Update(ctx context.Context, id DistributedAvailabilityGroupId, input DistributedAvailabilityGroup) (result UpdateOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusOK,

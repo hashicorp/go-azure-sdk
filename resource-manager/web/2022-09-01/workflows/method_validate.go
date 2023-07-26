@@ -20,7 +20,7 @@ type ValidateOperationResponse struct {
 // Validate ...
 func (c WorkflowsClient) Validate(ctx context.Context, id ManagementWorkflowId, input Workflow) (result ValidateOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

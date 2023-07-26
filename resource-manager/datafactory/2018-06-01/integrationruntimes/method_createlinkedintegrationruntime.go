@@ -21,7 +21,7 @@ type CreateLinkedIntegrationRuntimeOperationResponse struct {
 // CreateLinkedIntegrationRuntime ...
 func (c IntegrationRuntimesClient) CreateLinkedIntegrationRuntime(ctx context.Context, id IntegrationRuntimeId, input CreateLinkedIntegrationRuntimeRequest) (result CreateLinkedIntegrationRuntimeOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

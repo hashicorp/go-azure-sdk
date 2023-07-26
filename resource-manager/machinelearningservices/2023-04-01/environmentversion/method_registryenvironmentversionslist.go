@@ -64,7 +64,7 @@ func (o RegistryEnvironmentVersionsListOperationOptions) ToQuery() *client.Query
 // RegistryEnvironmentVersionsList ...
 func (c EnvironmentVersionClient) RegistryEnvironmentVersionsList(ctx context.Context, id RegistryEnvironmentId, options RegistryEnvironmentVersionsListOperationOptions) (result RegistryEnvironmentVersionsListOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

@@ -60,7 +60,7 @@ func (o ListByHostPoolOperationOptions) ToQuery() *client.QueryParams {
 // ListByHostPool ...
 func (c ScalingPlanClient) ListByHostPool(ctx context.Context, id HostPoolId, options ListByHostPoolOperationOptions) (result ListByHostPoolOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

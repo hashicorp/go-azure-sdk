@@ -52,7 +52,7 @@ func (o GetRuleDetailsByWebAppOperationOptions) ToQuery() *client.QueryParams {
 // GetRuleDetailsByWebApp ...
 func (c RecommendationsClient) GetRuleDetailsByWebApp(ctx context.Context, id SiteRecommendationId, options GetRuleDetailsByWebAppOperationOptions) (result GetRuleDetailsByWebAppOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

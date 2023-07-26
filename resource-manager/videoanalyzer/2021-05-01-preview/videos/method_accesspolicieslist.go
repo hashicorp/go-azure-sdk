@@ -52,7 +52,7 @@ func (o AccessPoliciesListOperationOptions) ToQuery() *client.QueryParams {
 // AccessPoliciesList ...
 func (c VideosClient) AccessPoliciesList(ctx context.Context, id VideoAnalyzerId, options AccessPoliciesListOperationOptions) (result AccessPoliciesListOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

@@ -52,7 +52,7 @@ func (o ReservationsDetailsListByReservationOrderOperationOptions) ToQuery() *cl
 // ReservationsDetailsListByReservationOrder ...
 func (c ReservationDetailsClient) ReservationsDetailsListByReservationOrder(ctx context.Context, id ReservationOrderId, options ReservationsDetailsListByReservationOrderOperationOptions) (result ReservationsDetailsListByReservationOrderOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

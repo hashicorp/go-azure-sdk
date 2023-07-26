@@ -23,7 +23,7 @@ type ReplaceContentOperationResponse struct {
 // ReplaceContent ...
 func (c RunbookDraftClient) ReplaceContent(ctx context.Context, id RunbookId, input []byte) (result ReplaceContentOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "text/powershell",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusOK,

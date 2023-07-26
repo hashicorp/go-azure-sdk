@@ -52,7 +52,7 @@ func (o GetAvailableStacksOperationOptions) ToQuery() *client.QueryParams {
 // GetAvailableStacks ...
 func (c ProviderClient) GetAvailableStacks(ctx context.Context, options GetAvailableStacksOperationOptions) (result GetAvailableStacksOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

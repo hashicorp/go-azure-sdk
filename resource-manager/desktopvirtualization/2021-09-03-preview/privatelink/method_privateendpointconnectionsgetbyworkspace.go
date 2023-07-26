@@ -20,7 +20,7 @@ type PrivateEndpointConnectionsGetByWorkspaceOperationResponse struct {
 // PrivateEndpointConnectionsGetByWorkspace ...
 func (c PrivateLinkClient) PrivateEndpointConnectionsGetByWorkspace(ctx context.Context, id WorkspacePrivateEndpointConnectionId) (result PrivateEndpointConnectionsGetByWorkspaceOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

@@ -25,7 +25,7 @@ type ListByElasticPoolCompleteResult struct {
 // ListByElasticPool ...
 func (c DatabasesClient) ListByElasticPool(ctx context.Context, id ElasticPoolId) (result ListByElasticPoolOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

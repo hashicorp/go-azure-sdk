@@ -56,7 +56,7 @@ func (o ListByBillingAccountIdOperationOptions) ToQuery() *client.QueryParams {
 // ListByBillingAccountId ...
 func (c BenefitUtilizationSummariesClient) ListByBillingAccountId(ctx context.Context, id BillingAccountId, options ListByBillingAccountIdOperationOptions) (result ListByBillingAccountIdOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

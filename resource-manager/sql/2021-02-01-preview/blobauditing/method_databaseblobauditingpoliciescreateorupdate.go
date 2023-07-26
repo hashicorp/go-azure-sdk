@@ -21,7 +21,7 @@ type DatabaseBlobAuditingPoliciesCreateOrUpdateOperationResponse struct {
 // DatabaseBlobAuditingPoliciesCreateOrUpdate ...
 func (c BlobAuditingClient) DatabaseBlobAuditingPoliciesCreateOrUpdate(ctx context.Context, id DatabaseId, input DatabaseBlobAuditingPolicy) (result DatabaseBlobAuditingPoliciesCreateOrUpdateOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 			http.StatusOK,

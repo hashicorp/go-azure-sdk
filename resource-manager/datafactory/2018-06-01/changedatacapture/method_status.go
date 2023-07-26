@@ -21,7 +21,7 @@ type StatusOperationResponse struct {
 // Status ...
 func (c ChangeDataCaptureClient) Status(ctx context.Context, id AdfcdcId) (result StatusOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

@@ -21,7 +21,7 @@ type ServicesListTestKeysOperationResponse struct {
 // ServicesListTestKeys ...
 func (c AppPlatformClient) ServicesListTestKeys(ctx context.Context, id SpringId) (result ServicesListTestKeysOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

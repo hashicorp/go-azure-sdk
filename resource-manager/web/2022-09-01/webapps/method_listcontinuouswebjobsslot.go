@@ -25,7 +25,7 @@ type ListContinuousWebJobsSlotCompleteResult struct {
 // ListContinuousWebJobsSlot ...
 func (c WebAppsClient) ListContinuousWebJobsSlot(ctx context.Context, id SlotId) (result ListContinuousWebJobsSlotOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

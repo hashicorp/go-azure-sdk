@@ -20,7 +20,7 @@ type GenerateNewSitePublishingPasswordOperationResponse struct {
 // GenerateNewSitePublishingPassword ...
 func (c WebAppsClient) GenerateNewSitePublishingPassword(ctx context.Context, id SiteId) (result GenerateNewSitePublishingPasswordOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 			http.StatusOK,

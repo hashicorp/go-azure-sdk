@@ -20,7 +20,7 @@ type BuildServiceAgentPoolGetOperationResponse struct {
 // BuildServiceAgentPoolGet ...
 func (c AppPlatformClient) BuildServiceAgentPoolGet(ctx context.Context, id AgentPoolId) (result BuildServiceAgentPoolGetOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

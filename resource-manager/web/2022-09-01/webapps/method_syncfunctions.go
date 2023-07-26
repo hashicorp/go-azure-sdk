@@ -20,7 +20,7 @@ type SyncFunctionsOperationResponse struct {
 // SyncFunctions ...
 func (c WebAppsClient) SyncFunctions(ctx context.Context, id SiteId) (result SyncFunctionsOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},

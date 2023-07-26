@@ -19,7 +19,7 @@ type DeleteDomainOwnershipIdentifierOperationResponse struct {
 // DeleteDomainOwnershipIdentifier ...
 func (c WebAppsClient) DeleteDomainOwnershipIdentifier(ctx context.Context, id DomainOwnershipIdentifierId) (result DeleteDomainOwnershipIdentifierOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 			http.StatusOK,

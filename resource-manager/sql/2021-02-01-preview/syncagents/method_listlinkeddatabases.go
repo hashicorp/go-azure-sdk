@@ -25,7 +25,7 @@ type ListLinkedDatabasesCompleteResult struct {
 // ListLinkedDatabases ...
 func (c SyncAgentsClient) ListLinkedDatabases(ctx context.Context, id SyncAgentId) (result ListLinkedDatabasesOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

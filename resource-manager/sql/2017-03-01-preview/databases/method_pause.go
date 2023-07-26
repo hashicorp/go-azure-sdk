@@ -23,7 +23,7 @@ type PauseOperationResponse struct {
 // Pause ...
 func (c DatabasesClient) Pause(ctx context.Context, id DatabaseId) (result PauseOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusOK,

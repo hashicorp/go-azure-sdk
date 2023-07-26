@@ -21,7 +21,7 @@ type GetScmAllowedSlotOperationResponse struct {
 // GetScmAllowedSlot ...
 func (c WebAppsClient) GetScmAllowedSlot(ctx context.Context, id SlotId) (result GetScmAllowedSlotOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

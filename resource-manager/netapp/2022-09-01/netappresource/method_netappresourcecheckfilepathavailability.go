@@ -21,7 +21,7 @@ type NetAppResourceCheckFilePathAvailabilityOperationResponse struct {
 // NetAppResourceCheckFilePathAvailability ...
 func (c NetAppResourceClient) NetAppResourceCheckFilePathAvailability(ctx context.Context, id LocationId, input FilePathAvailabilityRequest) (result NetAppResourceCheckFilePathAvailabilityOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

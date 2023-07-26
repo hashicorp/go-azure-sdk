@@ -23,7 +23,7 @@ type ApiPortalCustomDomainsDeleteOperationResponse struct {
 // ApiPortalCustomDomainsDelete ...
 func (c AppPlatformClient) ApiPortalCustomDomainsDelete(ctx context.Context, id ApiPortalDomainId) (result ApiPortalCustomDomainsDeleteOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusNoContent,

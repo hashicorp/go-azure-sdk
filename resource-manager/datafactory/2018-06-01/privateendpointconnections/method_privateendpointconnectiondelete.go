@@ -19,7 +19,7 @@ type PrivateEndpointConnectionDeleteOperationResponse struct {
 // PrivateEndpointConnectionDelete ...
 func (c PrivateEndpointConnectionsClient) PrivateEndpointConnectionDelete(ctx context.Context, id PrivateEndpointConnectionId) (result PrivateEndpointConnectionDeleteOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 			http.StatusOK,

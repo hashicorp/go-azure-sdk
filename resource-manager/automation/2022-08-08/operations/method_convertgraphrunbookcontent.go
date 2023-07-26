@@ -21,7 +21,7 @@ type ConvertGraphRunbookContentOperationResponse struct {
 // ConvertGraphRunbookContent ...
 func (c OperationsClient) ConvertGraphRunbookContent(ctx context.Context, id AutomationAccountId, input GraphicalRunbookContent) (result ConvertGraphRunbookContentOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

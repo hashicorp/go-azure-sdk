@@ -20,7 +20,7 @@ type GetInstanceProcessOperationResponse struct {
 // GetInstanceProcess ...
 func (c WebAppsClient) GetInstanceProcess(ctx context.Context, id InstanceProcessId) (result GetInstanceProcessOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

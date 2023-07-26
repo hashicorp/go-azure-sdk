@@ -25,7 +25,7 @@ type ListByVersionCompleteResult struct {
 // ListByVersion ...
 func (c JobStepsClient) ListByVersion(ctx context.Context, id VersionId) (result ListByVersionOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

@@ -20,7 +20,7 @@ type CreateOperationResponse struct {
 // Create ...
 func (c RoleManagementPolicyAssignmentsClient) Create(ctx context.Context, id ScopedRoleManagementPolicyAssignmentId, input RoleManagementPolicyAssignment) (result CreateOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},

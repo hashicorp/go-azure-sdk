@@ -21,7 +21,7 @@ type PutPrivateAccessVnetSlotOperationResponse struct {
 // PutPrivateAccessVnetSlot ...
 func (c WebAppsClient) PutPrivateAccessVnetSlot(ctx context.Context, id SlotId, input PrivateAccess) (result PutPrivateAccessVnetSlotOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

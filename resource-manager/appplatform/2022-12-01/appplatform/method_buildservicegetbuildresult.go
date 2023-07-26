@@ -20,7 +20,7 @@ type BuildServiceGetBuildResultOperationResponse struct {
 // BuildServiceGetBuildResult ...
 func (c AppPlatformClient) BuildServiceGetBuildResult(ctx context.Context, id ResultId) (result BuildServiceGetBuildResultOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

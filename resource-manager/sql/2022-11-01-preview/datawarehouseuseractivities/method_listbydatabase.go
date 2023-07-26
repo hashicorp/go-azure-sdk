@@ -25,7 +25,7 @@ type ListByDatabaseCompleteResult struct {
 // ListByDatabase ...
 func (c DataWarehouseUserActivitiesClient) ListByDatabase(ctx context.Context, id DatabaseId) (result ListByDatabaseOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

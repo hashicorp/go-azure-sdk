@@ -20,7 +20,7 @@ type StopOperationResponse struct {
 // Stop ...
 func (c TestJobClient) Stop(ctx context.Context, id RunbookId) (result StopOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

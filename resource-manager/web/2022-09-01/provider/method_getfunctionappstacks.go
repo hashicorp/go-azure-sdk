@@ -52,7 +52,7 @@ func (o GetFunctionAppStacksOperationOptions) ToQuery() *client.QueryParams {
 // GetFunctionAppStacks ...
 func (c ProviderClient) GetFunctionAppStacks(ctx context.Context, options GetFunctionAppStacksOperationOptions) (result GetFunctionAppStacksOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

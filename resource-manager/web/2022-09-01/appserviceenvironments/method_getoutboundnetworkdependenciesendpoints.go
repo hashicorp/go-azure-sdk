@@ -25,7 +25,7 @@ type GetOutboundNetworkDependenciesEndpointsCompleteResult struct {
 // GetOutboundNetworkDependenciesEndpoints ...
 func (c AppServiceEnvironmentsClient) GetOutboundNetworkDependenciesEndpoints(ctx context.Context, id HostingEnvironmentId) (result GetOutboundNetworkDependenciesEndpointsOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

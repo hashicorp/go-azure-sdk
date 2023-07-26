@@ -21,7 +21,7 @@ type ListByServiceOperationResponse struct {
 // ListByService ...
 func (c PrivateEndpointConnectionsClient) ListByService(ctx context.Context, id ServiceId) (result ListByServiceOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

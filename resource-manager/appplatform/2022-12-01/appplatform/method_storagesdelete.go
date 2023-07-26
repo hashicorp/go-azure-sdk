@@ -23,7 +23,7 @@ type StoragesDeleteOperationResponse struct {
 // StoragesDelete ...
 func (c AppPlatformClient) StoragesDelete(ctx context.Context, id StorageId) (result StoragesDeleteOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusNoContent,

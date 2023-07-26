@@ -20,7 +20,7 @@ type DisconnectOperationResponse struct {
 // Disconnect ...
 func (c UserSessionClient) Disconnect(ctx context.Context, id UserSessionId) (result DisconnectOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

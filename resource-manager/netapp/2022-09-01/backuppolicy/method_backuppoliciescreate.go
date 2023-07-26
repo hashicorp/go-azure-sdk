@@ -23,7 +23,7 @@ type BackupPoliciesCreateOperationResponse struct {
 // BackupPoliciesCreate ...
 func (c BackupPolicyClient) BackupPoliciesCreate(ctx context.Context, id BackupPolicyId, input BackupPolicy) (result BackupPoliciesCreateOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusCreated,

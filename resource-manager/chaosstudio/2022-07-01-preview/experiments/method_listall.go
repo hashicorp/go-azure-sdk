@@ -57,7 +57,7 @@ func (o ListAllOperationOptions) ToQuery() *client.QueryParams {
 // ListAll ...
 func (c ExperimentsClient) ListAll(ctx context.Context, id commonids.SubscriptionId, options ListAllOperationOptions) (result ListAllOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

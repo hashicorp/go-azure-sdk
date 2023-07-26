@@ -52,7 +52,7 @@ func (o ListWebAppsOperationOptions) ToQuery() *client.QueryParams {
 // ListWebApps ...
 func (c AppServiceEnvironmentsClient) ListWebApps(ctx context.Context, id HostingEnvironmentId, options ListWebAppsOperationOptions) (result ListWebAppsOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

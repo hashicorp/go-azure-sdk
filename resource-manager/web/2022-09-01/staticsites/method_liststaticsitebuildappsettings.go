@@ -21,7 +21,7 @@ type ListStaticSiteBuildAppSettingsOperationResponse struct {
 // ListStaticSiteBuildAppSettings ...
 func (c StaticSitesClient) ListStaticSiteBuildAppSettings(ctx context.Context, id BuildId) (result ListStaticSiteBuildAppSettingsOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

@@ -20,7 +20,7 @@ type PatchSiteOperationResponse struct {
 // PatchSite ...
 func (c SitesClient) PatchSite(ctx context.Context, id VMwareSiteId, input VMwareSite) (result PatchSiteOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 			http.StatusOK,

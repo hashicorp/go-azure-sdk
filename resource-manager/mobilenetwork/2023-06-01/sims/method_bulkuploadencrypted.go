@@ -23,7 +23,7 @@ type BulkUploadEncryptedOperationResponse struct {
 // BulkUploadEncrypted ...
 func (c SIMsClient) BulkUploadEncrypted(ctx context.Context, id SimGroupId, input EncryptedSimUploadList) (result BulkUploadEncryptedOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusOK,

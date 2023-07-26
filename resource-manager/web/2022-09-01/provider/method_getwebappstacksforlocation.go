@@ -52,7 +52,7 @@ func (o GetWebAppStacksForLocationOperationOptions) ToQuery() *client.QueryParam
 // GetWebAppStacksForLocation ...
 func (c ProviderClient) GetWebAppStacksForLocation(ctx context.Context, id LocationId, options GetWebAppStacksForLocationOperationOptions) (result GetWebAppStacksForLocationOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

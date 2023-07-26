@@ -21,7 +21,7 @@ type LocationCheckNameAvailabilityOperationResponse struct {
 // LocationCheckNameAvailability ...
 func (c BatchManagementsClient) LocationCheckNameAvailability(ctx context.Context, id LocationId, input CheckNameAvailabilityParameters) (result LocationCheckNameAvailabilityOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

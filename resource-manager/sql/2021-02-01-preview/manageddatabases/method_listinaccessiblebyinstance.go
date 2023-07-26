@@ -25,7 +25,7 @@ type ListInaccessibleByInstanceCompleteResult struct {
 // ListInaccessibleByInstance ...
 func (c ManagedDatabasesClient) ListInaccessibleByInstance(ctx context.Context, id ManagedInstanceId) (result ListInaccessibleByInstanceOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

@@ -21,7 +21,7 @@ type GetBySiteOperationResponse struct {
 // GetBySite ...
 func (c ResourceHealthMetadataClient) GetBySite(ctx context.Context, id SiteId) (result GetBySiteOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

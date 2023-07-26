@@ -56,7 +56,7 @@ func (o GetHostingEnvironmentDetectorResponseOperationOptions) ToQuery() *client
 // GetHostingEnvironmentDetectorResponse ...
 func (c DiagnosticsClient) GetHostingEnvironmentDetectorResponse(ctx context.Context, id HostingEnvironmentDetectorId, options GetHostingEnvironmentDetectorResponseOperationOptions) (result GetHostingEnvironmentDetectorResponseOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

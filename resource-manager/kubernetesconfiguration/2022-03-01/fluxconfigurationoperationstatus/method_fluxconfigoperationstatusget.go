@@ -20,7 +20,7 @@ type FluxConfigOperationStatusGetOperationResponse struct {
 // FluxConfigOperationStatusGet ...
 func (c FluxConfigurationOperationStatusClient) FluxConfigOperationStatusGet(ctx context.Context, id FluxConfigurationOperationScopedId) (result FluxConfigOperationStatusGetOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

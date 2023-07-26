@@ -25,7 +25,7 @@ type ListProductionSiteDeploymentStatusesCompleteResult struct {
 // ListProductionSiteDeploymentStatuses ...
 func (c WebAppsClient) ListProductionSiteDeploymentStatuses(ctx context.Context, id SiteId) (result ListProductionSiteDeploymentStatusesOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

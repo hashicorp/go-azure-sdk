@@ -25,7 +25,7 @@ type ListPublicCertificatesSlotCompleteResult struct {
 // ListPublicCertificatesSlot ...
 func (c WebAppsClient) ListPublicCertificatesSlot(ctx context.Context, id SlotId) (result ListPublicCertificatesSlotOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

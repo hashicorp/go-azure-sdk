@@ -19,7 +19,7 @@ type AddOperationResponse struct {
 // Add ...
 func (c StorageAccountsClient) Add(ctx context.Context, id StorageAccountId, input AddStorageAccountParameters) (result AddOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

@@ -21,7 +21,7 @@ type GetFeatureValueOperationResponse struct {
 // GetFeatureValue ...
 func (c ExposureControlClient) GetFeatureValue(ctx context.Context, id LocationId, input ExposureControlRequest) (result GetFeatureValueOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

@@ -20,7 +20,7 @@ type AccessPoliciesUpdateOperationResponse struct {
 // AccessPoliciesUpdate ...
 func (c VideosClient) AccessPoliciesUpdate(ctx context.Context, id AccessPolicyId, input AccessPolicyEntity) (result AccessPoliciesUpdateOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

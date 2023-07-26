@@ -20,7 +20,7 @@ type GetSiteAnalysisOperationResponse struct {
 // GetSiteAnalysis ...
 func (c DiagnosticsClient) GetSiteAnalysis(ctx context.Context, id AnalysisId) (result GetSiteAnalysisOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

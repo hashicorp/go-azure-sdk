@@ -21,7 +21,7 @@ type GetServerFarmSkusOperationResponse struct {
 // GetServerFarmSkus ...
 func (c AppServicePlansClient) GetServerFarmSkus(ctx context.Context, id ServerFarmId) (result GetServerFarmSkusOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

@@ -19,7 +19,7 @@ type DeleteDatabaseConnectionOperationResponse struct {
 // DeleteDatabaseConnection ...
 func (c StaticSitesClient) DeleteDatabaseConnection(ctx context.Context, id DatabaseConnectionId) (result DeleteDatabaseConnectionOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 			http.StatusOK,

@@ -20,7 +20,7 @@ type DppResourceGuardProxyGetOperationResponse struct {
 // DppResourceGuardProxyGet ...
 func (c DppResourceGuardProxiesClient) DppResourceGuardProxyGet(ctx context.Context, id BackupResourceGuardProxyId) (result DppResourceGuardProxyGetOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

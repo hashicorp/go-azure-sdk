@@ -21,7 +21,7 @@ type ListBackupStatusSecretsOperationResponse struct {
 // ListBackupStatusSecrets ...
 func (c WebAppsClient) ListBackupStatusSecrets(ctx context.Context, id BackupId, input BackupRequest) (result ListBackupStatusSecretsOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

@@ -25,7 +25,7 @@ type ListSiteBackupsSlotCompleteResult struct {
 // ListSiteBackupsSlot ...
 func (c WebAppsClient) ListSiteBackupsSlot(ctx context.Context, id SlotId) (result ListSiteBackupsSlotOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

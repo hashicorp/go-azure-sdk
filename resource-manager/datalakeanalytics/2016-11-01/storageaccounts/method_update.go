@@ -19,7 +19,7 @@ type UpdateOperationResponse struct {
 // Update ...
 func (c StorageAccountsClient) Update(ctx context.Context, id StorageAccountId, input UpdateStorageAccountParameters) (result UpdateOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

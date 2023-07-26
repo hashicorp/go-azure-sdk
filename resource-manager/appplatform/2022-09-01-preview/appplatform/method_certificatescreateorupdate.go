@@ -23,7 +23,7 @@ type CertificatesCreateOrUpdateOperationResponse struct {
 // CertificatesCreateOrUpdate ...
 func (c AppPlatformClient) CertificatesCreateOrUpdate(ctx context.Context, id CertificateId, input CertificateResource) (result CertificatesCreateOrUpdateOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusCreated,

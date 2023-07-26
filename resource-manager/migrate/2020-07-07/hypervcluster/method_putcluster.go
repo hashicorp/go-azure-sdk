@@ -19,7 +19,7 @@ type PutClusterOperationResponse struct {
 // PutCluster ...
 func (c HyperVClusterClient) PutCluster(ctx context.Context, id ClusterId, input HyperVCluster) (result PutClusterOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 		},

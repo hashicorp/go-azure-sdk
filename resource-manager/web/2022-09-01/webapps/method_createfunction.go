@@ -23,7 +23,7 @@ type CreateFunctionOperationResponse struct {
 // CreateFunction ...
 func (c WebAppsClient) CreateFunction(ctx context.Context, id FunctionId, input FunctionEnvelope) (result CreateFunctionOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},

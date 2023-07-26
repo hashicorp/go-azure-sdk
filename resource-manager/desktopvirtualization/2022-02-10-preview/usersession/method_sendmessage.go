@@ -20,7 +20,7 @@ type SendMessageOperationResponse struct {
 // SendMessage ...
 func (c UserSessionClient) SendMessage(ctx context.Context, id UserSessionId, input SendMessage) (result SendMessageOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

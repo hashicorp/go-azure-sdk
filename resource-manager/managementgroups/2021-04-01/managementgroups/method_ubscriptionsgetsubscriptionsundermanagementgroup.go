@@ -26,7 +26,7 @@ type UbscriptionsGetSubscriptionsUnderManagementGroupCompleteResult struct {
 // UbscriptionsGetSubscriptionsUnderManagementGroup ...
 func (c ManagementGroupsClient) UbscriptionsGetSubscriptionsUnderManagementGroup(ctx context.Context, id commonids.ManagementGroupId) (result UbscriptionsGetSubscriptionsUnderManagementGroupOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

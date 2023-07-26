@@ -20,7 +20,7 @@ type PrivateEndpointConnectionsUpdateByWorkspaceOperationResponse struct {
 // PrivateEndpointConnectionsUpdateByWorkspace ...
 func (c PrivateLinkClient) PrivateEndpointConnectionsUpdateByWorkspace(ctx context.Context, id WorkspacePrivateEndpointConnectionId, input PrivateEndpointConnection) (result PrivateEndpointConnectionsUpdateByWorkspaceOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

@@ -25,7 +25,7 @@ type MonitorListVMHostsCompleteResult struct {
 // MonitorListVMHosts ...
 func (c VMHostClient) MonitorListVMHosts(ctx context.Context, id MonitorId) (result MonitorListVMHostsOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

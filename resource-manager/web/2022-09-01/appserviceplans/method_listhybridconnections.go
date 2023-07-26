@@ -25,7 +25,7 @@ type ListHybridConnectionsCompleteResult struct {
 // ListHybridConnections ...
 func (c AppServicePlansClient) ListHybridConnections(ctx context.Context, id ServerFarmId) (result ListHybridConnectionsOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

@@ -26,7 +26,7 @@ type ExtensionsListCompleteResult struct {
 // ExtensionsList ...
 func (c ClusterExtensionsClient) ExtensionsList(ctx context.Context, id commonids.ScopeId) (result ExtensionsListOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

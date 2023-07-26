@@ -21,7 +21,7 @@ type AccountBackupsListOperationResponse struct {
 // AccountBackupsList ...
 func (c BackupsClient) AccountBackupsList(ctx context.Context, id NetAppAccountId) (result AccountBackupsListOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

@@ -26,7 +26,7 @@ type ResourceSkusListSkusCompleteResult struct {
 // ResourceSkusListSkus ...
 func (c StandardOperationClient) ResourceSkusListSkus(ctx context.Context, id commonids.SubscriptionId) (result ResourceSkusListSkusOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

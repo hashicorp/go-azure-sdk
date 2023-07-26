@@ -21,7 +21,7 @@ type AppsGetResourceUploadUrlOperationResponse struct {
 // AppsGetResourceUploadUrl ...
 func (c AppPlatformClient) AppsGetResourceUploadUrl(ctx context.Context, id AppId) (result AppsGetResourceUploadUrlOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

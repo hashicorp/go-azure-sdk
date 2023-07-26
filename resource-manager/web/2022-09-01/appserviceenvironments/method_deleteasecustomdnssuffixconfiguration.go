@@ -21,7 +21,7 @@ type DeleteAseCustomDnsSuffixConfigurationOperationResponse struct {
 // DeleteAseCustomDnsSuffixConfiguration ...
 func (c AppServiceEnvironmentsClient) DeleteAseCustomDnsSuffixConfiguration(ctx context.Context, id HostingEnvironmentId) (result DeleteAseCustomDnsSuffixConfigurationOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 			http.StatusOK,

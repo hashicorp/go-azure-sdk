@@ -21,7 +21,7 @@ type ResetAllFiltersOperationResponse struct {
 // ResetAllFilters ...
 func (c RecommendationsClient) ResetAllFilters(ctx context.Context, id commonids.SubscriptionId) (result ResetAllFiltersOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},

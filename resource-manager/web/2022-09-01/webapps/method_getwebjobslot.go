@@ -20,7 +20,7 @@ type GetWebJobSlotOperationResponse struct {
 // GetWebJobSlot ...
 func (c WebAppsClient) GetWebJobSlot(ctx context.Context, id SlotWebJobId) (result GetWebJobSlotOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

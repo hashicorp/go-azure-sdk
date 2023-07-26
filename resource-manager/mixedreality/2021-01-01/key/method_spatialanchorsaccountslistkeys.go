@@ -21,7 +21,7 @@ type SpatialAnchorsAccountsListKeysOperationResponse struct {
 // SpatialAnchorsAccountsListKeys ...
 func (c KeyClient) SpatialAnchorsAccountsListKeys(ctx context.Context, id SpatialAnchorsAccountId) (result SpatialAnchorsAccountsListKeysOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

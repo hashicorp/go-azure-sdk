@@ -20,7 +20,7 @@ type UpdatePublishingUserOperationResponse struct {
 // UpdatePublishingUser ...
 func (c ResourceProvidersClient) UpdatePublishingUser(ctx context.Context, input User) (result UpdatePublishingUserOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

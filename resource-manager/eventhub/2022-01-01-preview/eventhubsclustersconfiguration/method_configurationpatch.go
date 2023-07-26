@@ -21,7 +21,7 @@ type ConfigurationPatchOperationResponse struct {
 // ConfigurationPatch ...
 func (c EventHubsClustersConfigurationClient) ConfigurationPatch(ctx context.Context, id ClusterId, input ClusterQuotaConfigurationProperties) (result ConfigurationPatchOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusCreated,

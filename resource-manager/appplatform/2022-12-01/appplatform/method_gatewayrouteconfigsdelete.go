@@ -23,7 +23,7 @@ type GatewayRouteConfigsDeleteOperationResponse struct {
 // GatewayRouteConfigsDelete ...
 func (c AppPlatformClient) GatewayRouteConfigsDelete(ctx context.Context, id RouteConfigId) (result GatewayRouteConfigsDeleteOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusNoContent,

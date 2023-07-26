@@ -64,7 +64,7 @@ func (o ListLogsOperationOptions) ToQuery() *client.QueryParams {
 // ListLogs ...
 func (c SyncGroupsClient) ListLogs(ctx context.Context, id SyncGroupId, options ListLogsOperationOptions) (result ListLogsOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

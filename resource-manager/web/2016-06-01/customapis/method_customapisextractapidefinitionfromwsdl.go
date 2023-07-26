@@ -21,7 +21,7 @@ type CustomApisExtractApiDefinitionFromWsdlOperationResponse struct {
 // CustomApisExtractApiDefinitionFromWsdl ...
 func (c CustomAPIsClient) CustomApisExtractApiDefinitionFromWsdl(ctx context.Context, id LocationId, input WsdlDefinition) (result CustomApisExtractApiDefinitionFromWsdlOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

@@ -21,7 +21,7 @@ type AddDataFlowOperationResponse struct {
 // AddDataFlow ...
 func (c DataFlowDebugSessionClient) AddDataFlow(ctx context.Context, id FactoryId, input DataFlowDebugPackage) (result AddDataFlowOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

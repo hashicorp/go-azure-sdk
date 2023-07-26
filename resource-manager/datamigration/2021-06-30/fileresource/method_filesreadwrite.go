@@ -21,7 +21,7 @@ type FilesReadWriteOperationResponse struct {
 // FilesReadWrite ...
 func (c FileResourceClient) FilesReadWrite(ctx context.Context, id FileId) (result FilesReadWriteOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

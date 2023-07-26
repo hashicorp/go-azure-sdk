@@ -23,7 +23,7 @@ type ServicesStartOperationResponse struct {
 // ServicesStart ...
 func (c AppPlatformClient) ServicesStart(ctx context.Context, id SpringId) (result ServicesStartOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 		},

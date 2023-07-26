@@ -25,7 +25,7 @@ type ListCapacitiesCompleteResult struct {
 // ListCapacities ...
 func (c AppServiceEnvironmentsClient) ListCapacities(ctx context.Context, id HostingEnvironmentId) (result ListCapacitiesOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

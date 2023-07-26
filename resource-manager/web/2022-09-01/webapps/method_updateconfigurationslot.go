@@ -21,7 +21,7 @@ type UpdateConfigurationSlotOperationResponse struct {
 // UpdateConfigurationSlot ...
 func (c WebAppsClient) UpdateConfigurationSlot(ctx context.Context, id SlotId, input SiteConfigResource) (result UpdateConfigurationSlotOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

@@ -20,7 +20,7 @@ type GetSiteDetectorSlotOperationResponse struct {
 // GetSiteDetectorSlot ...
 func (c DiagnosticsClient) GetSiteDetectorSlot(ctx context.Context, id SlotDiagnosticDetectorId) (result GetSiteDetectorSlotOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

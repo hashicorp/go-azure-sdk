@@ -19,7 +19,7 @@ type DeleteOperationResponse struct {
 // Delete ...
 func (c MSIXPackageClient) Delete(ctx context.Context, id MsixPackageId) (result DeleteOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 			http.StatusOK,

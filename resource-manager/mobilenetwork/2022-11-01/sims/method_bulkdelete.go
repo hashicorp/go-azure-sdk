@@ -23,7 +23,7 @@ type BulkDeleteOperationResponse struct {
 // BulkDelete ...
 func (c SIMsClient) BulkDelete(ctx context.Context, id SimGroupId, input SimDeleteList) (result BulkDeleteOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusNoContent,

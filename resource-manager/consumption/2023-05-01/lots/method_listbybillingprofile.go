@@ -25,7 +25,7 @@ type ListByBillingProfileCompleteResult struct {
 // ListByBillingProfile ...
 func (c LotsClient) ListByBillingProfile(ctx context.Context, id BillingProfileId) (result ListByBillingProfileOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

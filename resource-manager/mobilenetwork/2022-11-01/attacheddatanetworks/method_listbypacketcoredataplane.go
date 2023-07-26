@@ -25,7 +25,7 @@ type ListByPacketCoreDataPlaneCompleteResult struct {
 // ListByPacketCoreDataPlane ...
 func (c AttachedDataNetworksClient) ListByPacketCoreDataPlane(ctx context.Context, id PacketCoreDataPlaneId) (result ListByPacketCoreDataPlaneOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

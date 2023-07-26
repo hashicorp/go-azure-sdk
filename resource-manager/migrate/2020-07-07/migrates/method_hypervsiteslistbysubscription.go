@@ -26,7 +26,7 @@ type HyperVSitesListBySubscriptionCompleteResult struct {
 // HyperVSitesListBySubscription ...
 func (c MigratesClient) HyperVSitesListBySubscription(ctx context.Context, id commonids.SubscriptionId) (result HyperVSitesListBySubscriptionOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

@@ -48,7 +48,7 @@ func (o UbscriptionsCreateOperationOptions) ToQuery() *client.QueryParams {
 // UbscriptionsCreate ...
 func (c ManagementGroupsClient) UbscriptionsCreate(ctx context.Context, id SubscriptionId, options UbscriptionsCreateOperationOptions) (result UbscriptionsCreateOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

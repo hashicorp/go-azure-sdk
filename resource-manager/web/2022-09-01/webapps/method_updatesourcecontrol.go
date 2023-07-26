@@ -21,7 +21,7 @@ type UpdateSourceControlOperationResponse struct {
 // UpdateSourceControl ...
 func (c WebAppsClient) UpdateSourceControl(ctx context.Context, id SiteId, input SiteSourceControl) (result UpdateSourceControlOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusCreated,

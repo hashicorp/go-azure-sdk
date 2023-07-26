@@ -23,7 +23,7 @@ type DeleteOperationResponse struct {
 // Delete ...
 func (c LongTermRetentionManagedInstanceBackupsClient) Delete(ctx context.Context, id LongTermRetentionManagedInstanceBackupId) (result DeleteOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusOK,

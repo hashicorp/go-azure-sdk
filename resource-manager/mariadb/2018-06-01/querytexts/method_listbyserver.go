@@ -52,7 +52,7 @@ func (o ListByServerOperationOptions) ToQuery() *client.QueryParams {
 // ListByServer ...
 func (c QueryTextsClient) ListByServer(ctx context.Context, id ServerId, options ListByServerOperationOptions) (result ListByServerOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

@@ -20,7 +20,7 @@ type CreateOrUpdateApplicationGroupOperationResponse struct {
 // CreateOrUpdateApplicationGroup ...
 func (c ApplicationGroupClient) CreateOrUpdateApplicationGroup(ctx context.Context, id ApplicationGroupId, input ApplicationGroup) (result CreateOrUpdateApplicationGroupOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

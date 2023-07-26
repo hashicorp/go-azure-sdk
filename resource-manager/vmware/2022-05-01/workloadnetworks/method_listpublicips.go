@@ -25,7 +25,7 @@ type ListPublicIPsCompleteResult struct {
 // ListPublicIPs ...
 func (c WorkloadNetworksClient) ListPublicIPs(ctx context.Context, id PrivateCloudId) (result ListPublicIPsOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

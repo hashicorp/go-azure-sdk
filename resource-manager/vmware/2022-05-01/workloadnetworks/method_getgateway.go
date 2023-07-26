@@ -20,7 +20,7 @@ type GetGatewayOperationResponse struct {
 // GetGateway ...
 func (c WorkloadNetworksClient) GetGateway(ctx context.Context, id GatewayId) (result GetGatewayOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

@@ -23,7 +23,7 @@ type ListPublishingCredentialsSlotOperationResponse struct {
 // ListPublishingCredentialsSlot ...
 func (c WebAppsClient) ListPublishingCredentialsSlot(ctx context.Context, id SlotId) (result ListPublishingCredentialsSlotOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

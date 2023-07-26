@@ -23,7 +23,7 @@ type PutOperationResponse struct {
 // Put ...
 func (c IntegrationServiceEnvironmentManagedApiClient) Put(ctx context.Context, id ManagedApiId, input IntegrationServiceEnvironmentManagedApi) (result PutOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 			http.StatusOK,

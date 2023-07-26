@@ -20,7 +20,7 @@ type DeleteBackupConfigurationOperationResponse struct {
 // DeleteBackupConfiguration ...
 func (c WebAppsClient) DeleteBackupConfiguration(ctx context.Context, id SiteId) (result DeleteBackupConfigurationOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

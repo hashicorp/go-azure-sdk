@@ -20,7 +20,7 @@ type ScriptPackagesGetOperationResponse struct {
 // ScriptPackagesGet ...
 func (c ScriptsClient) ScriptPackagesGet(ctx context.Context, id ScriptPackageId) (result ScriptPackagesGetOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

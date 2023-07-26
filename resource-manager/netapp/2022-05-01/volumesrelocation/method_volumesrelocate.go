@@ -23,7 +23,7 @@ type VolumesRelocateOperationResponse struct {
 // VolumesRelocate ...
 func (c VolumesRelocationClient) VolumesRelocate(ctx context.Context, id VolumeId, input RelocateVolumeRequest) (result VolumesRelocateOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusOK,

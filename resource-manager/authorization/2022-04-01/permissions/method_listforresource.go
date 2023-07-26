@@ -26,7 +26,7 @@ type ListForResourceCompleteResult struct {
 // ListForResource ...
 func (c PermissionsClient) ListForResource(ctx context.Context, id commonids.ScopeId) (result ListForResourceOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

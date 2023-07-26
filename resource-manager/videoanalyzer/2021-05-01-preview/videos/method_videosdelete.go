@@ -19,7 +19,7 @@ type VideosDeleteOperationResponse struct {
 // VideosDelete ...
 func (c VideosClient) VideosDelete(ctx context.Context, id VideoId) (result VideosDeleteOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 			http.StatusOK,

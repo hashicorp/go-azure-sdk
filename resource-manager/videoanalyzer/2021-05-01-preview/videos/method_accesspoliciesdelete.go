@@ -19,7 +19,7 @@ type AccessPoliciesDeleteOperationResponse struct {
 // AccessPoliciesDelete ...
 func (c VideosClient) AccessPoliciesDelete(ctx context.Context, id AccessPolicyId) (result AccessPoliciesDeleteOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 			http.StatusOK,

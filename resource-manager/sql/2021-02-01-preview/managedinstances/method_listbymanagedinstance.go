@@ -76,7 +76,7 @@ func (o ListByManagedInstanceOperationOptions) ToQuery() *client.QueryParams {
 // ListByManagedInstance ...
 func (c ManagedInstancesClient) ListByManagedInstance(ctx context.Context, id ManagedInstanceId, options ListByManagedInstanceOperationOptions) (result ListByManagedInstanceOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

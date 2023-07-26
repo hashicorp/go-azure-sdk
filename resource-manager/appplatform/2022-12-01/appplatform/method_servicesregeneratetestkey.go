@@ -21,7 +21,7 @@ type ServicesRegenerateTestKeyOperationResponse struct {
 // ServicesRegenerateTestKey ...
 func (c AppPlatformClient) ServicesRegenerateTestKey(ctx context.Context, id SpringId, input RegenerateTestKeyRequestPayload) (result ServicesRegenerateTestKeyOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

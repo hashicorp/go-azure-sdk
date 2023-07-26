@@ -25,7 +25,7 @@ type SubAccountListVMHostUpdateCompleteResult struct {
 // SubAccountListVMHostUpdate ...
 func (c VMHostClient) SubAccountListVMHostUpdate(ctx context.Context, id AccountId, input VMHostUpdateRequest) (result SubAccountListVMHostUpdateOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

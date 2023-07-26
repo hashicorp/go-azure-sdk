@@ -23,7 +23,7 @@ type UpgradeOperationResponse struct {
 // Upgrade ...
 func (c AppServiceEnvironmentsClient) Upgrade(ctx context.Context, id HostingEnvironmentId) (result UpgradeOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 		},

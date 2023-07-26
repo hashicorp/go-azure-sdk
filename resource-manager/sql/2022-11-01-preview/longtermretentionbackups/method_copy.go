@@ -23,7 +23,7 @@ type CopyOperationResponse struct {
 // Copy ...
 func (c LongTermRetentionBackupsClient) Copy(ctx context.Context, id LongTermRetentionBackupId, input CopyLongTermRetentionBackupParameters) (result CopyOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusOK,

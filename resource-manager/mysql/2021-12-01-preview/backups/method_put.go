@@ -20,7 +20,7 @@ type PutOperationResponse struct {
 // Put ...
 func (c BackupsClient) Put(ctx context.Context, id BackupId) (result PutOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

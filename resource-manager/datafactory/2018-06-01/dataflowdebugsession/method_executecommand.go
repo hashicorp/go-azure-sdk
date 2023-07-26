@@ -23,7 +23,7 @@ type ExecuteCommandOperationResponse struct {
 // ExecuteCommand ...
 func (c DataFlowDebugSessionClient) ExecuteCommand(ctx context.Context, id FactoryId, input DataFlowDebugCommandRequest) (result ExecuteCommandOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusOK,

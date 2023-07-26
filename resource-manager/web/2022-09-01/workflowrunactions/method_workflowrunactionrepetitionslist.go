@@ -25,7 +25,7 @@ type WorkflowRunActionRepetitionsListCompleteResult struct {
 // WorkflowRunActionRepetitionsList ...
 func (c WorkflowRunActionsClient) WorkflowRunActionRepetitionsList(ctx context.Context, id ActionId) (result WorkflowRunActionRepetitionsListOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

@@ -25,7 +25,7 @@ type ListInstanceIdentifiersSlotCompleteResult struct {
 // ListInstanceIdentifiersSlot ...
 func (c WebAppsClient) ListInstanceIdentifiersSlot(ctx context.Context, id SlotId) (result ListInstanceIdentifiersSlotOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

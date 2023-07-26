@@ -25,7 +25,7 @@ type ListByWorkloadGroupCompleteResult struct {
 // ListByWorkloadGroup ...
 func (c WorkloadClassifiersClient) ListByWorkloadGroup(ctx context.Context, id WorkloadGroupId) (result ListByWorkloadGroupOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

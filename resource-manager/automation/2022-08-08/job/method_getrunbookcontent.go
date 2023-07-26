@@ -48,7 +48,7 @@ func (o GetRunbookContentOperationOptions) ToQuery() *client.QueryParams {
 // GetRunbookContent ...
 func (c JobClient) GetRunbookContent(ctx context.Context, id JobId, options GetRunbookContentOperationOptions) (result GetRunbookContentOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "text/powershell",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

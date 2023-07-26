@@ -20,7 +20,7 @@ type DeployWorkflowArtifactsSlotOperationResponse struct {
 // DeployWorkflowArtifactsSlot ...
 func (c WebAppsClient) DeployWorkflowArtifactsSlot(ctx context.Context, id SlotId, input WorkflowArtifacts) (result DeployWorkflowArtifactsSlotOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

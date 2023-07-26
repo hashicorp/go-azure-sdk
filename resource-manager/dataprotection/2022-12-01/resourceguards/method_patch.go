@@ -20,7 +20,7 @@ type PatchOperationResponse struct {
 // Patch ...
 func (c ResourceGuardsClient) Patch(ctx context.Context, id ResourceGuardId, input PatchResourceGuardInput) (result PatchOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

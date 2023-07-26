@@ -23,7 +23,7 @@ type AppsDeleteOperationResponse struct {
 // AppsDelete ...
 func (c AppPlatformClient) AppsDelete(ctx context.Context, id AppId) (result AppsDeleteOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusNoContent,

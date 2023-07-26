@@ -23,7 +23,7 @@ type RegisteredServerstriggerRolloverOperationResponse struct {
 // RegisteredServerstriggerRollover ...
 func (c RegisteredServerResourceClient) RegisteredServerstriggerRollover(ctx context.Context, id RegisteredServerId, input TriggerRolloverRequest) (result RegisteredServerstriggerRolloverOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusOK,

@@ -25,7 +25,7 @@ type ListInstanceFunctionsSlotCompleteResult struct {
 // ListInstanceFunctionsSlot ...
 func (c WebAppsClient) ListInstanceFunctionsSlot(ctx context.Context, id SlotId) (result ListInstanceFunctionsSlotOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

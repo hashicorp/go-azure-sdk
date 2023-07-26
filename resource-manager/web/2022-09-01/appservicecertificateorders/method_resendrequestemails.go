@@ -20,7 +20,7 @@ type ResendRequestEmailsOperationResponse struct {
 // ResendRequestEmails ...
 func (c AppServiceCertificateOrdersClient) ResendRequestEmails(ctx context.Context, id CertificateOrderId, input NameIdentifier) (result ResendRequestEmailsOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},

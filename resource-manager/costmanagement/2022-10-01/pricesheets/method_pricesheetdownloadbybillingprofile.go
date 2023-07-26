@@ -23,7 +23,7 @@ type PriceSheetDownloadByBillingProfileOperationResponse struct {
 // PriceSheetDownloadByBillingProfile ...
 func (c PriceSheetsClient) PriceSheetDownloadByBillingProfile(ctx context.Context, id BillingProfileId) (result PriceSheetDownloadByBillingProfileOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusOK,

@@ -25,7 +25,7 @@ type ListSiteAnalysesCompleteResult struct {
 // ListSiteAnalyses ...
 func (c DiagnosticsClient) ListSiteAnalyses(ctx context.Context, id DiagnosticId) (result ListSiteAnalysesOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

@@ -64,7 +64,7 @@ func (o GetAllMachinesInSiteOperationOptions) ToQuery() *client.QueryParams {
 // GetAllMachinesInSite ...
 func (c HyperVMachinesClient) GetAllMachinesInSite(ctx context.Context, id HyperVSiteId, options GetAllMachinesInSiteOperationOptions) (result GetAllMachinesInSiteOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

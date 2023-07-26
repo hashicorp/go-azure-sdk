@@ -20,7 +20,7 @@ type CustomApisGetOperationResponse struct {
 // CustomApisGet ...
 func (c CustomAPIsClient) CustomApisGet(ctx context.Context, id CustomApiId) (result CustomApisGetOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

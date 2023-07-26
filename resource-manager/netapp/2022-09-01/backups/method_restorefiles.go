@@ -23,7 +23,7 @@ type RestoreFilesOperationResponse struct {
 // RestoreFiles ...
 func (c BackupsClient) RestoreFiles(ctx context.Context, id BackupId, input BackupRestoreFiles) (result RestoreFilesOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusOK,

@@ -21,7 +21,7 @@ type ListKeysOperationResponse struct {
 // ListKeys ...
 func (c BatchEndpointClient) ListKeys(ctx context.Context, id BatchEndpointId) (result ListKeysOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

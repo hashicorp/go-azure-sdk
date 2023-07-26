@@ -48,7 +48,7 @@ func (o PrivateEndpointConnectionCreateOrUpdateOperationOptions) ToQuery() *clie
 // PrivateEndpointConnectionCreateOrUpdate ...
 func (c PrivateEndpointConnectionsClient) PrivateEndpointConnectionCreateOrUpdate(ctx context.Context, id PrivateEndpointConnectionId, input PrivateLinkConnectionApprovalRequestResource, options PrivateEndpointConnectionCreateOrUpdateOperationOptions) (result PrivateEndpointConnectionCreateOrUpdateOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

@@ -20,7 +20,7 @@ type IntegrationServiceEnvironmentsRestartOperationResponse struct {
 // IntegrationServiceEnvironmentsRestart ...
 func (c IntegrationServiceEnvironmentRestartClient) IntegrationServiceEnvironmentsRestart(ctx context.Context, id IntegrationServiceEnvironmentId) (result IntegrationServiceEnvironmentsRestartOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

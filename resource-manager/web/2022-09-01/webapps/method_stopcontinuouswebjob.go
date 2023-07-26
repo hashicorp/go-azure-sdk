@@ -20,7 +20,7 @@ type StopContinuousWebJobOperationResponse struct {
 // StopContinuousWebJob ...
 func (c WebAppsClient) StopContinuousWebJob(ctx context.Context, id ContinuousWebJobId) (result StopContinuousWebJobOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

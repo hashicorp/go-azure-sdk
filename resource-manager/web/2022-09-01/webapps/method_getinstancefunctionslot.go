@@ -20,7 +20,7 @@ type GetInstanceFunctionSlotOperationResponse struct {
 // GetInstanceFunctionSlot ...
 func (c WebAppsClient) GetInstanceFunctionSlot(ctx context.Context, id SlotFunctionId) (result GetInstanceFunctionSlotOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

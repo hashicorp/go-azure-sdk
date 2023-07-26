@@ -20,7 +20,7 @@ type GetFunctionOperationResponse struct {
 // GetFunction ...
 func (c WebAppsClient) GetFunction(ctx context.Context, id FunctionId) (result GetFunctionOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

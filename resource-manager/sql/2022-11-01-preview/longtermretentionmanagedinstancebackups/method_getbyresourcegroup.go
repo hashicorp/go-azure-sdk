@@ -20,7 +20,7 @@ type GetByResourceGroupOperationResponse struct {
 // GetByResourceGroup ...
 func (c LongTermRetentionManagedInstanceBackupsClient) GetByResourceGroup(ctx context.Context, id LongTermRetentionDatabaseLongTermRetentionManagedInstanceBackupId) (result GetByResourceGroupOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

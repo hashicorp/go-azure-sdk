@@ -20,7 +20,7 @@ type RecoverSiteConfigurationSnapshotOperationResponse struct {
 // RecoverSiteConfigurationSnapshot ...
 func (c WebAppsClient) RecoverSiteConfigurationSnapshot(ctx context.Context, id SnapshotId) (result RecoverSiteConfigurationSnapshotOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},

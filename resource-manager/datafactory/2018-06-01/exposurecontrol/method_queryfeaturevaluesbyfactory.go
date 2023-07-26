@@ -21,7 +21,7 @@ type QueryFeatureValuesByFactoryOperationResponse struct {
 // QueryFeatureValuesByFactory ...
 func (c ExposureControlClient) QueryFeatureValuesByFactory(ctx context.Context, id FactoryId, input ExposureControlBatchRequest) (result QueryFeatureValuesByFactoryOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

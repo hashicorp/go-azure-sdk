@@ -21,7 +21,7 @@ type CreateOrUpdateOperationResponse struct {
 // CreateOrUpdate ...
 func (c StartStopManagedInstanceSchedulesClient) CreateOrUpdate(ctx context.Context, id ManagedInstanceId, input StartStopManagedInstanceSchedule) (result CreateOrUpdateOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 			http.StatusOK,

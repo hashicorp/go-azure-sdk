@@ -26,7 +26,7 @@ type ListBySubscriptionIdCompleteResult struct {
 // ListBySubscriptionId ...
 func (c MonitorsClient) ListBySubscriptionId(ctx context.Context, id commonids.SubscriptionId) (result ListBySubscriptionIdOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

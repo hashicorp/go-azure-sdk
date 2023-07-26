@@ -23,7 +23,7 @@ type RestoreFromDeletedAppOperationResponse struct {
 // RestoreFromDeletedApp ...
 func (c WebAppsClient) RestoreFromDeletedApp(ctx context.Context, id SiteId, input DeletedAppRestoreRequest) (result RestoreFromDeletedAppOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusOK,

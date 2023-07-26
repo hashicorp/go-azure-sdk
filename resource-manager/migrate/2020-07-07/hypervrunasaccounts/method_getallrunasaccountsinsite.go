@@ -25,7 +25,7 @@ type GetAllRunAsAccountsInSiteCompleteResult struct {
 // GetAllRunAsAccountsInSite ...
 func (c HyperVRunAsAccountsClient) GetAllRunAsAccountsInSite(ctx context.Context, id HyperVSiteId) (result GetAllRunAsAccountsInSiteOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

@@ -28,7 +28,7 @@ type ChangeVnetCompleteResult struct {
 // ChangeVnet ...
 func (c AppServiceEnvironmentsClient) ChangeVnet(ctx context.Context, id HostingEnvironmentId, input VirtualNetworkProfile) (result ChangeVnetOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusOK,

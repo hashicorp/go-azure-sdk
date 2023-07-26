@@ -20,7 +20,7 @@ type VideosUpdateOperationResponse struct {
 // VideosUpdate ...
 func (c VideosClient) VideosUpdate(ctx context.Context, id VideoId, input VideoEntity) (result VideosUpdateOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

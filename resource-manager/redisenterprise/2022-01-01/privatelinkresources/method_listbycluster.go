@@ -21,7 +21,7 @@ type ListByClusterOperationResponse struct {
 // ListByCluster ...
 func (c PrivateLinkResourcesClient) ListByCluster(ctx context.Context, id RedisEnterpriseId) (result ListByClusterOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

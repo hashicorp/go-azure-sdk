@@ -56,7 +56,7 @@ func (o ListSupportedVirtualMachineSkusOperationOptions) ToQuery() *client.Query
 // ListSupportedVirtualMachineSkus ...
 func (c LocationClient) ListSupportedVirtualMachineSkus(ctx context.Context, id LocationId, options ListSupportedVirtualMachineSkusOperationOptions) (result ListSupportedVirtualMachineSkusOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

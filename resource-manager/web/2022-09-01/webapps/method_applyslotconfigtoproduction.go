@@ -20,7 +20,7 @@ type ApplySlotConfigToProductionOperationResponse struct {
 // ApplySlotConfigToProduction ...
 func (c WebAppsClient) ApplySlotConfigToProduction(ctx context.Context, id SiteId, input CsmSlotEntity) (result ApplySlotConfigToProductionOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

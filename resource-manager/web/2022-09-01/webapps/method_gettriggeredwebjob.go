@@ -20,7 +20,7 @@ type GetTriggeredWebJobOperationResponse struct {
 // GetTriggeredWebJob ...
 func (c WebAppsClient) GetTriggeredWebJob(ctx context.Context, id TriggeredWebJobId) (result GetTriggeredWebJobOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

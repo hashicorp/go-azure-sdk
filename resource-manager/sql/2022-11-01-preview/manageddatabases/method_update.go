@@ -23,7 +23,7 @@ type UpdateOperationResponse struct {
 // Update ...
 func (c ManagedDatabasesClient) Update(ctx context.Context, id ManagedInstanceDatabaseId, input ManagedDatabaseUpdate) (result UpdateOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusOK,

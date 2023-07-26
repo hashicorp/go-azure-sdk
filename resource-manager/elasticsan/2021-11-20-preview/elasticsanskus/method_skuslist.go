@@ -49,7 +49,7 @@ func (o SkusListOperationOptions) ToQuery() *client.QueryParams {
 // SkusList ...
 func (c ElasticSanSkusClient) SkusList(ctx context.Context, id commonids.SubscriptionId, options SkusListOperationOptions) (result SkusListOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

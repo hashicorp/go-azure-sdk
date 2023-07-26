@@ -19,7 +19,7 @@ type DeleteSiteOperationResponse struct {
 // DeleteSite ...
 func (c SitesClient) DeleteSite(ctx context.Context, id VMwareSiteId) (result DeleteSiteOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 			http.StatusOK,

@@ -21,7 +21,7 @@ type RegistryDataVersionsCreateOrGetStartPendingUploadOperationResponse struct {
 // RegistryDataVersionsCreateOrGetStartPendingUpload ...
 func (c DataVersionRegistryClient) RegistryDataVersionsCreateOrGetStartPendingUpload(ctx context.Context, id VersionId, input PendingUploadRequestDto) (result RegistryDataVersionsCreateOrGetStartPendingUploadOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

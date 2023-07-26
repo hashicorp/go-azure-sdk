@@ -47,7 +47,7 @@ func (o DetachAndDeleteTrafficFilterDeleteOperationOptions) ToQuery() *client.Qu
 // DetachAndDeleteTrafficFilterDelete ...
 func (c TrafficFilterClient) DetachAndDeleteTrafficFilterDelete(ctx context.Context, id MonitorId, options DetachAndDeleteTrafficFilterDeleteOperationOptions) (result DetachAndDeleteTrafficFilterDeleteOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

@@ -20,7 +20,7 @@ type GetRevisionOperationResponse struct {
 // GetRevision ...
 func (c ContainerAppsRevisionsClient) GetRevision(ctx context.Context, id RevisionId) (result GetRevisionOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

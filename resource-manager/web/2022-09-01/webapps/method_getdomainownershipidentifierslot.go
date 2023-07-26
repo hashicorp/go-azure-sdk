@@ -20,7 +20,7 @@ type GetDomainOwnershipIdentifierSlotOperationResponse struct {
 // GetDomainOwnershipIdentifierSlot ...
 func (c WebAppsClient) GetDomainOwnershipIdentifierSlot(ctx context.Context, id SlotDomainOwnershipIdentifierId) (result GetDomainOwnershipIdentifierSlotOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

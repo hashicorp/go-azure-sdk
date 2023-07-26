@@ -21,7 +21,7 @@ type ListByVolumeOperationResponse struct {
 // ListByVolume ...
 func (c VolumeQuotaRulesClient) ListByVolume(ctx context.Context, id VolumeId) (result ListByVolumeOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

@@ -20,7 +20,7 @@ type GetOperationResponse struct {
 // Get ...
 func (c SyncIdentityProvidersClient) Get(ctx context.Context, id SyncIdentityProviderId) (result GetOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

@@ -21,7 +21,7 @@ type WorkspacesListNotebookKeysOperationResponse struct {
 // WorkspacesListNotebookKeys ...
 func (c ProxyOperationsClient) WorkspacesListNotebookKeys(ctx context.Context, id WorkspaceId) (result WorkspacesListNotebookKeysOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

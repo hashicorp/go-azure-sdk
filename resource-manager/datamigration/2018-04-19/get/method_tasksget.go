@@ -48,7 +48,7 @@ func (o TasksGetOperationOptions) ToQuery() *client.QueryParams {
 // TasksGet ...
 func (c GETClient) TasksGet(ctx context.Context, id TaskId, options TasksGetOperationOptions) (result TasksGetOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

@@ -21,7 +21,7 @@ type DeploymentsGetLogFileUrlOperationResponse struct {
 // DeploymentsGetLogFileUrl ...
 func (c AppPlatformClient) DeploymentsGetLogFileUrl(ctx context.Context, id DeploymentId) (result DeploymentsGetLogFileUrlOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 			http.StatusOK,

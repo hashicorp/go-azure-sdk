@@ -23,7 +23,7 @@ type CustomDomainsDeleteOperationResponse struct {
 // CustomDomainsDelete ...
 func (c AppPlatformClient) CustomDomainsDelete(ctx context.Context, id DomainId) (result CustomDomainsDeleteOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusNoContent,

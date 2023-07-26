@@ -21,7 +21,7 @@ type HierarchySettingsDeleteOperationResponse struct {
 // HierarchySettingsDelete ...
 func (c ManagementGroupsClient) HierarchySettingsDelete(ctx context.Context, id commonids.ManagementGroupId) (result HierarchySettingsDeleteOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

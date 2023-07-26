@@ -23,7 +23,7 @@ type ApproveOperationResponse struct {
 // Approve ...
 func (c PrivateEndpointConnectionClient) Approve(ctx context.Context, id PrivateEndpointConnectionId, input PrivateEndpointConnection) (result ApproveOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},

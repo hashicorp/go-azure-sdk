@@ -23,7 +23,7 @@ type ScriptExecutionsCreateOrUpdateOperationResponse struct {
 // ScriptExecutionsCreateOrUpdate ...
 func (c ScriptsClient) ScriptExecutionsCreateOrUpdate(ctx context.Context, id ScriptExecutionId, input ScriptExecution) (result ScriptExecutionsCreateOrUpdateOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 			http.StatusOK,

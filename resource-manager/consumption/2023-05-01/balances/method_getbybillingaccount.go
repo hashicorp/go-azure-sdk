@@ -21,7 +21,7 @@ type GetByBillingAccountOperationResponse struct {
 // GetByBillingAccount ...
 func (c BalancesClient) GetByBillingAccount(ctx context.Context, id BillingAccountId) (result GetByBillingAccountOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

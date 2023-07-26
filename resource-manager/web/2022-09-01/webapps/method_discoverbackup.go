@@ -21,7 +21,7 @@ type DiscoverBackupOperationResponse struct {
 // DiscoverBackup ...
 func (c WebAppsClient) DiscoverBackup(ctx context.Context, id SiteId, input RestoreRequest) (result DiscoverBackupOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

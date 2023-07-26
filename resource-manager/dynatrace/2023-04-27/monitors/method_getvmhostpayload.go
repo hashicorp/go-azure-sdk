@@ -21,7 +21,7 @@ type GetVMHostPayloadOperationResponse struct {
 // GetVMHostPayload ...
 func (c MonitorsClient) GetVMHostPayload(ctx context.Context, id MonitorId) (result GetVMHostPayloadOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

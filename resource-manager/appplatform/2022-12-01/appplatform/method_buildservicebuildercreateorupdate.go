@@ -23,7 +23,7 @@ type BuildServiceBuilderCreateOrUpdateOperationResponse struct {
 // BuildServiceBuilderCreateOrUpdate ...
 func (c AppPlatformClient) BuildServiceBuilderCreateOrUpdate(ctx context.Context, id BuilderId, input BuilderResource) (result BuildServiceBuilderCreateOrUpdateOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 			http.StatusOK,

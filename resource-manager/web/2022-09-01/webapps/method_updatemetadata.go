@@ -21,7 +21,7 @@ type UpdateMetadataOperationResponse struct {
 // UpdateMetadata ...
 func (c WebAppsClient) UpdateMetadata(ctx context.Context, id SiteId, input StringDictionary) (result UpdateMetadataOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

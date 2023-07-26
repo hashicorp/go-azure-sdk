@@ -21,7 +21,7 @@ type UpdateSourceControlSlotOperationResponse struct {
 // UpdateSourceControlSlot ...
 func (c WebAppsClient) UpdateSourceControlSlot(ctx context.Context, id SlotId, input SiteSourceControl) (result UpdateSourceControlSlotOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusCreated,

@@ -23,7 +23,7 @@ type CreateOrUpdateOperationResponse struct {
 // CreateOrUpdate ...
 func (c ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesClient) CreateOrUpdate(ctx context.Context, id RestorableDroppedDatabaseId, input ManagedBackupShortTermRetentionPolicy) (result CreateOrUpdateOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusOK,

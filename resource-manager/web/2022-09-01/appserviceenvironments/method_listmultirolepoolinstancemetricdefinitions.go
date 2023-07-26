@@ -25,7 +25,7 @@ type ListMultiRolePoolInstanceMetricDefinitionsCompleteResult struct {
 // ListMultiRolePoolInstanceMetricDefinitions ...
 func (c AppServiceEnvironmentsClient) ListMultiRolePoolInstanceMetricDefinitions(ctx context.Context, id DefaultInstanceId) (result ListMultiRolePoolInstanceMetricDefinitionsOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

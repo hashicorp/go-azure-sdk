@@ -20,7 +20,7 @@ type GetDnsServiceOperationResponse struct {
 // GetDnsService ...
 func (c WorkloadNetworksClient) GetDnsService(ctx context.Context, id DnsServiceId) (result GetDnsServiceOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

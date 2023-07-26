@@ -20,7 +20,7 @@ type GetDiagnosticsItemOperationResponse struct {
 // GetDiagnosticsItem ...
 func (c AppServiceEnvironmentsClient) GetDiagnosticsItem(ctx context.Context, id HostingEnvironmentDiagnosticId) (result GetDiagnosticsItemOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

@@ -20,7 +20,7 @@ type SuspendOperationResponse struct {
 // Suspend ...
 func (c TestJobClient) Suspend(ctx context.Context, id RunbookId) (result SuspendOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

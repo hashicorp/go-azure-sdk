@@ -20,7 +20,7 @@ type ServiceRegistriesGetOperationResponse struct {
 // ServiceRegistriesGet ...
 func (c AppPlatformClient) ServiceRegistriesGet(ctx context.Context, id ServiceRegistryId) (result ServiceRegistriesGetOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

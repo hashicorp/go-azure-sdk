@@ -25,7 +25,7 @@ type ListHostNameBindingsSlotCompleteResult struct {
 // ListHostNameBindingsSlot ...
 func (c WebAppsClient) ListHostNameBindingsSlot(ctx context.Context, id SlotId) (result ListHostNameBindingsSlotOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

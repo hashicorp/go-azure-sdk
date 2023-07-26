@@ -23,7 +23,7 @@ type ExportOperationResponse struct {
 // Export ...
 func (c DatabasesClient) Export(ctx context.Context, id DatabaseId, input ExportDatabaseDefinition) (result ExportOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusOK,

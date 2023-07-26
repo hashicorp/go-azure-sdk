@@ -25,7 +25,7 @@ type ListHubSchemasCompleteResult struct {
 // ListHubSchemas ...
 func (c SyncGroupsClient) ListHubSchemas(ctx context.Context, id SyncGroupId) (result ListHubSchemasOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

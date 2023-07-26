@@ -20,7 +20,7 @@ type StoragesGetOperationResponse struct {
 // StoragesGet ...
 func (c AppPlatformClient) StoragesGet(ctx context.Context, id StorageId) (result StoragesGetOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

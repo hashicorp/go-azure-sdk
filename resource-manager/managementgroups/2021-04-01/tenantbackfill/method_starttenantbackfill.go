@@ -20,7 +20,7 @@ type StartTenantBackfillOperationResponse struct {
 // StartTenantBackfill ...
 func (c TenantBackfillClient) StartTenantBackfill(ctx context.Context) (result StartTenantBackfillOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

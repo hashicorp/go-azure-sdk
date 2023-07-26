@@ -22,7 +22,7 @@ type ConnectionGatewaysListOperationResponse struct {
 // ConnectionGatewaysList ...
 func (c ConnectionGatewaysClient) ConnectionGatewaysList(ctx context.Context, id commonids.SubscriptionId) (result ConnectionGatewaysListOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

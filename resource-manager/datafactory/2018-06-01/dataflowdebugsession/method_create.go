@@ -23,7 +23,7 @@ type CreateOperationResponse struct {
 // Create ...
 func (c DataFlowDebugSessionClient) Create(ctx context.Context, id FactoryId, input CreateDataFlowDebugSessionRequest) (result CreateOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusOK,

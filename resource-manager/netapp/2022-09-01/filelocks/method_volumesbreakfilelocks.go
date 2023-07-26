@@ -23,7 +23,7 @@ type VolumesBreakFileLocksOperationResponse struct {
 // VolumesBreakFileLocks ...
 func (c FileLocksClient) VolumesBreakFileLocks(ctx context.Context, id VolumeId, input BreakFileLocksRequest) (result VolumesBreakFileLocksOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusOK,

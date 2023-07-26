@@ -20,7 +20,7 @@ type ReissueOperationResponse struct {
 // Reissue ...
 func (c AppServiceCertificateOrdersClient) Reissue(ctx context.Context, id CertificateOrderId, input ReissueCertificateOrderRequest) (result ReissueOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},

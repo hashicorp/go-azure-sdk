@@ -20,7 +20,7 @@ type SettingsGetOperationResponse struct {
 // SettingsGet ...
 func (c ServerDevOpsAuditClient) SettingsGet(ctx context.Context, id DevOpsAuditingSettingId) (result SettingsGetOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

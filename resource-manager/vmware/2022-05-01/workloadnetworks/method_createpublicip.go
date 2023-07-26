@@ -23,7 +23,7 @@ type CreatePublicIPOperationResponse struct {
 // CreatePublicIP ...
 func (c WorkloadNetworksClient) CreatePublicIP(ctx context.Context, id PublicIPId, input WorkloadNetworkPublicIP) (result CreatePublicIPOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 			http.StatusOK,

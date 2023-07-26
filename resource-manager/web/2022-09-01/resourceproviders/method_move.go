@@ -21,7 +21,7 @@ type MoveOperationResponse struct {
 // Move ...
 func (c ResourceProvidersClient) Move(ctx context.Context, id commonids.ResourceGroupId, input CsmMoveResourceEnvelope) (result MoveOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},

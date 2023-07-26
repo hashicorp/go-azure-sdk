@@ -19,7 +19,7 @@ type DeleteDeploymentSlotOperationResponse struct {
 // DeleteDeploymentSlot ...
 func (c WebAppsClient) DeleteDeploymentSlot(ctx context.Context, id SlotDeploymentId) (result DeleteDeploymentSlotOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 			http.StatusOK,

@@ -23,7 +23,7 @@ type ConfigServersUpdatePutOperationResponse struct {
 // ConfigServersUpdatePut ...
 func (c AppPlatformClient) ConfigServersUpdatePut(ctx context.Context, id SpringId, input ConfigServerResource) (result ConfigServersUpdatePutOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusAccepted,
 			http.StatusOK,

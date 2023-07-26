@@ -25,7 +25,7 @@ type ListMemberSchemasCompleteResult struct {
 // ListMemberSchemas ...
 func (c SyncMembersClient) ListMemberSchemas(ctx context.Context, id SyncMemberId) (result ListMemberSchemasOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},

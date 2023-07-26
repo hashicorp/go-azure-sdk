@@ -25,7 +25,7 @@ type ListBasicAuthCompleteResult struct {
 // ListBasicAuth ...
 func (c StaticSitesClient) ListBasicAuth(ctx context.Context, id StaticSiteId) (result ListBasicAuthOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/json",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
