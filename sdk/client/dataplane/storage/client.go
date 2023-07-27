@@ -11,7 +11,6 @@ import (
 	"github.com/hashicorp/go-azure-sdk/sdk/auth"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/dataplane"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 var storageDefaultRetryFunctions = []client.RequestRetryFunc{
@@ -22,12 +21,9 @@ type BaseClient struct {
 	Client *dataplane.Client
 }
 
-func NewBaseClient(accountName string, accountType string, api environments.Api, componentName, apiVersion string) (*BaseClient, error) {
-	domainSuffix, ok := api.DomainSuffix()
-	if !ok {
-		return nil, fmt.Errorf("`api` did not return a domain suffix for this environment")
-	}
-	baseUri := fmt.Sprintf("https://%s.%s.%s", accountName, accountType, *domainSuffix)
+func NewBaseClient(baseUri string, componentName, apiVersion string) (*BaseClient, error) {
+	// NOTE: both the domain name _and_ the domain format can change entirely depending on the type of storage account being used
+	// when provisioned in an edge zone, and when AzureDNSZone is used, as such we require the baseUri is provided here
 	return &BaseClient{
 		Client: dataplane.NewDataPlaneClient(baseUri, fmt.Sprintf("storage/%s", componentName), apiVersion),
 	}, nil
