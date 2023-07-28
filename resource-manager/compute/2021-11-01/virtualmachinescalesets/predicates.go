@@ -10,11 +10,11 @@ type UpgradeOperationHistoricalStatusInfoOperationPredicate struct {
 
 func (p UpgradeOperationHistoricalStatusInfoOperationPredicate) Matches(input UpgradeOperationHistoricalStatusInfo) bool {
 
-	if p.Location != nil && (input.Location == nil && *p.Location != *input.Location) {
+	if p.Location != nil && (input.Location == nil || *p.Location != *input.Location) {
 		return false
 	}
 
-	if p.Type != nil && (input.Type == nil && *p.Type != *input.Type) {
+	if p.Type != nil && (input.Type == nil || *p.Type != *input.Type) {
 		return false
 	}
 
@@ -30,7 +30,7 @@ type VirtualMachineScaleSetOperationPredicate struct {
 
 func (p VirtualMachineScaleSetOperationPredicate) Matches(input VirtualMachineScaleSet) bool {
 
-	if p.Id != nil && (input.Id == nil && *p.Id != *input.Id) {
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
 		return false
 	}
 
@@ -38,11 +38,11 @@ func (p VirtualMachineScaleSetOperationPredicate) Matches(input VirtualMachineSc
 		return false
 	}
 
-	if p.Name != nil && (input.Name == nil && *p.Name != *input.Name) {
+	if p.Name != nil && (input.Name == nil || *p.Name != *input.Name) {
 		return false
 	}
 
-	if p.Type != nil && (input.Type == nil && *p.Type != *input.Type) {
+	if p.Type != nil && (input.Type == nil || *p.Type != *input.Type) {
 		return false
 	}
 
@@ -55,7 +55,7 @@ type VirtualMachineScaleSetSkuOperationPredicate struct {
 
 func (p VirtualMachineScaleSetSkuOperationPredicate) Matches(input VirtualMachineScaleSetSku) bool {
 
-	if p.ResourceType != nil && (input.ResourceType == nil && *p.ResourceType != *input.ResourceType) {
+	if p.ResourceType != nil && (input.ResourceType == nil || *p.ResourceType != *input.ResourceType) {
 		return false
 	}
 

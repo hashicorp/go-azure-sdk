@@ -12,7 +12,7 @@ type ManagedInstanceOperationPredicate struct {
 
 func (p ManagedInstanceOperationPredicate) Matches(input ManagedInstance) bool {
 
-	if p.Id != nil && (input.Id == nil && *p.Id != *input.Id) {
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
 		return false
 	}
 
@@ -20,11 +20,11 @@ func (p ManagedInstanceOperationPredicate) Matches(input ManagedInstance) bool {
 		return false
 	}
 
-	if p.Name != nil && (input.Name == nil && *p.Name != *input.Name) {
+	if p.Name != nil && (input.Name == nil || *p.Name != *input.Name) {
 		return false
 	}
 
-	if p.Type != nil && (input.Type == nil && *p.Type != *input.Type) {
+	if p.Type != nil && (input.Type == nil || *p.Type != *input.Type) {
 		return false
 	}
 
@@ -41,23 +41,23 @@ type TopQueriesOperationPredicate struct {
 
 func (p TopQueriesOperationPredicate) Matches(input TopQueries) bool {
 
-	if p.AggregationFunction != nil && (input.AggregationFunction == nil && *p.AggregationFunction != *input.AggregationFunction) {
+	if p.AggregationFunction != nil && (input.AggregationFunction == nil || *p.AggregationFunction != *input.AggregationFunction) {
 		return false
 	}
 
-	if p.EndTime != nil && (input.EndTime == nil && *p.EndTime != *input.EndTime) {
+	if p.EndTime != nil && (input.EndTime == nil || *p.EndTime != *input.EndTime) {
 		return false
 	}
 
-	if p.NumberOfQueries != nil && (input.NumberOfQueries == nil && *p.NumberOfQueries != *input.NumberOfQueries) {
+	if p.NumberOfQueries != nil && (input.NumberOfQueries == nil || *p.NumberOfQueries != *input.NumberOfQueries) {
 		return false
 	}
 
-	if p.ObservationMetric != nil && (input.ObservationMetric == nil && *p.ObservationMetric != *input.ObservationMetric) {
+	if p.ObservationMetric != nil && (input.ObservationMetric == nil || *p.ObservationMetric != *input.ObservationMetric) {
 		return false
 	}
 
-	if p.StartTime != nil && (input.StartTime == nil && *p.StartTime != *input.StartTime) {
+	if p.StartTime != nil && (input.StartTime == nil || *p.StartTime != *input.StartTime) {
 		return false
 	}
 

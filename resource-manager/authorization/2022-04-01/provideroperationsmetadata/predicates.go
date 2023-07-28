@@ -12,19 +12,19 @@ type ProviderOperationsMetadataOperationPredicate struct {
 
 func (p ProviderOperationsMetadataOperationPredicate) Matches(input ProviderOperationsMetadata) bool {
 
-	if p.DisplayName != nil && (input.DisplayName == nil && *p.DisplayName != *input.DisplayName) {
+	if p.DisplayName != nil && (input.DisplayName == nil || *p.DisplayName != *input.DisplayName) {
 		return false
 	}
 
-	if p.Id != nil && (input.Id == nil && *p.Id != *input.Id) {
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
 		return false
 	}
 
-	if p.Name != nil && (input.Name == nil && *p.Name != *input.Name) {
+	if p.Name != nil && (input.Name == nil || *p.Name != *input.Name) {
 		return false
 	}
 
-	if p.Type != nil && (input.Type == nil && *p.Type != *input.Type) {
+	if p.Type != nil && (input.Type == nil || *p.Type != *input.Type) {
 		return false
 	}
 

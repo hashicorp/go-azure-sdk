@@ -18,15 +18,15 @@ type RuntimeScriptActionDetailOperationPredicate struct {
 
 func (p RuntimeScriptActionDetailOperationPredicate) Matches(input RuntimeScriptActionDetail) bool {
 
-	if p.ApplicationName != nil && (input.ApplicationName == nil && *p.ApplicationName != *input.ApplicationName) {
+	if p.ApplicationName != nil && (input.ApplicationName == nil || *p.ApplicationName != *input.ApplicationName) {
 		return false
 	}
 
-	if p.DebugInformation != nil && (input.DebugInformation == nil && *p.DebugInformation != *input.DebugInformation) {
+	if p.DebugInformation != nil && (input.DebugInformation == nil || *p.DebugInformation != *input.DebugInformation) {
 		return false
 	}
 
-	if p.EndTime != nil && (input.EndTime == nil && *p.EndTime != *input.EndTime) {
+	if p.EndTime != nil && (input.EndTime == nil || *p.EndTime != *input.EndTime) {
 		return false
 	}
 
@@ -34,23 +34,23 @@ func (p RuntimeScriptActionDetailOperationPredicate) Matches(input RuntimeScript
 		return false
 	}
 
-	if p.Operation != nil && (input.Operation == nil && *p.Operation != *input.Operation) {
+	if p.Operation != nil && (input.Operation == nil || *p.Operation != *input.Operation) {
 		return false
 	}
 
-	if p.Parameters != nil && (input.Parameters == nil && *p.Parameters != *input.Parameters) {
+	if p.Parameters != nil && (input.Parameters == nil || *p.Parameters != *input.Parameters) {
 		return false
 	}
 
-	if p.ScriptExecutionId != nil && (input.ScriptExecutionId == nil && *p.ScriptExecutionId != *input.ScriptExecutionId) {
+	if p.ScriptExecutionId != nil && (input.ScriptExecutionId == nil || *p.ScriptExecutionId != *input.ScriptExecutionId) {
 		return false
 	}
 
-	if p.StartTime != nil && (input.StartTime == nil && *p.StartTime != *input.StartTime) {
+	if p.StartTime != nil && (input.StartTime == nil || *p.StartTime != *input.StartTime) {
 		return false
 	}
 
-	if p.Status != nil && (input.Status == nil && *p.Status != *input.Status) {
+	if p.Status != nil && (input.Status == nil || *p.Status != *input.Status) {
 		return false
 	}
 

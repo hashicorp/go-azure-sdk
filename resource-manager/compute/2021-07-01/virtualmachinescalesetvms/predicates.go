@@ -13,11 +13,11 @@ type VirtualMachineScaleSetVMOperationPredicate struct {
 
 func (p VirtualMachineScaleSetVMOperationPredicate) Matches(input VirtualMachineScaleSetVM) bool {
 
-	if p.Id != nil && (input.Id == nil && *p.Id != *input.Id) {
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
 		return false
 	}
 
-	if p.InstanceId != nil && (input.InstanceId == nil && *p.InstanceId != *input.InstanceId) {
+	if p.InstanceId != nil && (input.InstanceId == nil || *p.InstanceId != *input.InstanceId) {
 		return false
 	}
 
@@ -25,11 +25,11 @@ func (p VirtualMachineScaleSetVMOperationPredicate) Matches(input VirtualMachine
 		return false
 	}
 
-	if p.Name != nil && (input.Name == nil && *p.Name != *input.Name) {
+	if p.Name != nil && (input.Name == nil || *p.Name != *input.Name) {
 		return false
 	}
 
-	if p.Type != nil && (input.Type == nil && *p.Type != *input.Type) {
+	if p.Type != nil && (input.Type == nil || *p.Type != *input.Type) {
 		return false
 	}
 

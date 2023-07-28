@@ -9,7 +9,7 @@ type AvailableServiceSkuOperationPredicate struct {
 
 func (p AvailableServiceSkuOperationPredicate) Matches(input AvailableServiceSku) bool {
 
-	if p.ResourceType != nil && (input.ResourceType == nil && *p.ResourceType != *input.ResourceType) {
+	if p.ResourceType != nil && (input.ResourceType == nil || *p.ResourceType != *input.ResourceType) {
 		return false
 	}
 
@@ -27,15 +27,15 @@ type DataMigrationServiceOperationPredicate struct {
 
 func (p DataMigrationServiceOperationPredicate) Matches(input DataMigrationService) bool {
 
-	if p.Etag != nil && (input.Etag == nil && *p.Etag != *input.Etag) {
+	if p.Etag != nil && (input.Etag == nil || *p.Etag != *input.Etag) {
 		return false
 	}
 
-	if p.Id != nil && (input.Id == nil && *p.Id != *input.Id) {
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
 		return false
 	}
 
-	if p.Kind != nil && (input.Kind == nil && *p.Kind != *input.Kind) {
+	if p.Kind != nil && (input.Kind == nil || *p.Kind != *input.Kind) {
 		return false
 	}
 
@@ -43,11 +43,11 @@ func (p DataMigrationServiceOperationPredicate) Matches(input DataMigrationServi
 		return false
 	}
 
-	if p.Name != nil && (input.Name == nil && *p.Name != *input.Name) {
+	if p.Name != nil && (input.Name == nil || *p.Name != *input.Name) {
 		return false
 	}
 
-	if p.Type != nil && (input.Type == nil && *p.Type != *input.Type) {
+	if p.Type != nil && (input.Type == nil || *p.Type != *input.Type) {
 		return false
 	}
 
@@ -63,7 +63,7 @@ type ProjectOperationPredicate struct {
 
 func (p ProjectOperationPredicate) Matches(input Project) bool {
 
-	if p.Id != nil && (input.Id == nil && *p.Id != *input.Id) {
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
 		return false
 	}
 
@@ -71,11 +71,11 @@ func (p ProjectOperationPredicate) Matches(input Project) bool {
 		return false
 	}
 
-	if p.Name != nil && (input.Name == nil && *p.Name != *input.Name) {
+	if p.Name != nil && (input.Name == nil || *p.Name != *input.Name) {
 		return false
 	}
 
-	if p.Type != nil && (input.Type == nil && *p.Type != *input.Type) {
+	if p.Type != nil && (input.Type == nil || *p.Type != *input.Type) {
 		return false
 	}
 
@@ -91,19 +91,19 @@ type ProjectTaskOperationPredicate struct {
 
 func (p ProjectTaskOperationPredicate) Matches(input ProjectTask) bool {
 
-	if p.Etag != nil && (input.Etag == nil && *p.Etag != *input.Etag) {
+	if p.Etag != nil && (input.Etag == nil || *p.Etag != *input.Etag) {
 		return false
 	}
 
-	if p.Id != nil && (input.Id == nil && *p.Id != *input.Id) {
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
 		return false
 	}
 
-	if p.Name != nil && (input.Name == nil && *p.Name != *input.Name) {
+	if p.Name != nil && (input.Name == nil || *p.Name != *input.Name) {
 		return false
 	}
 
-	if p.Type != nil && (input.Type == nil && *p.Type != *input.Type) {
+	if p.Type != nil && (input.Type == nil || *p.Type != *input.Type) {
 		return false
 	}
 
@@ -119,19 +119,19 @@ type QuotaOperationPredicate struct {
 
 func (p QuotaOperationPredicate) Matches(input Quota) bool {
 
-	if p.CurrentValue != nil && (input.CurrentValue == nil && *p.CurrentValue != *input.CurrentValue) {
+	if p.CurrentValue != nil && (input.CurrentValue == nil || *p.CurrentValue != *input.CurrentValue) {
 		return false
 	}
 
-	if p.Id != nil && (input.Id == nil && *p.Id != *input.Id) {
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
 		return false
 	}
 
-	if p.Limit != nil && (input.Limit == nil && *p.Limit != *input.Limit) {
+	if p.Limit != nil && (input.Limit == nil || *p.Limit != *input.Limit) {
 		return false
 	}
 
-	if p.Unit != nil && (input.Unit == nil && *p.Unit != *input.Unit) {
+	if p.Unit != nil && (input.Unit == nil || *p.Unit != *input.Unit) {
 		return false
 	}
 
@@ -149,27 +149,27 @@ type ResourceSkuOperationPredicate struct {
 
 func (p ResourceSkuOperationPredicate) Matches(input ResourceSku) bool {
 
-	if p.Family != nil && (input.Family == nil && *p.Family != *input.Family) {
+	if p.Family != nil && (input.Family == nil || *p.Family != *input.Family) {
 		return false
 	}
 
-	if p.Kind != nil && (input.Kind == nil && *p.Kind != *input.Kind) {
+	if p.Kind != nil && (input.Kind == nil || *p.Kind != *input.Kind) {
 		return false
 	}
 
-	if p.Name != nil && (input.Name == nil && *p.Name != *input.Name) {
+	if p.Name != nil && (input.Name == nil || *p.Name != *input.Name) {
 		return false
 	}
 
-	if p.ResourceType != nil && (input.ResourceType == nil && *p.ResourceType != *input.ResourceType) {
+	if p.ResourceType != nil && (input.ResourceType == nil || *p.ResourceType != *input.ResourceType) {
 		return false
 	}
 
-	if p.Size != nil && (input.Size == nil && *p.Size != *input.Size) {
+	if p.Size != nil && (input.Size == nil || *p.Size != *input.Size) {
 		return false
 	}
 
-	if p.Tier != nil && (input.Tier == nil && *p.Tier != *input.Tier) {
+	if p.Tier != nil && (input.Tier == nil || *p.Tier != *input.Tier) {
 		return false
 	}
 

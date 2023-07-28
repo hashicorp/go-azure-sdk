@@ -13,11 +13,11 @@ type AppServiceEnvironmentResourceOperationPredicate struct {
 
 func (p AppServiceEnvironmentResourceOperationPredicate) Matches(input AppServiceEnvironmentResource) bool {
 
-	if p.Id != nil && (input.Id == nil && *p.Id != *input.Id) {
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
 		return false
 	}
 
-	if p.Kind != nil && (input.Kind == nil && *p.Kind != *input.Kind) {
+	if p.Kind != nil && (input.Kind == nil || *p.Kind != *input.Kind) {
 		return false
 	}
 
@@ -25,11 +25,11 @@ func (p AppServiceEnvironmentResourceOperationPredicate) Matches(input AppServic
 		return false
 	}
 
-	if p.Name != nil && (input.Name == nil && *p.Name != *input.Name) {
+	if p.Name != nil && (input.Name == nil || *p.Name != *input.Name) {
 		return false
 	}
 
-	if p.Type != nil && (input.Type == nil && *p.Type != *input.Type) {
+	if p.Type != nil && (input.Type == nil || *p.Type != *input.Type) {
 		return false
 	}
 
@@ -46,11 +46,11 @@ type AppServicePlanOperationPredicate struct {
 
 func (p AppServicePlanOperationPredicate) Matches(input AppServicePlan) bool {
 
-	if p.Id != nil && (input.Id == nil && *p.Id != *input.Id) {
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
 		return false
 	}
 
-	if p.Kind != nil && (input.Kind == nil && *p.Kind != *input.Kind) {
+	if p.Kind != nil && (input.Kind == nil || *p.Kind != *input.Kind) {
 		return false
 	}
 
@@ -58,11 +58,11 @@ func (p AppServicePlanOperationPredicate) Matches(input AppServicePlan) bool {
 		return false
 	}
 
-	if p.Name != nil && (input.Name == nil && *p.Name != *input.Name) {
+	if p.Name != nil && (input.Name == nil || *p.Name != *input.Name) {
 		return false
 	}
 
-	if p.Type != nil && (input.Type == nil && *p.Type != *input.Type) {
+	if p.Type != nil && (input.Type == nil || *p.Type != *input.Type) {
 		return false
 	}
 
@@ -78,19 +78,19 @@ type CsmUsageQuotaOperationPredicate struct {
 
 func (p CsmUsageQuotaOperationPredicate) Matches(input CsmUsageQuota) bool {
 
-	if p.CurrentValue != nil && (input.CurrentValue == nil && *p.CurrentValue != *input.CurrentValue) {
+	if p.CurrentValue != nil && (input.CurrentValue == nil || *p.CurrentValue != *input.CurrentValue) {
 		return false
 	}
 
-	if p.Limit != nil && (input.Limit == nil && *p.Limit != *input.Limit) {
+	if p.Limit != nil && (input.Limit == nil || *p.Limit != *input.Limit) {
 		return false
 	}
 
-	if p.NextResetTime != nil && (input.NextResetTime == nil && *p.NextResetTime != *input.NextResetTime) {
+	if p.NextResetTime != nil && (input.NextResetTime == nil || *p.NextResetTime != *input.NextResetTime) {
 		return false
 	}
 
-	if p.Unit != nil && (input.Unit == nil && *p.Unit != *input.Unit) {
+	if p.Unit != nil && (input.Unit == nil || *p.Unit != *input.Unit) {
 		return false
 	}
 
@@ -103,7 +103,7 @@ type InboundEnvironmentEndpointOperationPredicate struct {
 
 func (p InboundEnvironmentEndpointOperationPredicate) Matches(input InboundEnvironmentEndpoint) bool {
 
-	if p.Description != nil && (input.Description == nil && *p.Description != *input.Description) {
+	if p.Description != nil && (input.Description == nil || *p.Description != *input.Description) {
 		return false
 	}
 
@@ -116,7 +116,7 @@ type OutboundEnvironmentEndpointOperationPredicate struct {
 
 func (p OutboundEnvironmentEndpointOperationPredicate) Matches(input OutboundEnvironmentEndpoint) bool {
 
-	if p.Category != nil && (input.Category == nil && *p.Category != *input.Category) {
+	if p.Category != nil && (input.Category == nil || *p.Category != *input.Category) {
 		return false
 	}
 
@@ -132,19 +132,19 @@ type RemotePrivateEndpointConnectionARMResourceOperationPredicate struct {
 
 func (p RemotePrivateEndpointConnectionARMResourceOperationPredicate) Matches(input RemotePrivateEndpointConnectionARMResource) bool {
 
-	if p.Id != nil && (input.Id == nil && *p.Id != *input.Id) {
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
 		return false
 	}
 
-	if p.Kind != nil && (input.Kind == nil && *p.Kind != *input.Kind) {
+	if p.Kind != nil && (input.Kind == nil || *p.Kind != *input.Kind) {
 		return false
 	}
 
-	if p.Name != nil && (input.Name == nil && *p.Name != *input.Name) {
+	if p.Name != nil && (input.Name == nil || *p.Name != *input.Name) {
 		return false
 	}
 
-	if p.Type != nil && (input.Type == nil && *p.Type != *input.Type) {
+	if p.Type != nil && (input.Type == nil || *p.Type != *input.Type) {
 		return false
 	}
 
@@ -160,19 +160,19 @@ type ResourceMetricDefinitionOperationPredicate struct {
 
 func (p ResourceMetricDefinitionOperationPredicate) Matches(input ResourceMetricDefinition) bool {
 
-	if p.Id != nil && (input.Id == nil && *p.Id != *input.Id) {
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
 		return false
 	}
 
-	if p.Kind != nil && (input.Kind == nil && *p.Kind != *input.Kind) {
+	if p.Kind != nil && (input.Kind == nil || *p.Kind != *input.Kind) {
 		return false
 	}
 
-	if p.Name != nil && (input.Name == nil && *p.Name != *input.Name) {
+	if p.Name != nil && (input.Name == nil || *p.Name != *input.Name) {
 		return false
 	}
 
-	if p.Type != nil && (input.Type == nil && *p.Type != *input.Type) {
+	if p.Type != nil && (input.Type == nil || *p.Type != *input.Type) {
 		return false
 	}
 
@@ -189,11 +189,11 @@ type SiteOperationPredicate struct {
 
 func (p SiteOperationPredicate) Matches(input Site) bool {
 
-	if p.Id != nil && (input.Id == nil && *p.Id != *input.Id) {
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
 		return false
 	}
 
-	if p.Kind != nil && (input.Kind == nil && *p.Kind != *input.Kind) {
+	if p.Kind != nil && (input.Kind == nil || *p.Kind != *input.Kind) {
 		return false
 	}
 
@@ -201,11 +201,11 @@ func (p SiteOperationPredicate) Matches(input Site) bool {
 		return false
 	}
 
-	if p.Name != nil && (input.Name == nil && *p.Name != *input.Name) {
+	if p.Name != nil && (input.Name == nil || *p.Name != *input.Name) {
 		return false
 	}
 
-	if p.Type != nil && (input.Type == nil && *p.Type != *input.Type) {
+	if p.Type != nil && (input.Type == nil || *p.Type != *input.Type) {
 		return false
 	}
 
@@ -218,7 +218,7 @@ type SkuInfoOperationPredicate struct {
 
 func (p SkuInfoOperationPredicate) Matches(input SkuInfo) bool {
 
-	if p.ResourceType != nil && (input.ResourceType == nil && *p.ResourceType != *input.ResourceType) {
+	if p.ResourceType != nil && (input.ResourceType == nil || *p.ResourceType != *input.ResourceType) {
 		return false
 	}
 
@@ -239,39 +239,39 @@ type StampCapacityOperationPredicate struct {
 
 func (p StampCapacityOperationPredicate) Matches(input StampCapacity) bool {
 
-	if p.AvailableCapacity != nil && (input.AvailableCapacity == nil && *p.AvailableCapacity != *input.AvailableCapacity) {
+	if p.AvailableCapacity != nil && (input.AvailableCapacity == nil || *p.AvailableCapacity != *input.AvailableCapacity) {
 		return false
 	}
 
-	if p.ExcludeFromCapacityAllocation != nil && (input.ExcludeFromCapacityAllocation == nil && *p.ExcludeFromCapacityAllocation != *input.ExcludeFromCapacityAllocation) {
+	if p.ExcludeFromCapacityAllocation != nil && (input.ExcludeFromCapacityAllocation == nil || *p.ExcludeFromCapacityAllocation != *input.ExcludeFromCapacityAllocation) {
 		return false
 	}
 
-	if p.IsApplicableForAllComputeModes != nil && (input.IsApplicableForAllComputeModes == nil && *p.IsApplicableForAllComputeModes != *input.IsApplicableForAllComputeModes) {
+	if p.IsApplicableForAllComputeModes != nil && (input.IsApplicableForAllComputeModes == nil || *p.IsApplicableForAllComputeModes != *input.IsApplicableForAllComputeModes) {
 		return false
 	}
 
-	if p.IsLinux != nil && (input.IsLinux == nil && *p.IsLinux != *input.IsLinux) {
+	if p.IsLinux != nil && (input.IsLinux == nil || *p.IsLinux != *input.IsLinux) {
 		return false
 	}
 
-	if p.Name != nil && (input.Name == nil && *p.Name != *input.Name) {
+	if p.Name != nil && (input.Name == nil || *p.Name != *input.Name) {
 		return false
 	}
 
-	if p.SiteMode != nil && (input.SiteMode == nil && *p.SiteMode != *input.SiteMode) {
+	if p.SiteMode != nil && (input.SiteMode == nil || *p.SiteMode != *input.SiteMode) {
 		return false
 	}
 
-	if p.TotalCapacity != nil && (input.TotalCapacity == nil && *p.TotalCapacity != *input.TotalCapacity) {
+	if p.TotalCapacity != nil && (input.TotalCapacity == nil || *p.TotalCapacity != *input.TotalCapacity) {
 		return false
 	}
 
-	if p.Unit != nil && (input.Unit == nil && *p.Unit != *input.Unit) {
+	if p.Unit != nil && (input.Unit == nil || *p.Unit != *input.Unit) {
 		return false
 	}
 
-	if p.WorkerSizeId != nil && (input.WorkerSizeId == nil && *p.WorkerSizeId != *input.WorkerSizeId) {
+	if p.WorkerSizeId != nil && (input.WorkerSizeId == nil || *p.WorkerSizeId != *input.WorkerSizeId) {
 		return false
 	}
 
@@ -287,19 +287,19 @@ type UsageOperationPredicate struct {
 
 func (p UsageOperationPredicate) Matches(input Usage) bool {
 
-	if p.Id != nil && (input.Id == nil && *p.Id != *input.Id) {
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
 		return false
 	}
 
-	if p.Kind != nil && (input.Kind == nil && *p.Kind != *input.Kind) {
+	if p.Kind != nil && (input.Kind == nil || *p.Kind != *input.Kind) {
 		return false
 	}
 
-	if p.Name != nil && (input.Name == nil && *p.Name != *input.Name) {
+	if p.Name != nil && (input.Name == nil || *p.Name != *input.Name) {
 		return false
 	}
 
-	if p.Type != nil && (input.Type == nil && *p.Type != *input.Type) {
+	if p.Type != nil && (input.Type == nil || *p.Type != *input.Type) {
 		return false
 	}
 
@@ -315,19 +315,19 @@ type WorkerPoolResourceOperationPredicate struct {
 
 func (p WorkerPoolResourceOperationPredicate) Matches(input WorkerPoolResource) bool {
 
-	if p.Id != nil && (input.Id == nil && *p.Id != *input.Id) {
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
 		return false
 	}
 
-	if p.Kind != nil && (input.Kind == nil && *p.Kind != *input.Kind) {
+	if p.Kind != nil && (input.Kind == nil || *p.Kind != *input.Kind) {
 		return false
 	}
 
-	if p.Name != nil && (input.Name == nil && *p.Name != *input.Name) {
+	if p.Name != nil && (input.Name == nil || *p.Name != *input.Name) {
 		return false
 	}
 
-	if p.Type != nil && (input.Type == nil && *p.Type != *input.Type) {
+	if p.Type != nil && (input.Type == nil || *p.Type != *input.Type) {
 		return false
 	}
 

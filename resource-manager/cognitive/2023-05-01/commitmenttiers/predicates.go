@@ -13,23 +13,23 @@ type CommitmentTierOperationPredicate struct {
 
 func (p CommitmentTierOperationPredicate) Matches(input CommitmentTier) bool {
 
-	if p.Kind != nil && (input.Kind == nil && *p.Kind != *input.Kind) {
+	if p.Kind != nil && (input.Kind == nil || *p.Kind != *input.Kind) {
 		return false
 	}
 
-	if p.MaxCount != nil && (input.MaxCount == nil && *p.MaxCount != *input.MaxCount) {
+	if p.MaxCount != nil && (input.MaxCount == nil || *p.MaxCount != *input.MaxCount) {
 		return false
 	}
 
-	if p.PlanType != nil && (input.PlanType == nil && *p.PlanType != *input.PlanType) {
+	if p.PlanType != nil && (input.PlanType == nil || *p.PlanType != *input.PlanType) {
 		return false
 	}
 
-	if p.SkuName != nil && (input.SkuName == nil && *p.SkuName != *input.SkuName) {
+	if p.SkuName != nil && (input.SkuName == nil || *p.SkuName != *input.SkuName) {
 		return false
 	}
 
-	if p.Tier != nil && (input.Tier == nil && *p.Tier != *input.Tier) {
+	if p.Tier != nil && (input.Tier == nil || *p.Tier != *input.Tier) {
 		return false
 	}
 

@@ -19,7 +19,7 @@ func (p LtrServerBackupOperationOperationPredicate) Matches(input LtrServerBacku
 		return false
 	}
 
-	if p.Type != nil && (input.Type == nil && *p.Type != *input.Type) {
+	if p.Type != nil && (input.Type == nil || *p.Type != *input.Type) {
 		return false
 	}
 

@@ -10,11 +10,11 @@ type RepoOperationPredicate struct {
 
 func (p RepoOperationPredicate) Matches(input Repo) bool {
 
-	if p.FullName != nil && (input.FullName == nil && *p.FullName != *input.FullName) {
+	if p.FullName != nil && (input.FullName == nil || *p.FullName != *input.FullName) {
 		return false
 	}
 
-	if p.Url != nil && (input.Url == nil && *p.Url != *input.Url) {
+	if p.Url != nil && (input.Url == nil || *p.Url != *input.Url) {
 		return false
 	}
 

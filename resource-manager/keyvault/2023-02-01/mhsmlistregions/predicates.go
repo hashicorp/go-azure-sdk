@@ -10,11 +10,11 @@ type MHSMGeoReplicatedRegionOperationPredicate struct {
 
 func (p MHSMGeoReplicatedRegionOperationPredicate) Matches(input MHSMGeoReplicatedRegion) bool {
 
-	if p.IsPrimary != nil && (input.IsPrimary == nil && *p.IsPrimary != *input.IsPrimary) {
+	if p.IsPrimary != nil && (input.IsPrimary == nil || *p.IsPrimary != *input.IsPrimary) {
 		return false
 	}
 
-	if p.Name != nil && (input.Name == nil && *p.Name != *input.Name) {
+	if p.Name != nil && (input.Name == nil || *p.Name != *input.Name) {
 		return false
 	}
 

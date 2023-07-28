@@ -9,7 +9,7 @@ type VMResourcesOperationPredicate struct {
 
 func (p VMResourcesOperationPredicate) Matches(input VMResources) bool {
 
-	if p.VMResourceId != nil && (input.VMResourceId == nil && *p.VMResourceId != *input.VMResourceId) {
+	if p.VMResourceId != nil && (input.VMResourceId == nil || *p.VMResourceId != *input.VMResourceId) {
 		return false
 	}
 

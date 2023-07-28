@@ -9,7 +9,7 @@ type JobOperationPredicate struct {
 
 func (p JobOperationPredicate) Matches(input Job) bool {
 
-	if p.Id != nil && (input.Id == nil && *p.Id != *input.Id) {
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
 		return false
 	}
 
