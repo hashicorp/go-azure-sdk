@@ -11,15 +11,15 @@ type OperationDetailOperationPredicate struct {
 
 func (p OperationDetailOperationPredicate) Matches(input OperationDetail) bool {
 
-	if p.IsDataAction != nil && (input.IsDataAction == nil && *p.IsDataAction != *input.IsDataAction) {
+	if p.IsDataAction != nil && (input.IsDataAction == nil || *p.IsDataAction != *input.IsDataAction) {
 		return false
 	}
 
-	if p.Name != nil && (input.Name == nil && *p.Name != *input.Name) {
+	if p.Name != nil && (input.Name == nil || *p.Name != *input.Name) {
 		return false
 	}
 
-	if p.Origin != nil && (input.Origin == nil && *p.Origin != *input.Origin) {
+	if p.Origin != nil && (input.Origin == nil || *p.Origin != *input.Origin) {
 		return false
 	}
 

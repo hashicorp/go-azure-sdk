@@ -10,11 +10,11 @@ type ModelOperationPredicate struct {
 
 func (p ModelOperationPredicate) Matches(input Model) bool {
 
-	if p.Kind != nil && (input.Kind == nil && *p.Kind != *input.Kind) {
+	if p.Kind != nil && (input.Kind == nil || *p.Kind != *input.Kind) {
 		return false
 	}
 
-	if p.SkuName != nil && (input.SkuName == nil && *p.SkuName != *input.SkuName) {
+	if p.SkuName != nil && (input.SkuName == nil || *p.SkuName != *input.SkuName) {
 		return false
 	}
 

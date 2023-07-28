@@ -23,11 +23,11 @@ type ProvisioningServiceDescriptionOperationPredicate struct {
 
 func (p ProvisioningServiceDescriptionOperationPredicate) Matches(input ProvisioningServiceDescription) bool {
 
-	if p.Etag != nil && (input.Etag == nil && *p.Etag != *input.Etag) {
+	if p.Etag != nil && (input.Etag == nil || *p.Etag != *input.Etag) {
 		return false
 	}
 
-	if p.Id != nil && (input.Id == nil && *p.Id != *input.Id) {
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
 		return false
 	}
 
@@ -35,19 +35,19 @@ func (p ProvisioningServiceDescriptionOperationPredicate) Matches(input Provisio
 		return false
 	}
 
-	if p.Name != nil && (input.Name == nil && *p.Name != *input.Name) {
+	if p.Name != nil && (input.Name == nil || *p.Name != *input.Name) {
 		return false
 	}
 
-	if p.Resourcegroup != nil && (input.Resourcegroup == nil && *p.Resourcegroup != *input.Resourcegroup) {
+	if p.Resourcegroup != nil && (input.Resourcegroup == nil || *p.Resourcegroup != *input.Resourcegroup) {
 		return false
 	}
 
-	if p.Subscriptionid != nil && (input.Subscriptionid == nil && *p.Subscriptionid != *input.Subscriptionid) {
+	if p.Subscriptionid != nil && (input.Subscriptionid == nil || *p.Subscriptionid != *input.Subscriptionid) {
 		return false
 	}
 
-	if p.Type != nil && (input.Type == nil && *p.Type != *input.Type) {
+	if p.Type != nil && (input.Type == nil || *p.Type != *input.Type) {
 		return false
 	}
 
@@ -66,11 +66,11 @@ func (p SharedAccessSignatureAuthorizationRuleAccessRightsDescriptionOperationPr
 		return false
 	}
 
-	if p.PrimaryKey != nil && (input.PrimaryKey == nil && *p.PrimaryKey != *input.PrimaryKey) {
+	if p.PrimaryKey != nil && (input.PrimaryKey == nil || *p.PrimaryKey != *input.PrimaryKey) {
 		return false
 	}
 
-	if p.SecondaryKey != nil && (input.SecondaryKey == nil && *p.SecondaryKey != *input.SecondaryKey) {
+	if p.SecondaryKey != nil && (input.SecondaryKey == nil || *p.SecondaryKey != *input.SecondaryKey) {
 		return false
 	}
 

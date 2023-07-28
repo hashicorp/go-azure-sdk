@@ -17,39 +17,39 @@ type DataFlowDebugSessionInfoOperationPredicate struct {
 
 func (p DataFlowDebugSessionInfoOperationPredicate) Matches(input DataFlowDebugSessionInfo) bool {
 
-	if p.ComputeType != nil && (input.ComputeType == nil && *p.ComputeType != *input.ComputeType) {
+	if p.ComputeType != nil && (input.ComputeType == nil || *p.ComputeType != *input.ComputeType) {
 		return false
 	}
 
-	if p.CoreCount != nil && (input.CoreCount == nil && *p.CoreCount != *input.CoreCount) {
+	if p.CoreCount != nil && (input.CoreCount == nil || *p.CoreCount != *input.CoreCount) {
 		return false
 	}
 
-	if p.DataFlowName != nil && (input.DataFlowName == nil && *p.DataFlowName != *input.DataFlowName) {
+	if p.DataFlowName != nil && (input.DataFlowName == nil || *p.DataFlowName != *input.DataFlowName) {
 		return false
 	}
 
-	if p.IntegrationRuntimeName != nil && (input.IntegrationRuntimeName == nil && *p.IntegrationRuntimeName != *input.IntegrationRuntimeName) {
+	if p.IntegrationRuntimeName != nil && (input.IntegrationRuntimeName == nil || *p.IntegrationRuntimeName != *input.IntegrationRuntimeName) {
 		return false
 	}
 
-	if p.LastActivityTime != nil && (input.LastActivityTime == nil && *p.LastActivityTime != *input.LastActivityTime) {
+	if p.LastActivityTime != nil && (input.LastActivityTime == nil || *p.LastActivityTime != *input.LastActivityTime) {
 		return false
 	}
 
-	if p.NodeCount != nil && (input.NodeCount == nil && *p.NodeCount != *input.NodeCount) {
+	if p.NodeCount != nil && (input.NodeCount == nil || *p.NodeCount != *input.NodeCount) {
 		return false
 	}
 
-	if p.SessionId != nil && (input.SessionId == nil && *p.SessionId != *input.SessionId) {
+	if p.SessionId != nil && (input.SessionId == nil || *p.SessionId != *input.SessionId) {
 		return false
 	}
 
-	if p.StartTime != nil && (input.StartTime == nil && *p.StartTime != *input.StartTime) {
+	if p.StartTime != nil && (input.StartTime == nil || *p.StartTime != *input.StartTime) {
 		return false
 	}
 
-	if p.TimeToLiveInMinutes != nil && (input.TimeToLiveInMinutes == nil && *p.TimeToLiveInMinutes != *input.TimeToLiveInMinutes) {
+	if p.TimeToLiveInMinutes != nil && (input.TimeToLiveInMinutes == nil || *p.TimeToLiveInMinutes != *input.TimeToLiveInMinutes) {
 		return false
 	}
 

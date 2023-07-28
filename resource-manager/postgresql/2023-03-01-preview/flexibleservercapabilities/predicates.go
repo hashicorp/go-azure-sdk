@@ -10,11 +10,11 @@ type FlexibleServerCapabilityOperationPredicate struct {
 
 func (p FlexibleServerCapabilityOperationPredicate) Matches(input FlexibleServerCapability) bool {
 
-	if p.Name != nil && (input.Name == nil && *p.Name != *input.Name) {
+	if p.Name != nil && (input.Name == nil || *p.Name != *input.Name) {
 		return false
 	}
 
-	if p.Reason != nil && (input.Reason == nil && *p.Reason != *input.Reason) {
+	if p.Reason != nil && (input.Reason == nil || *p.Reason != *input.Reason) {
 		return false
 	}
 

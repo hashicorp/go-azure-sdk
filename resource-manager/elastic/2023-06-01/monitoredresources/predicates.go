@@ -10,11 +10,11 @@ type MonitoredResourceOperationPredicate struct {
 
 func (p MonitoredResourceOperationPredicate) Matches(input MonitoredResource) bool {
 
-	if p.Id != nil && (input.Id == nil && *p.Id != *input.Id) {
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
 		return false
 	}
 
-	if p.ReasonForLogsStatus != nil && (input.ReasonForLogsStatus == nil && *p.ReasonForLogsStatus != *input.ReasonForLogsStatus) {
+	if p.ReasonForLogsStatus != nil && (input.ReasonForLogsStatus == nil || *p.ReasonForLogsStatus != *input.ReasonForLogsStatus) {
 		return false
 	}
 

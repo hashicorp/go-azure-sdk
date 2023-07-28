@@ -12,19 +12,19 @@ type CapabilityPropertiesOperationPredicate struct {
 
 func (p CapabilityPropertiesOperationPredicate) Matches(input CapabilityProperties) bool {
 
-	if p.GeoBackupSupported != nil && (input.GeoBackupSupported == nil && *p.GeoBackupSupported != *input.GeoBackupSupported) {
+	if p.GeoBackupSupported != nil && (input.GeoBackupSupported == nil || *p.GeoBackupSupported != *input.GeoBackupSupported) {
 		return false
 	}
 
-	if p.Status != nil && (input.Status == nil && *p.Status != *input.Status) {
+	if p.Status != nil && (input.Status == nil || *p.Status != *input.Status) {
 		return false
 	}
 
-	if p.ZoneRedundantHaAndGeoBackupSupported != nil && (input.ZoneRedundantHaAndGeoBackupSupported == nil && *p.ZoneRedundantHaAndGeoBackupSupported != *input.ZoneRedundantHaAndGeoBackupSupported) {
+	if p.ZoneRedundantHaAndGeoBackupSupported != nil && (input.ZoneRedundantHaAndGeoBackupSupported == nil || *p.ZoneRedundantHaAndGeoBackupSupported != *input.ZoneRedundantHaAndGeoBackupSupported) {
 		return false
 	}
 
-	if p.ZoneRedundantHaSupported != nil && (input.ZoneRedundantHaSupported == nil && *p.ZoneRedundantHaSupported != *input.ZoneRedundantHaSupported) {
+	if p.ZoneRedundantHaSupported != nil && (input.ZoneRedundantHaSupported == nil || *p.ZoneRedundantHaSupported != *input.ZoneRedundantHaSupported) {
 		return false
 	}
 

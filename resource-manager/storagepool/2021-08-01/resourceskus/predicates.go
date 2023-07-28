@@ -12,19 +12,19 @@ type ResourceSkuInfoOperationPredicate struct {
 
 func (p ResourceSkuInfoOperationPredicate) Matches(input ResourceSkuInfo) bool {
 
-	if p.ApiVersion != nil && (input.ApiVersion == nil && *p.ApiVersion != *input.ApiVersion) {
+	if p.ApiVersion != nil && (input.ApiVersion == nil || *p.ApiVersion != *input.ApiVersion) {
 		return false
 	}
 
-	if p.Name != nil && (input.Name == nil && *p.Name != *input.Name) {
+	if p.Name != nil && (input.Name == nil || *p.Name != *input.Name) {
 		return false
 	}
 
-	if p.ResourceType != nil && (input.ResourceType == nil && *p.ResourceType != *input.ResourceType) {
+	if p.ResourceType != nil && (input.ResourceType == nil || *p.ResourceType != *input.ResourceType) {
 		return false
 	}
 
-	if p.Tier != nil && (input.Tier == nil && *p.Tier != *input.Tier) {
+	if p.Tier != nil && (input.Tier == nil || *p.Tier != *input.Tier) {
 		return false
 	}
 

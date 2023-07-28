@@ -18,43 +18,43 @@ type GenericResourceExpandedOperationPredicate struct {
 
 func (p GenericResourceExpandedOperationPredicate) Matches(input GenericResourceExpanded) bool {
 
-	if p.ChangedTime != nil && (input.ChangedTime == nil && *p.ChangedTime != *input.ChangedTime) {
+	if p.ChangedTime != nil && (input.ChangedTime == nil || *p.ChangedTime != *input.ChangedTime) {
 		return false
 	}
 
-	if p.CreatedTime != nil && (input.CreatedTime == nil && *p.CreatedTime != *input.CreatedTime) {
+	if p.CreatedTime != nil && (input.CreatedTime == nil || *p.CreatedTime != *input.CreatedTime) {
 		return false
 	}
 
-	if p.Id != nil && (input.Id == nil && *p.Id != *input.Id) {
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
 		return false
 	}
 
-	if p.Kind != nil && (input.Kind == nil && *p.Kind != *input.Kind) {
+	if p.Kind != nil && (input.Kind == nil || *p.Kind != *input.Kind) {
 		return false
 	}
 
-	if p.Location != nil && (input.Location == nil && *p.Location != *input.Location) {
+	if p.Location != nil && (input.Location == nil || *p.Location != *input.Location) {
 		return false
 	}
 
-	if p.ManagedBy != nil && (input.ManagedBy == nil && *p.ManagedBy != *input.ManagedBy) {
+	if p.ManagedBy != nil && (input.ManagedBy == nil || *p.ManagedBy != *input.ManagedBy) {
 		return false
 	}
 
-	if p.Name != nil && (input.Name == nil && *p.Name != *input.Name) {
+	if p.Name != nil && (input.Name == nil || *p.Name != *input.Name) {
 		return false
 	}
 
-	if p.Properties != nil && (input.Properties == nil && *p.Properties != *input.Properties) {
+	if p.Properties != nil && (input.Properties == nil || *p.Properties != *input.Properties) {
 		return false
 	}
 
-	if p.ProvisioningState != nil && (input.ProvisioningState == nil && *p.ProvisioningState != *input.ProvisioningState) {
+	if p.ProvisioningState != nil && (input.ProvisioningState == nil || *p.ProvisioningState != *input.ProvisioningState) {
 		return false
 	}
 
-	if p.Type != nil && (input.Type == nil && *p.Type != *input.Type) {
+	if p.Type != nil && (input.Type == nil || *p.Type != *input.Type) {
 		return false
 	}
 
@@ -71,7 +71,7 @@ type ResourceGroupOperationPredicate struct {
 
 func (p ResourceGroupOperationPredicate) Matches(input ResourceGroup) bool {
 
-	if p.Id != nil && (input.Id == nil && *p.Id != *input.Id) {
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
 		return false
 	}
 
@@ -79,15 +79,15 @@ func (p ResourceGroupOperationPredicate) Matches(input ResourceGroup) bool {
 		return false
 	}
 
-	if p.ManagedBy != nil && (input.ManagedBy == nil && *p.ManagedBy != *input.ManagedBy) {
+	if p.ManagedBy != nil && (input.ManagedBy == nil || *p.ManagedBy != *input.ManagedBy) {
 		return false
 	}
 
-	if p.Name != nil && (input.Name == nil && *p.Name != *input.Name) {
+	if p.Name != nil && (input.Name == nil || *p.Name != *input.Name) {
 		return false
 	}
 
-	if p.Type != nil && (input.Type == nil && *p.Type != *input.Type) {
+	if p.Type != nil && (input.Type == nil || *p.Type != *input.Type) {
 		return false
 	}
 

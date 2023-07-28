@@ -12,19 +12,19 @@ type DataBoxEdgeSkuOperationPredicate struct {
 
 func (p DataBoxEdgeSkuOperationPredicate) Matches(input DataBoxEdgeSku) bool {
 
-	if p.Family != nil && (input.Family == nil && *p.Family != *input.Family) {
+	if p.Family != nil && (input.Family == nil || *p.Family != *input.Family) {
 		return false
 	}
 
-	if p.Kind != nil && (input.Kind == nil && *p.Kind != *input.Kind) {
+	if p.Kind != nil && (input.Kind == nil || *p.Kind != *input.Kind) {
 		return false
 	}
 
-	if p.ResourceType != nil && (input.ResourceType == nil && *p.ResourceType != *input.ResourceType) {
+	if p.ResourceType != nil && (input.ResourceType == nil || *p.ResourceType != *input.ResourceType) {
 		return false
 	}
 
-	if p.Size != nil && (input.Size == nil && *p.Size != *input.Size) {
+	if p.Size != nil && (input.Size == nil || *p.Size != *input.Size) {
 		return false
 	}
 

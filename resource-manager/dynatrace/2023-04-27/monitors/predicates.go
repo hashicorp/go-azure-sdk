@@ -12,19 +12,19 @@ type AppServiceInfoOperationPredicate struct {
 
 func (p AppServiceInfoOperationPredicate) Matches(input AppServiceInfo) bool {
 
-	if p.HostGroup != nil && (input.HostGroup == nil && *p.HostGroup != *input.HostGroup) {
+	if p.HostGroup != nil && (input.HostGroup == nil || *p.HostGroup != *input.HostGroup) {
 		return false
 	}
 
-	if p.HostName != nil && (input.HostName == nil && *p.HostName != *input.HostName) {
+	if p.HostName != nil && (input.HostName == nil || *p.HostName != *input.HostName) {
 		return false
 	}
 
-	if p.ResourceId != nil && (input.ResourceId == nil && *p.ResourceId != *input.ResourceId) {
+	if p.ResourceId != nil && (input.ResourceId == nil || *p.ResourceId != *input.ResourceId) {
 		return false
 	}
 
-	if p.Version != nil && (input.Version == nil && *p.Version != *input.Version) {
+	if p.Version != nil && (input.Version == nil || *p.Version != *input.Version) {
 		return false
 	}
 
@@ -38,11 +38,11 @@ type LinkableEnvironmentResponseOperationPredicate struct {
 
 func (p LinkableEnvironmentResponseOperationPredicate) Matches(input LinkableEnvironmentResponse) bool {
 
-	if p.EnvironmentId != nil && (input.EnvironmentId == nil && *p.EnvironmentId != *input.EnvironmentId) {
+	if p.EnvironmentId != nil && (input.EnvironmentId == nil || *p.EnvironmentId != *input.EnvironmentId) {
 		return false
 	}
 
-	if p.EnvironmentName != nil && (input.EnvironmentName == nil && *p.EnvironmentName != *input.EnvironmentName) {
+	if p.EnvironmentName != nil && (input.EnvironmentName == nil || *p.EnvironmentName != *input.EnvironmentName) {
 		return false
 	}
 
@@ -58,7 +58,7 @@ type MonitorResourceOperationPredicate struct {
 
 func (p MonitorResourceOperationPredicate) Matches(input MonitorResource) bool {
 
-	if p.Id != nil && (input.Id == nil && *p.Id != *input.Id) {
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
 		return false
 	}
 
@@ -66,11 +66,11 @@ func (p MonitorResourceOperationPredicate) Matches(input MonitorResource) bool {
 		return false
 	}
 
-	if p.Name != nil && (input.Name == nil && *p.Name != *input.Name) {
+	if p.Name != nil && (input.Name == nil || *p.Name != *input.Name) {
 		return false
 	}
 
-	if p.Type != nil && (input.Type == nil && *p.Type != *input.Type) {
+	if p.Type != nil && (input.Type == nil || *p.Type != *input.Type) {
 		return false
 	}
 
@@ -85,15 +85,15 @@ type MonitoredResourceOperationPredicate struct {
 
 func (p MonitoredResourceOperationPredicate) Matches(input MonitoredResource) bool {
 
-	if p.Id != nil && (input.Id == nil && *p.Id != *input.Id) {
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
 		return false
 	}
 
-	if p.ReasonForLogsStatus != nil && (input.ReasonForLogsStatus == nil && *p.ReasonForLogsStatus != *input.ReasonForLogsStatus) {
+	if p.ReasonForLogsStatus != nil && (input.ReasonForLogsStatus == nil || *p.ReasonForLogsStatus != *input.ReasonForLogsStatus) {
 		return false
 	}
 
-	if p.ReasonForMetricsStatus != nil && (input.ReasonForMetricsStatus == nil && *p.ReasonForMetricsStatus != *input.ReasonForMetricsStatus) {
+	if p.ReasonForMetricsStatus != nil && (input.ReasonForMetricsStatus == nil || *p.ReasonForMetricsStatus != *input.ReasonForMetricsStatus) {
 		return false
 	}
 
@@ -109,19 +109,19 @@ type VMInfoOperationPredicate struct {
 
 func (p VMInfoOperationPredicate) Matches(input VMInfo) bool {
 
-	if p.HostGroup != nil && (input.HostGroup == nil && *p.HostGroup != *input.HostGroup) {
+	if p.HostGroup != nil && (input.HostGroup == nil || *p.HostGroup != *input.HostGroup) {
 		return false
 	}
 
-	if p.HostName != nil && (input.HostName == nil && *p.HostName != *input.HostName) {
+	if p.HostName != nil && (input.HostName == nil || *p.HostName != *input.HostName) {
 		return false
 	}
 
-	if p.ResourceId != nil && (input.ResourceId == nil && *p.ResourceId != *input.ResourceId) {
+	if p.ResourceId != nil && (input.ResourceId == nil || *p.ResourceId != *input.ResourceId) {
 		return false
 	}
 
-	if p.Version != nil && (input.Version == nil && *p.Version != *input.Version) {
+	if p.Version != nil && (input.Version == nil || *p.Version != *input.Version) {
 		return false
 	}
 

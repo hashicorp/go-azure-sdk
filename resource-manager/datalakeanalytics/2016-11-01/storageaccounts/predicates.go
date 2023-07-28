@@ -9,7 +9,7 @@ type SasTokenInformationOperationPredicate struct {
 
 func (p SasTokenInformationOperationPredicate) Matches(input SasTokenInformation) bool {
 
-	if p.AccessToken != nil && (input.AccessToken == nil && *p.AccessToken != *input.AccessToken) {
+	if p.AccessToken != nil && (input.AccessToken == nil || *p.AccessToken != *input.AccessToken) {
 		return false
 	}
 
@@ -24,15 +24,15 @@ type StorageAccountInformationOperationPredicate struct {
 
 func (p StorageAccountInformationOperationPredicate) Matches(input StorageAccountInformation) bool {
 
-	if p.Id != nil && (input.Id == nil && *p.Id != *input.Id) {
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
 		return false
 	}
 
-	if p.Name != nil && (input.Name == nil && *p.Name != *input.Name) {
+	if p.Name != nil && (input.Name == nil || *p.Name != *input.Name) {
 		return false
 	}
 
-	if p.Type != nil && (input.Type == nil && *p.Type != *input.Type) {
+	if p.Type != nil && (input.Type == nil || *p.Type != *input.Type) {
 		return false
 	}
 
@@ -47,15 +47,15 @@ type StorageContainerOperationPredicate struct {
 
 func (p StorageContainerOperationPredicate) Matches(input StorageContainer) bool {
 
-	if p.Id != nil && (input.Id == nil && *p.Id != *input.Id) {
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
 		return false
 	}
 
-	if p.Name != nil && (input.Name == nil && *p.Name != *input.Name) {
+	if p.Name != nil && (input.Name == nil || *p.Name != *input.Name) {
 		return false
 	}
 
-	if p.Type != nil && (input.Type == nil && *p.Type != *input.Type) {
+	if p.Type != nil && (input.Type == nil || *p.Type != *input.Type) {
 		return false
 	}
 

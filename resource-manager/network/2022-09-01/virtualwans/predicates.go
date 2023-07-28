@@ -12,19 +12,19 @@ type BgpConnectionOperationPredicate struct {
 
 func (p BgpConnectionOperationPredicate) Matches(input BgpConnection) bool {
 
-	if p.Etag != nil && (input.Etag == nil && *p.Etag != *input.Etag) {
+	if p.Etag != nil && (input.Etag == nil || *p.Etag != *input.Etag) {
 		return false
 	}
 
-	if p.Id != nil && (input.Id == nil && *p.Id != *input.Id) {
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
 		return false
 	}
 
-	if p.Name != nil && (input.Name == nil && *p.Name != *input.Name) {
+	if p.Name != nil && (input.Name == nil || *p.Name != *input.Name) {
 		return false
 	}
 
-	if p.Type != nil && (input.Type == nil && *p.Type != *input.Type) {
+	if p.Type != nil && (input.Type == nil || *p.Type != *input.Type) {
 		return false
 	}
 
@@ -40,19 +40,19 @@ type HubIPConfigurationOperationPredicate struct {
 
 func (p HubIPConfigurationOperationPredicate) Matches(input HubIPConfiguration) bool {
 
-	if p.Etag != nil && (input.Etag == nil && *p.Etag != *input.Etag) {
+	if p.Etag != nil && (input.Etag == nil || *p.Etag != *input.Etag) {
 		return false
 	}
 
-	if p.Id != nil && (input.Id == nil && *p.Id != *input.Id) {
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
 		return false
 	}
 
-	if p.Name != nil && (input.Name == nil && *p.Name != *input.Name) {
+	if p.Name != nil && (input.Name == nil || *p.Name != *input.Name) {
 		return false
 	}
 
-	if p.Type != nil && (input.Type == nil && *p.Type != *input.Type) {
+	if p.Type != nil && (input.Type == nil || *p.Type != *input.Type) {
 		return false
 	}
 
@@ -68,19 +68,19 @@ type HubRouteTableOperationPredicate struct {
 
 func (p HubRouteTableOperationPredicate) Matches(input HubRouteTable) bool {
 
-	if p.Etag != nil && (input.Etag == nil && *p.Etag != *input.Etag) {
+	if p.Etag != nil && (input.Etag == nil || *p.Etag != *input.Etag) {
 		return false
 	}
 
-	if p.Id != nil && (input.Id == nil && *p.Id != *input.Id) {
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
 		return false
 	}
 
-	if p.Name != nil && (input.Name == nil && *p.Name != *input.Name) {
+	if p.Name != nil && (input.Name == nil || *p.Name != *input.Name) {
 		return false
 	}
 
-	if p.Type != nil && (input.Type == nil && *p.Type != *input.Type) {
+	if p.Type != nil && (input.Type == nil || *p.Type != *input.Type) {
 		return false
 	}
 
@@ -95,15 +95,15 @@ type HubVirtualNetworkConnectionOperationPredicate struct {
 
 func (p HubVirtualNetworkConnectionOperationPredicate) Matches(input HubVirtualNetworkConnection) bool {
 
-	if p.Etag != nil && (input.Etag == nil && *p.Etag != *input.Etag) {
+	if p.Etag != nil && (input.Etag == nil || *p.Etag != *input.Etag) {
 		return false
 	}
 
-	if p.Id != nil && (input.Id == nil && *p.Id != *input.Id) {
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
 		return false
 	}
 
-	if p.Name != nil && (input.Name == nil && *p.Name != *input.Name) {
+	if p.Name != nil && (input.Name == nil || *p.Name != *input.Name) {
 		return false
 	}
 
@@ -120,11 +120,11 @@ type P2SVpnGatewayOperationPredicate struct {
 
 func (p P2SVpnGatewayOperationPredicate) Matches(input P2SVpnGateway) bool {
 
-	if p.Etag != nil && (input.Etag == nil && *p.Etag != *input.Etag) {
+	if p.Etag != nil && (input.Etag == nil || *p.Etag != *input.Etag) {
 		return false
 	}
 
-	if p.Id != nil && (input.Id == nil && *p.Id != *input.Id) {
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
 		return false
 	}
 
@@ -132,11 +132,11 @@ func (p P2SVpnGatewayOperationPredicate) Matches(input P2SVpnGateway) bool {
 		return false
 	}
 
-	if p.Name != nil && (input.Name == nil && *p.Name != *input.Name) {
+	if p.Name != nil && (input.Name == nil || *p.Name != *input.Name) {
 		return false
 	}
 
-	if p.Type != nil && (input.Type == nil && *p.Type != *input.Type) {
+	if p.Type != nil && (input.Type == nil || *p.Type != *input.Type) {
 		return false
 	}
 
@@ -152,19 +152,19 @@ type RouteMapOperationPredicate struct {
 
 func (p RouteMapOperationPredicate) Matches(input RouteMap) bool {
 
-	if p.Etag != nil && (input.Etag == nil && *p.Etag != *input.Etag) {
+	if p.Etag != nil && (input.Etag == nil || *p.Etag != *input.Etag) {
 		return false
 	}
 
-	if p.Id != nil && (input.Id == nil && *p.Id != *input.Id) {
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
 		return false
 	}
 
-	if p.Name != nil && (input.Name == nil && *p.Name != *input.Name) {
+	if p.Name != nil && (input.Name == nil || *p.Name != *input.Name) {
 		return false
 	}
 
-	if p.Type != nil && (input.Type == nil && *p.Type != *input.Type) {
+	if p.Type != nil && (input.Type == nil || *p.Type != *input.Type) {
 		return false
 	}
 
@@ -180,19 +180,19 @@ type RoutingIntentOperationPredicate struct {
 
 func (p RoutingIntentOperationPredicate) Matches(input RoutingIntent) bool {
 
-	if p.Etag != nil && (input.Etag == nil && *p.Etag != *input.Etag) {
+	if p.Etag != nil && (input.Etag == nil || *p.Etag != *input.Etag) {
 		return false
 	}
 
-	if p.Id != nil && (input.Id == nil && *p.Id != *input.Id) {
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
 		return false
 	}
 
-	if p.Name != nil && (input.Name == nil && *p.Name != *input.Name) {
+	if p.Name != nil && (input.Name == nil || *p.Name != *input.Name) {
 		return false
 	}
 
-	if p.Type != nil && (input.Type == nil && *p.Type != *input.Type) {
+	if p.Type != nil && (input.Type == nil || *p.Type != *input.Type) {
 		return false
 	}
 
@@ -210,15 +210,15 @@ type VirtualHubOperationPredicate struct {
 
 func (p VirtualHubOperationPredicate) Matches(input VirtualHub) bool {
 
-	if p.Etag != nil && (input.Etag == nil && *p.Etag != *input.Etag) {
+	if p.Etag != nil && (input.Etag == nil || *p.Etag != *input.Etag) {
 		return false
 	}
 
-	if p.Id != nil && (input.Id == nil && *p.Id != *input.Id) {
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
 		return false
 	}
 
-	if p.Kind != nil && (input.Kind == nil && *p.Kind != *input.Kind) {
+	if p.Kind != nil && (input.Kind == nil || *p.Kind != *input.Kind) {
 		return false
 	}
 
@@ -226,11 +226,11 @@ func (p VirtualHubOperationPredicate) Matches(input VirtualHub) bool {
 		return false
 	}
 
-	if p.Name != nil && (input.Name == nil && *p.Name != *input.Name) {
+	if p.Name != nil && (input.Name == nil || *p.Name != *input.Name) {
 		return false
 	}
 
-	if p.Type != nil && (input.Type == nil && *p.Type != *input.Type) {
+	if p.Type != nil && (input.Type == nil || *p.Type != *input.Type) {
 		return false
 	}
 
@@ -245,15 +245,15 @@ type VirtualHubRouteTableV2OperationPredicate struct {
 
 func (p VirtualHubRouteTableV2OperationPredicate) Matches(input VirtualHubRouteTableV2) bool {
 
-	if p.Etag != nil && (input.Etag == nil && *p.Etag != *input.Etag) {
+	if p.Etag != nil && (input.Etag == nil || *p.Etag != *input.Etag) {
 		return false
 	}
 
-	if p.Id != nil && (input.Id == nil && *p.Id != *input.Id) {
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
 		return false
 	}
 
-	if p.Name != nil && (input.Name == nil && *p.Name != *input.Name) {
+	if p.Name != nil && (input.Name == nil || *p.Name != *input.Name) {
 		return false
 	}
 
@@ -270,11 +270,11 @@ type VirtualWANOperationPredicate struct {
 
 func (p VirtualWANOperationPredicate) Matches(input VirtualWAN) bool {
 
-	if p.Etag != nil && (input.Etag == nil && *p.Etag != *input.Etag) {
+	if p.Etag != nil && (input.Etag == nil || *p.Etag != *input.Etag) {
 		return false
 	}
 
-	if p.Id != nil && (input.Id == nil && *p.Id != *input.Id) {
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
 		return false
 	}
 
@@ -282,11 +282,11 @@ func (p VirtualWANOperationPredicate) Matches(input VirtualWAN) bool {
 		return false
 	}
 
-	if p.Name != nil && (input.Name == nil && *p.Name != *input.Name) {
+	if p.Name != nil && (input.Name == nil || *p.Name != *input.Name) {
 		return false
 	}
 
-	if p.Type != nil && (input.Type == nil && *p.Type != *input.Type) {
+	if p.Type != nil && (input.Type == nil || *p.Type != *input.Type) {
 		return false
 	}
 
@@ -301,15 +301,15 @@ type VpnConnectionOperationPredicate struct {
 
 func (p VpnConnectionOperationPredicate) Matches(input VpnConnection) bool {
 
-	if p.Etag != nil && (input.Etag == nil && *p.Etag != *input.Etag) {
+	if p.Etag != nil && (input.Etag == nil || *p.Etag != *input.Etag) {
 		return false
 	}
 
-	if p.Id != nil && (input.Id == nil && *p.Id != *input.Id) {
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
 		return false
 	}
 
-	if p.Name != nil && (input.Name == nil && *p.Name != *input.Name) {
+	if p.Name != nil && (input.Name == nil || *p.Name != *input.Name) {
 		return false
 	}
 
@@ -326,11 +326,11 @@ type VpnGatewayOperationPredicate struct {
 
 func (p VpnGatewayOperationPredicate) Matches(input VpnGateway) bool {
 
-	if p.Etag != nil && (input.Etag == nil && *p.Etag != *input.Etag) {
+	if p.Etag != nil && (input.Etag == nil || *p.Etag != *input.Etag) {
 		return false
 	}
 
-	if p.Id != nil && (input.Id == nil && *p.Id != *input.Id) {
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
 		return false
 	}
 
@@ -338,11 +338,11 @@ func (p VpnGatewayOperationPredicate) Matches(input VpnGateway) bool {
 		return false
 	}
 
-	if p.Name != nil && (input.Name == nil && *p.Name != *input.Name) {
+	if p.Name != nil && (input.Name == nil || *p.Name != *input.Name) {
 		return false
 	}
 
-	if p.Type != nil && (input.Type == nil && *p.Type != *input.Type) {
+	if p.Type != nil && (input.Type == nil || *p.Type != *input.Type) {
 		return false
 	}
 
@@ -358,19 +358,19 @@ type VpnGatewayNatRuleOperationPredicate struct {
 
 func (p VpnGatewayNatRuleOperationPredicate) Matches(input VpnGatewayNatRule) bool {
 
-	if p.Etag != nil && (input.Etag == nil && *p.Etag != *input.Etag) {
+	if p.Etag != nil && (input.Etag == nil || *p.Etag != *input.Etag) {
 		return false
 	}
 
-	if p.Id != nil && (input.Id == nil && *p.Id != *input.Id) {
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
 		return false
 	}
 
-	if p.Name != nil && (input.Name == nil && *p.Name != *input.Name) {
+	if p.Name != nil && (input.Name == nil || *p.Name != *input.Name) {
 		return false
 	}
 
-	if p.Type != nil && (input.Type == nil && *p.Type != *input.Type) {
+	if p.Type != nil && (input.Type == nil || *p.Type != *input.Type) {
 		return false
 	}
 
@@ -387,23 +387,23 @@ type VpnServerConfigurationOperationPredicate struct {
 
 func (p VpnServerConfigurationOperationPredicate) Matches(input VpnServerConfiguration) bool {
 
-	if p.Etag != nil && (input.Etag == nil && *p.Etag != *input.Etag) {
+	if p.Etag != nil && (input.Etag == nil || *p.Etag != *input.Etag) {
 		return false
 	}
 
-	if p.Id != nil && (input.Id == nil && *p.Id != *input.Id) {
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
 		return false
 	}
 
-	if p.Location != nil && (input.Location == nil && *p.Location != *input.Location) {
+	if p.Location != nil && (input.Location == nil || *p.Location != *input.Location) {
 		return false
 	}
 
-	if p.Name != nil && (input.Name == nil && *p.Name != *input.Name) {
+	if p.Name != nil && (input.Name == nil || *p.Name != *input.Name) {
 		return false
 	}
 
-	if p.Type != nil && (input.Type == nil && *p.Type != *input.Type) {
+	if p.Type != nil && (input.Type == nil || *p.Type != *input.Type) {
 		return false
 	}
 
@@ -419,19 +419,19 @@ type VpnServerConfigurationPolicyGroupOperationPredicate struct {
 
 func (p VpnServerConfigurationPolicyGroupOperationPredicate) Matches(input VpnServerConfigurationPolicyGroup) bool {
 
-	if p.Etag != nil && (input.Etag == nil && *p.Etag != *input.Etag) {
+	if p.Etag != nil && (input.Etag == nil || *p.Etag != *input.Etag) {
 		return false
 	}
 
-	if p.Id != nil && (input.Id == nil && *p.Id != *input.Id) {
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
 		return false
 	}
 
-	if p.Name != nil && (input.Name == nil && *p.Name != *input.Name) {
+	if p.Name != nil && (input.Name == nil || *p.Name != *input.Name) {
 		return false
 	}
 
-	if p.Type != nil && (input.Type == nil && *p.Type != *input.Type) {
+	if p.Type != nil && (input.Type == nil || *p.Type != *input.Type) {
 		return false
 	}
 
@@ -448,11 +448,11 @@ type VpnSiteOperationPredicate struct {
 
 func (p VpnSiteOperationPredicate) Matches(input VpnSite) bool {
 
-	if p.Etag != nil && (input.Etag == nil && *p.Etag != *input.Etag) {
+	if p.Etag != nil && (input.Etag == nil || *p.Etag != *input.Etag) {
 		return false
 	}
 
-	if p.Id != nil && (input.Id == nil && *p.Id != *input.Id) {
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
 		return false
 	}
 
@@ -460,11 +460,11 @@ func (p VpnSiteOperationPredicate) Matches(input VpnSite) bool {
 		return false
 	}
 
-	if p.Name != nil && (input.Name == nil && *p.Name != *input.Name) {
+	if p.Name != nil && (input.Name == nil || *p.Name != *input.Name) {
 		return false
 	}
 
-	if p.Type != nil && (input.Type == nil && *p.Type != *input.Type) {
+	if p.Type != nil && (input.Type == nil || *p.Type != *input.Type) {
 		return false
 	}
 
@@ -480,19 +480,19 @@ type VpnSiteLinkOperationPredicate struct {
 
 func (p VpnSiteLinkOperationPredicate) Matches(input VpnSiteLink) bool {
 
-	if p.Etag != nil && (input.Etag == nil && *p.Etag != *input.Etag) {
+	if p.Etag != nil && (input.Etag == nil || *p.Etag != *input.Etag) {
 		return false
 	}
 
-	if p.Id != nil && (input.Id == nil && *p.Id != *input.Id) {
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
 		return false
 	}
 
-	if p.Name != nil && (input.Name == nil && *p.Name != *input.Name) {
+	if p.Name != nil && (input.Name == nil || *p.Name != *input.Name) {
 		return false
 	}
 
-	if p.Type != nil && (input.Type == nil && *p.Type != *input.Type) {
+	if p.Type != nil && (input.Type == nil || *p.Type != *input.Type) {
 		return false
 	}
 
@@ -508,19 +508,19 @@ type VpnSiteLinkConnectionOperationPredicate struct {
 
 func (p VpnSiteLinkConnectionOperationPredicate) Matches(input VpnSiteLinkConnection) bool {
 
-	if p.Etag != nil && (input.Etag == nil && *p.Etag != *input.Etag) {
+	if p.Etag != nil && (input.Etag == nil || *p.Etag != *input.Etag) {
 		return false
 	}
 
-	if p.Id != nil && (input.Id == nil && *p.Id != *input.Id) {
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
 		return false
 	}
 
-	if p.Name != nil && (input.Name == nil && *p.Name != *input.Name) {
+	if p.Name != nil && (input.Name == nil || *p.Name != *input.Name) {
 		return false
 	}
 
-	if p.Type != nil && (input.Type == nil && *p.Type != *input.Type) {
+	if p.Type != nil && (input.Type == nil || *p.Type != *input.Type) {
 		return false
 	}
 

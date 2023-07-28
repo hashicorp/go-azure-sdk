@@ -9,7 +9,7 @@ type SyncDatabaseIdPropertiesOperationPredicate struct {
 
 func (p SyncDatabaseIdPropertiesOperationPredicate) Matches(input SyncDatabaseIdProperties) bool {
 
-	if p.Id != nil && (input.Id == nil && *p.Id != *input.Id) {
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
 		return false
 	}
 
@@ -22,7 +22,7 @@ type SyncFullSchemaPropertiesOperationPredicate struct {
 
 func (p SyncFullSchemaPropertiesOperationPredicate) Matches(input SyncFullSchemaProperties) bool {
 
-	if p.LastUpdateTime != nil && (input.LastUpdateTime == nil && *p.LastUpdateTime != *input.LastUpdateTime) {
+	if p.LastUpdateTime != nil && (input.LastUpdateTime == nil || *p.LastUpdateTime != *input.LastUpdateTime) {
 		return false
 	}
 
@@ -37,15 +37,15 @@ type SyncGroupOperationPredicate struct {
 
 func (p SyncGroupOperationPredicate) Matches(input SyncGroup) bool {
 
-	if p.Id != nil && (input.Id == nil && *p.Id != *input.Id) {
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
 		return false
 	}
 
-	if p.Name != nil && (input.Name == nil && *p.Name != *input.Name) {
+	if p.Name != nil && (input.Name == nil || *p.Name != *input.Name) {
 		return false
 	}
 
-	if p.Type != nil && (input.Type == nil && *p.Type != *input.Type) {
+	if p.Type != nil && (input.Type == nil || *p.Type != *input.Type) {
 		return false
 	}
 
@@ -62,23 +62,23 @@ type SyncGroupLogPropertiesOperationPredicate struct {
 
 func (p SyncGroupLogPropertiesOperationPredicate) Matches(input SyncGroupLogProperties) bool {
 
-	if p.Details != nil && (input.Details == nil && *p.Details != *input.Details) {
+	if p.Details != nil && (input.Details == nil || *p.Details != *input.Details) {
 		return false
 	}
 
-	if p.OperationStatus != nil && (input.OperationStatus == nil && *p.OperationStatus != *input.OperationStatus) {
+	if p.OperationStatus != nil && (input.OperationStatus == nil || *p.OperationStatus != *input.OperationStatus) {
 		return false
 	}
 
-	if p.Source != nil && (input.Source == nil && *p.Source != *input.Source) {
+	if p.Source != nil && (input.Source == nil || *p.Source != *input.Source) {
 		return false
 	}
 
-	if p.Timestamp != nil && (input.Timestamp == nil && *p.Timestamp != *input.Timestamp) {
+	if p.Timestamp != nil && (input.Timestamp == nil || *p.Timestamp != *input.Timestamp) {
 		return false
 	}
 
-	if p.TracingId != nil && (input.TracingId == nil && *p.TracingId != *input.TracingId) {
+	if p.TracingId != nil && (input.TracingId == nil || *p.TracingId != *input.TracingId) {
 		return false
 	}
 

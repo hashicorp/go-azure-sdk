@@ -10,11 +10,11 @@ type DeploymentOperationOperationPredicate struct {
 
 func (p DeploymentOperationOperationPredicate) Matches(input DeploymentOperation) bool {
 
-	if p.Id != nil && (input.Id == nil && *p.Id != *input.Id) {
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
 		return false
 	}
 
-	if p.OperationId != nil && (input.OperationId == nil && *p.OperationId != *input.OperationId) {
+	if p.OperationId != nil && (input.OperationId == nil || *p.OperationId != *input.OperationId) {
 		return false
 	}
 
