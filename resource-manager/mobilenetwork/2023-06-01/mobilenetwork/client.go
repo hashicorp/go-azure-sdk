@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,7 +14,7 @@ type MobileNetworkClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewMobileNetworkClientWithBaseURI(api environments.Api) (*MobileNetworkClient, error) {
+func NewMobileNetworkClientWithBaseURI(api sdkEnv.Api) (*MobileNetworkClient, error) {
 	client, err := resourcemanager.NewResourceManagerClient(api, "mobilenetwork", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating MobileNetworkClient: %+v", err)

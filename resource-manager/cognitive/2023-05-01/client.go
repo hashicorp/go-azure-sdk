@@ -17,7 +17,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/cognitive/2023-05-01/skus"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/cognitive/2023-05-01/usages"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -33,7 +33,7 @@ type Client struct {
 	Usages                           *usages.UsagesClient
 }
 
-func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+func NewClientWithBaseURI(api sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
 	cognitiveServicesAccountsClient, err := cognitiveservicesaccounts.NewCognitiveServicesAccountsClientWithBaseURI(api)
 	if err != nil {
 		return nil, fmt.Errorf("building CognitiveServicesAccounts client: %+v", err)

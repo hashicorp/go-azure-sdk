@@ -15,7 +15,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/costmanagement/2021-10-01/usagedetails"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/costmanagement/2021-10-01/views"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -29,7 +29,7 @@ type Client struct {
 	Views             *views.ViewsClient
 }
 
-func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+func NewClientWithBaseURI(api sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
 	alertsClient, err := alerts.NewAlertsClientWithBaseURI(api)
 	if err != nil {
 		return nil, fmt.Errorf("building Alerts client: %+v", err)

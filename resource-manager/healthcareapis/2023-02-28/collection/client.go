@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,7 +14,7 @@ type CollectionClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewCollectionClientWithBaseURI(api environments.Api) (*CollectionClient, error) {
+func NewCollectionClientWithBaseURI(api sdkEnv.Api) (*CollectionClient, error) {
 	client, err := resourcemanager.NewResourceManagerClient(api, "collection", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating CollectionClient: %+v", err)

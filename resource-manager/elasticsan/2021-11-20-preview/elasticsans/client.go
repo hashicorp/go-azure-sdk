@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,7 +14,7 @@ type ElasticSansClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewElasticSansClientWithBaseURI(api environments.Api) (*ElasticSansClient, error) {
+func NewElasticSansClientWithBaseURI(api sdkEnv.Api) (*ElasticSansClient, error) {
 	client, err := resourcemanager.NewResourceManagerClient(api, "elasticsans", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ElasticSansClient: %+v", err)

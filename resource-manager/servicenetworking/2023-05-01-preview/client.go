@@ -10,7 +10,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/servicenetworking/2023-05-01-preview/frontendsinterface"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/servicenetworking/2023-05-01-preview/trafficcontrollerinterface"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -19,7 +19,7 @@ type Client struct {
 	TrafficControllerInterface *trafficcontrollerinterface.TrafficControllerInterfaceClient
 }
 
-func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+func NewClientWithBaseURI(api sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
 	associationsInterfaceClient, err := associationsinterface.NewAssociationsInterfaceClientWithBaseURI(api)
 	if err != nil {
 		return nil, fmt.Errorf("building AssociationsInterface client: %+v", err)

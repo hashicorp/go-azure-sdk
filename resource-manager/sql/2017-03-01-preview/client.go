@@ -35,7 +35,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2017-03-01-preview/serverdnsaliases"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2017-03-01-preview/serversecurityalertpolicies"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -69,7 +69,7 @@ type Client struct {
 	ServerSecurityAlertPolicies                                      *serversecurityalertpolicies.ServerSecurityAlertPoliciesClient
 }
 
-func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+func NewClientWithBaseURI(api sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
 	backupLongTermRetentionPoliciesClient, err := backuplongtermretentionpolicies.NewBackupLongTermRetentionPoliciesClientWithBaseURI(api)
 	if err != nil {
 		return nil, fmt.Errorf("building BackupLongTermRetentionPolicies client: %+v", err)

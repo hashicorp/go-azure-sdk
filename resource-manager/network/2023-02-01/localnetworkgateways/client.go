@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,7 +14,7 @@ type LocalNetworkGatewaysClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewLocalNetworkGatewaysClientWithBaseURI(api environments.Api) (*LocalNetworkGatewaysClient, error) {
+func NewLocalNetworkGatewaysClientWithBaseURI(api sdkEnv.Api) (*LocalNetworkGatewaysClient, error) {
 	client, err := resourcemanager.NewResourceManagerClient(api, "localnetworkgateways", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating LocalNetworkGatewaysClient: %+v", err)

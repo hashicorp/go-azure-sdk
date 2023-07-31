@@ -19,7 +19,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/mysql/2021-05-01/serverstart"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/mysql/2021-05-01/serverstop"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -37,7 +37,7 @@ type Client struct {
 	Servers                   *servers.ServersClient
 }
 
-func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+func NewClientWithBaseURI(api sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
 	backupsClient, err := backups.NewBackupsClientWithBaseURI(api)
 	if err != nil {
 		return nil, fmt.Errorf("building Backups client: %+v", err)

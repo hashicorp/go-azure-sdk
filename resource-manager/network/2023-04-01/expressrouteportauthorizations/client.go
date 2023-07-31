@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,7 +14,7 @@ type ExpressRoutePortAuthorizationsClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewExpressRoutePortAuthorizationsClientWithBaseURI(api environments.Api) (*ExpressRoutePortAuthorizationsClient, error) {
+func NewExpressRoutePortAuthorizationsClientWithBaseURI(api sdkEnv.Api) (*ExpressRoutePortAuthorizationsClient, error) {
 	client, err := resourcemanager.NewResourceManagerClient(api, "expressrouteportauthorizations", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ExpressRoutePortAuthorizationsClient: %+v", err)

@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,7 +14,7 @@ type JobCredentialsClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewJobCredentialsClientWithBaseURI(api environments.Api) (*JobCredentialsClient, error) {
+func NewJobCredentialsClientWithBaseURI(api sdkEnv.Api) (*JobCredentialsClient, error) {
 	client, err := resourcemanager.NewResourceManagerClient(api, "jobcredentials", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating JobCredentialsClient: %+v", err)

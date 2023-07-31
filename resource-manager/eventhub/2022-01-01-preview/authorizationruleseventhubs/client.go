@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,7 +14,7 @@ type AuthorizationRulesEventHubsClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewAuthorizationRulesEventHubsClientWithBaseURI(api environments.Api) (*AuthorizationRulesEventHubsClient, error) {
+func NewAuthorizationRulesEventHubsClientWithBaseURI(api sdkEnv.Api) (*AuthorizationRulesEventHubsClient, error) {
 	client, err := resourcemanager.NewResourceManagerClient(api, "authorizationruleseventhubs", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating AuthorizationRulesEventHubsClient: %+v", err)

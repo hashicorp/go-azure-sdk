@@ -11,7 +11,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/deviceupdate/2023-07-01/privateendpointconnections"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/deviceupdate/2023-07-01/privatelinkresources"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -21,7 +21,7 @@ type Client struct {
 	PrivateLinkResources             *privatelinkresources.PrivateLinkResourcesClient
 }
 
-func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+func NewClientWithBaseURI(api sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
 	deviceupdatesClient, err := deviceupdates.NewDeviceupdatesClientWithBaseURI(api)
 	if err != nil {
 		return nil, fmt.Errorf("building Deviceupdates client: %+v", err)

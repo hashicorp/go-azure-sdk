@@ -29,7 +29,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/datafactory/2018-06-01/triggerruns"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/datafactory/2018-06-01/triggers"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -57,7 +57,7 @@ type Client struct {
 	Triggers                         *triggers.TriggersClient
 }
 
-func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+func NewClientWithBaseURI(api sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
 	activityrunsClient, err := activityruns.NewActivityrunsClientWithBaseURI(api)
 	if err != nil {
 		return nil, fmt.Errorf("building Activityruns client: %+v", err)

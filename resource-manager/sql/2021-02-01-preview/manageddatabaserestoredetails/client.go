@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,7 +14,7 @@ type ManagedDatabaseRestoreDetailsClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewManagedDatabaseRestoreDetailsClientWithBaseURI(api environments.Api) (*ManagedDatabaseRestoreDetailsClient, error) {
+func NewManagedDatabaseRestoreDetailsClientWithBaseURI(api sdkEnv.Api) (*ManagedDatabaseRestoreDetailsClient, error) {
 	client, err := resourcemanager.NewResourceManagerClient(api, "manageddatabaserestoredetails", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ManagedDatabaseRestoreDetailsClient: %+v", err)

@@ -21,7 +21,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/mariadb/2018-06-01-preview/updateconfigurations"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/mariadb/2018-06-01-preview/virtualnetworkrules"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -41,7 +41,7 @@ type Client struct {
 	VirtualNetworkRules          *virtualnetworkrules.VirtualNetworkRulesClient
 }
 
-func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+func NewClientWithBaseURI(api sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
 	checkNameAvailabilityClient, err := checknameavailability.NewCheckNameAvailabilityClientWithBaseURI(api)
 	if err != nil {
 		return nil, fmt.Errorf("building CheckNameAvailability client: %+v", err)

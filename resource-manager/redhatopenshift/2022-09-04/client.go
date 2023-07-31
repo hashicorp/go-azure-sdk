@@ -13,7 +13,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/redhatopenshift/2022-09-04/syncidentityproviders"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/redhatopenshift/2022-09-04/syncsets"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -25,7 +25,7 @@ type Client struct {
 	SyncSets              *syncsets.SyncSetsClient
 }
 
-func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+func NewClientWithBaseURI(api sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
 	machinePoolsClient, err := machinepools.NewMachinePoolsClientWithBaseURI(api)
 	if err != nil {
 		return nil, fmt.Errorf("building MachinePools client: %+v", err)

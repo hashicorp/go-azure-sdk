@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,7 +14,7 @@ type DatabaseTablesClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewDatabaseTablesClientWithBaseURI(api environments.Api) (*DatabaseTablesClient, error) {
+func NewDatabaseTablesClientWithBaseURI(api sdkEnv.Api) (*DatabaseTablesClient, error) {
 	client, err := resourcemanager.NewResourceManagerClient(api, "databasetables", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating DatabaseTablesClient: %+v", err)

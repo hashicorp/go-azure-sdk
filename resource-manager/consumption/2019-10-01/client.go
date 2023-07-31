@@ -23,7 +23,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/consumption/2019-10-01/reservationtransactions"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/consumption/2019-10-01/usagedetails"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -45,7 +45,7 @@ type Client struct {
 	UsageDetails                     *usagedetails.UsageDetailsClient
 }
 
-func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+func NewClientWithBaseURI(api sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
 	aggregatedCostClient, err := aggregatedcost.NewAggregatedCostClientWithBaseURI(api)
 	if err != nil {
 		return nil, fmt.Errorf("building AggregatedCost client: %+v", err)

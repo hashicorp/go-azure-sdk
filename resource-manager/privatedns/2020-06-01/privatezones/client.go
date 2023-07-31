@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,7 +14,7 @@ type PrivateZonesClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewPrivateZonesClientWithBaseURI(api environments.Api) (*PrivateZonesClient, error) {
+func NewPrivateZonesClientWithBaseURI(api sdkEnv.Api) (*PrivateZonesClient, error) {
 	client, err := resourcemanager.NewResourceManagerClient(api, "privatezones", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating PrivateZonesClient: %+v", err)

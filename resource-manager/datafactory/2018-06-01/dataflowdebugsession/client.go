@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,7 +14,7 @@ type DataFlowDebugSessionClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewDataFlowDebugSessionClientWithBaseURI(api environments.Api) (*DataFlowDebugSessionClient, error) {
+func NewDataFlowDebugSessionClientWithBaseURI(api sdkEnv.Api) (*DataFlowDebugSessionClient, error) {
 	client, err := resourcemanager.NewResourceManagerClient(api, "dataflowdebugsession", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating DataFlowDebugSessionClient: %+v", err)

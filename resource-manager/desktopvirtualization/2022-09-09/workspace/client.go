@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,7 +14,7 @@ type WorkspaceClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewWorkspaceClientWithBaseURI(api environments.Api) (*WorkspaceClient, error) {
+func NewWorkspaceClientWithBaseURI(api sdkEnv.Api) (*WorkspaceClient, error) {
 	client, err := resourcemanager.NewResourceManagerClient(api, "workspace", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating WorkspaceClient: %+v", err)

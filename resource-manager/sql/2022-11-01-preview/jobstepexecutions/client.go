@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,7 +14,7 @@ type JobStepExecutionsClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewJobStepExecutionsClientWithBaseURI(api environments.Api) (*JobStepExecutionsClient, error) {
+func NewJobStepExecutionsClientWithBaseURI(api sdkEnv.Api) (*JobStepExecutionsClient, error) {
 	client, err := resourcemanager.NewResourceManagerClient(api, "jobstepexecutions", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating JobStepExecutionsClient: %+v", err)

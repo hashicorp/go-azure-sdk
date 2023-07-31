@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,7 +14,7 @@ type ServerConnectionPoliciesClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewServerConnectionPoliciesClientWithBaseURI(api environments.Api) (*ServerConnectionPoliciesClient, error) {
+func NewServerConnectionPoliciesClientWithBaseURI(api sdkEnv.Api) (*ServerConnectionPoliciesClient, error) {
 	client, err := resourcemanager.NewResourceManagerClient(api, "serverconnectionpolicies", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ServerConnectionPoliciesClient: %+v", err)

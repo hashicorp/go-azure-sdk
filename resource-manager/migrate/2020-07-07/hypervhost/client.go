@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,7 +14,7 @@ type HyperVHostClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewHyperVHostClientWithBaseURI(api environments.Api) (*HyperVHostClient, error) {
+func NewHyperVHostClientWithBaseURI(api sdkEnv.Api) (*HyperVHostClient, error) {
 	client, err := resourcemanager.NewResourceManagerClient(api, "hypervhost", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating HyperVHostClient: %+v", err)

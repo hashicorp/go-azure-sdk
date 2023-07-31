@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,7 +14,7 @@ type TargetTypesClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewTargetTypesClientWithBaseURI(api environments.Api) (*TargetTypesClient, error) {
+func NewTargetTypesClientWithBaseURI(api sdkEnv.Api) (*TargetTypesClient, error) {
 	client, err := resourcemanager.NewResourceManagerClient(api, "targettypes", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating TargetTypesClient: %+v", err)

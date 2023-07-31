@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,7 +14,7 @@ type CheckNameAvailabilityNamespacesClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewCheckNameAvailabilityNamespacesClientWithBaseURI(api environments.Api) (*CheckNameAvailabilityNamespacesClient, error) {
+func NewCheckNameAvailabilityNamespacesClientWithBaseURI(api sdkEnv.Api) (*CheckNameAvailabilityNamespacesClient, error) {
 	client, err := resourcemanager.NewResourceManagerClient(api, "checknameavailabilitynamespaces", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating CheckNameAvailabilityNamespacesClient: %+v", err)

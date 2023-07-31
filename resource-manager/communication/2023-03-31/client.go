@@ -11,7 +11,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/communication/2023-03-31/emailservices"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/communication/2023-03-31/senderusernames"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -21,7 +21,7 @@ type Client struct {
 	SenderUsernames       *senderusernames.SenderUsernamesClient
 }
 
-func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+func NewClientWithBaseURI(api sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
 	communicationServicesClient, err := communicationservices.NewCommunicationServicesClientWithBaseURI(api)
 	if err != nil {
 		return nil, fmt.Errorf("building CommunicationServices client: %+v", err)

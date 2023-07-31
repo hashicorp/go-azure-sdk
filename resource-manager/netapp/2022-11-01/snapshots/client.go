@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,7 +14,7 @@ type SnapshotsClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewSnapshotsClientWithBaseURI(api environments.Api) (*SnapshotsClient, error) {
+func NewSnapshotsClientWithBaseURI(api sdkEnv.Api) (*SnapshotsClient, error) {
 	client, err := resourcemanager.NewResourceManagerClient(api, "snapshots", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating SnapshotsClient: %+v", err)

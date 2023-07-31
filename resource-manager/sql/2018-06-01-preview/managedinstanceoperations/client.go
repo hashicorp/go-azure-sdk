@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,7 +14,7 @@ type ManagedInstanceOperationsClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewManagedInstanceOperationsClientWithBaseURI(api environments.Api) (*ManagedInstanceOperationsClient, error) {
+func NewManagedInstanceOperationsClientWithBaseURI(api sdkEnv.Api) (*ManagedInstanceOperationsClient, error) {
 	client, err := resourcemanager.NewResourceManagerClient(api, "managedinstanceoperations", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ManagedInstanceOperationsClient: %+v", err)

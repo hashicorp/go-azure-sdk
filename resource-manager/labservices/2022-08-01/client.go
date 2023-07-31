@@ -15,7 +15,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/labservices/2022-08-01/user"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/labservices/2022-08-01/virtualmachine"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -29,7 +29,7 @@ type Client struct {
 	VirtualMachine *virtualmachine.VirtualMachineClient
 }
 
-func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+func NewClientWithBaseURI(api sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
 	imageClient, err := image.NewImageClientWithBaseURI(api)
 	if err != nil {
 		return nil, fmt.Errorf("building Image client: %+v", err)

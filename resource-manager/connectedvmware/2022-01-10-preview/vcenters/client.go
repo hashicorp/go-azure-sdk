@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,7 +14,7 @@ type VCentersClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewVCentersClientWithBaseURI(api environments.Api) (*VCentersClient, error) {
+func NewVCentersClientWithBaseURI(api sdkEnv.Api) (*VCentersClient, error) {
 	client, err := resourcemanager.NewResourceManagerClient(api, "vcenters", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating VCentersClient: %+v", err)

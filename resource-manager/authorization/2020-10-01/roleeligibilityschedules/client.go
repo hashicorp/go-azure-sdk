@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,7 +14,7 @@ type RoleEligibilitySchedulesClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewRoleEligibilitySchedulesClientWithBaseURI(api environments.Api) (*RoleEligibilitySchedulesClient, error) {
+func NewRoleEligibilitySchedulesClientWithBaseURI(api sdkEnv.Api) (*RoleEligibilitySchedulesClient, error) {
 	client, err := resourcemanager.NewResourceManagerClient(api, "roleeligibilityschedules", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating RoleEligibilitySchedulesClient: %+v", err)

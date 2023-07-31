@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,7 +14,7 @@ type DataContainerRegistryClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewDataContainerRegistryClientWithBaseURI(api environments.Api) (*DataContainerRegistryClient, error) {
+func NewDataContainerRegistryClientWithBaseURI(api sdkEnv.Api) (*DataContainerRegistryClient, error) {
 	client, err := resourcemanager.NewResourceManagerClient(api, "datacontainerregistry", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating DataContainerRegistryClient: %+v", err)

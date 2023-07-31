@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,7 +14,7 @@ type NetworkManagerEffectiveConnectivityConfigurationClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewNetworkManagerEffectiveConnectivityConfigurationClientWithBaseURI(api environments.Api) (*NetworkManagerEffectiveConnectivityConfigurationClient, error) {
+func NewNetworkManagerEffectiveConnectivityConfigurationClientWithBaseURI(api sdkEnv.Api) (*NetworkManagerEffectiveConnectivityConfigurationClient, error) {
 	client, err := resourcemanager.NewResourceManagerClient(api, "networkmanagereffectiveconnectivityconfiguration", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating NetworkManagerEffectiveConnectivityConfigurationClient: %+v", err)

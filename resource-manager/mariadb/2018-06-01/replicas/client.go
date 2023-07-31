@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,7 +14,7 @@ type ReplicasClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewReplicasClientWithBaseURI(api environments.Api) (*ReplicasClient, error) {
+func NewReplicasClientWithBaseURI(api sdkEnv.Api) (*ReplicasClient, error) {
 	client, err := resourcemanager.NewResourceManagerClient(api, "replicas", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ReplicasClient: %+v", err)

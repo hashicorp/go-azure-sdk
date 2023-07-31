@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,7 +14,7 @@ type ManagedInstanceAzureADOnlyAuthenticationsClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewManagedInstanceAzureADOnlyAuthenticationsClientWithBaseURI(api environments.Api) (*ManagedInstanceAzureADOnlyAuthenticationsClient, error) {
+func NewManagedInstanceAzureADOnlyAuthenticationsClientWithBaseURI(api sdkEnv.Api) (*ManagedInstanceAzureADOnlyAuthenticationsClient, error) {
 	client, err := resourcemanager.NewResourceManagerClient(api, "managedinstanceazureadonlyauthentications", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ManagedInstanceAzureADOnlyAuthenticationsClient: %+v", err)

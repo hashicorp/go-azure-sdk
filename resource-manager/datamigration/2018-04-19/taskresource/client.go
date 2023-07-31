@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,7 +14,7 @@ type TaskResourceClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewTaskResourceClientWithBaseURI(api environments.Api) (*TaskResourceClient, error) {
+func NewTaskResourceClientWithBaseURI(api sdkEnv.Api) (*TaskResourceClient, error) {
 	client, err := resourcemanager.NewResourceManagerClient(api, "taskresource", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating TaskResourceClient: %+v", err)

@@ -27,7 +27,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/netapp/2022-11-01/volumesreplication"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/netapp/2022-11-01/volumesrevert"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -53,7 +53,7 @@ type Client struct {
 	VolumesRevert             *volumesrevert.VolumesRevertClient
 }
 
-func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+func NewClientWithBaseURI(api sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
 	backupPolicyClient, err := backuppolicy.NewBackupPolicyClientWithBaseURI(api)
 	if err != nil {
 		return nil, fmt.Errorf("building BackupPolicy client: %+v", err)

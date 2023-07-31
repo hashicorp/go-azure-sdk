@@ -18,7 +18,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/dataprotection/2023-01-01/recoverypoint"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/dataprotection/2023-01-01/resourceguards"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -35,7 +35,7 @@ type Client struct {
 	ResourceGuards           *resourceguards.ResourceGuardsClient
 }
 
-func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+func NewClientWithBaseURI(api sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
 	azureBackupJobClient, err := azurebackupjob.NewAzureBackupJobClientWithBaseURI(api)
 	if err != nil {
 		return nil, fmt.Errorf("building AzureBackupJob client: %+v", err)

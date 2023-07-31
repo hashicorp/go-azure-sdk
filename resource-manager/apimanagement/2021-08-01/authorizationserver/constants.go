@@ -1,6 +1,10 @@
 package authorizationserver
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -29,6 +33,19 @@ func PossibleValuesForAuthorizationMethod() []string {
 		string(AuthorizationMethodPUT),
 		string(AuthorizationMethodTRACE),
 	}
+}
+
+func (s *AuthorizationMethod) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseAuthorizationMethod(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseAuthorizationMethod(input string) (*AuthorizationMethod, error) {
@@ -65,6 +82,19 @@ func PossibleValuesForBearerTokenSendingMethod() []string {
 	}
 }
 
+func (s *BearerTokenSendingMethod) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseBearerTokenSendingMethod(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseBearerTokenSendingMethod(input string) (*BearerTokenSendingMethod, error) {
 	vals := map[string]BearerTokenSendingMethod{
 		"authorizationheader": BearerTokenSendingMethodAuthorizationHeader,
@@ -91,6 +121,19 @@ func PossibleValuesForClientAuthenticationMethod() []string {
 		string(ClientAuthenticationMethodBasic),
 		string(ClientAuthenticationMethodBody),
 	}
+}
+
+func (s *ClientAuthenticationMethod) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseClientAuthenticationMethod(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseClientAuthenticationMethod(input string) (*ClientAuthenticationMethod, error) {
@@ -123,6 +166,19 @@ func PossibleValuesForGrantType() []string {
 		string(GrantTypeImplicit),
 		string(GrantTypeResourceOwnerPassword),
 	}
+}
+
+func (s *GrantType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseGrantType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseGrantType(input string) (*GrantType, error) {

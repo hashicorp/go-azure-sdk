@@ -12,7 +12,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/chaosstudio/2022-07-01-preview/targets"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/chaosstudio/2022-07-01-preview/targettypes"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -23,7 +23,7 @@ type Client struct {
 	Targets         *targets.TargetsClient
 }
 
-func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+func NewClientWithBaseURI(api sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
 	capabilitiesClient, err := capabilities.NewCapabilitiesClientWithBaseURI(api)
 	if err != nil {
 		return nil, fmt.Errorf("building Capabilities client: %+v", err)

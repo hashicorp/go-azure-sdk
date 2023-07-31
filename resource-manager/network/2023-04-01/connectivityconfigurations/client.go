@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,7 +14,7 @@ type ConnectivityConfigurationsClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewConnectivityConfigurationsClientWithBaseURI(api environments.Api) (*ConnectivityConfigurationsClient, error) {
+func NewConnectivityConfigurationsClientWithBaseURI(api sdkEnv.Api) (*ConnectivityConfigurationsClient, error) {
 	client, err := resourcemanager.NewResourceManagerClient(api, "connectivityconfigurations", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ConnectivityConfigurationsClient: %+v", err)

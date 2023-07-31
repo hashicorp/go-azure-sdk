@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,7 +14,7 @@ type SubscriptionUsagesClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewSubscriptionUsagesClientWithBaseURI(api environments.Api) (*SubscriptionUsagesClient, error) {
+func NewSubscriptionUsagesClientWithBaseURI(api sdkEnv.Api) (*SubscriptionUsagesClient, error) {
 	client, err := resourcemanager.NewResourceManagerClient(api, "subscriptionusages", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating SubscriptionUsagesClient: %+v", err)

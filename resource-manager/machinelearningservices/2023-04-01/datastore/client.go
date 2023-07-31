@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,7 +14,7 @@ type DatastoreClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewDatastoreClientWithBaseURI(api environments.Api) (*DatastoreClient, error) {
+func NewDatastoreClientWithBaseURI(api sdkEnv.Api) (*DatastoreClient, error) {
 	client, err := resourcemanager.NewResourceManagerClient(api, "datastore", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating DatastoreClient: %+v", err)

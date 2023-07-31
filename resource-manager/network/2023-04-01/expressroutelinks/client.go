@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,7 +14,7 @@ type ExpressRouteLinksClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewExpressRouteLinksClientWithBaseURI(api environments.Api) (*ExpressRouteLinksClient, error) {
+func NewExpressRouteLinksClientWithBaseURI(api sdkEnv.Api) (*ExpressRouteLinksClient, error) {
 	client, err := resourcemanager.NewResourceManagerClient(api, "expressroutelinks", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ExpressRouteLinksClient: %+v", err)

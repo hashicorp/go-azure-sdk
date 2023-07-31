@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,7 +14,7 @@ type DigitalTwinsInstanceClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewDigitalTwinsInstanceClientWithBaseURI(api environments.Api) (*DigitalTwinsInstanceClient, error) {
+func NewDigitalTwinsInstanceClientWithBaseURI(api sdkEnv.Api) (*DigitalTwinsInstanceClient, error) {
 	client, err := resourcemanager.NewResourceManagerClient(api, "digitaltwinsinstance", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating DigitalTwinsInstanceClient: %+v", err)

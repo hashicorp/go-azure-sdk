@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,7 +14,7 @@ type AutoScaleVCoresClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewAutoScaleVCoresClientWithBaseURI(api environments.Api) (*AutoScaleVCoresClient, error) {
+func NewAutoScaleVCoresClientWithBaseURI(api sdkEnv.Api) (*AutoScaleVCoresClient, error) {
 	client, err := resourcemanager.NewResourceManagerClient(api, "autoscalevcores", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating AutoScaleVCoresClient: %+v", err)

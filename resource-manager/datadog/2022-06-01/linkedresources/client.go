@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,7 +14,7 @@ type LinkedResourcesClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewLinkedResourcesClientWithBaseURI(api environments.Api) (*LinkedResourcesClient, error) {
+func NewLinkedResourcesClientWithBaseURI(api sdkEnv.Api) (*LinkedResourcesClient, error) {
 	client, err := resourcemanager.NewResourceManagerClient(api, "linkedresources", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating LinkedResourcesClient: %+v", err)

@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,7 +14,7 @@ type AzureADAdministratorsClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewAzureADAdministratorsClientWithBaseURI(api environments.Api) (*AzureADAdministratorsClient, error) {
+func NewAzureADAdministratorsClientWithBaseURI(api sdkEnv.Api) (*AzureADAdministratorsClient, error) {
 	client, err := resourcemanager.NewResourceManagerClient(api, "azureadadministrators", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating AzureADAdministratorsClient: %+v", err)

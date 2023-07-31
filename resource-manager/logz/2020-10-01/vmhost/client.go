@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,7 +14,7 @@ type VMHostClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewVMHostClientWithBaseURI(api environments.Api) (*VMHostClient, error) {
+func NewVMHostClientWithBaseURI(api sdkEnv.Api) (*VMHostClient, error) {
 	client, err := resourcemanager.NewResourceManagerClient(api, "vmhost", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating VMHostClient: %+v", err)

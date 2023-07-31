@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,7 +14,7 @@ type VNetPeeringClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewVNetPeeringClientWithBaseURI(api environments.Api) (*VNetPeeringClient, error) {
+func NewVNetPeeringClientWithBaseURI(api sdkEnv.Api) (*VNetPeeringClient, error) {
 	client, err := resourcemanager.NewResourceManagerClient(api, "vnetpeering", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating VNetPeeringClient: %+v", err)

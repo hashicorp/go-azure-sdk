@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,7 +14,7 @@ type VirtualMachineTemplatesClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewVirtualMachineTemplatesClientWithBaseURI(api environments.Api) (*VirtualMachineTemplatesClient, error) {
+func NewVirtualMachineTemplatesClientWithBaseURI(api sdkEnv.Api) (*VirtualMachineTemplatesClient, error) {
 	client, err := resourcemanager.NewResourceManagerClient(api, "virtualmachinetemplates", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating VirtualMachineTemplatesClient: %+v", err)

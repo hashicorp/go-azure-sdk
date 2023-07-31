@@ -22,7 +22,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/migrate/2020-07-07/sites"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/migrate/2020-07-07/vcenter"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -43,7 +43,7 @@ type Client struct {
 	VCenter                   *vcenter.VCenterClient
 }
 
-func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+func NewClientWithBaseURI(api sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
 	hyperVClusterClient, err := hypervcluster.NewHyperVClusterClientWithBaseURI(api)
 	if err != nil {
 		return nil, fmt.Errorf("building HyperVCluster client: %+v", err)

@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,7 +14,7 @@ type IscsiTargetsClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewIscsiTargetsClientWithBaseURI(api environments.Api) (*IscsiTargetsClient, error) {
+func NewIscsiTargetsClientWithBaseURI(api sdkEnv.Api) (*IscsiTargetsClient, error) {
 	client, err := resourcemanager.NewResourceManagerClient(api, "iscsitargets", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating IscsiTargetsClient: %+v", err)

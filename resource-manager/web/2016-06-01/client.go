@@ -11,7 +11,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/web/2016-06-01/customapis"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/web/2016-06-01/managedapis"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -21,7 +21,7 @@ type Client struct {
 	ManagedAPIs        *managedapis.ManagedAPIsClient
 }
 
-func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+func NewClientWithBaseURI(api sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
 	connectionGatewaysClient, err := connectiongateways.NewConnectionGatewaysClientWithBaseURI(api)
 	if err != nil {
 		return nil, fmt.Errorf("building ConnectionGateways client: %+v", err)

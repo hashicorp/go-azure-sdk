@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,7 +14,7 @@ type GroundStationClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewGroundStationClientWithBaseURI(api environments.Api) (*GroundStationClient, error) {
+func NewGroundStationClientWithBaseURI(api sdkEnv.Api) (*GroundStationClient, error) {
 	client, err := resourcemanager.NewResourceManagerClient(api, "groundstation", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating GroundStationClient: %+v", err)

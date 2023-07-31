@@ -1,18 +1,26 @@
 package contenttypecontentitem
 
-import "github.com/Azure/go-autorest/autorest"
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type ContentTypeContentItemClient struct {
-	Client  autorest.Client
-	baseUri string
+	Client *resourcemanager.Client
 }
 
-func NewContentTypeContentItemClientWithBaseURI(endpoint string) ContentTypeContentItemClient {
-	return ContentTypeContentItemClient{
-		Client:  autorest.NewClientWithUserAgent(userAgent()),
-		baseUri: endpoint,
+func NewContentTypeContentItemClientWithBaseURI(api sdkEnv.Api) (*ContentTypeContentItemClient, error) {
+	client, err := resourcemanager.NewResourceManagerClient(api, "contenttypecontentitem", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ContentTypeContentItemClient: %+v", err)
 	}
+
+	return &ContentTypeContentItemClient{
+		Client: client,
+	}, nil
 }

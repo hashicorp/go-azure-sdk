@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,7 +14,7 @@ type DeletedWebAppsClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewDeletedWebAppsClientWithBaseURI(api environments.Api) (*DeletedWebAppsClient, error) {
+func NewDeletedWebAppsClientWithBaseURI(api sdkEnv.Api) (*DeletedWebAppsClient, error) {
 	client, err := resourcemanager.NewResourceManagerClient(api, "deletedwebapps", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating DeletedWebAppsClient: %+v", err)

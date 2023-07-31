@@ -31,7 +31,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/mariadb/2018-06-01/virtualnetworkrules"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/mariadb/2018-06-01/waitstatistics"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -61,7 +61,7 @@ type Client struct {
 	WaitStatistics                               *waitstatistics.WaitStatisticsClient
 }
 
-func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+func NewClientWithBaseURI(api sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
 	advisorsClient, err := advisors.NewAdvisorsClientWithBaseURI(api)
 	if err != nil {
 		return nil, fmt.Errorf("building Advisors client: %+v", err)

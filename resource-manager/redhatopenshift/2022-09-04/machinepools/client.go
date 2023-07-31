@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,7 +14,7 @@ type MachinePoolsClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewMachinePoolsClientWithBaseURI(api environments.Api) (*MachinePoolsClient, error) {
+func NewMachinePoolsClientWithBaseURI(api sdkEnv.Api) (*MachinePoolsClient, error) {
 	client, err := resourcemanager.NewResourceManagerClient(api, "machinepools", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating MachinePoolsClient: %+v", err)

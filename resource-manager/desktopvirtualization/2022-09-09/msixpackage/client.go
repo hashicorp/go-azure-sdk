@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,7 +14,7 @@ type MSIXPackageClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewMSIXPackageClientWithBaseURI(api environments.Api) (*MSIXPackageClient, error) {
+func NewMSIXPackageClientWithBaseURI(api sdkEnv.Api) (*MSIXPackageClient, error) {
 	client, err := resourcemanager.NewResourceManagerClient(api, "msixpackage", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating MSIXPackageClient: %+v", err)

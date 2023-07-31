@@ -32,7 +32,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/web/2022-09-01/workflowtriggers"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/web/2022-09-01/workflowversions"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -63,7 +63,7 @@ type Client struct {
 	Workflows                    *workflows.WorkflowsClient
 }
 
-func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+func NewClientWithBaseURI(api sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
 	appServiceCertificateOrdersClient, err := appservicecertificateorders.NewAppServiceCertificateOrdersClientWithBaseURI(api)
 	if err != nil {
 		return nil, fmt.Errorf("building AppServiceCertificateOrders client: %+v", err)

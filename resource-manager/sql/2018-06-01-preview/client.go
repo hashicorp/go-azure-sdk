@@ -31,7 +31,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2018-06-01-preview/servervulnerabilityassessments"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2018-06-01-preview/usages"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -61,7 +61,7 @@ type Client struct {
 	Usages                                   *usages.UsagesClient
 }
 
-func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+func NewClientWithBaseURI(api sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
 	databaseColumnsClient, err := databasecolumns.NewDatabaseColumnsClientWithBaseURI(api)
 	if err != nil {
 		return nil, fmt.Errorf("building DatabaseColumns client: %+v", err)

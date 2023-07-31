@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,7 +14,7 @@ type AddonsClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewAddonsClientWithBaseURI(api environments.Api) (*AddonsClient, error) {
+func NewAddonsClientWithBaseURI(api sdkEnv.Api) (*AddonsClient, error) {
 	client, err := resourcemanager.NewResourceManagerClient(api, "addons", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating AddonsClient: %+v", err)

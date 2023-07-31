@@ -10,7 +10,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/managedapplications/2021-07-01/applications"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/managedapplications/2021-07-01/jitrequests"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -19,7 +19,7 @@ type Client struct {
 	JitRequests            *jitrequests.JitRequestsClient
 }
 
-func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+func NewClientWithBaseURI(api sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
 	applicationDefinitionsClient, err := applicationdefinitions.NewApplicationDefinitionsClientWithBaseURI(api)
 	if err != nil {
 		return nil, fmt.Errorf("building ApplicationDefinitions client: %+v", err)

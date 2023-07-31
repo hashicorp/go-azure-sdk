@@ -19,7 +19,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/elastic/2023-06-01/vmhhostlist"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/elastic/2023-06-01/vmingestiondetails"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -37,7 +37,7 @@ type Client struct {
 	VMIngestionDetails        *vmingestiondetails.VMIngestionDetailsClient
 }
 
-func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+func NewClientWithBaseURI(api sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
 	apiKeyClient, err := apikey.NewApiKeyClientWithBaseURI(api)
 	if err != nil {
 		return nil, fmt.Errorf("building ApiKey client: %+v", err)

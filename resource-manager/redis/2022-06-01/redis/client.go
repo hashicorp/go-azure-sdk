@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,7 +14,7 @@ type RedisClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewRedisClientWithBaseURI(api environments.Api) (*RedisClient, error) {
+func NewRedisClientWithBaseURI(api sdkEnv.Api) (*RedisClient, error) {
 	client, err := resourcemanager.NewResourceManagerClient(api, "redis", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating RedisClient: %+v", err)

@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,7 +14,7 @@ type EncodingsClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewEncodingsClientWithBaseURI(api environments.Api) (*EncodingsClient, error) {
+func NewEncodingsClientWithBaseURI(api sdkEnv.Api) (*EncodingsClient, error) {
 	client, err := resourcemanager.NewResourceManagerClient(api, "encodings", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating EncodingsClient: %+v", err)

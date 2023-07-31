@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,7 +14,7 @@ type CognitiveServicesCommitmentPlansClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewCognitiveServicesCommitmentPlansClientWithBaseURI(api environments.Api) (*CognitiveServicesCommitmentPlansClient, error) {
+func NewCognitiveServicesCommitmentPlansClientWithBaseURI(api sdkEnv.Api) (*CognitiveServicesCommitmentPlansClient, error) {
 	client, err := resourcemanager.NewResourceManagerClient(api, "cognitiveservicescommitmentplans", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating CognitiveServicesCommitmentPlansClient: %+v", err)

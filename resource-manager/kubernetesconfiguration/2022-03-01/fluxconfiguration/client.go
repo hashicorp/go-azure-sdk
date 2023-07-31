@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,7 +14,7 @@ type FluxConfigurationClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewFluxConfigurationClientWithBaseURI(api environments.Api) (*FluxConfigurationClient, error) {
+func NewFluxConfigurationClientWithBaseURI(api sdkEnv.Api) (*FluxConfigurationClient, error) {
 	client, err := resourcemanager.NewResourceManagerClient(api, "fluxconfiguration", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating FluxConfigurationClient: %+v", err)

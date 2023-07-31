@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,7 +14,7 @@ type VolumeQuotaRulesClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewVolumeQuotaRulesClientWithBaseURI(api environments.Api) (*VolumeQuotaRulesClient, error) {
+func NewVolumeQuotaRulesClientWithBaseURI(api sdkEnv.Api) (*VolumeQuotaRulesClient, error) {
 	client, err := resourcemanager.NewResourceManagerClient(api, "volumequotarules", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating VolumeQuotaRulesClient: %+v", err)

@@ -145,7 +145,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2022-11-01-preview/workloadclassifiers"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2022-11-01-preview/workloadgroups"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -289,7 +289,7 @@ type Client struct {
 	WorkloadGroups                                                   *workloadgroups.WorkloadGroupsClient
 }
 
-func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+func NewClientWithBaseURI(api sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
 	backupShortTermRetentionPoliciesClient, err := backupshorttermretentionpolicies.NewBackupShortTermRetentionPoliciesClientWithBaseURI(api)
 	if err != nil {
 		return nil, fmt.Errorf("building BackupShortTermRetentionPolicies client: %+v", err)

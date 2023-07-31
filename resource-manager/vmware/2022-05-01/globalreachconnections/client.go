@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,7 +14,7 @@ type GlobalReachConnectionsClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewGlobalReachConnectionsClientWithBaseURI(api environments.Api) (*GlobalReachConnectionsClient, error) {
+func NewGlobalReachConnectionsClientWithBaseURI(api sdkEnv.Api) (*GlobalReachConnectionsClient, error) {
 	client, err := resourcemanager.NewResourceManagerClient(api, "globalreachconnections", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating GlobalReachConnectionsClient: %+v", err)

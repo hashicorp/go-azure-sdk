@@ -1,18 +1,26 @@
 package tenantaccess
 
-import "github.com/Azure/go-autorest/autorest"
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type TenantAccessClient struct {
-	Client  autorest.Client
-	baseUri string
+	Client *resourcemanager.Client
 }
 
-func NewTenantAccessClientWithBaseURI(endpoint string) TenantAccessClient {
-	return TenantAccessClient{
-		Client:  autorest.NewClientWithUserAgent(userAgent()),
-		baseUri: endpoint,
+func NewTenantAccessClientWithBaseURI(api sdkEnv.Api) (*TenantAccessClient, error) {
+	client, err := resourcemanager.NewResourceManagerClient(api, "tenantaccess", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating TenantAccessClient: %+v", err)
 	}
+
+	return &TenantAccessClient{
+		Client: client,
+	}, nil
 }

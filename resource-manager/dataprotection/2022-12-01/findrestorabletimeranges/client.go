@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,7 +14,7 @@ type FindRestorableTimeRangesClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewFindRestorableTimeRangesClientWithBaseURI(api environments.Api) (*FindRestorableTimeRangesClient, error) {
+func NewFindRestorableTimeRangesClientWithBaseURI(api sdkEnv.Api) (*FindRestorableTimeRangesClient, error) {
 	client, err := resourcemanager.NewResourceManagerClient(api, "findrestorabletimeranges", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating FindRestorableTimeRangesClient: %+v", err)

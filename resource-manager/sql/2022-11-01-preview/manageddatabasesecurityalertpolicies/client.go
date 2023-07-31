@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,7 +14,7 @@ type ManagedDatabaseSecurityAlertPoliciesClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewManagedDatabaseSecurityAlertPoliciesClientWithBaseURI(api environments.Api) (*ManagedDatabaseSecurityAlertPoliciesClient, error) {
+func NewManagedDatabaseSecurityAlertPoliciesClientWithBaseURI(api sdkEnv.Api) (*ManagedDatabaseSecurityAlertPoliciesClient, error) {
 	client, err := resourcemanager.NewResourceManagerClient(api, "manageddatabasesecurityalertpolicies", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ManagedDatabaseSecurityAlertPoliciesClient: %+v", err)

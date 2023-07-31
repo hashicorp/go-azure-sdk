@@ -12,7 +12,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/logz/2020-10-01/tagrules"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/logz/2020-10-01/vmhost"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -23,7 +23,7 @@ type Client struct {
 	VMHost       *vmhost.VMHostClient
 }
 
-func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+func NewClientWithBaseURI(api sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
 	monitorsClient, err := monitors.NewMonitorsClientWithBaseURI(api)
 	if err != nil {
 		return nil, fmt.Errorf("building Monitors client: %+v", err)

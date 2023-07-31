@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,7 +14,7 @@ type ManagedDatabaseMoveOperationsClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewManagedDatabaseMoveOperationsClientWithBaseURI(api environments.Api) (*ManagedDatabaseMoveOperationsClient, error) {
+func NewManagedDatabaseMoveOperationsClientWithBaseURI(api sdkEnv.Api) (*ManagedDatabaseMoveOperationsClient, error) {
 	client, err := resourcemanager.NewResourceManagerClient(api, "manageddatabasemoveoperations", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ManagedDatabaseMoveOperationsClient: %+v", err)

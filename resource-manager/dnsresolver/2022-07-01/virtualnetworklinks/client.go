@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,7 +14,7 @@ type VirtualNetworkLinksClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewVirtualNetworkLinksClientWithBaseURI(api environments.Api) (*VirtualNetworkLinksClient, error) {
+func NewVirtualNetworkLinksClientWithBaseURI(api sdkEnv.Api) (*VirtualNetworkLinksClient, error) {
 	client, err := resourcemanager.NewResourceManagerClient(api, "virtualnetworklinks", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating VirtualNetworkLinksClient: %+v", err)

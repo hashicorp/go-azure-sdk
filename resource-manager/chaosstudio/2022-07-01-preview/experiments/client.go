@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,7 +14,7 @@ type ExperimentsClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewExperimentsClientWithBaseURI(api environments.Api) (*ExperimentsClient, error) {
+func NewExperimentsClientWithBaseURI(api sdkEnv.Api) (*ExperimentsClient, error) {
 	client, err := resourcemanager.NewResourceManagerClient(api, "experiments", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ExperimentsClient: %+v", err)

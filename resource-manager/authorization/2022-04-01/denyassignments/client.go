@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,7 +14,7 @@ type DenyAssignmentsClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewDenyAssignmentsClientWithBaseURI(api environments.Api) (*DenyAssignmentsClient, error) {
+func NewDenyAssignmentsClientWithBaseURI(api sdkEnv.Api) (*DenyAssignmentsClient, error) {
 	client, err := resourcemanager.NewResourceManagerClient(api, "denyassignments", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating DenyAssignmentsClient: %+v", err)

@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,7 +14,7 @@ type AvailableDelegationsClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewAvailableDelegationsClientWithBaseURI(api environments.Api) (*AvailableDelegationsClient, error) {
+func NewAvailableDelegationsClientWithBaseURI(api sdkEnv.Api) (*AvailableDelegationsClient, error) {
 	client, err := resourcemanager.NewResourceManagerClient(api, "availabledelegations", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating AvailableDelegationsClient: %+v", err)

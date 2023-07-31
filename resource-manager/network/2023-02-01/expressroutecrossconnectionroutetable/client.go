@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,7 +14,7 @@ type ExpressRouteCrossConnectionRouteTableClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewExpressRouteCrossConnectionRouteTableClientWithBaseURI(api environments.Api) (*ExpressRouteCrossConnectionRouteTableClient, error) {
+func NewExpressRouteCrossConnectionRouteTableClientWithBaseURI(api sdkEnv.Api) (*ExpressRouteCrossConnectionRouteTableClient, error) {
 	client, err := resourcemanager.NewResourceManagerClient(api, "expressroutecrossconnectionroutetable", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ExpressRouteCrossConnectionRouteTableClient: %+v", err)

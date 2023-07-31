@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,7 +14,7 @@ type FailoverGroupsClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewFailoverGroupsClientWithBaseURI(api environments.Api) (*FailoverGroupsClient, error) {
+func NewFailoverGroupsClientWithBaseURI(api sdkEnv.Api) (*FailoverGroupsClient, error) {
 	client, err := resourcemanager.NewResourceManagerClient(api, "failovergroups", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating FailoverGroupsClient: %+v", err)

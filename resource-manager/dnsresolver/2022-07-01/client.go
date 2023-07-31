@@ -13,7 +13,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/dnsresolver/2022-07-01/outboundendpoints"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/dnsresolver/2022-07-01/virtualnetworklinks"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -25,7 +25,7 @@ type Client struct {
 	VirtualNetworkLinks   *virtualnetworklinks.VirtualNetworkLinksClient
 }
 
-func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+func NewClientWithBaseURI(api sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
 	dnsForwardingRulesetsClient, err := dnsforwardingrulesets.NewDnsForwardingRulesetsClientWithBaseURI(api)
 	if err != nil {
 		return nil, fmt.Errorf("building DnsForwardingRulesets client: %+v", err)

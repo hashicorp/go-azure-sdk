@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,7 +14,7 @@ type NetworkProfilesClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewNetworkProfilesClientWithBaseURI(api environments.Api) (*NetworkProfilesClient, error) {
+func NewNetworkProfilesClientWithBaseURI(api sdkEnv.Api) (*NetworkProfilesClient, error) {
 	client, err := resourcemanager.NewResourceManagerClient(api, "networkprofiles", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating NetworkProfilesClient: %+v", err)

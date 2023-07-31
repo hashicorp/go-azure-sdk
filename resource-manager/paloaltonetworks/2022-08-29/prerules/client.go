@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,7 +14,7 @@ type PreRulesClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewPreRulesClientWithBaseURI(api environments.Api) (*PreRulesClient, error) {
+func NewPreRulesClientWithBaseURI(api sdkEnv.Api) (*PreRulesClient, error) {
 	client, err := resourcemanager.NewResourceManagerClient(api, "prerules", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating PreRulesClient: %+v", err)

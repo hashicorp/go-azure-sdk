@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,7 +14,7 @@ type CodeContainerClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewCodeContainerClientWithBaseURI(api environments.Api) (*CodeContainerClient, error) {
+func NewCodeContainerClientWithBaseURI(api sdkEnv.Api) (*CodeContainerClient, error) {
 	client, err := resourcemanager.NewResourceManagerClient(api, "codecontainer", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating CodeContainerClient: %+v", err)

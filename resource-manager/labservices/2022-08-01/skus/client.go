@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,7 +14,7 @@ type SkusClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewSkusClientWithBaseURI(api environments.Api) (*SkusClient, error) {
+func NewSkusClientWithBaseURI(api sdkEnv.Api) (*SkusClient, error) {
 	client, err := resourcemanager.NewResourceManagerClient(api, "skus", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating SkusClient: %+v", err)

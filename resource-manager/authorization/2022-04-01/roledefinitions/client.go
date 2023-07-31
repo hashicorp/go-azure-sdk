@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,7 +14,7 @@ type RoleDefinitionsClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewRoleDefinitionsClientWithBaseURI(api environments.Api) (*RoleDefinitionsClient, error) {
+func NewRoleDefinitionsClientWithBaseURI(api sdkEnv.Api) (*RoleDefinitionsClient, error) {
 	client, err := resourcemanager.NewResourceManagerClient(api, "roledefinitions", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating RoleDefinitionsClient: %+v", err)

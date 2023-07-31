@@ -42,7 +42,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/automation/2022-08-08/usages"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/automation/2022-08-08/variable"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -83,7 +83,7 @@ type Client struct {
 	Variable                                           *variable.VariableClient
 }
 
-func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+func NewClientWithBaseURI(api sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
 	activityClient, err := activity.NewActivityClientWithBaseURI(api)
 	if err != nil {
 		return nil, fmt.Errorf("building Activity client: %+v", err)

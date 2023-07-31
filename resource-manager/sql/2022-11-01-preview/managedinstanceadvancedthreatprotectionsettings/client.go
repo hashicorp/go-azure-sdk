@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,7 +14,7 @@ type ManagedInstanceAdvancedThreatProtectionSettingsClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewManagedInstanceAdvancedThreatProtectionSettingsClientWithBaseURI(api environments.Api) (*ManagedInstanceAdvancedThreatProtectionSettingsClient, error) {
+func NewManagedInstanceAdvancedThreatProtectionSettingsClientWithBaseURI(api sdkEnv.Api) (*ManagedInstanceAdvancedThreatProtectionSettingsClient, error) {
 	client, err := resourcemanager.NewResourceManagerClient(api, "managedinstanceadvancedthreatprotectionsettings", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ManagedInstanceAdvancedThreatProtectionSettingsClient: %+v", err)
