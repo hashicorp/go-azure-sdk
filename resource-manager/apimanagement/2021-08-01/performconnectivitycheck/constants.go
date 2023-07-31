@@ -1,6 +1,10 @@
 package performconnectivitycheck
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -21,6 +25,19 @@ func PossibleValuesForConnectionStatus() []string {
 		string(ConnectionStatusDisconnected),
 		string(ConnectionStatusUnknown),
 	}
+}
+
+func (s *ConnectionStatus) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseConnectionStatus(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseConnectionStatus(input string) (*ConnectionStatus, error) {
@@ -53,6 +70,19 @@ func PossibleValuesForConnectivityCheckProtocol() []string {
 		string(ConnectivityCheckProtocolHTTPS),
 		string(ConnectivityCheckProtocolTCP),
 	}
+}
+
+func (s *ConnectivityCheckProtocol) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseConnectivityCheckProtocol(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseConnectivityCheckProtocol(input string) (*ConnectivityCheckProtocol, error) {
@@ -98,6 +128,19 @@ func PossibleValuesForIssueType() []string {
 	}
 }
 
+func (s *IssueType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseIssueType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseIssueType(input string) (*IssueType, error) {
 	vals := map[string]IssueType{
 		"agentstopped":        IssueTypeAgentStopped,
@@ -133,6 +176,19 @@ func PossibleValuesForMethod() []string {
 	}
 }
 
+func (s *Method) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseMethod(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseMethod(input string) (*Method, error) {
 	vals := map[string]Method{
 		"get":  MethodGET,
@@ -163,6 +219,19 @@ func PossibleValuesForOrigin() []string {
 	}
 }
 
+func (s *Origin) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseOrigin(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseOrigin(input string) (*Origin, error) {
 	vals := map[string]Origin{
 		"inbound":  OriginInbound,
@@ -190,6 +259,19 @@ func PossibleValuesForPreferredIPVersion() []string {
 	}
 }
 
+func (s *PreferredIPVersion) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parsePreferredIPVersion(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parsePreferredIPVersion(input string) (*PreferredIPVersion, error) {
 	vals := map[string]PreferredIPVersion{
 		"ipv4": PreferredIPVersionIPvFour,
@@ -215,6 +297,19 @@ func PossibleValuesForSeverity() []string {
 		string(SeverityError),
 		string(SeverityWarning),
 	}
+}
+
+func (s *Severity) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseSeverity(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseSeverity(input string) (*Severity, error) {

@@ -1,18 +1,26 @@
 package productapi
 
-import "github.com/Azure/go-autorest/autorest"
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type ProductApiClient struct {
-	Client  autorest.Client
-	baseUri string
+	Client *resourcemanager.Client
 }
 
-func NewProductApiClientWithBaseURI(endpoint string) ProductApiClient {
-	return ProductApiClient{
-		Client:  autorest.NewClientWithUserAgent(userAgent()),
-		baseUri: endpoint,
+func NewProductApiClientWithBaseURI(api environments.Api) (*ProductApiClient, error) {
+	client, err := resourcemanager.NewResourceManagerClient(api, "productapi", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ProductApiClient: %+v", err)
 	}
+
+	return &ProductApiClient{
+		Client: client,
+	}, nil
 }
