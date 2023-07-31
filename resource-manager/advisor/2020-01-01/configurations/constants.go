@@ -1,6 +1,10 @@
 package configurations
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -21,6 +25,19 @@ func PossibleValuesForCPUThreshold() []string {
 		string(CPUThresholdOneZero),
 		string(CPUThresholdTwoZero),
 	}
+}
+
+func (s *CPUThreshold) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseCPUThreshold(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseCPUThreshold(input string) (*CPUThreshold, error) {
@@ -59,6 +76,19 @@ func PossibleValuesForCategory() []string {
 	}
 }
 
+func (s *Category) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseCategory(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseCategory(input string) (*Category, error) {
 	vals := map[string]Category{
 		"cost":                  CategoryCost,
@@ -88,6 +118,19 @@ func PossibleValuesForDigestConfigState() []string {
 		string(DigestConfigStateActive),
 		string(DigestConfigStateDisabled),
 	}
+}
+
+func (s *DigestConfigState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseDigestConfigState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseDigestConfigState(input string) (*DigestConfigState, error) {
