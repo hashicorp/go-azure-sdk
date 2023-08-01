@@ -86,6 +86,7 @@ type Request struct {
 	*http.Request
 }
 
+// Marshal serializes a payload body and adds it to the *Request
 func (r *Request) Marshal(payload interface{}) error {
 	contentType := strings.ToLower(r.Header.Get("Content-Type"))
 
@@ -121,14 +122,17 @@ func (r *Request) Marshal(payload interface{}) error {
 	return fmt.Errorf("internal-error: unimplemented marshal function for content type %q", contentType)
 }
 
+// Execute invokes the Execute method for the Request's Client
 func (r *Request) Execute(ctx context.Context) (*Response, error) {
 	return r.Client.Execute(ctx, r)
 }
 
+// ExecutePaged invokes the ExecutePaged method for the Request's Client
 func (r *Request) ExecutePaged(ctx context.Context) (*Response, error) {
 	return r.Client.ExecutePaged(ctx, r)
 }
 
+// IsIdempotent determines whether a Request can be safely retried when encountering a connection failure
 func (r *Request) IsIdempotent() bool {
 	switch strings.ToUpper(r.Method) {
 	case http.MethodGet, http.MethodHead, http.MethodOptions:
@@ -145,6 +149,7 @@ type Response struct {
 	*http.Response
 }
 
+// Unmarshal deserializes a response body into the provided model
 func (r *Response) Unmarshal(model interface{}) error {
 	if model == nil {
 		return fmt.Errorf("model was nil")
