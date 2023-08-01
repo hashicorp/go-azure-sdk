@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,8 +14,8 @@ type AdvisorScoreClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewAdvisorScoreClientWithBaseURI(api environments.Api) (*AdvisorScoreClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(api, "advisorscore", defaultApiVersion)
+func NewAdvisorScoreClientWithBaseURI(sdkApi sdkEnv.Api) (*AdvisorScoreClient, error) {
+	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "advisorscore", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating AdvisorScoreClient: %+v", err)
 	}

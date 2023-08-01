@@ -14,7 +14,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/appconfiguration/2023-03-01/privatelinkresources"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/appconfiguration/2023-03-01/replicas"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -27,44 +27,44 @@ type Client struct {
 	Replicas                   *replicas.ReplicasClient
 }
 
-func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
-	configurationStoresClient, err := configurationstores.NewConfigurationStoresClientWithBaseURI(api)
+func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+	configurationStoresClient, err := configurationstores.NewConfigurationStoresClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building ConfigurationStores client: %+v", err)
 	}
 	configureFunc(configurationStoresClient.Client)
 
-	deletedConfigurationStoresClient, err := deletedconfigurationstores.NewDeletedConfigurationStoresClientWithBaseURI(api)
+	deletedConfigurationStoresClient, err := deletedconfigurationstores.NewDeletedConfigurationStoresClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building DeletedConfigurationStores client: %+v", err)
 	}
 	configureFunc(deletedConfigurationStoresClient.Client)
 
-	keyValuesClient, err := keyvalues.NewKeyValuesClientWithBaseURI(api)
+	keyValuesClient, err := keyvalues.NewKeyValuesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building KeyValues client: %+v", err)
 	}
 	configureFunc(keyValuesClient.Client)
 
-	operationsClient, err := operations.NewOperationsClientWithBaseURI(api)
+	operationsClient, err := operations.NewOperationsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Operations client: %+v", err)
 	}
 	configureFunc(operationsClient.Client)
 
-	privateEndpointConnectionsClient, err := privateendpointconnections.NewPrivateEndpointConnectionsClientWithBaseURI(api)
+	privateEndpointConnectionsClient, err := privateendpointconnections.NewPrivateEndpointConnectionsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building PrivateEndpointConnections client: %+v", err)
 	}
 	configureFunc(privateEndpointConnectionsClient.Client)
 
-	privateLinkResourcesClient, err := privatelinkresources.NewPrivateLinkResourcesClientWithBaseURI(api)
+	privateLinkResourcesClient, err := privatelinkresources.NewPrivateLinkResourcesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building PrivateLinkResources client: %+v", err)
 	}
 	configureFunc(privateLinkResourcesClient.Client)
 
-	replicasClient, err := replicas.NewReplicasClientWithBaseURI(api)
+	replicasClient, err := replicas.NewReplicasClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Replicas client: %+v", err)
 	}

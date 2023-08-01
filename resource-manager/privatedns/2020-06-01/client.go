@@ -10,7 +10,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/privatedns/2020-06-01/recordsets"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/privatedns/2020-06-01/virtualnetworklinks"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -19,20 +19,20 @@ type Client struct {
 	VirtualNetworkLinks *virtualnetworklinks.VirtualNetworkLinksClient
 }
 
-func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
-	privateZonesClient, err := privatezones.NewPrivateZonesClientWithBaseURI(api)
+func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+	privateZonesClient, err := privatezones.NewPrivateZonesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building PrivateZones client: %+v", err)
 	}
 	configureFunc(privateZonesClient.Client)
 
-	recordSetsClient, err := recordsets.NewRecordSetsClientWithBaseURI(api)
+	recordSetsClient, err := recordsets.NewRecordSetsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building RecordSets client: %+v", err)
 	}
 	configureFunc(recordSetsClient.Client)
 
-	virtualNetworkLinksClient, err := virtualnetworklinks.NewVirtualNetworkLinksClientWithBaseURI(api)
+	virtualNetworkLinksClient, err := virtualnetworklinks.NewVirtualNetworkLinksClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building VirtualNetworkLinks client: %+v", err)
 	}

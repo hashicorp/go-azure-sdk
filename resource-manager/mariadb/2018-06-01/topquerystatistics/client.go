@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,8 +14,8 @@ type TopQueryStatisticsClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewTopQueryStatisticsClientWithBaseURI(api environments.Api) (*TopQueryStatisticsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(api, "topquerystatistics", defaultApiVersion)
+func NewTopQueryStatisticsClientWithBaseURI(sdkApi sdkEnv.Api) (*TopQueryStatisticsClient, error) {
+	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "topquerystatistics", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating TopQueryStatisticsClient: %+v", err)
 	}

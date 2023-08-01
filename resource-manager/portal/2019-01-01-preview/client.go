@@ -9,7 +9,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/portal/2019-01-01-preview/dashboard"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/portal/2019-01-01-preview/tenantconfiguration"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -17,14 +17,14 @@ type Client struct {
 	TenantConfiguration *tenantconfiguration.TenantConfigurationClient
 }
 
-func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
-	dashboardClient, err := dashboard.NewDashboardClientWithBaseURI(api)
+func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+	dashboardClient, err := dashboard.NewDashboardClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Dashboard client: %+v", err)
 	}
 	configureFunc(dashboardClient.Client)
 
-	tenantConfigurationClient, err := tenantconfiguration.NewTenantConfigurationClientWithBaseURI(api)
+	tenantConfigurationClient, err := tenantconfiguration.NewTenantConfigurationClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building TenantConfiguration client: %+v", err)
 	}

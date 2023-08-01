@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,8 +14,8 @@ type ReservedInstancesClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewReservedInstancesClientWithBaseURI(api environments.Api) (*ReservedInstancesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(api, "reservedinstances", defaultApiVersion)
+func NewReservedInstancesClientWithBaseURI(sdkApi sdkEnv.Api) (*ReservedInstancesClient, error) {
+	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "reservedinstances", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ReservedInstancesClient: %+v", err)
 	}

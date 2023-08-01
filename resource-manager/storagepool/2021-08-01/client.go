@@ -11,7 +11,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/storagepool/2021-08-01/iscsitargets"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/storagepool/2021-08-01/resourceskus"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -21,26 +21,26 @@ type Client struct {
 	ResourceSkus  *resourceskus.ResourceSkusClient
 }
 
-func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
-	diskPoolZonesClient, err := diskpoolzones.NewDiskPoolZonesClientWithBaseURI(api)
+func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+	diskPoolZonesClient, err := diskpoolzones.NewDiskPoolZonesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building DiskPoolZones client: %+v", err)
 	}
 	configureFunc(diskPoolZonesClient.Client)
 
-	diskPoolsClient, err := diskpools.NewDiskPoolsClientWithBaseURI(api)
+	diskPoolsClient, err := diskpools.NewDiskPoolsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building DiskPools client: %+v", err)
 	}
 	configureFunc(diskPoolsClient.Client)
 
-	iscsiTargetsClient, err := iscsitargets.NewIscsiTargetsClientWithBaseURI(api)
+	iscsiTargetsClient, err := iscsitargets.NewIscsiTargetsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building IscsiTargets client: %+v", err)
 	}
 	configureFunc(iscsiTargetsClient.Client)
 
-	resourceSkusClient, err := resourceskus.NewResourceSkusClientWithBaseURI(api)
+	resourceSkusClient, err := resourceskus.NewResourceSkusClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building ResourceSkus client: %+v", err)
 	}

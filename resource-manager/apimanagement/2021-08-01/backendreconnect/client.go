@@ -1,18 +1,26 @@
 package backendreconnect
 
-import "github.com/Azure/go-autorest/autorest"
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type BackendReconnectClient struct {
-	Client  autorest.Client
-	baseUri string
+	Client *resourcemanager.Client
 }
 
-func NewBackendReconnectClientWithBaseURI(endpoint string) BackendReconnectClient {
-	return BackendReconnectClient{
-		Client:  autorest.NewClientWithUserAgent(userAgent()),
-		baseUri: endpoint,
+func NewBackendReconnectClientWithBaseURI(sdkApi sdkEnv.Api) (*BackendReconnectClient, error) {
+	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "backendreconnect", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating BackendReconnectClient: %+v", err)
 	}
+
+	return &BackendReconnectClient{
+		Client: client,
+	}, nil
 }

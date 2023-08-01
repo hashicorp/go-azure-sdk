@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,8 +14,8 @@ type ManagedDatabaseColumnsClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewManagedDatabaseColumnsClientWithBaseURI(api environments.Api) (*ManagedDatabaseColumnsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(api, "manageddatabasecolumns", defaultApiVersion)
+func NewManagedDatabaseColumnsClientWithBaseURI(sdkApi sdkEnv.Api) (*ManagedDatabaseColumnsClient, error) {
+	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "manageddatabasecolumns", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ManagedDatabaseColumnsClient: %+v", err)
 	}

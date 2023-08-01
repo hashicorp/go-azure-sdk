@@ -10,7 +10,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/dynatrace/2021-09-01/singlesignon"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/dynatrace/2021-09-01/tagrules"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -19,20 +19,20 @@ type Client struct {
 	TagRules     *tagrules.TagRulesClient
 }
 
-func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
-	monitorsClient, err := monitors.NewMonitorsClientWithBaseURI(api)
+func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+	monitorsClient, err := monitors.NewMonitorsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Monitors client: %+v", err)
 	}
 	configureFunc(monitorsClient.Client)
 
-	singleSignOnClient, err := singlesignon.NewSingleSignOnClientWithBaseURI(api)
+	singleSignOnClient, err := singlesignon.NewSingleSignOnClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building SingleSignOn client: %+v", err)
 	}
 	configureFunc(singleSignOnClient.Client)
 
-	tagRulesClient, err := tagrules.NewTagRulesClientWithBaseURI(api)
+	tagRulesClient, err := tagrules.NewTagRulesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building TagRules client: %+v", err)
 	}

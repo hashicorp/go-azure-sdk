@@ -12,7 +12,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/authorization/2022-04-01/roleassignments"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/authorization/2022-04-01/roledefinitions"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -23,32 +23,32 @@ type Client struct {
 	RoleDefinitions            *roledefinitions.RoleDefinitionsClient
 }
 
-func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
-	denyAssignmentsClient, err := denyassignments.NewDenyAssignmentsClientWithBaseURI(api)
+func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+	denyAssignmentsClient, err := denyassignments.NewDenyAssignmentsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building DenyAssignments client: %+v", err)
 	}
 	configureFunc(denyAssignmentsClient.Client)
 
-	permissionsClient, err := permissions.NewPermissionsClientWithBaseURI(api)
+	permissionsClient, err := permissions.NewPermissionsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Permissions client: %+v", err)
 	}
 	configureFunc(permissionsClient.Client)
 
-	providerOperationsMetadataClient, err := provideroperationsmetadata.NewProviderOperationsMetadataClientWithBaseURI(api)
+	providerOperationsMetadataClient, err := provideroperationsmetadata.NewProviderOperationsMetadataClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building ProviderOperationsMetadata client: %+v", err)
 	}
 	configureFunc(providerOperationsMetadataClient.Client)
 
-	roleAssignmentsClient, err := roleassignments.NewRoleAssignmentsClientWithBaseURI(api)
+	roleAssignmentsClient, err := roleassignments.NewRoleAssignmentsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building RoleAssignments client: %+v", err)
 	}
 	configureFunc(roleAssignmentsClient.Client)
 
-	roleDefinitionsClient, err := roledefinitions.NewRoleDefinitionsClientWithBaseURI(api)
+	roleDefinitionsClient, err := roledefinitions.NewRoleDefinitionsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building RoleDefinitions client: %+v", err)
 	}

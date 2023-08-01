@@ -13,7 +13,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/storagemover/2023-03-01/projects"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/storagemover/2023-03-01/storagemovers"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -25,38 +25,38 @@ type Client struct {
 	StorageMovers  *storagemovers.StorageMoversClient
 }
 
-func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
-	agentsClient, err := agents.NewAgentsClientWithBaseURI(api)
+func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+	agentsClient, err := agents.NewAgentsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Agents client: %+v", err)
 	}
 	configureFunc(agentsClient.Client)
 
-	endpointsClient, err := endpoints.NewEndpointsClientWithBaseURI(api)
+	endpointsClient, err := endpoints.NewEndpointsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Endpoints client: %+v", err)
 	}
 	configureFunc(endpointsClient.Client)
 
-	jobDefinitionsClient, err := jobdefinitions.NewJobDefinitionsClientWithBaseURI(api)
+	jobDefinitionsClient, err := jobdefinitions.NewJobDefinitionsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building JobDefinitions client: %+v", err)
 	}
 	configureFunc(jobDefinitionsClient.Client)
 
-	jobRunsClient, err := jobruns.NewJobRunsClientWithBaseURI(api)
+	jobRunsClient, err := jobruns.NewJobRunsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building JobRuns client: %+v", err)
 	}
 	configureFunc(jobRunsClient.Client)
 
-	projectsClient, err := projects.NewProjectsClientWithBaseURI(api)
+	projectsClient, err := projects.NewProjectsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Projects client: %+v", err)
 	}
 	configureFunc(projectsClient.Client)
 
-	storageMoversClient, err := storagemovers.NewStorageMoversClientWithBaseURI(api)
+	storageMoversClient, err := storagemovers.NewStorageMoversClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building StorageMovers client: %+v", err)
 	}

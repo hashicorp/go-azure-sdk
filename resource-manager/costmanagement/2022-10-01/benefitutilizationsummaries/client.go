@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,8 +14,8 @@ type BenefitUtilizationSummariesClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewBenefitUtilizationSummariesClientWithBaseURI(api environments.Api) (*BenefitUtilizationSummariesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(api, "benefitutilizationsummaries", defaultApiVersion)
+func NewBenefitUtilizationSummariesClientWithBaseURI(sdkApi sdkEnv.Api) (*BenefitUtilizationSummariesClient, error) {
+	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "benefitutilizationsummaries", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating BenefitUtilizationSummariesClient: %+v", err)
 	}

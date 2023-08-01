@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,8 +14,8 @@ type PrivateLinkResourceClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewPrivateLinkResourceClientWithBaseURI(api environments.Api) (*PrivateLinkResourceClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(api, "privatelinkresource", defaultApiVersion)
+func NewPrivateLinkResourceClientWithBaseURI(sdkApi sdkEnv.Api) (*PrivateLinkResourceClient, error) {
+	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "privatelinkresource", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating PrivateLinkResourceClient: %+v", err)
 	}

@@ -9,7 +9,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/aad/2021-05-01/domainservices"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/aad/2021-05-01/oucontainer"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -17,14 +17,14 @@ type Client struct {
 	OuContainer    *oucontainer.OuContainerClient
 }
 
-func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
-	domainServicesClient, err := domainservices.NewDomainServicesClientWithBaseURI(api)
+func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+	domainServicesClient, err := domainservices.NewDomainServicesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building DomainServices client: %+v", err)
 	}
 	configureFunc(domainServicesClient.Client)
 
-	ouContainerClient, err := oucontainer.NewOuContainerClientWithBaseURI(api)
+	ouContainerClient, err := oucontainer.NewOuContainerClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building OuContainer client: %+v", err)
 	}

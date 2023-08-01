@@ -29,7 +29,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/datafactory/2018-06-01/triggerruns"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/datafactory/2018-06-01/triggers"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -57,134 +57,134 @@ type Client struct {
 	Triggers                         *triggers.TriggersClient
 }
 
-func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
-	activityrunsClient, err := activityruns.NewActivityrunsClientWithBaseURI(api)
+func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+	activityrunsClient, err := activityruns.NewActivityrunsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Activityruns client: %+v", err)
 	}
 	configureFunc(activityrunsClient.Client)
 
-	changeDataCaptureClient, err := changedatacapture.NewChangeDataCaptureClientWithBaseURI(api)
+	changeDataCaptureClient, err := changedatacapture.NewChangeDataCaptureClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building ChangeDataCapture client: %+v", err)
 	}
 	configureFunc(changeDataCaptureClient.Client)
 
-	credentialsClient, err := credentials.NewCredentialsClientWithBaseURI(api)
+	credentialsClient, err := credentials.NewCredentialsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Credentials client: %+v", err)
 	}
 	configureFunc(credentialsClient.Client)
 
-	dataFlowDebugSessionClient, err := dataflowdebugsession.NewDataFlowDebugSessionClientWithBaseURI(api)
+	dataFlowDebugSessionClient, err := dataflowdebugsession.NewDataFlowDebugSessionClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building DataFlowDebugSession client: %+v", err)
 	}
 	configureFunc(dataFlowDebugSessionClient.Client)
 
-	dataFlowsClient, err := dataflows.NewDataFlowsClientWithBaseURI(api)
+	dataFlowsClient, err := dataflows.NewDataFlowsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building DataFlows client: %+v", err)
 	}
 	configureFunc(dataFlowsClient.Client)
 
-	datasetsClient, err := datasets.NewDatasetsClientWithBaseURI(api)
+	datasetsClient, err := datasets.NewDatasetsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Datasets client: %+v", err)
 	}
 	configureFunc(datasetsClient.Client)
 
-	exposureControlClient, err := exposurecontrol.NewExposureControlClientWithBaseURI(api)
+	exposureControlClient, err := exposurecontrol.NewExposureControlClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building ExposureControl client: %+v", err)
 	}
 	configureFunc(exposureControlClient.Client)
 
-	factoriesClient, err := factories.NewFactoriesClientWithBaseURI(api)
+	factoriesClient, err := factories.NewFactoriesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Factories client: %+v", err)
 	}
 	configureFunc(factoriesClient.Client)
 
-	globalParametersClient, err := globalparameters.NewGlobalParametersClientWithBaseURI(api)
+	globalParametersClient, err := globalparameters.NewGlobalParametersClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building GlobalParameters client: %+v", err)
 	}
 	configureFunc(globalParametersClient.Client)
 
-	integrationRuntimeNodesClient, err := integrationruntimenodes.NewIntegrationRuntimeNodesClientWithBaseURI(api)
+	integrationRuntimeNodesClient, err := integrationruntimenodes.NewIntegrationRuntimeNodesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building IntegrationRuntimeNodes client: %+v", err)
 	}
 	configureFunc(integrationRuntimeNodesClient.Client)
 
-	integrationRuntimeObjectMetadataClient, err := integrationruntimeobjectmetadata.NewIntegrationRuntimeObjectMetadataClientWithBaseURI(api)
+	integrationRuntimeObjectMetadataClient, err := integrationruntimeobjectmetadata.NewIntegrationRuntimeObjectMetadataClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building IntegrationRuntimeObjectMetadata client: %+v", err)
 	}
 	configureFunc(integrationRuntimeObjectMetadataClient.Client)
 
-	integrationRuntimesClient, err := integrationruntimes.NewIntegrationRuntimesClientWithBaseURI(api)
+	integrationRuntimesClient, err := integrationruntimes.NewIntegrationRuntimesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building IntegrationRuntimes client: %+v", err)
 	}
 	configureFunc(integrationRuntimesClient.Client)
 
-	linkedServicesClient, err := linkedservices.NewLinkedServicesClientWithBaseURI(api)
+	linkedServicesClient, err := linkedservices.NewLinkedServicesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building LinkedServices client: %+v", err)
 	}
 	configureFunc(linkedServicesClient.Client)
 
-	managedPrivateEndpointsClient, err := managedprivateendpoints.NewManagedPrivateEndpointsClientWithBaseURI(api)
+	managedPrivateEndpointsClient, err := managedprivateendpoints.NewManagedPrivateEndpointsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building ManagedPrivateEndpoints client: %+v", err)
 	}
 	configureFunc(managedPrivateEndpointsClient.Client)
 
-	managedVirtualNetworksClient, err := managedvirtualnetworks.NewManagedVirtualNetworksClientWithBaseURI(api)
+	managedVirtualNetworksClient, err := managedvirtualnetworks.NewManagedVirtualNetworksClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building ManagedVirtualNetworks client: %+v", err)
 	}
 	configureFunc(managedVirtualNetworksClient.Client)
 
-	pipelineRunsClient, err := pipelineruns.NewPipelineRunsClientWithBaseURI(api)
+	pipelineRunsClient, err := pipelineruns.NewPipelineRunsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building PipelineRuns client: %+v", err)
 	}
 	configureFunc(pipelineRunsClient.Client)
 
-	pipelinesClient, err := pipelines.NewPipelinesClientWithBaseURI(api)
+	pipelinesClient, err := pipelines.NewPipelinesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Pipelines client: %+v", err)
 	}
 	configureFunc(pipelinesClient.Client)
 
-	privateEndpointConnectionsClient, err := privateendpointconnections.NewPrivateEndpointConnectionsClientWithBaseURI(api)
+	privateEndpointConnectionsClient, err := privateendpointconnections.NewPrivateEndpointConnectionsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building PrivateEndpointConnections client: %+v", err)
 	}
 	configureFunc(privateEndpointConnectionsClient.Client)
 
-	privateLinkResourcesClient, err := privatelinkresources.NewPrivateLinkResourcesClientWithBaseURI(api)
+	privateLinkResourcesClient, err := privatelinkresources.NewPrivateLinkResourcesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building PrivateLinkResources client: %+v", err)
 	}
 	configureFunc(privateLinkResourcesClient.Client)
 
-	triggerClient, err := trigger.NewTriggerClientWithBaseURI(api)
+	triggerClient, err := trigger.NewTriggerClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Trigger client: %+v", err)
 	}
 	configureFunc(triggerClient.Client)
 
-	triggerrunsClient, err := triggerruns.NewTriggerrunsClientWithBaseURI(api)
+	triggerrunsClient, err := triggerruns.NewTriggerrunsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Triggerruns client: %+v", err)
 	}
 	configureFunc(triggerrunsClient.Client)
 
-	triggersClient, err := triggers.NewTriggersClientWithBaseURI(api)
+	triggersClient, err := triggers.NewTriggersClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Triggers client: %+v", err)
 	}

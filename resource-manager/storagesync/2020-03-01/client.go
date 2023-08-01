@@ -21,7 +21,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/storagesync/2020-03-01/syncgroupresource"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/storagesync/2020-03-01/workflowresource"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -41,86 +41,86 @@ type Client struct {
 	WorkflowResource                  *workflowresource.WorkflowResourceClient
 }
 
-func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
-	actionsClient, err := actions.NewActionsClientWithBaseURI(api)
+func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+	actionsClient, err := actions.NewActionsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Actions client: %+v", err)
 	}
 	configureFunc(actionsClient.Client)
 
-	backupRestoreClient, err := backuprestore.NewBackupRestoreClientWithBaseURI(api)
+	backupRestoreClient, err := backuprestore.NewBackupRestoreClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building BackupRestore client: %+v", err)
 	}
 	configureFunc(backupRestoreClient.Client)
 
-	changeDetectionClient, err := changedetection.NewChangeDetectionClientWithBaseURI(api)
+	changeDetectionClient, err := changedetection.NewChangeDetectionClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building ChangeDetection client: %+v", err)
 	}
 	configureFunc(changeDetectionClient.Client)
 
-	cloudEndpointResourceClient, err := cloudendpointresource.NewCloudEndpointResourceClientWithBaseURI(api)
+	cloudEndpointResourceClient, err := cloudendpointresource.NewCloudEndpointResourceClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building CloudEndpointResource client: %+v", err)
 	}
 	configureFunc(cloudEndpointResourceClient.Client)
 
-	operationStatusClient, err := operationstatus.NewOperationStatusClientWithBaseURI(api)
+	operationStatusClient, err := operationstatus.NewOperationStatusClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building OperationStatus client: %+v", err)
 	}
 	configureFunc(operationStatusClient.Client)
 
-	privateEndpointConnectionResourceClient, err := privateendpointconnectionresource.NewPrivateEndpointConnectionResourceClientWithBaseURI(api)
+	privateEndpointConnectionResourceClient, err := privateendpointconnectionresource.NewPrivateEndpointConnectionResourceClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building PrivateEndpointConnectionResource client: %+v", err)
 	}
 	configureFunc(privateEndpointConnectionResourceClient.Client)
 
-	privateEndpointConnectionsClient, err := privateendpointconnections.NewPrivateEndpointConnectionsClientWithBaseURI(api)
+	privateEndpointConnectionsClient, err := privateendpointconnections.NewPrivateEndpointConnectionsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building PrivateEndpointConnections client: %+v", err)
 	}
 	configureFunc(privateEndpointConnectionsClient.Client)
 
-	privateLinkResourcesClient, err := privatelinkresources.NewPrivateLinkResourcesClientWithBaseURI(api)
+	privateLinkResourcesClient, err := privatelinkresources.NewPrivateLinkResourcesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building PrivateLinkResources client: %+v", err)
 	}
 	configureFunc(privateLinkResourcesClient.Client)
 
-	registeredServerResourceClient, err := registeredserverresource.NewRegisteredServerResourceClientWithBaseURI(api)
+	registeredServerResourceClient, err := registeredserverresource.NewRegisteredServerResourceClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building RegisteredServerResource client: %+v", err)
 	}
 	configureFunc(registeredServerResourceClient.Client)
 
-	serverEndpointResourceClient, err := serverendpointresource.NewServerEndpointResourceClientWithBaseURI(api)
+	serverEndpointResourceClient, err := serverendpointresource.NewServerEndpointResourceClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building ServerEndpointResource client: %+v", err)
 	}
 	configureFunc(serverEndpointResourceClient.Client)
 
-	storageSyncServiceClient, err := storagesyncservice.NewStorageSyncServiceClientWithBaseURI(api)
+	storageSyncServiceClient, err := storagesyncservice.NewStorageSyncServiceClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building StorageSyncService client: %+v", err)
 	}
 	configureFunc(storageSyncServiceClient.Client)
 
-	storageSyncServicesResourceClient, err := storagesyncservicesresource.NewStorageSyncServicesResourceClientWithBaseURI(api)
+	storageSyncServicesResourceClient, err := storagesyncservicesresource.NewStorageSyncServicesResourceClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building StorageSyncServicesResource client: %+v", err)
 	}
 	configureFunc(storageSyncServicesResourceClient.Client)
 
-	syncGroupResourceClient, err := syncgroupresource.NewSyncGroupResourceClientWithBaseURI(api)
+	syncGroupResourceClient, err := syncgroupresource.NewSyncGroupResourceClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building SyncGroupResource client: %+v", err)
 	}
 	configureFunc(syncGroupResourceClient.Client)
 
-	workflowResourceClient, err := workflowresource.NewWorkflowResourceClientWithBaseURI(api)
+	workflowResourceClient, err := workflowresource.NewWorkflowResourceClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building WorkflowResource client: %+v", err)
 	}

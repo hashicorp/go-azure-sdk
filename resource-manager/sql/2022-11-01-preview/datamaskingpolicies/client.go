@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,8 +14,8 @@ type DataMaskingPoliciesClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewDataMaskingPoliciesClientWithBaseURI(api environments.Api) (*DataMaskingPoliciesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(api, "datamaskingpolicies", defaultApiVersion)
+func NewDataMaskingPoliciesClientWithBaseURI(sdkApi sdkEnv.Api) (*DataMaskingPoliciesClient, error) {
+	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "datamaskingpolicies", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating DataMaskingPoliciesClient: %+v", err)
 	}

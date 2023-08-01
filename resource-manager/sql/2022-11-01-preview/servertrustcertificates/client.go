@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,8 +14,8 @@ type ServerTrustCertificatesClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewServerTrustCertificatesClientWithBaseURI(api environments.Api) (*ServerTrustCertificatesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(api, "servertrustcertificates", defaultApiVersion)
+func NewServerTrustCertificatesClientWithBaseURI(sdkApi sdkEnv.Api) (*ServerTrustCertificatesClient, error) {
+	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "servertrustcertificates", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ServerTrustCertificatesClient: %+v", err)
 	}

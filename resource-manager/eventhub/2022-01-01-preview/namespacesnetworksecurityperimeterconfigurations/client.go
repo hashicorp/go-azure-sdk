@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,8 +14,8 @@ type NamespacesNetworkSecurityPerimeterConfigurationsClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewNamespacesNetworkSecurityPerimeterConfigurationsClientWithBaseURI(api environments.Api) (*NamespacesNetworkSecurityPerimeterConfigurationsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(api, "namespacesnetworksecurityperimeterconfigurations", defaultApiVersion)
+func NewNamespacesNetworkSecurityPerimeterConfigurationsClientWithBaseURI(sdkApi sdkEnv.Api) (*NamespacesNetworkSecurityPerimeterConfigurationsClient, error) {
+	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "namespacesnetworksecurityperimeterconfigurations", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating NamespacesNetworkSecurityPerimeterConfigurationsClient: %+v", err)
 	}

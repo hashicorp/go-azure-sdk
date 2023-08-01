@@ -13,7 +13,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/dnsresolver/2022-07-01/outboundendpoints"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/dnsresolver/2022-07-01/virtualnetworklinks"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -25,38 +25,38 @@ type Client struct {
 	VirtualNetworkLinks   *virtualnetworklinks.VirtualNetworkLinksClient
 }
 
-func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
-	dnsForwardingRulesetsClient, err := dnsforwardingrulesets.NewDnsForwardingRulesetsClientWithBaseURI(api)
+func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+	dnsForwardingRulesetsClient, err := dnsforwardingrulesets.NewDnsForwardingRulesetsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building DnsForwardingRulesets client: %+v", err)
 	}
 	configureFunc(dnsForwardingRulesetsClient.Client)
 
-	dnsResolversClient, err := dnsresolvers.NewDnsResolversClientWithBaseURI(api)
+	dnsResolversClient, err := dnsresolvers.NewDnsResolversClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building DnsResolvers client: %+v", err)
 	}
 	configureFunc(dnsResolversClient.Client)
 
-	forwardingRulesClient, err := forwardingrules.NewForwardingRulesClientWithBaseURI(api)
+	forwardingRulesClient, err := forwardingrules.NewForwardingRulesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building ForwardingRules client: %+v", err)
 	}
 	configureFunc(forwardingRulesClient.Client)
 
-	inboundEndpointsClient, err := inboundendpoints.NewInboundEndpointsClientWithBaseURI(api)
+	inboundEndpointsClient, err := inboundendpoints.NewInboundEndpointsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building InboundEndpoints client: %+v", err)
 	}
 	configureFunc(inboundEndpointsClient.Client)
 
-	outboundEndpointsClient, err := outboundendpoints.NewOutboundEndpointsClientWithBaseURI(api)
+	outboundEndpointsClient, err := outboundendpoints.NewOutboundEndpointsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building OutboundEndpoints client: %+v", err)
 	}
 	configureFunc(outboundEndpointsClient.Client)
 
-	virtualNetworkLinksClient, err := virtualnetworklinks.NewVirtualNetworkLinksClientWithBaseURI(api)
+	virtualNetworkLinksClient, err := virtualnetworklinks.NewVirtualNetworkLinksClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building VirtualNetworkLinks client: %+v", err)
 	}

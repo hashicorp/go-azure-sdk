@@ -109,7 +109,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2021-02-01-preview/workloadclassifiers"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2021-02-01-preview/workloadgroups"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -217,614 +217,614 @@ type Client struct {
 	WorkloadGroups                                                   *workloadgroups.WorkloadGroupsClient
 }
 
-func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
-	backupShortTermRetentionPoliciesClient, err := backupshorttermretentionpolicies.NewBackupShortTermRetentionPoliciesClientWithBaseURI(api)
+func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+	backupShortTermRetentionPoliciesClient, err := backupshorttermretentionpolicies.NewBackupShortTermRetentionPoliciesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building BackupShortTermRetentionPolicies client: %+v", err)
 	}
 	configureFunc(backupShortTermRetentionPoliciesClient.Client)
 
-	blobAuditingClient, err := blobauditing.NewBlobAuditingClientWithBaseURI(api)
+	blobAuditingClient, err := blobauditing.NewBlobAuditingClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building BlobAuditing client: %+v", err)
 	}
 	configureFunc(blobAuditingClient.Client)
 
-	dataWarehouseUserActivitiesClient, err := datawarehouseuseractivities.NewDataWarehouseUserActivitiesClientWithBaseURI(api)
+	dataWarehouseUserActivitiesClient, err := datawarehouseuseractivities.NewDataWarehouseUserActivitiesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building DataWarehouseUserActivities client: %+v", err)
 	}
 	configureFunc(dataWarehouseUserActivitiesClient.Client)
 
-	databaseAdvisorsClient, err := databaseadvisors.NewDatabaseAdvisorsClientWithBaseURI(api)
+	databaseAdvisorsClient, err := databaseadvisors.NewDatabaseAdvisorsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building DatabaseAdvisors client: %+v", err)
 	}
 	configureFunc(databaseAdvisorsClient.Client)
 
-	databaseAutomaticTuningClient, err := databaseautomatictuning.NewDatabaseAutomaticTuningClientWithBaseURI(api)
+	databaseAutomaticTuningClient, err := databaseautomatictuning.NewDatabaseAutomaticTuningClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building DatabaseAutomaticTuning client: %+v", err)
 	}
 	configureFunc(databaseAutomaticTuningClient.Client)
 
-	databaseColumnsClient, err := databasecolumns.NewDatabaseColumnsClientWithBaseURI(api)
+	databaseColumnsClient, err := databasecolumns.NewDatabaseColumnsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building DatabaseColumns client: %+v", err)
 	}
 	configureFunc(databaseColumnsClient.Client)
 
-	databaseExtensionsClient, err := databaseextensions.NewDatabaseExtensionsClientWithBaseURI(api)
+	databaseExtensionsClient, err := databaseextensions.NewDatabaseExtensionsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building DatabaseExtensions client: %+v", err)
 	}
 	configureFunc(databaseExtensionsClient.Client)
 
-	databaseOperationsClient, err := databaseoperations.NewDatabaseOperationsClientWithBaseURI(api)
+	databaseOperationsClient, err := databaseoperations.NewDatabaseOperationsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building DatabaseOperations client: %+v", err)
 	}
 	configureFunc(databaseOperationsClient.Client)
 
-	databaseRecommendedActionsClient, err := databaserecommendedactions.NewDatabaseRecommendedActionsClientWithBaseURI(api)
+	databaseRecommendedActionsClient, err := databaserecommendedactions.NewDatabaseRecommendedActionsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building DatabaseRecommendedActions client: %+v", err)
 	}
 	configureFunc(databaseRecommendedActionsClient.Client)
 
-	databaseSchemasClient, err := databaseschemas.NewDatabaseSchemasClientWithBaseURI(api)
+	databaseSchemasClient, err := databaseschemas.NewDatabaseSchemasClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building DatabaseSchemas client: %+v", err)
 	}
 	configureFunc(databaseSchemasClient.Client)
 
-	databaseSecurityAlertPoliciesClient, err := databasesecurityalertpolicies.NewDatabaseSecurityAlertPoliciesClientWithBaseURI(api)
+	databaseSecurityAlertPoliciesClient, err := databasesecurityalertpolicies.NewDatabaseSecurityAlertPoliciesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building DatabaseSecurityAlertPolicies client: %+v", err)
 	}
 	configureFunc(databaseSecurityAlertPoliciesClient.Client)
 
-	databaseTablesClient, err := databasetables.NewDatabaseTablesClientWithBaseURI(api)
+	databaseTablesClient, err := databasetables.NewDatabaseTablesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building DatabaseTables client: %+v", err)
 	}
 	configureFunc(databaseTablesClient.Client)
 
-	databaseUsagesClient, err := databaseusages.NewDatabaseUsagesClientWithBaseURI(api)
+	databaseUsagesClient, err := databaseusages.NewDatabaseUsagesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building DatabaseUsages client: %+v", err)
 	}
 	configureFunc(databaseUsagesClient.Client)
 
-	databaseVulnerabilityAssessmentRuleBaselinesClient, err := databasevulnerabilityassessmentrulebaselines.NewDatabaseVulnerabilityAssessmentRuleBaselinesClientWithBaseURI(api)
+	databaseVulnerabilityAssessmentRuleBaselinesClient, err := databasevulnerabilityassessmentrulebaselines.NewDatabaseVulnerabilityAssessmentRuleBaselinesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building DatabaseVulnerabilityAssessmentRuleBaselines client: %+v", err)
 	}
 	configureFunc(databaseVulnerabilityAssessmentRuleBaselinesClient.Client)
 
-	databaseVulnerabilityAssessmentScansClient, err := databasevulnerabilityassessmentscans.NewDatabaseVulnerabilityAssessmentScansClientWithBaseURI(api)
+	databaseVulnerabilityAssessmentScansClient, err := databasevulnerabilityassessmentscans.NewDatabaseVulnerabilityAssessmentScansClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building DatabaseVulnerabilityAssessmentScans client: %+v", err)
 	}
 	configureFunc(databaseVulnerabilityAssessmentScansClient.Client)
 
-	databaseVulnerabilityAssessmentsClient, err := databasevulnerabilityassessments.NewDatabaseVulnerabilityAssessmentsClientWithBaseURI(api)
+	databaseVulnerabilityAssessmentsClient, err := databasevulnerabilityassessments.NewDatabaseVulnerabilityAssessmentsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building DatabaseVulnerabilityAssessments client: %+v", err)
 	}
 	configureFunc(databaseVulnerabilityAssessmentsClient.Client)
 
-	databasesClient, err := databases.NewDatabasesClientWithBaseURI(api)
+	databasesClient, err := databases.NewDatabasesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Databases client: %+v", err)
 	}
 	configureFunc(databasesClient.Client)
 
-	deletedServersClient, err := deletedservers.NewDeletedServersClientWithBaseURI(api)
+	deletedServersClient, err := deletedservers.NewDeletedServersClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building DeletedServers client: %+v", err)
 	}
 	configureFunc(deletedServersClient.Client)
 
-	elasticPoolOperationsClient, err := elasticpooloperations.NewElasticPoolOperationsClientWithBaseURI(api)
+	elasticPoolOperationsClient, err := elasticpooloperations.NewElasticPoolOperationsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building ElasticPoolOperations client: %+v", err)
 	}
 	configureFunc(elasticPoolOperationsClient.Client)
 
-	elasticPoolsClient, err := elasticpools.NewElasticPoolsClientWithBaseURI(api)
+	elasticPoolsClient, err := elasticpools.NewElasticPoolsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building ElasticPools client: %+v", err)
 	}
 	configureFunc(elasticPoolsClient.Client)
 
-	encryptionProtectorsClient, err := encryptionprotectors.NewEncryptionProtectorsClientWithBaseURI(api)
+	encryptionProtectorsClient, err := encryptionprotectors.NewEncryptionProtectorsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building EncryptionProtectors client: %+v", err)
 	}
 	configureFunc(encryptionProtectorsClient.Client)
 
-	failoverGroupsClient, err := failovergroups.NewFailoverGroupsClientWithBaseURI(api)
+	failoverGroupsClient, err := failovergroups.NewFailoverGroupsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building FailoverGroups client: %+v", err)
 	}
 	configureFunc(failoverGroupsClient.Client)
 
-	firewallRulesClient, err := firewallrules.NewFirewallRulesClientWithBaseURI(api)
+	firewallRulesClient, err := firewallrules.NewFirewallRulesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building FirewallRules client: %+v", err)
 	}
 	configureFunc(firewallRulesClient.Client)
 
-	instanceFailoverGroupsClient, err := instancefailovergroups.NewInstanceFailoverGroupsClientWithBaseURI(api)
+	instanceFailoverGroupsClient, err := instancefailovergroups.NewInstanceFailoverGroupsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building InstanceFailoverGroups client: %+v", err)
 	}
 	configureFunc(instanceFailoverGroupsClient.Client)
 
-	instancePoolsClient, err := instancepools.NewInstancePoolsClientWithBaseURI(api)
+	instancePoolsClient, err := instancepools.NewInstancePoolsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building InstancePools client: %+v", err)
 	}
 	configureFunc(instancePoolsClient.Client)
 
-	jobAgentsClient, err := jobagents.NewJobAgentsClientWithBaseURI(api)
+	jobAgentsClient, err := jobagents.NewJobAgentsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building JobAgents client: %+v", err)
 	}
 	configureFunc(jobAgentsClient.Client)
 
-	jobCredentialsClient, err := jobcredentials.NewJobCredentialsClientWithBaseURI(api)
+	jobCredentialsClient, err := jobcredentials.NewJobCredentialsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building JobCredentials client: %+v", err)
 	}
 	configureFunc(jobCredentialsClient.Client)
 
-	jobExecutionsClient, err := jobexecutions.NewJobExecutionsClientWithBaseURI(api)
+	jobExecutionsClient, err := jobexecutions.NewJobExecutionsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building JobExecutions client: %+v", err)
 	}
 	configureFunc(jobExecutionsClient.Client)
 
-	jobStepExecutionsClient, err := jobstepexecutions.NewJobStepExecutionsClientWithBaseURI(api)
+	jobStepExecutionsClient, err := jobstepexecutions.NewJobStepExecutionsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building JobStepExecutions client: %+v", err)
 	}
 	configureFunc(jobStepExecutionsClient.Client)
 
-	jobStepsClient, err := jobsteps.NewJobStepsClientWithBaseURI(api)
+	jobStepsClient, err := jobsteps.NewJobStepsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building JobSteps client: %+v", err)
 	}
 	configureFunc(jobStepsClient.Client)
 
-	jobTargetExecutionsClient, err := jobtargetexecutions.NewJobTargetExecutionsClientWithBaseURI(api)
+	jobTargetExecutionsClient, err := jobtargetexecutions.NewJobTargetExecutionsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building JobTargetExecutions client: %+v", err)
 	}
 	configureFunc(jobTargetExecutionsClient.Client)
 
-	jobTargetGroupsClient, err := jobtargetgroups.NewJobTargetGroupsClientWithBaseURI(api)
+	jobTargetGroupsClient, err := jobtargetgroups.NewJobTargetGroupsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building JobTargetGroups client: %+v", err)
 	}
 	configureFunc(jobTargetGroupsClient.Client)
 
-	jobVersionsClient, err := jobversions.NewJobVersionsClientWithBaseURI(api)
+	jobVersionsClient, err := jobversions.NewJobVersionsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building JobVersions client: %+v", err)
 	}
 	configureFunc(jobVersionsClient.Client)
 
-	jobsClient, err := jobs.NewJobsClientWithBaseURI(api)
+	jobsClient, err := jobs.NewJobsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Jobs client: %+v", err)
 	}
 	configureFunc(jobsClient.Client)
 
-	ledgerDigestUploadsClient, err := ledgerdigestuploads.NewLedgerDigestUploadsClientWithBaseURI(api)
+	ledgerDigestUploadsClient, err := ledgerdigestuploads.NewLedgerDigestUploadsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building LedgerDigestUploads client: %+v", err)
 	}
 	configureFunc(ledgerDigestUploadsClient.Client)
 
-	locationCapabilitiesClient, err := locationcapabilities.NewLocationCapabilitiesClientWithBaseURI(api)
+	locationCapabilitiesClient, err := locationcapabilities.NewLocationCapabilitiesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building LocationCapabilities client: %+v", err)
 	}
 	configureFunc(locationCapabilitiesClient.Client)
 
-	longTermRetentionBackupsClient, err := longtermretentionbackups.NewLongTermRetentionBackupsClientWithBaseURI(api)
+	longTermRetentionBackupsClient, err := longtermretentionbackups.NewLongTermRetentionBackupsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building LongTermRetentionBackups client: %+v", err)
 	}
 	configureFunc(longTermRetentionBackupsClient.Client)
 
-	longTermRetentionManagedInstanceBackupsClient, err := longtermretentionmanagedinstancebackups.NewLongTermRetentionManagedInstanceBackupsClientWithBaseURI(api)
+	longTermRetentionManagedInstanceBackupsClient, err := longtermretentionmanagedinstancebackups.NewLongTermRetentionManagedInstanceBackupsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building LongTermRetentionManagedInstanceBackups client: %+v", err)
 	}
 	configureFunc(longTermRetentionManagedInstanceBackupsClient.Client)
 
-	longTermRetentionPoliciesClient, err := longtermretentionpolicies.NewLongTermRetentionPoliciesClientWithBaseURI(api)
+	longTermRetentionPoliciesClient, err := longtermretentionpolicies.NewLongTermRetentionPoliciesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building LongTermRetentionPolicies client: %+v", err)
 	}
 	configureFunc(longTermRetentionPoliciesClient.Client)
 
-	maintenanceWindowOptionsClient, err := maintenancewindowoptions.NewMaintenanceWindowOptionsClientWithBaseURI(api)
+	maintenanceWindowOptionsClient, err := maintenancewindowoptions.NewMaintenanceWindowOptionsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building MaintenanceWindowOptions client: %+v", err)
 	}
 	configureFunc(maintenanceWindowOptionsClient.Client)
 
-	maintenanceWindowsClient, err := maintenancewindows.NewMaintenanceWindowsClientWithBaseURI(api)
+	maintenanceWindowsClient, err := maintenancewindows.NewMaintenanceWindowsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building MaintenanceWindows client: %+v", err)
 	}
 	configureFunc(maintenanceWindowsClient.Client)
 
-	managedBackupShortTermRetentionPoliciesClient, err := managedbackupshorttermretentionpolicies.NewManagedBackupShortTermRetentionPoliciesClientWithBaseURI(api)
+	managedBackupShortTermRetentionPoliciesClient, err := managedbackupshorttermretentionpolicies.NewManagedBackupShortTermRetentionPoliciesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building ManagedBackupShortTermRetentionPolicies client: %+v", err)
 	}
 	configureFunc(managedBackupShortTermRetentionPoliciesClient.Client)
 
-	managedDatabaseColumnsClient, err := manageddatabasecolumns.NewManagedDatabaseColumnsClientWithBaseURI(api)
+	managedDatabaseColumnsClient, err := manageddatabasecolumns.NewManagedDatabaseColumnsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building ManagedDatabaseColumns client: %+v", err)
 	}
 	configureFunc(managedDatabaseColumnsClient.Client)
 
-	managedDatabaseQueriesClient, err := manageddatabasequeries.NewManagedDatabaseQueriesClientWithBaseURI(api)
+	managedDatabaseQueriesClient, err := manageddatabasequeries.NewManagedDatabaseQueriesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building ManagedDatabaseQueries client: %+v", err)
 	}
 	configureFunc(managedDatabaseQueriesClient.Client)
 
-	managedDatabaseRestoreDetailsClient, err := manageddatabaserestoredetails.NewManagedDatabaseRestoreDetailsClientWithBaseURI(api)
+	managedDatabaseRestoreDetailsClient, err := manageddatabaserestoredetails.NewManagedDatabaseRestoreDetailsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building ManagedDatabaseRestoreDetails client: %+v", err)
 	}
 	configureFunc(managedDatabaseRestoreDetailsClient.Client)
 
-	managedDatabaseSchemasClient, err := manageddatabaseschemas.NewManagedDatabaseSchemasClientWithBaseURI(api)
+	managedDatabaseSchemasClient, err := manageddatabaseschemas.NewManagedDatabaseSchemasClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building ManagedDatabaseSchemas client: %+v", err)
 	}
 	configureFunc(managedDatabaseSchemasClient.Client)
 
-	managedDatabaseSecurityAlertPoliciesClient, err := manageddatabasesecurityalertpolicies.NewManagedDatabaseSecurityAlertPoliciesClientWithBaseURI(api)
+	managedDatabaseSecurityAlertPoliciesClient, err := manageddatabasesecurityalertpolicies.NewManagedDatabaseSecurityAlertPoliciesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building ManagedDatabaseSecurityAlertPolicies client: %+v", err)
 	}
 	configureFunc(managedDatabaseSecurityAlertPoliciesClient.Client)
 
-	managedDatabaseSecurityEventsClient, err := manageddatabasesecurityevents.NewManagedDatabaseSecurityEventsClientWithBaseURI(api)
+	managedDatabaseSecurityEventsClient, err := manageddatabasesecurityevents.NewManagedDatabaseSecurityEventsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building ManagedDatabaseSecurityEvents client: %+v", err)
 	}
 	configureFunc(managedDatabaseSecurityEventsClient.Client)
 
-	managedDatabaseSensitivityLabelsClient, err := manageddatabasesensitivitylabels.NewManagedDatabaseSensitivityLabelsClientWithBaseURI(api)
+	managedDatabaseSensitivityLabelsClient, err := manageddatabasesensitivitylabels.NewManagedDatabaseSensitivityLabelsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building ManagedDatabaseSensitivityLabels client: %+v", err)
 	}
 	configureFunc(managedDatabaseSensitivityLabelsClient.Client)
 
-	managedDatabaseTablesClient, err := manageddatabasetables.NewManagedDatabaseTablesClientWithBaseURI(api)
+	managedDatabaseTablesClient, err := manageddatabasetables.NewManagedDatabaseTablesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building ManagedDatabaseTables client: %+v", err)
 	}
 	configureFunc(managedDatabaseTablesClient.Client)
 
-	managedDatabaseTransparentDataEncryptionClient, err := manageddatabasetransparentdataencryption.NewManagedDatabaseTransparentDataEncryptionClientWithBaseURI(api)
+	managedDatabaseTransparentDataEncryptionClient, err := manageddatabasetransparentdataencryption.NewManagedDatabaseTransparentDataEncryptionClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building ManagedDatabaseTransparentDataEncryption client: %+v", err)
 	}
 	configureFunc(managedDatabaseTransparentDataEncryptionClient.Client)
 
-	managedDatabaseVulnerabilityAssessmentRuleBaselinesClient, err := manageddatabasevulnerabilityassessmentrulebaselines.NewManagedDatabaseVulnerabilityAssessmentRuleBaselinesClientWithBaseURI(api)
+	managedDatabaseVulnerabilityAssessmentRuleBaselinesClient, err := manageddatabasevulnerabilityassessmentrulebaselines.NewManagedDatabaseVulnerabilityAssessmentRuleBaselinesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building ManagedDatabaseVulnerabilityAssessmentRuleBaselines client: %+v", err)
 	}
 	configureFunc(managedDatabaseVulnerabilityAssessmentRuleBaselinesClient.Client)
 
-	managedDatabaseVulnerabilityAssessmentScansClient, err := manageddatabasevulnerabilityassessmentscans.NewManagedDatabaseVulnerabilityAssessmentScansClientWithBaseURI(api)
+	managedDatabaseVulnerabilityAssessmentScansClient, err := manageddatabasevulnerabilityassessmentscans.NewManagedDatabaseVulnerabilityAssessmentScansClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building ManagedDatabaseVulnerabilityAssessmentScans client: %+v", err)
 	}
 	configureFunc(managedDatabaseVulnerabilityAssessmentScansClient.Client)
 
-	managedDatabaseVulnerabilityAssessmentsClient, err := manageddatabasevulnerabilityassessments.NewManagedDatabaseVulnerabilityAssessmentsClientWithBaseURI(api)
+	managedDatabaseVulnerabilityAssessmentsClient, err := manageddatabasevulnerabilityassessments.NewManagedDatabaseVulnerabilityAssessmentsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building ManagedDatabaseVulnerabilityAssessments client: %+v", err)
 	}
 	configureFunc(managedDatabaseVulnerabilityAssessmentsClient.Client)
 
-	managedDatabasesClient, err := manageddatabases.NewManagedDatabasesClientWithBaseURI(api)
+	managedDatabasesClient, err := manageddatabases.NewManagedDatabasesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building ManagedDatabases client: %+v", err)
 	}
 	configureFunc(managedDatabasesClient.Client)
 
-	managedInstanceAdministratorsClient, err := managedinstanceadministrators.NewManagedInstanceAdministratorsClientWithBaseURI(api)
+	managedInstanceAdministratorsClient, err := managedinstanceadministrators.NewManagedInstanceAdministratorsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building ManagedInstanceAdministrators client: %+v", err)
 	}
 	configureFunc(managedInstanceAdministratorsClient.Client)
 
-	managedInstanceAzureADOnlyAuthenticationsClient, err := managedinstanceazureadonlyauthentications.NewManagedInstanceAzureADOnlyAuthenticationsClientWithBaseURI(api)
+	managedInstanceAzureADOnlyAuthenticationsClient, err := managedinstanceazureadonlyauthentications.NewManagedInstanceAzureADOnlyAuthenticationsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building ManagedInstanceAzureADOnlyAuthentications client: %+v", err)
 	}
 	configureFunc(managedInstanceAzureADOnlyAuthenticationsClient.Client)
 
-	managedInstanceEncryptionProtectorsClient, err := managedinstanceencryptionprotectors.NewManagedInstanceEncryptionProtectorsClientWithBaseURI(api)
+	managedInstanceEncryptionProtectorsClient, err := managedinstanceencryptionprotectors.NewManagedInstanceEncryptionProtectorsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building ManagedInstanceEncryptionProtectors client: %+v", err)
 	}
 	configureFunc(managedInstanceEncryptionProtectorsClient.Client)
 
-	managedInstanceKeysClient, err := managedinstancekeys.NewManagedInstanceKeysClientWithBaseURI(api)
+	managedInstanceKeysClient, err := managedinstancekeys.NewManagedInstanceKeysClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building ManagedInstanceKeys client: %+v", err)
 	}
 	configureFunc(managedInstanceKeysClient.Client)
 
-	managedInstanceLongTermRetentionPoliciesClient, err := managedinstancelongtermretentionpolicies.NewManagedInstanceLongTermRetentionPoliciesClientWithBaseURI(api)
+	managedInstanceLongTermRetentionPoliciesClient, err := managedinstancelongtermretentionpolicies.NewManagedInstanceLongTermRetentionPoliciesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building ManagedInstanceLongTermRetentionPolicies client: %+v", err)
 	}
 	configureFunc(managedInstanceLongTermRetentionPoliciesClient.Client)
 
-	managedInstanceOperationsClient, err := managedinstanceoperations.NewManagedInstanceOperationsClientWithBaseURI(api)
+	managedInstanceOperationsClient, err := managedinstanceoperations.NewManagedInstanceOperationsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building ManagedInstanceOperations client: %+v", err)
 	}
 	configureFunc(managedInstanceOperationsClient.Client)
 
-	managedInstancePrivateEndpointConnectionsClient, err := managedinstanceprivateendpointconnections.NewManagedInstancePrivateEndpointConnectionsClientWithBaseURI(api)
+	managedInstancePrivateEndpointConnectionsClient, err := managedinstanceprivateendpointconnections.NewManagedInstancePrivateEndpointConnectionsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building ManagedInstancePrivateEndpointConnections client: %+v", err)
 	}
 	configureFunc(managedInstancePrivateEndpointConnectionsClient.Client)
 
-	managedInstancePrivateLinkResourcesClient, err := managedinstanceprivatelinkresources.NewManagedInstancePrivateLinkResourcesClientWithBaseURI(api)
+	managedInstancePrivateLinkResourcesClient, err := managedinstanceprivatelinkresources.NewManagedInstancePrivateLinkResourcesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building ManagedInstancePrivateLinkResources client: %+v", err)
 	}
 	configureFunc(managedInstancePrivateLinkResourcesClient.Client)
 
-	managedInstanceTdeCertificatesClient, err := managedinstancetdecertificates.NewManagedInstanceTdeCertificatesClientWithBaseURI(api)
+	managedInstanceTdeCertificatesClient, err := managedinstancetdecertificates.NewManagedInstanceTdeCertificatesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building ManagedInstanceTdeCertificates client: %+v", err)
 	}
 	configureFunc(managedInstanceTdeCertificatesClient.Client)
 
-	managedInstanceVulnerabilityAssessmentsClient, err := managedinstancevulnerabilityassessments.NewManagedInstanceVulnerabilityAssessmentsClientWithBaseURI(api)
+	managedInstanceVulnerabilityAssessmentsClient, err := managedinstancevulnerabilityassessments.NewManagedInstanceVulnerabilityAssessmentsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building ManagedInstanceVulnerabilityAssessments client: %+v", err)
 	}
 	configureFunc(managedInstanceVulnerabilityAssessmentsClient.Client)
 
-	managedInstancesClient, err := managedinstances.NewManagedInstancesClientWithBaseURI(api)
+	managedInstancesClient, err := managedinstances.NewManagedInstancesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building ManagedInstances client: %+v", err)
 	}
 	configureFunc(managedInstancesClient.Client)
 
-	managedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesClient, err := managedrestorabledroppeddatabasebackupshorttermretentionpolicies.NewManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesClientWithBaseURI(api)
+	managedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesClient, err := managedrestorabledroppeddatabasebackupshorttermretentionpolicies.NewManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building ManagedRestorableDroppedDatabaseBackupShortTermRetentionPolicies client: %+v", err)
 	}
 	configureFunc(managedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesClient.Client)
 
-	managedServerSecurityAlertPoliciesClient, err := managedserversecurityalertpolicies.NewManagedServerSecurityAlertPoliciesClientWithBaseURI(api)
+	managedServerSecurityAlertPoliciesClient, err := managedserversecurityalertpolicies.NewManagedServerSecurityAlertPoliciesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building ManagedServerSecurityAlertPolicies client: %+v", err)
 	}
 	configureFunc(managedServerSecurityAlertPoliciesClient.Client)
 
-	outboundFirewallRulesClient, err := outboundfirewallrules.NewOutboundFirewallRulesClientWithBaseURI(api)
+	outboundFirewallRulesClient, err := outboundfirewallrules.NewOutboundFirewallRulesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building OutboundFirewallRules client: %+v", err)
 	}
 	configureFunc(outboundFirewallRulesClient.Client)
 
-	privateEndpointConnectionsClient, err := privateendpointconnections.NewPrivateEndpointConnectionsClientWithBaseURI(api)
+	privateEndpointConnectionsClient, err := privateendpointconnections.NewPrivateEndpointConnectionsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building PrivateEndpointConnections client: %+v", err)
 	}
 	configureFunc(privateEndpointConnectionsClient.Client)
 
-	privateLinkResourcesClient, err := privatelinkresources.NewPrivateLinkResourcesClientWithBaseURI(api)
+	privateLinkResourcesClient, err := privatelinkresources.NewPrivateLinkResourcesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building PrivateLinkResources client: %+v", err)
 	}
 	configureFunc(privateLinkResourcesClient.Client)
 
-	recoverableManagedDatabasesClient, err := recoverablemanageddatabases.NewRecoverableManagedDatabasesClientWithBaseURI(api)
+	recoverableManagedDatabasesClient, err := recoverablemanageddatabases.NewRecoverableManagedDatabasesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building RecoverableManagedDatabases client: %+v", err)
 	}
 	configureFunc(recoverableManagedDatabasesClient.Client)
 
-	replicationLinksClient, err := replicationlinks.NewReplicationLinksClientWithBaseURI(api)
+	replicationLinksClient, err := replicationlinks.NewReplicationLinksClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building ReplicationLinks client: %+v", err)
 	}
 	configureFunc(replicationLinksClient.Client)
 
-	restorableDroppedDatabasesClient, err := restorabledroppeddatabases.NewRestorableDroppedDatabasesClientWithBaseURI(api)
+	restorableDroppedDatabasesClient, err := restorabledroppeddatabases.NewRestorableDroppedDatabasesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building RestorableDroppedDatabases client: %+v", err)
 	}
 	configureFunc(restorableDroppedDatabasesClient.Client)
 
-	restorableDroppedManagedDatabasesClient, err := restorabledroppedmanageddatabases.NewRestorableDroppedManagedDatabasesClientWithBaseURI(api)
+	restorableDroppedManagedDatabasesClient, err := restorabledroppedmanageddatabases.NewRestorableDroppedManagedDatabasesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building RestorableDroppedManagedDatabases client: %+v", err)
 	}
 	configureFunc(restorableDroppedManagedDatabasesClient.Client)
 
-	restorePointsClient, err := restorepoints.NewRestorePointsClientWithBaseURI(api)
+	restorePointsClient, err := restorepoints.NewRestorePointsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building RestorePoints client: %+v", err)
 	}
 	configureFunc(restorePointsClient.Client)
 
-	sensitivityLabelsClient, err := sensitivitylabels.NewSensitivityLabelsClientWithBaseURI(api)
+	sensitivityLabelsClient, err := sensitivitylabels.NewSensitivityLabelsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building SensitivityLabels client: %+v", err)
 	}
 	configureFunc(sensitivityLabelsClient.Client)
 
-	serverAdvisorsClient, err := serveradvisors.NewServerAdvisorsClientWithBaseURI(api)
+	serverAdvisorsClient, err := serveradvisors.NewServerAdvisorsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building ServerAdvisors client: %+v", err)
 	}
 	configureFunc(serverAdvisorsClient.Client)
 
-	serverAutomaticTuningClient, err := serverautomatictuning.NewServerAutomaticTuningClientWithBaseURI(api)
+	serverAutomaticTuningClient, err := serverautomatictuning.NewServerAutomaticTuningClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building ServerAutomaticTuning client: %+v", err)
 	}
 	configureFunc(serverAutomaticTuningClient.Client)
 
-	serverAzureADAdministratorsClient, err := serverazureadadministrators.NewServerAzureADAdministratorsClientWithBaseURI(api)
+	serverAzureADAdministratorsClient, err := serverazureadadministrators.NewServerAzureADAdministratorsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building ServerAzureADAdministrators client: %+v", err)
 	}
 	configureFunc(serverAzureADAdministratorsClient.Client)
 
-	serverAzureADOnlyAuthenticationsClient, err := serverazureadonlyauthentications.NewServerAzureADOnlyAuthenticationsClientWithBaseURI(api)
+	serverAzureADOnlyAuthenticationsClient, err := serverazureadonlyauthentications.NewServerAzureADOnlyAuthenticationsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building ServerAzureADOnlyAuthentications client: %+v", err)
 	}
 	configureFunc(serverAzureADOnlyAuthenticationsClient.Client)
 
-	serverDevOpsAuditClient, err := serverdevopsaudit.NewServerDevOpsAuditClientWithBaseURI(api)
+	serverDevOpsAuditClient, err := serverdevopsaudit.NewServerDevOpsAuditClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building ServerDevOpsAudit client: %+v", err)
 	}
 	configureFunc(serverDevOpsAuditClient.Client)
 
-	serverDnsAliasesClient, err := serverdnsaliases.NewServerDnsAliasesClientWithBaseURI(api)
+	serverDnsAliasesClient, err := serverdnsaliases.NewServerDnsAliasesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building ServerDnsAliases client: %+v", err)
 	}
 	configureFunc(serverDnsAliasesClient.Client)
 
-	serverKeysClient, err := serverkeys.NewServerKeysClientWithBaseURI(api)
+	serverKeysClient, err := serverkeys.NewServerKeysClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building ServerKeys client: %+v", err)
 	}
 	configureFunc(serverKeysClient.Client)
 
-	serverOperationsClient, err := serveroperations.NewServerOperationsClientWithBaseURI(api)
+	serverOperationsClient, err := serveroperations.NewServerOperationsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building ServerOperations client: %+v", err)
 	}
 	configureFunc(serverOperationsClient.Client)
 
-	serverSecurityAlertPoliciesClient, err := serversecurityalertpolicies.NewServerSecurityAlertPoliciesClientWithBaseURI(api)
+	serverSecurityAlertPoliciesClient, err := serversecurityalertpolicies.NewServerSecurityAlertPoliciesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building ServerSecurityAlertPolicies client: %+v", err)
 	}
 	configureFunc(serverSecurityAlertPoliciesClient.Client)
 
-	serverTrustGroupsClient, err := servertrustgroups.NewServerTrustGroupsClientWithBaseURI(api)
+	serverTrustGroupsClient, err := servertrustgroups.NewServerTrustGroupsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building ServerTrustGroups client: %+v", err)
 	}
 	configureFunc(serverTrustGroupsClient.Client)
 
-	serverVulnerabilityAssessmentsClient, err := servervulnerabilityassessments.NewServerVulnerabilityAssessmentsClientWithBaseURI(api)
+	serverVulnerabilityAssessmentsClient, err := servervulnerabilityassessments.NewServerVulnerabilityAssessmentsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building ServerVulnerabilityAssessments client: %+v", err)
 	}
 	configureFunc(serverVulnerabilityAssessmentsClient.Client)
 
-	serversClient, err := servers.NewServersClientWithBaseURI(api)
+	serversClient, err := servers.NewServersClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Servers client: %+v", err)
 	}
 	configureFunc(serversClient.Client)
 
-	sqlAgentClient, err := sqlagent.NewSqlAgentClientWithBaseURI(api)
+	sqlAgentClient, err := sqlagent.NewSqlAgentClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building SqlAgent client: %+v", err)
 	}
 	configureFunc(sqlAgentClient.Client)
 
-	subscriptionUsagesClient, err := subscriptionusages.NewSubscriptionUsagesClientWithBaseURI(api)
+	subscriptionUsagesClient, err := subscriptionusages.NewSubscriptionUsagesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building SubscriptionUsages client: %+v", err)
 	}
 	configureFunc(subscriptionUsagesClient.Client)
 
-	syncAgentsClient, err := syncagents.NewSyncAgentsClientWithBaseURI(api)
+	syncAgentsClient, err := syncagents.NewSyncAgentsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building SyncAgents client: %+v", err)
 	}
 	configureFunc(syncAgentsClient.Client)
 
-	syncGroupsClient, err := syncgroups.NewSyncGroupsClientWithBaseURI(api)
+	syncGroupsClient, err := syncgroups.NewSyncGroupsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building SyncGroups client: %+v", err)
 	}
 	configureFunc(syncGroupsClient.Client)
 
-	syncMembersClient, err := syncmembers.NewSyncMembersClientWithBaseURI(api)
+	syncMembersClient, err := syncmembers.NewSyncMembersClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building SyncMembers client: %+v", err)
 	}
 	configureFunc(syncMembersClient.Client)
 
-	tdeCertificatesClient, err := tdecertificates.NewTdeCertificatesClientWithBaseURI(api)
+	tdeCertificatesClient, err := tdecertificates.NewTdeCertificatesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building TdeCertificates client: %+v", err)
 	}
 	configureFunc(tdeCertificatesClient.Client)
 
-	timeZonesClient, err := timezones.NewTimeZonesClientWithBaseURI(api)
+	timeZonesClient, err := timezones.NewTimeZonesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building TimeZones client: %+v", err)
 	}
 	configureFunc(timeZonesClient.Client)
 
-	transparentDataEncryptionsClient, err := transparentdataencryptions.NewTransparentDataEncryptionsClientWithBaseURI(api)
+	transparentDataEncryptionsClient, err := transparentdataencryptions.NewTransparentDataEncryptionsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building TransparentDataEncryptions client: %+v", err)
 	}
 	configureFunc(transparentDataEncryptionsClient.Client)
 
-	usagesClient, err := usages.NewUsagesClientWithBaseURI(api)
+	usagesClient, err := usages.NewUsagesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Usages client: %+v", err)
 	}
 	configureFunc(usagesClient.Client)
 
-	virtualClustersClient, err := virtualclusters.NewVirtualClustersClientWithBaseURI(api)
+	virtualClustersClient, err := virtualclusters.NewVirtualClustersClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building VirtualClusters client: %+v", err)
 	}
 	configureFunc(virtualClustersClient.Client)
 
-	virtualNetworkRulesClient, err := virtualnetworkrules.NewVirtualNetworkRulesClientWithBaseURI(api)
+	virtualNetworkRulesClient, err := virtualnetworkrules.NewVirtualNetworkRulesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building VirtualNetworkRules client: %+v", err)
 	}
 	configureFunc(virtualNetworkRulesClient.Client)
 
-	workloadClassifiersClient, err := workloadclassifiers.NewWorkloadClassifiersClientWithBaseURI(api)
+	workloadClassifiersClient, err := workloadclassifiers.NewWorkloadClassifiersClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building WorkloadClassifiers client: %+v", err)
 	}
 	configureFunc(workloadClassifiersClient.Client)
 
-	workloadGroupsClient, err := workloadgroups.NewWorkloadGroupsClientWithBaseURI(api)
+	workloadGroupsClient, err := workloadgroups.NewWorkloadGroupsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building WorkloadGroups client: %+v", err)
 	}

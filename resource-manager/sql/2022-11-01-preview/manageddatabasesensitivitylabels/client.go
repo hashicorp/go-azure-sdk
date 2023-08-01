@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,8 +14,8 @@ type ManagedDatabaseSensitivityLabelsClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewManagedDatabaseSensitivityLabelsClientWithBaseURI(api environments.Api) (*ManagedDatabaseSensitivityLabelsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(api, "manageddatabasesensitivitylabels", defaultApiVersion)
+func NewManagedDatabaseSensitivityLabelsClientWithBaseURI(sdkApi sdkEnv.Api) (*ManagedDatabaseSensitivityLabelsClient, error) {
+	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "manageddatabasesensitivitylabels", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ManagedDatabaseSensitivityLabelsClient: %+v", err)
 	}

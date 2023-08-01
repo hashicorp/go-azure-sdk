@@ -12,7 +12,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/chaosstudio/2022-07-01-preview/targets"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/chaosstudio/2022-07-01-preview/targettypes"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -23,32 +23,32 @@ type Client struct {
 	Targets         *targets.TargetsClient
 }
 
-func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
-	capabilitiesClient, err := capabilities.NewCapabilitiesClientWithBaseURI(api)
+func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+	capabilitiesClient, err := capabilities.NewCapabilitiesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Capabilities client: %+v", err)
 	}
 	configureFunc(capabilitiesClient.Client)
 
-	capabilityTypesClient, err := capabilitytypes.NewCapabilityTypesClientWithBaseURI(api)
+	capabilityTypesClient, err := capabilitytypes.NewCapabilityTypesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building CapabilityTypes client: %+v", err)
 	}
 	configureFunc(capabilityTypesClient.Client)
 
-	experimentsClient, err := experiments.NewExperimentsClientWithBaseURI(api)
+	experimentsClient, err := experiments.NewExperimentsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Experiments client: %+v", err)
 	}
 	configureFunc(experimentsClient.Client)
 
-	targetTypesClient, err := targettypes.NewTargetTypesClientWithBaseURI(api)
+	targetTypesClient, err := targettypes.NewTargetTypesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building TargetTypes client: %+v", err)
 	}
 	configureFunc(targetTypesClient.Client)
 
-	targetsClient, err := targets.NewTargetsClientWithBaseURI(api)
+	targetsClient, err := targets.NewTargetsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Targets client: %+v", err)
 	}

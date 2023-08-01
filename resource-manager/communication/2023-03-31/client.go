@@ -11,7 +11,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/communication/2023-03-31/emailservices"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/communication/2023-03-31/senderusernames"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -21,26 +21,26 @@ type Client struct {
 	SenderUsernames       *senderusernames.SenderUsernamesClient
 }
 
-func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
-	communicationServicesClient, err := communicationservices.NewCommunicationServicesClientWithBaseURI(api)
+func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+	communicationServicesClient, err := communicationservices.NewCommunicationServicesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building CommunicationServices client: %+v", err)
 	}
 	configureFunc(communicationServicesClient.Client)
 
-	domainsClient, err := domains.NewDomainsClientWithBaseURI(api)
+	domainsClient, err := domains.NewDomainsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Domains client: %+v", err)
 	}
 	configureFunc(domainsClient.Client)
 
-	emailServicesClient, err := emailservices.NewEmailServicesClientWithBaseURI(api)
+	emailServicesClient, err := emailservices.NewEmailServicesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building EmailServices client: %+v", err)
 	}
 	configureFunc(emailServicesClient.Client)
 
-	senderUsernamesClient, err := senderusernames.NewSenderUsernamesClientWithBaseURI(api)
+	senderUsernamesClient, err := senderusernames.NewSenderUsernamesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building SenderUsernames client: %+v", err)
 	}

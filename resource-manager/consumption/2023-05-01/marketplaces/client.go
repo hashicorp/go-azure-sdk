@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,8 +14,8 @@ type MarketplacesClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewMarketplacesClientWithBaseURI(api environments.Api) (*MarketplacesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(api, "marketplaces", defaultApiVersion)
+func NewMarketplacesClientWithBaseURI(sdkApi sdkEnv.Api) (*MarketplacesClient, error) {
+	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "marketplaces", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating MarketplacesClient: %+v", err)
 	}

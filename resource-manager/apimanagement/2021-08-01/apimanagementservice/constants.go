@@ -1,6 +1,10 @@
 package apimanagementservice
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -19,6 +23,19 @@ func PossibleValuesForAccessType() []string {
 		string(AccessTypeSystemAssignedManagedIdentity),
 		string(AccessTypeUserAssignedManagedIdentity),
 	}
+}
+
+func (s *AccessType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseAccessType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseAccessType(input string) (*AccessType, error) {
@@ -54,6 +71,19 @@ func PossibleValuesForCertificateSource() []string {
 	}
 }
 
+func (s *CertificateSource) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseCertificateSource(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseCertificateSource(input string) (*CertificateSource, error) {
 	vals := map[string]CertificateSource{
 		"builtin":  CertificateSourceBuiltIn,
@@ -84,6 +114,19 @@ func PossibleValuesForCertificateStatus() []string {
 		string(CertificateStatusFailed),
 		string(CertificateStatusInProgress),
 	}
+}
+
+func (s *CertificateStatus) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseCertificateStatus(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseCertificateStatus(input string) (*CertificateStatus, error) {
@@ -121,6 +164,19 @@ func PossibleValuesForHostnameType() []string {
 	}
 }
 
+func (s *HostnameType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseHostnameType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseHostnameType(input string) (*HostnameType, error) {
 	vals := map[string]HostnameType{
 		"developerportal": HostnameTypeDeveloperPortal,
@@ -152,6 +208,19 @@ func PossibleValuesForNameAvailabilityReason() []string {
 		string(NameAvailabilityReasonInvalid),
 		string(NameAvailabilityReasonValid),
 	}
+}
+
+func (s *NameAvailabilityReason) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseNameAvailabilityReason(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseNameAvailabilityReason(input string) (*NameAvailabilityReason, error) {
@@ -187,6 +256,19 @@ func PossibleValuesForPlatformVersion() []string {
 	}
 }
 
+func (s *PlatformVersion) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parsePlatformVersion(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parsePlatformVersion(input string) (*PlatformVersion, error) {
 	vals := map[string]PlatformVersion{
 		"mtv1":         PlatformVersionMtvOne,
@@ -219,6 +301,19 @@ func PossibleValuesForPrivateEndpointServiceConnectionStatus() []string {
 	}
 }
 
+func (s *PrivateEndpointServiceConnectionStatus) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parsePrivateEndpointServiceConnectionStatus(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parsePrivateEndpointServiceConnectionStatus(input string) (*PrivateEndpointServiceConnectionStatus, error) {
 	vals := map[string]PrivateEndpointServiceConnectionStatus{
 		"approved": PrivateEndpointServiceConnectionStatusApproved,
@@ -246,6 +341,19 @@ func PossibleValuesForPublicNetworkAccess() []string {
 		string(PublicNetworkAccessDisabled),
 		string(PublicNetworkAccessEnabled),
 	}
+}
+
+func (s *PublicNetworkAccess) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parsePublicNetworkAccess(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parsePublicNetworkAccess(input string) (*PublicNetworkAccess, error) {
@@ -284,6 +392,19 @@ func PossibleValuesForSkuType() []string {
 	}
 }
 
+func (s *SkuType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseSkuType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseSkuType(input string) (*SkuType, error) {
 	vals := map[string]SkuType{
 		"basic":       SkuTypeBasic,
@@ -316,6 +437,19 @@ func PossibleValuesForStoreName() []string {
 	}
 }
 
+func (s *StoreName) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseStoreName(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseStoreName(input string) (*StoreName, error) {
 	vals := map[string]StoreName{
 		"certificateauthority": StoreNameCertificateAuthority,
@@ -344,6 +478,19 @@ func PossibleValuesForVirtualNetworkType() []string {
 		string(VirtualNetworkTypeInternal),
 		string(VirtualNetworkTypeNone),
 	}
+}
+
+func (s *VirtualNetworkType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseVirtualNetworkType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseVirtualNetworkType(input string) (*VirtualNetworkType, error) {

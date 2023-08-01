@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,8 +14,8 @@ type VaultsClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewVaultsClientWithBaseURI(api environments.Api) (*VaultsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(api, "vaults", defaultApiVersion)
+func NewVaultsClientWithBaseURI(sdkApi sdkEnv.Api) (*VaultsClient, error) {
+	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "vaults", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating VaultsClient: %+v", err)
 	}

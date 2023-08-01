@@ -13,7 +13,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/guestconfiguration/2022-01-25/guestconfigurationconnectedvmwarevsphereassignmentsreports"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/guestconfiguration/2022-01-25/guestconfigurationhcrpassignments"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -25,38 +25,38 @@ type Client struct {
 	GuestConfigurationHCRPAssignments                          *guestconfigurationhcrpassignments.GuestConfigurationHCRPAssignmentsClient
 }
 
-func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
-	guestConfigurationAssignmentHCRPReportsClient, err := guestconfigurationassignmenthcrpreports.NewGuestConfigurationAssignmentHCRPReportsClientWithBaseURI(api)
+func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+	guestConfigurationAssignmentHCRPReportsClient, err := guestconfigurationassignmenthcrpreports.NewGuestConfigurationAssignmentHCRPReportsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building GuestConfigurationAssignmentHCRPReports client: %+v", err)
 	}
 	configureFunc(guestConfigurationAssignmentHCRPReportsClient.Client)
 
-	guestConfigurationAssignmentReportsClient, err := guestconfigurationassignmentreports.NewGuestConfigurationAssignmentReportsClientWithBaseURI(api)
+	guestConfigurationAssignmentReportsClient, err := guestconfigurationassignmentreports.NewGuestConfigurationAssignmentReportsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building GuestConfigurationAssignmentReports client: %+v", err)
 	}
 	configureFunc(guestConfigurationAssignmentReportsClient.Client)
 
-	guestConfigurationAssignmentsClient, err := guestconfigurationassignments.NewGuestConfigurationAssignmentsClientWithBaseURI(api)
+	guestConfigurationAssignmentsClient, err := guestconfigurationassignments.NewGuestConfigurationAssignmentsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building GuestConfigurationAssignments client: %+v", err)
 	}
 	configureFunc(guestConfigurationAssignmentsClient.Client)
 
-	guestConfigurationConnectedVMwarevSphereAssignmentsClient, err := guestconfigurationconnectedvmwarevsphereassignments.NewGuestConfigurationConnectedVMwarevSphereAssignmentsClientWithBaseURI(api)
+	guestConfigurationConnectedVMwarevSphereAssignmentsClient, err := guestconfigurationconnectedvmwarevsphereassignments.NewGuestConfigurationConnectedVMwarevSphereAssignmentsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building GuestConfigurationConnectedVMwarevSphereAssignments client: %+v", err)
 	}
 	configureFunc(guestConfigurationConnectedVMwarevSphereAssignmentsClient.Client)
 
-	guestConfigurationConnectedVMwarevSphereAssignmentsReportsClient, err := guestconfigurationconnectedvmwarevsphereassignmentsreports.NewGuestConfigurationConnectedVMwarevSphereAssignmentsReportsClientWithBaseURI(api)
+	guestConfigurationConnectedVMwarevSphereAssignmentsReportsClient, err := guestconfigurationconnectedvmwarevsphereassignmentsreports.NewGuestConfigurationConnectedVMwarevSphereAssignmentsReportsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building GuestConfigurationConnectedVMwarevSphereAssignmentsReports client: %+v", err)
 	}
 	configureFunc(guestConfigurationConnectedVMwarevSphereAssignmentsReportsClient.Client)
 
-	guestConfigurationHCRPAssignmentsClient, err := guestconfigurationhcrpassignments.NewGuestConfigurationHCRPAssignmentsClientWithBaseURI(api)
+	guestConfigurationHCRPAssignmentsClient, err := guestconfigurationhcrpassignments.NewGuestConfigurationHCRPAssignmentsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building GuestConfigurationHCRPAssignments client: %+v", err)
 	}

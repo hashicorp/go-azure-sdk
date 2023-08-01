@@ -16,7 +16,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/authorization/2020-10-01/rolemanagementpolicies"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/authorization/2020-10-01/rolemanagementpolicyassignments"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -31,56 +31,56 @@ type Client struct {
 	RoleManagementPolicyAssignments  *rolemanagementpolicyassignments.RoleManagementPolicyAssignmentsClient
 }
 
-func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
-	eligibleChildResourcesClient, err := eligiblechildresources.NewEligibleChildResourcesClientWithBaseURI(api)
+func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+	eligibleChildResourcesClient, err := eligiblechildresources.NewEligibleChildResourcesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building EligibleChildResources client: %+v", err)
 	}
 	configureFunc(eligibleChildResourcesClient.Client)
 
-	roleAssignmentScheduleInstancesClient, err := roleassignmentscheduleinstances.NewRoleAssignmentScheduleInstancesClientWithBaseURI(api)
+	roleAssignmentScheduleInstancesClient, err := roleassignmentscheduleinstances.NewRoleAssignmentScheduleInstancesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building RoleAssignmentScheduleInstances client: %+v", err)
 	}
 	configureFunc(roleAssignmentScheduleInstancesClient.Client)
 
-	roleAssignmentScheduleRequestsClient, err := roleassignmentschedulerequests.NewRoleAssignmentScheduleRequestsClientWithBaseURI(api)
+	roleAssignmentScheduleRequestsClient, err := roleassignmentschedulerequests.NewRoleAssignmentScheduleRequestsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building RoleAssignmentScheduleRequests client: %+v", err)
 	}
 	configureFunc(roleAssignmentScheduleRequestsClient.Client)
 
-	roleAssignmentSchedulesClient, err := roleassignmentschedules.NewRoleAssignmentSchedulesClientWithBaseURI(api)
+	roleAssignmentSchedulesClient, err := roleassignmentschedules.NewRoleAssignmentSchedulesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building RoleAssignmentSchedules client: %+v", err)
 	}
 	configureFunc(roleAssignmentSchedulesClient.Client)
 
-	roleEligibilityScheduleInstancesClient, err := roleeligibilityscheduleinstances.NewRoleEligibilityScheduleInstancesClientWithBaseURI(api)
+	roleEligibilityScheduleInstancesClient, err := roleeligibilityscheduleinstances.NewRoleEligibilityScheduleInstancesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building RoleEligibilityScheduleInstances client: %+v", err)
 	}
 	configureFunc(roleEligibilityScheduleInstancesClient.Client)
 
-	roleEligibilityScheduleRequestsClient, err := roleeligibilityschedulerequests.NewRoleEligibilityScheduleRequestsClientWithBaseURI(api)
+	roleEligibilityScheduleRequestsClient, err := roleeligibilityschedulerequests.NewRoleEligibilityScheduleRequestsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building RoleEligibilityScheduleRequests client: %+v", err)
 	}
 	configureFunc(roleEligibilityScheduleRequestsClient.Client)
 
-	roleEligibilitySchedulesClient, err := roleeligibilityschedules.NewRoleEligibilitySchedulesClientWithBaseURI(api)
+	roleEligibilitySchedulesClient, err := roleeligibilityschedules.NewRoleEligibilitySchedulesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building RoleEligibilitySchedules client: %+v", err)
 	}
 	configureFunc(roleEligibilitySchedulesClient.Client)
 
-	roleManagementPoliciesClient, err := rolemanagementpolicies.NewRoleManagementPoliciesClientWithBaseURI(api)
+	roleManagementPoliciesClient, err := rolemanagementpolicies.NewRoleManagementPoliciesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building RoleManagementPolicies client: %+v", err)
 	}
 	configureFunc(roleManagementPoliciesClient.Client)
 
-	roleManagementPolicyAssignmentsClient, err := rolemanagementpolicyassignments.NewRoleManagementPolicyAssignmentsClientWithBaseURI(api)
+	roleManagementPolicyAssignmentsClient, err := rolemanagementpolicyassignments.NewRoleManagementPolicyAssignmentsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building RoleManagementPolicyAssignments client: %+v", err)
 	}

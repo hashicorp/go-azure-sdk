@@ -10,7 +10,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/mixedreality/2021-01-01/proxy"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/mixedreality/2021-01-01/resource"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -19,20 +19,20 @@ type Client struct {
 	Resource *resource.ResourceClient
 }
 
-func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
-	keyClient, err := key.NewKeyClientWithBaseURI(api)
+func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+	keyClient, err := key.NewKeyClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Key client: %+v", err)
 	}
 	configureFunc(keyClient.Client)
 
-	proxyClient, err := proxy.NewProxyClientWithBaseURI(api)
+	proxyClient, err := proxy.NewProxyClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Proxy client: %+v", err)
 	}
 	configureFunc(proxyClient.Client)
 
-	resourceClient, err := resource.NewResourceClientWithBaseURI(api)
+	resourceClient, err := resource.NewResourceClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Resource client: %+v", err)
 	}

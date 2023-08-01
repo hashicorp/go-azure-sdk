@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,8 +14,8 @@ type FeaturesetVersionClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewFeaturesetVersionClientWithBaseURI(api environments.Api) (*FeaturesetVersionClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(api, "featuresetversion", defaultApiVersion)
+func NewFeaturesetVersionClientWithBaseURI(sdkApi sdkEnv.Api) (*FeaturesetVersionClient, error) {
+	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "featuresetversion", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating FeaturesetVersionClient: %+v", err)
 	}

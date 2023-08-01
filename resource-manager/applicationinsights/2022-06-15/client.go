@@ -8,15 +8,15 @@ import (
 
 	"github.com/hashicorp/go-azure-sdk/resource-manager/applicationinsights/2022-06-15/webtestsapis"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
 	WebTestsAPIs *webtestsapis.WebTestsAPIsClient
 }
 
-func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
-	webTestsAPIsClient, err := webtestsapis.NewWebTestsAPIsClientWithBaseURI(api)
+func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+	webTestsAPIsClient, err := webtestsapis.NewWebTestsAPIsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building WebTestsAPIs client: %+v", err)
 	}

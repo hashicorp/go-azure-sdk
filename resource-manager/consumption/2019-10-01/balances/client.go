@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,8 +14,8 @@ type BalancesClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewBalancesClientWithBaseURI(api environments.Api) (*BalancesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(api, "balances", defaultApiVersion)
+func NewBalancesClientWithBaseURI(sdkApi sdkEnv.Api) (*BalancesClient, error) {
+	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "balances", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating BalancesClient: %+v", err)
 	}

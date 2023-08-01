@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,8 +14,8 @@ type EncryptionProtectorsClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewEncryptionProtectorsClientWithBaseURI(api environments.Api) (*EncryptionProtectorsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(api, "encryptionprotectors", defaultApiVersion)
+func NewEncryptionProtectorsClientWithBaseURI(sdkApi sdkEnv.Api) (*EncryptionProtectorsClient, error) {
+	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "encryptionprotectors", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating EncryptionProtectorsClient: %+v", err)
 	}

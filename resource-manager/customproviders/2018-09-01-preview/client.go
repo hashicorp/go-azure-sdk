@@ -9,7 +9,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/customproviders/2018-09-01-preview/associations"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/customproviders/2018-09-01-preview/customresourceprovider"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -17,14 +17,14 @@ type Client struct {
 	CustomResourceProvider *customresourceprovider.CustomResourceProviderClient
 }
 
-func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
-	associationsClient, err := associations.NewAssociationsClientWithBaseURI(api)
+func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+	associationsClient, err := associations.NewAssociationsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Associations client: %+v", err)
 	}
 	configureFunc(associationsClient.Client)
 
-	customResourceProviderClient, err := customresourceprovider.NewCustomResourceProviderClientWithBaseURI(api)
+	customResourceProviderClient, err := customresourceprovider.NewCustomResourceProviderClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building CustomResourceProvider client: %+v", err)
 	}

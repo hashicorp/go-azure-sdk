@@ -10,7 +10,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/voiceservices/2023-04-03/testlines"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/voiceservices/2023-04-03/voiceservices"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -19,20 +19,20 @@ type Client struct {
 	Voiceservices          *voiceservices.VoiceservicesClient
 }
 
-func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
-	communicationsGatewaysClient, err := communicationsgateways.NewCommunicationsGatewaysClientWithBaseURI(api)
+func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+	communicationsGatewaysClient, err := communicationsgateways.NewCommunicationsGatewaysClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building CommunicationsGateways client: %+v", err)
 	}
 	configureFunc(communicationsGatewaysClient.Client)
 
-	testLinesClient, err := testlines.NewTestLinesClientWithBaseURI(api)
+	testLinesClient, err := testlines.NewTestLinesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building TestLines client: %+v", err)
 	}
 	configureFunc(testLinesClient.Client)
 
-	voiceservicesClient, err := voiceservices.NewVoiceservicesClientWithBaseURI(api)
+	voiceservicesClient, err := voiceservices.NewVoiceservicesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Voiceservices client: %+v", err)
 	}

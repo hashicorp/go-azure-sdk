@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,8 +14,8 @@ type MasterSitesClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewMasterSitesClientWithBaseURI(api environments.Api) (*MasterSitesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(api, "mastersites", defaultApiVersion)
+func NewMasterSitesClientWithBaseURI(sdkApi sdkEnv.Api) (*MasterSitesClient, error) {
+	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "mastersites", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating MasterSitesClient: %+v", err)
 	}

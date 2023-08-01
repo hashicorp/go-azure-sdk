@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,8 +14,8 @@ type ListAllHybridRunbookWorkerGroupInAutomationAccountClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewListAllHybridRunbookWorkerGroupInAutomationAccountClientWithBaseURI(api environments.Api) (*ListAllHybridRunbookWorkerGroupInAutomationAccountClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(api, "listallhybridrunbookworkergroupinautomationaccount", defaultApiVersion)
+func NewListAllHybridRunbookWorkerGroupInAutomationAccountClientWithBaseURI(sdkApi sdkEnv.Api) (*ListAllHybridRunbookWorkerGroupInAutomationAccountClient, error) {
+	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "listallhybridrunbookworkergroupinautomationaccount", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ListAllHybridRunbookWorkerGroupInAutomationAccountClient: %+v", err)
 	}

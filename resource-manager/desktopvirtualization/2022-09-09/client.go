@@ -19,7 +19,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/desktopvirtualization/2022-09-09/usersession"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/desktopvirtualization/2022-09-09/workspace"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -37,74 +37,74 @@ type Client struct {
 	Workspace                 *workspace.WorkspaceClient
 }
 
-func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
-	applicationClient, err := application.NewApplicationClientWithBaseURI(api)
+func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+	applicationClient, err := application.NewApplicationClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Application client: %+v", err)
 	}
 	configureFunc(applicationClient.Client)
 
-	applicationGroupClient, err := applicationgroup.NewApplicationGroupClientWithBaseURI(api)
+	applicationGroupClient, err := applicationgroup.NewApplicationGroupClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building ApplicationGroup client: %+v", err)
 	}
 	configureFunc(applicationGroupClient.Client)
 
-	desktopClient, err := desktop.NewDesktopClientWithBaseURI(api)
+	desktopClient, err := desktop.NewDesktopClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Desktop client: %+v", err)
 	}
 	configureFunc(desktopClient.Client)
 
-	hostPoolClient, err := hostpool.NewHostPoolClientWithBaseURI(api)
+	hostPoolClient, err := hostpool.NewHostPoolClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building HostPool client: %+v", err)
 	}
 	configureFunc(hostPoolClient.Client)
 
-	mSIXPackageClient, err := msixpackage.NewMSIXPackageClientWithBaseURI(api)
+	mSIXPackageClient, err := msixpackage.NewMSIXPackageClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building MSIXPackage client: %+v", err)
 	}
 	configureFunc(mSIXPackageClient.Client)
 
-	msixImageClient, err := msiximage.NewMsixImageClientWithBaseURI(api)
+	msixImageClient, err := msiximage.NewMsixImageClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building MsixImage client: %+v", err)
 	}
 	configureFunc(msixImageClient.Client)
 
-	scalingPlanClient, err := scalingplan.NewScalingPlanClientWithBaseURI(api)
+	scalingPlanClient, err := scalingplan.NewScalingPlanClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building ScalingPlan client: %+v", err)
 	}
 	configureFunc(scalingPlanClient.Client)
 
-	scalingPlanPooledScheduleClient, err := scalingplanpooledschedule.NewScalingPlanPooledScheduleClientWithBaseURI(api)
+	scalingPlanPooledScheduleClient, err := scalingplanpooledschedule.NewScalingPlanPooledScheduleClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building ScalingPlanPooledSchedule client: %+v", err)
 	}
 	configureFunc(scalingPlanPooledScheduleClient.Client)
 
-	sessionHostClient, err := sessionhost.NewSessionHostClientWithBaseURI(api)
+	sessionHostClient, err := sessionhost.NewSessionHostClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building SessionHost client: %+v", err)
 	}
 	configureFunc(sessionHostClient.Client)
 
-	startMenuItemClient, err := startmenuitem.NewStartMenuItemClientWithBaseURI(api)
+	startMenuItemClient, err := startmenuitem.NewStartMenuItemClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building StartMenuItem client: %+v", err)
 	}
 	configureFunc(startMenuItemClient.Client)
 
-	userSessionClient, err := usersession.NewUserSessionClientWithBaseURI(api)
+	userSessionClient, err := usersession.NewUserSessionClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building UserSession client: %+v", err)
 	}
 	configureFunc(userSessionClient.Client)
 
-	workspaceClient, err := workspace.NewWorkspaceClientWithBaseURI(api)
+	workspaceClient, err := workspace.NewWorkspaceClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Workspace client: %+v", err)
 	}

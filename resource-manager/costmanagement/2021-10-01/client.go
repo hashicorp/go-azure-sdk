@@ -15,7 +15,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/costmanagement/2021-10-01/usagedetails"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/costmanagement/2021-10-01/views"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -29,50 +29,50 @@ type Client struct {
 	Views             *views.ViewsClient
 }
 
-func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
-	alertsClient, err := alerts.NewAlertsClientWithBaseURI(api)
+func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+	alertsClient, err := alerts.NewAlertsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Alerts client: %+v", err)
 	}
 	configureFunc(alertsClient.Client)
 
-	dimensionsClient, err := dimensions.NewDimensionsClientWithBaseURI(api)
+	dimensionsClient, err := dimensions.NewDimensionsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Dimensions client: %+v", err)
 	}
 	configureFunc(dimensionsClient.Client)
 
-	exportsClient, err := exports.NewExportsClientWithBaseURI(api)
+	exportsClient, err := exports.NewExportsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Exports client: %+v", err)
 	}
 	configureFunc(exportsClient.Client)
 
-	forecastClient, err := forecast.NewForecastClientWithBaseURI(api)
+	forecastClient, err := forecast.NewForecastClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Forecast client: %+v", err)
 	}
 	configureFunc(forecastClient.Client)
 
-	queryClient, err := query.NewQueryClientWithBaseURI(api)
+	queryClient, err := query.NewQueryClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Query client: %+v", err)
 	}
 	configureFunc(queryClient.Client)
 
-	reservedInstancesClient, err := reservedinstances.NewReservedInstancesClientWithBaseURI(api)
+	reservedInstancesClient, err := reservedinstances.NewReservedInstancesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building ReservedInstances client: %+v", err)
 	}
 	configureFunc(reservedInstancesClient.Client)
 
-	usageDetailsClient, err := usagedetails.NewUsageDetailsClientWithBaseURI(api)
+	usageDetailsClient, err := usagedetails.NewUsageDetailsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building UsageDetails client: %+v", err)
 	}
 	configureFunc(usageDetailsClient.Client)
 
-	viewsClient, err := views.NewViewsClientWithBaseURI(api)
+	viewsClient, err := views.NewViewsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Views client: %+v", err)
 	}

@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,8 +14,8 @@ type CustomLocationsClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewCustomLocationsClientWithBaseURI(api environments.Api) (*CustomLocationsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(api, "customlocations", defaultApiVersion)
+func NewCustomLocationsClientWithBaseURI(sdkApi sdkEnv.Api) (*CustomLocationsClient, error) {
+	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "customlocations", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating CustomLocationsClient: %+v", err)
 	}

@@ -1,6 +1,10 @@
 package diagnostic
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -15,6 +19,19 @@ func PossibleValuesForAlwaysLog() []string {
 	return []string{
 		string(AlwaysLogAllErrors),
 	}
+}
+
+func (s *AlwaysLog) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseAlwaysLog(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseAlwaysLog(input string) (*AlwaysLog, error) {
@@ -42,6 +59,19 @@ func PossibleValuesForDataMaskingMode() []string {
 		string(DataMaskingModeHide),
 		string(DataMaskingModeMask),
 	}
+}
+
+func (s *DataMaskingMode) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseDataMaskingMode(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseDataMaskingMode(input string) (*DataMaskingMode, error) {
@@ -74,6 +104,19 @@ func PossibleValuesForHTTPCorrelationProtocol() []string {
 	}
 }
 
+func (s *HTTPCorrelationProtocol) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseHTTPCorrelationProtocol(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseHTTPCorrelationProtocol(input string) (*HTTPCorrelationProtocol, error) {
 	vals := map[string]HTTPCorrelationProtocol{
 		"legacy": HTTPCorrelationProtocolLegacy,
@@ -103,6 +146,19 @@ func PossibleValuesForOperationNameFormat() []string {
 	}
 }
 
+func (s *OperationNameFormat) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseOperationNameFormat(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseOperationNameFormat(input string) (*OperationNameFormat, error) {
 	vals := map[string]OperationNameFormat{
 		"name": OperationNameFormatName,
@@ -127,6 +183,19 @@ func PossibleValuesForSamplingType() []string {
 	return []string{
 		string(SamplingTypeFixed),
 	}
+}
+
+func (s *SamplingType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseSamplingType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseSamplingType(input string) (*SamplingType, error) {
@@ -156,6 +225,19 @@ func PossibleValuesForVerbosity() []string {
 		string(VerbosityInformation),
 		string(VerbosityVerbose),
 	}
+}
+
+func (s *Verbosity) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseVerbosity(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseVerbosity(input string) (*Verbosity, error) {

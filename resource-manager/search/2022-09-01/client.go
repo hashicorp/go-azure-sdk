@@ -13,7 +13,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/search/2022-09-01/services"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/search/2022-09-01/sharedprivatelinkresources"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -25,38 +25,38 @@ type Client struct {
 	SharedPrivateLinkResources *sharedprivatelinkresources.SharedPrivateLinkResourcesClient
 }
 
-func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
-	adminKeysClient, err := adminkeys.NewAdminKeysClientWithBaseURI(api)
+func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+	adminKeysClient, err := adminkeys.NewAdminKeysClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building AdminKeys client: %+v", err)
 	}
 	configureFunc(adminKeysClient.Client)
 
-	privateEndpointConnectionsClient, err := privateendpointconnections.NewPrivateEndpointConnectionsClientWithBaseURI(api)
+	privateEndpointConnectionsClient, err := privateendpointconnections.NewPrivateEndpointConnectionsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building PrivateEndpointConnections client: %+v", err)
 	}
 	configureFunc(privateEndpointConnectionsClient.Client)
 
-	privateLinkResourcesClient, err := privatelinkresources.NewPrivateLinkResourcesClientWithBaseURI(api)
+	privateLinkResourcesClient, err := privatelinkresources.NewPrivateLinkResourcesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building PrivateLinkResources client: %+v", err)
 	}
 	configureFunc(privateLinkResourcesClient.Client)
 
-	queryKeysClient, err := querykeys.NewQueryKeysClientWithBaseURI(api)
+	queryKeysClient, err := querykeys.NewQueryKeysClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building QueryKeys client: %+v", err)
 	}
 	configureFunc(queryKeysClient.Client)
 
-	servicesClient, err := services.NewServicesClientWithBaseURI(api)
+	servicesClient, err := services.NewServicesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Services client: %+v", err)
 	}
 	configureFunc(servicesClient.Client)
 
-	sharedPrivateLinkResourcesClient, err := sharedprivatelinkresources.NewSharedPrivateLinkResourcesClientWithBaseURI(api)
+	sharedPrivateLinkResourcesClient, err := sharedprivatelinkresources.NewSharedPrivateLinkResourcesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building SharedPrivateLinkResources client: %+v", err)
 	}

@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,8 +14,8 @@ type DimensionsClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewDimensionsClientWithBaseURI(api environments.Api) (*DimensionsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(api, "dimensions", defaultApiVersion)
+func NewDimensionsClientWithBaseURI(sdkApi sdkEnv.Api) (*DimensionsClient, error) {
+	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "dimensions", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating DimensionsClient: %+v", err)
 	}

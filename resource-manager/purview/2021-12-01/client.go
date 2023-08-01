@@ -15,7 +15,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/purview/2021-12-01/provider"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/purview/2021-12-01/usages"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -29,50 +29,50 @@ type Client struct {
 	Usages                    *usages.UsagesClient
 }
 
-func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
-	accountClient, err := account.NewAccountClientWithBaseURI(api)
+func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+	accountClient, err := account.NewAccountClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Account client: %+v", err)
 	}
 	configureFunc(accountClient.Client)
 
-	defaultAccountClient, err := defaultaccount.NewDefaultAccountClientWithBaseURI(api)
+	defaultAccountClient, err := defaultaccount.NewDefaultAccountClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building DefaultAccount client: %+v", err)
 	}
 	configureFunc(defaultAccountClient.Client)
 
-	featureClient, err := feature.NewFeatureClientWithBaseURI(api)
+	featureClient, err := feature.NewFeatureClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Feature client: %+v", err)
 	}
 	configureFunc(featureClient.Client)
 
-	kafkaConfigurationClient, err := kafkaconfiguration.NewKafkaConfigurationClientWithBaseURI(api)
+	kafkaConfigurationClient, err := kafkaconfiguration.NewKafkaConfigurationClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building KafkaConfiguration client: %+v", err)
 	}
 	configureFunc(kafkaConfigurationClient.Client)
 
-	privateEndpointConnectionClient, err := privateendpointconnection.NewPrivateEndpointConnectionClientWithBaseURI(api)
+	privateEndpointConnectionClient, err := privateendpointconnection.NewPrivateEndpointConnectionClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building PrivateEndpointConnection client: %+v", err)
 	}
 	configureFunc(privateEndpointConnectionClient.Client)
 
-	privateLinkResourceClient, err := privatelinkresource.NewPrivateLinkResourceClientWithBaseURI(api)
+	privateLinkResourceClient, err := privatelinkresource.NewPrivateLinkResourceClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building PrivateLinkResource client: %+v", err)
 	}
 	configureFunc(privateLinkResourceClient.Client)
 
-	providerClient, err := provider.NewProviderClientWithBaseURI(api)
+	providerClient, err := provider.NewProviderClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Provider client: %+v", err)
 	}
 	configureFunc(providerClient.Client)
 
-	usagesClient, err := usages.NewUsagesClientWithBaseURI(api)
+	usagesClient, err := usages.NewUsagesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Usages client: %+v", err)
 	}

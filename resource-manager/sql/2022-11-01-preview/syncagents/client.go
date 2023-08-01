@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,8 +14,8 @@ type SyncAgentsClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewSyncAgentsClientWithBaseURI(api environments.Api) (*SyncAgentsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(api, "syncagents", defaultApiVersion)
+func NewSyncAgentsClientWithBaseURI(sdkApi sdkEnv.Api) (*SyncAgentsClient, error) {
+	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "syncagents", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating SyncAgentsClient: %+v", err)
 	}

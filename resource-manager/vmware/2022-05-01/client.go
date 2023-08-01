@@ -22,7 +22,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/vmware/2022-05-01/workloadnetworks"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/vmware/2022-05-01/zone"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -43,92 +43,92 @@ type Client struct {
 	Zone                   *zone.ZoneClient
 }
 
-func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
-	addonsClient, err := addons.NewAddonsClientWithBaseURI(api)
+func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+	addonsClient, err := addons.NewAddonsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Addons client: %+v", err)
 	}
 	configureFunc(addonsClient.Client)
 
-	authorizationsClient, err := authorizations.NewAuthorizationsClientWithBaseURI(api)
+	authorizationsClient, err := authorizations.NewAuthorizationsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Authorizations client: %+v", err)
 	}
 	configureFunc(authorizationsClient.Client)
 
-	cloudLinksClient, err := cloudlinks.NewCloudLinksClientWithBaseURI(api)
+	cloudLinksClient, err := cloudlinks.NewCloudLinksClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building CloudLinks client: %+v", err)
 	}
 	configureFunc(cloudLinksClient.Client)
 
-	clusterClient, err := cluster.NewClusterClientWithBaseURI(api)
+	clusterClient, err := cluster.NewClusterClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Cluster client: %+v", err)
 	}
 	configureFunc(clusterClient.Client)
 
-	clustersClient, err := clusters.NewClustersClientWithBaseURI(api)
+	clustersClient, err := clusters.NewClustersClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Clusters client: %+v", err)
 	}
 	configureFunc(clustersClient.Client)
 
-	dataStoresClient, err := datastores.NewDataStoresClientWithBaseURI(api)
+	dataStoresClient, err := datastores.NewDataStoresClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building DataStores client: %+v", err)
 	}
 	configureFunc(dataStoresClient.Client)
 
-	globalReachConnectionsClient, err := globalreachconnections.NewGlobalReachConnectionsClientWithBaseURI(api)
+	globalReachConnectionsClient, err := globalreachconnections.NewGlobalReachConnectionsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building GlobalReachConnections client: %+v", err)
 	}
 	configureFunc(globalReachConnectionsClient.Client)
 
-	hcxEnterpriseSitesClient, err := hcxenterprisesites.NewHcxEnterpriseSitesClientWithBaseURI(api)
+	hcxEnterpriseSitesClient, err := hcxenterprisesites.NewHcxEnterpriseSitesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building HcxEnterpriseSites client: %+v", err)
 	}
 	configureFunc(hcxEnterpriseSitesClient.Client)
 
-	locationsClient, err := locations.NewLocationsClientWithBaseURI(api)
+	locationsClient, err := locations.NewLocationsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Locations client: %+v", err)
 	}
 	configureFunc(locationsClient.Client)
 
-	placementPoliciesClient, err := placementpolicies.NewPlacementPoliciesClientWithBaseURI(api)
+	placementPoliciesClient, err := placementpolicies.NewPlacementPoliciesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building PlacementPolicies client: %+v", err)
 	}
 	configureFunc(placementPoliciesClient.Client)
 
-	privateCloudsClient, err := privateclouds.NewPrivateCloudsClientWithBaseURI(api)
+	privateCloudsClient, err := privateclouds.NewPrivateCloudsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building PrivateClouds client: %+v", err)
 	}
 	configureFunc(privateCloudsClient.Client)
 
-	scriptsClient, err := scripts.NewScriptsClientWithBaseURI(api)
+	scriptsClient, err := scripts.NewScriptsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Scripts client: %+v", err)
 	}
 	configureFunc(scriptsClient.Client)
 
-	virtualMachinesClient, err := virtualmachines.NewVirtualMachinesClientWithBaseURI(api)
+	virtualMachinesClient, err := virtualmachines.NewVirtualMachinesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building VirtualMachines client: %+v", err)
 	}
 	configureFunc(virtualMachinesClient.Client)
 
-	workloadNetworksClient, err := workloadnetworks.NewWorkloadNetworksClientWithBaseURI(api)
+	workloadNetworksClient, err := workloadnetworks.NewWorkloadNetworksClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building WorkloadNetworks client: %+v", err)
 	}
 	configureFunc(workloadNetworksClient.Client)
 
-	zoneClient, err := zone.NewZoneClientWithBaseURI(api)
+	zoneClient, err := zone.NewZoneClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Zone client: %+v", err)
 	}

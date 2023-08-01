@@ -21,7 +21,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/costmanagement/2023-03-01/usagedetails"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/costmanagement/2023-03-01/views"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -41,86 +41,86 @@ type Client struct {
 	Views                            *views.ViewsClient
 }
 
-func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
-	alertsClient, err := alerts.NewAlertsClientWithBaseURI(api)
+func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+	alertsClient, err := alerts.NewAlertsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Alerts client: %+v", err)
 	}
 	configureFunc(alertsClient.Client)
 
-	benefitRecommendationsClient, err := benefitrecommendations.NewBenefitRecommendationsClientWithBaseURI(api)
+	benefitRecommendationsClient, err := benefitrecommendations.NewBenefitRecommendationsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building BenefitRecommendations client: %+v", err)
 	}
 	configureFunc(benefitRecommendationsClient.Client)
 
-	benefitUtilizationSummariesAsyncClient, err := benefitutilizationsummariesasync.NewBenefitUtilizationSummariesAsyncClientWithBaseURI(api)
+	benefitUtilizationSummariesAsyncClient, err := benefitutilizationsummariesasync.NewBenefitUtilizationSummariesAsyncClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building BenefitUtilizationSummariesAsync client: %+v", err)
 	}
 	configureFunc(benefitUtilizationSummariesAsyncClient.Client)
 
-	benefitUtilizationSummariesClient, err := benefitutilizationsummaries.NewBenefitUtilizationSummariesClientWithBaseURI(api)
+	benefitUtilizationSummariesClient, err := benefitutilizationsummaries.NewBenefitUtilizationSummariesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building BenefitUtilizationSummaries client: %+v", err)
 	}
 	configureFunc(benefitUtilizationSummariesClient.Client)
 
-	costDetailsClient, err := costdetails.NewCostDetailsClientWithBaseURI(api)
+	costDetailsClient, err := costdetails.NewCostDetailsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building CostDetails client: %+v", err)
 	}
 	configureFunc(costDetailsClient.Client)
 
-	dimensionsClient, err := dimensions.NewDimensionsClientWithBaseURI(api)
+	dimensionsClient, err := dimensions.NewDimensionsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Dimensions client: %+v", err)
 	}
 	configureFunc(dimensionsClient.Client)
 
-	exportsClient, err := exports.NewExportsClientWithBaseURI(api)
+	exportsClient, err := exports.NewExportsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Exports client: %+v", err)
 	}
 	configureFunc(exportsClient.Client)
 
-	forecastClient, err := forecast.NewForecastClientWithBaseURI(api)
+	forecastClient, err := forecast.NewForecastClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Forecast client: %+v", err)
 	}
 	configureFunc(forecastClient.Client)
 
-	priceSheetsClient, err := pricesheets.NewPriceSheetsClientWithBaseURI(api)
+	priceSheetsClient, err := pricesheets.NewPriceSheetsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building PriceSheets client: %+v", err)
 	}
 	configureFunc(priceSheetsClient.Client)
 
-	queryClient, err := query.NewQueryClientWithBaseURI(api)
+	queryClient, err := query.NewQueryClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Query client: %+v", err)
 	}
 	configureFunc(queryClient.Client)
 
-	reservedInstancesClient, err := reservedinstances.NewReservedInstancesClientWithBaseURI(api)
+	reservedInstancesClient, err := reservedinstances.NewReservedInstancesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building ReservedInstances client: %+v", err)
 	}
 	configureFunc(reservedInstancesClient.Client)
 
-	scheduledActionsClient, err := scheduledactions.NewScheduledActionsClientWithBaseURI(api)
+	scheduledActionsClient, err := scheduledactions.NewScheduledActionsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building ScheduledActions client: %+v", err)
 	}
 	configureFunc(scheduledActionsClient.Client)
 
-	usageDetailsClient, err := usagedetails.NewUsageDetailsClientWithBaseURI(api)
+	usageDetailsClient, err := usagedetails.NewUsageDetailsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building UsageDetails client: %+v", err)
 	}
 	configureFunc(usageDetailsClient.Client)
 
-	viewsClient, err := views.NewViewsClientWithBaseURI(api)
+	viewsClient, err := views.NewViewsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Views client: %+v", err)
 	}

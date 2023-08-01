@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,8 +14,8 @@ type GenerateRecommendationsClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewGenerateRecommendationsClientWithBaseURI(api environments.Api) (*GenerateRecommendationsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(api, "generaterecommendations", defaultApiVersion)
+func NewGenerateRecommendationsClientWithBaseURI(sdkApi sdkEnv.Api) (*GenerateRecommendationsClient, error) {
+	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "generaterecommendations", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating GenerateRecommendationsClient: %+v", err)
 	}

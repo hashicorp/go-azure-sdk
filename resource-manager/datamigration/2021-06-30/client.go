@@ -20,7 +20,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/datamigration/2021-06-30/standardoperation"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/datamigration/2021-06-30/taskresource"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -39,80 +39,80 @@ type Client struct {
 	TaskResource        *taskresource.TaskResourceClient
 }
 
-func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
-	customOperationClient, err := customoperation.NewCustomOperationClientWithBaseURI(api)
+func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+	customOperationClient, err := customoperation.NewCustomOperationClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building CustomOperation client: %+v", err)
 	}
 	configureFunc(customOperationClient.Client)
 
-	dELETEClient, err := delete.NewDELETEClientWithBaseURI(api)
+	dELETEClient, err := delete.NewDELETEClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building DELETE client: %+v", err)
 	}
 	configureFunc(dELETEClient.Client)
 
-	fieResourceClient, err := fieresource.NewFieResourceClientWithBaseURI(api)
+	fieResourceClient, err := fieresource.NewFieResourceClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building FieResource client: %+v", err)
 	}
 	configureFunc(fieResourceClient.Client)
 
-	fileResourceClient, err := fileresource.NewFileResourceClientWithBaseURI(api)
+	fileResourceClient, err := fileresource.NewFileResourceClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building FileResource client: %+v", err)
 	}
 	configureFunc(fileResourceClient.Client)
 
-	gETClient, err := get.NewGETClientWithBaseURI(api)
+	gETClient, err := get.NewGETClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building GET client: %+v", err)
 	}
 	configureFunc(gETClient.Client)
 
-	pATCHClient, err := patch.NewPATCHClientWithBaseURI(api)
+	pATCHClient, err := patch.NewPATCHClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building PATCH client: %+v", err)
 	}
 	configureFunc(pATCHClient.Client)
 
-	pOSTClient, err := post.NewPOSTClientWithBaseURI(api)
+	pOSTClient, err := post.NewPOSTClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building POST client: %+v", err)
 	}
 	configureFunc(pOSTClient.Client)
 
-	pUTClient, err := put.NewPUTClientWithBaseURI(api)
+	pUTClient, err := put.NewPUTClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building PUT client: %+v", err)
 	}
 	configureFunc(pUTClient.Client)
 
-	projectResourceClient, err := projectresource.NewProjectResourceClientWithBaseURI(api)
+	projectResourceClient, err := projectresource.NewProjectResourceClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building ProjectResource client: %+v", err)
 	}
 	configureFunc(projectResourceClient.Client)
 
-	serviceResourceClient, err := serviceresource.NewServiceResourceClientWithBaseURI(api)
+	serviceResourceClient, err := serviceresource.NewServiceResourceClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building ServiceResource client: %+v", err)
 	}
 	configureFunc(serviceResourceClient.Client)
 
-	serviceTaskResourceClient, err := servicetaskresource.NewServiceTaskResourceClientWithBaseURI(api)
+	serviceTaskResourceClient, err := servicetaskresource.NewServiceTaskResourceClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building ServiceTaskResource client: %+v", err)
 	}
 	configureFunc(serviceTaskResourceClient.Client)
 
-	standardOperationClient, err := standardoperation.NewStandardOperationClientWithBaseURI(api)
+	standardOperationClient, err := standardoperation.NewStandardOperationClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building StandardOperation client: %+v", err)
 	}
 	configureFunc(standardOperationClient.Client)
 
-	taskResourceClient, err := taskresource.NewTaskResourceClientWithBaseURI(api)
+	taskResourceClient, err := taskresource.NewTaskResourceClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building TaskResource client: %+v", err)
 	}

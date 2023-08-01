@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,8 +14,8 @@ type ManagedNetworkClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewManagedNetworkClientWithBaseURI(api environments.Api) (*ManagedNetworkClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(api, "managednetwork", defaultApiVersion)
+func NewManagedNetworkClientWithBaseURI(sdkApi sdkEnv.Api) (*ManagedNetworkClient, error) {
+	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "managednetwork", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ManagedNetworkClient: %+v", err)
 	}

@@ -14,7 +14,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/blueprints/2018-11-01-preview/publishedartifact"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/blueprints/2018-11-01-preview/publishedblueprint"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -27,44 +27,44 @@ type Client struct {
 	PublishedBlueprint   *publishedblueprint.PublishedBlueprintClient
 }
 
-func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
-	artifactClient, err := artifact.NewArtifactClientWithBaseURI(api)
+func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+	artifactClient, err := artifact.NewArtifactClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Artifact client: %+v", err)
 	}
 	configureFunc(artifactClient.Client)
 
-	assignmentClient, err := assignment.NewAssignmentClientWithBaseURI(api)
+	assignmentClient, err := assignment.NewAssignmentClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Assignment client: %+v", err)
 	}
 	configureFunc(assignmentClient.Client)
 
-	assignmentOperationsClient, err := assignmentoperations.NewAssignmentOperationsClientWithBaseURI(api)
+	assignmentOperationsClient, err := assignmentoperations.NewAssignmentOperationsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building AssignmentOperations client: %+v", err)
 	}
 	configureFunc(assignmentOperationsClient.Client)
 
-	blueprintAssignmentsClient, err := blueprintassignments.NewBlueprintAssignmentsClientWithBaseURI(api)
+	blueprintAssignmentsClient, err := blueprintassignments.NewBlueprintAssignmentsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building BlueprintAssignments client: %+v", err)
 	}
 	configureFunc(blueprintAssignmentsClient.Client)
 
-	blueprintClient, err := blueprint.NewBlueprintClientWithBaseURI(api)
+	blueprintClient, err := blueprint.NewBlueprintClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Blueprint client: %+v", err)
 	}
 	configureFunc(blueprintClient.Client)
 
-	publishedArtifactClient, err := publishedartifact.NewPublishedArtifactClientWithBaseURI(api)
+	publishedArtifactClient, err := publishedartifact.NewPublishedArtifactClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building PublishedArtifact client: %+v", err)
 	}
 	configureFunc(publishedArtifactClient.Client)
 
-	publishedBlueprintClient, err := publishedblueprint.NewPublishedBlueprintClientWithBaseURI(api)
+	publishedBlueprintClient, err := publishedblueprint.NewPublishedBlueprintClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building PublishedBlueprint client: %+v", err)
 	}

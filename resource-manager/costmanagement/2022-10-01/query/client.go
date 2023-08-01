@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,8 +14,8 @@ type QueryClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewQueryClientWithBaseURI(api environments.Api) (*QueryClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(api, "query", defaultApiVersion)
+func NewQueryClientWithBaseURI(sdkApi sdkEnv.Api) (*QueryClient, error) {
+	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "query", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating QueryClient: %+v", err)
 	}

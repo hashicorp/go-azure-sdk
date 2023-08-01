@@ -10,7 +10,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/videoanalyzer/2021-05-01-preview/videoanalyzers"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/videoanalyzer/2021-05-01-preview/videos"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -19,20 +19,20 @@ type Client struct {
 	Videos         *videos.VideosClient
 }
 
-func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
-	edgeModulesClient, err := edgemodules.NewEdgeModulesClientWithBaseURI(api)
+func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+	edgeModulesClient, err := edgemodules.NewEdgeModulesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building EdgeModules client: %+v", err)
 	}
 	configureFunc(edgeModulesClient.Client)
 
-	videoAnalyzersClient, err := videoanalyzers.NewVideoAnalyzersClientWithBaseURI(api)
+	videoAnalyzersClient, err := videoanalyzers.NewVideoAnalyzersClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building VideoAnalyzers client: %+v", err)
 	}
 	configureFunc(videoAnalyzersClient.Client)
 
-	videosClient, err := videos.NewVideosClientWithBaseURI(api)
+	videosClient, err := videos.NewVideosClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Videos client: %+v", err)
 	}
