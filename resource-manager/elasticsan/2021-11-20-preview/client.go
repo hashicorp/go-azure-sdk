@@ -12,7 +12,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/elasticsan/2021-11-20-preview/volumegroups"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/elasticsan/2021-11-20-preview/volumes"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -23,32 +23,32 @@ type Client struct {
 	Volumes        *volumes.VolumesClient
 }
 
-func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
-	elasticSanClient, err := elasticsan.NewElasticSanClientWithBaseURI(api)
+func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+	elasticSanClient, err := elasticsan.NewElasticSanClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building ElasticSan client: %+v", err)
 	}
 	configureFunc(elasticSanClient.Client)
 
-	elasticSanSkusClient, err := elasticsanskus.NewElasticSanSkusClientWithBaseURI(api)
+	elasticSanSkusClient, err := elasticsanskus.NewElasticSanSkusClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building ElasticSanSkus client: %+v", err)
 	}
 	configureFunc(elasticSanSkusClient.Client)
 
-	elasticSansClient, err := elasticsans.NewElasticSansClientWithBaseURI(api)
+	elasticSansClient, err := elasticsans.NewElasticSansClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building ElasticSans client: %+v", err)
 	}
 	configureFunc(elasticSansClient.Client)
 
-	volumeGroupsClient, err := volumegroups.NewVolumeGroupsClientWithBaseURI(api)
+	volumeGroupsClient, err := volumegroups.NewVolumeGroupsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building VolumeGroups client: %+v", err)
 	}
 	configureFunc(volumeGroupsClient.Client)
 
-	volumesClient, err := volumes.NewVolumesClientWithBaseURI(api)
+	volumesClient, err := volumes.NewVolumesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Volumes client: %+v", err)
 	}

@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,8 +14,8 @@ type ResourceHealthMetadataClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewResourceHealthMetadataClientWithBaseURI(api environments.Api) (*ResourceHealthMetadataClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(api, "resourcehealthmetadata", defaultApiVersion)
+func NewResourceHealthMetadataClientWithBaseURI(sdkApi sdkEnv.Api) (*ResourceHealthMetadataClient, error) {
+	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "resourcehealthmetadata", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ResourceHealthMetadataClient: %+v", err)
 	}

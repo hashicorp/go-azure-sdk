@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,8 +14,8 @@ type ManagementGroupsClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewManagementGroupsClientWithBaseURI(api environments.Api) (*ManagementGroupsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(api, "managementgroups", defaultApiVersion)
+func NewManagementGroupsClientWithBaseURI(sdkApi sdkEnv.Api) (*ManagementGroupsClient, error) {
+	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "managementgroups", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ManagementGroupsClient: %+v", err)
 	}

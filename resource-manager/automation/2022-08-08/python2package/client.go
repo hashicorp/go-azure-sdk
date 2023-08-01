@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,8 +14,8 @@ type Python2PackageClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewPython2PackageClientWithBaseURI(api environments.Api) (*Python2PackageClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(api, "python2package", defaultApiVersion)
+func NewPython2PackageClientWithBaseURI(sdkApi sdkEnv.Api) (*Python2PackageClient, error) {
+	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "python2package", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating Python2PackageClient: %+v", err)
 	}

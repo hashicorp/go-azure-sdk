@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,8 +14,8 @@ type TypeFieldsClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewTypeFieldsClientWithBaseURI(api environments.Api) (*TypeFieldsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(api, "typefields", defaultApiVersion)
+func NewTypeFieldsClientWithBaseURI(sdkApi sdkEnv.Api) (*TypeFieldsClient, error) {
+	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "typefields", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating TypeFieldsClient: %+v", err)
 	}

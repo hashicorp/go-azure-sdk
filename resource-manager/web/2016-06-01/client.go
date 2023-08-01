@@ -11,7 +11,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/web/2016-06-01/customapis"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/web/2016-06-01/managedapis"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -21,26 +21,26 @@ type Client struct {
 	ManagedAPIs        *managedapis.ManagedAPIsClient
 }
 
-func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
-	connectionGatewaysClient, err := connectiongateways.NewConnectionGatewaysClientWithBaseURI(api)
+func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+	connectionGatewaysClient, err := connectiongateways.NewConnectionGatewaysClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building ConnectionGateways client: %+v", err)
 	}
 	configureFunc(connectionGatewaysClient.Client)
 
-	connectionsClient, err := connections.NewConnectionsClientWithBaseURI(api)
+	connectionsClient, err := connections.NewConnectionsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Connections client: %+v", err)
 	}
 	configureFunc(connectionsClient.Client)
 
-	customAPIsClient, err := customapis.NewCustomAPIsClientWithBaseURI(api)
+	customAPIsClient, err := customapis.NewCustomAPIsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building CustomAPIs client: %+v", err)
 	}
 	configureFunc(customAPIsClient.Client)
 
-	managedAPIsClient, err := managedapis.NewManagedAPIsClientWithBaseURI(api)
+	managedAPIsClient, err := managedapis.NewManagedAPIsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building ManagedAPIs client: %+v", err)
 	}

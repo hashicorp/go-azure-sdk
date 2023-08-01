@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,8 +14,8 @@ type TopLevelDomainsClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewTopLevelDomainsClientWithBaseURI(api environments.Api) (*TopLevelDomainsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(api, "topleveldomains", defaultApiVersion)
+func NewTopLevelDomainsClientWithBaseURI(sdkApi sdkEnv.Api) (*TopLevelDomainsClient, error) {
+	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "topleveldomains", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating TopLevelDomainsClient: %+v", err)
 	}

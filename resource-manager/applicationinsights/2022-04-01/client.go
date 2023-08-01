@@ -8,15 +8,15 @@ import (
 
 	"github.com/hashicorp/go-azure-sdk/resource-manager/applicationinsights/2022-04-01/workbooksapis"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
 	WorkbooksAPIs *workbooksapis.WorkbooksAPIsClient
 }
 
-func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
-	workbooksAPIsClient, err := workbooksapis.NewWorkbooksAPIsClientWithBaseURI(api)
+func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+	workbooksAPIsClient, err := workbooksapis.NewWorkbooksAPIsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building WorkbooksAPIs client: %+v", err)
 	}

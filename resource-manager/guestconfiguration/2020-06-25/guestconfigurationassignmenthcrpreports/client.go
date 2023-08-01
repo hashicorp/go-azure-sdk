@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,8 +14,8 @@ type GuestConfigurationAssignmentHCRPReportsClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewGuestConfigurationAssignmentHCRPReportsClientWithBaseURI(api environments.Api) (*GuestConfigurationAssignmentHCRPReportsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(api, "guestconfigurationassignmenthcrpreports", defaultApiVersion)
+func NewGuestConfigurationAssignmentHCRPReportsClientWithBaseURI(sdkApi sdkEnv.Api) (*GuestConfigurationAssignmentHCRPReportsClient, error) {
+	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "guestconfigurationassignmenthcrpreports", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating GuestConfigurationAssignmentHCRPReportsClient: %+v", err)
 	}

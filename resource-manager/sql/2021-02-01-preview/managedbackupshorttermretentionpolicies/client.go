@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,8 +14,8 @@ type ManagedBackupShortTermRetentionPoliciesClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewManagedBackupShortTermRetentionPoliciesClientWithBaseURI(api environments.Api) (*ManagedBackupShortTermRetentionPoliciesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(api, "managedbackupshorttermretentionpolicies", defaultApiVersion)
+func NewManagedBackupShortTermRetentionPoliciesClientWithBaseURI(sdkApi sdkEnv.Api) (*ManagedBackupShortTermRetentionPoliciesClient, error) {
+	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "managedbackupshorttermretentionpolicies", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ManagedBackupShortTermRetentionPoliciesClient: %+v", err)
 	}

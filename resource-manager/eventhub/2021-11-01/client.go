@@ -24,7 +24,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/eventhub/2021-11-01/networkrulesets"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/eventhub/2021-11-01/schemaregistry"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -47,104 +47,104 @@ type Client struct {
 	SchemaRegistry                               *schemaregistry.SchemaRegistryClient
 }
 
-func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
-	authorizationRulesDisasterRecoveryConfigsClient, err := authorizationrulesdisasterrecoveryconfigs.NewAuthorizationRulesDisasterRecoveryConfigsClientWithBaseURI(api)
+func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+	authorizationRulesDisasterRecoveryConfigsClient, err := authorizationrulesdisasterrecoveryconfigs.NewAuthorizationRulesDisasterRecoveryConfigsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building AuthorizationRulesDisasterRecoveryConfigs client: %+v", err)
 	}
 	configureFunc(authorizationRulesDisasterRecoveryConfigsClient.Client)
 
-	authorizationRulesEventHubsClient, err := authorizationruleseventhubs.NewAuthorizationRulesEventHubsClientWithBaseURI(api)
+	authorizationRulesEventHubsClient, err := authorizationruleseventhubs.NewAuthorizationRulesEventHubsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building AuthorizationRulesEventHubs client: %+v", err)
 	}
 	configureFunc(authorizationRulesEventHubsClient.Client)
 
-	authorizationRulesNamespacesClient, err := authorizationrulesnamespaces.NewAuthorizationRulesNamespacesClientWithBaseURI(api)
+	authorizationRulesNamespacesClient, err := authorizationrulesnamespaces.NewAuthorizationRulesNamespacesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building AuthorizationRulesNamespaces client: %+v", err)
 	}
 	configureFunc(authorizationRulesNamespacesClient.Client)
 
-	checkNameAvailabilityDisasterRecoveryConfigsClient, err := checknameavailabilitydisasterrecoveryconfigs.NewCheckNameAvailabilityDisasterRecoveryConfigsClientWithBaseURI(api)
+	checkNameAvailabilityDisasterRecoveryConfigsClient, err := checknameavailabilitydisasterrecoveryconfigs.NewCheckNameAvailabilityDisasterRecoveryConfigsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building CheckNameAvailabilityDisasterRecoveryConfigs client: %+v", err)
 	}
 	configureFunc(checkNameAvailabilityDisasterRecoveryConfigsClient.Client)
 
-	checkNameAvailabilityNamespacesClient, err := checknameavailabilitynamespaces.NewCheckNameAvailabilityNamespacesClientWithBaseURI(api)
+	checkNameAvailabilityNamespacesClient, err := checknameavailabilitynamespaces.NewCheckNameAvailabilityNamespacesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building CheckNameAvailabilityNamespaces client: %+v", err)
 	}
 	configureFunc(checkNameAvailabilityNamespacesClient.Client)
 
-	consumerGroupsClient, err := consumergroups.NewConsumerGroupsClientWithBaseURI(api)
+	consumerGroupsClient, err := consumergroups.NewConsumerGroupsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building ConsumerGroups client: %+v", err)
 	}
 	configureFunc(consumerGroupsClient.Client)
 
-	disasterRecoveryConfigsClient, err := disasterrecoveryconfigs.NewDisasterRecoveryConfigsClientWithBaseURI(api)
+	disasterRecoveryConfigsClient, err := disasterrecoveryconfigs.NewDisasterRecoveryConfigsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building DisasterRecoveryConfigs client: %+v", err)
 	}
 	configureFunc(disasterRecoveryConfigsClient.Client)
 
-	eventHubsClient, err := eventhubs.NewEventHubsClientWithBaseURI(api)
+	eventHubsClient, err := eventhubs.NewEventHubsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building EventHubs client: %+v", err)
 	}
 	configureFunc(eventHubsClient.Client)
 
-	eventHubsClustersAvailableClusterRegionsClient, err := eventhubsclustersavailableclusterregions.NewEventHubsClustersAvailableClusterRegionsClientWithBaseURI(api)
+	eventHubsClustersAvailableClusterRegionsClient, err := eventhubsclustersavailableclusterregions.NewEventHubsClustersAvailableClusterRegionsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building EventHubsClustersAvailableClusterRegions client: %+v", err)
 	}
 	configureFunc(eventHubsClustersAvailableClusterRegionsClient.Client)
 
-	eventHubsClustersClient, err := eventhubsclusters.NewEventHubsClustersClientWithBaseURI(api)
+	eventHubsClustersClient, err := eventhubsclusters.NewEventHubsClustersClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building EventHubsClusters client: %+v", err)
 	}
 	configureFunc(eventHubsClustersClient.Client)
 
-	eventHubsClustersConfigurationClient, err := eventhubsclustersconfiguration.NewEventHubsClustersConfigurationClientWithBaseURI(api)
+	eventHubsClustersConfigurationClient, err := eventhubsclustersconfiguration.NewEventHubsClustersConfigurationClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building EventHubsClustersConfiguration client: %+v", err)
 	}
 	configureFunc(eventHubsClustersConfigurationClient.Client)
 
-	eventHubsClustersNamespaceClient, err := eventhubsclustersnamespace.NewEventHubsClustersNamespaceClientWithBaseURI(api)
+	eventHubsClustersNamespaceClient, err := eventhubsclustersnamespace.NewEventHubsClustersNamespaceClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building EventHubsClustersNamespace client: %+v", err)
 	}
 	configureFunc(eventHubsClustersNamespaceClient.Client)
 
-	namespacesClient, err := namespaces.NewNamespacesClientWithBaseURI(api)
+	namespacesClient, err := namespaces.NewNamespacesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Namespaces client: %+v", err)
 	}
 	configureFunc(namespacesClient.Client)
 
-	namespacesPrivateEndpointConnectionsClient, err := namespacesprivateendpointconnections.NewNamespacesPrivateEndpointConnectionsClientWithBaseURI(api)
+	namespacesPrivateEndpointConnectionsClient, err := namespacesprivateendpointconnections.NewNamespacesPrivateEndpointConnectionsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building NamespacesPrivateEndpointConnections client: %+v", err)
 	}
 	configureFunc(namespacesPrivateEndpointConnectionsClient.Client)
 
-	namespacesPrivateLinkResourcesClient, err := namespacesprivatelinkresources.NewNamespacesPrivateLinkResourcesClientWithBaseURI(api)
+	namespacesPrivateLinkResourcesClient, err := namespacesprivatelinkresources.NewNamespacesPrivateLinkResourcesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building NamespacesPrivateLinkResources client: %+v", err)
 	}
 	configureFunc(namespacesPrivateLinkResourcesClient.Client)
 
-	networkRuleSetsClient, err := networkrulesets.NewNetworkRuleSetsClientWithBaseURI(api)
+	networkRuleSetsClient, err := networkrulesets.NewNetworkRuleSetsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building NetworkRuleSets client: %+v", err)
 	}
 	configureFunc(networkRuleSetsClient.Client)
 
-	schemaRegistryClient, err := schemaregistry.NewSchemaRegistryClientWithBaseURI(api)
+	schemaRegistryClient, err := schemaregistry.NewSchemaRegistryClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building SchemaRegistry client: %+v", err)
 	}

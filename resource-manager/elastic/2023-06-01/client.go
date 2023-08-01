@@ -19,7 +19,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/elastic/2023-06-01/vmhhostlist"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/elastic/2023-06-01/vmingestiondetails"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -37,74 +37,74 @@ type Client struct {
 	VMIngestionDetails        *vmingestiondetails.VMIngestionDetailsClient
 }
 
-func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
-	apiKeyClient, err := apikey.NewApiKeyClientWithBaseURI(api)
+func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+	apiKeyClient, err := apikey.NewApiKeyClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building ApiKey client: %+v", err)
 	}
 	configureFunc(apiKeyClient.Client)
 
-	deploymentInfoClient, err := deploymentinfo.NewDeploymentInfoClientWithBaseURI(api)
+	deploymentInfoClient, err := deploymentinfo.NewDeploymentInfoClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building DeploymentInfo client: %+v", err)
 	}
 	configureFunc(deploymentInfoClient.Client)
 
-	deploymentUpdateClient, err := deploymentupdate.NewDeploymentUpdateClientWithBaseURI(api)
+	deploymentUpdateClient, err := deploymentupdate.NewDeploymentUpdateClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building DeploymentUpdate client: %+v", err)
 	}
 	configureFunc(deploymentUpdateClient.Client)
 
-	elasticVersionsClient, err := elasticversions.NewElasticVersionsClientWithBaseURI(api)
+	elasticVersionsClient, err := elasticversions.NewElasticVersionsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building ElasticVersions client: %+v", err)
 	}
 	configureFunc(elasticVersionsClient.Client)
 
-	monitorUpgradableVersionsClient, err := monitorupgradableversions.NewMonitorUpgradableVersionsClientWithBaseURI(api)
+	monitorUpgradableVersionsClient, err := monitorupgradableversions.NewMonitorUpgradableVersionsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building MonitorUpgradableVersions client: %+v", err)
 	}
 	configureFunc(monitorUpgradableVersionsClient.Client)
 
-	monitoredResourcesClient, err := monitoredresources.NewMonitoredResourcesClientWithBaseURI(api)
+	monitoredResourcesClient, err := monitoredresources.NewMonitoredResourcesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building MonitoredResources client: %+v", err)
 	}
 	configureFunc(monitoredResourcesClient.Client)
 
-	monitorsResourceClient, err := monitorsresource.NewMonitorsResourceClientWithBaseURI(api)
+	monitorsResourceClient, err := monitorsresource.NewMonitorsResourceClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building MonitorsResource client: %+v", err)
 	}
 	configureFunc(monitorsResourceClient.Client)
 
-	rulesClient, err := rules.NewRulesClientWithBaseURI(api)
+	rulesClient, err := rules.NewRulesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Rules client: %+v", err)
 	}
 	configureFunc(rulesClient.Client)
 
-	trafficFilterClient, err := trafficfilter.NewTrafficFilterClientWithBaseURI(api)
+	trafficFilterClient, err := trafficfilter.NewTrafficFilterClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building TrafficFilter client: %+v", err)
 	}
 	configureFunc(trafficFilterClient.Client)
 
-	vMCollectionUpdateClient, err := vmcollectionupdate.NewVMCollectionUpdateClientWithBaseURI(api)
+	vMCollectionUpdateClient, err := vmcollectionupdate.NewVMCollectionUpdateClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building VMCollectionUpdate client: %+v", err)
 	}
 	configureFunc(vMCollectionUpdateClient.Client)
 
-	vMHHostListClient, err := vmhhostlist.NewVMHHostListClientWithBaseURI(api)
+	vMHHostListClient, err := vmhhostlist.NewVMHHostListClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building VMHHostList client: %+v", err)
 	}
 	configureFunc(vMHHostListClient.Client)
 
-	vMIngestionDetailsClient, err := vmingestiondetails.NewVMIngestionDetailsClientWithBaseURI(api)
+	vMIngestionDetailsClient, err := vmingestiondetails.NewVMIngestionDetailsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building VMIngestionDetails client: %+v", err)
 	}

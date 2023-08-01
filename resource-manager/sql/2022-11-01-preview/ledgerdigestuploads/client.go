@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,8 +14,8 @@ type LedgerDigestUploadsClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewLedgerDigestUploadsClientWithBaseURI(api environments.Api) (*LedgerDigestUploadsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(api, "ledgerdigestuploads", defaultApiVersion)
+func NewLedgerDigestUploadsClientWithBaseURI(sdkApi sdkEnv.Api) (*LedgerDigestUploadsClient, error) {
+	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "ledgerdigestuploads", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating LedgerDigestUploadsClient: %+v", err)
 	}

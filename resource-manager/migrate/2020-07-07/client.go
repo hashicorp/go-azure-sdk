@@ -22,7 +22,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/migrate/2020-07-07/sites"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/migrate/2020-07-07/vcenter"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -43,92 +43,92 @@ type Client struct {
 	VCenter                   *vcenter.VCenterClient
 }
 
-func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
-	hyperVClusterClient, err := hypervcluster.NewHyperVClusterClientWithBaseURI(api)
+func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+	hyperVClusterClient, err := hypervcluster.NewHyperVClusterClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building HyperVCluster client: %+v", err)
 	}
 	configureFunc(hyperVClusterClient.Client)
 
-	hyperVHostClient, err := hypervhost.NewHyperVHostClientWithBaseURI(api)
+	hyperVHostClient, err := hypervhost.NewHyperVHostClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building HyperVHost client: %+v", err)
 	}
 	configureFunc(hyperVHostClient.Client)
 
-	hyperVJobsClient, err := hypervjobs.NewHyperVJobsClientWithBaseURI(api)
+	hyperVJobsClient, err := hypervjobs.NewHyperVJobsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building HyperVJobs client: %+v", err)
 	}
 	configureFunc(hyperVJobsClient.Client)
 
-	hyperVMachinesClient, err := hypervmachines.NewHyperVMachinesClientWithBaseURI(api)
+	hyperVMachinesClient, err := hypervmachines.NewHyperVMachinesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building HyperVMachines client: %+v", err)
 	}
 	configureFunc(hyperVMachinesClient.Client)
 
-	hyperVRunAsAccountsClient, err := hypervrunasaccounts.NewHyperVRunAsAccountsClientWithBaseURI(api)
+	hyperVRunAsAccountsClient, err := hypervrunasaccounts.NewHyperVRunAsAccountsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building HyperVRunAsAccounts client: %+v", err)
 	}
 	configureFunc(hyperVRunAsAccountsClient.Client)
 
-	hyperVSitesClient, err := hypervsites.NewHyperVSitesClientWithBaseURI(api)
+	hyperVSitesClient, err := hypervsites.NewHyperVSitesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building HyperVSites client: %+v", err)
 	}
 	configureFunc(hyperVSitesClient.Client)
 
-	jobsClient, err := jobs.NewJobsClientWithBaseURI(api)
+	jobsClient, err := jobs.NewJobsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Jobs client: %+v", err)
 	}
 	configureFunc(jobsClient.Client)
 
-	machinesClient, err := machines.NewMachinesClientWithBaseURI(api)
+	machinesClient, err := machines.NewMachinesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Machines client: %+v", err)
 	}
 	configureFunc(machinesClient.Client)
 
-	masterSitesClient, err := mastersites.NewMasterSitesClientWithBaseURI(api)
+	masterSitesClient, err := mastersites.NewMasterSitesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building MasterSites client: %+v", err)
 	}
 	configureFunc(masterSitesClient.Client)
 
-	migratesClient, err := migrates.NewMigratesClientWithBaseURI(api)
+	migratesClient, err := migrates.NewMigratesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Migrates client: %+v", err)
 	}
 	configureFunc(migratesClient.Client)
 
-	privateEndpointConnectionClient, err := privateendpointconnection.NewPrivateEndpointConnectionClientWithBaseURI(api)
+	privateEndpointConnectionClient, err := privateendpointconnection.NewPrivateEndpointConnectionClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building PrivateEndpointConnection client: %+v", err)
 	}
 	configureFunc(privateEndpointConnectionClient.Client)
 
-	privateLinkResourcesClient, err := privatelinkresources.NewPrivateLinkResourcesClientWithBaseURI(api)
+	privateLinkResourcesClient, err := privatelinkresources.NewPrivateLinkResourcesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building PrivateLinkResources client: %+v", err)
 	}
 	configureFunc(privateLinkResourcesClient.Client)
 
-	runAsAccountsClient, err := runasaccounts.NewRunAsAccountsClientWithBaseURI(api)
+	runAsAccountsClient, err := runasaccounts.NewRunAsAccountsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building RunAsAccounts client: %+v", err)
 	}
 	configureFunc(runAsAccountsClient.Client)
 
-	sitesClient, err := sites.NewSitesClientWithBaseURI(api)
+	sitesClient, err := sites.NewSitesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Sites client: %+v", err)
 	}
 	configureFunc(sitesClient.Client)
 
-	vCenterClient, err := vcenter.NewVCenterClientWithBaseURI(api)
+	vCenterClient, err := vcenter.NewVCenterClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building VCenter client: %+v", err)
 	}

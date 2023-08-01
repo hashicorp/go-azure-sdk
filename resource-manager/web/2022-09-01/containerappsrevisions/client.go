@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,8 +14,8 @@ type ContainerAppsRevisionsClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewContainerAppsRevisionsClientWithBaseURI(api environments.Api) (*ContainerAppsRevisionsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(api, "containerappsrevisions", defaultApiVersion)
+func NewContainerAppsRevisionsClientWithBaseURI(sdkApi sdkEnv.Api) (*ContainerAppsRevisionsClient, error) {
+	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "containerappsrevisions", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ContainerAppsRevisionsClient: %+v", err)
 	}

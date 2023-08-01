@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,8 +14,8 @@ type FileResourceClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewFileResourceClientWithBaseURI(api environments.Api) (*FileResourceClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(api, "fileresource", defaultApiVersion)
+func NewFileResourceClientWithBaseURI(sdkApi sdkEnv.Api) (*FileResourceClient, error) {
+	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "fileresource", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating FileResourceClient: %+v", err)
 	}

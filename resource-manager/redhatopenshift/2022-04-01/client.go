@@ -8,15 +8,15 @@ import (
 
 	"github.com/hashicorp/go-azure-sdk/resource-manager/redhatopenshift/2022-04-01/openshiftclusters"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
 	OpenShiftClusters *openshiftclusters.OpenShiftClustersClient
 }
 
-func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
-	openShiftClustersClient, err := openshiftclusters.NewOpenShiftClustersClientWithBaseURI(api)
+func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+	openShiftClustersClient, err := openshiftclusters.NewOpenShiftClustersClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building OpenShiftClusters client: %+v", err)
 	}

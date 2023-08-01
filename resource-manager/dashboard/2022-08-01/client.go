@@ -10,7 +10,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/dashboard/2022-08-01/privateendpointconnection"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/dashboard/2022-08-01/privatelinkresource"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -19,20 +19,20 @@ type Client struct {
 	PrivateLinkResource       *privatelinkresource.PrivateLinkResourceClient
 }
 
-func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
-	grafanaResourceClient, err := grafanaresource.NewGrafanaResourceClientWithBaseURI(api)
+func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+	grafanaResourceClient, err := grafanaresource.NewGrafanaResourceClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building GrafanaResource client: %+v", err)
 	}
 	configureFunc(grafanaResourceClient.Client)
 
-	privateEndpointConnectionClient, err := privateendpointconnection.NewPrivateEndpointConnectionClientWithBaseURI(api)
+	privateEndpointConnectionClient, err := privateendpointconnection.NewPrivateEndpointConnectionClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building PrivateEndpointConnection client: %+v", err)
 	}
 	configureFunc(privateEndpointConnectionClient.Client)
 
-	privateLinkResourceClient, err := privatelinkresource.NewPrivateLinkResourceClientWithBaseURI(api)
+	privateLinkResourceClient, err := privatelinkresource.NewPrivateLinkResourceClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building PrivateLinkResource client: %+v", err)
 	}

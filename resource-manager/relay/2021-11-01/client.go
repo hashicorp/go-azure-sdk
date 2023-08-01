@@ -12,7 +12,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/relay/2021-11-01/namespacesprivatelinkresources"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/relay/2021-11-01/wcfrelays"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -23,32 +23,32 @@ type Client struct {
 	WCFRelays                            *wcfrelays.WCFRelaysClient
 }
 
-func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
-	hybridConnectionsClient, err := hybridconnections.NewHybridConnectionsClientWithBaseURI(api)
+func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+	hybridConnectionsClient, err := hybridconnections.NewHybridConnectionsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building HybridConnections client: %+v", err)
 	}
 	configureFunc(hybridConnectionsClient.Client)
 
-	namespacesClient, err := namespaces.NewNamespacesClientWithBaseURI(api)
+	namespacesClient, err := namespaces.NewNamespacesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Namespaces client: %+v", err)
 	}
 	configureFunc(namespacesClient.Client)
 
-	namespacesPrivateEndpointConnectionsClient, err := namespacesprivateendpointconnections.NewNamespacesPrivateEndpointConnectionsClientWithBaseURI(api)
+	namespacesPrivateEndpointConnectionsClient, err := namespacesprivateendpointconnections.NewNamespacesPrivateEndpointConnectionsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building NamespacesPrivateEndpointConnections client: %+v", err)
 	}
 	configureFunc(namespacesPrivateEndpointConnectionsClient.Client)
 
-	namespacesPrivateLinkResourcesClient, err := namespacesprivatelinkresources.NewNamespacesPrivateLinkResourcesClientWithBaseURI(api)
+	namespacesPrivateLinkResourcesClient, err := namespacesprivatelinkresources.NewNamespacesPrivateLinkResourcesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building NamespacesPrivateLinkResources client: %+v", err)
 	}
 	configureFunc(namespacesPrivateLinkResourcesClient.Client)
 
-	wCFRelaysClient, err := wcfrelays.NewWCFRelaysClientWithBaseURI(api)
+	wCFRelaysClient, err := wcfrelays.NewWCFRelaysClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building WCFRelays client: %+v", err)
 	}

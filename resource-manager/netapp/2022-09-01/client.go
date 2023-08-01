@@ -26,7 +26,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/netapp/2022-09-01/volumesreplication"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/netapp/2022-09-01/volumesrevert"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -51,116 +51,116 @@ type Client struct {
 	VolumesRevert             *volumesrevert.VolumesRevertClient
 }
 
-func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
-	backupPolicyClient, err := backuppolicy.NewBackupPolicyClientWithBaseURI(api)
+func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+	backupPolicyClient, err := backuppolicy.NewBackupPolicyClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building BackupPolicy client: %+v", err)
 	}
 	configureFunc(backupPolicyClient.Client)
 
-	backupsClient, err := backups.NewBackupsClientWithBaseURI(api)
+	backupsClient, err := backups.NewBackupsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Backups client: %+v", err)
 	}
 	configureFunc(backupsClient.Client)
 
-	capacityPoolsClient, err := capacitypools.NewCapacityPoolsClientWithBaseURI(api)
+	capacityPoolsClient, err := capacitypools.NewCapacityPoolsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building CapacityPools client: %+v", err)
 	}
 	configureFunc(capacityPoolsClient.Client)
 
-	fileLocksClient, err := filelocks.NewFileLocksClientWithBaseURI(api)
+	fileLocksClient, err := filelocks.NewFileLocksClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building FileLocks client: %+v", err)
 	}
 	configureFunc(fileLocksClient.Client)
 
-	netAppAccountsClient, err := netappaccounts.NewNetAppAccountsClientWithBaseURI(api)
+	netAppAccountsClient, err := netappaccounts.NewNetAppAccountsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building NetAppAccounts client: %+v", err)
 	}
 	configureFunc(netAppAccountsClient.Client)
 
-	netAppResourceClient, err := netappresource.NewNetAppResourceClientWithBaseURI(api)
+	netAppResourceClient, err := netappresource.NewNetAppResourceClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building NetAppResource client: %+v", err)
 	}
 	configureFunc(netAppResourceClient.Client)
 
-	poolChangeClient, err := poolchange.NewPoolChangeClientWithBaseURI(api)
+	poolChangeClient, err := poolchange.NewPoolChangeClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building PoolChange client: %+v", err)
 	}
 	configureFunc(poolChangeClient.Client)
 
-	resetCifsPasswordClient, err := resetcifspassword.NewResetCifsPasswordClientWithBaseURI(api)
+	resetCifsPasswordClient, err := resetcifspassword.NewResetCifsPasswordClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building ResetCifsPassword client: %+v", err)
 	}
 	configureFunc(resetCifsPasswordClient.Client)
 
-	restoreClient, err := restore.NewRestoreClientWithBaseURI(api)
+	restoreClient, err := restore.NewRestoreClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Restore client: %+v", err)
 	}
 	configureFunc(restoreClient.Client)
 
-	snapshotPolicyClient, err := snapshotpolicy.NewSnapshotPolicyClientWithBaseURI(api)
+	snapshotPolicyClient, err := snapshotpolicy.NewSnapshotPolicyClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building SnapshotPolicy client: %+v", err)
 	}
 	configureFunc(snapshotPolicyClient.Client)
 
-	snapshotPolicyListVolumesClient, err := snapshotpolicylistvolumes.NewSnapshotPolicyListVolumesClientWithBaseURI(api)
+	snapshotPolicyListVolumesClient, err := snapshotpolicylistvolumes.NewSnapshotPolicyListVolumesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building SnapshotPolicyListVolumes client: %+v", err)
 	}
 	configureFunc(snapshotPolicyListVolumesClient.Client)
 
-	snapshotsClient, err := snapshots.NewSnapshotsClientWithBaseURI(api)
+	snapshotsClient, err := snapshots.NewSnapshotsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Snapshots client: %+v", err)
 	}
 	configureFunc(snapshotsClient.Client)
 
-	subVolumesClient, err := subvolumes.NewSubVolumesClientWithBaseURI(api)
+	subVolumesClient, err := subvolumes.NewSubVolumesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building SubVolumes client: %+v", err)
 	}
 	configureFunc(subVolumesClient.Client)
 
-	volumeGroupsClient, err := volumegroups.NewVolumeGroupsClientWithBaseURI(api)
+	volumeGroupsClient, err := volumegroups.NewVolumeGroupsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building VolumeGroups client: %+v", err)
 	}
 	configureFunc(volumeGroupsClient.Client)
 
-	volumeQuotaRulesClient, err := volumequotarules.NewVolumeQuotaRulesClientWithBaseURI(api)
+	volumeQuotaRulesClient, err := volumequotarules.NewVolumeQuotaRulesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building VolumeQuotaRules client: %+v", err)
 	}
 	configureFunc(volumeQuotaRulesClient.Client)
 
-	volumesClient, err := volumes.NewVolumesClientWithBaseURI(api)
+	volumesClient, err := volumes.NewVolumesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Volumes client: %+v", err)
 	}
 	configureFunc(volumesClient.Client)
 
-	volumesRelocationClient, err := volumesrelocation.NewVolumesRelocationClientWithBaseURI(api)
+	volumesRelocationClient, err := volumesrelocation.NewVolumesRelocationClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building VolumesRelocation client: %+v", err)
 	}
 	configureFunc(volumesRelocationClient.Client)
 
-	volumesReplicationClient, err := volumesreplication.NewVolumesReplicationClientWithBaseURI(api)
+	volumesReplicationClient, err := volumesreplication.NewVolumesReplicationClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building VolumesReplication client: %+v", err)
 	}
 	configureFunc(volumesReplicationClient.Client)
 
-	volumesRevertClient, err := volumesrevert.NewVolumesRevertClientWithBaseURI(api)
+	volumesRevertClient, err := volumesrevert.NewVolumesRevertClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building VolumesRevert client: %+v", err)
 	}

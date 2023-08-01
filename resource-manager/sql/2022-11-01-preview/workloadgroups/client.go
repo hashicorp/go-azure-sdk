@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,8 +14,8 @@ type WorkloadGroupsClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewWorkloadGroupsClientWithBaseURI(api environments.Api) (*WorkloadGroupsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(api, "workloadgroups", defaultApiVersion)
+func NewWorkloadGroupsClientWithBaseURI(sdkApi sdkEnv.Api) (*WorkloadGroupsClient, error) {
+	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "workloadgroups", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating WorkloadGroupsClient: %+v", err)
 	}

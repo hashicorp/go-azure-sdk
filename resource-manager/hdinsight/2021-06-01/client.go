@@ -18,7 +18,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/hdinsight/2021-06-01/scriptexecutionhistory"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/hdinsight/2021-06-01/virtualmachines"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -35,68 +35,68 @@ type Client struct {
 	VirtualMachines            *virtualmachines.VirtualMachinesClient
 }
 
-func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
-	applicationsClient, err := applications.NewApplicationsClientWithBaseURI(api)
+func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+	applicationsClient, err := applications.NewApplicationsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Applications client: %+v", err)
 	}
 	configureFunc(applicationsClient.Client)
 
-	clustersClient, err := clusters.NewClustersClientWithBaseURI(api)
+	clustersClient, err := clusters.NewClustersClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Clusters client: %+v", err)
 	}
 	configureFunc(clustersClient.Client)
 
-	configurationsClient, err := configurations.NewConfigurationsClientWithBaseURI(api)
+	configurationsClient, err := configurations.NewConfigurationsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Configurations client: %+v", err)
 	}
 	configureFunc(configurationsClient.Client)
 
-	extensionsClient, err := extensions.NewExtensionsClientWithBaseURI(api)
+	extensionsClient, err := extensions.NewExtensionsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Extensions client: %+v", err)
 	}
 	configureFunc(extensionsClient.Client)
 
-	privateEndpointConnectionsClient, err := privateendpointconnections.NewPrivateEndpointConnectionsClientWithBaseURI(api)
+	privateEndpointConnectionsClient, err := privateendpointconnections.NewPrivateEndpointConnectionsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building PrivateEndpointConnections client: %+v", err)
 	}
 	configureFunc(privateEndpointConnectionsClient.Client)
 
-	privateLinkResourcesClient, err := privatelinkresources.NewPrivateLinkResourcesClientWithBaseURI(api)
+	privateLinkResourcesClient, err := privatelinkresources.NewPrivateLinkResourcesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building PrivateLinkResources client: %+v", err)
 	}
 	configureFunc(privateLinkResourcesClient.Client)
 
-	promoteClient, err := promote.NewPromoteClientWithBaseURI(api)
+	promoteClient, err := promote.NewPromoteClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Promote client: %+v", err)
 	}
 	configureFunc(promoteClient.Client)
 
-	regionsClient, err := regions.NewRegionsClientWithBaseURI(api)
+	regionsClient, err := regions.NewRegionsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Regions client: %+v", err)
 	}
 	configureFunc(regionsClient.Client)
 
-	scriptActionsClient, err := scriptactions.NewScriptActionsClientWithBaseURI(api)
+	scriptActionsClient, err := scriptactions.NewScriptActionsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building ScriptActions client: %+v", err)
 	}
 	configureFunc(scriptActionsClient.Client)
 
-	scriptExecutionHistoryClient, err := scriptexecutionhistory.NewScriptExecutionHistoryClientWithBaseURI(api)
+	scriptExecutionHistoryClient, err := scriptexecutionhistory.NewScriptExecutionHistoryClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building ScriptExecutionHistory client: %+v", err)
 	}
 	configureFunc(scriptExecutionHistoryClient.Client)
 
-	virtualMachinesClient, err := virtualmachines.NewVirtualMachinesClientWithBaseURI(api)
+	virtualMachinesClient, err := virtualmachines.NewVirtualMachinesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building VirtualMachines client: %+v", err)
 	}

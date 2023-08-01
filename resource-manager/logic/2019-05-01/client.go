@@ -29,7 +29,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/logic/2019-05-01/workflowtriggers"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/logic/2019-05-01/workflowversions"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -57,134 +57,134 @@ type Client struct {
 	Workflows                                  *workflows.WorkflowsClient
 }
 
-func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
-	integrationAccountAgreementsClient, err := integrationaccountagreements.NewIntegrationAccountAgreementsClientWithBaseURI(api)
+func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+	integrationAccountAgreementsClient, err := integrationaccountagreements.NewIntegrationAccountAgreementsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building IntegrationAccountAgreements client: %+v", err)
 	}
 	configureFunc(integrationAccountAgreementsClient.Client)
 
-	integrationAccountAssembliesClient, err := integrationaccountassemblies.NewIntegrationAccountAssembliesClientWithBaseURI(api)
+	integrationAccountAssembliesClient, err := integrationaccountassemblies.NewIntegrationAccountAssembliesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building IntegrationAccountAssemblies client: %+v", err)
 	}
 	configureFunc(integrationAccountAssembliesClient.Client)
 
-	integrationAccountBatchConfigurationsClient, err := integrationaccountbatchconfigurations.NewIntegrationAccountBatchConfigurationsClientWithBaseURI(api)
+	integrationAccountBatchConfigurationsClient, err := integrationaccountbatchconfigurations.NewIntegrationAccountBatchConfigurationsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building IntegrationAccountBatchConfigurations client: %+v", err)
 	}
 	configureFunc(integrationAccountBatchConfigurationsClient.Client)
 
-	integrationAccountCertificatesClient, err := integrationaccountcertificates.NewIntegrationAccountCertificatesClientWithBaseURI(api)
+	integrationAccountCertificatesClient, err := integrationaccountcertificates.NewIntegrationAccountCertificatesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building IntegrationAccountCertificates client: %+v", err)
 	}
 	configureFunc(integrationAccountCertificatesClient.Client)
 
-	integrationAccountMapsClient, err := integrationaccountmaps.NewIntegrationAccountMapsClientWithBaseURI(api)
+	integrationAccountMapsClient, err := integrationaccountmaps.NewIntegrationAccountMapsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building IntegrationAccountMaps client: %+v", err)
 	}
 	configureFunc(integrationAccountMapsClient.Client)
 
-	integrationAccountPartnersClient, err := integrationaccountpartners.NewIntegrationAccountPartnersClientWithBaseURI(api)
+	integrationAccountPartnersClient, err := integrationaccountpartners.NewIntegrationAccountPartnersClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building IntegrationAccountPartners client: %+v", err)
 	}
 	configureFunc(integrationAccountPartnersClient.Client)
 
-	integrationAccountSchemasClient, err := integrationaccountschemas.NewIntegrationAccountSchemasClientWithBaseURI(api)
+	integrationAccountSchemasClient, err := integrationaccountschemas.NewIntegrationAccountSchemasClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building IntegrationAccountSchemas client: %+v", err)
 	}
 	configureFunc(integrationAccountSchemasClient.Client)
 
-	integrationAccountSessionsClient, err := integrationaccountsessions.NewIntegrationAccountSessionsClientWithBaseURI(api)
+	integrationAccountSessionsClient, err := integrationaccountsessions.NewIntegrationAccountSessionsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building IntegrationAccountSessions client: %+v", err)
 	}
 	configureFunc(integrationAccountSessionsClient.Client)
 
-	integrationAccountsClient, err := integrationaccounts.NewIntegrationAccountsClientWithBaseURI(api)
+	integrationAccountsClient, err := integrationaccounts.NewIntegrationAccountsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building IntegrationAccounts client: %+v", err)
 	}
 	configureFunc(integrationAccountsClient.Client)
 
-	integrationServiceEnvironmentManagedApiClient, err := integrationserviceenvironmentmanagedapi.NewIntegrationServiceEnvironmentManagedApiClientWithBaseURI(api)
+	integrationServiceEnvironmentManagedApiClient, err := integrationserviceenvironmentmanagedapi.NewIntegrationServiceEnvironmentManagedApiClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building IntegrationServiceEnvironmentManagedApi client: %+v", err)
 	}
 	configureFunc(integrationServiceEnvironmentManagedApiClient.Client)
 
-	integrationServiceEnvironmentManagedApisClient, err := integrationserviceenvironmentmanagedapis.NewIntegrationServiceEnvironmentManagedApisClientWithBaseURI(api)
+	integrationServiceEnvironmentManagedApisClient, err := integrationserviceenvironmentmanagedapis.NewIntegrationServiceEnvironmentManagedApisClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building IntegrationServiceEnvironmentManagedApis client: %+v", err)
 	}
 	configureFunc(integrationServiceEnvironmentManagedApisClient.Client)
 
-	integrationServiceEnvironmentNetworkHealthClient, err := integrationserviceenvironmentnetworkhealth.NewIntegrationServiceEnvironmentNetworkHealthClientWithBaseURI(api)
+	integrationServiceEnvironmentNetworkHealthClient, err := integrationserviceenvironmentnetworkhealth.NewIntegrationServiceEnvironmentNetworkHealthClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building IntegrationServiceEnvironmentNetworkHealth client: %+v", err)
 	}
 	configureFunc(integrationServiceEnvironmentNetworkHealthClient.Client)
 
-	integrationServiceEnvironmentRestartClient, err := integrationserviceenvironmentrestart.NewIntegrationServiceEnvironmentRestartClientWithBaseURI(api)
+	integrationServiceEnvironmentRestartClient, err := integrationserviceenvironmentrestart.NewIntegrationServiceEnvironmentRestartClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building IntegrationServiceEnvironmentRestart client: %+v", err)
 	}
 	configureFunc(integrationServiceEnvironmentRestartClient.Client)
 
-	integrationServiceEnvironmentSkusClient, err := integrationserviceenvironmentskus.NewIntegrationServiceEnvironmentSkusClientWithBaseURI(api)
+	integrationServiceEnvironmentSkusClient, err := integrationserviceenvironmentskus.NewIntegrationServiceEnvironmentSkusClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building IntegrationServiceEnvironmentSkus client: %+v", err)
 	}
 	configureFunc(integrationServiceEnvironmentSkusClient.Client)
 
-	integrationServiceEnvironmentsClient, err := integrationserviceenvironments.NewIntegrationServiceEnvironmentsClientWithBaseURI(api)
+	integrationServiceEnvironmentsClient, err := integrationserviceenvironments.NewIntegrationServiceEnvironmentsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building IntegrationServiceEnvironments client: %+v", err)
 	}
 	configureFunc(integrationServiceEnvironmentsClient.Client)
 
-	workflowRunActionsClient, err := workflowrunactions.NewWorkflowRunActionsClientWithBaseURI(api)
+	workflowRunActionsClient, err := workflowrunactions.NewWorkflowRunActionsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building WorkflowRunActions client: %+v", err)
 	}
 	configureFunc(workflowRunActionsClient.Client)
 
-	workflowRunOperationsClient, err := workflowrunoperations.NewWorkflowRunOperationsClientWithBaseURI(api)
+	workflowRunOperationsClient, err := workflowrunoperations.NewWorkflowRunOperationsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building WorkflowRunOperations client: %+v", err)
 	}
 	configureFunc(workflowRunOperationsClient.Client)
 
-	workflowRunsClient, err := workflowruns.NewWorkflowRunsClientWithBaseURI(api)
+	workflowRunsClient, err := workflowruns.NewWorkflowRunsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building WorkflowRuns client: %+v", err)
 	}
 	configureFunc(workflowRunsClient.Client)
 
-	workflowTriggerHistoriesClient, err := workflowtriggerhistories.NewWorkflowTriggerHistoriesClientWithBaseURI(api)
+	workflowTriggerHistoriesClient, err := workflowtriggerhistories.NewWorkflowTriggerHistoriesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building WorkflowTriggerHistories client: %+v", err)
 	}
 	configureFunc(workflowTriggerHistoriesClient.Client)
 
-	workflowTriggersClient, err := workflowtriggers.NewWorkflowTriggersClientWithBaseURI(api)
+	workflowTriggersClient, err := workflowtriggers.NewWorkflowTriggersClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building WorkflowTriggers client: %+v", err)
 	}
 	configureFunc(workflowTriggersClient.Client)
 
-	workflowVersionsClient, err := workflowversions.NewWorkflowVersionsClientWithBaseURI(api)
+	workflowVersionsClient, err := workflowversions.NewWorkflowVersionsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building WorkflowVersions client: %+v", err)
 	}
 	configureFunc(workflowVersionsClient.Client)
 
-	workflowsClient, err := workflows.NewWorkflowsClientWithBaseURI(api)
+	workflowsClient, err := workflows.NewWorkflowsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Workflows client: %+v", err)
 	}

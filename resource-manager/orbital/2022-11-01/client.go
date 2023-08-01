@@ -11,7 +11,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/orbital/2022-11-01/groundstation"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/orbital/2022-11-01/spacecraft"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -21,26 +21,26 @@ type Client struct {
 	Spacecraft     *spacecraft.SpacecraftClient
 }
 
-func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
-	contactClient, err := contact.NewContactClientWithBaseURI(api)
+func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+	contactClient, err := contact.NewContactClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Contact client: %+v", err)
 	}
 	configureFunc(contactClient.Client)
 
-	contactProfileClient, err := contactprofile.NewContactProfileClientWithBaseURI(api)
+	contactProfileClient, err := contactprofile.NewContactProfileClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building ContactProfile client: %+v", err)
 	}
 	configureFunc(contactProfileClient.Client)
 
-	groundStationClient, err := groundstation.NewGroundStationClientWithBaseURI(api)
+	groundStationClient, err := groundstation.NewGroundStationClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building GroundStation client: %+v", err)
 	}
 	configureFunc(groundStationClient.Client)
 
-	spacecraftClient, err := spacecraft.NewSpacecraftClientWithBaseURI(api)
+	spacecraftClient, err := spacecraft.NewSpacecraftClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Spacecraft client: %+v", err)
 	}

@@ -12,7 +12,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/advisor/2020-01-01/metadata"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/advisor/2020-01-01/suppressions"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -23,32 +23,32 @@ type Client struct {
 	Suppressions            *suppressions.SuppressionsClient
 }
 
-func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
-	configurationsClient, err := configurations.NewConfigurationsClientWithBaseURI(api)
+func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+	configurationsClient, err := configurations.NewConfigurationsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Configurations client: %+v", err)
 	}
 	configureFunc(configurationsClient.Client)
 
-	generateRecommendationsClient, err := generaterecommendations.NewGenerateRecommendationsClientWithBaseURI(api)
+	generateRecommendationsClient, err := generaterecommendations.NewGenerateRecommendationsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building GenerateRecommendations client: %+v", err)
 	}
 	configureFunc(generateRecommendationsClient.Client)
 
-	getRecommendationsClient, err := getrecommendations.NewGetRecommendationsClientWithBaseURI(api)
+	getRecommendationsClient, err := getrecommendations.NewGetRecommendationsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building GetRecommendations client: %+v", err)
 	}
 	configureFunc(getRecommendationsClient.Client)
 
-	metadataClient, err := metadata.NewMetadataClientWithBaseURI(api)
+	metadataClient, err := metadata.NewMetadataClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Metadata client: %+v", err)
 	}
 	configureFunc(metadataClient.Client)
 
-	suppressionsClient, err := suppressions.NewSuppressionsClientWithBaseURI(api)
+	suppressionsClient, err := suppressions.NewSuppressionsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Suppressions client: %+v", err)
 	}

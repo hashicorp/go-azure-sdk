@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,8 +14,8 @@ type ImageClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewImageClientWithBaseURI(api environments.Api) (*ImageClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(api, "image", defaultApiVersion)
+func NewImageClientWithBaseURI(sdkApi sdkEnv.Api) (*ImageClient, error) {
+	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "image", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ImageClient: %+v", err)
 	}

@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,8 +14,8 @@ type SIMGroupsClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewSIMGroupsClientWithBaseURI(api environments.Api) (*SIMGroupsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(api, "simgroups", defaultApiVersion)
+func NewSIMGroupsClientWithBaseURI(sdkApi sdkEnv.Api) (*SIMGroupsClient, error) {
+	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "simgroups", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating SIMGroupsClient: %+v", err)
 	}

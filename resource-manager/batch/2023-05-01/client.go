@@ -16,7 +16,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/batch/2023-05-01/privateendpointconnection"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/batch/2023-05-01/privatelinkresource"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -31,56 +31,56 @@ type Client struct {
 	PrivateLinkResource       *privatelinkresource.PrivateLinkResourceClient
 }
 
-func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
-	applicationClient, err := application.NewApplicationClientWithBaseURI(api)
+func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+	applicationClient, err := application.NewApplicationClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Application client: %+v", err)
 	}
 	configureFunc(applicationClient.Client)
 
-	applicationPackageClient, err := applicationpackage.NewApplicationPackageClientWithBaseURI(api)
+	applicationPackageClient, err := applicationpackage.NewApplicationPackageClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building ApplicationPackage client: %+v", err)
 	}
 	configureFunc(applicationPackageClient.Client)
 
-	batchAccountClient, err := batchaccount.NewBatchAccountClientWithBaseURI(api)
+	batchAccountClient, err := batchaccount.NewBatchAccountClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building BatchAccount client: %+v", err)
 	}
 	configureFunc(batchAccountClient.Client)
 
-	batchManagementsClient, err := batchmanagements.NewBatchManagementsClientWithBaseURI(api)
+	batchManagementsClient, err := batchmanagements.NewBatchManagementsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building BatchManagements client: %+v", err)
 	}
 	configureFunc(batchManagementsClient.Client)
 
-	certificateClient, err := certificate.NewCertificateClientWithBaseURI(api)
+	certificateClient, err := certificate.NewCertificateClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Certificate client: %+v", err)
 	}
 	configureFunc(certificateClient.Client)
 
-	locationClient, err := location.NewLocationClientWithBaseURI(api)
+	locationClient, err := location.NewLocationClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Location client: %+v", err)
 	}
 	configureFunc(locationClient.Client)
 
-	poolClient, err := pool.NewPoolClientWithBaseURI(api)
+	poolClient, err := pool.NewPoolClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Pool client: %+v", err)
 	}
 	configureFunc(poolClient.Client)
 
-	privateEndpointConnectionClient, err := privateendpointconnection.NewPrivateEndpointConnectionClientWithBaseURI(api)
+	privateEndpointConnectionClient, err := privateendpointconnection.NewPrivateEndpointConnectionClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building PrivateEndpointConnection client: %+v", err)
 	}
 	configureFunc(privateEndpointConnectionClient.Client)
 
-	privateLinkResourceClient, err := privatelinkresource.NewPrivateLinkResourceClientWithBaseURI(api)
+	privateLinkResourceClient, err := privatelinkresource.NewPrivateLinkResourceClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building PrivateLinkResource client: %+v", err)
 	}

@@ -33,7 +33,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/mobilenetwork/2022-11-01/slice"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/mobilenetwork/2022-11-01/slices"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -65,158 +65,158 @@ type Client struct {
 	Slices                                          *slices.SlicesClient
 }
 
-func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
-	attachedDataNetworkClient, err := attacheddatanetwork.NewAttachedDataNetworkClientWithBaseURI(api)
+func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+	attachedDataNetworkClient, err := attacheddatanetwork.NewAttachedDataNetworkClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building AttachedDataNetwork client: %+v", err)
 	}
 	configureFunc(attachedDataNetworkClient.Client)
 
-	attachedDataNetworksClient, err := attacheddatanetworks.NewAttachedDataNetworksClientWithBaseURI(api)
+	attachedDataNetworksClient, err := attacheddatanetworks.NewAttachedDataNetworksClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building AttachedDataNetworks client: %+v", err)
 	}
 	configureFunc(attachedDataNetworksClient.Client)
 
-	dataNetworkClient, err := datanetwork.NewDataNetworkClientWithBaseURI(api)
+	dataNetworkClient, err := datanetwork.NewDataNetworkClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building DataNetwork client: %+v", err)
 	}
 	configureFunc(dataNetworkClient.Client)
 
-	dataNetworksClient, err := datanetworks.NewDataNetworksClientWithBaseURI(api)
+	dataNetworksClient, err := datanetworks.NewDataNetworksClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building DataNetworks client: %+v", err)
 	}
 	configureFunc(dataNetworksClient.Client)
 
-	mobileNetworkClient, err := mobilenetwork.NewMobileNetworkClientWithBaseURI(api)
+	mobileNetworkClient, err := mobilenetwork.NewMobileNetworkClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building MobileNetwork client: %+v", err)
 	}
 	configureFunc(mobileNetworkClient.Client)
 
-	mobileNetworksClient, err := mobilenetworks.NewMobileNetworksClientWithBaseURI(api)
+	mobileNetworksClient, err := mobilenetworks.NewMobileNetworksClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building MobileNetworks client: %+v", err)
 	}
 	configureFunc(mobileNetworksClient.Client)
 
-	packetCoreControlPlaneClient, err := packetcorecontrolplane.NewPacketCoreControlPlaneClientWithBaseURI(api)
+	packetCoreControlPlaneClient, err := packetcorecontrolplane.NewPacketCoreControlPlaneClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building PacketCoreControlPlane client: %+v", err)
 	}
 	configureFunc(packetCoreControlPlaneClient.Client)
 
-	packetCoreControlPlaneCollectDiagnosticsPackageClient, err := packetcorecontrolplanecollectdiagnosticspackage.NewPacketCoreControlPlaneCollectDiagnosticsPackageClientWithBaseURI(api)
+	packetCoreControlPlaneCollectDiagnosticsPackageClient, err := packetcorecontrolplanecollectdiagnosticspackage.NewPacketCoreControlPlaneCollectDiagnosticsPackageClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building PacketCoreControlPlaneCollectDiagnosticsPackage client: %+v", err)
 	}
 	configureFunc(packetCoreControlPlaneCollectDiagnosticsPackageClient.Client)
 
-	packetCoreControlPlaneReinstallClient, err := packetcorecontrolplanereinstall.NewPacketCoreControlPlaneReinstallClientWithBaseURI(api)
+	packetCoreControlPlaneReinstallClient, err := packetcorecontrolplanereinstall.NewPacketCoreControlPlaneReinstallClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building PacketCoreControlPlaneReinstall client: %+v", err)
 	}
 	configureFunc(packetCoreControlPlaneReinstallClient.Client)
 
-	packetCoreControlPlaneRollbackClient, err := packetcorecontrolplanerollback.NewPacketCoreControlPlaneRollbackClientWithBaseURI(api)
+	packetCoreControlPlaneRollbackClient, err := packetcorecontrolplanerollback.NewPacketCoreControlPlaneRollbackClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building PacketCoreControlPlaneRollback client: %+v", err)
 	}
 	configureFunc(packetCoreControlPlaneRollbackClient.Client)
 
-	packetCoreControlPlaneVersionClient, err := packetcorecontrolplaneversion.NewPacketCoreControlPlaneVersionClientWithBaseURI(api)
+	packetCoreControlPlaneVersionClient, err := packetcorecontrolplaneversion.NewPacketCoreControlPlaneVersionClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building PacketCoreControlPlaneVersion client: %+v", err)
 	}
 	configureFunc(packetCoreControlPlaneVersionClient.Client)
 
-	packetCoreControlPlanesClient, err := packetcorecontrolplanes.NewPacketCoreControlPlanesClientWithBaseURI(api)
+	packetCoreControlPlanesClient, err := packetcorecontrolplanes.NewPacketCoreControlPlanesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building PacketCoreControlPlanes client: %+v", err)
 	}
 	configureFunc(packetCoreControlPlanesClient.Client)
 
-	packetCoreDataPlaneClient, err := packetcoredataplane.NewPacketCoreDataPlaneClientWithBaseURI(api)
+	packetCoreDataPlaneClient, err := packetcoredataplane.NewPacketCoreDataPlaneClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building PacketCoreDataPlane client: %+v", err)
 	}
 	configureFunc(packetCoreDataPlaneClient.Client)
 
-	packetCoreDataPlanesClient, err := packetcoredataplanes.NewPacketCoreDataPlanesClientWithBaseURI(api)
+	packetCoreDataPlanesClient, err := packetcoredataplanes.NewPacketCoreDataPlanesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building PacketCoreDataPlanes client: %+v", err)
 	}
 	configureFunc(packetCoreDataPlanesClient.Client)
 
-	sIMClient, err := sim.NewSIMClientWithBaseURI(api)
+	sIMClient, err := sim.NewSIMClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building SIM client: %+v", err)
 	}
 	configureFunc(sIMClient.Client)
 
-	sIMGroupClient, err := simgroup.NewSIMGroupClientWithBaseURI(api)
+	sIMGroupClient, err := simgroup.NewSIMGroupClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building SIMGroup client: %+v", err)
 	}
 	configureFunc(sIMGroupClient.Client)
 
-	sIMGroupsClient, err := simgroups.NewSIMGroupsClientWithBaseURI(api)
+	sIMGroupsClient, err := simgroups.NewSIMGroupsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building SIMGroups client: %+v", err)
 	}
 	configureFunc(sIMGroupsClient.Client)
 
-	sIMPoliciesClient, err := simpolicies.NewSIMPoliciesClientWithBaseURI(api)
+	sIMPoliciesClient, err := simpolicies.NewSIMPoliciesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building SIMPolicies client: %+v", err)
 	}
 	configureFunc(sIMPoliciesClient.Client)
 
-	sIMPolicyClient, err := simpolicy.NewSIMPolicyClientWithBaseURI(api)
+	sIMPolicyClient, err := simpolicy.NewSIMPolicyClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building SIMPolicy client: %+v", err)
 	}
 	configureFunc(sIMPolicyClient.Client)
 
-	sIMsClient, err := sims.NewSIMsClientWithBaseURI(api)
+	sIMsClient, err := sims.NewSIMsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building SIMs client: %+v", err)
 	}
 	configureFunc(sIMsClient.Client)
 
-	serviceClient, err := service.NewServiceClientWithBaseURI(api)
+	serviceClient, err := service.NewServiceClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Service client: %+v", err)
 	}
 	configureFunc(serviceClient.Client)
 
-	servicesClient, err := services.NewServicesClientWithBaseURI(api)
+	servicesClient, err := services.NewServicesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Services client: %+v", err)
 	}
 	configureFunc(servicesClient.Client)
 
-	siteClient, err := site.NewSiteClientWithBaseURI(api)
+	siteClient, err := site.NewSiteClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Site client: %+v", err)
 	}
 	configureFunc(siteClient.Client)
 
-	sitesClient, err := sites.NewSitesClientWithBaseURI(api)
+	sitesClient, err := sites.NewSitesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Sites client: %+v", err)
 	}
 	configureFunc(sitesClient.Client)
 
-	sliceClient, err := slice.NewSliceClientWithBaseURI(api)
+	sliceClient, err := slice.NewSliceClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Slice client: %+v", err)
 	}
 	configureFunc(sliceClient.Client)
 
-	slicesClient, err := slices.NewSlicesClientWithBaseURI(api)
+	slicesClient, err := slices.NewSlicesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Slices client: %+v", err)
 	}

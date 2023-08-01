@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,8 +14,8 @@ type DatabaseEncryptionProtectorRevertClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewDatabaseEncryptionProtectorRevertClientWithBaseURI(api environments.Api) (*DatabaseEncryptionProtectorRevertClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(api, "databaseencryptionprotectorrevert", defaultApiVersion)
+func NewDatabaseEncryptionProtectorRevertClientWithBaseURI(sdkApi sdkEnv.Api) (*DatabaseEncryptionProtectorRevertClient, error) {
+	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "databaseencryptionprotectorrevert", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating DatabaseEncryptionProtectorRevertClient: %+v", err)
 	}

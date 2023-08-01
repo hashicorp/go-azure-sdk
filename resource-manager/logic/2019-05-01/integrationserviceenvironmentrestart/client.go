@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,8 +14,8 @@ type IntegrationServiceEnvironmentRestartClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewIntegrationServiceEnvironmentRestartClientWithBaseURI(api environments.Api) (*IntegrationServiceEnvironmentRestartClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(api, "integrationserviceenvironmentrestart", defaultApiVersion)
+func NewIntegrationServiceEnvironmentRestartClientWithBaseURI(sdkApi sdkEnv.Api) (*IntegrationServiceEnvironmentRestartClient, error) {
+	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "integrationserviceenvironmentrestart", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating IntegrationServiceEnvironmentRestartClient: %+v", err)
 	}

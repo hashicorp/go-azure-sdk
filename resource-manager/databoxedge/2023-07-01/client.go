@@ -27,7 +27,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/databoxedge/2023-07-01/triggers"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/databoxedge/2023-07-01/users"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -53,122 +53,122 @@ type Client struct {
 	Users                     *users.UsersClient
 }
 
-func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
-	addonsClient, err := addons.NewAddonsClientWithBaseURI(api)
+func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+	addonsClient, err := addons.NewAddonsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Addons client: %+v", err)
 	}
 	configureFunc(addonsClient.Client)
 
-	alertsClient, err := alerts.NewAlertsClientWithBaseURI(api)
+	alertsClient, err := alerts.NewAlertsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Alerts client: %+v", err)
 	}
 	configureFunc(alertsClient.Client)
 
-	availableSkusClient, err := availableskus.NewAvailableSkusClientWithBaseURI(api)
+	availableSkusClient, err := availableskus.NewAvailableSkusClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building AvailableSkus client: %+v", err)
 	}
 	configureFunc(availableSkusClient.Client)
 
-	bandwidthSchedulesClient, err := bandwidthschedules.NewBandwidthSchedulesClientWithBaseURI(api)
+	bandwidthSchedulesClient, err := bandwidthschedules.NewBandwidthSchedulesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building BandwidthSchedules client: %+v", err)
 	}
 	configureFunc(bandwidthSchedulesClient.Client)
 
-	containersClient, err := containers.NewContainersClientWithBaseURI(api)
+	containersClient, err := containers.NewContainersClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Containers client: %+v", err)
 	}
 	configureFunc(containersClient.Client)
 
-	deviceCapacityCheckClient, err := devicecapacitycheck.NewDeviceCapacityCheckClientWithBaseURI(api)
+	deviceCapacityCheckClient, err := devicecapacitycheck.NewDeviceCapacityCheckClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building DeviceCapacityCheck client: %+v", err)
 	}
 	configureFunc(deviceCapacityCheckClient.Client)
 
-	deviceCapacityInfoClient, err := devicecapacityinfo.NewDeviceCapacityInfoClientWithBaseURI(api)
+	deviceCapacityInfoClient, err := devicecapacityinfo.NewDeviceCapacityInfoClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building DeviceCapacityInfo client: %+v", err)
 	}
 	configureFunc(deviceCapacityInfoClient.Client)
 
-	devicesClient, err := devices.NewDevicesClientWithBaseURI(api)
+	devicesClient, err := devices.NewDevicesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Devices client: %+v", err)
 	}
 	configureFunc(devicesClient.Client)
 
-	diagnosticSettingsClient, err := diagnosticsettings.NewDiagnosticSettingsClientWithBaseURI(api)
+	diagnosticSettingsClient, err := diagnosticsettings.NewDiagnosticSettingsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building DiagnosticSettings client: %+v", err)
 	}
 	configureFunc(diagnosticSettingsClient.Client)
 
-	jobsClient, err := jobs.NewJobsClientWithBaseURI(api)
+	jobsClient, err := jobs.NewJobsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Jobs client: %+v", err)
 	}
 	configureFunc(jobsClient.Client)
 
-	monitoringConfigClient, err := monitoringconfig.NewMonitoringConfigClientWithBaseURI(api)
+	monitoringConfigClient, err := monitoringconfig.NewMonitoringConfigClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building MonitoringConfig client: %+v", err)
 	}
 	configureFunc(monitoringConfigClient.Client)
 
-	nodesClient, err := nodes.NewNodesClientWithBaseURI(api)
+	nodesClient, err := nodes.NewNodesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Nodes client: %+v", err)
 	}
 	configureFunc(nodesClient.Client)
 
-	ordersClient, err := orders.NewOrdersClientWithBaseURI(api)
+	ordersClient, err := orders.NewOrdersClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Orders client: %+v", err)
 	}
 	configureFunc(ordersClient.Client)
 
-	rolesClient, err := roles.NewRolesClientWithBaseURI(api)
+	rolesClient, err := roles.NewRolesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Roles client: %+v", err)
 	}
 	configureFunc(rolesClient.Client)
 
-	sharesClient, err := shares.NewSharesClientWithBaseURI(api)
+	sharesClient, err := shares.NewSharesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Shares client: %+v", err)
 	}
 	configureFunc(sharesClient.Client)
 
-	storageAccountCredentialsClient, err := storageaccountcredentials.NewStorageAccountCredentialsClientWithBaseURI(api)
+	storageAccountCredentialsClient, err := storageaccountcredentials.NewStorageAccountCredentialsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building StorageAccountCredentials client: %+v", err)
 	}
 	configureFunc(storageAccountCredentialsClient.Client)
 
-	storageAccountsClient, err := storageaccounts.NewStorageAccountsClientWithBaseURI(api)
+	storageAccountsClient, err := storageaccounts.NewStorageAccountsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building StorageAccounts client: %+v", err)
 	}
 	configureFunc(storageAccountsClient.Client)
 
-	supportPackagesClient, err := supportpackages.NewSupportPackagesClientWithBaseURI(api)
+	supportPackagesClient, err := supportpackages.NewSupportPackagesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building SupportPackages client: %+v", err)
 	}
 	configureFunc(supportPackagesClient.Client)
 
-	triggersClient, err := triggers.NewTriggersClientWithBaseURI(api)
+	triggersClient, err := triggers.NewTriggersClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Triggers client: %+v", err)
 	}
 	configureFunc(triggersClient.Client)
 
-	usersClient, err := users.NewUsersClientWithBaseURI(api)
+	usersClient, err := users.NewUsersClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Users client: %+v", err)
 	}

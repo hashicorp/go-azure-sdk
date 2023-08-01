@@ -32,7 +32,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/web/2022-09-01/workflowtriggers"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/web/2022-09-01/workflowversions"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -63,152 +63,152 @@ type Client struct {
 	Workflows                    *workflows.WorkflowsClient
 }
 
-func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
-	appServiceCertificateOrdersClient, err := appservicecertificateorders.NewAppServiceCertificateOrdersClientWithBaseURI(api)
+func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+	appServiceCertificateOrdersClient, err := appservicecertificateorders.NewAppServiceCertificateOrdersClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building AppServiceCertificateOrders client: %+v", err)
 	}
 	configureFunc(appServiceCertificateOrdersClient.Client)
 
-	appServiceEnvironmentsClient, err := appserviceenvironments.NewAppServiceEnvironmentsClientWithBaseURI(api)
+	appServiceEnvironmentsClient, err := appserviceenvironments.NewAppServiceEnvironmentsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building AppServiceEnvironments client: %+v", err)
 	}
 	configureFunc(appServiceEnvironmentsClient.Client)
 
-	appServicePlansClient, err := appserviceplans.NewAppServicePlansClientWithBaseURI(api)
+	appServicePlansClient, err := appserviceplans.NewAppServicePlansClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building AppServicePlans client: %+v", err)
 	}
 	configureFunc(appServicePlansClient.Client)
 
-	certificateOrdersDiagnosticsClient, err := certificateordersdiagnostics.NewCertificateOrdersDiagnosticsClientWithBaseURI(api)
+	certificateOrdersDiagnosticsClient, err := certificateordersdiagnostics.NewCertificateOrdersDiagnosticsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building CertificateOrdersDiagnostics client: %+v", err)
 	}
 	configureFunc(certificateOrdersDiagnosticsClient.Client)
 
-	certificatesClient, err := certificates.NewCertificatesClientWithBaseURI(api)
+	certificatesClient, err := certificates.NewCertificatesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Certificates client: %+v", err)
 	}
 	configureFunc(certificatesClient.Client)
 
-	containerAppsClient, err := containerapps.NewContainerAppsClientWithBaseURI(api)
+	containerAppsClient, err := containerapps.NewContainerAppsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building ContainerApps client: %+v", err)
 	}
 	configureFunc(containerAppsClient.Client)
 
-	containerAppsRevisionsClient, err := containerappsrevisions.NewContainerAppsRevisionsClientWithBaseURI(api)
+	containerAppsRevisionsClient, err := containerappsrevisions.NewContainerAppsRevisionsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building ContainerAppsRevisions client: %+v", err)
 	}
 	configureFunc(containerAppsRevisionsClient.Client)
 
-	deletedWebAppsClient, err := deletedwebapps.NewDeletedWebAppsClientWithBaseURI(api)
+	deletedWebAppsClient, err := deletedwebapps.NewDeletedWebAppsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building DeletedWebApps client: %+v", err)
 	}
 	configureFunc(deletedWebAppsClient.Client)
 
-	diagnosticsClient, err := diagnostics.NewDiagnosticsClientWithBaseURI(api)
+	diagnosticsClient, err := diagnostics.NewDiagnosticsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Diagnostics client: %+v", err)
 	}
 	configureFunc(diagnosticsClient.Client)
 
-	domainsClient, err := domains.NewDomainsClientWithBaseURI(api)
+	domainsClient, err := domains.NewDomainsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Domains client: %+v", err)
 	}
 	configureFunc(domainsClient.Client)
 
-	globalClient, err := global.NewGlobalClientWithBaseURI(api)
+	globalClient, err := global.NewGlobalClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Global client: %+v", err)
 	}
 	configureFunc(globalClient.Client)
 
-	kubeEnvironmentsClient, err := kubeenvironments.NewKubeEnvironmentsClientWithBaseURI(api)
+	kubeEnvironmentsClient, err := kubeenvironments.NewKubeEnvironmentsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building KubeEnvironments client: %+v", err)
 	}
 	configureFunc(kubeEnvironmentsClient.Client)
 
-	providerClient, err := provider.NewProviderClientWithBaseURI(api)
+	providerClient, err := provider.NewProviderClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Provider client: %+v", err)
 	}
 	configureFunc(providerClient.Client)
 
-	recommendationsClient, err := recommendations.NewRecommendationsClientWithBaseURI(api)
+	recommendationsClient, err := recommendations.NewRecommendationsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Recommendations client: %+v", err)
 	}
 	configureFunc(recommendationsClient.Client)
 
-	resourceHealthMetadataClient, err := resourcehealthmetadata.NewResourceHealthMetadataClientWithBaseURI(api)
+	resourceHealthMetadataClient, err := resourcehealthmetadata.NewResourceHealthMetadataClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building ResourceHealthMetadata client: %+v", err)
 	}
 	configureFunc(resourceHealthMetadataClient.Client)
 
-	resourceProvidersClient, err := resourceproviders.NewResourceProvidersClientWithBaseURI(api)
+	resourceProvidersClient, err := resourceproviders.NewResourceProvidersClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building ResourceProviders client: %+v", err)
 	}
 	configureFunc(resourceProvidersClient.Client)
 
-	staticSitesClient, err := staticsites.NewStaticSitesClientWithBaseURI(api)
+	staticSitesClient, err := staticsites.NewStaticSitesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building StaticSites client: %+v", err)
 	}
 	configureFunc(staticSitesClient.Client)
 
-	topLevelDomainsClient, err := topleveldomains.NewTopLevelDomainsClientWithBaseURI(api)
+	topLevelDomainsClient, err := topleveldomains.NewTopLevelDomainsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building TopLevelDomains client: %+v", err)
 	}
 	configureFunc(topLevelDomainsClient.Client)
 
-	webAppsClient, err := webapps.NewWebAppsClientWithBaseURI(api)
+	webAppsClient, err := webapps.NewWebAppsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building WebApps client: %+v", err)
 	}
 	configureFunc(webAppsClient.Client)
 
-	workflowRunActionsClient, err := workflowrunactions.NewWorkflowRunActionsClientWithBaseURI(api)
+	workflowRunActionsClient, err := workflowrunactions.NewWorkflowRunActionsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building WorkflowRunActions client: %+v", err)
 	}
 	configureFunc(workflowRunActionsClient.Client)
 
-	workflowRunsClient, err := workflowruns.NewWorkflowRunsClientWithBaseURI(api)
+	workflowRunsClient, err := workflowruns.NewWorkflowRunsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building WorkflowRuns client: %+v", err)
 	}
 	configureFunc(workflowRunsClient.Client)
 
-	workflowTriggerHistoriesClient, err := workflowtriggerhistories.NewWorkflowTriggerHistoriesClientWithBaseURI(api)
+	workflowTriggerHistoriesClient, err := workflowtriggerhistories.NewWorkflowTriggerHistoriesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building WorkflowTriggerHistories client: %+v", err)
 	}
 	configureFunc(workflowTriggerHistoriesClient.Client)
 
-	workflowTriggersClient, err := workflowtriggers.NewWorkflowTriggersClientWithBaseURI(api)
+	workflowTriggersClient, err := workflowtriggers.NewWorkflowTriggersClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building WorkflowTriggers client: %+v", err)
 	}
 	configureFunc(workflowTriggersClient.Client)
 
-	workflowVersionsClient, err := workflowversions.NewWorkflowVersionsClientWithBaseURI(api)
+	workflowVersionsClient, err := workflowversions.NewWorkflowVersionsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building WorkflowVersions client: %+v", err)
 	}
 	configureFunc(workflowVersionsClient.Client)
 
-	workflowsClient, err := workflows.NewWorkflowsClientWithBaseURI(api)
+	workflowsClient, err := workflows.NewWorkflowsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Workflows client: %+v", err)
 	}

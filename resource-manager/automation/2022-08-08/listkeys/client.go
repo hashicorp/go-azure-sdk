@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,8 +14,8 @@ type ListKeysClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewListKeysClientWithBaseURI(api environments.Api) (*ListKeysClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(api, "listkeys", defaultApiVersion)
+func NewListKeysClientWithBaseURI(sdkApi sdkEnv.Api) (*ListKeysClient, error) {
+	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "listkeys", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ListKeysClient: %+v", err)
 	}

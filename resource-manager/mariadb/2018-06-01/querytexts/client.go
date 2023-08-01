@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,8 +14,8 @@ type QueryTextsClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewQueryTextsClientWithBaseURI(api environments.Api) (*QueryTextsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(api, "querytexts", defaultApiVersion)
+func NewQueryTextsClientWithBaseURI(sdkApi sdkEnv.Api) (*QueryTextsClient, error) {
+	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "querytexts", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating QueryTextsClient: %+v", err)
 	}

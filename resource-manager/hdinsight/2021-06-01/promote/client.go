@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,8 +14,8 @@ type PromoteClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewPromoteClientWithBaseURI(api environments.Api) (*PromoteClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(api, "promote", defaultApiVersion)
+func NewPromoteClientWithBaseURI(sdkApi sdkEnv.Api) (*PromoteClient, error) {
+	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "promote", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating PromoteClient: %+v", err)
 	}

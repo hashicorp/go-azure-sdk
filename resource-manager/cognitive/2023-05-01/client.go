@@ -17,7 +17,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/cognitive/2023-05-01/skus"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/cognitive/2023-05-01/usages"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -33,62 +33,62 @@ type Client struct {
 	Usages                           *usages.UsagesClient
 }
 
-func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
-	cognitiveServicesAccountsClient, err := cognitiveservicesaccounts.NewCognitiveServicesAccountsClientWithBaseURI(api)
+func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+	cognitiveServicesAccountsClient, err := cognitiveservicesaccounts.NewCognitiveServicesAccountsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building CognitiveServicesAccounts client: %+v", err)
 	}
 	configureFunc(cognitiveServicesAccountsClient.Client)
 
-	cognitiveServicesCommitmentPlansClient, err := cognitiveservicescommitmentplans.NewCognitiveServicesCommitmentPlansClientWithBaseURI(api)
+	cognitiveServicesCommitmentPlansClient, err := cognitiveservicescommitmentplans.NewCognitiveServicesCommitmentPlansClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building CognitiveServicesCommitmentPlans client: %+v", err)
 	}
 	configureFunc(cognitiveServicesCommitmentPlansClient.Client)
 
-	commitmentPlansClient, err := commitmentplans.NewCommitmentPlansClientWithBaseURI(api)
+	commitmentPlansClient, err := commitmentplans.NewCommitmentPlansClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building CommitmentPlans client: %+v", err)
 	}
 	configureFunc(commitmentPlansClient.Client)
 
-	commitmentTiersClient, err := commitmenttiers.NewCommitmentTiersClientWithBaseURI(api)
+	commitmentTiersClient, err := commitmenttiers.NewCommitmentTiersClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building CommitmentTiers client: %+v", err)
 	}
 	configureFunc(commitmentTiersClient.Client)
 
-	deploymentsClient, err := deployments.NewDeploymentsClientWithBaseURI(api)
+	deploymentsClient, err := deployments.NewDeploymentsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Deployments client: %+v", err)
 	}
 	configureFunc(deploymentsClient.Client)
 
-	modelsClient, err := models.NewModelsClientWithBaseURI(api)
+	modelsClient, err := models.NewModelsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Models client: %+v", err)
 	}
 	configureFunc(modelsClient.Client)
 
-	privateEndpointConnectionsClient, err := privateendpointconnections.NewPrivateEndpointConnectionsClientWithBaseURI(api)
+	privateEndpointConnectionsClient, err := privateendpointconnections.NewPrivateEndpointConnectionsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building PrivateEndpointConnections client: %+v", err)
 	}
 	configureFunc(privateEndpointConnectionsClient.Client)
 
-	privateLinkResourcesClient, err := privatelinkresources.NewPrivateLinkResourcesClientWithBaseURI(api)
+	privateLinkResourcesClient, err := privatelinkresources.NewPrivateLinkResourcesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building PrivateLinkResources client: %+v", err)
 	}
 	configureFunc(privateLinkResourcesClient.Client)
 
-	skusClient, err := skus.NewSkusClientWithBaseURI(api)
+	skusClient, err := skus.NewSkusClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Skus client: %+v", err)
 	}
 	configureFunc(skusClient.Client)
 
-	usagesClient, err := usages.NewUsagesClientWithBaseURI(api)
+	usagesClient, err := usages.NewUsagesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Usages client: %+v", err)
 	}

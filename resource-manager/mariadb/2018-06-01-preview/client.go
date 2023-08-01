@@ -21,7 +21,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/mariadb/2018-06-01-preview/updateconfigurations"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/mariadb/2018-06-01-preview/virtualnetworkrules"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -41,86 +41,86 @@ type Client struct {
 	VirtualNetworkRules          *virtualnetworkrules.VirtualNetworkRulesClient
 }
 
-func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
-	checkNameAvailabilityClient, err := checknameavailability.NewCheckNameAvailabilityClientWithBaseURI(api)
+func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+	checkNameAvailabilityClient, err := checknameavailability.NewCheckNameAvailabilityClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building CheckNameAvailability client: %+v", err)
 	}
 	configureFunc(checkNameAvailabilityClient.Client)
 
-	configurationsClient, err := configurations.NewConfigurationsClientWithBaseURI(api)
+	configurationsClient, err := configurations.NewConfigurationsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Configurations client: %+v", err)
 	}
 	configureFunc(configurationsClient.Client)
 
-	databasesClient, err := databases.NewDatabasesClientWithBaseURI(api)
+	databasesClient, err := databases.NewDatabasesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Databases client: %+v", err)
 	}
 	configureFunc(databasesClient.Client)
 
-	firewallRulesClient, err := firewallrules.NewFirewallRulesClientWithBaseURI(api)
+	firewallRulesClient, err := firewallrules.NewFirewallRulesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building FirewallRules client: %+v", err)
 	}
 	configureFunc(firewallRulesClient.Client)
 
-	locationBasedPerformanceTierClient, err := locationbasedperformancetier.NewLocationBasedPerformanceTierClientWithBaseURI(api)
+	locationBasedPerformanceTierClient, err := locationbasedperformancetier.NewLocationBasedPerformanceTierClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building LocationBasedPerformanceTier client: %+v", err)
 	}
 	configureFunc(locationBasedPerformanceTierClient.Client)
 
-	logFilesClient, err := logfiles.NewLogFilesClientWithBaseURI(api)
+	logFilesClient, err := logfiles.NewLogFilesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building LogFiles client: %+v", err)
 	}
 	configureFunc(logFilesClient.Client)
 
-	recoverableServersClient, err := recoverableservers.NewRecoverableServersClientWithBaseURI(api)
+	recoverableServersClient, err := recoverableservers.NewRecoverableServersClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building RecoverableServers client: %+v", err)
 	}
 	configureFunc(recoverableServersClient.Client)
 
-	replicasClient, err := replicas.NewReplicasClientWithBaseURI(api)
+	replicasClient, err := replicas.NewReplicasClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Replicas client: %+v", err)
 	}
 	configureFunc(replicasClient.Client)
 
-	serverBasedPerformanceTierClient, err := serverbasedperformancetier.NewServerBasedPerformanceTierClientWithBaseURI(api)
+	serverBasedPerformanceTierClient, err := serverbasedperformancetier.NewServerBasedPerformanceTierClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building ServerBasedPerformanceTier client: %+v", err)
 	}
 	configureFunc(serverBasedPerformanceTierClient.Client)
 
-	serverRestartClient, err := serverrestart.NewServerRestartClientWithBaseURI(api)
+	serverRestartClient, err := serverrestart.NewServerRestartClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building ServerRestart client: %+v", err)
 	}
 	configureFunc(serverRestartClient.Client)
 
-	serverSecurityAlertPoliciesClient, err := serversecurityalertpolicies.NewServerSecurityAlertPoliciesClientWithBaseURI(api)
+	serverSecurityAlertPoliciesClient, err := serversecurityalertpolicies.NewServerSecurityAlertPoliciesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building ServerSecurityAlertPolicies client: %+v", err)
 	}
 	configureFunc(serverSecurityAlertPoliciesClient.Client)
 
-	serversClient, err := servers.NewServersClientWithBaseURI(api)
+	serversClient, err := servers.NewServersClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Servers client: %+v", err)
 	}
 	configureFunc(serversClient.Client)
 
-	updateConfigurationsClient, err := updateconfigurations.NewUpdateConfigurationsClientWithBaseURI(api)
+	updateConfigurationsClient, err := updateconfigurations.NewUpdateConfigurationsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building UpdateConfigurations client: %+v", err)
 	}
 	configureFunc(updateConfigurationsClient.Client)
 
-	virtualNetworkRulesClient, err := virtualnetworkrules.NewVirtualNetworkRulesClientWithBaseURI(api)
+	virtualNetworkRulesClient, err := virtualnetworkrules.NewVirtualNetworkRulesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building VirtualNetworkRules client: %+v", err)
 	}

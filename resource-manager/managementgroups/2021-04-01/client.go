@@ -11,7 +11,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/managementgroups/2021-04-01/managementgroups"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/managementgroups/2021-04-01/tenantbackfill"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -21,26 +21,26 @@ type Client struct {
 	TenantBackfill        *tenantbackfill.TenantBackfillClient
 }
 
-func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
-	checkNameAvailabilityClient, err := checknameavailability.NewCheckNameAvailabilityClientWithBaseURI(api)
+func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+	checkNameAvailabilityClient, err := checknameavailability.NewCheckNameAvailabilityClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building CheckNameAvailability client: %+v", err)
 	}
 	configureFunc(checkNameAvailabilityClient.Client)
 
-	entitiesClient, err := entities.NewEntitiesClientWithBaseURI(api)
+	entitiesClient, err := entities.NewEntitiesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Entities client: %+v", err)
 	}
 	configureFunc(entitiesClient.Client)
 
-	managementGroupsClient, err := managementgroups.NewManagementGroupsClientWithBaseURI(api)
+	managementGroupsClient, err := managementgroups.NewManagementGroupsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building ManagementGroups client: %+v", err)
 	}
 	configureFunc(managementGroupsClient.Client)
 
-	tenantBackfillClient, err := tenantbackfill.NewTenantBackfillClientWithBaseURI(api)
+	tenantBackfillClient, err := tenantbackfill.NewTenantBackfillClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building TenantBackfill client: %+v", err)
 	}

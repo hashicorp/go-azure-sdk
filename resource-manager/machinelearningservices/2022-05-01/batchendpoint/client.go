@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,8 +14,8 @@ type BatchEndpointClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewBatchEndpointClientWithBaseURI(api environments.Api) (*BatchEndpointClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(api, "batchendpoint", defaultApiVersion)
+func NewBatchEndpointClientWithBaseURI(sdkApi sdkEnv.Api) (*BatchEndpointClient, error) {
+	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "batchendpoint", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating BatchEndpointClient: %+v", err)
 	}

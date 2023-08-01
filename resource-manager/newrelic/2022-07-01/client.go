@@ -12,7 +12,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/newrelic/2022-07-01/plan"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/newrelic/2022-07-01/tagrules"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -23,32 +23,32 @@ type Client struct {
 	TagRules      *tagrules.TagRulesClient
 }
 
-func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
-	accountsClient, err := accounts.NewAccountsClientWithBaseURI(api)
+func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+	accountsClient, err := accounts.NewAccountsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Accounts client: %+v", err)
 	}
 	configureFunc(accountsClient.Client)
 
-	monitorsClient, err := monitors.NewMonitorsClientWithBaseURI(api)
+	monitorsClient, err := monitors.NewMonitorsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Monitors client: %+v", err)
 	}
 	configureFunc(monitorsClient.Client)
 
-	organizationsClient, err := organizations.NewOrganizationsClientWithBaseURI(api)
+	organizationsClient, err := organizations.NewOrganizationsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Organizations client: %+v", err)
 	}
 	configureFunc(organizationsClient.Client)
 
-	planClient, err := plan.NewPlanClientWithBaseURI(api)
+	planClient, err := plan.NewPlanClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Plan client: %+v", err)
 	}
 	configureFunc(planClient.Client)
 
-	tagRulesClient, err := tagrules.NewTagRulesClientWithBaseURI(api)
+	tagRulesClient, err := tagrules.NewTagRulesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building TagRules client: %+v", err)
 	}

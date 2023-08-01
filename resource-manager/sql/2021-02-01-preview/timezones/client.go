@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,8 +14,8 @@ type TimeZonesClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewTimeZonesClientWithBaseURI(api environments.Api) (*TimeZonesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(api, "timezones", defaultApiVersion)
+func NewTimeZonesClientWithBaseURI(sdkApi sdkEnv.Api) (*TimeZonesClient, error) {
+	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "timezones", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating TimeZonesClient: %+v", err)
 	}

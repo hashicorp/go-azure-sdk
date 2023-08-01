@@ -12,7 +12,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/datalakestore/2016-11-01/trustedidproviders"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/datalakestore/2016-11-01/virtualnetworkrules"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -23,32 +23,32 @@ type Client struct {
 	VirtualNetworkRules *virtualnetworkrules.VirtualNetworkRulesClient
 }
 
-func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
-	accountsClient, err := accounts.NewAccountsClientWithBaseURI(api)
+func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+	accountsClient, err := accounts.NewAccountsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Accounts client: %+v", err)
 	}
 	configureFunc(accountsClient.Client)
 
-	firewallRulesClient, err := firewallrules.NewFirewallRulesClientWithBaseURI(api)
+	firewallRulesClient, err := firewallrules.NewFirewallRulesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building FirewallRules client: %+v", err)
 	}
 	configureFunc(firewallRulesClient.Client)
 
-	locationsClient, err := locations.NewLocationsClientWithBaseURI(api)
+	locationsClient, err := locations.NewLocationsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Locations client: %+v", err)
 	}
 	configureFunc(locationsClient.Client)
 
-	trustedIdProvidersClient, err := trustedidproviders.NewTrustedIdProvidersClientWithBaseURI(api)
+	trustedIdProvidersClient, err := trustedidproviders.NewTrustedIdProvidersClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building TrustedIdProviders client: %+v", err)
 	}
 	configureFunc(trustedIdProvidersClient.Client)
 
-	virtualNetworkRulesClient, err := virtualnetworkrules.NewVirtualNetworkRulesClientWithBaseURI(api)
+	virtualNetworkRulesClient, err := virtualnetworkrules.NewVirtualNetworkRulesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building VirtualNetworkRules client: %+v", err)
 	}

@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,8 +14,8 @@ type PacketCoreControlPlaneCollectDiagnosticsPackageClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewPacketCoreControlPlaneCollectDiagnosticsPackageClientWithBaseURI(api environments.Api) (*PacketCoreControlPlaneCollectDiagnosticsPackageClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(api, "packetcorecontrolplanecollectdiagnosticspackage", defaultApiVersion)
+func NewPacketCoreControlPlaneCollectDiagnosticsPackageClientWithBaseURI(sdkApi sdkEnv.Api) (*PacketCoreControlPlaneCollectDiagnosticsPackageClient, error) {
+	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "packetcorecontrolplanecollectdiagnosticspackage", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating PacketCoreControlPlaneCollectDiagnosticsPackageClient: %+v", err)
 	}

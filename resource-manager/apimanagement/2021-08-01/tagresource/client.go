@@ -1,18 +1,26 @@
 package tagresource
 
-import "github.com/Azure/go-autorest/autorest"
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type TagResourceClient struct {
-	Client  autorest.Client
-	baseUri string
+	Client *resourcemanager.Client
 }
 
-func NewTagResourceClientWithBaseURI(endpoint string) TagResourceClient {
-	return TagResourceClient{
-		Client:  autorest.NewClientWithUserAgent(userAgent()),
-		baseUri: endpoint,
+func NewTagResourceClientWithBaseURI(sdkApi sdkEnv.Api) (*TagResourceClient, error) {
+	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "tagresource", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating TagResourceClient: %+v", err)
 	}
+
+	return &TagResourceClient{
+		Client: client,
+	}, nil
 }

@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,8 +14,8 @@ type StorageAccountsClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewStorageAccountsClientWithBaseURI(api environments.Api) (*StorageAccountsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(api, "storageaccounts", defaultApiVersion)
+func NewStorageAccountsClientWithBaseURI(sdkApi sdkEnv.Api) (*StorageAccountsClient, error) {
+	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "storageaccounts", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating StorageAccountsClient: %+v", err)
 	}

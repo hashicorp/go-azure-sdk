@@ -13,7 +13,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/datalakeanalytics/2016-11-01/locations"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/datalakeanalytics/2016-11-01/storageaccounts"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -25,38 +25,38 @@ type Client struct {
 	StorageAccounts       *storageaccounts.StorageAccountsClient
 }
 
-func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
-	accountsClient, err := accounts.NewAccountsClientWithBaseURI(api)
+func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+	accountsClient, err := accounts.NewAccountsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Accounts client: %+v", err)
 	}
 	configureFunc(accountsClient.Client)
 
-	computePoliciesClient, err := computepolicies.NewComputePoliciesClientWithBaseURI(api)
+	computePoliciesClient, err := computepolicies.NewComputePoliciesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building ComputePolicies client: %+v", err)
 	}
 	configureFunc(computePoliciesClient.Client)
 
-	dataLakeStoreAccountsClient, err := datalakestoreaccounts.NewDataLakeStoreAccountsClientWithBaseURI(api)
+	dataLakeStoreAccountsClient, err := datalakestoreaccounts.NewDataLakeStoreAccountsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building DataLakeStoreAccounts client: %+v", err)
 	}
 	configureFunc(dataLakeStoreAccountsClient.Client)
 
-	firewallRulesClient, err := firewallrules.NewFirewallRulesClientWithBaseURI(api)
+	firewallRulesClient, err := firewallrules.NewFirewallRulesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building FirewallRules client: %+v", err)
 	}
 	configureFunc(firewallRulesClient.Client)
 
-	locationsClient, err := locations.NewLocationsClientWithBaseURI(api)
+	locationsClient, err := locations.NewLocationsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Locations client: %+v", err)
 	}
 	configureFunc(locationsClient.Client)
 
-	storageAccountsClient, err := storageaccounts.NewStorageAccountsClientWithBaseURI(api)
+	storageAccountsClient, err := storageaccounts.NewStorageAccountsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building StorageAccounts client: %+v", err)
 	}

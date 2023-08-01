@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,8 +14,8 @@ type OnlineDeploymentClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewOnlineDeploymentClientWithBaseURI(api environments.Api) (*OnlineDeploymentClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(api, "onlinedeployment", defaultApiVersion)
+func NewOnlineDeploymentClientWithBaseURI(sdkApi sdkEnv.Api) (*OnlineDeploymentClient, error) {
+	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "onlinedeployment", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating OnlineDeploymentClient: %+v", err)
 	}

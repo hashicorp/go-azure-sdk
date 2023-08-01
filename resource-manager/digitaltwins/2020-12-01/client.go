@@ -11,7 +11,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/digitaltwins/2020-12-01/endpoints"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/digitaltwins/2020-12-01/privateendpoints"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -21,26 +21,26 @@ type Client struct {
 	PrivateEndpoints      *privateendpoints.PrivateEndpointsClient
 }
 
-func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
-	checkNameAvailabilityClient, err := checknameavailability.NewCheckNameAvailabilityClientWithBaseURI(api)
+func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+	checkNameAvailabilityClient, err := checknameavailability.NewCheckNameAvailabilityClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building CheckNameAvailability client: %+v", err)
 	}
 	configureFunc(checkNameAvailabilityClient.Client)
 
-	digitalTwinsInstanceClient, err := digitaltwinsinstance.NewDigitalTwinsInstanceClientWithBaseURI(api)
+	digitalTwinsInstanceClient, err := digitaltwinsinstance.NewDigitalTwinsInstanceClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building DigitalTwinsInstance client: %+v", err)
 	}
 	configureFunc(digitalTwinsInstanceClient.Client)
 
-	endpointsClient, err := endpoints.NewEndpointsClientWithBaseURI(api)
+	endpointsClient, err := endpoints.NewEndpointsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Endpoints client: %+v", err)
 	}
 	configureFunc(endpointsClient.Client)
 
-	privateEndpointsClient, err := privateendpoints.NewPrivateEndpointsClientWithBaseURI(api)
+	privateEndpointsClient, err := privateendpoints.NewPrivateEndpointsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building PrivateEndpoints client: %+v", err)
 	}

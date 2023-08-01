@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,8 +14,8 @@ type PowerBIDedicatedClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewPowerBIDedicatedClientWithBaseURI(api environments.Api) (*PowerBIDedicatedClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(api, "powerbidedicated", defaultApiVersion)
+func NewPowerBIDedicatedClientWithBaseURI(sdkApi sdkEnv.Api) (*PowerBIDedicatedClient, error) {
+	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "powerbidedicated", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating PowerBIDedicatedClient: %+v", err)
 	}

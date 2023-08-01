@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,8 +14,8 @@ type ActivityClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewActivityClientWithBaseURI(api environments.Api) (*ActivityClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(api, "activity", defaultApiVersion)
+func NewActivityClientWithBaseURI(sdkApi sdkEnv.Api) (*ActivityClient, error) {
+	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "activity", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ActivityClient: %+v", err)
 	}

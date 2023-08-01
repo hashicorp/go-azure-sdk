@@ -9,7 +9,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/deviceprovisioningservices/2022-12-12/dpscertificate"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/deviceprovisioningservices/2022-12-12/iotdpsresource"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -17,14 +17,14 @@ type Client struct {
 	IotDpsResource *iotdpsresource.IotDpsResourceClient
 }
 
-func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
-	dpsCertificateClient, err := dpscertificate.NewDpsCertificateClientWithBaseURI(api)
+func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+	dpsCertificateClient, err := dpscertificate.NewDpsCertificateClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building DpsCertificate client: %+v", err)
 	}
 	configureFunc(dpsCertificateClient.Client)
 
-	iotDpsResourceClient, err := iotdpsresource.NewIotDpsResourceClientWithBaseURI(api)
+	iotDpsResourceClient, err := iotdpsresource.NewIotDpsResourceClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building IotDpsResource client: %+v", err)
 	}

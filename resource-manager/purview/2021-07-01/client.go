@@ -12,7 +12,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/purview/2021-07-01/privatelinkresource"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/purview/2021-07-01/provider"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -23,32 +23,32 @@ type Client struct {
 	Provider                  *provider.ProviderClient
 }
 
-func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
-	accountClient, err := account.NewAccountClientWithBaseURI(api)
+func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+	accountClient, err := account.NewAccountClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Account client: %+v", err)
 	}
 	configureFunc(accountClient.Client)
 
-	defaultAccountClient, err := defaultaccount.NewDefaultAccountClientWithBaseURI(api)
+	defaultAccountClient, err := defaultaccount.NewDefaultAccountClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building DefaultAccount client: %+v", err)
 	}
 	configureFunc(defaultAccountClient.Client)
 
-	privateEndpointConnectionClient, err := privateendpointconnection.NewPrivateEndpointConnectionClientWithBaseURI(api)
+	privateEndpointConnectionClient, err := privateendpointconnection.NewPrivateEndpointConnectionClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building PrivateEndpointConnection client: %+v", err)
 	}
 	configureFunc(privateEndpointConnectionClient.Client)
 
-	privateLinkResourceClient, err := privatelinkresource.NewPrivateLinkResourceClientWithBaseURI(api)
+	privateLinkResourceClient, err := privatelinkresource.NewPrivateLinkResourceClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building PrivateLinkResource client: %+v", err)
 	}
 	configureFunc(privateLinkResourceClient.Client)
 
-	providerClient, err := provider.NewProviderClientWithBaseURI(api)
+	providerClient, err := provider.NewProviderClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Provider client: %+v", err)
 	}

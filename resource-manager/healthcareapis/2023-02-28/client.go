@@ -18,7 +18,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/healthcareapis/2023-02-28/workspaceprivatelinkresources"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/healthcareapis/2023-02-28/workspaces"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -35,68 +35,68 @@ type Client struct {
 	Workspaces                          *workspaces.WorkspacesClient
 }
 
-func NewClientWithBaseURI(api environments.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
-	collectionClient, err := collection.NewCollectionClientWithBaseURI(api)
+func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+	collectionClient, err := collection.NewCollectionClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Collection client: %+v", err)
 	}
 	configureFunc(collectionClient.Client)
 
-	dicomServicesClient, err := dicomservices.NewDicomServicesClientWithBaseURI(api)
+	dicomServicesClient, err := dicomservices.NewDicomServicesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building DicomServices client: %+v", err)
 	}
 	configureFunc(dicomServicesClient.Client)
 
-	fhirServicesClient, err := fhirservices.NewFhirServicesClientWithBaseURI(api)
+	fhirServicesClient, err := fhirservices.NewFhirServicesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building FhirServices client: %+v", err)
 	}
 	configureFunc(fhirServicesClient.Client)
 
-	iotConnectorsClient, err := iotconnectors.NewIotConnectorsClientWithBaseURI(api)
+	iotConnectorsClient, err := iotconnectors.NewIotConnectorsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building IotConnectors client: %+v", err)
 	}
 	configureFunc(iotConnectorsClient.Client)
 
-	privateEndpointConnectionsClient, err := privateendpointconnections.NewPrivateEndpointConnectionsClientWithBaseURI(api)
+	privateEndpointConnectionsClient, err := privateendpointconnections.NewPrivateEndpointConnectionsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building PrivateEndpointConnections client: %+v", err)
 	}
 	configureFunc(privateEndpointConnectionsClient.Client)
 
-	privateLinkResourcesClient, err := privatelinkresources.NewPrivateLinkResourcesClientWithBaseURI(api)
+	privateLinkResourcesClient, err := privatelinkresources.NewPrivateLinkResourcesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building PrivateLinkResources client: %+v", err)
 	}
 	configureFunc(privateLinkResourcesClient.Client)
 
-	proxyClient, err := proxy.NewProxyClientWithBaseURI(api)
+	proxyClient, err := proxy.NewProxyClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Proxy client: %+v", err)
 	}
 	configureFunc(proxyClient.Client)
 
-	resourceClient, err := resource.NewResourceClientWithBaseURI(api)
+	resourceClient, err := resource.NewResourceClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Resource client: %+v", err)
 	}
 	configureFunc(resourceClient.Client)
 
-	workspacePrivateEndpointConnectionsClient, err := workspaceprivateendpointconnections.NewWorkspacePrivateEndpointConnectionsClientWithBaseURI(api)
+	workspacePrivateEndpointConnectionsClient, err := workspaceprivateendpointconnections.NewWorkspacePrivateEndpointConnectionsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building WorkspacePrivateEndpointConnections client: %+v", err)
 	}
 	configureFunc(workspacePrivateEndpointConnectionsClient.Client)
 
-	workspacePrivateLinkResourcesClient, err := workspaceprivatelinkresources.NewWorkspacePrivateLinkResourcesClientWithBaseURI(api)
+	workspacePrivateLinkResourcesClient, err := workspaceprivatelinkresources.NewWorkspacePrivateLinkResourcesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building WorkspacePrivateLinkResources client: %+v", err)
 	}
 	configureFunc(workspacePrivateLinkResourcesClient.Client)
 
-	workspacesClient, err := workspaces.NewWorkspacesClientWithBaseURI(api)
+	workspacesClient, err := workspaces.NewWorkspacesClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Workspaces client: %+v", err)
 	}

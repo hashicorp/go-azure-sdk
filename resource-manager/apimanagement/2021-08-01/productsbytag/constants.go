@@ -1,6 +1,10 @@
 package productsbytag
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -21,6 +25,19 @@ func PossibleValuesForApiType() []string {
 		string(ApiTypeSoap),
 		string(ApiTypeWebsocket),
 	}
+}
+
+func (s *ApiType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseApiType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseApiType(input string) (*ApiType, error) {
@@ -53,6 +70,19 @@ func PossibleValuesForBearerTokenSendingMethods() []string {
 	}
 }
 
+func (s *BearerTokenSendingMethods) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseBearerTokenSendingMethods(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseBearerTokenSendingMethods(input string) (*BearerTokenSendingMethods, error) {
 	vals := map[string]BearerTokenSendingMethods{
 		"authorizationheader": BearerTokenSendingMethodsAuthorizationHeader,
@@ -79,6 +109,19 @@ func PossibleValuesForProductState() []string {
 		string(ProductStateNotPublished),
 		string(ProductStatePublished),
 	}
+}
+
+func (s *ProductState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseProductState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseProductState(input string) (*ProductState, error) {
@@ -111,6 +154,19 @@ func PossibleValuesForProtocol() []string {
 		string(ProtocolWs),
 		string(ProtocolWss),
 	}
+}
+
+func (s *Protocol) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseProtocol(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseProtocol(input string) (*Protocol, error) {

@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -14,8 +14,8 @@ type ServerBasedPerformanceTierClient struct {
 	Client *resourcemanager.Client
 }
 
-func NewServerBasedPerformanceTierClientWithBaseURI(api environments.Api) (*ServerBasedPerformanceTierClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(api, "serverbasedperformancetier", defaultApiVersion)
+func NewServerBasedPerformanceTierClientWithBaseURI(sdkApi sdkEnv.Api) (*ServerBasedPerformanceTierClient, error) {
+	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "serverbasedperformancetier", defaultApiVersion)
 	if err != nil {
 		return nil, fmt.Errorf("instantiating ServerBasedPerformanceTierClient: %+v", err)
 	}
