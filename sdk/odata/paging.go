@@ -8,10 +8,14 @@ import (
 	"net/http"
 )
 
+// Pager handles custom paging for paginated API responses that do not follow the OData 4.0 standard for JSON services.
+// The underlying type should support unmarshalling a JSON response
 type Pager interface {
+	// NextPageLink returns a *Link describing the URI for the next page of results
 	NextPageLink() *Link
 }
 
+// NextLinkFromPager unmarshalls a *http.Response into the provided Pager and invokes its NextPageLink method
 func NextLinkFromPager(resp *http.Response, pager Pager) (*Link, error) {
 	// Read the response body and close it
 	respBody, err := io.ReadAll(resp.Body)

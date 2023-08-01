@@ -12,8 +12,10 @@ import (
 	"github.com/hashicorp/go-uuid"
 )
 
+// ODataVersion describes the highest OData spec version supported by this package
 const ODataVersion = "4.0" // TODO: support 4.01 - https://docs.oasis-open.org/odata/odata-json-format/v4.01/cs01/odata-json-format-v4.01-cs01.html#_Toc499720587
 
+// Id describes the ID of an OData entity.
 type Id string
 
 func (id Id) MarshalJSON() ([]byte, error) {
@@ -57,6 +59,7 @@ func (id *Id) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
+// Link describes a URI obtained from an OData annotation.
 type Link string
 
 func (l *Link) UnmarshalJSON(data []byte) error {
