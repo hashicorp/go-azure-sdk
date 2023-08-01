@@ -3,13 +3,18 @@
 
 package client
 
-import "fmt"
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
 
 type RequestOptions struct {
 	ContentType         string
 	ExpectedStatusCodes []int
 	HttpMethod          string
 	OptionsObject       Options
+	Pager               odata.Pager
 	Path                string
 }
 

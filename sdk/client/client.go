@@ -80,6 +80,7 @@ type Request struct {
 	ValidStatusFunc  ValidStatusFunc
 
 	Client BaseClient
+	Pager  odata.Pager
 
 	// Embed *http.Request so that we can send this to an *http.Client
 	*http.Request
@@ -302,6 +303,7 @@ func (c *Client) NewRequest(ctx context.Context, input RequestOptions) (*Request
 	ret := Request{
 		Client:           c,
 		Request:          req,
+		Pager:            input.Pager,
 		ValidStatusCodes: input.ExpectedStatusCodes,
 	}
 
@@ -456,50 +458,59 @@ func (c *Client) ExecutePaged(ctx context.Context, req *Request) (*Response, err
 		return resp, fmt.Errorf("unsupported content-type %q received, only application/json is supported for paged results", contentType)
 	}
 
-	// Read the response body and close it
-	respBody, err := io.ReadAll(resp.Body)
+	// Unmarshal the response
+	firstOdata, err := odata.FromResponse(resp.Response)
 	if err != nil {
-		return resp, fmt.Errorf("could not parse response body")
-	}
-	resp.Body.Close()
-
-	// Unmarshal firstOdata
-	var firstOdata odata.OData
-	if err := json.Unmarshal(respBody, &firstOdata); err != nil {
 		return resp, err
 	}
 
-	firstValue, ok := firstOdata.Value.([]interface{})
-	if firstOdata.NextLink == nil || firstValue == nil || !ok {
-		// No more pages, reassign response body and return
-		resp.Body = io.NopCloser(bytes.NewBuffer(respBody))
+	if firstOdata == nil {
+		// No results, return early
 		return resp, nil
 	}
 
-	// Get the next page, recursively
-	// TODO: may have to accommodate APIs with nonstandard paging
+	// Get results from this page
+	firstValue, ok := firstOdata.Value.([]interface{})
+	if !ok || firstValue == nil {
+		// No more results on this page
+		return resp, nil
+	}
+
+	// Get a Link for the next results page
+	var nextLink *odata.Link
+	if req.Pager == nil {
+		nextLink = firstOdata.NextLink
+	} else {
+		nextLink, err = odata.NextLinkFromPager(resp.Response, req.Pager)
+	}
+	if nextLink == nil {
+		// This is the last page
+		return resp, nil
+	}
+
+	// Build request for the next page
 	nextReq := req
-	u, err := url.Parse(string(*firstOdata.NextLink))
+	u, err := url.Parse(string(*nextLink))
 	if err != nil {
 		return resp, err
 	}
 	nextReq.URL = u
+
+	// Retrieve the next page, descend recursively
 	nextResp, err := c.ExecutePaged(ctx, req)
 	if err != nil {
 		return resp, err
 	}
 
-	// Read the next page response body and close it
-	nextRespBody, err := io.ReadAll(nextResp.Body)
-	if err != nil {
-		return resp, fmt.Errorf("could not parse response body")
-	}
-	nextResp.Body.Close()
-
 	// Unmarshal nextOdata from the next page
-	var nextOdata odata.OData
-	if err := json.Unmarshal(nextRespBody, &nextOdata); err != nil {
+	nextOdata, err := odata.FromResponse(nextResp.Response)
+	if err != nil {
 		return nextResp, err
+	}
+
+	if nextOdata == nil {
+		// No more results, return early
+		return resp, nil
 	}
 
 	// When next page has results, append to current page

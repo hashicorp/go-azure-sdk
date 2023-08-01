@@ -84,7 +84,7 @@ func (l *Link) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-// OData is used to unmarshall OData metadata from an API response.
+// OData is used to unmarshal OData metadata from an API response.
 type OData struct {
 	Context      *string `json:"@odata.context"`
 	MetadataEtag *string `json:"@odata.metadataEtag"`
@@ -116,6 +116,7 @@ func (o *OData) UnmarshalJSON(data []byte) error {
 	if err := json.Unmarshal(data, &e); err != nil {
 		return err
 	}
+
 	for _, k := range []string{"error", "odata.error"} {
 		if v, ok := e[k]; ok {
 			var e2 Error
@@ -126,5 +127,6 @@ func (o *OData) UnmarshalJSON(data []byte) error {
 			break
 		}
 	}
+
 	return nil
 }
