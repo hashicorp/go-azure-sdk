@@ -12,6 +12,7 @@ import (
 	"io"
 	"log"
 	"net/http"
+	"net/url"
 	"reflect"
 	"testing"
 
@@ -19,6 +20,48 @@ import (
 	"github.com/hashicorp/go-azure-sdk/sdk/internal/test"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
+
+var _ BaseClient = &testClient{}
+
+type testClient struct {
+	*Client
+}
+
+func (c *testClient) NewRequest(ctx context.Context, input RequestOptions) (*Request, error) {
+	req, err := c.Client.NewRequest(ctx, input)
+	if err != nil {
+		return nil, fmt.Errorf("building %s request: %+v", input.HttpMethod, err)
+	}
+
+	req.Client = c
+	query := url.Values{}
+
+	if input.OptionsObject != nil {
+		if h := input.OptionsObject.ToHeaders(); h != nil {
+			for k, v := range h.Headers() {
+				req.Header[k] = v
+			}
+		}
+
+		if q := input.OptionsObject.ToQuery(); q != nil {
+			for k, v := range q.Values() {
+				// we intentionally only add one of each type
+				query.Del(k)
+				query.Add(k, v[0])
+			}
+		}
+
+		if o := input.OptionsObject.ToOData(); o != nil {
+			req.Header = o.AppendHeaders(req.Header)
+			query = o.AppendValues(query)
+		}
+	}
+
+	req.URL.RawQuery = query.Encode()
+	req.ValidStatusCodes = input.ExpectedStatusCodes
+
+	return req, nil
+}
 
 func TestAccClient(t *testing.T) {
 	test.AccTest(t)
@@ -32,7 +75,9 @@ func TestAccClient(t *testing.T) {
 	}
 	conn.Authorize(ctx, t, api)
 
-	c := NewClient(*endpoint, "example", "2020-01-01")
+	c := &testClient{
+		Client: NewClient(*endpoint, "example", "2020-01-01"),
+	}
 	c.Authorizer = conn.Authorizer
 
 	path := fmt.Sprintf("/v1.0/servicePrincipals/%s", conn.Claims.ObjectId)
@@ -58,6 +103,16 @@ func TestAccClient(t *testing.T) {
 	fmt.Printf("%#v", resp)
 }
 
+var _ Options = &requestOptions{}
+
+type requestOptions struct {
+	query *odata.Query
+}
+
+func (r *requestOptions) ToHeaders() *Headers   { return nil }
+func (r *requestOptions) ToOData() *odata.Query { return r.query }
+func (r *requestOptions) ToQuery() *QueryParams { return nil }
+
 func TestAccClient_Paged(t *testing.T) {
 	test.AccTest(t)
 
@@ -70,30 +125,35 @@ func TestAccClient_Paged(t *testing.T) {
 	}
 	conn.Authorize(ctx, t, api)
 
-	c := NewClient(*endpoint, "example", "2020-01-01")
+	c := &testClient{
+		Client: NewClient(*endpoint, "example", "2020-01-01"),
+	}
 	c.Authorizer = conn.Authorizer
 
-	path := "/v1.0/servicePrincipals"
+	path := "/v1.0/applications"
 	reqOpts := RequestOptions{
 		ContentType: "application/json",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
-		OptionsObject: nil,
-		Path:          path,
+		HttpMethod: http.MethodGet,
+		OptionsObject: &requestOptions{
+			query: &odata.Query{
+				Filter: "startsWith(displayName,'acctest')",
+				Select: []string{"appId", "displayName"},
+				Top:    10,
+			},
+		},
+		Path: path,
 	}
 	req, err := c.NewRequest(ctx, reqOpts)
 	if err != nil {
 		t.Fatal(err)
 	}
 
-	resp, err := req.ExecutePaged(ctx)
-	if err != nil {
+	if _, err = req.ExecutePaged(ctx); err != nil {
 		t.Fatalf("ExecutePaged(): %v", err)
 	}
-
-	fmt.Printf("%#v", resp)
 }
 
 var _ odata.Pager = &pager{}
@@ -107,9 +167,13 @@ func (p *pager) NextPageLink() *odata.Link {
 		log.Fatalf("pager: p was nil")
 	}
 	if p.NextLink == nil {
-		log.Fatalf("pager: nextLink was nil")
+		log.Printf("[DEBUG] pager: nextLink was nil")
+	} else {
+		log.Printf("[DEBUG] pager: found custom nextLink %q", *p.NextLink)
 	}
-	log.Printf("[DEBUG] pager: found custom nextLink %q", *p.NextLink)
+	defer func() {
+		p.NextLink = nil
+	}()
 	return p.NextLink
 }
 
@@ -125,7 +189,9 @@ func TestAccClient_CustomPaged(t *testing.T) {
 	}
 	conn.Authorize(ctx, t, api)
 
-	c := NewClient(*endpoint, "example", "2020-01-01")
+	c := &testClient{
+		Client: NewClient(*endpoint, "example", "2020-01-01"),
+	}
 	c.Authorizer = conn.Authorizer
 
 	path := "/v1.0/applications"
@@ -134,22 +200,25 @@ func TestAccClient_CustomPaged(t *testing.T) {
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod:    http.MethodGet,
-		OptionsObject: nil,
-		Pager:         &pager{},
-		Path:          path,
+		HttpMethod: http.MethodGet,
+		OptionsObject: &requestOptions{
+			query: &odata.Query{
+				Filter: "startsWith(displayName,'acctest')",
+				Select: []string{"appId", "displayName"},
+				Top:    10,
+			},
+		},
+		Pager: &pager{},
+		Path:  path,
 	}
 	req, err := c.NewRequest(ctx, reqOpts)
 	if err != nil {
 		t.Fatal(err)
 	}
 
-	resp, err := req.ExecutePaged(ctx)
-	if err != nil {
+	if _, err = req.ExecutePaged(ctx); err != nil {
 		t.Fatalf("ExecutePaged(): %v", err)
 	}
-
-	fmt.Printf("%#v", resp)
 }
 
 func TestMarshalByteStreamAndPowerShell(t *testing.T) {

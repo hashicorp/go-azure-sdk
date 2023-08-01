@@ -11,7 +11,8 @@ import (
 // Pager handles custom paging for paginated API responses that do not follow the OData 4.0 standard for JSON services.
 // The underlying type should support unmarshalling a JSON response
 type Pager interface {
-	// NextPageLink returns a *Link describing the URI for the next page of results
+	// NextPageLink returns a *Link describing the URI for the next page of results, it should also clear any state
+	// before returning, so that subsequent pages do not inherit the URI from the previous page.
 	NextPageLink() *Link
 }
 
