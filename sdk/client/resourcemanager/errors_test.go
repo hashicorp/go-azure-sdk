@@ -86,6 +86,31 @@ func TestParseErrorFromApiResponse_ResourceManagerType2(t *testing.T) {
 	}
 }
 
+func TestParseErrorFromApiResponse_ResourceManagerType3(t *testing.T) {
+	// Resource Manager specific response from https://github.com/hashicorp/go-azure-sdk/issues/560
+	body := `{"id":"/providers/PaloAltoNetworks.Cloudngfw/locations/NORTHCENTRALUS/operationStatuses/453e3341-87bd-4ca8-a134-73fe7ed7f16e*53EB56B7EF5D33B0DAC9ED1C0FBB8E30154AB9D7F3D5D139B1A5CC73A765683E","name":"453e3341-87bd-4ca8-a134-73fe7ed7f16e*53EB56B7EF5D33B0DAC9ED1C0FBB8E30154AB9D7F3D5D139B1A5CC73A765683E","resourceId":"/subscriptions/XXXXXXXX-XXXX-XXXX-XXXXXXXXXXXX/resourceGroups/acctestRG-PAN-230725055238618023/providers/PaloAltoNetworks.Cloudngfw/localRulestacks/testAcc-palrs-230725055238618023","status":"Failed","startTime":"2023-07-25T06:04:40.2415965Z","endTime":"2023-07-25T06:06:06.9699098Z","error":{"message":"Outbound Trust/Untrust certificate can not be deleted from rule stack SUBSCRIPTION~XXXXXXXX-XXXX-XXXX-XXXXXXXXXXXX~RG~acctestRG-PAN-230725055238618023~STACK~testAcc-palrs-230725055238618023 as associated rule list(s) already has SSL outbound inspection set with status code BadRequest"}}`
+	input := http.Response{
+		Body: io.NopCloser(bytes.NewReader([]byte(body))),
+	}
+	expected := Error{
+		ActivityId:   "",
+		Code:         "Failed",
+		FullHttpBody: body,
+		Message:      "Outbound Trust/Untrust certificate can not be deleted from rule stack SUBSCRIPTION~XXXXXXXX-XXXX-XXXX-XXXXXXXXXXXX~RG~acctestRG-PAN-230725055238618023~STACK~testAcc-palrs-230725055238618023 as associated rule list(s) already has SSL outbound inspection set with status code BadRequest",
+		Status:       "Failed",
+	}
+	actual, err := parseErrorFromApiResponse(input)
+	if err != nil {
+		t.Fatalf("parsing error from api response: %+v", err)
+	}
+	if actual == nil {
+		t.Fatalf("`actual` was nil")
+	}
+	if !reflect.DeepEqual(*actual, expected) {
+		t.Fatalf("expected and actual didn't match. Expected: %+v\n\n Actual: %+v", expected, actual)
+	}
+}
+
 func TestParseErrorFromApiResponse_EmptyResponseShouldOutputHttpResponseAnyway(t *testing.T) {
 	body := ``
 	input := http.Response{
