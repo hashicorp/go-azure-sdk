@@ -4,8 +4,8 @@ package registrymanagement
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type RegistryPrivateEndpointConnectionProperties struct {
-	GroupIds                                  *[]string                                  `json:"groupIds,omitempty"`
-	PrivateEndpoint                           *PrivateEndpointResource                   `json:"privateEndpoint,omitempty"`
-	ProvisioningState                         *string                                    `json:"provisioningState,omitempty"`
-	RegistryPrivateLinkServiceConnectionState *RegistryPrivateLinkServiceConnectionState `json:"registryPrivateLinkServiceConnectionState,omitempty"`
+	GroupIds                          *[]string                                  `json:"groupIds,omitempty"`
+	PrivateEndpoint                   *PrivateEndpointResource                   `json:"privateEndpoint,omitempty"`
+	PrivateLinkServiceConnectionState *RegistryPrivateLinkServiceConnectionState `json:"privateLinkServiceConnectionState,omitempty"`
+	ProvisioningState                 *string                                    `json:"provisioningState,omitempty"`
 }
