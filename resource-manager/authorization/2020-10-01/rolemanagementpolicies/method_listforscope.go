@@ -23,15 +23,43 @@ type ListForScopeCompleteResult struct {
 	Items []RoleManagementPolicy
 }
 
+type ListForScopeOperationOptions struct {
+	Filter *string
+}
+
+func DefaultListForScopeOperationOptions() ListForScopeOperationOptions {
+	return ListForScopeOperationOptions{}
+}
+
+func (o ListForScopeOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o ListForScopeOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	return &out
+}
+
+func (o ListForScopeOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+	if o.Filter != nil {
+		out.Append("$filter", fmt.Sprintf("%v", *o.Filter))
+	}
+	return &out
+}
+
 // ListForScope ...
-func (c RoleManagementPoliciesClient) ListForScope(ctx context.Context, id commonids.ScopeId) (result ListForScopeOperationResponse, err error) {
+func (c RoleManagementPoliciesClient) ListForScope(ctx context.Context, id commonids.ScopeId, options ListForScopeOperationOptions) (result ListForScopeOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/providers/Microsoft.Authorization/roleManagementPolicies", id.ID()),
+		HttpMethod:    http.MethodGet,
+		Path:          fmt.Sprintf("%s/providers/Microsoft.Authorization/roleManagementPolicies", id.ID()),
+		OptionsObject: options,
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)
@@ -62,15 +90,15 @@ func (c RoleManagementPoliciesClient) ListForScope(ctx context.Context, id commo
 }
 
 // ListForScopeComplete retrieves all the results into a single object
-func (c RoleManagementPoliciesClient) ListForScopeComplete(ctx context.Context, id commonids.ScopeId) (ListForScopeCompleteResult, error) {
-	return c.ListForScopeCompleteMatchingPredicate(ctx, id, RoleManagementPolicyOperationPredicate{})
+func (c RoleManagementPoliciesClient) ListForScopeComplete(ctx context.Context, id commonids.ScopeId, options ListForScopeOperationOptions) (ListForScopeCompleteResult, error) {
+	return c.ListForScopeCompleteMatchingPredicate(ctx, id, options, RoleManagementPolicyOperationPredicate{})
 }
 
 // ListForScopeCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c RoleManagementPoliciesClient) ListForScopeCompleteMatchingPredicate(ctx context.Context, id commonids.ScopeId, predicate RoleManagementPolicyOperationPredicate) (result ListForScopeCompleteResult, err error) {
+func (c RoleManagementPoliciesClient) ListForScopeCompleteMatchingPredicate(ctx context.Context, id commonids.ScopeId, options ListForScopeOperationOptions, predicate RoleManagementPolicyOperationPredicate) (result ListForScopeCompleteResult, err error) {
 	items := make([]RoleManagementPolicy, 0)
 
-	resp, err := c.ListForScope(ctx, id)
+	resp, err := c.ListForScope(ctx, id, options)
 	if err != nil {
 		err = fmt.Errorf("loading results: %+v", err)
 		return
