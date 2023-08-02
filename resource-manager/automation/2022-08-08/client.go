@@ -20,7 +20,6 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/automation/2022-08-08/jobschedule"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/automation/2022-08-08/jobstream"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/automation/2022-08-08/linkedworkspace"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/automation/2022-08-08/listallhybridrunbookworkergroupinautomationaccount"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/automation/2022-08-08/listkeys"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/automation/2022-08-08/module"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/automation/2022-08-08/objectdatatypes"
@@ -46,41 +45,40 @@ import (
 )
 
 type Client struct {
-	Activity                                           *activity.ActivityClient
-	AutomationAccount                                  *automationaccount.AutomationAccountClient
-	Certificate                                        *certificate.CertificateClient
-	Connection                                         *connection.ConnectionClient
-	ConnectionType                                     *connectiontype.ConnectionTypeClient
-	Credential                                         *credential.CredentialClient
-	DscConfiguration                                   *dscconfiguration.DscConfigurationClient
-	DscNodeConfiguration                               *dscnodeconfiguration.DscNodeConfigurationClient
-	HybridRunbookWorker                                *hybridrunbookworker.HybridRunbookWorkerClient
-	HybridRunbookWorkerGroup                           *hybridrunbookworkergroup.HybridRunbookWorkerGroupClient
-	Job                                                *job.JobClient
-	JobSchedule                                        *jobschedule.JobScheduleClient
-	JobStream                                          *jobstream.JobStreamClient
-	LinkedWorkspace                                    *linkedworkspace.LinkedWorkspaceClient
-	ListAllHybridRunbookWorkerGroupInAutomationAccount *listallhybridrunbookworkergroupinautomationaccount.ListAllHybridRunbookWorkerGroupInAutomationAccountClient
-	ListKeys                                           *listkeys.ListKeysClient
-	Module                                             *module.ModuleClient
-	ObjectDataTypes                                    *objectdatatypes.ObjectDataTypesClient
-	Operations                                         *operations.OperationsClient
-	Python2Package                                     *python2package.Python2PackageClient
-	Python3Package                                     *python3package.Python3PackageClient
-	Runbook                                            *runbook.RunbookClient
-	RunbookDraft                                       *runbookdraft.RunbookDraftClient
-	Schedule                                           *schedule.ScheduleClient
-	SoftwareUpdateConfigurationMachineRun              *softwareupdateconfigurationmachinerun.SoftwareUpdateConfigurationMachineRunClient
-	SoftwareUpdateConfigurationRun                     *softwareupdateconfigurationrun.SoftwareUpdateConfigurationRunClient
-	SourceControl                                      *sourcecontrol.SourceControlClient
-	SourceControlSyncJob                               *sourcecontrolsyncjob.SourceControlSyncJobClient
-	SourceControlSyncJobStreams                        *sourcecontrolsyncjobstreams.SourceControlSyncJobStreamsClient
-	Statistics                                         *statistics.StatisticsClient
-	TestJob                                            *testjob.TestJobClient
-	TestJobStream                                      *testjobstream.TestJobStreamClient
-	TypeFields                                         *typefields.TypeFieldsClient
-	Usages                                             *usages.UsagesClient
-	Variable                                           *variable.VariableClient
+	Activity                              *activity.ActivityClient
+	AutomationAccount                     *automationaccount.AutomationAccountClient
+	Certificate                           *certificate.CertificateClient
+	Connection                            *connection.ConnectionClient
+	ConnectionType                        *connectiontype.ConnectionTypeClient
+	Credential                            *credential.CredentialClient
+	DscConfiguration                      *dscconfiguration.DscConfigurationClient
+	DscNodeConfiguration                  *dscnodeconfiguration.DscNodeConfigurationClient
+	HybridRunbookWorker                   *hybridrunbookworker.HybridRunbookWorkerClient
+	HybridRunbookWorkerGroup              *hybridrunbookworkergroup.HybridRunbookWorkerGroupClient
+	Job                                   *job.JobClient
+	JobSchedule                           *jobschedule.JobScheduleClient
+	JobStream                             *jobstream.JobStreamClient
+	LinkedWorkspace                       *linkedworkspace.LinkedWorkspaceClient
+	ListKeys                              *listkeys.ListKeysClient
+	Module                                *module.ModuleClient
+	ObjectDataTypes                       *objectdatatypes.ObjectDataTypesClient
+	Operations                            *operations.OperationsClient
+	Python2Package                        *python2package.Python2PackageClient
+	Python3Package                        *python3package.Python3PackageClient
+	Runbook                               *runbook.RunbookClient
+	RunbookDraft                          *runbookdraft.RunbookDraftClient
+	Schedule                              *schedule.ScheduleClient
+	SoftwareUpdateConfigurationMachineRun *softwareupdateconfigurationmachinerun.SoftwareUpdateConfigurationMachineRunClient
+	SoftwareUpdateConfigurationRun        *softwareupdateconfigurationrun.SoftwareUpdateConfigurationRunClient
+	SourceControl                         *sourcecontrol.SourceControlClient
+	SourceControlSyncJob                  *sourcecontrolsyncjob.SourceControlSyncJobClient
+	SourceControlSyncJobStreams           *sourcecontrolsyncjobstreams.SourceControlSyncJobStreamsClient
+	Statistics                            *statistics.StatisticsClient
+	TestJob                               *testjob.TestJobClient
+	TestJobStream                         *testjobstream.TestJobStreamClient
+	TypeFields                            *typefields.TypeFieldsClient
+	Usages                                *usages.UsagesClient
+	Variable                              *variable.VariableClient
 }
 
 func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
@@ -167,12 +165,6 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanag
 		return nil, fmt.Errorf("building LinkedWorkspace client: %+v", err)
 	}
 	configureFunc(linkedWorkspaceClient.Client)
-
-	listAllHybridRunbookWorkerGroupInAutomationAccountClient, err := listallhybridrunbookworkergroupinautomationaccount.NewListAllHybridRunbookWorkerGroupInAutomationAccountClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building ListAllHybridRunbookWorkerGroupInAutomationAccount client: %+v", err)
-	}
-	configureFunc(listAllHybridRunbookWorkerGroupInAutomationAccountClient.Client)
 
 	listKeysClient, err := listkeys.NewListKeysClientWithBaseURI(sdkApi)
 	if err != nil {
@@ -295,21 +287,20 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanag
 	configureFunc(variableClient.Client)
 
 	return &Client{
-		Activity:                 activityClient,
-		AutomationAccount:        automationAccountClient,
-		Certificate:              certificateClient,
-		Connection:               connectionClient,
-		ConnectionType:           connectionTypeClient,
-		Credential:               credentialClient,
-		DscConfiguration:         dscConfigurationClient,
-		DscNodeConfiguration:     dscNodeConfigurationClient,
-		HybridRunbookWorker:      hybridRunbookWorkerClient,
-		HybridRunbookWorkerGroup: hybridRunbookWorkerGroupClient,
-		Job:                      jobClient,
-		JobSchedule:              jobScheduleClient,
-		JobStream:                jobStreamClient,
-		LinkedWorkspace:          linkedWorkspaceClient,
-		ListAllHybridRunbookWorkerGroupInAutomationAccount: listAllHybridRunbookWorkerGroupInAutomationAccountClient,
+		Activity:                              activityClient,
+		AutomationAccount:                     automationAccountClient,
+		Certificate:                           certificateClient,
+		Connection:                            connectionClient,
+		ConnectionType:                        connectionTypeClient,
+		Credential:                            credentialClient,
+		DscConfiguration:                      dscConfigurationClient,
+		DscNodeConfiguration:                  dscNodeConfigurationClient,
+		HybridRunbookWorker:                   hybridRunbookWorkerClient,
+		HybridRunbookWorkerGroup:              hybridRunbookWorkerGroupClient,
+		Job:                                   jobClient,
+		JobSchedule:                           jobScheduleClient,
+		JobStream:                             jobStreamClient,
+		LinkedWorkspace:                       linkedWorkspaceClient,
 		ListKeys:                              listKeysClient,
 		Module:                                moduleClient,
 		ObjectDataTypes:                       objectDataTypesClient,
