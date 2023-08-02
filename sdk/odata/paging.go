@@ -18,6 +18,10 @@ type Pager interface {
 
 // NextLinkFromPager unmarshalls a *http.Response into the provided Pager and invokes its NextPageLink method
 func NextLinkFromPager(resp *http.Response, pager Pager) (*Link, error) {
+	if pager == nil {
+		return nil, fmt.Errorf("internal-error: pager was nil, should be a pointer")
+	}
+
 	// Read the response body and close it
 	respBody, err := io.ReadAll(resp.Body)
 	resp.Body.Close()
@@ -30,7 +34,7 @@ func NextLinkFromPager(resp *http.Response, pager Pager) (*Link, error) {
 	}
 
 	// Unmarshal
-	if err := json.Unmarshal(respBody, &pager); err != nil {
+	if err := json.Unmarshal(respBody, pager); err != nil {
 		return nil, err
 	}
 
