@@ -26,7 +26,11 @@ func TestNewPoller_LongRunningOperation(t *testing.T) {
 					Header: http.Header{
 						http.CanonicalHeaderKey("Location"): []string{"https://async-url-test.local/subscriptions/1234/providers/foo/operations/6789"},
 					},
-					Request: &http.Request{},
+					Request: &http.Request{
+						URL: &url.URL{
+							Path: "/example",
+						},
+					},
 				},
 			},
 			valid: true,
@@ -38,7 +42,11 @@ func TestNewPoller_LongRunningOperation(t *testing.T) {
 					Header: http.Header{
 						http.CanonicalHeaderKey("Location"): []string{"https://async-url-test.local/subscriptions/1234/providers/foo/operations/6789"},
 					},
-					Request: &http.Request{},
+					Request: &http.Request{
+						URL: &url.URL{
+							Path: "/example",
+						},
+					},
 				},
 			},
 			valid: true,
@@ -49,10 +57,59 @@ func TestNewPoller_LongRunningOperation(t *testing.T) {
 				Response: &http.Response{
 					StatusCode: http.StatusAccepted,
 					Header:     http.Header{},
-					Request:    &http.Request{},
+					Request: &http.Request{
+						URL: &url.URL{
+							Path: "/example",
+						},
+					},
 				},
 			},
 			valid: false,
+		},
+	}
+
+	for _, v := range testData {
+		localApi := environments.NewApiEndpoint("Example", "https://async-url-test.local", nil)
+		client, err := resourcemanager.NewResourceManagerClient(localApi, "example", "2020-02-01")
+		if err != nil {
+			t.Fatalf("building client: %+v", err)
+		}
+		_, err = resourcemanager.PollerFromResponse(v.response, client)
+		if v.valid {
+			if err != nil {
+				t.Fatal(fmt.Errorf("building poller from response: %+v", err))
+			}
+		} else {
+			if err == nil {
+				t.Fatalf("expected an error but didn't get one")
+			}
+		}
+	}
+}
+
+func TestNewPoller_LongRunningOperationWithSelfReference(t *testing.T) {
+	testData := []struct {
+		response *client.Response
+		valid    bool
+	}{
+		{
+			response: &client.Response{
+				Response: &http.Response{
+					StatusCode: http.StatusCreated,
+					Header: http.Header{
+						http.CanonicalHeaderKey("Content-Type"): []string{"application/json"},
+						http.CanonicalHeaderKey("Location"):     []string{"https://async-url-test.local/subscriptions/1234/providers/foo/operations/6789?api-version=2020-01-01"},
+					},
+					Request: &http.Request{
+						Method: http.MethodPost,
+						URL: func() *url.URL {
+							u, _ := url.Parse("https://async-url-test.local/subscriptions/1234/providers/foo/operations/6789?api-version=2020-01-01")
+							return u
+						}(),
+					},
+				},
+			},
+			valid: true,
 		},
 	}
 
