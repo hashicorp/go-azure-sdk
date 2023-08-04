@@ -4,7 +4,8 @@ package v2022_11_10
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 import (
-	"github.com/Azure/go-autorest/autorest"
+	"fmt"
+
 	"github.com/hashicorp/go-azure-sdk/resource-manager/hybridcompute/2022-11-10/extensions"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/hybridcompute/2022-11-10/machineextensions"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/hybridcompute/2022-11-10/machineextensionsupgrade"
@@ -12,6 +13,8 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/hybridcompute/2022-11-10/privateendpointconnections"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/hybridcompute/2022-11-10/privatelinkresources"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/hybridcompute/2022-11-10/privatelinkscopes"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -24,36 +27,56 @@ type Client struct {
 	PrivateLinkScopes          *privatelinkscopes.PrivateLinkScopesClient
 }
 
-func NewClientWithBaseURI(endpoint string, configureAuthFunc func(c *autorest.Client)) Client {
-
-	extensionsClient := extensions.NewExtensionsClientWithBaseURI(endpoint)
-	configureAuthFunc(&extensionsClient.Client)
-
-	machineExtensionsClient := machineextensions.NewMachineExtensionsClientWithBaseURI(endpoint)
-	configureAuthFunc(&machineExtensionsClient.Client)
-
-	machineExtensionsUpgradeClient := machineextensionsupgrade.NewMachineExtensionsUpgradeClientWithBaseURI(endpoint)
-	configureAuthFunc(&machineExtensionsUpgradeClient.Client)
-
-	machinesClient := machines.NewMachinesClientWithBaseURI(endpoint)
-	configureAuthFunc(&machinesClient.Client)
-
-	privateEndpointConnectionsClient := privateendpointconnections.NewPrivateEndpointConnectionsClientWithBaseURI(endpoint)
-	configureAuthFunc(&privateEndpointConnectionsClient.Client)
-
-	privateLinkResourcesClient := privatelinkresources.NewPrivateLinkResourcesClientWithBaseURI(endpoint)
-	configureAuthFunc(&privateLinkResourcesClient.Client)
-
-	privateLinkScopesClient := privatelinkscopes.NewPrivateLinkScopesClientWithBaseURI(endpoint)
-	configureAuthFunc(&privateLinkScopesClient.Client)
-
-	return Client{
-		Extensions:                 &extensionsClient,
-		MachineExtensions:          &machineExtensionsClient,
-		MachineExtensionsUpgrade:   &machineExtensionsUpgradeClient,
-		Machines:                   &machinesClient,
-		PrivateEndpointConnections: &privateEndpointConnectionsClient,
-		PrivateLinkResources:       &privateLinkResourcesClient,
-		PrivateLinkScopes:          &privateLinkScopesClient,
+func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+	extensionsClient, err := extensions.NewExtensionsClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building Extensions client: %+v", err)
 	}
+	configureFunc(extensionsClient.Client)
+
+	machineExtensionsClient, err := machineextensions.NewMachineExtensionsClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building MachineExtensions client: %+v", err)
+	}
+	configureFunc(machineExtensionsClient.Client)
+
+	machineExtensionsUpgradeClient, err := machineextensionsupgrade.NewMachineExtensionsUpgradeClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building MachineExtensionsUpgrade client: %+v", err)
+	}
+	configureFunc(machineExtensionsUpgradeClient.Client)
+
+	machinesClient, err := machines.NewMachinesClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building Machines client: %+v", err)
+	}
+	configureFunc(machinesClient.Client)
+
+	privateEndpointConnectionsClient, err := privateendpointconnections.NewPrivateEndpointConnectionsClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building PrivateEndpointConnections client: %+v", err)
+	}
+	configureFunc(privateEndpointConnectionsClient.Client)
+
+	privateLinkResourcesClient, err := privatelinkresources.NewPrivateLinkResourcesClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building PrivateLinkResources client: %+v", err)
+	}
+	configureFunc(privateLinkResourcesClient.Client)
+
+	privateLinkScopesClient, err := privatelinkscopes.NewPrivateLinkScopesClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building PrivateLinkScopes client: %+v", err)
+	}
+	configureFunc(privateLinkScopesClient.Client)
+
+	return &Client{
+		Extensions:                 extensionsClient,
+		MachineExtensions:          machineExtensionsClient,
+		MachineExtensionsUpgrade:   machineExtensionsUpgradeClient,
+		Machines:                   machinesClient,
+		PrivateEndpointConnections: privateEndpointConnectionsClient,
+		PrivateLinkResources:       privateLinkResourcesClient,
+		PrivateLinkScopes:          privateLinkScopesClient,
+	}, nil
 }
