@@ -1,6 +1,10 @@
 package machines
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -17,6 +21,19 @@ func PossibleValuesForAgentConfigurationMode() []string {
 		string(AgentConfigurationModeFull),
 		string(AgentConfigurationModeMonitor),
 	}
+}
+
+func (s *AgentConfigurationMode) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseAgentConfigurationMode(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseAgentConfigurationMode(input string) (*AgentConfigurationMode, error) {
@@ -47,6 +64,19 @@ func PossibleValuesForAssessmentModeTypes() []string {
 	}
 }
 
+func (s *AssessmentModeTypes) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseAssessmentModeTypes(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseAssessmentModeTypes(input string) (*AssessmentModeTypes, error) {
 	vals := map[string]AssessmentModeTypes{
 		"automaticbyplatform": AssessmentModeTypesAutomaticByPlatform,
@@ -71,6 +101,19 @@ func PossibleValuesForInstanceViewTypes() []string {
 	return []string{
 		string(InstanceViewTypesInstanceView),
 	}
+}
+
+func (s *InstanceViewTypes) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseInstanceViewTypes(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseInstanceViewTypes(input string) (*InstanceViewTypes, error) {
@@ -100,6 +143,19 @@ func PossibleValuesForLastAttemptStatusEnum() []string {
 	}
 }
 
+func (s *LastAttemptStatusEnum) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseLastAttemptStatusEnum(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseLastAttemptStatusEnum(input string) (*LastAttemptStatusEnum, error) {
 	vals := map[string]LastAttemptStatusEnum{
 		"failed":  LastAttemptStatusEnumFailed,
@@ -126,6 +182,19 @@ func PossibleValuesForOsType() []string {
 		string(OsTypeLinux),
 		string(OsTypeWindows),
 	}
+}
+
+func (s *OsType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseOsType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseOsType(input string) (*OsType, error) {
@@ -160,6 +229,19 @@ func PossibleValuesForPatchModeTypes() []string {
 	}
 }
 
+func (s *PatchModeTypes) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parsePatchModeTypes(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parsePatchModeTypes(input string) (*PatchModeTypes, error) {
 	vals := map[string]PatchModeTypes{
 		"automaticbyos":       PatchModeTypesAutomaticByOS,
@@ -188,6 +270,19 @@ func PossibleValuesForPatchOperationStartedBy() []string {
 		string(PatchOperationStartedByPlatform),
 		string(PatchOperationStartedByUser),
 	}
+}
+
+func (s *PatchOperationStartedBy) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parsePatchOperationStartedBy(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parsePatchOperationStartedBy(input string) (*PatchOperationStartedBy, error) {
@@ -222,6 +317,19 @@ func PossibleValuesForPatchOperationStatus() []string {
 		string(PatchOperationStatusSucceeded),
 		string(PatchOperationStatusUnknown),
 	}
+}
+
+func (s *PatchOperationStatus) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parsePatchOperationStatus(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parsePatchOperationStatus(input string) (*PatchOperationStatus, error) {
@@ -263,6 +371,19 @@ func PossibleValuesForPatchServiceUsed() []string {
 	}
 }
 
+func (s *PatchServiceUsed) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parsePatchServiceUsed(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parsePatchServiceUsed(input string) (*PatchServiceUsed, error) {
 	vals := map[string]PatchServiceUsed{
 		"apt":     PatchServiceUsedAPT,
@@ -297,6 +418,19 @@ func PossibleValuesForStatusLevelTypes() []string {
 	}
 }
 
+func (s *StatusLevelTypes) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseStatusLevelTypes(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseStatusLevelTypes(input string) (*StatusLevelTypes, error) {
 	vals := map[string]StatusLevelTypes{
 		"error":   StatusLevelTypesError,
@@ -328,6 +462,19 @@ func PossibleValuesForStatusTypes() []string {
 	}
 }
 
+func (s *StatusTypes) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseStatusTypes(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseStatusTypes(input string) (*StatusTypes, error) {
 	vals := map[string]StatusTypes{
 		"connected":    StatusTypesConnected,
@@ -357,6 +504,19 @@ func PossibleValuesForVMGuestPatchClassificationLinux() []string {
 		string(VMGuestPatchClassificationLinuxOther),
 		string(VMGuestPatchClassificationLinuxSecurity),
 	}
+}
+
+func (s *VMGuestPatchClassificationLinux) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseVMGuestPatchClassificationLinux(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseVMGuestPatchClassificationLinux(input string) (*VMGuestPatchClassificationLinux, error) {
@@ -400,6 +560,19 @@ func PossibleValuesForVMGuestPatchClassificationWindows() []string {
 	}
 }
 
+func (s *VMGuestPatchClassificationWindows) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseVMGuestPatchClassificationWindows(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseVMGuestPatchClassificationWindows(input string) (*VMGuestPatchClassificationWindows, error) {
 	vals := map[string]VMGuestPatchClassificationWindows{
 		"critical":     VMGuestPatchClassificationWindowsCritical,
@@ -434,6 +607,19 @@ func PossibleValuesForVMGuestPatchRebootSetting() []string {
 		string(VMGuestPatchRebootSettingIfRequired),
 		string(VMGuestPatchRebootSettingNever),
 	}
+}
+
+func (s *VMGuestPatchRebootSetting) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseVMGuestPatchRebootSetting(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseVMGuestPatchRebootSetting(input string) (*VMGuestPatchRebootSetting, error) {
@@ -471,6 +657,19 @@ func PossibleValuesForVMGuestPatchRebootStatus() []string {
 		string(VMGuestPatchRebootStatusStarted),
 		string(VMGuestPatchRebootStatusUnknown),
 	}
+}
+
+func (s *VMGuestPatchRebootStatus) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseVMGuestPatchRebootStatus(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseVMGuestPatchRebootStatus(input string) (*VMGuestPatchRebootStatus, error) {

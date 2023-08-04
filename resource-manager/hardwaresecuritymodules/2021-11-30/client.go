@@ -4,20 +4,25 @@ package v2021_11_30
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 import (
-	"github.com/Azure/go-autorest/autorest"
+	"fmt"
+
 	"github.com/hashicorp/go-azure-sdk/resource-manager/hardwaresecuritymodules/2021-11-30/dedicatedhsms"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
 	DedicatedHsms *dedicatedhsms.DedicatedHsmsClient
 }
 
-func NewClientWithBaseURI(endpoint string, configureAuthFunc func(c *autorest.Client)) Client {
-
-	dedicatedHsmsClient := dedicatedhsms.NewDedicatedHsmsClientWithBaseURI(endpoint)
-	configureAuthFunc(&dedicatedHsmsClient.Client)
-
-	return Client{
-		DedicatedHsms: &dedicatedHsmsClient,
+func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+	dedicatedHsmsClient, err := dedicatedhsms.NewDedicatedHsmsClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building DedicatedHsms client: %+v", err)
 	}
+	configureFunc(dedicatedHsmsClient.Client)
+
+	return &Client{
+		DedicatedHsms: dedicatedHsmsClient,
+	}, nil
 }
