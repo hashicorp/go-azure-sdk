@@ -11,7 +11,7 @@ import (
 var _ BatchDeploymentConfiguration = BatchPipelineComponentDeploymentConfiguration{}
 
 type BatchPipelineComponentDeploymentConfiguration struct {
-	ComponentId AssetReferenceBase `json:"componentId"`
+	ComponentId *IdAssetReference  `json:"componentId,omitempty"`
 	Description *string            `json:"description,omitempty"`
 	Settings    *map[string]string `json:"settings,omitempty"`
 	Tags        *map[string]string `json:"tags,omitempty"`
@@ -41,32 +41,4 @@ func (s BatchPipelineComponentDeploymentConfiguration) MarshalJSON() ([]byte, er
 	}
 
 	return encoded, nil
-}
-
-var _ json.Unmarshaler = &BatchPipelineComponentDeploymentConfiguration{}
-
-func (s *BatchPipelineComponentDeploymentConfiguration) UnmarshalJSON(bytes []byte) error {
-	type alias BatchPipelineComponentDeploymentConfiguration
-	var decoded alias
-	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into BatchPipelineComponentDeploymentConfiguration: %+v", err)
-	}
-
-	s.Description = decoded.Description
-	s.Settings = decoded.Settings
-	s.Tags = decoded.Tags
-
-	var temp map[string]json.RawMessage
-	if err := json.Unmarshal(bytes, &temp); err != nil {
-		return fmt.Errorf("unmarshaling BatchPipelineComponentDeploymentConfiguration into map[string]json.RawMessage: %+v", err)
-	}
-
-	if v, ok := temp["componentId"]; ok {
-		impl, err := unmarshalAssetReferenceBaseImplementation(v)
-		if err != nil {
-			return fmt.Errorf("unmarshaling field 'ComponentId' for 'BatchPipelineComponentDeploymentConfiguration': %+v", err)
-		}
-		s.ComponentId = impl
-	}
-	return nil
 }

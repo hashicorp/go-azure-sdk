@@ -1,10 +1,5 @@
 package labelingjob
 
-import (
-	"encoding/json"
-	"fmt"
-)
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
@@ -15,7 +10,7 @@ type ImageModelSettingsClassification struct {
 	Beta1                      *float64               `json:"beta1,omitempty"`
 	Beta2                      *float64               `json:"beta2,omitempty"`
 	CheckpointFrequency        *int64                 `json:"checkpointFrequency,omitempty"`
-	CheckpointModel            JobInput               `json:"checkpointModel"`
+	CheckpointModel            *MLFlowModelJobInput   `json:"checkpointModel,omitempty"`
 	CheckpointRunId            *string                `json:"checkpointRunId,omitempty"`
 	Distributed                *bool                  `json:"distributed,omitempty"`
 	EarlyStopping              *bool                  `json:"earlyStopping,omitempty"`
@@ -45,64 +40,4 @@ type ImageModelSettingsClassification struct {
 	WarmupCosineLRWarmupEpochs *int64                 `json:"warmupCosineLRWarmupEpochs,omitempty"`
 	WeightDecay                *float64               `json:"weightDecay,omitempty"`
 	WeightedLoss               *int64                 `json:"weightedLoss,omitempty"`
-}
-
-var _ json.Unmarshaler = &ImageModelSettingsClassification{}
-
-func (s *ImageModelSettingsClassification) UnmarshalJSON(bytes []byte) error {
-	type alias ImageModelSettingsClassification
-	var decoded alias
-	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into ImageModelSettingsClassification: %+v", err)
-	}
-
-	s.AdvancedSettings = decoded.AdvancedSettings
-	s.AmsGradient = decoded.AmsGradient
-	s.Augmentations = decoded.Augmentations
-	s.Beta1 = decoded.Beta1
-	s.Beta2 = decoded.Beta2
-	s.CheckpointFrequency = decoded.CheckpointFrequency
-	s.CheckpointRunId = decoded.CheckpointRunId
-	s.Distributed = decoded.Distributed
-	s.EarlyStopping = decoded.EarlyStopping
-	s.EarlyStoppingDelay = decoded.EarlyStoppingDelay
-	s.EarlyStoppingPatience = decoded.EarlyStoppingPatience
-	s.EnableOnnxNormalization = decoded.EnableOnnxNormalization
-	s.EvaluationFrequency = decoded.EvaluationFrequency
-	s.GradientAccumulationStep = decoded.GradientAccumulationStep
-	s.LayersToFreeze = decoded.LayersToFreeze
-	s.LearningRate = decoded.LearningRate
-	s.LearningRateScheduler = decoded.LearningRateScheduler
-	s.ModelName = decoded.ModelName
-	s.Momentum = decoded.Momentum
-	s.Nesterov = decoded.Nesterov
-	s.NumberOfEpochs = decoded.NumberOfEpochs
-	s.NumberOfWorkers = decoded.NumberOfWorkers
-	s.Optimizer = decoded.Optimizer
-	s.RandomSeed = decoded.RandomSeed
-	s.StepLRGamma = decoded.StepLRGamma
-	s.StepLRStepSize = decoded.StepLRStepSize
-	s.TrainingBatchSize = decoded.TrainingBatchSize
-	s.TrainingCropSize = decoded.TrainingCropSize
-	s.ValidationBatchSize = decoded.ValidationBatchSize
-	s.ValidationCropSize = decoded.ValidationCropSize
-	s.ValidationResizeSize = decoded.ValidationResizeSize
-	s.WarmupCosineLRCycles = decoded.WarmupCosineLRCycles
-	s.WarmupCosineLRWarmupEpochs = decoded.WarmupCosineLRWarmupEpochs
-	s.WeightDecay = decoded.WeightDecay
-	s.WeightedLoss = decoded.WeightedLoss
-
-	var temp map[string]json.RawMessage
-	if err := json.Unmarshal(bytes, &temp); err != nil {
-		return fmt.Errorf("unmarshaling ImageModelSettingsClassification into map[string]json.RawMessage: %+v", err)
-	}
-
-	if v, ok := temp["checkpointModel"]; ok {
-		impl, err := unmarshalJobInputImplementation(v)
-		if err != nil {
-			return fmt.Errorf("unmarshaling field 'CheckpointModel' for 'ImageModelSettingsClassification': %+v", err)
-		}
-		s.CheckpointModel = impl
-	}
-	return nil
 }
