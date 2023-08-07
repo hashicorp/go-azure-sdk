@@ -16,17 +16,17 @@ type Regression struct {
 	LimitSettings         *TableVerticalLimitSettings         `json:"limitSettings,omitempty"`
 	NCrossValidations     NCrossValidations                   `json:"nCrossValidations"`
 	PrimaryMetric         *RegressionPrimaryMetrics           `json:"primaryMetric,omitempty"`
-	TestData              JobInput                            `json:"testData"`
+	TestData              *MLTableJobInput                    `json:"testData,omitempty"`
 	TestDataSize          *float64                            `json:"testDataSize,omitempty"`
 	TrainingSettings      *RegressionTrainingSettings         `json:"trainingSettings,omitempty"`
-	ValidationData        JobInput                            `json:"validationData"`
+	ValidationData        *MLTableJobInput                    `json:"validationData,omitempty"`
 	ValidationDataSize    *float64                            `json:"validationDataSize,omitempty"`
 	WeightColumnName      *string                             `json:"weightColumnName,omitempty"`
 
 	// Fields inherited from AutoMLVertical
-	LogVerbosity     *LogVerbosity `json:"logVerbosity,omitempty"`
-	TargetColumnName *string       `json:"targetColumnName,omitempty"`
-	TrainingData     JobInput      `json:"trainingData"`
+	LogVerbosity     *LogVerbosity   `json:"logVerbosity,omitempty"`
+	TargetColumnName *string         `json:"targetColumnName,omitempty"`
+	TrainingData     MLTableJobInput `json:"trainingData"`
 }
 
 var _ json.Marshaler = Regression{}
@@ -68,8 +68,11 @@ func (s *Regression) UnmarshalJSON(bytes []byte) error {
 	s.LogVerbosity = decoded.LogVerbosity
 	s.PrimaryMetric = decoded.PrimaryMetric
 	s.TargetColumnName = decoded.TargetColumnName
+	s.TestData = decoded.TestData
 	s.TestDataSize = decoded.TestDataSize
+	s.TrainingData = decoded.TrainingData
 	s.TrainingSettings = decoded.TrainingSettings
+	s.ValidationData = decoded.ValidationData
 	s.ValidationDataSize = decoded.ValidationDataSize
 	s.WeightColumnName = decoded.WeightColumnName
 
@@ -84,30 +87,6 @@ func (s *Regression) UnmarshalJSON(bytes []byte) error {
 			return fmt.Errorf("unmarshaling field 'NCrossValidations' for 'Regression': %+v", err)
 		}
 		s.NCrossValidations = impl
-	}
-
-	if v, ok := temp["testData"]; ok {
-		impl, err := unmarshalJobInputImplementation(v)
-		if err != nil {
-			return fmt.Errorf("unmarshaling field 'TestData' for 'Regression': %+v", err)
-		}
-		s.TestData = impl
-	}
-
-	if v, ok := temp["trainingData"]; ok {
-		impl, err := unmarshalJobInputImplementation(v)
-		if err != nil {
-			return fmt.Errorf("unmarshaling field 'TrainingData' for 'Regression': %+v", err)
-		}
-		s.TrainingData = impl
-	}
-
-	if v, ok := temp["validationData"]; ok {
-		impl, err := unmarshalJobInputImplementation(v)
-		if err != nil {
-			return fmt.Errorf("unmarshaling field 'ValidationData' for 'Regression': %+v", err)
-		}
-		s.ValidationData = impl
 	}
 	return nil
 }

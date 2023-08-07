@@ -13,7 +13,7 @@ var _ JobBase = SweepJob{}
 type SweepJob struct {
 	EarlyTermination  EarlyTerminationPolicy `json:"earlyTermination"`
 	Inputs            *map[string]JobInput   `json:"inputs,omitempty"`
-	Limits            JobLimits              `json:"limits"`
+	Limits            *SweepJobLimits        `json:"limits,omitempty"`
 	Objective         Objective              `json:"objective"`
 	Outputs           *map[string]JobOutput  `json:"outputs,omitempty"`
 	SamplingAlgorithm SamplingAlgorithm      `json:"samplingAlgorithm"`
@@ -71,6 +71,7 @@ func (s *SweepJob) UnmarshalJSON(bytes []byte) error {
 	s.DisplayName = decoded.DisplayName
 	s.ExperimentName = decoded.ExperimentName
 	s.IsArchived = decoded.IsArchived
+	s.Limits = decoded.Limits
 	s.Objective = decoded.Objective
 	s.Properties = decoded.Properties
 	s.SearchSpace = decoded.SearchSpace
@@ -115,14 +116,6 @@ func (s *SweepJob) UnmarshalJSON(bytes []byte) error {
 			output[key] = impl
 		}
 		s.Inputs = &output
-	}
-
-	if v, ok := temp["limits"]; ok {
-		impl, err := unmarshalJobLimitsImplementation(v)
-		if err != nil {
-			return fmt.Errorf("unmarshaling field 'Limits' for 'SweepJob': %+v", err)
-		}
-		s.Limits = impl
 	}
 
 	if v, ok := temp["outputs"]; ok {

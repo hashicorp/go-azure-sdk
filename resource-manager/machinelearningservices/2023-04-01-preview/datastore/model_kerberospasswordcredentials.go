@@ -11,10 +11,10 @@ import (
 var _ DatastoreCredentials = KerberosPasswordCredentials{}
 
 type KerberosPasswordCredentials struct {
-	KerberosKdcAddress string           `json:"kerberosKdcAddress"`
-	KerberosPrincipal  string           `json:"kerberosPrincipal"`
-	KerberosRealm      string           `json:"kerberosRealm"`
-	Secrets            DatastoreSecrets `json:"secrets"`
+	KerberosKdcAddress string                  `json:"kerberosKdcAddress"`
+	KerberosPrincipal  string                  `json:"kerberosPrincipal"`
+	KerberosRealm      string                  `json:"kerberosRealm"`
+	Secrets            KerberosPasswordSecrets `json:"secrets"`
 
 	// Fields inherited from DatastoreCredentials
 }
@@ -41,32 +41,4 @@ func (s KerberosPasswordCredentials) MarshalJSON() ([]byte, error) {
 	}
 
 	return encoded, nil
-}
-
-var _ json.Unmarshaler = &KerberosPasswordCredentials{}
-
-func (s *KerberosPasswordCredentials) UnmarshalJSON(bytes []byte) error {
-	type alias KerberosPasswordCredentials
-	var decoded alias
-	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into KerberosPasswordCredentials: %+v", err)
-	}
-
-	s.KerberosKdcAddress = decoded.KerberosKdcAddress
-	s.KerberosPrincipal = decoded.KerberosPrincipal
-	s.KerberosRealm = decoded.KerberosRealm
-
-	var temp map[string]json.RawMessage
-	if err := json.Unmarshal(bytes, &temp); err != nil {
-		return fmt.Errorf("unmarshaling KerberosPasswordCredentials into map[string]json.RawMessage: %+v", err)
-	}
-
-	if v, ok := temp["secrets"]; ok {
-		impl, err := unmarshalDatastoreSecretsImplementation(v)
-		if err != nil {
-			return fmt.Errorf("unmarshaling field 'Secrets' for 'KerberosPasswordCredentials': %+v", err)
-		}
-		s.Secrets = impl
-	}
-	return nil
 }

@@ -17,12 +17,12 @@ type TextClassificationMultilabel struct {
 	PrimaryMetric         *ClassificationMultilabelPrimaryMetrics `json:"primaryMetric,omitempty"`
 	SearchSpace           *[]NlpParameterSubspace                 `json:"searchSpace,omitempty"`
 	SweepSettings         *NlpSweepSettings                       `json:"sweepSettings,omitempty"`
-	ValidationData        JobInput                                `json:"validationData"`
+	ValidationData        *MLTableJobInput                        `json:"validationData,omitempty"`
 
 	// Fields inherited from AutoMLVertical
-	LogVerbosity     *LogVerbosity `json:"logVerbosity,omitempty"`
-	TargetColumnName *string       `json:"targetColumnName,omitempty"`
-	TrainingData     JobInput      `json:"trainingData"`
+	LogVerbosity     *LogVerbosity   `json:"logVerbosity,omitempty"`
+	TargetColumnName *string         `json:"targetColumnName,omitempty"`
+	TrainingData     MLTableJobInput `json:"trainingData"`
 }
 
 var _ json.Marshaler = TextClassificationMultilabel{}
@@ -47,45 +47,4 @@ func (s TextClassificationMultilabel) MarshalJSON() ([]byte, error) {
 	}
 
 	return encoded, nil
-}
-
-var _ json.Unmarshaler = &TextClassificationMultilabel{}
-
-func (s *TextClassificationMultilabel) UnmarshalJSON(bytes []byte) error {
-	type alias TextClassificationMultilabel
-	var decoded alias
-	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into TextClassificationMultilabel: %+v", err)
-	}
-
-	s.FeaturizationSettings = decoded.FeaturizationSettings
-	s.FixedParameters = decoded.FixedParameters
-	s.LimitSettings = decoded.LimitSettings
-	s.LogVerbosity = decoded.LogVerbosity
-	s.PrimaryMetric = decoded.PrimaryMetric
-	s.SearchSpace = decoded.SearchSpace
-	s.SweepSettings = decoded.SweepSettings
-	s.TargetColumnName = decoded.TargetColumnName
-
-	var temp map[string]json.RawMessage
-	if err := json.Unmarshal(bytes, &temp); err != nil {
-		return fmt.Errorf("unmarshaling TextClassificationMultilabel into map[string]json.RawMessage: %+v", err)
-	}
-
-	if v, ok := temp["trainingData"]; ok {
-		impl, err := unmarshalJobInputImplementation(v)
-		if err != nil {
-			return fmt.Errorf("unmarshaling field 'TrainingData' for 'TextClassificationMultilabel': %+v", err)
-		}
-		s.TrainingData = impl
-	}
-
-	if v, ok := temp["validationData"]; ok {
-		impl, err := unmarshalJobInputImplementation(v)
-		if err != nil {
-			return fmt.Errorf("unmarshaling field 'ValidationData' for 'TextClassificationMultilabel': %+v", err)
-		}
-		s.ValidationData = impl
-	}
-	return nil
 }
