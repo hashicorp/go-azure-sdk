@@ -12,6 +12,15 @@ import (
 type Job interface {
 }
 
+// RawModeOfTransitImpl is returned when the Discriminated Value
+// doesn't match any of the defined types
+// NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
+// and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
+type RawJobImpl struct {
+	Type   string
+	Values map[string]interface{}
+}
+
 func unmarshalJobImplementation(input []byte) (Job, error) {
 	if input == nil {
 		return nil, nil
@@ -67,10 +76,6 @@ func unmarshalJobImplementation(input []byte) (Job, error) {
 		return out, nil
 	}
 
-	type RawJobImpl struct {
-		Type   string                 `json:"-"`
-		Values map[string]interface{} `json:"-"`
-	}
 	out := RawJobImpl{
 		Type:   value,
 		Values: temp,

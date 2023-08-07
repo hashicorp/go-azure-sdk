@@ -12,6 +12,15 @@ import (
 type BenefitUtilizationSummary interface {
 }
 
+// RawModeOfTransitImpl is returned when the Discriminated Value
+// doesn't match any of the defined types
+// NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
+// and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
+type RawBenefitUtilizationSummaryImpl struct {
+	Type   string
+	Values map[string]interface{}
+}
+
 func unmarshalBenefitUtilizationSummaryImplementation(input []byte) (BenefitUtilizationSummary, error) {
 	if input == nil {
 		return nil, nil
@@ -43,10 +52,6 @@ func unmarshalBenefitUtilizationSummaryImplementation(input []byte) (BenefitUtil
 		return out, nil
 	}
 
-	type RawBenefitUtilizationSummaryImpl struct {
-		Type   string                 `json:"-"`
-		Values map[string]interface{} `json:"-"`
-	}
 	out := RawBenefitUtilizationSummaryImpl{
 		Type:   value,
 		Values: temp,

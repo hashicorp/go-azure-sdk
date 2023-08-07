@@ -12,6 +12,15 @@ import (
 type BackupDatasourceParameters interface {
 }
 
+// RawModeOfTransitImpl is returned when the Discriminated Value
+// doesn't match any of the defined types
+// NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
+// and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
+type RawBackupDatasourceParametersImpl struct {
+	Type   string
+	Values map[string]interface{}
+}
+
 func unmarshalBackupDatasourceParametersImplementation(input []byte) (BackupDatasourceParameters, error) {
 	if input == nil {
 		return nil, nil
@@ -43,10 +52,6 @@ func unmarshalBackupDatasourceParametersImplementation(input []byte) (BackupData
 		return out, nil
 	}
 
-	type RawBackupDatasourceParametersImpl struct {
-		Type   string                 `json:"-"`
-		Values map[string]interface{} `json:"-"`
-	}
 	out := RawBackupDatasourceParametersImpl{
 		Type:   value,
 		Values: temp,

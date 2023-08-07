@@ -12,6 +12,15 @@ import (
 type ForecastHorizon interface {
 }
 
+// RawModeOfTransitImpl is returned when the Discriminated Value
+// doesn't match any of the defined types
+// NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
+// and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
+type RawForecastHorizonImpl struct {
+	Type   string
+	Values map[string]interface{}
+}
+
 func unmarshalForecastHorizonImplementation(input []byte) (ForecastHorizon, error) {
 	if input == nil {
 		return nil, nil
@@ -43,10 +52,6 @@ func unmarshalForecastHorizonImplementation(input []byte) (ForecastHorizon, erro
 		return out, nil
 	}
 
-	type RawForecastHorizonImpl struct {
-		Type   string                 `json:"-"`
-		Values map[string]interface{} `json:"-"`
-	}
 	out := RawForecastHorizonImpl{
 		Type:   value,
 		Values: temp,

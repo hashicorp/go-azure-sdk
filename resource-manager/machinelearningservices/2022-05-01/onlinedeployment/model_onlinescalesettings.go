@@ -12,6 +12,15 @@ import (
 type OnlineScaleSettings interface {
 }
 
+// RawModeOfTransitImpl is returned when the Discriminated Value
+// doesn't match any of the defined types
+// NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
+// and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
+type RawOnlineScaleSettingsImpl struct {
+	Type   string
+	Values map[string]interface{}
+}
+
 func unmarshalOnlineScaleSettingsImplementation(input []byte) (OnlineScaleSettings, error) {
 	if input == nil {
 		return nil, nil
@@ -43,10 +52,6 @@ func unmarshalOnlineScaleSettingsImplementation(input []byte) (OnlineScaleSettin
 		return out, nil
 	}
 
-	type RawOnlineScaleSettingsImpl struct {
-		Type   string                 `json:"-"`
-		Values map[string]interface{} `json:"-"`
-	}
 	out := RawOnlineScaleSettingsImpl{
 		Type:   value,
 		Values: temp,

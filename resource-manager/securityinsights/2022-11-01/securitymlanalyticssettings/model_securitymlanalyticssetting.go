@@ -12,6 +12,15 @@ import (
 type SecurityMLAnalyticsSetting interface {
 }
 
+// RawModeOfTransitImpl is returned when the Discriminated Value
+// doesn't match any of the defined types
+// NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
+// and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
+type RawSecurityMLAnalyticsSettingImpl struct {
+	Type   string
+	Values map[string]interface{}
+}
+
 func unmarshalSecurityMLAnalyticsSettingImplementation(input []byte) (SecurityMLAnalyticsSetting, error) {
 	if input == nil {
 		return nil, nil
@@ -35,10 +44,6 @@ func unmarshalSecurityMLAnalyticsSettingImplementation(input []byte) (SecurityML
 		return out, nil
 	}
 
-	type RawSecurityMLAnalyticsSettingImpl struct {
-		Type   string                 `json:"-"`
-		Values map[string]interface{} `json:"-"`
-	}
 	out := RawSecurityMLAnalyticsSettingImpl{
 		Type:   value,
 		Values: temp,
