@@ -12,6 +12,15 @@ import (
 type TestMigrateProviderSpecificInput interface {
 }
 
+// RawModeOfTransitImpl is returned when the Discriminated Value
+// doesn't match any of the defined types
+// NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
+// and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
+type RawTestMigrateProviderSpecificInputImpl struct {
+	Type   string
+	Values map[string]interface{}
+}
+
 func unmarshalTestMigrateProviderSpecificInputImplementation(input []byte) (TestMigrateProviderSpecificInput, error) {
 	if input == nil {
 		return nil, nil
@@ -35,10 +44,6 @@ func unmarshalTestMigrateProviderSpecificInputImplementation(input []byte) (Test
 		return out, nil
 	}
 
-	type RawTestMigrateProviderSpecificInputImpl struct {
-		Type   string                 `json:"-"`
-		Values map[string]interface{} `json:"-"`
-	}
 	out := RawTestMigrateProviderSpecificInputImpl{
 		Type:   value,
 		Values: temp,

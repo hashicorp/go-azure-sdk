@@ -12,6 +12,15 @@ import (
 type ExternalSecuritySolution interface {
 }
 
+// RawModeOfTransitImpl is returned when the Discriminated Value
+// doesn't match any of the defined types
+// NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
+// and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
+type RawExternalSecuritySolutionImpl struct {
+	Type   string
+	Values map[string]interface{}
+}
+
 func unmarshalExternalSecuritySolutionImplementation(input []byte) (ExternalSecuritySolution, error) {
 	if input == nil {
 		return nil, nil
@@ -51,10 +60,6 @@ func unmarshalExternalSecuritySolutionImplementation(input []byte) (ExternalSecu
 		return out, nil
 	}
 
-	type RawExternalSecuritySolutionImpl struct {
-		Type   string                 `json:"-"`
-		Values map[string]interface{} `json:"-"`
-	}
 	out := RawExternalSecuritySolutionImpl{
 		Type:   value,
 		Values: temp,

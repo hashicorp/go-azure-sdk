@@ -12,6 +12,15 @@ import (
 type MonitoringSignalBase interface {
 }
 
+// RawModeOfTransitImpl is returned when the Discriminated Value
+// doesn't match any of the defined types
+// NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
+// and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
+type RawMonitoringSignalBaseImpl struct {
+	Type   string
+	Values map[string]interface{}
+}
+
 func unmarshalMonitoringSignalBaseImplementation(input []byte) (MonitoringSignalBase, error) {
 	if input == nil {
 		return nil, nil
@@ -75,10 +84,6 @@ func unmarshalMonitoringSignalBaseImplementation(input []byte) (MonitoringSignal
 		return out, nil
 	}
 
-	type RawMonitoringSignalBaseImpl struct {
-		Type   string                 `json:"-"`
-		Values map[string]interface{} `json:"-"`
-	}
 	out := RawMonitoringSignalBaseImpl{
 		Type:   value,
 		Values: temp,

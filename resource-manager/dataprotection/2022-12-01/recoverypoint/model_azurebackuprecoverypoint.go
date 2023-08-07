@@ -12,6 +12,15 @@ import (
 type AzureBackupRecoveryPoint interface {
 }
 
+// RawModeOfTransitImpl is returned when the Discriminated Value
+// doesn't match any of the defined types
+// NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
+// and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
+type RawAzureBackupRecoveryPointImpl struct {
+	Type   string
+	Values map[string]interface{}
+}
+
 func unmarshalAzureBackupRecoveryPointImplementation(input []byte) (AzureBackupRecoveryPoint, error) {
 	if input == nil {
 		return nil, nil
@@ -35,10 +44,6 @@ func unmarshalAzureBackupRecoveryPointImplementation(input []byte) (AzureBackupR
 		return out, nil
 	}
 
-	type RawAzureBackupRecoveryPointImpl struct {
-		Type   string                 `json:"-"`
-		Values map[string]interface{} `json:"-"`
-	}
 	out := RawAzureBackupRecoveryPointImpl{
 		Type:   value,
 		Values: temp,

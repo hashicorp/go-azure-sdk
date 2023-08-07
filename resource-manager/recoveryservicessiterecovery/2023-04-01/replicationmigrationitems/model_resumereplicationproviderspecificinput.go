@@ -12,6 +12,15 @@ import (
 type ResumeReplicationProviderSpecificInput interface {
 }
 
+// RawModeOfTransitImpl is returned when the Discriminated Value
+// doesn't match any of the defined types
+// NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
+// and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
+type RawResumeReplicationProviderSpecificInputImpl struct {
+	Type   string
+	Values map[string]interface{}
+}
+
 func unmarshalResumeReplicationProviderSpecificInputImplementation(input []byte) (ResumeReplicationProviderSpecificInput, error) {
 	if input == nil {
 		return nil, nil
@@ -35,10 +44,6 @@ func unmarshalResumeReplicationProviderSpecificInputImplementation(input []byte)
 		return out, nil
 	}
 
-	type RawResumeReplicationProviderSpecificInputImpl struct {
-		Type   string                 `json:"-"`
-		Values map[string]interface{} `json:"-"`
-	}
 	out := RawResumeReplicationProviderSpecificInputImpl{
 		Type:   value,
 		Values: temp,

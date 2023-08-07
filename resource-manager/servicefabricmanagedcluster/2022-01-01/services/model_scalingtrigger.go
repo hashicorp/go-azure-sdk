@@ -12,6 +12,15 @@ import (
 type ScalingTrigger interface {
 }
 
+// RawModeOfTransitImpl is returned when the Discriminated Value
+// doesn't match any of the defined types
+// NOTE: this should only be used when a type isn't defined for this type of Object (as a workaround)
+// and is used only for Deserialization (e.g. this cannot be used as a Request Payload).
+type RawScalingTriggerImpl struct {
+	Type   string
+	Values map[string]interface{}
+}
+
 func unmarshalScalingTriggerImplementation(input []byte) (ScalingTrigger, error) {
 	if input == nil {
 		return nil, nil
@@ -43,10 +52,6 @@ func unmarshalScalingTriggerImplementation(input []byte) (ScalingTrigger, error)
 		return out, nil
 	}
 
-	type RawScalingTriggerImpl struct {
-		Type   string                 `json:"-"`
-		Values map[string]interface{} `json:"-"`
-	}
 	out := RawScalingTriggerImpl{
 		Type:   value,
 		Values: temp,
