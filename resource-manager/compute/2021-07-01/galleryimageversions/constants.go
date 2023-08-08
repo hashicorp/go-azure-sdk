@@ -1,6 +1,10 @@
 package galleryimageversions
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -21,6 +25,19 @@ func PossibleValuesForAggregatedReplicationState() []string {
 		string(AggregatedReplicationStateInProgress),
 		string(AggregatedReplicationStateUnknown),
 	}
+}
+
+func (s *AggregatedReplicationState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseAggregatedReplicationState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseAggregatedReplicationState(input string) (*AggregatedReplicationState, error) {
@@ -53,6 +70,19 @@ func PossibleValuesForHostCaching() []string {
 		string(HostCachingReadOnly),
 		string(HostCachingReadWrite),
 	}
+}
+
+func (s *HostCaching) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseHostCaching(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseHostCaching(input string) (*HostCaching, error) {
@@ -92,6 +122,19 @@ func PossibleValuesForProvisioningState() []string {
 	}
 }
 
+func (s *ProvisioningState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseProvisioningState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseProvisioningState(input string) (*ProvisioningState, error) {
 	vals := map[string]ProvisioningState{
 		"creating":  ProvisioningStateCreating,
@@ -122,6 +165,19 @@ func PossibleValuesForReplicationMode() []string {
 		string(ReplicationModeFull),
 		string(ReplicationModeShallow),
 	}
+}
+
+func (s *ReplicationMode) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseReplicationMode(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseReplicationMode(input string) (*ReplicationMode, error) {
@@ -156,6 +212,19 @@ func PossibleValuesForReplicationState() []string {
 	}
 }
 
+func (s *ReplicationState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseReplicationState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseReplicationState(input string) (*ReplicationState, error) {
 	vals := map[string]ReplicationState{
 		"completed":   ReplicationStateCompleted,
@@ -182,6 +251,19 @@ func PossibleValuesForReplicationStatusTypes() []string {
 	return []string{
 		string(ReplicationStatusTypesReplicationStatus),
 	}
+}
+
+func (s *ReplicationStatusTypes) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseReplicationStatusTypes(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseReplicationStatusTypes(input string) (*ReplicationStatusTypes, error) {
@@ -211,6 +293,19 @@ func PossibleValuesForStorageAccountType() []string {
 		string(StorageAccountTypeStandardLRS),
 		string(StorageAccountTypeStandardZRS),
 	}
+}
+
+func (s *StorageAccountType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseStorageAccountType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseStorageAccountType(input string) (*StorageAccountType, error) {

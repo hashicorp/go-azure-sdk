@@ -1,6 +1,10 @@
 package virtualmachinescalesetvmruncommands
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -27,6 +31,19 @@ func PossibleValuesForExecutionState() []string {
 		string(ExecutionStateTimedOut),
 		string(ExecutionStateUnknown),
 	}
+}
+
+func (s *ExecutionState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseExecutionState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseExecutionState(input string) (*ExecutionState, error) {
@@ -62,6 +79,19 @@ func PossibleValuesForStatusLevelTypes() []string {
 		string(StatusLevelTypesInfo),
 		string(StatusLevelTypesWarning),
 	}
+}
+
+func (s *StatusLevelTypes) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseStatusLevelTypes(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseStatusLevelTypes(input string) (*StatusLevelTypes, error) {

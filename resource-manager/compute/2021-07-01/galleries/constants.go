@@ -1,6 +1,10 @@
 package galleries
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -17,6 +21,19 @@ func PossibleValuesForGallerySharingPermissionTypes() []string {
 		string(GallerySharingPermissionTypesGroups),
 		string(GallerySharingPermissionTypesPrivate),
 	}
+}
+
+func (s *GallerySharingPermissionTypes) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseGallerySharingPermissionTypes(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseGallerySharingPermissionTypes(input string) (*GallerySharingPermissionTypes, error) {
@@ -55,6 +72,19 @@ func PossibleValuesForProvisioningState() []string {
 	}
 }
 
+func (s *ProvisioningState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseProvisioningState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseProvisioningState(input string) (*ProvisioningState, error) {
 	vals := map[string]ProvisioningState{
 		"creating":  ProvisioningStateCreating,
@@ -85,6 +115,19 @@ func PossibleValuesForSelectPermissions() []string {
 	}
 }
 
+func (s *SelectPermissions) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseSelectPermissions(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseSelectPermissions(input string) (*SelectPermissions, error) {
 	vals := map[string]SelectPermissions{
 		"permissions": SelectPermissionsPermissions,
@@ -110,6 +153,19 @@ func PossibleValuesForSharingProfileGroupTypes() []string {
 		string(SharingProfileGroupTypesAADTenants),
 		string(SharingProfileGroupTypesSubscriptions),
 	}
+}
+
+func (s *SharingProfileGroupTypes) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseSharingProfileGroupTypes(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseSharingProfileGroupTypes(input string) (*SharingProfileGroupTypes, error) {

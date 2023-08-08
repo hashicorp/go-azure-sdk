@@ -4,7 +4,8 @@ package v2022_03_03
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 import (
-	"github.com/Azure/go-autorest/autorest"
+	"fmt"
+
 	"github.com/hashicorp/go-azure-sdk/resource-manager/compute/2022-03-03/communitygalleries"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/compute/2022-03-03/communitygalleryimages"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/compute/2022-03-03/communitygalleryimageversions"
@@ -17,6 +18,8 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/compute/2022-03-03/sharedgalleries"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/compute/2022-03-03/sharedgalleryimages"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/compute/2022-03-03/sharedgalleryimageversions"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -34,56 +37,91 @@ type Client struct {
 	SharedGalleryImages           *sharedgalleryimages.SharedGalleryImagesClient
 }
 
-func NewClientWithBaseURI(endpoint string, configureAuthFunc func(c *autorest.Client)) Client {
-
-	communityGalleriesClient := communitygalleries.NewCommunityGalleriesClientWithBaseURI(endpoint)
-	configureAuthFunc(&communityGalleriesClient.Client)
-
-	communityGalleryImageVersionsClient := communitygalleryimageversions.NewCommunityGalleryImageVersionsClientWithBaseURI(endpoint)
-	configureAuthFunc(&communityGalleryImageVersionsClient.Client)
-
-	communityGalleryImagesClient := communitygalleryimages.NewCommunityGalleryImagesClientWithBaseURI(endpoint)
-	configureAuthFunc(&communityGalleryImagesClient.Client)
-
-	galleriesClient := galleries.NewGalleriesClientWithBaseURI(endpoint)
-	configureAuthFunc(&galleriesClient.Client)
-
-	galleryApplicationVersionsClient := galleryapplicationversions.NewGalleryApplicationVersionsClientWithBaseURI(endpoint)
-	configureAuthFunc(&galleryApplicationVersionsClient.Client)
-
-	galleryApplicationsClient := galleryapplications.NewGalleryApplicationsClientWithBaseURI(endpoint)
-	configureAuthFunc(&galleryApplicationsClient.Client)
-
-	galleryImageVersionsClient := galleryimageversions.NewGalleryImageVersionsClientWithBaseURI(endpoint)
-	configureAuthFunc(&galleryImageVersionsClient.Client)
-
-	galleryImagesClient := galleryimages.NewGalleryImagesClientWithBaseURI(endpoint)
-	configureAuthFunc(&galleryImagesClient.Client)
-
-	gallerySharingUpdateClient := gallerysharingupdate.NewGallerySharingUpdateClientWithBaseURI(endpoint)
-	configureAuthFunc(&gallerySharingUpdateClient.Client)
-
-	sharedGalleriesClient := sharedgalleries.NewSharedGalleriesClientWithBaseURI(endpoint)
-	configureAuthFunc(&sharedGalleriesClient.Client)
-
-	sharedGalleryImageVersionsClient := sharedgalleryimageversions.NewSharedGalleryImageVersionsClientWithBaseURI(endpoint)
-	configureAuthFunc(&sharedGalleryImageVersionsClient.Client)
-
-	sharedGalleryImagesClient := sharedgalleryimages.NewSharedGalleryImagesClientWithBaseURI(endpoint)
-	configureAuthFunc(&sharedGalleryImagesClient.Client)
-
-	return Client{
-		CommunityGalleries:            &communityGalleriesClient,
-		CommunityGalleryImageVersions: &communityGalleryImageVersionsClient,
-		CommunityGalleryImages:        &communityGalleryImagesClient,
-		Galleries:                     &galleriesClient,
-		GalleryApplicationVersions:    &galleryApplicationVersionsClient,
-		GalleryApplications:           &galleryApplicationsClient,
-		GalleryImageVersions:          &galleryImageVersionsClient,
-		GalleryImages:                 &galleryImagesClient,
-		GallerySharingUpdate:          &gallerySharingUpdateClient,
-		SharedGalleries:               &sharedGalleriesClient,
-		SharedGalleryImageVersions:    &sharedGalleryImageVersionsClient,
-		SharedGalleryImages:           &sharedGalleryImagesClient,
+func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+	communityGalleriesClient, err := communitygalleries.NewCommunityGalleriesClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building CommunityGalleries client: %+v", err)
 	}
+	configureFunc(communityGalleriesClient.Client)
+
+	communityGalleryImageVersionsClient, err := communitygalleryimageversions.NewCommunityGalleryImageVersionsClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building CommunityGalleryImageVersions client: %+v", err)
+	}
+	configureFunc(communityGalleryImageVersionsClient.Client)
+
+	communityGalleryImagesClient, err := communitygalleryimages.NewCommunityGalleryImagesClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building CommunityGalleryImages client: %+v", err)
+	}
+	configureFunc(communityGalleryImagesClient.Client)
+
+	galleriesClient, err := galleries.NewGalleriesClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building Galleries client: %+v", err)
+	}
+	configureFunc(galleriesClient.Client)
+
+	galleryApplicationVersionsClient, err := galleryapplicationversions.NewGalleryApplicationVersionsClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building GalleryApplicationVersions client: %+v", err)
+	}
+	configureFunc(galleryApplicationVersionsClient.Client)
+
+	galleryApplicationsClient, err := galleryapplications.NewGalleryApplicationsClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building GalleryApplications client: %+v", err)
+	}
+	configureFunc(galleryApplicationsClient.Client)
+
+	galleryImageVersionsClient, err := galleryimageversions.NewGalleryImageVersionsClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building GalleryImageVersions client: %+v", err)
+	}
+	configureFunc(galleryImageVersionsClient.Client)
+
+	galleryImagesClient, err := galleryimages.NewGalleryImagesClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building GalleryImages client: %+v", err)
+	}
+	configureFunc(galleryImagesClient.Client)
+
+	gallerySharingUpdateClient, err := gallerysharingupdate.NewGallerySharingUpdateClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building GallerySharingUpdate client: %+v", err)
+	}
+	configureFunc(gallerySharingUpdateClient.Client)
+
+	sharedGalleriesClient, err := sharedgalleries.NewSharedGalleriesClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building SharedGalleries client: %+v", err)
+	}
+	configureFunc(sharedGalleriesClient.Client)
+
+	sharedGalleryImageVersionsClient, err := sharedgalleryimageversions.NewSharedGalleryImageVersionsClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building SharedGalleryImageVersions client: %+v", err)
+	}
+	configureFunc(sharedGalleryImageVersionsClient.Client)
+
+	sharedGalleryImagesClient, err := sharedgalleryimages.NewSharedGalleryImagesClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building SharedGalleryImages client: %+v", err)
+	}
+	configureFunc(sharedGalleryImagesClient.Client)
+
+	return &Client{
+		CommunityGalleries:            communityGalleriesClient,
+		CommunityGalleryImageVersions: communityGalleryImageVersionsClient,
+		CommunityGalleryImages:        communityGalleryImagesClient,
+		Galleries:                     galleriesClient,
+		GalleryApplicationVersions:    galleryApplicationVersionsClient,
+		GalleryApplications:           galleryApplicationsClient,
+		GalleryImageVersions:          galleryImageVersionsClient,
+		GalleryImages:                 galleryImagesClient,
+		GallerySharingUpdate:          gallerySharingUpdateClient,
+		SharedGalleries:               sharedGalleriesClient,
+		SharedGalleryImageVersions:    sharedGalleryImageVersionsClient,
+		SharedGalleryImages:           sharedGalleryImagesClient,
+	}, nil
 }

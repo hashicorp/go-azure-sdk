@@ -1,6 +1,10 @@
 package virtualmachineimages
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -19,6 +23,19 @@ func PossibleValuesForAlternativeType() []string {
 		string(AlternativeTypeOffer),
 		string(AlternativeTypePlan),
 	}
+}
+
+func (s *AlternativeType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseAlternativeType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseAlternativeType(input string) (*AlternativeType, error) {
@@ -50,6 +67,19 @@ func PossibleValuesForArchitectureTypes() []string {
 	}
 }
 
+func (s *ArchitectureTypes) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseArchitectureTypes(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseArchitectureTypes(input string) (*ArchitectureTypes, error) {
 	vals := map[string]ArchitectureTypes{
 		"arm64": ArchitectureTypesArmSixFour,
@@ -76,6 +106,19 @@ func PossibleValuesForHyperVGenerationTypes() []string {
 		string(HyperVGenerationTypesVOne),
 		string(HyperVGenerationTypesVTwo),
 	}
+}
+
+func (s *HyperVGenerationTypes) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseHyperVGenerationTypes(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseHyperVGenerationTypes(input string) (*HyperVGenerationTypes, error) {
@@ -108,6 +151,19 @@ func PossibleValuesForImageState() []string {
 	}
 }
 
+func (s *ImageState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseImageState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseImageState(input string) (*ImageState, error) {
 	vals := map[string]ImageState{
 		"active":                  ImageStateActive,
@@ -137,6 +193,19 @@ func PossibleValuesForOperatingSystemTypes() []string {
 	}
 }
 
+func (s *OperatingSystemTypes) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseOperatingSystemTypes(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseOperatingSystemTypes(input string) (*OperatingSystemTypes, error) {
 	vals := map[string]OperatingSystemTypes{
 		"linux":   OperatingSystemTypesLinux,
@@ -163,6 +232,19 @@ func PossibleValuesForVMDiskTypes() []string {
 		string(VMDiskTypesNone),
 		string(VMDiskTypesUnmanaged),
 	}
+}
+
+func (s *VMDiskTypes) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseVMDiskTypes(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseVMDiskTypes(input string) (*VMDiskTypes, error) {

@@ -1,6 +1,10 @@
 package sharedgalleryimages
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -17,6 +21,19 @@ func PossibleValuesForArchitecture() []string {
 		string(ArchitectureArmSixFour),
 		string(ArchitectureXSixFour),
 	}
+}
+
+func (s *Architecture) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseArchitecture(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseArchitecture(input string) (*Architecture, error) {
@@ -47,6 +64,19 @@ func PossibleValuesForHyperVGeneration() []string {
 	}
 }
 
+func (s *HyperVGeneration) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseHyperVGeneration(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseHyperVGeneration(input string) (*HyperVGeneration, error) {
 	vals := map[string]HyperVGeneration{
 		"v1": HyperVGenerationVOne,
@@ -73,6 +103,19 @@ func PossibleValuesForOperatingSystemStateTypes() []string {
 		string(OperatingSystemStateTypesGeneralized),
 		string(OperatingSystemStateTypesSpecialized),
 	}
+}
+
+func (s *OperatingSystemStateTypes) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseOperatingSystemStateTypes(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseOperatingSystemStateTypes(input string) (*OperatingSystemStateTypes, error) {
@@ -103,6 +146,19 @@ func PossibleValuesForOperatingSystemTypes() []string {
 	}
 }
 
+func (s *OperatingSystemTypes) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseOperatingSystemTypes(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseOperatingSystemTypes(input string) (*OperatingSystemTypes, error) {
 	vals := map[string]OperatingSystemTypes{
 		"linux":   OperatingSystemTypesLinux,
@@ -127,6 +183,19 @@ func PossibleValuesForSharedToValues() []string {
 	return []string{
 		string(SharedToValuesTenant),
 	}
+}
+
+func (s *SharedToValues) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseSharedToValues(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseSharedToValues(input string) (*SharedToValues, error) {
