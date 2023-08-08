@@ -1,18 +1,26 @@
 package virtualmachinescalesetrollingupgrades
 
-import "github.com/Azure/go-autorest/autorest"
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type VirtualMachineScaleSetRollingUpgradesClient struct {
-	Client  autorest.Client
-	baseUri string
+	Client *resourcemanager.Client
 }
 
-func NewVirtualMachineScaleSetRollingUpgradesClientWithBaseURI(endpoint string) VirtualMachineScaleSetRollingUpgradesClient {
-	return VirtualMachineScaleSetRollingUpgradesClient{
-		Client:  autorest.NewClientWithUserAgent(userAgent()),
-		baseUri: endpoint,
+func NewVirtualMachineScaleSetRollingUpgradesClientWithBaseURI(sdkApi sdkEnv.Api) (*VirtualMachineScaleSetRollingUpgradesClient, error) {
+	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "virtualmachinescalesetrollingupgrades", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating VirtualMachineScaleSetRollingUpgradesClient: %+v", err)
 	}
+
+	return &VirtualMachineScaleSetRollingUpgradesClient{
+		Client: client,
+	}, nil
 }

@@ -1,6 +1,10 @@
 package galleryimages
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -17,6 +21,19 @@ func PossibleValuesForArchitecture() []string {
 		string(ArchitectureArmSixFour),
 		string(ArchitectureXSixFour),
 	}
+}
+
+func (s *Architecture) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseArchitecture(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseArchitecture(input string) (*Architecture, error) {
@@ -55,6 +72,19 @@ func PossibleValuesForGalleryProvisioningState() []string {
 	}
 }
 
+func (s *GalleryProvisioningState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseGalleryProvisioningState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseGalleryProvisioningState(input string) (*GalleryProvisioningState, error) {
 	vals := map[string]GalleryProvisioningState{
 		"creating":  GalleryProvisioningStateCreating,
@@ -87,6 +117,19 @@ func PossibleValuesForHyperVGeneration() []string {
 	}
 }
 
+func (s *HyperVGeneration) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseHyperVGeneration(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseHyperVGeneration(input string) (*HyperVGeneration, error) {
 	vals := map[string]HyperVGeneration{
 		"v1": HyperVGenerationVOne,
@@ -115,6 +158,19 @@ func PossibleValuesForOperatingSystemStateTypes() []string {
 	}
 }
 
+func (s *OperatingSystemStateTypes) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseOperatingSystemStateTypes(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseOperatingSystemStateTypes(input string) (*OperatingSystemStateTypes, error) {
 	vals := map[string]OperatingSystemStateTypes{
 		"generalized": OperatingSystemStateTypesGeneralized,
@@ -141,6 +197,19 @@ func PossibleValuesForOperatingSystemTypes() []string {
 		string(OperatingSystemTypesLinux),
 		string(OperatingSystemTypesWindows),
 	}
+}
+
+func (s *OperatingSystemTypes) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseOperatingSystemTypes(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseOperatingSystemTypes(input string) (*OperatingSystemTypes, error) {

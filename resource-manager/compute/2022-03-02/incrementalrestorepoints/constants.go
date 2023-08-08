@@ -1,6 +1,10 @@
 package incrementalrestorepoints
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -19,6 +23,19 @@ func PossibleValuesForAccessLevel() []string {
 		string(AccessLevelRead),
 		string(AccessLevelWrite),
 	}
+}
+
+func (s *AccessLevel) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseAccessLevel(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseAccessLevel(input string) (*AccessLevel, error) {
@@ -48,6 +65,19 @@ func PossibleValuesForArchitecture() []string {
 		string(ArchitectureArmSixFour),
 		string(ArchitectureXSixFour),
 	}
+}
+
+func (s *Architecture) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseArchitecture(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseArchitecture(input string) (*Architecture, error) {
@@ -82,6 +112,19 @@ func PossibleValuesForDiskSecurityTypes() []string {
 	}
 }
 
+func (s *DiskSecurityTypes) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseDiskSecurityTypes(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseDiskSecurityTypes(input string) (*DiskSecurityTypes, error) {
 	vals := map[string]DiskSecurityTypes{
 		"confidentialvm_diskencryptedwithcustomerkey":             DiskSecurityTypesConfidentialVMDiskEncryptedWithCustomerKey,
@@ -114,6 +157,19 @@ func PossibleValuesForEncryptionType() []string {
 	}
 }
 
+func (s *EncryptionType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseEncryptionType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseEncryptionType(input string) (*EncryptionType, error) {
 	vals := map[string]EncryptionType{
 		"encryptionatrestwithcustomerkey":             EncryptionTypeEncryptionAtRestWithCustomerKey,
@@ -141,6 +197,19 @@ func PossibleValuesForHyperVGeneration() []string {
 		string(HyperVGenerationVOne),
 		string(HyperVGenerationVTwo),
 	}
+}
+
+func (s *HyperVGeneration) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseHyperVGeneration(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseHyperVGeneration(input string) (*HyperVGeneration, error) {
@@ -173,6 +242,19 @@ func PossibleValuesForNetworkAccessPolicy() []string {
 	}
 }
 
+func (s *NetworkAccessPolicy) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseNetworkAccessPolicy(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseNetworkAccessPolicy(input string) (*NetworkAccessPolicy, error) {
 	vals := map[string]NetworkAccessPolicy{
 		"allowall":     NetworkAccessPolicyAllowAll,
@@ -202,6 +284,19 @@ func PossibleValuesForOperatingSystemTypes() []string {
 	}
 }
 
+func (s *OperatingSystemTypes) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseOperatingSystemTypes(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseOperatingSystemTypes(input string) (*OperatingSystemTypes, error) {
 	vals := map[string]OperatingSystemTypes{
 		"linux":   OperatingSystemTypesLinux,
@@ -228,6 +323,19 @@ func PossibleValuesForPublicNetworkAccess() []string {
 		string(PublicNetworkAccessDisabled),
 		string(PublicNetworkAccessEnabled),
 	}
+}
+
+func (s *PublicNetworkAccess) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parsePublicNetworkAccess(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parsePublicNetworkAccess(input string) (*PublicNetworkAccess, error) {

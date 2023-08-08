@@ -1,6 +1,10 @@
 package virtualmachinescalesetrollingupgrades
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -17,6 +21,19 @@ func PossibleValuesForRollingUpgradeActionType() []string {
 		string(RollingUpgradeActionTypeCancel),
 		string(RollingUpgradeActionTypeStart),
 	}
+}
+
+func (s *RollingUpgradeActionType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseRollingUpgradeActionType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseRollingUpgradeActionType(input string) (*RollingUpgradeActionType, error) {
@@ -49,6 +66,19 @@ func PossibleValuesForRollingUpgradeStatusCode() []string {
 		string(RollingUpgradeStatusCodeFaulted),
 		string(RollingUpgradeStatusCodeRollingForward),
 	}
+}
+
+func (s *RollingUpgradeStatusCode) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseRollingUpgradeStatusCode(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseRollingUpgradeStatusCode(input string) (*RollingUpgradeStatusCode, error) {

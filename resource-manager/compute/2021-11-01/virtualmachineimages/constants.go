@@ -1,6 +1,10 @@
 package virtualmachineimages
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -17,6 +21,19 @@ func PossibleValuesForArchitectureTypes() []string {
 		string(ArchitectureTypesArmSixFour),
 		string(ArchitectureTypesXSixFour),
 	}
+}
+
+func (s *ArchitectureTypes) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseArchitectureTypes(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseArchitectureTypes(input string) (*ArchitectureTypes, error) {
@@ -47,6 +64,19 @@ func PossibleValuesForHyperVGenerationTypes() []string {
 	}
 }
 
+func (s *HyperVGenerationTypes) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseHyperVGenerationTypes(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseHyperVGenerationTypes(input string) (*HyperVGenerationTypes, error) {
 	vals := map[string]HyperVGenerationTypes{
 		"v1": HyperVGenerationTypesVOne,
@@ -75,6 +105,19 @@ func PossibleValuesForOperatingSystemTypes() []string {
 	}
 }
 
+func (s *OperatingSystemTypes) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseOperatingSystemTypes(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseOperatingSystemTypes(input string) (*OperatingSystemTypes, error) {
 	vals := map[string]OperatingSystemTypes{
 		"linux":   OperatingSystemTypesLinux,
@@ -101,6 +144,19 @@ func PossibleValuesForVMDiskTypes() []string {
 		string(VMDiskTypesNone),
 		string(VMDiskTypesUnmanaged),
 	}
+}
+
+func (s *VMDiskTypes) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseVMDiskTypes(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseVMDiskTypes(input string) (*VMDiskTypes, error) {
