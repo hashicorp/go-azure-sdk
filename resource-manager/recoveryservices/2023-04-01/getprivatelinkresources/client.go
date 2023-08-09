@@ -1,18 +1,26 @@
 package getprivatelinkresources
 
-import "github.com/Azure/go-autorest/autorest"
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type GetPrivateLinkResourcesClient struct {
-	Client  autorest.Client
-	baseUri string
+	Client *resourcemanager.Client
 }
 
-func NewGetPrivateLinkResourcesClientWithBaseURI(endpoint string) GetPrivateLinkResourcesClient {
-	return GetPrivateLinkResourcesClient{
-		Client:  autorest.NewClientWithUserAgent(userAgent()),
-		baseUri: endpoint,
+func NewGetPrivateLinkResourcesClientWithBaseURI(sdkApi sdkEnv.Api) (*GetPrivateLinkResourcesClient, error) {
+	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "getprivatelinkresources", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating GetPrivateLinkResourcesClient: %+v", err)
 	}
+
+	return &GetPrivateLinkResourcesClient{
+		Client: client,
+	}, nil
 }

@@ -1,6 +1,10 @@
 package servers
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -17,6 +21,19 @@ func PossibleValuesForActiveDirectoryAuthEnum() []string {
 		string(ActiveDirectoryAuthEnumDisabled),
 		string(ActiveDirectoryAuthEnumEnabled),
 	}
+}
+
+func (s *ActiveDirectoryAuthEnum) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseActiveDirectoryAuthEnum(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseActiveDirectoryAuthEnum(input string) (*ActiveDirectoryAuthEnum, error) {
@@ -45,6 +62,19 @@ func PossibleValuesForArmServerKeyType() []string {
 		string(ArmServerKeyTypeAzureKeyVault),
 		string(ArmServerKeyTypeSystemManaged),
 	}
+}
+
+func (s *ArmServerKeyType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseArmServerKeyType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseArmServerKeyType(input string) (*ArmServerKeyType, error) {
@@ -83,6 +113,19 @@ func PossibleValuesForCreateMode() []string {
 	}
 }
 
+func (s *CreateMode) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseCreateMode(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseCreateMode(input string) (*CreateMode, error) {
 	vals := map[string]CreateMode{
 		"create":             CreateModeCreate,
@@ -115,6 +158,19 @@ func PossibleValuesForCreateModeForUpdate() []string {
 	}
 }
 
+func (s *CreateModeForUpdate) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseCreateModeForUpdate(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseCreateModeForUpdate(input string) (*CreateModeForUpdate, error) {
 	vals := map[string]CreateModeForUpdate{
 		"default": CreateModeForUpdateDefault,
@@ -141,6 +197,19 @@ func PossibleValuesForGeoRedundantBackupEnum() []string {
 		string(GeoRedundantBackupEnumDisabled),
 		string(GeoRedundantBackupEnumEnabled),
 	}
+}
+
+func (s *GeoRedundantBackupEnum) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseGeoRedundantBackupEnum(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseGeoRedundantBackupEnum(input string) (*GeoRedundantBackupEnum, error) {
@@ -173,6 +242,19 @@ func PossibleValuesForHighAvailabilityMode() []string {
 	}
 }
 
+func (s *HighAvailabilityMode) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseHighAvailabilityMode(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseHighAvailabilityMode(input string) (*HighAvailabilityMode, error) {
 	vals := map[string]HighAvailabilityMode{
 		"disabled":      HighAvailabilityModeDisabled,
@@ -200,6 +282,19 @@ func PossibleValuesForPasswordAuthEnum() []string {
 		string(PasswordAuthEnumDisabled),
 		string(PasswordAuthEnumEnabled),
 	}
+}
+
+func (s *PasswordAuthEnum) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parsePasswordAuthEnum(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parsePasswordAuthEnum(input string) (*PasswordAuthEnum, error) {
@@ -232,6 +327,19 @@ func PossibleValuesForReplicationRole() []string {
 		string(ReplicationRoleNone),
 		string(ReplicationRolePrimary),
 	}
+}
+
+func (s *ReplicationRole) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseReplicationRole(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseReplicationRole(input string) (*ReplicationRole, error) {
@@ -272,6 +380,19 @@ func PossibleValuesForServerHAState() []string {
 	}
 }
 
+func (s *ServerHAState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseServerHAState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseServerHAState(input string) (*ServerHAState, error) {
 	vals := map[string]ServerHAState{
 		"creatingstandby": ServerHAStateCreatingStandby,
@@ -302,6 +423,19 @@ func PossibleValuesForServerPublicNetworkAccessState() []string {
 		string(ServerPublicNetworkAccessStateDisabled),
 		string(ServerPublicNetworkAccessStateEnabled),
 	}
+}
+
+func (s *ServerPublicNetworkAccessState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseServerPublicNetworkAccessState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseServerPublicNetworkAccessState(input string) (*ServerPublicNetworkAccessState, error) {
@@ -342,6 +476,19 @@ func PossibleValuesForServerState() []string {
 	}
 }
 
+func (s *ServerState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseServerState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseServerState(input string) (*ServerState, error) {
 	vals := map[string]ServerState{
 		"disabled": ServerStateDisabled,
@@ -379,6 +526,19 @@ func PossibleValuesForServerVersion() []string {
 	}
 }
 
+func (s *ServerVersion) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseServerVersion(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseServerVersion(input string) (*ServerVersion, error) {
 	vals := map[string]ServerVersion{
 		"14": ServerVersionOneFour,
@@ -409,6 +569,19 @@ func PossibleValuesForSkuTier() []string {
 		string(SkuTierGeneralPurpose),
 		string(SkuTierMemoryOptimized),
 	}
+}
+
+func (s *SkuTier) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseSkuTier(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseSkuTier(input string) (*SkuTier, error) {

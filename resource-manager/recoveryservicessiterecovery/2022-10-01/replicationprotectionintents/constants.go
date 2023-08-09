@@ -1,6 +1,10 @@
 package replicationprotectionintents
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -19,6 +23,19 @@ func PossibleValuesForA2ARecoveryAvailabilityType() []string {
 		string(A2ARecoveryAvailabilityTypeAvailabilityZone),
 		string(A2ARecoveryAvailabilityTypeSingle),
 	}
+}
+
+func (s *A2ARecoveryAvailabilityType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseA2ARecoveryAvailabilityType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseA2ARecoveryAvailabilityType(input string) (*A2ARecoveryAvailabilityType, error) {
@@ -50,6 +67,19 @@ func PossibleValuesForAgentAutoUpdateStatus() []string {
 	}
 }
 
+func (s *AgentAutoUpdateStatus) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseAgentAutoUpdateStatus(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseAgentAutoUpdateStatus(input string) (*AgentAutoUpdateStatus, error) {
 	vals := map[string]AgentAutoUpdateStatus{
 		"disabled": AgentAutoUpdateStatusDisabled,
@@ -76,6 +106,19 @@ func PossibleValuesForAutoProtectionOfDataDisk() []string {
 		string(AutoProtectionOfDataDiskDisabled),
 		string(AutoProtectionOfDataDiskEnabled),
 	}
+}
+
+func (s *AutoProtectionOfDataDisk) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseAutoProtectionOfDataDisk(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseAutoProtectionOfDataDisk(input string) (*AutoProtectionOfDataDisk, error) {
@@ -106,6 +149,19 @@ func PossibleValuesForAutomationAccountAuthenticationType() []string {
 	}
 }
 
+func (s *AutomationAccountAuthenticationType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseAutomationAccountAuthenticationType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseAutomationAccountAuthenticationType(input string) (*AutomationAccountAuthenticationType, error) {
 	vals := map[string]AutomationAccountAuthenticationType{
 		"runasaccount":           AutomationAccountAuthenticationTypeRunAsAccount,
@@ -132,6 +188,19 @@ func PossibleValuesForSetMultiVMSyncStatus() []string {
 		string(SetMultiVMSyncStatusDisable),
 		string(SetMultiVMSyncStatusEnable),
 	}
+}
+
+func (s *SetMultiVMSyncStatus) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseSetMultiVMSyncStatus(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseSetMultiVMSyncStatus(input string) (*SetMultiVMSyncStatus, error) {

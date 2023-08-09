@@ -1,6 +1,10 @@
 package flexibleservercapabilities
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -21,6 +25,19 @@ func PossibleValuesForCapabilityStatus() []string {
 		string(CapabilityStatusDisabled),
 		string(CapabilityStatusVisible),
 	}
+}
+
+func (s *CapabilityStatus) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseCapabilityStatus(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseCapabilityStatus(input string) (*CapabilityStatus, error) {
@@ -53,6 +70,19 @@ func PossibleValuesForFastProvisioningSupportedEnum() []string {
 	}
 }
 
+func (s *FastProvisioningSupportedEnum) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseFastProvisioningSupportedEnum(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseFastProvisioningSupportedEnum(input string) (*FastProvisioningSupportedEnum, error) {
 	vals := map[string]FastProvisioningSupportedEnum{
 		"disabled": FastProvisioningSupportedEnumDisabled,
@@ -79,6 +109,19 @@ func PossibleValuesForGeoBackupSupportedEnum() []string {
 		string(GeoBackupSupportedEnumDisabled),
 		string(GeoBackupSupportedEnumEnabled),
 	}
+}
+
+func (s *GeoBackupSupportedEnum) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseGeoBackupSupportedEnum(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseGeoBackupSupportedEnum(input string) (*GeoBackupSupportedEnum, error) {
@@ -109,6 +152,19 @@ func PossibleValuesForHaMode() []string {
 	}
 }
 
+func (s *HaMode) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseHaMode(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseHaMode(input string) (*HaMode, error) {
 	vals := map[string]HaMode{
 		"samezone":      HaModeSameZone,
@@ -135,6 +191,19 @@ func PossibleValuesForOnlineResizeSupportedEnum() []string {
 		string(OnlineResizeSupportedEnumDisabled),
 		string(OnlineResizeSupportedEnumEnabled),
 	}
+}
+
+func (s *OnlineResizeSupportedEnum) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseOnlineResizeSupportedEnum(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseOnlineResizeSupportedEnum(input string) (*OnlineResizeSupportedEnum, error) {
@@ -165,6 +234,19 @@ func PossibleValuesForRestrictedEnum() []string {
 	}
 }
 
+func (s *RestrictedEnum) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseRestrictedEnum(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseRestrictedEnum(input string) (*RestrictedEnum, error) {
 	vals := map[string]RestrictedEnum{
 		"disabled": RestrictedEnumDisabled,
@@ -191,6 +273,19 @@ func PossibleValuesForStorageAutoGrowthSupportedEnum() []string {
 		string(StorageAutoGrowthSupportedEnumDisabled),
 		string(StorageAutoGrowthSupportedEnumEnabled),
 	}
+}
+
+func (s *StorageAutoGrowthSupportedEnum) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseStorageAutoGrowthSupportedEnum(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseStorageAutoGrowthSupportedEnum(input string) (*StorageAutoGrowthSupportedEnum, error) {
@@ -221,6 +316,19 @@ func PossibleValuesForZoneRedundantHaAndGeoBackupSupportedEnum() []string {
 	}
 }
 
+func (s *ZoneRedundantHaAndGeoBackupSupportedEnum) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseZoneRedundantHaAndGeoBackupSupportedEnum(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseZoneRedundantHaAndGeoBackupSupportedEnum(input string) (*ZoneRedundantHaAndGeoBackupSupportedEnum, error) {
 	vals := map[string]ZoneRedundantHaAndGeoBackupSupportedEnum{
 		"disabled": ZoneRedundantHaAndGeoBackupSupportedEnumDisabled,
@@ -247,6 +355,19 @@ func PossibleValuesForZoneRedundantHaSupportedEnum() []string {
 		string(ZoneRedundantHaSupportedEnumDisabled),
 		string(ZoneRedundantHaSupportedEnumEnabled),
 	}
+}
+
+func (s *ZoneRedundantHaSupportedEnum) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseZoneRedundantHaSupportedEnum(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseZoneRedundantHaSupportedEnum(input string) (*ZoneRedundantHaSupportedEnum, error) {

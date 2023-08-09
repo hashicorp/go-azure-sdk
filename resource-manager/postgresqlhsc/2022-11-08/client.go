@@ -4,7 +4,8 @@ package v2022_11_08
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 import (
-	"github.com/Azure/go-autorest/autorest"
+	"fmt"
+
 	"github.com/hashicorp/go-azure-sdk/resource-manager/postgresqlhsc/2022-11-08/clusteroperations"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/postgresqlhsc/2022-11-08/clusters"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/postgresqlhsc/2022-11-08/configurations"
@@ -13,6 +14,8 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/postgresqlhsc/2022-11-08/privatelinkresources"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/postgresqlhsc/2022-11-08/roles"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/postgresqlhsc/2022-11-08/servers"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -26,40 +29,63 @@ type Client struct {
 	Servers                    *servers.ServersClient
 }
 
-func NewClientWithBaseURI(endpoint string, configureAuthFunc func(c *autorest.Client)) Client {
-
-	clusterOperationsClient := clusteroperations.NewClusterOperationsClientWithBaseURI(endpoint)
-	configureAuthFunc(&clusterOperationsClient.Client)
-
-	clustersClient := clusters.NewClustersClientWithBaseURI(endpoint)
-	configureAuthFunc(&clustersClient.Client)
-
-	configurationsClient := configurations.NewConfigurationsClientWithBaseURI(endpoint)
-	configureAuthFunc(&configurationsClient.Client)
-
-	firewallRulesClient := firewallrules.NewFirewallRulesClientWithBaseURI(endpoint)
-	configureAuthFunc(&firewallRulesClient.Client)
-
-	privateEndpointConnectionsClient := privateendpointconnections.NewPrivateEndpointConnectionsClientWithBaseURI(endpoint)
-	configureAuthFunc(&privateEndpointConnectionsClient.Client)
-
-	privateLinkResourcesClient := privatelinkresources.NewPrivateLinkResourcesClientWithBaseURI(endpoint)
-	configureAuthFunc(&privateLinkResourcesClient.Client)
-
-	rolesClient := roles.NewRolesClientWithBaseURI(endpoint)
-	configureAuthFunc(&rolesClient.Client)
-
-	serversClient := servers.NewServersClientWithBaseURI(endpoint)
-	configureAuthFunc(&serversClient.Client)
-
-	return Client{
-		ClusterOperations:          &clusterOperationsClient,
-		Clusters:                   &clustersClient,
-		Configurations:             &configurationsClient,
-		FirewallRules:              &firewallRulesClient,
-		PrivateEndpointConnections: &privateEndpointConnectionsClient,
-		PrivateLinkResources:       &privateLinkResourcesClient,
-		Roles:                      &rolesClient,
-		Servers:                    &serversClient,
+func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+	clusterOperationsClient, err := clusteroperations.NewClusterOperationsClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building ClusterOperations client: %+v", err)
 	}
+	configureFunc(clusterOperationsClient.Client)
+
+	clustersClient, err := clusters.NewClustersClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building Clusters client: %+v", err)
+	}
+	configureFunc(clustersClient.Client)
+
+	configurationsClient, err := configurations.NewConfigurationsClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building Configurations client: %+v", err)
+	}
+	configureFunc(configurationsClient.Client)
+
+	firewallRulesClient, err := firewallrules.NewFirewallRulesClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building FirewallRules client: %+v", err)
+	}
+	configureFunc(firewallRulesClient.Client)
+
+	privateEndpointConnectionsClient, err := privateendpointconnections.NewPrivateEndpointConnectionsClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building PrivateEndpointConnections client: %+v", err)
+	}
+	configureFunc(privateEndpointConnectionsClient.Client)
+
+	privateLinkResourcesClient, err := privatelinkresources.NewPrivateLinkResourcesClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building PrivateLinkResources client: %+v", err)
+	}
+	configureFunc(privateLinkResourcesClient.Client)
+
+	rolesClient, err := roles.NewRolesClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building Roles client: %+v", err)
+	}
+	configureFunc(rolesClient.Client)
+
+	serversClient, err := servers.NewServersClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building Servers client: %+v", err)
+	}
+	configureFunc(serversClient.Client)
+
+	return &Client{
+		ClusterOperations:          clusterOperationsClient,
+		Clusters:                   clustersClient,
+		Configurations:             configurationsClient,
+		FirewallRules:              firewallRulesClient,
+		PrivateEndpointConnections: privateEndpointConnectionsClient,
+		PrivateLinkResources:       privateLinkResourcesClient,
+		Roles:                      rolesClient,
+		Servers:                    serversClient,
+	}, nil
 }
