@@ -4,7 +4,8 @@ package v2022_09_10
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 import (
-	"github.com/Azure/go-autorest/autorest"
+	"fmt"
+
 	"github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservices/2022-09-10/getprivatelinkresources"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservices/2022-09-10/listprivatelinkresources"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservices/2022-09-10/recoveryservices"
@@ -14,6 +15,8 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservices/2022-09-10/vaultextendedinfo"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservices/2022-09-10/vaults"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservices/2022-09-10/vaultusages"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -28,44 +31,70 @@ type Client struct {
 	Vaults                   *vaults.VaultsClient
 }
 
-func NewClientWithBaseURI(endpoint string, configureAuthFunc func(c *autorest.Client)) Client {
-
-	getPrivateLinkResourcesClient := getprivatelinkresources.NewGetPrivateLinkResourcesClientWithBaseURI(endpoint)
-	configureAuthFunc(&getPrivateLinkResourcesClient.Client)
-
-	listPrivateLinkResourcesClient := listprivatelinkresources.NewListPrivateLinkResourcesClientWithBaseURI(endpoint)
-	configureAuthFunc(&listPrivateLinkResourcesClient.Client)
-
-	recoveryServicesClient := recoveryservices.NewRecoveryServicesClientWithBaseURI(endpoint)
-	configureAuthFunc(&recoveryServicesClient.Client)
-
-	registeredIdentitiesClient := registeredidentities.NewRegisteredIdentitiesClientWithBaseURI(endpoint)
-	configureAuthFunc(&registeredIdentitiesClient.Client)
-
-	replicationUsagesClient := replicationusages.NewReplicationUsagesClientWithBaseURI(endpoint)
-	configureAuthFunc(&replicationUsagesClient.Client)
-
-	vaultCertificatesClient := vaultcertificates.NewVaultCertificatesClientWithBaseURI(endpoint)
-	configureAuthFunc(&vaultCertificatesClient.Client)
-
-	vaultExtendedInfoClient := vaultextendedinfo.NewVaultExtendedInfoClientWithBaseURI(endpoint)
-	configureAuthFunc(&vaultExtendedInfoClient.Client)
-
-	vaultUsagesClient := vaultusages.NewVaultUsagesClientWithBaseURI(endpoint)
-	configureAuthFunc(&vaultUsagesClient.Client)
-
-	vaultsClient := vaults.NewVaultsClientWithBaseURI(endpoint)
-	configureAuthFunc(&vaultsClient.Client)
-
-	return Client{
-		GetPrivateLinkResources:  &getPrivateLinkResourcesClient,
-		ListPrivateLinkResources: &listPrivateLinkResourcesClient,
-		RecoveryServices:         &recoveryServicesClient,
-		RegisteredIdentities:     &registeredIdentitiesClient,
-		ReplicationUsages:        &replicationUsagesClient,
-		VaultCertificates:        &vaultCertificatesClient,
-		VaultExtendedInfo:        &vaultExtendedInfoClient,
-		VaultUsages:              &vaultUsagesClient,
-		Vaults:                   &vaultsClient,
+func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+	getPrivateLinkResourcesClient, err := getprivatelinkresources.NewGetPrivateLinkResourcesClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building GetPrivateLinkResources client: %+v", err)
 	}
+	configureFunc(getPrivateLinkResourcesClient.Client)
+
+	listPrivateLinkResourcesClient, err := listprivatelinkresources.NewListPrivateLinkResourcesClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building ListPrivateLinkResources client: %+v", err)
+	}
+	configureFunc(listPrivateLinkResourcesClient.Client)
+
+	recoveryServicesClient, err := recoveryservices.NewRecoveryServicesClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building RecoveryServices client: %+v", err)
+	}
+	configureFunc(recoveryServicesClient.Client)
+
+	registeredIdentitiesClient, err := registeredidentities.NewRegisteredIdentitiesClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building RegisteredIdentities client: %+v", err)
+	}
+	configureFunc(registeredIdentitiesClient.Client)
+
+	replicationUsagesClient, err := replicationusages.NewReplicationUsagesClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building ReplicationUsages client: %+v", err)
+	}
+	configureFunc(replicationUsagesClient.Client)
+
+	vaultCertificatesClient, err := vaultcertificates.NewVaultCertificatesClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building VaultCertificates client: %+v", err)
+	}
+	configureFunc(vaultCertificatesClient.Client)
+
+	vaultExtendedInfoClient, err := vaultextendedinfo.NewVaultExtendedInfoClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building VaultExtendedInfo client: %+v", err)
+	}
+	configureFunc(vaultExtendedInfoClient.Client)
+
+	vaultUsagesClient, err := vaultusages.NewVaultUsagesClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building VaultUsages client: %+v", err)
+	}
+	configureFunc(vaultUsagesClient.Client)
+
+	vaultsClient, err := vaults.NewVaultsClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building Vaults client: %+v", err)
+	}
+	configureFunc(vaultsClient.Client)
+
+	return &Client{
+		GetPrivateLinkResources:  getPrivateLinkResourcesClient,
+		ListPrivateLinkResources: listPrivateLinkResourcesClient,
+		RecoveryServices:         recoveryServicesClient,
+		RegisteredIdentities:     registeredIdentitiesClient,
+		ReplicationUsages:        replicationUsagesClient,
+		VaultCertificates:        vaultCertificatesClient,
+		VaultExtendedInfo:        vaultExtendedInfoClient,
+		VaultUsages:              vaultUsagesClient,
+		Vaults:                   vaultsClient,
+	}, nil
 }

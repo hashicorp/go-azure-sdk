@@ -1,6 +1,10 @@
 package replicationvaulthealth
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -35,6 +39,19 @@ func PossibleValuesForHealthErrorCategory() []string {
 		string(HealthErrorCategoryTestFailover),
 		string(HealthErrorCategoryVersionExpiry),
 	}
+}
+
+func (s *HealthErrorCategory) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseHealthErrorCategory(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseHealthErrorCategory(input string) (*HealthErrorCategory, error) {
@@ -74,6 +91,19 @@ func PossibleValuesForHealthErrorCustomerResolvability() []string {
 	}
 }
 
+func (s *HealthErrorCustomerResolvability) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseHealthErrorCustomerResolvability(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseHealthErrorCustomerResolvability(input string) (*HealthErrorCustomerResolvability, error) {
 	vals := map[string]HealthErrorCustomerResolvability{
 		"allowed":    HealthErrorCustomerResolvabilityAllowed,
@@ -104,6 +134,19 @@ func PossibleValuesForSeverity() []string {
 		string(SeverityNONE),
 		string(SeverityWarning),
 	}
+}
+
+func (s *Severity) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseSeverity(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseSeverity(input string) (*Severity, error) {

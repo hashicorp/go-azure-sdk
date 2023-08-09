@@ -1,6 +1,10 @@
 package servergroups
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -15,6 +19,19 @@ func PossibleValuesForCheckNameAvailabilityResourceType() []string {
 	return []string{
 		string(CheckNameAvailabilityResourceTypeMicrosoftPointDBforPostgreSQLServerGroupsvTwo),
 	}
+}
+
+func (s *CheckNameAvailabilityResourceType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseCheckNameAvailabilityResourceType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseCheckNameAvailabilityResourceType(input string) (*CheckNameAvailabilityResourceType, error) {
@@ -54,6 +71,19 @@ func PossibleValuesForCitusVersion() []string {
 	}
 }
 
+func (s *CitusVersion) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseCitusVersion(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseCitusVersion(input string) (*CitusVersion, error) {
 	vals := map[string]CitusVersion{
 		"8.3": CitusVersionEightPointThree,
@@ -89,6 +119,19 @@ func PossibleValuesForCreateMode() []string {
 	}
 }
 
+func (s *CreateMode) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseCreateMode(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseCreateMode(input string) (*CreateMode, error) {
 	vals := map[string]CreateMode{
 		"default":            CreateModeDefault,
@@ -116,6 +159,19 @@ func PossibleValuesForPostgreSQLVersion() []string {
 		string(PostgreSQLVersionOneOne),
 		string(PostgreSQLVersionOneTwo),
 	}
+}
+
+func (s *PostgreSQLVersion) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parsePostgreSQLVersion(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parsePostgreSQLVersion(input string) (*PostgreSQLVersion, error) {
@@ -146,6 +202,19 @@ func PossibleValuesForResourceProviderType() []string {
 	}
 }
 
+func (s *ResourceProviderType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseResourceProviderType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseResourceProviderType(input string) (*ResourceProviderType, error) {
 	vals := map[string]ResourceProviderType{
 		"marlin": ResourceProviderTypeMarlin,
@@ -174,6 +243,19 @@ func PossibleValuesForServerEdition() []string {
 	}
 }
 
+func (s *ServerEdition) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseServerEdition(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseServerEdition(input string) (*ServerEdition, error) {
 	vals := map[string]ServerEdition{
 		"generalpurpose":  ServerEditionGeneralPurpose,
@@ -200,6 +282,19 @@ func PossibleValuesForServerRole() []string {
 		string(ServerRoleCoordinator),
 		string(ServerRoleWorker),
 	}
+}
+
+func (s *ServerRole) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseServerRole(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseServerRole(input string) (*ServerRole, error) {
@@ -240,6 +335,19 @@ func PossibleValuesForServerState() []string {
 		string(ServerStateStopping),
 		string(ServerStateUpdating),
 	}
+}
+
+func (s *ServerState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseServerState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseServerState(input string) (*ServerState, error) {

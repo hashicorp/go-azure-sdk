@@ -4,20 +4,25 @@ package v2022_09_01
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 import (
-	"github.com/Azure/go-autorest/autorest"
+	"fmt"
+
 	"github.com/hashicorp/go-azure-sdk/resource-manager/policyinsights/2022-09-01/attestations"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
 	Attestations *attestations.AttestationsClient
 }
 
-func NewClientWithBaseURI(endpoint string, configureAuthFunc func(c *autorest.Client)) Client {
-
-	attestationsClient := attestations.NewAttestationsClientWithBaseURI(endpoint)
-	configureAuthFunc(&attestationsClient.Client)
-
-	return Client{
-		Attestations: &attestationsClient,
+func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+	attestationsClient, err := attestations.NewAttestationsClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building Attestations client: %+v", err)
 	}
+	configureFunc(attestationsClient.Client)
+
+	return &Client{
+		Attestations: attestationsClient,
+	}, nil
 }

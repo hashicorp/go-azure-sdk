@@ -4,7 +4,8 @@ package v2023_01_01
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 import (
-	"github.com/Azure/go-autorest/autorest"
+	"fmt"
+
 	"github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicessiterecovery/2023-01-01/migrationrecoverypoints"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicessiterecovery/2023-01-01/operations"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicessiterecovery/2023-01-01/recoverypoints"
@@ -33,6 +34,8 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicessiterecovery/2023-01-01/replicationvcenters"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicessiterecovery/2023-01-01/supportedoperatingsystems"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicessiterecovery/2023-01-01/targetcomputesizes"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -66,120 +69,203 @@ type Client struct {
 	TargetComputeSizes                       *targetcomputesizes.TargetComputeSizesClient
 }
 
-func NewClientWithBaseURI(endpoint string, configureAuthFunc func(c *autorest.Client)) Client {
-
-	migrationRecoveryPointsClient := migrationrecoverypoints.NewMigrationRecoveryPointsClientWithBaseURI(endpoint)
-	configureAuthFunc(&migrationRecoveryPointsClient.Client)
-
-	operationsClient := operations.NewOperationsClientWithBaseURI(endpoint)
-	configureAuthFunc(&operationsClient.Client)
-
-	recoveryPointsClient := recoverypoints.NewRecoveryPointsClientWithBaseURI(endpoint)
-	configureAuthFunc(&recoveryPointsClient.Client)
-
-	replicationAlertSettingsClient := replicationalertsettings.NewReplicationAlertSettingsClientWithBaseURI(endpoint)
-	configureAuthFunc(&replicationAlertSettingsClient.Client)
-
-	replicationAppliancesClient := replicationappliances.NewReplicationAppliancesClientWithBaseURI(endpoint)
-	configureAuthFunc(&replicationAppliancesClient.Client)
-
-	replicationEligibilityResultsClient := replicationeligibilityresults.NewReplicationEligibilityResultsClientWithBaseURI(endpoint)
-	configureAuthFunc(&replicationEligibilityResultsClient.Client)
-
-	replicationEventsClient := replicationevents.NewReplicationEventsClientWithBaseURI(endpoint)
-	configureAuthFunc(&replicationEventsClient.Client)
-
-	replicationFabricsClient := replicationfabrics.NewReplicationFabricsClientWithBaseURI(endpoint)
-	configureAuthFunc(&replicationFabricsClient.Client)
-
-	replicationJobsClient := replicationjobs.NewReplicationJobsClientWithBaseURI(endpoint)
-	configureAuthFunc(&replicationJobsClient.Client)
-
-	replicationLogicalNetworksClient := replicationlogicalnetworks.NewReplicationLogicalNetworksClientWithBaseURI(endpoint)
-	configureAuthFunc(&replicationLogicalNetworksClient.Client)
-
-	replicationMigrationItemsClient := replicationmigrationitems.NewReplicationMigrationItemsClientWithBaseURI(endpoint)
-	configureAuthFunc(&replicationMigrationItemsClient.Client)
-
-	replicationNetworkMappingsClient := replicationnetworkmappings.NewReplicationNetworkMappingsClientWithBaseURI(endpoint)
-	configureAuthFunc(&replicationNetworkMappingsClient.Client)
-
-	replicationNetworksClient := replicationnetworks.NewReplicationNetworksClientWithBaseURI(endpoint)
-	configureAuthFunc(&replicationNetworksClient.Client)
-
-	replicationPoliciesClient := replicationpolicies.NewReplicationPoliciesClientWithBaseURI(endpoint)
-	configureAuthFunc(&replicationPoliciesClient.Client)
-
-	replicationProtectableItemsClient := replicationprotectableitems.NewReplicationProtectableItemsClientWithBaseURI(endpoint)
-	configureAuthFunc(&replicationProtectableItemsClient.Client)
-
-	replicationProtectedItemsClient := replicationprotecteditems.NewReplicationProtectedItemsClientWithBaseURI(endpoint)
-	configureAuthFunc(&replicationProtectedItemsClient.Client)
-
-	replicationProtectionContainerMappingsClient := replicationprotectioncontainermappings.NewReplicationProtectionContainerMappingsClientWithBaseURI(endpoint)
-	configureAuthFunc(&replicationProtectionContainerMappingsClient.Client)
-
-	replicationProtectionContainersClient := replicationprotectioncontainers.NewReplicationProtectionContainersClientWithBaseURI(endpoint)
-	configureAuthFunc(&replicationProtectionContainersClient.Client)
-
-	replicationProtectionIntentsClient := replicationprotectionintents.NewReplicationProtectionIntentsClientWithBaseURI(endpoint)
-	configureAuthFunc(&replicationProtectionIntentsClient.Client)
-
-	replicationRecoveryPlansClient := replicationrecoveryplans.NewReplicationRecoveryPlansClientWithBaseURI(endpoint)
-	configureAuthFunc(&replicationRecoveryPlansClient.Client)
-
-	replicationRecoveryServicesProvidersClient := replicationrecoveryservicesproviders.NewReplicationRecoveryServicesProvidersClientWithBaseURI(endpoint)
-	configureAuthFunc(&replicationRecoveryServicesProvidersClient.Client)
-
-	replicationStorageClassificationMappingsClient := replicationstorageclassificationmappings.NewReplicationStorageClassificationMappingsClientWithBaseURI(endpoint)
-	configureAuthFunc(&replicationStorageClassificationMappingsClient.Client)
-
-	replicationStorageClassificationsClient := replicationstorageclassifications.NewReplicationStorageClassificationsClientWithBaseURI(endpoint)
-	configureAuthFunc(&replicationStorageClassificationsClient.Client)
-
-	replicationVaultHealthClient := replicationvaulthealth.NewReplicationVaultHealthClientWithBaseURI(endpoint)
-	configureAuthFunc(&replicationVaultHealthClient.Client)
-
-	replicationVaultSettingClient := replicationvaultsetting.NewReplicationVaultSettingClientWithBaseURI(endpoint)
-	configureAuthFunc(&replicationVaultSettingClient.Client)
-
-	replicationvCentersClient := replicationvcenters.NewReplicationvCentersClientWithBaseURI(endpoint)
-	configureAuthFunc(&replicationvCentersClient.Client)
-
-	supportedOperatingSystemsClient := supportedoperatingsystems.NewSupportedOperatingSystemsClientWithBaseURI(endpoint)
-	configureAuthFunc(&supportedOperatingSystemsClient.Client)
-
-	targetComputeSizesClient := targetcomputesizes.NewTargetComputeSizesClientWithBaseURI(endpoint)
-	configureAuthFunc(&targetComputeSizesClient.Client)
-
-	return Client{
-		MigrationRecoveryPoints:                  &migrationRecoveryPointsClient,
-		Operations:                               &operationsClient,
-		RecoveryPoints:                           &recoveryPointsClient,
-		ReplicationAlertSettings:                 &replicationAlertSettingsClient,
-		ReplicationAppliances:                    &replicationAppliancesClient,
-		ReplicationEligibilityResults:            &replicationEligibilityResultsClient,
-		ReplicationEvents:                        &replicationEventsClient,
-		ReplicationFabrics:                       &replicationFabricsClient,
-		ReplicationJobs:                          &replicationJobsClient,
-		ReplicationLogicalNetworks:               &replicationLogicalNetworksClient,
-		ReplicationMigrationItems:                &replicationMigrationItemsClient,
-		ReplicationNetworkMappings:               &replicationNetworkMappingsClient,
-		ReplicationNetworks:                      &replicationNetworksClient,
-		ReplicationPolicies:                      &replicationPoliciesClient,
-		ReplicationProtectableItems:              &replicationProtectableItemsClient,
-		ReplicationProtectedItems:                &replicationProtectedItemsClient,
-		ReplicationProtectionContainerMappings:   &replicationProtectionContainerMappingsClient,
-		ReplicationProtectionContainers:          &replicationProtectionContainersClient,
-		ReplicationProtectionIntents:             &replicationProtectionIntentsClient,
-		ReplicationRecoveryPlans:                 &replicationRecoveryPlansClient,
-		ReplicationRecoveryServicesProviders:     &replicationRecoveryServicesProvidersClient,
-		ReplicationStorageClassificationMappings: &replicationStorageClassificationMappingsClient,
-		ReplicationStorageClassifications:        &replicationStorageClassificationsClient,
-		ReplicationVaultHealth:                   &replicationVaultHealthClient,
-		ReplicationVaultSetting:                  &replicationVaultSettingClient,
-		ReplicationvCenters:                      &replicationvCentersClient,
-		SupportedOperatingSystems:                &supportedOperatingSystemsClient,
-		TargetComputeSizes:                       &targetComputeSizesClient,
+func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+	migrationRecoveryPointsClient, err := migrationrecoverypoints.NewMigrationRecoveryPointsClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building MigrationRecoveryPoints client: %+v", err)
 	}
+	configureFunc(migrationRecoveryPointsClient.Client)
+
+	operationsClient, err := operations.NewOperationsClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building Operations client: %+v", err)
+	}
+	configureFunc(operationsClient.Client)
+
+	recoveryPointsClient, err := recoverypoints.NewRecoveryPointsClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building RecoveryPoints client: %+v", err)
+	}
+	configureFunc(recoveryPointsClient.Client)
+
+	replicationAlertSettingsClient, err := replicationalertsettings.NewReplicationAlertSettingsClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building ReplicationAlertSettings client: %+v", err)
+	}
+	configureFunc(replicationAlertSettingsClient.Client)
+
+	replicationAppliancesClient, err := replicationappliances.NewReplicationAppliancesClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building ReplicationAppliances client: %+v", err)
+	}
+	configureFunc(replicationAppliancesClient.Client)
+
+	replicationEligibilityResultsClient, err := replicationeligibilityresults.NewReplicationEligibilityResultsClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building ReplicationEligibilityResults client: %+v", err)
+	}
+	configureFunc(replicationEligibilityResultsClient.Client)
+
+	replicationEventsClient, err := replicationevents.NewReplicationEventsClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building ReplicationEvents client: %+v", err)
+	}
+	configureFunc(replicationEventsClient.Client)
+
+	replicationFabricsClient, err := replicationfabrics.NewReplicationFabricsClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building ReplicationFabrics client: %+v", err)
+	}
+	configureFunc(replicationFabricsClient.Client)
+
+	replicationJobsClient, err := replicationjobs.NewReplicationJobsClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building ReplicationJobs client: %+v", err)
+	}
+	configureFunc(replicationJobsClient.Client)
+
+	replicationLogicalNetworksClient, err := replicationlogicalnetworks.NewReplicationLogicalNetworksClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building ReplicationLogicalNetworks client: %+v", err)
+	}
+	configureFunc(replicationLogicalNetworksClient.Client)
+
+	replicationMigrationItemsClient, err := replicationmigrationitems.NewReplicationMigrationItemsClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building ReplicationMigrationItems client: %+v", err)
+	}
+	configureFunc(replicationMigrationItemsClient.Client)
+
+	replicationNetworkMappingsClient, err := replicationnetworkmappings.NewReplicationNetworkMappingsClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building ReplicationNetworkMappings client: %+v", err)
+	}
+	configureFunc(replicationNetworkMappingsClient.Client)
+
+	replicationNetworksClient, err := replicationnetworks.NewReplicationNetworksClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building ReplicationNetworks client: %+v", err)
+	}
+	configureFunc(replicationNetworksClient.Client)
+
+	replicationPoliciesClient, err := replicationpolicies.NewReplicationPoliciesClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building ReplicationPolicies client: %+v", err)
+	}
+	configureFunc(replicationPoliciesClient.Client)
+
+	replicationProtectableItemsClient, err := replicationprotectableitems.NewReplicationProtectableItemsClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building ReplicationProtectableItems client: %+v", err)
+	}
+	configureFunc(replicationProtectableItemsClient.Client)
+
+	replicationProtectedItemsClient, err := replicationprotecteditems.NewReplicationProtectedItemsClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building ReplicationProtectedItems client: %+v", err)
+	}
+	configureFunc(replicationProtectedItemsClient.Client)
+
+	replicationProtectionContainerMappingsClient, err := replicationprotectioncontainermappings.NewReplicationProtectionContainerMappingsClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building ReplicationProtectionContainerMappings client: %+v", err)
+	}
+	configureFunc(replicationProtectionContainerMappingsClient.Client)
+
+	replicationProtectionContainersClient, err := replicationprotectioncontainers.NewReplicationProtectionContainersClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building ReplicationProtectionContainers client: %+v", err)
+	}
+	configureFunc(replicationProtectionContainersClient.Client)
+
+	replicationProtectionIntentsClient, err := replicationprotectionintents.NewReplicationProtectionIntentsClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building ReplicationProtectionIntents client: %+v", err)
+	}
+	configureFunc(replicationProtectionIntentsClient.Client)
+
+	replicationRecoveryPlansClient, err := replicationrecoveryplans.NewReplicationRecoveryPlansClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building ReplicationRecoveryPlans client: %+v", err)
+	}
+	configureFunc(replicationRecoveryPlansClient.Client)
+
+	replicationRecoveryServicesProvidersClient, err := replicationrecoveryservicesproviders.NewReplicationRecoveryServicesProvidersClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building ReplicationRecoveryServicesProviders client: %+v", err)
+	}
+	configureFunc(replicationRecoveryServicesProvidersClient.Client)
+
+	replicationStorageClassificationMappingsClient, err := replicationstorageclassificationmappings.NewReplicationStorageClassificationMappingsClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building ReplicationStorageClassificationMappings client: %+v", err)
+	}
+	configureFunc(replicationStorageClassificationMappingsClient.Client)
+
+	replicationStorageClassificationsClient, err := replicationstorageclassifications.NewReplicationStorageClassificationsClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building ReplicationStorageClassifications client: %+v", err)
+	}
+	configureFunc(replicationStorageClassificationsClient.Client)
+
+	replicationVaultHealthClient, err := replicationvaulthealth.NewReplicationVaultHealthClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building ReplicationVaultHealth client: %+v", err)
+	}
+	configureFunc(replicationVaultHealthClient.Client)
+
+	replicationVaultSettingClient, err := replicationvaultsetting.NewReplicationVaultSettingClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building ReplicationVaultSetting client: %+v", err)
+	}
+	configureFunc(replicationVaultSettingClient.Client)
+
+	replicationvCentersClient, err := replicationvcenters.NewReplicationvCentersClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building ReplicationvCenters client: %+v", err)
+	}
+	configureFunc(replicationvCentersClient.Client)
+
+	supportedOperatingSystemsClient, err := supportedoperatingsystems.NewSupportedOperatingSystemsClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building SupportedOperatingSystems client: %+v", err)
+	}
+	configureFunc(supportedOperatingSystemsClient.Client)
+
+	targetComputeSizesClient, err := targetcomputesizes.NewTargetComputeSizesClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building TargetComputeSizes client: %+v", err)
+	}
+	configureFunc(targetComputeSizesClient.Client)
+
+	return &Client{
+		MigrationRecoveryPoints:                  migrationRecoveryPointsClient,
+		Operations:                               operationsClient,
+		RecoveryPoints:                           recoveryPointsClient,
+		ReplicationAlertSettings:                 replicationAlertSettingsClient,
+		ReplicationAppliances:                    replicationAppliancesClient,
+		ReplicationEligibilityResults:            replicationEligibilityResultsClient,
+		ReplicationEvents:                        replicationEventsClient,
+		ReplicationFabrics:                       replicationFabricsClient,
+		ReplicationJobs:                          replicationJobsClient,
+		ReplicationLogicalNetworks:               replicationLogicalNetworksClient,
+		ReplicationMigrationItems:                replicationMigrationItemsClient,
+		ReplicationNetworkMappings:               replicationNetworkMappingsClient,
+		ReplicationNetworks:                      replicationNetworksClient,
+		ReplicationPolicies:                      replicationPoliciesClient,
+		ReplicationProtectableItems:              replicationProtectableItemsClient,
+		ReplicationProtectedItems:                replicationProtectedItemsClient,
+		ReplicationProtectionContainerMappings:   replicationProtectionContainerMappingsClient,
+		ReplicationProtectionContainers:          replicationProtectionContainersClient,
+		ReplicationProtectionIntents:             replicationProtectionIntentsClient,
+		ReplicationRecoveryPlans:                 replicationRecoveryPlansClient,
+		ReplicationRecoveryServicesProviders:     replicationRecoveryServicesProvidersClient,
+		ReplicationStorageClassificationMappings: replicationStorageClassificationMappingsClient,
+		ReplicationStorageClassifications:        replicationStorageClassificationsClient,
+		ReplicationVaultHealth:                   replicationVaultHealthClient,
+		ReplicationVaultSetting:                  replicationVaultSettingClient,
+		ReplicationvCenters:                      replicationvCentersClient,
+		SupportedOperatingSystems:                supportedOperatingSystemsClient,
+		TargetComputeSizes:                       targetComputeSizesClient,
+	}, nil
 }

@@ -1,6 +1,10 @@
 package replicationmigrationitems
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -19,6 +23,19 @@ func PossibleValuesForDiskAccountType() []string {
 		string(DiskAccountTypeStandardLRS),
 		string(DiskAccountTypeStandardSSDLRS),
 	}
+}
+
+func (s *DiskAccountType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseDiskAccountType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseDiskAccountType(input string) (*DiskAccountType, error) {
@@ -50,6 +67,19 @@ func PossibleValuesForEthernetAddressType() []string {
 	}
 }
 
+func (s *EthernetAddressType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseEthernetAddressType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseEthernetAddressType(input string) (*EthernetAddressType, error) {
 	vals := map[string]EthernetAddressType{
 		"dynamic": EthernetAddressTypeDynamic,
@@ -76,6 +106,19 @@ func PossibleValuesForHealthErrorCustomerResolvability() []string {
 		string(HealthErrorCustomerResolvabilityAllowed),
 		string(HealthErrorCustomerResolvabilityNotAllowed),
 	}
+}
+
+func (s *HealthErrorCustomerResolvability) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseHealthErrorCustomerResolvability(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseHealthErrorCustomerResolvability(input string) (*HealthErrorCustomerResolvability, error) {
@@ -106,6 +149,19 @@ func PossibleValuesForLicenseType() []string {
 		string(LicenseTypeNotSpecified),
 		string(LicenseTypeWindowsServer),
 	}
+}
+
+func (s *LicenseType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseLicenseType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseLicenseType(input string) (*LicenseType, error) {
@@ -145,6 +201,19 @@ func PossibleValuesForMigrationItemOperation() []string {
 		string(MigrationItemOperationTestMigrate),
 		string(MigrationItemOperationTestMigrateCleanup),
 	}
+}
+
+func (s *MigrationItemOperation) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseMigrationItemOperation(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseMigrationItemOperation(input string) (*MigrationItemOperation, error) {
@@ -210,6 +279,19 @@ func PossibleValuesForMigrationState() []string {
 	}
 }
 
+func (s *MigrationState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseMigrationState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseMigrationState(input string) (*MigrationState, error) {
 	vals := map[string]MigrationState{
 		"disablemigrationfailed":            MigrationStateDisableMigrationFailed,
@@ -257,6 +339,19 @@ func PossibleValuesForProtectionHealth() []string {
 	}
 }
 
+func (s *ProtectionHealth) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseProtectionHealth(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseProtectionHealth(input string) (*ProtectionHealth, error) {
 	vals := map[string]ProtectionHealth{
 		"critical": ProtectionHealthCritical,
@@ -287,6 +382,19 @@ func PossibleValuesForResyncState() []string {
 		string(ResyncStatePreparedForResynchronization),
 		string(ResyncStateStartedResynchronization),
 	}
+}
+
+func (s *ResyncState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseResyncState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseResyncState(input string) (*ResyncState, error) {
@@ -320,6 +428,19 @@ func PossibleValuesForSqlServerLicenseType() []string {
 		string(SqlServerLicenseTypeNotSpecified),
 		string(SqlServerLicenseTypePAYG),
 	}
+}
+
+func (s *SqlServerLicenseType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseSqlServerLicenseType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseSqlServerLicenseType(input string) (*SqlServerLicenseType, error) {
@@ -360,6 +481,19 @@ func PossibleValuesForTestMigrationState() []string {
 		string(TestMigrationStateTestMigrationPartiallySucceeded),
 		string(TestMigrationStateTestMigrationSucceeded),
 	}
+}
+
+func (s *TestMigrationState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseTestMigrationState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseTestMigrationState(input string) (*TestMigrationState, error) {

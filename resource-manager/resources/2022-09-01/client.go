@@ -4,12 +4,15 @@ package v2022_09_01
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 import (
-	"github.com/Azure/go-autorest/autorest"
+	"fmt"
+
 	"github.com/hashicorp/go-azure-sdk/resource-manager/resources/2022-09-01/deploymentoperations"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/resources/2022-09-01/deployments"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/resources/2022-09-01/providers"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/resources/2022-09-01/resourcegroups"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/resources/2022-09-01/resources"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -20,28 +23,42 @@ type Client struct {
 	Resources            *resources.ResourcesClient
 }
 
-func NewClientWithBaseURI(endpoint string, configureAuthFunc func(c *autorest.Client)) Client {
-
-	deploymentOperationsClient := deploymentoperations.NewDeploymentOperationsClientWithBaseURI(endpoint)
-	configureAuthFunc(&deploymentOperationsClient.Client)
-
-	deploymentsClient := deployments.NewDeploymentsClientWithBaseURI(endpoint)
-	configureAuthFunc(&deploymentsClient.Client)
-
-	providersClient := providers.NewProvidersClientWithBaseURI(endpoint)
-	configureAuthFunc(&providersClient.Client)
-
-	resourceGroupsClient := resourcegroups.NewResourceGroupsClientWithBaseURI(endpoint)
-	configureAuthFunc(&resourceGroupsClient.Client)
-
-	resourcesClient := resources.NewResourcesClientWithBaseURI(endpoint)
-	configureAuthFunc(&resourcesClient.Client)
-
-	return Client{
-		DeploymentOperations: &deploymentOperationsClient,
-		Deployments:          &deploymentsClient,
-		Providers:            &providersClient,
-		ResourceGroups:       &resourceGroupsClient,
-		Resources:            &resourcesClient,
+func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+	deploymentOperationsClient, err := deploymentoperations.NewDeploymentOperationsClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building DeploymentOperations client: %+v", err)
 	}
+	configureFunc(deploymentOperationsClient.Client)
+
+	deploymentsClient, err := deployments.NewDeploymentsClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building Deployments client: %+v", err)
+	}
+	configureFunc(deploymentsClient.Client)
+
+	providersClient, err := providers.NewProvidersClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building Providers client: %+v", err)
+	}
+	configureFunc(providersClient.Client)
+
+	resourceGroupsClient, err := resourcegroups.NewResourceGroupsClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building ResourceGroups client: %+v", err)
+	}
+	configureFunc(resourceGroupsClient.Client)
+
+	resourcesClient, err := resources.NewResourcesClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building Resources client: %+v", err)
+	}
+	configureFunc(resourcesClient.Client)
+
+	return &Client{
+		DeploymentOperations: deploymentOperationsClient,
+		Deployments:          deploymentsClient,
+		Providers:            providersClient,
+		ResourceGroups:       resourceGroupsClient,
+		Resources:            resourcesClient,
+	}, nil
 }

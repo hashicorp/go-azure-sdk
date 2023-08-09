@@ -1,6 +1,10 @@
 package migrations
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -17,6 +21,19 @@ func PossibleValuesForCancelEnum() []string {
 		string(CancelEnumFalse),
 		string(CancelEnumTrue),
 	}
+}
+
+func (s *CancelEnum) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseCancelEnum(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseCancelEnum(input string) (*CancelEnum, error) {
@@ -47,6 +64,19 @@ func PossibleValuesForLogicalReplicationOnSourceDbEnum() []string {
 	}
 }
 
+func (s *LogicalReplicationOnSourceDbEnum) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseLogicalReplicationOnSourceDbEnum(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseLogicalReplicationOnSourceDbEnum(input string) (*LogicalReplicationOnSourceDbEnum, error) {
 	vals := map[string]LogicalReplicationOnSourceDbEnum{
 		"false": LogicalReplicationOnSourceDbEnumFalse,
@@ -75,6 +105,19 @@ func PossibleValuesForMigrationListFilter() []string {
 	}
 }
 
+func (s *MigrationListFilter) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseMigrationListFilter(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseMigrationListFilter(input string) (*MigrationListFilter, error) {
 	vals := map[string]MigrationListFilter{
 		"active": MigrationListFilterActive,
@@ -101,6 +144,19 @@ func PossibleValuesForMigrationMode() []string {
 		string(MigrationModeOffline),
 		string(MigrationModeOnline),
 	}
+}
+
+func (s *MigrationMode) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseMigrationMode(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseMigrationMode(input string) (*MigrationMode, error) {
@@ -135,6 +191,19 @@ func PossibleValuesForMigrationState() []string {
 		string(MigrationStateSucceeded),
 		string(MigrationStateWaitingForUserAction),
 	}
+}
+
+func (s *MigrationState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseMigrationState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseMigrationState(input string) (*MigrationState, error) {
@@ -184,6 +253,19 @@ func PossibleValuesForMigrationSubState() []string {
 	}
 }
 
+func (s *MigrationSubState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseMigrationSubState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseMigrationSubState(input string) (*MigrationSubState, error) {
 	vals := map[string]MigrationSubState{
 		"completed":                                          MigrationSubStateCompleted,
@@ -220,6 +302,19 @@ func PossibleValuesForOverwriteDbsInTargetEnum() []string {
 	}
 }
 
+func (s *OverwriteDbsInTargetEnum) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseOverwriteDbsInTargetEnum(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseOverwriteDbsInTargetEnum(input string) (*OverwriteDbsInTargetEnum, error) {
 	vals := map[string]OverwriteDbsInTargetEnum{
 		"false": OverwriteDbsInTargetEnumFalse,
@@ -248,6 +343,19 @@ func PossibleValuesForSkuTier() []string {
 		string(SkuTierGeneralPurpose),
 		string(SkuTierMemoryOptimized),
 	}
+}
+
+func (s *SkuTier) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseSkuTier(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseSkuTier(input string) (*SkuTier, error) {
@@ -279,6 +387,19 @@ func PossibleValuesForStartDataMigrationEnum() []string {
 	}
 }
 
+func (s *StartDataMigrationEnum) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseStartDataMigrationEnum(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseStartDataMigrationEnum(input string) (*StartDataMigrationEnum, error) {
 	vals := map[string]StartDataMigrationEnum{
 		"false": StartDataMigrationEnumFalse,
@@ -305,6 +426,19 @@ func PossibleValuesForTriggerCutoverEnum() []string {
 		string(TriggerCutoverEnumFalse),
 		string(TriggerCutoverEnumTrue),
 	}
+}
+
+func (s *TriggerCutoverEnum) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseTriggerCutoverEnum(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseTriggerCutoverEnum(input string) (*TriggerCutoverEnum, error) {

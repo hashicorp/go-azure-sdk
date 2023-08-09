@@ -1,18 +1,26 @@
 package replicationlogicalnetworks
 
-import "github.com/Azure/go-autorest/autorest"
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type ReplicationLogicalNetworksClient struct {
-	Client  autorest.Client
-	baseUri string
+	Client *resourcemanager.Client
 }
 
-func NewReplicationLogicalNetworksClientWithBaseURI(endpoint string) ReplicationLogicalNetworksClient {
-	return ReplicationLogicalNetworksClient{
-		Client:  autorest.NewClientWithUserAgent(userAgent()),
-		baseUri: endpoint,
+func NewReplicationLogicalNetworksClientWithBaseURI(sdkApi sdkEnv.Api) (*ReplicationLogicalNetworksClient, error) {
+	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "replicationlogicalnetworks", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ReplicationLogicalNetworksClient: %+v", err)
 	}
+
+	return &ReplicationLogicalNetworksClient{
+		Client: client,
+	}, nil
 }
