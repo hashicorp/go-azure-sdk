@@ -156,7 +156,7 @@ func TestAccClient_Paged(t *testing.T) {
 	}
 }
 
-var _ odata.Pager = &pager{}
+var _ odata.CustomPager = &pager{}
 
 type pager struct {
 	NextLink *odata.Link `json:"@odata.nextLink"`

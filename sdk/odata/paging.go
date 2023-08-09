@@ -8,16 +8,16 @@ import (
 	"net/http"
 )
 
-// Pager handles custom paging for paginated API responses that do not follow the OData 4.0 standard for JSON services.
+// CustomPager handles custom paging for paginated API responses that do not follow the OData 4.0 standard for JSON services.
 // The underlying type should support unmarshalling a JSON response
-type Pager interface {
+type CustomPager interface {
 	// NextPageLink returns a *Link describing the URI for the next page of results, it should also clear any state
 	// before returning, so that subsequent pages do not inherit the URI from the previous page.
 	NextPageLink() *Link
 }
 
-// NextLinkFromPager unmarshalls a *http.Response into the provided Pager and invokes its NextPageLink method
-func NextLinkFromPager(resp *http.Response, pager Pager) (*Link, error) {
+// NextLinkFromCustomPager unmarshalls a *http.Response into the provided CustomPager and invokes its NextPageLink method
+func NextLinkFromCustomPager(resp *http.Response, pager CustomPager) (*Link, error) {
 	if pager == nil {
 		return nil, fmt.Errorf("internal-error: pager was nil, should be a pointer")
 	}

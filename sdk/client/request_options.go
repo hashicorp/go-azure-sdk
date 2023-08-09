@@ -24,7 +24,7 @@ type RequestOptions struct {
 
 	// Pager is an optional struct for handling custom pagination for this request. OData 4.0 compliant paging
 	// is already handled implicitly and does not require a custom pager.
-	Pager odata.Pager
+	Pager odata.CustomPager
 
 	// Path is the absolute URI for this request, with a leading slash.
 	Path string

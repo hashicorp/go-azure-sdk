@@ -80,7 +80,7 @@ type Request struct {
 	ValidStatusFunc  ValidStatusFunc
 
 	Client BaseClient
-	Pager  odata.Pager
+	Pager  odata.CustomPager
 
 	// Embed *http.Request so that we can send this to an *http.Client
 	*http.Request
@@ -486,7 +486,10 @@ func (c *Client) ExecutePaged(ctx context.Context, req *Request) (*Response, err
 	if req.Pager == nil {
 		nextLink = firstOdata.NextLink
 	} else {
-		nextLink, err = odata.NextLinkFromPager(resp.Response, req.Pager)
+		nextLink, err = odata.NextLinkFromCustomPager(resp.Response, req.Pager)
+		if err != nil {
+			return resp, err
+		}
 	}
 	if nextLink == nil {
 		// This is the last page
