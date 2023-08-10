@@ -8,6 +8,7 @@ import (
 
 	"github.com/Azure/go-autorest/autorest"
 	"github.com/Azure/go-autorest/autorest/azure"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -72,7 +73,7 @@ func (o ListOperationOptions) toQueryString() map[string]interface{} {
 }
 
 // List ...
-func (c EncryptionScopesClient) List(ctx context.Context, id StorageAccountId, options ListOperationOptions) (resp ListOperationResponse, err error) {
+func (c EncryptionScopesClient) List(ctx context.Context, id commonids.StorageAccountId, options ListOperationOptions) (resp ListOperationResponse, err error) {
 	req, err := c.preparerForList(ctx, id, options)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "encryptionscopes.EncryptionScopesClient", "List", nil, "Failure preparing request")
@@ -94,7 +95,7 @@ func (c EncryptionScopesClient) List(ctx context.Context, id StorageAccountId, o
 }
 
 // preparerForList prepares the List request.
-func (c EncryptionScopesClient) preparerForList(ctx context.Context, id StorageAccountId, options ListOperationOptions) (*http.Request, error) {
+func (c EncryptionScopesClient) preparerForList(ctx context.Context, id commonids.StorageAccountId, options ListOperationOptions) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}
@@ -181,12 +182,12 @@ func (c EncryptionScopesClient) responderForList(resp *http.Response) (result Li
 }
 
 // ListComplete retrieves all of the results into a single object
-func (c EncryptionScopesClient) ListComplete(ctx context.Context, id StorageAccountId, options ListOperationOptions) (ListCompleteResult, error) {
+func (c EncryptionScopesClient) ListComplete(ctx context.Context, id commonids.StorageAccountId, options ListOperationOptions) (ListCompleteResult, error) {
 	return c.ListCompleteMatchingPredicate(ctx, id, options, EncryptionScopeOperationPredicate{})
 }
 
 // ListCompleteMatchingPredicate retrieves all of the results and then applied the predicate
-func (c EncryptionScopesClient) ListCompleteMatchingPredicate(ctx context.Context, id StorageAccountId, options ListOperationOptions, predicate EncryptionScopeOperationPredicate) (resp ListCompleteResult, err error) {
+func (c EncryptionScopesClient) ListCompleteMatchingPredicate(ctx context.Context, id commonids.StorageAccountId, options ListOperationOptions, predicate EncryptionScopeOperationPredicate) (resp ListCompleteResult, err error) {
 	items := make([]EncryptionScope, 0)
 
 	page, err := c.List(ctx, id, options)

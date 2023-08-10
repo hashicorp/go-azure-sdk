@@ -8,6 +8,7 @@ import (
 	"github.com/Azure/go-autorest/autorest"
 	"github.com/Azure/go-autorest/autorest/azure"
 	"github.com/hashicorp/go-azure-helpers/polling"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -19,7 +20,7 @@ type StorageAccountsCustomerInitiatedMigrationOperationResponse struct {
 }
 
 // StorageAccountsCustomerInitiatedMigration ...
-func (c AccountMigrationsClient) StorageAccountsCustomerInitiatedMigration(ctx context.Context, id StorageAccountId, input StorageAccountMigration) (result StorageAccountsCustomerInitiatedMigrationOperationResponse, err error) {
+func (c AccountMigrationsClient) StorageAccountsCustomerInitiatedMigration(ctx context.Context, id commonids.StorageAccountId, input StorageAccountMigration) (result StorageAccountsCustomerInitiatedMigrationOperationResponse, err error) {
 	req, err := c.preparerForStorageAccountsCustomerInitiatedMigration(ctx, id, input)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "accountmigrations.AccountMigrationsClient", "StorageAccountsCustomerInitiatedMigration", nil, "Failure preparing request")
@@ -36,7 +37,7 @@ func (c AccountMigrationsClient) StorageAccountsCustomerInitiatedMigration(ctx c
 }
 
 // StorageAccountsCustomerInitiatedMigrationThenPoll performs StorageAccountsCustomerInitiatedMigration then polls until it's completed
-func (c AccountMigrationsClient) StorageAccountsCustomerInitiatedMigrationThenPoll(ctx context.Context, id StorageAccountId, input StorageAccountMigration) error {
+func (c AccountMigrationsClient) StorageAccountsCustomerInitiatedMigrationThenPoll(ctx context.Context, id commonids.StorageAccountId, input StorageAccountMigration) error {
 	result, err := c.StorageAccountsCustomerInitiatedMigration(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing StorageAccountsCustomerInitiatedMigration: %+v", err)
@@ -50,7 +51,7 @@ func (c AccountMigrationsClient) StorageAccountsCustomerInitiatedMigrationThenPo
 }
 
 // preparerForStorageAccountsCustomerInitiatedMigration prepares the StorageAccountsCustomerInitiatedMigration request.
-func (c AccountMigrationsClient) preparerForStorageAccountsCustomerInitiatedMigration(ctx context.Context, id StorageAccountId, input StorageAccountMigration) (*http.Request, error) {
+func (c AccountMigrationsClient) preparerForStorageAccountsCustomerInitiatedMigration(ctx context.Context, id commonids.StorageAccountId, input StorageAccountMigration) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}

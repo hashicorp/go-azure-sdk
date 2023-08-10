@@ -7,6 +7,7 @@ import (
 
 	"github.com/Azure/go-autorest/autorest"
 	"github.com/Azure/go-autorest/autorest/azure"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 )
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -18,7 +19,7 @@ type StorageAccountsGetCustomerInitiatedMigrationOperationResponse struct {
 }
 
 // StorageAccountsGetCustomerInitiatedMigration ...
-func (c AccountMigrationsClient) StorageAccountsGetCustomerInitiatedMigration(ctx context.Context, id StorageAccountId) (result StorageAccountsGetCustomerInitiatedMigrationOperationResponse, err error) {
+func (c AccountMigrationsClient) StorageAccountsGetCustomerInitiatedMigration(ctx context.Context, id commonids.StorageAccountId) (result StorageAccountsGetCustomerInitiatedMigrationOperationResponse, err error) {
 	req, err := c.preparerForStorageAccountsGetCustomerInitiatedMigration(ctx, id)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "accountmigrations.AccountMigrationsClient", "StorageAccountsGetCustomerInitiatedMigration", nil, "Failure preparing request")
@@ -41,7 +42,7 @@ func (c AccountMigrationsClient) StorageAccountsGetCustomerInitiatedMigration(ct
 }
 
 // preparerForStorageAccountsGetCustomerInitiatedMigration prepares the StorageAccountsGetCustomerInitiatedMigration request.
-func (c AccountMigrationsClient) preparerForStorageAccountsGetCustomerInitiatedMigration(ctx context.Context, id StorageAccountId) (*http.Request, error) {
+func (c AccountMigrationsClient) preparerForStorageAccountsGetCustomerInitiatedMigration(ctx context.Context, id commonids.StorageAccountId) (*http.Request, error) {
 	queryParameters := map[string]interface{}{
 		"api-version": defaultApiVersion,
 	}
