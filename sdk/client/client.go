@@ -117,7 +117,7 @@ func (r *Request) Marshal(payload interface{}) error {
 			r.ContentLength = int64(len(v))
 			r.Body = io.NopCloser(bytes.NewReader(v))
 		default:
-			return fmt.Errorf("internal-error: `payload` must be *[]byte but got %+v", payload)
+			return fmt.Errorf("internal-error: `payload` must be *[]byte but got type %T", payload)
 		}
 		return nil
 	}
