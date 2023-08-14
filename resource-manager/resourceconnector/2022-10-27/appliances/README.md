@@ -153,7 +153,7 @@ if model := read.Model; model != nil {
 ctx := context.TODO()
 id := appliances.NewApplianceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "applianceValue")
 
-read, err := client.ListKeys(ctx, id)
+read, err := client.ListKeys(ctx, id, appliances.DefaultListKeysOperationOptions())
 if err != nil {
 	// handle the error
 }

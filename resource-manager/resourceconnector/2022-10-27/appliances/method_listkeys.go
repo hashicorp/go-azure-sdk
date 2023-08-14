@@ -18,15 +18,43 @@ type ListKeysOperationResponse struct {
 	Model        *ApplianceListKeysResults
 }
 
+type ListKeysOperationOptions struct {
+	ArtifactType *string
+}
+
+func DefaultListKeysOperationOptions() ListKeysOperationOptions {
+	return ListKeysOperationOptions{}
+}
+
+func (o ListKeysOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o ListKeysOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	return &out
+}
+
+func (o ListKeysOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+	if o.ArtifactType != nil {
+		out.Append("artifactType", fmt.Sprintf("%v", *o.ArtifactType))
+	}
+	return &out
+}
+
 // ListKeys ...
-func (c AppliancesClient) ListKeys(ctx context.Context, id ApplianceId) (result ListKeysOperationResponse, err error) {
+func (c AppliancesClient) ListKeys(ctx context.Context, id ApplianceId, options ListKeysOperationOptions) (result ListKeysOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/listkeys", id.ID()),
+		HttpMethod:    http.MethodPost,
+		Path:          fmt.Sprintf("%s/listkeys", id.ID()),
+		OptionsObject: options,
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)
