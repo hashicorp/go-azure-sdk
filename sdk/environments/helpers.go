@@ -91,7 +91,7 @@ func IoTCentral(domainSuffix string) Api {
 		endpoint:           nil,
 		appId:              pointer.To(iotCentralAppId),
 		name:               "IoTCentral",
-		resourceIdentifier: nil,
+		resourceIdentifier: pointer.To("https://apps.azureiotcentral.com"),
 	}
 }
 
