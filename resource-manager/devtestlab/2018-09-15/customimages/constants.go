@@ -1,6 +1,10 @@
 package customimages
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -19,6 +23,19 @@ func PossibleValuesForCustomImageOsType() []string {
 		string(CustomImageOsTypeNone),
 		string(CustomImageOsTypeWindows),
 	}
+}
+
+func (s *CustomImageOsType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseCustomImageOsType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseCustomImageOsType(input string) (*CustomImageOsType, error) {
@@ -52,6 +69,19 @@ func PossibleValuesForLinuxOsState() []string {
 	}
 }
 
+func (s *LinuxOsState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseLinuxOsState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseLinuxOsState(input string) (*LinuxOsState, error) {
 	vals := map[string]LinuxOsState{
 		"deprovisionapplied":   LinuxOsStateDeprovisionApplied,
@@ -83,6 +113,19 @@ func PossibleValuesForStorageType() []string {
 	}
 }
 
+func (s *StorageType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseStorageType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseStorageType(input string) (*StorageType, error) {
 	vals := map[string]StorageType{
 		"premium":     StorageTypePremium,
@@ -112,6 +155,19 @@ func PossibleValuesForWindowsOsState() []string {
 		string(WindowsOsStateSysprepApplied),
 		string(WindowsOsStateSysprepRequested),
 	}
+}
+
+func (s *WindowsOsState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseWindowsOsState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseWindowsOsState(input string) (*WindowsOsState, error) {

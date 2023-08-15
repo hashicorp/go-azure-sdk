@@ -1,6 +1,10 @@
 package costs
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -17,6 +21,19 @@ func PossibleValuesForCostThresholdStatus() []string {
 		string(CostThresholdStatusDisabled),
 		string(CostThresholdStatusEnabled),
 	}
+}
+
+func (s *CostThresholdStatus) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseCostThresholdStatus(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseCostThresholdStatus(input string) (*CostThresholdStatus, error) {
@@ -49,6 +66,19 @@ func PossibleValuesForCostType() []string {
 	}
 }
 
+func (s *CostType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseCostType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseCostType(input string) (*CostType, error) {
 	vals := map[string]CostType{
 		"projected":   CostTypeProjected,
@@ -78,6 +108,19 @@ func PossibleValuesForReportingCycleType() []string {
 	}
 }
 
+func (s *ReportingCycleType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseReportingCycleType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseReportingCycleType(input string) (*ReportingCycleType, error) {
 	vals := map[string]ReportingCycleType{
 		"calendarmonth": ReportingCycleTypeCalendarMonth,
@@ -104,6 +147,19 @@ func PossibleValuesForTargetCostStatus() []string {
 		string(TargetCostStatusDisabled),
 		string(TargetCostStatusEnabled),
 	}
+}
+
+func (s *TargetCostStatus) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseTargetCostStatus(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseTargetCostStatus(input string) (*TargetCostStatus, error) {
