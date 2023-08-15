@@ -4,7 +4,8 @@ package v2018_09_15
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 import (
-	"github.com/Azure/go-autorest/autorest"
+	"fmt"
+
 	"github.com/hashicorp/go-azure-sdk/resource-manager/devtestlab/2018-09-15/armtemplates"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/devtestlab/2018-09-15/artifacts"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/devtestlab/2018-09-15/artifactsources"
@@ -29,6 +30,8 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/devtestlab/2018-09-15/virtualmachines"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/devtestlab/2018-09-15/virtualmachineschedules"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/devtestlab/2018-09-15/virtualnetworks"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -58,104 +61,175 @@ type Client struct {
 	VirtualNetworks         *virtualnetworks.VirtualNetworksClient
 }
 
-func NewClientWithBaseURI(endpoint string, configureAuthFunc func(c *autorest.Client)) Client {
-
-	armTemplatesClient := armtemplates.NewArmTemplatesClientWithBaseURI(endpoint)
-	configureAuthFunc(&armTemplatesClient.Client)
-
-	artifactSourcesClient := artifactsources.NewArtifactSourcesClientWithBaseURI(endpoint)
-	configureAuthFunc(&artifactSourcesClient.Client)
-
-	artifactsClient := artifacts.NewArtifactsClientWithBaseURI(endpoint)
-	configureAuthFunc(&artifactsClient.Client)
-
-	costsClient := costs.NewCostsClientWithBaseURI(endpoint)
-	configureAuthFunc(&costsClient.Client)
-
-	customImagesClient := customimages.NewCustomImagesClientWithBaseURI(endpoint)
-	configureAuthFunc(&customImagesClient.Client)
-
-	disksClient := disks.NewDisksClientWithBaseURI(endpoint)
-	configureAuthFunc(&disksClient.Client)
-
-	environmentsClient := environments.NewEnvironmentsClientWithBaseURI(endpoint)
-	configureAuthFunc(&environmentsClient.Client)
-
-	formulasClient := formulas.NewFormulasClientWithBaseURI(endpoint)
-	configureAuthFunc(&formulasClient.Client)
-
-	galleryImagesClient := galleryimages.NewGalleryImagesClientWithBaseURI(endpoint)
-	configureAuthFunc(&galleryImagesClient.Client)
-
-	globalSchedulesClient := globalschedules.NewGlobalSchedulesClientWithBaseURI(endpoint)
-	configureAuthFunc(&globalSchedulesClient.Client)
-
-	labsClient := labs.NewLabsClientWithBaseURI(endpoint)
-	configureAuthFunc(&labsClient.Client)
-
-	notificationChannelsClient := notificationchannels.NewNotificationChannelsClientWithBaseURI(endpoint)
-	configureAuthFunc(&notificationChannelsClient.Client)
-
-	operationsClient := operations.NewOperationsClientWithBaseURI(endpoint)
-	configureAuthFunc(&operationsClient.Client)
-
-	policiesClient := policies.NewPoliciesClientWithBaseURI(endpoint)
-	configureAuthFunc(&policiesClient.Client)
-
-	policySetsClient := policysets.NewPolicySetsClientWithBaseURI(endpoint)
-	configureAuthFunc(&policySetsClient.Client)
-
-	schedulesClient := schedules.NewSchedulesClientWithBaseURI(endpoint)
-	configureAuthFunc(&schedulesClient.Client)
-
-	secretsClient := secrets.NewSecretsClientWithBaseURI(endpoint)
-	configureAuthFunc(&secretsClient.Client)
-
-	serviceFabricSchedulesClient := servicefabricschedules.NewServiceFabricSchedulesClientWithBaseURI(endpoint)
-	configureAuthFunc(&serviceFabricSchedulesClient.Client)
-
-	serviceFabricsClient := servicefabrics.NewServiceFabricsClientWithBaseURI(endpoint)
-	configureAuthFunc(&serviceFabricsClient.Client)
-
-	serviceRunnersClient := servicerunners.NewServiceRunnersClientWithBaseURI(endpoint)
-	configureAuthFunc(&serviceRunnersClient.Client)
-
-	usersClient := users.NewUsersClientWithBaseURI(endpoint)
-	configureAuthFunc(&usersClient.Client)
-
-	virtualMachineSchedulesClient := virtualmachineschedules.NewVirtualMachineSchedulesClientWithBaseURI(endpoint)
-	configureAuthFunc(&virtualMachineSchedulesClient.Client)
-
-	virtualMachinesClient := virtualmachines.NewVirtualMachinesClientWithBaseURI(endpoint)
-	configureAuthFunc(&virtualMachinesClient.Client)
-
-	virtualNetworksClient := virtualnetworks.NewVirtualNetworksClientWithBaseURI(endpoint)
-	configureAuthFunc(&virtualNetworksClient.Client)
-
-	return Client{
-		ArmTemplates:            &armTemplatesClient,
-		ArtifactSources:         &artifactSourcesClient,
-		Artifacts:               &artifactsClient,
-		Costs:                   &costsClient,
-		CustomImages:            &customImagesClient,
-		Disks:                   &disksClient,
-		Environments:            &environmentsClient,
-		Formulas:                &formulasClient,
-		GalleryImages:           &galleryImagesClient,
-		GlobalSchedules:         &globalSchedulesClient,
-		Labs:                    &labsClient,
-		NotificationChannels:    &notificationChannelsClient,
-		Operations:              &operationsClient,
-		Policies:                &policiesClient,
-		PolicySets:              &policySetsClient,
-		Schedules:               &schedulesClient,
-		Secrets:                 &secretsClient,
-		ServiceFabricSchedules:  &serviceFabricSchedulesClient,
-		ServiceFabrics:          &serviceFabricsClient,
-		ServiceRunners:          &serviceRunnersClient,
-		Users:                   &usersClient,
-		VirtualMachineSchedules: &virtualMachineSchedulesClient,
-		VirtualMachines:         &virtualMachinesClient,
-		VirtualNetworks:         &virtualNetworksClient,
+func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+	armTemplatesClient, err := armtemplates.NewArmTemplatesClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building ArmTemplates client: %+v", err)
 	}
+	configureFunc(armTemplatesClient.Client)
+
+	artifactSourcesClient, err := artifactsources.NewArtifactSourcesClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building ArtifactSources client: %+v", err)
+	}
+	configureFunc(artifactSourcesClient.Client)
+
+	artifactsClient, err := artifacts.NewArtifactsClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building Artifacts client: %+v", err)
+	}
+	configureFunc(artifactsClient.Client)
+
+	costsClient, err := costs.NewCostsClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building Costs client: %+v", err)
+	}
+	configureFunc(costsClient.Client)
+
+	customImagesClient, err := customimages.NewCustomImagesClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building CustomImages client: %+v", err)
+	}
+	configureFunc(customImagesClient.Client)
+
+	disksClient, err := disks.NewDisksClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building Disks client: %+v", err)
+	}
+	configureFunc(disksClient.Client)
+
+	environmentsClient, err := environments.NewEnvironmentsClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building Environments client: %+v", err)
+	}
+	configureFunc(environmentsClient.Client)
+
+	formulasClient, err := formulas.NewFormulasClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building Formulas client: %+v", err)
+	}
+	configureFunc(formulasClient.Client)
+
+	galleryImagesClient, err := galleryimages.NewGalleryImagesClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building GalleryImages client: %+v", err)
+	}
+	configureFunc(galleryImagesClient.Client)
+
+	globalSchedulesClient, err := globalschedules.NewGlobalSchedulesClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building GlobalSchedules client: %+v", err)
+	}
+	configureFunc(globalSchedulesClient.Client)
+
+	labsClient, err := labs.NewLabsClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building Labs client: %+v", err)
+	}
+	configureFunc(labsClient.Client)
+
+	notificationChannelsClient, err := notificationchannels.NewNotificationChannelsClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building NotificationChannels client: %+v", err)
+	}
+	configureFunc(notificationChannelsClient.Client)
+
+	operationsClient, err := operations.NewOperationsClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building Operations client: %+v", err)
+	}
+	configureFunc(operationsClient.Client)
+
+	policiesClient, err := policies.NewPoliciesClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building Policies client: %+v", err)
+	}
+	configureFunc(policiesClient.Client)
+
+	policySetsClient, err := policysets.NewPolicySetsClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building PolicySets client: %+v", err)
+	}
+	configureFunc(policySetsClient.Client)
+
+	schedulesClient, err := schedules.NewSchedulesClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building Schedules client: %+v", err)
+	}
+	configureFunc(schedulesClient.Client)
+
+	secretsClient, err := secrets.NewSecretsClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building Secrets client: %+v", err)
+	}
+	configureFunc(secretsClient.Client)
+
+	serviceFabricSchedulesClient, err := servicefabricschedules.NewServiceFabricSchedulesClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building ServiceFabricSchedules client: %+v", err)
+	}
+	configureFunc(serviceFabricSchedulesClient.Client)
+
+	serviceFabricsClient, err := servicefabrics.NewServiceFabricsClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building ServiceFabrics client: %+v", err)
+	}
+	configureFunc(serviceFabricsClient.Client)
+
+	serviceRunnersClient, err := servicerunners.NewServiceRunnersClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building ServiceRunners client: %+v", err)
+	}
+	configureFunc(serviceRunnersClient.Client)
+
+	usersClient, err := users.NewUsersClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building Users client: %+v", err)
+	}
+	configureFunc(usersClient.Client)
+
+	virtualMachineSchedulesClient, err := virtualmachineschedules.NewVirtualMachineSchedulesClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building VirtualMachineSchedules client: %+v", err)
+	}
+	configureFunc(virtualMachineSchedulesClient.Client)
+
+	virtualMachinesClient, err := virtualmachines.NewVirtualMachinesClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building VirtualMachines client: %+v", err)
+	}
+	configureFunc(virtualMachinesClient.Client)
+
+	virtualNetworksClient, err := virtualnetworks.NewVirtualNetworksClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building VirtualNetworks client: %+v", err)
+	}
+	configureFunc(virtualNetworksClient.Client)
+
+	return &Client{
+		ArmTemplates:            armTemplatesClient,
+		ArtifactSources:         artifactSourcesClient,
+		Artifacts:               artifactsClient,
+		Costs:                   costsClient,
+		CustomImages:            customImagesClient,
+		Disks:                   disksClient,
+		Environments:            environmentsClient,
+		Formulas:                formulasClient,
+		GalleryImages:           galleryImagesClient,
+		GlobalSchedules:         globalSchedulesClient,
+		Labs:                    labsClient,
+		NotificationChannels:    notificationChannelsClient,
+		Operations:              operationsClient,
+		Policies:                policiesClient,
+		PolicySets:              policySetsClient,
+		Schedules:               schedulesClient,
+		Secrets:                 secretsClient,
+		ServiceFabricSchedules:  serviceFabricSchedulesClient,
+		ServiceFabrics:          serviceFabricsClient,
+		ServiceRunners:          serviceRunnersClient,
+		Users:                   usersClient,
+		VirtualMachineSchedules: virtualMachineSchedulesClient,
+		VirtualMachines:         virtualMachinesClient,
+		VirtualNetworks:         virtualNetworksClient,
+	}, nil
 }
