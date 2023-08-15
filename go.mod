@@ -6,7 +6,7 @@ require (
 	github.com/Azure/go-autorest/autorest v0.11.29
 	github.com/Azure/go-autorest/autorest/adal v0.9.23
 	github.com/davecgh/go-spew v1.1.1
-	github.com/hashicorp/go-azure-helpers v0.58.0
+	github.com/hashicorp/go-azure-helpers v0.59.0
 	github.com/hashicorp/go-retryablehttp v0.7.4
 	github.com/hashicorp/go-uuid v1.0.3
 	github.com/hashicorp/go-version v1.6.0
