@@ -1,6 +1,10 @@
 package profiles
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -21,6 +25,19 @@ func PossibleValuesForAllowedEndpointRecordType() []string {
 		string(AllowedEndpointRecordTypeIPvFourAddress),
 		string(AllowedEndpointRecordTypeIPvSixAddress),
 	}
+}
+
+func (s *AllowedEndpointRecordType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseAllowedEndpointRecordType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseAllowedEndpointRecordType(input string) (*AllowedEndpointRecordType, error) {
@@ -51,6 +68,19 @@ func PossibleValuesForAlwaysServe() []string {
 		string(AlwaysServeDisabled),
 		string(AlwaysServeEnabled),
 	}
+}
+
+func (s *AlwaysServe) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseAlwaysServe(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseAlwaysServe(input string) (*AlwaysServe, error) {
@@ -91,6 +121,19 @@ func PossibleValuesForEndpointMonitorStatus() []string {
 	}
 }
 
+func (s *EndpointMonitorStatus) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseEndpointMonitorStatus(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseEndpointMonitorStatus(input string) (*EndpointMonitorStatus, error) {
 	vals := map[string]EndpointMonitorStatus{
 		"checkingendpoint": EndpointMonitorStatusCheckingEndpoint,
@@ -124,6 +167,19 @@ func PossibleValuesForEndpointStatus() []string {
 	}
 }
 
+func (s *EndpointStatus) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseEndpointStatus(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseEndpointStatus(input string) (*EndpointStatus, error) {
 	vals := map[string]EndpointStatus{
 		"disabled": EndpointStatusDisabled,
@@ -152,6 +208,19 @@ func PossibleValuesForMonitorProtocol() []string {
 		string(MonitorProtocolHTTPS),
 		string(MonitorProtocolTCP),
 	}
+}
+
+func (s *MonitorProtocol) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseMonitorProtocol(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseMonitorProtocol(input string) (*MonitorProtocol, error) {
@@ -189,6 +258,19 @@ func PossibleValuesForProfileMonitorStatus() []string {
 	}
 }
 
+func (s *ProfileMonitorStatus) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseProfileMonitorStatus(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseProfileMonitorStatus(input string) (*ProfileMonitorStatus, error) {
 	vals := map[string]ProfileMonitorStatus{
 		"checkingendpoints": ProfileMonitorStatusCheckingEndpoints,
@@ -218,6 +300,19 @@ func PossibleValuesForProfileStatus() []string {
 		string(ProfileStatusDisabled),
 		string(ProfileStatusEnabled),
 	}
+}
+
+func (s *ProfileStatus) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseProfileStatus(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseProfileStatus(input string) (*ProfileStatus, error) {
@@ -256,6 +351,19 @@ func PossibleValuesForTrafficRoutingMethod() []string {
 	}
 }
 
+func (s *TrafficRoutingMethod) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseTrafficRoutingMethod(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseTrafficRoutingMethod(input string) (*TrafficRoutingMethod, error) {
 	vals := map[string]TrafficRoutingMethod{
 		"geographic":  TrafficRoutingMethodGeographic,
@@ -286,6 +394,19 @@ func PossibleValuesForTrafficViewEnrollmentStatus() []string {
 		string(TrafficViewEnrollmentStatusDisabled),
 		string(TrafficViewEnrollmentStatusEnabled),
 	}
+}
+
+func (s *TrafficViewEnrollmentStatus) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseTrafficViewEnrollmentStatus(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseTrafficViewEnrollmentStatus(input string) (*TrafficViewEnrollmentStatus, error) {

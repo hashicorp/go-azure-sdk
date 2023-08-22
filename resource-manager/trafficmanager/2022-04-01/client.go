@@ -4,12 +4,15 @@ package v2022_04_01
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 import (
-	"github.com/Azure/go-autorest/autorest"
+	"fmt"
+
 	"github.com/hashicorp/go-azure-sdk/resource-manager/trafficmanager/2022-04-01/endpoints"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/trafficmanager/2022-04-01/geographichierarchies"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/trafficmanager/2022-04-01/heatmaps"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/trafficmanager/2022-04-01/profiles"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/trafficmanager/2022-04-01/realusermetrics"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -20,28 +23,42 @@ type Client struct {
 	RealUserMetrics       *realusermetrics.RealUserMetricsClient
 }
 
-func NewClientWithBaseURI(endpoint string, configureAuthFunc func(c *autorest.Client)) Client {
-
-	endpointsClient := endpoints.NewEndpointsClientWithBaseURI(endpoint)
-	configureAuthFunc(&endpointsClient.Client)
-
-	geographicHierarchiesClient := geographichierarchies.NewGeographicHierarchiesClientWithBaseURI(endpoint)
-	configureAuthFunc(&geographicHierarchiesClient.Client)
-
-	heatMapsClient := heatmaps.NewHeatMapsClientWithBaseURI(endpoint)
-	configureAuthFunc(&heatMapsClient.Client)
-
-	profilesClient := profiles.NewProfilesClientWithBaseURI(endpoint)
-	configureAuthFunc(&profilesClient.Client)
-
-	realUserMetricsClient := realusermetrics.NewRealUserMetricsClientWithBaseURI(endpoint)
-	configureAuthFunc(&realUserMetricsClient.Client)
-
-	return Client{
-		Endpoints:             &endpointsClient,
-		GeographicHierarchies: &geographicHierarchiesClient,
-		HeatMaps:              &heatMapsClient,
-		Profiles:              &profilesClient,
-		RealUserMetrics:       &realUserMetricsClient,
+func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+	endpointsClient, err := endpoints.NewEndpointsClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building Endpoints client: %+v", err)
 	}
+	configureFunc(endpointsClient.Client)
+
+	geographicHierarchiesClient, err := geographichierarchies.NewGeographicHierarchiesClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building GeographicHierarchies client: %+v", err)
+	}
+	configureFunc(geographicHierarchiesClient.Client)
+
+	heatMapsClient, err := heatmaps.NewHeatMapsClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building HeatMaps client: %+v", err)
+	}
+	configureFunc(heatMapsClient.Client)
+
+	profilesClient, err := profiles.NewProfilesClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building Profiles client: %+v", err)
+	}
+	configureFunc(profilesClient.Client)
+
+	realUserMetricsClient, err := realusermetrics.NewRealUserMetricsClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building RealUserMetrics client: %+v", err)
+	}
+	configureFunc(realUserMetricsClient.Client)
+
+	return &Client{
+		Endpoints:             endpointsClient,
+		GeographicHierarchies: geographicHierarchiesClient,
+		HeatMaps:              heatMapsClient,
+		Profiles:              profilesClient,
+		RealUserMetrics:       realUserMetricsClient,
+	}, nil
 }
