@@ -11,6 +11,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/costmanagement/2023-08-01/benefitutilizationsummaries"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/costmanagement/2023-08-01/benefitutilizationsummariesasync"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/costmanagement/2023-08-01/budgets"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/costmanagement/2023-08-01/costallocationrules"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/costmanagement/2023-08-01/costdetails"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/costmanagement/2023-08-01/dimensions"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/costmanagement/2023-08-01/exports"
@@ -19,6 +20,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/costmanagement/2023-08-01/query"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/costmanagement/2023-08-01/reservedinstances"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/costmanagement/2023-08-01/scheduledactions"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/costmanagement/2023-08-01/settings"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/costmanagement/2023-08-01/usagedetails"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/costmanagement/2023-08-01/views"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
@@ -31,6 +33,7 @@ type Client struct {
 	BenefitUtilizationSummaries      *benefitutilizationsummaries.BenefitUtilizationSummariesClient
 	BenefitUtilizationSummariesAsync *benefitutilizationsummariesasync.BenefitUtilizationSummariesAsyncClient
 	Budgets                          *budgets.BudgetsClient
+	CostAllocationRules              *costallocationrules.CostAllocationRulesClient
 	CostDetails                      *costdetails.CostDetailsClient
 	Dimensions                       *dimensions.DimensionsClient
 	Exports                          *exports.ExportsClient
@@ -39,6 +42,7 @@ type Client struct {
 	Query                            *query.QueryClient
 	ReservedInstances                *reservedinstances.ReservedInstancesClient
 	ScheduledActions                 *scheduledactions.ScheduledActionsClient
+	Settings                         *settings.SettingsClient
 	UsageDetails                     *usagedetails.UsageDetailsClient
 	Views                            *views.ViewsClient
 }
@@ -73,6 +77,12 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanag
 		return nil, fmt.Errorf("building Budgets client: %+v", err)
 	}
 	configureFunc(budgetsClient.Client)
+
+	costAllocationRulesClient, err := costallocationrules.NewCostAllocationRulesClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building CostAllocationRules client: %+v", err)
+	}
+	configureFunc(costAllocationRulesClient.Client)
 
 	costDetailsClient, err := costdetails.NewCostDetailsClientWithBaseURI(sdkApi)
 	if err != nil {
@@ -122,6 +132,12 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanag
 	}
 	configureFunc(scheduledActionsClient.Client)
 
+	settingsClient, err := settings.NewSettingsClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building Settings client: %+v", err)
+	}
+	configureFunc(settingsClient.Client)
+
 	usageDetailsClient, err := usagedetails.NewUsageDetailsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building UsageDetails client: %+v", err)
@@ -140,6 +156,7 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanag
 		BenefitUtilizationSummaries:      benefitUtilizationSummariesClient,
 		BenefitUtilizationSummariesAsync: benefitUtilizationSummariesAsyncClient,
 		Budgets:                          budgetsClient,
+		CostAllocationRules:              costAllocationRulesClient,
 		CostDetails:                      costDetailsClient,
 		Dimensions:                       dimensionsClient,
 		Exports:                          exportsClient,
@@ -148,6 +165,7 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanag
 		Query:                            queryClient,
 		ReservedInstances:                reservedInstancesClient,
 		ScheduledActions:                 scheduledActionsClient,
+		Settings:                         settingsClient,
 		UsageDetails:                     usageDetailsClient,
 		Views:                            viewsClient,
 	}, nil
