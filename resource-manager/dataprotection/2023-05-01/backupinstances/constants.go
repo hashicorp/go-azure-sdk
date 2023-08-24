@@ -288,6 +288,44 @@ func parseRehydrationPriority(input string) (*RehydrationPriority, error) {
 	return &out, nil
 }
 
+type ResourcePropertiesObjectType string
+
+const (
+	ResourcePropertiesObjectTypeDefaultResourceProperties ResourcePropertiesObjectType = "DefaultResourceProperties"
+)
+
+func PossibleValuesForResourcePropertiesObjectType() []string {
+	return []string{
+		string(ResourcePropertiesObjectTypeDefaultResourceProperties),
+	}
+}
+
+func (s *ResourcePropertiesObjectType) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseResourcePropertiesObjectType(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
+func parseResourcePropertiesObjectType(input string) (*ResourcePropertiesObjectType, error) {
+	vals := map[string]ResourcePropertiesObjectType{
+		"defaultresourceproperties": ResourcePropertiesObjectTypeDefaultResourceProperties,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ResourcePropertiesObjectType(input)
+	return &out, nil
+}
+
 type RestoreTargetLocationType string
 
 const (
