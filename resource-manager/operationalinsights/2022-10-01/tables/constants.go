@@ -1,6 +1,10 @@
 package tables
 
-import "strings"
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -21,6 +25,19 @@ func PossibleValuesForColumnDataTypeHintEnum() []string {
 		string(ColumnDataTypeHintEnumIP),
 		string(ColumnDataTypeHintEnumUri),
 	}
+}
+
+func (s *ColumnDataTypeHintEnum) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseColumnDataTypeHintEnum(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseColumnDataTypeHintEnum(input string) (*ColumnDataTypeHintEnum, error) {
@@ -65,6 +82,19 @@ func PossibleValuesForColumnTypeEnum() []string {
 	}
 }
 
+func (s *ColumnTypeEnum) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseColumnTypeEnum(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseColumnTypeEnum(input string) (*ColumnTypeEnum, error) {
 	vals := map[string]ColumnTypeEnum{
 		"boolean":  ColumnTypeEnumBoolean,
@@ -103,6 +133,19 @@ func PossibleValuesForProvisioningStateEnum() []string {
 	}
 }
 
+func (s *ProvisioningStateEnum) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseProvisioningStateEnum(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseProvisioningStateEnum(input string) (*ProvisioningStateEnum, error) {
 	vals := map[string]ProvisioningStateEnum{
 		"deleting":   ProvisioningStateEnumDeleting,
@@ -133,6 +176,19 @@ func PossibleValuesForSourceEnum() []string {
 	}
 }
 
+func (s *SourceEnum) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseSourceEnum(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}
+
 func parseSourceEnum(input string) (*SourceEnum, error) {
 	vals := map[string]SourceEnum{
 		"customer":  SourceEnumCustomer,
@@ -159,6 +215,19 @@ func PossibleValuesForTablePlanEnum() []string {
 		string(TablePlanEnumAnalytics),
 		string(TablePlanEnumBasic),
 	}
+}
+
+func (s *TablePlanEnum) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseTablePlanEnum(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseTablePlanEnum(input string) (*TablePlanEnum, error) {
@@ -189,6 +258,19 @@ func PossibleValuesForTableSubTypeEnum() []string {
 		string(TableSubTypeEnumClassic),
 		string(TableSubTypeEnumDataCollectionRuleBased),
 	}
+}
+
+func (s *TableSubTypeEnum) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseTableSubTypeEnum(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseTableSubTypeEnum(input string) (*TableSubTypeEnum, error) {
@@ -222,6 +304,19 @@ func PossibleValuesForTableTypeEnum() []string {
 		string(TableTypeEnumRestoredLogs),
 		string(TableTypeEnumSearchResults),
 	}
+}
+
+func (s *TableTypeEnum) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseTableTypeEnum(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
 }
 
 func parseTableTypeEnum(input string) (*TableTypeEnum, error) {

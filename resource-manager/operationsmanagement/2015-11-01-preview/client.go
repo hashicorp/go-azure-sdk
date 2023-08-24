@@ -4,10 +4,13 @@ package v2015_11_01_preview
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 import (
-	"github.com/Azure/go-autorest/autorest"
+	"fmt"
+
 	"github.com/hashicorp/go-azure-sdk/resource-manager/operationsmanagement/2015-11-01-preview/managementassociation"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/operationsmanagement/2015-11-01-preview/managementconfiguration"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/operationsmanagement/2015-11-01-preview/solution"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -16,20 +19,28 @@ type Client struct {
 	Solution                *solution.SolutionClient
 }
 
-func NewClientWithBaseURI(endpoint string, configureAuthFunc func(c *autorest.Client)) Client {
-
-	managementAssociationClient := managementassociation.NewManagementAssociationClientWithBaseURI(endpoint)
-	configureAuthFunc(&managementAssociationClient.Client)
-
-	managementConfigurationClient := managementconfiguration.NewManagementConfigurationClientWithBaseURI(endpoint)
-	configureAuthFunc(&managementConfigurationClient.Client)
-
-	solutionClient := solution.NewSolutionClientWithBaseURI(endpoint)
-	configureAuthFunc(&solutionClient.Client)
-
-	return Client{
-		ManagementAssociation:   &managementAssociationClient,
-		ManagementConfiguration: &managementConfigurationClient,
-		Solution:                &solutionClient,
+func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+	managementAssociationClient, err := managementassociation.NewManagementAssociationClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building ManagementAssociation client: %+v", err)
 	}
+	configureFunc(managementAssociationClient.Client)
+
+	managementConfigurationClient, err := managementconfiguration.NewManagementConfigurationClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building ManagementConfiguration client: %+v", err)
+	}
+	configureFunc(managementConfigurationClient.Client)
+
+	solutionClient, err := solution.NewSolutionClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building Solution client: %+v", err)
+	}
+	configureFunc(solutionClient.Client)
+
+	return &Client{
+		ManagementAssociation:   managementAssociationClient,
+		ManagementConfiguration: managementConfigurationClient,
+		Solution:                solutionClient,
+	}, nil
 }
