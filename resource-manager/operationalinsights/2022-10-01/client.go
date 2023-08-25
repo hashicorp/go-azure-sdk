@@ -4,10 +4,13 @@ package v2022_10_01
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 import (
-	"github.com/Azure/go-autorest/autorest"
+	"fmt"
+
 	"github.com/hashicorp/go-azure-sdk/resource-manager/operationalinsights/2022-10-01/deletedworkspaces"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/operationalinsights/2022-10-01/tables"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/operationalinsights/2022-10-01/workspaces"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -16,20 +19,28 @@ type Client struct {
 	Workspaces        *workspaces.WorkspacesClient
 }
 
-func NewClientWithBaseURI(endpoint string, configureAuthFunc func(c *autorest.Client)) Client {
-
-	deletedWorkspacesClient := deletedworkspaces.NewDeletedWorkspacesClientWithBaseURI(endpoint)
-	configureAuthFunc(&deletedWorkspacesClient.Client)
-
-	tablesClient := tables.NewTablesClientWithBaseURI(endpoint)
-	configureAuthFunc(&tablesClient.Client)
-
-	workspacesClient := workspaces.NewWorkspacesClientWithBaseURI(endpoint)
-	configureAuthFunc(&workspacesClient.Client)
-
-	return Client{
-		DeletedWorkspaces: &deletedWorkspacesClient,
-		Tables:            &tablesClient,
-		Workspaces:        &workspacesClient,
+func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+	deletedWorkspacesClient, err := deletedworkspaces.NewDeletedWorkspacesClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building DeletedWorkspaces client: %+v", err)
 	}
+	configureFunc(deletedWorkspacesClient.Client)
+
+	tablesClient, err := tables.NewTablesClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building Tables client: %+v", err)
+	}
+	configureFunc(tablesClient.Client)
+
+	workspacesClient, err := workspaces.NewWorkspacesClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building Workspaces client: %+v", err)
+	}
+	configureFunc(workspacesClient.Client)
+
+	return &Client{
+		DeletedWorkspaces: deletedWorkspacesClient,
+		Tables:            tablesClient,
+		Workspaces:        workspacesClient,
+	}, nil
 }
