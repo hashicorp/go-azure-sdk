@@ -102,8 +102,9 @@ func (r *Request) Marshal(payload interface{}) error {
 	if strings.Contains(contentType, "application/xml") || strings.Contains(contentType, "text/xml") {
 		body, err := xml.Marshal(payload)
 		if err == nil {
-			r.ContentLength = int64(len(body))
-			r.Body = io.NopCloser(bytes.NewReader(body))
+			bodyWithHeader := []byte(xml.Header + string(body))
+			r.ContentLength = int64(len(bodyWithHeader))
+			r.Body = io.NopCloser(bytes.NewReader(bodyWithHeader))
 		}
 		return nil
 	}
