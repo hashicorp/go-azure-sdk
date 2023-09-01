@@ -1,26 +1,18 @@
 package mhsmprivatelinkresources
 
-import (
-	"fmt"
-
-	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
-)
+import "github.com/Azure/go-autorest/autorest"
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type MHSMPrivateLinkResourcesClient struct {
-	Client *resourcemanager.Client
+	Client  autorest.Client
+	baseUri string
 }
 
-func NewMHSMPrivateLinkResourcesClientWithBaseURI(sdkApi sdkEnv.Api) (*MHSMPrivateLinkResourcesClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "mhsmprivatelinkresources", defaultApiVersion)
-	if err != nil {
-		return nil, fmt.Errorf("instantiating MHSMPrivateLinkResourcesClient: %+v", err)
+func NewMHSMPrivateLinkResourcesClientWithBaseURI(endpoint string) MHSMPrivateLinkResourcesClient {
+	return MHSMPrivateLinkResourcesClient{
+		Client:  autorest.NewClientWithUserAgent(userAgent()),
+		baseUri: endpoint,
 	}
-
-	return &MHSMPrivateLinkResourcesClient{
-		Client: client,
-	}, nil
 }
