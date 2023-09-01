@@ -4,8 +4,7 @@ package v2021_10_01
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 import (
-	"fmt"
-
+	"github.com/Azure/go-autorest/autorest"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/keyvault/2021-10-01/keys"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/keyvault/2021-10-01/managedhsms"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/keyvault/2021-10-01/mhsmlistprivateendpointconnections"
@@ -15,8 +14,6 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/keyvault/2021-10-01/privatelinkresources"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/keyvault/2021-10-01/secrets"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/keyvault/2021-10-01/vaults"
-	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
 )
 
 type Client struct {
@@ -31,70 +28,44 @@ type Client struct {
 	Vaults                             *vaults.VaultsClient
 }
 
-func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
-	keysClient, err := keys.NewKeysClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building Keys client: %+v", err)
-	}
-	configureFunc(keysClient.Client)
+func NewClientWithBaseURI(endpoint string, configureAuthFunc func(c *autorest.Client)) Client {
 
-	mHSMListPrivateEndpointConnectionsClient, err := mhsmlistprivateendpointconnections.NewMHSMListPrivateEndpointConnectionsClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building MHSMListPrivateEndpointConnections client: %+v", err)
-	}
-	configureFunc(mHSMListPrivateEndpointConnectionsClient.Client)
+	keysClient := keys.NewKeysClientWithBaseURI(endpoint)
+	configureAuthFunc(&keysClient.Client)
 
-	mHSMPrivateEndpointConnectionsClient, err := mhsmprivateendpointconnections.NewMHSMPrivateEndpointConnectionsClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building MHSMPrivateEndpointConnections client: %+v", err)
-	}
-	configureFunc(mHSMPrivateEndpointConnectionsClient.Client)
+	mHSMListPrivateEndpointConnectionsClient := mhsmlistprivateendpointconnections.NewMHSMListPrivateEndpointConnectionsClientWithBaseURI(endpoint)
+	configureAuthFunc(&mHSMListPrivateEndpointConnectionsClient.Client)
 
-	mHSMPrivateLinkResourcesClient, err := mhsmprivatelinkresources.NewMHSMPrivateLinkResourcesClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building MHSMPrivateLinkResources client: %+v", err)
-	}
-	configureFunc(mHSMPrivateLinkResourcesClient.Client)
+	mHSMPrivateEndpointConnectionsClient := mhsmprivateendpointconnections.NewMHSMPrivateEndpointConnectionsClientWithBaseURI(endpoint)
+	configureAuthFunc(&mHSMPrivateEndpointConnectionsClient.Client)
 
-	managedHsmsClient, err := managedhsms.NewManagedHsmsClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building ManagedHsms client: %+v", err)
-	}
-	configureFunc(managedHsmsClient.Client)
+	mHSMPrivateLinkResourcesClient := mhsmprivatelinkresources.NewMHSMPrivateLinkResourcesClientWithBaseURI(endpoint)
+	configureAuthFunc(&mHSMPrivateLinkResourcesClient.Client)
 
-	privateEndpointConnectionsClient, err := privateendpointconnections.NewPrivateEndpointConnectionsClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building PrivateEndpointConnections client: %+v", err)
-	}
-	configureFunc(privateEndpointConnectionsClient.Client)
+	managedHsmsClient := managedhsms.NewManagedHsmsClientWithBaseURI(endpoint)
+	configureAuthFunc(&managedHsmsClient.Client)
 
-	privateLinkResourcesClient, err := privatelinkresources.NewPrivateLinkResourcesClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building PrivateLinkResources client: %+v", err)
-	}
-	configureFunc(privateLinkResourcesClient.Client)
+	privateEndpointConnectionsClient := privateendpointconnections.NewPrivateEndpointConnectionsClientWithBaseURI(endpoint)
+	configureAuthFunc(&privateEndpointConnectionsClient.Client)
 
-	secretsClient, err := secrets.NewSecretsClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building Secrets client: %+v", err)
-	}
-	configureFunc(secretsClient.Client)
+	privateLinkResourcesClient := privatelinkresources.NewPrivateLinkResourcesClientWithBaseURI(endpoint)
+	configureAuthFunc(&privateLinkResourcesClient.Client)
 
-	vaultsClient, err := vaults.NewVaultsClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building Vaults client: %+v", err)
-	}
-	configureFunc(vaultsClient.Client)
+	secretsClient := secrets.NewSecretsClientWithBaseURI(endpoint)
+	configureAuthFunc(&secretsClient.Client)
 
-	return &Client{
-		Keys:                               keysClient,
-		MHSMListPrivateEndpointConnections: mHSMListPrivateEndpointConnectionsClient,
-		MHSMPrivateEndpointConnections:     mHSMPrivateEndpointConnectionsClient,
-		MHSMPrivateLinkResources:           mHSMPrivateLinkResourcesClient,
-		ManagedHsms:                        managedHsmsClient,
-		PrivateEndpointConnections:         privateEndpointConnectionsClient,
-		PrivateLinkResources:               privateLinkResourcesClient,
-		Secrets:                            secretsClient,
-		Vaults:                             vaultsClient,
-	}, nil
+	vaultsClient := vaults.NewVaultsClientWithBaseURI(endpoint)
+	configureAuthFunc(&vaultsClient.Client)
+
+	return Client{
+		Keys:                               &keysClient,
+		MHSMListPrivateEndpointConnections: &mHSMListPrivateEndpointConnectionsClient,
+		MHSMPrivateEndpointConnections:     &mHSMPrivateEndpointConnectionsClient,
+		MHSMPrivateLinkResources:           &mHSMPrivateLinkResourcesClient,
+		ManagedHsms:                        &managedHsmsClient,
+		PrivateEndpointConnections:         &privateEndpointConnectionsClient,
+		PrivateLinkResources:               &privateLinkResourcesClient,
+		Secrets:                            &secretsClient,
+		Vaults:                             &vaultsClient,
+	}
 }

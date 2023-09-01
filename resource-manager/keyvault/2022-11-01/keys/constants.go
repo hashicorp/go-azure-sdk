@@ -1,10 +1,6 @@
 package keys
 
-import (
-	"encoding/json"
-	"fmt"
-	"strings"
-)
+import "strings"
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
@@ -25,19 +21,6 @@ func PossibleValuesForDeletionRecoveryLevel() []string {
 		string(DeletionRecoveryLevelRecoverablePositiveProtectedSubscription),
 		string(DeletionRecoveryLevelRecoverablePositivePurgeable),
 	}
-}
-
-func (s *DeletionRecoveryLevel) UnmarshalJSON(bytes []byte) error {
-	var decoded string
-	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling: %+v", err)
-	}
-	out, err := parseDeletionRecoveryLevel(decoded)
-	if err != nil {
-		return fmt.Errorf("parsing %q: %+v", decoded, err)
-	}
-	*s = *out
-	return nil
 }
 
 func parseDeletionRecoveryLevel(input string) (*DeletionRecoveryLevel, error) {
@@ -72,19 +55,6 @@ func PossibleValuesForJsonWebKeyCurveName() []string {
 		string(JsonWebKeyCurveNamePNegativeTwoFiveSix),
 		string(JsonWebKeyCurveNamePNegativeTwoFiveSixK),
 	}
-}
-
-func (s *JsonWebKeyCurveName) UnmarshalJSON(bytes []byte) error {
-	var decoded string
-	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling: %+v", err)
-	}
-	out, err := parseJsonWebKeyCurveName(decoded)
-	if err != nil {
-		return fmt.Errorf("parsing %q: %+v", decoded, err)
-	}
-	*s = *out
-	return nil
 }
 
 func parseJsonWebKeyCurveName(input string) (*JsonWebKeyCurveName, error) {
@@ -129,19 +99,6 @@ func PossibleValuesForJsonWebKeyOperation() []string {
 	}
 }
 
-func (s *JsonWebKeyOperation) UnmarshalJSON(bytes []byte) error {
-	var decoded string
-	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling: %+v", err)
-	}
-	out, err := parseJsonWebKeyOperation(decoded)
-	if err != nil {
-		return fmt.Errorf("parsing %q: %+v", decoded, err)
-	}
-	*s = *out
-	return nil
-}
-
 func parseJsonWebKeyOperation(input string) (*JsonWebKeyOperation, error) {
 	vals := map[string]JsonWebKeyOperation{
 		"decrypt":   JsonWebKeyOperationDecrypt,
@@ -180,19 +137,6 @@ func PossibleValuesForJsonWebKeyType() []string {
 	}
 }
 
-func (s *JsonWebKeyType) UnmarshalJSON(bytes []byte) error {
-	var decoded string
-	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling: %+v", err)
-	}
-	out, err := parseJsonWebKeyType(decoded)
-	if err != nil {
-		return fmt.Errorf("parsing %q: %+v", decoded, err)
-	}
-	*s = *out
-	return nil
-}
-
 func parseJsonWebKeyType(input string) (*JsonWebKeyType, error) {
 	vals := map[string]JsonWebKeyType{
 		"ec":      JsonWebKeyTypeEC,
@@ -221,19 +165,6 @@ func PossibleValuesForKeyRotationPolicyActionType() []string {
 		string(KeyRotationPolicyActionTypeNotify),
 		string(KeyRotationPolicyActionTypeRotate),
 	}
-}
-
-func (s *KeyRotationPolicyActionType) UnmarshalJSON(bytes []byte) error {
-	var decoded string
-	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling: %+v", err)
-	}
-	out, err := parseKeyRotationPolicyActionType(decoded)
-	if err != nil {
-		return fmt.Errorf("parsing %q: %+v", decoded, err)
-	}
-	*s = *out
-	return nil
 }
 
 func parseKeyRotationPolicyActionType(input string) (*KeyRotationPolicyActionType, error) {

@@ -1,26 +1,18 @@
 package secrets
 
-import (
-	"fmt"
-
-	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
-)
+import "github.com/Azure/go-autorest/autorest"
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type SecretsClient struct {
-	Client *resourcemanager.Client
+	Client  autorest.Client
+	baseUri string
 }
 
-func NewSecretsClientWithBaseURI(sdkApi sdkEnv.Api) (*SecretsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "secrets", defaultApiVersion)
-	if err != nil {
-		return nil, fmt.Errorf("instantiating SecretsClient: %+v", err)
+func NewSecretsClientWithBaseURI(endpoint string) SecretsClient {
+	return SecretsClient{
+		Client:  autorest.NewClientWithUserAgent(userAgent()),
+		baseUri: endpoint,
 	}
-
-	return &SecretsClient{
-		Client: client,
-	}, nil
 }

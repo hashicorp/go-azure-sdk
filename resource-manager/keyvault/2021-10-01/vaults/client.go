@@ -1,26 +1,18 @@
 package vaults
 
-import (
-	"fmt"
-
-	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
-	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
-)
+import "github.com/Azure/go-autorest/autorest"
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
 type VaultsClient struct {
-	Client *resourcemanager.Client
+	Client  autorest.Client
+	baseUri string
 }
 
-func NewVaultsClientWithBaseURI(sdkApi sdkEnv.Api) (*VaultsClient, error) {
-	client, err := resourcemanager.NewResourceManagerClient(sdkApi, "vaults", defaultApiVersion)
-	if err != nil {
-		return nil, fmt.Errorf("instantiating VaultsClient: %+v", err)
+func NewVaultsClientWithBaseURI(endpoint string) VaultsClient {
+	return VaultsClient{
+		Client:  autorest.NewClientWithUserAgent(userAgent()),
+		baseUri: endpoint,
 	}
-
-	return &VaultsClient{
-		Client: client,
-	}, nil
 }
