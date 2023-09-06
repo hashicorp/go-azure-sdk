@@ -20,13 +20,13 @@ client.Client.Authorizer = authorizer
 ```
 
 
-### Example Usage: `OfficeConsentsClient.OfficeConsentsDelete`
+### Example Usage: `OfficeConsentsClient.Delete`
 
 ```go
 ctx := context.TODO()
 id := officeconsents.NewOfficeConsentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "consentIdValue")
 
-read, err := client.OfficeConsentsDelete(ctx, id)
+read, err := client.Delete(ctx, id)
 if err != nil {
 	// handle the error
 }
@@ -36,13 +36,13 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `OfficeConsentsClient.OfficeConsentsGet`
+### Example Usage: `OfficeConsentsClient.Get`
 
 ```go
 ctx := context.TODO()
 id := officeconsents.NewOfficeConsentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "consentIdValue")
 
-read, err := client.OfficeConsentsGet(ctx, id)
+read, err := client.Get(ctx, id)
 if err != nil {
 	// handle the error
 }
@@ -52,14 +52,14 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `OfficeConsentsClient.OfficeConsentsList`
+### Example Usage: `OfficeConsentsClient.List`
 
 ```go
 ctx := context.TODO()
 id := officeconsents.NewWorkspaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue")
 
-// alternatively `client.OfficeConsentsList(ctx, id)` can be used to do batched pagination
-items, err := client.OfficeConsentsListComplete(ctx, id)
+// alternatively `client.List(ctx, id)` can be used to do batched pagination
+items, err := client.ListComplete(ctx, id)
 if err != nil {
 	// handle the error
 }

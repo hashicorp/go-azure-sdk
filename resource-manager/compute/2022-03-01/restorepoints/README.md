@@ -20,7 +20,7 @@ client.Client.Authorizer = authorizer
 ```
 
 
-### Example Usage: `RestorePointsClient.RestorePointsCreate`
+### Example Usage: `RestorePointsClient.Create`
 
 ```go
 ctx := context.TODO()
@@ -31,31 +31,31 @@ payload := restorepoints.RestorePoint{
 }
 
 
-if err := client.RestorePointsCreateThenPoll(ctx, id, payload); err != nil {
+if err := client.CreateThenPoll(ctx, id, payload); err != nil {
 	// handle the error
 }
 ```
 
 
-### Example Usage: `RestorePointsClient.RestorePointsDelete`
+### Example Usage: `RestorePointsClient.Delete`
 
 ```go
 ctx := context.TODO()
 id := restorepoints.NewRestorePointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "restorePointCollectionValue", "restorePointValue")
 
-if err := client.RestorePointsDeleteThenPoll(ctx, id); err != nil {
+if err := client.DeleteThenPoll(ctx, id); err != nil {
 	// handle the error
 }
 ```
 
 
-### Example Usage: `RestorePointsClient.RestorePointsGet`
+### Example Usage: `RestorePointsClient.Get`
 
 ```go
 ctx := context.TODO()
 id := restorepoints.NewRestorePointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "restorePointCollectionValue", "restorePointValue")
 
-read, err := client.RestorePointsGet(ctx, id, restorepoints.DefaultRestorePointsGetOperationOptions())
+read, err := client.Get(ctx, id, restorepoints.DefaultGetOperationOptions())
 if err != nil {
 	// handle the error
 }

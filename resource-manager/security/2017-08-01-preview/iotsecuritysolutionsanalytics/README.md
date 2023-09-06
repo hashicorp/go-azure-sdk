@@ -20,13 +20,13 @@ client.Client.Authorizer = authorizer
 ```
 
 
-### Example Usage: `IoTSecuritySolutionsAnalyticsClient.IoTSecuritySolutionsAnalyticsAggregatedAlertDismiss`
+### Example Usage: `IoTSecuritySolutionsAnalyticsClient.AggregatedAlertDismiss`
 
 ```go
 ctx := context.TODO()
 id := iotsecuritysolutionsanalytics.NewAggregatedAlertID("12345678-1234-9876-4563-123456789012", "example-resource-group", "iotSecuritySolutionValue", "aggregatedAlertValue")
 
-read, err := client.IoTSecuritySolutionsAnalyticsAggregatedAlertDismiss(ctx, id)
+read, err := client.AggregatedAlertDismiss(ctx, id)
 if err != nil {
 	// handle the error
 }
@@ -36,13 +36,13 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `IoTSecuritySolutionsAnalyticsClient.IoTSecuritySolutionsAnalyticsAggregatedAlertGet`
+### Example Usage: `IoTSecuritySolutionsAnalyticsClient.AggregatedAlertGet`
 
 ```go
 ctx := context.TODO()
 id := iotsecuritysolutionsanalytics.NewAggregatedAlertID("12345678-1234-9876-4563-123456789012", "example-resource-group", "iotSecuritySolutionValue", "aggregatedAlertValue")
 
-read, err := client.IoTSecuritySolutionsAnalyticsAggregatedAlertGet(ctx, id)
+read, err := client.AggregatedAlertGet(ctx, id)
 if err != nil {
 	// handle the error
 }
@@ -52,14 +52,14 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `IoTSecuritySolutionsAnalyticsClient.IoTSecuritySolutionsAnalyticsAggregatedAlertsList`
+### Example Usage: `IoTSecuritySolutionsAnalyticsClient.AggregatedAlertsList`
 
 ```go
 ctx := context.TODO()
 id := iotsecuritysolutionsanalytics.NewIotSecuritySolutionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "iotSecuritySolutionValue")
 
-// alternatively `client.IoTSecuritySolutionsAnalyticsAggregatedAlertsList(ctx, id, iotsecuritysolutionsanalytics.DefaultIoTSecuritySolutionsAnalyticsAggregatedAlertsListOperationOptions())` can be used to do batched pagination
-items, err := client.IoTSecuritySolutionsAnalyticsAggregatedAlertsListComplete(ctx, id, iotsecuritysolutionsanalytics.DefaultIoTSecuritySolutionsAnalyticsAggregatedAlertsListOperationOptions())
+// alternatively `client.AggregatedAlertsList(ctx, id, iotsecuritysolutionsanalytics.DefaultAggregatedAlertsListOperationOptions())` can be used to do batched pagination
+items, err := client.AggregatedAlertsListComplete(ctx, id, iotsecuritysolutionsanalytics.DefaultAggregatedAlertsListOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -69,13 +69,13 @@ for _, item := range items {
 ```
 
 
-### Example Usage: `IoTSecuritySolutionsAnalyticsClient.IoTSecuritySolutionsAnalyticsGetAll`
+### Example Usage: `IoTSecuritySolutionsAnalyticsClient.GetAll`
 
 ```go
 ctx := context.TODO()
 id := iotsecuritysolutionsanalytics.NewIotSecuritySolutionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "iotSecuritySolutionValue")
 
-read, err := client.IoTSecuritySolutionsAnalyticsGetAll(ctx, id)
+read, err := client.GetAll(ctx, id)
 if err != nil {
 	// handle the error
 }
@@ -85,13 +85,13 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `IoTSecuritySolutionsAnalyticsClient.IoTSecuritySolutionsAnalyticsGetDefault`
+### Example Usage: `IoTSecuritySolutionsAnalyticsClient.GetDefault`
 
 ```go
 ctx := context.TODO()
 id := iotsecuritysolutionsanalytics.NewIotSecuritySolutionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "iotSecuritySolutionValue")
 
-read, err := client.IoTSecuritySolutionsAnalyticsGetDefault(ctx, id)
+read, err := client.GetDefault(ctx, id)
 if err != nil {
 	// handle the error
 }
@@ -101,13 +101,13 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `IoTSecuritySolutionsAnalyticsClient.IoTSecuritySolutionsAnalyticsRecommendationGet`
+### Example Usage: `IoTSecuritySolutionsAnalyticsClient.RecommendationGet`
 
 ```go
 ctx := context.TODO()
 id := iotsecuritysolutionsanalytics.NewAggregatedRecommendationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "iotSecuritySolutionValue", "aggregatedRecommendationValue")
 
-read, err := client.IoTSecuritySolutionsAnalyticsRecommendationGet(ctx, id)
+read, err := client.RecommendationGet(ctx, id)
 if err != nil {
 	// handle the error
 }
@@ -117,14 +117,14 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `IoTSecuritySolutionsAnalyticsClient.IoTSecuritySolutionsAnalyticsRecommendationsList`
+### Example Usage: `IoTSecuritySolutionsAnalyticsClient.RecommendationsList`
 
 ```go
 ctx := context.TODO()
 id := iotsecuritysolutionsanalytics.NewIotSecuritySolutionID("12345678-1234-9876-4563-123456789012", "example-resource-group", "iotSecuritySolutionValue")
 
-// alternatively `client.IoTSecuritySolutionsAnalyticsRecommendationsList(ctx, id, iotsecuritysolutionsanalytics.DefaultIoTSecuritySolutionsAnalyticsRecommendationsListOperationOptions())` can be used to do batched pagination
-items, err := client.IoTSecuritySolutionsAnalyticsRecommendationsListComplete(ctx, id, iotsecuritysolutionsanalytics.DefaultIoTSecuritySolutionsAnalyticsRecommendationsListOperationOptions())
+// alternatively `client.RecommendationsList(ctx, id, iotsecuritysolutionsanalytics.DefaultRecommendationsListOperationOptions())` can be used to do batched pagination
+items, err := client.RecommendationsListComplete(ctx, id, iotsecuritysolutionsanalytics.DefaultRecommendationsListOperationOptions())
 if err != nil {
 	// handle the error
 }

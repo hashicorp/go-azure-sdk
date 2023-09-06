@@ -20,14 +20,14 @@ client.Client.Authorizer = authorizer
 ```
 
 
-### Example Usage: `SecureScoreClient.SecureScoreControlsListBySecureScore`
+### Example Usage: `SecureScoreClient.ControlsListBySecureScore`
 
 ```go
 ctx := context.TODO()
 id := securescore.NewSecureScoreID("12345678-1234-9876-4563-123456789012", "secureScoreValue")
 
-// alternatively `client.SecureScoreControlsListBySecureScore(ctx, id, securescore.DefaultSecureScoreControlsListBySecureScoreOperationOptions())` can be used to do batched pagination
-items, err := client.SecureScoreControlsListBySecureScoreComplete(ctx, id, securescore.DefaultSecureScoreControlsListBySecureScoreOperationOptions())
+// alternatively `client.ControlsListBySecureScore(ctx, id, securescore.DefaultControlsListBySecureScoreOperationOptions())` can be used to do batched pagination
+items, err := client.ControlsListBySecureScoreComplete(ctx, id, securescore.DefaultControlsListBySecureScoreOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -37,13 +37,13 @@ for _, item := range items {
 ```
 
 
-### Example Usage: `SecureScoreClient.SecureScoresGet`
+### Example Usage: `SecureScoreClient.Get`
 
 ```go
 ctx := context.TODO()
 id := securescore.NewSecureScoreID("12345678-1234-9876-4563-123456789012", "secureScoreValue")
 
-read, err := client.SecureScoresGet(ctx, id)
+read, err := client.Get(ctx, id)
 if err != nil {
 	// handle the error
 }
@@ -53,14 +53,14 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `SecureScoreClient.SecureScoresList`
+### Example Usage: `SecureScoreClient.List`
 
 ```go
 ctx := context.TODO()
 id := securescore.NewSubscriptionID("12345678-1234-9876-4563-123456789012")
 
-// alternatively `client.SecureScoresList(ctx, id)` can be used to do batched pagination
-items, err := client.SecureScoresListComplete(ctx, id)
+// alternatively `client.List(ctx, id)` can be used to do batched pagination
+items, err := client.ListComplete(ctx, id)
 if err != nil {
 	// handle the error
 }

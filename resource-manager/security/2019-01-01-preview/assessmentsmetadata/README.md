@@ -20,13 +20,13 @@ client.Client.Authorizer = authorizer
 ```
 
 
-### Example Usage: `AssessmentsMetadataClient.AssessmentsMetadataGet`
+### Example Usage: `AssessmentsMetadataClient.Get`
 
 ```go
 ctx := context.TODO()
 id := assessmentsmetadata.NewAssessmentMetadataID("assessmentMetadataValue")
 
-read, err := client.AssessmentsMetadataGet(ctx, id)
+read, err := client.Get(ctx, id)
 if err != nil {
 	// handle the error
 }
@@ -36,14 +36,14 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `AssessmentsMetadataClient.AssessmentsMetadataList`
+### Example Usage: `AssessmentsMetadataClient.List`
 
 ```go
 ctx := context.TODO()
 
 
-// alternatively `client.AssessmentsMetadataList(ctx)` can be used to do batched pagination
-items, err := client.AssessmentsMetadataListComplete(ctx)
+// alternatively `client.List(ctx)` can be used to do batched pagination
+items, err := client.ListComplete(ctx)
 if err != nil {
 	// handle the error
 }
@@ -53,7 +53,7 @@ for _, item := range items {
 ```
 
 
-### Example Usage: `AssessmentsMetadataClient.AssessmentsMetadataSubscriptionCreate`
+### Example Usage: `AssessmentsMetadataClient.SubscriptionCreate`
 
 ```go
 ctx := context.TODO()
@@ -64,7 +64,7 @@ payload := assessmentsmetadata.SecurityAssessmentMetadata{
 }
 
 
-read, err := client.AssessmentsMetadataSubscriptionCreate(ctx, id, payload)
+read, err := client.SubscriptionCreate(ctx, id, payload)
 if err != nil {
 	// handle the error
 }
@@ -74,13 +74,13 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `AssessmentsMetadataClient.AssessmentsMetadataSubscriptionDelete`
+### Example Usage: `AssessmentsMetadataClient.SubscriptionDelete`
 
 ```go
 ctx := context.TODO()
 id := assessmentsmetadata.NewProviderAssessmentMetadataID("12345678-1234-9876-4563-123456789012", "assessmentMetadataValue")
 
-read, err := client.AssessmentsMetadataSubscriptionDelete(ctx, id)
+read, err := client.SubscriptionDelete(ctx, id)
 if err != nil {
 	// handle the error
 }
@@ -90,13 +90,13 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `AssessmentsMetadataClient.AssessmentsMetadataSubscriptionGet`
+### Example Usage: `AssessmentsMetadataClient.SubscriptionGet`
 
 ```go
 ctx := context.TODO()
 id := assessmentsmetadata.NewProviderAssessmentMetadataID("12345678-1234-9876-4563-123456789012", "assessmentMetadataValue")
 
-read, err := client.AssessmentsMetadataSubscriptionGet(ctx, id)
+read, err := client.SubscriptionGet(ctx, id)
 if err != nil {
 	// handle the error
 }
@@ -106,14 +106,14 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `AssessmentsMetadataClient.AssessmentsMetadataSubscriptionList`
+### Example Usage: `AssessmentsMetadataClient.SubscriptionList`
 
 ```go
 ctx := context.TODO()
 id := assessmentsmetadata.NewSubscriptionID("12345678-1234-9876-4563-123456789012")
 
-// alternatively `client.AssessmentsMetadataSubscriptionList(ctx, id)` can be used to do batched pagination
-items, err := client.AssessmentsMetadataSubscriptionListComplete(ctx, id)
+// alternatively `client.SubscriptionList(ctx, id)` can be used to do batched pagination
+items, err := client.SubscriptionListComplete(ctx, id)
 if err != nil {
 	// handle the error
 }

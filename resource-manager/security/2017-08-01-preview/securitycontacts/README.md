@@ -20,7 +20,7 @@ client.Client.Authorizer = authorizer
 ```
 
 
-### Example Usage: `SecurityContactsClient.SecurityContactsCreate`
+### Example Usage: `SecurityContactsClient.Create`
 
 ```go
 ctx := context.TODO()
@@ -31,7 +31,7 @@ payload := securitycontacts.SecurityContact{
 }
 
 
-read, err := client.SecurityContactsCreate(ctx, id, payload)
+read, err := client.Create(ctx, id, payload)
 if err != nil {
 	// handle the error
 }
@@ -41,13 +41,13 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `SecurityContactsClient.SecurityContactsDelete`
+### Example Usage: `SecurityContactsClient.Delete`
 
 ```go
 ctx := context.TODO()
 id := securitycontacts.NewSecurityContactID("12345678-1234-9876-4563-123456789012", "securityContactValue")
 
-read, err := client.SecurityContactsDelete(ctx, id)
+read, err := client.Delete(ctx, id)
 if err != nil {
 	// handle the error
 }
@@ -57,13 +57,13 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `SecurityContactsClient.SecurityContactsGet`
+### Example Usage: `SecurityContactsClient.Get`
 
 ```go
 ctx := context.TODO()
 id := securitycontacts.NewSecurityContactID("12345678-1234-9876-4563-123456789012", "securityContactValue")
 
-read, err := client.SecurityContactsGet(ctx, id)
+read, err := client.Get(ctx, id)
 if err != nil {
 	// handle the error
 }
@@ -73,14 +73,14 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `SecurityContactsClient.SecurityContactsList`
+### Example Usage: `SecurityContactsClient.List`
 
 ```go
 ctx := context.TODO()
 id := securitycontacts.NewSubscriptionID("12345678-1234-9876-4563-123456789012")
 
-// alternatively `client.SecurityContactsList(ctx, id)` can be used to do batched pagination
-items, err := client.SecurityContactsListComplete(ctx, id)
+// alternatively `client.List(ctx, id)` can be used to do batched pagination
+items, err := client.ListComplete(ctx, id)
 if err != nil {
 	// handle the error
 }
@@ -90,7 +90,7 @@ for _, item := range items {
 ```
 
 
-### Example Usage: `SecurityContactsClient.SecurityContactsUpdate`
+### Example Usage: `SecurityContactsClient.Update`
 
 ```go
 ctx := context.TODO()
@@ -101,7 +101,7 @@ payload := securitycontacts.SecurityContact{
 }
 
 
-read, err := client.SecurityContactsUpdate(ctx, id, payload)
+read, err := client.Update(ctx, id, payload)
 if err != nil {
 	// handle the error
 }
