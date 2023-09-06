@@ -20,7 +20,7 @@ client.Client.Authorizer = authorizer
 ```
 
 
-### Example Usage: `SubscriptionFeatureRegistrationsClient.SubscriptionFeatureRegistrationsCreateOrUpdate`
+### Example Usage: `SubscriptionFeatureRegistrationsClient.CreateOrUpdate`
 
 ```go
 ctx := context.TODO()
@@ -31,7 +31,7 @@ payload := subscriptionfeatureregistrations.SubscriptionFeatureRegistration{
 }
 
 
-read, err := client.SubscriptionFeatureRegistrationsCreateOrUpdate(ctx, id, payload)
+read, err := client.CreateOrUpdate(ctx, id, payload)
 if err != nil {
 	// handle the error
 }
@@ -41,13 +41,13 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `SubscriptionFeatureRegistrationsClient.SubscriptionFeatureRegistrationsDelete`
+### Example Usage: `SubscriptionFeatureRegistrationsClient.Delete`
 
 ```go
 ctx := context.TODO()
 id := subscriptionfeatureregistrations.NewSubscriptionFeatureRegistrationID("12345678-1234-9876-4563-123456789012", "featureProviderValue", "subscriptionFeatureRegistrationValue")
 
-read, err := client.SubscriptionFeatureRegistrationsDelete(ctx, id)
+read, err := client.Delete(ctx, id)
 if err != nil {
 	// handle the error
 }
@@ -57,13 +57,13 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `SubscriptionFeatureRegistrationsClient.SubscriptionFeatureRegistrationsGet`
+### Example Usage: `SubscriptionFeatureRegistrationsClient.Get`
 
 ```go
 ctx := context.TODO()
 id := subscriptionfeatureregistrations.NewSubscriptionFeatureRegistrationID("12345678-1234-9876-4563-123456789012", "featureProviderValue", "subscriptionFeatureRegistrationValue")
 
-read, err := client.SubscriptionFeatureRegistrationsGet(ctx, id)
+read, err := client.Get(ctx, id)
 if err != nil {
 	// handle the error
 }
@@ -73,14 +73,14 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `SubscriptionFeatureRegistrationsClient.SubscriptionFeatureRegistrationsListAllBySubscription`
+### Example Usage: `SubscriptionFeatureRegistrationsClient.ListAllBySubscription`
 
 ```go
 ctx := context.TODO()
 id := subscriptionfeatureregistrations.NewSubscriptionID("12345678-1234-9876-4563-123456789012")
 
-// alternatively `client.SubscriptionFeatureRegistrationsListAllBySubscription(ctx, id)` can be used to do batched pagination
-items, err := client.SubscriptionFeatureRegistrationsListAllBySubscriptionComplete(ctx, id)
+// alternatively `client.ListAllBySubscription(ctx, id)` can be used to do batched pagination
+items, err := client.ListAllBySubscriptionComplete(ctx, id)
 if err != nil {
 	// handle the error
 }
@@ -90,14 +90,14 @@ for _, item := range items {
 ```
 
 
-### Example Usage: `SubscriptionFeatureRegistrationsClient.SubscriptionFeatureRegistrationsListBySubscription`
+### Example Usage: `SubscriptionFeatureRegistrationsClient.ListBySubscription`
 
 ```go
 ctx := context.TODO()
 id := subscriptionfeatureregistrations.NewFeatureProviderID("12345678-1234-9876-4563-123456789012", "featureProviderValue")
 
-// alternatively `client.SubscriptionFeatureRegistrationsListBySubscription(ctx, id)` can be used to do batched pagination
-items, err := client.SubscriptionFeatureRegistrationsListBySubscriptionComplete(ctx, id)
+// alternatively `client.ListBySubscription(ctx, id)` can be used to do batched pagination
+items, err := client.ListBySubscriptionComplete(ctx, id)
 if err != nil {
 	// handle the error
 }

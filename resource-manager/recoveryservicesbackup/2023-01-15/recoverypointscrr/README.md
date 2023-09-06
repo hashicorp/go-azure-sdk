@@ -20,13 +20,13 @@ client.Client.Authorizer = authorizer
 ```
 
 
-### Example Usage: `RecoveryPointsCrrClient.RecoveryPointsCrrGet`
+### Example Usage: `RecoveryPointsCrrClient.Get`
 
 ```go
 ctx := context.TODO()
 id := recoverypointscrr.NewRecoveryPointID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue", "backupFabricValue", "protectionContainerValue", "protectedItemValue", "recoveryPointIdValue")
 
-read, err := client.RecoveryPointsCrrGet(ctx, id)
+read, err := client.Get(ctx, id)
 if err != nil {
 	// handle the error
 }
@@ -36,14 +36,14 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `RecoveryPointsCrrClient.RecoveryPointsCrrList`
+### Example Usage: `RecoveryPointsCrrClient.List`
 
 ```go
 ctx := context.TODO()
 id := recoverypointscrr.NewProtectedItemID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue", "backupFabricValue", "protectionContainerValue", "protectedItemValue")
 
-// alternatively `client.RecoveryPointsCrrList(ctx, id, recoverypointscrr.DefaultRecoveryPointsCrrListOperationOptions())` can be used to do batched pagination
-items, err := client.RecoveryPointsCrrListComplete(ctx, id, recoverypointscrr.DefaultRecoveryPointsCrrListOperationOptions())
+// alternatively `client.List(ctx, id, recoverypointscrr.DefaultListOperationOptions())` can be used to do batched pagination
+items, err := client.ListComplete(ctx, id, recoverypointscrr.DefaultListOperationOptions())
 if err != nil {
 	// handle the error
 }

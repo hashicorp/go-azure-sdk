@@ -20,13 +20,13 @@ client.Client.Authorizer = authorizer
 ```
 
 
-### Example Usage: `AlertRuleTemplatesClient.AlertRuleTemplatesGet`
+### Example Usage: `AlertRuleTemplatesClient.Get`
 
 ```go
 ctx := context.TODO()
 id := alertruletemplates.NewAlertRuleTemplateID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "alertRuleTemplateIdValue")
 
-read, err := client.AlertRuleTemplatesGet(ctx, id)
+read, err := client.Get(ctx, id)
 if err != nil {
 	// handle the error
 }
@@ -36,14 +36,14 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `AlertRuleTemplatesClient.AlertRuleTemplatesList`
+### Example Usage: `AlertRuleTemplatesClient.List`
 
 ```go
 ctx := context.TODO()
 id := alertruletemplates.NewWorkspaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue")
 
-// alternatively `client.AlertRuleTemplatesList(ctx, id)` can be used to do batched pagination
-items, err := client.AlertRuleTemplatesListComplete(ctx, id)
+// alternatively `client.List(ctx, id)` can be used to do batched pagination
+items, err := client.ListComplete(ctx, id)
 if err != nil {
 	// handle the error
 }

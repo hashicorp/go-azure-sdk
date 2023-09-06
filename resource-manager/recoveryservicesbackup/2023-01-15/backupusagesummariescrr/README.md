@@ -20,13 +20,13 @@ client.Client.Authorizer = authorizer
 ```
 
 
-### Example Usage: `BackupUsageSummariesCRRClient.BackupUsageSummariesCRRList`
+### Example Usage: `BackupUsageSummariesCRRClient.List`
 
 ```go
 ctx := context.TODO()
 id := backupusagesummariescrr.NewVaultID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue")
 
-read, err := client.BackupUsageSummariesCRRList(ctx, id, backupusagesummariescrr.DefaultBackupUsageSummariesCRRListOperationOptions())
+read, err := client.List(ctx, id, backupusagesummariescrr.DefaultListOperationOptions())
 if err != nil {
 	// handle the error
 }

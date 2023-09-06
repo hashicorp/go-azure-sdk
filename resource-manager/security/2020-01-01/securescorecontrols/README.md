@@ -20,14 +20,14 @@ client.Client.Authorizer = authorizer
 ```
 
 
-### Example Usage: `SecureScoreControlsClient.SecureScoreControlsList`
+### Example Usage: `SecureScoreControlsClient.List`
 
 ```go
 ctx := context.TODO()
 id := securescorecontrols.NewSubscriptionID("12345678-1234-9876-4563-123456789012")
 
-// alternatively `client.SecureScoreControlsList(ctx, id, securescorecontrols.DefaultSecureScoreControlsListOperationOptions())` can be used to do batched pagination
-items, err := client.SecureScoreControlsListComplete(ctx, id, securescorecontrols.DefaultSecureScoreControlsListOperationOptions())
+// alternatively `client.List(ctx, id, securescorecontrols.DefaultListOperationOptions())` can be used to do batched pagination
+items, err := client.ListComplete(ctx, id, securescorecontrols.DefaultListOperationOptions())
 if err != nil {
 	// handle the error
 }

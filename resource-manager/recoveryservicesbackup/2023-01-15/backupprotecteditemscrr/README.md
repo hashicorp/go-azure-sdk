@@ -20,14 +20,14 @@ client.Client.Authorizer = authorizer
 ```
 
 
-### Example Usage: `BackupProtectedItemsCrrClient.BackupProtectedItemsCrrList`
+### Example Usage: `BackupProtectedItemsCrrClient.List`
 
 ```go
 ctx := context.TODO()
 id := backupprotecteditemscrr.NewVaultID("12345678-1234-9876-4563-123456789012", "example-resource-group", "vaultValue")
 
-// alternatively `client.BackupProtectedItemsCrrList(ctx, id, backupprotecteditemscrr.DefaultBackupProtectedItemsCrrListOperationOptions())` can be used to do batched pagination
-items, err := client.BackupProtectedItemsCrrListComplete(ctx, id, backupprotecteditemscrr.DefaultBackupProtectedItemsCrrListOperationOptions())
+// alternatively `client.List(ctx, id, backupprotecteditemscrr.DefaultListOperationOptions())` can be used to do batched pagination
+items, err := client.ListComplete(ctx, id, backupprotecteditemscrr.DefaultListOperationOptions())
 if err != nil {
 	// handle the error
 }

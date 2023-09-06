@@ -20,7 +20,7 @@ client.Client.Authorizer = authorizer
 ```
 
 
-### Example Usage: `CustomAPIsClient.CustomApisCreateOrUpdate`
+### Example Usage: `CustomAPIsClient.CreateOrUpdate`
 
 ```go
 ctx := context.TODO()
@@ -31,7 +31,7 @@ payload := customapis.CustomApiDefinition{
 }
 
 
-read, err := client.CustomApisCreateOrUpdate(ctx, id, payload)
+read, err := client.CreateOrUpdate(ctx, id, payload)
 if err != nil {
 	// handle the error
 }
@@ -41,13 +41,13 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `CustomAPIsClient.CustomApisDelete`
+### Example Usage: `CustomAPIsClient.Delete`
 
 ```go
 ctx := context.TODO()
 id := customapis.NewCustomApiID("12345678-1234-9876-4563-123456789012", "example-resource-group", "customApiValue")
 
-read, err := client.CustomApisDelete(ctx, id)
+read, err := client.Delete(ctx, id)
 if err != nil {
 	// handle the error
 }
@@ -57,7 +57,7 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `CustomAPIsClient.CustomApisExtractApiDefinitionFromWsdl`
+### Example Usage: `CustomAPIsClient.ExtractApiDefinitionFromWsdl`
 
 ```go
 ctx := context.TODO()
@@ -68,7 +68,7 @@ payload := customapis.WsdlDefinition{
 }
 
 
-read, err := client.CustomApisExtractApiDefinitionFromWsdl(ctx, id, payload)
+read, err := client.ExtractApiDefinitionFromWsdl(ctx, id, payload)
 if err != nil {
 	// handle the error
 }
@@ -78,13 +78,13 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `CustomAPIsClient.CustomApisGet`
+### Example Usage: `CustomAPIsClient.Get`
 
 ```go
 ctx := context.TODO()
 id := customapis.NewCustomApiID("12345678-1234-9876-4563-123456789012", "example-resource-group", "customApiValue")
 
-read, err := client.CustomApisGet(ctx, id)
+read, err := client.Get(ctx, id)
 if err != nil {
 	// handle the error
 }
@@ -94,13 +94,13 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `CustomAPIsClient.CustomApisList`
+### Example Usage: `CustomAPIsClient.List`
 
 ```go
 ctx := context.TODO()
 id := customapis.NewSubscriptionID("12345678-1234-9876-4563-123456789012")
 
-read, err := client.CustomApisList(ctx, id, customapis.DefaultCustomApisListOperationOptions())
+read, err := client.List(ctx, id, customapis.DefaultListOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -110,13 +110,13 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `CustomAPIsClient.CustomApisListByResourceGroup`
+### Example Usage: `CustomAPIsClient.ListByResourceGroup`
 
 ```go
 ctx := context.TODO()
 id := customapis.NewResourceGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group")
 
-read, err := client.CustomApisListByResourceGroup(ctx, id, customapis.DefaultCustomApisListByResourceGroupOperationOptions())
+read, err := client.ListByResourceGroup(ctx, id, customapis.DefaultListByResourceGroupOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -126,7 +126,7 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `CustomAPIsClient.CustomApisListWsdlInterfaces`
+### Example Usage: `CustomAPIsClient.ListWsdlInterfaces`
 
 ```go
 ctx := context.TODO()
@@ -137,7 +137,7 @@ payload := customapis.WsdlDefinition{
 }
 
 
-read, err := client.CustomApisListWsdlInterfaces(ctx, id, payload)
+read, err := client.ListWsdlInterfaces(ctx, id, payload)
 if err != nil {
 	// handle the error
 }
@@ -147,7 +147,7 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `CustomAPIsClient.CustomApisMove`
+### Example Usage: `CustomAPIsClient.Move`
 
 ```go
 ctx := context.TODO()
@@ -158,7 +158,7 @@ payload := customapis.CustomApiReference{
 }
 
 
-read, err := client.CustomApisMove(ctx, id, payload)
+read, err := client.Move(ctx, id, payload)
 if err != nil {
 	// handle the error
 }
@@ -168,7 +168,7 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `CustomAPIsClient.CustomApisUpdate`
+### Example Usage: `CustomAPIsClient.Update`
 
 ```go
 ctx := context.TODO()
@@ -179,7 +179,7 @@ payload := customapis.CustomApiDefinition{
 }
 
 
-read, err := client.CustomApisUpdate(ctx, id, payload)
+read, err := client.Update(ctx, id, payload)
 if err != nil {
 	// handle the error
 }

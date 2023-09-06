@@ -20,7 +20,7 @@ client.Client.Authorizer = authorizer
 ```
 
 
-### Example Usage: `DataConnectorsClient.DataConnectorsCreateOrUpdate`
+### Example Usage: `DataConnectorsClient.CreateOrUpdate`
 
 ```go
 ctx := context.TODO()
@@ -31,7 +31,7 @@ payload := dataconnectors.DataConnector{
 }
 
 
-read, err := client.DataConnectorsCreateOrUpdate(ctx, id, payload)
+read, err := client.CreateOrUpdate(ctx, id, payload)
 if err != nil {
 	// handle the error
 }
@@ -41,13 +41,13 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `DataConnectorsClient.DataConnectorsDelete`
+### Example Usage: `DataConnectorsClient.Delete`
 
 ```go
 ctx := context.TODO()
 id := dataconnectors.NewDataConnectorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "dataConnectorIdValue")
 
-read, err := client.DataConnectorsDelete(ctx, id)
+read, err := client.Delete(ctx, id)
 if err != nil {
 	// handle the error
 }
@@ -57,13 +57,13 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `DataConnectorsClient.DataConnectorsGet`
+### Example Usage: `DataConnectorsClient.Get`
 
 ```go
 ctx := context.TODO()
 id := dataconnectors.NewDataConnectorID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue", "dataConnectorIdValue")
 
-read, err := client.DataConnectorsGet(ctx, id)
+read, err := client.Get(ctx, id)
 if err != nil {
 	// handle the error
 }
@@ -73,14 +73,14 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `DataConnectorsClient.DataConnectorsList`
+### Example Usage: `DataConnectorsClient.List`
 
 ```go
 ctx := context.TODO()
 id := dataconnectors.NewWorkspaceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "workspaceValue")
 
-// alternatively `client.DataConnectorsList(ctx, id)` can be used to do batched pagination
-items, err := client.DataConnectorsListComplete(ctx, id)
+// alternatively `client.List(ctx, id)` can be used to do batched pagination
+items, err := client.ListComplete(ctx, id)
 if err != nil {
 	// handle the error
 }

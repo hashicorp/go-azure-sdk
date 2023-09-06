@@ -20,14 +20,14 @@ client.Client.Authorizer = authorizer
 ```
 
 
-### Example Usage: `SecureScoreControlDefinitionsClient.SecureScoreControlDefinitionsList`
+### Example Usage: `SecureScoreControlDefinitionsClient.List`
 
 ```go
 ctx := context.TODO()
 
 
-// alternatively `client.SecureScoreControlDefinitionsList(ctx)` can be used to do batched pagination
-items, err := client.SecureScoreControlDefinitionsListComplete(ctx)
+// alternatively `client.List(ctx)` can be used to do batched pagination
+items, err := client.ListComplete(ctx)
 if err != nil {
 	// handle the error
 }
@@ -37,14 +37,14 @@ for _, item := range items {
 ```
 
 
-### Example Usage: `SecureScoreControlDefinitionsClient.SecureScoreControlDefinitionsListBySubscription`
+### Example Usage: `SecureScoreControlDefinitionsClient.ListBySubscription`
 
 ```go
 ctx := context.TODO()
 id := securescorecontroldefinitions.NewSubscriptionID("12345678-1234-9876-4563-123456789012")
 
-// alternatively `client.SecureScoreControlDefinitionsListBySubscription(ctx, id)` can be used to do batched pagination
-items, err := client.SecureScoreControlDefinitionsListBySubscriptionComplete(ctx, id)
+// alternatively `client.ListBySubscription(ctx, id)` can be used to do batched pagination
+items, err := client.ListBySubscriptionComplete(ctx, id)
 if err != nil {
 	// handle the error
 }

@@ -20,7 +20,7 @@ client.Client.Authorizer = authorizer
 ```
 
 
-### Example Usage: `AttestationsClient.AttestationsCreateOrUpdateAtResource`
+### Example Usage: `AttestationsClient.CreateOrUpdateAtResource`
 
 ```go
 ctx := context.TODO()
@@ -31,13 +31,13 @@ payload := attestations.Attestation{
 }
 
 
-if err := client.AttestationsCreateOrUpdateAtResourceThenPoll(ctx, id, payload); err != nil {
+if err := client.CreateOrUpdateAtResourceThenPoll(ctx, id, payload); err != nil {
 	// handle the error
 }
 ```
 
 
-### Example Usage: `AttestationsClient.AttestationsCreateOrUpdateAtResourceGroup`
+### Example Usage: `AttestationsClient.CreateOrUpdateAtResourceGroup`
 
 ```go
 ctx := context.TODO()
@@ -48,13 +48,13 @@ payload := attestations.Attestation{
 }
 
 
-if err := client.AttestationsCreateOrUpdateAtResourceGroupThenPoll(ctx, id, payload); err != nil {
+if err := client.CreateOrUpdateAtResourceGroupThenPoll(ctx, id, payload); err != nil {
 	// handle the error
 }
 ```
 
 
-### Example Usage: `AttestationsClient.AttestationsCreateOrUpdateAtSubscription`
+### Example Usage: `AttestationsClient.CreateOrUpdateAtSubscription`
 
 ```go
 ctx := context.TODO()
@@ -65,19 +65,19 @@ payload := attestations.Attestation{
 }
 
 
-if err := client.AttestationsCreateOrUpdateAtSubscriptionThenPoll(ctx, id, payload); err != nil {
+if err := client.CreateOrUpdateAtSubscriptionThenPoll(ctx, id, payload); err != nil {
 	// handle the error
 }
 ```
 
 
-### Example Usage: `AttestationsClient.AttestationsDeleteAtResource`
+### Example Usage: `AttestationsClient.DeleteAtResource`
 
 ```go
 ctx := context.TODO()
 id := attestations.NewScopedAttestationID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "attestationValue")
 
-read, err := client.AttestationsDeleteAtResource(ctx, id)
+read, err := client.DeleteAtResource(ctx, id)
 if err != nil {
 	// handle the error
 }
@@ -87,13 +87,13 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `AttestationsClient.AttestationsDeleteAtResourceGroup`
+### Example Usage: `AttestationsClient.DeleteAtResourceGroup`
 
 ```go
 ctx := context.TODO()
 id := attestations.NewProviderAttestationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "attestationValue")
 
-read, err := client.AttestationsDeleteAtResourceGroup(ctx, id)
+read, err := client.DeleteAtResourceGroup(ctx, id)
 if err != nil {
 	// handle the error
 }
@@ -103,13 +103,13 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `AttestationsClient.AttestationsDeleteAtSubscription`
+### Example Usage: `AttestationsClient.DeleteAtSubscription`
 
 ```go
 ctx := context.TODO()
 id := attestations.NewAttestationID("12345678-1234-9876-4563-123456789012", "attestationValue")
 
-read, err := client.AttestationsDeleteAtSubscription(ctx, id)
+read, err := client.DeleteAtSubscription(ctx, id)
 if err != nil {
 	// handle the error
 }
@@ -119,13 +119,13 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `AttestationsClient.AttestationsGetAtResource`
+### Example Usage: `AttestationsClient.GetAtResource`
 
 ```go
 ctx := context.TODO()
 id := attestations.NewScopedAttestationID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group", "attestationValue")
 
-read, err := client.AttestationsGetAtResource(ctx, id)
+read, err := client.GetAtResource(ctx, id)
 if err != nil {
 	// handle the error
 }
@@ -135,13 +135,13 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `AttestationsClient.AttestationsGetAtResourceGroup`
+### Example Usage: `AttestationsClient.GetAtResourceGroup`
 
 ```go
 ctx := context.TODO()
 id := attestations.NewProviderAttestationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "attestationValue")
 
-read, err := client.AttestationsGetAtResourceGroup(ctx, id)
+read, err := client.GetAtResourceGroup(ctx, id)
 if err != nil {
 	// handle the error
 }
@@ -151,13 +151,13 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `AttestationsClient.AttestationsGetAtSubscription`
+### Example Usage: `AttestationsClient.GetAtSubscription`
 
 ```go
 ctx := context.TODO()
 id := attestations.NewAttestationID("12345678-1234-9876-4563-123456789012", "attestationValue")
 
-read, err := client.AttestationsGetAtSubscription(ctx, id)
+read, err := client.GetAtSubscription(ctx, id)
 if err != nil {
 	// handle the error
 }
@@ -167,14 +167,14 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `AttestationsClient.AttestationsListForResource`
+### Example Usage: `AttestationsClient.ListForResource`
 
 ```go
 ctx := context.TODO()
 id := attestations.NewScopeID("/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group")
 
-// alternatively `client.AttestationsListForResource(ctx, id, attestations.DefaultAttestationsListForResourceOperationOptions())` can be used to do batched pagination
-items, err := client.AttestationsListForResourceComplete(ctx, id, attestations.DefaultAttestationsListForResourceOperationOptions())
+// alternatively `client.ListForResource(ctx, id, attestations.DefaultListForResourceOperationOptions())` can be used to do batched pagination
+items, err := client.ListForResourceComplete(ctx, id, attestations.DefaultListForResourceOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -184,14 +184,14 @@ for _, item := range items {
 ```
 
 
-### Example Usage: `AttestationsClient.AttestationsListForResourceGroup`
+### Example Usage: `AttestationsClient.ListForResourceGroup`
 
 ```go
 ctx := context.TODO()
 id := attestations.NewResourceGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group")
 
-// alternatively `client.AttestationsListForResourceGroup(ctx, id, attestations.DefaultAttestationsListForResourceGroupOperationOptions())` can be used to do batched pagination
-items, err := client.AttestationsListForResourceGroupComplete(ctx, id, attestations.DefaultAttestationsListForResourceGroupOperationOptions())
+// alternatively `client.ListForResourceGroup(ctx, id, attestations.DefaultListForResourceGroupOperationOptions())` can be used to do batched pagination
+items, err := client.ListForResourceGroupComplete(ctx, id, attestations.DefaultListForResourceGroupOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -201,14 +201,14 @@ for _, item := range items {
 ```
 
 
-### Example Usage: `AttestationsClient.AttestationsListForSubscription`
+### Example Usage: `AttestationsClient.ListForSubscription`
 
 ```go
 ctx := context.TODO()
 id := attestations.NewSubscriptionID("12345678-1234-9876-4563-123456789012")
 
-// alternatively `client.AttestationsListForSubscription(ctx, id, attestations.DefaultAttestationsListForSubscriptionOperationOptions())` can be used to do batched pagination
-items, err := client.AttestationsListForSubscriptionComplete(ctx, id, attestations.DefaultAttestationsListForSubscriptionOperationOptions())
+// alternatively `client.ListForSubscription(ctx, id, attestations.DefaultListForSubscriptionOperationOptions())` can be used to do batched pagination
+items, err := client.ListForSubscriptionComplete(ctx, id, attestations.DefaultListForSubscriptionOperationOptions())
 if err != nil {
 	// handle the error
 }
