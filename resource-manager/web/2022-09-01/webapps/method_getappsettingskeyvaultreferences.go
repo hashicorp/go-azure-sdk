@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -23,7 +24,7 @@ type GetAppSettingsKeyVaultReferencesCompleteResult struct {
 }
 
 // GetAppSettingsKeyVaultReferences ...
-func (c WebAppsClient) GetAppSettingsKeyVaultReferences(ctx context.Context, id SiteId) (result GetAppSettingsKeyVaultReferencesOperationResponse, err error) {
+func (c WebAppsClient) GetAppSettingsKeyVaultReferences(ctx context.Context, id commonids.AppServiceId) (result GetAppSettingsKeyVaultReferencesOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -61,12 +62,12 @@ func (c WebAppsClient) GetAppSettingsKeyVaultReferences(ctx context.Context, id 
 }
 
 // GetAppSettingsKeyVaultReferencesComplete retrieves all the results into a single object
-func (c WebAppsClient) GetAppSettingsKeyVaultReferencesComplete(ctx context.Context, id SiteId) (GetAppSettingsKeyVaultReferencesCompleteResult, error) {
+func (c WebAppsClient) GetAppSettingsKeyVaultReferencesComplete(ctx context.Context, id commonids.AppServiceId) (GetAppSettingsKeyVaultReferencesCompleteResult, error) {
 	return c.GetAppSettingsKeyVaultReferencesCompleteMatchingPredicate(ctx, id, ApiKVReferenceOperationPredicate{})
 }
 
 // GetAppSettingsKeyVaultReferencesCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c WebAppsClient) GetAppSettingsKeyVaultReferencesCompleteMatchingPredicate(ctx context.Context, id SiteId, predicate ApiKVReferenceOperationPredicate) (result GetAppSettingsKeyVaultReferencesCompleteResult, err error) {
+func (c WebAppsClient) GetAppSettingsKeyVaultReferencesCompleteMatchingPredicate(ctx context.Context, id commonids.AppServiceId, predicate ApiKVReferenceOperationPredicate) (result GetAppSettingsKeyVaultReferencesCompleteResult, err error) {
 	items := make([]ApiKVReference, 0)
 
 	resp, err := c.GetAppSettingsKeyVaultReferences(ctx, id)

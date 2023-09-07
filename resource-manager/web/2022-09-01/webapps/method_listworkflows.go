@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -23,7 +24,7 @@ type ListWorkflowsCompleteResult struct {
 }
 
 // ListWorkflows ...
-func (c WebAppsClient) ListWorkflows(ctx context.Context, id SiteId) (result ListWorkflowsOperationResponse, err error) {
+func (c WebAppsClient) ListWorkflows(ctx context.Context, id commonids.AppServiceId) (result ListWorkflowsOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -61,12 +62,12 @@ func (c WebAppsClient) ListWorkflows(ctx context.Context, id SiteId) (result Lis
 }
 
 // ListWorkflowsComplete retrieves all the results into a single object
-func (c WebAppsClient) ListWorkflowsComplete(ctx context.Context, id SiteId) (ListWorkflowsCompleteResult, error) {
+func (c WebAppsClient) ListWorkflowsComplete(ctx context.Context, id commonids.AppServiceId) (ListWorkflowsCompleteResult, error) {
 	return c.ListWorkflowsCompleteMatchingPredicate(ctx, id, WorkflowEnvelopeOperationPredicate{})
 }
 
 // ListWorkflowsCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c WebAppsClient) ListWorkflowsCompleteMatchingPredicate(ctx context.Context, id SiteId, predicate WorkflowEnvelopeOperationPredicate) (result ListWorkflowsCompleteResult, err error) {
+func (c WebAppsClient) ListWorkflowsCompleteMatchingPredicate(ctx context.Context, id commonids.AppServiceId, predicate WorkflowEnvelopeOperationPredicate) (result ListWorkflowsCompleteResult, err error) {
 	items := make([]WorkflowEnvelope, 0)
 
 	resp, err := c.ListWorkflows(ctx, id)

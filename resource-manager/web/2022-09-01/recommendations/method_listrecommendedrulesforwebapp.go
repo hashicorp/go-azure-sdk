@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -54,7 +55,7 @@ func (o ListRecommendedRulesForWebAppOperationOptions) ToQuery() *client.QueryPa
 }
 
 // ListRecommendedRulesForWebApp ...
-func (c RecommendationsClient) ListRecommendedRulesForWebApp(ctx context.Context, id SiteId, options ListRecommendedRulesForWebAppOperationOptions) (result ListRecommendedRulesForWebAppOperationResponse, err error) {
+func (c RecommendationsClient) ListRecommendedRulesForWebApp(ctx context.Context, id commonids.AppServiceId, options ListRecommendedRulesForWebAppOperationOptions) (result ListRecommendedRulesForWebAppOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -93,12 +94,12 @@ func (c RecommendationsClient) ListRecommendedRulesForWebApp(ctx context.Context
 }
 
 // ListRecommendedRulesForWebAppComplete retrieves all the results into a single object
-func (c RecommendationsClient) ListRecommendedRulesForWebAppComplete(ctx context.Context, id SiteId, options ListRecommendedRulesForWebAppOperationOptions) (ListRecommendedRulesForWebAppCompleteResult, error) {
+func (c RecommendationsClient) ListRecommendedRulesForWebAppComplete(ctx context.Context, id commonids.AppServiceId, options ListRecommendedRulesForWebAppOperationOptions) (ListRecommendedRulesForWebAppCompleteResult, error) {
 	return c.ListRecommendedRulesForWebAppCompleteMatchingPredicate(ctx, id, options, RecommendationOperationPredicate{})
 }
 
 // ListRecommendedRulesForWebAppCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c RecommendationsClient) ListRecommendedRulesForWebAppCompleteMatchingPredicate(ctx context.Context, id SiteId, options ListRecommendedRulesForWebAppOperationOptions, predicate RecommendationOperationPredicate) (result ListRecommendedRulesForWebAppCompleteResult, err error) {
+func (c RecommendationsClient) ListRecommendedRulesForWebAppCompleteMatchingPredicate(ctx context.Context, id commonids.AppServiceId, options ListRecommendedRulesForWebAppOperationOptions, predicate RecommendationOperationPredicate) (result ListRecommendedRulesForWebAppCompleteResult, err error) {
 	items := make([]Recommendation, 0)
 
 	resp, err := c.ListRecommendedRulesForWebApp(ctx, id, options)

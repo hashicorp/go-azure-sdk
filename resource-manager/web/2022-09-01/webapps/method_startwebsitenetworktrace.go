@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -54,7 +55,7 @@ func (o StartWebSiteNetworkTraceOperationOptions) ToQuery() *client.QueryParams 
 }
 
 // StartWebSiteNetworkTrace ...
-func (c WebAppsClient) StartWebSiteNetworkTrace(ctx context.Context, id SiteId, options StartWebSiteNetworkTraceOperationOptions) (result StartWebSiteNetworkTraceOperationResponse, err error) {
+func (c WebAppsClient) StartWebSiteNetworkTrace(ctx context.Context, id commonids.AppServiceId, options StartWebSiteNetworkTraceOperationOptions) (result StartWebSiteNetworkTraceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{

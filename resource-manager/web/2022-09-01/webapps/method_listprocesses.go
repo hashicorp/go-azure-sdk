@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -23,7 +24,7 @@ type ListProcessesCompleteResult struct {
 }
 
 // ListProcesses ...
-func (c WebAppsClient) ListProcesses(ctx context.Context, id SiteId) (result ListProcessesOperationResponse, err error) {
+func (c WebAppsClient) ListProcesses(ctx context.Context, id commonids.AppServiceId) (result ListProcessesOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -61,12 +62,12 @@ func (c WebAppsClient) ListProcesses(ctx context.Context, id SiteId) (result Lis
 }
 
 // ListProcessesComplete retrieves all the results into a single object
-func (c WebAppsClient) ListProcessesComplete(ctx context.Context, id SiteId) (ListProcessesCompleteResult, error) {
+func (c WebAppsClient) ListProcessesComplete(ctx context.Context, id commonids.AppServiceId) (ListProcessesCompleteResult, error) {
 	return c.ListProcessesCompleteMatchingPredicate(ctx, id, ProcessInfoOperationPredicate{})
 }
 
 // ListProcessesCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c WebAppsClient) ListProcessesCompleteMatchingPredicate(ctx context.Context, id SiteId, predicate ProcessInfoOperationPredicate) (result ListProcessesCompleteResult, err error) {
+func (c WebAppsClient) ListProcessesCompleteMatchingPredicate(ctx context.Context, id commonids.AppServiceId, predicate ProcessInfoOperationPredicate) (result ListProcessesCompleteResult, err error) {
 	items := make([]ProcessInfo, 0)
 
 	resp, err := c.ListProcesses(ctx, id)

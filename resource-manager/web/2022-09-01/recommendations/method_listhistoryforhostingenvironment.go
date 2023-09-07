@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -54,7 +55,7 @@ func (o ListHistoryForHostingEnvironmentOperationOptions) ToQuery() *client.Quer
 }
 
 // ListHistoryForHostingEnvironment ...
-func (c RecommendationsClient) ListHistoryForHostingEnvironment(ctx context.Context, id HostingEnvironmentId, options ListHistoryForHostingEnvironmentOperationOptions) (result ListHistoryForHostingEnvironmentOperationResponse, err error) {
+func (c RecommendationsClient) ListHistoryForHostingEnvironment(ctx context.Context, id commonids.AppServiceEnvironmentId, options ListHistoryForHostingEnvironmentOperationOptions) (result ListHistoryForHostingEnvironmentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -93,12 +94,12 @@ func (c RecommendationsClient) ListHistoryForHostingEnvironment(ctx context.Cont
 }
 
 // ListHistoryForHostingEnvironmentComplete retrieves all the results into a single object
-func (c RecommendationsClient) ListHistoryForHostingEnvironmentComplete(ctx context.Context, id HostingEnvironmentId, options ListHistoryForHostingEnvironmentOperationOptions) (ListHistoryForHostingEnvironmentCompleteResult, error) {
+func (c RecommendationsClient) ListHistoryForHostingEnvironmentComplete(ctx context.Context, id commonids.AppServiceEnvironmentId, options ListHistoryForHostingEnvironmentOperationOptions) (ListHistoryForHostingEnvironmentCompleteResult, error) {
 	return c.ListHistoryForHostingEnvironmentCompleteMatchingPredicate(ctx, id, options, RecommendationOperationPredicate{})
 }
 
 // ListHistoryForHostingEnvironmentCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c RecommendationsClient) ListHistoryForHostingEnvironmentCompleteMatchingPredicate(ctx context.Context, id HostingEnvironmentId, options ListHistoryForHostingEnvironmentOperationOptions, predicate RecommendationOperationPredicate) (result ListHistoryForHostingEnvironmentCompleteResult, err error) {
+func (c RecommendationsClient) ListHistoryForHostingEnvironmentCompleteMatchingPredicate(ctx context.Context, id commonids.AppServiceEnvironmentId, options ListHistoryForHostingEnvironmentOperationOptions, predicate RecommendationOperationPredicate) (result ListHistoryForHostingEnvironmentCompleteResult, err error) {
 	items := make([]Recommendation, 0)
 
 	resp, err := c.ListHistoryForHostingEnvironment(ctx, id, options)

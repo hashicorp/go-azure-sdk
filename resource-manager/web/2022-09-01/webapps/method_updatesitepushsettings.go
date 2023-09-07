@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -19,7 +20,7 @@ type UpdateSitePushSettingsOperationResponse struct {
 }
 
 // UpdateSitePushSettings ...
-func (c WebAppsClient) UpdateSitePushSettings(ctx context.Context, id SiteId, input PushSettings) (result UpdateSitePushSettingsOperationResponse, err error) {
+func (c WebAppsClient) UpdateSitePushSettings(ctx context.Context, id commonids.AppServiceId, input PushSettings) (result UpdateSitePushSettingsOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{

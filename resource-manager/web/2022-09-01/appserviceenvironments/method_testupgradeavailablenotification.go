@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -18,7 +19,7 @@ type TestUpgradeAvailableNotificationOperationResponse struct {
 }
 
 // TestUpgradeAvailableNotification ...
-func (c AppServiceEnvironmentsClient) TestUpgradeAvailableNotification(ctx context.Context, id HostingEnvironmentId) (result TestUpgradeAvailableNotificationOperationResponse, err error) {
+func (c AppServiceEnvironmentsClient) TestUpgradeAvailableNotification(ctx context.Context, id commonids.AppServiceEnvironmentId) (result TestUpgradeAvailableNotificationOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{

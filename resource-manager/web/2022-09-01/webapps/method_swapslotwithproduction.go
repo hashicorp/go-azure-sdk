@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
@@ -21,7 +22,7 @@ type SwapSlotWithProductionOperationResponse struct {
 }
 
 // SwapSlotWithProduction ...
-func (c WebAppsClient) SwapSlotWithProduction(ctx context.Context, id SiteId, input CsmSlotEntity) (result SwapSlotWithProductionOperationResponse, err error) {
+func (c WebAppsClient) SwapSlotWithProduction(ctx context.Context, id commonids.AppServiceId, input CsmSlotEntity) (result SwapSlotWithProductionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -60,7 +61,7 @@ func (c WebAppsClient) SwapSlotWithProduction(ctx context.Context, id SiteId, in
 }
 
 // SwapSlotWithProductionThenPoll performs SwapSlotWithProduction then polls until it's completed
-func (c WebAppsClient) SwapSlotWithProductionThenPoll(ctx context.Context, id SiteId, input CsmSlotEntity) error {
+func (c WebAppsClient) SwapSlotWithProductionThenPoll(ctx context.Context, id commonids.AppServiceId, input CsmSlotEntity) error {
 	result, err := c.SwapSlotWithProduction(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing SwapSlotWithProduction: %+v", err)

@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -23,7 +24,7 @@ type ListProductionSiteDeploymentStatusesCompleteResult struct {
 }
 
 // ListProductionSiteDeploymentStatuses ...
-func (c WebAppsClient) ListProductionSiteDeploymentStatuses(ctx context.Context, id SiteId) (result ListProductionSiteDeploymentStatusesOperationResponse, err error) {
+func (c WebAppsClient) ListProductionSiteDeploymentStatuses(ctx context.Context, id commonids.AppServiceId) (result ListProductionSiteDeploymentStatusesOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -61,12 +62,12 @@ func (c WebAppsClient) ListProductionSiteDeploymentStatuses(ctx context.Context,
 }
 
 // ListProductionSiteDeploymentStatusesComplete retrieves all the results into a single object
-func (c WebAppsClient) ListProductionSiteDeploymentStatusesComplete(ctx context.Context, id SiteId) (ListProductionSiteDeploymentStatusesCompleteResult, error) {
+func (c WebAppsClient) ListProductionSiteDeploymentStatusesComplete(ctx context.Context, id commonids.AppServiceId) (ListProductionSiteDeploymentStatusesCompleteResult, error) {
 	return c.ListProductionSiteDeploymentStatusesCompleteMatchingPredicate(ctx, id, CsmDeploymentStatusOperationPredicate{})
 }
 
 // ListProductionSiteDeploymentStatusesCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c WebAppsClient) ListProductionSiteDeploymentStatusesCompleteMatchingPredicate(ctx context.Context, id SiteId, predicate CsmDeploymentStatusOperationPredicate) (result ListProductionSiteDeploymentStatusesCompleteResult, err error) {
+func (c WebAppsClient) ListProductionSiteDeploymentStatusesCompleteMatchingPredicate(ctx context.Context, id commonids.AppServiceId, predicate CsmDeploymentStatusOperationPredicate) (result ListProductionSiteDeploymentStatusesCompleteResult, err error) {
 	items := make([]CsmDeploymentStatus, 0)
 
 	resp, err := c.ListProductionSiteDeploymentStatuses(ctx, id)

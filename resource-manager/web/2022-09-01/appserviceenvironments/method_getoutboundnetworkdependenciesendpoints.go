@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -23,7 +24,7 @@ type GetOutboundNetworkDependenciesEndpointsCompleteResult struct {
 }
 
 // GetOutboundNetworkDependenciesEndpoints ...
-func (c AppServiceEnvironmentsClient) GetOutboundNetworkDependenciesEndpoints(ctx context.Context, id HostingEnvironmentId) (result GetOutboundNetworkDependenciesEndpointsOperationResponse, err error) {
+func (c AppServiceEnvironmentsClient) GetOutboundNetworkDependenciesEndpoints(ctx context.Context, id commonids.AppServiceEnvironmentId) (result GetOutboundNetworkDependenciesEndpointsOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -61,12 +62,12 @@ func (c AppServiceEnvironmentsClient) GetOutboundNetworkDependenciesEndpoints(ct
 }
 
 // GetOutboundNetworkDependenciesEndpointsComplete retrieves all the results into a single object
-func (c AppServiceEnvironmentsClient) GetOutboundNetworkDependenciesEndpointsComplete(ctx context.Context, id HostingEnvironmentId) (GetOutboundNetworkDependenciesEndpointsCompleteResult, error) {
+func (c AppServiceEnvironmentsClient) GetOutboundNetworkDependenciesEndpointsComplete(ctx context.Context, id commonids.AppServiceEnvironmentId) (GetOutboundNetworkDependenciesEndpointsCompleteResult, error) {
 	return c.GetOutboundNetworkDependenciesEndpointsCompleteMatchingPredicate(ctx, id, OutboundEnvironmentEndpointOperationPredicate{})
 }
 
 // GetOutboundNetworkDependenciesEndpointsCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c AppServiceEnvironmentsClient) GetOutboundNetworkDependenciesEndpointsCompleteMatchingPredicate(ctx context.Context, id HostingEnvironmentId, predicate OutboundEnvironmentEndpointOperationPredicate) (result GetOutboundNetworkDependenciesEndpointsCompleteResult, err error) {
+func (c AppServiceEnvironmentsClient) GetOutboundNetworkDependenciesEndpointsCompleteMatchingPredicate(ctx context.Context, id commonids.AppServiceEnvironmentId, predicate OutboundEnvironmentEndpointOperationPredicate) (result GetOutboundNetworkDependenciesEndpointsCompleteResult, err error) {
 	items := make([]OutboundEnvironmentEndpoint, 0)
 
 	resp, err := c.GetOutboundNetworkDependenciesEndpoints(ctx, id)

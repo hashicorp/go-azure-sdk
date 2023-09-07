@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -50,7 +51,7 @@ func (o ListWebAppsOperationOptions) ToQuery() *client.QueryParams {
 }
 
 // ListWebApps ...
-func (c AppServiceEnvironmentsClient) ListWebApps(ctx context.Context, id HostingEnvironmentId, options ListWebAppsOperationOptions) (result ListWebAppsOperationResponse, err error) {
+func (c AppServiceEnvironmentsClient) ListWebApps(ctx context.Context, id commonids.AppServiceEnvironmentId, options ListWebAppsOperationOptions) (result ListWebAppsOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -89,12 +90,12 @@ func (c AppServiceEnvironmentsClient) ListWebApps(ctx context.Context, id Hostin
 }
 
 // ListWebAppsComplete retrieves all the results into a single object
-func (c AppServiceEnvironmentsClient) ListWebAppsComplete(ctx context.Context, id HostingEnvironmentId, options ListWebAppsOperationOptions) (ListWebAppsCompleteResult, error) {
+func (c AppServiceEnvironmentsClient) ListWebAppsComplete(ctx context.Context, id commonids.AppServiceEnvironmentId, options ListWebAppsOperationOptions) (ListWebAppsCompleteResult, error) {
 	return c.ListWebAppsCompleteMatchingPredicate(ctx, id, options, SiteOperationPredicate{})
 }
 
 // ListWebAppsCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c AppServiceEnvironmentsClient) ListWebAppsCompleteMatchingPredicate(ctx context.Context, id HostingEnvironmentId, options ListWebAppsOperationOptions, predicate SiteOperationPredicate) (result ListWebAppsCompleteResult, err error) {
+func (c AppServiceEnvironmentsClient) ListWebAppsCompleteMatchingPredicate(ctx context.Context, id commonids.AppServiceEnvironmentId, options ListWebAppsOperationOptions, predicate SiteOperationPredicate) (result ListWebAppsCompleteResult, err error) {
 	items := make([]Site, 0)
 
 	resp, err := c.ListWebApps(ctx, id, options)

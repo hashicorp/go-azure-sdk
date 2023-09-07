@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -23,7 +24,7 @@ type ListSlotsCompleteResult struct {
 }
 
 // ListSlots ...
-func (c WebAppsClient) ListSlots(ctx context.Context, id SiteId) (result ListSlotsOperationResponse, err error) {
+func (c WebAppsClient) ListSlots(ctx context.Context, id commonids.AppServiceId) (result ListSlotsOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -61,12 +62,12 @@ func (c WebAppsClient) ListSlots(ctx context.Context, id SiteId) (result ListSlo
 }
 
 // ListSlotsComplete retrieves all the results into a single object
-func (c WebAppsClient) ListSlotsComplete(ctx context.Context, id SiteId) (ListSlotsCompleteResult, error) {
+func (c WebAppsClient) ListSlotsComplete(ctx context.Context, id commonids.AppServiceId) (ListSlotsCompleteResult, error) {
 	return c.ListSlotsCompleteMatchingPredicate(ctx, id, SiteOperationPredicate{})
 }
 
 // ListSlotsCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c WebAppsClient) ListSlotsCompleteMatchingPredicate(ctx context.Context, id SiteId, predicate SiteOperationPredicate) (result ListSlotsCompleteResult, err error) {
+func (c WebAppsClient) ListSlotsCompleteMatchingPredicate(ctx context.Context, id commonids.AppServiceId, predicate SiteOperationPredicate) (result ListSlotsCompleteResult, err error) {
 	items := make([]Site, 0)
 
 	resp, err := c.ListSlots(ctx, id)

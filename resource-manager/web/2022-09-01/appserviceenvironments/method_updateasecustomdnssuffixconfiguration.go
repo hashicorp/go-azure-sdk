@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -19,7 +20,7 @@ type UpdateAseCustomDnsSuffixConfigurationOperationResponse struct {
 }
 
 // UpdateAseCustomDnsSuffixConfiguration ...
-func (c AppServiceEnvironmentsClient) UpdateAseCustomDnsSuffixConfiguration(ctx context.Context, id HostingEnvironmentId, input CustomDnsSuffixConfiguration) (result UpdateAseCustomDnsSuffixConfigurationOperationResponse, err error) {
+func (c AppServiceEnvironmentsClient) UpdateAseCustomDnsSuffixConfiguration(ctx context.Context, id commonids.AppServiceEnvironmentId, input CustomDnsSuffixConfiguration) (result UpdateAseCustomDnsSuffixConfigurationOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{

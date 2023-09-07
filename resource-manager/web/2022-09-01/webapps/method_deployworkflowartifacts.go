@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -18,7 +19,7 @@ type DeployWorkflowArtifactsOperationResponse struct {
 }
 
 // DeployWorkflowArtifacts ...
-func (c WebAppsClient) DeployWorkflowArtifacts(ctx context.Context, id SiteId, input WorkflowArtifacts) (result DeployWorkflowArtifactsOperationResponse, err error) {
+func (c WebAppsClient) DeployWorkflowArtifacts(ctx context.Context, id commonids.AppServiceId, input WorkflowArtifacts) (result DeployWorkflowArtifactsOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{

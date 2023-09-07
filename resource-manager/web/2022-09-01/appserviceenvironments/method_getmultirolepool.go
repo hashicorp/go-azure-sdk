@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -19,7 +20,7 @@ type GetMultiRolePoolOperationResponse struct {
 }
 
 // GetMultiRolePool ...
-func (c AppServiceEnvironmentsClient) GetMultiRolePool(ctx context.Context, id HostingEnvironmentId) (result GetMultiRolePoolOperationResponse, err error) {
+func (c AppServiceEnvironmentsClient) GetMultiRolePool(ctx context.Context, id commonids.AppServiceEnvironmentId) (result GetMultiRolePoolOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{

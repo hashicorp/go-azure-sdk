@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -23,7 +24,7 @@ type ListMultiRoleUsagesCompleteResult struct {
 }
 
 // ListMultiRoleUsages ...
-func (c AppServiceEnvironmentsClient) ListMultiRoleUsages(ctx context.Context, id HostingEnvironmentId) (result ListMultiRoleUsagesOperationResponse, err error) {
+func (c AppServiceEnvironmentsClient) ListMultiRoleUsages(ctx context.Context, id commonids.AppServiceEnvironmentId) (result ListMultiRoleUsagesOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -61,12 +62,12 @@ func (c AppServiceEnvironmentsClient) ListMultiRoleUsages(ctx context.Context, i
 }
 
 // ListMultiRoleUsagesComplete retrieves all the results into a single object
-func (c AppServiceEnvironmentsClient) ListMultiRoleUsagesComplete(ctx context.Context, id HostingEnvironmentId) (ListMultiRoleUsagesCompleteResult, error) {
+func (c AppServiceEnvironmentsClient) ListMultiRoleUsagesComplete(ctx context.Context, id commonids.AppServiceEnvironmentId) (ListMultiRoleUsagesCompleteResult, error) {
 	return c.ListMultiRoleUsagesCompleteMatchingPredicate(ctx, id, UsageOperationPredicate{})
 }
 
 // ListMultiRoleUsagesCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c AppServiceEnvironmentsClient) ListMultiRoleUsagesCompleteMatchingPredicate(ctx context.Context, id HostingEnvironmentId, predicate UsageOperationPredicate) (result ListMultiRoleUsagesCompleteResult, err error) {
+func (c AppServiceEnvironmentsClient) ListMultiRoleUsagesCompleteMatchingPredicate(ctx context.Context, id commonids.AppServiceEnvironmentId, predicate UsageOperationPredicate) (result ListMultiRoleUsagesCompleteResult, err error) {
 	items := make([]Usage, 0)
 
 	resp, err := c.ListMultiRoleUsages(ctx, id)

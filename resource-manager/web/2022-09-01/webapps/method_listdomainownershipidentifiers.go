@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -23,7 +24,7 @@ type ListDomainOwnershipIdentifiersCompleteResult struct {
 }
 
 // ListDomainOwnershipIdentifiers ...
-func (c WebAppsClient) ListDomainOwnershipIdentifiers(ctx context.Context, id SiteId) (result ListDomainOwnershipIdentifiersOperationResponse, err error) {
+func (c WebAppsClient) ListDomainOwnershipIdentifiers(ctx context.Context, id commonids.AppServiceId) (result ListDomainOwnershipIdentifiersOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -61,12 +62,12 @@ func (c WebAppsClient) ListDomainOwnershipIdentifiers(ctx context.Context, id Si
 }
 
 // ListDomainOwnershipIdentifiersComplete retrieves all the results into a single object
-func (c WebAppsClient) ListDomainOwnershipIdentifiersComplete(ctx context.Context, id SiteId) (ListDomainOwnershipIdentifiersCompleteResult, error) {
+func (c WebAppsClient) ListDomainOwnershipIdentifiersComplete(ctx context.Context, id commonids.AppServiceId) (ListDomainOwnershipIdentifiersCompleteResult, error) {
 	return c.ListDomainOwnershipIdentifiersCompleteMatchingPredicate(ctx, id, IdentifierOperationPredicate{})
 }
 
 // ListDomainOwnershipIdentifiersCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c WebAppsClient) ListDomainOwnershipIdentifiersCompleteMatchingPredicate(ctx context.Context, id SiteId, predicate IdentifierOperationPredicate) (result ListDomainOwnershipIdentifiersCompleteResult, err error) {
+func (c WebAppsClient) ListDomainOwnershipIdentifiersCompleteMatchingPredicate(ctx context.Context, id commonids.AppServiceId, predicate IdentifierOperationPredicate) (result ListDomainOwnershipIdentifiersCompleteResult, err error) {
 	items := make([]Identifier, 0)
 
 	resp, err := c.ListDomainOwnershipIdentifiers(ctx, id)

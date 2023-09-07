@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -18,7 +19,7 @@ type RebootOperationResponse struct {
 }
 
 // Reboot ...
-func (c AppServiceEnvironmentsClient) Reboot(ctx context.Context, id HostingEnvironmentId) (result RebootOperationResponse, err error) {
+func (c AppServiceEnvironmentsClient) Reboot(ctx context.Context, id commonids.AppServiceEnvironmentId) (result RebootOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{

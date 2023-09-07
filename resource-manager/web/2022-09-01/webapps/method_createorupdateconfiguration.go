@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -19,7 +20,7 @@ type CreateOrUpdateConfigurationOperationResponse struct {
 }
 
 // CreateOrUpdateConfiguration ...
-func (c WebAppsClient) CreateOrUpdateConfiguration(ctx context.Context, id SiteId, input SiteConfigResource) (result CreateOrUpdateConfigurationOperationResponse, err error) {
+func (c WebAppsClient) CreateOrUpdateConfiguration(ctx context.Context, id commonids.AppServiceId, input SiteConfigResource) (result CreateOrUpdateConfigurationOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{

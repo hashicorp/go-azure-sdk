@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
@@ -56,7 +57,7 @@ func (o StartWebSiteNetworkTraceOperationOperationOptions) ToQuery() *client.Que
 }
 
 // StartWebSiteNetworkTraceOperation ...
-func (c WebAppsClient) StartWebSiteNetworkTraceOperation(ctx context.Context, id SiteId, options StartWebSiteNetworkTraceOperationOperationOptions) (result StartWebSiteNetworkTraceOperationOperationResponse, err error) {
+func (c WebAppsClient) StartWebSiteNetworkTraceOperation(ctx context.Context, id commonids.AppServiceId, options StartWebSiteNetworkTraceOperationOperationOptions) (result StartWebSiteNetworkTraceOperationOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -92,7 +93,7 @@ func (c WebAppsClient) StartWebSiteNetworkTraceOperation(ctx context.Context, id
 }
 
 // StartWebSiteNetworkTraceOperationThenPoll performs StartWebSiteNetworkTraceOperation then polls until it's completed
-func (c WebAppsClient) StartWebSiteNetworkTraceOperationThenPoll(ctx context.Context, id SiteId, options StartWebSiteNetworkTraceOperationOperationOptions) error {
+func (c WebAppsClient) StartWebSiteNetworkTraceOperationThenPoll(ctx context.Context, id commonids.AppServiceId, options StartWebSiteNetworkTraceOperationOperationOptions) error {
 	result, err := c.StartWebSiteNetworkTraceOperation(ctx, id, options)
 	if err != nil {
 		return fmt.Errorf("performing StartWebSiteNetworkTraceOperation: %+v", err)

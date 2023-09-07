@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -19,7 +20,7 @@ type ListVnetsOperationResponse struct {
 }
 
 // ListVnets ...
-func (c AppServicePlansClient) ListVnets(ctx context.Context, id ServerFarmId) (result ListVnetsOperationResponse, err error) {
+func (c AppServicePlansClient) ListVnets(ctx context.Context, id commonids.AppServicePlanId) (result ListVnetsOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{

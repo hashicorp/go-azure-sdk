@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
@@ -56,7 +57,7 @@ func (o StartNetworkTraceOperationOptions) ToQuery() *client.QueryParams {
 }
 
 // StartNetworkTrace ...
-func (c WebAppsClient) StartNetworkTrace(ctx context.Context, id SiteId, options StartNetworkTraceOperationOptions) (result StartNetworkTraceOperationResponse, err error) {
+func (c WebAppsClient) StartNetworkTrace(ctx context.Context, id commonids.AppServiceId, options StartNetworkTraceOperationOptions) (result StartNetworkTraceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -92,7 +93,7 @@ func (c WebAppsClient) StartNetworkTrace(ctx context.Context, id SiteId, options
 }
 
 // StartNetworkTraceThenPoll performs StartNetworkTrace then polls until it's completed
-func (c WebAppsClient) StartNetworkTraceThenPoll(ctx context.Context, id SiteId, options StartNetworkTraceOperationOptions) error {
+func (c WebAppsClient) StartNetworkTraceThenPoll(ctx context.Context, id commonids.AppServiceId, options StartNetworkTraceOperationOptions) error {
 	result, err := c.StartNetworkTrace(ctx, id, options)
 	if err != nil {
 		return fmt.Errorf("performing StartNetworkTrace: %+v", err)

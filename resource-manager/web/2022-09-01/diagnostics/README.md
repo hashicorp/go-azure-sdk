@@ -232,7 +232,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := diagnostics.NewHostingEnvironmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hostingEnvironmentValue")
+id := diagnostics.NewAppServiceEnvironmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hostingEnvironmentValue")
 
 // alternatively `client.ListHostingEnvironmentDetectorResponses(ctx, id)` can be used to do batched pagination
 items, err := client.ListHostingEnvironmentDetectorResponsesComplete(ctx, id)
@@ -283,7 +283,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := diagnostics.NewSiteID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteValue")
+id := diagnostics.NewAppServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteValue")
 
 // alternatively `client.ListSiteDetectorResponses(ctx, id)` can be used to do batched pagination
 items, err := client.ListSiteDetectorResponsesComplete(ctx, id)
@@ -351,7 +351,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := diagnostics.NewSiteID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteValue")
+id := diagnostics.NewAppServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteValue")
 
 // alternatively `client.ListSiteDiagnosticCategories(ctx, id)` can be used to do batched pagination
 items, err := client.ListSiteDiagnosticCategoriesComplete(ctx, id)

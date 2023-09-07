@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -23,7 +24,7 @@ type ListHostNameBindingsCompleteResult struct {
 }
 
 // ListHostNameBindings ...
-func (c WebAppsClient) ListHostNameBindings(ctx context.Context, id SiteId) (result ListHostNameBindingsOperationResponse, err error) {
+func (c WebAppsClient) ListHostNameBindings(ctx context.Context, id commonids.AppServiceId) (result ListHostNameBindingsOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -61,12 +62,12 @@ func (c WebAppsClient) ListHostNameBindings(ctx context.Context, id SiteId) (res
 }
 
 // ListHostNameBindingsComplete retrieves all the results into a single object
-func (c WebAppsClient) ListHostNameBindingsComplete(ctx context.Context, id SiteId) (ListHostNameBindingsCompleteResult, error) {
+func (c WebAppsClient) ListHostNameBindingsComplete(ctx context.Context, id commonids.AppServiceId) (ListHostNameBindingsCompleteResult, error) {
 	return c.ListHostNameBindingsCompleteMatchingPredicate(ctx, id, HostNameBindingOperationPredicate{})
 }
 
 // ListHostNameBindingsCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c WebAppsClient) ListHostNameBindingsCompleteMatchingPredicate(ctx context.Context, id SiteId, predicate HostNameBindingOperationPredicate) (result ListHostNameBindingsCompleteResult, err error) {
+func (c WebAppsClient) ListHostNameBindingsCompleteMatchingPredicate(ctx context.Context, id commonids.AppServiceId, predicate HostNameBindingOperationPredicate) (result ListHostNameBindingsCompleteResult, err error) {
 	items := make([]HostNameBinding, 0)
 
 	resp, err := c.ListHostNameBindings(ctx, id)

@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := recommendations.NewHostingEnvironmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hostingEnvironmentValue")
+id := recommendations.NewAppServiceEnvironmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hostingEnvironmentValue")
 
 read, err := client.DisableAllForHostingEnvironment(ctx, id, recommendations.DefaultDisableAllForHostingEnvironmentOperationOptions())
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := recommendations.NewSiteID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteValue")
+id := recommendations.NewAppServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteValue")
 
 read, err := client.DisableAllForWebApp(ctx, id)
 if err != nil {
@@ -153,7 +153,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := recommendations.NewHostingEnvironmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hostingEnvironmentValue")
+id := recommendations.NewAppServiceEnvironmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hostingEnvironmentValue")
 
 // alternatively `client.ListHistoryForHostingEnvironment(ctx, id, recommendations.DefaultListHistoryForHostingEnvironmentOperationOptions())` can be used to do batched pagination
 items, err := client.ListHistoryForHostingEnvironmentComplete(ctx, id, recommendations.DefaultListHistoryForHostingEnvironmentOperationOptions())
@@ -170,7 +170,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := recommendations.NewSiteID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteValue")
+id := recommendations.NewAppServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteValue")
 
 // alternatively `client.ListHistoryForWebApp(ctx, id, recommendations.DefaultListHistoryForWebAppOperationOptions())` can be used to do batched pagination
 items, err := client.ListHistoryForWebAppComplete(ctx, id, recommendations.DefaultListHistoryForWebAppOperationOptions())
@@ -187,7 +187,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := recommendations.NewHostingEnvironmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hostingEnvironmentValue")
+id := recommendations.NewAppServiceEnvironmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hostingEnvironmentValue")
 
 // alternatively `client.ListRecommendedRulesForHostingEnvironment(ctx, id, recommendations.DefaultListRecommendedRulesForHostingEnvironmentOperationOptions())` can be used to do batched pagination
 items, err := client.ListRecommendedRulesForHostingEnvironmentComplete(ctx, id, recommendations.DefaultListRecommendedRulesForHostingEnvironmentOperationOptions())
@@ -204,7 +204,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := recommendations.NewSiteID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteValue")
+id := recommendations.NewAppServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteValue")
 
 // alternatively `client.ListRecommendedRulesForWebApp(ctx, id, recommendations.DefaultListRecommendedRulesForWebAppOperationOptions())` can be used to do batched pagination
 items, err := client.ListRecommendedRulesForWebAppComplete(ctx, id, recommendations.DefaultListRecommendedRulesForWebAppOperationOptions())
@@ -237,7 +237,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := recommendations.NewHostingEnvironmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hostingEnvironmentValue")
+id := recommendations.NewAppServiceEnvironmentID("12345678-1234-9876-4563-123456789012", "example-resource-group", "hostingEnvironmentValue")
 
 read, err := client.ResetAllFiltersForHostingEnvironment(ctx, id, recommendations.DefaultResetAllFiltersForHostingEnvironmentOperationOptions())
 if err != nil {
@@ -253,7 +253,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := recommendations.NewSiteID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteValue")
+id := recommendations.NewAppServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteValue")
 
 read, err := client.ResetAllFiltersForWebApp(ctx, id)
 if err != nil {

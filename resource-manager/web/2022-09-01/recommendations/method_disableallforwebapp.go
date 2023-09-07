@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -18,7 +19,7 @@ type DisableAllForWebAppOperationResponse struct {
 }
 
 // DisableAllForWebApp ...
-func (c RecommendationsClient) DisableAllForWebApp(ctx context.Context, id SiteId) (result DisableAllForWebAppOperationResponse, err error) {
+func (c RecommendationsClient) DisableAllForWebApp(ctx context.Context, id commonids.AppServiceId) (result DisableAllForWebAppOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{

@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -23,7 +24,7 @@ type ListDeploymentsCompleteResult struct {
 }
 
 // ListDeployments ...
-func (c WebAppsClient) ListDeployments(ctx context.Context, id SiteId) (result ListDeploymentsOperationResponse, err error) {
+func (c WebAppsClient) ListDeployments(ctx context.Context, id commonids.AppServiceId) (result ListDeploymentsOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -61,12 +62,12 @@ func (c WebAppsClient) ListDeployments(ctx context.Context, id SiteId) (result L
 }
 
 // ListDeploymentsComplete retrieves all the results into a single object
-func (c WebAppsClient) ListDeploymentsComplete(ctx context.Context, id SiteId) (ListDeploymentsCompleteResult, error) {
+func (c WebAppsClient) ListDeploymentsComplete(ctx context.Context, id commonids.AppServiceId) (ListDeploymentsCompleteResult, error) {
 	return c.ListDeploymentsCompleteMatchingPredicate(ctx, id, DeploymentOperationPredicate{})
 }
 
 // ListDeploymentsCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c WebAppsClient) ListDeploymentsCompleteMatchingPredicate(ctx context.Context, id SiteId, predicate DeploymentOperationPredicate) (result ListDeploymentsCompleteResult, err error) {
+func (c WebAppsClient) ListDeploymentsCompleteMatchingPredicate(ctx context.Context, id commonids.AppServiceId, predicate DeploymentOperationPredicate) (result ListDeploymentsCompleteResult, err error) {
 	items := make([]Deployment, 0)
 
 	resp, err := c.ListDeployments(ctx, id)

@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -19,7 +20,7 @@ type GetSourceControlOperationResponse struct {
 }
 
 // GetSourceControl ...
-func (c WebAppsClient) GetSourceControl(ctx context.Context, id SiteId) (result GetSourceControlOperationResponse, err error) {
+func (c WebAppsClient) GetSourceControl(ctx context.Context, id commonids.AppServiceId) (result GetSourceControlOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{

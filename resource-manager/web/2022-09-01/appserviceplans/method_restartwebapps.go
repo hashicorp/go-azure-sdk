@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -45,7 +46,7 @@ func (o RestartWebAppsOperationOptions) ToQuery() *client.QueryParams {
 }
 
 // RestartWebApps ...
-func (c AppServicePlansClient) RestartWebApps(ctx context.Context, id ServerFarmId, options RestartWebAppsOperationOptions) (result RestartWebAppsOperationResponse, err error) {
+func (c AppServicePlansClient) RestartWebApps(ctx context.Context, id commonids.AppServicePlanId, options RestartWebAppsOperationOptions) (result RestartWebAppsOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{

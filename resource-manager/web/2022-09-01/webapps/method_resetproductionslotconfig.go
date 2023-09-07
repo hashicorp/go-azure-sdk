@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -18,7 +19,7 @@ type ResetProductionSlotConfigOperationResponse struct {
 }
 
 // ResetProductionSlotConfig ...
-func (c WebAppsClient) ResetProductionSlotConfig(ctx context.Context, id SiteId) (result ResetProductionSlotConfigOperationResponse, err error) {
+func (c WebAppsClient) ResetProductionSlotConfig(ctx context.Context, id commonids.AppServiceId) (result ResetProductionSlotConfigOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{

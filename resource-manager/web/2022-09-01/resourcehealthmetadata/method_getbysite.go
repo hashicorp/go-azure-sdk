@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -19,7 +20,7 @@ type GetBySiteOperationResponse struct {
 }
 
 // GetBySite ...
-func (c ResourceHealthMetadataClient) GetBySite(ctx context.Context, id SiteId) (result GetBySiteOperationResponse, err error) {
+func (c ResourceHealthMetadataClient) GetBySite(ctx context.Context, id commonids.AppServiceId) (result GetBySiteOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{

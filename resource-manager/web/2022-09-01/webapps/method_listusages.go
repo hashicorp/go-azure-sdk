@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -50,7 +51,7 @@ func (o ListUsagesOperationOptions) ToQuery() *client.QueryParams {
 }
 
 // ListUsages ...
-func (c WebAppsClient) ListUsages(ctx context.Context, id SiteId, options ListUsagesOperationOptions) (result ListUsagesOperationResponse, err error) {
+func (c WebAppsClient) ListUsages(ctx context.Context, id commonids.AppServiceId, options ListUsagesOperationOptions) (result ListUsagesOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -89,12 +90,12 @@ func (c WebAppsClient) ListUsages(ctx context.Context, id SiteId, options ListUs
 }
 
 // ListUsagesComplete retrieves all the results into a single object
-func (c WebAppsClient) ListUsagesComplete(ctx context.Context, id SiteId, options ListUsagesOperationOptions) (ListUsagesCompleteResult, error) {
+func (c WebAppsClient) ListUsagesComplete(ctx context.Context, id commonids.AppServiceId, options ListUsagesOperationOptions) (ListUsagesCompleteResult, error) {
 	return c.ListUsagesCompleteMatchingPredicate(ctx, id, options, CsmUsageQuotaOperationPredicate{})
 }
 
 // ListUsagesCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c WebAppsClient) ListUsagesCompleteMatchingPredicate(ctx context.Context, id SiteId, options ListUsagesOperationOptions, predicate CsmUsageQuotaOperationPredicate) (result ListUsagesCompleteResult, err error) {
+func (c WebAppsClient) ListUsagesCompleteMatchingPredicate(ctx context.Context, id commonids.AppServiceId, options ListUsagesOperationOptions, predicate CsmUsageQuotaOperationPredicate) (result ListUsagesCompleteResult, err error) {
 	items := make([]CsmUsageQuota, 0)
 
 	resp, err := c.ListUsages(ctx, id, options)

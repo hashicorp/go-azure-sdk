@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -23,7 +24,7 @@ type ListSlotDifferencesFromProductionCompleteResult struct {
 }
 
 // ListSlotDifferencesFromProduction ...
-func (c WebAppsClient) ListSlotDifferencesFromProduction(ctx context.Context, id SiteId, input CsmSlotEntity) (result ListSlotDifferencesFromProductionOperationResponse, err error) {
+func (c WebAppsClient) ListSlotDifferencesFromProduction(ctx context.Context, id commonids.AppServiceId, input CsmSlotEntity) (result ListSlotDifferencesFromProductionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -61,12 +62,12 @@ func (c WebAppsClient) ListSlotDifferencesFromProduction(ctx context.Context, id
 }
 
 // ListSlotDifferencesFromProductionComplete retrieves all the results into a single object
-func (c WebAppsClient) ListSlotDifferencesFromProductionComplete(ctx context.Context, id SiteId, input CsmSlotEntity) (ListSlotDifferencesFromProductionCompleteResult, error) {
+func (c WebAppsClient) ListSlotDifferencesFromProductionComplete(ctx context.Context, id commonids.AppServiceId, input CsmSlotEntity) (ListSlotDifferencesFromProductionCompleteResult, error) {
 	return c.ListSlotDifferencesFromProductionCompleteMatchingPredicate(ctx, id, input, SlotDifferenceOperationPredicate{})
 }
 
 // ListSlotDifferencesFromProductionCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c WebAppsClient) ListSlotDifferencesFromProductionCompleteMatchingPredicate(ctx context.Context, id SiteId, input CsmSlotEntity, predicate SlotDifferenceOperationPredicate) (result ListSlotDifferencesFromProductionCompleteResult, err error) {
+func (c WebAppsClient) ListSlotDifferencesFromProductionCompleteMatchingPredicate(ctx context.Context, id commonids.AppServiceId, input CsmSlotEntity, predicate SlotDifferenceOperationPredicate) (result ListSlotDifferencesFromProductionCompleteResult, err error) {
 	items := make([]SlotDifference, 0)
 
 	resp, err := c.ListSlotDifferencesFromProduction(ctx, id, input)

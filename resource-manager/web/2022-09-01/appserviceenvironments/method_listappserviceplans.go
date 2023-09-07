@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -23,7 +24,7 @@ type ListAppServicePlansCompleteResult struct {
 }
 
 // ListAppServicePlans ...
-func (c AppServiceEnvironmentsClient) ListAppServicePlans(ctx context.Context, id HostingEnvironmentId) (result ListAppServicePlansOperationResponse, err error) {
+func (c AppServiceEnvironmentsClient) ListAppServicePlans(ctx context.Context, id commonids.AppServiceEnvironmentId) (result ListAppServicePlansOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -61,12 +62,12 @@ func (c AppServiceEnvironmentsClient) ListAppServicePlans(ctx context.Context, i
 }
 
 // ListAppServicePlansComplete retrieves all the results into a single object
-func (c AppServiceEnvironmentsClient) ListAppServicePlansComplete(ctx context.Context, id HostingEnvironmentId) (ListAppServicePlansCompleteResult, error) {
+func (c AppServiceEnvironmentsClient) ListAppServicePlansComplete(ctx context.Context, id commonids.AppServiceEnvironmentId) (ListAppServicePlansCompleteResult, error) {
 	return c.ListAppServicePlansCompleteMatchingPredicate(ctx, id, AppServicePlanOperationPredicate{})
 }
 
 // ListAppServicePlansCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c AppServiceEnvironmentsClient) ListAppServicePlansCompleteMatchingPredicate(ctx context.Context, id HostingEnvironmentId, predicate AppServicePlanOperationPredicate) (result ListAppServicePlansCompleteResult, err error) {
+func (c AppServiceEnvironmentsClient) ListAppServicePlansCompleteMatchingPredicate(ctx context.Context, id commonids.AppServiceEnvironmentId, predicate AppServicePlanOperationPredicate) (result ListAppServicePlansCompleteResult, err error) {
 	items := make([]AppServicePlan, 0)
 
 	resp, err := c.ListAppServicePlans(ctx, id)

@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -23,7 +24,7 @@ type GetPrivateEndpointConnectionListCompleteResult struct {
 }
 
 // GetPrivateEndpointConnectionList ...
-func (c WebAppsClient) GetPrivateEndpointConnectionList(ctx context.Context, id SiteId) (result GetPrivateEndpointConnectionListOperationResponse, err error) {
+func (c WebAppsClient) GetPrivateEndpointConnectionList(ctx context.Context, id commonids.AppServiceId) (result GetPrivateEndpointConnectionListOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -61,12 +62,12 @@ func (c WebAppsClient) GetPrivateEndpointConnectionList(ctx context.Context, id 
 }
 
 // GetPrivateEndpointConnectionListComplete retrieves all the results into a single object
-func (c WebAppsClient) GetPrivateEndpointConnectionListComplete(ctx context.Context, id SiteId) (GetPrivateEndpointConnectionListCompleteResult, error) {
+func (c WebAppsClient) GetPrivateEndpointConnectionListComplete(ctx context.Context, id commonids.AppServiceId) (GetPrivateEndpointConnectionListCompleteResult, error) {
 	return c.GetPrivateEndpointConnectionListCompleteMatchingPredicate(ctx, id, RemotePrivateEndpointConnectionARMResourceOperationPredicate{})
 }
 
 // GetPrivateEndpointConnectionListCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c WebAppsClient) GetPrivateEndpointConnectionListCompleteMatchingPredicate(ctx context.Context, id SiteId, predicate RemotePrivateEndpointConnectionARMResourceOperationPredicate) (result GetPrivateEndpointConnectionListCompleteResult, err error) {
+func (c WebAppsClient) GetPrivateEndpointConnectionListCompleteMatchingPredicate(ctx context.Context, id commonids.AppServiceId, predicate RemotePrivateEndpointConnectionARMResourceOperationPredicate) (result GetPrivateEndpointConnectionListCompleteResult, err error) {
 	items := make([]RemotePrivateEndpointConnectionARMResource, 0)
 
 	resp, err := c.GetPrivateEndpointConnectionList(ctx, id)

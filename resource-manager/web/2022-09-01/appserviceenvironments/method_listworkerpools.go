@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -23,7 +24,7 @@ type ListWorkerPoolsCompleteResult struct {
 }
 
 // ListWorkerPools ...
-func (c AppServiceEnvironmentsClient) ListWorkerPools(ctx context.Context, id HostingEnvironmentId) (result ListWorkerPoolsOperationResponse, err error) {
+func (c AppServiceEnvironmentsClient) ListWorkerPools(ctx context.Context, id commonids.AppServiceEnvironmentId) (result ListWorkerPoolsOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -61,12 +62,12 @@ func (c AppServiceEnvironmentsClient) ListWorkerPools(ctx context.Context, id Ho
 }
 
 // ListWorkerPoolsComplete retrieves all the results into a single object
-func (c AppServiceEnvironmentsClient) ListWorkerPoolsComplete(ctx context.Context, id HostingEnvironmentId) (ListWorkerPoolsCompleteResult, error) {
+func (c AppServiceEnvironmentsClient) ListWorkerPoolsComplete(ctx context.Context, id commonids.AppServiceEnvironmentId) (ListWorkerPoolsCompleteResult, error) {
 	return c.ListWorkerPoolsCompleteMatchingPredicate(ctx, id, WorkerPoolResourceOperationPredicate{})
 }
 
 // ListWorkerPoolsCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c AppServiceEnvironmentsClient) ListWorkerPoolsCompleteMatchingPredicate(ctx context.Context, id HostingEnvironmentId, predicate WorkerPoolResourceOperationPredicate) (result ListWorkerPoolsCompleteResult, err error) {
+func (c AppServiceEnvironmentsClient) ListWorkerPoolsCompleteMatchingPredicate(ctx context.Context, id commonids.AppServiceEnvironmentId, predicate WorkerPoolResourceOperationPredicate) (result ListWorkerPoolsCompleteResult, err error) {
 	items := make([]WorkerPoolResource, 0)
 
 	resp, err := c.ListWorkerPools(ctx, id)

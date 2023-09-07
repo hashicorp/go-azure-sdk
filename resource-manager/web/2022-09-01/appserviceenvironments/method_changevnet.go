@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
@@ -26,7 +27,7 @@ type ChangeVnetCompleteResult struct {
 }
 
 // ChangeVnet ...
-func (c AppServiceEnvironmentsClient) ChangeVnet(ctx context.Context, id HostingEnvironmentId, input VirtualNetworkProfile) (result ChangeVnetOperationResponse, err error) {
+func (c AppServiceEnvironmentsClient) ChangeVnet(ctx context.Context, id commonids.AppServiceEnvironmentId, input VirtualNetworkProfile) (result ChangeVnetOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -74,7 +75,7 @@ func (c AppServiceEnvironmentsClient) ChangeVnet(ctx context.Context, id Hosting
 }
 
 // ChangeVnetThenPoll performs ChangeVnet then polls until it's completed
-func (c AppServiceEnvironmentsClient) ChangeVnetThenPoll(ctx context.Context, id HostingEnvironmentId, input VirtualNetworkProfile) error {
+func (c AppServiceEnvironmentsClient) ChangeVnetThenPoll(ctx context.Context, id commonids.AppServiceEnvironmentId, input VirtualNetworkProfile) error {
 	result, err := c.ChangeVnet(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing ChangeVnet: %+v", err)
