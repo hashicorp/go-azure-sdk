@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -19,7 +20,7 @@ type ListDiagnosticsOperationResponse struct {
 }
 
 // ListDiagnostics ...
-func (c AppServiceEnvironmentsClient) ListDiagnostics(ctx context.Context, id HostingEnvironmentId) (result ListDiagnosticsOperationResponse, err error) {
+func (c AppServiceEnvironmentsClient) ListDiagnostics(ctx context.Context, id commonids.AppServiceEnvironmentId) (result ListDiagnosticsOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{

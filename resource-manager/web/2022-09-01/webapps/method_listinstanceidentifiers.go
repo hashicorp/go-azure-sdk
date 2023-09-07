@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -23,7 +24,7 @@ type ListInstanceIdentifiersCompleteResult struct {
 }
 
 // ListInstanceIdentifiers ...
-func (c WebAppsClient) ListInstanceIdentifiers(ctx context.Context, id SiteId) (result ListInstanceIdentifiersOperationResponse, err error) {
+func (c WebAppsClient) ListInstanceIdentifiers(ctx context.Context, id commonids.AppServiceId) (result ListInstanceIdentifiersOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -61,12 +62,12 @@ func (c WebAppsClient) ListInstanceIdentifiers(ctx context.Context, id SiteId) (
 }
 
 // ListInstanceIdentifiersComplete retrieves all the results into a single object
-func (c WebAppsClient) ListInstanceIdentifiersComplete(ctx context.Context, id SiteId) (ListInstanceIdentifiersCompleteResult, error) {
+func (c WebAppsClient) ListInstanceIdentifiersComplete(ctx context.Context, id commonids.AppServiceId) (ListInstanceIdentifiersCompleteResult, error) {
 	return c.ListInstanceIdentifiersCompleteMatchingPredicate(ctx, id, WebSiteInstanceStatusOperationPredicate{})
 }
 
 // ListInstanceIdentifiersCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c WebAppsClient) ListInstanceIdentifiersCompleteMatchingPredicate(ctx context.Context, id SiteId, predicate WebSiteInstanceStatusOperationPredicate) (result ListInstanceIdentifiersCompleteResult, err error) {
+func (c WebAppsClient) ListInstanceIdentifiersCompleteMatchingPredicate(ctx context.Context, id commonids.AppServiceId, predicate WebSiteInstanceStatusOperationPredicate) (result ListInstanceIdentifiersCompleteResult, err error) {
 	items := make([]WebSiteInstanceStatus, 0)
 
 	resp, err := c.ListInstanceIdentifiers(ctx, id)

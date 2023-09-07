@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -23,7 +24,7 @@ type ListSnapshotsCompleteResult struct {
 }
 
 // ListSnapshots ...
-func (c WebAppsClient) ListSnapshots(ctx context.Context, id SiteId) (result ListSnapshotsOperationResponse, err error) {
+func (c WebAppsClient) ListSnapshots(ctx context.Context, id commonids.AppServiceId) (result ListSnapshotsOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -61,12 +62,12 @@ func (c WebAppsClient) ListSnapshots(ctx context.Context, id SiteId) (result Lis
 }
 
 // ListSnapshotsComplete retrieves all the results into a single object
-func (c WebAppsClient) ListSnapshotsComplete(ctx context.Context, id SiteId) (ListSnapshotsCompleteResult, error) {
+func (c WebAppsClient) ListSnapshotsComplete(ctx context.Context, id commonids.AppServiceId) (ListSnapshotsCompleteResult, error) {
 	return c.ListSnapshotsCompleteMatchingPredicate(ctx, id, SnapshotOperationPredicate{})
 }
 
 // ListSnapshotsCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c WebAppsClient) ListSnapshotsCompleteMatchingPredicate(ctx context.Context, id SiteId, predicate SnapshotOperationPredicate) (result ListSnapshotsCompleteResult, err error) {
+func (c WebAppsClient) ListSnapshotsCompleteMatchingPredicate(ctx context.Context, id commonids.AppServiceId, predicate SnapshotOperationPredicate) (result ListSnapshotsCompleteResult, err error) {
 	items := make([]Snapshot, 0)
 
 	resp, err := c.ListSnapshots(ctx, id)

@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -23,7 +24,7 @@ type ListBasicPublishingCredentialsPoliciesCompleteResult struct {
 }
 
 // ListBasicPublishingCredentialsPolicies ...
-func (c WebAppsClient) ListBasicPublishingCredentialsPolicies(ctx context.Context, id SiteId) (result ListBasicPublishingCredentialsPoliciesOperationResponse, err error) {
+func (c WebAppsClient) ListBasicPublishingCredentialsPolicies(ctx context.Context, id commonids.AppServiceId) (result ListBasicPublishingCredentialsPoliciesOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -61,12 +62,12 @@ func (c WebAppsClient) ListBasicPublishingCredentialsPolicies(ctx context.Contex
 }
 
 // ListBasicPublishingCredentialsPoliciesComplete retrieves all the results into a single object
-func (c WebAppsClient) ListBasicPublishingCredentialsPoliciesComplete(ctx context.Context, id SiteId) (ListBasicPublishingCredentialsPoliciesCompleteResult, error) {
+func (c WebAppsClient) ListBasicPublishingCredentialsPoliciesComplete(ctx context.Context, id commonids.AppServiceId) (ListBasicPublishingCredentialsPoliciesCompleteResult, error) {
 	return c.ListBasicPublishingCredentialsPoliciesCompleteMatchingPredicate(ctx, id, CsmPublishingCredentialsPoliciesEntityOperationPredicate{})
 }
 
 // ListBasicPublishingCredentialsPoliciesCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c WebAppsClient) ListBasicPublishingCredentialsPoliciesCompleteMatchingPredicate(ctx context.Context, id SiteId, predicate CsmPublishingCredentialsPoliciesEntityOperationPredicate) (result ListBasicPublishingCredentialsPoliciesCompleteResult, err error) {
+func (c WebAppsClient) ListBasicPublishingCredentialsPoliciesCompleteMatchingPredicate(ctx context.Context, id commonids.AppServiceId, predicate CsmPublishingCredentialsPoliciesEntityOperationPredicate) (result ListBasicPublishingCredentialsPoliciesCompleteResult, err error) {
 	items := make([]CsmPublishingCredentialsPoliciesEntity, 0)
 
 	resp, err := c.ListBasicPublishingCredentialsPolicies(ctx, id)

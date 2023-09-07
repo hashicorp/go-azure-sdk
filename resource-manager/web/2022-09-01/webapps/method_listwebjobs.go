@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -23,7 +24,7 @@ type ListWebJobsCompleteResult struct {
 }
 
 // ListWebJobs ...
-func (c WebAppsClient) ListWebJobs(ctx context.Context, id SiteId) (result ListWebJobsOperationResponse, err error) {
+func (c WebAppsClient) ListWebJobs(ctx context.Context, id commonids.AppServiceId) (result ListWebJobsOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -61,12 +62,12 @@ func (c WebAppsClient) ListWebJobs(ctx context.Context, id SiteId) (result ListW
 }
 
 // ListWebJobsComplete retrieves all the results into a single object
-func (c WebAppsClient) ListWebJobsComplete(ctx context.Context, id SiteId) (ListWebJobsCompleteResult, error) {
+func (c WebAppsClient) ListWebJobsComplete(ctx context.Context, id commonids.AppServiceId) (ListWebJobsCompleteResult, error) {
 	return c.ListWebJobsCompleteMatchingPredicate(ctx, id, WebJobOperationPredicate{})
 }
 
 // ListWebJobsCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c WebAppsClient) ListWebJobsCompleteMatchingPredicate(ctx context.Context, id SiteId, predicate WebJobOperationPredicate) (result ListWebJobsCompleteResult, err error) {
+func (c WebAppsClient) ListWebJobsCompleteMatchingPredicate(ctx context.Context, id commonids.AppServiceId, predicate WebJobOperationPredicate) (result ListWebJobsCompleteResult, err error) {
 	items := make([]WebJob, 0)
 
 	resp, err := c.ListWebJobs(ctx, id)

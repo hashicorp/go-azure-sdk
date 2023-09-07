@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
@@ -48,7 +49,7 @@ func (o MigrateStorageOperationOptions) ToQuery() *client.QueryParams {
 }
 
 // MigrateStorage ...
-func (c WebAppsClient) MigrateStorage(ctx context.Context, id SiteId, input StorageMigrationOptions, options MigrateStorageOperationOptions) (result MigrateStorageOperationResponse, err error) {
+func (c WebAppsClient) MigrateStorage(ctx context.Context, id commonids.AppServiceId, input StorageMigrationOptions, options MigrateStorageOperationOptions) (result MigrateStorageOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -87,7 +88,7 @@ func (c WebAppsClient) MigrateStorage(ctx context.Context, id SiteId, input Stor
 }
 
 // MigrateStorageThenPoll performs MigrateStorage then polls until it's completed
-func (c WebAppsClient) MigrateStorageThenPoll(ctx context.Context, id SiteId, input StorageMigrationOptions, options MigrateStorageOperationOptions) error {
+func (c WebAppsClient) MigrateStorageThenPoll(ctx context.Context, id commonids.AppServiceId, input StorageMigrationOptions, options MigrateStorageOperationOptions) error {
 	result, err := c.MigrateStorage(ctx, id, input, options)
 	if err != nil {
 		return fmt.Errorf("performing MigrateStorage: %+v", err)

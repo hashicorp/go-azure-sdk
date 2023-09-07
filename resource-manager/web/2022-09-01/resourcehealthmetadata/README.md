@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := resourcehealthmetadata.NewSiteID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteValue")
+id := resourcehealthmetadata.NewAppServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteValue")
 
 read, err := client.GetBySite(ctx, id)
 if err != nil {
@@ -90,7 +90,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := resourcehealthmetadata.NewSiteID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteValue")
+id := resourcehealthmetadata.NewAppServiceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "siteValue")
 
 // alternatively `client.ListBySite(ctx, id)` can be used to do batched pagination
 items, err := client.ListBySiteComplete(ctx, id)

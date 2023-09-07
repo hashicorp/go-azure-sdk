@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
@@ -21,7 +22,7 @@ type RestoreFromDeletedAppOperationResponse struct {
 }
 
 // RestoreFromDeletedApp ...
-func (c WebAppsClient) RestoreFromDeletedApp(ctx context.Context, id SiteId, input DeletedAppRestoreRequest) (result RestoreFromDeletedAppOperationResponse, err error) {
+func (c WebAppsClient) RestoreFromDeletedApp(ctx context.Context, id commonids.AppServiceId, input DeletedAppRestoreRequest) (result RestoreFromDeletedAppOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -60,7 +61,7 @@ func (c WebAppsClient) RestoreFromDeletedApp(ctx context.Context, id SiteId, inp
 }
 
 // RestoreFromDeletedAppThenPoll performs RestoreFromDeletedApp then polls until it's completed
-func (c WebAppsClient) RestoreFromDeletedAppThenPoll(ctx context.Context, id SiteId, input DeletedAppRestoreRequest) error {
+func (c WebAppsClient) RestoreFromDeletedAppThenPoll(ctx context.Context, id commonids.AppServiceId, input DeletedAppRestoreRequest) error {
 	result, err := c.RestoreFromDeletedApp(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing RestoreFromDeletedApp: %+v", err)

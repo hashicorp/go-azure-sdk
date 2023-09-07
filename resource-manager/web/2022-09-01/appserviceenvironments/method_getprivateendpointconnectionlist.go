@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -23,7 +24,7 @@ type GetPrivateEndpointConnectionListCompleteResult struct {
 }
 
 // GetPrivateEndpointConnectionList ...
-func (c AppServiceEnvironmentsClient) GetPrivateEndpointConnectionList(ctx context.Context, id HostingEnvironmentId) (result GetPrivateEndpointConnectionListOperationResponse, err error) {
+func (c AppServiceEnvironmentsClient) GetPrivateEndpointConnectionList(ctx context.Context, id commonids.AppServiceEnvironmentId) (result GetPrivateEndpointConnectionListOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -61,12 +62,12 @@ func (c AppServiceEnvironmentsClient) GetPrivateEndpointConnectionList(ctx conte
 }
 
 // GetPrivateEndpointConnectionListComplete retrieves all the results into a single object
-func (c AppServiceEnvironmentsClient) GetPrivateEndpointConnectionListComplete(ctx context.Context, id HostingEnvironmentId) (GetPrivateEndpointConnectionListCompleteResult, error) {
+func (c AppServiceEnvironmentsClient) GetPrivateEndpointConnectionListComplete(ctx context.Context, id commonids.AppServiceEnvironmentId) (GetPrivateEndpointConnectionListCompleteResult, error) {
 	return c.GetPrivateEndpointConnectionListCompleteMatchingPredicate(ctx, id, RemotePrivateEndpointConnectionARMResourceOperationPredicate{})
 }
 
 // GetPrivateEndpointConnectionListCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c AppServiceEnvironmentsClient) GetPrivateEndpointConnectionListCompleteMatchingPredicate(ctx context.Context, id HostingEnvironmentId, predicate RemotePrivateEndpointConnectionARMResourceOperationPredicate) (result GetPrivateEndpointConnectionListCompleteResult, err error) {
+func (c AppServiceEnvironmentsClient) GetPrivateEndpointConnectionListCompleteMatchingPredicate(ctx context.Context, id commonids.AppServiceEnvironmentId, predicate RemotePrivateEndpointConnectionARMResourceOperationPredicate) (result GetPrivateEndpointConnectionListCompleteResult, err error) {
 	items := make([]RemotePrivateEndpointConnectionARMResource, 0)
 
 	resp, err := c.GetPrivateEndpointConnectionList(ctx, id)

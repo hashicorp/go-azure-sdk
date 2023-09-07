@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -23,7 +24,7 @@ type ListMultiRolePoolSkusCompleteResult struct {
 }
 
 // ListMultiRolePoolSkus ...
-func (c AppServiceEnvironmentsClient) ListMultiRolePoolSkus(ctx context.Context, id HostingEnvironmentId) (result ListMultiRolePoolSkusOperationResponse, err error) {
+func (c AppServiceEnvironmentsClient) ListMultiRolePoolSkus(ctx context.Context, id commonids.AppServiceEnvironmentId) (result ListMultiRolePoolSkusOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -61,12 +62,12 @@ func (c AppServiceEnvironmentsClient) ListMultiRolePoolSkus(ctx context.Context,
 }
 
 // ListMultiRolePoolSkusComplete retrieves all the results into a single object
-func (c AppServiceEnvironmentsClient) ListMultiRolePoolSkusComplete(ctx context.Context, id HostingEnvironmentId) (ListMultiRolePoolSkusCompleteResult, error) {
+func (c AppServiceEnvironmentsClient) ListMultiRolePoolSkusComplete(ctx context.Context, id commonids.AppServiceEnvironmentId) (ListMultiRolePoolSkusCompleteResult, error) {
 	return c.ListMultiRolePoolSkusCompleteMatchingPredicate(ctx, id, SkuInfoOperationPredicate{})
 }
 
 // ListMultiRolePoolSkusCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c AppServiceEnvironmentsClient) ListMultiRolePoolSkusCompleteMatchingPredicate(ctx context.Context, id HostingEnvironmentId, predicate SkuInfoOperationPredicate) (result ListMultiRolePoolSkusCompleteResult, err error) {
+func (c AppServiceEnvironmentsClient) ListMultiRolePoolSkusCompleteMatchingPredicate(ctx context.Context, id commonids.AppServiceEnvironmentId, predicate SkuInfoOperationPredicate) (result ListMultiRolePoolSkusCompleteResult, err error) {
 	items := make([]SkuInfo, 0)
 
 	resp, err := c.ListMultiRolePoolSkus(ctx, id)

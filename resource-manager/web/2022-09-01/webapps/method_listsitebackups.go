@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -23,7 +24,7 @@ type ListSiteBackupsCompleteResult struct {
 }
 
 // ListSiteBackups ...
-func (c WebAppsClient) ListSiteBackups(ctx context.Context, id SiteId) (result ListSiteBackupsOperationResponse, err error) {
+func (c WebAppsClient) ListSiteBackups(ctx context.Context, id commonids.AppServiceId) (result ListSiteBackupsOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -61,12 +62,12 @@ func (c WebAppsClient) ListSiteBackups(ctx context.Context, id SiteId) (result L
 }
 
 // ListSiteBackupsComplete retrieves all the results into a single object
-func (c WebAppsClient) ListSiteBackupsComplete(ctx context.Context, id SiteId) (ListSiteBackupsCompleteResult, error) {
+func (c WebAppsClient) ListSiteBackupsComplete(ctx context.Context, id commonids.AppServiceId) (ListSiteBackupsCompleteResult, error) {
 	return c.ListSiteBackupsCompleteMatchingPredicate(ctx, id, BackupItemOperationPredicate{})
 }
 
 // ListSiteBackupsCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c WebAppsClient) ListSiteBackupsCompleteMatchingPredicate(ctx context.Context, id SiteId, predicate BackupItemOperationPredicate) (result ListSiteBackupsCompleteResult, err error) {
+func (c WebAppsClient) ListSiteBackupsCompleteMatchingPredicate(ctx context.Context, id commonids.AppServiceId, predicate BackupItemOperationPredicate) (result ListSiteBackupsCompleteResult, err error) {
 	items := make([]BackupItem, 0)
 
 	resp, err := c.ListSiteBackups(ctx, id)

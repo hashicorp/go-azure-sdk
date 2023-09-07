@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -23,7 +24,7 @@ type ListConfigurationSnapshotInfoCompleteResult struct {
 }
 
 // ListConfigurationSnapshotInfo ...
-func (c WebAppsClient) ListConfigurationSnapshotInfo(ctx context.Context, id SiteId) (result ListConfigurationSnapshotInfoOperationResponse, err error) {
+func (c WebAppsClient) ListConfigurationSnapshotInfo(ctx context.Context, id commonids.AppServiceId) (result ListConfigurationSnapshotInfoOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -61,12 +62,12 @@ func (c WebAppsClient) ListConfigurationSnapshotInfo(ctx context.Context, id Sit
 }
 
 // ListConfigurationSnapshotInfoComplete retrieves all the results into a single object
-func (c WebAppsClient) ListConfigurationSnapshotInfoComplete(ctx context.Context, id SiteId) (ListConfigurationSnapshotInfoCompleteResult, error) {
+func (c WebAppsClient) ListConfigurationSnapshotInfoComplete(ctx context.Context, id commonids.AppServiceId) (ListConfigurationSnapshotInfoCompleteResult, error) {
 	return c.ListConfigurationSnapshotInfoCompleteMatchingPredicate(ctx, id, SiteConfigurationSnapshotInfoOperationPredicate{})
 }
 
 // ListConfigurationSnapshotInfoCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c WebAppsClient) ListConfigurationSnapshotInfoCompleteMatchingPredicate(ctx context.Context, id SiteId, predicate SiteConfigurationSnapshotInfoOperationPredicate) (result ListConfigurationSnapshotInfoCompleteResult, err error) {
+func (c WebAppsClient) ListConfigurationSnapshotInfoCompleteMatchingPredicate(ctx context.Context, id commonids.AppServiceId, predicate SiteConfigurationSnapshotInfoOperationPredicate) (result ListConfigurationSnapshotInfoCompleteResult, err error) {
 	items := make([]SiteConfigurationSnapshotInfo, 0)
 
 	resp, err := c.ListConfigurationSnapshotInfo(ctx, id)

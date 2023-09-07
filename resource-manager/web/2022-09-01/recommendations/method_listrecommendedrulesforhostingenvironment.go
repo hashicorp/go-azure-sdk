@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -54,7 +55,7 @@ func (o ListRecommendedRulesForHostingEnvironmentOperationOptions) ToQuery() *cl
 }
 
 // ListRecommendedRulesForHostingEnvironment ...
-func (c RecommendationsClient) ListRecommendedRulesForHostingEnvironment(ctx context.Context, id HostingEnvironmentId, options ListRecommendedRulesForHostingEnvironmentOperationOptions) (result ListRecommendedRulesForHostingEnvironmentOperationResponse, err error) {
+func (c RecommendationsClient) ListRecommendedRulesForHostingEnvironment(ctx context.Context, id commonids.AppServiceEnvironmentId, options ListRecommendedRulesForHostingEnvironmentOperationOptions) (result ListRecommendedRulesForHostingEnvironmentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -93,12 +94,12 @@ func (c RecommendationsClient) ListRecommendedRulesForHostingEnvironment(ctx con
 }
 
 // ListRecommendedRulesForHostingEnvironmentComplete retrieves all the results into a single object
-func (c RecommendationsClient) ListRecommendedRulesForHostingEnvironmentComplete(ctx context.Context, id HostingEnvironmentId, options ListRecommendedRulesForHostingEnvironmentOperationOptions) (ListRecommendedRulesForHostingEnvironmentCompleteResult, error) {
+func (c RecommendationsClient) ListRecommendedRulesForHostingEnvironmentComplete(ctx context.Context, id commonids.AppServiceEnvironmentId, options ListRecommendedRulesForHostingEnvironmentOperationOptions) (ListRecommendedRulesForHostingEnvironmentCompleteResult, error) {
 	return c.ListRecommendedRulesForHostingEnvironmentCompleteMatchingPredicate(ctx, id, options, RecommendationOperationPredicate{})
 }
 
 // ListRecommendedRulesForHostingEnvironmentCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c RecommendationsClient) ListRecommendedRulesForHostingEnvironmentCompleteMatchingPredicate(ctx context.Context, id HostingEnvironmentId, options ListRecommendedRulesForHostingEnvironmentOperationOptions, predicate RecommendationOperationPredicate) (result ListRecommendedRulesForHostingEnvironmentCompleteResult, err error) {
+func (c RecommendationsClient) ListRecommendedRulesForHostingEnvironmentCompleteMatchingPredicate(ctx context.Context, id commonids.AppServiceEnvironmentId, options ListRecommendedRulesForHostingEnvironmentOperationOptions, predicate RecommendationOperationPredicate) (result ListRecommendedRulesForHostingEnvironmentCompleteResult, err error) {
 	items := make([]Recommendation, 0)
 
 	resp, err := c.ListRecommendedRulesForHostingEnvironment(ctx, id, options)

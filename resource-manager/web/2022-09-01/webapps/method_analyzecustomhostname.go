@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -46,7 +47,7 @@ func (o AnalyzeCustomHostnameOperationOptions) ToQuery() *client.QueryParams {
 }
 
 // AnalyzeCustomHostname ...
-func (c WebAppsClient) AnalyzeCustomHostname(ctx context.Context, id SiteId, options AnalyzeCustomHostnameOperationOptions) (result AnalyzeCustomHostnameOperationResponse, err error) {
+func (c WebAppsClient) AnalyzeCustomHostname(ctx context.Context, id commonids.AppServiceId, options AnalyzeCustomHostnameOperationOptions) (result AnalyzeCustomHostnameOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{

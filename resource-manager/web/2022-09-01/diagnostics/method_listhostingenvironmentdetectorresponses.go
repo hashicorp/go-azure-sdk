@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -23,7 +24,7 @@ type ListHostingEnvironmentDetectorResponsesCompleteResult struct {
 }
 
 // ListHostingEnvironmentDetectorResponses ...
-func (c DiagnosticsClient) ListHostingEnvironmentDetectorResponses(ctx context.Context, id HostingEnvironmentId) (result ListHostingEnvironmentDetectorResponsesOperationResponse, err error) {
+func (c DiagnosticsClient) ListHostingEnvironmentDetectorResponses(ctx context.Context, id commonids.AppServiceEnvironmentId) (result ListHostingEnvironmentDetectorResponsesOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -61,12 +62,12 @@ func (c DiagnosticsClient) ListHostingEnvironmentDetectorResponses(ctx context.C
 }
 
 // ListHostingEnvironmentDetectorResponsesComplete retrieves all the results into a single object
-func (c DiagnosticsClient) ListHostingEnvironmentDetectorResponsesComplete(ctx context.Context, id HostingEnvironmentId) (ListHostingEnvironmentDetectorResponsesCompleteResult, error) {
+func (c DiagnosticsClient) ListHostingEnvironmentDetectorResponsesComplete(ctx context.Context, id commonids.AppServiceEnvironmentId) (ListHostingEnvironmentDetectorResponsesCompleteResult, error) {
 	return c.ListHostingEnvironmentDetectorResponsesCompleteMatchingPredicate(ctx, id, DetectorResponseOperationPredicate{})
 }
 
 // ListHostingEnvironmentDetectorResponsesCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c DiagnosticsClient) ListHostingEnvironmentDetectorResponsesCompleteMatchingPredicate(ctx context.Context, id HostingEnvironmentId, predicate DetectorResponseOperationPredicate) (result ListHostingEnvironmentDetectorResponsesCompleteResult, err error) {
+func (c DiagnosticsClient) ListHostingEnvironmentDetectorResponsesCompleteMatchingPredicate(ctx context.Context, id commonids.AppServiceEnvironmentId, predicate DetectorResponseOperationPredicate) (result ListHostingEnvironmentDetectorResponsesCompleteResult, err error) {
 	items := make([]DetectorResponse, 0)
 
 	resp, err := c.ListHostingEnvironmentDetectorResponses(ctx, id)

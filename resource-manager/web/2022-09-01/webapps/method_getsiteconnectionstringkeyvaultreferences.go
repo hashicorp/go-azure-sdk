@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -23,7 +24,7 @@ type GetSiteConnectionStringKeyVaultReferencesCompleteResult struct {
 }
 
 // GetSiteConnectionStringKeyVaultReferences ...
-func (c WebAppsClient) GetSiteConnectionStringKeyVaultReferences(ctx context.Context, id SiteId) (result GetSiteConnectionStringKeyVaultReferencesOperationResponse, err error) {
+func (c WebAppsClient) GetSiteConnectionStringKeyVaultReferences(ctx context.Context, id commonids.AppServiceId) (result GetSiteConnectionStringKeyVaultReferencesOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -61,12 +62,12 @@ func (c WebAppsClient) GetSiteConnectionStringKeyVaultReferences(ctx context.Con
 }
 
 // GetSiteConnectionStringKeyVaultReferencesComplete retrieves all the results into a single object
-func (c WebAppsClient) GetSiteConnectionStringKeyVaultReferencesComplete(ctx context.Context, id SiteId) (GetSiteConnectionStringKeyVaultReferencesCompleteResult, error) {
+func (c WebAppsClient) GetSiteConnectionStringKeyVaultReferencesComplete(ctx context.Context, id commonids.AppServiceId) (GetSiteConnectionStringKeyVaultReferencesCompleteResult, error) {
 	return c.GetSiteConnectionStringKeyVaultReferencesCompleteMatchingPredicate(ctx, id, ApiKVReferenceOperationPredicate{})
 }
 
 // GetSiteConnectionStringKeyVaultReferencesCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c WebAppsClient) GetSiteConnectionStringKeyVaultReferencesCompleteMatchingPredicate(ctx context.Context, id SiteId, predicate ApiKVReferenceOperationPredicate) (result GetSiteConnectionStringKeyVaultReferencesCompleteResult, err error) {
+func (c WebAppsClient) GetSiteConnectionStringKeyVaultReferencesCompleteMatchingPredicate(ctx context.Context, id commonids.AppServiceId, predicate ApiKVReferenceOperationPredicate) (result GetSiteConnectionStringKeyVaultReferencesCompleteResult, err error) {
 	items := make([]ApiKVReference, 0)
 
 	resp, err := c.GetSiteConnectionStringKeyVaultReferences(ctx, id)

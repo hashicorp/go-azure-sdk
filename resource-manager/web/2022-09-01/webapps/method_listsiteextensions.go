@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -23,7 +24,7 @@ type ListSiteExtensionsCompleteResult struct {
 }
 
 // ListSiteExtensions ...
-func (c WebAppsClient) ListSiteExtensions(ctx context.Context, id SiteId) (result ListSiteExtensionsOperationResponse, err error) {
+func (c WebAppsClient) ListSiteExtensions(ctx context.Context, id commonids.AppServiceId) (result ListSiteExtensionsOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -61,12 +62,12 @@ func (c WebAppsClient) ListSiteExtensions(ctx context.Context, id SiteId) (resul
 }
 
 // ListSiteExtensionsComplete retrieves all the results into a single object
-func (c WebAppsClient) ListSiteExtensionsComplete(ctx context.Context, id SiteId) (ListSiteExtensionsCompleteResult, error) {
+func (c WebAppsClient) ListSiteExtensionsComplete(ctx context.Context, id commonids.AppServiceId) (ListSiteExtensionsCompleteResult, error) {
 	return c.ListSiteExtensionsCompleteMatchingPredicate(ctx, id, SiteExtensionInfoOperationPredicate{})
 }
 
 // ListSiteExtensionsCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c WebAppsClient) ListSiteExtensionsCompleteMatchingPredicate(ctx context.Context, id SiteId, predicate SiteExtensionInfoOperationPredicate) (result ListSiteExtensionsCompleteResult, err error) {
+func (c WebAppsClient) ListSiteExtensionsCompleteMatchingPredicate(ctx context.Context, id commonids.AppServiceId, predicate SiteExtensionInfoOperationPredicate) (result ListSiteExtensionsCompleteResult, err error) {
 	items := make([]SiteExtensionInfo, 0)
 
 	resp, err := c.ListSiteExtensions(ctx, id)

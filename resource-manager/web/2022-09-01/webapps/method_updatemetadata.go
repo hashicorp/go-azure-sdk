@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -19,7 +20,7 @@ type UpdateMetadataOperationResponse struct {
 }
 
 // UpdateMetadata ...
-func (c WebAppsClient) UpdateMetadata(ctx context.Context, id SiteId, input StringDictionary) (result UpdateMetadataOperationResponse, err error) {
+func (c WebAppsClient) UpdateMetadata(ctx context.Context, id commonids.AppServiceId, input StringDictionary) (result UpdateMetadataOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{

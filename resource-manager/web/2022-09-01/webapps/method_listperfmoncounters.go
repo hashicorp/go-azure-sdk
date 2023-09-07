@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -50,7 +51,7 @@ func (o ListPerfMonCountersOperationOptions) ToQuery() *client.QueryParams {
 }
 
 // ListPerfMonCounters ...
-func (c WebAppsClient) ListPerfMonCounters(ctx context.Context, id SiteId, options ListPerfMonCountersOperationOptions) (result ListPerfMonCountersOperationResponse, err error) {
+func (c WebAppsClient) ListPerfMonCounters(ctx context.Context, id commonids.AppServiceId, options ListPerfMonCountersOperationOptions) (result ListPerfMonCountersOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -89,12 +90,12 @@ func (c WebAppsClient) ListPerfMonCounters(ctx context.Context, id SiteId, optio
 }
 
 // ListPerfMonCountersComplete retrieves all the results into a single object
-func (c WebAppsClient) ListPerfMonCountersComplete(ctx context.Context, id SiteId, options ListPerfMonCountersOperationOptions) (ListPerfMonCountersCompleteResult, error) {
+func (c WebAppsClient) ListPerfMonCountersComplete(ctx context.Context, id commonids.AppServiceId, options ListPerfMonCountersOperationOptions) (ListPerfMonCountersCompleteResult, error) {
 	return c.ListPerfMonCountersCompleteMatchingPredicate(ctx, id, options, PerfMonResponseOperationPredicate{})
 }
 
 // ListPerfMonCountersCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c WebAppsClient) ListPerfMonCountersCompleteMatchingPredicate(ctx context.Context, id SiteId, options ListPerfMonCountersOperationOptions, predicate PerfMonResponseOperationPredicate) (result ListPerfMonCountersCompleteResult, err error) {
+func (c WebAppsClient) ListPerfMonCountersCompleteMatchingPredicate(ctx context.Context, id commonids.AppServiceId, options ListPerfMonCountersOperationOptions, predicate PerfMonResponseOperationPredicate) (result ListPerfMonCountersCompleteResult, err error) {
 	items := make([]PerfMonResponse, 0)
 
 	resp, err := c.ListPerfMonCounters(ctx, id, options)

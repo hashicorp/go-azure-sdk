@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
@@ -21,7 +22,7 @@ type UpgradeOperationResponse struct {
 }
 
 // Upgrade ...
-func (c AppServiceEnvironmentsClient) Upgrade(ctx context.Context, id HostingEnvironmentId) (result UpgradeOperationResponse, err error) {
+func (c AppServiceEnvironmentsClient) Upgrade(ctx context.Context, id commonids.AppServiceEnvironmentId) (result UpgradeOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -55,7 +56,7 @@ func (c AppServiceEnvironmentsClient) Upgrade(ctx context.Context, id HostingEnv
 }
 
 // UpgradeThenPoll performs Upgrade then polls until it's completed
-func (c AppServiceEnvironmentsClient) UpgradeThenPoll(ctx context.Context, id HostingEnvironmentId) error {
+func (c AppServiceEnvironmentsClient) UpgradeThenPoll(ctx context.Context, id commonids.AppServiceEnvironmentId) error {
 	result, err := c.Upgrade(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing Upgrade: %+v", err)

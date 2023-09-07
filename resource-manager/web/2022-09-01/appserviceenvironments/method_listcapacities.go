@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -23,7 +24,7 @@ type ListCapacitiesCompleteResult struct {
 }
 
 // ListCapacities ...
-func (c AppServiceEnvironmentsClient) ListCapacities(ctx context.Context, id HostingEnvironmentId) (result ListCapacitiesOperationResponse, err error) {
+func (c AppServiceEnvironmentsClient) ListCapacities(ctx context.Context, id commonids.AppServiceEnvironmentId) (result ListCapacitiesOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -61,12 +62,12 @@ func (c AppServiceEnvironmentsClient) ListCapacities(ctx context.Context, id Hos
 }
 
 // ListCapacitiesComplete retrieves all the results into a single object
-func (c AppServiceEnvironmentsClient) ListCapacitiesComplete(ctx context.Context, id HostingEnvironmentId) (ListCapacitiesCompleteResult, error) {
+func (c AppServiceEnvironmentsClient) ListCapacitiesComplete(ctx context.Context, id commonids.AppServiceEnvironmentId) (ListCapacitiesCompleteResult, error) {
 	return c.ListCapacitiesCompleteMatchingPredicate(ctx, id, StampCapacityOperationPredicate{})
 }
 
 // ListCapacitiesCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c AppServiceEnvironmentsClient) ListCapacitiesCompleteMatchingPredicate(ctx context.Context, id HostingEnvironmentId, predicate StampCapacityOperationPredicate) (result ListCapacitiesCompleteResult, err error) {
+func (c AppServiceEnvironmentsClient) ListCapacitiesCompleteMatchingPredicate(ctx context.Context, id commonids.AppServiceEnvironmentId, predicate StampCapacityOperationPredicate) (result ListCapacitiesCompleteResult, err error) {
 	items := make([]StampCapacity, 0)
 
 	resp, err := c.ListCapacities(ctx, id)

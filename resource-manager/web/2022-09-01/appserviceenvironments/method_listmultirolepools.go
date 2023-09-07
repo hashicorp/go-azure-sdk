@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -23,7 +24,7 @@ type ListMultiRolePoolsCompleteResult struct {
 }
 
 // ListMultiRolePools ...
-func (c AppServiceEnvironmentsClient) ListMultiRolePools(ctx context.Context, id HostingEnvironmentId) (result ListMultiRolePoolsOperationResponse, err error) {
+func (c AppServiceEnvironmentsClient) ListMultiRolePools(ctx context.Context, id commonids.AppServiceEnvironmentId) (result ListMultiRolePoolsOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -61,12 +62,12 @@ func (c AppServiceEnvironmentsClient) ListMultiRolePools(ctx context.Context, id
 }
 
 // ListMultiRolePoolsComplete retrieves all the results into a single object
-func (c AppServiceEnvironmentsClient) ListMultiRolePoolsComplete(ctx context.Context, id HostingEnvironmentId) (ListMultiRolePoolsCompleteResult, error) {
+func (c AppServiceEnvironmentsClient) ListMultiRolePoolsComplete(ctx context.Context, id commonids.AppServiceEnvironmentId) (ListMultiRolePoolsCompleteResult, error) {
 	return c.ListMultiRolePoolsCompleteMatchingPredicate(ctx, id, WorkerPoolResourceOperationPredicate{})
 }
 
 // ListMultiRolePoolsCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c AppServiceEnvironmentsClient) ListMultiRolePoolsCompleteMatchingPredicate(ctx context.Context, id HostingEnvironmentId, predicate WorkerPoolResourceOperationPredicate) (result ListMultiRolePoolsCompleteResult, err error) {
+func (c AppServiceEnvironmentsClient) ListMultiRolePoolsCompleteMatchingPredicate(ctx context.Context, id commonids.AppServiceEnvironmentId, predicate WorkerPoolResourceOperationPredicate) (result ListMultiRolePoolsCompleteResult, err error) {
 	items := make([]WorkerPoolResource, 0)
 
 	resp, err := c.ListMultiRolePools(ctx, id)

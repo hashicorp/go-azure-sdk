@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -19,7 +20,7 @@ type ListCapabilitiesOperationResponse struct {
 }
 
 // ListCapabilities ...
-func (c AppServicePlansClient) ListCapabilities(ctx context.Context, id ServerFarmId) (result ListCapabilitiesOperationResponse, err error) {
+func (c AppServicePlansClient) ListCapabilities(ctx context.Context, id commonids.AppServicePlanId) (result ListCapabilitiesOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{

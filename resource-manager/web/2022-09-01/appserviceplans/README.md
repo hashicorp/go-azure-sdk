@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := appserviceplans.NewServerFarmID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverFarmValue")
+id := appserviceplans.NewAppServicePlanID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverFarmValue")
 
 payload := appserviceplans.AppServicePlan{
 	// ...
@@ -62,7 +62,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := appserviceplans.NewServerFarmID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverFarmValue")
+id := appserviceplans.NewAppServicePlanID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverFarmValue")
 
 read, err := client.Delete(ctx, id)
 if err != nil {
@@ -110,7 +110,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := appserviceplans.NewServerFarmID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverFarmValue")
+id := appserviceplans.NewAppServicePlanID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverFarmValue")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -142,7 +142,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := appserviceplans.NewServerFarmID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverFarmValue")
+id := appserviceplans.NewAppServicePlanID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverFarmValue")
 
 read, err := client.GetHybridConnectionPlanLimit(ctx, id)
 if err != nil {
@@ -174,7 +174,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := appserviceplans.NewServerFarmID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverFarmValue")
+id := appserviceplans.NewAppServicePlanID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverFarmValue")
 
 read, err := client.GetServerFarmSkus(ctx, id)
 if err != nil {
@@ -256,7 +256,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := appserviceplans.NewServerFarmID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverFarmValue")
+id := appserviceplans.NewAppServicePlanID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverFarmValue")
 
 read, err := client.ListCapabilities(ctx, id)
 if err != nil {
@@ -288,7 +288,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := appserviceplans.NewServerFarmID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverFarmValue")
+id := appserviceplans.NewAppServicePlanID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverFarmValue")
 
 // alternatively `client.ListHybridConnections(ctx, id)` can be used to do batched pagination
 items, err := client.ListHybridConnectionsComplete(ctx, id)
@@ -321,7 +321,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := appserviceplans.NewServerFarmID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverFarmValue")
+id := appserviceplans.NewAppServicePlanID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverFarmValue")
 
 // alternatively `client.ListUsages(ctx, id, appserviceplans.DefaultListUsagesOperationOptions())` can be used to do batched pagination
 items, err := client.ListUsagesComplete(ctx, id, appserviceplans.DefaultListUsagesOperationOptions())
@@ -338,7 +338,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := appserviceplans.NewServerFarmID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverFarmValue")
+id := appserviceplans.NewAppServicePlanID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverFarmValue")
 
 read, err := client.ListVnets(ctx, id)
 if err != nil {
@@ -354,7 +354,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := appserviceplans.NewServerFarmID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverFarmValue")
+id := appserviceplans.NewAppServicePlanID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverFarmValue")
 
 // alternatively `client.ListWebApps(ctx, id, appserviceplans.DefaultListWebAppsOperationOptions())` can be used to do batched pagination
 items, err := client.ListWebAppsComplete(ctx, id, appserviceplans.DefaultListWebAppsOperationOptions())
@@ -404,7 +404,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := appserviceplans.NewServerFarmID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverFarmValue")
+id := appserviceplans.NewAppServicePlanID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverFarmValue")
 
 read, err := client.RestartWebApps(ctx, id, appserviceplans.DefaultRestartWebAppsOperationOptions())
 if err != nil {
@@ -420,7 +420,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := appserviceplans.NewServerFarmID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverFarmValue")
+id := appserviceplans.NewAppServicePlanID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverFarmValue")
 
 payload := appserviceplans.AppServicePlanPatchResource{
 	// ...

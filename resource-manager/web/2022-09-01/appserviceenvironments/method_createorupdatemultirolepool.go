@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
@@ -21,7 +22,7 @@ type CreateOrUpdateMultiRolePoolOperationResponse struct {
 }
 
 // CreateOrUpdateMultiRolePool ...
-func (c AppServiceEnvironmentsClient) CreateOrUpdateMultiRolePool(ctx context.Context, id HostingEnvironmentId, input WorkerPoolResource) (result CreateOrUpdateMultiRolePoolOperationResponse, err error) {
+func (c AppServiceEnvironmentsClient) CreateOrUpdateMultiRolePool(ctx context.Context, id commonids.AppServiceEnvironmentId, input WorkerPoolResource) (result CreateOrUpdateMultiRolePoolOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -60,7 +61,7 @@ func (c AppServiceEnvironmentsClient) CreateOrUpdateMultiRolePool(ctx context.Co
 }
 
 // CreateOrUpdateMultiRolePoolThenPoll performs CreateOrUpdateMultiRolePool then polls until it's completed
-func (c AppServiceEnvironmentsClient) CreateOrUpdateMultiRolePoolThenPoll(ctx context.Context, id HostingEnvironmentId, input WorkerPoolResource) error {
+func (c AppServiceEnvironmentsClient) CreateOrUpdateMultiRolePoolThenPoll(ctx context.Context, id commonids.AppServiceEnvironmentId, input WorkerPoolResource) error {
 	result, err := c.CreateOrUpdateMultiRolePool(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing CreateOrUpdateMultiRolePool: %+v", err)

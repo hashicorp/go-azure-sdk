@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -18,7 +19,7 @@ type SyncFunctionsOperationResponse struct {
 }
 
 // SyncFunctions ...
-func (c WebAppsClient) SyncFunctions(ctx context.Context, id SiteId) (result SyncFunctionsOperationResponse, err error) {
+func (c WebAppsClient) SyncFunctions(ctx context.Context, id commonids.AppServiceId) (result SyncFunctionsOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{

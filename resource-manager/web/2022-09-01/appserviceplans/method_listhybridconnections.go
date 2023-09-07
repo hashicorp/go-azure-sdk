@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -23,7 +24,7 @@ type ListHybridConnectionsCompleteResult struct {
 }
 
 // ListHybridConnections ...
-func (c AppServicePlansClient) ListHybridConnections(ctx context.Context, id ServerFarmId) (result ListHybridConnectionsOperationResponse, err error) {
+func (c AppServicePlansClient) ListHybridConnections(ctx context.Context, id commonids.AppServicePlanId) (result ListHybridConnectionsOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -61,12 +62,12 @@ func (c AppServicePlansClient) ListHybridConnections(ctx context.Context, id Ser
 }
 
 // ListHybridConnectionsComplete retrieves all the results into a single object
-func (c AppServicePlansClient) ListHybridConnectionsComplete(ctx context.Context, id ServerFarmId) (ListHybridConnectionsCompleteResult, error) {
+func (c AppServicePlansClient) ListHybridConnectionsComplete(ctx context.Context, id commonids.AppServicePlanId) (ListHybridConnectionsCompleteResult, error) {
 	return c.ListHybridConnectionsCompleteMatchingPredicate(ctx, id, HybridConnectionOperationPredicate{})
 }
 
 // ListHybridConnectionsCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c AppServicePlansClient) ListHybridConnectionsCompleteMatchingPredicate(ctx context.Context, id ServerFarmId, predicate HybridConnectionOperationPredicate) (result ListHybridConnectionsCompleteResult, err error) {
+func (c AppServicePlansClient) ListHybridConnectionsCompleteMatchingPredicate(ctx context.Context, id commonids.AppServicePlanId, predicate HybridConnectionOperationPredicate) (result ListHybridConnectionsCompleteResult, err error) {
 	items := make([]HybridConnection, 0)
 
 	resp, err := c.ListHybridConnections(ctx, id)

@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -23,7 +24,7 @@ type ListMultiRoleMetricDefinitionsCompleteResult struct {
 }
 
 // ListMultiRoleMetricDefinitions ...
-func (c AppServiceEnvironmentsClient) ListMultiRoleMetricDefinitions(ctx context.Context, id HostingEnvironmentId) (result ListMultiRoleMetricDefinitionsOperationResponse, err error) {
+func (c AppServiceEnvironmentsClient) ListMultiRoleMetricDefinitions(ctx context.Context, id commonids.AppServiceEnvironmentId) (result ListMultiRoleMetricDefinitionsOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -61,12 +62,12 @@ func (c AppServiceEnvironmentsClient) ListMultiRoleMetricDefinitions(ctx context
 }
 
 // ListMultiRoleMetricDefinitionsComplete retrieves all the results into a single object
-func (c AppServiceEnvironmentsClient) ListMultiRoleMetricDefinitionsComplete(ctx context.Context, id HostingEnvironmentId) (ListMultiRoleMetricDefinitionsCompleteResult, error) {
+func (c AppServiceEnvironmentsClient) ListMultiRoleMetricDefinitionsComplete(ctx context.Context, id commonids.AppServiceEnvironmentId) (ListMultiRoleMetricDefinitionsCompleteResult, error) {
 	return c.ListMultiRoleMetricDefinitionsCompleteMatchingPredicate(ctx, id, ResourceMetricDefinitionOperationPredicate{})
 }
 
 // ListMultiRoleMetricDefinitionsCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c AppServiceEnvironmentsClient) ListMultiRoleMetricDefinitionsCompleteMatchingPredicate(ctx context.Context, id HostingEnvironmentId, predicate ResourceMetricDefinitionOperationPredicate) (result ListMultiRoleMetricDefinitionsCompleteResult, err error) {
+func (c AppServiceEnvironmentsClient) ListMultiRoleMetricDefinitionsCompleteMatchingPredicate(ctx context.Context, id commonids.AppServiceEnvironmentId, predicate ResourceMetricDefinitionOperationPredicate) (result ListMultiRoleMetricDefinitionsCompleteResult, err error) {
 	items := make([]ResourceMetricDefinition, 0)
 
 	resp, err := c.ListMultiRoleMetricDefinitions(ctx, id)

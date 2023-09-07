@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -23,7 +24,7 @@ type ListPublicCertificatesCompleteResult struct {
 }
 
 // ListPublicCertificates ...
-func (c WebAppsClient) ListPublicCertificates(ctx context.Context, id SiteId) (result ListPublicCertificatesOperationResponse, err error) {
+func (c WebAppsClient) ListPublicCertificates(ctx context.Context, id commonids.AppServiceId) (result ListPublicCertificatesOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -61,12 +62,12 @@ func (c WebAppsClient) ListPublicCertificates(ctx context.Context, id SiteId) (r
 }
 
 // ListPublicCertificatesComplete retrieves all the results into a single object
-func (c WebAppsClient) ListPublicCertificatesComplete(ctx context.Context, id SiteId) (ListPublicCertificatesCompleteResult, error) {
+func (c WebAppsClient) ListPublicCertificatesComplete(ctx context.Context, id commonids.AppServiceId) (ListPublicCertificatesCompleteResult, error) {
 	return c.ListPublicCertificatesCompleteMatchingPredicate(ctx, id, PublicCertificateOperationPredicate{})
 }
 
 // ListPublicCertificatesCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c WebAppsClient) ListPublicCertificatesCompleteMatchingPredicate(ctx context.Context, id SiteId, predicate PublicCertificateOperationPredicate) (result ListPublicCertificatesCompleteResult, err error) {
+func (c WebAppsClient) ListPublicCertificatesCompleteMatchingPredicate(ctx context.Context, id commonids.AppServiceId, predicate PublicCertificateOperationPredicate) (result ListPublicCertificatesCompleteResult, err error) {
 	items := make([]PublicCertificate, 0)
 
 	resp, err := c.ListPublicCertificates(ctx, id)

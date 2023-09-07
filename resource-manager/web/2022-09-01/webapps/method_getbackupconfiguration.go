@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -19,7 +20,7 @@ type GetBackupConfigurationOperationResponse struct {
 }
 
 // GetBackupConfiguration ...
-func (c WebAppsClient) GetBackupConfiguration(ctx context.Context, id SiteId) (result GetBackupConfigurationOperationResponse, err error) {
+func (c WebAppsClient) GetBackupConfiguration(ctx context.Context, id commonids.AppServiceId) (result GetBackupConfigurationOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{

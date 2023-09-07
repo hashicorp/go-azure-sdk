@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -54,7 +55,7 @@ func (o ListHistoryForWebAppOperationOptions) ToQuery() *client.QueryParams {
 }
 
 // ListHistoryForWebApp ...
-func (c RecommendationsClient) ListHistoryForWebApp(ctx context.Context, id SiteId, options ListHistoryForWebAppOperationOptions) (result ListHistoryForWebAppOperationResponse, err error) {
+func (c RecommendationsClient) ListHistoryForWebApp(ctx context.Context, id commonids.AppServiceId, options ListHistoryForWebAppOperationOptions) (result ListHistoryForWebAppOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -93,12 +94,12 @@ func (c RecommendationsClient) ListHistoryForWebApp(ctx context.Context, id Site
 }
 
 // ListHistoryForWebAppComplete retrieves all the results into a single object
-func (c RecommendationsClient) ListHistoryForWebAppComplete(ctx context.Context, id SiteId, options ListHistoryForWebAppOperationOptions) (ListHistoryForWebAppCompleteResult, error) {
+func (c RecommendationsClient) ListHistoryForWebAppComplete(ctx context.Context, id commonids.AppServiceId, options ListHistoryForWebAppOperationOptions) (ListHistoryForWebAppCompleteResult, error) {
 	return c.ListHistoryForWebAppCompleteMatchingPredicate(ctx, id, options, RecommendationOperationPredicate{})
 }
 
 // ListHistoryForWebAppCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c RecommendationsClient) ListHistoryForWebAppCompleteMatchingPredicate(ctx context.Context, id SiteId, options ListHistoryForWebAppOperationOptions, predicate RecommendationOperationPredicate) (result ListHistoryForWebAppCompleteResult, err error) {
+func (c RecommendationsClient) ListHistoryForWebAppCompleteMatchingPredicate(ctx context.Context, id commonids.AppServiceId, options ListHistoryForWebAppOperationOptions, predicate RecommendationOperationPredicate) (result ListHistoryForWebAppCompleteResult, err error) {
 	items := make([]Recommendation, 0)
 
 	resp, err := c.ListHistoryForWebApp(ctx, id, options)

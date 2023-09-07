@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
@@ -21,7 +22,7 @@ type ListPublishingCredentialsOperationResponse struct {
 }
 
 // ListPublishingCredentials ...
-func (c WebAppsClient) ListPublishingCredentials(ctx context.Context, id SiteId) (result ListPublishingCredentialsOperationResponse, err error) {
+func (c WebAppsClient) ListPublishingCredentials(ctx context.Context, id commonids.AppServiceId) (result ListPublishingCredentialsOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -55,7 +56,7 @@ func (c WebAppsClient) ListPublishingCredentials(ctx context.Context, id SiteId)
 }
 
 // ListPublishingCredentialsThenPoll performs ListPublishingCredentials then polls until it's completed
-func (c WebAppsClient) ListPublishingCredentialsThenPoll(ctx context.Context, id SiteId) error {
+func (c WebAppsClient) ListPublishingCredentialsThenPoll(ctx context.Context, id commonids.AppServiceId) error {
 	result, err := c.ListPublishingCredentials(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing ListPublishingCredentials: %+v", err)

@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
@@ -21,7 +22,7 @@ type CreateOrUpdateSourceControlOperationResponse struct {
 }
 
 // CreateOrUpdateSourceControl ...
-func (c WebAppsClient) CreateOrUpdateSourceControl(ctx context.Context, id SiteId, input SiteSourceControl) (result CreateOrUpdateSourceControlOperationResponse, err error) {
+func (c WebAppsClient) CreateOrUpdateSourceControl(ctx context.Context, id commonids.AppServiceId, input SiteSourceControl) (result CreateOrUpdateSourceControlOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -61,7 +62,7 @@ func (c WebAppsClient) CreateOrUpdateSourceControl(ctx context.Context, id SiteI
 }
 
 // CreateOrUpdateSourceControlThenPoll performs CreateOrUpdateSourceControl then polls until it's completed
-func (c WebAppsClient) CreateOrUpdateSourceControlThenPoll(ctx context.Context, id SiteId, input SiteSourceControl) error {
+func (c WebAppsClient) CreateOrUpdateSourceControlThenPoll(ctx context.Context, id commonids.AppServiceId, input SiteSourceControl) error {
 	result, err := c.CreateOrUpdateSourceControl(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing CreateOrUpdateSourceControl: %+v", err)

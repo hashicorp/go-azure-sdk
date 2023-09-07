@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -19,7 +20,7 @@ type ListApplicationSettingsOperationResponse struct {
 }
 
 // ListApplicationSettings ...
-func (c WebAppsClient) ListApplicationSettings(ctx context.Context, id SiteId) (result ListApplicationSettingsOperationResponse, err error) {
+func (c WebAppsClient) ListApplicationSettings(ctx context.Context, id commonids.AppServiceId) (result ListApplicationSettingsOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{

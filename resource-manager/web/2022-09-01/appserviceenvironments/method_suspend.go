@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
@@ -26,7 +27,7 @@ type SuspendCompleteResult struct {
 }
 
 // Suspend ...
-func (c AppServiceEnvironmentsClient) Suspend(ctx context.Context, id HostingEnvironmentId) (result SuspendOperationResponse, err error) {
+func (c AppServiceEnvironmentsClient) Suspend(ctx context.Context, id commonids.AppServiceEnvironmentId) (result SuspendOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -70,7 +71,7 @@ func (c AppServiceEnvironmentsClient) Suspend(ctx context.Context, id HostingEnv
 }
 
 // SuspendThenPoll performs Suspend then polls until it's completed
-func (c AppServiceEnvironmentsClient) SuspendThenPoll(ctx context.Context, id HostingEnvironmentId) error {
+func (c AppServiceEnvironmentsClient) SuspendThenPoll(ctx context.Context, id commonids.AppServiceEnvironmentId) error {
 	result, err := c.Suspend(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing Suspend: %+v", err)

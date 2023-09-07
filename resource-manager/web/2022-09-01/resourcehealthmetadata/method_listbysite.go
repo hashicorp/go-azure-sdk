@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -23,7 +24,7 @@ type ListBySiteCompleteResult struct {
 }
 
 // ListBySite ...
-func (c ResourceHealthMetadataClient) ListBySite(ctx context.Context, id SiteId) (result ListBySiteOperationResponse, err error) {
+func (c ResourceHealthMetadataClient) ListBySite(ctx context.Context, id commonids.AppServiceId) (result ListBySiteOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -61,12 +62,12 @@ func (c ResourceHealthMetadataClient) ListBySite(ctx context.Context, id SiteId)
 }
 
 // ListBySiteComplete retrieves all the results into a single object
-func (c ResourceHealthMetadataClient) ListBySiteComplete(ctx context.Context, id SiteId) (ListBySiteCompleteResult, error) {
+func (c ResourceHealthMetadataClient) ListBySiteComplete(ctx context.Context, id commonids.AppServiceId) (ListBySiteCompleteResult, error) {
 	return c.ListBySiteCompleteMatchingPredicate(ctx, id, ResourceHealthMetadataOperationPredicate{})
 }
 
 // ListBySiteCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c ResourceHealthMetadataClient) ListBySiteCompleteMatchingPredicate(ctx context.Context, id SiteId, predicate ResourceHealthMetadataOperationPredicate) (result ListBySiteCompleteResult, err error) {
+func (c ResourceHealthMetadataClient) ListBySiteCompleteMatchingPredicate(ctx context.Context, id commonids.AppServiceId, predicate ResourceHealthMetadataOperationPredicate) (result ListBySiteCompleteResult, err error) {
 	items := make([]ResourceHealthMetadata, 0)
 
 	resp, err := c.ListBySite(ctx, id)

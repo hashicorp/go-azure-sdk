@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -19,7 +20,7 @@ type UpdateAseNetworkingConfigurationOperationResponse struct {
 }
 
 // UpdateAseNetworkingConfiguration ...
-func (c AppServiceEnvironmentsClient) UpdateAseNetworkingConfiguration(ctx context.Context, id HostingEnvironmentId, input AseV3NetworkingConfiguration) (result UpdateAseNetworkingConfigurationOperationResponse, err error) {
+func (c AppServiceEnvironmentsClient) UpdateAseNetworkingConfiguration(ctx context.Context, id commonids.AppServiceEnvironmentId, input AseV3NetworkingConfiguration) (result UpdateAseNetworkingConfigurationOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{

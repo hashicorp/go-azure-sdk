@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -19,7 +20,7 @@ type UpdateSlotConfigurationNamesOperationResponse struct {
 }
 
 // UpdateSlotConfigurationNames ...
-func (c WebAppsClient) UpdateSlotConfigurationNames(ctx context.Context, id SiteId, input SlotConfigNamesResource) (result UpdateSlotConfigurationNamesOperationResponse, err error) {
+func (c WebAppsClient) UpdateSlotConfigurationNames(ctx context.Context, id commonids.AppServiceId, input SlotConfigNamesResource) (result UpdateSlotConfigurationNamesOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
