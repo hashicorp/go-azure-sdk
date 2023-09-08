@@ -1,0 +1,49 @@
+package models
+
+import "strings"
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type Windows10GeneralConfigurationEdgeKioskModeRestriction string
+
+const (
+	Windows10GeneralConfigurationEdgeKioskModeRestrictiondigitalSignage Windows10GeneralConfigurationEdgeKioskModeRestriction = "DigitalSignage"
+	Windows10GeneralConfigurationEdgeKioskModeRestrictionnormalMode Windows10GeneralConfigurationEdgeKioskModeRestriction = "NormalMode"
+	Windows10GeneralConfigurationEdgeKioskModeRestrictionnotConfigured Windows10GeneralConfigurationEdgeKioskModeRestriction = "NotConfigured"
+	Windows10GeneralConfigurationEdgeKioskModeRestrictionpublicBrowsingMultiApp Windows10GeneralConfigurationEdgeKioskModeRestriction = "PublicBrowsingMultiApp"
+	Windows10GeneralConfigurationEdgeKioskModeRestrictionpublicBrowsingSingleApp Windows10GeneralConfigurationEdgeKioskModeRestriction = "PublicBrowsingSingleApp"
+)
+
+
+func PossibleValuesForWindows10GeneralConfigurationEdgeKioskModeRestriction() []string {
+	return []string{
+		string(Windows10GeneralConfigurationEdgeKioskModeRestrictiondigitalSignage),
+string(Windows10GeneralConfigurationEdgeKioskModeRestrictionnormalMode),
+string(Windows10GeneralConfigurationEdgeKioskModeRestrictionnotConfigured),
+string(Windows10GeneralConfigurationEdgeKioskModeRestrictionpublicBrowsingMultiApp),
+string(Windows10GeneralConfigurationEdgeKioskModeRestrictionpublicBrowsingSingleApp),
+	}
+}
+
+
+
+func parseWindows10GeneralConfigurationEdgeKioskModeRestriction(input string) (*Windows10GeneralConfigurationEdgeKioskModeRestriction, error) {
+	vals := map[string]Windows10GeneralConfigurationEdgeKioskModeRestriction{
+		"digitalsignage": Windows10GeneralConfigurationEdgeKioskModeRestrictiondigitalSignage,
+"normalmode": Windows10GeneralConfigurationEdgeKioskModeRestrictionnormalMode,
+"notconfigured": Windows10GeneralConfigurationEdgeKioskModeRestrictionnotConfigured,
+"publicbrowsingmultiapp": Windows10GeneralConfigurationEdgeKioskModeRestrictionpublicBrowsingMultiApp,
+"publicbrowsingsingleapp": Windows10GeneralConfigurationEdgeKioskModeRestrictionpublicBrowsingSingleApp,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := Windows10GeneralConfigurationEdgeKioskModeRestriction(input)
+	return &out, nil
+}

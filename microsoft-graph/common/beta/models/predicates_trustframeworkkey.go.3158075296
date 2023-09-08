@@ -1,0 +1,111 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type TrustFrameworkKeyOperationPredicate struct {
+	 D *string
+	 Dp *string
+	 Dq *string
+	 E *string
+	 Exp *int64
+	 K *string
+	 Kid *string
+	 Kty *string
+	 N *string
+	 Nbf *int64
+	 ODataType *string
+	 P *string
+	 Q *string
+	 Qi *string
+	 Use *string
+	 X5t *string
+}
+
+func (p TrustFrameworkKeyOperationPredicate) Matches(input TrustFrameworkKey) bool {
+
+	if p.D != nil && (input.D == nil || *p.D != *input.D) {
+	 	return false
+	}
+
+
+	if p.Dp != nil && (input.Dp == nil || *p.Dp != *input.Dp) {
+	 	return false
+	}
+
+
+	if p.Dq != nil && (input.Dq == nil || *p.Dq != *input.Dq) {
+	 	return false
+	}
+
+
+	if p.E != nil && (input.E == nil || *p.E != *input.E) {
+	 	return false
+	}
+
+
+	if p.Exp != nil && (input.Exp == nil || *p.Exp != *input.Exp) {
+	 	return false
+	}
+
+
+	if p.K != nil && (input.K == nil || *p.K != *input.K) {
+	 	return false
+	}
+
+
+	if p.Kid != nil && (input.Kid == nil || *p.Kid != *input.Kid) {
+	 	return false
+	}
+
+
+	if p.Kty != nil && (input.Kty == nil || *p.Kty != *input.Kty) {
+	 	return false
+	}
+
+
+	if p.N != nil && (input.N == nil || *p.N != *input.N) {
+	 	return false
+	}
+
+
+	if p.Nbf != nil && (input.Nbf == nil || *p.Nbf != *input.Nbf) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.P != nil && (input.P == nil || *p.P != *input.P) {
+	 	return false
+	}
+
+
+	if p.Q != nil && (input.Q == nil || *p.Q != *input.Q) {
+	 	return false
+	}
+
+
+	if p.Qi != nil && (input.Qi == nil || *p.Qi != *input.Qi) {
+	 	return false
+	}
+
+
+	if p.Use != nil && (input.Use == nil || *p.Use != *input.Use) {
+	 	return false
+	}
+
+
+	if p.X5t != nil && (input.X5t == nil || *p.X5t != *input.X5t) {
+	 	return false
+	}
+
+
+	return true
+}
+

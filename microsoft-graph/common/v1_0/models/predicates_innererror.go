@@ -1,0 +1,32 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type InnerErrorOperationPredicate struct {
+	ClientRequestId *string
+	Date            *string
+	ODataType       *string
+	RequestId       *string
+}
+
+func (p InnerErrorOperationPredicate) Matches(input InnerError) bool {
+
+	if p.ClientRequestId != nil && (input.ClientRequestId == nil || *p.ClientRequestId != *input.ClientRequestId) {
+		return false
+	}
+
+	if p.Date != nil && (input.Date == nil || *p.Date != *input.Date) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.RequestId != nil && (input.RequestId == nil || *p.RequestId != *input.RequestId) {
+		return false
+	}
+
+	return true
+}

@@ -1,0 +1,127 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type VirtualEventSessionOperationPredicate struct {
+	AllowAttendeeToEnableCamera   *bool
+	AllowAttendeeToEnableMic      *bool
+	AllowParticipantsToChangeName *bool
+	AllowRecording                *bool
+	AllowTeamworkReactions        *bool
+	AllowTranscription            *bool
+	AlternativeRecording          *string
+	AttendeeReport                *string
+	BroadcastRecording            *string
+	CreationDateTime              *string
+	EndDateTime                   *string
+	ExternalId                    *string
+	Id                            *string
+	IsBroadcast                   *bool
+	IsEntryExitAnnounced          *bool
+	JoinUrl                       *string
+	JoinWebUrl                    *string
+	ODataType                     *string
+	RecordAutomatically           *bool
+	Recording                     *string
+	StartDateTime                 *string
+	Subject                       *string
+	VideoTeleconferenceId         *string
+}
+
+func (p VirtualEventSessionOperationPredicate) Matches(input VirtualEventSession) bool {
+
+	if p.AllowAttendeeToEnableCamera != nil && (input.AllowAttendeeToEnableCamera == nil || *p.AllowAttendeeToEnableCamera != *input.AllowAttendeeToEnableCamera) {
+		return false
+	}
+
+	if p.AllowAttendeeToEnableMic != nil && (input.AllowAttendeeToEnableMic == nil || *p.AllowAttendeeToEnableMic != *input.AllowAttendeeToEnableMic) {
+		return false
+	}
+
+	if p.AllowParticipantsToChangeName != nil && (input.AllowParticipantsToChangeName == nil || *p.AllowParticipantsToChangeName != *input.AllowParticipantsToChangeName) {
+		return false
+	}
+
+	if p.AllowRecording != nil && (input.AllowRecording == nil || *p.AllowRecording != *input.AllowRecording) {
+		return false
+	}
+
+	if p.AllowTeamworkReactions != nil && (input.AllowTeamworkReactions == nil || *p.AllowTeamworkReactions != *input.AllowTeamworkReactions) {
+		return false
+	}
+
+	if p.AllowTranscription != nil && (input.AllowTranscription == nil || *p.AllowTranscription != *input.AllowTranscription) {
+		return false
+	}
+
+	if p.AlternativeRecording != nil && (input.AlternativeRecording == nil || *p.AlternativeRecording != *input.AlternativeRecording) {
+		return false
+	}
+
+	if p.AttendeeReport != nil && (input.AttendeeReport == nil || *p.AttendeeReport != *input.AttendeeReport) {
+		return false
+	}
+
+	if p.BroadcastRecording != nil && (input.BroadcastRecording == nil || *p.BroadcastRecording != *input.BroadcastRecording) {
+		return false
+	}
+
+	if p.CreationDateTime != nil && (input.CreationDateTime == nil || *p.CreationDateTime != *input.CreationDateTime) {
+		return false
+	}
+
+	if p.EndDateTime != nil && (input.EndDateTime == nil || *p.EndDateTime != *input.EndDateTime) {
+		return false
+	}
+
+	if p.ExternalId != nil && (input.ExternalId == nil || *p.ExternalId != *input.ExternalId) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.IsBroadcast != nil && (input.IsBroadcast == nil || *p.IsBroadcast != *input.IsBroadcast) {
+		return false
+	}
+
+	if p.IsEntryExitAnnounced != nil && (input.IsEntryExitAnnounced == nil || *p.IsEntryExitAnnounced != *input.IsEntryExitAnnounced) {
+		return false
+	}
+
+	if p.JoinUrl != nil && (input.JoinUrl == nil || *p.JoinUrl != *input.JoinUrl) {
+		return false
+	}
+
+	if p.JoinWebUrl != nil && (input.JoinWebUrl == nil || *p.JoinWebUrl != *input.JoinWebUrl) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.RecordAutomatically != nil && (input.RecordAutomatically == nil || *p.RecordAutomatically != *input.RecordAutomatically) {
+		return false
+	}
+
+	if p.Recording != nil && (input.Recording == nil || *p.Recording != *input.Recording) {
+		return false
+	}
+
+	if p.StartDateTime != nil && (input.StartDateTime == nil || *p.StartDateTime != *input.StartDateTime) {
+		return false
+	}
+
+	if p.Subject != nil && (input.Subject == nil || *p.Subject != *input.Subject) {
+		return false
+	}
+
+	if p.VideoTeleconferenceId != nil && (input.VideoTeleconferenceId == nil || *p.VideoTeleconferenceId != *input.VideoTeleconferenceId) {
+		return false
+	}
+
+	return true
+}

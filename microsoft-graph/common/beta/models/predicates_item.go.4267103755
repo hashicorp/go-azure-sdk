@@ -1,0 +1,117 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type ItemOperationPredicate struct {
+	 BaseUnitOfMeasureId *string
+	 Blocked *bool
+	 DisplayName *string
+	 Gtin *string
+	 Id *string
+	 Inventory *float64
+	 ItemCategoryCode *string
+	 ItemCategoryId *string
+	 LastModifiedDateTime *string
+	 Number *string
+	 ODataType *string
+	 PriceIncludesTax *bool
+	 TaxGroupCode *string
+	 TaxGroupId *string
+	 Type *string
+	 UnitCost *float64
+	 UnitPrice *float64
+}
+
+func (p ItemOperationPredicate) Matches(input Item) bool {
+
+	if p.BaseUnitOfMeasureId != nil && (input.BaseUnitOfMeasureId == nil || *p.BaseUnitOfMeasureId != *input.BaseUnitOfMeasureId) {
+	 	return false
+	}
+
+
+	if p.Blocked != nil && (input.Blocked == nil || *p.Blocked != *input.Blocked) {
+	 	return false
+	}
+
+
+	if p.DisplayName != nil && (input.DisplayName == nil || *p.DisplayName != *input.DisplayName) {
+	 	return false
+	}
+
+
+	if p.Gtin != nil && (input.Gtin == nil || *p.Gtin != *input.Gtin) {
+	 	return false
+	}
+
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+	 	return false
+	}
+
+
+	if p.Inventory != nil && (input.Inventory == nil || *p.Inventory != *input.Inventory) {
+	 	return false
+	}
+
+
+	if p.ItemCategoryCode != nil && (input.ItemCategoryCode == nil || *p.ItemCategoryCode != *input.ItemCategoryCode) {
+	 	return false
+	}
+
+
+	if p.ItemCategoryId != nil && (input.ItemCategoryId == nil || *p.ItemCategoryId != *input.ItemCategoryId) {
+	 	return false
+	}
+
+
+	if p.LastModifiedDateTime != nil && (input.LastModifiedDateTime == nil || *p.LastModifiedDateTime != *input.LastModifiedDateTime) {
+	 	return false
+	}
+
+
+	if p.Number != nil && (input.Number == nil || *p.Number != *input.Number) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.PriceIncludesTax != nil && (input.PriceIncludesTax == nil || *p.PriceIncludesTax != *input.PriceIncludesTax) {
+	 	return false
+	}
+
+
+	if p.TaxGroupCode != nil && (input.TaxGroupCode == nil || *p.TaxGroupCode != *input.TaxGroupCode) {
+	 	return false
+	}
+
+
+	if p.TaxGroupId != nil && (input.TaxGroupId == nil || *p.TaxGroupId != *input.TaxGroupId) {
+	 	return false
+	}
+
+
+	if p.Type != nil && (input.Type == nil || *p.Type != *input.Type) {
+	 	return false
+	}
+
+
+	if p.UnitCost != nil && (input.UnitCost == nil || *p.UnitCost != *input.UnitCost) {
+	 	return false
+	}
+
+
+	if p.UnitPrice != nil && (input.UnitPrice == nil || *p.UnitPrice != *input.UnitPrice) {
+	 	return false
+	}
+
+
+	return true
+}
+

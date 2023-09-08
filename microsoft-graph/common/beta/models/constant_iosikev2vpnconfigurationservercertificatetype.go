@@ -1,0 +1,40 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type IosikEv2VpnConfigurationServerCertificateType string
+
+const (
+	IosikEv2VpnConfigurationServerCertificateTypeecdsa256 IosikEv2VpnConfigurationServerCertificateType = "Ecdsa256"
+	IosikEv2VpnConfigurationServerCertificateTypeecdsa384 IosikEv2VpnConfigurationServerCertificateType = "Ecdsa384"
+	IosikEv2VpnConfigurationServerCertificateTypeecdsa521 IosikEv2VpnConfigurationServerCertificateType = "Ecdsa521"
+	IosikEv2VpnConfigurationServerCertificateTypersa      IosikEv2VpnConfigurationServerCertificateType = "Rsa"
+)
+
+func PossibleValuesForIosikEv2VpnConfigurationServerCertificateType() []string {
+	return []string{
+		string(IosikEv2VpnConfigurationServerCertificateTypeecdsa256),
+		string(IosikEv2VpnConfigurationServerCertificateTypeecdsa384),
+		string(IosikEv2VpnConfigurationServerCertificateTypeecdsa521),
+		string(IosikEv2VpnConfigurationServerCertificateTypersa),
+	}
+}
+
+func parseIosikEv2VpnConfigurationServerCertificateType(input string) (*IosikEv2VpnConfigurationServerCertificateType, error) {
+	vals := map[string]IosikEv2VpnConfigurationServerCertificateType{
+		"ecdsa256": IosikEv2VpnConfigurationServerCertificateTypeecdsa256,
+		"ecdsa384": IosikEv2VpnConfigurationServerCertificateTypeecdsa384,
+		"ecdsa521": IosikEv2VpnConfigurationServerCertificateTypeecdsa521,
+		"rsa":      IosikEv2VpnConfigurationServerCertificateTypersa,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := IosikEv2VpnConfigurationServerCertificateType(input)
+	return &out, nil
+}

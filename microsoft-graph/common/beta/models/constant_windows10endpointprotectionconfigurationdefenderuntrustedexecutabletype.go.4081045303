@@ -1,0 +1,49 @@
+package models
+
+import "strings"
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type Windows10EndpointProtectionConfigurationDefenderUntrustedExecutableType string
+
+const (
+	Windows10EndpointProtectionConfigurationDefenderUntrustedExecutableTypeauditMode Windows10EndpointProtectionConfigurationDefenderUntrustedExecutableType = "AuditMode"
+	Windows10EndpointProtectionConfigurationDefenderUntrustedExecutableTypeblock Windows10EndpointProtectionConfigurationDefenderUntrustedExecutableType = "Block"
+	Windows10EndpointProtectionConfigurationDefenderUntrustedExecutableTypedisable Windows10EndpointProtectionConfigurationDefenderUntrustedExecutableType = "Disable"
+	Windows10EndpointProtectionConfigurationDefenderUntrustedExecutableTypeuserDefined Windows10EndpointProtectionConfigurationDefenderUntrustedExecutableType = "UserDefined"
+	Windows10EndpointProtectionConfigurationDefenderUntrustedExecutableTypewarn Windows10EndpointProtectionConfigurationDefenderUntrustedExecutableType = "Warn"
+)
+
+
+func PossibleValuesForWindows10EndpointProtectionConfigurationDefenderUntrustedExecutableType() []string {
+	return []string{
+		string(Windows10EndpointProtectionConfigurationDefenderUntrustedExecutableTypeauditMode),
+string(Windows10EndpointProtectionConfigurationDefenderUntrustedExecutableTypeblock),
+string(Windows10EndpointProtectionConfigurationDefenderUntrustedExecutableTypedisable),
+string(Windows10EndpointProtectionConfigurationDefenderUntrustedExecutableTypeuserDefined),
+string(Windows10EndpointProtectionConfigurationDefenderUntrustedExecutableTypewarn),
+	}
+}
+
+
+
+func parseWindows10EndpointProtectionConfigurationDefenderUntrustedExecutableType(input string) (*Windows10EndpointProtectionConfigurationDefenderUntrustedExecutableType, error) {
+	vals := map[string]Windows10EndpointProtectionConfigurationDefenderUntrustedExecutableType{
+		"auditmode": Windows10EndpointProtectionConfigurationDefenderUntrustedExecutableTypeauditMode,
+"block": Windows10EndpointProtectionConfigurationDefenderUntrustedExecutableTypeblock,
+"disable": Windows10EndpointProtectionConfigurationDefenderUntrustedExecutableTypedisable,
+"userdefined": Windows10EndpointProtectionConfigurationDefenderUntrustedExecutableTypeuserDefined,
+"warn": Windows10EndpointProtectionConfigurationDefenderUntrustedExecutableTypewarn,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := Windows10EndpointProtectionConfigurationDefenderUntrustedExecutableType(input)
+	return &out, nil
+}

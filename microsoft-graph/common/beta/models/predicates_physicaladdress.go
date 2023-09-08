@@ -1,0 +1,47 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type PhysicalAddressOperationPredicate struct {
+	City            *string
+	CountryOrRegion *string
+	ODataType       *string
+	PostOfficeBox   *string
+	PostalCode      *string
+	State           *string
+	Street          *string
+}
+
+func (p PhysicalAddressOperationPredicate) Matches(input PhysicalAddress) bool {
+
+	if p.City != nil && (input.City == nil || *p.City != *input.City) {
+		return false
+	}
+
+	if p.CountryOrRegion != nil && (input.CountryOrRegion == nil || *p.CountryOrRegion != *input.CountryOrRegion) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.PostOfficeBox != nil && (input.PostOfficeBox == nil || *p.PostOfficeBox != *input.PostOfficeBox) {
+		return false
+	}
+
+	if p.PostalCode != nil && (input.PostalCode == nil || *p.PostalCode != *input.PostalCode) {
+		return false
+	}
+
+	if p.State != nil && (input.State == nil || *p.State != *input.State) {
+		return false
+	}
+
+	if p.Street != nil && (input.Street == nil || *p.Street != *input.Street) {
+		return false
+	}
+
+	return true
+}

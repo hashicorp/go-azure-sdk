@@ -1,0 +1,22 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type IPv6CidrRangeOperationPredicate struct {
+	CidrAddress *string
+	ODataType   *string
+}
+
+func (p IPv6CidrRangeOperationPredicate) Matches(input IPv6CidrRange) bool {
+
+	if p.CidrAddress != nil && (input.CidrAddress == nil || *p.CidrAddress != *input.CidrAddress) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	return true
+}

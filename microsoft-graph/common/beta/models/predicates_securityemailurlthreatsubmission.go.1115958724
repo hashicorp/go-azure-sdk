@@ -1,0 +1,81 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type SecurityEmailUrlThreatSubmissionOperationPredicate struct {
+	 CreatedDateTime *string
+	 Id *string
+	 InternetMessageId *string
+	 MessageUrl *string
+	 ODataType *string
+	 ReceivedDateTime *string
+	 RecipientEmailAddress *string
+	 Sender *string
+	 SenderIP *string
+	 Subject *string
+	 TenantId *string
+}
+
+func (p SecurityEmailUrlThreatSubmissionOperationPredicate) Matches(input SecurityEmailUrlThreatSubmission) bool {
+
+	if p.CreatedDateTime != nil && (input.CreatedDateTime == nil || *p.CreatedDateTime != *input.CreatedDateTime) {
+	 	return false
+	}
+
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+	 	return false
+	}
+
+
+	if p.InternetMessageId != nil && (input.InternetMessageId == nil || *p.InternetMessageId != *input.InternetMessageId) {
+	 	return false
+	}
+
+
+	if p.MessageUrl != nil && (input.MessageUrl == nil || *p.MessageUrl != *input.MessageUrl) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.ReceivedDateTime != nil && (input.ReceivedDateTime == nil || *p.ReceivedDateTime != *input.ReceivedDateTime) {
+	 	return false
+	}
+
+
+	if p.RecipientEmailAddress != nil && (input.RecipientEmailAddress == nil || *p.RecipientEmailAddress != *input.RecipientEmailAddress) {
+	 	return false
+	}
+
+
+	if p.Sender != nil && (input.Sender == nil || *p.Sender != *input.Sender) {
+	 	return false
+	}
+
+
+	if p.SenderIP != nil && (input.SenderIP == nil || *p.SenderIP != *input.SenderIP) {
+	 	return false
+	}
+
+
+	if p.Subject != nil && (input.Subject == nil || *p.Subject != *input.Subject) {
+	 	return false
+	}
+
+
+	if p.TenantId != nil && (input.TenantId == nil || *p.TenantId != *input.TenantId) {
+	 	return false
+	}
+
+
+	return true
+}
+

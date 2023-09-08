@@ -1,0 +1,34 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type X509CertificateRuleX509CertificateAuthenticationMode string
+
+const (
+	X509CertificateRuleX509CertificateAuthenticationModex509CertificateMultiFactor  X509CertificateRuleX509CertificateAuthenticationMode = "X509CertificateMultiFactor"
+	X509CertificateRuleX509CertificateAuthenticationModex509CertificateSingleFactor X509CertificateRuleX509CertificateAuthenticationMode = "X509CertificateSingleFactor"
+)
+
+func PossibleValuesForX509CertificateRuleX509CertificateAuthenticationMode() []string {
+	return []string{
+		string(X509CertificateRuleX509CertificateAuthenticationModex509CertificateMultiFactor),
+		string(X509CertificateRuleX509CertificateAuthenticationModex509CertificateSingleFactor),
+	}
+}
+
+func parseX509CertificateRuleX509CertificateAuthenticationMode(input string) (*X509CertificateRuleX509CertificateAuthenticationMode, error) {
+	vals := map[string]X509CertificateRuleX509CertificateAuthenticationMode{
+		"x509certificatemultifactor":  X509CertificateRuleX509CertificateAuthenticationModex509CertificateMultiFactor,
+		"x509certificatesinglefactor": X509CertificateRuleX509CertificateAuthenticationModex509CertificateSingleFactor,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := X509CertificateRuleX509CertificateAuthenticationMode(input)
+	return &out, nil
+}

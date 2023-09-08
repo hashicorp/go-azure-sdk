@@ -1,0 +1,51 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type DefaultUserRolePermissionsOperationPredicate struct {
+	 AllowedToCreateApps *bool
+	 AllowedToCreateSecurityGroups *bool
+	 AllowedToCreateTenants *bool
+	 AllowedToReadBitlockerKeysForOwnedDevice *bool
+	 AllowedToReadOtherUsers *bool
+	 ODataType *string
+}
+
+func (p DefaultUserRolePermissionsOperationPredicate) Matches(input DefaultUserRolePermissions) bool {
+
+	if p.AllowedToCreateApps != nil && (input.AllowedToCreateApps == nil || *p.AllowedToCreateApps != *input.AllowedToCreateApps) {
+	 	return false
+	}
+
+
+	if p.AllowedToCreateSecurityGroups != nil && (input.AllowedToCreateSecurityGroups == nil || *p.AllowedToCreateSecurityGroups != *input.AllowedToCreateSecurityGroups) {
+	 	return false
+	}
+
+
+	if p.AllowedToCreateTenants != nil && (input.AllowedToCreateTenants == nil || *p.AllowedToCreateTenants != *input.AllowedToCreateTenants) {
+	 	return false
+	}
+
+
+	if p.AllowedToReadBitlockerKeysForOwnedDevice != nil && (input.AllowedToReadBitlockerKeysForOwnedDevice == nil || *p.AllowedToReadBitlockerKeysForOwnedDevice != *input.AllowedToReadBitlockerKeysForOwnedDevice) {
+	 	return false
+	}
+
+
+	if p.AllowedToReadOtherUsers != nil && (input.AllowedToReadOtherUsers == nil || *p.AllowedToReadOtherUsers != *input.AllowedToReadOtherUsers) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	return true
+}
+

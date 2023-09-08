@@ -1,0 +1,40 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type Win32LobAppInstallExperienceDeviceRestartBehavior string
+
+const (
+	Win32LobAppInstallExperienceDeviceRestartBehaviorallow             Win32LobAppInstallExperienceDeviceRestartBehavior = "Allow"
+	Win32LobAppInstallExperienceDeviceRestartBehaviorbasedOnReturnCode Win32LobAppInstallExperienceDeviceRestartBehavior = "BasedOnReturnCode"
+	Win32LobAppInstallExperienceDeviceRestartBehaviorforce             Win32LobAppInstallExperienceDeviceRestartBehavior = "Force"
+	Win32LobAppInstallExperienceDeviceRestartBehaviorsuppress          Win32LobAppInstallExperienceDeviceRestartBehavior = "Suppress"
+)
+
+func PossibleValuesForWin32LobAppInstallExperienceDeviceRestartBehavior() []string {
+	return []string{
+		string(Win32LobAppInstallExperienceDeviceRestartBehaviorallow),
+		string(Win32LobAppInstallExperienceDeviceRestartBehaviorbasedOnReturnCode),
+		string(Win32LobAppInstallExperienceDeviceRestartBehaviorforce),
+		string(Win32LobAppInstallExperienceDeviceRestartBehaviorsuppress),
+	}
+}
+
+func parseWin32LobAppInstallExperienceDeviceRestartBehavior(input string) (*Win32LobAppInstallExperienceDeviceRestartBehavior, error) {
+	vals := map[string]Win32LobAppInstallExperienceDeviceRestartBehavior{
+		"allow":             Win32LobAppInstallExperienceDeviceRestartBehaviorallow,
+		"basedonreturncode": Win32LobAppInstallExperienceDeviceRestartBehaviorbasedOnReturnCode,
+		"force":             Win32LobAppInstallExperienceDeviceRestartBehaviorforce,
+		"suppress":          Win32LobAppInstallExperienceDeviceRestartBehaviorsuppress,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := Win32LobAppInstallExperienceDeviceRestartBehavior(input)
+	return &out, nil
+}

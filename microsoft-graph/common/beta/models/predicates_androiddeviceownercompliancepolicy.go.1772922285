@@ -1,0 +1,171 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type AndroidDeviceOwnerCompliancePolicyOperationPredicate struct {
+	 CreatedDateTime *string
+	 Description *string
+	 DeviceThreatProtectionEnabled *bool
+	 DisplayName *string
+	 Id *string
+	 LastModifiedDateTime *string
+	 MinAndroidSecurityPatchLevel *string
+	 ODataType *string
+	 OsMaximumVersion *string
+	 OsMinimumVersion *string
+	 PasswordExpirationDays *int64
+	 PasswordMinimumLength *int64
+	 PasswordMinimumLetterCharacters *int64
+	 PasswordMinimumLowerCaseCharacters *int64
+	 PasswordMinimumNonLetterCharacters *int64
+	 PasswordMinimumNumericCharacters *int64
+	 PasswordMinimumSymbolCharacters *int64
+	 PasswordMinimumUpperCaseCharacters *int64
+	 PasswordMinutesOfInactivityBeforeLock *int64
+	 PasswordPreviousPasswordCountToBlock *int64
+	 PasswordRequired *bool
+	 SecurityRequireIntuneAppIntegrity *bool
+	 SecurityRequireSafetyNetAttestationBasicIntegrity *bool
+	 SecurityRequireSafetyNetAttestationCertifiedDevice *bool
+	 StorageRequireEncryption *bool
+	 Version *int64
+}
+
+func (p AndroidDeviceOwnerCompliancePolicyOperationPredicate) Matches(input AndroidDeviceOwnerCompliancePolicy) bool {
+
+	if p.CreatedDateTime != nil && (input.CreatedDateTime == nil || *p.CreatedDateTime != *input.CreatedDateTime) {
+	 	return false
+	}
+
+
+	if p.Description != nil && (input.Description == nil || *p.Description != *input.Description) {
+	 	return false
+	}
+
+
+	if p.DeviceThreatProtectionEnabled != nil && (input.DeviceThreatProtectionEnabled == nil || *p.DeviceThreatProtectionEnabled != *input.DeviceThreatProtectionEnabled) {
+	 	return false
+	}
+
+
+	if p.DisplayName != nil && (input.DisplayName == nil || *p.DisplayName != *input.DisplayName) {
+	 	return false
+	}
+
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+	 	return false
+	}
+
+
+	if p.LastModifiedDateTime != nil && (input.LastModifiedDateTime == nil || *p.LastModifiedDateTime != *input.LastModifiedDateTime) {
+	 	return false
+	}
+
+
+	if p.MinAndroidSecurityPatchLevel != nil && (input.MinAndroidSecurityPatchLevel == nil || *p.MinAndroidSecurityPatchLevel != *input.MinAndroidSecurityPatchLevel) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.OsMaximumVersion != nil && (input.OsMaximumVersion == nil || *p.OsMaximumVersion != *input.OsMaximumVersion) {
+	 	return false
+	}
+
+
+	if p.OsMinimumVersion != nil && (input.OsMinimumVersion == nil || *p.OsMinimumVersion != *input.OsMinimumVersion) {
+	 	return false
+	}
+
+
+	if p.PasswordExpirationDays != nil && (input.PasswordExpirationDays == nil || *p.PasswordExpirationDays != *input.PasswordExpirationDays) {
+	 	return false
+	}
+
+
+	if p.PasswordMinimumLength != nil && (input.PasswordMinimumLength == nil || *p.PasswordMinimumLength != *input.PasswordMinimumLength) {
+	 	return false
+	}
+
+
+	if p.PasswordMinimumLetterCharacters != nil && (input.PasswordMinimumLetterCharacters == nil || *p.PasswordMinimumLetterCharacters != *input.PasswordMinimumLetterCharacters) {
+	 	return false
+	}
+
+
+	if p.PasswordMinimumLowerCaseCharacters != nil && (input.PasswordMinimumLowerCaseCharacters == nil || *p.PasswordMinimumLowerCaseCharacters != *input.PasswordMinimumLowerCaseCharacters) {
+	 	return false
+	}
+
+
+	if p.PasswordMinimumNonLetterCharacters != nil && (input.PasswordMinimumNonLetterCharacters == nil || *p.PasswordMinimumNonLetterCharacters != *input.PasswordMinimumNonLetterCharacters) {
+	 	return false
+	}
+
+
+	if p.PasswordMinimumNumericCharacters != nil && (input.PasswordMinimumNumericCharacters == nil || *p.PasswordMinimumNumericCharacters != *input.PasswordMinimumNumericCharacters) {
+	 	return false
+	}
+
+
+	if p.PasswordMinimumSymbolCharacters != nil && (input.PasswordMinimumSymbolCharacters == nil || *p.PasswordMinimumSymbolCharacters != *input.PasswordMinimumSymbolCharacters) {
+	 	return false
+	}
+
+
+	if p.PasswordMinimumUpperCaseCharacters != nil && (input.PasswordMinimumUpperCaseCharacters == nil || *p.PasswordMinimumUpperCaseCharacters != *input.PasswordMinimumUpperCaseCharacters) {
+	 	return false
+	}
+
+
+	if p.PasswordMinutesOfInactivityBeforeLock != nil && (input.PasswordMinutesOfInactivityBeforeLock == nil || *p.PasswordMinutesOfInactivityBeforeLock != *input.PasswordMinutesOfInactivityBeforeLock) {
+	 	return false
+	}
+
+
+	if p.PasswordPreviousPasswordCountToBlock != nil && (input.PasswordPreviousPasswordCountToBlock == nil || *p.PasswordPreviousPasswordCountToBlock != *input.PasswordPreviousPasswordCountToBlock) {
+	 	return false
+	}
+
+
+	if p.PasswordRequired != nil && (input.PasswordRequired == nil || *p.PasswordRequired != *input.PasswordRequired) {
+	 	return false
+	}
+
+
+	if p.SecurityRequireIntuneAppIntegrity != nil && (input.SecurityRequireIntuneAppIntegrity == nil || *p.SecurityRequireIntuneAppIntegrity != *input.SecurityRequireIntuneAppIntegrity) {
+	 	return false
+	}
+
+
+	if p.SecurityRequireSafetyNetAttestationBasicIntegrity != nil && (input.SecurityRequireSafetyNetAttestationBasicIntegrity == nil || *p.SecurityRequireSafetyNetAttestationBasicIntegrity != *input.SecurityRequireSafetyNetAttestationBasicIntegrity) {
+	 	return false
+	}
+
+
+	if p.SecurityRequireSafetyNetAttestationCertifiedDevice != nil && (input.SecurityRequireSafetyNetAttestationCertifiedDevice == nil || *p.SecurityRequireSafetyNetAttestationCertifiedDevice != *input.SecurityRequireSafetyNetAttestationCertifiedDevice) {
+	 	return false
+	}
+
+
+	if p.StorageRequireEncryption != nil && (input.StorageRequireEncryption == nil || *p.StorageRequireEncryption != *input.StorageRequireEncryption) {
+	 	return false
+	}
+
+
+	if p.Version != nil && (input.Version == nil || *p.Version != *input.Version) {
+	 	return false
+	}
+
+
+	return true
+}
+

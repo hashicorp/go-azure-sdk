@@ -1,0 +1,77 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type MacOSMinimumOperatingSystemOperationPredicate struct {
+	ODataType *string
+	V1010     *bool
+	V1011     *bool
+	V1012     *bool
+	V1013     *bool
+	V1014     *bool
+	V1015     *bool
+	V107      *bool
+	V108      *bool
+	V109      *bool
+	V110      *bool
+	V120      *bool
+	V130      *bool
+}
+
+func (p MacOSMinimumOperatingSystemOperationPredicate) Matches(input MacOSMinimumOperatingSystem) bool {
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.V1010 != nil && (input.V1010 == nil || *p.V1010 != *input.V1010) {
+		return false
+	}
+
+	if p.V1011 != nil && (input.V1011 == nil || *p.V1011 != *input.V1011) {
+		return false
+	}
+
+	if p.V1012 != nil && (input.V1012 == nil || *p.V1012 != *input.V1012) {
+		return false
+	}
+
+	if p.V1013 != nil && (input.V1013 == nil || *p.V1013 != *input.V1013) {
+		return false
+	}
+
+	if p.V1014 != nil && (input.V1014 == nil || *p.V1014 != *input.V1014) {
+		return false
+	}
+
+	if p.V1015 != nil && (input.V1015 == nil || *p.V1015 != *input.V1015) {
+		return false
+	}
+
+	if p.V107 != nil && (input.V107 == nil || *p.V107 != *input.V107) {
+		return false
+	}
+
+	if p.V108 != nil && (input.V108 == nil || *p.V108 != *input.V108) {
+		return false
+	}
+
+	if p.V109 != nil && (input.V109 == nil || *p.V109 != *input.V109) {
+		return false
+	}
+
+	if p.V110 != nil && (input.V110 == nil || *p.V110 != *input.V110) {
+		return false
+	}
+
+	if p.V120 != nil && (input.V120 == nil || *p.V120 != *input.V120) {
+		return false
+	}
+
+	if p.V130 != nil && (input.V130 == nil || *p.V130 != *input.V130) {
+		return false
+	}
+
+	return true
+}

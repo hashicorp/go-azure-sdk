@@ -1,0 +1,43 @@
+package models
+
+import "strings"
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type Windows10EndpointProtectionConfigurationXboxServicesLiveGameSaveServiceStartupMode string
+
+const (
+	Windows10EndpointProtectionConfigurationXboxServicesLiveGameSaveServiceStartupModeautomatic Windows10EndpointProtectionConfigurationXboxServicesLiveGameSaveServiceStartupMode = "Automatic"
+	Windows10EndpointProtectionConfigurationXboxServicesLiveGameSaveServiceStartupModedisabled Windows10EndpointProtectionConfigurationXboxServicesLiveGameSaveServiceStartupMode = "Disabled"
+	Windows10EndpointProtectionConfigurationXboxServicesLiveGameSaveServiceStartupModemanual Windows10EndpointProtectionConfigurationXboxServicesLiveGameSaveServiceStartupMode = "Manual"
+)
+
+
+func PossibleValuesForWindows10EndpointProtectionConfigurationXboxServicesLiveGameSaveServiceStartupMode() []string {
+	return []string{
+		string(Windows10EndpointProtectionConfigurationXboxServicesLiveGameSaveServiceStartupModeautomatic),
+string(Windows10EndpointProtectionConfigurationXboxServicesLiveGameSaveServiceStartupModedisabled),
+string(Windows10EndpointProtectionConfigurationXboxServicesLiveGameSaveServiceStartupModemanual),
+	}
+}
+
+
+
+func parseWindows10EndpointProtectionConfigurationXboxServicesLiveGameSaveServiceStartupMode(input string) (*Windows10EndpointProtectionConfigurationXboxServicesLiveGameSaveServiceStartupMode, error) {
+	vals := map[string]Windows10EndpointProtectionConfigurationXboxServicesLiveGameSaveServiceStartupMode{
+		"automatic": Windows10EndpointProtectionConfigurationXboxServicesLiveGameSaveServiceStartupModeautomatic,
+"disabled": Windows10EndpointProtectionConfigurationXboxServicesLiveGameSaveServiceStartupModedisabled,
+"manual": Windows10EndpointProtectionConfigurationXboxServicesLiveGameSaveServiceStartupModemanual,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := Windows10EndpointProtectionConfigurationXboxServicesLiveGameSaveServiceStartupMode(input)
+	return &out, nil
+}

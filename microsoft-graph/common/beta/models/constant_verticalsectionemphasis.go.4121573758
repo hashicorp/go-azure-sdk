@@ -1,0 +1,46 @@
+package models
+
+import "strings"
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type VerticalSectionEmphasis string
+
+const (
+	VerticalSectionEmphasisneutral VerticalSectionEmphasis = "Neutral"
+	VerticalSectionEmphasisnone VerticalSectionEmphasis = "None"
+	VerticalSectionEmphasissoft VerticalSectionEmphasis = "Soft"
+	VerticalSectionEmphasisstrong VerticalSectionEmphasis = "Strong"
+)
+
+
+func PossibleValuesForVerticalSectionEmphasis() []string {
+	return []string{
+		string(VerticalSectionEmphasisneutral),
+string(VerticalSectionEmphasisnone),
+string(VerticalSectionEmphasissoft),
+string(VerticalSectionEmphasisstrong),
+	}
+}
+
+
+
+func parseVerticalSectionEmphasis(input string) (*VerticalSectionEmphasis, error) {
+	vals := map[string]VerticalSectionEmphasis{
+		"neutral": VerticalSectionEmphasisneutral,
+"none": VerticalSectionEmphasisnone,
+"soft": VerticalSectionEmphasissoft,
+"strong": VerticalSectionEmphasisstrong,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := VerticalSectionEmphasis(input)
+	return &out, nil
+}

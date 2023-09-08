@@ -1,0 +1,72 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type UnmanagedDeviceOperationPredicate struct {
+	DeviceName       *string
+	Domain           *string
+	IpAddress        *string
+	LastLoggedOnUser *string
+	LastSeenDateTime *string
+	Location         *string
+	MacAddress       *string
+	Manufacturer     *string
+	Model            *string
+	ODataType        *string
+	Os               *string
+	OsVersion        *string
+}
+
+func (p UnmanagedDeviceOperationPredicate) Matches(input UnmanagedDevice) bool {
+
+	if p.DeviceName != nil && (input.DeviceName == nil || *p.DeviceName != *input.DeviceName) {
+		return false
+	}
+
+	if p.Domain != nil && (input.Domain == nil || *p.Domain != *input.Domain) {
+		return false
+	}
+
+	if p.IpAddress != nil && (input.IpAddress == nil || *p.IpAddress != *input.IpAddress) {
+		return false
+	}
+
+	if p.LastLoggedOnUser != nil && (input.LastLoggedOnUser == nil || *p.LastLoggedOnUser != *input.LastLoggedOnUser) {
+		return false
+	}
+
+	if p.LastSeenDateTime != nil && (input.LastSeenDateTime == nil || *p.LastSeenDateTime != *input.LastSeenDateTime) {
+		return false
+	}
+
+	if p.Location != nil && (input.Location == nil || *p.Location != *input.Location) {
+		return false
+	}
+
+	if p.MacAddress != nil && (input.MacAddress == nil || *p.MacAddress != *input.MacAddress) {
+		return false
+	}
+
+	if p.Manufacturer != nil && (input.Manufacturer == nil || *p.Manufacturer != *input.Manufacturer) {
+		return false
+	}
+
+	if p.Model != nil && (input.Model == nil || *p.Model != *input.Model) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.Os != nil && (input.Os == nil || *p.Os != *input.Os) {
+		return false
+	}
+
+	if p.OsVersion != nil && (input.OsVersion == nil || *p.OsVersion != *input.OsVersion) {
+		return false
+	}
+
+	return true
+}

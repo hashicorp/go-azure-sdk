@@ -1,0 +1,43 @@
+package models
+
+import "strings"
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type WindowsWifiEnterpriseEAPConfigurationMeteredConnectionLimit string
+
+const (
+	WindowsWifiEnterpriseEAPConfigurationMeteredConnectionLimitfixed WindowsWifiEnterpriseEAPConfigurationMeteredConnectionLimit = "Fixed"
+	WindowsWifiEnterpriseEAPConfigurationMeteredConnectionLimitunrestricted WindowsWifiEnterpriseEAPConfigurationMeteredConnectionLimit = "Unrestricted"
+	WindowsWifiEnterpriseEAPConfigurationMeteredConnectionLimitvariable WindowsWifiEnterpriseEAPConfigurationMeteredConnectionLimit = "Variable"
+)
+
+
+func PossibleValuesForWindowsWifiEnterpriseEAPConfigurationMeteredConnectionLimit() []string {
+	return []string{
+		string(WindowsWifiEnterpriseEAPConfigurationMeteredConnectionLimitfixed),
+string(WindowsWifiEnterpriseEAPConfigurationMeteredConnectionLimitunrestricted),
+string(WindowsWifiEnterpriseEAPConfigurationMeteredConnectionLimitvariable),
+	}
+}
+
+
+
+func parseWindowsWifiEnterpriseEAPConfigurationMeteredConnectionLimit(input string) (*WindowsWifiEnterpriseEAPConfigurationMeteredConnectionLimit, error) {
+	vals := map[string]WindowsWifiEnterpriseEAPConfigurationMeteredConnectionLimit{
+		"fixed": WindowsWifiEnterpriseEAPConfigurationMeteredConnectionLimitfixed,
+"unrestricted": WindowsWifiEnterpriseEAPConfigurationMeteredConnectionLimitunrestricted,
+"variable": WindowsWifiEnterpriseEAPConfigurationMeteredConnectionLimitvariable,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := WindowsWifiEnterpriseEAPConfigurationMeteredConnectionLimit(input)
+	return &out, nil
+}

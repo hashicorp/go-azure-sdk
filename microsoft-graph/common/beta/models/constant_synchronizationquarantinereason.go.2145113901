@@ -1,0 +1,58 @@
+package models
+
+import "strings"
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type SynchronizationQuarantineReason string
+
+const (
+	SynchronizationQuarantineReasonEncounteredBaseEscrowThreshold SynchronizationQuarantineReason = "EncounteredBaseEscrowThreshold"
+	SynchronizationQuarantineReasonEncounteredEscrowProportionThreshold SynchronizationQuarantineReason = "EncounteredEscrowProportionThreshold"
+	SynchronizationQuarantineReasonEncounteredQuarantineException SynchronizationQuarantineReason = "EncounteredQuarantineException"
+	SynchronizationQuarantineReasonEncounteredTotalEscrowThreshold SynchronizationQuarantineReason = "EncounteredTotalEscrowThreshold"
+	SynchronizationQuarantineReasonIngestionInterrupted SynchronizationQuarantineReason = "IngestionInterrupted"
+	SynchronizationQuarantineReasonQuarantinedOnDemand SynchronizationQuarantineReason = "QuarantinedOnDemand"
+	SynchronizationQuarantineReasonTooManyDeletes SynchronizationQuarantineReason = "TooManyDeletes"
+	SynchronizationQuarantineReasonUnknown SynchronizationQuarantineReason = "Unknown"
+)
+
+
+func PossibleValuesForSynchronizationQuarantineReason() []string {
+	return []string{
+		string(SynchronizationQuarantineReasonEncounteredBaseEscrowThreshold),
+string(SynchronizationQuarantineReasonEncounteredEscrowProportionThreshold),
+string(SynchronizationQuarantineReasonEncounteredQuarantineException),
+string(SynchronizationQuarantineReasonEncounteredTotalEscrowThreshold),
+string(SynchronizationQuarantineReasonIngestionInterrupted),
+string(SynchronizationQuarantineReasonQuarantinedOnDemand),
+string(SynchronizationQuarantineReasonTooManyDeletes),
+string(SynchronizationQuarantineReasonUnknown),
+	}
+}
+
+
+
+func parseSynchronizationQuarantineReason(input string) (*SynchronizationQuarantineReason, error) {
+	vals := map[string]SynchronizationQuarantineReason{
+		"encounteredbaseescrowthreshold": SynchronizationQuarantineReasonEncounteredBaseEscrowThreshold,
+"encounteredescrowproportionthreshold": SynchronizationQuarantineReasonEncounteredEscrowProportionThreshold,
+"encounteredquarantineexception": SynchronizationQuarantineReasonEncounteredQuarantineException,
+"encounteredtotalescrowthreshold": SynchronizationQuarantineReasonEncounteredTotalEscrowThreshold,
+"ingestioninterrupted": SynchronizationQuarantineReasonIngestionInterrupted,
+"quarantinedondemand": SynchronizationQuarantineReasonQuarantinedOnDemand,
+"toomanydeletes": SynchronizationQuarantineReasonTooManyDeletes,
+"unknown": SynchronizationQuarantineReasonUnknown,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SynchronizationQuarantineReason(input)
+	return &out, nil
+}

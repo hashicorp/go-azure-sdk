@@ -1,0 +1,49 @@
+package models
+
+import "strings"
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type Windows10EndpointProtectionConfigurationDefenderOfficeMacroCodeAllowWin32Imports string
+
+const (
+	Windows10EndpointProtectionConfigurationDefenderOfficeMacroCodeAllowWin32ImportsauditMode Windows10EndpointProtectionConfigurationDefenderOfficeMacroCodeAllowWin32Imports = "AuditMode"
+	Windows10EndpointProtectionConfigurationDefenderOfficeMacroCodeAllowWin32Importsenable Windows10EndpointProtectionConfigurationDefenderOfficeMacroCodeAllowWin32Imports = "Enable"
+	Windows10EndpointProtectionConfigurationDefenderOfficeMacroCodeAllowWin32ImportsnotConfigured Windows10EndpointProtectionConfigurationDefenderOfficeMacroCodeAllowWin32Imports = "NotConfigured"
+	Windows10EndpointProtectionConfigurationDefenderOfficeMacroCodeAllowWin32ImportsuserDefined Windows10EndpointProtectionConfigurationDefenderOfficeMacroCodeAllowWin32Imports = "UserDefined"
+	Windows10EndpointProtectionConfigurationDefenderOfficeMacroCodeAllowWin32Importswarn Windows10EndpointProtectionConfigurationDefenderOfficeMacroCodeAllowWin32Imports = "Warn"
+)
+
+
+func PossibleValuesForWindows10EndpointProtectionConfigurationDefenderOfficeMacroCodeAllowWin32Imports() []string {
+	return []string{
+		string(Windows10EndpointProtectionConfigurationDefenderOfficeMacroCodeAllowWin32ImportsauditMode),
+string(Windows10EndpointProtectionConfigurationDefenderOfficeMacroCodeAllowWin32Importsenable),
+string(Windows10EndpointProtectionConfigurationDefenderOfficeMacroCodeAllowWin32ImportsnotConfigured),
+string(Windows10EndpointProtectionConfigurationDefenderOfficeMacroCodeAllowWin32ImportsuserDefined),
+string(Windows10EndpointProtectionConfigurationDefenderOfficeMacroCodeAllowWin32Importswarn),
+	}
+}
+
+
+
+func parseWindows10EndpointProtectionConfigurationDefenderOfficeMacroCodeAllowWin32Imports(input string) (*Windows10EndpointProtectionConfigurationDefenderOfficeMacroCodeAllowWin32Imports, error) {
+	vals := map[string]Windows10EndpointProtectionConfigurationDefenderOfficeMacroCodeAllowWin32Imports{
+		"auditmode": Windows10EndpointProtectionConfigurationDefenderOfficeMacroCodeAllowWin32ImportsauditMode,
+"enable": Windows10EndpointProtectionConfigurationDefenderOfficeMacroCodeAllowWin32Importsenable,
+"notconfigured": Windows10EndpointProtectionConfigurationDefenderOfficeMacroCodeAllowWin32ImportsnotConfigured,
+"userdefined": Windows10EndpointProtectionConfigurationDefenderOfficeMacroCodeAllowWin32ImportsuserDefined,
+"warn": Windows10EndpointProtectionConfigurationDefenderOfficeMacroCodeAllowWin32Importswarn,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := Windows10EndpointProtectionConfigurationDefenderOfficeMacroCodeAllowWin32Imports(input)
+	return &out, nil
+}

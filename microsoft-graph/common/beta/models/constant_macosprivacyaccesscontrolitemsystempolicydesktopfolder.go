@@ -1,0 +1,37 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type MacOSPrivacyAccessControlItemSystemPolicyDesktopFolder string
+
+const (
+	MacOSPrivacyAccessControlItemSystemPolicyDesktopFolderdisabled      MacOSPrivacyAccessControlItemSystemPolicyDesktopFolder = "Disabled"
+	MacOSPrivacyAccessControlItemSystemPolicyDesktopFolderenabled       MacOSPrivacyAccessControlItemSystemPolicyDesktopFolder = "Enabled"
+	MacOSPrivacyAccessControlItemSystemPolicyDesktopFoldernotConfigured MacOSPrivacyAccessControlItemSystemPolicyDesktopFolder = "NotConfigured"
+)
+
+func PossibleValuesForMacOSPrivacyAccessControlItemSystemPolicyDesktopFolder() []string {
+	return []string{
+		string(MacOSPrivacyAccessControlItemSystemPolicyDesktopFolderdisabled),
+		string(MacOSPrivacyAccessControlItemSystemPolicyDesktopFolderenabled),
+		string(MacOSPrivacyAccessControlItemSystemPolicyDesktopFoldernotConfigured),
+	}
+}
+
+func parseMacOSPrivacyAccessControlItemSystemPolicyDesktopFolder(input string) (*MacOSPrivacyAccessControlItemSystemPolicyDesktopFolder, error) {
+	vals := map[string]MacOSPrivacyAccessControlItemSystemPolicyDesktopFolder{
+		"disabled":      MacOSPrivacyAccessControlItemSystemPolicyDesktopFolderdisabled,
+		"enabled":       MacOSPrivacyAccessControlItemSystemPolicyDesktopFolderenabled,
+		"notconfigured": MacOSPrivacyAccessControlItemSystemPolicyDesktopFoldernotConfigured,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := MacOSPrivacyAccessControlItemSystemPolicyDesktopFolder(input)
+	return &out, nil
+}

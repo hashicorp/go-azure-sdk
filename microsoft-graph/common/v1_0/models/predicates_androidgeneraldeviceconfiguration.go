@@ -1,0 +1,247 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type AndroidGeneralDeviceConfigurationOperationPredicate struct {
+	AppsBlockClipboardSharing                      *bool
+	AppsBlockCopyPaste                             *bool
+	AppsBlockYouTube                               *bool
+	BluetoothBlocked                               *bool
+	CameraBlocked                                  *bool
+	CellularBlockDataRoaming                       *bool
+	CellularBlockMessaging                         *bool
+	CellularBlockVoiceRoaming                      *bool
+	CellularBlockWiFiTethering                     *bool
+	CreatedDateTime                                *string
+	Description                                    *string
+	DeviceSharingAllowed                           *bool
+	DiagnosticDataBlockSubmission                  *bool
+	DisplayName                                    *string
+	FactoryResetBlocked                            *bool
+	GoogleAccountBlockAutoSync                     *bool
+	GooglePlayStoreBlocked                         *bool
+	Id                                             *string
+	KioskModeBlockSleepButton                      *bool
+	KioskModeBlockVolumeButtons                    *bool
+	LastModifiedDateTime                           *string
+	LocationServicesBlocked                        *bool
+	NfcBlocked                                     *bool
+	ODataType                                      *string
+	PasswordBlockFingerprintUnlock                 *bool
+	PasswordBlockTrustAgents                       *bool
+	PasswordExpirationDays                         *int64
+	PasswordMinimumLength                          *int64
+	PasswordMinutesOfInactivityBeforeScreenTimeout *int64
+	PasswordPreviousPasswordBlockCount             *int64
+	PasswordRequired                               *bool
+	PasswordSignInFailureCountBeforeFactoryReset   *int64
+	PowerOffBlocked                                *bool
+	ScreenCaptureBlocked                           *bool
+	SecurityRequireVerifyApps                      *bool
+	StorageBlockGoogleBackup                       *bool
+	StorageBlockRemovableStorage                   *bool
+	StorageRequireDeviceEncryption                 *bool
+	StorageRequireRemovableStorageEncryption       *bool
+	Version                                        *int64
+	VoiceAssistantBlocked                          *bool
+	VoiceDialingBlocked                            *bool
+	WebBrowserBlockAutofill                        *bool
+	WebBrowserBlockJavaScript                      *bool
+	WebBrowserBlockPopups                          *bool
+	WebBrowserBlocked                              *bool
+	WiFiBlocked                                    *bool
+}
+
+func (p AndroidGeneralDeviceConfigurationOperationPredicate) Matches(input AndroidGeneralDeviceConfiguration) bool {
+
+	if p.AppsBlockClipboardSharing != nil && (input.AppsBlockClipboardSharing == nil || *p.AppsBlockClipboardSharing != *input.AppsBlockClipboardSharing) {
+		return false
+	}
+
+	if p.AppsBlockCopyPaste != nil && (input.AppsBlockCopyPaste == nil || *p.AppsBlockCopyPaste != *input.AppsBlockCopyPaste) {
+		return false
+	}
+
+	if p.AppsBlockYouTube != nil && (input.AppsBlockYouTube == nil || *p.AppsBlockYouTube != *input.AppsBlockYouTube) {
+		return false
+	}
+
+	if p.BluetoothBlocked != nil && (input.BluetoothBlocked == nil || *p.BluetoothBlocked != *input.BluetoothBlocked) {
+		return false
+	}
+
+	if p.CameraBlocked != nil && (input.CameraBlocked == nil || *p.CameraBlocked != *input.CameraBlocked) {
+		return false
+	}
+
+	if p.CellularBlockDataRoaming != nil && (input.CellularBlockDataRoaming == nil || *p.CellularBlockDataRoaming != *input.CellularBlockDataRoaming) {
+		return false
+	}
+
+	if p.CellularBlockMessaging != nil && (input.CellularBlockMessaging == nil || *p.CellularBlockMessaging != *input.CellularBlockMessaging) {
+		return false
+	}
+
+	if p.CellularBlockVoiceRoaming != nil && (input.CellularBlockVoiceRoaming == nil || *p.CellularBlockVoiceRoaming != *input.CellularBlockVoiceRoaming) {
+		return false
+	}
+
+	if p.CellularBlockWiFiTethering != nil && (input.CellularBlockWiFiTethering == nil || *p.CellularBlockWiFiTethering != *input.CellularBlockWiFiTethering) {
+		return false
+	}
+
+	if p.CreatedDateTime != nil && (input.CreatedDateTime == nil || *p.CreatedDateTime != *input.CreatedDateTime) {
+		return false
+	}
+
+	if p.Description != nil && (input.Description == nil || *p.Description != *input.Description) {
+		return false
+	}
+
+	if p.DeviceSharingAllowed != nil && (input.DeviceSharingAllowed == nil || *p.DeviceSharingAllowed != *input.DeviceSharingAllowed) {
+		return false
+	}
+
+	if p.DiagnosticDataBlockSubmission != nil && (input.DiagnosticDataBlockSubmission == nil || *p.DiagnosticDataBlockSubmission != *input.DiagnosticDataBlockSubmission) {
+		return false
+	}
+
+	if p.DisplayName != nil && (input.DisplayName == nil || *p.DisplayName != *input.DisplayName) {
+		return false
+	}
+
+	if p.FactoryResetBlocked != nil && (input.FactoryResetBlocked == nil || *p.FactoryResetBlocked != *input.FactoryResetBlocked) {
+		return false
+	}
+
+	if p.GoogleAccountBlockAutoSync != nil && (input.GoogleAccountBlockAutoSync == nil || *p.GoogleAccountBlockAutoSync != *input.GoogleAccountBlockAutoSync) {
+		return false
+	}
+
+	if p.GooglePlayStoreBlocked != nil && (input.GooglePlayStoreBlocked == nil || *p.GooglePlayStoreBlocked != *input.GooglePlayStoreBlocked) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.KioskModeBlockSleepButton != nil && (input.KioskModeBlockSleepButton == nil || *p.KioskModeBlockSleepButton != *input.KioskModeBlockSleepButton) {
+		return false
+	}
+
+	if p.KioskModeBlockVolumeButtons != nil && (input.KioskModeBlockVolumeButtons == nil || *p.KioskModeBlockVolumeButtons != *input.KioskModeBlockVolumeButtons) {
+		return false
+	}
+
+	if p.LastModifiedDateTime != nil && (input.LastModifiedDateTime == nil || *p.LastModifiedDateTime != *input.LastModifiedDateTime) {
+		return false
+	}
+
+	if p.LocationServicesBlocked != nil && (input.LocationServicesBlocked == nil || *p.LocationServicesBlocked != *input.LocationServicesBlocked) {
+		return false
+	}
+
+	if p.NfcBlocked != nil && (input.NfcBlocked == nil || *p.NfcBlocked != *input.NfcBlocked) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.PasswordBlockFingerprintUnlock != nil && (input.PasswordBlockFingerprintUnlock == nil || *p.PasswordBlockFingerprintUnlock != *input.PasswordBlockFingerprintUnlock) {
+		return false
+	}
+
+	if p.PasswordBlockTrustAgents != nil && (input.PasswordBlockTrustAgents == nil || *p.PasswordBlockTrustAgents != *input.PasswordBlockTrustAgents) {
+		return false
+	}
+
+	if p.PasswordExpirationDays != nil && (input.PasswordExpirationDays == nil || *p.PasswordExpirationDays != *input.PasswordExpirationDays) {
+		return false
+	}
+
+	if p.PasswordMinimumLength != nil && (input.PasswordMinimumLength == nil || *p.PasswordMinimumLength != *input.PasswordMinimumLength) {
+		return false
+	}
+
+	if p.PasswordMinutesOfInactivityBeforeScreenTimeout != nil && (input.PasswordMinutesOfInactivityBeforeScreenTimeout == nil || *p.PasswordMinutesOfInactivityBeforeScreenTimeout != *input.PasswordMinutesOfInactivityBeforeScreenTimeout) {
+		return false
+	}
+
+	if p.PasswordPreviousPasswordBlockCount != nil && (input.PasswordPreviousPasswordBlockCount == nil || *p.PasswordPreviousPasswordBlockCount != *input.PasswordPreviousPasswordBlockCount) {
+		return false
+	}
+
+	if p.PasswordRequired != nil && (input.PasswordRequired == nil || *p.PasswordRequired != *input.PasswordRequired) {
+		return false
+	}
+
+	if p.PasswordSignInFailureCountBeforeFactoryReset != nil && (input.PasswordSignInFailureCountBeforeFactoryReset == nil || *p.PasswordSignInFailureCountBeforeFactoryReset != *input.PasswordSignInFailureCountBeforeFactoryReset) {
+		return false
+	}
+
+	if p.PowerOffBlocked != nil && (input.PowerOffBlocked == nil || *p.PowerOffBlocked != *input.PowerOffBlocked) {
+		return false
+	}
+
+	if p.ScreenCaptureBlocked != nil && (input.ScreenCaptureBlocked == nil || *p.ScreenCaptureBlocked != *input.ScreenCaptureBlocked) {
+		return false
+	}
+
+	if p.SecurityRequireVerifyApps != nil && (input.SecurityRequireVerifyApps == nil || *p.SecurityRequireVerifyApps != *input.SecurityRequireVerifyApps) {
+		return false
+	}
+
+	if p.StorageBlockGoogleBackup != nil && (input.StorageBlockGoogleBackup == nil || *p.StorageBlockGoogleBackup != *input.StorageBlockGoogleBackup) {
+		return false
+	}
+
+	if p.StorageBlockRemovableStorage != nil && (input.StorageBlockRemovableStorage == nil || *p.StorageBlockRemovableStorage != *input.StorageBlockRemovableStorage) {
+		return false
+	}
+
+	if p.StorageRequireDeviceEncryption != nil && (input.StorageRequireDeviceEncryption == nil || *p.StorageRequireDeviceEncryption != *input.StorageRequireDeviceEncryption) {
+		return false
+	}
+
+	if p.StorageRequireRemovableStorageEncryption != nil && (input.StorageRequireRemovableStorageEncryption == nil || *p.StorageRequireRemovableStorageEncryption != *input.StorageRequireRemovableStorageEncryption) {
+		return false
+	}
+
+	if p.Version != nil && (input.Version == nil || *p.Version != *input.Version) {
+		return false
+	}
+
+	if p.VoiceAssistantBlocked != nil && (input.VoiceAssistantBlocked == nil || *p.VoiceAssistantBlocked != *input.VoiceAssistantBlocked) {
+		return false
+	}
+
+	if p.VoiceDialingBlocked != nil && (input.VoiceDialingBlocked == nil || *p.VoiceDialingBlocked != *input.VoiceDialingBlocked) {
+		return false
+	}
+
+	if p.WebBrowserBlockAutofill != nil && (input.WebBrowserBlockAutofill == nil || *p.WebBrowserBlockAutofill != *input.WebBrowserBlockAutofill) {
+		return false
+	}
+
+	if p.WebBrowserBlockJavaScript != nil && (input.WebBrowserBlockJavaScript == nil || *p.WebBrowserBlockJavaScript != *input.WebBrowserBlockJavaScript) {
+		return false
+	}
+
+	if p.WebBrowserBlockPopups != nil && (input.WebBrowserBlockPopups == nil || *p.WebBrowserBlockPopups != *input.WebBrowserBlockPopups) {
+		return false
+	}
+
+	if p.WebBrowserBlocked != nil && (input.WebBrowserBlocked == nil || *p.WebBrowserBlocked != *input.WebBrowserBlocked) {
+		return false
+	}
+
+	if p.WiFiBlocked != nil && (input.WiFiBlocked == nil || *p.WiFiBlocked != *input.WiFiBlocked) {
+		return false
+	}
+
+	return true
+}

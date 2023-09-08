@@ -1,0 +1,32 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type DelegatedAdminServiceManagementDetailOperationPredicate struct {
+	Id                   *string
+	ODataType            *string
+	ServiceManagementUrl *string
+	ServiceName          *string
+}
+
+func (p DelegatedAdminServiceManagementDetailOperationPredicate) Matches(input DelegatedAdminServiceManagementDetail) bool {
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.ServiceManagementUrl != nil && (input.ServiceManagementUrl == nil || *p.ServiceManagementUrl != *input.ServiceManagementUrl) {
+		return false
+	}
+
+	if p.ServiceName != nil && (input.ServiceName == nil || *p.ServiceName != *input.ServiceName) {
+		return false
+	}
+
+	return true
+}

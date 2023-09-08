@@ -1,0 +1,52 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type ProgramControlOperationPredicate struct {
+	ControlId       *string
+	ControlTypeId   *string
+	CreatedDateTime *string
+	DisplayName     *string
+	Id              *string
+	ODataType       *string
+	ProgramId       *string
+	Status          *string
+}
+
+func (p ProgramControlOperationPredicate) Matches(input ProgramControl) bool {
+
+	if p.ControlId != nil && (input.ControlId == nil || *p.ControlId != *input.ControlId) {
+		return false
+	}
+
+	if p.ControlTypeId != nil && (input.ControlTypeId == nil || *p.ControlTypeId != *input.ControlTypeId) {
+		return false
+	}
+
+	if p.CreatedDateTime != nil && (input.CreatedDateTime == nil || *p.CreatedDateTime != *input.CreatedDateTime) {
+		return false
+	}
+
+	if p.DisplayName != nil && (input.DisplayName == nil || *p.DisplayName != *input.DisplayName) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.ProgramId != nil && (input.ProgramId == nil || *p.ProgramId != *input.ProgramId) {
+		return false
+	}
+
+	if p.Status != nil && (input.Status == nil || *p.Status != *input.Status) {
+		return false
+	}
+
+	return true
+}

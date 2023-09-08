@@ -1,0 +1,46 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type WindowsUpdateForBusinessConfigurationBusinessReadyUpdatesOnly string
+
+const (
+	WindowsUpdateForBusinessConfigurationBusinessReadyUpdatesOnlyall                        WindowsUpdateForBusinessConfigurationBusinessReadyUpdatesOnly = "All"
+	WindowsUpdateForBusinessConfigurationBusinessReadyUpdatesOnlybusinessReadyOnly          WindowsUpdateForBusinessConfigurationBusinessReadyUpdatesOnly = "BusinessReadyOnly"
+	WindowsUpdateForBusinessConfigurationBusinessReadyUpdatesOnlyuserDefined                WindowsUpdateForBusinessConfigurationBusinessReadyUpdatesOnly = "UserDefined"
+	WindowsUpdateForBusinessConfigurationBusinessReadyUpdatesOnlywindowsInsiderBuildFast    WindowsUpdateForBusinessConfigurationBusinessReadyUpdatesOnly = "WindowsInsiderBuildFast"
+	WindowsUpdateForBusinessConfigurationBusinessReadyUpdatesOnlywindowsInsiderBuildRelease WindowsUpdateForBusinessConfigurationBusinessReadyUpdatesOnly = "WindowsInsiderBuildRelease"
+	WindowsUpdateForBusinessConfigurationBusinessReadyUpdatesOnlywindowsInsiderBuildSlow    WindowsUpdateForBusinessConfigurationBusinessReadyUpdatesOnly = "WindowsInsiderBuildSlow"
+)
+
+func PossibleValuesForWindowsUpdateForBusinessConfigurationBusinessReadyUpdatesOnly() []string {
+	return []string{
+		string(WindowsUpdateForBusinessConfigurationBusinessReadyUpdatesOnlyall),
+		string(WindowsUpdateForBusinessConfigurationBusinessReadyUpdatesOnlybusinessReadyOnly),
+		string(WindowsUpdateForBusinessConfigurationBusinessReadyUpdatesOnlyuserDefined),
+		string(WindowsUpdateForBusinessConfigurationBusinessReadyUpdatesOnlywindowsInsiderBuildFast),
+		string(WindowsUpdateForBusinessConfigurationBusinessReadyUpdatesOnlywindowsInsiderBuildRelease),
+		string(WindowsUpdateForBusinessConfigurationBusinessReadyUpdatesOnlywindowsInsiderBuildSlow),
+	}
+}
+
+func parseWindowsUpdateForBusinessConfigurationBusinessReadyUpdatesOnly(input string) (*WindowsUpdateForBusinessConfigurationBusinessReadyUpdatesOnly, error) {
+	vals := map[string]WindowsUpdateForBusinessConfigurationBusinessReadyUpdatesOnly{
+		"all":                        WindowsUpdateForBusinessConfigurationBusinessReadyUpdatesOnlyall,
+		"businessreadyonly":          WindowsUpdateForBusinessConfigurationBusinessReadyUpdatesOnlybusinessReadyOnly,
+		"userdefined":                WindowsUpdateForBusinessConfigurationBusinessReadyUpdatesOnlyuserDefined,
+		"windowsinsiderbuildfast":    WindowsUpdateForBusinessConfigurationBusinessReadyUpdatesOnlywindowsInsiderBuildFast,
+		"windowsinsiderbuildrelease": WindowsUpdateForBusinessConfigurationBusinessReadyUpdatesOnlywindowsInsiderBuildRelease,
+		"windowsinsiderbuildslow":    WindowsUpdateForBusinessConfigurationBusinessReadyUpdatesOnlywindowsInsiderBuildSlow,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := WindowsUpdateForBusinessConfigurationBusinessReadyUpdatesOnly(input)
+	return &out, nil
+}

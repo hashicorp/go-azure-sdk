@@ -1,0 +1,40 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type SecurityFileUrlThreatSubmissionCategory string
+
+const (
+	SecurityFileUrlThreatSubmissionCategorymalware  SecurityFileUrlThreatSubmissionCategory = "Malware"
+	SecurityFileUrlThreatSubmissionCategorynotJunk  SecurityFileUrlThreatSubmissionCategory = "NotJunk"
+	SecurityFileUrlThreatSubmissionCategoryphishing SecurityFileUrlThreatSubmissionCategory = "Phishing"
+	SecurityFileUrlThreatSubmissionCategoryspam     SecurityFileUrlThreatSubmissionCategory = "Spam"
+)
+
+func PossibleValuesForSecurityFileUrlThreatSubmissionCategory() []string {
+	return []string{
+		string(SecurityFileUrlThreatSubmissionCategorymalware),
+		string(SecurityFileUrlThreatSubmissionCategorynotJunk),
+		string(SecurityFileUrlThreatSubmissionCategoryphishing),
+		string(SecurityFileUrlThreatSubmissionCategoryspam),
+	}
+}
+
+func parseSecurityFileUrlThreatSubmissionCategory(input string) (*SecurityFileUrlThreatSubmissionCategory, error) {
+	vals := map[string]SecurityFileUrlThreatSubmissionCategory{
+		"malware":  SecurityFileUrlThreatSubmissionCategorymalware,
+		"notjunk":  SecurityFileUrlThreatSubmissionCategorynotJunk,
+		"phishing": SecurityFileUrlThreatSubmissionCategoryphishing,
+		"spam":     SecurityFileUrlThreatSubmissionCategoryspam,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SecurityFileUrlThreatSubmissionCategory(input)
+	return &out, nil
+}

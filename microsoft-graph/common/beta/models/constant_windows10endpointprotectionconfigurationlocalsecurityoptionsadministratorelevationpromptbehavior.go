@@ -1,0 +1,49 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type Windows10EndpointProtectionConfigurationLocalSecurityOptionsAdministratorElevationPromptBehavior string
+
+const (
+	Windows10EndpointProtectionConfigurationLocalSecurityOptionsAdministratorElevationPromptBehaviorelevateWithoutPrompting                Windows10EndpointProtectionConfigurationLocalSecurityOptionsAdministratorElevationPromptBehavior = "ElevateWithoutPrompting"
+	Windows10EndpointProtectionConfigurationLocalSecurityOptionsAdministratorElevationPromptBehaviornotConfigured                          Windows10EndpointProtectionConfigurationLocalSecurityOptionsAdministratorElevationPromptBehavior = "NotConfigured"
+	Windows10EndpointProtectionConfigurationLocalSecurityOptionsAdministratorElevationPromptBehaviorpromptForConsent                       Windows10EndpointProtectionConfigurationLocalSecurityOptionsAdministratorElevationPromptBehavior = "PromptForConsent"
+	Windows10EndpointProtectionConfigurationLocalSecurityOptionsAdministratorElevationPromptBehaviorpromptForConsentForNonWindowsBinaries  Windows10EndpointProtectionConfigurationLocalSecurityOptionsAdministratorElevationPromptBehavior = "PromptForConsentForNonWindowsBinaries"
+	Windows10EndpointProtectionConfigurationLocalSecurityOptionsAdministratorElevationPromptBehaviorpromptForConsentOnTheSecureDesktop     Windows10EndpointProtectionConfigurationLocalSecurityOptionsAdministratorElevationPromptBehavior = "PromptForConsentOnTheSecureDesktop"
+	Windows10EndpointProtectionConfigurationLocalSecurityOptionsAdministratorElevationPromptBehaviorpromptForCredentials                   Windows10EndpointProtectionConfigurationLocalSecurityOptionsAdministratorElevationPromptBehavior = "PromptForCredentials"
+	Windows10EndpointProtectionConfigurationLocalSecurityOptionsAdministratorElevationPromptBehaviorpromptForCredentialsOnTheSecureDesktop Windows10EndpointProtectionConfigurationLocalSecurityOptionsAdministratorElevationPromptBehavior = "PromptForCredentialsOnTheSecureDesktop"
+)
+
+func PossibleValuesForWindows10EndpointProtectionConfigurationLocalSecurityOptionsAdministratorElevationPromptBehavior() []string {
+	return []string{
+		string(Windows10EndpointProtectionConfigurationLocalSecurityOptionsAdministratorElevationPromptBehaviorelevateWithoutPrompting),
+		string(Windows10EndpointProtectionConfigurationLocalSecurityOptionsAdministratorElevationPromptBehaviornotConfigured),
+		string(Windows10EndpointProtectionConfigurationLocalSecurityOptionsAdministratorElevationPromptBehaviorpromptForConsent),
+		string(Windows10EndpointProtectionConfigurationLocalSecurityOptionsAdministratorElevationPromptBehaviorpromptForConsentForNonWindowsBinaries),
+		string(Windows10EndpointProtectionConfigurationLocalSecurityOptionsAdministratorElevationPromptBehaviorpromptForConsentOnTheSecureDesktop),
+		string(Windows10EndpointProtectionConfigurationLocalSecurityOptionsAdministratorElevationPromptBehaviorpromptForCredentials),
+		string(Windows10EndpointProtectionConfigurationLocalSecurityOptionsAdministratorElevationPromptBehaviorpromptForCredentialsOnTheSecureDesktop),
+	}
+}
+
+func parseWindows10EndpointProtectionConfigurationLocalSecurityOptionsAdministratorElevationPromptBehavior(input string) (*Windows10EndpointProtectionConfigurationLocalSecurityOptionsAdministratorElevationPromptBehavior, error) {
+	vals := map[string]Windows10EndpointProtectionConfigurationLocalSecurityOptionsAdministratorElevationPromptBehavior{
+		"elevatewithoutprompting":                Windows10EndpointProtectionConfigurationLocalSecurityOptionsAdministratorElevationPromptBehaviorelevateWithoutPrompting,
+		"notconfigured":                          Windows10EndpointProtectionConfigurationLocalSecurityOptionsAdministratorElevationPromptBehaviornotConfigured,
+		"promptforconsent":                       Windows10EndpointProtectionConfigurationLocalSecurityOptionsAdministratorElevationPromptBehaviorpromptForConsent,
+		"promptforconsentfornonwindowsbinaries":  Windows10EndpointProtectionConfigurationLocalSecurityOptionsAdministratorElevationPromptBehaviorpromptForConsentForNonWindowsBinaries,
+		"promptforconsentonthesecuredesktop":     Windows10EndpointProtectionConfigurationLocalSecurityOptionsAdministratorElevationPromptBehaviorpromptForConsentOnTheSecureDesktop,
+		"promptforcredentials":                   Windows10EndpointProtectionConfigurationLocalSecurityOptionsAdministratorElevationPromptBehaviorpromptForCredentials,
+		"promptforcredentialsonthesecuredesktop": Windows10EndpointProtectionConfigurationLocalSecurityOptionsAdministratorElevationPromptBehaviorpromptForCredentialsOnTheSecureDesktop,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := Windows10EndpointProtectionConfigurationLocalSecurityOptionsAdministratorElevationPromptBehavior(input)
+	return &out, nil
+}

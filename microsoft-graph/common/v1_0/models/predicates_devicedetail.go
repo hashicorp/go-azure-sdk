@@ -1,0 +1,52 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type DeviceDetailOperationPredicate struct {
+	Browser         *string
+	DeviceId        *string
+	DisplayName     *string
+	IsCompliant     *bool
+	IsManaged       *bool
+	ODataType       *string
+	OperatingSystem *string
+	TrustType       *string
+}
+
+func (p DeviceDetailOperationPredicate) Matches(input DeviceDetail) bool {
+
+	if p.Browser != nil && (input.Browser == nil || *p.Browser != *input.Browser) {
+		return false
+	}
+
+	if p.DeviceId != nil && (input.DeviceId == nil || *p.DeviceId != *input.DeviceId) {
+		return false
+	}
+
+	if p.DisplayName != nil && (input.DisplayName == nil || *p.DisplayName != *input.DisplayName) {
+		return false
+	}
+
+	if p.IsCompliant != nil && (input.IsCompliant == nil || *p.IsCompliant != *input.IsCompliant) {
+		return false
+	}
+
+	if p.IsManaged != nil && (input.IsManaged == nil || *p.IsManaged != *input.IsManaged) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.OperatingSystem != nil && (input.OperatingSystem == nil || *p.OperatingSystem != *input.OperatingSystem) {
+		return false
+	}
+
+	if p.TrustType != nil && (input.TrustType == nil || *p.TrustType != *input.TrustType) {
+		return false
+	}
+
+	return true
+}

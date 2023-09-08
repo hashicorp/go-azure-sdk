@@ -1,0 +1,32 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type OsVersionCountOperationPredicate struct {
+	DeviceCount        *int64
+	LastUpdateDateTime *string
+	ODataType          *string
+	OsVersion          *string
+}
+
+func (p OsVersionCountOperationPredicate) Matches(input OsVersionCount) bool {
+
+	if p.DeviceCount != nil && (input.DeviceCount == nil || *p.DeviceCount != *input.DeviceCount) {
+		return false
+	}
+
+	if p.LastUpdateDateTime != nil && (input.LastUpdateDateTime == nil || *p.LastUpdateDateTime != *input.LastUpdateDateTime) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.OsVersion != nil && (input.OsVersion == nil || *p.OsVersion != *input.OsVersion) {
+		return false
+	}
+
+	return true
+}

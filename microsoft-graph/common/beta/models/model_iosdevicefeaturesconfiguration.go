@@ -1,0 +1,42 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type IosDeviceFeaturesConfiguration struct {
+	AirPrintDestinations                        *[]AirPrintDestination                                  `json:"airPrintDestinations,omitempty"`
+	AssetTagTemplate                            *string                                                 `json:"assetTagTemplate,omitempty"`
+	Assignments                                 *[]DeviceConfigurationAssignment                        `json:"assignments,omitempty"`
+	ContentFilterSettings                       *IosWebContentFilterBase                                `json:"contentFilterSettings,omitempty"`
+	CreatedDateTime                             *string                                                 `json:"createdDateTime,omitempty"`
+	Description                                 *string                                                 `json:"description,omitempty"`
+	DeviceManagementApplicabilityRuleDeviceMode *DeviceManagementApplicabilityRuleDeviceMode            `json:"deviceManagementApplicabilityRuleDeviceMode,omitempty"`
+	DeviceManagementApplicabilityRuleOsEdition  *DeviceManagementApplicabilityRuleOsEdition             `json:"deviceManagementApplicabilityRuleOsEdition,omitempty"`
+	DeviceManagementApplicabilityRuleOsVersion  *DeviceManagementApplicabilityRuleOsVersion             `json:"deviceManagementApplicabilityRuleOsVersion,omitempty"`
+	DeviceSettingStateSummaries                 *[]SettingStateDeviceSummary                            `json:"deviceSettingStateSummaries,omitempty"`
+	DeviceStatusOverview                        *DeviceConfigurationDeviceOverview                      `json:"deviceStatusOverview,omitempty"`
+	DeviceStatuses                              *[]DeviceConfigurationDeviceStatus                      `json:"deviceStatuses,omitempty"`
+	DisplayName                                 *string                                                 `json:"displayName,omitempty"`
+	GroupAssignments                            *[]DeviceConfigurationGroupAssignment                   `json:"groupAssignments,omitempty"`
+	HomeScreenDockIcons                         *[]IosHomeScreenItem                                    `json:"homeScreenDockIcons,omitempty"`
+	HomeScreenGridHeight                        *int64                                                  `json:"homeScreenGridHeight,omitempty"`
+	HomeScreenGridWidth                         *int64                                                  `json:"homeScreenGridWidth,omitempty"`
+	HomeScreenPages                             *[]IosHomeScreenPage                                    `json:"homeScreenPages,omitempty"`
+	Id                                          *string                                                 `json:"id,omitempty"`
+	IdentityCertificateForClientAuthentication  *IosCertificateProfileBase                              `json:"identityCertificateForClientAuthentication,omitempty"`
+	IosSingleSignOnExtension                    *IosSingleSignOnExtension                               `json:"iosSingleSignOnExtension,omitempty"`
+	LastModifiedDateTime                        *string                                                 `json:"lastModifiedDateTime,omitempty"`
+	LockScreenFootnote                          *string                                                 `json:"lockScreenFootnote,omitempty"`
+	NotificationSettings                        *[]IosNotificationSettings                              `json:"notificationSettings,omitempty"`
+	ODataType                                   *string                                                 `json:"@odata.type,omitempty"`
+	RoleScopeTagIds                             *[]string                                               `json:"roleScopeTagIds,omitempty"`
+	SingleSignOnExtension                       *SingleSignOnExtension                                  `json:"singleSignOnExtension,omitempty"`
+	SingleSignOnExtensionPkinitCertificate      *IosCertificateProfileBase                              `json:"singleSignOnExtensionPkinitCertificate,omitempty"`
+	SingleSignOnSettings                        *IosSingleSignOnSettings                                `json:"singleSignOnSettings,omitempty"`
+	SupportsScopeTags                           *bool                                                   `json:"supportsScopeTags,omitempty"`
+	UserStatusOverview                          *DeviceConfigurationUserOverview                        `json:"userStatusOverview,omitempty"`
+	UserStatuses                                *[]DeviceConfigurationUserStatus                        `json:"userStatuses,omitempty"`
+	Version                                     *int64                                                  `json:"version,omitempty"`
+	WallpaperDisplayLocation                    *IosDeviceFeaturesConfigurationWallpaperDisplayLocation `json:"wallpaperDisplayLocation,omitempty"`
+	WallpaperImage                              *MimeContent                                            `json:"wallpaperImage,omitempty"`
+}

@@ -1,0 +1,22 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type IndustryDataUserMatchingSettingOperationPredicate struct {
+	ODataType     *string
+	PriorityOrder *int64
+}
+
+func (p IndustryDataUserMatchingSettingOperationPredicate) Matches(input IndustryDataUserMatchingSetting) bool {
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.PriorityOrder != nil && (input.PriorityOrder == nil || *p.PriorityOrder != *input.PriorityOrder) {
+		return false
+	}
+
+	return true
+}

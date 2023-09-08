@@ -1,0 +1,33 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type DocumentSetContentOperationPredicate struct {
+	 FileName *string
+	 FolderName *string
+	 ODataType *string
+}
+
+func (p DocumentSetContentOperationPredicate) Matches(input DocumentSetContent) bool {
+
+	if p.FileName != nil && (input.FileName == nil || *p.FileName != *input.FileName) {
+	 	return false
+	}
+
+
+	if p.FolderName != nil && (input.FolderName == nil || *p.FolderName != *input.FolderName) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	return true
+}
+

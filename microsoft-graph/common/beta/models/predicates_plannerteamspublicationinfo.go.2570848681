@@ -1,0 +1,51 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type PlannerTeamsPublicationInfoOperationPredicate struct {
+	 LastModifiedDateTime *string
+	 ODataType *string
+	 PublicationId *string
+	 PublishedToPlanId *string
+	 PublishingTeamId *string
+	 PublishingTeamName *string
+}
+
+func (p PlannerTeamsPublicationInfoOperationPredicate) Matches(input PlannerTeamsPublicationInfo) bool {
+
+	if p.LastModifiedDateTime != nil && (input.LastModifiedDateTime == nil || *p.LastModifiedDateTime != *input.LastModifiedDateTime) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.PublicationId != nil && (input.PublicationId == nil || *p.PublicationId != *input.PublicationId) {
+	 	return false
+	}
+
+
+	if p.PublishedToPlanId != nil && (input.PublishedToPlanId == nil || *p.PublishedToPlanId != *input.PublishedToPlanId) {
+	 	return false
+	}
+
+
+	if p.PublishingTeamId != nil && (input.PublishingTeamId == nil || *p.PublishingTeamId != *input.PublishingTeamId) {
+	 	return false
+	}
+
+
+	if p.PublishingTeamName != nil && (input.PublishingTeamName == nil || *p.PublishingTeamName != *input.PublishingTeamName) {
+	 	return false
+	}
+
+
+	return true
+}
+

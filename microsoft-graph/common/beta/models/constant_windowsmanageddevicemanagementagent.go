@@ -1,0 +1,70 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type WindowsManagedDeviceManagementAgent string
+
+const (
+	WindowsManagedDeviceManagementAgentconfigurationManagerClient        WindowsManagedDeviceManagementAgent = "ConfigurationManagerClient"
+	WindowsManagedDeviceManagementAgentconfigurationManagerClientMdm     WindowsManagedDeviceManagementAgent = "ConfigurationManagerClientMdm"
+	WindowsManagedDeviceManagementAgentconfigurationManagerClientMdmEas  WindowsManagedDeviceManagementAgent = "ConfigurationManagerClientMdmEas"
+	WindowsManagedDeviceManagementAgenteas                               WindowsManagedDeviceManagementAgent = "Eas"
+	WindowsManagedDeviceManagementAgenteasIntuneClient                   WindowsManagedDeviceManagementAgent = "EasIntuneClient"
+	WindowsManagedDeviceManagementAgenteasMdm                            WindowsManagedDeviceManagementAgent = "EasMdm"
+	WindowsManagedDeviceManagementAgentgoogleCloudDevicePolicyController WindowsManagedDeviceManagementAgent = "GoogleCloudDevicePolicyController"
+	WindowsManagedDeviceManagementAgentintuneAosp                        WindowsManagedDeviceManagementAgent = "IntuneAosp"
+	WindowsManagedDeviceManagementAgentintuneClient                      WindowsManagedDeviceManagementAgent = "IntuneClient"
+	WindowsManagedDeviceManagementAgentjamf                              WindowsManagedDeviceManagementAgent = "Jamf"
+	WindowsManagedDeviceManagementAgentmdm                               WindowsManagedDeviceManagementAgent = "Mdm"
+	WindowsManagedDeviceManagementAgentmicrosoft365ManagedMdm            WindowsManagedDeviceManagementAgent = "Microsoft365ManagedMdm"
+	WindowsManagedDeviceManagementAgentmsSense                           WindowsManagedDeviceManagementAgent = "MsSense"
+	WindowsManagedDeviceManagementAgentunknown                           WindowsManagedDeviceManagementAgent = "Unknown"
+)
+
+func PossibleValuesForWindowsManagedDeviceManagementAgent() []string {
+	return []string{
+		string(WindowsManagedDeviceManagementAgentconfigurationManagerClient),
+		string(WindowsManagedDeviceManagementAgentconfigurationManagerClientMdm),
+		string(WindowsManagedDeviceManagementAgentconfigurationManagerClientMdmEas),
+		string(WindowsManagedDeviceManagementAgenteas),
+		string(WindowsManagedDeviceManagementAgenteasIntuneClient),
+		string(WindowsManagedDeviceManagementAgenteasMdm),
+		string(WindowsManagedDeviceManagementAgentgoogleCloudDevicePolicyController),
+		string(WindowsManagedDeviceManagementAgentintuneAosp),
+		string(WindowsManagedDeviceManagementAgentintuneClient),
+		string(WindowsManagedDeviceManagementAgentjamf),
+		string(WindowsManagedDeviceManagementAgentmdm),
+		string(WindowsManagedDeviceManagementAgentmicrosoft365ManagedMdm),
+		string(WindowsManagedDeviceManagementAgentmsSense),
+		string(WindowsManagedDeviceManagementAgentunknown),
+	}
+}
+
+func parseWindowsManagedDeviceManagementAgent(input string) (*WindowsManagedDeviceManagementAgent, error) {
+	vals := map[string]WindowsManagedDeviceManagementAgent{
+		"configurationmanagerclient":        WindowsManagedDeviceManagementAgentconfigurationManagerClient,
+		"configurationmanagerclientmdm":     WindowsManagedDeviceManagementAgentconfigurationManagerClientMdm,
+		"configurationmanagerclientmdmeas":  WindowsManagedDeviceManagementAgentconfigurationManagerClientMdmEas,
+		"eas":                               WindowsManagedDeviceManagementAgenteas,
+		"easintuneclient":                   WindowsManagedDeviceManagementAgenteasIntuneClient,
+		"easmdm":                            WindowsManagedDeviceManagementAgenteasMdm,
+		"googleclouddevicepolicycontroller": WindowsManagedDeviceManagementAgentgoogleCloudDevicePolicyController,
+		"intuneaosp":                        WindowsManagedDeviceManagementAgentintuneAosp,
+		"intuneclient":                      WindowsManagedDeviceManagementAgentintuneClient,
+		"jamf":                              WindowsManagedDeviceManagementAgentjamf,
+		"mdm":                               WindowsManagedDeviceManagementAgentmdm,
+		"microsoft365managedmdm":            WindowsManagedDeviceManagementAgentmicrosoft365ManagedMdm,
+		"mssense":                           WindowsManagedDeviceManagementAgentmsSense,
+		"unknown":                           WindowsManagedDeviceManagementAgentunknown,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := WindowsManagedDeviceManagementAgent(input)
+	return &out, nil
+}

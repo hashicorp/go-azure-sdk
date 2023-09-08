@@ -1,0 +1,27 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type OnTokenIssuanceStartReturnClaimOperationPredicate struct {
+	 ClaimIdInApiResponse *string
+	 ODataType *string
+}
+
+func (p OnTokenIssuanceStartReturnClaimOperationPredicate) Matches(input OnTokenIssuanceStartReturnClaim) bool {
+
+	if p.ClaimIdInApiResponse != nil && (input.ClaimIdInApiResponse == nil || *p.ClaimIdInApiResponse != *input.ClaimIdInApiResponse) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	return true
+}
+

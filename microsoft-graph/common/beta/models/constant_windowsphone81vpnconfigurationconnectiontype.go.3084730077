@@ -1,0 +1,46 @@
+package models
+
+import "strings"
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type WindowsPhone81VpnConfigurationConnectionType string
+
+const (
+	WindowsPhone81VpnConfigurationConnectionTypecheckPointCapsuleVpn WindowsPhone81VpnConfigurationConnectionType = "CheckPointCapsuleVpn"
+	WindowsPhone81VpnConfigurationConnectionTypedellSonicWallMobileConnect WindowsPhone81VpnConfigurationConnectionType = "DellSonicWallMobileConnect"
+	WindowsPhone81VpnConfigurationConnectionTypef5EdgeClient WindowsPhone81VpnConfigurationConnectionType = "F5EdgeClient"
+	WindowsPhone81VpnConfigurationConnectionTypepulseSecure WindowsPhone81VpnConfigurationConnectionType = "PulseSecure"
+)
+
+
+func PossibleValuesForWindowsPhone81VpnConfigurationConnectionType() []string {
+	return []string{
+		string(WindowsPhone81VpnConfigurationConnectionTypecheckPointCapsuleVpn),
+string(WindowsPhone81VpnConfigurationConnectionTypedellSonicWallMobileConnect),
+string(WindowsPhone81VpnConfigurationConnectionTypef5EdgeClient),
+string(WindowsPhone81VpnConfigurationConnectionTypepulseSecure),
+	}
+}
+
+
+
+func parseWindowsPhone81VpnConfigurationConnectionType(input string) (*WindowsPhone81VpnConfigurationConnectionType, error) {
+	vals := map[string]WindowsPhone81VpnConfigurationConnectionType{
+		"checkpointcapsulevpn": WindowsPhone81VpnConfigurationConnectionTypecheckPointCapsuleVpn,
+"dellsonicwallmobileconnect": WindowsPhone81VpnConfigurationConnectionTypedellSonicWallMobileConnect,
+"f5edgeclient": WindowsPhone81VpnConfigurationConnectionTypef5EdgeClient,
+"pulsesecure": WindowsPhone81VpnConfigurationConnectionTypepulseSecure,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := WindowsPhone81VpnConfigurationConnectionType(input)
+	return &out, nil
+}

@@ -1,0 +1,42 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type NotificationOperationPredicate struct {
+	DisplayTimeToLive  *int64
+	ExpirationDateTime *string
+	GroupName          *string
+	Id                 *string
+	ODataType          *string
+	TargetHostName     *string
+}
+
+func (p NotificationOperationPredicate) Matches(input Notification) bool {
+
+	if p.DisplayTimeToLive != nil && (input.DisplayTimeToLive == nil || *p.DisplayTimeToLive != *input.DisplayTimeToLive) {
+		return false
+	}
+
+	if p.ExpirationDateTime != nil && (input.ExpirationDateTime == nil || *p.ExpirationDateTime != *input.ExpirationDateTime) {
+		return false
+	}
+
+	if p.GroupName != nil && (input.GroupName == nil || *p.GroupName != *input.GroupName) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.TargetHostName != nil && (input.TargetHostName == nil || *p.TargetHostName != *input.TargetHostName) {
+		return false
+	}
+
+	return true
+}

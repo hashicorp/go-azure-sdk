@@ -1,0 +1,43 @@
+package models
+
+import "strings"
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type MicrosoftStoreForBusinessAppPublishingState string
+
+const (
+	MicrosoftStoreForBusinessAppPublishingStatenotPublished MicrosoftStoreForBusinessAppPublishingState = "NotPublished"
+	MicrosoftStoreForBusinessAppPublishingStateprocessing MicrosoftStoreForBusinessAppPublishingState = "Processing"
+	MicrosoftStoreForBusinessAppPublishingStatepublished MicrosoftStoreForBusinessAppPublishingState = "Published"
+)
+
+
+func PossibleValuesForMicrosoftStoreForBusinessAppPublishingState() []string {
+	return []string{
+		string(MicrosoftStoreForBusinessAppPublishingStatenotPublished),
+string(MicrosoftStoreForBusinessAppPublishingStateprocessing),
+string(MicrosoftStoreForBusinessAppPublishingStatepublished),
+	}
+}
+
+
+
+func parseMicrosoftStoreForBusinessAppPublishingState(input string) (*MicrosoftStoreForBusinessAppPublishingState, error) {
+	vals := map[string]MicrosoftStoreForBusinessAppPublishingState{
+		"notpublished": MicrosoftStoreForBusinessAppPublishingStatenotPublished,
+"processing": MicrosoftStoreForBusinessAppPublishingStateprocessing,
+"published": MicrosoftStoreForBusinessAppPublishingStatepublished,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := MicrosoftStoreForBusinessAppPublishingState(input)
+	return &out, nil
+}

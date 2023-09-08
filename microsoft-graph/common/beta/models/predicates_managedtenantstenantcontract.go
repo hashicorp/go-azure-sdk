@@ -1,0 +1,32 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type ManagedTenantsTenantContractOperationPredicate struct {
+	ContractType      *int64
+	DefaultDomainName *string
+	DisplayName       *string
+	ODataType         *string
+}
+
+func (p ManagedTenantsTenantContractOperationPredicate) Matches(input ManagedTenantsTenantContract) bool {
+
+	if p.ContractType != nil && (input.ContractType == nil || *p.ContractType != *input.ContractType) {
+		return false
+	}
+
+	if p.DefaultDomainName != nil && (input.DefaultDomainName == nil || *p.DefaultDomainName != *input.DefaultDomainName) {
+		return false
+	}
+
+	if p.DisplayName != nil && (input.DisplayName == nil || *p.DisplayName != *input.DisplayName) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	return true
+}

@@ -1,0 +1,27 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type PlannerPlanConfigurationBucketLocalizationOperationPredicate struct {
+	ExternalBucketId *string
+	Name             *string
+	ODataType        *string
+}
+
+func (p PlannerPlanConfigurationBucketLocalizationOperationPredicate) Matches(input PlannerPlanConfigurationBucketLocalization) bool {
+
+	if p.ExternalBucketId != nil && (input.ExternalBucketId == nil || *p.ExternalBucketId != *input.ExternalBucketId) {
+		return false
+	}
+
+	if p.Name != nil && (input.Name == nil || *p.Name != *input.Name) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	return true
+}

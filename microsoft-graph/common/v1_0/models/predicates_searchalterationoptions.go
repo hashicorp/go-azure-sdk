@@ -1,0 +1,27 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type SearchAlterationOptionsOperationPredicate struct {
+	EnableModification *bool
+	EnableSuggestion   *bool
+	ODataType          *string
+}
+
+func (p SearchAlterationOptionsOperationPredicate) Matches(input SearchAlterationOptions) bool {
+
+	if p.EnableModification != nil && (input.EnableModification == nil || *p.EnableModification != *input.EnableModification) {
+		return false
+	}
+
+	if p.EnableSuggestion != nil && (input.EnableSuggestion == nil || *p.EnableSuggestion != *input.EnableSuggestion) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	return true
+}

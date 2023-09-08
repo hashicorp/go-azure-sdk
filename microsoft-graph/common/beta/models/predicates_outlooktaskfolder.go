@@ -1,0 +1,42 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type OutlookTaskFolderOperationPredicate struct {
+	ChangeKey       *string
+	Id              *string
+	IsDefaultFolder *bool
+	Name            *string
+	ODataType       *string
+	ParentGroupKey  *string
+}
+
+func (p OutlookTaskFolderOperationPredicate) Matches(input OutlookTaskFolder) bool {
+
+	if p.ChangeKey != nil && (input.ChangeKey == nil || *p.ChangeKey != *input.ChangeKey) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.IsDefaultFolder != nil && (input.IsDefaultFolder == nil || *p.IsDefaultFolder != *input.IsDefaultFolder) {
+		return false
+	}
+
+	if p.Name != nil && (input.Name == nil || *p.Name != *input.Name) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.ParentGroupKey != nil && (input.ParentGroupKey == nil || *p.ParentGroupKey != *input.ParentGroupKey) {
+		return false
+	}
+
+	return true
+}

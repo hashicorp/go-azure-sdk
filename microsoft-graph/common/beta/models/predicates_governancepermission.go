@@ -1,0 +1,32 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type GovernancePermissionOperationPredicate struct {
+	AccessLevel *string
+	IsActive    *bool
+	IsEligible  *bool
+	ODataType   *string
+}
+
+func (p GovernancePermissionOperationPredicate) Matches(input GovernancePermission) bool {
+
+	if p.AccessLevel != nil && (input.AccessLevel == nil || *p.AccessLevel != *input.AccessLevel) {
+		return false
+	}
+
+	if p.IsActive != nil && (input.IsActive == nil || *p.IsActive != *input.IsActive) {
+		return false
+	}
+
+	if p.IsEligible != nil && (input.IsEligible == nil || *p.IsEligible != *input.IsEligible) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	return true
+}

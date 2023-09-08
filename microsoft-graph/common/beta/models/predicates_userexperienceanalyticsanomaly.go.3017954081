@@ -1,0 +1,87 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type UserExperienceAnalyticsAnomalyOperationPredicate struct {
+	 AnomalyFirstOccurrenceDateTime *string
+	 AnomalyId *string
+	 AnomalyLatestOccurrenceDateTime *string
+	 AnomalyName *string
+	 AssetName *string
+	 AssetPublisher *string
+	 AssetVersion *string
+	 DetectionModelId *string
+	 DeviceImpactedCount *int64
+	 Id *string
+	 IssueId *string
+	 ODataType *string
+}
+
+func (p UserExperienceAnalyticsAnomalyOperationPredicate) Matches(input UserExperienceAnalyticsAnomaly) bool {
+
+	if p.AnomalyFirstOccurrenceDateTime != nil && (input.AnomalyFirstOccurrenceDateTime == nil || *p.AnomalyFirstOccurrenceDateTime != *input.AnomalyFirstOccurrenceDateTime) {
+	 	return false
+	}
+
+
+	if p.AnomalyId != nil && (input.AnomalyId == nil || *p.AnomalyId != *input.AnomalyId) {
+	 	return false
+	}
+
+
+	if p.AnomalyLatestOccurrenceDateTime != nil && (input.AnomalyLatestOccurrenceDateTime == nil || *p.AnomalyLatestOccurrenceDateTime != *input.AnomalyLatestOccurrenceDateTime) {
+	 	return false
+	}
+
+
+	if p.AnomalyName != nil && (input.AnomalyName == nil || *p.AnomalyName != *input.AnomalyName) {
+	 	return false
+	}
+
+
+	if p.AssetName != nil && (input.AssetName == nil || *p.AssetName != *input.AssetName) {
+	 	return false
+	}
+
+
+	if p.AssetPublisher != nil && (input.AssetPublisher == nil || *p.AssetPublisher != *input.AssetPublisher) {
+	 	return false
+	}
+
+
+	if p.AssetVersion != nil && (input.AssetVersion == nil || *p.AssetVersion != *input.AssetVersion) {
+	 	return false
+	}
+
+
+	if p.DetectionModelId != nil && (input.DetectionModelId == nil || *p.DetectionModelId != *input.DetectionModelId) {
+	 	return false
+	}
+
+
+	if p.DeviceImpactedCount != nil && (input.DeviceImpactedCount == nil || *p.DeviceImpactedCount != *input.DeviceImpactedCount) {
+	 	return false
+	}
+
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+	 	return false
+	}
+
+
+	if p.IssueId != nil && (input.IssueId == nil || *p.IssueId != *input.IssueId) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	return true
+}
+

@@ -1,0 +1,46 @@
+package models
+
+import "strings"
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type Windows10PkcsCertificateProfileKeyStorageProvider string
+
+const (
+	Windows10PkcsCertificateProfileKeyStorageProviderusePassportForWorkKspOtherwiseFail Windows10PkcsCertificateProfileKeyStorageProvider = "UsePassportForWorkKspOtherwiseFail"
+	Windows10PkcsCertificateProfileKeyStorageProvideruseSoftwareKsp Windows10PkcsCertificateProfileKeyStorageProvider = "UseSoftwareKsp"
+	Windows10PkcsCertificateProfileKeyStorageProvideruseTpmKspOtherwiseFail Windows10PkcsCertificateProfileKeyStorageProvider = "UseTpmKspOtherwiseFail"
+	Windows10PkcsCertificateProfileKeyStorageProvideruseTpmKspOtherwiseUseSoftwareKsp Windows10PkcsCertificateProfileKeyStorageProvider = "UseTpmKspOtherwiseUseSoftwareKsp"
+)
+
+
+func PossibleValuesForWindows10PkcsCertificateProfileKeyStorageProvider() []string {
+	return []string{
+		string(Windows10PkcsCertificateProfileKeyStorageProviderusePassportForWorkKspOtherwiseFail),
+string(Windows10PkcsCertificateProfileKeyStorageProvideruseSoftwareKsp),
+string(Windows10PkcsCertificateProfileKeyStorageProvideruseTpmKspOtherwiseFail),
+string(Windows10PkcsCertificateProfileKeyStorageProvideruseTpmKspOtherwiseUseSoftwareKsp),
+	}
+}
+
+
+
+func parseWindows10PkcsCertificateProfileKeyStorageProvider(input string) (*Windows10PkcsCertificateProfileKeyStorageProvider, error) {
+	vals := map[string]Windows10PkcsCertificateProfileKeyStorageProvider{
+		"usepassportforworkkspotherwisefail": Windows10PkcsCertificateProfileKeyStorageProviderusePassportForWorkKspOtherwiseFail,
+"usesoftwareksp": Windows10PkcsCertificateProfileKeyStorageProvideruseSoftwareKsp,
+"usetpmkspotherwisefail": Windows10PkcsCertificateProfileKeyStorageProvideruseTpmKspOtherwiseFail,
+"usetpmkspotherwiseusesoftwareksp": Windows10PkcsCertificateProfileKeyStorageProvideruseTpmKspOtherwiseUseSoftwareKsp,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := Windows10PkcsCertificateProfileKeyStorageProvider(input)
+	return &out, nil
+}

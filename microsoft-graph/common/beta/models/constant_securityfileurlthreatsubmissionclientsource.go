@@ -1,0 +1,34 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type SecurityFileUrlThreatSubmissionClientSource string
+
+const (
+	SecurityFileUrlThreatSubmissionClientSourcemicrosoft SecurityFileUrlThreatSubmissionClientSource = "Microsoft"
+	SecurityFileUrlThreatSubmissionClientSourceother     SecurityFileUrlThreatSubmissionClientSource = "Other"
+)
+
+func PossibleValuesForSecurityFileUrlThreatSubmissionClientSource() []string {
+	return []string{
+		string(SecurityFileUrlThreatSubmissionClientSourcemicrosoft),
+		string(SecurityFileUrlThreatSubmissionClientSourceother),
+	}
+}
+
+func parseSecurityFileUrlThreatSubmissionClientSource(input string) (*SecurityFileUrlThreatSubmissionClientSource, error) {
+	vals := map[string]SecurityFileUrlThreatSubmissionClientSource{
+		"microsoft": SecurityFileUrlThreatSubmissionClientSourcemicrosoft,
+		"other":     SecurityFileUrlThreatSubmissionClientSourceother,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SecurityFileUrlThreatSubmissionClientSource(input)
+	return &out, nil
+}

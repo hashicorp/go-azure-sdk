@@ -1,0 +1,49 @@
+package models
+
+import "strings"
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type IosikEv2VpnConfigurationAuthenticationMethod string
+
+const (
+	IosikEv2VpnConfigurationAuthenticationMethodazureAD IosikEv2VpnConfigurationAuthenticationMethod = "AzureAD"
+	IosikEv2VpnConfigurationAuthenticationMethodcertificate IosikEv2VpnConfigurationAuthenticationMethod = "Certificate"
+	IosikEv2VpnConfigurationAuthenticationMethodderivedCredential IosikEv2VpnConfigurationAuthenticationMethod = "DerivedCredential"
+	IosikEv2VpnConfigurationAuthenticationMethodsharedSecret IosikEv2VpnConfigurationAuthenticationMethod = "SharedSecret"
+	IosikEv2VpnConfigurationAuthenticationMethodusernameAndPassword IosikEv2VpnConfigurationAuthenticationMethod = "UsernameAndPassword"
+)
+
+
+func PossibleValuesForIosikEv2VpnConfigurationAuthenticationMethod() []string {
+	return []string{
+		string(IosikEv2VpnConfigurationAuthenticationMethodazureAD),
+string(IosikEv2VpnConfigurationAuthenticationMethodcertificate),
+string(IosikEv2VpnConfigurationAuthenticationMethodderivedCredential),
+string(IosikEv2VpnConfigurationAuthenticationMethodsharedSecret),
+string(IosikEv2VpnConfigurationAuthenticationMethodusernameAndPassword),
+	}
+}
+
+
+
+func parseIosikEv2VpnConfigurationAuthenticationMethod(input string) (*IosikEv2VpnConfigurationAuthenticationMethod, error) {
+	vals := map[string]IosikEv2VpnConfigurationAuthenticationMethod{
+		"azuread": IosikEv2VpnConfigurationAuthenticationMethodazureAD,
+"certificate": IosikEv2VpnConfigurationAuthenticationMethodcertificate,
+"derivedcredential": IosikEv2VpnConfigurationAuthenticationMethodderivedCredential,
+"sharedsecret": IosikEv2VpnConfigurationAuthenticationMethodsharedSecret,
+"usernameandpassword": IosikEv2VpnConfigurationAuthenticationMethodusernameAndPassword,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := IosikEv2VpnConfigurationAuthenticationMethod(input)
+	return &out, nil
+}

@@ -1,0 +1,46 @@
+package models
+
+import "strings"
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type MacOSDeviceFeaturesConfigurationContentCachingPeerPolicy string
+
+const (
+	MacOSDeviceFeaturesConfigurationContentCachingPeerPolicynotConfigured MacOSDeviceFeaturesConfigurationContentCachingPeerPolicy = "NotConfigured"
+	MacOSDeviceFeaturesConfigurationContentCachingPeerPolicypeersInCustomLocalNetworks MacOSDeviceFeaturesConfigurationContentCachingPeerPolicy = "PeersInCustomLocalNetworks"
+	MacOSDeviceFeaturesConfigurationContentCachingPeerPolicypeersInLocalNetwork MacOSDeviceFeaturesConfigurationContentCachingPeerPolicy = "PeersInLocalNetwork"
+	MacOSDeviceFeaturesConfigurationContentCachingPeerPolicypeersWithSamePublicIpAddress MacOSDeviceFeaturesConfigurationContentCachingPeerPolicy = "PeersWithSamePublicIpAddress"
+)
+
+
+func PossibleValuesForMacOSDeviceFeaturesConfigurationContentCachingPeerPolicy() []string {
+	return []string{
+		string(MacOSDeviceFeaturesConfigurationContentCachingPeerPolicynotConfigured),
+string(MacOSDeviceFeaturesConfigurationContentCachingPeerPolicypeersInCustomLocalNetworks),
+string(MacOSDeviceFeaturesConfigurationContentCachingPeerPolicypeersInLocalNetwork),
+string(MacOSDeviceFeaturesConfigurationContentCachingPeerPolicypeersWithSamePublicIpAddress),
+	}
+}
+
+
+
+func parseMacOSDeviceFeaturesConfigurationContentCachingPeerPolicy(input string) (*MacOSDeviceFeaturesConfigurationContentCachingPeerPolicy, error) {
+	vals := map[string]MacOSDeviceFeaturesConfigurationContentCachingPeerPolicy{
+		"notconfigured": MacOSDeviceFeaturesConfigurationContentCachingPeerPolicynotConfigured,
+"peersincustomlocalnetworks": MacOSDeviceFeaturesConfigurationContentCachingPeerPolicypeersInCustomLocalNetworks,
+"peersinlocalnetwork": MacOSDeviceFeaturesConfigurationContentCachingPeerPolicypeersInLocalNetwork,
+"peerswithsamepublicipaddress": MacOSDeviceFeaturesConfigurationContentCachingPeerPolicypeersWithSamePublicIpAddress,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := MacOSDeviceFeaturesConfigurationContentCachingPeerPolicy(input)
+	return &out, nil
+}

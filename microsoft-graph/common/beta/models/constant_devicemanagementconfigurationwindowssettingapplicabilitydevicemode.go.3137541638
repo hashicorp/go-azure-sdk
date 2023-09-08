@@ -1,0 +1,40 @@
+package models
+
+import "strings"
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type DeviceManagementConfigurationWindowsSettingApplicabilityDeviceMode string
+
+const (
+	DeviceManagementConfigurationWindowsSettingApplicabilityDeviceModekiosk DeviceManagementConfigurationWindowsSettingApplicabilityDeviceMode = "Kiosk"
+	DeviceManagementConfigurationWindowsSettingApplicabilityDeviceModenone DeviceManagementConfigurationWindowsSettingApplicabilityDeviceMode = "None"
+)
+
+
+func PossibleValuesForDeviceManagementConfigurationWindowsSettingApplicabilityDeviceMode() []string {
+	return []string{
+		string(DeviceManagementConfigurationWindowsSettingApplicabilityDeviceModekiosk),
+string(DeviceManagementConfigurationWindowsSettingApplicabilityDeviceModenone),
+	}
+}
+
+
+
+func parseDeviceManagementConfigurationWindowsSettingApplicabilityDeviceMode(input string) (*DeviceManagementConfigurationWindowsSettingApplicabilityDeviceMode, error) {
+	vals := map[string]DeviceManagementConfigurationWindowsSettingApplicabilityDeviceMode{
+		"kiosk": DeviceManagementConfigurationWindowsSettingApplicabilityDeviceModekiosk,
+"none": DeviceManagementConfigurationWindowsSettingApplicabilityDeviceModenone,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DeviceManagementConfigurationWindowsSettingApplicabilityDeviceMode(input)
+	return &out, nil
+}

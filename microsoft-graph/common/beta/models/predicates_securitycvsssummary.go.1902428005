@@ -1,0 +1,27 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type SecurityCvssSummaryOperationPredicate struct {
+	 ODataType *string
+	 VectorString *string
+}
+
+func (p SecurityCvssSummaryOperationPredicate) Matches(input SecurityCvssSummary) bool {
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.VectorString != nil && (input.VectorString == nil || *p.VectorString != *input.VectorString) {
+	 	return false
+	}
+
+
+	return true
+}
+

@@ -1,0 +1,67 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type AccessPackageCatalogOperationPredicate struct {
+	CatalogStatus       *string
+	CatalogType         *string
+	CreatedBy           *string
+	CreatedDateTime     *string
+	Description         *string
+	DisplayName         *string
+	Id                  *string
+	IsExternallyVisible *bool
+	ModifiedBy          *string
+	ModifiedDateTime    *string
+	ODataType           *string
+}
+
+func (p AccessPackageCatalogOperationPredicate) Matches(input AccessPackageCatalog) bool {
+
+	if p.CatalogStatus != nil && (input.CatalogStatus == nil || *p.CatalogStatus != *input.CatalogStatus) {
+		return false
+	}
+
+	if p.CatalogType != nil && (input.CatalogType == nil || *p.CatalogType != *input.CatalogType) {
+		return false
+	}
+
+	if p.CreatedBy != nil && (input.CreatedBy == nil || *p.CreatedBy != *input.CreatedBy) {
+		return false
+	}
+
+	if p.CreatedDateTime != nil && (input.CreatedDateTime == nil || *p.CreatedDateTime != *input.CreatedDateTime) {
+		return false
+	}
+
+	if p.Description != nil && (input.Description == nil || *p.Description != *input.Description) {
+		return false
+	}
+
+	if p.DisplayName != nil && (input.DisplayName == nil || *p.DisplayName != *input.DisplayName) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.IsExternallyVisible != nil && (input.IsExternallyVisible == nil || *p.IsExternallyVisible != *input.IsExternallyVisible) {
+		return false
+	}
+
+	if p.ModifiedBy != nil && (input.ModifiedBy == nil || *p.ModifiedBy != *input.ModifiedBy) {
+		return false
+	}
+
+	if p.ModifiedDateTime != nil && (input.ModifiedDateTime == nil || *p.ModifiedDateTime != *input.ModifiedDateTime) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	return true
+}

@@ -1,0 +1,77 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type CloudPCProvisioningPolicyOperationPredicate struct {
+	AlternateResourceUrl    *string
+	CloudPCGroupDisplayName *string
+	CloudPCNamingTemplate   *string
+	Description             *string
+	DisplayName             *string
+	EnableSingleSignOn      *bool
+	GracePeriodInHours      *int64
+	Id                      *string
+	ImageDisplayName        *string
+	ImageId                 *string
+	LocalAdminEnabled       *bool
+	ODataType               *string
+	OnPremisesConnectionId  *string
+}
+
+func (p CloudPCProvisioningPolicyOperationPredicate) Matches(input CloudPCProvisioningPolicy) bool {
+
+	if p.AlternateResourceUrl != nil && (input.AlternateResourceUrl == nil || *p.AlternateResourceUrl != *input.AlternateResourceUrl) {
+		return false
+	}
+
+	if p.CloudPCGroupDisplayName != nil && (input.CloudPCGroupDisplayName == nil || *p.CloudPCGroupDisplayName != *input.CloudPCGroupDisplayName) {
+		return false
+	}
+
+	if p.CloudPCNamingTemplate != nil && (input.CloudPCNamingTemplate == nil || *p.CloudPCNamingTemplate != *input.CloudPCNamingTemplate) {
+		return false
+	}
+
+	if p.Description != nil && (input.Description == nil || *p.Description != *input.Description) {
+		return false
+	}
+
+	if p.DisplayName != nil && (input.DisplayName == nil || *p.DisplayName != *input.DisplayName) {
+		return false
+	}
+
+	if p.EnableSingleSignOn != nil && (input.EnableSingleSignOn == nil || *p.EnableSingleSignOn != *input.EnableSingleSignOn) {
+		return false
+	}
+
+	if p.GracePeriodInHours != nil && (input.GracePeriodInHours == nil || *p.GracePeriodInHours != *input.GracePeriodInHours) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.ImageDisplayName != nil && (input.ImageDisplayName == nil || *p.ImageDisplayName != *input.ImageDisplayName) {
+		return false
+	}
+
+	if p.ImageId != nil && (input.ImageId == nil || *p.ImageId != *input.ImageId) {
+		return false
+	}
+
+	if p.LocalAdminEnabled != nil && (input.LocalAdminEnabled == nil || *p.LocalAdminEnabled != *input.LocalAdminEnabled) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.OnPremisesConnectionId != nil && (input.OnPremisesConnectionId == nil || *p.OnPremisesConnectionId != *input.OnPremisesConnectionId) {
+		return false
+	}
+
+	return true
+}

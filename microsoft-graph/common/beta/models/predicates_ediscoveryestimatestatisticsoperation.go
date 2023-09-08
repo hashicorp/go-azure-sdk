@@ -1,0 +1,67 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type EdiscoveryEstimateStatisticsOperationOperationPredicate struct {
+	CompletedDateTime  *string
+	CreatedDateTime    *string
+	Id                 *string
+	IndexedItemCount   *int64
+	IndexedItemsSize   *int64
+	MailboxCount       *int64
+	ODataType          *string
+	PercentProgress    *int64
+	SiteCount          *int64
+	UnindexedItemCount *int64
+	UnindexedItemsSize *int64
+}
+
+func (p EdiscoveryEstimateStatisticsOperationOperationPredicate) Matches(input EdiscoveryEstimateStatisticsOperation) bool {
+
+	if p.CompletedDateTime != nil && (input.CompletedDateTime == nil || *p.CompletedDateTime != *input.CompletedDateTime) {
+		return false
+	}
+
+	if p.CreatedDateTime != nil && (input.CreatedDateTime == nil || *p.CreatedDateTime != *input.CreatedDateTime) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.IndexedItemCount != nil && (input.IndexedItemCount == nil || *p.IndexedItemCount != *input.IndexedItemCount) {
+		return false
+	}
+
+	if p.IndexedItemsSize != nil && (input.IndexedItemsSize == nil || *p.IndexedItemsSize != *input.IndexedItemsSize) {
+		return false
+	}
+
+	if p.MailboxCount != nil && (input.MailboxCount == nil || *p.MailboxCount != *input.MailboxCount) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.PercentProgress != nil && (input.PercentProgress == nil || *p.PercentProgress != *input.PercentProgress) {
+		return false
+	}
+
+	if p.SiteCount != nil && (input.SiteCount == nil || *p.SiteCount != *input.SiteCount) {
+		return false
+	}
+
+	if p.UnindexedItemCount != nil && (input.UnindexedItemCount == nil || *p.UnindexedItemCount != *input.UnindexedItemCount) {
+		return false
+	}
+
+	if p.UnindexedItemsSize != nil && (input.UnindexedItemsSize == nil || *p.UnindexedItemsSize != *input.UnindexedItemsSize) {
+		return false
+	}
+
+	return true
+}

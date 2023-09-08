@@ -1,0 +1,37 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type PlannerBucketCreationCreationSourceKind string
+
+const (
+	PlannerBucketCreationCreationSourceKindexternal    PlannerBucketCreationCreationSourceKind = "External"
+	PlannerBucketCreationCreationSourceKindnone        PlannerBucketCreationCreationSourceKind = "None"
+	PlannerBucketCreationCreationSourceKindpublication PlannerBucketCreationCreationSourceKind = "Publication"
+)
+
+func PossibleValuesForPlannerBucketCreationCreationSourceKind() []string {
+	return []string{
+		string(PlannerBucketCreationCreationSourceKindexternal),
+		string(PlannerBucketCreationCreationSourceKindnone),
+		string(PlannerBucketCreationCreationSourceKindpublication),
+	}
+}
+
+func parsePlannerBucketCreationCreationSourceKind(input string) (*PlannerBucketCreationCreationSourceKind, error) {
+	vals := map[string]PlannerBucketCreationCreationSourceKind{
+		"external":    PlannerBucketCreationCreationSourceKindexternal,
+		"none":        PlannerBucketCreationCreationSourceKindnone,
+		"publication": PlannerBucketCreationCreationSourceKindpublication,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := PlannerBucketCreationCreationSourceKind(input)
+	return &out, nil
+}

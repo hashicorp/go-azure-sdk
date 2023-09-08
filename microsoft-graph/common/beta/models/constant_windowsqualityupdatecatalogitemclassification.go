@@ -1,0 +1,37 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type WindowsQualityUpdateCatalogItemClassification string
+
+const (
+	WindowsQualityUpdateCatalogItemClassificationall         WindowsQualityUpdateCatalogItemClassification = "All"
+	WindowsQualityUpdateCatalogItemClassificationnonSecurity WindowsQualityUpdateCatalogItemClassification = "NonSecurity"
+	WindowsQualityUpdateCatalogItemClassificationsecurity    WindowsQualityUpdateCatalogItemClassification = "Security"
+)
+
+func PossibleValuesForWindowsQualityUpdateCatalogItemClassification() []string {
+	return []string{
+		string(WindowsQualityUpdateCatalogItemClassificationall),
+		string(WindowsQualityUpdateCatalogItemClassificationnonSecurity),
+		string(WindowsQualityUpdateCatalogItemClassificationsecurity),
+	}
+}
+
+func parseWindowsQualityUpdateCatalogItemClassification(input string) (*WindowsQualityUpdateCatalogItemClassification, error) {
+	vals := map[string]WindowsQualityUpdateCatalogItemClassification{
+		"all":         WindowsQualityUpdateCatalogItemClassificationall,
+		"nonsecurity": WindowsQualityUpdateCatalogItemClassificationnonSecurity,
+		"security":    WindowsQualityUpdateCatalogItemClassificationsecurity,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := WindowsQualityUpdateCatalogItemClassification(input)
+	return &out, nil
+}

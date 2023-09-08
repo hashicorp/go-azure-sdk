@@ -1,0 +1,32 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type WindowsDefenderApplicationControlSupplementalPolicyDeploymentSummaryOperationPredicate struct {
+	DeployedDeviceCount *int64
+	FailedDeviceCount   *int64
+	Id                  *string
+	ODataType           *string
+}
+
+func (p WindowsDefenderApplicationControlSupplementalPolicyDeploymentSummaryOperationPredicate) Matches(input WindowsDefenderApplicationControlSupplementalPolicyDeploymentSummary) bool {
+
+	if p.DeployedDeviceCount != nil && (input.DeployedDeviceCount == nil || *p.DeployedDeviceCount != *input.DeployedDeviceCount) {
+		return false
+	}
+
+	if p.FailedDeviceCount != nil && (input.FailedDeviceCount == nil || *p.FailedDeviceCount != *input.FailedDeviceCount) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	return true
+}

@@ -1,0 +1,46 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type PolicySetItemStatus string
+
+const (
+	PolicySetItemStatuserror          PolicySetItemStatus = "Error"
+	PolicySetItemStatusnotAssigned    PolicySetItemStatus = "NotAssigned"
+	PolicySetItemStatuspartialSuccess PolicySetItemStatus = "PartialSuccess"
+	PolicySetItemStatussuccess        PolicySetItemStatus = "Success"
+	PolicySetItemStatusunknown        PolicySetItemStatus = "Unknown"
+	PolicySetItemStatusvalidating     PolicySetItemStatus = "Validating"
+)
+
+func PossibleValuesForPolicySetItemStatus() []string {
+	return []string{
+		string(PolicySetItemStatuserror),
+		string(PolicySetItemStatusnotAssigned),
+		string(PolicySetItemStatuspartialSuccess),
+		string(PolicySetItemStatussuccess),
+		string(PolicySetItemStatusunknown),
+		string(PolicySetItemStatusvalidating),
+	}
+}
+
+func parsePolicySetItemStatus(input string) (*PolicySetItemStatus, error) {
+	vals := map[string]PolicySetItemStatus{
+		"error":          PolicySetItemStatuserror,
+		"notassigned":    PolicySetItemStatusnotAssigned,
+		"partialsuccess": PolicySetItemStatuspartialSuccess,
+		"success":        PolicySetItemStatussuccess,
+		"unknown":        PolicySetItemStatusunknown,
+		"validating":     PolicySetItemStatusvalidating,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := PolicySetItemStatus(input)
+	return &out, nil
+}

@@ -1,0 +1,40 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type UserExperienceAnalyticsModelScoresHealthStatus string
+
+const (
+	UserExperienceAnalyticsModelScoresHealthStatusinsufficientData UserExperienceAnalyticsModelScoresHealthStatus = "InsufficientData"
+	UserExperienceAnalyticsModelScoresHealthStatusmeetingGoals     UserExperienceAnalyticsModelScoresHealthStatus = "MeetingGoals"
+	UserExperienceAnalyticsModelScoresHealthStatusneedsAttention   UserExperienceAnalyticsModelScoresHealthStatus = "NeedsAttention"
+	UserExperienceAnalyticsModelScoresHealthStatusunknown          UserExperienceAnalyticsModelScoresHealthStatus = "Unknown"
+)
+
+func PossibleValuesForUserExperienceAnalyticsModelScoresHealthStatus() []string {
+	return []string{
+		string(UserExperienceAnalyticsModelScoresHealthStatusinsufficientData),
+		string(UserExperienceAnalyticsModelScoresHealthStatusmeetingGoals),
+		string(UserExperienceAnalyticsModelScoresHealthStatusneedsAttention),
+		string(UserExperienceAnalyticsModelScoresHealthStatusunknown),
+	}
+}
+
+func parseUserExperienceAnalyticsModelScoresHealthStatus(input string) (*UserExperienceAnalyticsModelScoresHealthStatus, error) {
+	vals := map[string]UserExperienceAnalyticsModelScoresHealthStatus{
+		"insufficientdata": UserExperienceAnalyticsModelScoresHealthStatusinsufficientData,
+		"meetinggoals":     UserExperienceAnalyticsModelScoresHealthStatusmeetingGoals,
+		"needsattention":   UserExperienceAnalyticsModelScoresHealthStatusneedsAttention,
+		"unknown":          UserExperienceAnalyticsModelScoresHealthStatusunknown,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := UserExperienceAnalyticsModelScoresHealthStatus(input)
+	return &out, nil
+}

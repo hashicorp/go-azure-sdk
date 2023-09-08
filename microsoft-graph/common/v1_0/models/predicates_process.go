@@ -1,0 +1,67 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type ProcessOperationPredicate struct {
+	AccountName                  *string
+	CommandLine                  *string
+	CreatedDateTime              *string
+	IsElevated                   *bool
+	Name                         *string
+	ODataType                    *string
+	ParentProcessCreatedDateTime *string
+	ParentProcessId              *int64
+	ParentProcessName            *string
+	Path                         *string
+	ProcessId                    *int64
+}
+
+func (p ProcessOperationPredicate) Matches(input Process) bool {
+
+	if p.AccountName != nil && (input.AccountName == nil || *p.AccountName != *input.AccountName) {
+		return false
+	}
+
+	if p.CommandLine != nil && (input.CommandLine == nil || *p.CommandLine != *input.CommandLine) {
+		return false
+	}
+
+	if p.CreatedDateTime != nil && (input.CreatedDateTime == nil || *p.CreatedDateTime != *input.CreatedDateTime) {
+		return false
+	}
+
+	if p.IsElevated != nil && (input.IsElevated == nil || *p.IsElevated != *input.IsElevated) {
+		return false
+	}
+
+	if p.Name != nil && (input.Name == nil || *p.Name != *input.Name) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.ParentProcessCreatedDateTime != nil && (input.ParentProcessCreatedDateTime == nil || *p.ParentProcessCreatedDateTime != *input.ParentProcessCreatedDateTime) {
+		return false
+	}
+
+	if p.ParentProcessId != nil && (input.ParentProcessId == nil || *p.ParentProcessId != *input.ParentProcessId) {
+		return false
+	}
+
+	if p.ParentProcessName != nil && (input.ParentProcessName == nil || *p.ParentProcessName != *input.ParentProcessName) {
+		return false
+	}
+
+	if p.Path != nil && (input.Path == nil || *p.Path != *input.Path) {
+		return false
+	}
+
+	if p.ProcessId != nil && (input.ProcessId == nil || *p.ProcessId != *input.ProcessId) {
+		return false
+	}
+
+	return true
+}

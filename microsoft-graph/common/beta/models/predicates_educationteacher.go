@@ -1,0 +1,27 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type EducationTeacherOperationPredicate struct {
+	ExternalId    *string
+	ODataType     *string
+	TeacherNumber *string
+}
+
+func (p EducationTeacherOperationPredicate) Matches(input EducationTeacher) bool {
+
+	if p.ExternalId != nil && (input.ExternalId == nil || *p.ExternalId != *input.ExternalId) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.TeacherNumber != nil && (input.TeacherNumber == nil || *p.TeacherNumber != *input.TeacherNumber) {
+		return false
+	}
+
+	return true
+}

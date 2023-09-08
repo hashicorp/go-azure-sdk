@@ -1,0 +1,43 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type Windows10EndpointProtectionConfigurationDefenderBlockPersistenceThroughWmiType string
+
+const (
+	Windows10EndpointProtectionConfigurationDefenderBlockPersistenceThroughWmiTypeauditMode   Windows10EndpointProtectionConfigurationDefenderBlockPersistenceThroughWmiType = "AuditMode"
+	Windows10EndpointProtectionConfigurationDefenderBlockPersistenceThroughWmiTypeblock       Windows10EndpointProtectionConfigurationDefenderBlockPersistenceThroughWmiType = "Block"
+	Windows10EndpointProtectionConfigurationDefenderBlockPersistenceThroughWmiTypedisable     Windows10EndpointProtectionConfigurationDefenderBlockPersistenceThroughWmiType = "Disable"
+	Windows10EndpointProtectionConfigurationDefenderBlockPersistenceThroughWmiTypeuserDefined Windows10EndpointProtectionConfigurationDefenderBlockPersistenceThroughWmiType = "UserDefined"
+	Windows10EndpointProtectionConfigurationDefenderBlockPersistenceThroughWmiTypewarn        Windows10EndpointProtectionConfigurationDefenderBlockPersistenceThroughWmiType = "Warn"
+)
+
+func PossibleValuesForWindows10EndpointProtectionConfigurationDefenderBlockPersistenceThroughWmiType() []string {
+	return []string{
+		string(Windows10EndpointProtectionConfigurationDefenderBlockPersistenceThroughWmiTypeauditMode),
+		string(Windows10EndpointProtectionConfigurationDefenderBlockPersistenceThroughWmiTypeblock),
+		string(Windows10EndpointProtectionConfigurationDefenderBlockPersistenceThroughWmiTypedisable),
+		string(Windows10EndpointProtectionConfigurationDefenderBlockPersistenceThroughWmiTypeuserDefined),
+		string(Windows10EndpointProtectionConfigurationDefenderBlockPersistenceThroughWmiTypewarn),
+	}
+}
+
+func parseWindows10EndpointProtectionConfigurationDefenderBlockPersistenceThroughWmiType(input string) (*Windows10EndpointProtectionConfigurationDefenderBlockPersistenceThroughWmiType, error) {
+	vals := map[string]Windows10EndpointProtectionConfigurationDefenderBlockPersistenceThroughWmiType{
+		"auditmode":   Windows10EndpointProtectionConfigurationDefenderBlockPersistenceThroughWmiTypeauditMode,
+		"block":       Windows10EndpointProtectionConfigurationDefenderBlockPersistenceThroughWmiTypeblock,
+		"disable":     Windows10EndpointProtectionConfigurationDefenderBlockPersistenceThroughWmiTypedisable,
+		"userdefined": Windows10EndpointProtectionConfigurationDefenderBlockPersistenceThroughWmiTypeuserDefined,
+		"warn":        Windows10EndpointProtectionConfigurationDefenderBlockPersistenceThroughWmiTypewarn,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := Windows10EndpointProtectionConfigurationDefenderBlockPersistenceThroughWmiType(input)
+	return &out, nil
+}

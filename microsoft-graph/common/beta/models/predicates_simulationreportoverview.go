@@ -1,0 +1,22 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type SimulationReportOverviewOperationPredicate struct {
+	ODataType            *string
+	ResolvedTargetsCount *int64
+}
+
+func (p SimulationReportOverviewOperationPredicate) Matches(input SimulationReportOverview) bool {
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.ResolvedTargetsCount != nil && (input.ResolvedTargetsCount == nil || *p.ResolvedTargetsCount != *input.ResolvedTargetsCount) {
+		return false
+	}
+
+	return true
+}

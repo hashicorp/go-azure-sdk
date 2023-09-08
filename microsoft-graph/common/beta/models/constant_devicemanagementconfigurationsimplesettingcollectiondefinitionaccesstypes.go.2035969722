@@ -1,0 +1,55 @@
+package models
+
+import "strings"
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type DeviceManagementConfigurationSimpleSettingCollectionDefinitionAccessTypes string
+
+const (
+	DeviceManagementConfigurationSimpleSettingCollectionDefinitionAccessTypesadd DeviceManagementConfigurationSimpleSettingCollectionDefinitionAccessTypes = "Add"
+	DeviceManagementConfigurationSimpleSettingCollectionDefinitionAccessTypescopy DeviceManagementConfigurationSimpleSettingCollectionDefinitionAccessTypes = "Copy"
+	DeviceManagementConfigurationSimpleSettingCollectionDefinitionAccessTypesdelete DeviceManagementConfigurationSimpleSettingCollectionDefinitionAccessTypes = "Delete"
+	DeviceManagementConfigurationSimpleSettingCollectionDefinitionAccessTypesexecute DeviceManagementConfigurationSimpleSettingCollectionDefinitionAccessTypes = "Execute"
+	DeviceManagementConfigurationSimpleSettingCollectionDefinitionAccessTypesget DeviceManagementConfigurationSimpleSettingCollectionDefinitionAccessTypes = "Get"
+	DeviceManagementConfigurationSimpleSettingCollectionDefinitionAccessTypesnone DeviceManagementConfigurationSimpleSettingCollectionDefinitionAccessTypes = "None"
+	DeviceManagementConfigurationSimpleSettingCollectionDefinitionAccessTypesreplace DeviceManagementConfigurationSimpleSettingCollectionDefinitionAccessTypes = "Replace"
+)
+
+
+func PossibleValuesForDeviceManagementConfigurationSimpleSettingCollectionDefinitionAccessTypes() []string {
+	return []string{
+		string(DeviceManagementConfigurationSimpleSettingCollectionDefinitionAccessTypesadd),
+string(DeviceManagementConfigurationSimpleSettingCollectionDefinitionAccessTypescopy),
+string(DeviceManagementConfigurationSimpleSettingCollectionDefinitionAccessTypesdelete),
+string(DeviceManagementConfigurationSimpleSettingCollectionDefinitionAccessTypesexecute),
+string(DeviceManagementConfigurationSimpleSettingCollectionDefinitionAccessTypesget),
+string(DeviceManagementConfigurationSimpleSettingCollectionDefinitionAccessTypesnone),
+string(DeviceManagementConfigurationSimpleSettingCollectionDefinitionAccessTypesreplace),
+	}
+}
+
+
+
+func parseDeviceManagementConfigurationSimpleSettingCollectionDefinitionAccessTypes(input string) (*DeviceManagementConfigurationSimpleSettingCollectionDefinitionAccessTypes, error) {
+	vals := map[string]DeviceManagementConfigurationSimpleSettingCollectionDefinitionAccessTypes{
+		"add": DeviceManagementConfigurationSimpleSettingCollectionDefinitionAccessTypesadd,
+"copy": DeviceManagementConfigurationSimpleSettingCollectionDefinitionAccessTypescopy,
+"delete": DeviceManagementConfigurationSimpleSettingCollectionDefinitionAccessTypesdelete,
+"execute": DeviceManagementConfigurationSimpleSettingCollectionDefinitionAccessTypesexecute,
+"get": DeviceManagementConfigurationSimpleSettingCollectionDefinitionAccessTypesget,
+"none": DeviceManagementConfigurationSimpleSettingCollectionDefinitionAccessTypesnone,
+"replace": DeviceManagementConfigurationSimpleSettingCollectionDefinitionAccessTypesreplace,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DeviceManagementConfigurationSimpleSettingCollectionDefinitionAccessTypes(input)
+	return &out, nil
+}

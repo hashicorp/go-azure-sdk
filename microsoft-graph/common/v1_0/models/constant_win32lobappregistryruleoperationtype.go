@@ -1,0 +1,46 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type Win32LobAppRegistryRuleOperationType string
+
+const (
+	Win32LobAppRegistryRuleOperationTypedoesNotExist  Win32LobAppRegistryRuleOperationType = "DoesNotExist"
+	Win32LobAppRegistryRuleOperationTypeexists        Win32LobAppRegistryRuleOperationType = "Exists"
+	Win32LobAppRegistryRuleOperationTypeinteger       Win32LobAppRegistryRuleOperationType = "Integer"
+	Win32LobAppRegistryRuleOperationTypenotConfigured Win32LobAppRegistryRuleOperationType = "NotConfigured"
+	Win32LobAppRegistryRuleOperationTypestring        Win32LobAppRegistryRuleOperationType = "String"
+	Win32LobAppRegistryRuleOperationTypeversion       Win32LobAppRegistryRuleOperationType = "Version"
+)
+
+func PossibleValuesForWin32LobAppRegistryRuleOperationType() []string {
+	return []string{
+		string(Win32LobAppRegistryRuleOperationTypedoesNotExist),
+		string(Win32LobAppRegistryRuleOperationTypeexists),
+		string(Win32LobAppRegistryRuleOperationTypeinteger),
+		string(Win32LobAppRegistryRuleOperationTypenotConfigured),
+		string(Win32LobAppRegistryRuleOperationTypestring),
+		string(Win32LobAppRegistryRuleOperationTypeversion),
+	}
+}
+
+func parseWin32LobAppRegistryRuleOperationType(input string) (*Win32LobAppRegistryRuleOperationType, error) {
+	vals := map[string]Win32LobAppRegistryRuleOperationType{
+		"doesnotexist":  Win32LobAppRegistryRuleOperationTypedoesNotExist,
+		"exists":        Win32LobAppRegistryRuleOperationTypeexists,
+		"integer":       Win32LobAppRegistryRuleOperationTypeinteger,
+		"notconfigured": Win32LobAppRegistryRuleOperationTypenotConfigured,
+		"string":        Win32LobAppRegistryRuleOperationTypestring,
+		"version":       Win32LobAppRegistryRuleOperationTypeversion,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := Win32LobAppRegistryRuleOperationType(input)
+	return &out, nil
+}

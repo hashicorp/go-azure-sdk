@@ -1,0 +1,27 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type TeamGuestSettingsOperationPredicate struct {
+	AllowCreateUpdateChannels *bool
+	AllowDeleteChannels       *bool
+	ODataType                 *string
+}
+
+func (p TeamGuestSettingsOperationPredicate) Matches(input TeamGuestSettings) bool {
+
+	if p.AllowCreateUpdateChannels != nil && (input.AllowCreateUpdateChannels == nil || *p.AllowCreateUpdateChannels != *input.AllowCreateUpdateChannels) {
+		return false
+	}
+
+	if p.AllowDeleteChannels != nil && (input.AllowDeleteChannels == nil || *p.AllowDeleteChannels != *input.AllowDeleteChannels) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	return true
+}

@@ -1,0 +1,22 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type MicrosoftManagedTrainingSettingOperationPredicate struct {
+	CompletionDateTime *string
+	ODataType          *string
+}
+
+func (p MicrosoftManagedTrainingSettingOperationPredicate) Matches(input MicrosoftManagedTrainingSetting) bool {
+
+	if p.CompletionDateTime != nil && (input.CompletionDateTime == nil || *p.CompletionDateTime != *input.CompletionDateTime) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	return true
+}

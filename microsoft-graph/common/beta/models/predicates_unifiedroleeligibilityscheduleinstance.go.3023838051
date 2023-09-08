@@ -1,0 +1,75 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type UnifiedRoleEligibilityScheduleInstanceOperationPredicate struct {
+	 AppScopeId *string
+	 DirectoryScopeId *string
+	 EndDateTime *string
+	 Id *string
+	 MemberType *string
+	 ODataType *string
+	 PrincipalId *string
+	 RoleDefinitionId *string
+	 RoleEligibilityScheduleId *string
+	 StartDateTime *string
+}
+
+func (p UnifiedRoleEligibilityScheduleInstanceOperationPredicate) Matches(input UnifiedRoleEligibilityScheduleInstance) bool {
+
+	if p.AppScopeId != nil && (input.AppScopeId == nil || *p.AppScopeId != *input.AppScopeId) {
+	 	return false
+	}
+
+
+	if p.DirectoryScopeId != nil && (input.DirectoryScopeId == nil || *p.DirectoryScopeId != *input.DirectoryScopeId) {
+	 	return false
+	}
+
+
+	if p.EndDateTime != nil && (input.EndDateTime == nil || *p.EndDateTime != *input.EndDateTime) {
+	 	return false
+	}
+
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+	 	return false
+	}
+
+
+	if p.MemberType != nil && (input.MemberType == nil || *p.MemberType != *input.MemberType) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.PrincipalId != nil && (input.PrincipalId == nil || *p.PrincipalId != *input.PrincipalId) {
+	 	return false
+	}
+
+
+	if p.RoleDefinitionId != nil && (input.RoleDefinitionId == nil || *p.RoleDefinitionId != *input.RoleDefinitionId) {
+	 	return false
+	}
+
+
+	if p.RoleEligibilityScheduleId != nil && (input.RoleEligibilityScheduleId == nil || *p.RoleEligibilityScheduleId != *input.RoleEligibilityScheduleId) {
+	 	return false
+	}
+
+
+	if p.StartDateTime != nil && (input.StartDateTime == nil || *p.StartDateTime != *input.StartDateTime) {
+	 	return false
+	}
+
+
+	return true
+}
+

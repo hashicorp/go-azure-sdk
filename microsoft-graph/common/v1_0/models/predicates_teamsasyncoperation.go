@@ -1,0 +1,47 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type TeamsAsyncOperationOperationPredicate struct {
+	AttemptsCount          *int64
+	CreatedDateTime        *string
+	Id                     *string
+	LastActionDateTime     *string
+	ODataType              *string
+	TargetResourceId       *string
+	TargetResourceLocation *string
+}
+
+func (p TeamsAsyncOperationOperationPredicate) Matches(input TeamsAsyncOperation) bool {
+
+	if p.AttemptsCount != nil && (input.AttemptsCount == nil || *p.AttemptsCount != *input.AttemptsCount) {
+		return false
+	}
+
+	if p.CreatedDateTime != nil && (input.CreatedDateTime == nil || *p.CreatedDateTime != *input.CreatedDateTime) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.LastActionDateTime != nil && (input.LastActionDateTime == nil || *p.LastActionDateTime != *input.LastActionDateTime) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.TargetResourceId != nil && (input.TargetResourceId == nil || *p.TargetResourceId != *input.TargetResourceId) {
+		return false
+	}
+
+	if p.TargetResourceLocation != nil && (input.TargetResourceLocation == nil || *p.TargetResourceLocation != *input.TargetResourceLocation) {
+		return false
+	}
+
+	return true
+}

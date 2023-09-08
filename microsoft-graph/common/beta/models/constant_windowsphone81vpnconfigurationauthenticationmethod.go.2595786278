@@ -1,0 +1,49 @@
+package models
+
+import "strings"
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type WindowsPhone81VpnConfigurationAuthenticationMethod string
+
+const (
+	WindowsPhone81VpnConfigurationAuthenticationMethodazureAD WindowsPhone81VpnConfigurationAuthenticationMethod = "AzureAD"
+	WindowsPhone81VpnConfigurationAuthenticationMethodcertificate WindowsPhone81VpnConfigurationAuthenticationMethod = "Certificate"
+	WindowsPhone81VpnConfigurationAuthenticationMethodderivedCredential WindowsPhone81VpnConfigurationAuthenticationMethod = "DerivedCredential"
+	WindowsPhone81VpnConfigurationAuthenticationMethodsharedSecret WindowsPhone81VpnConfigurationAuthenticationMethod = "SharedSecret"
+	WindowsPhone81VpnConfigurationAuthenticationMethodusernameAndPassword WindowsPhone81VpnConfigurationAuthenticationMethod = "UsernameAndPassword"
+)
+
+
+func PossibleValuesForWindowsPhone81VpnConfigurationAuthenticationMethod() []string {
+	return []string{
+		string(WindowsPhone81VpnConfigurationAuthenticationMethodazureAD),
+string(WindowsPhone81VpnConfigurationAuthenticationMethodcertificate),
+string(WindowsPhone81VpnConfigurationAuthenticationMethodderivedCredential),
+string(WindowsPhone81VpnConfigurationAuthenticationMethodsharedSecret),
+string(WindowsPhone81VpnConfigurationAuthenticationMethodusernameAndPassword),
+	}
+}
+
+
+
+func parseWindowsPhone81VpnConfigurationAuthenticationMethod(input string) (*WindowsPhone81VpnConfigurationAuthenticationMethod, error) {
+	vals := map[string]WindowsPhone81VpnConfigurationAuthenticationMethod{
+		"azuread": WindowsPhone81VpnConfigurationAuthenticationMethodazureAD,
+"certificate": WindowsPhone81VpnConfigurationAuthenticationMethodcertificate,
+"derivedcredential": WindowsPhone81VpnConfigurationAuthenticationMethodderivedCredential,
+"sharedsecret": WindowsPhone81VpnConfigurationAuthenticationMethodsharedSecret,
+"usernameandpassword": WindowsPhone81VpnConfigurationAuthenticationMethodusernameAndPassword,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := WindowsPhone81VpnConfigurationAuthenticationMethod(input)
+	return &out, nil
+}

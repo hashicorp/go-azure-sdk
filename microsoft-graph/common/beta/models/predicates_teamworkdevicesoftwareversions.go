@@ -1,0 +1,42 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type TeamworkDeviceSoftwareVersionsOperationPredicate struct {
+	AdminAgentSoftwareVersion      *string
+	FirmwareSoftwareVersion        *string
+	ODataType                      *string
+	OperatingSystemSoftwareVersion *string
+	PartnerAgentSoftwareVersion    *string
+	TeamsClientSoftwareVersion     *string
+}
+
+func (p TeamworkDeviceSoftwareVersionsOperationPredicate) Matches(input TeamworkDeviceSoftwareVersions) bool {
+
+	if p.AdminAgentSoftwareVersion != nil && (input.AdminAgentSoftwareVersion == nil || *p.AdminAgentSoftwareVersion != *input.AdminAgentSoftwareVersion) {
+		return false
+	}
+
+	if p.FirmwareSoftwareVersion != nil && (input.FirmwareSoftwareVersion == nil || *p.FirmwareSoftwareVersion != *input.FirmwareSoftwareVersion) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.OperatingSystemSoftwareVersion != nil && (input.OperatingSystemSoftwareVersion == nil || *p.OperatingSystemSoftwareVersion != *input.OperatingSystemSoftwareVersion) {
+		return false
+	}
+
+	if p.PartnerAgentSoftwareVersion != nil && (input.PartnerAgentSoftwareVersion == nil || *p.PartnerAgentSoftwareVersion != *input.PartnerAgentSoftwareVersion) {
+		return false
+	}
+
+	if p.TeamsClientSoftwareVersion != nil && (input.TeamsClientSoftwareVersion == nil || *p.TeamsClientSoftwareVersion != *input.TeamsClientSoftwareVersion) {
+		return false
+	}
+
+	return true
+}

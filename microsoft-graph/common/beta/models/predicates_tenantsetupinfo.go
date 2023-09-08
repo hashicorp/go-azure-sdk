@@ -1,0 +1,37 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type TenantSetupInfoOperationPredicate struct {
+	FirstTimeSetup   *bool
+	Id               *string
+	ODataType        *string
+	SkipSetup        *bool
+	UserRolesActions *string
+}
+
+func (p TenantSetupInfoOperationPredicate) Matches(input TenantSetupInfo) bool {
+
+	if p.FirstTimeSetup != nil && (input.FirstTimeSetup == nil || *p.FirstTimeSetup != *input.FirstTimeSetup) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.SkipSetup != nil && (input.SkipSetup == nil || *p.SkipSetup != *input.SkipSetup) {
+		return false
+	}
+
+	if p.UserRolesActions != nil && (input.UserRolesActions == nil || *p.UserRolesActions != *input.UserRolesActions) {
+		return false
+	}
+
+	return true
+}

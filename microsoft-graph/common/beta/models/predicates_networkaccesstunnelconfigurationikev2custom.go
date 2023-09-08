@@ -1,0 +1,27 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type NetworkaccessTunnelConfigurationIKEv2CustomOperationPredicate struct {
+	ODataType         *string
+	PreSharedKey      *string
+	SaLifeTimeSeconds *int64
+}
+
+func (p NetworkaccessTunnelConfigurationIKEv2CustomOperationPredicate) Matches(input NetworkaccessTunnelConfigurationIKEv2Custom) bool {
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.PreSharedKey != nil && (input.PreSharedKey == nil || *p.PreSharedKey != *input.PreSharedKey) {
+		return false
+	}
+
+	if p.SaLifeTimeSeconds != nil && (input.SaLifeTimeSeconds == nil || *p.SaLifeTimeSeconds != *input.SaLifeTimeSeconds) {
+		return false
+	}
+
+	return true
+}

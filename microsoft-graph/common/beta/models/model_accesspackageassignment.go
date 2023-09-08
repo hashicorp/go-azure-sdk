@@ -1,0 +1,24 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type AccessPackageAssignment struct {
+	AccessPackage                        *AccessPackage                         `json:"accessPackage,omitempty"`
+	AccessPackageAssignmentPolicy        *AccessPackageAssignmentPolicy         `json:"accessPackageAssignmentPolicy,omitempty"`
+	AccessPackageAssignmentRequests      *[]AccessPackageAssignmentRequest      `json:"accessPackageAssignmentRequests,omitempty"`
+	AccessPackageAssignmentResourceRoles *[]AccessPackageAssignmentResourceRole `json:"accessPackageAssignmentResourceRoles,omitempty"`
+	AccessPackageId                      *string                                `json:"accessPackageId,omitempty"`
+	AssignmentPolicyId                   *string                                `json:"assignmentPolicyId,omitempty"`
+	AssignmentState                      *string                                `json:"assignmentState,omitempty"`
+	AssignmentStatus                     *string                                `json:"assignmentStatus,omitempty"`
+	CatalogId                            *string                                `json:"catalogId,omitempty"`
+	CustomExtensionCalloutInstances      *[]CustomExtensionCalloutInstance      `json:"customExtensionCalloutInstances,omitempty"`
+	ExpiredDateTime                      *string                                `json:"expiredDateTime,omitempty"`
+	Id                                   *string                                `json:"id,omitempty"`
+	IsExtended                           *bool                                  `json:"isExtended,omitempty"`
+	ODataType                            *string                                `json:"@odata.type,omitempty"`
+	Schedule                             *RequestSchedule                       `json:"schedule,omitempty"`
+	Target                               *AccessPackageSubject                  `json:"target,omitempty"`
+	TargetId                             *string                                `json:"targetId,omitempty"`
+}

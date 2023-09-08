@@ -1,0 +1,82 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type ZebraFotaDeploymentSettingsOperationPredicate struct {
+	BatteryRuleMinimumBatteryLevelPercentage *int64
+	BatteryRuleRequireCharger                *bool
+	DeviceModel                              *string
+	DownloadRuleStartDateTime                *string
+	FirmwareTargetArtifactDescription        *string
+	FirmwareTargetBoardSupportPackageVersion *string
+	FirmwareTargetOsVersion                  *string
+	FirmwareTargetPatch                      *string
+	InstallRuleStartDateTime                 *string
+	InstallRuleWindowEndTime                 *string
+	InstallRuleWindowStartTime               *string
+	ODataType                                *string
+	ScheduleDurationInDays                   *int64
+	TimeZoneOffsetInMinutes                  *int64
+}
+
+func (p ZebraFotaDeploymentSettingsOperationPredicate) Matches(input ZebraFotaDeploymentSettings) bool {
+
+	if p.BatteryRuleMinimumBatteryLevelPercentage != nil && (input.BatteryRuleMinimumBatteryLevelPercentage == nil || *p.BatteryRuleMinimumBatteryLevelPercentage != *input.BatteryRuleMinimumBatteryLevelPercentage) {
+		return false
+	}
+
+	if p.BatteryRuleRequireCharger != nil && (input.BatteryRuleRequireCharger == nil || *p.BatteryRuleRequireCharger != *input.BatteryRuleRequireCharger) {
+		return false
+	}
+
+	if p.DeviceModel != nil && (input.DeviceModel == nil || *p.DeviceModel != *input.DeviceModel) {
+		return false
+	}
+
+	if p.DownloadRuleStartDateTime != nil && (input.DownloadRuleStartDateTime == nil || *p.DownloadRuleStartDateTime != *input.DownloadRuleStartDateTime) {
+		return false
+	}
+
+	if p.FirmwareTargetArtifactDescription != nil && (input.FirmwareTargetArtifactDescription == nil || *p.FirmwareTargetArtifactDescription != *input.FirmwareTargetArtifactDescription) {
+		return false
+	}
+
+	if p.FirmwareTargetBoardSupportPackageVersion != nil && (input.FirmwareTargetBoardSupportPackageVersion == nil || *p.FirmwareTargetBoardSupportPackageVersion != *input.FirmwareTargetBoardSupportPackageVersion) {
+		return false
+	}
+
+	if p.FirmwareTargetOsVersion != nil && (input.FirmwareTargetOsVersion == nil || *p.FirmwareTargetOsVersion != *input.FirmwareTargetOsVersion) {
+		return false
+	}
+
+	if p.FirmwareTargetPatch != nil && (input.FirmwareTargetPatch == nil || *p.FirmwareTargetPatch != *input.FirmwareTargetPatch) {
+		return false
+	}
+
+	if p.InstallRuleStartDateTime != nil && (input.InstallRuleStartDateTime == nil || *p.InstallRuleStartDateTime != *input.InstallRuleStartDateTime) {
+		return false
+	}
+
+	if p.InstallRuleWindowEndTime != nil && (input.InstallRuleWindowEndTime == nil || *p.InstallRuleWindowEndTime != *input.InstallRuleWindowEndTime) {
+		return false
+	}
+
+	if p.InstallRuleWindowStartTime != nil && (input.InstallRuleWindowStartTime == nil || *p.InstallRuleWindowStartTime != *input.InstallRuleWindowStartTime) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.ScheduleDurationInDays != nil && (input.ScheduleDurationInDays == nil || *p.ScheduleDurationInDays != *input.ScheduleDurationInDays) {
+		return false
+	}
+
+	if p.TimeZoneOffsetInMinutes != nil && (input.TimeZoneOffsetInMinutes == nil || *p.TimeZoneOffsetInMinutes != *input.TimeZoneOffsetInMinutes) {
+		return false
+	}
+
+	return true
+}

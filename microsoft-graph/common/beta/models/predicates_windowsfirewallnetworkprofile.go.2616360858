@@ -1,0 +1,153 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type WindowsFirewallNetworkProfileOperationPredicate struct {
+	 AuthorizedApplicationRulesFromGroupPolicyMerged *bool
+	 AuthorizedApplicationRulesFromGroupPolicyNotMerged *bool
+	 ConnectionSecurityRulesFromGroupPolicyMerged *bool
+	 ConnectionSecurityRulesFromGroupPolicyNotMerged *bool
+	 GlobalPortRulesFromGroupPolicyMerged *bool
+	 GlobalPortRulesFromGroupPolicyNotMerged *bool
+	 InboundConnectionsBlocked *bool
+	 InboundConnectionsRequired *bool
+	 InboundNotificationsBlocked *bool
+	 InboundNotificationsRequired *bool
+	 IncomingTrafficBlocked *bool
+	 IncomingTrafficRequired *bool
+	 ODataType *string
+	 OutboundConnectionsBlocked *bool
+	 OutboundConnectionsRequired *bool
+	 PolicyRulesFromGroupPolicyMerged *bool
+	 PolicyRulesFromGroupPolicyNotMerged *bool
+	 SecuredPacketExemptionAllowed *bool
+	 SecuredPacketExemptionBlocked *bool
+	 StealthModeBlocked *bool
+	 StealthModeRequired *bool
+	 UnicastResponsesToMulticastBroadcastsBlocked *bool
+	 UnicastResponsesToMulticastBroadcastsRequired *bool
+}
+
+func (p WindowsFirewallNetworkProfileOperationPredicate) Matches(input WindowsFirewallNetworkProfile) bool {
+
+	if p.AuthorizedApplicationRulesFromGroupPolicyMerged != nil && (input.AuthorizedApplicationRulesFromGroupPolicyMerged == nil || *p.AuthorizedApplicationRulesFromGroupPolicyMerged != *input.AuthorizedApplicationRulesFromGroupPolicyMerged) {
+	 	return false
+	}
+
+
+	if p.AuthorizedApplicationRulesFromGroupPolicyNotMerged != nil && (input.AuthorizedApplicationRulesFromGroupPolicyNotMerged == nil || *p.AuthorizedApplicationRulesFromGroupPolicyNotMerged != *input.AuthorizedApplicationRulesFromGroupPolicyNotMerged) {
+	 	return false
+	}
+
+
+	if p.ConnectionSecurityRulesFromGroupPolicyMerged != nil && (input.ConnectionSecurityRulesFromGroupPolicyMerged == nil || *p.ConnectionSecurityRulesFromGroupPolicyMerged != *input.ConnectionSecurityRulesFromGroupPolicyMerged) {
+	 	return false
+	}
+
+
+	if p.ConnectionSecurityRulesFromGroupPolicyNotMerged != nil && (input.ConnectionSecurityRulesFromGroupPolicyNotMerged == nil || *p.ConnectionSecurityRulesFromGroupPolicyNotMerged != *input.ConnectionSecurityRulesFromGroupPolicyNotMerged) {
+	 	return false
+	}
+
+
+	if p.GlobalPortRulesFromGroupPolicyMerged != nil && (input.GlobalPortRulesFromGroupPolicyMerged == nil || *p.GlobalPortRulesFromGroupPolicyMerged != *input.GlobalPortRulesFromGroupPolicyMerged) {
+	 	return false
+	}
+
+
+	if p.GlobalPortRulesFromGroupPolicyNotMerged != nil && (input.GlobalPortRulesFromGroupPolicyNotMerged == nil || *p.GlobalPortRulesFromGroupPolicyNotMerged != *input.GlobalPortRulesFromGroupPolicyNotMerged) {
+	 	return false
+	}
+
+
+	if p.InboundConnectionsBlocked != nil && (input.InboundConnectionsBlocked == nil || *p.InboundConnectionsBlocked != *input.InboundConnectionsBlocked) {
+	 	return false
+	}
+
+
+	if p.InboundConnectionsRequired != nil && (input.InboundConnectionsRequired == nil || *p.InboundConnectionsRequired != *input.InboundConnectionsRequired) {
+	 	return false
+	}
+
+
+	if p.InboundNotificationsBlocked != nil && (input.InboundNotificationsBlocked == nil || *p.InboundNotificationsBlocked != *input.InboundNotificationsBlocked) {
+	 	return false
+	}
+
+
+	if p.InboundNotificationsRequired != nil && (input.InboundNotificationsRequired == nil || *p.InboundNotificationsRequired != *input.InboundNotificationsRequired) {
+	 	return false
+	}
+
+
+	if p.IncomingTrafficBlocked != nil && (input.IncomingTrafficBlocked == nil || *p.IncomingTrafficBlocked != *input.IncomingTrafficBlocked) {
+	 	return false
+	}
+
+
+	if p.IncomingTrafficRequired != nil && (input.IncomingTrafficRequired == nil || *p.IncomingTrafficRequired != *input.IncomingTrafficRequired) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.OutboundConnectionsBlocked != nil && (input.OutboundConnectionsBlocked == nil || *p.OutboundConnectionsBlocked != *input.OutboundConnectionsBlocked) {
+	 	return false
+	}
+
+
+	if p.OutboundConnectionsRequired != nil && (input.OutboundConnectionsRequired == nil || *p.OutboundConnectionsRequired != *input.OutboundConnectionsRequired) {
+	 	return false
+	}
+
+
+	if p.PolicyRulesFromGroupPolicyMerged != nil && (input.PolicyRulesFromGroupPolicyMerged == nil || *p.PolicyRulesFromGroupPolicyMerged != *input.PolicyRulesFromGroupPolicyMerged) {
+	 	return false
+	}
+
+
+	if p.PolicyRulesFromGroupPolicyNotMerged != nil && (input.PolicyRulesFromGroupPolicyNotMerged == nil || *p.PolicyRulesFromGroupPolicyNotMerged != *input.PolicyRulesFromGroupPolicyNotMerged) {
+	 	return false
+	}
+
+
+	if p.SecuredPacketExemptionAllowed != nil && (input.SecuredPacketExemptionAllowed == nil || *p.SecuredPacketExemptionAllowed != *input.SecuredPacketExemptionAllowed) {
+	 	return false
+	}
+
+
+	if p.SecuredPacketExemptionBlocked != nil && (input.SecuredPacketExemptionBlocked == nil || *p.SecuredPacketExemptionBlocked != *input.SecuredPacketExemptionBlocked) {
+	 	return false
+	}
+
+
+	if p.StealthModeBlocked != nil && (input.StealthModeBlocked == nil || *p.StealthModeBlocked != *input.StealthModeBlocked) {
+	 	return false
+	}
+
+
+	if p.StealthModeRequired != nil && (input.StealthModeRequired == nil || *p.StealthModeRequired != *input.StealthModeRequired) {
+	 	return false
+	}
+
+
+	if p.UnicastResponsesToMulticastBroadcastsBlocked != nil && (input.UnicastResponsesToMulticastBroadcastsBlocked == nil || *p.UnicastResponsesToMulticastBroadcastsBlocked != *input.UnicastResponsesToMulticastBroadcastsBlocked) {
+	 	return false
+	}
+
+
+	if p.UnicastResponsesToMulticastBroadcastsRequired != nil && (input.UnicastResponsesToMulticastBroadcastsRequired == nil || *p.UnicastResponsesToMulticastBroadcastsRequired != *input.UnicastResponsesToMulticastBroadcastsRequired) {
+	 	return false
+	}
+
+
+	return true
+}
+

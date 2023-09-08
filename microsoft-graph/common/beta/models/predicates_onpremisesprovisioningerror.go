@@ -1,0 +1,37 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type OnPremisesProvisioningErrorOperationPredicate struct {
+	Category             *string
+	ODataType            *string
+	OccurredDateTime     *string
+	PropertyCausingError *string
+	Value                *string
+}
+
+func (p OnPremisesProvisioningErrorOperationPredicate) Matches(input OnPremisesProvisioningError) bool {
+
+	if p.Category != nil && (input.Category == nil || *p.Category != *input.Category) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.OccurredDateTime != nil && (input.OccurredDateTime == nil || *p.OccurredDateTime != *input.OccurredDateTime) {
+		return false
+	}
+
+	if p.PropertyCausingError != nil && (input.PropertyCausingError == nil || *p.PropertyCausingError != *input.PropertyCausingError) {
+		return false
+	}
+
+	if p.Value != nil && (input.Value == nil || *p.Value != *input.Value) {
+		return false
+	}
+
+	return true
+}

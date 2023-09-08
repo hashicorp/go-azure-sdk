@@ -1,0 +1,55 @@
+package models
+
+import "strings"
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type Win32LobAppProductCodeRuleProductVersionOperator string
+
+const (
+	Win32LobAppProductCodeRuleProductVersionOperatorequal Win32LobAppProductCodeRuleProductVersionOperator = "Equal"
+	Win32LobAppProductCodeRuleProductVersionOperatorgreaterThan Win32LobAppProductCodeRuleProductVersionOperator = "GreaterThan"
+	Win32LobAppProductCodeRuleProductVersionOperatorgreaterThanOrEqual Win32LobAppProductCodeRuleProductVersionOperator = "GreaterThanOrEqual"
+	Win32LobAppProductCodeRuleProductVersionOperatorlessThan Win32LobAppProductCodeRuleProductVersionOperator = "LessThan"
+	Win32LobAppProductCodeRuleProductVersionOperatorlessThanOrEqual Win32LobAppProductCodeRuleProductVersionOperator = "LessThanOrEqual"
+	Win32LobAppProductCodeRuleProductVersionOperatornotConfigured Win32LobAppProductCodeRuleProductVersionOperator = "NotConfigured"
+	Win32LobAppProductCodeRuleProductVersionOperatornotEqual Win32LobAppProductCodeRuleProductVersionOperator = "NotEqual"
+)
+
+
+func PossibleValuesForWin32LobAppProductCodeRuleProductVersionOperator() []string {
+	return []string{
+		string(Win32LobAppProductCodeRuleProductVersionOperatorequal),
+string(Win32LobAppProductCodeRuleProductVersionOperatorgreaterThan),
+string(Win32LobAppProductCodeRuleProductVersionOperatorgreaterThanOrEqual),
+string(Win32LobAppProductCodeRuleProductVersionOperatorlessThan),
+string(Win32LobAppProductCodeRuleProductVersionOperatorlessThanOrEqual),
+string(Win32LobAppProductCodeRuleProductVersionOperatornotConfigured),
+string(Win32LobAppProductCodeRuleProductVersionOperatornotEqual),
+	}
+}
+
+
+
+func parseWin32LobAppProductCodeRuleProductVersionOperator(input string) (*Win32LobAppProductCodeRuleProductVersionOperator, error) {
+	vals := map[string]Win32LobAppProductCodeRuleProductVersionOperator{
+		"equal": Win32LobAppProductCodeRuleProductVersionOperatorequal,
+"greaterthan": Win32LobAppProductCodeRuleProductVersionOperatorgreaterThan,
+"greaterthanorequal": Win32LobAppProductCodeRuleProductVersionOperatorgreaterThanOrEqual,
+"lessthan": Win32LobAppProductCodeRuleProductVersionOperatorlessThan,
+"lessthanorequal": Win32LobAppProductCodeRuleProductVersionOperatorlessThanOrEqual,
+"notconfigured": Win32LobAppProductCodeRuleProductVersionOperatornotConfigured,
+"notequal": Win32LobAppProductCodeRuleProductVersionOperatornotEqual,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := Win32LobAppProductCodeRuleProductVersionOperator(input)
+	return &out, nil
+}

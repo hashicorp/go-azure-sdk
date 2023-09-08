@@ -1,0 +1,142 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type IosEasEmailProfileConfigurationOperationPredicate struct {
+	AccountName                                   *string
+	BlockMovingMessagesToOtherEmailAccounts       *bool
+	BlockSendingEmailFromThirdPartyApps           *bool
+	BlockSyncingRecentlyUsedEmailAddresses        *bool
+	CreatedDateTime                               *string
+	CustomDomainName                              *string
+	Description                                   *string
+	DisplayName                                   *string
+	EasServicesUserOverrideEnabled                *bool
+	HostName                                      *string
+	Id                                            *string
+	LastModifiedDateTime                          *string
+	ODataType                                     *string
+	PerAppVPNProfileId                            *string
+	RequireSmime                                  *bool
+	RequireSsl                                    *bool
+	SmimeEnablePerMessageSwitch                   *bool
+	SmimeEncryptByDefaultEnabled                  *bool
+	SmimeEncryptByDefaultUserOverrideEnabled      *bool
+	SmimeEncryptionCertificateUserOverrideEnabled *bool
+	SmimeSigningCertificateUserOverrideEnabled    *bool
+	SmimeSigningEnabled                           *bool
+	SmimeSigningUserOverrideEnabled               *bool
+	SupportsScopeTags                             *bool
+	UseOAuth                                      *bool
+	Version                                       *int64
+}
+
+func (p IosEasEmailProfileConfigurationOperationPredicate) Matches(input IosEasEmailProfileConfiguration) bool {
+
+	if p.AccountName != nil && (input.AccountName == nil || *p.AccountName != *input.AccountName) {
+		return false
+	}
+
+	if p.BlockMovingMessagesToOtherEmailAccounts != nil && (input.BlockMovingMessagesToOtherEmailAccounts == nil || *p.BlockMovingMessagesToOtherEmailAccounts != *input.BlockMovingMessagesToOtherEmailAccounts) {
+		return false
+	}
+
+	if p.BlockSendingEmailFromThirdPartyApps != nil && (input.BlockSendingEmailFromThirdPartyApps == nil || *p.BlockSendingEmailFromThirdPartyApps != *input.BlockSendingEmailFromThirdPartyApps) {
+		return false
+	}
+
+	if p.BlockSyncingRecentlyUsedEmailAddresses != nil && (input.BlockSyncingRecentlyUsedEmailAddresses == nil || *p.BlockSyncingRecentlyUsedEmailAddresses != *input.BlockSyncingRecentlyUsedEmailAddresses) {
+		return false
+	}
+
+	if p.CreatedDateTime != nil && (input.CreatedDateTime == nil || *p.CreatedDateTime != *input.CreatedDateTime) {
+		return false
+	}
+
+	if p.CustomDomainName != nil && (input.CustomDomainName == nil || *p.CustomDomainName != *input.CustomDomainName) {
+		return false
+	}
+
+	if p.Description != nil && (input.Description == nil || *p.Description != *input.Description) {
+		return false
+	}
+
+	if p.DisplayName != nil && (input.DisplayName == nil || *p.DisplayName != *input.DisplayName) {
+		return false
+	}
+
+	if p.EasServicesUserOverrideEnabled != nil && (input.EasServicesUserOverrideEnabled == nil || *p.EasServicesUserOverrideEnabled != *input.EasServicesUserOverrideEnabled) {
+		return false
+	}
+
+	if p.HostName != nil && (input.HostName == nil || *p.HostName != *input.HostName) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.LastModifiedDateTime != nil && (input.LastModifiedDateTime == nil || *p.LastModifiedDateTime != *input.LastModifiedDateTime) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.PerAppVPNProfileId != nil && (input.PerAppVPNProfileId == nil || *p.PerAppVPNProfileId != *input.PerAppVPNProfileId) {
+		return false
+	}
+
+	if p.RequireSmime != nil && (input.RequireSmime == nil || *p.RequireSmime != *input.RequireSmime) {
+		return false
+	}
+
+	if p.RequireSsl != nil && (input.RequireSsl == nil || *p.RequireSsl != *input.RequireSsl) {
+		return false
+	}
+
+	if p.SmimeEnablePerMessageSwitch != nil && (input.SmimeEnablePerMessageSwitch == nil || *p.SmimeEnablePerMessageSwitch != *input.SmimeEnablePerMessageSwitch) {
+		return false
+	}
+
+	if p.SmimeEncryptByDefaultEnabled != nil && (input.SmimeEncryptByDefaultEnabled == nil || *p.SmimeEncryptByDefaultEnabled != *input.SmimeEncryptByDefaultEnabled) {
+		return false
+	}
+
+	if p.SmimeEncryptByDefaultUserOverrideEnabled != nil && (input.SmimeEncryptByDefaultUserOverrideEnabled == nil || *p.SmimeEncryptByDefaultUserOverrideEnabled != *input.SmimeEncryptByDefaultUserOverrideEnabled) {
+		return false
+	}
+
+	if p.SmimeEncryptionCertificateUserOverrideEnabled != nil && (input.SmimeEncryptionCertificateUserOverrideEnabled == nil || *p.SmimeEncryptionCertificateUserOverrideEnabled != *input.SmimeEncryptionCertificateUserOverrideEnabled) {
+		return false
+	}
+
+	if p.SmimeSigningCertificateUserOverrideEnabled != nil && (input.SmimeSigningCertificateUserOverrideEnabled == nil || *p.SmimeSigningCertificateUserOverrideEnabled != *input.SmimeSigningCertificateUserOverrideEnabled) {
+		return false
+	}
+
+	if p.SmimeSigningEnabled != nil && (input.SmimeSigningEnabled == nil || *p.SmimeSigningEnabled != *input.SmimeSigningEnabled) {
+		return false
+	}
+
+	if p.SmimeSigningUserOverrideEnabled != nil && (input.SmimeSigningUserOverrideEnabled == nil || *p.SmimeSigningUserOverrideEnabled != *input.SmimeSigningUserOverrideEnabled) {
+		return false
+	}
+
+	if p.SupportsScopeTags != nil && (input.SupportsScopeTags == nil || *p.SupportsScopeTags != *input.SupportsScopeTags) {
+		return false
+	}
+
+	if p.UseOAuth != nil && (input.UseOAuth == nil || *p.UseOAuth != *input.UseOAuth) {
+		return false
+	}
+
+	if p.Version != nil && (input.Version == nil || *p.Version != *input.Version) {
+		return false
+	}
+
+	return true
+}

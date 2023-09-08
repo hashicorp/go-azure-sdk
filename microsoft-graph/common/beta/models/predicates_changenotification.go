@@ -1,0 +1,47 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type ChangeNotificationOperationPredicate struct {
+	ClientState                    *string
+	Id                             *string
+	ODataType                      *string
+	Resource                       *string
+	SubscriptionExpirationDateTime *string
+	SubscriptionId                 *string
+	TenantId                       *string
+}
+
+func (p ChangeNotificationOperationPredicate) Matches(input ChangeNotification) bool {
+
+	if p.ClientState != nil && (input.ClientState == nil || *p.ClientState != *input.ClientState) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.Resource != nil && (input.Resource == nil || *p.Resource != *input.Resource) {
+		return false
+	}
+
+	if p.SubscriptionExpirationDateTime != nil && (input.SubscriptionExpirationDateTime == nil || *p.SubscriptionExpirationDateTime != *input.SubscriptionExpirationDateTime) {
+		return false
+	}
+
+	if p.SubscriptionId != nil && (input.SubscriptionId == nil || *p.SubscriptionId != *input.SubscriptionId) {
+		return false
+	}
+
+	if p.TenantId != nil && (input.TenantId == nil || *p.TenantId != *input.TenantId) {
+		return false
+	}
+
+	return true
+}

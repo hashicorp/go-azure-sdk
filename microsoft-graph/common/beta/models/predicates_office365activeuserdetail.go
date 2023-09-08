@@ -1,0 +1,137 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type Office365ActiveUserDetailOperationPredicate struct {
+	DeletedDate                       *string
+	DisplayName                       *string
+	ExchangeLastActivityDate          *string
+	ExchangeLicenseAssignDate         *string
+	HasExchangeLicense                *bool
+	HasOneDriveLicense                *bool
+	HasSharePointLicense              *bool
+	HasSkypeForBusinessLicense        *bool
+	HasTeamsLicense                   *bool
+	HasYammerLicense                  *bool
+	Id                                *string
+	IsDeleted                         *bool
+	ODataType                         *string
+	OneDriveLastActivityDate          *string
+	OneDriveLicenseAssignDate         *string
+	ReportRefreshDate                 *string
+	SharePointLastActivityDate        *string
+	SharePointLicenseAssignDate       *string
+	SkypeForBusinessLastActivityDate  *string
+	SkypeForBusinessLicenseAssignDate *string
+	TeamsLastActivityDate             *string
+	TeamsLicenseAssignDate            *string
+	UserPrincipalName                 *string
+	YammerLastActivityDate            *string
+	YammerLicenseAssignDate           *string
+}
+
+func (p Office365ActiveUserDetailOperationPredicate) Matches(input Office365ActiveUserDetail) bool {
+
+	if p.DeletedDate != nil && (input.DeletedDate == nil || *p.DeletedDate != *input.DeletedDate) {
+		return false
+	}
+
+	if p.DisplayName != nil && (input.DisplayName == nil || *p.DisplayName != *input.DisplayName) {
+		return false
+	}
+
+	if p.ExchangeLastActivityDate != nil && (input.ExchangeLastActivityDate == nil || *p.ExchangeLastActivityDate != *input.ExchangeLastActivityDate) {
+		return false
+	}
+
+	if p.ExchangeLicenseAssignDate != nil && (input.ExchangeLicenseAssignDate == nil || *p.ExchangeLicenseAssignDate != *input.ExchangeLicenseAssignDate) {
+		return false
+	}
+
+	if p.HasExchangeLicense != nil && (input.HasExchangeLicense == nil || *p.HasExchangeLicense != *input.HasExchangeLicense) {
+		return false
+	}
+
+	if p.HasOneDriveLicense != nil && (input.HasOneDriveLicense == nil || *p.HasOneDriveLicense != *input.HasOneDriveLicense) {
+		return false
+	}
+
+	if p.HasSharePointLicense != nil && (input.HasSharePointLicense == nil || *p.HasSharePointLicense != *input.HasSharePointLicense) {
+		return false
+	}
+
+	if p.HasSkypeForBusinessLicense != nil && (input.HasSkypeForBusinessLicense == nil || *p.HasSkypeForBusinessLicense != *input.HasSkypeForBusinessLicense) {
+		return false
+	}
+
+	if p.HasTeamsLicense != nil && (input.HasTeamsLicense == nil || *p.HasTeamsLicense != *input.HasTeamsLicense) {
+		return false
+	}
+
+	if p.HasYammerLicense != nil && (input.HasYammerLicense == nil || *p.HasYammerLicense != *input.HasYammerLicense) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.IsDeleted != nil && (input.IsDeleted == nil || *p.IsDeleted != *input.IsDeleted) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.OneDriveLastActivityDate != nil && (input.OneDriveLastActivityDate == nil || *p.OneDriveLastActivityDate != *input.OneDriveLastActivityDate) {
+		return false
+	}
+
+	if p.OneDriveLicenseAssignDate != nil && (input.OneDriveLicenseAssignDate == nil || *p.OneDriveLicenseAssignDate != *input.OneDriveLicenseAssignDate) {
+		return false
+	}
+
+	if p.ReportRefreshDate != nil && (input.ReportRefreshDate == nil || *p.ReportRefreshDate != *input.ReportRefreshDate) {
+		return false
+	}
+
+	if p.SharePointLastActivityDate != nil && (input.SharePointLastActivityDate == nil || *p.SharePointLastActivityDate != *input.SharePointLastActivityDate) {
+		return false
+	}
+
+	if p.SharePointLicenseAssignDate != nil && (input.SharePointLicenseAssignDate == nil || *p.SharePointLicenseAssignDate != *input.SharePointLicenseAssignDate) {
+		return false
+	}
+
+	if p.SkypeForBusinessLastActivityDate != nil && (input.SkypeForBusinessLastActivityDate == nil || *p.SkypeForBusinessLastActivityDate != *input.SkypeForBusinessLastActivityDate) {
+		return false
+	}
+
+	if p.SkypeForBusinessLicenseAssignDate != nil && (input.SkypeForBusinessLicenseAssignDate == nil || *p.SkypeForBusinessLicenseAssignDate != *input.SkypeForBusinessLicenseAssignDate) {
+		return false
+	}
+
+	if p.TeamsLastActivityDate != nil && (input.TeamsLastActivityDate == nil || *p.TeamsLastActivityDate != *input.TeamsLastActivityDate) {
+		return false
+	}
+
+	if p.TeamsLicenseAssignDate != nil && (input.TeamsLicenseAssignDate == nil || *p.TeamsLicenseAssignDate != *input.TeamsLicenseAssignDate) {
+		return false
+	}
+
+	if p.UserPrincipalName != nil && (input.UserPrincipalName == nil || *p.UserPrincipalName != *input.UserPrincipalName) {
+		return false
+	}
+
+	if p.YammerLastActivityDate != nil && (input.YammerLastActivityDate == nil || *p.YammerLastActivityDate != *input.YammerLastActivityDate) {
+		return false
+	}
+
+	if p.YammerLicenseAssignDate != nil && (input.YammerLicenseAssignDate == nil || *p.YammerLicenseAssignDate != *input.YammerLicenseAssignDate) {
+		return false
+	}
+
+	return true
+}

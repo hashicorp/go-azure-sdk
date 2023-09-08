@@ -1,0 +1,42 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type MicrosoftTunnelServerOperationPredicate struct {
+	AgentImageDigest    *string
+	DisplayName         *string
+	Id                  *string
+	LastCheckinDateTime *string
+	ODataType           *string
+	ServerImageDigest   *string
+}
+
+func (p MicrosoftTunnelServerOperationPredicate) Matches(input MicrosoftTunnelServer) bool {
+
+	if p.AgentImageDigest != nil && (input.AgentImageDigest == nil || *p.AgentImageDigest != *input.AgentImageDigest) {
+		return false
+	}
+
+	if p.DisplayName != nil && (input.DisplayName == nil || *p.DisplayName != *input.DisplayName) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.LastCheckinDateTime != nil && (input.LastCheckinDateTime == nil || *p.LastCheckinDateTime != *input.LastCheckinDateTime) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.ServerImageDigest != nil && (input.ServerImageDigest == nil || *p.ServerImageDigest != *input.ServerImageDigest) {
+		return false
+	}
+
+	return true
+}

@@ -1,0 +1,33 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type ManagedDeviceCertificateState struct {
+	CertificateEnhancedKeyUsage                   *string                                                               `json:"certificateEnhancedKeyUsage,omitempty"`
+	CertificateErrorCode                          *int64                                                                `json:"certificateErrorCode,omitempty"`
+	CertificateExpirationDateTime                 *string                                                               `json:"certificateExpirationDateTime,omitempty"`
+	CertificateIssuanceDateTime                   *string                                                               `json:"certificateIssuanceDateTime,omitempty"`
+	CertificateIssuanceState                      *ManagedDeviceCertificateStateCertificateIssuanceState                `json:"certificateIssuanceState,omitempty"`
+	CertificateIssuer                             *string                                                               `json:"certificateIssuer,omitempty"`
+	CertificateKeyLength                          *int64                                                                `json:"certificateKeyLength,omitempty"`
+	CertificateKeyStorageProvider                 *ManagedDeviceCertificateStateCertificateKeyStorageProvider           `json:"certificateKeyStorageProvider,omitempty"`
+	CertificateKeyUsage                           *ManagedDeviceCertificateStateCertificateKeyUsage                     `json:"certificateKeyUsage,omitempty"`
+	CertificateLastIssuanceStateChangedDateTime   *string                                                               `json:"certificateLastIssuanceStateChangedDateTime,omitempty"`
+	CertificateProfileDisplayName                 *string                                                               `json:"certificateProfileDisplayName,omitempty"`
+	CertificateRevokeStatus                       *ManagedDeviceCertificateStateCertificateRevokeStatus                 `json:"certificateRevokeStatus,omitempty"`
+	CertificateSerialNumber                       *string                                                               `json:"certificateSerialNumber,omitempty"`
+	CertificateSubjectAlternativeNameFormat       *ManagedDeviceCertificateStateCertificateSubjectAlternativeNameFormat `json:"certificateSubjectAlternativeNameFormat,omitempty"`
+	CertificateSubjectAlternativeNameFormatString *string                                                               `json:"certificateSubjectAlternativeNameFormatString,omitempty"`
+	CertificateSubjectNameFormat                  *ManagedDeviceCertificateStateCertificateSubjectNameFormat            `json:"certificateSubjectNameFormat,omitempty"`
+	CertificateSubjectNameFormatString            *string                                                               `json:"certificateSubjectNameFormatString,omitempty"`
+	CertificateThumbprint                         *string                                                               `json:"certificateThumbprint,omitempty"`
+	CertificateValidityPeriod                     *int64                                                                `json:"certificateValidityPeriod,omitempty"`
+	CertificateValidityPeriodUnits                *ManagedDeviceCertificateStateCertificateValidityPeriodUnits          `json:"certificateValidityPeriodUnits,omitempty"`
+	DeviceDisplayName                             *string                                                               `json:"deviceDisplayName,omitempty"`
+	DevicePlatform                                *ManagedDeviceCertificateStateDevicePlatform                          `json:"devicePlatform,omitempty"`
+	Id                                            *string                                                               `json:"id,omitempty"`
+	LastCertificateStateChangeDateTime            *string                                                               `json:"lastCertificateStateChangeDateTime,omitempty"`
+	ODataType                                     *string                                                               `json:"@odata.type,omitempty"`
+	UserDisplayName                               *string                                                               `json:"userDisplayName,omitempty"`
+}

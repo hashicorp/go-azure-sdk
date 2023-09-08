@@ -1,0 +1,38 @@
+package models
+
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/edgezones"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/identity"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/systemdata"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/zones"
+)
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type SharedInsight struct {
+	Id *string `json:"id,omitempty"`
+	LastShared *SharingDetail `json:"lastShared,omitempty"`
+	LastSharedMethod *Entity `json:"lastSharedMethod,omitempty"`
+	ODataType *string `json:"@odata.type,omitempty"`
+	Resource *Entity `json:"resource,omitempty"`
+	ResourceReference *ResourceReference `json:"resourceReference,omitempty"`
+	ResourceVisualization *ResourceVisualization `json:"resourceVisualization,omitempty"`
+	SharingHistory *[]SharingDetail `json:"sharingHistory,omitempty"`
+}
+
+
+
+
+
+
+

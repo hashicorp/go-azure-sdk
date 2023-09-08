@@ -1,0 +1,57 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type MatchingDlpRuleOperationPredicate struct {
+	 IsMostRestrictive *bool
+	 ODataType *string
+	 PolicyId *string
+	 PolicyName *string
+	 Priority *int64
+	 RuleId *string
+	 RuleName *string
+}
+
+func (p MatchingDlpRuleOperationPredicate) Matches(input MatchingDlpRule) bool {
+
+	if p.IsMostRestrictive != nil && (input.IsMostRestrictive == nil || *p.IsMostRestrictive != *input.IsMostRestrictive) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.PolicyId != nil && (input.PolicyId == nil || *p.PolicyId != *input.PolicyId) {
+	 	return false
+	}
+
+
+	if p.PolicyName != nil && (input.PolicyName == nil || *p.PolicyName != *input.PolicyName) {
+	 	return false
+	}
+
+
+	if p.Priority != nil && (input.Priority == nil || *p.Priority != *input.Priority) {
+	 	return false
+	}
+
+
+	if p.RuleId != nil && (input.RuleId == nil || *p.RuleId != *input.RuleId) {
+	 	return false
+	}
+
+
+	if p.RuleName != nil && (input.RuleName == nil || *p.RuleName != *input.RuleName) {
+	 	return false
+	}
+
+
+	return true
+}
+

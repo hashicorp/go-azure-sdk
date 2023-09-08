@@ -1,0 +1,47 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type ResourceOperationOperationPredicate struct {
+	ActionName                *string
+	Description               *string
+	EnabledForScopeValidation *bool
+	Id                        *string
+	ODataType                 *string
+	Resource                  *string
+	ResourceName              *string
+}
+
+func (p ResourceOperationOperationPredicate) Matches(input ResourceOperation) bool {
+
+	if p.ActionName != nil && (input.ActionName == nil || *p.ActionName != *input.ActionName) {
+		return false
+	}
+
+	if p.Description != nil && (input.Description == nil || *p.Description != *input.Description) {
+		return false
+	}
+
+	if p.EnabledForScopeValidation != nil && (input.EnabledForScopeValidation == nil || *p.EnabledForScopeValidation != *input.EnabledForScopeValidation) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.Resource != nil && (input.Resource == nil || *p.Resource != *input.Resource) {
+		return false
+	}
+
+	if p.ResourceName != nil && (input.ResourceName == nil || *p.ResourceName != *input.ResourceName) {
+		return false
+	}
+
+	return true
+}

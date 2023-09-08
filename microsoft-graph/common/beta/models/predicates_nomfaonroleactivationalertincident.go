@@ -1,0 +1,32 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type NoMfaOnRoleActivationAlertIncidentOperationPredicate struct {
+	Id              *string
+	ODataType       *string
+	RoleDisplayName *string
+	RoleTemplateId  *string
+}
+
+func (p NoMfaOnRoleActivationAlertIncidentOperationPredicate) Matches(input NoMfaOnRoleActivationAlertIncident) bool {
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.RoleDisplayName != nil && (input.RoleDisplayName == nil || *p.RoleDisplayName != *input.RoleDisplayName) {
+		return false
+	}
+
+	if p.RoleTemplateId != nil && (input.RoleTemplateId == nil || *p.RoleTemplateId != *input.RoleTemplateId) {
+		return false
+	}
+
+	return true
+}

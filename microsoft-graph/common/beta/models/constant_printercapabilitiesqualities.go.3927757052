@@ -1,0 +1,43 @@
+package models
+
+import "strings"
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type PrinterCapabilitiesQualities string
+
+const (
+	PrinterCapabilitiesQualitieshigh PrinterCapabilitiesQualities = "High"
+	PrinterCapabilitiesQualitieslow PrinterCapabilitiesQualities = "Low"
+	PrinterCapabilitiesQualitiesmedium PrinterCapabilitiesQualities = "Medium"
+)
+
+
+func PossibleValuesForPrinterCapabilitiesQualities() []string {
+	return []string{
+		string(PrinterCapabilitiesQualitieshigh),
+string(PrinterCapabilitiesQualitieslow),
+string(PrinterCapabilitiesQualitiesmedium),
+	}
+}
+
+
+
+func parsePrinterCapabilitiesQualities(input string) (*PrinterCapabilitiesQualities, error) {
+	vals := map[string]PrinterCapabilitiesQualities{
+		"high": PrinterCapabilitiesQualitieshigh,
+"low": PrinterCapabilitiesQualitieslow,
+"medium": PrinterCapabilitiesQualitiesmedium,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := PrinterCapabilitiesQualities(input)
+	return &out, nil
+}

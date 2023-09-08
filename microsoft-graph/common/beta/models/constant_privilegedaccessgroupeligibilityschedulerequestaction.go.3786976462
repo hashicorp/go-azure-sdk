@@ -1,0 +1,61 @@
+package models
+
+import "strings"
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type PrivilegedAccessGroupEligibilityScheduleRequestAction string
+
+const (
+	PrivilegedAccessGroupEligibilityScheduleRequestActionadminAssign PrivilegedAccessGroupEligibilityScheduleRequestAction = "AdminAssign"
+	PrivilegedAccessGroupEligibilityScheduleRequestActionadminExtend PrivilegedAccessGroupEligibilityScheduleRequestAction = "AdminExtend"
+	PrivilegedAccessGroupEligibilityScheduleRequestActionadminRemove PrivilegedAccessGroupEligibilityScheduleRequestAction = "AdminRemove"
+	PrivilegedAccessGroupEligibilityScheduleRequestActionadminRenew PrivilegedAccessGroupEligibilityScheduleRequestAction = "AdminRenew"
+	PrivilegedAccessGroupEligibilityScheduleRequestActionadminUpdate PrivilegedAccessGroupEligibilityScheduleRequestAction = "AdminUpdate"
+	PrivilegedAccessGroupEligibilityScheduleRequestActionselfActivate PrivilegedAccessGroupEligibilityScheduleRequestAction = "SelfActivate"
+	PrivilegedAccessGroupEligibilityScheduleRequestActionselfDeactivate PrivilegedAccessGroupEligibilityScheduleRequestAction = "SelfDeactivate"
+	PrivilegedAccessGroupEligibilityScheduleRequestActionselfExtend PrivilegedAccessGroupEligibilityScheduleRequestAction = "SelfExtend"
+	PrivilegedAccessGroupEligibilityScheduleRequestActionselfRenew PrivilegedAccessGroupEligibilityScheduleRequestAction = "SelfRenew"
+)
+
+
+func PossibleValuesForPrivilegedAccessGroupEligibilityScheduleRequestAction() []string {
+	return []string{
+		string(PrivilegedAccessGroupEligibilityScheduleRequestActionadminAssign),
+string(PrivilegedAccessGroupEligibilityScheduleRequestActionadminExtend),
+string(PrivilegedAccessGroupEligibilityScheduleRequestActionadminRemove),
+string(PrivilegedAccessGroupEligibilityScheduleRequestActionadminRenew),
+string(PrivilegedAccessGroupEligibilityScheduleRequestActionadminUpdate),
+string(PrivilegedAccessGroupEligibilityScheduleRequestActionselfActivate),
+string(PrivilegedAccessGroupEligibilityScheduleRequestActionselfDeactivate),
+string(PrivilegedAccessGroupEligibilityScheduleRequestActionselfExtend),
+string(PrivilegedAccessGroupEligibilityScheduleRequestActionselfRenew),
+	}
+}
+
+
+
+func parsePrivilegedAccessGroupEligibilityScheduleRequestAction(input string) (*PrivilegedAccessGroupEligibilityScheduleRequestAction, error) {
+	vals := map[string]PrivilegedAccessGroupEligibilityScheduleRequestAction{
+		"adminassign": PrivilegedAccessGroupEligibilityScheduleRequestActionadminAssign,
+"adminextend": PrivilegedAccessGroupEligibilityScheduleRequestActionadminExtend,
+"adminremove": PrivilegedAccessGroupEligibilityScheduleRequestActionadminRemove,
+"adminrenew": PrivilegedAccessGroupEligibilityScheduleRequestActionadminRenew,
+"adminupdate": PrivilegedAccessGroupEligibilityScheduleRequestActionadminUpdate,
+"selfactivate": PrivilegedAccessGroupEligibilityScheduleRequestActionselfActivate,
+"selfdeactivate": PrivilegedAccessGroupEligibilityScheduleRequestActionselfDeactivate,
+"selfextend": PrivilegedAccessGroupEligibilityScheduleRequestActionselfExtend,
+"selfrenew": PrivilegedAccessGroupEligibilityScheduleRequestActionselfRenew,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := PrivilegedAccessGroupEligibilityScheduleRequestAction(input)
+	return &out, nil
+}

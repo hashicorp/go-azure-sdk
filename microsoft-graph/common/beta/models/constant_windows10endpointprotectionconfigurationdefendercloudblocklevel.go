@@ -1,0 +1,40 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type Windows10EndpointProtectionConfigurationDefenderCloudBlockLevel string
+
+const (
+	Windows10EndpointProtectionConfigurationDefenderCloudBlockLevelhigh          Windows10EndpointProtectionConfigurationDefenderCloudBlockLevel = "High"
+	Windows10EndpointProtectionConfigurationDefenderCloudBlockLevelhighPlus      Windows10EndpointProtectionConfigurationDefenderCloudBlockLevel = "HighPlus"
+	Windows10EndpointProtectionConfigurationDefenderCloudBlockLevelnotConfigured Windows10EndpointProtectionConfigurationDefenderCloudBlockLevel = "NotConfigured"
+	Windows10EndpointProtectionConfigurationDefenderCloudBlockLevelzeroTolerance Windows10EndpointProtectionConfigurationDefenderCloudBlockLevel = "ZeroTolerance"
+)
+
+func PossibleValuesForWindows10EndpointProtectionConfigurationDefenderCloudBlockLevel() []string {
+	return []string{
+		string(Windows10EndpointProtectionConfigurationDefenderCloudBlockLevelhigh),
+		string(Windows10EndpointProtectionConfigurationDefenderCloudBlockLevelhighPlus),
+		string(Windows10EndpointProtectionConfigurationDefenderCloudBlockLevelnotConfigured),
+		string(Windows10EndpointProtectionConfigurationDefenderCloudBlockLevelzeroTolerance),
+	}
+}
+
+func parseWindows10EndpointProtectionConfigurationDefenderCloudBlockLevel(input string) (*Windows10EndpointProtectionConfigurationDefenderCloudBlockLevel, error) {
+	vals := map[string]Windows10EndpointProtectionConfigurationDefenderCloudBlockLevel{
+		"high":          Windows10EndpointProtectionConfigurationDefenderCloudBlockLevelhigh,
+		"highplus":      Windows10EndpointProtectionConfigurationDefenderCloudBlockLevelhighPlus,
+		"notconfigured": Windows10EndpointProtectionConfigurationDefenderCloudBlockLevelnotConfigured,
+		"zerotolerance": Windows10EndpointProtectionConfigurationDefenderCloudBlockLevelzeroTolerance,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := Windows10EndpointProtectionConfigurationDefenderCloudBlockLevel(input)
+	return &out, nil
+}

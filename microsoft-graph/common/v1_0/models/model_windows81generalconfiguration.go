@@ -1,0 +1,53 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type Windows81GeneralConfiguration struct {
+	AccountsBlockAddingNonMicrosoftAccountEmail    *bool                                                          `json:"accountsBlockAddingNonMicrosoftAccountEmail,omitempty"`
+	ApplyOnlyToWindows81                           *bool                                                          `json:"applyOnlyToWindows81,omitempty"`
+	Assignments                                    *[]DeviceConfigurationAssignment                               `json:"assignments,omitempty"`
+	BrowserBlockAutofill                           *bool                                                          `json:"browserBlockAutofill,omitempty"`
+	BrowserBlockAutomaticDetectionOfIntranetSites  *bool                                                          `json:"browserBlockAutomaticDetectionOfIntranetSites,omitempty"`
+	BrowserBlockEnterpriseModeAccess               *bool                                                          `json:"browserBlockEnterpriseModeAccess,omitempty"`
+	BrowserBlockJavaScript                         *bool                                                          `json:"browserBlockJavaScript,omitempty"`
+	BrowserBlockPlugins                            *bool                                                          `json:"browserBlockPlugins,omitempty"`
+	BrowserBlockPopups                             *bool                                                          `json:"browserBlockPopups,omitempty"`
+	BrowserBlockSendingDoNotTrackHeader            *bool                                                          `json:"browserBlockSendingDoNotTrackHeader,omitempty"`
+	BrowserBlockSingleWordEntryOnIntranetSites     *bool                                                          `json:"browserBlockSingleWordEntryOnIntranetSites,omitempty"`
+	BrowserEnterpriseModeSiteListLocation          *string                                                        `json:"browserEnterpriseModeSiteListLocation,omitempty"`
+	BrowserInternetSecurityLevel                   *Windows81GeneralConfigurationBrowserInternetSecurityLevel     `json:"browserInternetSecurityLevel,omitempty"`
+	BrowserIntranetSecurityLevel                   *Windows81GeneralConfigurationBrowserIntranetSecurityLevel     `json:"browserIntranetSecurityLevel,omitempty"`
+	BrowserLoggingReportLocation                   *string                                                        `json:"browserLoggingReportLocation,omitempty"`
+	BrowserRequireFirewall                         *bool                                                          `json:"browserRequireFirewall,omitempty"`
+	BrowserRequireFraudWarning                     *bool                                                          `json:"browserRequireFraudWarning,omitempty"`
+	BrowserRequireHighSecurityForRestrictedSites   *bool                                                          `json:"browserRequireHighSecurityForRestrictedSites,omitempty"`
+	BrowserRequireSmartScreen                      *bool                                                          `json:"browserRequireSmartScreen,omitempty"`
+	BrowserTrustedSitesSecurityLevel               *Windows81GeneralConfigurationBrowserTrustedSitesSecurityLevel `json:"browserTrustedSitesSecurityLevel,omitempty"`
+	CellularBlockDataRoaming                       *bool                                                          `json:"cellularBlockDataRoaming,omitempty"`
+	CreatedDateTime                                *string                                                        `json:"createdDateTime,omitempty"`
+	Description                                    *string                                                        `json:"description,omitempty"`
+	DeviceSettingStateSummaries                    *[]SettingStateDeviceSummary                                   `json:"deviceSettingStateSummaries,omitempty"`
+	DeviceStatusOverview                           *DeviceConfigurationDeviceOverview                             `json:"deviceStatusOverview,omitempty"`
+	DeviceStatuses                                 *[]DeviceConfigurationDeviceStatus                             `json:"deviceStatuses,omitempty"`
+	DiagnosticsBlockDataSubmission                 *bool                                                          `json:"diagnosticsBlockDataSubmission,omitempty"`
+	DisplayName                                    *string                                                        `json:"displayName,omitempty"`
+	Id                                             *string                                                        `json:"id,omitempty"`
+	LastModifiedDateTime                           *string                                                        `json:"lastModifiedDateTime,omitempty"`
+	ODataType                                      *string                                                        `json:"@odata.type,omitempty"`
+	PasswordBlockPicturePasswordAndPin             *bool                                                          `json:"passwordBlockPicturePasswordAndPin,omitempty"`
+	PasswordExpirationDays                         *int64                                                         `json:"passwordExpirationDays,omitempty"`
+	PasswordMinimumCharacterSetCount               *int64                                                         `json:"passwordMinimumCharacterSetCount,omitempty"`
+	PasswordMinimumLength                          *int64                                                         `json:"passwordMinimumLength,omitempty"`
+	PasswordMinutesOfInactivityBeforeScreenTimeout *int64                                                         `json:"passwordMinutesOfInactivityBeforeScreenTimeout,omitempty"`
+	PasswordPreviousPasswordBlockCount             *int64                                                         `json:"passwordPreviousPasswordBlockCount,omitempty"`
+	PasswordRequiredType                           *Windows81GeneralConfigurationPasswordRequiredType             `json:"passwordRequiredType,omitempty"`
+	PasswordSignInFailureCountBeforeFactoryReset   *int64                                                         `json:"passwordSignInFailureCountBeforeFactoryReset,omitempty"`
+	StorageRequireDeviceEncryption                 *bool                                                          `json:"storageRequireDeviceEncryption,omitempty"`
+	UpdatesRequireAutomaticUpdates                 *bool                                                          `json:"updatesRequireAutomaticUpdates,omitempty"`
+	UserAccountControlSettings                     *Windows81GeneralConfigurationUserAccountControlSettings       `json:"userAccountControlSettings,omitempty"`
+	UserStatusOverview                             *DeviceConfigurationUserOverview                               `json:"userStatusOverview,omitempty"`
+	UserStatuses                                   *[]DeviceConfigurationUserStatus                               `json:"userStatuses,omitempty"`
+	Version                                        *int64                                                         `json:"version,omitempty"`
+	WorkFoldersUrl                                 *string                                                        `json:"workFoldersUrl,omitempty"`
+}

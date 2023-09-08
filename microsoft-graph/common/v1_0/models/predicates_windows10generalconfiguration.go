@@ -1,0 +1,887 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type Windows10GeneralConfigurationOperationPredicate struct {
+	AccountsBlockAddingNonMicrosoftAccountEmail           *bool
+	AntiTheftModeBlocked                                  *bool
+	AppsBlockWindowsStoreOriginatedApps                   *bool
+	BluetoothBlockAdvertising                             *bool
+	BluetoothBlockDiscoverableMode                        *bool
+	BluetoothBlockPrePairing                              *bool
+	BluetoothBlocked                                      *bool
+	CameraBlocked                                         *bool
+	CellularBlockDataWhenRoaming                          *bool
+	CellularBlockVpn                                      *bool
+	CellularBlockVpnWhenRoaming                           *bool
+	CertificatesBlockManualRootCertificateInstallation    *bool
+	ConnectedDevicesServiceBlocked                        *bool
+	CopyPasteBlocked                                      *bool
+	CortanaBlocked                                        *bool
+	CreatedDateTime                                       *string
+	DefenderBlockEndUserAccess                            *bool
+	DefenderDaysBeforeDeletingQuarantinedMalware          *int64
+	DefenderRequireBehaviorMonitoring                     *bool
+	DefenderRequireCloudProtection                        *bool
+	DefenderRequireNetworkInspectionSystem                *bool
+	DefenderRequireRealTimeMonitoring                     *bool
+	DefenderScanArchiveFiles                              *bool
+	DefenderScanDownloads                                 *bool
+	DefenderScanIncomingMail                              *bool
+	DefenderScanMappedNetworkDrivesDuringFullScan         *bool
+	DefenderScanMaxCpu                                    *int64
+	DefenderScanNetworkFiles                              *bool
+	DefenderScanRemovableDrivesDuringFullScan             *bool
+	DefenderScanScriptsLoadedInInternetExplorer           *bool
+	DefenderScheduledQuickScanTime                        *string
+	DefenderScheduledScanTime                             *string
+	DefenderSignatureUpdateIntervalInHours                *int64
+	Description                                           *string
+	DeviceManagementBlockFactoryResetOnMobile             *bool
+	DeviceManagementBlockManualUnenroll                   *bool
+	DisplayName                                           *string
+	EdgeAllowStartPagesModification                       *bool
+	EdgeBlockAccessToAboutFlags                           *bool
+	EdgeBlockAddressBarDropdown                           *bool
+	EdgeBlockAutofill                                     *bool
+	EdgeBlockCompatibilityList                            *bool
+	EdgeBlockDeveloperTools                               *bool
+	EdgeBlockExtensions                                   *bool
+	EdgeBlockInPrivateBrowsing                            *bool
+	EdgeBlockJavaScript                                   *bool
+	EdgeBlockLiveTileDataCollection                       *bool
+	EdgeBlockPasswordManager                              *bool
+	EdgeBlockPopups                                       *bool
+	EdgeBlockSearchSuggestions                            *bool
+	EdgeBlockSendingDoNotTrackHeader                      *bool
+	EdgeBlockSendingIntranetTrafficToInternetExplorer     *bool
+	EdgeBlocked                                           *bool
+	EdgeClearBrowsingDataOnExit                           *bool
+	EdgeDisableFirstRunPage                               *bool
+	EdgeEnterpriseModeSiteListLocation                    *string
+	EdgeFirstRunUrl                                       *string
+	EdgeRequireSmartScreen                                *bool
+	EdgeSendIntranetTrafficToInternetExplorer             *bool
+	EdgeSyncFavoritesWithInternetExplorer                 *bool
+	EnterpriseCloudPrintDiscoveryEndPoint                 *string
+	EnterpriseCloudPrintDiscoveryMaxLimit                 *int64
+	EnterpriseCloudPrintMopriaDiscoveryResourceIdentifier *string
+	EnterpriseCloudPrintOAuthAuthority                    *string
+	EnterpriseCloudPrintOAuthClientIdentifier             *string
+	EnterpriseCloudPrintResourceIdentifier                *string
+	ExperienceBlockDeviceDiscovery                        *bool
+	ExperienceBlockErrorDialogWhenNoSIM                   *bool
+	ExperienceBlockTaskSwitcher                           *bool
+	GameDvrBlocked                                        *bool
+	Id                                                    *string
+	InternetSharingBlocked                                *bool
+	LastModifiedDateTime                                  *string
+	LocationServicesBlocked                               *bool
+	LockScreenAllowTimeoutConfiguration                   *bool
+	LockScreenBlockActionCenterNotifications              *bool
+	LockScreenBlockCortana                                *bool
+	LockScreenBlockToastNotifications                     *bool
+	LockScreenTimeoutInSeconds                            *int64
+	LogonBlockFastUserSwitching                           *bool
+	MicrosoftAccountBlockSettingsSync                     *bool
+	MicrosoftAccountBlocked                               *bool
+	NetworkProxyApplySettingsDeviceWide                   *bool
+	NetworkProxyAutomaticConfigurationUrl                 *string
+	NetworkProxyDisableAutoDetect                         *bool
+	NfcBlocked                                            *bool
+	ODataType                                             *string
+	OneDriveDisableFileSync                               *bool
+	PasswordBlockSimple                                   *bool
+	PasswordExpirationDays                                *int64
+	PasswordMinimumCharacterSetCount                      *int64
+	PasswordMinimumLength                                 *int64
+	PasswordMinutesOfInactivityBeforeScreenTimeout        *int64
+	PasswordPreviousPasswordBlockCount                    *int64
+	PasswordRequireWhenResumeFromIdleState                *bool
+	PasswordRequired                                      *bool
+	PasswordSignInFailureCountBeforeFactoryReset          *int64
+	PersonalizationDesktopImageUrl                        *string
+	PersonalizationLockScreenImageUrl                     *string
+	PrivacyAutoAcceptPairingAndConsentPrompts             *bool
+	PrivacyBlockInputPersonalization                      *bool
+	ResetProtectionModeBlocked                            *bool
+	ScreenCaptureBlocked                                  *bool
+	SearchBlockDiacritics                                 *bool
+	SearchDisableAutoLanguageDetection                    *bool
+	SearchDisableIndexerBackoff                           *bool
+	SearchDisableIndexingEncryptedItems                   *bool
+	SearchDisableIndexingRemovableDrive                   *bool
+	SearchEnableAutomaticIndexSizeManangement             *bool
+	SearchEnableRemoteQueries                             *bool
+	SettingsBlockAccountsPage                             *bool
+	SettingsBlockAddProvisioningPackage                   *bool
+	SettingsBlockAppsPage                                 *bool
+	SettingsBlockChangeLanguage                           *bool
+	SettingsBlockChangePowerSleep                         *bool
+	SettingsBlockChangeRegion                             *bool
+	SettingsBlockChangeSystemTime                         *bool
+	SettingsBlockDevicesPage                              *bool
+	SettingsBlockEaseOfAccessPage                         *bool
+	SettingsBlockEditDeviceName                           *bool
+	SettingsBlockGamingPage                               *bool
+	SettingsBlockNetworkInternetPage                      *bool
+	SettingsBlockPersonalizationPage                      *bool
+	SettingsBlockPrivacyPage                              *bool
+	SettingsBlockRemoveProvisioningPackage                *bool
+	SettingsBlockSettingsApp                              *bool
+	SettingsBlockSystemPage                               *bool
+	SettingsBlockTimeLanguagePage                         *bool
+	SettingsBlockUpdateSecurityPage                       *bool
+	SharedUserAppDataAllowed                              *bool
+	SmartScreenBlockPromptOverride                        *bool
+	SmartScreenBlockPromptOverrideForFiles                *bool
+	SmartScreenEnableAppInstallControl                    *bool
+	StartBlockUnpinningAppsFromTaskbar                    *bool
+	StartMenuHideChangeAccountSettings                    *bool
+	StartMenuHideFrequentlyUsedApps                       *bool
+	StartMenuHideHibernate                                *bool
+	StartMenuHideLock                                     *bool
+	StartMenuHidePowerButton                              *bool
+	StartMenuHideRecentJumpLists                          *bool
+	StartMenuHideRecentlyAddedApps                        *bool
+	StartMenuHideRestartOptions                           *bool
+	StartMenuHideShutDown                                 *bool
+	StartMenuHideSignOut                                  *bool
+	StartMenuHideSleep                                    *bool
+	StartMenuHideSwitchAccount                            *bool
+	StartMenuHideUserTile                                 *bool
+	StartMenuLayoutEdgeAssetsXml                          *string
+	StartMenuLayoutXml                                    *string
+	StorageBlockRemovableStorage                          *bool
+	StorageRequireMobileDeviceEncryption                  *bool
+	StorageRestrictAppDataToSystemVolume                  *bool
+	StorageRestrictAppInstallToSystemVolume               *bool
+	TenantLockdownRequireNetworkDuringOutOfBoxExperience  *bool
+	UsbBlocked                                            *bool
+	Version                                               *int64
+	VoiceRecordingBlocked                                 *bool
+	WebRtcBlockLocalhostIpAddress                         *bool
+	WiFiBlockAutomaticConnectHotspots                     *bool
+	WiFiBlockManualConfiguration                          *bool
+	WiFiBlocked                                           *bool
+	WiFiScanInterval                                      *int64
+	WindowsSpotlightBlockConsumerSpecificFeatures         *bool
+	WindowsSpotlightBlockOnActionCenter                   *bool
+	WindowsSpotlightBlockTailoredExperiences              *bool
+	WindowsSpotlightBlockThirdPartyNotifications          *bool
+	WindowsSpotlightBlockWelcomeExperience                *bool
+	WindowsSpotlightBlockWindowsTips                      *bool
+	WindowsSpotlightBlocked                               *bool
+	WindowsStoreBlockAutoUpdate                           *bool
+	WindowsStoreBlocked                                   *bool
+	WindowsStoreEnablePrivateStoreOnly                    *bool
+	WirelessDisplayBlockProjectionToThisDevice            *bool
+	WirelessDisplayBlockUserInputFromReceiver             *bool
+	WirelessDisplayRequirePinForPairing                   *bool
+}
+
+func (p Windows10GeneralConfigurationOperationPredicate) Matches(input Windows10GeneralConfiguration) bool {
+
+	if p.AccountsBlockAddingNonMicrosoftAccountEmail != nil && (input.AccountsBlockAddingNonMicrosoftAccountEmail == nil || *p.AccountsBlockAddingNonMicrosoftAccountEmail != *input.AccountsBlockAddingNonMicrosoftAccountEmail) {
+		return false
+	}
+
+	if p.AntiTheftModeBlocked != nil && (input.AntiTheftModeBlocked == nil || *p.AntiTheftModeBlocked != *input.AntiTheftModeBlocked) {
+		return false
+	}
+
+	if p.AppsBlockWindowsStoreOriginatedApps != nil && (input.AppsBlockWindowsStoreOriginatedApps == nil || *p.AppsBlockWindowsStoreOriginatedApps != *input.AppsBlockWindowsStoreOriginatedApps) {
+		return false
+	}
+
+	if p.BluetoothBlockAdvertising != nil && (input.BluetoothBlockAdvertising == nil || *p.BluetoothBlockAdvertising != *input.BluetoothBlockAdvertising) {
+		return false
+	}
+
+	if p.BluetoothBlockDiscoverableMode != nil && (input.BluetoothBlockDiscoverableMode == nil || *p.BluetoothBlockDiscoverableMode != *input.BluetoothBlockDiscoverableMode) {
+		return false
+	}
+
+	if p.BluetoothBlockPrePairing != nil && (input.BluetoothBlockPrePairing == nil || *p.BluetoothBlockPrePairing != *input.BluetoothBlockPrePairing) {
+		return false
+	}
+
+	if p.BluetoothBlocked != nil && (input.BluetoothBlocked == nil || *p.BluetoothBlocked != *input.BluetoothBlocked) {
+		return false
+	}
+
+	if p.CameraBlocked != nil && (input.CameraBlocked == nil || *p.CameraBlocked != *input.CameraBlocked) {
+		return false
+	}
+
+	if p.CellularBlockDataWhenRoaming != nil && (input.CellularBlockDataWhenRoaming == nil || *p.CellularBlockDataWhenRoaming != *input.CellularBlockDataWhenRoaming) {
+		return false
+	}
+
+	if p.CellularBlockVpn != nil && (input.CellularBlockVpn == nil || *p.CellularBlockVpn != *input.CellularBlockVpn) {
+		return false
+	}
+
+	if p.CellularBlockVpnWhenRoaming != nil && (input.CellularBlockVpnWhenRoaming == nil || *p.CellularBlockVpnWhenRoaming != *input.CellularBlockVpnWhenRoaming) {
+		return false
+	}
+
+	if p.CertificatesBlockManualRootCertificateInstallation != nil && (input.CertificatesBlockManualRootCertificateInstallation == nil || *p.CertificatesBlockManualRootCertificateInstallation != *input.CertificatesBlockManualRootCertificateInstallation) {
+		return false
+	}
+
+	if p.ConnectedDevicesServiceBlocked != nil && (input.ConnectedDevicesServiceBlocked == nil || *p.ConnectedDevicesServiceBlocked != *input.ConnectedDevicesServiceBlocked) {
+		return false
+	}
+
+	if p.CopyPasteBlocked != nil && (input.CopyPasteBlocked == nil || *p.CopyPasteBlocked != *input.CopyPasteBlocked) {
+		return false
+	}
+
+	if p.CortanaBlocked != nil && (input.CortanaBlocked == nil || *p.CortanaBlocked != *input.CortanaBlocked) {
+		return false
+	}
+
+	if p.CreatedDateTime != nil && (input.CreatedDateTime == nil || *p.CreatedDateTime != *input.CreatedDateTime) {
+		return false
+	}
+
+	if p.DefenderBlockEndUserAccess != nil && (input.DefenderBlockEndUserAccess == nil || *p.DefenderBlockEndUserAccess != *input.DefenderBlockEndUserAccess) {
+		return false
+	}
+
+	if p.DefenderDaysBeforeDeletingQuarantinedMalware != nil && (input.DefenderDaysBeforeDeletingQuarantinedMalware == nil || *p.DefenderDaysBeforeDeletingQuarantinedMalware != *input.DefenderDaysBeforeDeletingQuarantinedMalware) {
+		return false
+	}
+
+	if p.DefenderRequireBehaviorMonitoring != nil && (input.DefenderRequireBehaviorMonitoring == nil || *p.DefenderRequireBehaviorMonitoring != *input.DefenderRequireBehaviorMonitoring) {
+		return false
+	}
+
+	if p.DefenderRequireCloudProtection != nil && (input.DefenderRequireCloudProtection == nil || *p.DefenderRequireCloudProtection != *input.DefenderRequireCloudProtection) {
+		return false
+	}
+
+	if p.DefenderRequireNetworkInspectionSystem != nil && (input.DefenderRequireNetworkInspectionSystem == nil || *p.DefenderRequireNetworkInspectionSystem != *input.DefenderRequireNetworkInspectionSystem) {
+		return false
+	}
+
+	if p.DefenderRequireRealTimeMonitoring != nil && (input.DefenderRequireRealTimeMonitoring == nil || *p.DefenderRequireRealTimeMonitoring != *input.DefenderRequireRealTimeMonitoring) {
+		return false
+	}
+
+	if p.DefenderScanArchiveFiles != nil && (input.DefenderScanArchiveFiles == nil || *p.DefenderScanArchiveFiles != *input.DefenderScanArchiveFiles) {
+		return false
+	}
+
+	if p.DefenderScanDownloads != nil && (input.DefenderScanDownloads == nil || *p.DefenderScanDownloads != *input.DefenderScanDownloads) {
+		return false
+	}
+
+	if p.DefenderScanIncomingMail != nil && (input.DefenderScanIncomingMail == nil || *p.DefenderScanIncomingMail != *input.DefenderScanIncomingMail) {
+		return false
+	}
+
+	if p.DefenderScanMappedNetworkDrivesDuringFullScan != nil && (input.DefenderScanMappedNetworkDrivesDuringFullScan == nil || *p.DefenderScanMappedNetworkDrivesDuringFullScan != *input.DefenderScanMappedNetworkDrivesDuringFullScan) {
+		return false
+	}
+
+	if p.DefenderScanMaxCpu != nil && (input.DefenderScanMaxCpu == nil || *p.DefenderScanMaxCpu != *input.DefenderScanMaxCpu) {
+		return false
+	}
+
+	if p.DefenderScanNetworkFiles != nil && (input.DefenderScanNetworkFiles == nil || *p.DefenderScanNetworkFiles != *input.DefenderScanNetworkFiles) {
+		return false
+	}
+
+	if p.DefenderScanRemovableDrivesDuringFullScan != nil && (input.DefenderScanRemovableDrivesDuringFullScan == nil || *p.DefenderScanRemovableDrivesDuringFullScan != *input.DefenderScanRemovableDrivesDuringFullScan) {
+		return false
+	}
+
+	if p.DefenderScanScriptsLoadedInInternetExplorer != nil && (input.DefenderScanScriptsLoadedInInternetExplorer == nil || *p.DefenderScanScriptsLoadedInInternetExplorer != *input.DefenderScanScriptsLoadedInInternetExplorer) {
+		return false
+	}
+
+	if p.DefenderScheduledQuickScanTime != nil && (input.DefenderScheduledQuickScanTime == nil || *p.DefenderScheduledQuickScanTime != *input.DefenderScheduledQuickScanTime) {
+		return false
+	}
+
+	if p.DefenderScheduledScanTime != nil && (input.DefenderScheduledScanTime == nil || *p.DefenderScheduledScanTime != *input.DefenderScheduledScanTime) {
+		return false
+	}
+
+	if p.DefenderSignatureUpdateIntervalInHours != nil && (input.DefenderSignatureUpdateIntervalInHours == nil || *p.DefenderSignatureUpdateIntervalInHours != *input.DefenderSignatureUpdateIntervalInHours) {
+		return false
+	}
+
+	if p.Description != nil && (input.Description == nil || *p.Description != *input.Description) {
+		return false
+	}
+
+	if p.DeviceManagementBlockFactoryResetOnMobile != nil && (input.DeviceManagementBlockFactoryResetOnMobile == nil || *p.DeviceManagementBlockFactoryResetOnMobile != *input.DeviceManagementBlockFactoryResetOnMobile) {
+		return false
+	}
+
+	if p.DeviceManagementBlockManualUnenroll != nil && (input.DeviceManagementBlockManualUnenroll == nil || *p.DeviceManagementBlockManualUnenroll != *input.DeviceManagementBlockManualUnenroll) {
+		return false
+	}
+
+	if p.DisplayName != nil && (input.DisplayName == nil || *p.DisplayName != *input.DisplayName) {
+		return false
+	}
+
+	if p.EdgeAllowStartPagesModification != nil && (input.EdgeAllowStartPagesModification == nil || *p.EdgeAllowStartPagesModification != *input.EdgeAllowStartPagesModification) {
+		return false
+	}
+
+	if p.EdgeBlockAccessToAboutFlags != nil && (input.EdgeBlockAccessToAboutFlags == nil || *p.EdgeBlockAccessToAboutFlags != *input.EdgeBlockAccessToAboutFlags) {
+		return false
+	}
+
+	if p.EdgeBlockAddressBarDropdown != nil && (input.EdgeBlockAddressBarDropdown == nil || *p.EdgeBlockAddressBarDropdown != *input.EdgeBlockAddressBarDropdown) {
+		return false
+	}
+
+	if p.EdgeBlockAutofill != nil && (input.EdgeBlockAutofill == nil || *p.EdgeBlockAutofill != *input.EdgeBlockAutofill) {
+		return false
+	}
+
+	if p.EdgeBlockCompatibilityList != nil && (input.EdgeBlockCompatibilityList == nil || *p.EdgeBlockCompatibilityList != *input.EdgeBlockCompatibilityList) {
+		return false
+	}
+
+	if p.EdgeBlockDeveloperTools != nil && (input.EdgeBlockDeveloperTools == nil || *p.EdgeBlockDeveloperTools != *input.EdgeBlockDeveloperTools) {
+		return false
+	}
+
+	if p.EdgeBlockExtensions != nil && (input.EdgeBlockExtensions == nil || *p.EdgeBlockExtensions != *input.EdgeBlockExtensions) {
+		return false
+	}
+
+	if p.EdgeBlockInPrivateBrowsing != nil && (input.EdgeBlockInPrivateBrowsing == nil || *p.EdgeBlockInPrivateBrowsing != *input.EdgeBlockInPrivateBrowsing) {
+		return false
+	}
+
+	if p.EdgeBlockJavaScript != nil && (input.EdgeBlockJavaScript == nil || *p.EdgeBlockJavaScript != *input.EdgeBlockJavaScript) {
+		return false
+	}
+
+	if p.EdgeBlockLiveTileDataCollection != nil && (input.EdgeBlockLiveTileDataCollection == nil || *p.EdgeBlockLiveTileDataCollection != *input.EdgeBlockLiveTileDataCollection) {
+		return false
+	}
+
+	if p.EdgeBlockPasswordManager != nil && (input.EdgeBlockPasswordManager == nil || *p.EdgeBlockPasswordManager != *input.EdgeBlockPasswordManager) {
+		return false
+	}
+
+	if p.EdgeBlockPopups != nil && (input.EdgeBlockPopups == nil || *p.EdgeBlockPopups != *input.EdgeBlockPopups) {
+		return false
+	}
+
+	if p.EdgeBlockSearchSuggestions != nil && (input.EdgeBlockSearchSuggestions == nil || *p.EdgeBlockSearchSuggestions != *input.EdgeBlockSearchSuggestions) {
+		return false
+	}
+
+	if p.EdgeBlockSendingDoNotTrackHeader != nil && (input.EdgeBlockSendingDoNotTrackHeader == nil || *p.EdgeBlockSendingDoNotTrackHeader != *input.EdgeBlockSendingDoNotTrackHeader) {
+		return false
+	}
+
+	if p.EdgeBlockSendingIntranetTrafficToInternetExplorer != nil && (input.EdgeBlockSendingIntranetTrafficToInternetExplorer == nil || *p.EdgeBlockSendingIntranetTrafficToInternetExplorer != *input.EdgeBlockSendingIntranetTrafficToInternetExplorer) {
+		return false
+	}
+
+	if p.EdgeBlocked != nil && (input.EdgeBlocked == nil || *p.EdgeBlocked != *input.EdgeBlocked) {
+		return false
+	}
+
+	if p.EdgeClearBrowsingDataOnExit != nil && (input.EdgeClearBrowsingDataOnExit == nil || *p.EdgeClearBrowsingDataOnExit != *input.EdgeClearBrowsingDataOnExit) {
+		return false
+	}
+
+	if p.EdgeDisableFirstRunPage != nil && (input.EdgeDisableFirstRunPage == nil || *p.EdgeDisableFirstRunPage != *input.EdgeDisableFirstRunPage) {
+		return false
+	}
+
+	if p.EdgeEnterpriseModeSiteListLocation != nil && (input.EdgeEnterpriseModeSiteListLocation == nil || *p.EdgeEnterpriseModeSiteListLocation != *input.EdgeEnterpriseModeSiteListLocation) {
+		return false
+	}
+
+	if p.EdgeFirstRunUrl != nil && (input.EdgeFirstRunUrl == nil || *p.EdgeFirstRunUrl != *input.EdgeFirstRunUrl) {
+		return false
+	}
+
+	if p.EdgeRequireSmartScreen != nil && (input.EdgeRequireSmartScreen == nil || *p.EdgeRequireSmartScreen != *input.EdgeRequireSmartScreen) {
+		return false
+	}
+
+	if p.EdgeSendIntranetTrafficToInternetExplorer != nil && (input.EdgeSendIntranetTrafficToInternetExplorer == nil || *p.EdgeSendIntranetTrafficToInternetExplorer != *input.EdgeSendIntranetTrafficToInternetExplorer) {
+		return false
+	}
+
+	if p.EdgeSyncFavoritesWithInternetExplorer != nil && (input.EdgeSyncFavoritesWithInternetExplorer == nil || *p.EdgeSyncFavoritesWithInternetExplorer != *input.EdgeSyncFavoritesWithInternetExplorer) {
+		return false
+	}
+
+	if p.EnterpriseCloudPrintDiscoveryEndPoint != nil && (input.EnterpriseCloudPrintDiscoveryEndPoint == nil || *p.EnterpriseCloudPrintDiscoveryEndPoint != *input.EnterpriseCloudPrintDiscoveryEndPoint) {
+		return false
+	}
+
+	if p.EnterpriseCloudPrintDiscoveryMaxLimit != nil && (input.EnterpriseCloudPrintDiscoveryMaxLimit == nil || *p.EnterpriseCloudPrintDiscoveryMaxLimit != *input.EnterpriseCloudPrintDiscoveryMaxLimit) {
+		return false
+	}
+
+	if p.EnterpriseCloudPrintMopriaDiscoveryResourceIdentifier != nil && (input.EnterpriseCloudPrintMopriaDiscoveryResourceIdentifier == nil || *p.EnterpriseCloudPrintMopriaDiscoveryResourceIdentifier != *input.EnterpriseCloudPrintMopriaDiscoveryResourceIdentifier) {
+		return false
+	}
+
+	if p.EnterpriseCloudPrintOAuthAuthority != nil && (input.EnterpriseCloudPrintOAuthAuthority == nil || *p.EnterpriseCloudPrintOAuthAuthority != *input.EnterpriseCloudPrintOAuthAuthority) {
+		return false
+	}
+
+	if p.EnterpriseCloudPrintOAuthClientIdentifier != nil && (input.EnterpriseCloudPrintOAuthClientIdentifier == nil || *p.EnterpriseCloudPrintOAuthClientIdentifier != *input.EnterpriseCloudPrintOAuthClientIdentifier) {
+		return false
+	}
+
+	if p.EnterpriseCloudPrintResourceIdentifier != nil && (input.EnterpriseCloudPrintResourceIdentifier == nil || *p.EnterpriseCloudPrintResourceIdentifier != *input.EnterpriseCloudPrintResourceIdentifier) {
+		return false
+	}
+
+	if p.ExperienceBlockDeviceDiscovery != nil && (input.ExperienceBlockDeviceDiscovery == nil || *p.ExperienceBlockDeviceDiscovery != *input.ExperienceBlockDeviceDiscovery) {
+		return false
+	}
+
+	if p.ExperienceBlockErrorDialogWhenNoSIM != nil && (input.ExperienceBlockErrorDialogWhenNoSIM == nil || *p.ExperienceBlockErrorDialogWhenNoSIM != *input.ExperienceBlockErrorDialogWhenNoSIM) {
+		return false
+	}
+
+	if p.ExperienceBlockTaskSwitcher != nil && (input.ExperienceBlockTaskSwitcher == nil || *p.ExperienceBlockTaskSwitcher != *input.ExperienceBlockTaskSwitcher) {
+		return false
+	}
+
+	if p.GameDvrBlocked != nil && (input.GameDvrBlocked == nil || *p.GameDvrBlocked != *input.GameDvrBlocked) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.InternetSharingBlocked != nil && (input.InternetSharingBlocked == nil || *p.InternetSharingBlocked != *input.InternetSharingBlocked) {
+		return false
+	}
+
+	if p.LastModifiedDateTime != nil && (input.LastModifiedDateTime == nil || *p.LastModifiedDateTime != *input.LastModifiedDateTime) {
+		return false
+	}
+
+	if p.LocationServicesBlocked != nil && (input.LocationServicesBlocked == nil || *p.LocationServicesBlocked != *input.LocationServicesBlocked) {
+		return false
+	}
+
+	if p.LockScreenAllowTimeoutConfiguration != nil && (input.LockScreenAllowTimeoutConfiguration == nil || *p.LockScreenAllowTimeoutConfiguration != *input.LockScreenAllowTimeoutConfiguration) {
+		return false
+	}
+
+	if p.LockScreenBlockActionCenterNotifications != nil && (input.LockScreenBlockActionCenterNotifications == nil || *p.LockScreenBlockActionCenterNotifications != *input.LockScreenBlockActionCenterNotifications) {
+		return false
+	}
+
+	if p.LockScreenBlockCortana != nil && (input.LockScreenBlockCortana == nil || *p.LockScreenBlockCortana != *input.LockScreenBlockCortana) {
+		return false
+	}
+
+	if p.LockScreenBlockToastNotifications != nil && (input.LockScreenBlockToastNotifications == nil || *p.LockScreenBlockToastNotifications != *input.LockScreenBlockToastNotifications) {
+		return false
+	}
+
+	if p.LockScreenTimeoutInSeconds != nil && (input.LockScreenTimeoutInSeconds == nil || *p.LockScreenTimeoutInSeconds != *input.LockScreenTimeoutInSeconds) {
+		return false
+	}
+
+	if p.LogonBlockFastUserSwitching != nil && (input.LogonBlockFastUserSwitching == nil || *p.LogonBlockFastUserSwitching != *input.LogonBlockFastUserSwitching) {
+		return false
+	}
+
+	if p.MicrosoftAccountBlockSettingsSync != nil && (input.MicrosoftAccountBlockSettingsSync == nil || *p.MicrosoftAccountBlockSettingsSync != *input.MicrosoftAccountBlockSettingsSync) {
+		return false
+	}
+
+	if p.MicrosoftAccountBlocked != nil && (input.MicrosoftAccountBlocked == nil || *p.MicrosoftAccountBlocked != *input.MicrosoftAccountBlocked) {
+		return false
+	}
+
+	if p.NetworkProxyApplySettingsDeviceWide != nil && (input.NetworkProxyApplySettingsDeviceWide == nil || *p.NetworkProxyApplySettingsDeviceWide != *input.NetworkProxyApplySettingsDeviceWide) {
+		return false
+	}
+
+	if p.NetworkProxyAutomaticConfigurationUrl != nil && (input.NetworkProxyAutomaticConfigurationUrl == nil || *p.NetworkProxyAutomaticConfigurationUrl != *input.NetworkProxyAutomaticConfigurationUrl) {
+		return false
+	}
+
+	if p.NetworkProxyDisableAutoDetect != nil && (input.NetworkProxyDisableAutoDetect == nil || *p.NetworkProxyDisableAutoDetect != *input.NetworkProxyDisableAutoDetect) {
+		return false
+	}
+
+	if p.NfcBlocked != nil && (input.NfcBlocked == nil || *p.NfcBlocked != *input.NfcBlocked) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.OneDriveDisableFileSync != nil && (input.OneDriveDisableFileSync == nil || *p.OneDriveDisableFileSync != *input.OneDriveDisableFileSync) {
+		return false
+	}
+
+	if p.PasswordBlockSimple != nil && (input.PasswordBlockSimple == nil || *p.PasswordBlockSimple != *input.PasswordBlockSimple) {
+		return false
+	}
+
+	if p.PasswordExpirationDays != nil && (input.PasswordExpirationDays == nil || *p.PasswordExpirationDays != *input.PasswordExpirationDays) {
+		return false
+	}
+
+	if p.PasswordMinimumCharacterSetCount != nil && (input.PasswordMinimumCharacterSetCount == nil || *p.PasswordMinimumCharacterSetCount != *input.PasswordMinimumCharacterSetCount) {
+		return false
+	}
+
+	if p.PasswordMinimumLength != nil && (input.PasswordMinimumLength == nil || *p.PasswordMinimumLength != *input.PasswordMinimumLength) {
+		return false
+	}
+
+	if p.PasswordMinutesOfInactivityBeforeScreenTimeout != nil && (input.PasswordMinutesOfInactivityBeforeScreenTimeout == nil || *p.PasswordMinutesOfInactivityBeforeScreenTimeout != *input.PasswordMinutesOfInactivityBeforeScreenTimeout) {
+		return false
+	}
+
+	if p.PasswordPreviousPasswordBlockCount != nil && (input.PasswordPreviousPasswordBlockCount == nil || *p.PasswordPreviousPasswordBlockCount != *input.PasswordPreviousPasswordBlockCount) {
+		return false
+	}
+
+	if p.PasswordRequireWhenResumeFromIdleState != nil && (input.PasswordRequireWhenResumeFromIdleState == nil || *p.PasswordRequireWhenResumeFromIdleState != *input.PasswordRequireWhenResumeFromIdleState) {
+		return false
+	}
+
+	if p.PasswordRequired != nil && (input.PasswordRequired == nil || *p.PasswordRequired != *input.PasswordRequired) {
+		return false
+	}
+
+	if p.PasswordSignInFailureCountBeforeFactoryReset != nil && (input.PasswordSignInFailureCountBeforeFactoryReset == nil || *p.PasswordSignInFailureCountBeforeFactoryReset != *input.PasswordSignInFailureCountBeforeFactoryReset) {
+		return false
+	}
+
+	if p.PersonalizationDesktopImageUrl != nil && (input.PersonalizationDesktopImageUrl == nil || *p.PersonalizationDesktopImageUrl != *input.PersonalizationDesktopImageUrl) {
+		return false
+	}
+
+	if p.PersonalizationLockScreenImageUrl != nil && (input.PersonalizationLockScreenImageUrl == nil || *p.PersonalizationLockScreenImageUrl != *input.PersonalizationLockScreenImageUrl) {
+		return false
+	}
+
+	if p.PrivacyAutoAcceptPairingAndConsentPrompts != nil && (input.PrivacyAutoAcceptPairingAndConsentPrompts == nil || *p.PrivacyAutoAcceptPairingAndConsentPrompts != *input.PrivacyAutoAcceptPairingAndConsentPrompts) {
+		return false
+	}
+
+	if p.PrivacyBlockInputPersonalization != nil && (input.PrivacyBlockInputPersonalization == nil || *p.PrivacyBlockInputPersonalization != *input.PrivacyBlockInputPersonalization) {
+		return false
+	}
+
+	if p.ResetProtectionModeBlocked != nil && (input.ResetProtectionModeBlocked == nil || *p.ResetProtectionModeBlocked != *input.ResetProtectionModeBlocked) {
+		return false
+	}
+
+	if p.ScreenCaptureBlocked != nil && (input.ScreenCaptureBlocked == nil || *p.ScreenCaptureBlocked != *input.ScreenCaptureBlocked) {
+		return false
+	}
+
+	if p.SearchBlockDiacritics != nil && (input.SearchBlockDiacritics == nil || *p.SearchBlockDiacritics != *input.SearchBlockDiacritics) {
+		return false
+	}
+
+	if p.SearchDisableAutoLanguageDetection != nil && (input.SearchDisableAutoLanguageDetection == nil || *p.SearchDisableAutoLanguageDetection != *input.SearchDisableAutoLanguageDetection) {
+		return false
+	}
+
+	if p.SearchDisableIndexerBackoff != nil && (input.SearchDisableIndexerBackoff == nil || *p.SearchDisableIndexerBackoff != *input.SearchDisableIndexerBackoff) {
+		return false
+	}
+
+	if p.SearchDisableIndexingEncryptedItems != nil && (input.SearchDisableIndexingEncryptedItems == nil || *p.SearchDisableIndexingEncryptedItems != *input.SearchDisableIndexingEncryptedItems) {
+		return false
+	}
+
+	if p.SearchDisableIndexingRemovableDrive != nil && (input.SearchDisableIndexingRemovableDrive == nil || *p.SearchDisableIndexingRemovableDrive != *input.SearchDisableIndexingRemovableDrive) {
+		return false
+	}
+
+	if p.SearchEnableAutomaticIndexSizeManangement != nil && (input.SearchEnableAutomaticIndexSizeManangement == nil || *p.SearchEnableAutomaticIndexSizeManangement != *input.SearchEnableAutomaticIndexSizeManangement) {
+		return false
+	}
+
+	if p.SearchEnableRemoteQueries != nil && (input.SearchEnableRemoteQueries == nil || *p.SearchEnableRemoteQueries != *input.SearchEnableRemoteQueries) {
+		return false
+	}
+
+	if p.SettingsBlockAccountsPage != nil && (input.SettingsBlockAccountsPage == nil || *p.SettingsBlockAccountsPage != *input.SettingsBlockAccountsPage) {
+		return false
+	}
+
+	if p.SettingsBlockAddProvisioningPackage != nil && (input.SettingsBlockAddProvisioningPackage == nil || *p.SettingsBlockAddProvisioningPackage != *input.SettingsBlockAddProvisioningPackage) {
+		return false
+	}
+
+	if p.SettingsBlockAppsPage != nil && (input.SettingsBlockAppsPage == nil || *p.SettingsBlockAppsPage != *input.SettingsBlockAppsPage) {
+		return false
+	}
+
+	if p.SettingsBlockChangeLanguage != nil && (input.SettingsBlockChangeLanguage == nil || *p.SettingsBlockChangeLanguage != *input.SettingsBlockChangeLanguage) {
+		return false
+	}
+
+	if p.SettingsBlockChangePowerSleep != nil && (input.SettingsBlockChangePowerSleep == nil || *p.SettingsBlockChangePowerSleep != *input.SettingsBlockChangePowerSleep) {
+		return false
+	}
+
+	if p.SettingsBlockChangeRegion != nil && (input.SettingsBlockChangeRegion == nil || *p.SettingsBlockChangeRegion != *input.SettingsBlockChangeRegion) {
+		return false
+	}
+
+	if p.SettingsBlockChangeSystemTime != nil && (input.SettingsBlockChangeSystemTime == nil || *p.SettingsBlockChangeSystemTime != *input.SettingsBlockChangeSystemTime) {
+		return false
+	}
+
+	if p.SettingsBlockDevicesPage != nil && (input.SettingsBlockDevicesPage == nil || *p.SettingsBlockDevicesPage != *input.SettingsBlockDevicesPage) {
+		return false
+	}
+
+	if p.SettingsBlockEaseOfAccessPage != nil && (input.SettingsBlockEaseOfAccessPage == nil || *p.SettingsBlockEaseOfAccessPage != *input.SettingsBlockEaseOfAccessPage) {
+		return false
+	}
+
+	if p.SettingsBlockEditDeviceName != nil && (input.SettingsBlockEditDeviceName == nil || *p.SettingsBlockEditDeviceName != *input.SettingsBlockEditDeviceName) {
+		return false
+	}
+
+	if p.SettingsBlockGamingPage != nil && (input.SettingsBlockGamingPage == nil || *p.SettingsBlockGamingPage != *input.SettingsBlockGamingPage) {
+		return false
+	}
+
+	if p.SettingsBlockNetworkInternetPage != nil && (input.SettingsBlockNetworkInternetPage == nil || *p.SettingsBlockNetworkInternetPage != *input.SettingsBlockNetworkInternetPage) {
+		return false
+	}
+
+	if p.SettingsBlockPersonalizationPage != nil && (input.SettingsBlockPersonalizationPage == nil || *p.SettingsBlockPersonalizationPage != *input.SettingsBlockPersonalizationPage) {
+		return false
+	}
+
+	if p.SettingsBlockPrivacyPage != nil && (input.SettingsBlockPrivacyPage == nil || *p.SettingsBlockPrivacyPage != *input.SettingsBlockPrivacyPage) {
+		return false
+	}
+
+	if p.SettingsBlockRemoveProvisioningPackage != nil && (input.SettingsBlockRemoveProvisioningPackage == nil || *p.SettingsBlockRemoveProvisioningPackage != *input.SettingsBlockRemoveProvisioningPackage) {
+		return false
+	}
+
+	if p.SettingsBlockSettingsApp != nil && (input.SettingsBlockSettingsApp == nil || *p.SettingsBlockSettingsApp != *input.SettingsBlockSettingsApp) {
+		return false
+	}
+
+	if p.SettingsBlockSystemPage != nil && (input.SettingsBlockSystemPage == nil || *p.SettingsBlockSystemPage != *input.SettingsBlockSystemPage) {
+		return false
+	}
+
+	if p.SettingsBlockTimeLanguagePage != nil && (input.SettingsBlockTimeLanguagePage == nil || *p.SettingsBlockTimeLanguagePage != *input.SettingsBlockTimeLanguagePage) {
+		return false
+	}
+
+	if p.SettingsBlockUpdateSecurityPage != nil && (input.SettingsBlockUpdateSecurityPage == nil || *p.SettingsBlockUpdateSecurityPage != *input.SettingsBlockUpdateSecurityPage) {
+		return false
+	}
+
+	if p.SharedUserAppDataAllowed != nil && (input.SharedUserAppDataAllowed == nil || *p.SharedUserAppDataAllowed != *input.SharedUserAppDataAllowed) {
+		return false
+	}
+
+	if p.SmartScreenBlockPromptOverride != nil && (input.SmartScreenBlockPromptOverride == nil || *p.SmartScreenBlockPromptOverride != *input.SmartScreenBlockPromptOverride) {
+		return false
+	}
+
+	if p.SmartScreenBlockPromptOverrideForFiles != nil && (input.SmartScreenBlockPromptOverrideForFiles == nil || *p.SmartScreenBlockPromptOverrideForFiles != *input.SmartScreenBlockPromptOverrideForFiles) {
+		return false
+	}
+
+	if p.SmartScreenEnableAppInstallControl != nil && (input.SmartScreenEnableAppInstallControl == nil || *p.SmartScreenEnableAppInstallControl != *input.SmartScreenEnableAppInstallControl) {
+		return false
+	}
+
+	if p.StartBlockUnpinningAppsFromTaskbar != nil && (input.StartBlockUnpinningAppsFromTaskbar == nil || *p.StartBlockUnpinningAppsFromTaskbar != *input.StartBlockUnpinningAppsFromTaskbar) {
+		return false
+	}
+
+	if p.StartMenuHideChangeAccountSettings != nil && (input.StartMenuHideChangeAccountSettings == nil || *p.StartMenuHideChangeAccountSettings != *input.StartMenuHideChangeAccountSettings) {
+		return false
+	}
+
+	if p.StartMenuHideFrequentlyUsedApps != nil && (input.StartMenuHideFrequentlyUsedApps == nil || *p.StartMenuHideFrequentlyUsedApps != *input.StartMenuHideFrequentlyUsedApps) {
+		return false
+	}
+
+	if p.StartMenuHideHibernate != nil && (input.StartMenuHideHibernate == nil || *p.StartMenuHideHibernate != *input.StartMenuHideHibernate) {
+		return false
+	}
+
+	if p.StartMenuHideLock != nil && (input.StartMenuHideLock == nil || *p.StartMenuHideLock != *input.StartMenuHideLock) {
+		return false
+	}
+
+	if p.StartMenuHidePowerButton != nil && (input.StartMenuHidePowerButton == nil || *p.StartMenuHidePowerButton != *input.StartMenuHidePowerButton) {
+		return false
+	}
+
+	if p.StartMenuHideRecentJumpLists != nil && (input.StartMenuHideRecentJumpLists == nil || *p.StartMenuHideRecentJumpLists != *input.StartMenuHideRecentJumpLists) {
+		return false
+	}
+
+	if p.StartMenuHideRecentlyAddedApps != nil && (input.StartMenuHideRecentlyAddedApps == nil || *p.StartMenuHideRecentlyAddedApps != *input.StartMenuHideRecentlyAddedApps) {
+		return false
+	}
+
+	if p.StartMenuHideRestartOptions != nil && (input.StartMenuHideRestartOptions == nil || *p.StartMenuHideRestartOptions != *input.StartMenuHideRestartOptions) {
+		return false
+	}
+
+	if p.StartMenuHideShutDown != nil && (input.StartMenuHideShutDown == nil || *p.StartMenuHideShutDown != *input.StartMenuHideShutDown) {
+		return false
+	}
+
+	if p.StartMenuHideSignOut != nil && (input.StartMenuHideSignOut == nil || *p.StartMenuHideSignOut != *input.StartMenuHideSignOut) {
+		return false
+	}
+
+	if p.StartMenuHideSleep != nil && (input.StartMenuHideSleep == nil || *p.StartMenuHideSleep != *input.StartMenuHideSleep) {
+		return false
+	}
+
+	if p.StartMenuHideSwitchAccount != nil && (input.StartMenuHideSwitchAccount == nil || *p.StartMenuHideSwitchAccount != *input.StartMenuHideSwitchAccount) {
+		return false
+	}
+
+	if p.StartMenuHideUserTile != nil && (input.StartMenuHideUserTile == nil || *p.StartMenuHideUserTile != *input.StartMenuHideUserTile) {
+		return false
+	}
+
+	if p.StartMenuLayoutEdgeAssetsXml != nil && (input.StartMenuLayoutEdgeAssetsXml == nil || *p.StartMenuLayoutEdgeAssetsXml != *input.StartMenuLayoutEdgeAssetsXml) {
+		return false
+	}
+
+	if p.StartMenuLayoutXml != nil && (input.StartMenuLayoutXml == nil || *p.StartMenuLayoutXml != *input.StartMenuLayoutXml) {
+		return false
+	}
+
+	if p.StorageBlockRemovableStorage != nil && (input.StorageBlockRemovableStorage == nil || *p.StorageBlockRemovableStorage != *input.StorageBlockRemovableStorage) {
+		return false
+	}
+
+	if p.StorageRequireMobileDeviceEncryption != nil && (input.StorageRequireMobileDeviceEncryption == nil || *p.StorageRequireMobileDeviceEncryption != *input.StorageRequireMobileDeviceEncryption) {
+		return false
+	}
+
+	if p.StorageRestrictAppDataToSystemVolume != nil && (input.StorageRestrictAppDataToSystemVolume == nil || *p.StorageRestrictAppDataToSystemVolume != *input.StorageRestrictAppDataToSystemVolume) {
+		return false
+	}
+
+	if p.StorageRestrictAppInstallToSystemVolume != nil && (input.StorageRestrictAppInstallToSystemVolume == nil || *p.StorageRestrictAppInstallToSystemVolume != *input.StorageRestrictAppInstallToSystemVolume) {
+		return false
+	}
+
+	if p.TenantLockdownRequireNetworkDuringOutOfBoxExperience != nil && (input.TenantLockdownRequireNetworkDuringOutOfBoxExperience == nil || *p.TenantLockdownRequireNetworkDuringOutOfBoxExperience != *input.TenantLockdownRequireNetworkDuringOutOfBoxExperience) {
+		return false
+	}
+
+	if p.UsbBlocked != nil && (input.UsbBlocked == nil || *p.UsbBlocked != *input.UsbBlocked) {
+		return false
+	}
+
+	if p.Version != nil && (input.Version == nil || *p.Version != *input.Version) {
+		return false
+	}
+
+	if p.VoiceRecordingBlocked != nil && (input.VoiceRecordingBlocked == nil || *p.VoiceRecordingBlocked != *input.VoiceRecordingBlocked) {
+		return false
+	}
+
+	if p.WebRtcBlockLocalhostIpAddress != nil && (input.WebRtcBlockLocalhostIpAddress == nil || *p.WebRtcBlockLocalhostIpAddress != *input.WebRtcBlockLocalhostIpAddress) {
+		return false
+	}
+
+	if p.WiFiBlockAutomaticConnectHotspots != nil && (input.WiFiBlockAutomaticConnectHotspots == nil || *p.WiFiBlockAutomaticConnectHotspots != *input.WiFiBlockAutomaticConnectHotspots) {
+		return false
+	}
+
+	if p.WiFiBlockManualConfiguration != nil && (input.WiFiBlockManualConfiguration == nil || *p.WiFiBlockManualConfiguration != *input.WiFiBlockManualConfiguration) {
+		return false
+	}
+
+	if p.WiFiBlocked != nil && (input.WiFiBlocked == nil || *p.WiFiBlocked != *input.WiFiBlocked) {
+		return false
+	}
+
+	if p.WiFiScanInterval != nil && (input.WiFiScanInterval == nil || *p.WiFiScanInterval != *input.WiFiScanInterval) {
+		return false
+	}
+
+	if p.WindowsSpotlightBlockConsumerSpecificFeatures != nil && (input.WindowsSpotlightBlockConsumerSpecificFeatures == nil || *p.WindowsSpotlightBlockConsumerSpecificFeatures != *input.WindowsSpotlightBlockConsumerSpecificFeatures) {
+		return false
+	}
+
+	if p.WindowsSpotlightBlockOnActionCenter != nil && (input.WindowsSpotlightBlockOnActionCenter == nil || *p.WindowsSpotlightBlockOnActionCenter != *input.WindowsSpotlightBlockOnActionCenter) {
+		return false
+	}
+
+	if p.WindowsSpotlightBlockTailoredExperiences != nil && (input.WindowsSpotlightBlockTailoredExperiences == nil || *p.WindowsSpotlightBlockTailoredExperiences != *input.WindowsSpotlightBlockTailoredExperiences) {
+		return false
+	}
+
+	if p.WindowsSpotlightBlockThirdPartyNotifications != nil && (input.WindowsSpotlightBlockThirdPartyNotifications == nil || *p.WindowsSpotlightBlockThirdPartyNotifications != *input.WindowsSpotlightBlockThirdPartyNotifications) {
+		return false
+	}
+
+	if p.WindowsSpotlightBlockWelcomeExperience != nil && (input.WindowsSpotlightBlockWelcomeExperience == nil || *p.WindowsSpotlightBlockWelcomeExperience != *input.WindowsSpotlightBlockWelcomeExperience) {
+		return false
+	}
+
+	if p.WindowsSpotlightBlockWindowsTips != nil && (input.WindowsSpotlightBlockWindowsTips == nil || *p.WindowsSpotlightBlockWindowsTips != *input.WindowsSpotlightBlockWindowsTips) {
+		return false
+	}
+
+	if p.WindowsSpotlightBlocked != nil && (input.WindowsSpotlightBlocked == nil || *p.WindowsSpotlightBlocked != *input.WindowsSpotlightBlocked) {
+		return false
+	}
+
+	if p.WindowsStoreBlockAutoUpdate != nil && (input.WindowsStoreBlockAutoUpdate == nil || *p.WindowsStoreBlockAutoUpdate != *input.WindowsStoreBlockAutoUpdate) {
+		return false
+	}
+
+	if p.WindowsStoreBlocked != nil && (input.WindowsStoreBlocked == nil || *p.WindowsStoreBlocked != *input.WindowsStoreBlocked) {
+		return false
+	}
+
+	if p.WindowsStoreEnablePrivateStoreOnly != nil && (input.WindowsStoreEnablePrivateStoreOnly == nil || *p.WindowsStoreEnablePrivateStoreOnly != *input.WindowsStoreEnablePrivateStoreOnly) {
+		return false
+	}
+
+	if p.WirelessDisplayBlockProjectionToThisDevice != nil && (input.WirelessDisplayBlockProjectionToThisDevice == nil || *p.WirelessDisplayBlockProjectionToThisDevice != *input.WirelessDisplayBlockProjectionToThisDevice) {
+		return false
+	}
+
+	if p.WirelessDisplayBlockUserInputFromReceiver != nil && (input.WirelessDisplayBlockUserInputFromReceiver == nil || *p.WirelessDisplayBlockUserInputFromReceiver != *input.WirelessDisplayBlockUserInputFromReceiver) {
+		return false
+	}
+
+	if p.WirelessDisplayRequirePinForPairing != nil && (input.WirelessDisplayRequirePinForPairing == nil || *p.WirelessDisplayRequirePinForPairing != *input.WirelessDisplayRequirePinForPairing) {
+		return false
+	}
+
+	return true
+}

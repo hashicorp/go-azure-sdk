@@ -1,0 +1,32 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type CloudPCAuditResourceOperationPredicate struct {
+	DisplayName *string
+	ODataType   *string
+	ResourceId  *string
+	Type        *string
+}
+
+func (p CloudPCAuditResourceOperationPredicate) Matches(input CloudPCAuditResource) bool {
+
+	if p.DisplayName != nil && (input.DisplayName == nil || *p.DisplayName != *input.DisplayName) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.ResourceId != nil && (input.ResourceId == nil || *p.ResourceId != *input.ResourceId) {
+		return false
+	}
+
+	if p.Type != nil && (input.Type == nil || *p.Type != *input.Type) {
+		return false
+	}
+
+	return true
+}

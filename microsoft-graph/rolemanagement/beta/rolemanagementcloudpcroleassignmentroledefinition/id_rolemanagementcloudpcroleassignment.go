@@ -1,0 +1,101 @@
+package rolemanagementcloudpcroleassignmentroledefinition
+
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+var _ resourceids.ResourceId = RoleManagementCloudPCRoleAssignmentId{}
+
+// RoleManagementCloudPCRoleAssignmentId is a struct representing the Resource ID for a Role Management Cloud P C Role Assignment
+type RoleManagementCloudPCRoleAssignmentId struct {
+	UnifiedRoleAssignmentMultipleId string
+}
+
+// NewRoleManagementCloudPCRoleAssignmentID returns a new RoleManagementCloudPCRoleAssignmentId struct
+func NewRoleManagementCloudPCRoleAssignmentID(unifiedRoleAssignmentMultipleId string) RoleManagementCloudPCRoleAssignmentId {
+	return RoleManagementCloudPCRoleAssignmentId{
+		UnifiedRoleAssignmentMultipleId: unifiedRoleAssignmentMultipleId,
+	}
+}
+
+// ParseRoleManagementCloudPCRoleAssignmentID parses 'input' into a RoleManagementCloudPCRoleAssignmentId
+func ParseRoleManagementCloudPCRoleAssignmentID(input string) (*RoleManagementCloudPCRoleAssignmentId, error) {
+	parser := resourceids.NewParserFromResourceIdType(RoleManagementCloudPCRoleAssignmentId{})
+	parsed, err := parser.Parse(input, false)
+	if err != nil {
+		return nil, fmt.Errorf("parsing %q: %+v", input, err)
+	}
+
+	var ok bool
+	id := RoleManagementCloudPCRoleAssignmentId{}
+
+	if id.UnifiedRoleAssignmentMultipleId, ok = parsed.Parsed["unifiedRoleAssignmentMultipleId"]; !ok {
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "unifiedRoleAssignmentMultipleId", *parsed)
+	}
+
+	return &id, nil
+}
+
+// ParseRoleManagementCloudPCRoleAssignmentIDInsensitively parses 'input' case-insensitively into a RoleManagementCloudPCRoleAssignmentId
+// note: this method should only be used for API response data and not user input
+func ParseRoleManagementCloudPCRoleAssignmentIDInsensitively(input string) (*RoleManagementCloudPCRoleAssignmentId, error) {
+	parser := resourceids.NewParserFromResourceIdType(RoleManagementCloudPCRoleAssignmentId{})
+	parsed, err := parser.Parse(input, true)
+	if err != nil {
+		return nil, fmt.Errorf("parsing %q: %+v", input, err)
+	}
+
+	var ok bool
+	id := RoleManagementCloudPCRoleAssignmentId{}
+
+	if id.UnifiedRoleAssignmentMultipleId, ok = parsed.Parsed["unifiedRoleAssignmentMultipleId"]; !ok {
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "unifiedRoleAssignmentMultipleId", *parsed)
+	}
+
+	return &id, nil
+}
+
+// ValidateRoleManagementCloudPCRoleAssignmentID checks that 'input' can be parsed as a Role Management Cloud P C Role Assignment ID
+func ValidateRoleManagementCloudPCRoleAssignmentID(input interface{}, key string) (warnings []string, errors []error) {
+	v, ok := input.(string)
+	if !ok {
+		errors = append(errors, fmt.Errorf("expected %q to be a string", key))
+		return
+	}
+
+	if _, err := ParseRoleManagementCloudPCRoleAssignmentID(v); err != nil {
+		errors = append(errors, err)
+	}
+
+	return
+}
+
+// ID returns the formatted Role Management Cloud P C Role Assignment ID
+func (id RoleManagementCloudPCRoleAssignmentId) ID() string {
+	fmtString := "/roleManagement/cloudPC/roleAssignments/%s"
+	return fmt.Sprintf(fmtString, id.UnifiedRoleAssignmentMultipleId)
+}
+
+// Segments returns a slice of Resource ID Segments which comprise this Role Management Cloud P C Role Assignment ID
+func (id RoleManagementCloudPCRoleAssignmentId) Segments() []resourceids.Segment {
+	return []resourceids.Segment{
+		resourceids.StaticSegment("staticRoleManagement", "roleManagement", "roleManagement"),
+		resourceids.StaticSegment("staticCloudPC", "cloudPC", "cloudPC"),
+		resourceids.StaticSegment("staticRoleAssignments", "roleAssignments", "roleAssignments"),
+		resourceids.UserSpecifiedSegment("unifiedRoleAssignmentMultipleId", "unifiedRoleAssignmentMultipleIdValue"),
+	}
+}
+
+// String returns a human-readable description of this Role Management Cloud P C Role Assignment ID
+func (id RoleManagementCloudPCRoleAssignmentId) String() string {
+	components := []string{
+		fmt.Sprintf("Unified Role Assignment Multiple: %q", id.UnifiedRoleAssignmentMultipleId),
+	}
+	return fmt.Sprintf("Role Management Cloud P C Role Assignment (%s)", strings.Join(components, "\n"))
+}

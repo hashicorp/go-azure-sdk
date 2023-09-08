@@ -1,0 +1,32 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type CloudPCOrganizationSettingsOperationPredicate struct {
+	EnableMEMAutoEnroll *bool
+	EnableSingleSignOn  *bool
+	Id                  *string
+	ODataType           *string
+}
+
+func (p CloudPCOrganizationSettingsOperationPredicate) Matches(input CloudPCOrganizationSettings) bool {
+
+	if p.EnableMEMAutoEnroll != nil && (input.EnableMEMAutoEnroll == nil || *p.EnableMEMAutoEnroll != *input.EnableMEMAutoEnroll) {
+		return false
+	}
+
+	if p.EnableSingleSignOn != nil && (input.EnableSingleSignOn == nil || *p.EnableSingleSignOn != *input.EnableSingleSignOn) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	return true
+}

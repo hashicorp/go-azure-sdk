@@ -1,0 +1,27 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type TeamsAppResourceSpecificPermissionOperationPredicate struct {
+	 ODataType *string
+	 PermissionValue *string
+}
+
+func (p TeamsAppResourceSpecificPermissionOperationPredicate) Matches(input TeamsAppResourceSpecificPermission) bool {
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.PermissionValue != nil && (input.PermissionValue == nil || *p.PermissionValue != *input.PermissionValue) {
+	 	return false
+	}
+
+
+	return true
+}
+

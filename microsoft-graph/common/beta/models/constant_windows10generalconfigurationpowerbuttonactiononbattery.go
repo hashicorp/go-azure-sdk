@@ -1,0 +1,43 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type Windows10GeneralConfigurationPowerButtonActionOnBattery string
+
+const (
+	Windows10GeneralConfigurationPowerButtonActionOnBatteryhibernate     Windows10GeneralConfigurationPowerButtonActionOnBattery = "Hibernate"
+	Windows10GeneralConfigurationPowerButtonActionOnBatterynoAction      Windows10GeneralConfigurationPowerButtonActionOnBattery = "NoAction"
+	Windows10GeneralConfigurationPowerButtonActionOnBatterynotConfigured Windows10GeneralConfigurationPowerButtonActionOnBattery = "NotConfigured"
+	Windows10GeneralConfigurationPowerButtonActionOnBatteryshutdown      Windows10GeneralConfigurationPowerButtonActionOnBattery = "Shutdown"
+	Windows10GeneralConfigurationPowerButtonActionOnBatterysleep         Windows10GeneralConfigurationPowerButtonActionOnBattery = "Sleep"
+)
+
+func PossibleValuesForWindows10GeneralConfigurationPowerButtonActionOnBattery() []string {
+	return []string{
+		string(Windows10GeneralConfigurationPowerButtonActionOnBatteryhibernate),
+		string(Windows10GeneralConfigurationPowerButtonActionOnBatterynoAction),
+		string(Windows10GeneralConfigurationPowerButtonActionOnBatterynotConfigured),
+		string(Windows10GeneralConfigurationPowerButtonActionOnBatteryshutdown),
+		string(Windows10GeneralConfigurationPowerButtonActionOnBatterysleep),
+	}
+}
+
+func parseWindows10GeneralConfigurationPowerButtonActionOnBattery(input string) (*Windows10GeneralConfigurationPowerButtonActionOnBattery, error) {
+	vals := map[string]Windows10GeneralConfigurationPowerButtonActionOnBattery{
+		"hibernate":     Windows10GeneralConfigurationPowerButtonActionOnBatteryhibernate,
+		"noaction":      Windows10GeneralConfigurationPowerButtonActionOnBatterynoAction,
+		"notconfigured": Windows10GeneralConfigurationPowerButtonActionOnBatterynotConfigured,
+		"shutdown":      Windows10GeneralConfigurationPowerButtonActionOnBatteryshutdown,
+		"sleep":         Windows10GeneralConfigurationPowerButtonActionOnBatterysleep,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := Windows10GeneralConfigurationPowerButtonActionOnBattery(input)
+	return &out, nil
+}

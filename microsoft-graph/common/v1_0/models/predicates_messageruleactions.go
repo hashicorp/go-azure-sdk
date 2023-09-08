@@ -1,0 +1,47 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type MessageRuleActionsOperationPredicate struct {
+	CopyToFolder        *string
+	Delete              *bool
+	MarkAsRead          *bool
+	MoveToFolder        *string
+	ODataType           *string
+	PermanentDelete     *bool
+	StopProcessingRules *bool
+}
+
+func (p MessageRuleActionsOperationPredicate) Matches(input MessageRuleActions) bool {
+
+	if p.CopyToFolder != nil && (input.CopyToFolder == nil || *p.CopyToFolder != *input.CopyToFolder) {
+		return false
+	}
+
+	if p.Delete != nil && (input.Delete == nil || *p.Delete != *input.Delete) {
+		return false
+	}
+
+	if p.MarkAsRead != nil && (input.MarkAsRead == nil || *p.MarkAsRead != *input.MarkAsRead) {
+		return false
+	}
+
+	if p.MoveToFolder != nil && (input.MoveToFolder == nil || *p.MoveToFolder != *input.MoveToFolder) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.PermanentDelete != nil && (input.PermanentDelete == nil || *p.PermanentDelete != *input.PermanentDelete) {
+		return false
+	}
+
+	if p.StopProcessingRules != nil && (input.StopProcessingRules == nil || *p.StopProcessingRules != *input.StopProcessingRules) {
+		return false
+	}
+
+	return true
+}

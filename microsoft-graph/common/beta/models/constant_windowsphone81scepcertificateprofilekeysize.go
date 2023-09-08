@@ -1,0 +1,37 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type WindowsPhone81SCEPCertificateProfileKeySize string
+
+const (
+	WindowsPhone81SCEPCertificateProfileKeySizesize1024 WindowsPhone81SCEPCertificateProfileKeySize = "Size1024"
+	WindowsPhone81SCEPCertificateProfileKeySizesize2048 WindowsPhone81SCEPCertificateProfileKeySize = "Size2048"
+	WindowsPhone81SCEPCertificateProfileKeySizesize4096 WindowsPhone81SCEPCertificateProfileKeySize = "Size4096"
+)
+
+func PossibleValuesForWindowsPhone81SCEPCertificateProfileKeySize() []string {
+	return []string{
+		string(WindowsPhone81SCEPCertificateProfileKeySizesize1024),
+		string(WindowsPhone81SCEPCertificateProfileKeySizesize2048),
+		string(WindowsPhone81SCEPCertificateProfileKeySizesize4096),
+	}
+}
+
+func parseWindowsPhone81SCEPCertificateProfileKeySize(input string) (*WindowsPhone81SCEPCertificateProfileKeySize, error) {
+	vals := map[string]WindowsPhone81SCEPCertificateProfileKeySize{
+		"size1024": WindowsPhone81SCEPCertificateProfileKeySizesize1024,
+		"size2048": WindowsPhone81SCEPCertificateProfileKeySizesize2048,
+		"size4096": WindowsPhone81SCEPCertificateProfileKeySizesize4096,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := WindowsPhone81SCEPCertificateProfileKeySize(input)
+	return &out, nil
+}

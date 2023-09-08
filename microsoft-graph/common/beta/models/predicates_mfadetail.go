@@ -1,0 +1,27 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type MfaDetailOperationPredicate struct {
+	AuthDetail *string
+	AuthMethod *string
+	ODataType  *string
+}
+
+func (p MfaDetailOperationPredicate) Matches(input MfaDetail) bool {
+
+	if p.AuthDetail != nil && (input.AuthDetail == nil || *p.AuthDetail != *input.AuthDetail) {
+		return false
+	}
+
+	if p.AuthMethod != nil && (input.AuthMethod == nil || *p.AuthMethod != *input.AuthMethod) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	return true
+}

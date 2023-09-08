@@ -1,0 +1,46 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type WindowsPhone81CertificateProfileBaseSubjectAlternativeNameType string
+
+const (
+	WindowsPhone81CertificateProfileBaseSubjectAlternativeNameTypecustomAzureADAttribute      WindowsPhone81CertificateProfileBaseSubjectAlternativeNameType = "CustomAzureADAttribute"
+	WindowsPhone81CertificateProfileBaseSubjectAlternativeNameTypedomainNameService           WindowsPhone81CertificateProfileBaseSubjectAlternativeNameType = "DomainNameService"
+	WindowsPhone81CertificateProfileBaseSubjectAlternativeNameTypeemailAddress                WindowsPhone81CertificateProfileBaseSubjectAlternativeNameType = "EmailAddress"
+	WindowsPhone81CertificateProfileBaseSubjectAlternativeNameTypenone                        WindowsPhone81CertificateProfileBaseSubjectAlternativeNameType = "None"
+	WindowsPhone81CertificateProfileBaseSubjectAlternativeNameTypeuniversalResourceIdentifier WindowsPhone81CertificateProfileBaseSubjectAlternativeNameType = "UniversalResourceIdentifier"
+	WindowsPhone81CertificateProfileBaseSubjectAlternativeNameTypeuserPrincipalName           WindowsPhone81CertificateProfileBaseSubjectAlternativeNameType = "UserPrincipalName"
+)
+
+func PossibleValuesForWindowsPhone81CertificateProfileBaseSubjectAlternativeNameType() []string {
+	return []string{
+		string(WindowsPhone81CertificateProfileBaseSubjectAlternativeNameTypecustomAzureADAttribute),
+		string(WindowsPhone81CertificateProfileBaseSubjectAlternativeNameTypedomainNameService),
+		string(WindowsPhone81CertificateProfileBaseSubjectAlternativeNameTypeemailAddress),
+		string(WindowsPhone81CertificateProfileBaseSubjectAlternativeNameTypenone),
+		string(WindowsPhone81CertificateProfileBaseSubjectAlternativeNameTypeuniversalResourceIdentifier),
+		string(WindowsPhone81CertificateProfileBaseSubjectAlternativeNameTypeuserPrincipalName),
+	}
+}
+
+func parseWindowsPhone81CertificateProfileBaseSubjectAlternativeNameType(input string) (*WindowsPhone81CertificateProfileBaseSubjectAlternativeNameType, error) {
+	vals := map[string]WindowsPhone81CertificateProfileBaseSubjectAlternativeNameType{
+		"customazureadattribute":      WindowsPhone81CertificateProfileBaseSubjectAlternativeNameTypecustomAzureADAttribute,
+		"domainnameservice":           WindowsPhone81CertificateProfileBaseSubjectAlternativeNameTypedomainNameService,
+		"emailaddress":                WindowsPhone81CertificateProfileBaseSubjectAlternativeNameTypeemailAddress,
+		"none":                        WindowsPhone81CertificateProfileBaseSubjectAlternativeNameTypenone,
+		"universalresourceidentifier": WindowsPhone81CertificateProfileBaseSubjectAlternativeNameTypeuniversalResourceIdentifier,
+		"userprincipalname":           WindowsPhone81CertificateProfileBaseSubjectAlternativeNameTypeuserPrincipalName,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := WindowsPhone81CertificateProfileBaseSubjectAlternativeNameType(input)
+	return &out, nil
+}

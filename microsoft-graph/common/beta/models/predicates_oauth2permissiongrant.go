@@ -1,0 +1,57 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type OAuth2PermissionGrantOperationPredicate struct {
+	ClientId    *string
+	ConsentType *string
+	ExpiryTime  *string
+	Id          *string
+	ODataType   *string
+	PrincipalId *string
+	ResourceId  *string
+	Scope       *string
+	StartTime   *string
+}
+
+func (p OAuth2PermissionGrantOperationPredicate) Matches(input OAuth2PermissionGrant) bool {
+
+	if p.ClientId != nil && (input.ClientId == nil || *p.ClientId != *input.ClientId) {
+		return false
+	}
+
+	if p.ConsentType != nil && (input.ConsentType == nil || *p.ConsentType != *input.ConsentType) {
+		return false
+	}
+
+	if p.ExpiryTime != nil && (input.ExpiryTime == nil || *p.ExpiryTime != *input.ExpiryTime) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.PrincipalId != nil && (input.PrincipalId == nil || *p.PrincipalId != *input.PrincipalId) {
+		return false
+	}
+
+	if p.ResourceId != nil && (input.ResourceId == nil || *p.ResourceId != *input.ResourceId) {
+		return false
+	}
+
+	if p.Scope != nil && (input.Scope == nil || *p.Scope != *input.Scope) {
+		return false
+	}
+
+	if p.StartTime != nil && (input.StartTime == nil || *p.StartTime != *input.StartTime) {
+		return false
+	}
+
+	return true
+}

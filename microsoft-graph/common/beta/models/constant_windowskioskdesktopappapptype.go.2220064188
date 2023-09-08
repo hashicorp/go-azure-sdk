@@ -1,0 +1,46 @@
+package models
+
+import "strings"
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type WindowsKioskDesktopAppAppType string
+
+const (
+	WindowsKioskDesktopAppAppTypeaumId WindowsKioskDesktopAppAppType = "AumId"
+	WindowsKioskDesktopAppAppTypedesktop WindowsKioskDesktopAppAppType = "Desktop"
+	WindowsKioskDesktopAppAppTypestore WindowsKioskDesktopAppAppType = "Store"
+	WindowsKioskDesktopAppAppTypeunknown WindowsKioskDesktopAppAppType = "Unknown"
+)
+
+
+func PossibleValuesForWindowsKioskDesktopAppAppType() []string {
+	return []string{
+		string(WindowsKioskDesktopAppAppTypeaumId),
+string(WindowsKioskDesktopAppAppTypedesktop),
+string(WindowsKioskDesktopAppAppTypestore),
+string(WindowsKioskDesktopAppAppTypeunknown),
+	}
+}
+
+
+
+func parseWindowsKioskDesktopAppAppType(input string) (*WindowsKioskDesktopAppAppType, error) {
+	vals := map[string]WindowsKioskDesktopAppAppType{
+		"aumid": WindowsKioskDesktopAppAppTypeaumId,
+"desktop": WindowsKioskDesktopAppAppTypedesktop,
+"store": WindowsKioskDesktopAppAppTypestore,
+"unknown": WindowsKioskDesktopAppAppTypeunknown,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := WindowsKioskDesktopAppAppType(input)
+	return &out, nil
+}

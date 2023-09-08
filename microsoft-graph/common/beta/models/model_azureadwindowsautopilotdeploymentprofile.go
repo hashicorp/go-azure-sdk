@@ -1,0 +1,24 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type AzureADWindowsAutopilotDeploymentProfile struct {
+	AssignedDevices                *[]WindowsAutopilotDeviceIdentity                   `json:"assignedDevices,omitempty"`
+	Assignments                    *[]WindowsAutopilotDeploymentProfileAssignment      `json:"assignments,omitempty"`
+	CreatedDateTime                *string                                             `json:"createdDateTime,omitempty"`
+	Description                    *string                                             `json:"description,omitempty"`
+	DeviceNameTemplate             *string                                             `json:"deviceNameTemplate,omitempty"`
+	DeviceType                     *AzureADWindowsAutopilotDeploymentProfileDeviceType `json:"deviceType,omitempty"`
+	DisplayName                    *string                                             `json:"displayName,omitempty"`
+	EnableWhiteGlove               *bool                                               `json:"enableWhiteGlove,omitempty"`
+	EnrollmentStatusScreenSettings *WindowsEnrollmentStatusScreenSettings              `json:"enrollmentStatusScreenSettings,omitempty"`
+	ExtractHardwareHash            *bool                                               `json:"extractHardwareHash,omitempty"`
+	Id                             *string                                             `json:"id,omitempty"`
+	Language                       *string                                             `json:"language,omitempty"`
+	LastModifiedDateTime           *string                                             `json:"lastModifiedDateTime,omitempty"`
+	ManagementServiceAppId         *string                                             `json:"managementServiceAppId,omitempty"`
+	ODataType                      *string                                             `json:"@odata.type,omitempty"`
+	OutOfBoxExperienceSettings     *OutOfBoxExperienceSettings                         `json:"outOfBoxExperienceSettings,omitempty"`
+	RoleScopeTagIds                *[]string                                           `json:"roleScopeTagIds,omitempty"`
+}

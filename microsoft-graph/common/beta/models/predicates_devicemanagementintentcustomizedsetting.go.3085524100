@@ -1,0 +1,39 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type DeviceManagementIntentCustomizedSettingOperationPredicate struct {
+	 CustomizedJson *string
+	 DefaultJson *string
+	 DefinitionId *string
+	 ODataType *string
+}
+
+func (p DeviceManagementIntentCustomizedSettingOperationPredicate) Matches(input DeviceManagementIntentCustomizedSetting) bool {
+
+	if p.CustomizedJson != nil && (input.CustomizedJson == nil || *p.CustomizedJson != *input.CustomizedJson) {
+	 	return false
+	}
+
+
+	if p.DefaultJson != nil && (input.DefaultJson == nil || *p.DefaultJson != *input.DefaultJson) {
+	 	return false
+	}
+
+
+	if p.DefinitionId != nil && (input.DefinitionId == nil || *p.DefinitionId != *input.DefinitionId) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	return true
+}
+

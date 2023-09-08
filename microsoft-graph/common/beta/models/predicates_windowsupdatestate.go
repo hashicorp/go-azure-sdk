@@ -1,0 +1,62 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type WindowsUpdateStateOperationPredicate struct {
+	DeviceDisplayName    *string
+	DeviceId             *string
+	FeatureUpdateVersion *string
+	Id                   *string
+	LastScanDateTime     *string
+	LastSyncDateTime     *string
+	ODataType            *string
+	QualityUpdateVersion *string
+	UserId               *string
+	UserPrincipalName    *string
+}
+
+func (p WindowsUpdateStateOperationPredicate) Matches(input WindowsUpdateState) bool {
+
+	if p.DeviceDisplayName != nil && (input.DeviceDisplayName == nil || *p.DeviceDisplayName != *input.DeviceDisplayName) {
+		return false
+	}
+
+	if p.DeviceId != nil && (input.DeviceId == nil || *p.DeviceId != *input.DeviceId) {
+		return false
+	}
+
+	if p.FeatureUpdateVersion != nil && (input.FeatureUpdateVersion == nil || *p.FeatureUpdateVersion != *input.FeatureUpdateVersion) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.LastScanDateTime != nil && (input.LastScanDateTime == nil || *p.LastScanDateTime != *input.LastScanDateTime) {
+		return false
+	}
+
+	if p.LastSyncDateTime != nil && (input.LastSyncDateTime == nil || *p.LastSyncDateTime != *input.LastSyncDateTime) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.QualityUpdateVersion != nil && (input.QualityUpdateVersion == nil || *p.QualityUpdateVersion != *input.QualityUpdateVersion) {
+		return false
+	}
+
+	if p.UserId != nil && (input.UserId == nil || *p.UserId != *input.UserId) {
+		return false
+	}
+
+	if p.UserPrincipalName != nil && (input.UserPrincipalName == nil || *p.UserPrincipalName != *input.UserPrincipalName) {
+		return false
+	}
+
+	return true
+}

@@ -1,0 +1,75 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type MessageSecurityStateOperationPredicate struct {
+	 ConnectingIP *string
+	 DeliveryAction *string
+	 DeliveryLocation *string
+	 Directionality *string
+	 InternetMessageId *string
+	 MessageFingerprint *string
+	 MessageReceivedDateTime *string
+	 MessageSubject *string
+	 NetworkMessageId *string
+	 ODataType *string
+}
+
+func (p MessageSecurityStateOperationPredicate) Matches(input MessageSecurityState) bool {
+
+	if p.ConnectingIP != nil && (input.ConnectingIP == nil || *p.ConnectingIP != *input.ConnectingIP) {
+	 	return false
+	}
+
+
+	if p.DeliveryAction != nil && (input.DeliveryAction == nil || *p.DeliveryAction != *input.DeliveryAction) {
+	 	return false
+	}
+
+
+	if p.DeliveryLocation != nil && (input.DeliveryLocation == nil || *p.DeliveryLocation != *input.DeliveryLocation) {
+	 	return false
+	}
+
+
+	if p.Directionality != nil && (input.Directionality == nil || *p.Directionality != *input.Directionality) {
+	 	return false
+	}
+
+
+	if p.InternetMessageId != nil && (input.InternetMessageId == nil || *p.InternetMessageId != *input.InternetMessageId) {
+	 	return false
+	}
+
+
+	if p.MessageFingerprint != nil && (input.MessageFingerprint == nil || *p.MessageFingerprint != *input.MessageFingerprint) {
+	 	return false
+	}
+
+
+	if p.MessageReceivedDateTime != nil && (input.MessageReceivedDateTime == nil || *p.MessageReceivedDateTime != *input.MessageReceivedDateTime) {
+	 	return false
+	}
+
+
+	if p.MessageSubject != nil && (input.MessageSubject == nil || *p.MessageSubject != *input.MessageSubject) {
+	 	return false
+	}
+
+
+	if p.NetworkMessageId != nil && (input.NetworkMessageId == nil || *p.NetworkMessageId != *input.NetworkMessageId) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	return true
+}
+

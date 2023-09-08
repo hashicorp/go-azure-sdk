@@ -1,0 +1,43 @@
+package models
+
+import "strings"
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type ManagedAppProtectionAppActionIfMaximumPinRetriesExceeded string
+
+const (
+	ManagedAppProtectionAppActionIfMaximumPinRetriesExceededblock ManagedAppProtectionAppActionIfMaximumPinRetriesExceeded = "Block"
+	ManagedAppProtectionAppActionIfMaximumPinRetriesExceededwarn ManagedAppProtectionAppActionIfMaximumPinRetriesExceeded = "Warn"
+	ManagedAppProtectionAppActionIfMaximumPinRetriesExceededwipe ManagedAppProtectionAppActionIfMaximumPinRetriesExceeded = "Wipe"
+)
+
+
+func PossibleValuesForManagedAppProtectionAppActionIfMaximumPinRetriesExceeded() []string {
+	return []string{
+		string(ManagedAppProtectionAppActionIfMaximumPinRetriesExceededblock),
+string(ManagedAppProtectionAppActionIfMaximumPinRetriesExceededwarn),
+string(ManagedAppProtectionAppActionIfMaximumPinRetriesExceededwipe),
+	}
+}
+
+
+
+func parseManagedAppProtectionAppActionIfMaximumPinRetriesExceeded(input string) (*ManagedAppProtectionAppActionIfMaximumPinRetriesExceeded, error) {
+	vals := map[string]ManagedAppProtectionAppActionIfMaximumPinRetriesExceeded{
+		"block": ManagedAppProtectionAppActionIfMaximumPinRetriesExceededblock,
+"warn": ManagedAppProtectionAppActionIfMaximumPinRetriesExceededwarn,
+"wipe": ManagedAppProtectionAppActionIfMaximumPinRetriesExceededwipe,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ManagedAppProtectionAppActionIfMaximumPinRetriesExceeded(input)
+	return &out, nil
+}

@@ -1,0 +1,27 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type ChatRenamedEventMessageDetailOperationPredicate struct {
+	ChatDisplayName *string
+	ChatId          *string
+	ODataType       *string
+}
+
+func (p ChatRenamedEventMessageDetailOperationPredicate) Matches(input ChatRenamedEventMessageDetail) bool {
+
+	if p.ChatDisplayName != nil && (input.ChatDisplayName == nil || *p.ChatDisplayName != *input.ChatDisplayName) {
+		return false
+	}
+
+	if p.ChatId != nil && (input.ChatId == nil || *p.ChatId != *input.ChatId) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	return true
+}

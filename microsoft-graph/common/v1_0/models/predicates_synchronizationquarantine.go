@@ -1,0 +1,37 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type SynchronizationQuarantineOperationPredicate struct {
+	CurrentBegan *string
+	NextAttempt  *string
+	ODataType    *string
+	SeriesBegan  *string
+	SeriesCount  *int64
+}
+
+func (p SynchronizationQuarantineOperationPredicate) Matches(input SynchronizationQuarantine) bool {
+
+	if p.CurrentBegan != nil && (input.CurrentBegan == nil || *p.CurrentBegan != *input.CurrentBegan) {
+		return false
+	}
+
+	if p.NextAttempt != nil && (input.NextAttempt == nil || *p.NextAttempt != *input.NextAttempt) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.SeriesBegan != nil && (input.SeriesBegan == nil || *p.SeriesBegan != *input.SeriesBegan) {
+		return false
+	}
+
+	if p.SeriesCount != nil && (input.SeriesCount == nil || *p.SeriesCount != *input.SeriesCount) {
+		return false
+	}
+
+	return true
+}

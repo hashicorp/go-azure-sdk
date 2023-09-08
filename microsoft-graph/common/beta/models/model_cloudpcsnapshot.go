@@ -1,0 +1,15 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type CloudPCSnapshot struct {
+	CloudPCId            *string                      `json:"cloudPcId,omitempty"`
+	CreatedDateTime      *string                      `json:"createdDateTime,omitempty"`
+	ExpirationDateTime   *string                      `json:"expirationDateTime,omitempty"`
+	Id                   *string                      `json:"id,omitempty"`
+	LastRestoredDateTime *string                      `json:"lastRestoredDateTime,omitempty"`
+	ODataType            *string                      `json:"@odata.type,omitempty"`
+	SnapshotType         *CloudPCSnapshotSnapshotType `json:"snapshotType,omitempty"`
+	Status               *CloudPCSnapshotStatus       `json:"status,omitempty"`
+}

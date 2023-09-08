@@ -1,0 +1,85 @@
+package models
+
+import "strings"
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type ToneInfoTone string
+
+const (
+	ToneInfoTonea ToneInfoTone = "A"
+	ToneInfoToneb ToneInfoTone = "B"
+	ToneInfoTonec ToneInfoTone = "C"
+	ToneInfoToned ToneInfoTone = "D"
+	ToneInfoToneflash ToneInfoTone = "Flash"
+	ToneInfoTonepound ToneInfoTone = "Pound"
+	ToneInfoTonestar ToneInfoTone = "Star"
+	ToneInfoTonetone0 ToneInfoTone = "Tone0"
+	ToneInfoTonetone1 ToneInfoTone = "Tone1"
+	ToneInfoTonetone2 ToneInfoTone = "Tone2"
+	ToneInfoTonetone3 ToneInfoTone = "Tone3"
+	ToneInfoTonetone4 ToneInfoTone = "Tone4"
+	ToneInfoTonetone5 ToneInfoTone = "Tone5"
+	ToneInfoTonetone6 ToneInfoTone = "Tone6"
+	ToneInfoTonetone7 ToneInfoTone = "Tone7"
+	ToneInfoTonetone8 ToneInfoTone = "Tone8"
+	ToneInfoTonetone9 ToneInfoTone = "Tone9"
+)
+
+
+func PossibleValuesForToneInfoTone() []string {
+	return []string{
+		string(ToneInfoTonea),
+string(ToneInfoToneb),
+string(ToneInfoTonec),
+string(ToneInfoToned),
+string(ToneInfoToneflash),
+string(ToneInfoTonepound),
+string(ToneInfoTonestar),
+string(ToneInfoTonetone0),
+string(ToneInfoTonetone1),
+string(ToneInfoTonetone2),
+string(ToneInfoTonetone3),
+string(ToneInfoTonetone4),
+string(ToneInfoTonetone5),
+string(ToneInfoTonetone6),
+string(ToneInfoTonetone7),
+string(ToneInfoTonetone8),
+string(ToneInfoTonetone9),
+	}
+}
+
+
+
+func parseToneInfoTone(input string) (*ToneInfoTone, error) {
+	vals := map[string]ToneInfoTone{
+		"a": ToneInfoTonea,
+"b": ToneInfoToneb,
+"c": ToneInfoTonec,
+"d": ToneInfoToned,
+"flash": ToneInfoToneflash,
+"pound": ToneInfoTonepound,
+"star": ToneInfoTonestar,
+"tone0": ToneInfoTonetone0,
+"tone1": ToneInfoTonetone1,
+"tone2": ToneInfoTonetone2,
+"tone3": ToneInfoTonetone3,
+"tone4": ToneInfoTonetone4,
+"tone5": ToneInfoTonetone5,
+"tone6": ToneInfoTonetone6,
+"tone7": ToneInfoTonetone7,
+"tone8": ToneInfoTonetone8,
+"tone9": ToneInfoTonetone9,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ToneInfoTone(input)
+	return &out, nil
+}

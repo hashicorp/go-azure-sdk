@@ -1,0 +1,37 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type SharepointSettingsSharingDomainRestrictionMode string
+
+const (
+	SharepointSettingsSharingDomainRestrictionModeallowList SharepointSettingsSharingDomainRestrictionMode = "AllowList"
+	SharepointSettingsSharingDomainRestrictionModeblockList SharepointSettingsSharingDomainRestrictionMode = "BlockList"
+	SharepointSettingsSharingDomainRestrictionModenone      SharepointSettingsSharingDomainRestrictionMode = "None"
+)
+
+func PossibleValuesForSharepointSettingsSharingDomainRestrictionMode() []string {
+	return []string{
+		string(SharepointSettingsSharingDomainRestrictionModeallowList),
+		string(SharepointSettingsSharingDomainRestrictionModeblockList),
+		string(SharepointSettingsSharingDomainRestrictionModenone),
+	}
+}
+
+func parseSharepointSettingsSharingDomainRestrictionMode(input string) (*SharepointSettingsSharingDomainRestrictionMode, error) {
+	vals := map[string]SharepointSettingsSharingDomainRestrictionMode{
+		"allowlist": SharepointSettingsSharingDomainRestrictionModeallowList,
+		"blocklist": SharepointSettingsSharingDomainRestrictionModeblockList,
+		"none":      SharepointSettingsSharingDomainRestrictionModenone,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SharepointSettingsSharingDomainRestrictionMode(input)
+	return &out, nil
+}

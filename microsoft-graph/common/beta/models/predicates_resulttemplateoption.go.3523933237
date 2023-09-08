@@ -1,0 +1,27 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type ResultTemplateOptionOperationPredicate struct {
+	 EnableResultTemplate *bool
+	 ODataType *string
+}
+
+func (p ResultTemplateOptionOperationPredicate) Matches(input ResultTemplateOption) bool {
+
+	if p.EnableResultTemplate != nil && (input.EnableResultTemplate == nil || *p.EnableResultTemplate != *input.EnableResultTemplate) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	return true
+}
+

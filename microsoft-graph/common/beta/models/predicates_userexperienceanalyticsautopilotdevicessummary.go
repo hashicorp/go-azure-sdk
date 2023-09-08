@@ -1,0 +1,32 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type UserExperienceAnalyticsAutopilotDevicesSummaryOperationPredicate struct {
+	DevicesNotAutopilotRegistered              *int64
+	DevicesWithoutAutopilotProfileAssigned     *int64
+	ODataType                                  *string
+	TotalWindows10DevicesWithoutTenantAttached *int64
+}
+
+func (p UserExperienceAnalyticsAutopilotDevicesSummaryOperationPredicate) Matches(input UserExperienceAnalyticsAutopilotDevicesSummary) bool {
+
+	if p.DevicesNotAutopilotRegistered != nil && (input.DevicesNotAutopilotRegistered == nil || *p.DevicesNotAutopilotRegistered != *input.DevicesNotAutopilotRegistered) {
+		return false
+	}
+
+	if p.DevicesWithoutAutopilotProfileAssigned != nil && (input.DevicesWithoutAutopilotProfileAssigned == nil || *p.DevicesWithoutAutopilotProfileAssigned != *input.DevicesWithoutAutopilotProfileAssigned) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.TotalWindows10DevicesWithoutTenantAttached != nil && (input.TotalWindows10DevicesWithoutTenantAttached == nil || *p.TotalWindows10DevicesWithoutTenantAttached != *input.TotalWindows10DevicesWithoutTenantAttached) {
+		return false
+	}
+
+	return true
+}

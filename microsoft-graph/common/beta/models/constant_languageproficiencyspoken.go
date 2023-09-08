@@ -1,0 +1,46 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type LanguageProficiencySpoken string
+
+const (
+	LanguageProficiencySpokenconversational      LanguageProficiencySpoken = "Conversational"
+	LanguageProficiencySpokenelementary          LanguageProficiencySpoken = "Elementary"
+	LanguageProficiencySpokenfullProfessional    LanguageProficiencySpoken = "FullProfessional"
+	LanguageProficiencySpokenlimitedWorking      LanguageProficiencySpoken = "LimitedWorking"
+	LanguageProficiencySpokennativeOrBilingual   LanguageProficiencySpoken = "NativeOrBilingual"
+	LanguageProficiencySpokenprofessionalWorking LanguageProficiencySpoken = "ProfessionalWorking"
+)
+
+func PossibleValuesForLanguageProficiencySpoken() []string {
+	return []string{
+		string(LanguageProficiencySpokenconversational),
+		string(LanguageProficiencySpokenelementary),
+		string(LanguageProficiencySpokenfullProfessional),
+		string(LanguageProficiencySpokenlimitedWorking),
+		string(LanguageProficiencySpokennativeOrBilingual),
+		string(LanguageProficiencySpokenprofessionalWorking),
+	}
+}
+
+func parseLanguageProficiencySpoken(input string) (*LanguageProficiencySpoken, error) {
+	vals := map[string]LanguageProficiencySpoken{
+		"conversational":      LanguageProficiencySpokenconversational,
+		"elementary":          LanguageProficiencySpokenelementary,
+		"fullprofessional":    LanguageProficiencySpokenfullProfessional,
+		"limitedworking":      LanguageProficiencySpokenlimitedWorking,
+		"nativeorbilingual":   LanguageProficiencySpokennativeOrBilingual,
+		"professionalworking": LanguageProficiencySpokenprofessionalWorking,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := LanguageProficiencySpoken(input)
+	return &out, nil
+}

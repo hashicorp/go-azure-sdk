@@ -1,0 +1,32 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type UsageRightOperationPredicate struct {
+	CatalogId         *string
+	Id                *string
+	ODataType         *string
+	ServiceIdentifier *string
+}
+
+func (p UsageRightOperationPredicate) Matches(input UsageRight) bool {
+
+	if p.CatalogId != nil && (input.CatalogId == nil || *p.CatalogId != *input.CatalogId) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.ServiceIdentifier != nil && (input.ServiceIdentifier == nil || *p.ServiceIdentifier != *input.ServiceIdentifier) {
+		return false
+	}
+
+	return true
+}

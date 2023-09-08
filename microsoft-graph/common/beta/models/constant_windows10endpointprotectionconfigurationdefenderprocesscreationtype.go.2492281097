@@ -1,0 +1,49 @@
+package models
+
+import "strings"
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type Windows10EndpointProtectionConfigurationDefenderProcessCreationType string
+
+const (
+	Windows10EndpointProtectionConfigurationDefenderProcessCreationTypeauditMode Windows10EndpointProtectionConfigurationDefenderProcessCreationType = "AuditMode"
+	Windows10EndpointProtectionConfigurationDefenderProcessCreationTypeblock Windows10EndpointProtectionConfigurationDefenderProcessCreationType = "Block"
+	Windows10EndpointProtectionConfigurationDefenderProcessCreationTypedisable Windows10EndpointProtectionConfigurationDefenderProcessCreationType = "Disable"
+	Windows10EndpointProtectionConfigurationDefenderProcessCreationTypeuserDefined Windows10EndpointProtectionConfigurationDefenderProcessCreationType = "UserDefined"
+	Windows10EndpointProtectionConfigurationDefenderProcessCreationTypewarn Windows10EndpointProtectionConfigurationDefenderProcessCreationType = "Warn"
+)
+
+
+func PossibleValuesForWindows10EndpointProtectionConfigurationDefenderProcessCreationType() []string {
+	return []string{
+		string(Windows10EndpointProtectionConfigurationDefenderProcessCreationTypeauditMode),
+string(Windows10EndpointProtectionConfigurationDefenderProcessCreationTypeblock),
+string(Windows10EndpointProtectionConfigurationDefenderProcessCreationTypedisable),
+string(Windows10EndpointProtectionConfigurationDefenderProcessCreationTypeuserDefined),
+string(Windows10EndpointProtectionConfigurationDefenderProcessCreationTypewarn),
+	}
+}
+
+
+
+func parseWindows10EndpointProtectionConfigurationDefenderProcessCreationType(input string) (*Windows10EndpointProtectionConfigurationDefenderProcessCreationType, error) {
+	vals := map[string]Windows10EndpointProtectionConfigurationDefenderProcessCreationType{
+		"auditmode": Windows10EndpointProtectionConfigurationDefenderProcessCreationTypeauditMode,
+"block": Windows10EndpointProtectionConfigurationDefenderProcessCreationTypeblock,
+"disable": Windows10EndpointProtectionConfigurationDefenderProcessCreationTypedisable,
+"userdefined": Windows10EndpointProtectionConfigurationDefenderProcessCreationTypeuserDefined,
+"warn": Windows10EndpointProtectionConfigurationDefenderProcessCreationTypewarn,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := Windows10EndpointProtectionConfigurationDefenderProcessCreationType(input)
+	return &out, nil
+}

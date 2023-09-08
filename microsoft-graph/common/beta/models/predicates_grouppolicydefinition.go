@@ -1,0 +1,72 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type GroupPolicyDefinitionOperationPredicate struct {
+	CategoryPath          *string
+	DisplayName           *string
+	ExplainText           *string
+	GroupPolicyCategoryId *string
+	HasRelatedDefinitions *bool
+	Id                    *string
+	LastModifiedDateTime  *string
+	MinDeviceCspVersion   *string
+	MinUserCspVersion     *string
+	ODataType             *string
+	SupportedOn           *string
+	Version               *string
+}
+
+func (p GroupPolicyDefinitionOperationPredicate) Matches(input GroupPolicyDefinition) bool {
+
+	if p.CategoryPath != nil && (input.CategoryPath == nil || *p.CategoryPath != *input.CategoryPath) {
+		return false
+	}
+
+	if p.DisplayName != nil && (input.DisplayName == nil || *p.DisplayName != *input.DisplayName) {
+		return false
+	}
+
+	if p.ExplainText != nil && (input.ExplainText == nil || *p.ExplainText != *input.ExplainText) {
+		return false
+	}
+
+	if p.GroupPolicyCategoryId != nil && (input.GroupPolicyCategoryId == nil || *p.GroupPolicyCategoryId != *input.GroupPolicyCategoryId) {
+		return false
+	}
+
+	if p.HasRelatedDefinitions != nil && (input.HasRelatedDefinitions == nil || *p.HasRelatedDefinitions != *input.HasRelatedDefinitions) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.LastModifiedDateTime != nil && (input.LastModifiedDateTime == nil || *p.LastModifiedDateTime != *input.LastModifiedDateTime) {
+		return false
+	}
+
+	if p.MinDeviceCspVersion != nil && (input.MinDeviceCspVersion == nil || *p.MinDeviceCspVersion != *input.MinDeviceCspVersion) {
+		return false
+	}
+
+	if p.MinUserCspVersion != nil && (input.MinUserCspVersion == nil || *p.MinUserCspVersion != *input.MinUserCspVersion) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.SupportedOn != nil && (input.SupportedOn == nil || *p.SupportedOn != *input.SupportedOn) {
+		return false
+	}
+
+	if p.Version != nil && (input.Version == nil || *p.Version != *input.Version) {
+		return false
+	}
+
+	return true
+}

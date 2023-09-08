@@ -1,0 +1,153 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type WindowsManagedAppProtectionOperationPredicate struct {
+	 CreatedDateTime *string
+	 DeployedAppCount *int64
+	 Description *string
+	 DisplayName *string
+	 Id *string
+	 IsAssigned *bool
+	 LastModifiedDateTime *string
+	 MaximumRequiredOsVersion *string
+	 MaximumWarningOsVersion *string
+	 MaximumWipeOsVersion *string
+	 MinimumRequiredAppVersion *string
+	 MinimumRequiredOsVersion *string
+	 MinimumRequiredSdkVersion *string
+	 MinimumWarningAppVersion *string
+	 MinimumWarningOsVersion *string
+	 MinimumWipeAppVersion *string
+	 MinimumWipeOsVersion *string
+	 MinimumWipeSdkVersion *string
+	 ODataType *string
+	 PeriodOfflineBeforeAccessCheck *string
+	 PeriodOfflineBeforeWipeIsEnforced *string
+	 PrintBlocked *bool
+	 Version *string
+}
+
+func (p WindowsManagedAppProtectionOperationPredicate) Matches(input WindowsManagedAppProtection) bool {
+
+	if p.CreatedDateTime != nil && (input.CreatedDateTime == nil || *p.CreatedDateTime != *input.CreatedDateTime) {
+	 	return false
+	}
+
+
+	if p.DeployedAppCount != nil && (input.DeployedAppCount == nil || *p.DeployedAppCount != *input.DeployedAppCount) {
+	 	return false
+	}
+
+
+	if p.Description != nil && (input.Description == nil || *p.Description != *input.Description) {
+	 	return false
+	}
+
+
+	if p.DisplayName != nil && (input.DisplayName == nil || *p.DisplayName != *input.DisplayName) {
+	 	return false
+	}
+
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+	 	return false
+	}
+
+
+	if p.IsAssigned != nil && (input.IsAssigned == nil || *p.IsAssigned != *input.IsAssigned) {
+	 	return false
+	}
+
+
+	if p.LastModifiedDateTime != nil && (input.LastModifiedDateTime == nil || *p.LastModifiedDateTime != *input.LastModifiedDateTime) {
+	 	return false
+	}
+
+
+	if p.MaximumRequiredOsVersion != nil && (input.MaximumRequiredOsVersion == nil || *p.MaximumRequiredOsVersion != *input.MaximumRequiredOsVersion) {
+	 	return false
+	}
+
+
+	if p.MaximumWarningOsVersion != nil && (input.MaximumWarningOsVersion == nil || *p.MaximumWarningOsVersion != *input.MaximumWarningOsVersion) {
+	 	return false
+	}
+
+
+	if p.MaximumWipeOsVersion != nil && (input.MaximumWipeOsVersion == nil || *p.MaximumWipeOsVersion != *input.MaximumWipeOsVersion) {
+	 	return false
+	}
+
+
+	if p.MinimumRequiredAppVersion != nil && (input.MinimumRequiredAppVersion == nil || *p.MinimumRequiredAppVersion != *input.MinimumRequiredAppVersion) {
+	 	return false
+	}
+
+
+	if p.MinimumRequiredOsVersion != nil && (input.MinimumRequiredOsVersion == nil || *p.MinimumRequiredOsVersion != *input.MinimumRequiredOsVersion) {
+	 	return false
+	}
+
+
+	if p.MinimumRequiredSdkVersion != nil && (input.MinimumRequiredSdkVersion == nil || *p.MinimumRequiredSdkVersion != *input.MinimumRequiredSdkVersion) {
+	 	return false
+	}
+
+
+	if p.MinimumWarningAppVersion != nil && (input.MinimumWarningAppVersion == nil || *p.MinimumWarningAppVersion != *input.MinimumWarningAppVersion) {
+	 	return false
+	}
+
+
+	if p.MinimumWarningOsVersion != nil && (input.MinimumWarningOsVersion == nil || *p.MinimumWarningOsVersion != *input.MinimumWarningOsVersion) {
+	 	return false
+	}
+
+
+	if p.MinimumWipeAppVersion != nil && (input.MinimumWipeAppVersion == nil || *p.MinimumWipeAppVersion != *input.MinimumWipeAppVersion) {
+	 	return false
+	}
+
+
+	if p.MinimumWipeOsVersion != nil && (input.MinimumWipeOsVersion == nil || *p.MinimumWipeOsVersion != *input.MinimumWipeOsVersion) {
+	 	return false
+	}
+
+
+	if p.MinimumWipeSdkVersion != nil && (input.MinimumWipeSdkVersion == nil || *p.MinimumWipeSdkVersion != *input.MinimumWipeSdkVersion) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.PeriodOfflineBeforeAccessCheck != nil && (input.PeriodOfflineBeforeAccessCheck == nil || *p.PeriodOfflineBeforeAccessCheck != *input.PeriodOfflineBeforeAccessCheck) {
+	 	return false
+	}
+
+
+	if p.PeriodOfflineBeforeWipeIsEnforced != nil && (input.PeriodOfflineBeforeWipeIsEnforced == nil || *p.PeriodOfflineBeforeWipeIsEnforced != *input.PeriodOfflineBeforeWipeIsEnforced) {
+	 	return false
+	}
+
+
+	if p.PrintBlocked != nil && (input.PrintBlocked == nil || *p.PrintBlocked != *input.PrintBlocked) {
+	 	return false
+	}
+
+
+	if p.Version != nil && (input.Version == nil || *p.Version != *input.Version) {
+	 	return false
+	}
+
+
+	return true
+}
+

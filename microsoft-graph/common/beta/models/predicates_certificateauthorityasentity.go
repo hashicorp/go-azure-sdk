@@ -1,0 +1,42 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type CertificateAuthorityAsEntityOperationPredicate struct {
+	Certificate                *string
+	Id                         *string
+	IsRootAuthority            *bool
+	Issuer                     *string
+	IssuerSubjectKeyIdentifier *string
+	ODataType                  *string
+}
+
+func (p CertificateAuthorityAsEntityOperationPredicate) Matches(input CertificateAuthorityAsEntity) bool {
+
+	if p.Certificate != nil && (input.Certificate == nil || *p.Certificate != *input.Certificate) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.IsRootAuthority != nil && (input.IsRootAuthority == nil || *p.IsRootAuthority != *input.IsRootAuthority) {
+		return false
+	}
+
+	if p.Issuer != nil && (input.Issuer == nil || *p.Issuer != *input.Issuer) {
+		return false
+	}
+
+	if p.IssuerSubjectKeyIdentifier != nil && (input.IssuerSubjectKeyIdentifier == nil || *p.IssuerSubjectKeyIdentifier != *input.IssuerSubjectKeyIdentifier) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	return true
+}

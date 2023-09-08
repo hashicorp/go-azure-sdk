@@ -1,0 +1,43 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type UserExperienceAnalyticsAnomalyState string
+
+const (
+	UserExperienceAnalyticsAnomalyStateactive   UserExperienceAnalyticsAnomalyState = "Active"
+	UserExperienceAnalyticsAnomalyStatedisabled UserExperienceAnalyticsAnomalyState = "Disabled"
+	UserExperienceAnalyticsAnomalyStatenew      UserExperienceAnalyticsAnomalyState = "New"
+	UserExperienceAnalyticsAnomalyStateother    UserExperienceAnalyticsAnomalyState = "Other"
+	UserExperienceAnalyticsAnomalyStateremoved  UserExperienceAnalyticsAnomalyState = "Removed"
+)
+
+func PossibleValuesForUserExperienceAnalyticsAnomalyState() []string {
+	return []string{
+		string(UserExperienceAnalyticsAnomalyStateactive),
+		string(UserExperienceAnalyticsAnomalyStatedisabled),
+		string(UserExperienceAnalyticsAnomalyStatenew),
+		string(UserExperienceAnalyticsAnomalyStateother),
+		string(UserExperienceAnalyticsAnomalyStateremoved),
+	}
+}
+
+func parseUserExperienceAnalyticsAnomalyState(input string) (*UserExperienceAnalyticsAnomalyState, error) {
+	vals := map[string]UserExperienceAnalyticsAnomalyState{
+		"active":   UserExperienceAnalyticsAnomalyStateactive,
+		"disabled": UserExperienceAnalyticsAnomalyStatedisabled,
+		"new":      UserExperienceAnalyticsAnomalyStatenew,
+		"other":    UserExperienceAnalyticsAnomalyStateother,
+		"removed":  UserExperienceAnalyticsAnomalyStateremoved,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := UserExperienceAnalyticsAnomalyState(input)
+	return &out, nil
+}

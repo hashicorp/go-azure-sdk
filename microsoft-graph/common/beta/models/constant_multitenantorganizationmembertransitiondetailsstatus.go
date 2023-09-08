@@ -1,0 +1,40 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type MultiTenantOrganizationMemberTransitionDetailsStatus string
+
+const (
+	MultiTenantOrganizationMemberTransitionDetailsStatusfailed     MultiTenantOrganizationMemberTransitionDetailsStatus = "Failed"
+	MultiTenantOrganizationMemberTransitionDetailsStatusnotStarted MultiTenantOrganizationMemberTransitionDetailsStatus = "NotStarted"
+	MultiTenantOrganizationMemberTransitionDetailsStatusrunning    MultiTenantOrganizationMemberTransitionDetailsStatus = "Running"
+	MultiTenantOrganizationMemberTransitionDetailsStatussucceeded  MultiTenantOrganizationMemberTransitionDetailsStatus = "Succeeded"
+)
+
+func PossibleValuesForMultiTenantOrganizationMemberTransitionDetailsStatus() []string {
+	return []string{
+		string(MultiTenantOrganizationMemberTransitionDetailsStatusfailed),
+		string(MultiTenantOrganizationMemberTransitionDetailsStatusnotStarted),
+		string(MultiTenantOrganizationMemberTransitionDetailsStatusrunning),
+		string(MultiTenantOrganizationMemberTransitionDetailsStatussucceeded),
+	}
+}
+
+func parseMultiTenantOrganizationMemberTransitionDetailsStatus(input string) (*MultiTenantOrganizationMemberTransitionDetailsStatus, error) {
+	vals := map[string]MultiTenantOrganizationMemberTransitionDetailsStatus{
+		"failed":     MultiTenantOrganizationMemberTransitionDetailsStatusfailed,
+		"notstarted": MultiTenantOrganizationMemberTransitionDetailsStatusnotStarted,
+		"running":    MultiTenantOrganizationMemberTransitionDetailsStatusrunning,
+		"succeeded":  MultiTenantOrganizationMemberTransitionDetailsStatussucceeded,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := MultiTenantOrganizationMemberTransitionDetailsStatus(input)
+	return &out, nil
+}

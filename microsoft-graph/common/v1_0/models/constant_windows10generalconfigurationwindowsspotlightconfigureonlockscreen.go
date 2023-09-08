@@ -1,0 +1,37 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type Windows10GeneralConfigurationWindowsSpotlightConfigureOnLockScreen string
+
+const (
+	Windows10GeneralConfigurationWindowsSpotlightConfigureOnLockScreendisabled      Windows10GeneralConfigurationWindowsSpotlightConfigureOnLockScreen = "Disabled"
+	Windows10GeneralConfigurationWindowsSpotlightConfigureOnLockScreenenabled       Windows10GeneralConfigurationWindowsSpotlightConfigureOnLockScreen = "Enabled"
+	Windows10GeneralConfigurationWindowsSpotlightConfigureOnLockScreennotConfigured Windows10GeneralConfigurationWindowsSpotlightConfigureOnLockScreen = "NotConfigured"
+)
+
+func PossibleValuesForWindows10GeneralConfigurationWindowsSpotlightConfigureOnLockScreen() []string {
+	return []string{
+		string(Windows10GeneralConfigurationWindowsSpotlightConfigureOnLockScreendisabled),
+		string(Windows10GeneralConfigurationWindowsSpotlightConfigureOnLockScreenenabled),
+		string(Windows10GeneralConfigurationWindowsSpotlightConfigureOnLockScreennotConfigured),
+	}
+}
+
+func parseWindows10GeneralConfigurationWindowsSpotlightConfigureOnLockScreen(input string) (*Windows10GeneralConfigurationWindowsSpotlightConfigureOnLockScreen, error) {
+	vals := map[string]Windows10GeneralConfigurationWindowsSpotlightConfigureOnLockScreen{
+		"disabled":      Windows10GeneralConfigurationWindowsSpotlightConfigureOnLockScreendisabled,
+		"enabled":       Windows10GeneralConfigurationWindowsSpotlightConfigureOnLockScreenenabled,
+		"notconfigured": Windows10GeneralConfigurationWindowsSpotlightConfigureOnLockScreennotConfigured,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := Windows10GeneralConfigurationWindowsSpotlightConfigureOnLockScreen(input)
+	return &out, nil
+}

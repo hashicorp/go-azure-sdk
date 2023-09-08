@@ -1,0 +1,26 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type CloudPCOnPremisesConnection struct {
+	AdDomainName             *string                                       `json:"adDomainName,omitempty"`
+	AdDomainPassword         *string                                       `json:"adDomainPassword,omitempty"`
+	AdDomainUsername         *string                                       `json:"adDomainUsername,omitempty"`
+	AlternateResourceUrl     *string                                       `json:"alternateResourceUrl,omitempty"`
+	DisplayName              *string                                       `json:"displayName,omitempty"`
+	HealthCheckStatus        *CloudPCOnPremisesConnectionHealthCheckStatus `json:"healthCheckStatus,omitempty"`
+	HealthCheckStatusDetails *CloudPCOnPremisesConnectionStatusDetails     `json:"healthCheckStatusDetails,omitempty"`
+	Id                       *string                                       `json:"id,omitempty"`
+	InUse                    *bool                                         `json:"inUse,omitempty"`
+	ManagedBy                *CloudPCOnPremisesConnectionManagedBy         `json:"managedBy,omitempty"`
+	ODataType                *string                                       `json:"@odata.type,omitempty"`
+	OrganizationalUnit       *string                                       `json:"organizationalUnit,omitempty"`
+	ResourceGroupId          *string                                       `json:"resourceGroupId,omitempty"`
+	SubnetId                 *string                                       `json:"subnetId,omitempty"`
+	SubscriptionId           *string                                       `json:"subscriptionId,omitempty"`
+	SubscriptionName         *string                                       `json:"subscriptionName,omitempty"`
+	Type                     *CloudPCOnPremisesConnectionType              `json:"type,omitempty"`
+	VirtualNetworkId         *string                                       `json:"virtualNetworkId,omitempty"`
+	VirtualNetworkLocation   *string                                       `json:"virtualNetworkLocation,omitempty"`
+}

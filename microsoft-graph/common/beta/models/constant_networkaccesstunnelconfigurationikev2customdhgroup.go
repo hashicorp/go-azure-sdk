@@ -1,0 +1,43 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type NetworkaccessTunnelConfigurationIKEv2CustomDhGroup string
+
+const (
+	NetworkaccessTunnelConfigurationIKEv2CustomDhGroupdhGroup14   NetworkaccessTunnelConfigurationIKEv2CustomDhGroup = "DhGroup14"
+	NetworkaccessTunnelConfigurationIKEv2CustomDhGroupdhGroup2048 NetworkaccessTunnelConfigurationIKEv2CustomDhGroup = "DhGroup2048"
+	NetworkaccessTunnelConfigurationIKEv2CustomDhGroupdhGroup24   NetworkaccessTunnelConfigurationIKEv2CustomDhGroup = "DhGroup24"
+	NetworkaccessTunnelConfigurationIKEv2CustomDhGroupecp256      NetworkaccessTunnelConfigurationIKEv2CustomDhGroup = "Ecp256"
+	NetworkaccessTunnelConfigurationIKEv2CustomDhGroupecp384      NetworkaccessTunnelConfigurationIKEv2CustomDhGroup = "Ecp384"
+)
+
+func PossibleValuesForNetworkaccessTunnelConfigurationIKEv2CustomDhGroup() []string {
+	return []string{
+		string(NetworkaccessTunnelConfigurationIKEv2CustomDhGroupdhGroup14),
+		string(NetworkaccessTunnelConfigurationIKEv2CustomDhGroupdhGroup2048),
+		string(NetworkaccessTunnelConfigurationIKEv2CustomDhGroupdhGroup24),
+		string(NetworkaccessTunnelConfigurationIKEv2CustomDhGroupecp256),
+		string(NetworkaccessTunnelConfigurationIKEv2CustomDhGroupecp384),
+	}
+}
+
+func parseNetworkaccessTunnelConfigurationIKEv2CustomDhGroup(input string) (*NetworkaccessTunnelConfigurationIKEv2CustomDhGroup, error) {
+	vals := map[string]NetworkaccessTunnelConfigurationIKEv2CustomDhGroup{
+		"dhgroup14":   NetworkaccessTunnelConfigurationIKEv2CustomDhGroupdhGroup14,
+		"dhgroup2048": NetworkaccessTunnelConfigurationIKEv2CustomDhGroupdhGroup2048,
+		"dhgroup24":   NetworkaccessTunnelConfigurationIKEv2CustomDhGroupdhGroup24,
+		"ecp256":      NetworkaccessTunnelConfigurationIKEv2CustomDhGroupecp256,
+		"ecp384":      NetworkaccessTunnelConfigurationIKEv2CustomDhGroupecp384,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := NetworkaccessTunnelConfigurationIKEv2CustomDhGroup(input)
+	return &out, nil
+}

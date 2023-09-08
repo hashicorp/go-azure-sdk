@@ -1,0 +1,43 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type Windows10EndpointProtectionConfigurationDefenderOfficeAppsLaunchChildProcess string
+
+const (
+	Windows10EndpointProtectionConfigurationDefenderOfficeAppsLaunchChildProcessauditMode     Windows10EndpointProtectionConfigurationDefenderOfficeAppsLaunchChildProcess = "AuditMode"
+	Windows10EndpointProtectionConfigurationDefenderOfficeAppsLaunchChildProcessenable        Windows10EndpointProtectionConfigurationDefenderOfficeAppsLaunchChildProcess = "Enable"
+	Windows10EndpointProtectionConfigurationDefenderOfficeAppsLaunchChildProcessnotConfigured Windows10EndpointProtectionConfigurationDefenderOfficeAppsLaunchChildProcess = "NotConfigured"
+	Windows10EndpointProtectionConfigurationDefenderOfficeAppsLaunchChildProcessuserDefined   Windows10EndpointProtectionConfigurationDefenderOfficeAppsLaunchChildProcess = "UserDefined"
+	Windows10EndpointProtectionConfigurationDefenderOfficeAppsLaunchChildProcesswarn          Windows10EndpointProtectionConfigurationDefenderOfficeAppsLaunchChildProcess = "Warn"
+)
+
+func PossibleValuesForWindows10EndpointProtectionConfigurationDefenderOfficeAppsLaunchChildProcess() []string {
+	return []string{
+		string(Windows10EndpointProtectionConfigurationDefenderOfficeAppsLaunchChildProcessauditMode),
+		string(Windows10EndpointProtectionConfigurationDefenderOfficeAppsLaunchChildProcessenable),
+		string(Windows10EndpointProtectionConfigurationDefenderOfficeAppsLaunchChildProcessnotConfigured),
+		string(Windows10EndpointProtectionConfigurationDefenderOfficeAppsLaunchChildProcessuserDefined),
+		string(Windows10EndpointProtectionConfigurationDefenderOfficeAppsLaunchChildProcesswarn),
+	}
+}
+
+func parseWindows10EndpointProtectionConfigurationDefenderOfficeAppsLaunchChildProcess(input string) (*Windows10EndpointProtectionConfigurationDefenderOfficeAppsLaunchChildProcess, error) {
+	vals := map[string]Windows10EndpointProtectionConfigurationDefenderOfficeAppsLaunchChildProcess{
+		"auditmode":     Windows10EndpointProtectionConfigurationDefenderOfficeAppsLaunchChildProcessauditMode,
+		"enable":        Windows10EndpointProtectionConfigurationDefenderOfficeAppsLaunchChildProcessenable,
+		"notconfigured": Windows10EndpointProtectionConfigurationDefenderOfficeAppsLaunchChildProcessnotConfigured,
+		"userdefined":   Windows10EndpointProtectionConfigurationDefenderOfficeAppsLaunchChildProcessuserDefined,
+		"warn":          Windows10EndpointProtectionConfigurationDefenderOfficeAppsLaunchChildProcesswarn,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := Windows10EndpointProtectionConfigurationDefenderOfficeAppsLaunchChildProcess(input)
+	return &out, nil
+}

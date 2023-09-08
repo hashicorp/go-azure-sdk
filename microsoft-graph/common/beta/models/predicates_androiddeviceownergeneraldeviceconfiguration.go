@@ -1,0 +1,557 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type AndroidDeviceOwnerGeneralDeviceConfigurationOperationPredicate struct {
+	AccountsBlockModification                                *bool
+	AppsAllowInstallFromUnknownSources                       *bool
+	AppsRecommendSkippingFirstUseHints                       *bool
+	BluetoothBlockConfiguration                              *bool
+	BluetoothBlockContactSharing                             *bool
+	CameraBlocked                                            *bool
+	CellularBlockWiFiTethering                               *bool
+	CertificateCredentialConfigurationDisabled               *bool
+	CreatedDateTime                                          *string
+	CrossProfilePoliciesAllowCopyPaste                       *bool
+	CrossProfilePoliciesShowWorkContactsInPersonalProfile    *bool
+	DataRoamingBlocked                                       *bool
+	DateTimeConfigurationBlocked                             *bool
+	Description                                              *string
+	DisplayName                                              *string
+	FactoryResetBlocked                                      *bool
+	GoogleAccountsBlocked                                    *bool
+	Id                                                       *string
+	KioskCustomizationDeviceSettingsBlocked                  *bool
+	KioskCustomizationPowerButtonActionsBlocked              *bool
+	KioskCustomizationSystemErrorWarnings                    *bool
+	KioskModeAppOrderEnabled                                 *bool
+	KioskModeAppsInFolderOrderedByName                       *bool
+	KioskModeBluetoothConfigurationEnabled                   *bool
+	KioskModeDebugMenuEasyAccessEnabled                      *bool
+	KioskModeExitCode                                        *string
+	KioskModeFlashlightConfigurationEnabled                  *bool
+	KioskModeGridHeight                                      *int64
+	KioskModeGridWidth                                       *int64
+	KioskModeLockHomeScreen                                  *bool
+	KioskModeManagedHomeScreenAutoSignout                    *bool
+	KioskModeManagedHomeScreenInactiveSignOutDelayInSeconds  *int64
+	KioskModeManagedHomeScreenInactiveSignOutNoticeInSeconds *int64
+	KioskModeManagedHomeScreenPinRequired                    *bool
+	KioskModeManagedHomeScreenPinRequiredToResume            *bool
+	KioskModeManagedHomeScreenSignInBackground               *string
+	KioskModeManagedHomeScreenSignInBrandingLogo             *string
+	KioskModeManagedHomeScreenSignInEnabled                  *bool
+	KioskModeManagedSettingsEntryDisabled                    *bool
+	KioskModeMediaVolumeConfigurationEnabled                 *bool
+	KioskModeScreenSaverConfigurationEnabled                 *bool
+	KioskModeScreenSaverDetectMediaDisabled                  *bool
+	KioskModeScreenSaverDisplayTimeInSeconds                 *int64
+	KioskModeScreenSaverImageUrl                             *string
+	KioskModeScreenSaverStartDelayInSeconds                  *int64
+	KioskModeShowAppNotificationBadge                        *bool
+	KioskModeShowDeviceInfo                                  *bool
+	KioskModeVirtualHomeButtonEnabled                        *bool
+	KioskModeWallpaperUrl                                    *string
+	KioskModeWiFiConfigurationEnabled                        *bool
+	LastModifiedDateTime                                     *string
+	LocateDeviceLostModeEnabled                              *bool
+	LocateDeviceUserlessDisabled                             *bool
+	MicrophoneForceMute                                      *bool
+	MicrosoftLauncherConfigurationEnabled                    *bool
+	MicrosoftLauncherCustomWallpaperAllowUserModification    *bool
+	MicrosoftLauncherCustomWallpaperEnabled                  *bool
+	MicrosoftLauncherCustomWallpaperImageUrl                 *string
+	MicrosoftLauncherDockPresenceAllowUserModification       *bool
+	MicrosoftLauncherFeedAllowUserModification               *bool
+	MicrosoftLauncherFeedEnabled                             *bool
+	NetworkEscapeHatchAllowed                                *bool
+	NfcBlockOutgoingBeam                                     *bool
+	ODataType                                                *string
+	PasswordBlockKeyguard                                    *bool
+	PasswordExpirationDays                                   *int64
+	PasswordMinimumLength                                    *int64
+	PasswordMinimumLetterCharacters                          *int64
+	PasswordMinimumLowerCaseCharacters                       *int64
+	PasswordMinimumNonLetterCharacters                       *int64
+	PasswordMinimumNumericCharacters                         *int64
+	PasswordMinimumSymbolCharacters                          *int64
+	PasswordMinimumUpperCaseCharacters                       *int64
+	PasswordMinutesOfInactivityBeforeScreenTimeout           *int64
+	PasswordPreviousPasswordCountToBlock                     *int64
+	PasswordSignInFailureCountBeforeFactoryReset             *int64
+	PersonalProfileAppsAllowInstallFromUnknownSources        *bool
+	PersonalProfileCameraBlocked                             *bool
+	PersonalProfileScreenCaptureBlocked                      *bool
+	ScreenCaptureBlocked                                     *bool
+	SecurityCommonCriteriaModeEnabled                        *bool
+	SecurityDeveloperSettingsEnabled                         *bool
+	SecurityRequireVerifyApps                                *bool
+	StatusBarBlocked                                         *bool
+	StorageAllowUsb                                          *bool
+	StorageBlockExternalMedia                                *bool
+	StorageBlockUsbFileTransfer                              *bool
+	SupportsScopeTags                                        *bool
+	SystemUpdateWindowEndMinutesAfterMidnight                *int64
+	SystemUpdateWindowStartMinutesAfterMidnight              *int64
+	SystemWindowsBlocked                                     *bool
+	UsersBlockAdd                                            *bool
+	UsersBlockRemove                                         *bool
+	Version                                                  *int64
+	VolumeBlockAdjustment                                    *bool
+	VpnAlwaysOnLockdownMode                                  *bool
+	VpnAlwaysOnPackageIdentifier                             *string
+	WifiBlockEditConfigurations                              *bool
+	WifiBlockEditPolicyDefinedConfigurations                 *bool
+	WorkProfilePasswordExpirationDays                        *int64
+	WorkProfilePasswordMinimumLength                         *int64
+	WorkProfilePasswordMinimumLetterCharacters               *int64
+	WorkProfilePasswordMinimumLowerCaseCharacters            *int64
+	WorkProfilePasswordMinimumNonLetterCharacters            *int64
+	WorkProfilePasswordMinimumNumericCharacters              *int64
+	WorkProfilePasswordMinimumSymbolCharacters               *int64
+	WorkProfilePasswordMinimumUpperCaseCharacters            *int64
+	WorkProfilePasswordPreviousPasswordCountToBlock          *int64
+	WorkProfilePasswordSignInFailureCountBeforeFactoryReset  *int64
+}
+
+func (p AndroidDeviceOwnerGeneralDeviceConfigurationOperationPredicate) Matches(input AndroidDeviceOwnerGeneralDeviceConfiguration) bool {
+
+	if p.AccountsBlockModification != nil && (input.AccountsBlockModification == nil || *p.AccountsBlockModification != *input.AccountsBlockModification) {
+		return false
+	}
+
+	if p.AppsAllowInstallFromUnknownSources != nil && (input.AppsAllowInstallFromUnknownSources == nil || *p.AppsAllowInstallFromUnknownSources != *input.AppsAllowInstallFromUnknownSources) {
+		return false
+	}
+
+	if p.AppsRecommendSkippingFirstUseHints != nil && (input.AppsRecommendSkippingFirstUseHints == nil || *p.AppsRecommendSkippingFirstUseHints != *input.AppsRecommendSkippingFirstUseHints) {
+		return false
+	}
+
+	if p.BluetoothBlockConfiguration != nil && (input.BluetoothBlockConfiguration == nil || *p.BluetoothBlockConfiguration != *input.BluetoothBlockConfiguration) {
+		return false
+	}
+
+	if p.BluetoothBlockContactSharing != nil && (input.BluetoothBlockContactSharing == nil || *p.BluetoothBlockContactSharing != *input.BluetoothBlockContactSharing) {
+		return false
+	}
+
+	if p.CameraBlocked != nil && (input.CameraBlocked == nil || *p.CameraBlocked != *input.CameraBlocked) {
+		return false
+	}
+
+	if p.CellularBlockWiFiTethering != nil && (input.CellularBlockWiFiTethering == nil || *p.CellularBlockWiFiTethering != *input.CellularBlockWiFiTethering) {
+		return false
+	}
+
+	if p.CertificateCredentialConfigurationDisabled != nil && (input.CertificateCredentialConfigurationDisabled == nil || *p.CertificateCredentialConfigurationDisabled != *input.CertificateCredentialConfigurationDisabled) {
+		return false
+	}
+
+	if p.CreatedDateTime != nil && (input.CreatedDateTime == nil || *p.CreatedDateTime != *input.CreatedDateTime) {
+		return false
+	}
+
+	if p.CrossProfilePoliciesAllowCopyPaste != nil && (input.CrossProfilePoliciesAllowCopyPaste == nil || *p.CrossProfilePoliciesAllowCopyPaste != *input.CrossProfilePoliciesAllowCopyPaste) {
+		return false
+	}
+
+	if p.CrossProfilePoliciesShowWorkContactsInPersonalProfile != nil && (input.CrossProfilePoliciesShowWorkContactsInPersonalProfile == nil || *p.CrossProfilePoliciesShowWorkContactsInPersonalProfile != *input.CrossProfilePoliciesShowWorkContactsInPersonalProfile) {
+		return false
+	}
+
+	if p.DataRoamingBlocked != nil && (input.DataRoamingBlocked == nil || *p.DataRoamingBlocked != *input.DataRoamingBlocked) {
+		return false
+	}
+
+	if p.DateTimeConfigurationBlocked != nil && (input.DateTimeConfigurationBlocked == nil || *p.DateTimeConfigurationBlocked != *input.DateTimeConfigurationBlocked) {
+		return false
+	}
+
+	if p.Description != nil && (input.Description == nil || *p.Description != *input.Description) {
+		return false
+	}
+
+	if p.DisplayName != nil && (input.DisplayName == nil || *p.DisplayName != *input.DisplayName) {
+		return false
+	}
+
+	if p.FactoryResetBlocked != nil && (input.FactoryResetBlocked == nil || *p.FactoryResetBlocked != *input.FactoryResetBlocked) {
+		return false
+	}
+
+	if p.GoogleAccountsBlocked != nil && (input.GoogleAccountsBlocked == nil || *p.GoogleAccountsBlocked != *input.GoogleAccountsBlocked) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.KioskCustomizationDeviceSettingsBlocked != nil && (input.KioskCustomizationDeviceSettingsBlocked == nil || *p.KioskCustomizationDeviceSettingsBlocked != *input.KioskCustomizationDeviceSettingsBlocked) {
+		return false
+	}
+
+	if p.KioskCustomizationPowerButtonActionsBlocked != nil && (input.KioskCustomizationPowerButtonActionsBlocked == nil || *p.KioskCustomizationPowerButtonActionsBlocked != *input.KioskCustomizationPowerButtonActionsBlocked) {
+		return false
+	}
+
+	if p.KioskCustomizationSystemErrorWarnings != nil && (input.KioskCustomizationSystemErrorWarnings == nil || *p.KioskCustomizationSystemErrorWarnings != *input.KioskCustomizationSystemErrorWarnings) {
+		return false
+	}
+
+	if p.KioskModeAppOrderEnabled != nil && (input.KioskModeAppOrderEnabled == nil || *p.KioskModeAppOrderEnabled != *input.KioskModeAppOrderEnabled) {
+		return false
+	}
+
+	if p.KioskModeAppsInFolderOrderedByName != nil && (input.KioskModeAppsInFolderOrderedByName == nil || *p.KioskModeAppsInFolderOrderedByName != *input.KioskModeAppsInFolderOrderedByName) {
+		return false
+	}
+
+	if p.KioskModeBluetoothConfigurationEnabled != nil && (input.KioskModeBluetoothConfigurationEnabled == nil || *p.KioskModeBluetoothConfigurationEnabled != *input.KioskModeBluetoothConfigurationEnabled) {
+		return false
+	}
+
+	if p.KioskModeDebugMenuEasyAccessEnabled != nil && (input.KioskModeDebugMenuEasyAccessEnabled == nil || *p.KioskModeDebugMenuEasyAccessEnabled != *input.KioskModeDebugMenuEasyAccessEnabled) {
+		return false
+	}
+
+	if p.KioskModeExitCode != nil && (input.KioskModeExitCode == nil || *p.KioskModeExitCode != *input.KioskModeExitCode) {
+		return false
+	}
+
+	if p.KioskModeFlashlightConfigurationEnabled != nil && (input.KioskModeFlashlightConfigurationEnabled == nil || *p.KioskModeFlashlightConfigurationEnabled != *input.KioskModeFlashlightConfigurationEnabled) {
+		return false
+	}
+
+	if p.KioskModeGridHeight != nil && (input.KioskModeGridHeight == nil || *p.KioskModeGridHeight != *input.KioskModeGridHeight) {
+		return false
+	}
+
+	if p.KioskModeGridWidth != nil && (input.KioskModeGridWidth == nil || *p.KioskModeGridWidth != *input.KioskModeGridWidth) {
+		return false
+	}
+
+	if p.KioskModeLockHomeScreen != nil && (input.KioskModeLockHomeScreen == nil || *p.KioskModeLockHomeScreen != *input.KioskModeLockHomeScreen) {
+		return false
+	}
+
+	if p.KioskModeManagedHomeScreenAutoSignout != nil && (input.KioskModeManagedHomeScreenAutoSignout == nil || *p.KioskModeManagedHomeScreenAutoSignout != *input.KioskModeManagedHomeScreenAutoSignout) {
+		return false
+	}
+
+	if p.KioskModeManagedHomeScreenInactiveSignOutDelayInSeconds != nil && (input.KioskModeManagedHomeScreenInactiveSignOutDelayInSeconds == nil || *p.KioskModeManagedHomeScreenInactiveSignOutDelayInSeconds != *input.KioskModeManagedHomeScreenInactiveSignOutDelayInSeconds) {
+		return false
+	}
+
+	if p.KioskModeManagedHomeScreenInactiveSignOutNoticeInSeconds != nil && (input.KioskModeManagedHomeScreenInactiveSignOutNoticeInSeconds == nil || *p.KioskModeManagedHomeScreenInactiveSignOutNoticeInSeconds != *input.KioskModeManagedHomeScreenInactiveSignOutNoticeInSeconds) {
+		return false
+	}
+
+	if p.KioskModeManagedHomeScreenPinRequired != nil && (input.KioskModeManagedHomeScreenPinRequired == nil || *p.KioskModeManagedHomeScreenPinRequired != *input.KioskModeManagedHomeScreenPinRequired) {
+		return false
+	}
+
+	if p.KioskModeManagedHomeScreenPinRequiredToResume != nil && (input.KioskModeManagedHomeScreenPinRequiredToResume == nil || *p.KioskModeManagedHomeScreenPinRequiredToResume != *input.KioskModeManagedHomeScreenPinRequiredToResume) {
+		return false
+	}
+
+	if p.KioskModeManagedHomeScreenSignInBackground != nil && (input.KioskModeManagedHomeScreenSignInBackground == nil || *p.KioskModeManagedHomeScreenSignInBackground != *input.KioskModeManagedHomeScreenSignInBackground) {
+		return false
+	}
+
+	if p.KioskModeManagedHomeScreenSignInBrandingLogo != nil && (input.KioskModeManagedHomeScreenSignInBrandingLogo == nil || *p.KioskModeManagedHomeScreenSignInBrandingLogo != *input.KioskModeManagedHomeScreenSignInBrandingLogo) {
+		return false
+	}
+
+	if p.KioskModeManagedHomeScreenSignInEnabled != nil && (input.KioskModeManagedHomeScreenSignInEnabled == nil || *p.KioskModeManagedHomeScreenSignInEnabled != *input.KioskModeManagedHomeScreenSignInEnabled) {
+		return false
+	}
+
+	if p.KioskModeManagedSettingsEntryDisabled != nil && (input.KioskModeManagedSettingsEntryDisabled == nil || *p.KioskModeManagedSettingsEntryDisabled != *input.KioskModeManagedSettingsEntryDisabled) {
+		return false
+	}
+
+	if p.KioskModeMediaVolumeConfigurationEnabled != nil && (input.KioskModeMediaVolumeConfigurationEnabled == nil || *p.KioskModeMediaVolumeConfigurationEnabled != *input.KioskModeMediaVolumeConfigurationEnabled) {
+		return false
+	}
+
+	if p.KioskModeScreenSaverConfigurationEnabled != nil && (input.KioskModeScreenSaverConfigurationEnabled == nil || *p.KioskModeScreenSaverConfigurationEnabled != *input.KioskModeScreenSaverConfigurationEnabled) {
+		return false
+	}
+
+	if p.KioskModeScreenSaverDetectMediaDisabled != nil && (input.KioskModeScreenSaverDetectMediaDisabled == nil || *p.KioskModeScreenSaverDetectMediaDisabled != *input.KioskModeScreenSaverDetectMediaDisabled) {
+		return false
+	}
+
+	if p.KioskModeScreenSaverDisplayTimeInSeconds != nil && (input.KioskModeScreenSaverDisplayTimeInSeconds == nil || *p.KioskModeScreenSaverDisplayTimeInSeconds != *input.KioskModeScreenSaverDisplayTimeInSeconds) {
+		return false
+	}
+
+	if p.KioskModeScreenSaverImageUrl != nil && (input.KioskModeScreenSaverImageUrl == nil || *p.KioskModeScreenSaverImageUrl != *input.KioskModeScreenSaverImageUrl) {
+		return false
+	}
+
+	if p.KioskModeScreenSaverStartDelayInSeconds != nil && (input.KioskModeScreenSaverStartDelayInSeconds == nil || *p.KioskModeScreenSaverStartDelayInSeconds != *input.KioskModeScreenSaverStartDelayInSeconds) {
+		return false
+	}
+
+	if p.KioskModeShowAppNotificationBadge != nil && (input.KioskModeShowAppNotificationBadge == nil || *p.KioskModeShowAppNotificationBadge != *input.KioskModeShowAppNotificationBadge) {
+		return false
+	}
+
+	if p.KioskModeShowDeviceInfo != nil && (input.KioskModeShowDeviceInfo == nil || *p.KioskModeShowDeviceInfo != *input.KioskModeShowDeviceInfo) {
+		return false
+	}
+
+	if p.KioskModeVirtualHomeButtonEnabled != nil && (input.KioskModeVirtualHomeButtonEnabled == nil || *p.KioskModeVirtualHomeButtonEnabled != *input.KioskModeVirtualHomeButtonEnabled) {
+		return false
+	}
+
+	if p.KioskModeWallpaperUrl != nil && (input.KioskModeWallpaperUrl == nil || *p.KioskModeWallpaperUrl != *input.KioskModeWallpaperUrl) {
+		return false
+	}
+
+	if p.KioskModeWiFiConfigurationEnabled != nil && (input.KioskModeWiFiConfigurationEnabled == nil || *p.KioskModeWiFiConfigurationEnabled != *input.KioskModeWiFiConfigurationEnabled) {
+		return false
+	}
+
+	if p.LastModifiedDateTime != nil && (input.LastModifiedDateTime == nil || *p.LastModifiedDateTime != *input.LastModifiedDateTime) {
+		return false
+	}
+
+	if p.LocateDeviceLostModeEnabled != nil && (input.LocateDeviceLostModeEnabled == nil || *p.LocateDeviceLostModeEnabled != *input.LocateDeviceLostModeEnabled) {
+		return false
+	}
+
+	if p.LocateDeviceUserlessDisabled != nil && (input.LocateDeviceUserlessDisabled == nil || *p.LocateDeviceUserlessDisabled != *input.LocateDeviceUserlessDisabled) {
+		return false
+	}
+
+	if p.MicrophoneForceMute != nil && (input.MicrophoneForceMute == nil || *p.MicrophoneForceMute != *input.MicrophoneForceMute) {
+		return false
+	}
+
+	if p.MicrosoftLauncherConfigurationEnabled != nil && (input.MicrosoftLauncherConfigurationEnabled == nil || *p.MicrosoftLauncherConfigurationEnabled != *input.MicrosoftLauncherConfigurationEnabled) {
+		return false
+	}
+
+	if p.MicrosoftLauncherCustomWallpaperAllowUserModification != nil && (input.MicrosoftLauncherCustomWallpaperAllowUserModification == nil || *p.MicrosoftLauncherCustomWallpaperAllowUserModification != *input.MicrosoftLauncherCustomWallpaperAllowUserModification) {
+		return false
+	}
+
+	if p.MicrosoftLauncherCustomWallpaperEnabled != nil && (input.MicrosoftLauncherCustomWallpaperEnabled == nil || *p.MicrosoftLauncherCustomWallpaperEnabled != *input.MicrosoftLauncherCustomWallpaperEnabled) {
+		return false
+	}
+
+	if p.MicrosoftLauncherCustomWallpaperImageUrl != nil && (input.MicrosoftLauncherCustomWallpaperImageUrl == nil || *p.MicrosoftLauncherCustomWallpaperImageUrl != *input.MicrosoftLauncherCustomWallpaperImageUrl) {
+		return false
+	}
+
+	if p.MicrosoftLauncherDockPresenceAllowUserModification != nil && (input.MicrosoftLauncherDockPresenceAllowUserModification == nil || *p.MicrosoftLauncherDockPresenceAllowUserModification != *input.MicrosoftLauncherDockPresenceAllowUserModification) {
+		return false
+	}
+
+	if p.MicrosoftLauncherFeedAllowUserModification != nil && (input.MicrosoftLauncherFeedAllowUserModification == nil || *p.MicrosoftLauncherFeedAllowUserModification != *input.MicrosoftLauncherFeedAllowUserModification) {
+		return false
+	}
+
+	if p.MicrosoftLauncherFeedEnabled != nil && (input.MicrosoftLauncherFeedEnabled == nil || *p.MicrosoftLauncherFeedEnabled != *input.MicrosoftLauncherFeedEnabled) {
+		return false
+	}
+
+	if p.NetworkEscapeHatchAllowed != nil && (input.NetworkEscapeHatchAllowed == nil || *p.NetworkEscapeHatchAllowed != *input.NetworkEscapeHatchAllowed) {
+		return false
+	}
+
+	if p.NfcBlockOutgoingBeam != nil && (input.NfcBlockOutgoingBeam == nil || *p.NfcBlockOutgoingBeam != *input.NfcBlockOutgoingBeam) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.PasswordBlockKeyguard != nil && (input.PasswordBlockKeyguard == nil || *p.PasswordBlockKeyguard != *input.PasswordBlockKeyguard) {
+		return false
+	}
+
+	if p.PasswordExpirationDays != nil && (input.PasswordExpirationDays == nil || *p.PasswordExpirationDays != *input.PasswordExpirationDays) {
+		return false
+	}
+
+	if p.PasswordMinimumLength != nil && (input.PasswordMinimumLength == nil || *p.PasswordMinimumLength != *input.PasswordMinimumLength) {
+		return false
+	}
+
+	if p.PasswordMinimumLetterCharacters != nil && (input.PasswordMinimumLetterCharacters == nil || *p.PasswordMinimumLetterCharacters != *input.PasswordMinimumLetterCharacters) {
+		return false
+	}
+
+	if p.PasswordMinimumLowerCaseCharacters != nil && (input.PasswordMinimumLowerCaseCharacters == nil || *p.PasswordMinimumLowerCaseCharacters != *input.PasswordMinimumLowerCaseCharacters) {
+		return false
+	}
+
+	if p.PasswordMinimumNonLetterCharacters != nil && (input.PasswordMinimumNonLetterCharacters == nil || *p.PasswordMinimumNonLetterCharacters != *input.PasswordMinimumNonLetterCharacters) {
+		return false
+	}
+
+	if p.PasswordMinimumNumericCharacters != nil && (input.PasswordMinimumNumericCharacters == nil || *p.PasswordMinimumNumericCharacters != *input.PasswordMinimumNumericCharacters) {
+		return false
+	}
+
+	if p.PasswordMinimumSymbolCharacters != nil && (input.PasswordMinimumSymbolCharacters == nil || *p.PasswordMinimumSymbolCharacters != *input.PasswordMinimumSymbolCharacters) {
+		return false
+	}
+
+	if p.PasswordMinimumUpperCaseCharacters != nil && (input.PasswordMinimumUpperCaseCharacters == nil || *p.PasswordMinimumUpperCaseCharacters != *input.PasswordMinimumUpperCaseCharacters) {
+		return false
+	}
+
+	if p.PasswordMinutesOfInactivityBeforeScreenTimeout != nil && (input.PasswordMinutesOfInactivityBeforeScreenTimeout == nil || *p.PasswordMinutesOfInactivityBeforeScreenTimeout != *input.PasswordMinutesOfInactivityBeforeScreenTimeout) {
+		return false
+	}
+
+	if p.PasswordPreviousPasswordCountToBlock != nil && (input.PasswordPreviousPasswordCountToBlock == nil || *p.PasswordPreviousPasswordCountToBlock != *input.PasswordPreviousPasswordCountToBlock) {
+		return false
+	}
+
+	if p.PasswordSignInFailureCountBeforeFactoryReset != nil && (input.PasswordSignInFailureCountBeforeFactoryReset == nil || *p.PasswordSignInFailureCountBeforeFactoryReset != *input.PasswordSignInFailureCountBeforeFactoryReset) {
+		return false
+	}
+
+	if p.PersonalProfileAppsAllowInstallFromUnknownSources != nil && (input.PersonalProfileAppsAllowInstallFromUnknownSources == nil || *p.PersonalProfileAppsAllowInstallFromUnknownSources != *input.PersonalProfileAppsAllowInstallFromUnknownSources) {
+		return false
+	}
+
+	if p.PersonalProfileCameraBlocked != nil && (input.PersonalProfileCameraBlocked == nil || *p.PersonalProfileCameraBlocked != *input.PersonalProfileCameraBlocked) {
+		return false
+	}
+
+	if p.PersonalProfileScreenCaptureBlocked != nil && (input.PersonalProfileScreenCaptureBlocked == nil || *p.PersonalProfileScreenCaptureBlocked != *input.PersonalProfileScreenCaptureBlocked) {
+		return false
+	}
+
+	if p.ScreenCaptureBlocked != nil && (input.ScreenCaptureBlocked == nil || *p.ScreenCaptureBlocked != *input.ScreenCaptureBlocked) {
+		return false
+	}
+
+	if p.SecurityCommonCriteriaModeEnabled != nil && (input.SecurityCommonCriteriaModeEnabled == nil || *p.SecurityCommonCriteriaModeEnabled != *input.SecurityCommonCriteriaModeEnabled) {
+		return false
+	}
+
+	if p.SecurityDeveloperSettingsEnabled != nil && (input.SecurityDeveloperSettingsEnabled == nil || *p.SecurityDeveloperSettingsEnabled != *input.SecurityDeveloperSettingsEnabled) {
+		return false
+	}
+
+	if p.SecurityRequireVerifyApps != nil && (input.SecurityRequireVerifyApps == nil || *p.SecurityRequireVerifyApps != *input.SecurityRequireVerifyApps) {
+		return false
+	}
+
+	if p.StatusBarBlocked != nil && (input.StatusBarBlocked == nil || *p.StatusBarBlocked != *input.StatusBarBlocked) {
+		return false
+	}
+
+	if p.StorageAllowUsb != nil && (input.StorageAllowUsb == nil || *p.StorageAllowUsb != *input.StorageAllowUsb) {
+		return false
+	}
+
+	if p.StorageBlockExternalMedia != nil && (input.StorageBlockExternalMedia == nil || *p.StorageBlockExternalMedia != *input.StorageBlockExternalMedia) {
+		return false
+	}
+
+	if p.StorageBlockUsbFileTransfer != nil && (input.StorageBlockUsbFileTransfer == nil || *p.StorageBlockUsbFileTransfer != *input.StorageBlockUsbFileTransfer) {
+		return false
+	}
+
+	if p.SupportsScopeTags != nil && (input.SupportsScopeTags == nil || *p.SupportsScopeTags != *input.SupportsScopeTags) {
+		return false
+	}
+
+	if p.SystemUpdateWindowEndMinutesAfterMidnight != nil && (input.SystemUpdateWindowEndMinutesAfterMidnight == nil || *p.SystemUpdateWindowEndMinutesAfterMidnight != *input.SystemUpdateWindowEndMinutesAfterMidnight) {
+		return false
+	}
+
+	if p.SystemUpdateWindowStartMinutesAfterMidnight != nil && (input.SystemUpdateWindowStartMinutesAfterMidnight == nil || *p.SystemUpdateWindowStartMinutesAfterMidnight != *input.SystemUpdateWindowStartMinutesAfterMidnight) {
+		return false
+	}
+
+	if p.SystemWindowsBlocked != nil && (input.SystemWindowsBlocked == nil || *p.SystemWindowsBlocked != *input.SystemWindowsBlocked) {
+		return false
+	}
+
+	if p.UsersBlockAdd != nil && (input.UsersBlockAdd == nil || *p.UsersBlockAdd != *input.UsersBlockAdd) {
+		return false
+	}
+
+	if p.UsersBlockRemove != nil && (input.UsersBlockRemove == nil || *p.UsersBlockRemove != *input.UsersBlockRemove) {
+		return false
+	}
+
+	if p.Version != nil && (input.Version == nil || *p.Version != *input.Version) {
+		return false
+	}
+
+	if p.VolumeBlockAdjustment != nil && (input.VolumeBlockAdjustment == nil || *p.VolumeBlockAdjustment != *input.VolumeBlockAdjustment) {
+		return false
+	}
+
+	if p.VpnAlwaysOnLockdownMode != nil && (input.VpnAlwaysOnLockdownMode == nil || *p.VpnAlwaysOnLockdownMode != *input.VpnAlwaysOnLockdownMode) {
+		return false
+	}
+
+	if p.VpnAlwaysOnPackageIdentifier != nil && (input.VpnAlwaysOnPackageIdentifier == nil || *p.VpnAlwaysOnPackageIdentifier != *input.VpnAlwaysOnPackageIdentifier) {
+		return false
+	}
+
+	if p.WifiBlockEditConfigurations != nil && (input.WifiBlockEditConfigurations == nil || *p.WifiBlockEditConfigurations != *input.WifiBlockEditConfigurations) {
+		return false
+	}
+
+	if p.WifiBlockEditPolicyDefinedConfigurations != nil && (input.WifiBlockEditPolicyDefinedConfigurations == nil || *p.WifiBlockEditPolicyDefinedConfigurations != *input.WifiBlockEditPolicyDefinedConfigurations) {
+		return false
+	}
+
+	if p.WorkProfilePasswordExpirationDays != nil && (input.WorkProfilePasswordExpirationDays == nil || *p.WorkProfilePasswordExpirationDays != *input.WorkProfilePasswordExpirationDays) {
+		return false
+	}
+
+	if p.WorkProfilePasswordMinimumLength != nil && (input.WorkProfilePasswordMinimumLength == nil || *p.WorkProfilePasswordMinimumLength != *input.WorkProfilePasswordMinimumLength) {
+		return false
+	}
+
+	if p.WorkProfilePasswordMinimumLetterCharacters != nil && (input.WorkProfilePasswordMinimumLetterCharacters == nil || *p.WorkProfilePasswordMinimumLetterCharacters != *input.WorkProfilePasswordMinimumLetterCharacters) {
+		return false
+	}
+
+	if p.WorkProfilePasswordMinimumLowerCaseCharacters != nil && (input.WorkProfilePasswordMinimumLowerCaseCharacters == nil || *p.WorkProfilePasswordMinimumLowerCaseCharacters != *input.WorkProfilePasswordMinimumLowerCaseCharacters) {
+		return false
+	}
+
+	if p.WorkProfilePasswordMinimumNonLetterCharacters != nil && (input.WorkProfilePasswordMinimumNonLetterCharacters == nil || *p.WorkProfilePasswordMinimumNonLetterCharacters != *input.WorkProfilePasswordMinimumNonLetterCharacters) {
+		return false
+	}
+
+	if p.WorkProfilePasswordMinimumNumericCharacters != nil && (input.WorkProfilePasswordMinimumNumericCharacters == nil || *p.WorkProfilePasswordMinimumNumericCharacters != *input.WorkProfilePasswordMinimumNumericCharacters) {
+		return false
+	}
+
+	if p.WorkProfilePasswordMinimumSymbolCharacters != nil && (input.WorkProfilePasswordMinimumSymbolCharacters == nil || *p.WorkProfilePasswordMinimumSymbolCharacters != *input.WorkProfilePasswordMinimumSymbolCharacters) {
+		return false
+	}
+
+	if p.WorkProfilePasswordMinimumUpperCaseCharacters != nil && (input.WorkProfilePasswordMinimumUpperCaseCharacters == nil || *p.WorkProfilePasswordMinimumUpperCaseCharacters != *input.WorkProfilePasswordMinimumUpperCaseCharacters) {
+		return false
+	}
+
+	if p.WorkProfilePasswordPreviousPasswordCountToBlock != nil && (input.WorkProfilePasswordPreviousPasswordCountToBlock == nil || *p.WorkProfilePasswordPreviousPasswordCountToBlock != *input.WorkProfilePasswordPreviousPasswordCountToBlock) {
+		return false
+	}
+
+	if p.WorkProfilePasswordSignInFailureCountBeforeFactoryReset != nil && (input.WorkProfilePasswordSignInFailureCountBeforeFactoryReset == nil || *p.WorkProfilePasswordSignInFailureCountBeforeFactoryReset != *input.WorkProfilePasswordSignInFailureCountBeforeFactoryReset) {
+		return false
+	}
+
+	return true
+}

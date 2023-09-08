@@ -1,0 +1,77 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type PrinterLocationOperationPredicate struct {
+	AltitudeInMeters *int64
+	Building         *string
+	City             *string
+	CountryOrRegion  *string
+	Floor            *string
+	FloorDescription *string
+	ODataType        *string
+	PostalCode       *string
+	RoomDescription  *string
+	RoomName         *string
+	Site             *string
+	StateOrProvince  *string
+	StreetAddress    *string
+}
+
+func (p PrinterLocationOperationPredicate) Matches(input PrinterLocation) bool {
+
+	if p.AltitudeInMeters != nil && (input.AltitudeInMeters == nil || *p.AltitudeInMeters != *input.AltitudeInMeters) {
+		return false
+	}
+
+	if p.Building != nil && (input.Building == nil || *p.Building != *input.Building) {
+		return false
+	}
+
+	if p.City != nil && (input.City == nil || *p.City != *input.City) {
+		return false
+	}
+
+	if p.CountryOrRegion != nil && (input.CountryOrRegion == nil || *p.CountryOrRegion != *input.CountryOrRegion) {
+		return false
+	}
+
+	if p.Floor != nil && (input.Floor == nil || *p.Floor != *input.Floor) {
+		return false
+	}
+
+	if p.FloorDescription != nil && (input.FloorDescription == nil || *p.FloorDescription != *input.FloorDescription) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.PostalCode != nil && (input.PostalCode == nil || *p.PostalCode != *input.PostalCode) {
+		return false
+	}
+
+	if p.RoomDescription != nil && (input.RoomDescription == nil || *p.RoomDescription != *input.RoomDescription) {
+		return false
+	}
+
+	if p.RoomName != nil && (input.RoomName == nil || *p.RoomName != *input.RoomName) {
+		return false
+	}
+
+	if p.Site != nil && (input.Site == nil || *p.Site != *input.Site) {
+		return false
+	}
+
+	if p.StateOrProvince != nil && (input.StateOrProvince == nil || *p.StateOrProvince != *input.StateOrProvince) {
+		return false
+	}
+
+	if p.StreetAddress != nil && (input.StreetAddress == nil || *p.StreetAddress != *input.StreetAddress) {
+		return false
+	}
+
+	return true
+}

@@ -1,0 +1,22 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type IosMobileAppIdentifierOperationPredicate struct {
+	BundleId  *string
+	ODataType *string
+}
+
+func (p IosMobileAppIdentifierOperationPredicate) Matches(input IosMobileAppIdentifier) bool {
+
+	if p.BundleId != nil && (input.BundleId == nil || *p.BundleId != *input.BundleId) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	return true
+}

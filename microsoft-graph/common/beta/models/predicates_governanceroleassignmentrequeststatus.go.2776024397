@@ -1,0 +1,33 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type GovernanceRoleAssignmentRequestStatusOperationPredicate struct {
+	 ODataType *string
+	 Status *string
+	 SubStatus *string
+}
+
+func (p GovernanceRoleAssignmentRequestStatusOperationPredicate) Matches(input GovernanceRoleAssignmentRequestStatus) bool {
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.Status != nil && (input.Status == nil || *p.Status != *input.Status) {
+	 	return false
+	}
+
+
+	if p.SubStatus != nil && (input.SubStatus == nil || *p.SubStatus != *input.SubStatus) {
+	 	return false
+	}
+
+
+	return true
+}
+

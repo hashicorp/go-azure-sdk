@@ -1,0 +1,127 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type DeviceOperationPredicate struct {
+	AccountEnabled                *bool
+	ApproximateLastSignInDateTime *string
+	ComplianceExpirationDateTime  *string
+	DeletedDateTime               *string
+	DeviceCategory                *string
+	DeviceId                      *string
+	DeviceMetadata                *string
+	DeviceOwnership               *string
+	DeviceVersion                 *int64
+	DisplayName                   *string
+	EnrollmentProfileName         *string
+	Id                            *string
+	IsCompliant                   *bool
+	IsManaged                     *bool
+	MdmAppId                      *string
+	ODataType                     *string
+	OnPremisesLastSyncDateTime    *string
+	OnPremisesSyncEnabled         *bool
+	OperatingSystem               *string
+	OperatingSystemVersion        *string
+	ProfileType                   *string
+	RegistrationDateTime          *string
+	TrustType                     *string
+}
+
+func (p DeviceOperationPredicate) Matches(input Device) bool {
+
+	if p.AccountEnabled != nil && (input.AccountEnabled == nil || *p.AccountEnabled != *input.AccountEnabled) {
+		return false
+	}
+
+	if p.ApproximateLastSignInDateTime != nil && (input.ApproximateLastSignInDateTime == nil || *p.ApproximateLastSignInDateTime != *input.ApproximateLastSignInDateTime) {
+		return false
+	}
+
+	if p.ComplianceExpirationDateTime != nil && (input.ComplianceExpirationDateTime == nil || *p.ComplianceExpirationDateTime != *input.ComplianceExpirationDateTime) {
+		return false
+	}
+
+	if p.DeletedDateTime != nil && (input.DeletedDateTime == nil || *p.DeletedDateTime != *input.DeletedDateTime) {
+		return false
+	}
+
+	if p.DeviceCategory != nil && (input.DeviceCategory == nil || *p.DeviceCategory != *input.DeviceCategory) {
+		return false
+	}
+
+	if p.DeviceId != nil && (input.DeviceId == nil || *p.DeviceId != *input.DeviceId) {
+		return false
+	}
+
+	if p.DeviceMetadata != nil && (input.DeviceMetadata == nil || *p.DeviceMetadata != *input.DeviceMetadata) {
+		return false
+	}
+
+	if p.DeviceOwnership != nil && (input.DeviceOwnership == nil || *p.DeviceOwnership != *input.DeviceOwnership) {
+		return false
+	}
+
+	if p.DeviceVersion != nil && (input.DeviceVersion == nil || *p.DeviceVersion != *input.DeviceVersion) {
+		return false
+	}
+
+	if p.DisplayName != nil && (input.DisplayName == nil || *p.DisplayName != *input.DisplayName) {
+		return false
+	}
+
+	if p.EnrollmentProfileName != nil && (input.EnrollmentProfileName == nil || *p.EnrollmentProfileName != *input.EnrollmentProfileName) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.IsCompliant != nil && (input.IsCompliant == nil || *p.IsCompliant != *input.IsCompliant) {
+		return false
+	}
+
+	if p.IsManaged != nil && (input.IsManaged == nil || *p.IsManaged != *input.IsManaged) {
+		return false
+	}
+
+	if p.MdmAppId != nil && (input.MdmAppId == nil || *p.MdmAppId != *input.MdmAppId) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.OnPremisesLastSyncDateTime != nil && (input.OnPremisesLastSyncDateTime == nil || *p.OnPremisesLastSyncDateTime != *input.OnPremisesLastSyncDateTime) {
+		return false
+	}
+
+	if p.OnPremisesSyncEnabled != nil && (input.OnPremisesSyncEnabled == nil || *p.OnPremisesSyncEnabled != *input.OnPremisesSyncEnabled) {
+		return false
+	}
+
+	if p.OperatingSystem != nil && (input.OperatingSystem == nil || *p.OperatingSystem != *input.OperatingSystem) {
+		return false
+	}
+
+	if p.OperatingSystemVersion != nil && (input.OperatingSystemVersion == nil || *p.OperatingSystemVersion != *input.OperatingSystemVersion) {
+		return false
+	}
+
+	if p.ProfileType != nil && (input.ProfileType == nil || *p.ProfileType != *input.ProfileType) {
+		return false
+	}
+
+	if p.RegistrationDateTime != nil && (input.RegistrationDateTime == nil || *p.RegistrationDateTime != *input.RegistrationDateTime) {
+		return false
+	}
+
+	if p.TrustType != nil && (input.TrustType == nil || *p.TrustType != *input.TrustType) {
+		return false
+	}
+
+	return true
+}

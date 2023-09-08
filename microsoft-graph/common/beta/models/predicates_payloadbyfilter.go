@@ -1,0 +1,27 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type PayloadByFilterOperationPredicate struct {
+	GroupId   *string
+	ODataType *string
+	PayloadId *string
+}
+
+func (p PayloadByFilterOperationPredicate) Matches(input PayloadByFilter) bool {
+
+	if p.GroupId != nil && (input.GroupId == nil || *p.GroupId != *input.GroupId) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.PayloadId != nil && (input.PayloadId == nil || *p.PayloadId != *input.PayloadId) {
+		return false
+	}
+
+	return true
+}

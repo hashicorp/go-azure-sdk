@@ -1,0 +1,97 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type WindowsAutopilotDeviceIdentityOperationPredicate struct {
+	AddressableUserName          *string
+	AzureActiveDirectoryDeviceId *string
+	DisplayName                  *string
+	GroupTag                     *string
+	Id                           *string
+	LastContactedDateTime        *string
+	ManagedDeviceId              *string
+	Manufacturer                 *string
+	Model                        *string
+	ODataType                    *string
+	ProductKey                   *string
+	PurchaseOrderIdentifier      *string
+	ResourceName                 *string
+	SerialNumber                 *string
+	SkuNumber                    *string
+	SystemFamily                 *string
+	UserPrincipalName            *string
+}
+
+func (p WindowsAutopilotDeviceIdentityOperationPredicate) Matches(input WindowsAutopilotDeviceIdentity) bool {
+
+	if p.AddressableUserName != nil && (input.AddressableUserName == nil || *p.AddressableUserName != *input.AddressableUserName) {
+		return false
+	}
+
+	if p.AzureActiveDirectoryDeviceId != nil && (input.AzureActiveDirectoryDeviceId == nil || *p.AzureActiveDirectoryDeviceId != *input.AzureActiveDirectoryDeviceId) {
+		return false
+	}
+
+	if p.DisplayName != nil && (input.DisplayName == nil || *p.DisplayName != *input.DisplayName) {
+		return false
+	}
+
+	if p.GroupTag != nil && (input.GroupTag == nil || *p.GroupTag != *input.GroupTag) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.LastContactedDateTime != nil && (input.LastContactedDateTime == nil || *p.LastContactedDateTime != *input.LastContactedDateTime) {
+		return false
+	}
+
+	if p.ManagedDeviceId != nil && (input.ManagedDeviceId == nil || *p.ManagedDeviceId != *input.ManagedDeviceId) {
+		return false
+	}
+
+	if p.Manufacturer != nil && (input.Manufacturer == nil || *p.Manufacturer != *input.Manufacturer) {
+		return false
+	}
+
+	if p.Model != nil && (input.Model == nil || *p.Model != *input.Model) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.ProductKey != nil && (input.ProductKey == nil || *p.ProductKey != *input.ProductKey) {
+		return false
+	}
+
+	if p.PurchaseOrderIdentifier != nil && (input.PurchaseOrderIdentifier == nil || *p.PurchaseOrderIdentifier != *input.PurchaseOrderIdentifier) {
+		return false
+	}
+
+	if p.ResourceName != nil && (input.ResourceName == nil || *p.ResourceName != *input.ResourceName) {
+		return false
+	}
+
+	if p.SerialNumber != nil && (input.SerialNumber == nil || *p.SerialNumber != *input.SerialNumber) {
+		return false
+	}
+
+	if p.SkuNumber != nil && (input.SkuNumber == nil || *p.SkuNumber != *input.SkuNumber) {
+		return false
+	}
+
+	if p.SystemFamily != nil && (input.SystemFamily == nil || *p.SystemFamily != *input.SystemFamily) {
+		return false
+	}
+
+	if p.UserPrincipalName != nil && (input.UserPrincipalName == nil || *p.UserPrincipalName != *input.UserPrincipalName) {
+		return false
+	}
+
+	return true
+}

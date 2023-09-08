@@ -1,0 +1,43 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type SecurityKubernetesClusterEvidenceRemediationStatus string
+
+const (
+	SecurityKubernetesClusterEvidenceRemediationStatusblocked    SecurityKubernetesClusterEvidenceRemediationStatus = "Blocked"
+	SecurityKubernetesClusterEvidenceRemediationStatusnone       SecurityKubernetesClusterEvidenceRemediationStatus = "None"
+	SecurityKubernetesClusterEvidenceRemediationStatusnotFound   SecurityKubernetesClusterEvidenceRemediationStatus = "NotFound"
+	SecurityKubernetesClusterEvidenceRemediationStatusprevented  SecurityKubernetesClusterEvidenceRemediationStatus = "Prevented"
+	SecurityKubernetesClusterEvidenceRemediationStatusremediated SecurityKubernetesClusterEvidenceRemediationStatus = "Remediated"
+)
+
+func PossibleValuesForSecurityKubernetesClusterEvidenceRemediationStatus() []string {
+	return []string{
+		string(SecurityKubernetesClusterEvidenceRemediationStatusblocked),
+		string(SecurityKubernetesClusterEvidenceRemediationStatusnone),
+		string(SecurityKubernetesClusterEvidenceRemediationStatusnotFound),
+		string(SecurityKubernetesClusterEvidenceRemediationStatusprevented),
+		string(SecurityKubernetesClusterEvidenceRemediationStatusremediated),
+	}
+}
+
+func parseSecurityKubernetesClusterEvidenceRemediationStatus(input string) (*SecurityKubernetesClusterEvidenceRemediationStatus, error) {
+	vals := map[string]SecurityKubernetesClusterEvidenceRemediationStatus{
+		"blocked":    SecurityKubernetesClusterEvidenceRemediationStatusblocked,
+		"none":       SecurityKubernetesClusterEvidenceRemediationStatusnone,
+		"notfound":   SecurityKubernetesClusterEvidenceRemediationStatusnotFound,
+		"prevented":  SecurityKubernetesClusterEvidenceRemediationStatusprevented,
+		"remediated": SecurityKubernetesClusterEvidenceRemediationStatusremediated,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SecurityKubernetesClusterEvidenceRemediationStatus(input)
+	return &out, nil
+}

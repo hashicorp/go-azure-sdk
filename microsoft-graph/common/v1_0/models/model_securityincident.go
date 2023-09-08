@@ -1,0 +1,24 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type SecurityIncident struct {
+	Alerts             *[]SecurityAlert                `json:"alerts,omitempty"`
+	AssignedTo         *string                         `json:"assignedTo,omitempty"`
+	Classification     *SecurityIncidentClassification `json:"classification,omitempty"`
+	Comments           *[]SecurityAlertComment         `json:"comments,omitempty"`
+	CreatedDateTime    *string                         `json:"createdDateTime,omitempty"`
+	CustomTags         *[]string                       `json:"customTags,omitempty"`
+	Determination      *SecurityIncidentDetermination  `json:"determination,omitempty"`
+	DisplayName        *string                         `json:"displayName,omitempty"`
+	Id                 *string                         `json:"id,omitempty"`
+	IncidentWebUrl     *string                         `json:"incidentWebUrl,omitempty"`
+	LastModifiedBy     *string                         `json:"lastModifiedBy,omitempty"`
+	LastUpdateDateTime *string                         `json:"lastUpdateDateTime,omitempty"`
+	ODataType          *string                         `json:"@odata.type,omitempty"`
+	RedirectIncidentId *string                         `json:"redirectIncidentId,omitempty"`
+	Severity           *SecurityIncidentSeverity       `json:"severity,omitempty"`
+	Status             *SecurityIncidentStatus         `json:"status,omitempty"`
+	TenantId           *string                         `json:"tenantId,omitempty"`
+}

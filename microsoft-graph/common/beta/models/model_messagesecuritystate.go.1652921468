@@ -1,0 +1,40 @@
+package models
+
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/edgezones"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/identity"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/systemdata"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/zones"
+)
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type MessageSecurityState struct {
+	ConnectingIP *string `json:"connectingIP,omitempty"`
+	DeliveryAction *string `json:"deliveryAction,omitempty"`
+	DeliveryLocation *string `json:"deliveryLocation,omitempty"`
+	Directionality *string `json:"directionality,omitempty"`
+	InternetMessageId *string `json:"internetMessageId,omitempty"`
+	MessageFingerprint *string `json:"messageFingerprint,omitempty"`
+	MessageReceivedDateTime *string `json:"messageReceivedDateTime,omitempty"`
+	MessageSubject *string `json:"messageSubject,omitempty"`
+	NetworkMessageId *string `json:"networkMessageId,omitempty"`
+	ODataType *string `json:"@odata.type,omitempty"`
+}
+
+
+
+
+
+
+

@@ -1,0 +1,9 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type IosMobileAppIdentifier struct {
+	BundleId  *string `json:"bundleId,omitempty"`
+	ODataType *string `json:"@odata.type,omitempty"`
+}

@@ -1,0 +1,37 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type PlannerExternalReferenceOperationPredicate struct {
+	Alias                *string
+	LastModifiedDateTime *string
+	ODataType            *string
+	PreviewPriority      *string
+	Type                 *string
+}
+
+func (p PlannerExternalReferenceOperationPredicate) Matches(input PlannerExternalReference) bool {
+
+	if p.Alias != nil && (input.Alias == nil || *p.Alias != *input.Alias) {
+		return false
+	}
+
+	if p.LastModifiedDateTime != nil && (input.LastModifiedDateTime == nil || *p.LastModifiedDateTime != *input.LastModifiedDateTime) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.PreviewPriority != nil && (input.PreviewPriority == nil || *p.PreviewPriority != *input.PreviewPriority) {
+		return false
+	}
+
+	if p.Type != nil && (input.Type == nil || *p.Type != *input.Type) {
+		return false
+	}
+
+	return true
+}

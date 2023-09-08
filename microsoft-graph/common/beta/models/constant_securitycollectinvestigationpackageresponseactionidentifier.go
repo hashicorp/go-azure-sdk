@@ -1,0 +1,31 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type SecurityCollectInvestigationPackageResponseActionIdentifier string
+
+const (
+	SecurityCollectInvestigationPackageResponseActionIdentifierdeviceId SecurityCollectInvestigationPackageResponseActionIdentifier = "DeviceId"
+)
+
+func PossibleValuesForSecurityCollectInvestigationPackageResponseActionIdentifier() []string {
+	return []string{
+		string(SecurityCollectInvestigationPackageResponseActionIdentifierdeviceId),
+	}
+}
+
+func parseSecurityCollectInvestigationPackageResponseActionIdentifier(input string) (*SecurityCollectInvestigationPackageResponseActionIdentifier, error) {
+	vals := map[string]SecurityCollectInvestigationPackageResponseActionIdentifier{
+		"deviceid": SecurityCollectInvestigationPackageResponseActionIdentifierdeviceId,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SecurityCollectInvestigationPackageResponseActionIdentifier(input)
+	return &out, nil
+}

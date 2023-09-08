@@ -1,0 +1,27 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type KeyCredentialConfigurationOperationPredicate struct {
+	MaxLifetime                         *string
+	ODataType                           *string
+	RestrictForAppsCreatedAfterDateTime *string
+}
+
+func (p KeyCredentialConfigurationOperationPredicate) Matches(input KeyCredentialConfiguration) bool {
+
+	if p.MaxLifetime != nil && (input.MaxLifetime == nil || *p.MaxLifetime != *input.MaxLifetime) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.RestrictForAppsCreatedAfterDateTime != nil && (input.RestrictForAppsCreatedAfterDateTime == nil || *p.RestrictForAppsCreatedAfterDateTime != *input.RestrictForAppsCreatedAfterDateTime) {
+		return false
+	}
+
+	return true
+}

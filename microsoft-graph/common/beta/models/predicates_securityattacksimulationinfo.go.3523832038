@@ -1,0 +1,45 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type SecurityAttackSimulationInfoOperationPredicate struct {
+	 AttackSimDateTime *string
+	 AttackSimDurationTime *string
+	 AttackSimId *string
+	 AttackSimUserId *string
+	 ODataType *string
+}
+
+func (p SecurityAttackSimulationInfoOperationPredicate) Matches(input SecurityAttackSimulationInfo) bool {
+
+	if p.AttackSimDateTime != nil && (input.AttackSimDateTime == nil || *p.AttackSimDateTime != *input.AttackSimDateTime) {
+	 	return false
+	}
+
+
+	if p.AttackSimDurationTime != nil && (input.AttackSimDurationTime == nil || *p.AttackSimDurationTime != *input.AttackSimDurationTime) {
+	 	return false
+	}
+
+
+	if p.AttackSimId != nil && (input.AttackSimId == nil || *p.AttackSimId != *input.AttackSimId) {
+	 	return false
+	}
+
+
+	if p.AttackSimUserId != nil && (input.AttackSimUserId == nil || *p.AttackSimUserId != *input.AttackSimUserId) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	return true
+}
+

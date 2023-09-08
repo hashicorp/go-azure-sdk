@@ -1,0 +1,27 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type WindowsKioskLocalUserOperationPredicate struct {
+	 ODataType *string
+	 UserName *string
+}
+
+func (p WindowsKioskLocalUserOperationPredicate) Matches(input WindowsKioskLocalUser) bool {
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.UserName != nil && (input.UserName == nil || *p.UserName != *input.UserName) {
+	 	return false
+	}
+
+
+	return true
+}
+

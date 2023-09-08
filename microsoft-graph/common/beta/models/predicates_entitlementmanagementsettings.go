@@ -1,0 +1,32 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type EntitlementManagementSettingsOperationPredicate struct {
+	DaysUntilExternalUserDeletedAfterBlocked *int64
+	ExternalUserLifecycleAction              *string
+	Id                                       *string
+	ODataType                                *string
+}
+
+func (p EntitlementManagementSettingsOperationPredicate) Matches(input EntitlementManagementSettings) bool {
+
+	if p.DaysUntilExternalUserDeletedAfterBlocked != nil && (input.DaysUntilExternalUserDeletedAfterBlocked == nil || *p.DaysUntilExternalUserDeletedAfterBlocked != *input.DaysUntilExternalUserDeletedAfterBlocked) {
+		return false
+	}
+
+	if p.ExternalUserLifecycleAction != nil && (input.ExternalUserLifecycleAction == nil || *p.ExternalUserLifecycleAction != *input.ExternalUserLifecycleAction) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	return true
+}

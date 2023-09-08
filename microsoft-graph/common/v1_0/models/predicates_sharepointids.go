@@ -1,0 +1,52 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type SharepointIdsOperationPredicate struct {
+	ListId           *string
+	ListItemId       *string
+	ListItemUniqueId *string
+	ODataType        *string
+	SiteId           *string
+	SiteUrl          *string
+	TenantId         *string
+	WebId            *string
+}
+
+func (p SharepointIdsOperationPredicate) Matches(input SharepointIds) bool {
+
+	if p.ListId != nil && (input.ListId == nil || *p.ListId != *input.ListId) {
+		return false
+	}
+
+	if p.ListItemId != nil && (input.ListItemId == nil || *p.ListItemId != *input.ListItemId) {
+		return false
+	}
+
+	if p.ListItemUniqueId != nil && (input.ListItemUniqueId == nil || *p.ListItemUniqueId != *input.ListItemUniqueId) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.SiteId != nil && (input.SiteId == nil || *p.SiteId != *input.SiteId) {
+		return false
+	}
+
+	if p.SiteUrl != nil && (input.SiteUrl == nil || *p.SiteUrl != *input.SiteUrl) {
+		return false
+	}
+
+	if p.TenantId != nil && (input.TenantId == nil || *p.TenantId != *input.TenantId) {
+		return false
+	}
+
+	if p.WebId != nil && (input.WebId == nil || *p.WebId != *input.WebId) {
+		return false
+	}
+
+	return true
+}

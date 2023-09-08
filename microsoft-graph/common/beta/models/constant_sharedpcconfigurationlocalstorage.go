@@ -1,0 +1,37 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type SharedPCConfigurationLocalStorage string
+
+const (
+	SharedPCConfigurationLocalStoragedisabled      SharedPCConfigurationLocalStorage = "Disabled"
+	SharedPCConfigurationLocalStorageenabled       SharedPCConfigurationLocalStorage = "Enabled"
+	SharedPCConfigurationLocalStoragenotConfigured SharedPCConfigurationLocalStorage = "NotConfigured"
+)
+
+func PossibleValuesForSharedPCConfigurationLocalStorage() []string {
+	return []string{
+		string(SharedPCConfigurationLocalStoragedisabled),
+		string(SharedPCConfigurationLocalStorageenabled),
+		string(SharedPCConfigurationLocalStoragenotConfigured),
+	}
+}
+
+func parseSharedPCConfigurationLocalStorage(input string) (*SharedPCConfigurationLocalStorage, error) {
+	vals := map[string]SharedPCConfigurationLocalStorage{
+		"disabled":      SharedPCConfigurationLocalStoragedisabled,
+		"enabled":       SharedPCConfigurationLocalStorageenabled,
+		"notconfigured": SharedPCConfigurationLocalStoragenotConfigured,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SharedPCConfigurationLocalStorage(input)
+	return &out, nil
+}

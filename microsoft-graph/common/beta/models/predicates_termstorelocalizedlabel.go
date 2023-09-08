@@ -1,0 +1,32 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type TermStoreLocalizedLabelOperationPredicate struct {
+	IsDefault   *bool
+	LanguageTag *string
+	Name        *string
+	ODataType   *string
+}
+
+func (p TermStoreLocalizedLabelOperationPredicate) Matches(input TermStoreLocalizedLabel) bool {
+
+	if p.IsDefault != nil && (input.IsDefault == nil || *p.IsDefault != *input.IsDefault) {
+		return false
+	}
+
+	if p.LanguageTag != nil && (input.LanguageTag == nil || *p.LanguageTag != *input.LanguageTag) {
+		return false
+	}
+
+	if p.Name != nil && (input.Name == nil || *p.Name != *input.Name) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	return true
+}

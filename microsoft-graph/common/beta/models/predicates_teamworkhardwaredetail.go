@@ -1,0 +1,37 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type TeamworkHardwareDetailOperationPredicate struct {
+	Manufacturer *string
+	Model        *string
+	ODataType    *string
+	SerialNumber *string
+	UniqueId     *string
+}
+
+func (p TeamworkHardwareDetailOperationPredicate) Matches(input TeamworkHardwareDetail) bool {
+
+	if p.Manufacturer != nil && (input.Manufacturer == nil || *p.Manufacturer != *input.Manufacturer) {
+		return false
+	}
+
+	if p.Model != nil && (input.Model == nil || *p.Model != *input.Model) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.SerialNumber != nil && (input.SerialNumber == nil || *p.SerialNumber != *input.SerialNumber) {
+		return false
+	}
+
+	if p.UniqueId != nil && (input.UniqueId == nil || *p.UniqueId != *input.UniqueId) {
+		return false
+	}
+
+	return true
+}

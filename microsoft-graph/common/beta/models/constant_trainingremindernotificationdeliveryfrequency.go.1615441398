@@ -1,0 +1,43 @@
+package models
+
+import "strings"
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type TrainingReminderNotificationDeliveryFrequency string
+
+const (
+	TrainingReminderNotificationDeliveryFrequencybiWeekly TrainingReminderNotificationDeliveryFrequency = "BiWeekly"
+	TrainingReminderNotificationDeliveryFrequencyunknown TrainingReminderNotificationDeliveryFrequency = "Unknown"
+	TrainingReminderNotificationDeliveryFrequencyweekly TrainingReminderNotificationDeliveryFrequency = "Weekly"
+)
+
+
+func PossibleValuesForTrainingReminderNotificationDeliveryFrequency() []string {
+	return []string{
+		string(TrainingReminderNotificationDeliveryFrequencybiWeekly),
+string(TrainingReminderNotificationDeliveryFrequencyunknown),
+string(TrainingReminderNotificationDeliveryFrequencyweekly),
+	}
+}
+
+
+
+func parseTrainingReminderNotificationDeliveryFrequency(input string) (*TrainingReminderNotificationDeliveryFrequency, error) {
+	vals := map[string]TrainingReminderNotificationDeliveryFrequency{
+		"biweekly": TrainingReminderNotificationDeliveryFrequencybiWeekly,
+"unknown": TrainingReminderNotificationDeliveryFrequencyunknown,
+"weekly": TrainingReminderNotificationDeliveryFrequencyweekly,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := TrainingReminderNotificationDeliveryFrequency(input)
+	return &out, nil
+}

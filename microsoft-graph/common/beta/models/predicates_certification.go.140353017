@@ -1,0 +1,51 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type CertificationOperationPredicate struct {
+	 CertificationDetailsUrl *string
+	 CertificationExpirationDateTime *string
+	 IsCertifiedByMicrosoft *bool
+	 IsPublisherAttested *bool
+	 LastCertificationDateTime *string
+	 ODataType *string
+}
+
+func (p CertificationOperationPredicate) Matches(input Certification) bool {
+
+	if p.CertificationDetailsUrl != nil && (input.CertificationDetailsUrl == nil || *p.CertificationDetailsUrl != *input.CertificationDetailsUrl) {
+	 	return false
+	}
+
+
+	if p.CertificationExpirationDateTime != nil && (input.CertificationExpirationDateTime == nil || *p.CertificationExpirationDateTime != *input.CertificationExpirationDateTime) {
+	 	return false
+	}
+
+
+	if p.IsCertifiedByMicrosoft != nil && (input.IsCertifiedByMicrosoft == nil || *p.IsCertifiedByMicrosoft != *input.IsCertifiedByMicrosoft) {
+	 	return false
+	}
+
+
+	if p.IsPublisherAttested != nil && (input.IsPublisherAttested == nil || *p.IsPublisherAttested != *input.IsPublisherAttested) {
+	 	return false
+	}
+
+
+	if p.LastCertificationDateTime != nil && (input.LastCertificationDateTime == nil || *p.LastCertificationDateTime != *input.LastCertificationDateTime) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	return true
+}
+

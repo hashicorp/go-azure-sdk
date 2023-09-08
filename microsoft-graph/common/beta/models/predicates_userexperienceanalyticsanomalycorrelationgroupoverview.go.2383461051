@@ -1,0 +1,69 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type UserExperienceAnalyticsAnomalyCorrelationGroupOverviewOperationPredicate struct {
+	 AnomalyCorrelationGroupCount *int64
+	 AnomalyId *string
+	 CorrelationGroupAnomalousDeviceCount *int64
+	 CorrelationGroupAtRiskDeviceCount *int64
+	 CorrelationGroupDeviceCount *int64
+	 CorrelationGroupId *string
+	 Id *string
+	 ODataType *string
+	 TotalDeviceCount *int64
+}
+
+func (p UserExperienceAnalyticsAnomalyCorrelationGroupOverviewOperationPredicate) Matches(input UserExperienceAnalyticsAnomalyCorrelationGroupOverview) bool {
+
+	if p.AnomalyCorrelationGroupCount != nil && (input.AnomalyCorrelationGroupCount == nil || *p.AnomalyCorrelationGroupCount != *input.AnomalyCorrelationGroupCount) {
+	 	return false
+	}
+
+
+	if p.AnomalyId != nil && (input.AnomalyId == nil || *p.AnomalyId != *input.AnomalyId) {
+	 	return false
+	}
+
+
+	if p.CorrelationGroupAnomalousDeviceCount != nil && (input.CorrelationGroupAnomalousDeviceCount == nil || *p.CorrelationGroupAnomalousDeviceCount != *input.CorrelationGroupAnomalousDeviceCount) {
+	 	return false
+	}
+
+
+	if p.CorrelationGroupAtRiskDeviceCount != nil && (input.CorrelationGroupAtRiskDeviceCount == nil || *p.CorrelationGroupAtRiskDeviceCount != *input.CorrelationGroupAtRiskDeviceCount) {
+	 	return false
+	}
+
+
+	if p.CorrelationGroupDeviceCount != nil && (input.CorrelationGroupDeviceCount == nil || *p.CorrelationGroupDeviceCount != *input.CorrelationGroupDeviceCount) {
+	 	return false
+	}
+
+
+	if p.CorrelationGroupId != nil && (input.CorrelationGroupId == nil || *p.CorrelationGroupId != *input.CorrelationGroupId) {
+	 	return false
+	}
+
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.TotalDeviceCount != nil && (input.TotalDeviceCount == nil || *p.TotalDeviceCount != *input.TotalDeviceCount) {
+	 	return false
+	}
+
+
+	return true
+}
+

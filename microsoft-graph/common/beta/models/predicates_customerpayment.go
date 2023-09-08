@@ -1,0 +1,92 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type CustomerPaymentOperationPredicate struct {
+	Amount                 *float64
+	AppliesToInvoiceId     *string
+	AppliesToInvoiceNumber *string
+	Comment                *string
+	ContactId              *string
+	CustomerId             *string
+	CustomerNumber         *string
+	Description            *string
+	DocumentNumber         *string
+	ExternalDocumentNumber *string
+	Id                     *string
+	JournalDisplayName     *string
+	LastModifiedDateTime   *string
+	LineNumber             *int64
+	ODataType              *string
+	PostingDate            *string
+}
+
+func (p CustomerPaymentOperationPredicate) Matches(input CustomerPayment) bool {
+
+	if p.Amount != nil && (input.Amount == nil || *p.Amount != *input.Amount) {
+		return false
+	}
+
+	if p.AppliesToInvoiceId != nil && (input.AppliesToInvoiceId == nil || *p.AppliesToInvoiceId != *input.AppliesToInvoiceId) {
+		return false
+	}
+
+	if p.AppliesToInvoiceNumber != nil && (input.AppliesToInvoiceNumber == nil || *p.AppliesToInvoiceNumber != *input.AppliesToInvoiceNumber) {
+		return false
+	}
+
+	if p.Comment != nil && (input.Comment == nil || *p.Comment != *input.Comment) {
+		return false
+	}
+
+	if p.ContactId != nil && (input.ContactId == nil || *p.ContactId != *input.ContactId) {
+		return false
+	}
+
+	if p.CustomerId != nil && (input.CustomerId == nil || *p.CustomerId != *input.CustomerId) {
+		return false
+	}
+
+	if p.CustomerNumber != nil && (input.CustomerNumber == nil || *p.CustomerNumber != *input.CustomerNumber) {
+		return false
+	}
+
+	if p.Description != nil && (input.Description == nil || *p.Description != *input.Description) {
+		return false
+	}
+
+	if p.DocumentNumber != nil && (input.DocumentNumber == nil || *p.DocumentNumber != *input.DocumentNumber) {
+		return false
+	}
+
+	if p.ExternalDocumentNumber != nil && (input.ExternalDocumentNumber == nil || *p.ExternalDocumentNumber != *input.ExternalDocumentNumber) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.JournalDisplayName != nil && (input.JournalDisplayName == nil || *p.JournalDisplayName != *input.JournalDisplayName) {
+		return false
+	}
+
+	if p.LastModifiedDateTime != nil && (input.LastModifiedDateTime == nil || *p.LastModifiedDateTime != *input.LastModifiedDateTime) {
+		return false
+	}
+
+	if p.LineNumber != nil && (input.LineNumber == nil || *p.LineNumber != *input.LineNumber) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.PostingDate != nil && (input.PostingDate == nil || *p.PostingDate != *input.PostingDate) {
+		return false
+	}
+
+	return true
+}

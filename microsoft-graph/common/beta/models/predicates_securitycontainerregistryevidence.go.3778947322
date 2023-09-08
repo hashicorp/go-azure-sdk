@@ -1,0 +1,39 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type SecurityContainerRegistryEvidenceOperationPredicate struct {
+	 CreatedDateTime *string
+	 ODataType *string
+	 Registry *string
+	 RemediationStatusDetails *string
+}
+
+func (p SecurityContainerRegistryEvidenceOperationPredicate) Matches(input SecurityContainerRegistryEvidence) bool {
+
+	if p.CreatedDateTime != nil && (input.CreatedDateTime == nil || *p.CreatedDateTime != *input.CreatedDateTime) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.Registry != nil && (input.Registry == nil || *p.Registry != *input.Registry) {
+	 	return false
+	}
+
+
+	if p.RemediationStatusDetails != nil && (input.RemediationStatusDetails == nil || *p.RemediationStatusDetails != *input.RemediationStatusDetails) {
+	 	return false
+	}
+
+
+	return true
+}
+

@@ -1,0 +1,45 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type CallRecordingEventMessageDetailOperationPredicate struct {
+	 CallId *string
+	 CallRecordingDisplayName *string
+	 CallRecordingDuration *string
+	 CallRecordingUrl *string
+	 ODataType *string
+}
+
+func (p CallRecordingEventMessageDetailOperationPredicate) Matches(input CallRecordingEventMessageDetail) bool {
+
+	if p.CallId != nil && (input.CallId == nil || *p.CallId != *input.CallId) {
+	 	return false
+	}
+
+
+	if p.CallRecordingDisplayName != nil && (input.CallRecordingDisplayName == nil || *p.CallRecordingDisplayName != *input.CallRecordingDisplayName) {
+	 	return false
+	}
+
+
+	if p.CallRecordingDuration != nil && (input.CallRecordingDuration == nil || *p.CallRecordingDuration != *input.CallRecordingDuration) {
+	 	return false
+	}
+
+
+	if p.CallRecordingUrl != nil && (input.CallRecordingUrl == nil || *p.CallRecordingUrl != *input.CallRecordingUrl) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	return true
+}
+

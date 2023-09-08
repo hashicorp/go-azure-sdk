@@ -1,0 +1,23 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type ExcludedApps struct {
+	Access             *bool   `json:"access,omitempty"`
+	Bing               *bool   `json:"bing,omitempty"`
+	Excel              *bool   `json:"excel,omitempty"`
+	Groove             *bool   `json:"groove,omitempty"`
+	InfoPath           *bool   `json:"infoPath,omitempty"`
+	Lync               *bool   `json:"lync,omitempty"`
+	ODataType          *string `json:"@odata.type,omitempty"`
+	OneDrive           *bool   `json:"oneDrive,omitempty"`
+	OneNote            *bool   `json:"oneNote,omitempty"`
+	Outlook            *bool   `json:"outlook,omitempty"`
+	PowerPoint         *bool   `json:"powerPoint,omitempty"`
+	Publisher          *bool   `json:"publisher,omitempty"`
+	SharePointDesigner *bool   `json:"sharePointDesigner,omitempty"`
+	Teams              *bool   `json:"teams,omitempty"`
+	Visio              *bool   `json:"visio,omitempty"`
+	Word               *bool   `json:"word,omitempty"`
+}

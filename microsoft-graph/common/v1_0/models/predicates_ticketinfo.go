@@ -1,0 +1,27 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type TicketInfoOperationPredicate struct {
+	ODataType    *string
+	TicketNumber *string
+	TicketSystem *string
+}
+
+func (p TicketInfoOperationPredicate) Matches(input TicketInfo) bool {
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.TicketNumber != nil && (input.TicketNumber == nil || *p.TicketNumber != *input.TicketNumber) {
+		return false
+	}
+
+	if p.TicketSystem != nil && (input.TicketSystem == nil || *p.TicketSystem != *input.TicketSystem) {
+		return false
+	}
+
+	return true
+}

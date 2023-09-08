@@ -1,0 +1,37 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type UserExperienceAnalyticsDeviceScoresOperationPredicate struct {
+	DeviceName   *string
+	Id           *string
+	Manufacturer *string
+	Model        *string
+	ODataType    *string
+}
+
+func (p UserExperienceAnalyticsDeviceScoresOperationPredicate) Matches(input UserExperienceAnalyticsDeviceScores) bool {
+
+	if p.DeviceName != nil && (input.DeviceName == nil || *p.DeviceName != *input.DeviceName) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.Manufacturer != nil && (input.Manufacturer == nil || *p.Manufacturer != *input.Manufacturer) {
+		return false
+	}
+
+	if p.Model != nil && (input.Model == nil || *p.Model != *input.Model) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	return true
+}

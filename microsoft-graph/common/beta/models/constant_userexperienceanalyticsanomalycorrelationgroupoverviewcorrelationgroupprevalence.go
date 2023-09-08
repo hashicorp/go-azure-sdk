@@ -1,0 +1,37 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type UserExperienceAnalyticsAnomalyCorrelationGroupOverviewCorrelationGroupPrevalence string
+
+const (
+	UserExperienceAnalyticsAnomalyCorrelationGroupOverviewCorrelationGroupPrevalencehigh   UserExperienceAnalyticsAnomalyCorrelationGroupOverviewCorrelationGroupPrevalence = "High"
+	UserExperienceAnalyticsAnomalyCorrelationGroupOverviewCorrelationGroupPrevalencelow    UserExperienceAnalyticsAnomalyCorrelationGroupOverviewCorrelationGroupPrevalence = "Low"
+	UserExperienceAnalyticsAnomalyCorrelationGroupOverviewCorrelationGroupPrevalencemedium UserExperienceAnalyticsAnomalyCorrelationGroupOverviewCorrelationGroupPrevalence = "Medium"
+)
+
+func PossibleValuesForUserExperienceAnalyticsAnomalyCorrelationGroupOverviewCorrelationGroupPrevalence() []string {
+	return []string{
+		string(UserExperienceAnalyticsAnomalyCorrelationGroupOverviewCorrelationGroupPrevalencehigh),
+		string(UserExperienceAnalyticsAnomalyCorrelationGroupOverviewCorrelationGroupPrevalencelow),
+		string(UserExperienceAnalyticsAnomalyCorrelationGroupOverviewCorrelationGroupPrevalencemedium),
+	}
+}
+
+func parseUserExperienceAnalyticsAnomalyCorrelationGroupOverviewCorrelationGroupPrevalence(input string) (*UserExperienceAnalyticsAnomalyCorrelationGroupOverviewCorrelationGroupPrevalence, error) {
+	vals := map[string]UserExperienceAnalyticsAnomalyCorrelationGroupOverviewCorrelationGroupPrevalence{
+		"high":   UserExperienceAnalyticsAnomalyCorrelationGroupOverviewCorrelationGroupPrevalencehigh,
+		"low":    UserExperienceAnalyticsAnomalyCorrelationGroupOverviewCorrelationGroupPrevalencelow,
+		"medium": UserExperienceAnalyticsAnomalyCorrelationGroupOverviewCorrelationGroupPrevalencemedium,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := UserExperienceAnalyticsAnomalyCorrelationGroupOverviewCorrelationGroupPrevalence(input)
+	return &out, nil
+}

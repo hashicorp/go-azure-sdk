@@ -1,0 +1,79 @@
+package models
+
+import "strings"
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type SecurityGoogleCloudResourceEvidenceRoles string
+
+const (
+	SecurityGoogleCloudResourceEvidenceRolesadded SecurityGoogleCloudResourceEvidenceRoles = "Added"
+	SecurityGoogleCloudResourceEvidenceRolesattacked SecurityGoogleCloudResourceEvidenceRoles = "Attacked"
+	SecurityGoogleCloudResourceEvidenceRolesattacker SecurityGoogleCloudResourceEvidenceRoles = "Attacker"
+	SecurityGoogleCloudResourceEvidenceRolescommandAndControl SecurityGoogleCloudResourceEvidenceRoles = "CommandAndControl"
+	SecurityGoogleCloudResourceEvidenceRolescompromised SecurityGoogleCloudResourceEvidenceRoles = "Compromised"
+	SecurityGoogleCloudResourceEvidenceRolescontextual SecurityGoogleCloudResourceEvidenceRoles = "Contextual"
+	SecurityGoogleCloudResourceEvidenceRolescreated SecurityGoogleCloudResourceEvidenceRoles = "Created"
+	SecurityGoogleCloudResourceEvidenceRolesdestination SecurityGoogleCloudResourceEvidenceRoles = "Destination"
+	SecurityGoogleCloudResourceEvidenceRolesedited SecurityGoogleCloudResourceEvidenceRoles = "Edited"
+	SecurityGoogleCloudResourceEvidenceRolesloaded SecurityGoogleCloudResourceEvidenceRoles = "Loaded"
+	SecurityGoogleCloudResourceEvidenceRolespolicyViolator SecurityGoogleCloudResourceEvidenceRoles = "PolicyViolator"
+	SecurityGoogleCloudResourceEvidenceRolesscanned SecurityGoogleCloudResourceEvidenceRoles = "Scanned"
+	SecurityGoogleCloudResourceEvidenceRolessource SecurityGoogleCloudResourceEvidenceRoles = "Source"
+	SecurityGoogleCloudResourceEvidenceRolessuspicious SecurityGoogleCloudResourceEvidenceRoles = "Suspicious"
+	SecurityGoogleCloudResourceEvidenceRolesunknown SecurityGoogleCloudResourceEvidenceRoles = "Unknown"
+)
+
+
+func PossibleValuesForSecurityGoogleCloudResourceEvidenceRoles() []string {
+	return []string{
+		string(SecurityGoogleCloudResourceEvidenceRolesadded),
+string(SecurityGoogleCloudResourceEvidenceRolesattacked),
+string(SecurityGoogleCloudResourceEvidenceRolesattacker),
+string(SecurityGoogleCloudResourceEvidenceRolescommandAndControl),
+string(SecurityGoogleCloudResourceEvidenceRolescompromised),
+string(SecurityGoogleCloudResourceEvidenceRolescontextual),
+string(SecurityGoogleCloudResourceEvidenceRolescreated),
+string(SecurityGoogleCloudResourceEvidenceRolesdestination),
+string(SecurityGoogleCloudResourceEvidenceRolesedited),
+string(SecurityGoogleCloudResourceEvidenceRolesloaded),
+string(SecurityGoogleCloudResourceEvidenceRolespolicyViolator),
+string(SecurityGoogleCloudResourceEvidenceRolesscanned),
+string(SecurityGoogleCloudResourceEvidenceRolessource),
+string(SecurityGoogleCloudResourceEvidenceRolessuspicious),
+string(SecurityGoogleCloudResourceEvidenceRolesunknown),
+	}
+}
+
+
+
+func parseSecurityGoogleCloudResourceEvidenceRoles(input string) (*SecurityGoogleCloudResourceEvidenceRoles, error) {
+	vals := map[string]SecurityGoogleCloudResourceEvidenceRoles{
+		"added": SecurityGoogleCloudResourceEvidenceRolesadded,
+"attacked": SecurityGoogleCloudResourceEvidenceRolesattacked,
+"attacker": SecurityGoogleCloudResourceEvidenceRolesattacker,
+"commandandcontrol": SecurityGoogleCloudResourceEvidenceRolescommandAndControl,
+"compromised": SecurityGoogleCloudResourceEvidenceRolescompromised,
+"contextual": SecurityGoogleCloudResourceEvidenceRolescontextual,
+"created": SecurityGoogleCloudResourceEvidenceRolescreated,
+"destination": SecurityGoogleCloudResourceEvidenceRolesdestination,
+"edited": SecurityGoogleCloudResourceEvidenceRolesedited,
+"loaded": SecurityGoogleCloudResourceEvidenceRolesloaded,
+"policyviolator": SecurityGoogleCloudResourceEvidenceRolespolicyViolator,
+"scanned": SecurityGoogleCloudResourceEvidenceRolesscanned,
+"source": SecurityGoogleCloudResourceEvidenceRolessource,
+"suspicious": SecurityGoogleCloudResourceEvidenceRolessuspicious,
+"unknown": SecurityGoogleCloudResourceEvidenceRolesunknown,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SecurityGoogleCloudResourceEvidenceRoles(input)
+	return &out, nil
+}

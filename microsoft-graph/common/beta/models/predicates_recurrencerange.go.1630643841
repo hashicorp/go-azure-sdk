@@ -1,0 +1,45 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type RecurrenceRangeOperationPredicate struct {
+	 EndDate *string
+	 NumberOfOccurrences *int64
+	 ODataType *string
+	 RecurrenceTimeZone *string
+	 StartDate *string
+}
+
+func (p RecurrenceRangeOperationPredicate) Matches(input RecurrenceRange) bool {
+
+	if p.EndDate != nil && (input.EndDate == nil || *p.EndDate != *input.EndDate) {
+	 	return false
+	}
+
+
+	if p.NumberOfOccurrences != nil && (input.NumberOfOccurrences == nil || *p.NumberOfOccurrences != *input.NumberOfOccurrences) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.RecurrenceTimeZone != nil && (input.RecurrenceTimeZone == nil || *p.RecurrenceTimeZone != *input.RecurrenceTimeZone) {
+	 	return false
+	}
+
+
+	if p.StartDate != nil && (input.StartDate == nil || *p.StartDate != *input.StartDate) {
+	 	return false
+	}
+
+
+	return true
+}
+

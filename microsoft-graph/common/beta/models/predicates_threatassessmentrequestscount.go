@@ -1,0 +1,32 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type ThreatAssessmentRequestsCountOperationPredicate struct {
+	Count           *int64
+	CreatedDateTime *string
+	ODataType       *string
+	PivotValue      *string
+}
+
+func (p ThreatAssessmentRequestsCountOperationPredicate) Matches(input ThreatAssessmentRequestsCount) bool {
+
+	if p.Count != nil && (input.Count == nil || *p.Count != *input.Count) {
+		return false
+	}
+
+	if p.CreatedDateTime != nil && (input.CreatedDateTime == nil || *p.CreatedDateTime != *input.CreatedDateTime) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.PivotValue != nil && (input.PivotValue == nil || *p.PivotValue != *input.PivotValue) {
+		return false
+	}
+
+	return true
+}

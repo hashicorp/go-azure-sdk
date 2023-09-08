@@ -1,0 +1,27 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type PublicationFacetOperationPredicate struct {
+	Level     *string
+	ODataType *string
+	VersionId *string
+}
+
+func (p PublicationFacetOperationPredicate) Matches(input PublicationFacet) bool {
+
+	if p.Level != nil && (input.Level == nil || *p.Level != *input.Level) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.VersionId != nil && (input.VersionId == nil || *p.VersionId != *input.VersionId) {
+		return false
+	}
+
+	return true
+}

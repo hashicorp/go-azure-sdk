@@ -1,0 +1,57 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type MessageTraceOperationPredicate struct {
+	DestinationIPAddress *string
+	Id                   *string
+	MessageId            *string
+	ODataType            *string
+	ReceivedDateTime     *string
+	SenderEmail          *string
+	Size                 *int64
+	SourceIPAddress      *string
+	Subject              *string
+}
+
+func (p MessageTraceOperationPredicate) Matches(input MessageTrace) bool {
+
+	if p.DestinationIPAddress != nil && (input.DestinationIPAddress == nil || *p.DestinationIPAddress != *input.DestinationIPAddress) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.MessageId != nil && (input.MessageId == nil || *p.MessageId != *input.MessageId) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.ReceivedDateTime != nil && (input.ReceivedDateTime == nil || *p.ReceivedDateTime != *input.ReceivedDateTime) {
+		return false
+	}
+
+	if p.SenderEmail != nil && (input.SenderEmail == nil || *p.SenderEmail != *input.SenderEmail) {
+		return false
+	}
+
+	if p.Size != nil && (input.Size == nil || *p.Size != *input.Size) {
+		return false
+	}
+
+	if p.SourceIPAddress != nil && (input.SourceIPAddress == nil || *p.SourceIPAddress != *input.SourceIPAddress) {
+		return false
+	}
+
+	if p.Subject != nil && (input.Subject == nil || *p.Subject != *input.Subject) {
+		return false
+	}
+
+	return true
+}

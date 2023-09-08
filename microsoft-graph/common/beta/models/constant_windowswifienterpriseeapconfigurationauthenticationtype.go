@@ -1,0 +1,43 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type WindowsWifiEnterpriseEAPConfigurationAuthenticationType string
+
+const (
+	WindowsWifiEnterpriseEAPConfigurationAuthenticationTypeguest         WindowsWifiEnterpriseEAPConfigurationAuthenticationType = "Guest"
+	WindowsWifiEnterpriseEAPConfigurationAuthenticationTypemachine       WindowsWifiEnterpriseEAPConfigurationAuthenticationType = "Machine"
+	WindowsWifiEnterpriseEAPConfigurationAuthenticationTypemachineOrUser WindowsWifiEnterpriseEAPConfigurationAuthenticationType = "MachineOrUser"
+	WindowsWifiEnterpriseEAPConfigurationAuthenticationTypenone          WindowsWifiEnterpriseEAPConfigurationAuthenticationType = "None"
+	WindowsWifiEnterpriseEAPConfigurationAuthenticationTypeuser          WindowsWifiEnterpriseEAPConfigurationAuthenticationType = "User"
+)
+
+func PossibleValuesForWindowsWifiEnterpriseEAPConfigurationAuthenticationType() []string {
+	return []string{
+		string(WindowsWifiEnterpriseEAPConfigurationAuthenticationTypeguest),
+		string(WindowsWifiEnterpriseEAPConfigurationAuthenticationTypemachine),
+		string(WindowsWifiEnterpriseEAPConfigurationAuthenticationTypemachineOrUser),
+		string(WindowsWifiEnterpriseEAPConfigurationAuthenticationTypenone),
+		string(WindowsWifiEnterpriseEAPConfigurationAuthenticationTypeuser),
+	}
+}
+
+func parseWindowsWifiEnterpriseEAPConfigurationAuthenticationType(input string) (*WindowsWifiEnterpriseEAPConfigurationAuthenticationType, error) {
+	vals := map[string]WindowsWifiEnterpriseEAPConfigurationAuthenticationType{
+		"guest":         WindowsWifiEnterpriseEAPConfigurationAuthenticationTypeguest,
+		"machine":       WindowsWifiEnterpriseEAPConfigurationAuthenticationTypemachine,
+		"machineoruser": WindowsWifiEnterpriseEAPConfigurationAuthenticationTypemachineOrUser,
+		"none":          WindowsWifiEnterpriseEAPConfigurationAuthenticationTypenone,
+		"user":          WindowsWifiEnterpriseEAPConfigurationAuthenticationTypeuser,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := WindowsWifiEnterpriseEAPConfigurationAuthenticationType(input)
+	return &out, nil
+}

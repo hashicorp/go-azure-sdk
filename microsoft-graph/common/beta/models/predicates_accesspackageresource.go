@@ -1,0 +1,67 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type AccessPackageResourceOperationPredicate struct {
+	AddedBy             *string
+	AddedOn             *string
+	Description         *string
+	DisplayName         *string
+	Id                  *string
+	IsPendingOnboarding *bool
+	ODataType           *string
+	OriginId            *string
+	OriginSystem        *string
+	ResourceType        *string
+	Url                 *string
+}
+
+func (p AccessPackageResourceOperationPredicate) Matches(input AccessPackageResource) bool {
+
+	if p.AddedBy != nil && (input.AddedBy == nil || *p.AddedBy != *input.AddedBy) {
+		return false
+	}
+
+	if p.AddedOn != nil && (input.AddedOn == nil || *p.AddedOn != *input.AddedOn) {
+		return false
+	}
+
+	if p.Description != nil && (input.Description == nil || *p.Description != *input.Description) {
+		return false
+	}
+
+	if p.DisplayName != nil && (input.DisplayName == nil || *p.DisplayName != *input.DisplayName) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.IsPendingOnboarding != nil && (input.IsPendingOnboarding == nil || *p.IsPendingOnboarding != *input.IsPendingOnboarding) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.OriginId != nil && (input.OriginId == nil || *p.OriginId != *input.OriginId) {
+		return false
+	}
+
+	if p.OriginSystem != nil && (input.OriginSystem == nil || *p.OriginSystem != *input.OriginSystem) {
+		return false
+	}
+
+	if p.ResourceType != nil && (input.ResourceType == nil || *p.ResourceType != *input.ResourceType) {
+		return false
+	}
+
+	if p.Url != nil && (input.Url == nil || *p.Url != *input.Url) {
+		return false
+	}
+
+	return true
+}

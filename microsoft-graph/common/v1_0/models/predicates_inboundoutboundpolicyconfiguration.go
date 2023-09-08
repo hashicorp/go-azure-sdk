@@ -1,0 +1,27 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type InboundOutboundPolicyConfigurationOperationPredicate struct {
+	InboundAllowed  *bool
+	ODataType       *string
+	OutboundAllowed *bool
+}
+
+func (p InboundOutboundPolicyConfigurationOperationPredicate) Matches(input InboundOutboundPolicyConfiguration) bool {
+
+	if p.InboundAllowed != nil && (input.InboundAllowed == nil || *p.InboundAllowed != *input.InboundAllowed) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.OutboundAllowed != nil && (input.OutboundAllowed == nil || *p.OutboundAllowed != *input.OutboundAllowed) {
+		return false
+	}
+
+	return true
+}

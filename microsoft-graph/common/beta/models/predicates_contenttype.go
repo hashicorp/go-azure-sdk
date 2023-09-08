@@ -1,0 +1,67 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type ContentTypeOperationPredicate struct {
+	Description      *string
+	Group            *string
+	Hidden           *bool
+	Id               *string
+	IsBuiltIn        *bool
+	Name             *string
+	ODataType        *string
+	ParentId         *string
+	PropagateChanges *bool
+	ReadOnly         *bool
+	Sealed           *bool
+}
+
+func (p ContentTypeOperationPredicate) Matches(input ContentType) bool {
+
+	if p.Description != nil && (input.Description == nil || *p.Description != *input.Description) {
+		return false
+	}
+
+	if p.Group != nil && (input.Group == nil || *p.Group != *input.Group) {
+		return false
+	}
+
+	if p.Hidden != nil && (input.Hidden == nil || *p.Hidden != *input.Hidden) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.IsBuiltIn != nil && (input.IsBuiltIn == nil || *p.IsBuiltIn != *input.IsBuiltIn) {
+		return false
+	}
+
+	if p.Name != nil && (input.Name == nil || *p.Name != *input.Name) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.ParentId != nil && (input.ParentId == nil || *p.ParentId != *input.ParentId) {
+		return false
+	}
+
+	if p.PropagateChanges != nil && (input.PropagateChanges == nil || *p.PropagateChanges != *input.PropagateChanges) {
+		return false
+	}
+
+	if p.ReadOnly != nil && (input.ReadOnly == nil || *p.ReadOnly != *input.ReadOnly) {
+		return false
+	}
+
+	if p.Sealed != nil && (input.Sealed == nil || *p.Sealed != *input.Sealed) {
+		return false
+	}
+
+	return true
+}

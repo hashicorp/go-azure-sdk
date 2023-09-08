@@ -1,0 +1,42 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type EducationStudentOperationPredicate struct {
+	BirthDate      *string
+	ExternalId     *string
+	Grade          *string
+	GraduationYear *string
+	ODataType      *string
+	StudentNumber  *string
+}
+
+func (p EducationStudentOperationPredicate) Matches(input EducationStudent) bool {
+
+	if p.BirthDate != nil && (input.BirthDate == nil || *p.BirthDate != *input.BirthDate) {
+		return false
+	}
+
+	if p.ExternalId != nil && (input.ExternalId == nil || *p.ExternalId != *input.ExternalId) {
+		return false
+	}
+
+	if p.Grade != nil && (input.Grade == nil || *p.Grade != *input.Grade) {
+		return false
+	}
+
+	if p.GraduationYear != nil && (input.GraduationYear == nil || *p.GraduationYear != *input.GraduationYear) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.StudentNumber != nil && (input.StudentNumber == nil || *p.StudentNumber != *input.StudentNumber) {
+		return false
+	}
+
+	return true
+}

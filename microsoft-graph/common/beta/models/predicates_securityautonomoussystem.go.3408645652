@@ -1,0 +1,45 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type SecurityAutonomousSystemOperationPredicate struct {
+	 Name *string
+	 Number *int64
+	 ODataType *string
+	 Organization *string
+	 Value *string
+}
+
+func (p SecurityAutonomousSystemOperationPredicate) Matches(input SecurityAutonomousSystem) bool {
+
+	if p.Name != nil && (input.Name == nil || *p.Name != *input.Name) {
+	 	return false
+	}
+
+
+	if p.Number != nil && (input.Number == nil || *p.Number != *input.Number) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.Organization != nil && (input.Organization == nil || *p.Organization != *input.Organization) {
+	 	return false
+	}
+
+
+	if p.Value != nil && (input.Value == nil || *p.Value != *input.Value) {
+	 	return false
+	}
+
+
+	return true
+}
+

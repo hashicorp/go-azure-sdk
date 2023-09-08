@@ -1,0 +1,37 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type VpnTrafficRuleRoutingPolicyType string
+
+const (
+	VpnTrafficRuleRoutingPolicyTypeforceTunnel VpnTrafficRuleRoutingPolicyType = "ForceTunnel"
+	VpnTrafficRuleRoutingPolicyTypenone        VpnTrafficRuleRoutingPolicyType = "None"
+	VpnTrafficRuleRoutingPolicyTypesplitTunnel VpnTrafficRuleRoutingPolicyType = "SplitTunnel"
+)
+
+func PossibleValuesForVpnTrafficRuleRoutingPolicyType() []string {
+	return []string{
+		string(VpnTrafficRuleRoutingPolicyTypeforceTunnel),
+		string(VpnTrafficRuleRoutingPolicyTypenone),
+		string(VpnTrafficRuleRoutingPolicyTypesplitTunnel),
+	}
+}
+
+func parseVpnTrafficRuleRoutingPolicyType(input string) (*VpnTrafficRuleRoutingPolicyType, error) {
+	vals := map[string]VpnTrafficRuleRoutingPolicyType{
+		"forcetunnel": VpnTrafficRuleRoutingPolicyTypeforceTunnel,
+		"none":        VpnTrafficRuleRoutingPolicyTypenone,
+		"splittunnel": VpnTrafficRuleRoutingPolicyTypesplitTunnel,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := VpnTrafficRuleRoutingPolicyType(input)
+	return &out, nil
+}

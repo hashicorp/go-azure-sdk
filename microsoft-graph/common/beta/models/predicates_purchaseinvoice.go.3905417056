@@ -1,0 +1,165 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type PurchaseInvoiceOperationPredicate struct {
+	 CurrencyCode *string
+	 CurrencyId *string
+	 DiscountAmount *float64
+	 DiscountAppliedBeforeTax *bool
+	 DueDate *string
+	 Id *string
+	 InvoiceDate *string
+	 LastModifiedDateTime *string
+	 Number *string
+	 ODataType *string
+	 PayToContact *string
+	 PayToName *string
+	 PayToVendorId *string
+	 PayToVendorNumber *string
+	 PricesIncludeTax *bool
+	 ShipToContact *string
+	 ShipToName *string
+	 Status *string
+	 TotalAmountExcludingTax *float64
+	 TotalAmountIncludingTax *float64
+	 TotalTaxAmount *float64
+	 VendorId *string
+	 VendorInvoiceNumber *string
+	 VendorName *string
+	 VendorNumber *string
+}
+
+func (p PurchaseInvoiceOperationPredicate) Matches(input PurchaseInvoice) bool {
+
+	if p.CurrencyCode != nil && (input.CurrencyCode == nil || *p.CurrencyCode != *input.CurrencyCode) {
+	 	return false
+	}
+
+
+	if p.CurrencyId != nil && (input.CurrencyId == nil || *p.CurrencyId != *input.CurrencyId) {
+	 	return false
+	}
+
+
+	if p.DiscountAmount != nil && (input.DiscountAmount == nil || *p.DiscountAmount != *input.DiscountAmount) {
+	 	return false
+	}
+
+
+	if p.DiscountAppliedBeforeTax != nil && (input.DiscountAppliedBeforeTax == nil || *p.DiscountAppliedBeforeTax != *input.DiscountAppliedBeforeTax) {
+	 	return false
+	}
+
+
+	if p.DueDate != nil && (input.DueDate == nil || *p.DueDate != *input.DueDate) {
+	 	return false
+	}
+
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+	 	return false
+	}
+
+
+	if p.InvoiceDate != nil && (input.InvoiceDate == nil || *p.InvoiceDate != *input.InvoiceDate) {
+	 	return false
+	}
+
+
+	if p.LastModifiedDateTime != nil && (input.LastModifiedDateTime == nil || *p.LastModifiedDateTime != *input.LastModifiedDateTime) {
+	 	return false
+	}
+
+
+	if p.Number != nil && (input.Number == nil || *p.Number != *input.Number) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.PayToContact != nil && (input.PayToContact == nil || *p.PayToContact != *input.PayToContact) {
+	 	return false
+	}
+
+
+	if p.PayToName != nil && (input.PayToName == nil || *p.PayToName != *input.PayToName) {
+	 	return false
+	}
+
+
+	if p.PayToVendorId != nil && (input.PayToVendorId == nil || *p.PayToVendorId != *input.PayToVendorId) {
+	 	return false
+	}
+
+
+	if p.PayToVendorNumber != nil && (input.PayToVendorNumber == nil || *p.PayToVendorNumber != *input.PayToVendorNumber) {
+	 	return false
+	}
+
+
+	if p.PricesIncludeTax != nil && (input.PricesIncludeTax == nil || *p.PricesIncludeTax != *input.PricesIncludeTax) {
+	 	return false
+	}
+
+
+	if p.ShipToContact != nil && (input.ShipToContact == nil || *p.ShipToContact != *input.ShipToContact) {
+	 	return false
+	}
+
+
+	if p.ShipToName != nil && (input.ShipToName == nil || *p.ShipToName != *input.ShipToName) {
+	 	return false
+	}
+
+
+	if p.Status != nil && (input.Status == nil || *p.Status != *input.Status) {
+	 	return false
+	}
+
+
+	if p.TotalAmountExcludingTax != nil && (input.TotalAmountExcludingTax == nil || *p.TotalAmountExcludingTax != *input.TotalAmountExcludingTax) {
+	 	return false
+	}
+
+
+	if p.TotalAmountIncludingTax != nil && (input.TotalAmountIncludingTax == nil || *p.TotalAmountIncludingTax != *input.TotalAmountIncludingTax) {
+	 	return false
+	}
+
+
+	if p.TotalTaxAmount != nil && (input.TotalTaxAmount == nil || *p.TotalTaxAmount != *input.TotalTaxAmount) {
+	 	return false
+	}
+
+
+	if p.VendorId != nil && (input.VendorId == nil || *p.VendorId != *input.VendorId) {
+	 	return false
+	}
+
+
+	if p.VendorInvoiceNumber != nil && (input.VendorInvoiceNumber == nil || *p.VendorInvoiceNumber != *input.VendorInvoiceNumber) {
+	 	return false
+	}
+
+
+	if p.VendorName != nil && (input.VendorName == nil || *p.VendorName != *input.VendorName) {
+	 	return false
+	}
+
+
+	if p.VendorNumber != nil && (input.VendorNumber == nil || *p.VendorNumber != *input.VendorNumber) {
+	 	return false
+	}
+
+
+	return true
+}
+

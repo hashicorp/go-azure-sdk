@@ -1,0 +1,40 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type Windows10EndpointProtectionConfigurationLocalSecurityOptionsStandardUserElevationPromptBehavior string
+
+const (
+	Windows10EndpointProtectionConfigurationLocalSecurityOptionsStandardUserElevationPromptBehaviorautomaticallyDenyElevationRequests     Windows10EndpointProtectionConfigurationLocalSecurityOptionsStandardUserElevationPromptBehavior = "AutomaticallyDenyElevationRequests"
+	Windows10EndpointProtectionConfigurationLocalSecurityOptionsStandardUserElevationPromptBehaviornotConfigured                          Windows10EndpointProtectionConfigurationLocalSecurityOptionsStandardUserElevationPromptBehavior = "NotConfigured"
+	Windows10EndpointProtectionConfigurationLocalSecurityOptionsStandardUserElevationPromptBehaviorpromptForCredentials                   Windows10EndpointProtectionConfigurationLocalSecurityOptionsStandardUserElevationPromptBehavior = "PromptForCredentials"
+	Windows10EndpointProtectionConfigurationLocalSecurityOptionsStandardUserElevationPromptBehaviorpromptForCredentialsOnTheSecureDesktop Windows10EndpointProtectionConfigurationLocalSecurityOptionsStandardUserElevationPromptBehavior = "PromptForCredentialsOnTheSecureDesktop"
+)
+
+func PossibleValuesForWindows10EndpointProtectionConfigurationLocalSecurityOptionsStandardUserElevationPromptBehavior() []string {
+	return []string{
+		string(Windows10EndpointProtectionConfigurationLocalSecurityOptionsStandardUserElevationPromptBehaviorautomaticallyDenyElevationRequests),
+		string(Windows10EndpointProtectionConfigurationLocalSecurityOptionsStandardUserElevationPromptBehaviornotConfigured),
+		string(Windows10EndpointProtectionConfigurationLocalSecurityOptionsStandardUserElevationPromptBehaviorpromptForCredentials),
+		string(Windows10EndpointProtectionConfigurationLocalSecurityOptionsStandardUserElevationPromptBehaviorpromptForCredentialsOnTheSecureDesktop),
+	}
+}
+
+func parseWindows10EndpointProtectionConfigurationLocalSecurityOptionsStandardUserElevationPromptBehavior(input string) (*Windows10EndpointProtectionConfigurationLocalSecurityOptionsStandardUserElevationPromptBehavior, error) {
+	vals := map[string]Windows10EndpointProtectionConfigurationLocalSecurityOptionsStandardUserElevationPromptBehavior{
+		"automaticallydenyelevationrequests":     Windows10EndpointProtectionConfigurationLocalSecurityOptionsStandardUserElevationPromptBehaviorautomaticallyDenyElevationRequests,
+		"notconfigured":                          Windows10EndpointProtectionConfigurationLocalSecurityOptionsStandardUserElevationPromptBehaviornotConfigured,
+		"promptforcredentials":                   Windows10EndpointProtectionConfigurationLocalSecurityOptionsStandardUserElevationPromptBehaviorpromptForCredentials,
+		"promptforcredentialsonthesecuredesktop": Windows10EndpointProtectionConfigurationLocalSecurityOptionsStandardUserElevationPromptBehaviorpromptForCredentialsOnTheSecureDesktop,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := Windows10EndpointProtectionConfigurationLocalSecurityOptionsStandardUserElevationPromptBehavior(input)
+	return &out, nil
+}

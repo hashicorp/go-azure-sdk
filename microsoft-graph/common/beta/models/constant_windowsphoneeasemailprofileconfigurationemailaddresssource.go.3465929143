@@ -1,0 +1,40 @@
+package models
+
+import "strings"
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type WindowsPhoneEASEmailProfileConfigurationEmailAddressSource string
+
+const (
+	WindowsPhoneEASEmailProfileConfigurationEmailAddressSourceprimarySmtpAddress WindowsPhoneEASEmailProfileConfigurationEmailAddressSource = "PrimarySmtpAddress"
+	WindowsPhoneEASEmailProfileConfigurationEmailAddressSourceuserPrincipalName WindowsPhoneEASEmailProfileConfigurationEmailAddressSource = "UserPrincipalName"
+)
+
+
+func PossibleValuesForWindowsPhoneEASEmailProfileConfigurationEmailAddressSource() []string {
+	return []string{
+		string(WindowsPhoneEASEmailProfileConfigurationEmailAddressSourceprimarySmtpAddress),
+string(WindowsPhoneEASEmailProfileConfigurationEmailAddressSourceuserPrincipalName),
+	}
+}
+
+
+
+func parseWindowsPhoneEASEmailProfileConfigurationEmailAddressSource(input string) (*WindowsPhoneEASEmailProfileConfigurationEmailAddressSource, error) {
+	vals := map[string]WindowsPhoneEASEmailProfileConfigurationEmailAddressSource{
+		"primarysmtpaddress": WindowsPhoneEASEmailProfileConfigurationEmailAddressSourceprimarySmtpAddress,
+"userprincipalname": WindowsPhoneEASEmailProfileConfigurationEmailAddressSourceuserPrincipalName,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := WindowsPhoneEASEmailProfileConfigurationEmailAddressSource(input)
+	return &out, nil
+}

@@ -1,0 +1,135 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type OnPremisesDirectorySynchronizationFeatureOperationPredicate struct {
+	 BlockCloudObjectTakeoverThroughHardMatchEnabled *bool
+	 BlockSoftMatchEnabled *bool
+	 BypassDirSyncOverridesEnabled *bool
+	 CloudPasswordPolicyForPasswordSyncedUsersEnabled *bool
+	 ConcurrentCredentialUpdateEnabled *bool
+	 ConcurrentOrgIdProvisioningEnabled *bool
+	 DeviceWritebackEnabled *bool
+	 DirectoryExtensionsEnabled *bool
+	 FopeConflictResolutionEnabled *bool
+	 GroupWriteBackEnabled *bool
+	 ODataType *string
+	 PasswordSyncEnabled *bool
+	 PasswordWritebackEnabled *bool
+	 QuarantineUponProxyAddressesConflictEnabled *bool
+	 QuarantineUponUpnConflictEnabled *bool
+	 SoftMatchOnUpnEnabled *bool
+	 SynchronizeUpnForManagedUsersEnabled *bool
+	 UnifiedGroupWritebackEnabled *bool
+	 UserForcePasswordChangeOnLogonEnabled *bool
+	 UserWritebackEnabled *bool
+}
+
+func (p OnPremisesDirectorySynchronizationFeatureOperationPredicate) Matches(input OnPremisesDirectorySynchronizationFeature) bool {
+
+	if p.BlockCloudObjectTakeoverThroughHardMatchEnabled != nil && (input.BlockCloudObjectTakeoverThroughHardMatchEnabled == nil || *p.BlockCloudObjectTakeoverThroughHardMatchEnabled != *input.BlockCloudObjectTakeoverThroughHardMatchEnabled) {
+	 	return false
+	}
+
+
+	if p.BlockSoftMatchEnabled != nil && (input.BlockSoftMatchEnabled == nil || *p.BlockSoftMatchEnabled != *input.BlockSoftMatchEnabled) {
+	 	return false
+	}
+
+
+	if p.BypassDirSyncOverridesEnabled != nil && (input.BypassDirSyncOverridesEnabled == nil || *p.BypassDirSyncOverridesEnabled != *input.BypassDirSyncOverridesEnabled) {
+	 	return false
+	}
+
+
+	if p.CloudPasswordPolicyForPasswordSyncedUsersEnabled != nil && (input.CloudPasswordPolicyForPasswordSyncedUsersEnabled == nil || *p.CloudPasswordPolicyForPasswordSyncedUsersEnabled != *input.CloudPasswordPolicyForPasswordSyncedUsersEnabled) {
+	 	return false
+	}
+
+
+	if p.ConcurrentCredentialUpdateEnabled != nil && (input.ConcurrentCredentialUpdateEnabled == nil || *p.ConcurrentCredentialUpdateEnabled != *input.ConcurrentCredentialUpdateEnabled) {
+	 	return false
+	}
+
+
+	if p.ConcurrentOrgIdProvisioningEnabled != nil && (input.ConcurrentOrgIdProvisioningEnabled == nil || *p.ConcurrentOrgIdProvisioningEnabled != *input.ConcurrentOrgIdProvisioningEnabled) {
+	 	return false
+	}
+
+
+	if p.DeviceWritebackEnabled != nil && (input.DeviceWritebackEnabled == nil || *p.DeviceWritebackEnabled != *input.DeviceWritebackEnabled) {
+	 	return false
+	}
+
+
+	if p.DirectoryExtensionsEnabled != nil && (input.DirectoryExtensionsEnabled == nil || *p.DirectoryExtensionsEnabled != *input.DirectoryExtensionsEnabled) {
+	 	return false
+	}
+
+
+	if p.FopeConflictResolutionEnabled != nil && (input.FopeConflictResolutionEnabled == nil || *p.FopeConflictResolutionEnabled != *input.FopeConflictResolutionEnabled) {
+	 	return false
+	}
+
+
+	if p.GroupWriteBackEnabled != nil && (input.GroupWriteBackEnabled == nil || *p.GroupWriteBackEnabled != *input.GroupWriteBackEnabled) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.PasswordSyncEnabled != nil && (input.PasswordSyncEnabled == nil || *p.PasswordSyncEnabled != *input.PasswordSyncEnabled) {
+	 	return false
+	}
+
+
+	if p.PasswordWritebackEnabled != nil && (input.PasswordWritebackEnabled == nil || *p.PasswordWritebackEnabled != *input.PasswordWritebackEnabled) {
+	 	return false
+	}
+
+
+	if p.QuarantineUponProxyAddressesConflictEnabled != nil && (input.QuarantineUponProxyAddressesConflictEnabled == nil || *p.QuarantineUponProxyAddressesConflictEnabled != *input.QuarantineUponProxyAddressesConflictEnabled) {
+	 	return false
+	}
+
+
+	if p.QuarantineUponUpnConflictEnabled != nil && (input.QuarantineUponUpnConflictEnabled == nil || *p.QuarantineUponUpnConflictEnabled != *input.QuarantineUponUpnConflictEnabled) {
+	 	return false
+	}
+
+
+	if p.SoftMatchOnUpnEnabled != nil && (input.SoftMatchOnUpnEnabled == nil || *p.SoftMatchOnUpnEnabled != *input.SoftMatchOnUpnEnabled) {
+	 	return false
+	}
+
+
+	if p.SynchronizeUpnForManagedUsersEnabled != nil && (input.SynchronizeUpnForManagedUsersEnabled == nil || *p.SynchronizeUpnForManagedUsersEnabled != *input.SynchronizeUpnForManagedUsersEnabled) {
+	 	return false
+	}
+
+
+	if p.UnifiedGroupWritebackEnabled != nil && (input.UnifiedGroupWritebackEnabled == nil || *p.UnifiedGroupWritebackEnabled != *input.UnifiedGroupWritebackEnabled) {
+	 	return false
+	}
+
+
+	if p.UserForcePasswordChangeOnLogonEnabled != nil && (input.UserForcePasswordChangeOnLogonEnabled == nil || *p.UserForcePasswordChangeOnLogonEnabled != *input.UserForcePasswordChangeOnLogonEnabled) {
+	 	return false
+	}
+
+
+	if p.UserWritebackEnabled != nil && (input.UserWritebackEnabled == nil || *p.UserWritebackEnabled != *input.UserWritebackEnabled) {
+	 	return false
+	}
+
+
+	return true
+}
+

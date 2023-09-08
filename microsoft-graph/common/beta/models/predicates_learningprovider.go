@@ -1,0 +1,57 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type LearningProviderOperationPredicate struct {
+	DisplayName                   *string
+	Id                            *string
+	IsCourseActivitySyncEnabled   *bool
+	LoginWebUrl                   *string
+	LongLogoWebUrlForDarkTheme    *string
+	LongLogoWebUrlForLightTheme   *string
+	ODataType                     *string
+	SquareLogoWebUrlForDarkTheme  *string
+	SquareLogoWebUrlForLightTheme *string
+}
+
+func (p LearningProviderOperationPredicate) Matches(input LearningProvider) bool {
+
+	if p.DisplayName != nil && (input.DisplayName == nil || *p.DisplayName != *input.DisplayName) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.IsCourseActivitySyncEnabled != nil && (input.IsCourseActivitySyncEnabled == nil || *p.IsCourseActivitySyncEnabled != *input.IsCourseActivitySyncEnabled) {
+		return false
+	}
+
+	if p.LoginWebUrl != nil && (input.LoginWebUrl == nil || *p.LoginWebUrl != *input.LoginWebUrl) {
+		return false
+	}
+
+	if p.LongLogoWebUrlForDarkTheme != nil && (input.LongLogoWebUrlForDarkTheme == nil || *p.LongLogoWebUrlForDarkTheme != *input.LongLogoWebUrlForDarkTheme) {
+		return false
+	}
+
+	if p.LongLogoWebUrlForLightTheme != nil && (input.LongLogoWebUrlForLightTheme == nil || *p.LongLogoWebUrlForLightTheme != *input.LongLogoWebUrlForLightTheme) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.SquareLogoWebUrlForDarkTheme != nil && (input.SquareLogoWebUrlForDarkTheme == nil || *p.SquareLogoWebUrlForDarkTheme != *input.SquareLogoWebUrlForDarkTheme) {
+		return false
+	}
+
+	if p.SquareLogoWebUrlForLightTheme != nil && (input.SquareLogoWebUrlForLightTheme == nil || *p.SquareLogoWebUrlForLightTheme != *input.SquareLogoWebUrlForLightTheme) {
+		return false
+	}
+
+	return true
+}

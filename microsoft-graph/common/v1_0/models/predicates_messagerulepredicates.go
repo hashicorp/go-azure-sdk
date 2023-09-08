@@ -1,0 +1,102 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type MessageRulePredicatesOperationPredicate struct {
+	HasAttachments         *bool
+	IsApprovalRequest      *bool
+	IsAutomaticForward     *bool
+	IsAutomaticReply       *bool
+	IsEncrypted            *bool
+	IsMeetingRequest       *bool
+	IsMeetingResponse      *bool
+	IsNonDeliveryReport    *bool
+	IsPermissionControlled *bool
+	IsReadReceipt          *bool
+	IsSigned               *bool
+	IsVoicemail            *bool
+	NotSentToMe            *bool
+	ODataType              *string
+	SentCcMe               *bool
+	SentOnlyToMe           *bool
+	SentToMe               *bool
+	SentToOrCcMe           *bool
+}
+
+func (p MessageRulePredicatesOperationPredicate) Matches(input MessageRulePredicates) bool {
+
+	if p.HasAttachments != nil && (input.HasAttachments == nil || *p.HasAttachments != *input.HasAttachments) {
+		return false
+	}
+
+	if p.IsApprovalRequest != nil && (input.IsApprovalRequest == nil || *p.IsApprovalRequest != *input.IsApprovalRequest) {
+		return false
+	}
+
+	if p.IsAutomaticForward != nil && (input.IsAutomaticForward == nil || *p.IsAutomaticForward != *input.IsAutomaticForward) {
+		return false
+	}
+
+	if p.IsAutomaticReply != nil && (input.IsAutomaticReply == nil || *p.IsAutomaticReply != *input.IsAutomaticReply) {
+		return false
+	}
+
+	if p.IsEncrypted != nil && (input.IsEncrypted == nil || *p.IsEncrypted != *input.IsEncrypted) {
+		return false
+	}
+
+	if p.IsMeetingRequest != nil && (input.IsMeetingRequest == nil || *p.IsMeetingRequest != *input.IsMeetingRequest) {
+		return false
+	}
+
+	if p.IsMeetingResponse != nil && (input.IsMeetingResponse == nil || *p.IsMeetingResponse != *input.IsMeetingResponse) {
+		return false
+	}
+
+	if p.IsNonDeliveryReport != nil && (input.IsNonDeliveryReport == nil || *p.IsNonDeliveryReport != *input.IsNonDeliveryReport) {
+		return false
+	}
+
+	if p.IsPermissionControlled != nil && (input.IsPermissionControlled == nil || *p.IsPermissionControlled != *input.IsPermissionControlled) {
+		return false
+	}
+
+	if p.IsReadReceipt != nil && (input.IsReadReceipt == nil || *p.IsReadReceipt != *input.IsReadReceipt) {
+		return false
+	}
+
+	if p.IsSigned != nil && (input.IsSigned == nil || *p.IsSigned != *input.IsSigned) {
+		return false
+	}
+
+	if p.IsVoicemail != nil && (input.IsVoicemail == nil || *p.IsVoicemail != *input.IsVoicemail) {
+		return false
+	}
+
+	if p.NotSentToMe != nil && (input.NotSentToMe == nil || *p.NotSentToMe != *input.NotSentToMe) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.SentCcMe != nil && (input.SentCcMe == nil || *p.SentCcMe != *input.SentCcMe) {
+		return false
+	}
+
+	if p.SentOnlyToMe != nil && (input.SentOnlyToMe == nil || *p.SentOnlyToMe != *input.SentOnlyToMe) {
+		return false
+	}
+
+	if p.SentToMe != nil && (input.SentToMe == nil || *p.SentToMe != *input.SentToMe) {
+		return false
+	}
+
+	if p.SentToOrCcMe != nil && (input.SentToOrCcMe == nil || *p.SentToOrCcMe != *input.SentToOrCcMe) {
+		return false
+	}
+
+	return true
+}

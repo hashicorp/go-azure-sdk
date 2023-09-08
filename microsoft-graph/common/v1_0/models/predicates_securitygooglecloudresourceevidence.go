@@ -1,0 +1,52 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type SecurityGoogleCloudResourceEvidenceOperationPredicate struct {
+	CreatedDateTime          *string
+	Location                 *string
+	ODataType                *string
+	ProjectId                *string
+	ProjectNumber            *int64
+	RemediationStatusDetails *string
+	ResourceName             *string
+	ResourceType             *string
+}
+
+func (p SecurityGoogleCloudResourceEvidenceOperationPredicate) Matches(input SecurityGoogleCloudResourceEvidence) bool {
+
+	if p.CreatedDateTime != nil && (input.CreatedDateTime == nil || *p.CreatedDateTime != *input.CreatedDateTime) {
+		return false
+	}
+
+	if p.Location != nil && (input.Location == nil || *p.Location != *input.Location) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.ProjectId != nil && (input.ProjectId == nil || *p.ProjectId != *input.ProjectId) {
+		return false
+	}
+
+	if p.ProjectNumber != nil && (input.ProjectNumber == nil || *p.ProjectNumber != *input.ProjectNumber) {
+		return false
+	}
+
+	if p.RemediationStatusDetails != nil && (input.RemediationStatusDetails == nil || *p.RemediationStatusDetails != *input.RemediationStatusDetails) {
+		return false
+	}
+
+	if p.ResourceName != nil && (input.ResourceName == nil || *p.ResourceName != *input.ResourceName) {
+		return false
+	}
+
+	if p.ResourceType != nil && (input.ResourceType == nil || *p.ResourceType != *input.ResourceType) {
+		return false
+	}
+
+	return true
+}

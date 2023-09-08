@@ -1,0 +1,37 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type WindowsPhoneEASEmailProfileConfigurationUsernameAADSource string
+
+const (
+	WindowsPhoneEASEmailProfileConfigurationUsernameAADSourceprimarySmtpAddress WindowsPhoneEASEmailProfileConfigurationUsernameAADSource = "PrimarySmtpAddress"
+	WindowsPhoneEASEmailProfileConfigurationUsernameAADSourcesamAccountName     WindowsPhoneEASEmailProfileConfigurationUsernameAADSource = "SamAccountName"
+	WindowsPhoneEASEmailProfileConfigurationUsernameAADSourceuserPrincipalName  WindowsPhoneEASEmailProfileConfigurationUsernameAADSource = "UserPrincipalName"
+)
+
+func PossibleValuesForWindowsPhoneEASEmailProfileConfigurationUsernameAADSource() []string {
+	return []string{
+		string(WindowsPhoneEASEmailProfileConfigurationUsernameAADSourceprimarySmtpAddress),
+		string(WindowsPhoneEASEmailProfileConfigurationUsernameAADSourcesamAccountName),
+		string(WindowsPhoneEASEmailProfileConfigurationUsernameAADSourceuserPrincipalName),
+	}
+}
+
+func parseWindowsPhoneEASEmailProfileConfigurationUsernameAADSource(input string) (*WindowsPhoneEASEmailProfileConfigurationUsernameAADSource, error) {
+	vals := map[string]WindowsPhoneEASEmailProfileConfigurationUsernameAADSource{
+		"primarysmtpaddress": WindowsPhoneEASEmailProfileConfigurationUsernameAADSourceprimarySmtpAddress,
+		"samaccountname":     WindowsPhoneEASEmailProfileConfigurationUsernameAADSourcesamAccountName,
+		"userprincipalname":  WindowsPhoneEASEmailProfileConfigurationUsernameAADSourceuserPrincipalName,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := WindowsPhoneEASEmailProfileConfigurationUsernameAADSource(input)
+	return &out, nil
+}

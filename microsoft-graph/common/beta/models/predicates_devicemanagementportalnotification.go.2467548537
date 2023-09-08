@@ -1,0 +1,51 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type DeviceManagementPortalNotificationOperationPredicate struct {
+	 AlertRecordId *string
+	 AlertRuleId *string
+	 AlertRuleName *string
+	 Id *string
+	 IsPortalNotificationSent *bool
+	 ODataType *string
+}
+
+func (p DeviceManagementPortalNotificationOperationPredicate) Matches(input DeviceManagementPortalNotification) bool {
+
+	if p.AlertRecordId != nil && (input.AlertRecordId == nil || *p.AlertRecordId != *input.AlertRecordId) {
+	 	return false
+	}
+
+
+	if p.AlertRuleId != nil && (input.AlertRuleId == nil || *p.AlertRuleId != *input.AlertRuleId) {
+	 	return false
+	}
+
+
+	if p.AlertRuleName != nil && (input.AlertRuleName == nil || *p.AlertRuleName != *input.AlertRuleName) {
+	 	return false
+	}
+
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+	 	return false
+	}
+
+
+	if p.IsPortalNotificationSent != nil && (input.IsPortalNotificationSent == nil || *p.IsPortalNotificationSent != *input.IsPortalNotificationSent) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	return true
+}
+

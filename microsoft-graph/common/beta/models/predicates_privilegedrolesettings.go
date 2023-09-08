@@ -1,0 +1,67 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type PrivilegedRoleSettingsOperationPredicate struct {
+	ApprovalOnElevation           *bool
+	ElevationDuration             *string
+	Id                            *string
+	IsMfaOnElevationConfigurable  *bool
+	LastGlobalAdmin               *bool
+	MaxElavationDuration          *string
+	MfaOnElevation                *bool
+	MinElevationDuration          *string
+	NotificationToUserOnElevation *bool
+	ODataType                     *string
+	TicketingInfoOnElevation      *bool
+}
+
+func (p PrivilegedRoleSettingsOperationPredicate) Matches(input PrivilegedRoleSettings) bool {
+
+	if p.ApprovalOnElevation != nil && (input.ApprovalOnElevation == nil || *p.ApprovalOnElevation != *input.ApprovalOnElevation) {
+		return false
+	}
+
+	if p.ElevationDuration != nil && (input.ElevationDuration == nil || *p.ElevationDuration != *input.ElevationDuration) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.IsMfaOnElevationConfigurable != nil && (input.IsMfaOnElevationConfigurable == nil || *p.IsMfaOnElevationConfigurable != *input.IsMfaOnElevationConfigurable) {
+		return false
+	}
+
+	if p.LastGlobalAdmin != nil && (input.LastGlobalAdmin == nil || *p.LastGlobalAdmin != *input.LastGlobalAdmin) {
+		return false
+	}
+
+	if p.MaxElavationDuration != nil && (input.MaxElavationDuration == nil || *p.MaxElavationDuration != *input.MaxElavationDuration) {
+		return false
+	}
+
+	if p.MfaOnElevation != nil && (input.MfaOnElevation == nil || *p.MfaOnElevation != *input.MfaOnElevation) {
+		return false
+	}
+
+	if p.MinElevationDuration != nil && (input.MinElevationDuration == nil || *p.MinElevationDuration != *input.MinElevationDuration) {
+		return false
+	}
+
+	if p.NotificationToUserOnElevation != nil && (input.NotificationToUserOnElevation == nil || *p.NotificationToUserOnElevation != *input.NotificationToUserOnElevation) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.TicketingInfoOnElevation != nil && (input.TicketingInfoOnElevation == nil || *p.TicketingInfoOnElevation != *input.TicketingInfoOnElevation) {
+		return false
+	}
+
+	return true
+}

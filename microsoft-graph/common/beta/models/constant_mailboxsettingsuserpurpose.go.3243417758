@@ -1,0 +1,55 @@
+package models
+
+import "strings"
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type MailboxSettingsUserPurpose string
+
+const (
+	MailboxSettingsUserPurposeequipment MailboxSettingsUserPurpose = "Equipment"
+	MailboxSettingsUserPurposelinked MailboxSettingsUserPurpose = "Linked"
+	MailboxSettingsUserPurposeothers MailboxSettingsUserPurpose = "Others"
+	MailboxSettingsUserPurposeroom MailboxSettingsUserPurpose = "Room"
+	MailboxSettingsUserPurposeshared MailboxSettingsUserPurpose = "Shared"
+	MailboxSettingsUserPurposeunknown MailboxSettingsUserPurpose = "Unknown"
+	MailboxSettingsUserPurposeuser MailboxSettingsUserPurpose = "User"
+)
+
+
+func PossibleValuesForMailboxSettingsUserPurpose() []string {
+	return []string{
+		string(MailboxSettingsUserPurposeequipment),
+string(MailboxSettingsUserPurposelinked),
+string(MailboxSettingsUserPurposeothers),
+string(MailboxSettingsUserPurposeroom),
+string(MailboxSettingsUserPurposeshared),
+string(MailboxSettingsUserPurposeunknown),
+string(MailboxSettingsUserPurposeuser),
+	}
+}
+
+
+
+func parseMailboxSettingsUserPurpose(input string) (*MailboxSettingsUserPurpose, error) {
+	vals := map[string]MailboxSettingsUserPurpose{
+		"equipment": MailboxSettingsUserPurposeequipment,
+"linked": MailboxSettingsUserPurposelinked,
+"others": MailboxSettingsUserPurposeothers,
+"room": MailboxSettingsUserPurposeroom,
+"shared": MailboxSettingsUserPurposeshared,
+"unknown": MailboxSettingsUserPurposeunknown,
+"user": MailboxSettingsUserPurposeuser,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := MailboxSettingsUserPurpose(input)
+	return &out, nil
+}

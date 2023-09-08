@@ -1,0 +1,62 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type CustomSecurityAttributeDefinitionOperationPredicate struct {
+	AttributeSet            *string
+	Description             *string
+	Id                      *string
+	IsCollection            *bool
+	IsSearchable            *bool
+	Name                    *string
+	ODataType               *string
+	Status                  *string
+	Type                    *string
+	UsePreDefinedValuesOnly *bool
+}
+
+func (p CustomSecurityAttributeDefinitionOperationPredicate) Matches(input CustomSecurityAttributeDefinition) bool {
+
+	if p.AttributeSet != nil && (input.AttributeSet == nil || *p.AttributeSet != *input.AttributeSet) {
+		return false
+	}
+
+	if p.Description != nil && (input.Description == nil || *p.Description != *input.Description) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.IsCollection != nil && (input.IsCollection == nil || *p.IsCollection != *input.IsCollection) {
+		return false
+	}
+
+	if p.IsSearchable != nil && (input.IsSearchable == nil || *p.IsSearchable != *input.IsSearchable) {
+		return false
+	}
+
+	if p.Name != nil && (input.Name == nil || *p.Name != *input.Name) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.Status != nil && (input.Status == nil || *p.Status != *input.Status) {
+		return false
+	}
+
+	if p.Type != nil && (input.Type == nil || *p.Type != *input.Type) {
+		return false
+	}
+
+	if p.UsePreDefinedValuesOnly != nil && (input.UsePreDefinedValuesOnly == nil || *p.UsePreDefinedValuesOnly != *input.UsePreDefinedValuesOnly) {
+		return false
+	}
+
+	return true
+}

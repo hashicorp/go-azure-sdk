@@ -1,0 +1,115 @@
+package models
+
+import "strings"
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type WindowsManagedDeviceDeviceType string
+
+const (
+	WindowsManagedDeviceDeviceTypeandroid WindowsManagedDeviceDeviceType = "Android"
+	WindowsManagedDeviceDeviceTypeandroidEnterprise WindowsManagedDeviceDeviceType = "AndroidEnterprise"
+	WindowsManagedDeviceDeviceTypeandroidForWork WindowsManagedDeviceDeviceType = "AndroidForWork"
+	WindowsManagedDeviceDeviceTypeandroidnGMS WindowsManagedDeviceDeviceType = "AndroidnGMS"
+	WindowsManagedDeviceDeviceTypeblackberry WindowsManagedDeviceDeviceType = "Blackberry"
+	WindowsManagedDeviceDeviceTypechromeOS WindowsManagedDeviceDeviceType = "ChromeOS"
+	WindowsManagedDeviceDeviceTypecloudPC WindowsManagedDeviceDeviceType = "CloudPC"
+	WindowsManagedDeviceDeviceTypedesktop WindowsManagedDeviceDeviceType = "Desktop"
+	WindowsManagedDeviceDeviceTypeholoLens WindowsManagedDeviceDeviceType = "HoloLens"
+	WindowsManagedDeviceDeviceTypeiPad WindowsManagedDeviceDeviceType = "IPad"
+	WindowsManagedDeviceDeviceTypeiPhone WindowsManagedDeviceDeviceType = "IPhone"
+	WindowsManagedDeviceDeviceTypeiPod WindowsManagedDeviceDeviceType = "IPod"
+	WindowsManagedDeviceDeviceTypeiSocConsumer WindowsManagedDeviceDeviceType = "ISocConsumer"
+	WindowsManagedDeviceDeviceTypelinux WindowsManagedDeviceDeviceType = "Linux"
+	WindowsManagedDeviceDeviceTypemac WindowsManagedDeviceDeviceType = "Mac"
+	WindowsManagedDeviceDeviceTypemacMDM WindowsManagedDeviceDeviceType = "MacMDM"
+	WindowsManagedDeviceDeviceTypenokia WindowsManagedDeviceDeviceType = "Nokia"
+	WindowsManagedDeviceDeviceTypepalm WindowsManagedDeviceDeviceType = "Palm"
+	WindowsManagedDeviceDeviceTypesurfaceHub WindowsManagedDeviceDeviceType = "SurfaceHub"
+	WindowsManagedDeviceDeviceTypeunix WindowsManagedDeviceDeviceType = "Unix"
+	WindowsManagedDeviceDeviceTypeunknown WindowsManagedDeviceDeviceType = "Unknown"
+	WindowsManagedDeviceDeviceTypewinCE WindowsManagedDeviceDeviceType = "WinCE"
+	WindowsManagedDeviceDeviceTypewinEmbedded WindowsManagedDeviceDeviceType = "WinEmbedded"
+	WindowsManagedDeviceDeviceTypewinMO6 WindowsManagedDeviceDeviceType = "WinMO6"
+	WindowsManagedDeviceDeviceTypewindows10x WindowsManagedDeviceDeviceType = "Windows10x"
+	WindowsManagedDeviceDeviceTypewindowsPhone WindowsManagedDeviceDeviceType = "WindowsPhone"
+	WindowsManagedDeviceDeviceTypewindowsRT WindowsManagedDeviceDeviceType = "WindowsRT"
+)
+
+
+func PossibleValuesForWindowsManagedDeviceDeviceType() []string {
+	return []string{
+		string(WindowsManagedDeviceDeviceTypeandroid),
+string(WindowsManagedDeviceDeviceTypeandroidEnterprise),
+string(WindowsManagedDeviceDeviceTypeandroidForWork),
+string(WindowsManagedDeviceDeviceTypeandroidnGMS),
+string(WindowsManagedDeviceDeviceTypeblackberry),
+string(WindowsManagedDeviceDeviceTypechromeOS),
+string(WindowsManagedDeviceDeviceTypecloudPC),
+string(WindowsManagedDeviceDeviceTypedesktop),
+string(WindowsManagedDeviceDeviceTypeholoLens),
+string(WindowsManagedDeviceDeviceTypeiPad),
+string(WindowsManagedDeviceDeviceTypeiPhone),
+string(WindowsManagedDeviceDeviceTypeiPod),
+string(WindowsManagedDeviceDeviceTypeiSocConsumer),
+string(WindowsManagedDeviceDeviceTypelinux),
+string(WindowsManagedDeviceDeviceTypemac),
+string(WindowsManagedDeviceDeviceTypemacMDM),
+string(WindowsManagedDeviceDeviceTypenokia),
+string(WindowsManagedDeviceDeviceTypepalm),
+string(WindowsManagedDeviceDeviceTypesurfaceHub),
+string(WindowsManagedDeviceDeviceTypeunix),
+string(WindowsManagedDeviceDeviceTypeunknown),
+string(WindowsManagedDeviceDeviceTypewinCE),
+string(WindowsManagedDeviceDeviceTypewinEmbedded),
+string(WindowsManagedDeviceDeviceTypewinMO6),
+string(WindowsManagedDeviceDeviceTypewindows10x),
+string(WindowsManagedDeviceDeviceTypewindowsPhone),
+string(WindowsManagedDeviceDeviceTypewindowsRT),
+	}
+}
+
+
+
+func parseWindowsManagedDeviceDeviceType(input string) (*WindowsManagedDeviceDeviceType, error) {
+	vals := map[string]WindowsManagedDeviceDeviceType{
+		"android": WindowsManagedDeviceDeviceTypeandroid,
+"androidenterprise": WindowsManagedDeviceDeviceTypeandroidEnterprise,
+"androidforwork": WindowsManagedDeviceDeviceTypeandroidForWork,
+"androidngms": WindowsManagedDeviceDeviceTypeandroidnGMS,
+"blackberry": WindowsManagedDeviceDeviceTypeblackberry,
+"chromeos": WindowsManagedDeviceDeviceTypechromeOS,
+"cloudpc": WindowsManagedDeviceDeviceTypecloudPC,
+"desktop": WindowsManagedDeviceDeviceTypedesktop,
+"hololens": WindowsManagedDeviceDeviceTypeholoLens,
+"ipad": WindowsManagedDeviceDeviceTypeiPad,
+"iphone": WindowsManagedDeviceDeviceTypeiPhone,
+"ipod": WindowsManagedDeviceDeviceTypeiPod,
+"isocconsumer": WindowsManagedDeviceDeviceTypeiSocConsumer,
+"linux": WindowsManagedDeviceDeviceTypelinux,
+"mac": WindowsManagedDeviceDeviceTypemac,
+"macmdm": WindowsManagedDeviceDeviceTypemacMDM,
+"nokia": WindowsManagedDeviceDeviceTypenokia,
+"palm": WindowsManagedDeviceDeviceTypepalm,
+"surfacehub": WindowsManagedDeviceDeviceTypesurfaceHub,
+"unix": WindowsManagedDeviceDeviceTypeunix,
+"unknown": WindowsManagedDeviceDeviceTypeunknown,
+"wince": WindowsManagedDeviceDeviceTypewinCE,
+"winembedded": WindowsManagedDeviceDeviceTypewinEmbedded,
+"winmo6": WindowsManagedDeviceDeviceTypewinMO6,
+"windows10x": WindowsManagedDeviceDeviceTypewindows10x,
+"windowsphone": WindowsManagedDeviceDeviceTypewindowsPhone,
+"windowsrt": WindowsManagedDeviceDeviceTypewindowsRT,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := WindowsManagedDeviceDeviceType(input)
+	return &out, nil
+}

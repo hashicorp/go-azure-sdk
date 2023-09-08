@@ -1,0 +1,40 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type WindowsInformationProtectionPolicyEnforcementLevel string
+
+const (
+	WindowsInformationProtectionPolicyEnforcementLevelencryptAndAuditOnly   WindowsInformationProtectionPolicyEnforcementLevel = "EncryptAndAuditOnly"
+	WindowsInformationProtectionPolicyEnforcementLevelencryptAuditAndBlock  WindowsInformationProtectionPolicyEnforcementLevel = "EncryptAuditAndBlock"
+	WindowsInformationProtectionPolicyEnforcementLevelencryptAuditAndPrompt WindowsInformationProtectionPolicyEnforcementLevel = "EncryptAuditAndPrompt"
+	WindowsInformationProtectionPolicyEnforcementLevelnoProtection          WindowsInformationProtectionPolicyEnforcementLevel = "NoProtection"
+)
+
+func PossibleValuesForWindowsInformationProtectionPolicyEnforcementLevel() []string {
+	return []string{
+		string(WindowsInformationProtectionPolicyEnforcementLevelencryptAndAuditOnly),
+		string(WindowsInformationProtectionPolicyEnforcementLevelencryptAuditAndBlock),
+		string(WindowsInformationProtectionPolicyEnforcementLevelencryptAuditAndPrompt),
+		string(WindowsInformationProtectionPolicyEnforcementLevelnoProtection),
+	}
+}
+
+func parseWindowsInformationProtectionPolicyEnforcementLevel(input string) (*WindowsInformationProtectionPolicyEnforcementLevel, error) {
+	vals := map[string]WindowsInformationProtectionPolicyEnforcementLevel{
+		"encryptandauditonly":   WindowsInformationProtectionPolicyEnforcementLevelencryptAndAuditOnly,
+		"encryptauditandblock":  WindowsInformationProtectionPolicyEnforcementLevelencryptAuditAndBlock,
+		"encryptauditandprompt": WindowsInformationProtectionPolicyEnforcementLevelencryptAuditAndPrompt,
+		"noprotection":          WindowsInformationProtectionPolicyEnforcementLevelnoProtection,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := WindowsInformationProtectionPolicyEnforcementLevel(input)
+	return &out, nil
+}

@@ -1,0 +1,22 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type DeviceHealthOperationPredicate struct {
+	LastConnectionTime *string
+	ODataType          *string
+}
+
+func (p DeviceHealthOperationPredicate) Matches(input DeviceHealth) bool {
+
+	if p.LastConnectionTime != nil && (input.LastConnectionTime == nil || *p.LastConnectionTime != *input.LastConnectionTime) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	return true
+}

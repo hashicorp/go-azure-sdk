@@ -1,0 +1,33 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type SiteCollectionOperationPredicate struct {
+	 DataLocationCode *string
+	 Hostname *string
+	 ODataType *string
+}
+
+func (p SiteCollectionOperationPredicate) Matches(input SiteCollection) bool {
+
+	if p.DataLocationCode != nil && (input.DataLocationCode == nil || *p.DataLocationCode != *input.DataLocationCode) {
+	 	return false
+	}
+
+
+	if p.Hostname != nil && (input.Hostname == nil || *p.Hostname != *input.Hostname) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	return true
+}
+

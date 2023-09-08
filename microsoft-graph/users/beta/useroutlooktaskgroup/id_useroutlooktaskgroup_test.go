@@ -1,0 +1,222 @@
+package useroutlooktaskgroup
+
+import (
+	"testing"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+var _ resourceids.ResourceId = UserOutlookTaskGroupId{}
+
+func TestNewUserOutlookTaskGroupID(t *testing.T) {
+	id := NewUserOutlookTaskGroupID("userIdValue", "outlookTaskGroupIdValue")
+
+	if id.UserId != "userIdValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userIdValue")
+	}
+
+	if id.OutlookTaskGroupId != "outlookTaskGroupIdValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'OutlookTaskGroupId'", id.OutlookTaskGroupId, "outlookTaskGroupIdValue")
+	}
+}
+
+func TestFormatUserOutlookTaskGroupID(t *testing.T) {
+	actual := NewUserOutlookTaskGroupID("userIdValue", "outlookTaskGroupIdValue").ID()
+	expected := "/users/userIdValue/outlook/taskGroups/outlookTaskGroupIdValue"
+	if actual != expected {
+		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
+	}
+}
+
+func TestParseUserOutlookTaskGroupID(t *testing.T) {
+	testData := []struct {
+		Input    string
+		Error    bool
+		Expected *UserOutlookTaskGroupId
+	}{
+		{
+			// Incomplete URI
+			Input: "",
+			Error: true,
+		},
+		{
+			// Incomplete URI
+			Input: "/users",
+			Error: true,
+		},
+		{
+			// Incomplete URI
+			Input: "/users/userIdValue",
+			Error: true,
+		},
+		{
+			// Incomplete URI
+			Input: "/users/userIdValue/outlook",
+			Error: true,
+		},
+		{
+			// Incomplete URI
+			Input: "/users/userIdValue/outlook/taskGroups",
+			Error: true,
+		},
+		{
+			// Valid URI
+			Input: "/users/userIdValue/outlook/taskGroups/outlookTaskGroupIdValue",
+			Expected: &UserOutlookTaskGroupId{
+				UserId:             "userIdValue",
+				OutlookTaskGroupId: "outlookTaskGroupIdValue",
+			},
+		},
+		{
+			// Invalid (Valid Uri with Extra segment)
+			Input: "/users/userIdValue/outlook/taskGroups/outlookTaskGroupIdValue/extra",
+			Error: true,
+		},
+	}
+	for _, v := range testData {
+		t.Logf("[DEBUG] Testing %q", v.Input)
+
+		actual, err := ParseUserOutlookTaskGroupID(v.Input)
+		if err != nil {
+			if v.Error {
+				continue
+			}
+
+			t.Fatalf("Expect a value but got an error: %+v", err)
+		}
+		if v.Error {
+			t.Fatal("Expect an error but didn't get one")
+		}
+
+		if actual.UserId != v.Expected.UserId {
+			t.Fatalf("Expected %q but got %q for UserId", v.Expected.UserId, actual.UserId)
+		}
+
+		if actual.OutlookTaskGroupId != v.Expected.OutlookTaskGroupId {
+			t.Fatalf("Expected %q but got %q for OutlookTaskGroupId", v.Expected.OutlookTaskGroupId, actual.OutlookTaskGroupId)
+		}
+
+	}
+}
+
+func TestParseUserOutlookTaskGroupIDInsensitively(t *testing.T) {
+	testData := []struct {
+		Input    string
+		Error    bool
+		Expected *UserOutlookTaskGroupId
+	}{
+		{
+			// Incomplete URI
+			Input: "",
+			Error: true,
+		},
+		{
+			// Incomplete URI
+			Input: "/users",
+			Error: true,
+		},
+		{
+			// Incomplete URI (mIxEd CaSe since this is insensitive)
+			Input: "/uSeRs",
+			Error: true,
+		},
+		{
+			// Incomplete URI
+			Input: "/users/userIdValue",
+			Error: true,
+		},
+		{
+			// Incomplete URI (mIxEd CaSe since this is insensitive)
+			Input: "/uSeRs/uSeRiDvAlUe",
+			Error: true,
+		},
+		{
+			// Incomplete URI
+			Input: "/users/userIdValue/outlook",
+			Error: true,
+		},
+		{
+			// Incomplete URI (mIxEd CaSe since this is insensitive)
+			Input: "/uSeRs/uSeRiDvAlUe/oUtLoOk",
+			Error: true,
+		},
+		{
+			// Incomplete URI
+			Input: "/users/userIdValue/outlook/taskGroups",
+			Error: true,
+		},
+		{
+			// Incomplete URI (mIxEd CaSe since this is insensitive)
+			Input: "/uSeRs/uSeRiDvAlUe/oUtLoOk/tAsKgRoUpS",
+			Error: true,
+		},
+		{
+			// Valid URI
+			Input: "/users/userIdValue/outlook/taskGroups/outlookTaskGroupIdValue",
+			Expected: &UserOutlookTaskGroupId{
+				UserId:             "userIdValue",
+				OutlookTaskGroupId: "outlookTaskGroupIdValue",
+			},
+		},
+		{
+			// Invalid (Valid Uri with Extra segment)
+			Input: "/users/userIdValue/outlook/taskGroups/outlookTaskGroupIdValue/extra",
+			Error: true,
+		},
+		{
+			// Valid URI (mIxEd CaSe since this is insensitive)
+			Input: "/uSeRs/uSeRiDvAlUe/oUtLoOk/tAsKgRoUpS/oUtLoOkTaSkGrOuPiDvAlUe",
+			Expected: &UserOutlookTaskGroupId{
+				UserId:             "uSeRiDvAlUe",
+				OutlookTaskGroupId: "oUtLoOkTaSkGrOuPiDvAlUe",
+			},
+		},
+		{
+			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
+			Input: "/uSeRs/uSeRiDvAlUe/oUtLoOk/tAsKgRoUpS/oUtLoOkTaSkGrOuPiDvAlUe/extra",
+			Error: true,
+		},
+	}
+	for _, v := range testData {
+		t.Logf("[DEBUG] Testing %q", v.Input)
+
+		actual, err := ParseUserOutlookTaskGroupIDInsensitively(v.Input)
+		if err != nil {
+			if v.Error {
+				continue
+			}
+
+			t.Fatalf("Expect a value but got an error: %+v", err)
+		}
+		if v.Error {
+			t.Fatal("Expect an error but didn't get one")
+		}
+
+		if actual.UserId != v.Expected.UserId {
+			t.Fatalf("Expected %q but got %q for UserId", v.Expected.UserId, actual.UserId)
+		}
+
+		if actual.OutlookTaskGroupId != v.Expected.OutlookTaskGroupId {
+			t.Fatalf("Expected %q but got %q for OutlookTaskGroupId", v.Expected.OutlookTaskGroupId, actual.OutlookTaskGroupId)
+		}
+
+	}
+}
+
+func TestSegmentsForUserOutlookTaskGroupId(t *testing.T) {
+	segments := UserOutlookTaskGroupId{}.Segments()
+	if len(segments) == 0 {
+		t.Fatalf("UserOutlookTaskGroupId has no segments")
+	}
+
+	uniqueNames := make(map[string]struct{}, 0)
+	for _, segment := range segments {
+		uniqueNames[segment.Name] = struct{}{}
+	}
+	if len(uniqueNames) != len(segments) {
+		t.Fatalf("Expected the Segments to be unique but got %q unique segments and %d total segments", len(uniqueNames), len(segments))
+	}
+}

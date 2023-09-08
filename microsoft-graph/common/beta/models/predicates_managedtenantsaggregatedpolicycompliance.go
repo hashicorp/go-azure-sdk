@@ -1,0 +1,77 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type ManagedTenantsAggregatedPolicyComplianceOperationPredicate struct {
+	CompliancePolicyId          *string
+	CompliancePolicyName        *string
+	CompliancePolicyPlatform    *string
+	CompliancePolicyType        *string
+	Id                          *string
+	LastRefreshedDateTime       *string
+	NumberOfCompliantDevices    *int64
+	NumberOfErrorDevices        *int64
+	NumberOfNonCompliantDevices *int64
+	ODataType                   *string
+	PolicyModifiedDateTime      *string
+	TenantDisplayName           *string
+	TenantId                    *string
+}
+
+func (p ManagedTenantsAggregatedPolicyComplianceOperationPredicate) Matches(input ManagedTenantsAggregatedPolicyCompliance) bool {
+
+	if p.CompliancePolicyId != nil && (input.CompliancePolicyId == nil || *p.CompliancePolicyId != *input.CompliancePolicyId) {
+		return false
+	}
+
+	if p.CompliancePolicyName != nil && (input.CompliancePolicyName == nil || *p.CompliancePolicyName != *input.CompliancePolicyName) {
+		return false
+	}
+
+	if p.CompliancePolicyPlatform != nil && (input.CompliancePolicyPlatform == nil || *p.CompliancePolicyPlatform != *input.CompliancePolicyPlatform) {
+		return false
+	}
+
+	if p.CompliancePolicyType != nil && (input.CompliancePolicyType == nil || *p.CompliancePolicyType != *input.CompliancePolicyType) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.LastRefreshedDateTime != nil && (input.LastRefreshedDateTime == nil || *p.LastRefreshedDateTime != *input.LastRefreshedDateTime) {
+		return false
+	}
+
+	if p.NumberOfCompliantDevices != nil && (input.NumberOfCompliantDevices == nil || *p.NumberOfCompliantDevices != *input.NumberOfCompliantDevices) {
+		return false
+	}
+
+	if p.NumberOfErrorDevices != nil && (input.NumberOfErrorDevices == nil || *p.NumberOfErrorDevices != *input.NumberOfErrorDevices) {
+		return false
+	}
+
+	if p.NumberOfNonCompliantDevices != nil && (input.NumberOfNonCompliantDevices == nil || *p.NumberOfNonCompliantDevices != *input.NumberOfNonCompliantDevices) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.PolicyModifiedDateTime != nil && (input.PolicyModifiedDateTime == nil || *p.PolicyModifiedDateTime != *input.PolicyModifiedDateTime) {
+		return false
+	}
+
+	if p.TenantDisplayName != nil && (input.TenantDisplayName == nil || *p.TenantDisplayName != *input.TenantDisplayName) {
+		return false
+	}
+
+	if p.TenantId != nil && (input.TenantId == nil || *p.TenantId != *input.TenantId) {
+		return false
+	}
+
+	return true
+}

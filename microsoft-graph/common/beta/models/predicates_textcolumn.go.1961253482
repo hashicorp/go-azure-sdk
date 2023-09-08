@@ -1,0 +1,51 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type TextColumnOperationPredicate struct {
+	 AllowMultipleLines *bool
+	 AppendChangesToExistingText *bool
+	 LinesForEditing *int64
+	 MaxLength *int64
+	 ODataType *string
+	 TextType *string
+}
+
+func (p TextColumnOperationPredicate) Matches(input TextColumn) bool {
+
+	if p.AllowMultipleLines != nil && (input.AllowMultipleLines == nil || *p.AllowMultipleLines != *input.AllowMultipleLines) {
+	 	return false
+	}
+
+
+	if p.AppendChangesToExistingText != nil && (input.AppendChangesToExistingText == nil || *p.AppendChangesToExistingText != *input.AppendChangesToExistingText) {
+	 	return false
+	}
+
+
+	if p.LinesForEditing != nil && (input.LinesForEditing == nil || *p.LinesForEditing != *input.LinesForEditing) {
+	 	return false
+	}
+
+
+	if p.MaxLength != nil && (input.MaxLength == nil || *p.MaxLength != *input.MaxLength) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.TextType != nil && (input.TextType == nil || *p.TextType != *input.TextType) {
+	 	return false
+	}
+
+
+	return true
+}
+

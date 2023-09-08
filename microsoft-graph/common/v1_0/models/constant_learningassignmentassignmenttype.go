@@ -1,0 +1,34 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type LearningAssignmentAssignmentType string
+
+const (
+	LearningAssignmentAssignmentTyperecommended LearningAssignmentAssignmentType = "Recommended"
+	LearningAssignmentAssignmentTyperequired    LearningAssignmentAssignmentType = "Required"
+)
+
+func PossibleValuesForLearningAssignmentAssignmentType() []string {
+	return []string{
+		string(LearningAssignmentAssignmentTyperecommended),
+		string(LearningAssignmentAssignmentTyperequired),
+	}
+}
+
+func parseLearningAssignmentAssignmentType(input string) (*LearningAssignmentAssignmentType, error) {
+	vals := map[string]LearningAssignmentAssignmentType{
+		"recommended": LearningAssignmentAssignmentTyperecommended,
+		"required":    LearningAssignmentAssignmentTyperequired,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := LearningAssignmentAssignmentType(input)
+	return &out, nil
+}

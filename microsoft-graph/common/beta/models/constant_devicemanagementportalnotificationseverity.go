@@ -1,0 +1,40 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type DeviceManagementPortalNotificationSeverity string
+
+const (
+	DeviceManagementPortalNotificationSeveritycritical      DeviceManagementPortalNotificationSeverity = "Critical"
+	DeviceManagementPortalNotificationSeverityinformational DeviceManagementPortalNotificationSeverity = "Informational"
+	DeviceManagementPortalNotificationSeverityunknown       DeviceManagementPortalNotificationSeverity = "Unknown"
+	DeviceManagementPortalNotificationSeveritywarning       DeviceManagementPortalNotificationSeverity = "Warning"
+)
+
+func PossibleValuesForDeviceManagementPortalNotificationSeverity() []string {
+	return []string{
+		string(DeviceManagementPortalNotificationSeveritycritical),
+		string(DeviceManagementPortalNotificationSeverityinformational),
+		string(DeviceManagementPortalNotificationSeverityunknown),
+		string(DeviceManagementPortalNotificationSeveritywarning),
+	}
+}
+
+func parseDeviceManagementPortalNotificationSeverity(input string) (*DeviceManagementPortalNotificationSeverity, error) {
+	vals := map[string]DeviceManagementPortalNotificationSeverity{
+		"critical":      DeviceManagementPortalNotificationSeveritycritical,
+		"informational": DeviceManagementPortalNotificationSeverityinformational,
+		"unknown":       DeviceManagementPortalNotificationSeverityunknown,
+		"warning":       DeviceManagementPortalNotificationSeveritywarning,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DeviceManagementPortalNotificationSeverity(input)
+	return &out, nil
+}

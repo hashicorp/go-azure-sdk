@@ -1,0 +1,37 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type ApprovalSettingsOperationPredicate struct {
+	ApprovalMode                     *string
+	IsApprovalRequired               *bool
+	IsApprovalRequiredForExtension   *bool
+	IsRequestorJustificationRequired *bool
+	ODataType                        *string
+}
+
+func (p ApprovalSettingsOperationPredicate) Matches(input ApprovalSettings) bool {
+
+	if p.ApprovalMode != nil && (input.ApprovalMode == nil || *p.ApprovalMode != *input.ApprovalMode) {
+		return false
+	}
+
+	if p.IsApprovalRequired != nil && (input.IsApprovalRequired == nil || *p.IsApprovalRequired != *input.IsApprovalRequired) {
+		return false
+	}
+
+	if p.IsApprovalRequiredForExtension != nil && (input.IsApprovalRequiredForExtension == nil || *p.IsApprovalRequiredForExtension != *input.IsApprovalRequiredForExtension) {
+		return false
+	}
+
+	if p.IsRequestorJustificationRequired != nil && (input.IsRequestorJustificationRequired == nil || *p.IsRequestorJustificationRequired != *input.IsRequestorJustificationRequired) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	return true
+}

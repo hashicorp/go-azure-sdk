@@ -1,0 +1,111 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type OnPremisesPublishingOperationPredicate struct {
+	 AlternateUrl *string
+	 ApplicationServerTimeout *string
+	 ApplicationType *string
+	 ExternalUrl *string
+	 InternalUrl *string
+	 IsAccessibleViaZTNAClient *bool
+	 IsBackendCertificateValidationEnabled *bool
+	 IsHttpOnlyCookieEnabled *bool
+	 IsOnPremPublishingEnabled *bool
+	 IsPersistentCookieEnabled *bool
+	 IsSecureCookieEnabled *bool
+	 IsStateSessionEnabled *bool
+	 IsTranslateHostHeaderEnabled *bool
+	 IsTranslateLinksInBodyEnabled *bool
+	 ODataType *string
+	 UseAlternateUrlForTranslationAndRedirect *bool
+}
+
+func (p OnPremisesPublishingOperationPredicate) Matches(input OnPremisesPublishing) bool {
+
+	if p.AlternateUrl != nil && (input.AlternateUrl == nil || *p.AlternateUrl != *input.AlternateUrl) {
+	 	return false
+	}
+
+
+	if p.ApplicationServerTimeout != nil && (input.ApplicationServerTimeout == nil || *p.ApplicationServerTimeout != *input.ApplicationServerTimeout) {
+	 	return false
+	}
+
+
+	if p.ApplicationType != nil && (input.ApplicationType == nil || *p.ApplicationType != *input.ApplicationType) {
+	 	return false
+	}
+
+
+	if p.ExternalUrl != nil && (input.ExternalUrl == nil || *p.ExternalUrl != *input.ExternalUrl) {
+	 	return false
+	}
+
+
+	if p.InternalUrl != nil && (input.InternalUrl == nil || *p.InternalUrl != *input.InternalUrl) {
+	 	return false
+	}
+
+
+	if p.IsAccessibleViaZTNAClient != nil && (input.IsAccessibleViaZTNAClient == nil || *p.IsAccessibleViaZTNAClient != *input.IsAccessibleViaZTNAClient) {
+	 	return false
+	}
+
+
+	if p.IsBackendCertificateValidationEnabled != nil && (input.IsBackendCertificateValidationEnabled == nil || *p.IsBackendCertificateValidationEnabled != *input.IsBackendCertificateValidationEnabled) {
+	 	return false
+	}
+
+
+	if p.IsHttpOnlyCookieEnabled != nil && (input.IsHttpOnlyCookieEnabled == nil || *p.IsHttpOnlyCookieEnabled != *input.IsHttpOnlyCookieEnabled) {
+	 	return false
+	}
+
+
+	if p.IsOnPremPublishingEnabled != nil && (input.IsOnPremPublishingEnabled == nil || *p.IsOnPremPublishingEnabled != *input.IsOnPremPublishingEnabled) {
+	 	return false
+	}
+
+
+	if p.IsPersistentCookieEnabled != nil && (input.IsPersistentCookieEnabled == nil || *p.IsPersistentCookieEnabled != *input.IsPersistentCookieEnabled) {
+	 	return false
+	}
+
+
+	if p.IsSecureCookieEnabled != nil && (input.IsSecureCookieEnabled == nil || *p.IsSecureCookieEnabled != *input.IsSecureCookieEnabled) {
+	 	return false
+	}
+
+
+	if p.IsStateSessionEnabled != nil && (input.IsStateSessionEnabled == nil || *p.IsStateSessionEnabled != *input.IsStateSessionEnabled) {
+	 	return false
+	}
+
+
+	if p.IsTranslateHostHeaderEnabled != nil && (input.IsTranslateHostHeaderEnabled == nil || *p.IsTranslateHostHeaderEnabled != *input.IsTranslateHostHeaderEnabled) {
+	 	return false
+	}
+
+
+	if p.IsTranslateLinksInBodyEnabled != nil && (input.IsTranslateLinksInBodyEnabled == nil || *p.IsTranslateLinksInBodyEnabled != *input.IsTranslateLinksInBodyEnabled) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.UseAlternateUrlForTranslationAndRedirect != nil && (input.UseAlternateUrlForTranslationAndRedirect == nil || *p.UseAlternateUrlForTranslationAndRedirect != *input.UseAlternateUrlForTranslationAndRedirect) {
+	 	return false
+	}
+
+
+	return true
+}
+

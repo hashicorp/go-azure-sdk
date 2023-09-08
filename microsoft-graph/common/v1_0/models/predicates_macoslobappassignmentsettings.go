@@ -1,0 +1,22 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type MacOsLobAppAssignmentSettingsOperationPredicate struct {
+	ODataType                *string
+	UninstallOnDeviceRemoval *bool
+}
+
+func (p MacOsLobAppAssignmentSettingsOperationPredicate) Matches(input MacOsLobAppAssignmentSettings) bool {
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.UninstallOnDeviceRemoval != nil && (input.UninstallOnDeviceRemoval == nil || *p.UninstallOnDeviceRemoval != *input.UninstallOnDeviceRemoval) {
+		return false
+	}
+
+	return true
+}

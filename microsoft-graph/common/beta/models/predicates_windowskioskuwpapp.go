@@ -1,0 +1,42 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type WindowsKioskUWPAppOperationPredicate struct {
+	AppId          *string
+	AppUserModelId *string
+	AutoLaunch     *bool
+	ContainedAppId *string
+	Name           *string
+	ODataType      *string
+}
+
+func (p WindowsKioskUWPAppOperationPredicate) Matches(input WindowsKioskUWPApp) bool {
+
+	if p.AppId != nil && (input.AppId == nil || *p.AppId != *input.AppId) {
+		return false
+	}
+
+	if p.AppUserModelId != nil && (input.AppUserModelId == nil || *p.AppUserModelId != *input.AppUserModelId) {
+		return false
+	}
+
+	if p.AutoLaunch != nil && (input.AutoLaunch == nil || *p.AutoLaunch != *input.AutoLaunch) {
+		return false
+	}
+
+	if p.ContainedAppId != nil && (input.ContainedAppId == nil || *p.ContainedAppId != *input.ContainedAppId) {
+		return false
+	}
+
+	if p.Name != nil && (input.Name == nil || *p.Name != *input.Name) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	return true
+}

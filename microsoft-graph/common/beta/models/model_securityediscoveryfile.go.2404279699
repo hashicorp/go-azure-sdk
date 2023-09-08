@@ -1,0 +1,46 @@
+package models
+
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/edgezones"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/identity"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/systemdata"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/zones"
+)
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type SecurityEdiscoveryFile struct {
+	Content *string `json:"content,omitempty"`
+	Custodian *SecurityEdiscoveryCustodian `json:"custodian,omitempty"`
+	DateTime *string `json:"dateTime,omitempty"`
+	Extension *string `json:"extension,omitempty"`
+	ExtractedTextContent *string `json:"extractedTextContent,omitempty"`
+	Id *string `json:"id,omitempty"`
+	MediaType *string `json:"mediaType,omitempty"`
+	Name *string `json:"name,omitempty"`
+	ODataType *string `json:"@odata.type,omitempty"`
+	OtherProperties *SecurityStringValueDictionary `json:"otherProperties,omitempty"`
+	ProcessingStatus *SecurityEdiscoveryFileProcessingStatus `json:"processingStatus,omitempty"`
+	SenderOrAuthors *[]string `json:"senderOrAuthors,omitempty"`
+	Size *int64 `json:"size,omitempty"`
+	SourceType *SecurityEdiscoveryFileSourceType `json:"sourceType,omitempty"`
+	SubjectTitle *string `json:"subjectTitle,omitempty"`
+	Tags *[]SecurityEdiscoveryReviewTag `json:"tags,omitempty"`
+}
+
+
+
+
+
+
+

@@ -1,0 +1,27 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type MacOSIncludedAppOperationPredicate struct {
+	BundleId      *string
+	BundleVersion *string
+	ODataType     *string
+}
+
+func (p MacOSIncludedAppOperationPredicate) Matches(input MacOSIncludedApp) bool {
+
+	if p.BundleId != nil && (input.BundleId == nil || *p.BundleId != *input.BundleId) {
+		return false
+	}
+
+	if p.BundleVersion != nil && (input.BundleVersion == nil || *p.BundleVersion != *input.BundleVersion) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	return true
+}

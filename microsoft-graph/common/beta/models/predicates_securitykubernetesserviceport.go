@@ -1,0 +1,42 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type SecurityKubernetesServicePortOperationPredicate struct {
+	AppProtocol *string
+	Name        *string
+	NodePort    *int64
+	ODataType   *string
+	Port        *int64
+	TargetPort  *string
+}
+
+func (p SecurityKubernetesServicePortOperationPredicate) Matches(input SecurityKubernetesServicePort) bool {
+
+	if p.AppProtocol != nil && (input.AppProtocol == nil || *p.AppProtocol != *input.AppProtocol) {
+		return false
+	}
+
+	if p.Name != nil && (input.Name == nil || *p.Name != *input.Name) {
+		return false
+	}
+
+	if p.NodePort != nil && (input.NodePort == nil || *p.NodePort != *input.NodePort) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.Port != nil && (input.Port == nil || *p.Port != *input.Port) {
+		return false
+	}
+
+	if p.TargetPort != nil && (input.TargetPort == nil || *p.TargetPort != *input.TargetPort) {
+		return false
+	}
+
+	return true
+}

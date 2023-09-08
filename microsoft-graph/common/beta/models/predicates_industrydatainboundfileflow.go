@@ -1,0 +1,37 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type IndustryDataInboundFileFlowOperationPredicate struct {
+	DisplayName        *string
+	EffectiveDateTime  *string
+	ExpirationDateTime *string
+	Id                 *string
+	ODataType          *string
+}
+
+func (p IndustryDataInboundFileFlowOperationPredicate) Matches(input IndustryDataInboundFileFlow) bool {
+
+	if p.DisplayName != nil && (input.DisplayName == nil || *p.DisplayName != *input.DisplayName) {
+		return false
+	}
+
+	if p.EffectiveDateTime != nil && (input.EffectiveDateTime == nil || *p.EffectiveDateTime != *input.EffectiveDateTime) {
+		return false
+	}
+
+	if p.ExpirationDateTime != nil && (input.ExpirationDateTime == nil || *p.ExpirationDateTime != *input.ExpirationDateTime) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	return true
+}

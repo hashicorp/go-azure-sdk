@@ -1,0 +1,32 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type DocumentSetOperationPredicate struct {
+	ODataType                   *string
+	PropagateWelcomePageChanges *bool
+	ShouldPrefixNameToFile      *bool
+	WelcomePageUrl              *string
+}
+
+func (p DocumentSetOperationPredicate) Matches(input DocumentSet) bool {
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.PropagateWelcomePageChanges != nil && (input.PropagateWelcomePageChanges == nil || *p.PropagateWelcomePageChanges != *input.PropagateWelcomePageChanges) {
+		return false
+	}
+
+	if p.ShouldPrefixNameToFile != nil && (input.ShouldPrefixNameToFile == nil || *p.ShouldPrefixNameToFile != *input.ShouldPrefixNameToFile) {
+		return false
+	}
+
+	if p.WelcomePageUrl != nil && (input.WelcomePageUrl == nil || *p.WelcomePageUrl != *input.WelcomePageUrl) {
+		return false
+	}
+
+	return true
+}

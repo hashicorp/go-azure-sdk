@@ -1,0 +1,92 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type WindowsPhone81VpnConfigurationOperationPredicate struct {
+	ApplyOnlyToWindows81    *bool
+	BypassVpnOnCompanyWifi  *bool
+	BypassVpnOnHomeWifi     *bool
+	ConnectionName          *string
+	CreatedDateTime         *string
+	CustomXml               *string
+	Description             *string
+	DisplayName             *string
+	EnableSplitTunneling    *bool
+	Id                      *string
+	LastModifiedDateTime    *string
+	LoginGroupOrDomain      *string
+	ODataType               *string
+	RememberUserCredentials *bool
+	SupportsScopeTags       *bool
+	Version                 *int64
+}
+
+func (p WindowsPhone81VpnConfigurationOperationPredicate) Matches(input WindowsPhone81VpnConfiguration) bool {
+
+	if p.ApplyOnlyToWindows81 != nil && (input.ApplyOnlyToWindows81 == nil || *p.ApplyOnlyToWindows81 != *input.ApplyOnlyToWindows81) {
+		return false
+	}
+
+	if p.BypassVpnOnCompanyWifi != nil && (input.BypassVpnOnCompanyWifi == nil || *p.BypassVpnOnCompanyWifi != *input.BypassVpnOnCompanyWifi) {
+		return false
+	}
+
+	if p.BypassVpnOnHomeWifi != nil && (input.BypassVpnOnHomeWifi == nil || *p.BypassVpnOnHomeWifi != *input.BypassVpnOnHomeWifi) {
+		return false
+	}
+
+	if p.ConnectionName != nil && (input.ConnectionName == nil || *p.ConnectionName != *input.ConnectionName) {
+		return false
+	}
+
+	if p.CreatedDateTime != nil && (input.CreatedDateTime == nil || *p.CreatedDateTime != *input.CreatedDateTime) {
+		return false
+	}
+
+	if p.CustomXml != nil && (input.CustomXml == nil || *p.CustomXml != *input.CustomXml) {
+		return false
+	}
+
+	if p.Description != nil && (input.Description == nil || *p.Description != *input.Description) {
+		return false
+	}
+
+	if p.DisplayName != nil && (input.DisplayName == nil || *p.DisplayName != *input.DisplayName) {
+		return false
+	}
+
+	if p.EnableSplitTunneling != nil && (input.EnableSplitTunneling == nil || *p.EnableSplitTunneling != *input.EnableSplitTunneling) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.LastModifiedDateTime != nil && (input.LastModifiedDateTime == nil || *p.LastModifiedDateTime != *input.LastModifiedDateTime) {
+		return false
+	}
+
+	if p.LoginGroupOrDomain != nil && (input.LoginGroupOrDomain == nil || *p.LoginGroupOrDomain != *input.LoginGroupOrDomain) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.RememberUserCredentials != nil && (input.RememberUserCredentials == nil || *p.RememberUserCredentials != *input.RememberUserCredentials) {
+		return false
+	}
+
+	if p.SupportsScopeTags != nil && (input.SupportsScopeTags == nil || *p.SupportsScopeTags != *input.SupportsScopeTags) {
+		return false
+	}
+
+	if p.Version != nil && (input.Version == nil || *p.Version != *input.Version) {
+		return false
+	}
+
+	return true
+}

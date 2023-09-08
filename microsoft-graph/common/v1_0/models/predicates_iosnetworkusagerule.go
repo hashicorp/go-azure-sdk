@@ -1,0 +1,27 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type IosNetworkUsageRuleOperationPredicate struct {
+	CellularDataBlockWhenRoaming *bool
+	CellularDataBlocked          *bool
+	ODataType                    *string
+}
+
+func (p IosNetworkUsageRuleOperationPredicate) Matches(input IosNetworkUsageRule) bool {
+
+	if p.CellularDataBlockWhenRoaming != nil && (input.CellularDataBlockWhenRoaming == nil || *p.CellularDataBlockWhenRoaming != *input.CellularDataBlockWhenRoaming) {
+		return false
+	}
+
+	if p.CellularDataBlocked != nil && (input.CellularDataBlocked == nil || *p.CellularDataBlocked != *input.CellularDataBlocked) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	return true
+}

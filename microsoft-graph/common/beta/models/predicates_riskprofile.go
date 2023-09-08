@@ -1,0 +1,27 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type RiskProfileOperationPredicate struct {
+	HumanCount    *int64
+	NonHumanCount *int64
+	ODataType     *string
+}
+
+func (p RiskProfileOperationPredicate) Matches(input RiskProfile) bool {
+
+	if p.HumanCount != nil && (input.HumanCount == nil || *p.HumanCount != *input.HumanCount) {
+		return false
+	}
+
+	if p.NonHumanCount != nil && (input.NonHumanCount == nil || *p.NonHumanCount != *input.NonHumanCount) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	return true
+}

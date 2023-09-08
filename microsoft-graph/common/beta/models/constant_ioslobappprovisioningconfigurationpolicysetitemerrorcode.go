@@ -1,0 +1,40 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type IosLobAppProvisioningConfigurationPolicySetItemErrorCode string
+
+const (
+	IosLobAppProvisioningConfigurationPolicySetItemErrorCodedeleted      IosLobAppProvisioningConfigurationPolicySetItemErrorCode = "Deleted"
+	IosLobAppProvisioningConfigurationPolicySetItemErrorCodenoError      IosLobAppProvisioningConfigurationPolicySetItemErrorCode = "NoError"
+	IosLobAppProvisioningConfigurationPolicySetItemErrorCodenotFound     IosLobAppProvisioningConfigurationPolicySetItemErrorCode = "NotFound"
+	IosLobAppProvisioningConfigurationPolicySetItemErrorCodeunauthorized IosLobAppProvisioningConfigurationPolicySetItemErrorCode = "Unauthorized"
+)
+
+func PossibleValuesForIosLobAppProvisioningConfigurationPolicySetItemErrorCode() []string {
+	return []string{
+		string(IosLobAppProvisioningConfigurationPolicySetItemErrorCodedeleted),
+		string(IosLobAppProvisioningConfigurationPolicySetItemErrorCodenoError),
+		string(IosLobAppProvisioningConfigurationPolicySetItemErrorCodenotFound),
+		string(IosLobAppProvisioningConfigurationPolicySetItemErrorCodeunauthorized),
+	}
+}
+
+func parseIosLobAppProvisioningConfigurationPolicySetItemErrorCode(input string) (*IosLobAppProvisioningConfigurationPolicySetItemErrorCode, error) {
+	vals := map[string]IosLobAppProvisioningConfigurationPolicySetItemErrorCode{
+		"deleted":      IosLobAppProvisioningConfigurationPolicySetItemErrorCodedeleted,
+		"noerror":      IosLobAppProvisioningConfigurationPolicySetItemErrorCodenoError,
+		"notfound":     IosLobAppProvisioningConfigurationPolicySetItemErrorCodenotFound,
+		"unauthorized": IosLobAppProvisioningConfigurationPolicySetItemErrorCodeunauthorized,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := IosLobAppProvisioningConfigurationPolicySetItemErrorCode(input)
+	return &out, nil
+}

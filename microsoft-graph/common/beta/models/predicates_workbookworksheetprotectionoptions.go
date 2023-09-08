@@ -1,0 +1,72 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type WorkbookWorksheetProtectionOptionsOperationPredicate struct {
+	AllowAutoFilter       *bool
+	AllowDeleteColumns    *bool
+	AllowDeleteRows       *bool
+	AllowFormatCells      *bool
+	AllowFormatColumns    *bool
+	AllowFormatRows       *bool
+	AllowInsertColumns    *bool
+	AllowInsertHyperlinks *bool
+	AllowInsertRows       *bool
+	AllowPivotTables      *bool
+	AllowSort             *bool
+	ODataType             *string
+}
+
+func (p WorkbookWorksheetProtectionOptionsOperationPredicate) Matches(input WorkbookWorksheetProtectionOptions) bool {
+
+	if p.AllowAutoFilter != nil && (input.AllowAutoFilter == nil || *p.AllowAutoFilter != *input.AllowAutoFilter) {
+		return false
+	}
+
+	if p.AllowDeleteColumns != nil && (input.AllowDeleteColumns == nil || *p.AllowDeleteColumns != *input.AllowDeleteColumns) {
+		return false
+	}
+
+	if p.AllowDeleteRows != nil && (input.AllowDeleteRows == nil || *p.AllowDeleteRows != *input.AllowDeleteRows) {
+		return false
+	}
+
+	if p.AllowFormatCells != nil && (input.AllowFormatCells == nil || *p.AllowFormatCells != *input.AllowFormatCells) {
+		return false
+	}
+
+	if p.AllowFormatColumns != nil && (input.AllowFormatColumns == nil || *p.AllowFormatColumns != *input.AllowFormatColumns) {
+		return false
+	}
+
+	if p.AllowFormatRows != nil && (input.AllowFormatRows == nil || *p.AllowFormatRows != *input.AllowFormatRows) {
+		return false
+	}
+
+	if p.AllowInsertColumns != nil && (input.AllowInsertColumns == nil || *p.AllowInsertColumns != *input.AllowInsertColumns) {
+		return false
+	}
+
+	if p.AllowInsertHyperlinks != nil && (input.AllowInsertHyperlinks == nil || *p.AllowInsertHyperlinks != *input.AllowInsertHyperlinks) {
+		return false
+	}
+
+	if p.AllowInsertRows != nil && (input.AllowInsertRows == nil || *p.AllowInsertRows != *input.AllowInsertRows) {
+		return false
+	}
+
+	if p.AllowPivotTables != nil && (input.AllowPivotTables == nil || *p.AllowPivotTables != *input.AllowPivotTables) {
+		return false
+	}
+
+	if p.AllowSort != nil && (input.AllowSort == nil || *p.AllowSort != *input.AllowSort) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	return true
+}

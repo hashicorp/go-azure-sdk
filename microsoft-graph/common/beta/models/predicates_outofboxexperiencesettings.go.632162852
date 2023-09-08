@@ -1,0 +1,45 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type OutOfBoxExperienceSettingsOperationPredicate struct {
+	 HideEULA *bool
+	 HideEscapeLink *bool
+	 HidePrivacySettings *bool
+	 ODataType *string
+	 SkipKeyboardSelectionPage *bool
+}
+
+func (p OutOfBoxExperienceSettingsOperationPredicate) Matches(input OutOfBoxExperienceSettings) bool {
+
+	if p.HideEULA != nil && (input.HideEULA == nil || *p.HideEULA != *input.HideEULA) {
+	 	return false
+	}
+
+
+	if p.HideEscapeLink != nil && (input.HideEscapeLink == nil || *p.HideEscapeLink != *input.HideEscapeLink) {
+	 	return false
+	}
+
+
+	if p.HidePrivacySettings != nil && (input.HidePrivacySettings == nil || *p.HidePrivacySettings != *input.HidePrivacySettings) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.SkipKeyboardSelectionPage != nil && (input.SkipKeyboardSelectionPage == nil || *p.SkipKeyboardSelectionPage != *input.SkipKeyboardSelectionPage) {
+	 	return false
+	}
+
+
+	return true
+}
+

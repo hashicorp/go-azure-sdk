@@ -1,0 +1,46 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type IosWiFiConfigurationWiFiSecurityType string
+
+const (
+	IosWiFiConfigurationWiFiSecurityTypeopen           IosWiFiConfigurationWiFiSecurityType = "Open"
+	IosWiFiConfigurationWiFiSecurityTypewep            IosWiFiConfigurationWiFiSecurityType = "Wep"
+	IosWiFiConfigurationWiFiSecurityTypewpa2Enterprise IosWiFiConfigurationWiFiSecurityType = "Wpa2Enterprise"
+	IosWiFiConfigurationWiFiSecurityTypewpa2Personal   IosWiFiConfigurationWiFiSecurityType = "Wpa2Personal"
+	IosWiFiConfigurationWiFiSecurityTypewpaEnterprise  IosWiFiConfigurationWiFiSecurityType = "WpaEnterprise"
+	IosWiFiConfigurationWiFiSecurityTypewpaPersonal    IosWiFiConfigurationWiFiSecurityType = "WpaPersonal"
+)
+
+func PossibleValuesForIosWiFiConfigurationWiFiSecurityType() []string {
+	return []string{
+		string(IosWiFiConfigurationWiFiSecurityTypeopen),
+		string(IosWiFiConfigurationWiFiSecurityTypewep),
+		string(IosWiFiConfigurationWiFiSecurityTypewpa2Enterprise),
+		string(IosWiFiConfigurationWiFiSecurityTypewpa2Personal),
+		string(IosWiFiConfigurationWiFiSecurityTypewpaEnterprise),
+		string(IosWiFiConfigurationWiFiSecurityTypewpaPersonal),
+	}
+}
+
+func parseIosWiFiConfigurationWiFiSecurityType(input string) (*IosWiFiConfigurationWiFiSecurityType, error) {
+	vals := map[string]IosWiFiConfigurationWiFiSecurityType{
+		"open":           IosWiFiConfigurationWiFiSecurityTypeopen,
+		"wep":            IosWiFiConfigurationWiFiSecurityTypewep,
+		"wpa2enterprise": IosWiFiConfigurationWiFiSecurityTypewpa2Enterprise,
+		"wpa2personal":   IosWiFiConfigurationWiFiSecurityTypewpa2Personal,
+		"wpaenterprise":  IosWiFiConfigurationWiFiSecurityTypewpaEnterprise,
+		"wpapersonal":    IosWiFiConfigurationWiFiSecurityTypewpaPersonal,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := IosWiFiConfigurationWiFiSecurityType(input)
+	return &out, nil
+}

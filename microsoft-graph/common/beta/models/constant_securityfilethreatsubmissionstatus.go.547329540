@@ -1,0 +1,49 @@
+package models
+
+import "strings"
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type SecurityFileThreatSubmissionStatus string
+
+const (
+	SecurityFileThreatSubmissionStatusfailed SecurityFileThreatSubmissionStatus = "Failed"
+	SecurityFileThreatSubmissionStatusnotStarted SecurityFileThreatSubmissionStatus = "NotStarted"
+	SecurityFileThreatSubmissionStatusrunning SecurityFileThreatSubmissionStatus = "Running"
+	SecurityFileThreatSubmissionStatusskipped SecurityFileThreatSubmissionStatus = "Skipped"
+	SecurityFileThreatSubmissionStatussucceeded SecurityFileThreatSubmissionStatus = "Succeeded"
+)
+
+
+func PossibleValuesForSecurityFileThreatSubmissionStatus() []string {
+	return []string{
+		string(SecurityFileThreatSubmissionStatusfailed),
+string(SecurityFileThreatSubmissionStatusnotStarted),
+string(SecurityFileThreatSubmissionStatusrunning),
+string(SecurityFileThreatSubmissionStatusskipped),
+string(SecurityFileThreatSubmissionStatussucceeded),
+	}
+}
+
+
+
+func parseSecurityFileThreatSubmissionStatus(input string) (*SecurityFileThreatSubmissionStatus, error) {
+	vals := map[string]SecurityFileThreatSubmissionStatus{
+		"failed": SecurityFileThreatSubmissionStatusfailed,
+"notstarted": SecurityFileThreatSubmissionStatusnotStarted,
+"running": SecurityFileThreatSubmissionStatusrunning,
+"skipped": SecurityFileThreatSubmissionStatusskipped,
+"succeeded": SecurityFileThreatSubmissionStatussucceeded,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SecurityFileThreatSubmissionStatus(input)
+	return &out, nil
+}

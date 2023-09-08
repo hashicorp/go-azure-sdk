@@ -1,0 +1,97 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type AndroidEasEmailProfileConfigurationOperationPredicate struct {
+	AccountName          *string
+	CreatedDateTime      *string
+	CustomDomainName     *string
+	Description          *string
+	DisplayName          *string
+	HostName             *string
+	Id                   *string
+	LastModifiedDateTime *string
+	ODataType            *string
+	RequireSmime         *bool
+	RequireSsl           *bool
+	SupportsScopeTags    *bool
+	SyncCalendar         *bool
+	SyncContacts         *bool
+	SyncNotes            *bool
+	SyncTasks            *bool
+	Version              *int64
+}
+
+func (p AndroidEasEmailProfileConfigurationOperationPredicate) Matches(input AndroidEasEmailProfileConfiguration) bool {
+
+	if p.AccountName != nil && (input.AccountName == nil || *p.AccountName != *input.AccountName) {
+		return false
+	}
+
+	if p.CreatedDateTime != nil && (input.CreatedDateTime == nil || *p.CreatedDateTime != *input.CreatedDateTime) {
+		return false
+	}
+
+	if p.CustomDomainName != nil && (input.CustomDomainName == nil || *p.CustomDomainName != *input.CustomDomainName) {
+		return false
+	}
+
+	if p.Description != nil && (input.Description == nil || *p.Description != *input.Description) {
+		return false
+	}
+
+	if p.DisplayName != nil && (input.DisplayName == nil || *p.DisplayName != *input.DisplayName) {
+		return false
+	}
+
+	if p.HostName != nil && (input.HostName == nil || *p.HostName != *input.HostName) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.LastModifiedDateTime != nil && (input.LastModifiedDateTime == nil || *p.LastModifiedDateTime != *input.LastModifiedDateTime) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.RequireSmime != nil && (input.RequireSmime == nil || *p.RequireSmime != *input.RequireSmime) {
+		return false
+	}
+
+	if p.RequireSsl != nil && (input.RequireSsl == nil || *p.RequireSsl != *input.RequireSsl) {
+		return false
+	}
+
+	if p.SupportsScopeTags != nil && (input.SupportsScopeTags == nil || *p.SupportsScopeTags != *input.SupportsScopeTags) {
+		return false
+	}
+
+	if p.SyncCalendar != nil && (input.SyncCalendar == nil || *p.SyncCalendar != *input.SyncCalendar) {
+		return false
+	}
+
+	if p.SyncContacts != nil && (input.SyncContacts == nil || *p.SyncContacts != *input.SyncContacts) {
+		return false
+	}
+
+	if p.SyncNotes != nil && (input.SyncNotes == nil || *p.SyncNotes != *input.SyncNotes) {
+		return false
+	}
+
+	if p.SyncTasks != nil && (input.SyncTasks == nil || *p.SyncTasks != *input.SyncTasks) {
+		return false
+	}
+
+	if p.Version != nil && (input.Version == nil || *p.Version != *input.Version) {
+		return false
+	}
+
+	return true
+}

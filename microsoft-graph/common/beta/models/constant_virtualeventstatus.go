@@ -1,0 +1,37 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type VirtualEventStatus string
+
+const (
+	VirtualEventStatuscanceled  VirtualEventStatus = "Canceled"
+	VirtualEventStatusdraft     VirtualEventStatus = "Draft"
+	VirtualEventStatuspublished VirtualEventStatus = "Published"
+)
+
+func PossibleValuesForVirtualEventStatus() []string {
+	return []string{
+		string(VirtualEventStatuscanceled),
+		string(VirtualEventStatusdraft),
+		string(VirtualEventStatuspublished),
+	}
+}
+
+func parseVirtualEventStatus(input string) (*VirtualEventStatus, error) {
+	vals := map[string]VirtualEventStatus{
+		"canceled":  VirtualEventStatuscanceled,
+		"draft":     VirtualEventStatusdraft,
+		"published": VirtualEventStatuspublished,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := VirtualEventStatus(input)
+	return &out, nil
+}

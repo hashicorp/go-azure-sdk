@@ -1,0 +1,37 @@
+package models
+
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/edgezones"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/identity"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/systemdata"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/zones"
+)
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type OnlineMeetingInfo struct {
+	ConferenceId *string `json:"conferenceId,omitempty"`
+	JoinUrl *string `json:"joinUrl,omitempty"`
+	ODataType *string `json:"@odata.type,omitempty"`
+	Phones *[]Phone `json:"phones,omitempty"`
+	QuickDial *string `json:"quickDial,omitempty"`
+	TollFreeNumbers *[]string `json:"tollFreeNumbers,omitempty"`
+	TollNumber *string `json:"tollNumber,omitempty"`
+}
+
+
+
+
+
+
+

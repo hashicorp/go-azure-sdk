@@ -1,0 +1,40 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type Windows10EndpointProtectionConfigurationDeviceGuardLocalSystemAuthorityCredentialGuardSettings string
+
+const (
+	Windows10EndpointProtectionConfigurationDeviceGuardLocalSystemAuthorityCredentialGuardSettingsdisable               Windows10EndpointProtectionConfigurationDeviceGuardLocalSystemAuthorityCredentialGuardSettings = "Disable"
+	Windows10EndpointProtectionConfigurationDeviceGuardLocalSystemAuthorityCredentialGuardSettingsenableWithUEFILock    Windows10EndpointProtectionConfigurationDeviceGuardLocalSystemAuthorityCredentialGuardSettings = "EnableWithUEFILock"
+	Windows10EndpointProtectionConfigurationDeviceGuardLocalSystemAuthorityCredentialGuardSettingsenableWithoutUEFILock Windows10EndpointProtectionConfigurationDeviceGuardLocalSystemAuthorityCredentialGuardSettings = "EnableWithoutUEFILock"
+	Windows10EndpointProtectionConfigurationDeviceGuardLocalSystemAuthorityCredentialGuardSettingsnotConfigured         Windows10EndpointProtectionConfigurationDeviceGuardLocalSystemAuthorityCredentialGuardSettings = "NotConfigured"
+)
+
+func PossibleValuesForWindows10EndpointProtectionConfigurationDeviceGuardLocalSystemAuthorityCredentialGuardSettings() []string {
+	return []string{
+		string(Windows10EndpointProtectionConfigurationDeviceGuardLocalSystemAuthorityCredentialGuardSettingsdisable),
+		string(Windows10EndpointProtectionConfigurationDeviceGuardLocalSystemAuthorityCredentialGuardSettingsenableWithUEFILock),
+		string(Windows10EndpointProtectionConfigurationDeviceGuardLocalSystemAuthorityCredentialGuardSettingsenableWithoutUEFILock),
+		string(Windows10EndpointProtectionConfigurationDeviceGuardLocalSystemAuthorityCredentialGuardSettingsnotConfigured),
+	}
+}
+
+func parseWindows10EndpointProtectionConfigurationDeviceGuardLocalSystemAuthorityCredentialGuardSettings(input string) (*Windows10EndpointProtectionConfigurationDeviceGuardLocalSystemAuthorityCredentialGuardSettings, error) {
+	vals := map[string]Windows10EndpointProtectionConfigurationDeviceGuardLocalSystemAuthorityCredentialGuardSettings{
+		"disable":               Windows10EndpointProtectionConfigurationDeviceGuardLocalSystemAuthorityCredentialGuardSettingsdisable,
+		"enablewithuefilock":    Windows10EndpointProtectionConfigurationDeviceGuardLocalSystemAuthorityCredentialGuardSettingsenableWithUEFILock,
+		"enablewithoutuefilock": Windows10EndpointProtectionConfigurationDeviceGuardLocalSystemAuthorityCredentialGuardSettingsenableWithoutUEFILock,
+		"notconfigured":         Windows10EndpointProtectionConfigurationDeviceGuardLocalSystemAuthorityCredentialGuardSettingsnotConfigured,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := Windows10EndpointProtectionConfigurationDeviceGuardLocalSystemAuthorityCredentialGuardSettings(input)
+	return &out, nil
+}

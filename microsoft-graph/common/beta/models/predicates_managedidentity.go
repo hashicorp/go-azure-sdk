@@ -1,0 +1,32 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type ManagedIdentityOperationPredicate struct {
+	AssociatedResourceId *string
+	FederatedTokenId     *string
+	FederatedTokenIssuer *string
+	ODataType            *string
+}
+
+func (p ManagedIdentityOperationPredicate) Matches(input ManagedIdentity) bool {
+
+	if p.AssociatedResourceId != nil && (input.AssociatedResourceId == nil || *p.AssociatedResourceId != *input.AssociatedResourceId) {
+		return false
+	}
+
+	if p.FederatedTokenId != nil && (input.FederatedTokenId == nil || *p.FederatedTokenId != *input.FederatedTokenId) {
+		return false
+	}
+
+	if p.FederatedTokenIssuer != nil && (input.FederatedTokenIssuer == nil || *p.FederatedTokenIssuer != *input.FederatedTokenIssuer) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	return true
+}

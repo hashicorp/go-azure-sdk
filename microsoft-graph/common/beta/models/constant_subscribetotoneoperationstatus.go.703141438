@@ -1,0 +1,46 @@
+package models
+
+import "strings"
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type SubscribeToToneOperationStatus string
+
+const (
+	SubscribeToToneOperationStatusCompleted SubscribeToToneOperationStatus = "Completed"
+	SubscribeToToneOperationStatusFailed SubscribeToToneOperationStatus = "Failed"
+	SubscribeToToneOperationStatusNotStarted SubscribeToToneOperationStatus = "NotStarted"
+	SubscribeToToneOperationStatusRunning SubscribeToToneOperationStatus = "Running"
+)
+
+
+func PossibleValuesForSubscribeToToneOperationStatus() []string {
+	return []string{
+		string(SubscribeToToneOperationStatusCompleted),
+string(SubscribeToToneOperationStatusFailed),
+string(SubscribeToToneOperationStatusNotStarted),
+string(SubscribeToToneOperationStatusRunning),
+	}
+}
+
+
+
+func parseSubscribeToToneOperationStatus(input string) (*SubscribeToToneOperationStatus, error) {
+	vals := map[string]SubscribeToToneOperationStatus{
+		"completed": SubscribeToToneOperationStatusCompleted,
+"failed": SubscribeToToneOperationStatusFailed,
+"notstarted": SubscribeToToneOperationStatusNotStarted,
+"running": SubscribeToToneOperationStatusRunning,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SubscribeToToneOperationStatus(input)
+	return &out, nil
+}

@@ -1,0 +1,49 @@
+package models
+
+import "strings"
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type EdiscoveryDataSourceContainerHoldStatus string
+
+const (
+	EdiscoveryDataSourceContainerHoldStatusapplied EdiscoveryDataSourceContainerHoldStatus = "Applied"
+	EdiscoveryDataSourceContainerHoldStatusapplying EdiscoveryDataSourceContainerHoldStatus = "Applying"
+	EdiscoveryDataSourceContainerHoldStatusnotApplied EdiscoveryDataSourceContainerHoldStatus = "NotApplied"
+	EdiscoveryDataSourceContainerHoldStatuspartial EdiscoveryDataSourceContainerHoldStatus = "Partial"
+	EdiscoveryDataSourceContainerHoldStatusremoving EdiscoveryDataSourceContainerHoldStatus = "Removing"
+)
+
+
+func PossibleValuesForEdiscoveryDataSourceContainerHoldStatus() []string {
+	return []string{
+		string(EdiscoveryDataSourceContainerHoldStatusapplied),
+string(EdiscoveryDataSourceContainerHoldStatusapplying),
+string(EdiscoveryDataSourceContainerHoldStatusnotApplied),
+string(EdiscoveryDataSourceContainerHoldStatuspartial),
+string(EdiscoveryDataSourceContainerHoldStatusremoving),
+	}
+}
+
+
+
+func parseEdiscoveryDataSourceContainerHoldStatus(input string) (*EdiscoveryDataSourceContainerHoldStatus, error) {
+	vals := map[string]EdiscoveryDataSourceContainerHoldStatus{
+		"applied": EdiscoveryDataSourceContainerHoldStatusapplied,
+"applying": EdiscoveryDataSourceContainerHoldStatusapplying,
+"notapplied": EdiscoveryDataSourceContainerHoldStatusnotApplied,
+"partial": EdiscoveryDataSourceContainerHoldStatuspartial,
+"removing": EdiscoveryDataSourceContainerHoldStatusremoving,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := EdiscoveryDataSourceContainerHoldStatus(input)
+	return &out, nil
+}

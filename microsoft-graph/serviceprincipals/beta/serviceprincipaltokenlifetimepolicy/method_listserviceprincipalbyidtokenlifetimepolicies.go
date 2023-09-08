@@ -1,0 +1,90 @@
+package serviceprincipaltokenlifetimepolicy
+
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common/beta/models"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type ListServicePrincipalByIdTokenLifetimePoliciesOperationResponse struct {
+	HttpResponse *http.Response
+	OData        *odata.OData
+	Model        *[]models.TokenLifetimePolicyCollectionResponse
+}
+
+type ListServicePrincipalByIdTokenLifetimePoliciesCompleteResult struct {
+	Items []models.TokenLifetimePolicyCollectionResponse
+}
+
+// ListServicePrincipalByIdTokenLifetimePolicies ...
+func (c ServicePrincipalTokenLifetimePolicyClient) ListServicePrincipalByIdTokenLifetimePolicies(ctx context.Context, id ServicePrincipalId) (result ListServicePrincipalByIdTokenLifetimePoliciesOperationResponse, err error) {
+	opts := client.RequestOptions{
+		ContentType: "application/json; charset=utf-8",
+		ExpectedStatusCodes: []int{
+			http.StatusOK,
+		},
+		HttpMethod: http.MethodGet,
+		Path:       fmt.Sprintf("%s/tokenLifetimePolicies", id.ID()),
+	}
+
+	req, err := c.Client.NewRequest(ctx, opts)
+	if err != nil {
+		return
+	}
+
+	var resp *client.Response
+	resp, err = req.ExecutePaged(ctx)
+	if resp != nil {
+		result.OData = resp.OData
+		result.HttpResponse = resp.Response
+	}
+	if err != nil {
+		return
+	}
+
+	var values struct {
+		Values *[]models.TokenLifetimePolicyCollectionResponse `json:"value"`
+	}
+	if err = resp.Unmarshal(&values); err != nil {
+		return
+	}
+
+	result.Model = values.Values
+
+	return
+}
+
+// ListServicePrincipalByIdTokenLifetimePoliciesComplete retrieves all the results into a single object
+func (c ServicePrincipalTokenLifetimePolicyClient) ListServicePrincipalByIdTokenLifetimePoliciesComplete(ctx context.Context, id ServicePrincipalId) (ListServicePrincipalByIdTokenLifetimePoliciesCompleteResult, error) {
+	return c.ListServicePrincipalByIdTokenLifetimePoliciesCompleteMatchingPredicate(ctx, id, models.TokenLifetimePolicyCollectionResponseOperationPredicate{})
+}
+
+// ListServicePrincipalByIdTokenLifetimePoliciesCompleteMatchingPredicate retrieves all the results and then applies the predicate
+func (c ServicePrincipalTokenLifetimePolicyClient) ListServicePrincipalByIdTokenLifetimePoliciesCompleteMatchingPredicate(ctx context.Context, id ServicePrincipalId, predicate models.TokenLifetimePolicyCollectionResponseOperationPredicate) (result ListServicePrincipalByIdTokenLifetimePoliciesCompleteResult, err error) {
+	items := make([]models.TokenLifetimePolicyCollectionResponse, 0)
+
+	resp, err := c.ListServicePrincipalByIdTokenLifetimePolicies(ctx, id)
+	if err != nil {
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListServicePrincipalByIdTokenLifetimePoliciesCompleteResult{
+		Items: items,
+	}
+	return
+}

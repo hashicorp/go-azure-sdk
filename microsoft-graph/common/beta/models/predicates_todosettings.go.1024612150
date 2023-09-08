@@ -1,0 +1,39 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type TodoSettingsOperationPredicate struct {
+	 IsExternalJoinEnabled *bool
+	 IsExternalShareEnabled *bool
+	 IsPushNotificationEnabled *bool
+	 ODataType *string
+}
+
+func (p TodoSettingsOperationPredicate) Matches(input TodoSettings) bool {
+
+	if p.IsExternalJoinEnabled != nil && (input.IsExternalJoinEnabled == nil || *p.IsExternalJoinEnabled != *input.IsExternalJoinEnabled) {
+	 	return false
+	}
+
+
+	if p.IsExternalShareEnabled != nil && (input.IsExternalShareEnabled == nil || *p.IsExternalShareEnabled != *input.IsExternalShareEnabled) {
+	 	return false
+	}
+
+
+	if p.IsPushNotificationEnabled != nil && (input.IsPushNotificationEnabled == nil || *p.IsPushNotificationEnabled != *input.IsPushNotificationEnabled) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	return true
+}
+

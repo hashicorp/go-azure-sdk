@@ -1,0 +1,42 @@
+package models
+
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/edgezones"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/identity"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/systemdata"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/zones"
+)
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type DeviceProtectionOverview struct {
+	CleanDeviceCount *int64 `json:"cleanDeviceCount,omitempty"`
+	CriticalFailuresDeviceCount *int64 `json:"criticalFailuresDeviceCount,omitempty"`
+	InactiveThreatAgentDeviceCount *int64 `json:"inactiveThreatAgentDeviceCount,omitempty"`
+	ODataType *string `json:"@odata.type,omitempty"`
+	PendingFullScanDeviceCount *int64 `json:"pendingFullScanDeviceCount,omitempty"`
+	PendingManualStepsDeviceCount *int64 `json:"pendingManualStepsDeviceCount,omitempty"`
+	PendingOfflineScanDeviceCount *int64 `json:"pendingOfflineScanDeviceCount,omitempty"`
+	PendingQuickScanDeviceCount *int64 `json:"pendingQuickScanDeviceCount,omitempty"`
+	PendingRestartDeviceCount *int64 `json:"pendingRestartDeviceCount,omitempty"`
+	PendingSignatureUpdateDeviceCount *int64 `json:"pendingSignatureUpdateDeviceCount,omitempty"`
+	TotalReportedDeviceCount *int64 `json:"totalReportedDeviceCount,omitempty"`
+	UnknownStateThreatAgentDeviceCount *int64 `json:"unknownStateThreatAgentDeviceCount,omitempty"`
+}
+
+
+
+
+
+
+

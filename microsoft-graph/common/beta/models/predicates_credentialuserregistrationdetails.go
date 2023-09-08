@@ -1,0 +1,52 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type CredentialUserRegistrationDetailsOperationPredicate struct {
+	Id                *string
+	IsCapable         *bool
+	IsEnabled         *bool
+	IsMfaRegistered   *bool
+	IsRegistered      *bool
+	ODataType         *string
+	UserDisplayName   *string
+	UserPrincipalName *string
+}
+
+func (p CredentialUserRegistrationDetailsOperationPredicate) Matches(input CredentialUserRegistrationDetails) bool {
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.IsCapable != nil && (input.IsCapable == nil || *p.IsCapable != *input.IsCapable) {
+		return false
+	}
+
+	if p.IsEnabled != nil && (input.IsEnabled == nil || *p.IsEnabled != *input.IsEnabled) {
+		return false
+	}
+
+	if p.IsMfaRegistered != nil && (input.IsMfaRegistered == nil || *p.IsMfaRegistered != *input.IsMfaRegistered) {
+		return false
+	}
+
+	if p.IsRegistered != nil && (input.IsRegistered == nil || *p.IsRegistered != *input.IsRegistered) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.UserDisplayName != nil && (input.UserDisplayName == nil || *p.UserDisplayName != *input.UserDisplayName) {
+		return false
+	}
+
+	if p.UserPrincipalName != nil && (input.UserPrincipalName == nil || *p.UserPrincipalName != *input.UserPrincipalName) {
+		return false
+	}
+
+	return true
+}

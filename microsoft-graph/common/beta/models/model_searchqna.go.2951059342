@@ -1,0 +1,46 @@
+package models
+
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/edgezones"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/identity"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/systemdata"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/zones"
+)
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type SearchQna struct {
+	AvailabilityEndDateTime *string `json:"availabilityEndDateTime,omitempty"`
+	AvailabilityStartDateTime *string `json:"availabilityStartDateTime,omitempty"`
+	Description *string `json:"description,omitempty"`
+	DisplayName *string `json:"displayName,omitempty"`
+	GroupIds *[]string `json:"groupIds,omitempty"`
+	Id *string `json:"id,omitempty"`
+	IsSuggested *bool `json:"isSuggested,omitempty"`
+	Keywords *SearchAnswerKeyword `json:"keywords,omitempty"`
+	LanguageTags *[]string `json:"languageTags,omitempty"`
+	LastModifiedBy *SearchIdentitySet `json:"lastModifiedBy,omitempty"`
+	LastModifiedDateTime *string `json:"lastModifiedDateTime,omitempty"`
+	ODataType *string `json:"@odata.type,omitempty"`
+	Platforms *[]SearchQnaPlatforms `json:"platforms,omitempty"`
+	State *SearchQnaState `json:"state,omitempty"`
+	TargetedVariations *[]SearchAnswerVariant `json:"targetedVariations,omitempty"`
+	WebUrl *string `json:"webUrl,omitempty"`
+}
+
+
+
+
+
+
+

@@ -1,0 +1,46 @@
+package models
+
+import "strings"
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type WindowsInformationProtectionEnforcementLevel string
+
+const (
+	WindowsInformationProtectionEnforcementLevelencryptAndAuditOnly WindowsInformationProtectionEnforcementLevel = "EncryptAndAuditOnly"
+	WindowsInformationProtectionEnforcementLevelencryptAuditAndBlock WindowsInformationProtectionEnforcementLevel = "EncryptAuditAndBlock"
+	WindowsInformationProtectionEnforcementLevelencryptAuditAndPrompt WindowsInformationProtectionEnforcementLevel = "EncryptAuditAndPrompt"
+	WindowsInformationProtectionEnforcementLevelnoProtection WindowsInformationProtectionEnforcementLevel = "NoProtection"
+)
+
+
+func PossibleValuesForWindowsInformationProtectionEnforcementLevel() []string {
+	return []string{
+		string(WindowsInformationProtectionEnforcementLevelencryptAndAuditOnly),
+string(WindowsInformationProtectionEnforcementLevelencryptAuditAndBlock),
+string(WindowsInformationProtectionEnforcementLevelencryptAuditAndPrompt),
+string(WindowsInformationProtectionEnforcementLevelnoProtection),
+	}
+}
+
+
+
+func parseWindowsInformationProtectionEnforcementLevel(input string) (*WindowsInformationProtectionEnforcementLevel, error) {
+	vals := map[string]WindowsInformationProtectionEnforcementLevel{
+		"encryptandauditonly": WindowsInformationProtectionEnforcementLevelencryptAndAuditOnly,
+"encryptauditandblock": WindowsInformationProtectionEnforcementLevelencryptAuditAndBlock,
+"encryptauditandprompt": WindowsInformationProtectionEnforcementLevelencryptAuditAndPrompt,
+"noprotection": WindowsInformationProtectionEnforcementLevelnoProtection,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := WindowsInformationProtectionEnforcementLevel(input)
+	return &out, nil
+}

@@ -1,0 +1,43 @@
+package models
+
+import "strings"
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type MacOSPrivacyAccessControlItemFileProviderPresence string
+
+const (
+	MacOSPrivacyAccessControlItemFileProviderPresencedisabled MacOSPrivacyAccessControlItemFileProviderPresence = "Disabled"
+	MacOSPrivacyAccessControlItemFileProviderPresenceenabled MacOSPrivacyAccessControlItemFileProviderPresence = "Enabled"
+	MacOSPrivacyAccessControlItemFileProviderPresencenotConfigured MacOSPrivacyAccessControlItemFileProviderPresence = "NotConfigured"
+)
+
+
+func PossibleValuesForMacOSPrivacyAccessControlItemFileProviderPresence() []string {
+	return []string{
+		string(MacOSPrivacyAccessControlItemFileProviderPresencedisabled),
+string(MacOSPrivacyAccessControlItemFileProviderPresenceenabled),
+string(MacOSPrivacyAccessControlItemFileProviderPresencenotConfigured),
+	}
+}
+
+
+
+func parseMacOSPrivacyAccessControlItemFileProviderPresence(input string) (*MacOSPrivacyAccessControlItemFileProviderPresence, error) {
+	vals := map[string]MacOSPrivacyAccessControlItemFileProviderPresence{
+		"disabled": MacOSPrivacyAccessControlItemFileProviderPresencedisabled,
+"enabled": MacOSPrivacyAccessControlItemFileProviderPresenceenabled,
+"notconfigured": MacOSPrivacyAccessControlItemFileProviderPresencenotConfigured,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := MacOSPrivacyAccessControlItemFileProviderPresence(input)
+	return &out, nil
+}

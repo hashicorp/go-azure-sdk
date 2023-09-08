@@ -1,0 +1,32 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type MobileAppInstallTimeSettingsOperationPredicate struct {
+	DeadlineDateTime *string
+	ODataType        *string
+	StartDateTime    *string
+	UseLocalTime     *bool
+}
+
+func (p MobileAppInstallTimeSettingsOperationPredicate) Matches(input MobileAppInstallTimeSettings) bool {
+
+	if p.DeadlineDateTime != nil && (input.DeadlineDateTime == nil || *p.DeadlineDateTime != *input.DeadlineDateTime) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.StartDateTime != nil && (input.StartDateTime == nil || *p.StartDateTime != *input.StartDateTime) {
+		return false
+	}
+
+	if p.UseLocalTime != nil && (input.UseLocalTime == nil || *p.UseLocalTime != *input.UseLocalTime) {
+		return false
+	}
+
+	return true
+}

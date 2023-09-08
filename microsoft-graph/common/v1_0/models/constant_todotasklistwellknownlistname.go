@@ -1,0 +1,37 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type TodoTaskListWellknownListName string
+
+const (
+	TodoTaskListWellknownListNamedefaultList   TodoTaskListWellknownListName = "DefaultList"
+	TodoTaskListWellknownListNameflaggedEmails TodoTaskListWellknownListName = "FlaggedEmails"
+	TodoTaskListWellknownListNamenone          TodoTaskListWellknownListName = "None"
+)
+
+func PossibleValuesForTodoTaskListWellknownListName() []string {
+	return []string{
+		string(TodoTaskListWellknownListNamedefaultList),
+		string(TodoTaskListWellknownListNameflaggedEmails),
+		string(TodoTaskListWellknownListNamenone),
+	}
+}
+
+func parseTodoTaskListWellknownListName(input string) (*TodoTaskListWellknownListName, error) {
+	vals := map[string]TodoTaskListWellknownListName{
+		"defaultlist":   TodoTaskListWellknownListNamedefaultList,
+		"flaggedemails": TodoTaskListWellknownListNameflaggedEmails,
+		"none":          TodoTaskListWellknownListNamenone,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := TodoTaskListWellknownListName(input)
+	return &out, nil
+}

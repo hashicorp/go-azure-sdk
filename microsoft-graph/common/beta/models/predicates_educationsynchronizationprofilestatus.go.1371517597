@@ -1,0 +1,51 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type EducationSynchronizationProfileStatusOperationPredicate struct {
+	 ErrorCount *int64
+	 Id *string
+	 LastActivityDateTime *string
+	 LastSynchronizationDateTime *string
+	 ODataType *string
+	 StatusMessage *string
+}
+
+func (p EducationSynchronizationProfileStatusOperationPredicate) Matches(input EducationSynchronizationProfileStatus) bool {
+
+	if p.ErrorCount != nil && (input.ErrorCount == nil || *p.ErrorCount != *input.ErrorCount) {
+	 	return false
+	}
+
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+	 	return false
+	}
+
+
+	if p.LastActivityDateTime != nil && (input.LastActivityDateTime == nil || *p.LastActivityDateTime != *input.LastActivityDateTime) {
+	 	return false
+	}
+
+
+	if p.LastSynchronizationDateTime != nil && (input.LastSynchronizationDateTime == nil || *p.LastSynchronizationDateTime != *input.LastSynchronizationDateTime) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.StatusMessage != nil && (input.StatusMessage == nil || *p.StatusMessage != *input.StatusMessage) {
+	 	return false
+	}
+
+
+	return true
+}
+

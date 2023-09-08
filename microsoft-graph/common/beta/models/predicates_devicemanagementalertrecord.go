@@ -1,0 +1,47 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type DeviceManagementAlertRecordOperationPredicate struct {
+	AlertRuleId         *string
+	DetectedDateTime    *string
+	DisplayName         *string
+	Id                  *string
+	LastUpdatedDateTime *string
+	ODataType           *string
+	ResolvedDateTime    *string
+}
+
+func (p DeviceManagementAlertRecordOperationPredicate) Matches(input DeviceManagementAlertRecord) bool {
+
+	if p.AlertRuleId != nil && (input.AlertRuleId == nil || *p.AlertRuleId != *input.AlertRuleId) {
+		return false
+	}
+
+	if p.DetectedDateTime != nil && (input.DetectedDateTime == nil || *p.DetectedDateTime != *input.DetectedDateTime) {
+		return false
+	}
+
+	if p.DisplayName != nil && (input.DisplayName == nil || *p.DisplayName != *input.DisplayName) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.LastUpdatedDateTime != nil && (input.LastUpdatedDateTime == nil || *p.LastUpdatedDateTime != *input.LastUpdatedDateTime) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.ResolvedDateTime != nil && (input.ResolvedDateTime == nil || *p.ResolvedDateTime != *input.ResolvedDateTime) {
+		return false
+	}
+
+	return true
+}

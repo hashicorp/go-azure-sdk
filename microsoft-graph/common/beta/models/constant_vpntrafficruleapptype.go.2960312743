@@ -1,0 +1,43 @@
+package models
+
+import "strings"
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type VpnTrafficRuleAppType string
+
+const (
+	VpnTrafficRuleAppTypedesktop VpnTrafficRuleAppType = "Desktop"
+	VpnTrafficRuleAppTypenone VpnTrafficRuleAppType = "None"
+	VpnTrafficRuleAppTypeuniversal VpnTrafficRuleAppType = "Universal"
+)
+
+
+func PossibleValuesForVpnTrafficRuleAppType() []string {
+	return []string{
+		string(VpnTrafficRuleAppTypedesktop),
+string(VpnTrafficRuleAppTypenone),
+string(VpnTrafficRuleAppTypeuniversal),
+	}
+}
+
+
+
+func parseVpnTrafficRuleAppType(input string) (*VpnTrafficRuleAppType, error) {
+	vals := map[string]VpnTrafficRuleAppType{
+		"desktop": VpnTrafficRuleAppTypedesktop,
+"none": VpnTrafficRuleAppTypenone,
+"universal": VpnTrafficRuleAppTypeuniversal,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := VpnTrafficRuleAppType(input)
+	return &out, nil
+}

@@ -1,0 +1,43 @@
+package models
+
+import "strings"
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type MacOSScepCertificateProfileKeySize string
+
+const (
+	MacOSScepCertificateProfileKeySizesize1024 MacOSScepCertificateProfileKeySize = "Size1024"
+	MacOSScepCertificateProfileKeySizesize2048 MacOSScepCertificateProfileKeySize = "Size2048"
+	MacOSScepCertificateProfileKeySizesize4096 MacOSScepCertificateProfileKeySize = "Size4096"
+)
+
+
+func PossibleValuesForMacOSScepCertificateProfileKeySize() []string {
+	return []string{
+		string(MacOSScepCertificateProfileKeySizesize1024),
+string(MacOSScepCertificateProfileKeySizesize2048),
+string(MacOSScepCertificateProfileKeySizesize4096),
+	}
+}
+
+
+
+func parseMacOSScepCertificateProfileKeySize(input string) (*MacOSScepCertificateProfileKeySize, error) {
+	vals := map[string]MacOSScepCertificateProfileKeySize{
+		"size1024": MacOSScepCertificateProfileKeySizesize1024,
+"size2048": MacOSScepCertificateProfileKeySizesize2048,
+"size4096": MacOSScepCertificateProfileKeySizesize4096,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := MacOSScepCertificateProfileKeySize(input)
+	return &out, nil
+}

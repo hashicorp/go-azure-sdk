@@ -1,0 +1,63 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type RegistryKeyStateOperationPredicate struct {
+	 Key *string
+	 ODataType *string
+	 OldKey *string
+	 OldValueData *string
+	 OldValueName *string
+	 ProcessId *int64
+	 ValueData *string
+	 ValueName *string
+}
+
+func (p RegistryKeyStateOperationPredicate) Matches(input RegistryKeyState) bool {
+
+	if p.Key != nil && (input.Key == nil || *p.Key != *input.Key) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.OldKey != nil && (input.OldKey == nil || *p.OldKey != *input.OldKey) {
+	 	return false
+	}
+
+
+	if p.OldValueData != nil && (input.OldValueData == nil || *p.OldValueData != *input.OldValueData) {
+	 	return false
+	}
+
+
+	if p.OldValueName != nil && (input.OldValueName == nil || *p.OldValueName != *input.OldValueName) {
+	 	return false
+	}
+
+
+	if p.ProcessId != nil && (input.ProcessId == nil || *p.ProcessId != *input.ProcessId) {
+	 	return false
+	}
+
+
+	if p.ValueData != nil && (input.ValueData == nil || *p.ValueData != *input.ValueData) {
+	 	return false
+	}
+
+
+	if p.ValueName != nil && (input.ValueName == nil || *p.ValueName != *input.ValueName) {
+	 	return false
+	}
+
+
+	return true
+}
+

@@ -1,0 +1,20 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type DeviceManagementConfigurationCategory struct {
+	CategoryDescription *string                                            `json:"categoryDescription,omitempty"`
+	ChildCategoryIds    *[]string                                          `json:"childCategoryIds,omitempty"`
+	Description         *string                                            `json:"description,omitempty"`
+	DisplayName         *string                                            `json:"displayName,omitempty"`
+	HelpText            *string                                            `json:"helpText,omitempty"`
+	Id                  *string                                            `json:"id,omitempty"`
+	Name                *string                                            `json:"name,omitempty"`
+	ODataType           *string                                            `json:"@odata.type,omitempty"`
+	ParentCategoryId    *string                                            `json:"parentCategoryId,omitempty"`
+	Platforms           *DeviceManagementConfigurationCategoryPlatforms    `json:"platforms,omitempty"`
+	RootCategoryId      *string                                            `json:"rootCategoryId,omitempty"`
+	SettingUsage        *DeviceManagementConfigurationCategorySettingUsage `json:"settingUsage,omitempty"`
+	Technologies        *DeviceManagementConfigurationCategoryTechnologies `json:"technologies,omitempty"`
+}

@@ -1,0 +1,45 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type SharedEmailDomainInvitationOperationPredicate struct {
+	 ExpiryTime *string
+	 Id *string
+	 InvitationDomain *string
+	 InvitationStatus *string
+	 ODataType *string
+}
+
+func (p SharedEmailDomainInvitationOperationPredicate) Matches(input SharedEmailDomainInvitation) bool {
+
+	if p.ExpiryTime != nil && (input.ExpiryTime == nil || *p.ExpiryTime != *input.ExpiryTime) {
+	 	return false
+	}
+
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+	 	return false
+	}
+
+
+	if p.InvitationDomain != nil && (input.InvitationDomain == nil || *p.InvitationDomain != *input.InvitationDomain) {
+	 	return false
+	}
+
+
+	if p.InvitationStatus != nil && (input.InvitationStatus == nil || *p.InvitationStatus != *input.InvitationStatus) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	return true
+}
+

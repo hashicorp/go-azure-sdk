@@ -1,0 +1,49 @@
+package models
+
+import "strings"
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type NetworkLocationDetailNetworkType string
+
+const (
+	NetworkLocationDetailNetworkTypeextranet NetworkLocationDetailNetworkType = "Extranet"
+	NetworkLocationDetailNetworkTypeintranet NetworkLocationDetailNetworkType = "Intranet"
+	NetworkLocationDetailNetworkTypenamedNetwork NetworkLocationDetailNetworkType = "NamedNetwork"
+	NetworkLocationDetailNetworkTypetrusted NetworkLocationDetailNetworkType = "Trusted"
+	NetworkLocationDetailNetworkTypetrustedNamedLocation NetworkLocationDetailNetworkType = "TrustedNamedLocation"
+)
+
+
+func PossibleValuesForNetworkLocationDetailNetworkType() []string {
+	return []string{
+		string(NetworkLocationDetailNetworkTypeextranet),
+string(NetworkLocationDetailNetworkTypeintranet),
+string(NetworkLocationDetailNetworkTypenamedNetwork),
+string(NetworkLocationDetailNetworkTypetrusted),
+string(NetworkLocationDetailNetworkTypetrustedNamedLocation),
+	}
+}
+
+
+
+func parseNetworkLocationDetailNetworkType(input string) (*NetworkLocationDetailNetworkType, error) {
+	vals := map[string]NetworkLocationDetailNetworkType{
+		"extranet": NetworkLocationDetailNetworkTypeextranet,
+"intranet": NetworkLocationDetailNetworkTypeintranet,
+"namednetwork": NetworkLocationDetailNetworkTypenamedNetwork,
+"trusted": NetworkLocationDetailNetworkTypetrusted,
+"trustednamedlocation": NetworkLocationDetailNetworkTypetrustedNamedLocation,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := NetworkLocationDetailNetworkType(input)
+	return &out, nil
+}

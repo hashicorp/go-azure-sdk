@@ -1,0 +1,47 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type LocalizedNotificationMessageOperationPredicate struct {
+	Id                   *string
+	IsDefault            *bool
+	LastModifiedDateTime *string
+	Locale               *string
+	MessageTemplate      *string
+	ODataType            *string
+	Subject              *string
+}
+
+func (p LocalizedNotificationMessageOperationPredicate) Matches(input LocalizedNotificationMessage) bool {
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.IsDefault != nil && (input.IsDefault == nil || *p.IsDefault != *input.IsDefault) {
+		return false
+	}
+
+	if p.LastModifiedDateTime != nil && (input.LastModifiedDateTime == nil || *p.LastModifiedDateTime != *input.LastModifiedDateTime) {
+		return false
+	}
+
+	if p.Locale != nil && (input.Locale == nil || *p.Locale != *input.Locale) {
+		return false
+	}
+
+	if p.MessageTemplate != nil && (input.MessageTemplate == nil || *p.MessageTemplate != *input.MessageTemplate) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.Subject != nil && (input.Subject == nil || *p.Subject != *input.Subject) {
+		return false
+	}
+
+	return true
+}

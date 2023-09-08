@@ -1,0 +1,40 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type DeviceManagementNotificationChannelNotificationChannelType string
+
+const (
+	DeviceManagementNotificationChannelNotificationChannelTypeemail     DeviceManagementNotificationChannelNotificationChannelType = "Email"
+	DeviceManagementNotificationChannelNotificationChannelTypephoneCall DeviceManagementNotificationChannelNotificationChannelType = "PhoneCall"
+	DeviceManagementNotificationChannelNotificationChannelTypeportal    DeviceManagementNotificationChannelNotificationChannelType = "Portal"
+	DeviceManagementNotificationChannelNotificationChannelTypesms       DeviceManagementNotificationChannelNotificationChannelType = "Sms"
+)
+
+func PossibleValuesForDeviceManagementNotificationChannelNotificationChannelType() []string {
+	return []string{
+		string(DeviceManagementNotificationChannelNotificationChannelTypeemail),
+		string(DeviceManagementNotificationChannelNotificationChannelTypephoneCall),
+		string(DeviceManagementNotificationChannelNotificationChannelTypeportal),
+		string(DeviceManagementNotificationChannelNotificationChannelTypesms),
+	}
+}
+
+func parseDeviceManagementNotificationChannelNotificationChannelType(input string) (*DeviceManagementNotificationChannelNotificationChannelType, error) {
+	vals := map[string]DeviceManagementNotificationChannelNotificationChannelType{
+		"email":     DeviceManagementNotificationChannelNotificationChannelTypeemail,
+		"phonecall": DeviceManagementNotificationChannelNotificationChannelTypephoneCall,
+		"portal":    DeviceManagementNotificationChannelNotificationChannelTypeportal,
+		"sms":       DeviceManagementNotificationChannelNotificationChannelTypesms,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DeviceManagementNotificationChannelNotificationChannelType(input)
+	return &out, nil
+}

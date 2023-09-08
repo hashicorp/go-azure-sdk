@@ -1,0 +1,34 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type TargetedManagedAppProtectionMobileThreatDefensePartnerPriority string
+
+const (
+	TargetedManagedAppProtectionMobileThreatDefensePartnerPrioritydefenderOverThirdPartyPartner TargetedManagedAppProtectionMobileThreatDefensePartnerPriority = "DefenderOverThirdPartyPartner"
+	TargetedManagedAppProtectionMobileThreatDefensePartnerPrioritythirdPartyPartnerOverDefender TargetedManagedAppProtectionMobileThreatDefensePartnerPriority = "ThirdPartyPartnerOverDefender"
+)
+
+func PossibleValuesForTargetedManagedAppProtectionMobileThreatDefensePartnerPriority() []string {
+	return []string{
+		string(TargetedManagedAppProtectionMobileThreatDefensePartnerPrioritydefenderOverThirdPartyPartner),
+		string(TargetedManagedAppProtectionMobileThreatDefensePartnerPrioritythirdPartyPartnerOverDefender),
+	}
+}
+
+func parseTargetedManagedAppProtectionMobileThreatDefensePartnerPriority(input string) (*TargetedManagedAppProtectionMobileThreatDefensePartnerPriority, error) {
+	vals := map[string]TargetedManagedAppProtectionMobileThreatDefensePartnerPriority{
+		"defenderoverthirdpartypartner": TargetedManagedAppProtectionMobileThreatDefensePartnerPrioritydefenderOverThirdPartyPartner,
+		"thirdpartypartneroverdefender": TargetedManagedAppProtectionMobileThreatDefensePartnerPrioritythirdPartyPartnerOverDefender,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := TargetedManagedAppProtectionMobileThreatDefensePartnerPriority(input)
+	return &out, nil
+}

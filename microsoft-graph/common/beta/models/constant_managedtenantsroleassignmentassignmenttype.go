@@ -1,0 +1,40 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type ManagedTenantsRoleAssignmentAssignmentType string
+
+const (
+	ManagedTenantsRoleAssignmentAssignmentTypedelegatedAdminPrivileges                     ManagedTenantsRoleAssignmentAssignmentType = "DelegatedAdminPrivileges"
+	ManagedTenantsRoleAssignmentAssignmentTypedelegatedAndGranularDelegetedAdminPrivileges ManagedTenantsRoleAssignmentAssignmentType = "DelegatedAndGranularDelegetedAdminPrivileges"
+	ManagedTenantsRoleAssignmentAssignmentTypegranularDelegatedAdminPrivileges             ManagedTenantsRoleAssignmentAssignmentType = "GranularDelegatedAdminPrivileges"
+	ManagedTenantsRoleAssignmentAssignmentTypenone                                         ManagedTenantsRoleAssignmentAssignmentType = "None"
+)
+
+func PossibleValuesForManagedTenantsRoleAssignmentAssignmentType() []string {
+	return []string{
+		string(ManagedTenantsRoleAssignmentAssignmentTypedelegatedAdminPrivileges),
+		string(ManagedTenantsRoleAssignmentAssignmentTypedelegatedAndGranularDelegetedAdminPrivileges),
+		string(ManagedTenantsRoleAssignmentAssignmentTypegranularDelegatedAdminPrivileges),
+		string(ManagedTenantsRoleAssignmentAssignmentTypenone),
+	}
+}
+
+func parseManagedTenantsRoleAssignmentAssignmentType(input string) (*ManagedTenantsRoleAssignmentAssignmentType, error) {
+	vals := map[string]ManagedTenantsRoleAssignmentAssignmentType{
+		"delegatedadminprivileges":                     ManagedTenantsRoleAssignmentAssignmentTypedelegatedAdminPrivileges,
+		"delegatedandgranulardelegetedadminprivileges": ManagedTenantsRoleAssignmentAssignmentTypedelegatedAndGranularDelegetedAdminPrivileges,
+		"granulardelegatedadminprivileges":             ManagedTenantsRoleAssignmentAssignmentTypegranularDelegatedAdminPrivileges,
+		"none":                                         ManagedTenantsRoleAssignmentAssignmentTypenone,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ManagedTenantsRoleAssignmentAssignmentType(input)
+	return &out, nil
+}

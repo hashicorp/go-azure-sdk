@@ -1,0 +1,49 @@
+package models
+
+import "strings"
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type WindowsWiredNetworkConfigurationAuthenticationType string
+
+const (
+	WindowsWiredNetworkConfigurationAuthenticationTypeguest WindowsWiredNetworkConfigurationAuthenticationType = "Guest"
+	WindowsWiredNetworkConfigurationAuthenticationTypemachine WindowsWiredNetworkConfigurationAuthenticationType = "Machine"
+	WindowsWiredNetworkConfigurationAuthenticationTypemachineOrUser WindowsWiredNetworkConfigurationAuthenticationType = "MachineOrUser"
+	WindowsWiredNetworkConfigurationAuthenticationTypenone WindowsWiredNetworkConfigurationAuthenticationType = "None"
+	WindowsWiredNetworkConfigurationAuthenticationTypeuser WindowsWiredNetworkConfigurationAuthenticationType = "User"
+)
+
+
+func PossibleValuesForWindowsWiredNetworkConfigurationAuthenticationType() []string {
+	return []string{
+		string(WindowsWiredNetworkConfigurationAuthenticationTypeguest),
+string(WindowsWiredNetworkConfigurationAuthenticationTypemachine),
+string(WindowsWiredNetworkConfigurationAuthenticationTypemachineOrUser),
+string(WindowsWiredNetworkConfigurationAuthenticationTypenone),
+string(WindowsWiredNetworkConfigurationAuthenticationTypeuser),
+	}
+}
+
+
+
+func parseWindowsWiredNetworkConfigurationAuthenticationType(input string) (*WindowsWiredNetworkConfigurationAuthenticationType, error) {
+	vals := map[string]WindowsWiredNetworkConfigurationAuthenticationType{
+		"guest": WindowsWiredNetworkConfigurationAuthenticationTypeguest,
+"machine": WindowsWiredNetworkConfigurationAuthenticationTypemachine,
+"machineoruser": WindowsWiredNetworkConfigurationAuthenticationTypemachineOrUser,
+"none": WindowsWiredNetworkConfigurationAuthenticationTypenone,
+"user": WindowsWiredNetworkConfigurationAuthenticationTypeuser,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := WindowsWiredNetworkConfigurationAuthenticationType(input)
+	return &out, nil
+}

@@ -1,0 +1,22 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type Windows10XCustomSubjectAlternativeNameOperationPredicate struct {
+	Name      *string
+	ODataType *string
+}
+
+func (p Windows10XCustomSubjectAlternativeNameOperationPredicate) Matches(input Windows10XCustomSubjectAlternativeName) bool {
+
+	if p.Name != nil && (input.Name == nil || *p.Name != *input.Name) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	return true
+}

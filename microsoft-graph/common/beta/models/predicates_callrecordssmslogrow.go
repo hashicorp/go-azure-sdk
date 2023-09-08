@@ -1,0 +1,107 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type CallRecordsSmsLogRowOperationPredicate struct {
+	CallCharge            *float64
+	Currency              *string
+	DestinationContext    *string
+	DestinationName       *string
+	DestinationNumber     *string
+	Id                    *string
+	LicenseCapability     *string
+	ODataType             *string
+	OtherPartyCountryCode *string
+	SentDateTime          *string
+	SmsId                 *string
+	SmsType               *string
+	SmsUnits              *int64
+	SourceNumber          *string
+	TenantCountryCode     *string
+	UserCountryCode       *string
+	UserDisplayName       *string
+	UserId                *string
+	UserPrincipalName     *string
+}
+
+func (p CallRecordsSmsLogRowOperationPredicate) Matches(input CallRecordsSmsLogRow) bool {
+
+	if p.CallCharge != nil && (input.CallCharge == nil || *p.CallCharge != *input.CallCharge) {
+		return false
+	}
+
+	if p.Currency != nil && (input.Currency == nil || *p.Currency != *input.Currency) {
+		return false
+	}
+
+	if p.DestinationContext != nil && (input.DestinationContext == nil || *p.DestinationContext != *input.DestinationContext) {
+		return false
+	}
+
+	if p.DestinationName != nil && (input.DestinationName == nil || *p.DestinationName != *input.DestinationName) {
+		return false
+	}
+
+	if p.DestinationNumber != nil && (input.DestinationNumber == nil || *p.DestinationNumber != *input.DestinationNumber) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.LicenseCapability != nil && (input.LicenseCapability == nil || *p.LicenseCapability != *input.LicenseCapability) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.OtherPartyCountryCode != nil && (input.OtherPartyCountryCode == nil || *p.OtherPartyCountryCode != *input.OtherPartyCountryCode) {
+		return false
+	}
+
+	if p.SentDateTime != nil && (input.SentDateTime == nil || *p.SentDateTime != *input.SentDateTime) {
+		return false
+	}
+
+	if p.SmsId != nil && (input.SmsId == nil || *p.SmsId != *input.SmsId) {
+		return false
+	}
+
+	if p.SmsType != nil && (input.SmsType == nil || *p.SmsType != *input.SmsType) {
+		return false
+	}
+
+	if p.SmsUnits != nil && (input.SmsUnits == nil || *p.SmsUnits != *input.SmsUnits) {
+		return false
+	}
+
+	if p.SourceNumber != nil && (input.SourceNumber == nil || *p.SourceNumber != *input.SourceNumber) {
+		return false
+	}
+
+	if p.TenantCountryCode != nil && (input.TenantCountryCode == nil || *p.TenantCountryCode != *input.TenantCountryCode) {
+		return false
+	}
+
+	if p.UserCountryCode != nil && (input.UserCountryCode == nil || *p.UserCountryCode != *input.UserCountryCode) {
+		return false
+	}
+
+	if p.UserDisplayName != nil && (input.UserDisplayName == nil || *p.UserDisplayName != *input.UserDisplayName) {
+		return false
+	}
+
+	if p.UserId != nil && (input.UserId == nil || *p.UserId != *input.UserId) {
+		return false
+	}
+
+	if p.UserPrincipalName != nil && (input.UserPrincipalName == nil || *p.UserPrincipalName != *input.UserPrincipalName) {
+		return false
+	}
+
+	return true
+}

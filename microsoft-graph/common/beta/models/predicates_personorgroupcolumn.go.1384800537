@@ -1,0 +1,39 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type PersonOrGroupColumnOperationPredicate struct {
+	 AllowMultipleSelection *bool
+	 ChooseFromType *string
+	 DisplayAs *string
+	 ODataType *string
+}
+
+func (p PersonOrGroupColumnOperationPredicate) Matches(input PersonOrGroupColumn) bool {
+
+	if p.AllowMultipleSelection != nil && (input.AllowMultipleSelection == nil || *p.AllowMultipleSelection != *input.AllowMultipleSelection) {
+	 	return false
+	}
+
+
+	if p.ChooseFromType != nil && (input.ChooseFromType == nil || *p.ChooseFromType != *input.ChooseFromType) {
+	 	return false
+	}
+
+
+	if p.DisplayAs != nil && (input.DisplayAs == nil || *p.DisplayAs != *input.DisplayAs) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	return true
+}
+

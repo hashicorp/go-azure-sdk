@@ -1,0 +1,27 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type UpdateAllowedCombinationsResultOperationPredicate struct {
+	 AdditionalInformation *string
+	 ODataType *string
+}
+
+func (p UpdateAllowedCombinationsResultOperationPredicate) Matches(input UpdateAllowedCombinationsResult) bool {
+
+	if p.AdditionalInformation != nil && (input.AdditionalInformation == nil || *p.AdditionalInformation != *input.AdditionalInformation) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	return true
+}
+

@@ -1,0 +1,45 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type DeviceManagementTroubleshootingErrorDetailsOperationPredicate struct {
+	 Context *string
+	 Failure *string
+	 FailureDetails *string
+	 ODataType *string
+	 Remediation *string
+}
+
+func (p DeviceManagementTroubleshootingErrorDetailsOperationPredicate) Matches(input DeviceManagementTroubleshootingErrorDetails) bool {
+
+	if p.Context != nil && (input.Context == nil || *p.Context != *input.Context) {
+	 	return false
+	}
+
+
+	if p.Failure != nil && (input.Failure == nil || *p.Failure != *input.Failure) {
+	 	return false
+	}
+
+
+	if p.FailureDetails != nil && (input.FailureDetails == nil || *p.FailureDetails != *input.FailureDetails) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.Remediation != nil && (input.Remediation == nil || *p.Remediation != *input.Remediation) {
+	 	return false
+	}
+
+
+	return true
+}
+

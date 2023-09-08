@@ -1,0 +1,37 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type UnsupportedGroupPolicyExtensionOperationPredicate struct {
+	ExtensionType *string
+	Id            *string
+	NamespaceUrl  *string
+	NodeName      *string
+	ODataType     *string
+}
+
+func (p UnsupportedGroupPolicyExtensionOperationPredicate) Matches(input UnsupportedGroupPolicyExtension) bool {
+
+	if p.ExtensionType != nil && (input.ExtensionType == nil || *p.ExtensionType != *input.ExtensionType) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.NamespaceUrl != nil && (input.NamespaceUrl == nil || *p.NamespaceUrl != *input.NamespaceUrl) {
+		return false
+	}
+
+	if p.NodeName != nil && (input.NodeName == nil || *p.NodeName != *input.NodeName) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	return true
+}

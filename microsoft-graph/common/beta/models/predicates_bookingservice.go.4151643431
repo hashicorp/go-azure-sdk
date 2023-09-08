@@ -1,0 +1,111 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type BookingServiceOperationPredicate struct {
+	 AdditionalInformation *string
+	 DefaultDuration *string
+	 Description *string
+	 DisplayName *string
+	 Id *string
+	 IsAnonymousJoinEnabled *bool
+	 IsHiddenFromCustomers *bool
+	 IsLocationOnline *bool
+	 LanguageTag *string
+	 MaximumAttendeesCount *int64
+	 Notes *string
+	 ODataType *string
+	 PostBuffer *string
+	 PreBuffer *string
+	 SmsNotificationsEnabled *bool
+	 WebUrl *string
+}
+
+func (p BookingServiceOperationPredicate) Matches(input BookingService) bool {
+
+	if p.AdditionalInformation != nil && (input.AdditionalInformation == nil || *p.AdditionalInformation != *input.AdditionalInformation) {
+	 	return false
+	}
+
+
+	if p.DefaultDuration != nil && (input.DefaultDuration == nil || *p.DefaultDuration != *input.DefaultDuration) {
+	 	return false
+	}
+
+
+	if p.Description != nil && (input.Description == nil || *p.Description != *input.Description) {
+	 	return false
+	}
+
+
+	if p.DisplayName != nil && (input.DisplayName == nil || *p.DisplayName != *input.DisplayName) {
+	 	return false
+	}
+
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+	 	return false
+	}
+
+
+	if p.IsAnonymousJoinEnabled != nil && (input.IsAnonymousJoinEnabled == nil || *p.IsAnonymousJoinEnabled != *input.IsAnonymousJoinEnabled) {
+	 	return false
+	}
+
+
+	if p.IsHiddenFromCustomers != nil && (input.IsHiddenFromCustomers == nil || *p.IsHiddenFromCustomers != *input.IsHiddenFromCustomers) {
+	 	return false
+	}
+
+
+	if p.IsLocationOnline != nil && (input.IsLocationOnline == nil || *p.IsLocationOnline != *input.IsLocationOnline) {
+	 	return false
+	}
+
+
+	if p.LanguageTag != nil && (input.LanguageTag == nil || *p.LanguageTag != *input.LanguageTag) {
+	 	return false
+	}
+
+
+	if p.MaximumAttendeesCount != nil && (input.MaximumAttendeesCount == nil || *p.MaximumAttendeesCount != *input.MaximumAttendeesCount) {
+	 	return false
+	}
+
+
+	if p.Notes != nil && (input.Notes == nil || *p.Notes != *input.Notes) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.PostBuffer != nil && (input.PostBuffer == nil || *p.PostBuffer != *input.PostBuffer) {
+	 	return false
+	}
+
+
+	if p.PreBuffer != nil && (input.PreBuffer == nil || *p.PreBuffer != *input.PreBuffer) {
+	 	return false
+	}
+
+
+	if p.SmsNotificationsEnabled != nil && (input.SmsNotificationsEnabled == nil || *p.SmsNotificationsEnabled != *input.SmsNotificationsEnabled) {
+	 	return false
+	}
+
+
+	if p.WebUrl != nil && (input.WebUrl == nil || *p.WebUrl != *input.WebUrl) {
+	 	return false
+	}
+
+
+	return true
+}
+

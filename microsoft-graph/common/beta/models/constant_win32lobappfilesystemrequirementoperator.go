@@ -1,0 +1,49 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type Win32LobAppFileSystemRequirementOperator string
+
+const (
+	Win32LobAppFileSystemRequirementOperatorequal              Win32LobAppFileSystemRequirementOperator = "Equal"
+	Win32LobAppFileSystemRequirementOperatorgreaterThan        Win32LobAppFileSystemRequirementOperator = "GreaterThan"
+	Win32LobAppFileSystemRequirementOperatorgreaterThanOrEqual Win32LobAppFileSystemRequirementOperator = "GreaterThanOrEqual"
+	Win32LobAppFileSystemRequirementOperatorlessThan           Win32LobAppFileSystemRequirementOperator = "LessThan"
+	Win32LobAppFileSystemRequirementOperatorlessThanOrEqual    Win32LobAppFileSystemRequirementOperator = "LessThanOrEqual"
+	Win32LobAppFileSystemRequirementOperatornotConfigured      Win32LobAppFileSystemRequirementOperator = "NotConfigured"
+	Win32LobAppFileSystemRequirementOperatornotEqual           Win32LobAppFileSystemRequirementOperator = "NotEqual"
+)
+
+func PossibleValuesForWin32LobAppFileSystemRequirementOperator() []string {
+	return []string{
+		string(Win32LobAppFileSystemRequirementOperatorequal),
+		string(Win32LobAppFileSystemRequirementOperatorgreaterThan),
+		string(Win32LobAppFileSystemRequirementOperatorgreaterThanOrEqual),
+		string(Win32LobAppFileSystemRequirementOperatorlessThan),
+		string(Win32LobAppFileSystemRequirementOperatorlessThanOrEqual),
+		string(Win32LobAppFileSystemRequirementOperatornotConfigured),
+		string(Win32LobAppFileSystemRequirementOperatornotEqual),
+	}
+}
+
+func parseWin32LobAppFileSystemRequirementOperator(input string) (*Win32LobAppFileSystemRequirementOperator, error) {
+	vals := map[string]Win32LobAppFileSystemRequirementOperator{
+		"equal":              Win32LobAppFileSystemRequirementOperatorequal,
+		"greaterthan":        Win32LobAppFileSystemRequirementOperatorgreaterThan,
+		"greaterthanorequal": Win32LobAppFileSystemRequirementOperatorgreaterThanOrEqual,
+		"lessthan":           Win32LobAppFileSystemRequirementOperatorlessThan,
+		"lessthanorequal":    Win32LobAppFileSystemRequirementOperatorlessThanOrEqual,
+		"notconfigured":      Win32LobAppFileSystemRequirementOperatornotConfigured,
+		"notequal":           Win32LobAppFileSystemRequirementOperatornotEqual,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := Win32LobAppFileSystemRequirementOperator(input)
+	return &out, nil
+}

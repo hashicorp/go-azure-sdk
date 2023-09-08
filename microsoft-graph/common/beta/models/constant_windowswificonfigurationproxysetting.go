@@ -1,0 +1,37 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type WindowsWifiConfigurationProxySetting string
+
+const (
+	WindowsWifiConfigurationProxySettingautomatic WindowsWifiConfigurationProxySetting = "Automatic"
+	WindowsWifiConfigurationProxySettingmanual    WindowsWifiConfigurationProxySetting = "Manual"
+	WindowsWifiConfigurationProxySettingnone      WindowsWifiConfigurationProxySetting = "None"
+)
+
+func PossibleValuesForWindowsWifiConfigurationProxySetting() []string {
+	return []string{
+		string(WindowsWifiConfigurationProxySettingautomatic),
+		string(WindowsWifiConfigurationProxySettingmanual),
+		string(WindowsWifiConfigurationProxySettingnone),
+	}
+}
+
+func parseWindowsWifiConfigurationProxySetting(input string) (*WindowsWifiConfigurationProxySetting, error) {
+	vals := map[string]WindowsWifiConfigurationProxySetting{
+		"automatic": WindowsWifiConfigurationProxySettingautomatic,
+		"manual":    WindowsWifiConfigurationProxySettingmanual,
+		"none":      WindowsWifiConfigurationProxySettingnone,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := WindowsWifiConfigurationProxySetting(input)
+	return &out, nil
+}

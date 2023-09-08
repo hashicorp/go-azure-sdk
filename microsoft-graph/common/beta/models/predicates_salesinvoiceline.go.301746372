@@ -1,0 +1,159 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type SalesInvoiceLineOperationPredicate struct {
+	 AccountId *string
+	 AmountExcludingTax *float64
+	 AmountIncludingTax *float64
+	 Description *string
+	 DiscountAmount *float64
+	 DiscountAppliedBeforeTax *bool
+	 DiscountPercent *float64
+	 DocumentId *string
+	 Id *string
+	 InvoiceDiscountAllocation *float64
+	 ItemId *string
+	 LineType *string
+	 NetAmount *float64
+	 NetAmountIncludingTax *float64
+	 NetTaxAmount *float64
+	 ODataType *string
+	 Quantity *float64
+	 Sequence *int64
+	 ShipmentDate *string
+	 TaxCode *string
+	 TaxPercent *float64
+	 TotalTaxAmount *float64
+	 UnitOfMeasureId *string
+	 UnitPrice *float64
+}
+
+func (p SalesInvoiceLineOperationPredicate) Matches(input SalesInvoiceLine) bool {
+
+	if p.AccountId != nil && (input.AccountId == nil || *p.AccountId != *input.AccountId) {
+	 	return false
+	}
+
+
+	if p.AmountExcludingTax != nil && (input.AmountExcludingTax == nil || *p.AmountExcludingTax != *input.AmountExcludingTax) {
+	 	return false
+	}
+
+
+	if p.AmountIncludingTax != nil && (input.AmountIncludingTax == nil || *p.AmountIncludingTax != *input.AmountIncludingTax) {
+	 	return false
+	}
+
+
+	if p.Description != nil && (input.Description == nil || *p.Description != *input.Description) {
+	 	return false
+	}
+
+
+	if p.DiscountAmount != nil && (input.DiscountAmount == nil || *p.DiscountAmount != *input.DiscountAmount) {
+	 	return false
+	}
+
+
+	if p.DiscountAppliedBeforeTax != nil && (input.DiscountAppliedBeforeTax == nil || *p.DiscountAppliedBeforeTax != *input.DiscountAppliedBeforeTax) {
+	 	return false
+	}
+
+
+	if p.DiscountPercent != nil && (input.DiscountPercent == nil || *p.DiscountPercent != *input.DiscountPercent) {
+	 	return false
+	}
+
+
+	if p.DocumentId != nil && (input.DocumentId == nil || *p.DocumentId != *input.DocumentId) {
+	 	return false
+	}
+
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+	 	return false
+	}
+
+
+	if p.InvoiceDiscountAllocation != nil && (input.InvoiceDiscountAllocation == nil || *p.InvoiceDiscountAllocation != *input.InvoiceDiscountAllocation) {
+	 	return false
+	}
+
+
+	if p.ItemId != nil && (input.ItemId == nil || *p.ItemId != *input.ItemId) {
+	 	return false
+	}
+
+
+	if p.LineType != nil && (input.LineType == nil || *p.LineType != *input.LineType) {
+	 	return false
+	}
+
+
+	if p.NetAmount != nil && (input.NetAmount == nil || *p.NetAmount != *input.NetAmount) {
+	 	return false
+	}
+
+
+	if p.NetAmountIncludingTax != nil && (input.NetAmountIncludingTax == nil || *p.NetAmountIncludingTax != *input.NetAmountIncludingTax) {
+	 	return false
+	}
+
+
+	if p.NetTaxAmount != nil && (input.NetTaxAmount == nil || *p.NetTaxAmount != *input.NetTaxAmount) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.Quantity != nil && (input.Quantity == nil || *p.Quantity != *input.Quantity) {
+	 	return false
+	}
+
+
+	if p.Sequence != nil && (input.Sequence == nil || *p.Sequence != *input.Sequence) {
+	 	return false
+	}
+
+
+	if p.ShipmentDate != nil && (input.ShipmentDate == nil || *p.ShipmentDate != *input.ShipmentDate) {
+	 	return false
+	}
+
+
+	if p.TaxCode != nil && (input.TaxCode == nil || *p.TaxCode != *input.TaxCode) {
+	 	return false
+	}
+
+
+	if p.TaxPercent != nil && (input.TaxPercent == nil || *p.TaxPercent != *input.TaxPercent) {
+	 	return false
+	}
+
+
+	if p.TotalTaxAmount != nil && (input.TotalTaxAmount == nil || *p.TotalTaxAmount != *input.TotalTaxAmount) {
+	 	return false
+	}
+
+
+	if p.UnitOfMeasureId != nil && (input.UnitOfMeasureId == nil || *p.UnitOfMeasureId != *input.UnitOfMeasureId) {
+	 	return false
+	}
+
+
+	if p.UnitPrice != nil && (input.UnitPrice == nil || *p.UnitPrice != *input.UnitPrice) {
+	 	return false
+	}
+
+
+	return true
+}
+

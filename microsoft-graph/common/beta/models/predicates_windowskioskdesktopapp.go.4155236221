@@ -1,0 +1,51 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type WindowsKioskDesktopAppOperationPredicate struct {
+	 AutoLaunch *bool
+	 DesktopApplicationId *string
+	 DesktopApplicationLinkPath *string
+	 Name *string
+	 ODataType *string
+	 Path *string
+}
+
+func (p WindowsKioskDesktopAppOperationPredicate) Matches(input WindowsKioskDesktopApp) bool {
+
+	if p.AutoLaunch != nil && (input.AutoLaunch == nil || *p.AutoLaunch != *input.AutoLaunch) {
+	 	return false
+	}
+
+
+	if p.DesktopApplicationId != nil && (input.DesktopApplicationId == nil || *p.DesktopApplicationId != *input.DesktopApplicationId) {
+	 	return false
+	}
+
+
+	if p.DesktopApplicationLinkPath != nil && (input.DesktopApplicationLinkPath == nil || *p.DesktopApplicationLinkPath != *input.DesktopApplicationLinkPath) {
+	 	return false
+	}
+
+
+	if p.Name != nil && (input.Name == nil || *p.Name != *input.Name) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.Path != nil && (input.Path == nil || *p.Path != *input.Path) {
+	 	return false
+	}
+
+
+	return true
+}
+

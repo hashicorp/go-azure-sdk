@@ -1,0 +1,69 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type DeviceConfigurationUserStateSummaryOperationPredicate struct {
+	 CompliantUserCount *int64
+	 ConflictUserCount *int64
+	 ErrorUserCount *int64
+	 Id *string
+	 NonCompliantUserCount *int64
+	 NotApplicableUserCount *int64
+	 ODataType *string
+	 RemediatedUserCount *int64
+	 UnknownUserCount *int64
+}
+
+func (p DeviceConfigurationUserStateSummaryOperationPredicate) Matches(input DeviceConfigurationUserStateSummary) bool {
+
+	if p.CompliantUserCount != nil && (input.CompliantUserCount == nil || *p.CompliantUserCount != *input.CompliantUserCount) {
+	 	return false
+	}
+
+
+	if p.ConflictUserCount != nil && (input.ConflictUserCount == nil || *p.ConflictUserCount != *input.ConflictUserCount) {
+	 	return false
+	}
+
+
+	if p.ErrorUserCount != nil && (input.ErrorUserCount == nil || *p.ErrorUserCount != *input.ErrorUserCount) {
+	 	return false
+	}
+
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+	 	return false
+	}
+
+
+	if p.NonCompliantUserCount != nil && (input.NonCompliantUserCount == nil || *p.NonCompliantUserCount != *input.NonCompliantUserCount) {
+	 	return false
+	}
+
+
+	if p.NotApplicableUserCount != nil && (input.NotApplicableUserCount == nil || *p.NotApplicableUserCount != *input.NotApplicableUserCount) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.RemediatedUserCount != nil && (input.RemediatedUserCount == nil || *p.RemediatedUserCount != *input.RemediatedUserCount) {
+	 	return false
+	}
+
+
+	if p.UnknownUserCount != nil && (input.UnknownUserCount == nil || *p.UnknownUserCount != *input.UnknownUserCount) {
+	 	return false
+	}
+
+
+	return true
+}
+

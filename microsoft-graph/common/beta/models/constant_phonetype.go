@@ -1,0 +1,58 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type PhoneType string
+
+const (
+	PhoneTypeassistant   PhoneType = "Assistant"
+	PhoneTypebusiness    PhoneType = "Business"
+	PhoneTypebusinessFax PhoneType = "BusinessFax"
+	PhoneTypehome        PhoneType = "Home"
+	PhoneTypehomeFax     PhoneType = "HomeFax"
+	PhoneTypemobile      PhoneType = "Mobile"
+	PhoneTypeother       PhoneType = "Other"
+	PhoneTypeotherFax    PhoneType = "OtherFax"
+	PhoneTypepager       PhoneType = "Pager"
+	PhoneTyperadio       PhoneType = "Radio"
+)
+
+func PossibleValuesForPhoneType() []string {
+	return []string{
+		string(PhoneTypeassistant),
+		string(PhoneTypebusiness),
+		string(PhoneTypebusinessFax),
+		string(PhoneTypehome),
+		string(PhoneTypehomeFax),
+		string(PhoneTypemobile),
+		string(PhoneTypeother),
+		string(PhoneTypeotherFax),
+		string(PhoneTypepager),
+		string(PhoneTyperadio),
+	}
+}
+
+func parsePhoneType(input string) (*PhoneType, error) {
+	vals := map[string]PhoneType{
+		"assistant":   PhoneTypeassistant,
+		"business":    PhoneTypebusiness,
+		"businessfax": PhoneTypebusinessFax,
+		"home":        PhoneTypehome,
+		"homefax":     PhoneTypehomeFax,
+		"mobile":      PhoneTypemobile,
+		"other":       PhoneTypeother,
+		"otherfax":    PhoneTypeotherFax,
+		"pager":       PhoneTypepager,
+		"radio":       PhoneTyperadio,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := PhoneType(input)
+	return &out, nil
+}

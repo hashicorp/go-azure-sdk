@@ -1,0 +1,63 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type AgreementFileVersionOperationPredicate struct {
+	 CreatedDateTime *string
+	 DisplayName *string
+	 FileName *string
+	 Id *string
+	 IsDefault *bool
+	 IsMajorVersion *bool
+	 Language *string
+	 ODataType *string
+}
+
+func (p AgreementFileVersionOperationPredicate) Matches(input AgreementFileVersion) bool {
+
+	if p.CreatedDateTime != nil && (input.CreatedDateTime == nil || *p.CreatedDateTime != *input.CreatedDateTime) {
+	 	return false
+	}
+
+
+	if p.DisplayName != nil && (input.DisplayName == nil || *p.DisplayName != *input.DisplayName) {
+	 	return false
+	}
+
+
+	if p.FileName != nil && (input.FileName == nil || *p.FileName != *input.FileName) {
+	 	return false
+	}
+
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+	 	return false
+	}
+
+
+	if p.IsDefault != nil && (input.IsDefault == nil || *p.IsDefault != *input.IsDefault) {
+	 	return false
+	}
+
+
+	if p.IsMajorVersion != nil && (input.IsMajorVersion == nil || *p.IsMajorVersion != *input.IsMajorVersion) {
+	 	return false
+	}
+
+
+	if p.Language != nil && (input.Language == nil || *p.Language != *input.Language) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	return true
+}
+

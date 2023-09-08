@@ -1,0 +1,22 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type TeamworkHardwareConfigurationOperationPredicate struct {
+	ODataType      *string
+	ProcessorModel *string
+}
+
+func (p TeamworkHardwareConfigurationOperationPredicate) Matches(input TeamworkHardwareConfiguration) bool {
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.ProcessorModel != nil && (input.ProcessorModel == nil || *p.ProcessorModel != *input.ProcessorModel) {
+		return false
+	}
+
+	return true
+}

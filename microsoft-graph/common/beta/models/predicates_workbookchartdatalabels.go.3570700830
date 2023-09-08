@@ -1,0 +1,75 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type WorkbookChartDataLabelsOperationPredicate struct {
+	 Id *string
+	 ODataType *string
+	 Position *string
+	 Separator *string
+	 ShowBubbleSize *bool
+	 ShowCategoryName *bool
+	 ShowLegendKey *bool
+	 ShowPercentage *bool
+	 ShowSeriesName *bool
+	 ShowValue *bool
+}
+
+func (p WorkbookChartDataLabelsOperationPredicate) Matches(input WorkbookChartDataLabels) bool {
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.Position != nil && (input.Position == nil || *p.Position != *input.Position) {
+	 	return false
+	}
+
+
+	if p.Separator != nil && (input.Separator == nil || *p.Separator != *input.Separator) {
+	 	return false
+	}
+
+
+	if p.ShowBubbleSize != nil && (input.ShowBubbleSize == nil || *p.ShowBubbleSize != *input.ShowBubbleSize) {
+	 	return false
+	}
+
+
+	if p.ShowCategoryName != nil && (input.ShowCategoryName == nil || *p.ShowCategoryName != *input.ShowCategoryName) {
+	 	return false
+	}
+
+
+	if p.ShowLegendKey != nil && (input.ShowLegendKey == nil || *p.ShowLegendKey != *input.ShowLegendKey) {
+	 	return false
+	}
+
+
+	if p.ShowPercentage != nil && (input.ShowPercentage == nil || *p.ShowPercentage != *input.ShowPercentage) {
+	 	return false
+	}
+
+
+	if p.ShowSeriesName != nil && (input.ShowSeriesName == nil || *p.ShowSeriesName != *input.ShowSeriesName) {
+	 	return false
+	}
+
+
+	if p.ShowValue != nil && (input.ShowValue == nil || *p.ShowValue != *input.ShowValue) {
+	 	return false
+	}
+
+
+	return true
+}
+

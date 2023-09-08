@@ -1,0 +1,45 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type DeviceManagementAbstractComplexSettingInstanceOperationPredicate struct {
+	 DefinitionId *string
+	 Id *string
+	 ImplementationId *string
+	 ODataType *string
+	 ValueJson *string
+}
+
+func (p DeviceManagementAbstractComplexSettingInstanceOperationPredicate) Matches(input DeviceManagementAbstractComplexSettingInstance) bool {
+
+	if p.DefinitionId != nil && (input.DefinitionId == nil || *p.DefinitionId != *input.DefinitionId) {
+	 	return false
+	}
+
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+	 	return false
+	}
+
+
+	if p.ImplementationId != nil && (input.ImplementationId == nil || *p.ImplementationId != *input.ImplementationId) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.ValueJson != nil && (input.ValueJson == nil || *p.ValueJson != *input.ValueJson) {
+	 	return false
+	}
+
+
+	return true
+}
+

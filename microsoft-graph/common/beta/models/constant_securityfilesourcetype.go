@@ -1,0 +1,34 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type SecurityFileSourceType string
+
+const (
+	SecurityFileSourceTypemailbox SecurityFileSourceType = "Mailbox"
+	SecurityFileSourceTypesite    SecurityFileSourceType = "Site"
+)
+
+func PossibleValuesForSecurityFileSourceType() []string {
+	return []string{
+		string(SecurityFileSourceTypemailbox),
+		string(SecurityFileSourceTypesite),
+	}
+}
+
+func parseSecurityFileSourceType(input string) (*SecurityFileSourceType, error) {
+	vals := map[string]SecurityFileSourceType{
+		"mailbox": SecurityFileSourceTypemailbox,
+		"site":    SecurityFileSourceTypesite,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SecurityFileSourceType(input)
+	return &out, nil
+}

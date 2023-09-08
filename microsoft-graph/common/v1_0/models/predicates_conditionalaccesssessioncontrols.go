@@ -1,0 +1,22 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type ConditionalAccessSessionControlsOperationPredicate struct {
+	DisableResilienceDefaults *bool
+	ODataType                 *string
+}
+
+func (p ConditionalAccessSessionControlsOperationPredicate) Matches(input ConditionalAccessSessionControls) bool {
+
+	if p.DisableResilienceDefaults != nil && (input.DisableResilienceDefaults == nil || *p.DisableResilienceDefaults != *input.DisableResilienceDefaults) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	return true
+}

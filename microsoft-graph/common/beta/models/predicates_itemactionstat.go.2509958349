@@ -1,0 +1,33 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type ItemActionStatOperationPredicate struct {
+	 ActionCount *int64
+	 ActorCount *int64
+	 ODataType *string
+}
+
+func (p ItemActionStatOperationPredicate) Matches(input ItemActionStat) bool {
+
+	if p.ActionCount != nil && (input.ActionCount == nil || *p.ActionCount != *input.ActionCount) {
+	 	return false
+	}
+
+
+	if p.ActorCount != nil && (input.ActorCount == nil || *p.ActorCount != *input.ActorCount) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	return true
+}
+

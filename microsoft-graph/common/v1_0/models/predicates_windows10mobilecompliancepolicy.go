@@ -1,0 +1,122 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type Windows10MobileCompliancePolicyOperationPredicate struct {
+	BitLockerEnabled                      *bool
+	CodeIntegrityEnabled                  *bool
+	CreatedDateTime                       *string
+	Description                           *string
+	DisplayName                           *string
+	EarlyLaunchAntiMalwareDriverEnabled   *bool
+	Id                                    *string
+	LastModifiedDateTime                  *string
+	ODataType                             *string
+	OsMaximumVersion                      *string
+	OsMinimumVersion                      *string
+	PasswordBlockSimple                   *bool
+	PasswordExpirationDays                *int64
+	PasswordMinimumCharacterSetCount      *int64
+	PasswordMinimumLength                 *int64
+	PasswordMinutesOfInactivityBeforeLock *int64
+	PasswordPreviousPasswordBlockCount    *int64
+	PasswordRequireToUnlockFromIdle       *bool
+	PasswordRequired                      *bool
+	SecureBootEnabled                     *bool
+	StorageRequireEncryption              *bool
+	Version                               *int64
+}
+
+func (p Windows10MobileCompliancePolicyOperationPredicate) Matches(input Windows10MobileCompliancePolicy) bool {
+
+	if p.BitLockerEnabled != nil && (input.BitLockerEnabled == nil || *p.BitLockerEnabled != *input.BitLockerEnabled) {
+		return false
+	}
+
+	if p.CodeIntegrityEnabled != nil && (input.CodeIntegrityEnabled == nil || *p.CodeIntegrityEnabled != *input.CodeIntegrityEnabled) {
+		return false
+	}
+
+	if p.CreatedDateTime != nil && (input.CreatedDateTime == nil || *p.CreatedDateTime != *input.CreatedDateTime) {
+		return false
+	}
+
+	if p.Description != nil && (input.Description == nil || *p.Description != *input.Description) {
+		return false
+	}
+
+	if p.DisplayName != nil && (input.DisplayName == nil || *p.DisplayName != *input.DisplayName) {
+		return false
+	}
+
+	if p.EarlyLaunchAntiMalwareDriverEnabled != nil && (input.EarlyLaunchAntiMalwareDriverEnabled == nil || *p.EarlyLaunchAntiMalwareDriverEnabled != *input.EarlyLaunchAntiMalwareDriverEnabled) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.LastModifiedDateTime != nil && (input.LastModifiedDateTime == nil || *p.LastModifiedDateTime != *input.LastModifiedDateTime) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.OsMaximumVersion != nil && (input.OsMaximumVersion == nil || *p.OsMaximumVersion != *input.OsMaximumVersion) {
+		return false
+	}
+
+	if p.OsMinimumVersion != nil && (input.OsMinimumVersion == nil || *p.OsMinimumVersion != *input.OsMinimumVersion) {
+		return false
+	}
+
+	if p.PasswordBlockSimple != nil && (input.PasswordBlockSimple == nil || *p.PasswordBlockSimple != *input.PasswordBlockSimple) {
+		return false
+	}
+
+	if p.PasswordExpirationDays != nil && (input.PasswordExpirationDays == nil || *p.PasswordExpirationDays != *input.PasswordExpirationDays) {
+		return false
+	}
+
+	if p.PasswordMinimumCharacterSetCount != nil && (input.PasswordMinimumCharacterSetCount == nil || *p.PasswordMinimumCharacterSetCount != *input.PasswordMinimumCharacterSetCount) {
+		return false
+	}
+
+	if p.PasswordMinimumLength != nil && (input.PasswordMinimumLength == nil || *p.PasswordMinimumLength != *input.PasswordMinimumLength) {
+		return false
+	}
+
+	if p.PasswordMinutesOfInactivityBeforeLock != nil && (input.PasswordMinutesOfInactivityBeforeLock == nil || *p.PasswordMinutesOfInactivityBeforeLock != *input.PasswordMinutesOfInactivityBeforeLock) {
+		return false
+	}
+
+	if p.PasswordPreviousPasswordBlockCount != nil && (input.PasswordPreviousPasswordBlockCount == nil || *p.PasswordPreviousPasswordBlockCount != *input.PasswordPreviousPasswordBlockCount) {
+		return false
+	}
+
+	if p.PasswordRequireToUnlockFromIdle != nil && (input.PasswordRequireToUnlockFromIdle == nil || *p.PasswordRequireToUnlockFromIdle != *input.PasswordRequireToUnlockFromIdle) {
+		return false
+	}
+
+	if p.PasswordRequired != nil && (input.PasswordRequired == nil || *p.PasswordRequired != *input.PasswordRequired) {
+		return false
+	}
+
+	if p.SecureBootEnabled != nil && (input.SecureBootEnabled == nil || *p.SecureBootEnabled != *input.SecureBootEnabled) {
+		return false
+	}
+
+	if p.StorageRequireEncryption != nil && (input.StorageRequireEncryption == nil || *p.StorageRequireEncryption != *input.StorageRequireEncryption) {
+		return false
+	}
+
+	if p.Version != nil && (input.Version == nil || *p.Version != *input.Version) {
+		return false
+	}
+
+	return true
+}

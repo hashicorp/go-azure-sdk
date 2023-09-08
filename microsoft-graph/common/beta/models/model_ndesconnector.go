@@ -1,0 +1,16 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type NdesConnector struct {
+	ConnectorVersion       *string             `json:"connectorVersion,omitempty"`
+	DisplayName            *string             `json:"displayName,omitempty"`
+	EnrolledDateTime       *string             `json:"enrolledDateTime,omitempty"`
+	Id                     *string             `json:"id,omitempty"`
+	LastConnectionDateTime *string             `json:"lastConnectionDateTime,omitempty"`
+	MachineName            *string             `json:"machineName,omitempty"`
+	ODataType              *string             `json:"@odata.type,omitempty"`
+	RoleScopeTagIds        *[]string           `json:"roleScopeTagIds,omitempty"`
+	State                  *NdesConnectorState `json:"state,omitempty"`
+}

@@ -1,0 +1,49 @@
+package models
+
+import "strings"
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type SecurityTenantAllowBlockListEntryResultStatus string
+
+const (
+	SecurityTenantAllowBlockListEntryResultStatusfailed SecurityTenantAllowBlockListEntryResultStatus = "Failed"
+	SecurityTenantAllowBlockListEntryResultStatusnotStarted SecurityTenantAllowBlockListEntryResultStatus = "NotStarted"
+	SecurityTenantAllowBlockListEntryResultStatusrunning SecurityTenantAllowBlockListEntryResultStatus = "Running"
+	SecurityTenantAllowBlockListEntryResultStatusskipped SecurityTenantAllowBlockListEntryResultStatus = "Skipped"
+	SecurityTenantAllowBlockListEntryResultStatussucceeded SecurityTenantAllowBlockListEntryResultStatus = "Succeeded"
+)
+
+
+func PossibleValuesForSecurityTenantAllowBlockListEntryResultStatus() []string {
+	return []string{
+		string(SecurityTenantAllowBlockListEntryResultStatusfailed),
+string(SecurityTenantAllowBlockListEntryResultStatusnotStarted),
+string(SecurityTenantAllowBlockListEntryResultStatusrunning),
+string(SecurityTenantAllowBlockListEntryResultStatusskipped),
+string(SecurityTenantAllowBlockListEntryResultStatussucceeded),
+	}
+}
+
+
+
+func parseSecurityTenantAllowBlockListEntryResultStatus(input string) (*SecurityTenantAllowBlockListEntryResultStatus, error) {
+	vals := map[string]SecurityTenantAllowBlockListEntryResultStatus{
+		"failed": SecurityTenantAllowBlockListEntryResultStatusfailed,
+"notstarted": SecurityTenantAllowBlockListEntryResultStatusnotStarted,
+"running": SecurityTenantAllowBlockListEntryResultStatusrunning,
+"skipped": SecurityTenantAllowBlockListEntryResultStatusskipped,
+"succeeded": SecurityTenantAllowBlockListEntryResultStatussucceeded,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SecurityTenantAllowBlockListEntryResultStatus(input)
+	return &out, nil
+}

@@ -1,0 +1,46 @@
+package models
+
+import "strings"
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type MobileAppAssignmentIntent string
+
+const (
+	MobileAppAssignmentIntentavailable MobileAppAssignmentIntent = "Available"
+	MobileAppAssignmentIntentavailableWithoutEnrollment MobileAppAssignmentIntent = "AvailableWithoutEnrollment"
+	MobileAppAssignmentIntentrequired MobileAppAssignmentIntent = "Required"
+	MobileAppAssignmentIntentuninstall MobileAppAssignmentIntent = "Uninstall"
+)
+
+
+func PossibleValuesForMobileAppAssignmentIntent() []string {
+	return []string{
+		string(MobileAppAssignmentIntentavailable),
+string(MobileAppAssignmentIntentavailableWithoutEnrollment),
+string(MobileAppAssignmentIntentrequired),
+string(MobileAppAssignmentIntentuninstall),
+	}
+}
+
+
+
+func parseMobileAppAssignmentIntent(input string) (*MobileAppAssignmentIntent, error) {
+	vals := map[string]MobileAppAssignmentIntent{
+		"available": MobileAppAssignmentIntentavailable,
+"availablewithoutenrollment": MobileAppAssignmentIntentavailableWithoutEnrollment,
+"required": MobileAppAssignmentIntentrequired,
+"uninstall": MobileAppAssignmentIntentuninstall,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := MobileAppAssignmentIntent(input)
+	return &out, nil
+}

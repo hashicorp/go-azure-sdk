@@ -1,0 +1,26 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type ReportRoot struct {
+	AppCredentialSignInActivities       *[]AppCredentialSignInActivity       `json:"appCredentialSignInActivities,omitempty"`
+	ApplicationSignInDetailedSummary    *[]ApplicationSignInDetailedSummary  `json:"applicationSignInDetailedSummary,omitempty"`
+	AuthenticationMethods               *AuthenticationMethodsRoot           `json:"authenticationMethods,omitempty"`
+	CredentialUserRegistrationDetails   *[]CredentialUserRegistrationDetails `json:"credentialUserRegistrationDetails,omitempty"`
+	DailyPrintUsage                     *[]PrintUsage                        `json:"dailyPrintUsage,omitempty"`
+	DailyPrintUsageByPrinter            *[]PrintUsageByPrinter               `json:"dailyPrintUsageByPrinter,omitempty"`
+	DailyPrintUsageByUser               *[]PrintUsageByUser                  `json:"dailyPrintUsageByUser,omitempty"`
+	DailyPrintUsageSummariesByPrinter   *[]PrintUsageByPrinter               `json:"dailyPrintUsageSummariesByPrinter,omitempty"`
+	DailyPrintUsageSummariesByUser      *[]PrintUsageByUser                  `json:"dailyPrintUsageSummariesByUser,omitempty"`
+	Id                                  *string                              `json:"id,omitempty"`
+	MonthlyPrintUsageByPrinter          *[]PrintUsageByPrinter               `json:"monthlyPrintUsageByPrinter,omitempty"`
+	MonthlyPrintUsageByUser             *[]PrintUsageByUser                  `json:"monthlyPrintUsageByUser,omitempty"`
+	MonthlyPrintUsageSummariesByPrinter *[]PrintUsageByPrinter               `json:"monthlyPrintUsageSummariesByPrinter,omitempty"`
+	MonthlyPrintUsageSummariesByUser    *[]PrintUsageByUser                  `json:"monthlyPrintUsageSummariesByUser,omitempty"`
+	ODataType                           *string                              `json:"@odata.type,omitempty"`
+	Security                            *SecurityReportsRoot                 `json:"security,omitempty"`
+	ServicePrincipalSignInActivities    *[]ServicePrincipalSignInActivity    `json:"servicePrincipalSignInActivities,omitempty"`
+	Sla                                 *ServiceLevelAgreementRoot           `json:"sla,omitempty"`
+	UserCredentialUsageDetails          *[]UserCredentialUsageDetails        `json:"userCredentialUsageDetails,omitempty"`
+}

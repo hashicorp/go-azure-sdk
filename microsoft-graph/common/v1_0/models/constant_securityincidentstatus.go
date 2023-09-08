@@ -1,0 +1,43 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type SecurityIncidentStatus string
+
+const (
+	SecurityIncidentStatusactive         SecurityIncidentStatus = "Active"
+	SecurityIncidentStatusawaitingAction SecurityIncidentStatus = "AwaitingAction"
+	SecurityIncidentStatusinProgress     SecurityIncidentStatus = "InProgress"
+	SecurityIncidentStatusredirected     SecurityIncidentStatus = "Redirected"
+	SecurityIncidentStatusresolved       SecurityIncidentStatus = "Resolved"
+)
+
+func PossibleValuesForSecurityIncidentStatus() []string {
+	return []string{
+		string(SecurityIncidentStatusactive),
+		string(SecurityIncidentStatusawaitingAction),
+		string(SecurityIncidentStatusinProgress),
+		string(SecurityIncidentStatusredirected),
+		string(SecurityIncidentStatusresolved),
+	}
+}
+
+func parseSecurityIncidentStatus(input string) (*SecurityIncidentStatus, error) {
+	vals := map[string]SecurityIncidentStatus{
+		"active":         SecurityIncidentStatusactive,
+		"awaitingaction": SecurityIncidentStatusawaitingAction,
+		"inprogress":     SecurityIncidentStatusinProgress,
+		"redirected":     SecurityIncidentStatusredirected,
+		"resolved":       SecurityIncidentStatusresolved,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SecurityIncidentStatus(input)
+	return &out, nil
+}

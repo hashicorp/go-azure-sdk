@@ -1,0 +1,43 @@
+package models
+
+import "strings"
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type MacOSPrivacyAccessControlItemAccessibility string
+
+const (
+	MacOSPrivacyAccessControlItemAccessibilitydisabled MacOSPrivacyAccessControlItemAccessibility = "Disabled"
+	MacOSPrivacyAccessControlItemAccessibilityenabled MacOSPrivacyAccessControlItemAccessibility = "Enabled"
+	MacOSPrivacyAccessControlItemAccessibilitynotConfigured MacOSPrivacyAccessControlItemAccessibility = "NotConfigured"
+)
+
+
+func PossibleValuesForMacOSPrivacyAccessControlItemAccessibility() []string {
+	return []string{
+		string(MacOSPrivacyAccessControlItemAccessibilitydisabled),
+string(MacOSPrivacyAccessControlItemAccessibilityenabled),
+string(MacOSPrivacyAccessControlItemAccessibilitynotConfigured),
+	}
+}
+
+
+
+func parseMacOSPrivacyAccessControlItemAccessibility(input string) (*MacOSPrivacyAccessControlItemAccessibility, error) {
+	vals := map[string]MacOSPrivacyAccessControlItemAccessibility{
+		"disabled": MacOSPrivacyAccessControlItemAccessibilitydisabled,
+"enabled": MacOSPrivacyAccessControlItemAccessibilityenabled,
+"notconfigured": MacOSPrivacyAccessControlItemAccessibilitynotConfigured,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := MacOSPrivacyAccessControlItemAccessibility(input)
+	return &out, nil
+}

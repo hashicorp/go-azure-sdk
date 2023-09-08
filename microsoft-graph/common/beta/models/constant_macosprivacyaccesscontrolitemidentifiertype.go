@@ -1,0 +1,34 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type MacOSPrivacyAccessControlItemIdentifierType string
+
+const (
+	MacOSPrivacyAccessControlItemIdentifierTypebundleID MacOSPrivacyAccessControlItemIdentifierType = "BundleID"
+	MacOSPrivacyAccessControlItemIdentifierTypepath     MacOSPrivacyAccessControlItemIdentifierType = "Path"
+)
+
+func PossibleValuesForMacOSPrivacyAccessControlItemIdentifierType() []string {
+	return []string{
+		string(MacOSPrivacyAccessControlItemIdentifierTypebundleID),
+		string(MacOSPrivacyAccessControlItemIdentifierTypepath),
+	}
+}
+
+func parseMacOSPrivacyAccessControlItemIdentifierType(input string) (*MacOSPrivacyAccessControlItemIdentifierType, error) {
+	vals := map[string]MacOSPrivacyAccessControlItemIdentifierType{
+		"bundleid": MacOSPrivacyAccessControlItemIdentifierTypebundleID,
+		"path":     MacOSPrivacyAccessControlItemIdentifierTypepath,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := MacOSPrivacyAccessControlItemIdentifierType(input)
+	return &out, nil
+}

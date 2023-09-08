@@ -1,0 +1,39 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type SharedPCAccountManagerPolicyOperationPredicate struct {
+	 CacheAccountsAboveDiskFreePercentage *int64
+	 InactiveThresholdDays *int64
+	 ODataType *string
+	 RemoveAccountsBelowDiskFreePercentage *int64
+}
+
+func (p SharedPCAccountManagerPolicyOperationPredicate) Matches(input SharedPCAccountManagerPolicy) bool {
+
+	if p.CacheAccountsAboveDiskFreePercentage != nil && (input.CacheAccountsAboveDiskFreePercentage == nil || *p.CacheAccountsAboveDiskFreePercentage != *input.CacheAccountsAboveDiskFreePercentage) {
+	 	return false
+	}
+
+
+	if p.InactiveThresholdDays != nil && (input.InactiveThresholdDays == nil || *p.InactiveThresholdDays != *input.InactiveThresholdDays) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.RemoveAccountsBelowDiskFreePercentage != nil && (input.RemoveAccountsBelowDiskFreePercentage == nil || *p.RemoveAccountsBelowDiskFreePercentage != *input.RemoveAccountsBelowDiskFreePercentage) {
+	 	return false
+	}
+
+
+	return true
+}
+

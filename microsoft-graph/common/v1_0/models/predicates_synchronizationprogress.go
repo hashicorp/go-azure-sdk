@@ -1,0 +1,37 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type SynchronizationProgressOperationPredicate struct {
+	CompletedUnits              *int64
+	ODataType                   *string
+	ProgressObservationDateTime *string
+	TotalUnits                  *int64
+	Units                       *string
+}
+
+func (p SynchronizationProgressOperationPredicate) Matches(input SynchronizationProgress) bool {
+
+	if p.CompletedUnits != nil && (input.CompletedUnits == nil || *p.CompletedUnits != *input.CompletedUnits) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.ProgressObservationDateTime != nil && (input.ProgressObservationDateTime == nil || *p.ProgressObservationDateTime != *input.ProgressObservationDateTime) {
+		return false
+	}
+
+	if p.TotalUnits != nil && (input.TotalUnits == nil || *p.TotalUnits != *input.TotalUnits) {
+		return false
+	}
+
+	if p.Units != nil && (input.Units == nil || *p.Units != *input.Units) {
+		return false
+	}
+
+	return true
+}

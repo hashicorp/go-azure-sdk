@@ -1,0 +1,33 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type WorkbookFilterDatetimeOperationPredicate struct {
+	 Date *string
+	 ODataType *string
+	 Specificity *string
+}
+
+func (p WorkbookFilterDatetimeOperationPredicate) Matches(input WorkbookFilterDatetime) bool {
+
+	if p.Date != nil && (input.Date == nil || *p.Date != *input.Date) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.Specificity != nil && (input.Specificity == nil || *p.Specificity != *input.Specificity) {
+	 	return false
+	}
+
+
+	return true
+}
+

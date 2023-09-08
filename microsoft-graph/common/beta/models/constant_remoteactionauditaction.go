@@ -1,0 +1,130 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type RemoteActionAuditAction string
+
+const (
+	RemoteActionAuditActionactivateDeviceEsim                                   RemoteActionAuditAction = "ActivateDeviceEsim"
+	RemoteActionAuditActionautomaticRedeployment                                RemoteActionAuditAction = "AutomaticRedeployment"
+	RemoteActionAuditActioncleanWindowsDevice                                   RemoteActionAuditAction = "CleanWindowsDevice"
+	RemoteActionAuditActiondeprovision                                          RemoteActionAuditAction = "Deprovision"
+	RemoteActionAuditActiondisable                                              RemoteActionAuditAction = "Disable"
+	RemoteActionAuditActiondisableLostMode                                      RemoteActionAuditAction = "DisableLostMode"
+	RemoteActionAuditActionenableLostMode                                       RemoteActionAuditAction = "EnableLostMode"
+	RemoteActionAuditActionfactoryReset                                         RemoteActionAuditAction = "FactoryReset"
+	RemoteActionAuditActionfactoryResetKeepEnrollmentData                       RemoteActionAuditAction = "FactoryResetKeepEnrollmentData"
+	RemoteActionAuditActionfullScan                                             RemoteActionAuditAction = "FullScan"
+	RemoteActionAuditActiongetFileVaultKey                                      RemoteActionAuditAction = "GetFileVaultKey"
+	RemoteActionAuditActioninitiateMobileDeviceManagementKeyRecovery            RemoteActionAuditAction = "InitiateMobileDeviceManagementKeyRecovery"
+	RemoteActionAuditActioninitiateOnDemandProactiveRemediation                 RemoteActionAuditAction = "InitiateOnDemandProactiveRemediation"
+	RemoteActionAuditActionlaunchRemoteHelp                                     RemoteActionAuditAction = "LaunchRemoteHelp"
+	RemoteActionAuditActionlocateDevice                                         RemoteActionAuditAction = "LocateDevice"
+	RemoteActionAuditActionlogoutSharedAppleDeviceActiveUser                    RemoteActionAuditAction = "LogoutSharedAppleDeviceActiveUser"
+	RemoteActionAuditActionmoveDeviceToOrganizationalUnit                       RemoteActionAuditAction = "MoveDeviceToOrganizationalUnit"
+	RemoteActionAuditActionquickScan                                            RemoteActionAuditAction = "QuickScan"
+	RemoteActionAuditActionrebootNow                                            RemoteActionAuditAction = "RebootNow"
+	RemoteActionAuditActionrecoverPasscode                                      RemoteActionAuditAction = "RecoverPasscode"
+	RemoteActionAuditActionreenable                                             RemoteActionAuditAction = "Reenable"
+	RemoteActionAuditActionremoteLock                                           RemoteActionAuditAction = "RemoteLock"
+	RemoteActionAuditActionremoveCompanyData                                    RemoteActionAuditAction = "RemoveCompanyData"
+	RemoteActionAuditActionremoveDeviceFirmwareConfigurationInterfaceManagement RemoteActionAuditAction = "RemoveDeviceFirmwareConfigurationInterfaceManagement"
+	RemoteActionAuditActionresetPasscode                                        RemoteActionAuditAction = "ResetPasscode"
+	RemoteActionAuditActionrevokeAppleVppLicenses                               RemoteActionAuditAction = "RevokeAppleVppLicenses"
+	RemoteActionAuditActionrotateBitLockerKeys                                  RemoteActionAuditAction = "RotateBitLockerKeys"
+	RemoteActionAuditActionrotateFileVaultKey                                   RemoteActionAuditAction = "RotateFileVaultKey"
+	RemoteActionAuditActionrotateLocalAdminPassword                             RemoteActionAuditAction = "RotateLocalAdminPassword"
+	RemoteActionAuditActionsetDeviceName                                        RemoteActionAuditAction = "SetDeviceName"
+	RemoteActionAuditActionshutDown                                             RemoteActionAuditAction = "ShutDown"
+	RemoteActionAuditActionunknown                                              RemoteActionAuditAction = "Unknown"
+	RemoteActionAuditActionupdateDeviceAccount                                  RemoteActionAuditAction = "UpdateDeviceAccount"
+	RemoteActionAuditActionwindowsDefenderUpdateSignatures                      RemoteActionAuditAction = "WindowsDefenderUpdateSignatures"
+)
+
+func PossibleValuesForRemoteActionAuditAction() []string {
+	return []string{
+		string(RemoteActionAuditActionactivateDeviceEsim),
+		string(RemoteActionAuditActionautomaticRedeployment),
+		string(RemoteActionAuditActioncleanWindowsDevice),
+		string(RemoteActionAuditActiondeprovision),
+		string(RemoteActionAuditActiondisable),
+		string(RemoteActionAuditActiondisableLostMode),
+		string(RemoteActionAuditActionenableLostMode),
+		string(RemoteActionAuditActionfactoryReset),
+		string(RemoteActionAuditActionfactoryResetKeepEnrollmentData),
+		string(RemoteActionAuditActionfullScan),
+		string(RemoteActionAuditActiongetFileVaultKey),
+		string(RemoteActionAuditActioninitiateMobileDeviceManagementKeyRecovery),
+		string(RemoteActionAuditActioninitiateOnDemandProactiveRemediation),
+		string(RemoteActionAuditActionlaunchRemoteHelp),
+		string(RemoteActionAuditActionlocateDevice),
+		string(RemoteActionAuditActionlogoutSharedAppleDeviceActiveUser),
+		string(RemoteActionAuditActionmoveDeviceToOrganizationalUnit),
+		string(RemoteActionAuditActionquickScan),
+		string(RemoteActionAuditActionrebootNow),
+		string(RemoteActionAuditActionrecoverPasscode),
+		string(RemoteActionAuditActionreenable),
+		string(RemoteActionAuditActionremoteLock),
+		string(RemoteActionAuditActionremoveCompanyData),
+		string(RemoteActionAuditActionremoveDeviceFirmwareConfigurationInterfaceManagement),
+		string(RemoteActionAuditActionresetPasscode),
+		string(RemoteActionAuditActionrevokeAppleVppLicenses),
+		string(RemoteActionAuditActionrotateBitLockerKeys),
+		string(RemoteActionAuditActionrotateFileVaultKey),
+		string(RemoteActionAuditActionrotateLocalAdminPassword),
+		string(RemoteActionAuditActionsetDeviceName),
+		string(RemoteActionAuditActionshutDown),
+		string(RemoteActionAuditActionunknown),
+		string(RemoteActionAuditActionupdateDeviceAccount),
+		string(RemoteActionAuditActionwindowsDefenderUpdateSignatures),
+	}
+}
+
+func parseRemoteActionAuditAction(input string) (*RemoteActionAuditAction, error) {
+	vals := map[string]RemoteActionAuditAction{
+		"activatedeviceesim":             RemoteActionAuditActionactivateDeviceEsim,
+		"automaticredeployment":          RemoteActionAuditActionautomaticRedeployment,
+		"cleanwindowsdevice":             RemoteActionAuditActioncleanWindowsDevice,
+		"deprovision":                    RemoteActionAuditActiondeprovision,
+		"disable":                        RemoteActionAuditActiondisable,
+		"disablelostmode":                RemoteActionAuditActiondisableLostMode,
+		"enablelostmode":                 RemoteActionAuditActionenableLostMode,
+		"factoryreset":                   RemoteActionAuditActionfactoryReset,
+		"factoryresetkeepenrollmentdata": RemoteActionAuditActionfactoryResetKeepEnrollmentData,
+		"fullscan":                       RemoteActionAuditActionfullScan,
+		"getfilevaultkey":                RemoteActionAuditActiongetFileVaultKey,
+		"initiatemobiledevicemanagementkeyrecovery": RemoteActionAuditActioninitiateMobileDeviceManagementKeyRecovery,
+		"initiateondemandproactiveremediation":      RemoteActionAuditActioninitiateOnDemandProactiveRemediation,
+		"launchremotehelp":                          RemoteActionAuditActionlaunchRemoteHelp,
+		"locatedevice":                              RemoteActionAuditActionlocateDevice,
+		"logoutsharedappledeviceactiveuser":         RemoteActionAuditActionlogoutSharedAppleDeviceActiveUser,
+		"movedevicetoorganizationalunit":            RemoteActionAuditActionmoveDeviceToOrganizationalUnit,
+		"quickscan":                                 RemoteActionAuditActionquickScan,
+		"rebootnow":                                 RemoteActionAuditActionrebootNow,
+		"recoverpasscode":                           RemoteActionAuditActionrecoverPasscode,
+		"reenable":                                  RemoteActionAuditActionreenable,
+		"remotelock":                                RemoteActionAuditActionremoteLock,
+		"removecompanydata":                         RemoteActionAuditActionremoveCompanyData,
+		"removedevicefirmwareconfigurationinterfacemanagement": RemoteActionAuditActionremoveDeviceFirmwareConfigurationInterfaceManagement,
+		"resetpasscode":                   RemoteActionAuditActionresetPasscode,
+		"revokeapplevpplicenses":          RemoteActionAuditActionrevokeAppleVppLicenses,
+		"rotatebitlockerkeys":             RemoteActionAuditActionrotateBitLockerKeys,
+		"rotatefilevaultkey":              RemoteActionAuditActionrotateFileVaultKey,
+		"rotatelocaladminpassword":        RemoteActionAuditActionrotateLocalAdminPassword,
+		"setdevicename":                   RemoteActionAuditActionsetDeviceName,
+		"shutdown":                        RemoteActionAuditActionshutDown,
+		"unknown":                         RemoteActionAuditActionunknown,
+		"updatedeviceaccount":             RemoteActionAuditActionupdateDeviceAccount,
+		"windowsdefenderupdatesignatures": RemoteActionAuditActionwindowsDefenderUpdateSignatures,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := RemoteActionAuditAction(input)
+	return &out, nil
+}

@@ -1,0 +1,37 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type Windows10DeviceFirmwareConfigurationInterfaceWakeOnPower string
+
+const (
+	Windows10DeviceFirmwareConfigurationInterfaceWakeOnPowerdisabled      Windows10DeviceFirmwareConfigurationInterfaceWakeOnPower = "Disabled"
+	Windows10DeviceFirmwareConfigurationInterfaceWakeOnPowerenabled       Windows10DeviceFirmwareConfigurationInterfaceWakeOnPower = "Enabled"
+	Windows10DeviceFirmwareConfigurationInterfaceWakeOnPowernotConfigured Windows10DeviceFirmwareConfigurationInterfaceWakeOnPower = "NotConfigured"
+)
+
+func PossibleValuesForWindows10DeviceFirmwareConfigurationInterfaceWakeOnPower() []string {
+	return []string{
+		string(Windows10DeviceFirmwareConfigurationInterfaceWakeOnPowerdisabled),
+		string(Windows10DeviceFirmwareConfigurationInterfaceWakeOnPowerenabled),
+		string(Windows10DeviceFirmwareConfigurationInterfaceWakeOnPowernotConfigured),
+	}
+}
+
+func parseWindows10DeviceFirmwareConfigurationInterfaceWakeOnPower(input string) (*Windows10DeviceFirmwareConfigurationInterfaceWakeOnPower, error) {
+	vals := map[string]Windows10DeviceFirmwareConfigurationInterfaceWakeOnPower{
+		"disabled":      Windows10DeviceFirmwareConfigurationInterfaceWakeOnPowerdisabled,
+		"enabled":       Windows10DeviceFirmwareConfigurationInterfaceWakeOnPowerenabled,
+		"notconfigured": Windows10DeviceFirmwareConfigurationInterfaceWakeOnPowernotConfigured,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := Windows10DeviceFirmwareConfigurationInterfaceWakeOnPower(input)
+	return &out, nil
+}

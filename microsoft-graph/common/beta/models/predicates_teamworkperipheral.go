@@ -1,0 +1,37 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type TeamworkPeripheralOperationPredicate struct {
+	DisplayName *string
+	Id          *string
+	ODataType   *string
+	ProductId   *string
+	VendorId    *string
+}
+
+func (p TeamworkPeripheralOperationPredicate) Matches(input TeamworkPeripheral) bool {
+
+	if p.DisplayName != nil && (input.DisplayName == nil || *p.DisplayName != *input.DisplayName) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.ProductId != nil && (input.ProductId == nil || *p.ProductId != *input.ProductId) {
+		return false
+	}
+
+	if p.VendorId != nil && (input.VendorId == nil || *p.VendorId != *input.VendorId) {
+		return false
+	}
+
+	return true
+}

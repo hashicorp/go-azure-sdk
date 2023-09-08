@@ -1,0 +1,33 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type HybridAgentUpdaterConfigurationOperationPredicate struct {
+	 AllowUpdateConfigurationOverride *bool
+	 DeferUpdateDateTime *string
+	 ODataType *string
+}
+
+func (p HybridAgentUpdaterConfigurationOperationPredicate) Matches(input HybridAgentUpdaterConfiguration) bool {
+
+	if p.AllowUpdateConfigurationOverride != nil && (input.AllowUpdateConfigurationOverride == nil || *p.AllowUpdateConfigurationOverride != *input.AllowUpdateConfigurationOverride) {
+	 	return false
+	}
+
+
+	if p.DeferUpdateDateTime != nil && (input.DeferUpdateDateTime == nil || *p.DeferUpdateDateTime != *input.DeferUpdateDateTime) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	return true
+}
+

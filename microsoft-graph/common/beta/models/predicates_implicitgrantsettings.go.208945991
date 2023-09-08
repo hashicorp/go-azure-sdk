@@ -1,0 +1,33 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type ImplicitGrantSettingsOperationPredicate struct {
+	 EnableAccessTokenIssuance *bool
+	 EnableIdTokenIssuance *bool
+	 ODataType *string
+}
+
+func (p ImplicitGrantSettingsOperationPredicate) Matches(input ImplicitGrantSettings) bool {
+
+	if p.EnableAccessTokenIssuance != nil && (input.EnableAccessTokenIssuance == nil || *p.EnableAccessTokenIssuance != *input.EnableAccessTokenIssuance) {
+	 	return false
+	}
+
+
+	if p.EnableIdTokenIssuance != nil && (input.EnableIdTokenIssuance == nil || *p.EnableIdTokenIssuance != *input.EnableIdTokenIssuance) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	return true
+}
+

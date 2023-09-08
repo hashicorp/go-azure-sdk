@@ -1,0 +1,42 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type SecurityBaselineDeviceStateOperationPredicate struct {
+	DeviceDisplayName    *string
+	Id                   *string
+	LastReportedDateTime *string
+	ManagedDeviceId      *string
+	ODataType            *string
+	UserPrincipalName    *string
+}
+
+func (p SecurityBaselineDeviceStateOperationPredicate) Matches(input SecurityBaselineDeviceState) bool {
+
+	if p.DeviceDisplayName != nil && (input.DeviceDisplayName == nil || *p.DeviceDisplayName != *input.DeviceDisplayName) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.LastReportedDateTime != nil && (input.LastReportedDateTime == nil || *p.LastReportedDateTime != *input.LastReportedDateTime) {
+		return false
+	}
+
+	if p.ManagedDeviceId != nil && (input.ManagedDeviceId == nil || *p.ManagedDeviceId != *input.ManagedDeviceId) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.UserPrincipalName != nil && (input.UserPrincipalName == nil || *p.UserPrincipalName != *input.UserPrincipalName) {
+		return false
+	}
+
+	return true
+}

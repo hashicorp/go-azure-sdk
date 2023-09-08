@@ -1,0 +1,52 @@
+package models
+
+import "strings"
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type Windows81GeneralConfigurationBrowserIntranetSecurityLevel string
+
+const (
+	Windows81GeneralConfigurationBrowserIntranetSecurityLevelhigh Windows81GeneralConfigurationBrowserIntranetSecurityLevel = "High"
+	Windows81GeneralConfigurationBrowserIntranetSecurityLevellow Windows81GeneralConfigurationBrowserIntranetSecurityLevel = "Low"
+	Windows81GeneralConfigurationBrowserIntranetSecurityLevelmedium Windows81GeneralConfigurationBrowserIntranetSecurityLevel = "Medium"
+	Windows81GeneralConfigurationBrowserIntranetSecurityLevelmediumHigh Windows81GeneralConfigurationBrowserIntranetSecurityLevel = "MediumHigh"
+	Windows81GeneralConfigurationBrowserIntranetSecurityLevelmediumLow Windows81GeneralConfigurationBrowserIntranetSecurityLevel = "MediumLow"
+	Windows81GeneralConfigurationBrowserIntranetSecurityLeveluserDefined Windows81GeneralConfigurationBrowserIntranetSecurityLevel = "UserDefined"
+)
+
+
+func PossibleValuesForWindows81GeneralConfigurationBrowserIntranetSecurityLevel() []string {
+	return []string{
+		string(Windows81GeneralConfigurationBrowserIntranetSecurityLevelhigh),
+string(Windows81GeneralConfigurationBrowserIntranetSecurityLevellow),
+string(Windows81GeneralConfigurationBrowserIntranetSecurityLevelmedium),
+string(Windows81GeneralConfigurationBrowserIntranetSecurityLevelmediumHigh),
+string(Windows81GeneralConfigurationBrowserIntranetSecurityLevelmediumLow),
+string(Windows81GeneralConfigurationBrowserIntranetSecurityLeveluserDefined),
+	}
+}
+
+
+
+func parseWindows81GeneralConfigurationBrowserIntranetSecurityLevel(input string) (*Windows81GeneralConfigurationBrowserIntranetSecurityLevel, error) {
+	vals := map[string]Windows81GeneralConfigurationBrowserIntranetSecurityLevel{
+		"high": Windows81GeneralConfigurationBrowserIntranetSecurityLevelhigh,
+"low": Windows81GeneralConfigurationBrowserIntranetSecurityLevellow,
+"medium": Windows81GeneralConfigurationBrowserIntranetSecurityLevelmedium,
+"mediumhigh": Windows81GeneralConfigurationBrowserIntranetSecurityLevelmediumHigh,
+"mediumlow": Windows81GeneralConfigurationBrowserIntranetSecurityLevelmediumLow,
+"userdefined": Windows81GeneralConfigurationBrowserIntranetSecurityLeveluserDefined,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := Windows81GeneralConfigurationBrowserIntranetSecurityLevel(input)
+	return &out, nil
+}

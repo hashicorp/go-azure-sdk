@@ -1,0 +1,40 @@
+package models
+
+import "strings"
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type SignInUserType string
+
+const (
+	SignInUserTypeguest SignInUserType = "Guest"
+	SignInUserTypemember SignInUserType = "Member"
+)
+
+
+func PossibleValuesForSignInUserType() []string {
+	return []string{
+		string(SignInUserTypeguest),
+string(SignInUserTypemember),
+	}
+}
+
+
+
+func parseSignInUserType(input string) (*SignInUserType, error) {
+	vals := map[string]SignInUserType{
+		"guest": SignInUserTypeguest,
+"member": SignInUserTypemember,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SignInUserType(input)
+	return &out, nil
+}

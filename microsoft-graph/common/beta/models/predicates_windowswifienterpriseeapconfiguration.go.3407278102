@@ -1,0 +1,231 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type WindowsWifiEnterpriseEAPConfigurationOperationPredicate struct {
+	 AuthenticationPeriodInSeconds *int64
+	 AuthenticationRetryDelayPeriodInSeconds *int64
+	 CacheCredentials *bool
+	 ConnectAutomatically *bool
+	 ConnectToPreferredNetwork *bool
+	 ConnectWhenNetworkNameIsHidden *bool
+	 CreatedDateTime *string
+	 Description *string
+	 DisableUserPromptForServerValidation *bool
+	 DisplayName *string
+	 EapolStartPeriodInSeconds *int64
+	 EnablePairwiseMasterKeyCaching *bool
+	 EnablePreAuthentication *bool
+	 ForceFIPSCompliance *bool
+	 Id *string
+	 LastModifiedDateTime *string
+	 MaximumAuthenticationFailures *int64
+	 MaximumAuthenticationTimeoutInSeconds *int64
+	 MaximumEAPOLStartMessages *int64
+	 MaximumNumberOfPairwiseMasterKeysInCache *int64
+	 MaximumPairwiseMasterKeyCacheTimeInMinutes *int64
+	 MaximumPreAuthenticationAttempts *int64
+	 NetworkName *string
+	 ODataType *string
+	 OuterIdentityPrivacyTemporaryValue *string
+	 PerformServerValidation *bool
+	 PreSharedKey *string
+	 PromptForAdditionalAuthenticationCredentials *bool
+	 ProxyAutomaticConfigurationUrl *string
+	 ProxyManualAddress *string
+	 ProxyManualPort *int64
+	 RequireCryptographicBinding *bool
+	 Ssid *string
+	 SupportsScopeTags *bool
+	 UserBasedVirtualLan *bool
+	 Version *int64
+}
+
+func (p WindowsWifiEnterpriseEAPConfigurationOperationPredicate) Matches(input WindowsWifiEnterpriseEAPConfiguration) bool {
+
+	if p.AuthenticationPeriodInSeconds != nil && (input.AuthenticationPeriodInSeconds == nil || *p.AuthenticationPeriodInSeconds != *input.AuthenticationPeriodInSeconds) {
+	 	return false
+	}
+
+
+	if p.AuthenticationRetryDelayPeriodInSeconds != nil && (input.AuthenticationRetryDelayPeriodInSeconds == nil || *p.AuthenticationRetryDelayPeriodInSeconds != *input.AuthenticationRetryDelayPeriodInSeconds) {
+	 	return false
+	}
+
+
+	if p.CacheCredentials != nil && (input.CacheCredentials == nil || *p.CacheCredentials != *input.CacheCredentials) {
+	 	return false
+	}
+
+
+	if p.ConnectAutomatically != nil && (input.ConnectAutomatically == nil || *p.ConnectAutomatically != *input.ConnectAutomatically) {
+	 	return false
+	}
+
+
+	if p.ConnectToPreferredNetwork != nil && (input.ConnectToPreferredNetwork == nil || *p.ConnectToPreferredNetwork != *input.ConnectToPreferredNetwork) {
+	 	return false
+	}
+
+
+	if p.ConnectWhenNetworkNameIsHidden != nil && (input.ConnectWhenNetworkNameIsHidden == nil || *p.ConnectWhenNetworkNameIsHidden != *input.ConnectWhenNetworkNameIsHidden) {
+	 	return false
+	}
+
+
+	if p.CreatedDateTime != nil && (input.CreatedDateTime == nil || *p.CreatedDateTime != *input.CreatedDateTime) {
+	 	return false
+	}
+
+
+	if p.Description != nil && (input.Description == nil || *p.Description != *input.Description) {
+	 	return false
+	}
+
+
+	if p.DisableUserPromptForServerValidation != nil && (input.DisableUserPromptForServerValidation == nil || *p.DisableUserPromptForServerValidation != *input.DisableUserPromptForServerValidation) {
+	 	return false
+	}
+
+
+	if p.DisplayName != nil && (input.DisplayName == nil || *p.DisplayName != *input.DisplayName) {
+	 	return false
+	}
+
+
+	if p.EapolStartPeriodInSeconds != nil && (input.EapolStartPeriodInSeconds == nil || *p.EapolStartPeriodInSeconds != *input.EapolStartPeriodInSeconds) {
+	 	return false
+	}
+
+
+	if p.EnablePairwiseMasterKeyCaching != nil && (input.EnablePairwiseMasterKeyCaching == nil || *p.EnablePairwiseMasterKeyCaching != *input.EnablePairwiseMasterKeyCaching) {
+	 	return false
+	}
+
+
+	if p.EnablePreAuthentication != nil && (input.EnablePreAuthentication == nil || *p.EnablePreAuthentication != *input.EnablePreAuthentication) {
+	 	return false
+	}
+
+
+	if p.ForceFIPSCompliance != nil && (input.ForceFIPSCompliance == nil || *p.ForceFIPSCompliance != *input.ForceFIPSCompliance) {
+	 	return false
+	}
+
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+	 	return false
+	}
+
+
+	if p.LastModifiedDateTime != nil && (input.LastModifiedDateTime == nil || *p.LastModifiedDateTime != *input.LastModifiedDateTime) {
+	 	return false
+	}
+
+
+	if p.MaximumAuthenticationFailures != nil && (input.MaximumAuthenticationFailures == nil || *p.MaximumAuthenticationFailures != *input.MaximumAuthenticationFailures) {
+	 	return false
+	}
+
+
+	if p.MaximumAuthenticationTimeoutInSeconds != nil && (input.MaximumAuthenticationTimeoutInSeconds == nil || *p.MaximumAuthenticationTimeoutInSeconds != *input.MaximumAuthenticationTimeoutInSeconds) {
+	 	return false
+	}
+
+
+	if p.MaximumEAPOLStartMessages != nil && (input.MaximumEAPOLStartMessages == nil || *p.MaximumEAPOLStartMessages != *input.MaximumEAPOLStartMessages) {
+	 	return false
+	}
+
+
+	if p.MaximumNumberOfPairwiseMasterKeysInCache != nil && (input.MaximumNumberOfPairwiseMasterKeysInCache == nil || *p.MaximumNumberOfPairwiseMasterKeysInCache != *input.MaximumNumberOfPairwiseMasterKeysInCache) {
+	 	return false
+	}
+
+
+	if p.MaximumPairwiseMasterKeyCacheTimeInMinutes != nil && (input.MaximumPairwiseMasterKeyCacheTimeInMinutes == nil || *p.MaximumPairwiseMasterKeyCacheTimeInMinutes != *input.MaximumPairwiseMasterKeyCacheTimeInMinutes) {
+	 	return false
+	}
+
+
+	if p.MaximumPreAuthenticationAttempts != nil && (input.MaximumPreAuthenticationAttempts == nil || *p.MaximumPreAuthenticationAttempts != *input.MaximumPreAuthenticationAttempts) {
+	 	return false
+	}
+
+
+	if p.NetworkName != nil && (input.NetworkName == nil || *p.NetworkName != *input.NetworkName) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.OuterIdentityPrivacyTemporaryValue != nil && (input.OuterIdentityPrivacyTemporaryValue == nil || *p.OuterIdentityPrivacyTemporaryValue != *input.OuterIdentityPrivacyTemporaryValue) {
+	 	return false
+	}
+
+
+	if p.PerformServerValidation != nil && (input.PerformServerValidation == nil || *p.PerformServerValidation != *input.PerformServerValidation) {
+	 	return false
+	}
+
+
+	if p.PreSharedKey != nil && (input.PreSharedKey == nil || *p.PreSharedKey != *input.PreSharedKey) {
+	 	return false
+	}
+
+
+	if p.PromptForAdditionalAuthenticationCredentials != nil && (input.PromptForAdditionalAuthenticationCredentials == nil || *p.PromptForAdditionalAuthenticationCredentials != *input.PromptForAdditionalAuthenticationCredentials) {
+	 	return false
+	}
+
+
+	if p.ProxyAutomaticConfigurationUrl != nil && (input.ProxyAutomaticConfigurationUrl == nil || *p.ProxyAutomaticConfigurationUrl != *input.ProxyAutomaticConfigurationUrl) {
+	 	return false
+	}
+
+
+	if p.ProxyManualAddress != nil && (input.ProxyManualAddress == nil || *p.ProxyManualAddress != *input.ProxyManualAddress) {
+	 	return false
+	}
+
+
+	if p.ProxyManualPort != nil && (input.ProxyManualPort == nil || *p.ProxyManualPort != *input.ProxyManualPort) {
+	 	return false
+	}
+
+
+	if p.RequireCryptographicBinding != nil && (input.RequireCryptographicBinding == nil || *p.RequireCryptographicBinding != *input.RequireCryptographicBinding) {
+	 	return false
+	}
+
+
+	if p.Ssid != nil && (input.Ssid == nil || *p.Ssid != *input.Ssid) {
+	 	return false
+	}
+
+
+	if p.SupportsScopeTags != nil && (input.SupportsScopeTags == nil || *p.SupportsScopeTags != *input.SupportsScopeTags) {
+	 	return false
+	}
+
+
+	if p.UserBasedVirtualLan != nil && (input.UserBasedVirtualLan == nil || *p.UserBasedVirtualLan != *input.UserBasedVirtualLan) {
+	 	return false
+	}
+
+
+	if p.Version != nil && (input.Version == nil || *p.Version != *input.Version) {
+	 	return false
+	}
+
+
+	return true
+}
+

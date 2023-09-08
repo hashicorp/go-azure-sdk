@@ -1,0 +1,63 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type SecuritySslCertificateEntityOperationPredicate struct {
+	 CommonName *string
+	 Email *string
+	 GivenName *string
+	 ODataType *string
+	 OrganizationName *string
+	 OrganizationUnitName *string
+	 SerialNumber *string
+	 Surname *string
+}
+
+func (p SecuritySslCertificateEntityOperationPredicate) Matches(input SecuritySslCertificateEntity) bool {
+
+	if p.CommonName != nil && (input.CommonName == nil || *p.CommonName != *input.CommonName) {
+	 	return false
+	}
+
+
+	if p.Email != nil && (input.Email == nil || *p.Email != *input.Email) {
+	 	return false
+	}
+
+
+	if p.GivenName != nil && (input.GivenName == nil || *p.GivenName != *input.GivenName) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.OrganizationName != nil && (input.OrganizationName == nil || *p.OrganizationName != *input.OrganizationName) {
+	 	return false
+	}
+
+
+	if p.OrganizationUnitName != nil && (input.OrganizationUnitName == nil || *p.OrganizationUnitName != *input.OrganizationUnitName) {
+	 	return false
+	}
+
+
+	if p.SerialNumber != nil && (input.SerialNumber == nil || *p.SerialNumber != *input.SerialNumber) {
+	 	return false
+	}
+
+
+	if p.Surname != nil && (input.Surname == nil || *p.Surname != *input.Surname) {
+	 	return false
+	}
+
+
+	return true
+}
+

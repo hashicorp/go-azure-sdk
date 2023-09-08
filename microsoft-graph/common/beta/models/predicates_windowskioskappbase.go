@@ -1,0 +1,27 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type WindowsKioskAppBaseOperationPredicate struct {
+	AutoLaunch *bool
+	Name       *string
+	ODataType  *string
+}
+
+func (p WindowsKioskAppBaseOperationPredicate) Matches(input WindowsKioskAppBase) bool {
+
+	if p.AutoLaunch != nil && (input.AutoLaunch == nil || *p.AutoLaunch != *input.AutoLaunch) {
+		return false
+	}
+
+	if p.Name != nil && (input.Name == nil || *p.Name != *input.Name) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	return true
+}

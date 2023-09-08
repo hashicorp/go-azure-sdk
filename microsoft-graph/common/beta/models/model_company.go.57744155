@@ -1,0 +1,71 @@
+package models
+
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/edgezones"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/identity"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/systemdata"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/zones"
+)
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type Company struct {
+	Accounts *[]Account `json:"accounts,omitempty"`
+	AgedAccountsPayable *[]AgedAccountsPayable `json:"agedAccountsPayable,omitempty"`
+	AgedAccountsReceivable *[]AgedAccountsReceivable `json:"agedAccountsReceivable,omitempty"`
+	BusinessProfileId *string `json:"businessProfileId,omitempty"`
+	CompanyInformation *[]CompanyInformation `json:"companyInformation,omitempty"`
+	CountriesRegions *[]CountryRegion `json:"countriesRegions,omitempty"`
+	Currencies *[]Currency `json:"currencies,omitempty"`
+	CustomerPaymentJournals *[]CustomerPaymentJournal `json:"customerPaymentJournals,omitempty"`
+	CustomerPayments *[]CustomerPayment `json:"customerPayments,omitempty"`
+	Customers *[]Customer `json:"customers,omitempty"`
+	DimensionValues *[]DimensionValue `json:"dimensionValues,omitempty"`
+	Dimensions *[]Dimension `json:"dimensions,omitempty"`
+	DisplayName *string `json:"displayName,omitempty"`
+	Employees *[]Employee `json:"employees,omitempty"`
+	GeneralLedgerEntries *[]GeneralLedgerEntry `json:"generalLedgerEntries,omitempty"`
+	Id *string `json:"id,omitempty"`
+	ItemCategories *[]ItemCategory `json:"itemCategories,omitempty"`
+	Items *[]Item `json:"items,omitempty"`
+	JournalLines *[]JournalLine `json:"journalLines,omitempty"`
+	Journals *[]Journal `json:"journals,omitempty"`
+	Name *string `json:"name,omitempty"`
+	ODataType *string `json:"@odata.type,omitempty"`
+	PaymentMethods *[]PaymentMethod `json:"paymentMethods,omitempty"`
+	PaymentTerms *[]PaymentTerm `json:"paymentTerms,omitempty"`
+	Picture *[]Picture `json:"picture,omitempty"`
+	PurchaseInvoiceLines *[]PurchaseInvoiceLine `json:"purchaseInvoiceLines,omitempty"`
+	PurchaseInvoices *[]PurchaseInvoice `json:"purchaseInvoices,omitempty"`
+	SalesCreditMemoLines *[]SalesCreditMemoLine `json:"salesCreditMemoLines,omitempty"`
+	SalesCreditMemos *[]SalesCreditMemo `json:"salesCreditMemos,omitempty"`
+	SalesInvoiceLines *[]SalesInvoiceLine `json:"salesInvoiceLines,omitempty"`
+	SalesInvoices *[]SalesInvoice `json:"salesInvoices,omitempty"`
+	SalesOrderLines *[]SalesOrderLine `json:"salesOrderLines,omitempty"`
+	SalesOrders *[]SalesOrder `json:"salesOrders,omitempty"`
+	SalesQuoteLines *[]SalesQuoteLine `json:"salesQuoteLines,omitempty"`
+	SalesQuotes *[]SalesQuote `json:"salesQuotes,omitempty"`
+	ShipmentMethods *[]ShipmentMethod `json:"shipmentMethods,omitempty"`
+	SystemVersion *string `json:"systemVersion,omitempty"`
+	TaxAreas *[]TaxArea `json:"taxAreas,omitempty"`
+	TaxGroups *[]TaxGroup `json:"taxGroups,omitempty"`
+	UnitsOfMeasure *[]UnitOfMeasure `json:"unitsOfMeasure,omitempty"`
+	Vendors *[]Vendor `json:"vendors,omitempty"`
+}
+
+
+
+
+
+
+

@@ -1,0 +1,33 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type DeviceCompliancePolicyScriptOperationPredicate struct {
+	 DeviceComplianceScriptId *string
+	 ODataType *string
+	 RulesContent *string
+}
+
+func (p DeviceCompliancePolicyScriptOperationPredicate) Matches(input DeviceCompliancePolicyScript) bool {
+
+	if p.DeviceComplianceScriptId != nil && (input.DeviceComplianceScriptId == nil || *p.DeviceComplianceScriptId != *input.DeviceComplianceScriptId) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.RulesContent != nil && (input.RulesContent == nil || *p.RulesContent != *input.RulesContent) {
+	 	return false
+	}
+
+
+	return true
+}
+

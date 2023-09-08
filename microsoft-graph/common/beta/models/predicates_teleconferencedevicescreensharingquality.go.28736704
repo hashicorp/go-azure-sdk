@@ -1,0 +1,123 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type TeleconferenceDeviceScreenSharingQualityOperationPredicate struct {
+	 AverageInboundJitter *string
+	 AverageInboundRoundTripDelay *string
+	 AverageOutboundJitter *string
+	 AverageOutboundRoundTripDelay *string
+	 ChannelIndex *int64
+	 InboundPackets *int64
+	 LocalIPAddress *string
+	 LocalPort *int64
+	 MaximumInboundJitter *string
+	 MaximumInboundRoundTripDelay *string
+	 MaximumOutboundJitter *string
+	 MaximumOutboundRoundTripDelay *string
+	 MediaDuration *string
+	 NetworkLinkSpeedInBytes *int64
+	 ODataType *string
+	 OutboundPackets *int64
+	 RemoteIPAddress *string
+	 RemotePort *int64
+}
+
+func (p TeleconferenceDeviceScreenSharingQualityOperationPredicate) Matches(input TeleconferenceDeviceScreenSharingQuality) bool {
+
+	if p.AverageInboundJitter != nil && (input.AverageInboundJitter == nil || *p.AverageInboundJitter != *input.AverageInboundJitter) {
+	 	return false
+	}
+
+
+	if p.AverageInboundRoundTripDelay != nil && (input.AverageInboundRoundTripDelay == nil || *p.AverageInboundRoundTripDelay != *input.AverageInboundRoundTripDelay) {
+	 	return false
+	}
+
+
+	if p.AverageOutboundJitter != nil && (input.AverageOutboundJitter == nil || *p.AverageOutboundJitter != *input.AverageOutboundJitter) {
+	 	return false
+	}
+
+
+	if p.AverageOutboundRoundTripDelay != nil && (input.AverageOutboundRoundTripDelay == nil || *p.AverageOutboundRoundTripDelay != *input.AverageOutboundRoundTripDelay) {
+	 	return false
+	}
+
+
+	if p.ChannelIndex != nil && (input.ChannelIndex == nil || *p.ChannelIndex != *input.ChannelIndex) {
+	 	return false
+	}
+
+
+	if p.InboundPackets != nil && (input.InboundPackets == nil || *p.InboundPackets != *input.InboundPackets) {
+	 	return false
+	}
+
+
+	if p.LocalIPAddress != nil && (input.LocalIPAddress == nil || *p.LocalIPAddress != *input.LocalIPAddress) {
+	 	return false
+	}
+
+
+	if p.LocalPort != nil && (input.LocalPort == nil || *p.LocalPort != *input.LocalPort) {
+	 	return false
+	}
+
+
+	if p.MaximumInboundJitter != nil && (input.MaximumInboundJitter == nil || *p.MaximumInboundJitter != *input.MaximumInboundJitter) {
+	 	return false
+	}
+
+
+	if p.MaximumInboundRoundTripDelay != nil && (input.MaximumInboundRoundTripDelay == nil || *p.MaximumInboundRoundTripDelay != *input.MaximumInboundRoundTripDelay) {
+	 	return false
+	}
+
+
+	if p.MaximumOutboundJitter != nil && (input.MaximumOutboundJitter == nil || *p.MaximumOutboundJitter != *input.MaximumOutboundJitter) {
+	 	return false
+	}
+
+
+	if p.MaximumOutboundRoundTripDelay != nil && (input.MaximumOutboundRoundTripDelay == nil || *p.MaximumOutboundRoundTripDelay != *input.MaximumOutboundRoundTripDelay) {
+	 	return false
+	}
+
+
+	if p.MediaDuration != nil && (input.MediaDuration == nil || *p.MediaDuration != *input.MediaDuration) {
+	 	return false
+	}
+
+
+	if p.NetworkLinkSpeedInBytes != nil && (input.NetworkLinkSpeedInBytes == nil || *p.NetworkLinkSpeedInBytes != *input.NetworkLinkSpeedInBytes) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.OutboundPackets != nil && (input.OutboundPackets == nil || *p.OutboundPackets != *input.OutboundPackets) {
+	 	return false
+	}
+
+
+	if p.RemoteIPAddress != nil && (input.RemoteIPAddress == nil || *p.RemoteIPAddress != *input.RemoteIPAddress) {
+	 	return false
+	}
+
+
+	if p.RemotePort != nil && (input.RemotePort == nil || *p.RemotePort != *input.RemotePort) {
+	 	return false
+	}
+
+
+	return true
+}
+

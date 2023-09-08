@@ -1,0 +1,225 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type SignInOperationPredicate struct {
+	 AppDisplayName *string
+	 AppId *string
+	 AuthenticationRequirement *string
+	 AutonomousSystemNumber *int64
+	 AzureResourceId *string
+	 ClientAppUsed *string
+	 CorrelationId *string
+	 CreatedDateTime *string
+	 FederatedCredentialId *string
+	 FlaggedForReview *bool
+	 HomeTenantId *string
+	 HomeTenantName *string
+	 Id *string
+	 IpAddress *string
+	 IpAddressFromResourceProvider *string
+	 IsInteractive *bool
+	 IsTenantRestricted *bool
+	 ODataType *string
+	 OriginalRequestId *string
+	 ProcessingTimeInMilliseconds *int64
+	 ResourceDisplayName *string
+	 ResourceId *string
+	 ResourceServicePrincipalId *string
+	 ResourceTenantId *string
+	 ServicePrincipalCredentialKeyId *string
+	 ServicePrincipalCredentialThumbprint *string
+	 ServicePrincipalId *string
+	 ServicePrincipalName *string
+	 SignInIdentifier *string
+	 TokenIssuerName *string
+	 UniqueTokenIdentifier *string
+	 UserAgent *string
+	 UserDisplayName *string
+	 UserId *string
+	 UserPrincipalName *string
+}
+
+func (p SignInOperationPredicate) Matches(input SignIn) bool {
+
+	if p.AppDisplayName != nil && (input.AppDisplayName == nil || *p.AppDisplayName != *input.AppDisplayName) {
+	 	return false
+	}
+
+
+	if p.AppId != nil && (input.AppId == nil || *p.AppId != *input.AppId) {
+	 	return false
+	}
+
+
+	if p.AuthenticationRequirement != nil && (input.AuthenticationRequirement == nil || *p.AuthenticationRequirement != *input.AuthenticationRequirement) {
+	 	return false
+	}
+
+
+	if p.AutonomousSystemNumber != nil && (input.AutonomousSystemNumber == nil || *p.AutonomousSystemNumber != *input.AutonomousSystemNumber) {
+	 	return false
+	}
+
+
+	if p.AzureResourceId != nil && (input.AzureResourceId == nil || *p.AzureResourceId != *input.AzureResourceId) {
+	 	return false
+	}
+
+
+	if p.ClientAppUsed != nil && (input.ClientAppUsed == nil || *p.ClientAppUsed != *input.ClientAppUsed) {
+	 	return false
+	}
+
+
+	if p.CorrelationId != nil && (input.CorrelationId == nil || *p.CorrelationId != *input.CorrelationId) {
+	 	return false
+	}
+
+
+	if p.CreatedDateTime != nil && (input.CreatedDateTime == nil || *p.CreatedDateTime != *input.CreatedDateTime) {
+	 	return false
+	}
+
+
+	if p.FederatedCredentialId != nil && (input.FederatedCredentialId == nil || *p.FederatedCredentialId != *input.FederatedCredentialId) {
+	 	return false
+	}
+
+
+	if p.FlaggedForReview != nil && (input.FlaggedForReview == nil || *p.FlaggedForReview != *input.FlaggedForReview) {
+	 	return false
+	}
+
+
+	if p.HomeTenantId != nil && (input.HomeTenantId == nil || *p.HomeTenantId != *input.HomeTenantId) {
+	 	return false
+	}
+
+
+	if p.HomeTenantName != nil && (input.HomeTenantName == nil || *p.HomeTenantName != *input.HomeTenantName) {
+	 	return false
+	}
+
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+	 	return false
+	}
+
+
+	if p.IpAddress != nil && (input.IpAddress == nil || *p.IpAddress != *input.IpAddress) {
+	 	return false
+	}
+
+
+	if p.IpAddressFromResourceProvider != nil && (input.IpAddressFromResourceProvider == nil || *p.IpAddressFromResourceProvider != *input.IpAddressFromResourceProvider) {
+	 	return false
+	}
+
+
+	if p.IsInteractive != nil && (input.IsInteractive == nil || *p.IsInteractive != *input.IsInteractive) {
+	 	return false
+	}
+
+
+	if p.IsTenantRestricted != nil && (input.IsTenantRestricted == nil || *p.IsTenantRestricted != *input.IsTenantRestricted) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.OriginalRequestId != nil && (input.OriginalRequestId == nil || *p.OriginalRequestId != *input.OriginalRequestId) {
+	 	return false
+	}
+
+
+	if p.ProcessingTimeInMilliseconds != nil && (input.ProcessingTimeInMilliseconds == nil || *p.ProcessingTimeInMilliseconds != *input.ProcessingTimeInMilliseconds) {
+	 	return false
+	}
+
+
+	if p.ResourceDisplayName != nil && (input.ResourceDisplayName == nil || *p.ResourceDisplayName != *input.ResourceDisplayName) {
+	 	return false
+	}
+
+
+	if p.ResourceId != nil && (input.ResourceId == nil || *p.ResourceId != *input.ResourceId) {
+	 	return false
+	}
+
+
+	if p.ResourceServicePrincipalId != nil && (input.ResourceServicePrincipalId == nil || *p.ResourceServicePrincipalId != *input.ResourceServicePrincipalId) {
+	 	return false
+	}
+
+
+	if p.ResourceTenantId != nil && (input.ResourceTenantId == nil || *p.ResourceTenantId != *input.ResourceTenantId) {
+	 	return false
+	}
+
+
+	if p.ServicePrincipalCredentialKeyId != nil && (input.ServicePrincipalCredentialKeyId == nil || *p.ServicePrincipalCredentialKeyId != *input.ServicePrincipalCredentialKeyId) {
+	 	return false
+	}
+
+
+	if p.ServicePrincipalCredentialThumbprint != nil && (input.ServicePrincipalCredentialThumbprint == nil || *p.ServicePrincipalCredentialThumbprint != *input.ServicePrincipalCredentialThumbprint) {
+	 	return false
+	}
+
+
+	if p.ServicePrincipalId != nil && (input.ServicePrincipalId == nil || *p.ServicePrincipalId != *input.ServicePrincipalId) {
+	 	return false
+	}
+
+
+	if p.ServicePrincipalName != nil && (input.ServicePrincipalName == nil || *p.ServicePrincipalName != *input.ServicePrincipalName) {
+	 	return false
+	}
+
+
+	if p.SignInIdentifier != nil && (input.SignInIdentifier == nil || *p.SignInIdentifier != *input.SignInIdentifier) {
+	 	return false
+	}
+
+
+	if p.TokenIssuerName != nil && (input.TokenIssuerName == nil || *p.TokenIssuerName != *input.TokenIssuerName) {
+	 	return false
+	}
+
+
+	if p.UniqueTokenIdentifier != nil && (input.UniqueTokenIdentifier == nil || *p.UniqueTokenIdentifier != *input.UniqueTokenIdentifier) {
+	 	return false
+	}
+
+
+	if p.UserAgent != nil && (input.UserAgent == nil || *p.UserAgent != *input.UserAgent) {
+	 	return false
+	}
+
+
+	if p.UserDisplayName != nil && (input.UserDisplayName == nil || *p.UserDisplayName != *input.UserDisplayName) {
+	 	return false
+	}
+
+
+	if p.UserId != nil && (input.UserId == nil || *p.UserId != *input.UserId) {
+	 	return false
+	}
+
+
+	if p.UserPrincipalName != nil && (input.UserPrincipalName == nil || *p.UserPrincipalName != *input.UserPrincipalName) {
+	 	return false
+	}
+
+
+	return true
+}
+

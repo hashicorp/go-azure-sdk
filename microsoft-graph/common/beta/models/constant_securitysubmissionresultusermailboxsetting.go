@@ -1,0 +1,82 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type SecuritySubmissionResultUserMailboxSetting string
+
+const (
+	SecuritySubmissionResultUserMailboxSettingcustomRule                             SecuritySubmissionResultUserMailboxSetting = "CustomRule"
+	SecuritySubmissionResultUserMailboxSettingexclusive                              SecuritySubmissionResultUserMailboxSetting = "Exclusive"
+	SecuritySubmissionResultUserMailboxSettingfromFirstTimeSender                    SecuritySubmissionResultUserMailboxSetting = "FromFirstTimeSender"
+	SecuritySubmissionResultUserMailboxSettingisFromAddressInAddressBlockList        SecuritySubmissionResultUserMailboxSetting = "IsFromAddressInAddressBlockList"
+	SecuritySubmissionResultUserMailboxSettingisFromAddressInAddressBook             SecuritySubmissionResultUserMailboxSetting = "IsFromAddressInAddressBook"
+	SecuritySubmissionResultUserMailboxSettingisFromAddressInAddressImplicitJunkList SecuritySubmissionResultUserMailboxSetting = "IsFromAddressInAddressImplicitJunkList"
+	SecuritySubmissionResultUserMailboxSettingisFromAddressInAddressImplicitSafeList SecuritySubmissionResultUserMailboxSetting = "IsFromAddressInAddressImplicitSafeList"
+	SecuritySubmissionResultUserMailboxSettingisFromAddressInAddressSafeList         SecuritySubmissionResultUserMailboxSetting = "IsFromAddressInAddressSafeList"
+	SecuritySubmissionResultUserMailboxSettingisFromDomainInDomainBlockList          SecuritySubmissionResultUserMailboxSetting = "IsFromDomainInDomainBlockList"
+	SecuritySubmissionResultUserMailboxSettingisFromDomainInDomainSafeList           SecuritySubmissionResultUserMailboxSetting = "IsFromDomainInDomainSafeList"
+	SecuritySubmissionResultUserMailboxSettingisJunkMailRuleEnabled                  SecuritySubmissionResultUserMailboxSetting = "IsJunkMailRuleEnabled"
+	SecuritySubmissionResultUserMailboxSettingisRecipientInRecipientSafeList         SecuritySubmissionResultUserMailboxSetting = "IsRecipientInRecipientSafeList"
+	SecuritySubmissionResultUserMailboxSettingjunkMailDeletion                       SecuritySubmissionResultUserMailboxSetting = "JunkMailDeletion"
+	SecuritySubmissionResultUserMailboxSettingjunkMailRule                           SecuritySubmissionResultUserMailboxSetting = "JunkMailRule"
+	SecuritySubmissionResultUserMailboxSettingnone                                   SecuritySubmissionResultUserMailboxSetting = "None"
+	SecuritySubmissionResultUserMailboxSettingpriorSeenPass                          SecuritySubmissionResultUserMailboxSetting = "PriorSeenPass"
+	SecuritySubmissionResultUserMailboxSettingsenderAuthenticationSucceeded          SecuritySubmissionResultUserMailboxSetting = "SenderAuthenticationSucceeded"
+	SecuritySubmissionResultUserMailboxSettingsenderPraPresent                       SecuritySubmissionResultUserMailboxSetting = "SenderPraPresent"
+)
+
+func PossibleValuesForSecuritySubmissionResultUserMailboxSetting() []string {
+	return []string{
+		string(SecuritySubmissionResultUserMailboxSettingcustomRule),
+		string(SecuritySubmissionResultUserMailboxSettingexclusive),
+		string(SecuritySubmissionResultUserMailboxSettingfromFirstTimeSender),
+		string(SecuritySubmissionResultUserMailboxSettingisFromAddressInAddressBlockList),
+		string(SecuritySubmissionResultUserMailboxSettingisFromAddressInAddressBook),
+		string(SecuritySubmissionResultUserMailboxSettingisFromAddressInAddressImplicitJunkList),
+		string(SecuritySubmissionResultUserMailboxSettingisFromAddressInAddressImplicitSafeList),
+		string(SecuritySubmissionResultUserMailboxSettingisFromAddressInAddressSafeList),
+		string(SecuritySubmissionResultUserMailboxSettingisFromDomainInDomainBlockList),
+		string(SecuritySubmissionResultUserMailboxSettingisFromDomainInDomainSafeList),
+		string(SecuritySubmissionResultUserMailboxSettingisJunkMailRuleEnabled),
+		string(SecuritySubmissionResultUserMailboxSettingisRecipientInRecipientSafeList),
+		string(SecuritySubmissionResultUserMailboxSettingjunkMailDeletion),
+		string(SecuritySubmissionResultUserMailboxSettingjunkMailRule),
+		string(SecuritySubmissionResultUserMailboxSettingnone),
+		string(SecuritySubmissionResultUserMailboxSettingpriorSeenPass),
+		string(SecuritySubmissionResultUserMailboxSettingsenderAuthenticationSucceeded),
+		string(SecuritySubmissionResultUserMailboxSettingsenderPraPresent),
+	}
+}
+
+func parseSecuritySubmissionResultUserMailboxSetting(input string) (*SecuritySubmissionResultUserMailboxSetting, error) {
+	vals := map[string]SecuritySubmissionResultUserMailboxSetting{
+		"customrule":                             SecuritySubmissionResultUserMailboxSettingcustomRule,
+		"exclusive":                              SecuritySubmissionResultUserMailboxSettingexclusive,
+		"fromfirsttimesender":                    SecuritySubmissionResultUserMailboxSettingfromFirstTimeSender,
+		"isfromaddressinaddressblocklist":        SecuritySubmissionResultUserMailboxSettingisFromAddressInAddressBlockList,
+		"isfromaddressinaddressbook":             SecuritySubmissionResultUserMailboxSettingisFromAddressInAddressBook,
+		"isfromaddressinaddressimplicitjunklist": SecuritySubmissionResultUserMailboxSettingisFromAddressInAddressImplicitJunkList,
+		"isfromaddressinaddressimplicitsafelist": SecuritySubmissionResultUserMailboxSettingisFromAddressInAddressImplicitSafeList,
+		"isfromaddressinaddresssafelist":         SecuritySubmissionResultUserMailboxSettingisFromAddressInAddressSafeList,
+		"isfromdomainindomainblocklist":          SecuritySubmissionResultUserMailboxSettingisFromDomainInDomainBlockList,
+		"isfromdomainindomainsafelist":           SecuritySubmissionResultUserMailboxSettingisFromDomainInDomainSafeList,
+		"isjunkmailruleenabled":                  SecuritySubmissionResultUserMailboxSettingisJunkMailRuleEnabled,
+		"isrecipientinrecipientsafelist":         SecuritySubmissionResultUserMailboxSettingisRecipientInRecipientSafeList,
+		"junkmaildeletion":                       SecuritySubmissionResultUserMailboxSettingjunkMailDeletion,
+		"junkmailrule":                           SecuritySubmissionResultUserMailboxSettingjunkMailRule,
+		"none":                                   SecuritySubmissionResultUserMailboxSettingnone,
+		"priorseenpass":                          SecuritySubmissionResultUserMailboxSettingpriorSeenPass,
+		"senderauthenticationsucceeded":          SecuritySubmissionResultUserMailboxSettingsenderAuthenticationSucceeded,
+		"senderprapresent":                       SecuritySubmissionResultUserMailboxSettingsenderPraPresent,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SecuritySubmissionResultUserMailboxSetting(input)
+	return &out, nil
+}

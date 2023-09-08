@@ -1,0 +1,72 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type DeviceProtectionOverviewOperationPredicate struct {
+	CleanDeviceCount                   *int64
+	CriticalFailuresDeviceCount        *int64
+	InactiveThreatAgentDeviceCount     *int64
+	ODataType                          *string
+	PendingFullScanDeviceCount         *int64
+	PendingManualStepsDeviceCount      *int64
+	PendingOfflineScanDeviceCount      *int64
+	PendingQuickScanDeviceCount        *int64
+	PendingRestartDeviceCount          *int64
+	PendingSignatureUpdateDeviceCount  *int64
+	TotalReportedDeviceCount           *int64
+	UnknownStateThreatAgentDeviceCount *int64
+}
+
+func (p DeviceProtectionOverviewOperationPredicate) Matches(input DeviceProtectionOverview) bool {
+
+	if p.CleanDeviceCount != nil && (input.CleanDeviceCount == nil || *p.CleanDeviceCount != *input.CleanDeviceCount) {
+		return false
+	}
+
+	if p.CriticalFailuresDeviceCount != nil && (input.CriticalFailuresDeviceCount == nil || *p.CriticalFailuresDeviceCount != *input.CriticalFailuresDeviceCount) {
+		return false
+	}
+
+	if p.InactiveThreatAgentDeviceCount != nil && (input.InactiveThreatAgentDeviceCount == nil || *p.InactiveThreatAgentDeviceCount != *input.InactiveThreatAgentDeviceCount) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.PendingFullScanDeviceCount != nil && (input.PendingFullScanDeviceCount == nil || *p.PendingFullScanDeviceCount != *input.PendingFullScanDeviceCount) {
+		return false
+	}
+
+	if p.PendingManualStepsDeviceCount != nil && (input.PendingManualStepsDeviceCount == nil || *p.PendingManualStepsDeviceCount != *input.PendingManualStepsDeviceCount) {
+		return false
+	}
+
+	if p.PendingOfflineScanDeviceCount != nil && (input.PendingOfflineScanDeviceCount == nil || *p.PendingOfflineScanDeviceCount != *input.PendingOfflineScanDeviceCount) {
+		return false
+	}
+
+	if p.PendingQuickScanDeviceCount != nil && (input.PendingQuickScanDeviceCount == nil || *p.PendingQuickScanDeviceCount != *input.PendingQuickScanDeviceCount) {
+		return false
+	}
+
+	if p.PendingRestartDeviceCount != nil && (input.PendingRestartDeviceCount == nil || *p.PendingRestartDeviceCount != *input.PendingRestartDeviceCount) {
+		return false
+	}
+
+	if p.PendingSignatureUpdateDeviceCount != nil && (input.PendingSignatureUpdateDeviceCount == nil || *p.PendingSignatureUpdateDeviceCount != *input.PendingSignatureUpdateDeviceCount) {
+		return false
+	}
+
+	if p.TotalReportedDeviceCount != nil && (input.TotalReportedDeviceCount == nil || *p.TotalReportedDeviceCount != *input.TotalReportedDeviceCount) {
+		return false
+	}
+
+	if p.UnknownStateThreatAgentDeviceCount != nil && (input.UnknownStateThreatAgentDeviceCount == nil || *p.UnknownStateThreatAgentDeviceCount != *input.UnknownStateThreatAgentDeviceCount) {
+		return false
+	}
+
+	return true
+}

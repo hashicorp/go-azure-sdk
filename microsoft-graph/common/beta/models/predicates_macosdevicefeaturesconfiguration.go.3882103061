@@ -1,0 +1,225 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type MacOSDeviceFeaturesConfigurationOperationPredicate struct {
+	 AdminShowHostInfo *bool
+	 AuthorizedUsersListHidden *bool
+	 AuthorizedUsersListHideAdminUsers *bool
+	 AuthorizedUsersListHideLocalUsers *bool
+	 AuthorizedUsersListHideMobileAccounts *bool
+	 AuthorizedUsersListIncludeNetworkUsers *bool
+	 AuthorizedUsersListShowOtherManagedUsers *bool
+	 ConsoleAccessDisabled *bool
+	 ContentCachingBlockDeletion *bool
+	 ContentCachingDataPath *string
+	 ContentCachingDisableConnectionSharing *bool
+	 ContentCachingEnabled *bool
+	 ContentCachingForceConnectionSharing *bool
+	 ContentCachingKeepAwake *bool
+	 ContentCachingLogClientIdentities *bool
+	 ContentCachingMaxSizeBytes *int64
+	 ContentCachingPort *int64
+	 ContentCachingShowAlerts *bool
+	 CreatedDateTime *string
+	 Description *string
+	 DisplayName *string
+	 Id *string
+	 LastModifiedDateTime *string
+	 LogOutDisabledWhileLoggedIn *bool
+	 LoginWindowText *string
+	 ODataType *string
+	 PowerOffDisabledWhileLoggedIn *bool
+	 RestartDisabled *bool
+	 RestartDisabledWhileLoggedIn *bool
+	 ScreenLockDisableImmediate *bool
+	 ShutDownDisabled *bool
+	 ShutDownDisabledWhileLoggedIn *bool
+	 SleepDisabled *bool
+	 SupportsScopeTags *bool
+	 Version *int64
+}
+
+func (p MacOSDeviceFeaturesConfigurationOperationPredicate) Matches(input MacOSDeviceFeaturesConfiguration) bool {
+
+	if p.AdminShowHostInfo != nil && (input.AdminShowHostInfo == nil || *p.AdminShowHostInfo != *input.AdminShowHostInfo) {
+	 	return false
+	}
+
+
+	if p.AuthorizedUsersListHidden != nil && (input.AuthorizedUsersListHidden == nil || *p.AuthorizedUsersListHidden != *input.AuthorizedUsersListHidden) {
+	 	return false
+	}
+
+
+	if p.AuthorizedUsersListHideAdminUsers != nil && (input.AuthorizedUsersListHideAdminUsers == nil || *p.AuthorizedUsersListHideAdminUsers != *input.AuthorizedUsersListHideAdminUsers) {
+	 	return false
+	}
+
+
+	if p.AuthorizedUsersListHideLocalUsers != nil && (input.AuthorizedUsersListHideLocalUsers == nil || *p.AuthorizedUsersListHideLocalUsers != *input.AuthorizedUsersListHideLocalUsers) {
+	 	return false
+	}
+
+
+	if p.AuthorizedUsersListHideMobileAccounts != nil && (input.AuthorizedUsersListHideMobileAccounts == nil || *p.AuthorizedUsersListHideMobileAccounts != *input.AuthorizedUsersListHideMobileAccounts) {
+	 	return false
+	}
+
+
+	if p.AuthorizedUsersListIncludeNetworkUsers != nil && (input.AuthorizedUsersListIncludeNetworkUsers == nil || *p.AuthorizedUsersListIncludeNetworkUsers != *input.AuthorizedUsersListIncludeNetworkUsers) {
+	 	return false
+	}
+
+
+	if p.AuthorizedUsersListShowOtherManagedUsers != nil && (input.AuthorizedUsersListShowOtherManagedUsers == nil || *p.AuthorizedUsersListShowOtherManagedUsers != *input.AuthorizedUsersListShowOtherManagedUsers) {
+	 	return false
+	}
+
+
+	if p.ConsoleAccessDisabled != nil && (input.ConsoleAccessDisabled == nil || *p.ConsoleAccessDisabled != *input.ConsoleAccessDisabled) {
+	 	return false
+	}
+
+
+	if p.ContentCachingBlockDeletion != nil && (input.ContentCachingBlockDeletion == nil || *p.ContentCachingBlockDeletion != *input.ContentCachingBlockDeletion) {
+	 	return false
+	}
+
+
+	if p.ContentCachingDataPath != nil && (input.ContentCachingDataPath == nil || *p.ContentCachingDataPath != *input.ContentCachingDataPath) {
+	 	return false
+	}
+
+
+	if p.ContentCachingDisableConnectionSharing != nil && (input.ContentCachingDisableConnectionSharing == nil || *p.ContentCachingDisableConnectionSharing != *input.ContentCachingDisableConnectionSharing) {
+	 	return false
+	}
+
+
+	if p.ContentCachingEnabled != nil && (input.ContentCachingEnabled == nil || *p.ContentCachingEnabled != *input.ContentCachingEnabled) {
+	 	return false
+	}
+
+
+	if p.ContentCachingForceConnectionSharing != nil && (input.ContentCachingForceConnectionSharing == nil || *p.ContentCachingForceConnectionSharing != *input.ContentCachingForceConnectionSharing) {
+	 	return false
+	}
+
+
+	if p.ContentCachingKeepAwake != nil && (input.ContentCachingKeepAwake == nil || *p.ContentCachingKeepAwake != *input.ContentCachingKeepAwake) {
+	 	return false
+	}
+
+
+	if p.ContentCachingLogClientIdentities != nil && (input.ContentCachingLogClientIdentities == nil || *p.ContentCachingLogClientIdentities != *input.ContentCachingLogClientIdentities) {
+	 	return false
+	}
+
+
+	if p.ContentCachingMaxSizeBytes != nil && (input.ContentCachingMaxSizeBytes == nil || *p.ContentCachingMaxSizeBytes != *input.ContentCachingMaxSizeBytes) {
+	 	return false
+	}
+
+
+	if p.ContentCachingPort != nil && (input.ContentCachingPort == nil || *p.ContentCachingPort != *input.ContentCachingPort) {
+	 	return false
+	}
+
+
+	if p.ContentCachingShowAlerts != nil && (input.ContentCachingShowAlerts == nil || *p.ContentCachingShowAlerts != *input.ContentCachingShowAlerts) {
+	 	return false
+	}
+
+
+	if p.CreatedDateTime != nil && (input.CreatedDateTime == nil || *p.CreatedDateTime != *input.CreatedDateTime) {
+	 	return false
+	}
+
+
+	if p.Description != nil && (input.Description == nil || *p.Description != *input.Description) {
+	 	return false
+	}
+
+
+	if p.DisplayName != nil && (input.DisplayName == nil || *p.DisplayName != *input.DisplayName) {
+	 	return false
+	}
+
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+	 	return false
+	}
+
+
+	if p.LastModifiedDateTime != nil && (input.LastModifiedDateTime == nil || *p.LastModifiedDateTime != *input.LastModifiedDateTime) {
+	 	return false
+	}
+
+
+	if p.LogOutDisabledWhileLoggedIn != nil && (input.LogOutDisabledWhileLoggedIn == nil || *p.LogOutDisabledWhileLoggedIn != *input.LogOutDisabledWhileLoggedIn) {
+	 	return false
+	}
+
+
+	if p.LoginWindowText != nil && (input.LoginWindowText == nil || *p.LoginWindowText != *input.LoginWindowText) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.PowerOffDisabledWhileLoggedIn != nil && (input.PowerOffDisabledWhileLoggedIn == nil || *p.PowerOffDisabledWhileLoggedIn != *input.PowerOffDisabledWhileLoggedIn) {
+	 	return false
+	}
+
+
+	if p.RestartDisabled != nil && (input.RestartDisabled == nil || *p.RestartDisabled != *input.RestartDisabled) {
+	 	return false
+	}
+
+
+	if p.RestartDisabledWhileLoggedIn != nil && (input.RestartDisabledWhileLoggedIn == nil || *p.RestartDisabledWhileLoggedIn != *input.RestartDisabledWhileLoggedIn) {
+	 	return false
+	}
+
+
+	if p.ScreenLockDisableImmediate != nil && (input.ScreenLockDisableImmediate == nil || *p.ScreenLockDisableImmediate != *input.ScreenLockDisableImmediate) {
+	 	return false
+	}
+
+
+	if p.ShutDownDisabled != nil && (input.ShutDownDisabled == nil || *p.ShutDownDisabled != *input.ShutDownDisabled) {
+	 	return false
+	}
+
+
+	if p.ShutDownDisabledWhileLoggedIn != nil && (input.ShutDownDisabledWhileLoggedIn == nil || *p.ShutDownDisabledWhileLoggedIn != *input.ShutDownDisabledWhileLoggedIn) {
+	 	return false
+	}
+
+
+	if p.SleepDisabled != nil && (input.SleepDisabled == nil || *p.SleepDisabled != *input.SleepDisabled) {
+	 	return false
+	}
+
+
+	if p.SupportsScopeTags != nil && (input.SupportsScopeTags == nil || *p.SupportsScopeTags != *input.SupportsScopeTags) {
+	 	return false
+	}
+
+
+	if p.Version != nil && (input.Version == nil || *p.Version != *input.Version) {
+	 	return false
+	}
+
+
+	return true
+}
+

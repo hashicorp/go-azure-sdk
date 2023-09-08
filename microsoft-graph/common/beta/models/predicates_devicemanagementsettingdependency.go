@@ -1,0 +1,22 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type DeviceManagementSettingDependencyOperationPredicate struct {
+	DefinitionId *string
+	ODataType    *string
+}
+
+func (p DeviceManagementSettingDependencyOperationPredicate) Matches(input DeviceManagementSettingDependency) bool {
+
+	if p.DefinitionId != nil && (input.DefinitionId == nil || *p.DefinitionId != *input.DefinitionId) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	return true
+}

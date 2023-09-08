@@ -1,0 +1,72 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type WindowsDomainJoinConfigurationOperationPredicate struct {
+	ActiveDirectoryDomainName         *string
+	ComputerNameStaticPrefix          *string
+	ComputerNameSuffixRandomCharCount *int64
+	CreatedDateTime                   *string
+	Description                       *string
+	DisplayName                       *string
+	Id                                *string
+	LastModifiedDateTime              *string
+	ODataType                         *string
+	OrganizationalUnit                *string
+	SupportsScopeTags                 *bool
+	Version                           *int64
+}
+
+func (p WindowsDomainJoinConfigurationOperationPredicate) Matches(input WindowsDomainJoinConfiguration) bool {
+
+	if p.ActiveDirectoryDomainName != nil && (input.ActiveDirectoryDomainName == nil || *p.ActiveDirectoryDomainName != *input.ActiveDirectoryDomainName) {
+		return false
+	}
+
+	if p.ComputerNameStaticPrefix != nil && (input.ComputerNameStaticPrefix == nil || *p.ComputerNameStaticPrefix != *input.ComputerNameStaticPrefix) {
+		return false
+	}
+
+	if p.ComputerNameSuffixRandomCharCount != nil && (input.ComputerNameSuffixRandomCharCount == nil || *p.ComputerNameSuffixRandomCharCount != *input.ComputerNameSuffixRandomCharCount) {
+		return false
+	}
+
+	if p.CreatedDateTime != nil && (input.CreatedDateTime == nil || *p.CreatedDateTime != *input.CreatedDateTime) {
+		return false
+	}
+
+	if p.Description != nil && (input.Description == nil || *p.Description != *input.Description) {
+		return false
+	}
+
+	if p.DisplayName != nil && (input.DisplayName == nil || *p.DisplayName != *input.DisplayName) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.LastModifiedDateTime != nil && (input.LastModifiedDateTime == nil || *p.LastModifiedDateTime != *input.LastModifiedDateTime) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.OrganizationalUnit != nil && (input.OrganizationalUnit == nil || *p.OrganizationalUnit != *input.OrganizationalUnit) {
+		return false
+	}
+
+	if p.SupportsScopeTags != nil && (input.SupportsScopeTags == nil || *p.SupportsScopeTags != *input.SupportsScopeTags) {
+		return false
+	}
+
+	if p.Version != nil && (input.Version == nil || *p.Version != *input.Version) {
+		return false
+	}
+
+	return true
+}

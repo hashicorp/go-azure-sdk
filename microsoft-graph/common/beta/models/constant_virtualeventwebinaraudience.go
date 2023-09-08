@@ -1,0 +1,34 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type VirtualEventWebinarAudience string
+
+const (
+	VirtualEventWebinarAudienceeveryone     VirtualEventWebinarAudience = "Everyone"
+	VirtualEventWebinarAudienceorganization VirtualEventWebinarAudience = "Organization"
+)
+
+func PossibleValuesForVirtualEventWebinarAudience() []string {
+	return []string{
+		string(VirtualEventWebinarAudienceeveryone),
+		string(VirtualEventWebinarAudienceorganization),
+	}
+}
+
+func parseVirtualEventWebinarAudience(input string) (*VirtualEventWebinarAudience, error) {
+	vals := map[string]VirtualEventWebinarAudience{
+		"everyone":     VirtualEventWebinarAudienceeveryone,
+		"organization": VirtualEventWebinarAudienceorganization,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := VirtualEventWebinarAudience(input)
+	return &out, nil
+}

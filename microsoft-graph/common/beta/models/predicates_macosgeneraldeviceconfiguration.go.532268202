@@ -1,0 +1,387 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type MacOSGeneralDeviceConfigurationOperationPredicate struct {
+	 ActivationLockWhenSupervisedAllowed *bool
+	 AddingGameCenterFriendsBlocked *bool
+	 AirDropBlocked *bool
+	 AppleWatchBlockAutoUnlock *bool
+	 CameraBlocked *bool
+	 ClassroomAppBlockRemoteScreenObservation *bool
+	 ClassroomAppForceUnpromptedScreenObservation *bool
+	 ClassroomForceAutomaticallyJoinClasses *bool
+	 ClassroomForceRequestPermissionToLeaveClasses *bool
+	 ClassroomForceUnpromptedAppAndDeviceLock *bool
+	 ContentCachingBlocked *bool
+	 CreatedDateTime *string
+	 DefinitionLookupBlocked *bool
+	 Description *string
+	 DisplayName *string
+	 EraseContentAndSettingsBlocked *bool
+	 GameCenterBlocked *bool
+	 ICloudBlockActivityContinuation *bool
+	 ICloudBlockAddressBook *bool
+	 ICloudBlockBookmarks *bool
+	 ICloudBlockCalendar *bool
+	 ICloudBlockDocumentSync *bool
+	 ICloudBlockMail *bool
+	 ICloudBlockNotes *bool
+	 ICloudBlockPhotoLibrary *bool
+	 ICloudBlockReminders *bool
+	 ICloudDesktopAndDocumentsBlocked *bool
+	 ICloudPrivateRelayBlocked *bool
+	 ITunesBlockFileSharing *bool
+	 ITunesBlockMusicService *bool
+	 Id *string
+	 KeyboardBlockDictation *bool
+	 KeychainBlockCloudSync *bool
+	 LastModifiedDateTime *string
+	 MultiplayerGamingBlocked *bool
+	 ODataType *string
+	 PasswordBlockAirDropSharing *bool
+	 PasswordBlockAutoFill *bool
+	 PasswordBlockFingerprintUnlock *bool
+	 PasswordBlockModification *bool
+	 PasswordBlockProximityRequests *bool
+	 PasswordBlockSimple *bool
+	 PasswordExpirationDays *int64
+	 PasswordMaximumAttemptCount *int64
+	 PasswordMinimumCharacterSetCount *int64
+	 PasswordMinimumLength *int64
+	 PasswordMinutesOfInactivityBeforeLock *int64
+	 PasswordMinutesOfInactivityBeforeScreenTimeout *int64
+	 PasswordMinutesUntilFailedLoginReset *int64
+	 PasswordPreviousPasswordBlockCount *int64
+	 PasswordRequired *bool
+	 SafariBlockAutofill *bool
+	 ScreenCaptureBlocked *bool
+	 SoftwareUpdateMajorOSDeferredInstallDelayInDays *int64
+	 SoftwareUpdateMinorOSDeferredInstallDelayInDays *int64
+	 SoftwareUpdateNonOSDeferredInstallDelayInDays *int64
+	 SoftwareUpdatesEnforcedDelayInDays *int64
+	 SpotlightBlockInternetResults *bool
+	 SupportsScopeTags *bool
+	 TouchIdTimeoutInHours *int64
+	 Version *int64
+	 WallpaperModificationBlocked *bool
+}
+
+func (p MacOSGeneralDeviceConfigurationOperationPredicate) Matches(input MacOSGeneralDeviceConfiguration) bool {
+
+	if p.ActivationLockWhenSupervisedAllowed != nil && (input.ActivationLockWhenSupervisedAllowed == nil || *p.ActivationLockWhenSupervisedAllowed != *input.ActivationLockWhenSupervisedAllowed) {
+	 	return false
+	}
+
+
+	if p.AddingGameCenterFriendsBlocked != nil && (input.AddingGameCenterFriendsBlocked == nil || *p.AddingGameCenterFriendsBlocked != *input.AddingGameCenterFriendsBlocked) {
+	 	return false
+	}
+
+
+	if p.AirDropBlocked != nil && (input.AirDropBlocked == nil || *p.AirDropBlocked != *input.AirDropBlocked) {
+	 	return false
+	}
+
+
+	if p.AppleWatchBlockAutoUnlock != nil && (input.AppleWatchBlockAutoUnlock == nil || *p.AppleWatchBlockAutoUnlock != *input.AppleWatchBlockAutoUnlock) {
+	 	return false
+	}
+
+
+	if p.CameraBlocked != nil && (input.CameraBlocked == nil || *p.CameraBlocked != *input.CameraBlocked) {
+	 	return false
+	}
+
+
+	if p.ClassroomAppBlockRemoteScreenObservation != nil && (input.ClassroomAppBlockRemoteScreenObservation == nil || *p.ClassroomAppBlockRemoteScreenObservation != *input.ClassroomAppBlockRemoteScreenObservation) {
+	 	return false
+	}
+
+
+	if p.ClassroomAppForceUnpromptedScreenObservation != nil && (input.ClassroomAppForceUnpromptedScreenObservation == nil || *p.ClassroomAppForceUnpromptedScreenObservation != *input.ClassroomAppForceUnpromptedScreenObservation) {
+	 	return false
+	}
+
+
+	if p.ClassroomForceAutomaticallyJoinClasses != nil && (input.ClassroomForceAutomaticallyJoinClasses == nil || *p.ClassroomForceAutomaticallyJoinClasses != *input.ClassroomForceAutomaticallyJoinClasses) {
+	 	return false
+	}
+
+
+	if p.ClassroomForceRequestPermissionToLeaveClasses != nil && (input.ClassroomForceRequestPermissionToLeaveClasses == nil || *p.ClassroomForceRequestPermissionToLeaveClasses != *input.ClassroomForceRequestPermissionToLeaveClasses) {
+	 	return false
+	}
+
+
+	if p.ClassroomForceUnpromptedAppAndDeviceLock != nil && (input.ClassroomForceUnpromptedAppAndDeviceLock == nil || *p.ClassroomForceUnpromptedAppAndDeviceLock != *input.ClassroomForceUnpromptedAppAndDeviceLock) {
+	 	return false
+	}
+
+
+	if p.ContentCachingBlocked != nil && (input.ContentCachingBlocked == nil || *p.ContentCachingBlocked != *input.ContentCachingBlocked) {
+	 	return false
+	}
+
+
+	if p.CreatedDateTime != nil && (input.CreatedDateTime == nil || *p.CreatedDateTime != *input.CreatedDateTime) {
+	 	return false
+	}
+
+
+	if p.DefinitionLookupBlocked != nil && (input.DefinitionLookupBlocked == nil || *p.DefinitionLookupBlocked != *input.DefinitionLookupBlocked) {
+	 	return false
+	}
+
+
+	if p.Description != nil && (input.Description == nil || *p.Description != *input.Description) {
+	 	return false
+	}
+
+
+	if p.DisplayName != nil && (input.DisplayName == nil || *p.DisplayName != *input.DisplayName) {
+	 	return false
+	}
+
+
+	if p.EraseContentAndSettingsBlocked != nil && (input.EraseContentAndSettingsBlocked == nil || *p.EraseContentAndSettingsBlocked != *input.EraseContentAndSettingsBlocked) {
+	 	return false
+	}
+
+
+	if p.GameCenterBlocked != nil && (input.GameCenterBlocked == nil || *p.GameCenterBlocked != *input.GameCenterBlocked) {
+	 	return false
+	}
+
+
+	if p.ICloudBlockActivityContinuation != nil && (input.ICloudBlockActivityContinuation == nil || *p.ICloudBlockActivityContinuation != *input.ICloudBlockActivityContinuation) {
+	 	return false
+	}
+
+
+	if p.ICloudBlockAddressBook != nil && (input.ICloudBlockAddressBook == nil || *p.ICloudBlockAddressBook != *input.ICloudBlockAddressBook) {
+	 	return false
+	}
+
+
+	if p.ICloudBlockBookmarks != nil && (input.ICloudBlockBookmarks == nil || *p.ICloudBlockBookmarks != *input.ICloudBlockBookmarks) {
+	 	return false
+	}
+
+
+	if p.ICloudBlockCalendar != nil && (input.ICloudBlockCalendar == nil || *p.ICloudBlockCalendar != *input.ICloudBlockCalendar) {
+	 	return false
+	}
+
+
+	if p.ICloudBlockDocumentSync != nil && (input.ICloudBlockDocumentSync == nil || *p.ICloudBlockDocumentSync != *input.ICloudBlockDocumentSync) {
+	 	return false
+	}
+
+
+	if p.ICloudBlockMail != nil && (input.ICloudBlockMail == nil || *p.ICloudBlockMail != *input.ICloudBlockMail) {
+	 	return false
+	}
+
+
+	if p.ICloudBlockNotes != nil && (input.ICloudBlockNotes == nil || *p.ICloudBlockNotes != *input.ICloudBlockNotes) {
+	 	return false
+	}
+
+
+	if p.ICloudBlockPhotoLibrary != nil && (input.ICloudBlockPhotoLibrary == nil || *p.ICloudBlockPhotoLibrary != *input.ICloudBlockPhotoLibrary) {
+	 	return false
+	}
+
+
+	if p.ICloudBlockReminders != nil && (input.ICloudBlockReminders == nil || *p.ICloudBlockReminders != *input.ICloudBlockReminders) {
+	 	return false
+	}
+
+
+	if p.ICloudDesktopAndDocumentsBlocked != nil && (input.ICloudDesktopAndDocumentsBlocked == nil || *p.ICloudDesktopAndDocumentsBlocked != *input.ICloudDesktopAndDocumentsBlocked) {
+	 	return false
+	}
+
+
+	if p.ICloudPrivateRelayBlocked != nil && (input.ICloudPrivateRelayBlocked == nil || *p.ICloudPrivateRelayBlocked != *input.ICloudPrivateRelayBlocked) {
+	 	return false
+	}
+
+
+	if p.ITunesBlockFileSharing != nil && (input.ITunesBlockFileSharing == nil || *p.ITunesBlockFileSharing != *input.ITunesBlockFileSharing) {
+	 	return false
+	}
+
+
+	if p.ITunesBlockMusicService != nil && (input.ITunesBlockMusicService == nil || *p.ITunesBlockMusicService != *input.ITunesBlockMusicService) {
+	 	return false
+	}
+
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+	 	return false
+	}
+
+
+	if p.KeyboardBlockDictation != nil && (input.KeyboardBlockDictation == nil || *p.KeyboardBlockDictation != *input.KeyboardBlockDictation) {
+	 	return false
+	}
+
+
+	if p.KeychainBlockCloudSync != nil && (input.KeychainBlockCloudSync == nil || *p.KeychainBlockCloudSync != *input.KeychainBlockCloudSync) {
+	 	return false
+	}
+
+
+	if p.LastModifiedDateTime != nil && (input.LastModifiedDateTime == nil || *p.LastModifiedDateTime != *input.LastModifiedDateTime) {
+	 	return false
+	}
+
+
+	if p.MultiplayerGamingBlocked != nil && (input.MultiplayerGamingBlocked == nil || *p.MultiplayerGamingBlocked != *input.MultiplayerGamingBlocked) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.PasswordBlockAirDropSharing != nil && (input.PasswordBlockAirDropSharing == nil || *p.PasswordBlockAirDropSharing != *input.PasswordBlockAirDropSharing) {
+	 	return false
+	}
+
+
+	if p.PasswordBlockAutoFill != nil && (input.PasswordBlockAutoFill == nil || *p.PasswordBlockAutoFill != *input.PasswordBlockAutoFill) {
+	 	return false
+	}
+
+
+	if p.PasswordBlockFingerprintUnlock != nil && (input.PasswordBlockFingerprintUnlock == nil || *p.PasswordBlockFingerprintUnlock != *input.PasswordBlockFingerprintUnlock) {
+	 	return false
+	}
+
+
+	if p.PasswordBlockModification != nil && (input.PasswordBlockModification == nil || *p.PasswordBlockModification != *input.PasswordBlockModification) {
+	 	return false
+	}
+
+
+	if p.PasswordBlockProximityRequests != nil && (input.PasswordBlockProximityRequests == nil || *p.PasswordBlockProximityRequests != *input.PasswordBlockProximityRequests) {
+	 	return false
+	}
+
+
+	if p.PasswordBlockSimple != nil && (input.PasswordBlockSimple == nil || *p.PasswordBlockSimple != *input.PasswordBlockSimple) {
+	 	return false
+	}
+
+
+	if p.PasswordExpirationDays != nil && (input.PasswordExpirationDays == nil || *p.PasswordExpirationDays != *input.PasswordExpirationDays) {
+	 	return false
+	}
+
+
+	if p.PasswordMaximumAttemptCount != nil && (input.PasswordMaximumAttemptCount == nil || *p.PasswordMaximumAttemptCount != *input.PasswordMaximumAttemptCount) {
+	 	return false
+	}
+
+
+	if p.PasswordMinimumCharacterSetCount != nil && (input.PasswordMinimumCharacterSetCount == nil || *p.PasswordMinimumCharacterSetCount != *input.PasswordMinimumCharacterSetCount) {
+	 	return false
+	}
+
+
+	if p.PasswordMinimumLength != nil && (input.PasswordMinimumLength == nil || *p.PasswordMinimumLength != *input.PasswordMinimumLength) {
+	 	return false
+	}
+
+
+	if p.PasswordMinutesOfInactivityBeforeLock != nil && (input.PasswordMinutesOfInactivityBeforeLock == nil || *p.PasswordMinutesOfInactivityBeforeLock != *input.PasswordMinutesOfInactivityBeforeLock) {
+	 	return false
+	}
+
+
+	if p.PasswordMinutesOfInactivityBeforeScreenTimeout != nil && (input.PasswordMinutesOfInactivityBeforeScreenTimeout == nil || *p.PasswordMinutesOfInactivityBeforeScreenTimeout != *input.PasswordMinutesOfInactivityBeforeScreenTimeout) {
+	 	return false
+	}
+
+
+	if p.PasswordMinutesUntilFailedLoginReset != nil && (input.PasswordMinutesUntilFailedLoginReset == nil || *p.PasswordMinutesUntilFailedLoginReset != *input.PasswordMinutesUntilFailedLoginReset) {
+	 	return false
+	}
+
+
+	if p.PasswordPreviousPasswordBlockCount != nil && (input.PasswordPreviousPasswordBlockCount == nil || *p.PasswordPreviousPasswordBlockCount != *input.PasswordPreviousPasswordBlockCount) {
+	 	return false
+	}
+
+
+	if p.PasswordRequired != nil && (input.PasswordRequired == nil || *p.PasswordRequired != *input.PasswordRequired) {
+	 	return false
+	}
+
+
+	if p.SafariBlockAutofill != nil && (input.SafariBlockAutofill == nil || *p.SafariBlockAutofill != *input.SafariBlockAutofill) {
+	 	return false
+	}
+
+
+	if p.ScreenCaptureBlocked != nil && (input.ScreenCaptureBlocked == nil || *p.ScreenCaptureBlocked != *input.ScreenCaptureBlocked) {
+	 	return false
+	}
+
+
+	if p.SoftwareUpdateMajorOSDeferredInstallDelayInDays != nil && (input.SoftwareUpdateMajorOSDeferredInstallDelayInDays == nil || *p.SoftwareUpdateMajorOSDeferredInstallDelayInDays != *input.SoftwareUpdateMajorOSDeferredInstallDelayInDays) {
+	 	return false
+	}
+
+
+	if p.SoftwareUpdateMinorOSDeferredInstallDelayInDays != nil && (input.SoftwareUpdateMinorOSDeferredInstallDelayInDays == nil || *p.SoftwareUpdateMinorOSDeferredInstallDelayInDays != *input.SoftwareUpdateMinorOSDeferredInstallDelayInDays) {
+	 	return false
+	}
+
+
+	if p.SoftwareUpdateNonOSDeferredInstallDelayInDays != nil && (input.SoftwareUpdateNonOSDeferredInstallDelayInDays == nil || *p.SoftwareUpdateNonOSDeferredInstallDelayInDays != *input.SoftwareUpdateNonOSDeferredInstallDelayInDays) {
+	 	return false
+	}
+
+
+	if p.SoftwareUpdatesEnforcedDelayInDays != nil && (input.SoftwareUpdatesEnforcedDelayInDays == nil || *p.SoftwareUpdatesEnforcedDelayInDays != *input.SoftwareUpdatesEnforcedDelayInDays) {
+	 	return false
+	}
+
+
+	if p.SpotlightBlockInternetResults != nil && (input.SpotlightBlockInternetResults == nil || *p.SpotlightBlockInternetResults != *input.SpotlightBlockInternetResults) {
+	 	return false
+	}
+
+
+	if p.SupportsScopeTags != nil && (input.SupportsScopeTags == nil || *p.SupportsScopeTags != *input.SupportsScopeTags) {
+	 	return false
+	}
+
+
+	if p.TouchIdTimeoutInHours != nil && (input.TouchIdTimeoutInHours == nil || *p.TouchIdTimeoutInHours != *input.TouchIdTimeoutInHours) {
+	 	return false
+	}
+
+
+	if p.Version != nil && (input.Version == nil || *p.Version != *input.Version) {
+	 	return false
+	}
+
+
+	if p.WallpaperModificationBlocked != nil && (input.WallpaperModificationBlocked == nil || *p.WallpaperModificationBlocked != *input.WallpaperModificationBlocked) {
+	 	return false
+	}
+
+
+	return true
+}
+

@@ -1,0 +1,27 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type FilterClauseOperationPredicate struct {
+	ODataType         *string
+	OperatorName      *string
+	SourceOperandName *string
+}
+
+func (p FilterClauseOperationPredicate) Matches(input FilterClause) bool {
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.OperatorName != nil && (input.OperatorName == nil || *p.OperatorName != *input.OperatorName) {
+		return false
+	}
+
+	if p.SourceOperandName != nil && (input.SourceOperandName == nil || *p.SourceOperandName != *input.SourceOperandName) {
+		return false
+	}
+
+	return true
+}

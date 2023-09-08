@@ -1,0 +1,58 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type Windows10EndpointProtectionConfigurationDefenderScheduledScanDay string
+
+const (
+	Windows10EndpointProtectionConfigurationDefenderScheduledScanDayeveryday        Windows10EndpointProtectionConfigurationDefenderScheduledScanDay = "Everyday"
+	Windows10EndpointProtectionConfigurationDefenderScheduledScanDayfriday          Windows10EndpointProtectionConfigurationDefenderScheduledScanDay = "Friday"
+	Windows10EndpointProtectionConfigurationDefenderScheduledScanDaymonday          Windows10EndpointProtectionConfigurationDefenderScheduledScanDay = "Monday"
+	Windows10EndpointProtectionConfigurationDefenderScheduledScanDaynoScheduledScan Windows10EndpointProtectionConfigurationDefenderScheduledScanDay = "NoScheduledScan"
+	Windows10EndpointProtectionConfigurationDefenderScheduledScanDaysaturday        Windows10EndpointProtectionConfigurationDefenderScheduledScanDay = "Saturday"
+	Windows10EndpointProtectionConfigurationDefenderScheduledScanDaysunday          Windows10EndpointProtectionConfigurationDefenderScheduledScanDay = "Sunday"
+	Windows10EndpointProtectionConfigurationDefenderScheduledScanDaythursday        Windows10EndpointProtectionConfigurationDefenderScheduledScanDay = "Thursday"
+	Windows10EndpointProtectionConfigurationDefenderScheduledScanDaytuesday         Windows10EndpointProtectionConfigurationDefenderScheduledScanDay = "Tuesday"
+	Windows10EndpointProtectionConfigurationDefenderScheduledScanDayuserDefined     Windows10EndpointProtectionConfigurationDefenderScheduledScanDay = "UserDefined"
+	Windows10EndpointProtectionConfigurationDefenderScheduledScanDaywednesday       Windows10EndpointProtectionConfigurationDefenderScheduledScanDay = "Wednesday"
+)
+
+func PossibleValuesForWindows10EndpointProtectionConfigurationDefenderScheduledScanDay() []string {
+	return []string{
+		string(Windows10EndpointProtectionConfigurationDefenderScheduledScanDayeveryday),
+		string(Windows10EndpointProtectionConfigurationDefenderScheduledScanDayfriday),
+		string(Windows10EndpointProtectionConfigurationDefenderScheduledScanDaymonday),
+		string(Windows10EndpointProtectionConfigurationDefenderScheduledScanDaynoScheduledScan),
+		string(Windows10EndpointProtectionConfigurationDefenderScheduledScanDaysaturday),
+		string(Windows10EndpointProtectionConfigurationDefenderScheduledScanDaysunday),
+		string(Windows10EndpointProtectionConfigurationDefenderScheduledScanDaythursday),
+		string(Windows10EndpointProtectionConfigurationDefenderScheduledScanDaytuesday),
+		string(Windows10EndpointProtectionConfigurationDefenderScheduledScanDayuserDefined),
+		string(Windows10EndpointProtectionConfigurationDefenderScheduledScanDaywednesday),
+	}
+}
+
+func parseWindows10EndpointProtectionConfigurationDefenderScheduledScanDay(input string) (*Windows10EndpointProtectionConfigurationDefenderScheduledScanDay, error) {
+	vals := map[string]Windows10EndpointProtectionConfigurationDefenderScheduledScanDay{
+		"everyday":        Windows10EndpointProtectionConfigurationDefenderScheduledScanDayeveryday,
+		"friday":          Windows10EndpointProtectionConfigurationDefenderScheduledScanDayfriday,
+		"monday":          Windows10EndpointProtectionConfigurationDefenderScheduledScanDaymonday,
+		"noscheduledscan": Windows10EndpointProtectionConfigurationDefenderScheduledScanDaynoScheduledScan,
+		"saturday":        Windows10EndpointProtectionConfigurationDefenderScheduledScanDaysaturday,
+		"sunday":          Windows10EndpointProtectionConfigurationDefenderScheduledScanDaysunday,
+		"thursday":        Windows10EndpointProtectionConfigurationDefenderScheduledScanDaythursday,
+		"tuesday":         Windows10EndpointProtectionConfigurationDefenderScheduledScanDaytuesday,
+		"userdefined":     Windows10EndpointProtectionConfigurationDefenderScheduledScanDayuserDefined,
+		"wednesday":       Windows10EndpointProtectionConfigurationDefenderScheduledScanDaywednesday,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := Windows10EndpointProtectionConfigurationDefenderScheduledScanDay(input)
+	return &out, nil
+}

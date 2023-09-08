@@ -1,0 +1,46 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type IndustryDataIndustryDataActivityStatisticsStatus string
+
+const (
+	IndustryDataIndustryDataActivityStatisticsStatuscompleted             IndustryDataIndustryDataActivityStatisticsStatus = "Completed"
+	IndustryDataIndustryDataActivityStatisticsStatuscompletedWithErrors   IndustryDataIndustryDataActivityStatisticsStatus = "CompletedWithErrors"
+	IndustryDataIndustryDataActivityStatisticsStatuscompletedWithWarnings IndustryDataIndustryDataActivityStatisticsStatus = "CompletedWithWarnings"
+	IndustryDataIndustryDataActivityStatisticsStatusfailed                IndustryDataIndustryDataActivityStatisticsStatus = "Failed"
+	IndustryDataIndustryDataActivityStatisticsStatusinProgress            IndustryDataIndustryDataActivityStatisticsStatus = "InProgress"
+	IndustryDataIndustryDataActivityStatisticsStatusskipped               IndustryDataIndustryDataActivityStatisticsStatus = "Skipped"
+)
+
+func PossibleValuesForIndustryDataIndustryDataActivityStatisticsStatus() []string {
+	return []string{
+		string(IndustryDataIndustryDataActivityStatisticsStatuscompleted),
+		string(IndustryDataIndustryDataActivityStatisticsStatuscompletedWithErrors),
+		string(IndustryDataIndustryDataActivityStatisticsStatuscompletedWithWarnings),
+		string(IndustryDataIndustryDataActivityStatisticsStatusfailed),
+		string(IndustryDataIndustryDataActivityStatisticsStatusinProgress),
+		string(IndustryDataIndustryDataActivityStatisticsStatusskipped),
+	}
+}
+
+func parseIndustryDataIndustryDataActivityStatisticsStatus(input string) (*IndustryDataIndustryDataActivityStatisticsStatus, error) {
+	vals := map[string]IndustryDataIndustryDataActivityStatisticsStatus{
+		"completed":             IndustryDataIndustryDataActivityStatisticsStatuscompleted,
+		"completedwitherrors":   IndustryDataIndustryDataActivityStatisticsStatuscompletedWithErrors,
+		"completedwithwarnings": IndustryDataIndustryDataActivityStatisticsStatuscompletedWithWarnings,
+		"failed":                IndustryDataIndustryDataActivityStatisticsStatusfailed,
+		"inprogress":            IndustryDataIndustryDataActivityStatisticsStatusinProgress,
+		"skipped":               IndustryDataIndustryDataActivityStatisticsStatusskipped,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := IndustryDataIndustryDataActivityStatisticsStatus(input)
+	return &out, nil
+}

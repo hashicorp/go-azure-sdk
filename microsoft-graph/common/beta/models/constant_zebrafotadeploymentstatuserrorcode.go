@@ -1,0 +1,49 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type ZebraFotaDeploymentStatusErrorCode string
+
+const (
+	ZebraFotaDeploymentStatusErrorCodenoDevicesFoundInSelectedAadGroups                  ZebraFotaDeploymentStatusErrorCode = "NoDevicesFoundInSelectedAadGroups"
+	ZebraFotaDeploymentStatusErrorCodenoIntuneDevicesFoundInSelectedAadGroups            ZebraFotaDeploymentStatusErrorCode = "NoIntuneDevicesFoundInSelectedAadGroups"
+	ZebraFotaDeploymentStatusErrorCodenoZebraFotaDevicesFoundForSelectedDeviceModel      ZebraFotaDeploymentStatusErrorCode = "NoZebraFotaDevicesFoundForSelectedDeviceModel"
+	ZebraFotaDeploymentStatusErrorCodenoZebraFotaEnrolledDevicesFoundForCurrentTenant    ZebraFotaDeploymentStatusErrorCode = "NoZebraFotaEnrolledDevicesFoundForCurrentTenant"
+	ZebraFotaDeploymentStatusErrorCodenoZebraFotaEnrolledDevicesFoundInSelectedAadGroups ZebraFotaDeploymentStatusErrorCode = "NoZebraFotaEnrolledDevicesFoundInSelectedAadGroups"
+	ZebraFotaDeploymentStatusErrorCodesuccess                                            ZebraFotaDeploymentStatusErrorCode = "Success"
+	ZebraFotaDeploymentStatusErrorCodezebraFotaCreateDeploymentRequestFailure            ZebraFotaDeploymentStatusErrorCode = "ZebraFotaCreateDeploymentRequestFailure"
+)
+
+func PossibleValuesForZebraFotaDeploymentStatusErrorCode() []string {
+	return []string{
+		string(ZebraFotaDeploymentStatusErrorCodenoDevicesFoundInSelectedAadGroups),
+		string(ZebraFotaDeploymentStatusErrorCodenoIntuneDevicesFoundInSelectedAadGroups),
+		string(ZebraFotaDeploymentStatusErrorCodenoZebraFotaDevicesFoundForSelectedDeviceModel),
+		string(ZebraFotaDeploymentStatusErrorCodenoZebraFotaEnrolledDevicesFoundForCurrentTenant),
+		string(ZebraFotaDeploymentStatusErrorCodenoZebraFotaEnrolledDevicesFoundInSelectedAadGroups),
+		string(ZebraFotaDeploymentStatusErrorCodesuccess),
+		string(ZebraFotaDeploymentStatusErrorCodezebraFotaCreateDeploymentRequestFailure),
+	}
+}
+
+func parseZebraFotaDeploymentStatusErrorCode(input string) (*ZebraFotaDeploymentStatusErrorCode, error) {
+	vals := map[string]ZebraFotaDeploymentStatusErrorCode{
+		"nodevicesfoundinselectedaadgroups":                  ZebraFotaDeploymentStatusErrorCodenoDevicesFoundInSelectedAadGroups,
+		"nointunedevicesfoundinselectedaadgroups":            ZebraFotaDeploymentStatusErrorCodenoIntuneDevicesFoundInSelectedAadGroups,
+		"nozebrafotadevicesfoundforselecteddevicemodel":      ZebraFotaDeploymentStatusErrorCodenoZebraFotaDevicesFoundForSelectedDeviceModel,
+		"nozebrafotaenrolleddevicesfoundforcurrenttenant":    ZebraFotaDeploymentStatusErrorCodenoZebraFotaEnrolledDevicesFoundForCurrentTenant,
+		"nozebrafotaenrolleddevicesfoundinselectedaadgroups": ZebraFotaDeploymentStatusErrorCodenoZebraFotaEnrolledDevicesFoundInSelectedAadGroups,
+		"success": ZebraFotaDeploymentStatusErrorCodesuccess,
+		"zebrafotacreatedeploymentrequestfailure": ZebraFotaDeploymentStatusErrorCodezebraFotaCreateDeploymentRequestFailure,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ZebraFotaDeploymentStatusErrorCode(input)
+	return &out, nil
+}

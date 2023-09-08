@@ -1,0 +1,77 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type PrintUsageOperationPredicate struct {
+	BlackAndWhitePageCount         *int64
+	ColorPageCount                 *int64
+	CompletedBlackAndWhiteJobCount *int64
+	CompletedColorJobCount         *int64
+	CompletedJobCount              *int64
+	DoubleSidedSheetCount          *int64
+	Id                             *string
+	IncompleteJobCount             *int64
+	MediaSheetCount                *int64
+	ODataType                      *string
+	PageCount                      *int64
+	SingleSidedSheetCount          *int64
+	UsageDate                      *string
+}
+
+func (p PrintUsageOperationPredicate) Matches(input PrintUsage) bool {
+
+	if p.BlackAndWhitePageCount != nil && (input.BlackAndWhitePageCount == nil || *p.BlackAndWhitePageCount != *input.BlackAndWhitePageCount) {
+		return false
+	}
+
+	if p.ColorPageCount != nil && (input.ColorPageCount == nil || *p.ColorPageCount != *input.ColorPageCount) {
+		return false
+	}
+
+	if p.CompletedBlackAndWhiteJobCount != nil && (input.CompletedBlackAndWhiteJobCount == nil || *p.CompletedBlackAndWhiteJobCount != *input.CompletedBlackAndWhiteJobCount) {
+		return false
+	}
+
+	if p.CompletedColorJobCount != nil && (input.CompletedColorJobCount == nil || *p.CompletedColorJobCount != *input.CompletedColorJobCount) {
+		return false
+	}
+
+	if p.CompletedJobCount != nil && (input.CompletedJobCount == nil || *p.CompletedJobCount != *input.CompletedJobCount) {
+		return false
+	}
+
+	if p.DoubleSidedSheetCount != nil && (input.DoubleSidedSheetCount == nil || *p.DoubleSidedSheetCount != *input.DoubleSidedSheetCount) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.IncompleteJobCount != nil && (input.IncompleteJobCount == nil || *p.IncompleteJobCount != *input.IncompleteJobCount) {
+		return false
+	}
+
+	if p.MediaSheetCount != nil && (input.MediaSheetCount == nil || *p.MediaSheetCount != *input.MediaSheetCount) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.PageCount != nil && (input.PageCount == nil || *p.PageCount != *input.PageCount) {
+		return false
+	}
+
+	if p.SingleSidedSheetCount != nil && (input.SingleSidedSheetCount == nil || *p.SingleSidedSheetCount != *input.SingleSidedSheetCount) {
+		return false
+	}
+
+	if p.UsageDate != nil && (input.UsageDate == nil || *p.UsageDate != *input.UsageDate) {
+		return false
+	}
+
+	return true
+}

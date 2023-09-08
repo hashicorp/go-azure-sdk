@@ -1,0 +1,43 @@
+package models
+
+import "strings"
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type RiskDetectionActivity string
+
+const (
+	RiskDetectionActivityservicePrincipal RiskDetectionActivity = "ServicePrincipal"
+	RiskDetectionActivitysignin RiskDetectionActivity = "Signin"
+	RiskDetectionActivityuser RiskDetectionActivity = "User"
+)
+
+
+func PossibleValuesForRiskDetectionActivity() []string {
+	return []string{
+		string(RiskDetectionActivityservicePrincipal),
+string(RiskDetectionActivitysignin),
+string(RiskDetectionActivityuser),
+	}
+}
+
+
+
+func parseRiskDetectionActivity(input string) (*RiskDetectionActivity, error) {
+	vals := map[string]RiskDetectionActivity{
+		"serviceprincipal": RiskDetectionActivityservicePrincipal,
+"signin": RiskDetectionActivitysignin,
+"user": RiskDetectionActivityuser,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := RiskDetectionActivity(input)
+	return &out, nil
+}

@@ -1,0 +1,81 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type AccessReviewScheduleSettingsOperationPredicate struct {
+	 AutoApplyDecisionsEnabled *bool
+	 DecisionHistoriesForReviewersEnabled *bool
+	 DefaultDecision *string
+	 DefaultDecisionEnabled *bool
+	 InstanceDurationInDays *int64
+	 JustificationRequiredOnApproval *bool
+	 MailNotificationsEnabled *bool
+	 ODataType *string
+	 RecommendationLookBackDuration *string
+	 RecommendationsEnabled *bool
+	 ReminderNotificationsEnabled *bool
+}
+
+func (p AccessReviewScheduleSettingsOperationPredicate) Matches(input AccessReviewScheduleSettings) bool {
+
+	if p.AutoApplyDecisionsEnabled != nil && (input.AutoApplyDecisionsEnabled == nil || *p.AutoApplyDecisionsEnabled != *input.AutoApplyDecisionsEnabled) {
+	 	return false
+	}
+
+
+	if p.DecisionHistoriesForReviewersEnabled != nil && (input.DecisionHistoriesForReviewersEnabled == nil || *p.DecisionHistoriesForReviewersEnabled != *input.DecisionHistoriesForReviewersEnabled) {
+	 	return false
+	}
+
+
+	if p.DefaultDecision != nil && (input.DefaultDecision == nil || *p.DefaultDecision != *input.DefaultDecision) {
+	 	return false
+	}
+
+
+	if p.DefaultDecisionEnabled != nil && (input.DefaultDecisionEnabled == nil || *p.DefaultDecisionEnabled != *input.DefaultDecisionEnabled) {
+	 	return false
+	}
+
+
+	if p.InstanceDurationInDays != nil && (input.InstanceDurationInDays == nil || *p.InstanceDurationInDays != *input.InstanceDurationInDays) {
+	 	return false
+	}
+
+
+	if p.JustificationRequiredOnApproval != nil && (input.JustificationRequiredOnApproval == nil || *p.JustificationRequiredOnApproval != *input.JustificationRequiredOnApproval) {
+	 	return false
+	}
+
+
+	if p.MailNotificationsEnabled != nil && (input.MailNotificationsEnabled == nil || *p.MailNotificationsEnabled != *input.MailNotificationsEnabled) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.RecommendationLookBackDuration != nil && (input.RecommendationLookBackDuration == nil || *p.RecommendationLookBackDuration != *input.RecommendationLookBackDuration) {
+	 	return false
+	}
+
+
+	if p.RecommendationsEnabled != nil && (input.RecommendationsEnabled == nil || *p.RecommendationsEnabled != *input.RecommendationsEnabled) {
+	 	return false
+	}
+
+
+	if p.ReminderNotificationsEnabled != nil && (input.ReminderNotificationsEnabled == nil || *p.ReminderNotificationsEnabled != *input.ReminderNotificationsEnabled) {
+	 	return false
+	}
+
+
+	return true
+}
+

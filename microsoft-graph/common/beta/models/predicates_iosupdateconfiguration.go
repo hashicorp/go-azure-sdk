@@ -1,0 +1,82 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type IosUpdateConfigurationOperationPredicate struct {
+	ActiveHoursEnd                    *string
+	ActiveHoursStart                  *string
+	CreatedDateTime                   *string
+	Description                       *string
+	DesiredOsVersion                  *string
+	DisplayName                       *string
+	EnforcedSoftwareUpdateDelayInDays *int64
+	Id                                *string
+	IsEnabled                         *bool
+	LastModifiedDateTime              *string
+	ODataType                         *string
+	SupportsScopeTags                 *bool
+	UtcTimeOffsetInMinutes            *int64
+	Version                           *int64
+}
+
+func (p IosUpdateConfigurationOperationPredicate) Matches(input IosUpdateConfiguration) bool {
+
+	if p.ActiveHoursEnd != nil && (input.ActiveHoursEnd == nil || *p.ActiveHoursEnd != *input.ActiveHoursEnd) {
+		return false
+	}
+
+	if p.ActiveHoursStart != nil && (input.ActiveHoursStart == nil || *p.ActiveHoursStart != *input.ActiveHoursStart) {
+		return false
+	}
+
+	if p.CreatedDateTime != nil && (input.CreatedDateTime == nil || *p.CreatedDateTime != *input.CreatedDateTime) {
+		return false
+	}
+
+	if p.Description != nil && (input.Description == nil || *p.Description != *input.Description) {
+		return false
+	}
+
+	if p.DesiredOsVersion != nil && (input.DesiredOsVersion == nil || *p.DesiredOsVersion != *input.DesiredOsVersion) {
+		return false
+	}
+
+	if p.DisplayName != nil && (input.DisplayName == nil || *p.DisplayName != *input.DisplayName) {
+		return false
+	}
+
+	if p.EnforcedSoftwareUpdateDelayInDays != nil && (input.EnforcedSoftwareUpdateDelayInDays == nil || *p.EnforcedSoftwareUpdateDelayInDays != *input.EnforcedSoftwareUpdateDelayInDays) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.IsEnabled != nil && (input.IsEnabled == nil || *p.IsEnabled != *input.IsEnabled) {
+		return false
+	}
+
+	if p.LastModifiedDateTime != nil && (input.LastModifiedDateTime == nil || *p.LastModifiedDateTime != *input.LastModifiedDateTime) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.SupportsScopeTags != nil && (input.SupportsScopeTags == nil || *p.SupportsScopeTags != *input.SupportsScopeTags) {
+		return false
+	}
+
+	if p.UtcTimeOffsetInMinutes != nil && (input.UtcTimeOffsetInMinutes == nil || *p.UtcTimeOffsetInMinutes != *input.UtcTimeOffsetInMinutes) {
+		return false
+	}
+
+	if p.Version != nil && (input.Version == nil || *p.Version != *input.Version) {
+		return false
+	}
+
+	return true
+}

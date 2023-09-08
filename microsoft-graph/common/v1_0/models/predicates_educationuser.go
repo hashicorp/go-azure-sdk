@@ -1,0 +1,112 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type EducationUserOperationPredicate struct {
+	AccountEnabled                 *bool
+	Department                     *string
+	DisplayName                    *string
+	ExternalSourceDetail           *string
+	GivenName                      *string
+	Id                             *string
+	Mail                           *string
+	MailNickname                   *string
+	MiddleName                     *string
+	MobilePhone                    *string
+	ODataType                      *string
+	OfficeLocation                 *string
+	PasswordPolicies               *string
+	PreferredLanguage              *string
+	RefreshTokensValidFromDateTime *string
+	ShowInAddressList              *bool
+	Surname                        *string
+	UsageLocation                  *string
+	UserPrincipalName              *string
+	UserType                       *string
+}
+
+func (p EducationUserOperationPredicate) Matches(input EducationUser) bool {
+
+	if p.AccountEnabled != nil && (input.AccountEnabled == nil || *p.AccountEnabled != *input.AccountEnabled) {
+		return false
+	}
+
+	if p.Department != nil && (input.Department == nil || *p.Department != *input.Department) {
+		return false
+	}
+
+	if p.DisplayName != nil && (input.DisplayName == nil || *p.DisplayName != *input.DisplayName) {
+		return false
+	}
+
+	if p.ExternalSourceDetail != nil && (input.ExternalSourceDetail == nil || *p.ExternalSourceDetail != *input.ExternalSourceDetail) {
+		return false
+	}
+
+	if p.GivenName != nil && (input.GivenName == nil || *p.GivenName != *input.GivenName) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.Mail != nil && (input.Mail == nil || *p.Mail != *input.Mail) {
+		return false
+	}
+
+	if p.MailNickname != nil && (input.MailNickname == nil || *p.MailNickname != *input.MailNickname) {
+		return false
+	}
+
+	if p.MiddleName != nil && (input.MiddleName == nil || *p.MiddleName != *input.MiddleName) {
+		return false
+	}
+
+	if p.MobilePhone != nil && (input.MobilePhone == nil || *p.MobilePhone != *input.MobilePhone) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.OfficeLocation != nil && (input.OfficeLocation == nil || *p.OfficeLocation != *input.OfficeLocation) {
+		return false
+	}
+
+	if p.PasswordPolicies != nil && (input.PasswordPolicies == nil || *p.PasswordPolicies != *input.PasswordPolicies) {
+		return false
+	}
+
+	if p.PreferredLanguage != nil && (input.PreferredLanguage == nil || *p.PreferredLanguage != *input.PreferredLanguage) {
+		return false
+	}
+
+	if p.RefreshTokensValidFromDateTime != nil && (input.RefreshTokensValidFromDateTime == nil || *p.RefreshTokensValidFromDateTime != *input.RefreshTokensValidFromDateTime) {
+		return false
+	}
+
+	if p.ShowInAddressList != nil && (input.ShowInAddressList == nil || *p.ShowInAddressList != *input.ShowInAddressList) {
+		return false
+	}
+
+	if p.Surname != nil && (input.Surname == nil || *p.Surname != *input.Surname) {
+		return false
+	}
+
+	if p.UsageLocation != nil && (input.UsageLocation == nil || *p.UsageLocation != *input.UsageLocation) {
+		return false
+	}
+
+	if p.UserPrincipalName != nil && (input.UserPrincipalName == nil || *p.UserPrincipalName != *input.UserPrincipalName) {
+		return false
+	}
+
+	if p.UserType != nil && (input.UserType == nil || *p.UserType != *input.UserType) {
+		return false
+	}
+
+	return true
+}

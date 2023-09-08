@@ -1,0 +1,79 @@
+package models
+
+import "strings"
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type SecurityOauthApplicationEvidenceRoles string
+
+const (
+	SecurityOauthApplicationEvidenceRolesadded SecurityOauthApplicationEvidenceRoles = "Added"
+	SecurityOauthApplicationEvidenceRolesattacked SecurityOauthApplicationEvidenceRoles = "Attacked"
+	SecurityOauthApplicationEvidenceRolesattacker SecurityOauthApplicationEvidenceRoles = "Attacker"
+	SecurityOauthApplicationEvidenceRolescommandAndControl SecurityOauthApplicationEvidenceRoles = "CommandAndControl"
+	SecurityOauthApplicationEvidenceRolescompromised SecurityOauthApplicationEvidenceRoles = "Compromised"
+	SecurityOauthApplicationEvidenceRolescontextual SecurityOauthApplicationEvidenceRoles = "Contextual"
+	SecurityOauthApplicationEvidenceRolescreated SecurityOauthApplicationEvidenceRoles = "Created"
+	SecurityOauthApplicationEvidenceRolesdestination SecurityOauthApplicationEvidenceRoles = "Destination"
+	SecurityOauthApplicationEvidenceRolesedited SecurityOauthApplicationEvidenceRoles = "Edited"
+	SecurityOauthApplicationEvidenceRolesloaded SecurityOauthApplicationEvidenceRoles = "Loaded"
+	SecurityOauthApplicationEvidenceRolespolicyViolator SecurityOauthApplicationEvidenceRoles = "PolicyViolator"
+	SecurityOauthApplicationEvidenceRolesscanned SecurityOauthApplicationEvidenceRoles = "Scanned"
+	SecurityOauthApplicationEvidenceRolessource SecurityOauthApplicationEvidenceRoles = "Source"
+	SecurityOauthApplicationEvidenceRolessuspicious SecurityOauthApplicationEvidenceRoles = "Suspicious"
+	SecurityOauthApplicationEvidenceRolesunknown SecurityOauthApplicationEvidenceRoles = "Unknown"
+)
+
+
+func PossibleValuesForSecurityOauthApplicationEvidenceRoles() []string {
+	return []string{
+		string(SecurityOauthApplicationEvidenceRolesadded),
+string(SecurityOauthApplicationEvidenceRolesattacked),
+string(SecurityOauthApplicationEvidenceRolesattacker),
+string(SecurityOauthApplicationEvidenceRolescommandAndControl),
+string(SecurityOauthApplicationEvidenceRolescompromised),
+string(SecurityOauthApplicationEvidenceRolescontextual),
+string(SecurityOauthApplicationEvidenceRolescreated),
+string(SecurityOauthApplicationEvidenceRolesdestination),
+string(SecurityOauthApplicationEvidenceRolesedited),
+string(SecurityOauthApplicationEvidenceRolesloaded),
+string(SecurityOauthApplicationEvidenceRolespolicyViolator),
+string(SecurityOauthApplicationEvidenceRolesscanned),
+string(SecurityOauthApplicationEvidenceRolessource),
+string(SecurityOauthApplicationEvidenceRolessuspicious),
+string(SecurityOauthApplicationEvidenceRolesunknown),
+	}
+}
+
+
+
+func parseSecurityOauthApplicationEvidenceRoles(input string) (*SecurityOauthApplicationEvidenceRoles, error) {
+	vals := map[string]SecurityOauthApplicationEvidenceRoles{
+		"added": SecurityOauthApplicationEvidenceRolesadded,
+"attacked": SecurityOauthApplicationEvidenceRolesattacked,
+"attacker": SecurityOauthApplicationEvidenceRolesattacker,
+"commandandcontrol": SecurityOauthApplicationEvidenceRolescommandAndControl,
+"compromised": SecurityOauthApplicationEvidenceRolescompromised,
+"contextual": SecurityOauthApplicationEvidenceRolescontextual,
+"created": SecurityOauthApplicationEvidenceRolescreated,
+"destination": SecurityOauthApplicationEvidenceRolesdestination,
+"edited": SecurityOauthApplicationEvidenceRolesedited,
+"loaded": SecurityOauthApplicationEvidenceRolesloaded,
+"policyviolator": SecurityOauthApplicationEvidenceRolespolicyViolator,
+"scanned": SecurityOauthApplicationEvidenceRolesscanned,
+"source": SecurityOauthApplicationEvidenceRolessource,
+"suspicious": SecurityOauthApplicationEvidenceRolessuspicious,
+"unknown": SecurityOauthApplicationEvidenceRolesunknown,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SecurityOauthApplicationEvidenceRoles(input)
+	return &out, nil
+}

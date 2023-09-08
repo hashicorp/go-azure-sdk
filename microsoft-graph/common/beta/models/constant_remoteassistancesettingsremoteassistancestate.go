@@ -1,0 +1,34 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type RemoteAssistanceSettingsRemoteAssistanceState string
+
+const (
+	RemoteAssistanceSettingsRemoteAssistanceStatedisabled RemoteAssistanceSettingsRemoteAssistanceState = "Disabled"
+	RemoteAssistanceSettingsRemoteAssistanceStateenabled  RemoteAssistanceSettingsRemoteAssistanceState = "Enabled"
+)
+
+func PossibleValuesForRemoteAssistanceSettingsRemoteAssistanceState() []string {
+	return []string{
+		string(RemoteAssistanceSettingsRemoteAssistanceStatedisabled),
+		string(RemoteAssistanceSettingsRemoteAssistanceStateenabled),
+	}
+}
+
+func parseRemoteAssistanceSettingsRemoteAssistanceState(input string) (*RemoteAssistanceSettingsRemoteAssistanceState, error) {
+	vals := map[string]RemoteAssistanceSettingsRemoteAssistanceState{
+		"disabled": RemoteAssistanceSettingsRemoteAssistanceStatedisabled,
+		"enabled":  RemoteAssistanceSettingsRemoteAssistanceStateenabled,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := RemoteAssistanceSettingsRemoteAssistanceState(input)
+	return &out, nil
+}

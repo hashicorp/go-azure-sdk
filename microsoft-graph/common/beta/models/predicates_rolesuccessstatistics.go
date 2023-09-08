@@ -1,0 +1,62 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type RoleSuccessStatisticsOperationPredicate struct {
+	ODataType        *string
+	PermanentFail    *int64
+	PermanentSuccess *int64
+	RemoveFail       *int64
+	RemoveSuccess    *int64
+	RoleId           *string
+	RoleName         *string
+	TemporaryFail    *int64
+	TemporarySuccess *int64
+	UnknownFail      *int64
+}
+
+func (p RoleSuccessStatisticsOperationPredicate) Matches(input RoleSuccessStatistics) bool {
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.PermanentFail != nil && (input.PermanentFail == nil || *p.PermanentFail != *input.PermanentFail) {
+		return false
+	}
+
+	if p.PermanentSuccess != nil && (input.PermanentSuccess == nil || *p.PermanentSuccess != *input.PermanentSuccess) {
+		return false
+	}
+
+	if p.RemoveFail != nil && (input.RemoveFail == nil || *p.RemoveFail != *input.RemoveFail) {
+		return false
+	}
+
+	if p.RemoveSuccess != nil && (input.RemoveSuccess == nil || *p.RemoveSuccess != *input.RemoveSuccess) {
+		return false
+	}
+
+	if p.RoleId != nil && (input.RoleId == nil || *p.RoleId != *input.RoleId) {
+		return false
+	}
+
+	if p.RoleName != nil && (input.RoleName == nil || *p.RoleName != *input.RoleName) {
+		return false
+	}
+
+	if p.TemporaryFail != nil && (input.TemporaryFail == nil || *p.TemporaryFail != *input.TemporaryFail) {
+		return false
+	}
+
+	if p.TemporarySuccess != nil && (input.TemporarySuccess == nil || *p.TemporarySuccess != *input.TemporarySuccess) {
+		return false
+	}
+
+	if p.UnknownFail != nil && (input.UnknownFail == nil || *p.UnknownFail != *input.UnknownFail) {
+		return false
+	}
+
+	return true
+}

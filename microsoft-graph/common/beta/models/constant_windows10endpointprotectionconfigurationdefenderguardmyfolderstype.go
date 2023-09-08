@@ -1,0 +1,43 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type Windows10EndpointProtectionConfigurationDefenderGuardMyFoldersType string
+
+const (
+	Windows10EndpointProtectionConfigurationDefenderGuardMyFoldersTypeauditDiskModification Windows10EndpointProtectionConfigurationDefenderGuardMyFoldersType = "AuditDiskModification"
+	Windows10EndpointProtectionConfigurationDefenderGuardMyFoldersTypeauditMode             Windows10EndpointProtectionConfigurationDefenderGuardMyFoldersType = "AuditMode"
+	Windows10EndpointProtectionConfigurationDefenderGuardMyFoldersTypeblockDiskModification Windows10EndpointProtectionConfigurationDefenderGuardMyFoldersType = "BlockDiskModification"
+	Windows10EndpointProtectionConfigurationDefenderGuardMyFoldersTypeenable                Windows10EndpointProtectionConfigurationDefenderGuardMyFoldersType = "Enable"
+	Windows10EndpointProtectionConfigurationDefenderGuardMyFoldersTypeuserDefined           Windows10EndpointProtectionConfigurationDefenderGuardMyFoldersType = "UserDefined"
+)
+
+func PossibleValuesForWindows10EndpointProtectionConfigurationDefenderGuardMyFoldersType() []string {
+	return []string{
+		string(Windows10EndpointProtectionConfigurationDefenderGuardMyFoldersTypeauditDiskModification),
+		string(Windows10EndpointProtectionConfigurationDefenderGuardMyFoldersTypeauditMode),
+		string(Windows10EndpointProtectionConfigurationDefenderGuardMyFoldersTypeblockDiskModification),
+		string(Windows10EndpointProtectionConfigurationDefenderGuardMyFoldersTypeenable),
+		string(Windows10EndpointProtectionConfigurationDefenderGuardMyFoldersTypeuserDefined),
+	}
+}
+
+func parseWindows10EndpointProtectionConfigurationDefenderGuardMyFoldersType(input string) (*Windows10EndpointProtectionConfigurationDefenderGuardMyFoldersType, error) {
+	vals := map[string]Windows10EndpointProtectionConfigurationDefenderGuardMyFoldersType{
+		"auditdiskmodification": Windows10EndpointProtectionConfigurationDefenderGuardMyFoldersTypeauditDiskModification,
+		"auditmode":             Windows10EndpointProtectionConfigurationDefenderGuardMyFoldersTypeauditMode,
+		"blockdiskmodification": Windows10EndpointProtectionConfigurationDefenderGuardMyFoldersTypeblockDiskModification,
+		"enable":                Windows10EndpointProtectionConfigurationDefenderGuardMyFoldersTypeenable,
+		"userdefined":           Windows10EndpointProtectionConfigurationDefenderGuardMyFoldersTypeuserDefined,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := Windows10EndpointProtectionConfigurationDefenderGuardMyFoldersType(input)
+	return &out, nil
+}

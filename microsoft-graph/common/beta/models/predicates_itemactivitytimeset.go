@@ -1,0 +1,32 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type ItemActivityTimeSetOperationPredicate struct {
+	LastRecordedDateTime *string
+	ODataType            *string
+	ObservedDateTime     *string
+	RecordedDateTime     *string
+}
+
+func (p ItemActivityTimeSetOperationPredicate) Matches(input ItemActivityTimeSet) bool {
+
+	if p.LastRecordedDateTime != nil && (input.LastRecordedDateTime == nil || *p.LastRecordedDateTime != *input.LastRecordedDateTime) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.ObservedDateTime != nil && (input.ObservedDateTime == nil || *p.ObservedDateTime != *input.ObservedDateTime) {
+		return false
+	}
+
+	if p.RecordedDateTime != nil && (input.RecordedDateTime == nil || *p.RecordedDateTime != *input.RecordedDateTime) {
+		return false
+	}
+
+	return true
+}

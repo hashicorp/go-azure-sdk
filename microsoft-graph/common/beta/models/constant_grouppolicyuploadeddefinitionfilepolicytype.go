@@ -1,0 +1,34 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type GroupPolicyUploadedDefinitionFilePolicyType string
+
+const (
+	GroupPolicyUploadedDefinitionFilePolicyTypeadmxBacked   GroupPolicyUploadedDefinitionFilePolicyType = "AdmxBacked"
+	GroupPolicyUploadedDefinitionFilePolicyTypeadmxIngested GroupPolicyUploadedDefinitionFilePolicyType = "AdmxIngested"
+)
+
+func PossibleValuesForGroupPolicyUploadedDefinitionFilePolicyType() []string {
+	return []string{
+		string(GroupPolicyUploadedDefinitionFilePolicyTypeadmxBacked),
+		string(GroupPolicyUploadedDefinitionFilePolicyTypeadmxIngested),
+	}
+}
+
+func parseGroupPolicyUploadedDefinitionFilePolicyType(input string) (*GroupPolicyUploadedDefinitionFilePolicyType, error) {
+	vals := map[string]GroupPolicyUploadedDefinitionFilePolicyType{
+		"admxbacked":   GroupPolicyUploadedDefinitionFilePolicyTypeadmxBacked,
+		"admxingested": GroupPolicyUploadedDefinitionFilePolicyTypeadmxIngested,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := GroupPolicyUploadedDefinitionFilePolicyType(input)
+	return &out, nil
+}

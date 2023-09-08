@@ -1,0 +1,34 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type SecurityRetentionLabelDefaultRecordBehavior string
+
+const (
+	SecurityRetentionLabelDefaultRecordBehaviorstartLocked   SecurityRetentionLabelDefaultRecordBehavior = "StartLocked"
+	SecurityRetentionLabelDefaultRecordBehaviorstartUnlocked SecurityRetentionLabelDefaultRecordBehavior = "StartUnlocked"
+)
+
+func PossibleValuesForSecurityRetentionLabelDefaultRecordBehavior() []string {
+	return []string{
+		string(SecurityRetentionLabelDefaultRecordBehaviorstartLocked),
+		string(SecurityRetentionLabelDefaultRecordBehaviorstartUnlocked),
+	}
+}
+
+func parseSecurityRetentionLabelDefaultRecordBehavior(input string) (*SecurityRetentionLabelDefaultRecordBehavior, error) {
+	vals := map[string]SecurityRetentionLabelDefaultRecordBehavior{
+		"startlocked":   SecurityRetentionLabelDefaultRecordBehaviorstartLocked,
+		"startunlocked": SecurityRetentionLabelDefaultRecordBehaviorstartUnlocked,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SecurityRetentionLabelDefaultRecordBehavior(input)
+	return &out, nil
+}

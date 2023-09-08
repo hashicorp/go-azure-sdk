@@ -1,0 +1,72 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type CopyNotebookModelOperationPredicate struct {
+	CreatedBy        *string
+	CreatedTime      *string
+	Id               *string
+	IsDefault        *bool
+	IsShared         *bool
+	LastModifiedBy   *string
+	LastModifiedTime *string
+	Name             *string
+	ODataType        *string
+	SectionGroupsUrl *string
+	SectionsUrl      *string
+	Self             *string
+}
+
+func (p CopyNotebookModelOperationPredicate) Matches(input CopyNotebookModel) bool {
+
+	if p.CreatedBy != nil && (input.CreatedBy == nil || *p.CreatedBy != *input.CreatedBy) {
+		return false
+	}
+
+	if p.CreatedTime != nil && (input.CreatedTime == nil || *p.CreatedTime != *input.CreatedTime) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.IsDefault != nil && (input.IsDefault == nil || *p.IsDefault != *input.IsDefault) {
+		return false
+	}
+
+	if p.IsShared != nil && (input.IsShared == nil || *p.IsShared != *input.IsShared) {
+		return false
+	}
+
+	if p.LastModifiedBy != nil && (input.LastModifiedBy == nil || *p.LastModifiedBy != *input.LastModifiedBy) {
+		return false
+	}
+
+	if p.LastModifiedTime != nil && (input.LastModifiedTime == nil || *p.LastModifiedTime != *input.LastModifiedTime) {
+		return false
+	}
+
+	if p.Name != nil && (input.Name == nil || *p.Name != *input.Name) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.SectionGroupsUrl != nil && (input.SectionGroupsUrl == nil || *p.SectionGroupsUrl != *input.SectionGroupsUrl) {
+		return false
+	}
+
+	if p.SectionsUrl != nil && (input.SectionsUrl == nil || *p.SectionsUrl != *input.SectionsUrl) {
+		return false
+	}
+
+	if p.Self != nil && (input.Self == nil || *p.Self != *input.Self) {
+		return false
+	}
+
+	return true
+}

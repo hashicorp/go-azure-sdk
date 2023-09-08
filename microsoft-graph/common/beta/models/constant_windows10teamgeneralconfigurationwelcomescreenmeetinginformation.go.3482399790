@@ -1,0 +1,43 @@
+package models
+
+import "strings"
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type Windows10TeamGeneralConfigurationWelcomeScreenMeetingInformation string
+
+const (
+	Windows10TeamGeneralConfigurationWelcomeScreenMeetingInformationshowOrganizerAndTimeAndSubject Windows10TeamGeneralConfigurationWelcomeScreenMeetingInformation = "ShowOrganizerAndTimeAndSubject"
+	Windows10TeamGeneralConfigurationWelcomeScreenMeetingInformationshowOrganizerAndTimeOnly Windows10TeamGeneralConfigurationWelcomeScreenMeetingInformation = "ShowOrganizerAndTimeOnly"
+	Windows10TeamGeneralConfigurationWelcomeScreenMeetingInformationuserDefined Windows10TeamGeneralConfigurationWelcomeScreenMeetingInformation = "UserDefined"
+)
+
+
+func PossibleValuesForWindows10TeamGeneralConfigurationWelcomeScreenMeetingInformation() []string {
+	return []string{
+		string(Windows10TeamGeneralConfigurationWelcomeScreenMeetingInformationshowOrganizerAndTimeAndSubject),
+string(Windows10TeamGeneralConfigurationWelcomeScreenMeetingInformationshowOrganizerAndTimeOnly),
+string(Windows10TeamGeneralConfigurationWelcomeScreenMeetingInformationuserDefined),
+	}
+}
+
+
+
+func parseWindows10TeamGeneralConfigurationWelcomeScreenMeetingInformation(input string) (*Windows10TeamGeneralConfigurationWelcomeScreenMeetingInformation, error) {
+	vals := map[string]Windows10TeamGeneralConfigurationWelcomeScreenMeetingInformation{
+		"showorganizerandtimeandsubject": Windows10TeamGeneralConfigurationWelcomeScreenMeetingInformationshowOrganizerAndTimeAndSubject,
+"showorganizerandtimeonly": Windows10TeamGeneralConfigurationWelcomeScreenMeetingInformationshowOrganizerAndTimeOnly,
+"userdefined": Windows10TeamGeneralConfigurationWelcomeScreenMeetingInformationuserDefined,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := Windows10TeamGeneralConfigurationWelcomeScreenMeetingInformation(input)
+	return &out, nil
+}

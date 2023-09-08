@@ -1,0 +1,222 @@
+package policyauthorizationpolicydefaultuserroleoverride
+
+import (
+	"testing"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+var _ resourceids.ResourceId = PolicyAuthorizationPolicyDefaultUserRoleOverrideId{}
+
+func TestNewPolicyAuthorizationPolicyDefaultUserRoleOverrideID(t *testing.T) {
+	id := NewPolicyAuthorizationPolicyDefaultUserRoleOverrideID("authorizationPolicyIdValue", "defaultUserRoleOverrideIdValue")
+
+	if id.AuthorizationPolicyId != "authorizationPolicyIdValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'AuthorizationPolicyId'", id.AuthorizationPolicyId, "authorizationPolicyIdValue")
+	}
+
+	if id.DefaultUserRoleOverrideId != "defaultUserRoleOverrideIdValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'DefaultUserRoleOverrideId'", id.DefaultUserRoleOverrideId, "defaultUserRoleOverrideIdValue")
+	}
+}
+
+func TestFormatPolicyAuthorizationPolicyDefaultUserRoleOverrideID(t *testing.T) {
+	actual := NewPolicyAuthorizationPolicyDefaultUserRoleOverrideID("authorizationPolicyIdValue", "defaultUserRoleOverrideIdValue").ID()
+	expected := "/policies/authorizationPolicy/authorizationPolicyIdValue/defaultUserRoleOverrides/defaultUserRoleOverrideIdValue"
+	if actual != expected {
+		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
+	}
+}
+
+func TestParsePolicyAuthorizationPolicyDefaultUserRoleOverrideID(t *testing.T) {
+	testData := []struct {
+		Input    string
+		Error    bool
+		Expected *PolicyAuthorizationPolicyDefaultUserRoleOverrideId
+	}{
+		{
+			// Incomplete URI
+			Input: "",
+			Error: true,
+		},
+		{
+			// Incomplete URI
+			Input: "/policies",
+			Error: true,
+		},
+		{
+			// Incomplete URI
+			Input: "/policies/authorizationPolicy",
+			Error: true,
+		},
+		{
+			// Incomplete URI
+			Input: "/policies/authorizationPolicy/authorizationPolicyIdValue",
+			Error: true,
+		},
+		{
+			// Incomplete URI
+			Input: "/policies/authorizationPolicy/authorizationPolicyIdValue/defaultUserRoleOverrides",
+			Error: true,
+		},
+		{
+			// Valid URI
+			Input: "/policies/authorizationPolicy/authorizationPolicyIdValue/defaultUserRoleOverrides/defaultUserRoleOverrideIdValue",
+			Expected: &PolicyAuthorizationPolicyDefaultUserRoleOverrideId{
+				AuthorizationPolicyId:     "authorizationPolicyIdValue",
+				DefaultUserRoleOverrideId: "defaultUserRoleOverrideIdValue",
+			},
+		},
+		{
+			// Invalid (Valid Uri with Extra segment)
+			Input: "/policies/authorizationPolicy/authorizationPolicyIdValue/defaultUserRoleOverrides/defaultUserRoleOverrideIdValue/extra",
+			Error: true,
+		},
+	}
+	for _, v := range testData {
+		t.Logf("[DEBUG] Testing %q", v.Input)
+
+		actual, err := ParsePolicyAuthorizationPolicyDefaultUserRoleOverrideID(v.Input)
+		if err != nil {
+			if v.Error {
+				continue
+			}
+
+			t.Fatalf("Expect a value but got an error: %+v", err)
+		}
+		if v.Error {
+			t.Fatal("Expect an error but didn't get one")
+		}
+
+		if actual.AuthorizationPolicyId != v.Expected.AuthorizationPolicyId {
+			t.Fatalf("Expected %q but got %q for AuthorizationPolicyId", v.Expected.AuthorizationPolicyId, actual.AuthorizationPolicyId)
+		}
+
+		if actual.DefaultUserRoleOverrideId != v.Expected.DefaultUserRoleOverrideId {
+			t.Fatalf("Expected %q but got %q for DefaultUserRoleOverrideId", v.Expected.DefaultUserRoleOverrideId, actual.DefaultUserRoleOverrideId)
+		}
+
+	}
+}
+
+func TestParsePolicyAuthorizationPolicyDefaultUserRoleOverrideIDInsensitively(t *testing.T) {
+	testData := []struct {
+		Input    string
+		Error    bool
+		Expected *PolicyAuthorizationPolicyDefaultUserRoleOverrideId
+	}{
+		{
+			// Incomplete URI
+			Input: "",
+			Error: true,
+		},
+		{
+			// Incomplete URI
+			Input: "/policies",
+			Error: true,
+		},
+		{
+			// Incomplete URI (mIxEd CaSe since this is insensitive)
+			Input: "/pOlIcIeS",
+			Error: true,
+		},
+		{
+			// Incomplete URI
+			Input: "/policies/authorizationPolicy",
+			Error: true,
+		},
+		{
+			// Incomplete URI (mIxEd CaSe since this is insensitive)
+			Input: "/pOlIcIeS/aUtHoRiZaTiOnPoLiCy",
+			Error: true,
+		},
+		{
+			// Incomplete URI
+			Input: "/policies/authorizationPolicy/authorizationPolicyIdValue",
+			Error: true,
+		},
+		{
+			// Incomplete URI (mIxEd CaSe since this is insensitive)
+			Input: "/pOlIcIeS/aUtHoRiZaTiOnPoLiCy/aUtHoRiZaTiOnPoLiCyIdVaLuE",
+			Error: true,
+		},
+		{
+			// Incomplete URI
+			Input: "/policies/authorizationPolicy/authorizationPolicyIdValue/defaultUserRoleOverrides",
+			Error: true,
+		},
+		{
+			// Incomplete URI (mIxEd CaSe since this is insensitive)
+			Input: "/pOlIcIeS/aUtHoRiZaTiOnPoLiCy/aUtHoRiZaTiOnPoLiCyIdVaLuE/dEfAuLtUsErRoLeOvErRiDeS",
+			Error: true,
+		},
+		{
+			// Valid URI
+			Input: "/policies/authorizationPolicy/authorizationPolicyIdValue/defaultUserRoleOverrides/defaultUserRoleOverrideIdValue",
+			Expected: &PolicyAuthorizationPolicyDefaultUserRoleOverrideId{
+				AuthorizationPolicyId:     "authorizationPolicyIdValue",
+				DefaultUserRoleOverrideId: "defaultUserRoleOverrideIdValue",
+			},
+		},
+		{
+			// Invalid (Valid Uri with Extra segment)
+			Input: "/policies/authorizationPolicy/authorizationPolicyIdValue/defaultUserRoleOverrides/defaultUserRoleOverrideIdValue/extra",
+			Error: true,
+		},
+		{
+			// Valid URI (mIxEd CaSe since this is insensitive)
+			Input: "/pOlIcIeS/aUtHoRiZaTiOnPoLiCy/aUtHoRiZaTiOnPoLiCyIdVaLuE/dEfAuLtUsErRoLeOvErRiDeS/dEfAuLtUsErRoLeOvErRiDeIdVaLuE",
+			Expected: &PolicyAuthorizationPolicyDefaultUserRoleOverrideId{
+				AuthorizationPolicyId:     "aUtHoRiZaTiOnPoLiCyIdVaLuE",
+				DefaultUserRoleOverrideId: "dEfAuLtUsErRoLeOvErRiDeIdVaLuE",
+			},
+		},
+		{
+			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
+			Input: "/pOlIcIeS/aUtHoRiZaTiOnPoLiCy/aUtHoRiZaTiOnPoLiCyIdVaLuE/dEfAuLtUsErRoLeOvErRiDeS/dEfAuLtUsErRoLeOvErRiDeIdVaLuE/extra",
+			Error: true,
+		},
+	}
+	for _, v := range testData {
+		t.Logf("[DEBUG] Testing %q", v.Input)
+
+		actual, err := ParsePolicyAuthorizationPolicyDefaultUserRoleOverrideIDInsensitively(v.Input)
+		if err != nil {
+			if v.Error {
+				continue
+			}
+
+			t.Fatalf("Expect a value but got an error: %+v", err)
+		}
+		if v.Error {
+			t.Fatal("Expect an error but didn't get one")
+		}
+
+		if actual.AuthorizationPolicyId != v.Expected.AuthorizationPolicyId {
+			t.Fatalf("Expected %q but got %q for AuthorizationPolicyId", v.Expected.AuthorizationPolicyId, actual.AuthorizationPolicyId)
+		}
+
+		if actual.DefaultUserRoleOverrideId != v.Expected.DefaultUserRoleOverrideId {
+			t.Fatalf("Expected %q but got %q for DefaultUserRoleOverrideId", v.Expected.DefaultUserRoleOverrideId, actual.DefaultUserRoleOverrideId)
+		}
+
+	}
+}
+
+func TestSegmentsForPolicyAuthorizationPolicyDefaultUserRoleOverrideId(t *testing.T) {
+	segments := PolicyAuthorizationPolicyDefaultUserRoleOverrideId{}.Segments()
+	if len(segments) == 0 {
+		t.Fatalf("PolicyAuthorizationPolicyDefaultUserRoleOverrideId has no segments")
+	}
+
+	uniqueNames := make(map[string]struct{}, 0)
+	for _, segment := range segments {
+		uniqueNames[segment.Name] = struct{}{}
+	}
+	if len(uniqueNames) != len(segments) {
+		t.Fatalf("Expected the Segments to be unique but got %q unique segments and %d total segments", len(uniqueNames), len(segments))
+	}
+}

@@ -1,0 +1,85 @@
+package models
+
+import "strings"
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type ServiceHealthStatus string
+
+const (
+	ServiceHealthStatusconfirmed ServiceHealthStatus = "Confirmed"
+	ServiceHealthStatusextendedRecovery ServiceHealthStatus = "ExtendedRecovery"
+	ServiceHealthStatusfalsePositive ServiceHealthStatus = "FalsePositive"
+	ServiceHealthStatusinvestigating ServiceHealthStatus = "Investigating"
+	ServiceHealthStatusinvestigationSuspended ServiceHealthStatus = "InvestigationSuspended"
+	ServiceHealthStatusmitigated ServiceHealthStatus = "Mitigated"
+	ServiceHealthStatusmitigatedExternal ServiceHealthStatus = "MitigatedExternal"
+	ServiceHealthStatuspostIncidentReviewPublished ServiceHealthStatus = "PostIncidentReviewPublished"
+	ServiceHealthStatusreported ServiceHealthStatus = "Reported"
+	ServiceHealthStatusresolved ServiceHealthStatus = "Resolved"
+	ServiceHealthStatusresolvedExternal ServiceHealthStatus = "ResolvedExternal"
+	ServiceHealthStatusrestoringService ServiceHealthStatus = "RestoringService"
+	ServiceHealthStatusserviceDegradation ServiceHealthStatus = "ServiceDegradation"
+	ServiceHealthStatusserviceInterruption ServiceHealthStatus = "ServiceInterruption"
+	ServiceHealthStatusserviceOperational ServiceHealthStatus = "ServiceOperational"
+	ServiceHealthStatusserviceRestored ServiceHealthStatus = "ServiceRestored"
+	ServiceHealthStatusverifyingService ServiceHealthStatus = "VerifyingService"
+)
+
+
+func PossibleValuesForServiceHealthStatus() []string {
+	return []string{
+		string(ServiceHealthStatusconfirmed),
+string(ServiceHealthStatusextendedRecovery),
+string(ServiceHealthStatusfalsePositive),
+string(ServiceHealthStatusinvestigating),
+string(ServiceHealthStatusinvestigationSuspended),
+string(ServiceHealthStatusmitigated),
+string(ServiceHealthStatusmitigatedExternal),
+string(ServiceHealthStatuspostIncidentReviewPublished),
+string(ServiceHealthStatusreported),
+string(ServiceHealthStatusresolved),
+string(ServiceHealthStatusresolvedExternal),
+string(ServiceHealthStatusrestoringService),
+string(ServiceHealthStatusserviceDegradation),
+string(ServiceHealthStatusserviceInterruption),
+string(ServiceHealthStatusserviceOperational),
+string(ServiceHealthStatusserviceRestored),
+string(ServiceHealthStatusverifyingService),
+	}
+}
+
+
+
+func parseServiceHealthStatus(input string) (*ServiceHealthStatus, error) {
+	vals := map[string]ServiceHealthStatus{
+		"confirmed": ServiceHealthStatusconfirmed,
+"extendedrecovery": ServiceHealthStatusextendedRecovery,
+"falsepositive": ServiceHealthStatusfalsePositive,
+"investigating": ServiceHealthStatusinvestigating,
+"investigationsuspended": ServiceHealthStatusinvestigationSuspended,
+"mitigated": ServiceHealthStatusmitigated,
+"mitigatedexternal": ServiceHealthStatusmitigatedExternal,
+"postincidentreviewpublished": ServiceHealthStatuspostIncidentReviewPublished,
+"reported": ServiceHealthStatusreported,
+"resolved": ServiceHealthStatusresolved,
+"resolvedexternal": ServiceHealthStatusresolvedExternal,
+"restoringservice": ServiceHealthStatusrestoringService,
+"servicedegradation": ServiceHealthStatusserviceDegradation,
+"serviceinterruption": ServiceHealthStatusserviceInterruption,
+"serviceoperational": ServiceHealthStatusserviceOperational,
+"servicerestored": ServiceHealthStatusserviceRestored,
+"verifyingservice": ServiceHealthStatusverifyingService,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ServiceHealthStatus(input)
+	return &out, nil
+}

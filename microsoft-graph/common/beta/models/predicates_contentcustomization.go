@@ -1,0 +1,22 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type ContentCustomizationOperationPredicate struct {
+	AttributeCollectionRelativeUrl *string
+	ODataType                      *string
+}
+
+func (p ContentCustomizationOperationPredicate) Matches(input ContentCustomization) bool {
+
+	if p.AttributeCollectionRelativeUrl != nil && (input.AttributeCollectionRelativeUrl == nil || *p.AttributeCollectionRelativeUrl != *input.AttributeCollectionRelativeUrl) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	return true
+}

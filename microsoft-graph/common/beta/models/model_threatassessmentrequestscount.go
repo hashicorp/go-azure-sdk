@@ -1,0 +1,11 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type ThreatAssessmentRequestsCount struct {
+	Count           *int64  `json:"count,omitempty"`
+	CreatedDateTime *string `json:"createdDateTime,omitempty"`
+	ODataType       *string `json:"@odata.type,omitempty"`
+	PivotValue      *string `json:"pivotValue,omitempty"`
+}

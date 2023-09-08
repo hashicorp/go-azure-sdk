@@ -1,0 +1,22 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type ManagedDeviceSummarizedAppStateOperationPredicate struct {
+	DeviceId  *string
+	ODataType *string
+}
+
+func (p ManagedDeviceSummarizedAppStateOperationPredicate) Matches(input ManagedDeviceSummarizedAppState) bool {
+
+	if p.DeviceId != nil && (input.DeviceId == nil || *p.DeviceId != *input.DeviceId) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	return true
+}

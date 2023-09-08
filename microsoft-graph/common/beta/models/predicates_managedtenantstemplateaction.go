@@ -1,0 +1,37 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type ManagedTenantsTemplateActionOperationPredicate struct {
+	Description      *string
+	DisplayName      *string
+	ODataType        *string
+	Service          *string
+	TemplateActionId *string
+}
+
+func (p ManagedTenantsTemplateActionOperationPredicate) Matches(input ManagedTenantsTemplateAction) bool {
+
+	if p.Description != nil && (input.Description == nil || *p.Description != *input.Description) {
+		return false
+	}
+
+	if p.DisplayName != nil && (input.DisplayName == nil || *p.DisplayName != *input.DisplayName) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.Service != nil && (input.Service == nil || *p.Service != *input.Service) {
+		return false
+	}
+
+	if p.TemplateActionId != nil && (input.TemplateActionId == nil || *p.TemplateActionId != *input.TemplateActionId) {
+		return false
+	}
+
+	return true
+}

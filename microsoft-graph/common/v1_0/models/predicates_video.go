@@ -1,0 +1,62 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type VideoOperationPredicate struct {
+	AudioBitsPerSample    *int64
+	AudioChannels         *int64
+	AudioFormat           *string
+	AudioSamplesPerSecond *int64
+	Bitrate               *int64
+	Duration              *int64
+	FourCC                *string
+	Height                *int64
+	ODataType             *string
+	Width                 *int64
+}
+
+func (p VideoOperationPredicate) Matches(input Video) bool {
+
+	if p.AudioBitsPerSample != nil && (input.AudioBitsPerSample == nil || *p.AudioBitsPerSample != *input.AudioBitsPerSample) {
+		return false
+	}
+
+	if p.AudioChannels != nil && (input.AudioChannels == nil || *p.AudioChannels != *input.AudioChannels) {
+		return false
+	}
+
+	if p.AudioFormat != nil && (input.AudioFormat == nil || *p.AudioFormat != *input.AudioFormat) {
+		return false
+	}
+
+	if p.AudioSamplesPerSecond != nil && (input.AudioSamplesPerSecond == nil || *p.AudioSamplesPerSecond != *input.AudioSamplesPerSecond) {
+		return false
+	}
+
+	if p.Bitrate != nil && (input.Bitrate == nil || *p.Bitrate != *input.Bitrate) {
+		return false
+	}
+
+	if p.Duration != nil && (input.Duration == nil || *p.Duration != *input.Duration) {
+		return false
+	}
+
+	if p.FourCC != nil && (input.FourCC == nil || *p.FourCC != *input.FourCC) {
+		return false
+	}
+
+	if p.Height != nil && (input.Height == nil || *p.Height != *input.Height) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.Width != nil && (input.Width == nil || *p.Width != *input.Width) {
+		return false
+	}
+
+	return true
+}

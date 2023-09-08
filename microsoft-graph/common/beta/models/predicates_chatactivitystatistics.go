@@ -1,0 +1,47 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type ChatActivityStatisticsOperationPredicate struct {
+	AfterHours   *string
+	Duration     *string
+	EndDate      *string
+	Id           *string
+	ODataType    *string
+	StartDate    *string
+	TimeZoneUsed *string
+}
+
+func (p ChatActivityStatisticsOperationPredicate) Matches(input ChatActivityStatistics) bool {
+
+	if p.AfterHours != nil && (input.AfterHours == nil || *p.AfterHours != *input.AfterHours) {
+		return false
+	}
+
+	if p.Duration != nil && (input.Duration == nil || *p.Duration != *input.Duration) {
+		return false
+	}
+
+	if p.EndDate != nil && (input.EndDate == nil || *p.EndDate != *input.EndDate) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.StartDate != nil && (input.StartDate == nil || *p.StartDate != *input.StartDate) {
+		return false
+	}
+
+	if p.TimeZoneUsed != nil && (input.TimeZoneUsed == nil || *p.TimeZoneUsed != *input.TimeZoneUsed) {
+		return false
+	}
+
+	return true
+}

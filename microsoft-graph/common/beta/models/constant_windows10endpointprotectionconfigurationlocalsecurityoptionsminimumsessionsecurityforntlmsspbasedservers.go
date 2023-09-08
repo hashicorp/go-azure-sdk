@@ -1,0 +1,40 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type Windows10EndpointProtectionConfigurationLocalSecurityOptionsMinimumSessionSecurityForNtlmSspBasedServers string
+
+const (
+	Windows10EndpointProtectionConfigurationLocalSecurityOptionsMinimumSessionSecurityForNtlmSspBasedServersnone                         Windows10EndpointProtectionConfigurationLocalSecurityOptionsMinimumSessionSecurityForNtlmSspBasedServers = "None"
+	Windows10EndpointProtectionConfigurationLocalSecurityOptionsMinimumSessionSecurityForNtlmSspBasedServersntlmV2And128BitEncryption    Windows10EndpointProtectionConfigurationLocalSecurityOptionsMinimumSessionSecurityForNtlmSspBasedServers = "NtlmV2And128BitEncryption"
+	Windows10EndpointProtectionConfigurationLocalSecurityOptionsMinimumSessionSecurityForNtlmSspBasedServersrequire128BitEncryption      Windows10EndpointProtectionConfigurationLocalSecurityOptionsMinimumSessionSecurityForNtlmSspBasedServers = "Require128BitEncryption"
+	Windows10EndpointProtectionConfigurationLocalSecurityOptionsMinimumSessionSecurityForNtlmSspBasedServersrequireNtmlV2SessionSecurity Windows10EndpointProtectionConfigurationLocalSecurityOptionsMinimumSessionSecurityForNtlmSspBasedServers = "RequireNtmlV2SessionSecurity"
+)
+
+func PossibleValuesForWindows10EndpointProtectionConfigurationLocalSecurityOptionsMinimumSessionSecurityForNtlmSspBasedServers() []string {
+	return []string{
+		string(Windows10EndpointProtectionConfigurationLocalSecurityOptionsMinimumSessionSecurityForNtlmSspBasedServersnone),
+		string(Windows10EndpointProtectionConfigurationLocalSecurityOptionsMinimumSessionSecurityForNtlmSspBasedServersntlmV2And128BitEncryption),
+		string(Windows10EndpointProtectionConfigurationLocalSecurityOptionsMinimumSessionSecurityForNtlmSspBasedServersrequire128BitEncryption),
+		string(Windows10EndpointProtectionConfigurationLocalSecurityOptionsMinimumSessionSecurityForNtlmSspBasedServersrequireNtmlV2SessionSecurity),
+	}
+}
+
+func parseWindows10EndpointProtectionConfigurationLocalSecurityOptionsMinimumSessionSecurityForNtlmSspBasedServers(input string) (*Windows10EndpointProtectionConfigurationLocalSecurityOptionsMinimumSessionSecurityForNtlmSspBasedServers, error) {
+	vals := map[string]Windows10EndpointProtectionConfigurationLocalSecurityOptionsMinimumSessionSecurityForNtlmSspBasedServers{
+		"none":                         Windows10EndpointProtectionConfigurationLocalSecurityOptionsMinimumSessionSecurityForNtlmSspBasedServersnone,
+		"ntlmv2and128bitencryption":    Windows10EndpointProtectionConfigurationLocalSecurityOptionsMinimumSessionSecurityForNtlmSspBasedServersntlmV2And128BitEncryption,
+		"require128bitencryption":      Windows10EndpointProtectionConfigurationLocalSecurityOptionsMinimumSessionSecurityForNtlmSspBasedServersrequire128BitEncryption,
+		"requirentmlv2sessionsecurity": Windows10EndpointProtectionConfigurationLocalSecurityOptionsMinimumSessionSecurityForNtlmSspBasedServersrequireNtmlV2SessionSecurity,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := Windows10EndpointProtectionConfigurationLocalSecurityOptionsMinimumSessionSecurityForNtlmSspBasedServers(input)
+	return &out, nil
+}

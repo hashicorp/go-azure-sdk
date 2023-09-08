@@ -1,0 +1,327 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type TiIndicatorOperationPredicate struct {
+	 AdditionalInformation *string
+	 AzureTenantId *string
+	 Confidence *int64
+	 Description *string
+	 DomainName *string
+	 EmailEncoding *string
+	 EmailLanguage *string
+	 EmailRecipient *string
+	 EmailSenderAddress *string
+	 EmailSenderName *string
+	 EmailSourceDomain *string
+	 EmailSourceIpAddress *string
+	 EmailSubject *string
+	 EmailXMailer *string
+	 ExpirationDateTime *string
+	 ExternalId *string
+	 FileCompileDateTime *string
+	 FileCreatedDateTime *string
+	 FileHashValue *string
+	 FileMutexName *string
+	 FileName *string
+	 FilePacker *string
+	 FilePath *string
+	 FileSize *int64
+	 FileType *string
+	 Id *string
+	 IngestedDateTime *string
+	 IsActive *bool
+	 KnownFalsePositives *string
+	 LastReportedDateTime *string
+	 NetworkCidrBlock *string
+	 NetworkDestinationAsn *int64
+	 NetworkDestinationCidrBlock *string
+	 NetworkDestinationIPv4 *string
+	 NetworkDestinationIPv6 *string
+	 NetworkDestinationPort *int64
+	 NetworkIPv4 *string
+	 NetworkIPv6 *string
+	 NetworkPort *int64
+	 NetworkProtocol *int64
+	 NetworkSourceAsn *int64
+	 NetworkSourceCidrBlock *string
+	 NetworkSourceIPv4 *string
+	 NetworkSourceIPv6 *string
+	 NetworkSourcePort *int64
+	 ODataType *string
+	 PassiveOnly *bool
+	 Severity *int64
+	 TargetProduct *string
+	 ThreatType *string
+	 Url *string
+	 UserAgent *string
+}
+
+func (p TiIndicatorOperationPredicate) Matches(input TiIndicator) bool {
+
+	if p.AdditionalInformation != nil && (input.AdditionalInformation == nil || *p.AdditionalInformation != *input.AdditionalInformation) {
+	 	return false
+	}
+
+
+	if p.AzureTenantId != nil && (input.AzureTenantId == nil || *p.AzureTenantId != *input.AzureTenantId) {
+	 	return false
+	}
+
+
+	if p.Confidence != nil && (input.Confidence == nil || *p.Confidence != *input.Confidence) {
+	 	return false
+	}
+
+
+	if p.Description != nil && (input.Description == nil || *p.Description != *input.Description) {
+	 	return false
+	}
+
+
+	if p.DomainName != nil && (input.DomainName == nil || *p.DomainName != *input.DomainName) {
+	 	return false
+	}
+
+
+	if p.EmailEncoding != nil && (input.EmailEncoding == nil || *p.EmailEncoding != *input.EmailEncoding) {
+	 	return false
+	}
+
+
+	if p.EmailLanguage != nil && (input.EmailLanguage == nil || *p.EmailLanguage != *input.EmailLanguage) {
+	 	return false
+	}
+
+
+	if p.EmailRecipient != nil && (input.EmailRecipient == nil || *p.EmailRecipient != *input.EmailRecipient) {
+	 	return false
+	}
+
+
+	if p.EmailSenderAddress != nil && (input.EmailSenderAddress == nil || *p.EmailSenderAddress != *input.EmailSenderAddress) {
+	 	return false
+	}
+
+
+	if p.EmailSenderName != nil && (input.EmailSenderName == nil || *p.EmailSenderName != *input.EmailSenderName) {
+	 	return false
+	}
+
+
+	if p.EmailSourceDomain != nil && (input.EmailSourceDomain == nil || *p.EmailSourceDomain != *input.EmailSourceDomain) {
+	 	return false
+	}
+
+
+	if p.EmailSourceIpAddress != nil && (input.EmailSourceIpAddress == nil || *p.EmailSourceIpAddress != *input.EmailSourceIpAddress) {
+	 	return false
+	}
+
+
+	if p.EmailSubject != nil && (input.EmailSubject == nil || *p.EmailSubject != *input.EmailSubject) {
+	 	return false
+	}
+
+
+	if p.EmailXMailer != nil && (input.EmailXMailer == nil || *p.EmailXMailer != *input.EmailXMailer) {
+	 	return false
+	}
+
+
+	if p.ExpirationDateTime != nil && (input.ExpirationDateTime == nil || *p.ExpirationDateTime != *input.ExpirationDateTime) {
+	 	return false
+	}
+
+
+	if p.ExternalId != nil && (input.ExternalId == nil || *p.ExternalId != *input.ExternalId) {
+	 	return false
+	}
+
+
+	if p.FileCompileDateTime != nil && (input.FileCompileDateTime == nil || *p.FileCompileDateTime != *input.FileCompileDateTime) {
+	 	return false
+	}
+
+
+	if p.FileCreatedDateTime != nil && (input.FileCreatedDateTime == nil || *p.FileCreatedDateTime != *input.FileCreatedDateTime) {
+	 	return false
+	}
+
+
+	if p.FileHashValue != nil && (input.FileHashValue == nil || *p.FileHashValue != *input.FileHashValue) {
+	 	return false
+	}
+
+
+	if p.FileMutexName != nil && (input.FileMutexName == nil || *p.FileMutexName != *input.FileMutexName) {
+	 	return false
+	}
+
+
+	if p.FileName != nil && (input.FileName == nil || *p.FileName != *input.FileName) {
+	 	return false
+	}
+
+
+	if p.FilePacker != nil && (input.FilePacker == nil || *p.FilePacker != *input.FilePacker) {
+	 	return false
+	}
+
+
+	if p.FilePath != nil && (input.FilePath == nil || *p.FilePath != *input.FilePath) {
+	 	return false
+	}
+
+
+	if p.FileSize != nil && (input.FileSize == nil || *p.FileSize != *input.FileSize) {
+	 	return false
+	}
+
+
+	if p.FileType != nil && (input.FileType == nil || *p.FileType != *input.FileType) {
+	 	return false
+	}
+
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+	 	return false
+	}
+
+
+	if p.IngestedDateTime != nil && (input.IngestedDateTime == nil || *p.IngestedDateTime != *input.IngestedDateTime) {
+	 	return false
+	}
+
+
+	if p.IsActive != nil && (input.IsActive == nil || *p.IsActive != *input.IsActive) {
+	 	return false
+	}
+
+
+	if p.KnownFalsePositives != nil && (input.KnownFalsePositives == nil || *p.KnownFalsePositives != *input.KnownFalsePositives) {
+	 	return false
+	}
+
+
+	if p.LastReportedDateTime != nil && (input.LastReportedDateTime == nil || *p.LastReportedDateTime != *input.LastReportedDateTime) {
+	 	return false
+	}
+
+
+	if p.NetworkCidrBlock != nil && (input.NetworkCidrBlock == nil || *p.NetworkCidrBlock != *input.NetworkCidrBlock) {
+	 	return false
+	}
+
+
+	if p.NetworkDestinationAsn != nil && (input.NetworkDestinationAsn == nil || *p.NetworkDestinationAsn != *input.NetworkDestinationAsn) {
+	 	return false
+	}
+
+
+	if p.NetworkDestinationCidrBlock != nil && (input.NetworkDestinationCidrBlock == nil || *p.NetworkDestinationCidrBlock != *input.NetworkDestinationCidrBlock) {
+	 	return false
+	}
+
+
+	if p.NetworkDestinationIPv4 != nil && (input.NetworkDestinationIPv4 == nil || *p.NetworkDestinationIPv4 != *input.NetworkDestinationIPv4) {
+	 	return false
+	}
+
+
+	if p.NetworkDestinationIPv6 != nil && (input.NetworkDestinationIPv6 == nil || *p.NetworkDestinationIPv6 != *input.NetworkDestinationIPv6) {
+	 	return false
+	}
+
+
+	if p.NetworkDestinationPort != nil && (input.NetworkDestinationPort == nil || *p.NetworkDestinationPort != *input.NetworkDestinationPort) {
+	 	return false
+	}
+
+
+	if p.NetworkIPv4 != nil && (input.NetworkIPv4 == nil || *p.NetworkIPv4 != *input.NetworkIPv4) {
+	 	return false
+	}
+
+
+	if p.NetworkIPv6 != nil && (input.NetworkIPv6 == nil || *p.NetworkIPv6 != *input.NetworkIPv6) {
+	 	return false
+	}
+
+
+	if p.NetworkPort != nil && (input.NetworkPort == nil || *p.NetworkPort != *input.NetworkPort) {
+	 	return false
+	}
+
+
+	if p.NetworkProtocol != nil && (input.NetworkProtocol == nil || *p.NetworkProtocol != *input.NetworkProtocol) {
+	 	return false
+	}
+
+
+	if p.NetworkSourceAsn != nil && (input.NetworkSourceAsn == nil || *p.NetworkSourceAsn != *input.NetworkSourceAsn) {
+	 	return false
+	}
+
+
+	if p.NetworkSourceCidrBlock != nil && (input.NetworkSourceCidrBlock == nil || *p.NetworkSourceCidrBlock != *input.NetworkSourceCidrBlock) {
+	 	return false
+	}
+
+
+	if p.NetworkSourceIPv4 != nil && (input.NetworkSourceIPv4 == nil || *p.NetworkSourceIPv4 != *input.NetworkSourceIPv4) {
+	 	return false
+	}
+
+
+	if p.NetworkSourceIPv6 != nil && (input.NetworkSourceIPv6 == nil || *p.NetworkSourceIPv6 != *input.NetworkSourceIPv6) {
+	 	return false
+	}
+
+
+	if p.NetworkSourcePort != nil && (input.NetworkSourcePort == nil || *p.NetworkSourcePort != *input.NetworkSourcePort) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.PassiveOnly != nil && (input.PassiveOnly == nil || *p.PassiveOnly != *input.PassiveOnly) {
+	 	return false
+	}
+
+
+	if p.Severity != nil && (input.Severity == nil || *p.Severity != *input.Severity) {
+	 	return false
+	}
+
+
+	if p.TargetProduct != nil && (input.TargetProduct == nil || *p.TargetProduct != *input.TargetProduct) {
+	 	return false
+	}
+
+
+	if p.ThreatType != nil && (input.ThreatType == nil || *p.ThreatType != *input.ThreatType) {
+	 	return false
+	}
+
+
+	if p.Url != nil && (input.Url == nil || *p.Url != *input.Url) {
+	 	return false
+	}
+
+
+	if p.UserAgent != nil && (input.UserAgent == nil || *p.UserAgent != *input.UserAgent) {
+	 	return false
+	}
+
+
+	return true
+}
+

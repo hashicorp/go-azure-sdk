@@ -1,0 +1,142 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type PlannerCategoryDescriptionsOperationPredicate struct {
+	Category1  *string
+	Category10 *string
+	Category11 *string
+	Category12 *string
+	Category13 *string
+	Category14 *string
+	Category15 *string
+	Category16 *string
+	Category17 *string
+	Category18 *string
+	Category19 *string
+	Category2  *string
+	Category20 *string
+	Category21 *string
+	Category22 *string
+	Category23 *string
+	Category24 *string
+	Category25 *string
+	Category3  *string
+	Category4  *string
+	Category5  *string
+	Category6  *string
+	Category7  *string
+	Category8  *string
+	Category9  *string
+	ODataType  *string
+}
+
+func (p PlannerCategoryDescriptionsOperationPredicate) Matches(input PlannerCategoryDescriptions) bool {
+
+	if p.Category1 != nil && (input.Category1 == nil || *p.Category1 != *input.Category1) {
+		return false
+	}
+
+	if p.Category10 != nil && (input.Category10 == nil || *p.Category10 != *input.Category10) {
+		return false
+	}
+
+	if p.Category11 != nil && (input.Category11 == nil || *p.Category11 != *input.Category11) {
+		return false
+	}
+
+	if p.Category12 != nil && (input.Category12 == nil || *p.Category12 != *input.Category12) {
+		return false
+	}
+
+	if p.Category13 != nil && (input.Category13 == nil || *p.Category13 != *input.Category13) {
+		return false
+	}
+
+	if p.Category14 != nil && (input.Category14 == nil || *p.Category14 != *input.Category14) {
+		return false
+	}
+
+	if p.Category15 != nil && (input.Category15 == nil || *p.Category15 != *input.Category15) {
+		return false
+	}
+
+	if p.Category16 != nil && (input.Category16 == nil || *p.Category16 != *input.Category16) {
+		return false
+	}
+
+	if p.Category17 != nil && (input.Category17 == nil || *p.Category17 != *input.Category17) {
+		return false
+	}
+
+	if p.Category18 != nil && (input.Category18 == nil || *p.Category18 != *input.Category18) {
+		return false
+	}
+
+	if p.Category19 != nil && (input.Category19 == nil || *p.Category19 != *input.Category19) {
+		return false
+	}
+
+	if p.Category2 != nil && (input.Category2 == nil || *p.Category2 != *input.Category2) {
+		return false
+	}
+
+	if p.Category20 != nil && (input.Category20 == nil || *p.Category20 != *input.Category20) {
+		return false
+	}
+
+	if p.Category21 != nil && (input.Category21 == nil || *p.Category21 != *input.Category21) {
+		return false
+	}
+
+	if p.Category22 != nil && (input.Category22 == nil || *p.Category22 != *input.Category22) {
+		return false
+	}
+
+	if p.Category23 != nil && (input.Category23 == nil || *p.Category23 != *input.Category23) {
+		return false
+	}
+
+	if p.Category24 != nil && (input.Category24 == nil || *p.Category24 != *input.Category24) {
+		return false
+	}
+
+	if p.Category25 != nil && (input.Category25 == nil || *p.Category25 != *input.Category25) {
+		return false
+	}
+
+	if p.Category3 != nil && (input.Category3 == nil || *p.Category3 != *input.Category3) {
+		return false
+	}
+
+	if p.Category4 != nil && (input.Category4 == nil || *p.Category4 != *input.Category4) {
+		return false
+	}
+
+	if p.Category5 != nil && (input.Category5 == nil || *p.Category5 != *input.Category5) {
+		return false
+	}
+
+	if p.Category6 != nil && (input.Category6 == nil || *p.Category6 != *input.Category6) {
+		return false
+	}
+
+	if p.Category7 != nil && (input.Category7 == nil || *p.Category7 != *input.Category7) {
+		return false
+	}
+
+	if p.Category8 != nil && (input.Category8 == nil || *p.Category8 != *input.Category8) {
+		return false
+	}
+
+	if p.Category9 != nil && (input.Category9 == nil || *p.Category9 != *input.Category9) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	return true
+}

@@ -1,0 +1,101 @@
+package meprofileinterest
+
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+var _ resourceids.ResourceId = MeProfileInterestId{}
+
+// MeProfileInterestId is a struct representing the Resource ID for a Me Profile Interest
+type MeProfileInterestId struct {
+	PersonInterestId string
+}
+
+// NewMeProfileInterestID returns a new MeProfileInterestId struct
+func NewMeProfileInterestID(personInterestId string) MeProfileInterestId {
+	return MeProfileInterestId{
+		PersonInterestId: personInterestId,
+	}
+}
+
+// ParseMeProfileInterestID parses 'input' into a MeProfileInterestId
+func ParseMeProfileInterestID(input string) (*MeProfileInterestId, error) {
+	parser := resourceids.NewParserFromResourceIdType(MeProfileInterestId{})
+	parsed, err := parser.Parse(input, false)
+	if err != nil {
+		return nil, fmt.Errorf("parsing %q: %+v", input, err)
+	}
+
+	var ok bool
+	id := MeProfileInterestId{}
+
+	if id.PersonInterestId, ok = parsed.Parsed["personInterestId"]; !ok {
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "personInterestId", *parsed)
+	}
+
+	return &id, nil
+}
+
+// ParseMeProfileInterestIDInsensitively parses 'input' case-insensitively into a MeProfileInterestId
+// note: this method should only be used for API response data and not user input
+func ParseMeProfileInterestIDInsensitively(input string) (*MeProfileInterestId, error) {
+	parser := resourceids.NewParserFromResourceIdType(MeProfileInterestId{})
+	parsed, err := parser.Parse(input, true)
+	if err != nil {
+		return nil, fmt.Errorf("parsing %q: %+v", input, err)
+	}
+
+	var ok bool
+	id := MeProfileInterestId{}
+
+	if id.PersonInterestId, ok = parsed.Parsed["personInterestId"]; !ok {
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "personInterestId", *parsed)
+	}
+
+	return &id, nil
+}
+
+// ValidateMeProfileInterestID checks that 'input' can be parsed as a Me Profile Interest ID
+func ValidateMeProfileInterestID(input interface{}, key string) (warnings []string, errors []error) {
+	v, ok := input.(string)
+	if !ok {
+		errors = append(errors, fmt.Errorf("expected %q to be a string", key))
+		return
+	}
+
+	if _, err := ParseMeProfileInterestID(v); err != nil {
+		errors = append(errors, err)
+	}
+
+	return
+}
+
+// ID returns the formatted Me Profile Interest ID
+func (id MeProfileInterestId) ID() string {
+	fmtString := "/me/profile/interests/%s"
+	return fmt.Sprintf(fmtString, id.PersonInterestId)
+}
+
+// Segments returns a slice of Resource ID Segments which comprise this Me Profile Interest ID
+func (id MeProfileInterestId) Segments() []resourceids.Segment {
+	return []resourceids.Segment{
+		resourceids.StaticSegment("staticMe", "me", "me"),
+		resourceids.StaticSegment("staticProfile", "profile", "profile"),
+		resourceids.StaticSegment("staticInterests", "interests", "interests"),
+		resourceids.UserSpecifiedSegment("personInterestId", "personInterestIdValue"),
+	}
+}
+
+// String returns a human-readable description of this Me Profile Interest ID
+func (id MeProfileInterestId) String() string {
+	components := []string{
+		fmt.Sprintf("Person Interest: %q", id.PersonInterestId),
+	}
+	return fmt.Sprintf("Me Profile Interest (%s)", strings.Join(components, "\n"))
+}

@@ -1,0 +1,141 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type ManagedTenantsCloudPCOverviewOperationPredicate struct {
+	 LastRefreshedDateTime *string
+	 NumberOfCloudPCConnectionStatusFailed *int64
+	 NumberOfCloudPCConnectionStatusPassed *int64
+	 NumberOfCloudPCConnectionStatusPending *int64
+	 NumberOfCloudPCConnectionStatusRunning *int64
+	 NumberOfCloudPCConnectionStatusUnkownFutureValue *int64
+	 NumberOfCloudPCStatusDeprovisioning *int64
+	 NumberOfCloudPCStatusFailed *int64
+	 NumberOfCloudPCStatusInGracePeriod *int64
+	 NumberOfCloudPCStatusNotProvisioned *int64
+	 NumberOfCloudPCStatusProvisioned *int64
+	 NumberOfCloudPCStatusProvisioning *int64
+	 NumberOfCloudPCStatusUnknown *int64
+	 NumberOfCloudPCStatusUpgrading *int64
+	 ODataType *string
+	 TenantDisplayName *string
+	 TenantId *string
+	 TotalBusinessLicenses *int64
+	 TotalCloudPCConnectionStatus *int64
+	 TotalCloudPCStatus *int64
+	 TotalEnterpriseLicenses *int64
+}
+
+func (p ManagedTenantsCloudPCOverviewOperationPredicate) Matches(input ManagedTenantsCloudPCOverview) bool {
+
+	if p.LastRefreshedDateTime != nil && (input.LastRefreshedDateTime == nil || *p.LastRefreshedDateTime != *input.LastRefreshedDateTime) {
+	 	return false
+	}
+
+
+	if p.NumberOfCloudPCConnectionStatusFailed != nil && (input.NumberOfCloudPCConnectionStatusFailed == nil || *p.NumberOfCloudPCConnectionStatusFailed != *input.NumberOfCloudPCConnectionStatusFailed) {
+	 	return false
+	}
+
+
+	if p.NumberOfCloudPCConnectionStatusPassed != nil && (input.NumberOfCloudPCConnectionStatusPassed == nil || *p.NumberOfCloudPCConnectionStatusPassed != *input.NumberOfCloudPCConnectionStatusPassed) {
+	 	return false
+	}
+
+
+	if p.NumberOfCloudPCConnectionStatusPending != nil && (input.NumberOfCloudPCConnectionStatusPending == nil || *p.NumberOfCloudPCConnectionStatusPending != *input.NumberOfCloudPCConnectionStatusPending) {
+	 	return false
+	}
+
+
+	if p.NumberOfCloudPCConnectionStatusRunning != nil && (input.NumberOfCloudPCConnectionStatusRunning == nil || *p.NumberOfCloudPCConnectionStatusRunning != *input.NumberOfCloudPCConnectionStatusRunning) {
+	 	return false
+	}
+
+
+	if p.NumberOfCloudPCConnectionStatusUnkownFutureValue != nil && (input.NumberOfCloudPCConnectionStatusUnkownFutureValue == nil || *p.NumberOfCloudPCConnectionStatusUnkownFutureValue != *input.NumberOfCloudPCConnectionStatusUnkownFutureValue) {
+	 	return false
+	}
+
+
+	if p.NumberOfCloudPCStatusDeprovisioning != nil && (input.NumberOfCloudPCStatusDeprovisioning == nil || *p.NumberOfCloudPCStatusDeprovisioning != *input.NumberOfCloudPCStatusDeprovisioning) {
+	 	return false
+	}
+
+
+	if p.NumberOfCloudPCStatusFailed != nil && (input.NumberOfCloudPCStatusFailed == nil || *p.NumberOfCloudPCStatusFailed != *input.NumberOfCloudPCStatusFailed) {
+	 	return false
+	}
+
+
+	if p.NumberOfCloudPCStatusInGracePeriod != nil && (input.NumberOfCloudPCStatusInGracePeriod == nil || *p.NumberOfCloudPCStatusInGracePeriod != *input.NumberOfCloudPCStatusInGracePeriod) {
+	 	return false
+	}
+
+
+	if p.NumberOfCloudPCStatusNotProvisioned != nil && (input.NumberOfCloudPCStatusNotProvisioned == nil || *p.NumberOfCloudPCStatusNotProvisioned != *input.NumberOfCloudPCStatusNotProvisioned) {
+	 	return false
+	}
+
+
+	if p.NumberOfCloudPCStatusProvisioned != nil && (input.NumberOfCloudPCStatusProvisioned == nil || *p.NumberOfCloudPCStatusProvisioned != *input.NumberOfCloudPCStatusProvisioned) {
+	 	return false
+	}
+
+
+	if p.NumberOfCloudPCStatusProvisioning != nil && (input.NumberOfCloudPCStatusProvisioning == nil || *p.NumberOfCloudPCStatusProvisioning != *input.NumberOfCloudPCStatusProvisioning) {
+	 	return false
+	}
+
+
+	if p.NumberOfCloudPCStatusUnknown != nil && (input.NumberOfCloudPCStatusUnknown == nil || *p.NumberOfCloudPCStatusUnknown != *input.NumberOfCloudPCStatusUnknown) {
+	 	return false
+	}
+
+
+	if p.NumberOfCloudPCStatusUpgrading != nil && (input.NumberOfCloudPCStatusUpgrading == nil || *p.NumberOfCloudPCStatusUpgrading != *input.NumberOfCloudPCStatusUpgrading) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.TenantDisplayName != nil && (input.TenantDisplayName == nil || *p.TenantDisplayName != *input.TenantDisplayName) {
+	 	return false
+	}
+
+
+	if p.TenantId != nil && (input.TenantId == nil || *p.TenantId != *input.TenantId) {
+	 	return false
+	}
+
+
+	if p.TotalBusinessLicenses != nil && (input.TotalBusinessLicenses == nil || *p.TotalBusinessLicenses != *input.TotalBusinessLicenses) {
+	 	return false
+	}
+
+
+	if p.TotalCloudPCConnectionStatus != nil && (input.TotalCloudPCConnectionStatus == nil || *p.TotalCloudPCConnectionStatus != *input.TotalCloudPCConnectionStatus) {
+	 	return false
+	}
+
+
+	if p.TotalCloudPCStatus != nil && (input.TotalCloudPCStatus == nil || *p.TotalCloudPCStatus != *input.TotalCloudPCStatus) {
+	 	return false
+	}
+
+
+	if p.TotalEnterpriseLicenses != nil && (input.TotalEnterpriseLicenses == nil || *p.TotalEnterpriseLicenses != *input.TotalEnterpriseLicenses) {
+	 	return false
+	}
+
+
+	return true
+}
+

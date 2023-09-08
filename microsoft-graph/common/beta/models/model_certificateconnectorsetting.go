@@ -1,0 +1,14 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type CertificateConnectorSetting struct {
+	CertExpiryTime              *string `json:"certExpiryTime,omitempty"`
+	ConnectorVersion            *string `json:"connectorVersion,omitempty"`
+	EnrollmentError             *string `json:"enrollmentError,omitempty"`
+	LastConnectorConnectionTime *string `json:"lastConnectorConnectionTime,omitempty"`
+	LastUploadVersion           *int64  `json:"lastUploadVersion,omitempty"`
+	ODataType                   *string `json:"@odata.type,omitempty"`
+	Status                      *int64  `json:"status,omitempty"`
+}

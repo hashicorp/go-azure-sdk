@@ -1,0 +1,63 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type RegionalFormatOverridesOperationPredicate struct {
+	 Calendar *string
+	 FirstDayOfWeek *string
+	 LongDateFormat *string
+	 LongTimeFormat *string
+	 ODataType *string
+	 ShortDateFormat *string
+	 ShortTimeFormat *string
+	 TimeZone *string
+}
+
+func (p RegionalFormatOverridesOperationPredicate) Matches(input RegionalFormatOverrides) bool {
+
+	if p.Calendar != nil && (input.Calendar == nil || *p.Calendar != *input.Calendar) {
+	 	return false
+	}
+
+
+	if p.FirstDayOfWeek != nil && (input.FirstDayOfWeek == nil || *p.FirstDayOfWeek != *input.FirstDayOfWeek) {
+	 	return false
+	}
+
+
+	if p.LongDateFormat != nil && (input.LongDateFormat == nil || *p.LongDateFormat != *input.LongDateFormat) {
+	 	return false
+	}
+
+
+	if p.LongTimeFormat != nil && (input.LongTimeFormat == nil || *p.LongTimeFormat != *input.LongTimeFormat) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.ShortDateFormat != nil && (input.ShortDateFormat == nil || *p.ShortDateFormat != *input.ShortDateFormat) {
+	 	return false
+	}
+
+
+	if p.ShortTimeFormat != nil && (input.ShortTimeFormat == nil || *p.ShortTimeFormat != *input.ShortTimeFormat) {
+	 	return false
+	}
+
+
+	if p.TimeZone != nil && (input.TimeZone == nil || *p.TimeZone != *input.TimeZone) {
+	 	return false
+	}
+
+
+	return true
+}
+

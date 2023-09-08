@@ -1,0 +1,40 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type UserExperienceAnalyticsDevicePerformanceHealthStatus string
+
+const (
+	UserExperienceAnalyticsDevicePerformanceHealthStatusinsufficientData UserExperienceAnalyticsDevicePerformanceHealthStatus = "InsufficientData"
+	UserExperienceAnalyticsDevicePerformanceHealthStatusmeetingGoals     UserExperienceAnalyticsDevicePerformanceHealthStatus = "MeetingGoals"
+	UserExperienceAnalyticsDevicePerformanceHealthStatusneedsAttention   UserExperienceAnalyticsDevicePerformanceHealthStatus = "NeedsAttention"
+	UserExperienceAnalyticsDevicePerformanceHealthStatusunknown          UserExperienceAnalyticsDevicePerformanceHealthStatus = "Unknown"
+)
+
+func PossibleValuesForUserExperienceAnalyticsDevicePerformanceHealthStatus() []string {
+	return []string{
+		string(UserExperienceAnalyticsDevicePerformanceHealthStatusinsufficientData),
+		string(UserExperienceAnalyticsDevicePerformanceHealthStatusmeetingGoals),
+		string(UserExperienceAnalyticsDevicePerformanceHealthStatusneedsAttention),
+		string(UserExperienceAnalyticsDevicePerformanceHealthStatusunknown),
+	}
+}
+
+func parseUserExperienceAnalyticsDevicePerformanceHealthStatus(input string) (*UserExperienceAnalyticsDevicePerformanceHealthStatus, error) {
+	vals := map[string]UserExperienceAnalyticsDevicePerformanceHealthStatus{
+		"insufficientdata": UserExperienceAnalyticsDevicePerformanceHealthStatusinsufficientData,
+		"meetinggoals":     UserExperienceAnalyticsDevicePerformanceHealthStatusmeetingGoals,
+		"needsattention":   UserExperienceAnalyticsDevicePerformanceHealthStatusneedsAttention,
+		"unknown":          UserExperienceAnalyticsDevicePerformanceHealthStatusunknown,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := UserExperienceAnalyticsDevicePerformanceHealthStatus(input)
+	return &out, nil
+}

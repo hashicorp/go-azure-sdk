@@ -1,0 +1,33 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type AppLogCollectionDownloadDetailsOperationPredicate struct {
+	 DecryptionKey *string
+	 DownloadUrl *string
+	 ODataType *string
+}
+
+func (p AppLogCollectionDownloadDetailsOperationPredicate) Matches(input AppLogCollectionDownloadDetails) bool {
+
+	if p.DecryptionKey != nil && (input.DecryptionKey == nil || *p.DecryptionKey != *input.DecryptionKey) {
+	 	return false
+	}
+
+
+	if p.DownloadUrl != nil && (input.DownloadUrl == nil || *p.DownloadUrl != *input.DownloadUrl) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	return true
+}
+

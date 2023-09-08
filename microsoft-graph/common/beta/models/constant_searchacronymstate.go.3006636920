@@ -1,0 +1,43 @@
+package models
+
+import "strings"
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type SearchAcronymState string
+
+const (
+	SearchAcronymStatedraft SearchAcronymState = "Draft"
+	SearchAcronymStateexcluded SearchAcronymState = "Excluded"
+	SearchAcronymStatepublished SearchAcronymState = "Published"
+)
+
+
+func PossibleValuesForSearchAcronymState() []string {
+	return []string{
+		string(SearchAcronymStatedraft),
+string(SearchAcronymStateexcluded),
+string(SearchAcronymStatepublished),
+	}
+}
+
+
+
+func parseSearchAcronymState(input string) (*SearchAcronymState, error) {
+	vals := map[string]SearchAcronymState{
+		"draft": SearchAcronymStatedraft,
+"excluded": SearchAcronymStateexcluded,
+"published": SearchAcronymStatepublished,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SearchAcronymState(input)
+	return &out, nil
+}

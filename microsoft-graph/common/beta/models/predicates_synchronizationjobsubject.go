@@ -1,0 +1,27 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type SynchronizationJobSubjectOperationPredicate struct {
+	ODataType      *string
+	ObjectId       *string
+	ObjectTypeName *string
+}
+
+func (p SynchronizationJobSubjectOperationPredicate) Matches(input SynchronizationJobSubject) bool {
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.ObjectId != nil && (input.ObjectId == nil || *p.ObjectId != *input.ObjectId) {
+		return false
+	}
+
+	if p.ObjectTypeName != nil && (input.ObjectTypeName == nil || *p.ObjectTypeName != *input.ObjectTypeName) {
+		return false
+	}
+
+	return true
+}

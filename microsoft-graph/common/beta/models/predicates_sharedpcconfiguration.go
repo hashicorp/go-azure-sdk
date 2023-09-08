@@ -1,0 +1,102 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type SharedPCConfigurationOperationPredicate struct {
+	AllowLocalStorage            *bool
+	CreatedDateTime              *string
+	Description                  *string
+	DisableAccountManager        *bool
+	DisableEduPolicies           *bool
+	DisablePowerPolicies         *bool
+	DisableSignInOnResume        *bool
+	DisplayName                  *string
+	Enabled                      *bool
+	Id                           *string
+	IdleTimeBeforeSleepInSeconds *int64
+	KioskAppDisplayName          *string
+	KioskAppUserModelId          *string
+	LastModifiedDateTime         *string
+	MaintenanceStartTime         *string
+	ODataType                    *string
+	SupportsScopeTags            *bool
+	Version                      *int64
+}
+
+func (p SharedPCConfigurationOperationPredicate) Matches(input SharedPCConfiguration) bool {
+
+	if p.AllowLocalStorage != nil && (input.AllowLocalStorage == nil || *p.AllowLocalStorage != *input.AllowLocalStorage) {
+		return false
+	}
+
+	if p.CreatedDateTime != nil && (input.CreatedDateTime == nil || *p.CreatedDateTime != *input.CreatedDateTime) {
+		return false
+	}
+
+	if p.Description != nil && (input.Description == nil || *p.Description != *input.Description) {
+		return false
+	}
+
+	if p.DisableAccountManager != nil && (input.DisableAccountManager == nil || *p.DisableAccountManager != *input.DisableAccountManager) {
+		return false
+	}
+
+	if p.DisableEduPolicies != nil && (input.DisableEduPolicies == nil || *p.DisableEduPolicies != *input.DisableEduPolicies) {
+		return false
+	}
+
+	if p.DisablePowerPolicies != nil && (input.DisablePowerPolicies == nil || *p.DisablePowerPolicies != *input.DisablePowerPolicies) {
+		return false
+	}
+
+	if p.DisableSignInOnResume != nil && (input.DisableSignInOnResume == nil || *p.DisableSignInOnResume != *input.DisableSignInOnResume) {
+		return false
+	}
+
+	if p.DisplayName != nil && (input.DisplayName == nil || *p.DisplayName != *input.DisplayName) {
+		return false
+	}
+
+	if p.Enabled != nil && (input.Enabled == nil || *p.Enabled != *input.Enabled) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.IdleTimeBeforeSleepInSeconds != nil && (input.IdleTimeBeforeSleepInSeconds == nil || *p.IdleTimeBeforeSleepInSeconds != *input.IdleTimeBeforeSleepInSeconds) {
+		return false
+	}
+
+	if p.KioskAppDisplayName != nil && (input.KioskAppDisplayName == nil || *p.KioskAppDisplayName != *input.KioskAppDisplayName) {
+		return false
+	}
+
+	if p.KioskAppUserModelId != nil && (input.KioskAppUserModelId == nil || *p.KioskAppUserModelId != *input.KioskAppUserModelId) {
+		return false
+	}
+
+	if p.LastModifiedDateTime != nil && (input.LastModifiedDateTime == nil || *p.LastModifiedDateTime != *input.LastModifiedDateTime) {
+		return false
+	}
+
+	if p.MaintenanceStartTime != nil && (input.MaintenanceStartTime == nil || *p.MaintenanceStartTime != *input.MaintenanceStartTime) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.SupportsScopeTags != nil && (input.SupportsScopeTags == nil || *p.SupportsScopeTags != *input.SupportsScopeTags) {
+		return false
+	}
+
+	if p.Version != nil && (input.Version == nil || *p.Version != *input.Version) {
+		return false
+	}
+
+	return true
+}

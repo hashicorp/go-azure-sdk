@@ -1,0 +1,45 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type ProvisioningErrorInfoOperationPredicate struct {
+	 AdditionalDetails *string
+	 ErrorCode *string
+	 ODataType *string
+	 Reason *string
+	 RecommendedAction *string
+}
+
+func (p ProvisioningErrorInfoOperationPredicate) Matches(input ProvisioningErrorInfo) bool {
+
+	if p.AdditionalDetails != nil && (input.AdditionalDetails == nil || *p.AdditionalDetails != *input.AdditionalDetails) {
+	 	return false
+	}
+
+
+	if p.ErrorCode != nil && (input.ErrorCode == nil || *p.ErrorCode != *input.ErrorCode) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.Reason != nil && (input.Reason == nil || *p.Reason != *input.Reason) {
+	 	return false
+	}
+
+
+	if p.RecommendedAction != nil && (input.RecommendedAction == nil || *p.RecommendedAction != *input.RecommendedAction) {
+	 	return false
+	}
+
+
+	return true
+}
+

@@ -1,0 +1,41 @@
+package models
+
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/edgezones"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/identity"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/systemdata"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/zones"
+)
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type SecurityKubernetesNamespaceEvidence struct {
+	Cluster *SecurityKubernetesClusterEvidence `json:"cluster,omitempty"`
+	CreatedDateTime *string `json:"createdDateTime,omitempty"`
+	DetailedRoles *[]string `json:"detailedRoles,omitempty"`
+	Labels *SecurityDictionary `json:"labels,omitempty"`
+	Name *string `json:"name,omitempty"`
+	ODataType *string `json:"@odata.type,omitempty"`
+	RemediationStatus *SecurityKubernetesNamespaceEvidenceRemediationStatus `json:"remediationStatus,omitempty"`
+	RemediationStatusDetails *string `json:"remediationStatusDetails,omitempty"`
+	Roles *[]SecurityKubernetesNamespaceEvidenceRoles `json:"roles,omitempty"`
+	Tags *[]string `json:"tags,omitempty"`
+	Verdict *SecurityKubernetesNamespaceEvidenceVerdict `json:"verdict,omitempty"`
+}
+
+
+
+
+
+
+

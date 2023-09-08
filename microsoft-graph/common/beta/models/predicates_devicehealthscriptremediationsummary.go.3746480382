@@ -1,0 +1,33 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type DeviceHealthScriptRemediationSummaryOperationPredicate struct {
+	 ODataType *string
+	 RemediatedDeviceCount *int64
+	 ScriptCount *int64
+}
+
+func (p DeviceHealthScriptRemediationSummaryOperationPredicate) Matches(input DeviceHealthScriptRemediationSummary) bool {
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.RemediatedDeviceCount != nil && (input.RemediatedDeviceCount == nil || *p.RemediatedDeviceCount != *input.RemediatedDeviceCount) {
+	 	return false
+	}
+
+
+	if p.ScriptCount != nil && (input.ScriptCount == nil || *p.ScriptCount != *input.ScriptCount) {
+	 	return false
+	}
+
+
+	return true
+}
+

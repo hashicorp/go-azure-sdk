@@ -1,0 +1,49 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type Win32LobAppRegistryDetectionOperator string
+
+const (
+	Win32LobAppRegistryDetectionOperatorequal              Win32LobAppRegistryDetectionOperator = "Equal"
+	Win32LobAppRegistryDetectionOperatorgreaterThan        Win32LobAppRegistryDetectionOperator = "GreaterThan"
+	Win32LobAppRegistryDetectionOperatorgreaterThanOrEqual Win32LobAppRegistryDetectionOperator = "GreaterThanOrEqual"
+	Win32LobAppRegistryDetectionOperatorlessThan           Win32LobAppRegistryDetectionOperator = "LessThan"
+	Win32LobAppRegistryDetectionOperatorlessThanOrEqual    Win32LobAppRegistryDetectionOperator = "LessThanOrEqual"
+	Win32LobAppRegistryDetectionOperatornotConfigured      Win32LobAppRegistryDetectionOperator = "NotConfigured"
+	Win32LobAppRegistryDetectionOperatornotEqual           Win32LobAppRegistryDetectionOperator = "NotEqual"
+)
+
+func PossibleValuesForWin32LobAppRegistryDetectionOperator() []string {
+	return []string{
+		string(Win32LobAppRegistryDetectionOperatorequal),
+		string(Win32LobAppRegistryDetectionOperatorgreaterThan),
+		string(Win32LobAppRegistryDetectionOperatorgreaterThanOrEqual),
+		string(Win32LobAppRegistryDetectionOperatorlessThan),
+		string(Win32LobAppRegistryDetectionOperatorlessThanOrEqual),
+		string(Win32LobAppRegistryDetectionOperatornotConfigured),
+		string(Win32LobAppRegistryDetectionOperatornotEqual),
+	}
+}
+
+func parseWin32LobAppRegistryDetectionOperator(input string) (*Win32LobAppRegistryDetectionOperator, error) {
+	vals := map[string]Win32LobAppRegistryDetectionOperator{
+		"equal":              Win32LobAppRegistryDetectionOperatorequal,
+		"greaterthan":        Win32LobAppRegistryDetectionOperatorgreaterThan,
+		"greaterthanorequal": Win32LobAppRegistryDetectionOperatorgreaterThanOrEqual,
+		"lessthan":           Win32LobAppRegistryDetectionOperatorlessThan,
+		"lessthanorequal":    Win32LobAppRegistryDetectionOperatorlessThanOrEqual,
+		"notconfigured":      Win32LobAppRegistryDetectionOperatornotConfigured,
+		"notequal":           Win32LobAppRegistryDetectionOperatornotEqual,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := Win32LobAppRegistryDetectionOperator(input)
+	return &out, nil
+}

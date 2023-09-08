@@ -1,0 +1,46 @@
+package models
+
+import "strings"
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type TargetedManagedAppProtectionDialerRestrictionLevel string
+
+const (
+	TargetedManagedAppProtectionDialerRestrictionLevelallApps TargetedManagedAppProtectionDialerRestrictionLevel = "AllApps"
+	TargetedManagedAppProtectionDialerRestrictionLevelblocked TargetedManagedAppProtectionDialerRestrictionLevel = "Blocked"
+	TargetedManagedAppProtectionDialerRestrictionLevelcustomApp TargetedManagedAppProtectionDialerRestrictionLevel = "CustomApp"
+	TargetedManagedAppProtectionDialerRestrictionLevelmanagedApps TargetedManagedAppProtectionDialerRestrictionLevel = "ManagedApps"
+)
+
+
+func PossibleValuesForTargetedManagedAppProtectionDialerRestrictionLevel() []string {
+	return []string{
+		string(TargetedManagedAppProtectionDialerRestrictionLevelallApps),
+string(TargetedManagedAppProtectionDialerRestrictionLevelblocked),
+string(TargetedManagedAppProtectionDialerRestrictionLevelcustomApp),
+string(TargetedManagedAppProtectionDialerRestrictionLevelmanagedApps),
+	}
+}
+
+
+
+func parseTargetedManagedAppProtectionDialerRestrictionLevel(input string) (*TargetedManagedAppProtectionDialerRestrictionLevel, error) {
+	vals := map[string]TargetedManagedAppProtectionDialerRestrictionLevel{
+		"allapps": TargetedManagedAppProtectionDialerRestrictionLevelallApps,
+"blocked": TargetedManagedAppProtectionDialerRestrictionLevelblocked,
+"customapp": TargetedManagedAppProtectionDialerRestrictionLevelcustomApp,
+"managedapps": TargetedManagedAppProtectionDialerRestrictionLevelmanagedApps,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := TargetedManagedAppProtectionDialerRestrictionLevel(input)
+	return &out, nil
+}

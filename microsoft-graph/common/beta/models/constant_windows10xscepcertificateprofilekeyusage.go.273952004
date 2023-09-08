@@ -1,0 +1,40 @@
+package models
+
+import "strings"
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type Windows10XSCEPCertificateProfileKeyUsage string
+
+const (
+	Windows10XSCEPCertificateProfileKeyUsagedigitalSignature Windows10XSCEPCertificateProfileKeyUsage = "DigitalSignature"
+	Windows10XSCEPCertificateProfileKeyUsagekeyEncipherment Windows10XSCEPCertificateProfileKeyUsage = "KeyEncipherment"
+)
+
+
+func PossibleValuesForWindows10XSCEPCertificateProfileKeyUsage() []string {
+	return []string{
+		string(Windows10XSCEPCertificateProfileKeyUsagedigitalSignature),
+string(Windows10XSCEPCertificateProfileKeyUsagekeyEncipherment),
+	}
+}
+
+
+
+func parseWindows10XSCEPCertificateProfileKeyUsage(input string) (*Windows10XSCEPCertificateProfileKeyUsage, error) {
+	vals := map[string]Windows10XSCEPCertificateProfileKeyUsage{
+		"digitalsignature": Windows10XSCEPCertificateProfileKeyUsagedigitalSignature,
+"keyencipherment": Windows10XSCEPCertificateProfileKeyUsagekeyEncipherment,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := Windows10XSCEPCertificateProfileKeyUsage(input)
+	return &out, nil
+}

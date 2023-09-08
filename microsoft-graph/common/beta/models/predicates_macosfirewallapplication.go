@@ -1,0 +1,27 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type MacOSFirewallApplicationOperationPredicate struct {
+	AllowsIncomingConnections *bool
+	BundleId                  *string
+	ODataType                 *string
+}
+
+func (p MacOSFirewallApplicationOperationPredicate) Matches(input MacOSFirewallApplication) bool {
+
+	if p.AllowsIncomingConnections != nil && (input.AllowsIncomingConnections == nil || *p.AllowsIncomingConnections != *input.AllowsIncomingConnections) {
+		return false
+	}
+
+	if p.BundleId != nil && (input.BundleId == nil || *p.BundleId != *input.BundleId) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	return true
+}

@@ -1,0 +1,32 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type DriveItemUploadablePropertiesOperationPredicate struct {
+	Description *string
+	FileSize    *int64
+	Name        *string
+	ODataType   *string
+}
+
+func (p DriveItemUploadablePropertiesOperationPredicate) Matches(input DriveItemUploadableProperties) bool {
+
+	if p.Description != nil && (input.Description == nil || *p.Description != *input.Description) {
+		return false
+	}
+
+	if p.FileSize != nil && (input.FileSize == nil || *p.FileSize != *input.FileSize) {
+		return false
+	}
+
+	if p.Name != nil && (input.Name == nil || *p.Name != *input.Name) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	return true
+}

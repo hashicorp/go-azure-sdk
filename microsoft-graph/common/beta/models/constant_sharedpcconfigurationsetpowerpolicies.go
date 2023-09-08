@@ -1,0 +1,37 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type SharedPCConfigurationSetPowerPolicies string
+
+const (
+	SharedPCConfigurationSetPowerPoliciesdisabled      SharedPCConfigurationSetPowerPolicies = "Disabled"
+	SharedPCConfigurationSetPowerPoliciesenabled       SharedPCConfigurationSetPowerPolicies = "Enabled"
+	SharedPCConfigurationSetPowerPoliciesnotConfigured SharedPCConfigurationSetPowerPolicies = "NotConfigured"
+)
+
+func PossibleValuesForSharedPCConfigurationSetPowerPolicies() []string {
+	return []string{
+		string(SharedPCConfigurationSetPowerPoliciesdisabled),
+		string(SharedPCConfigurationSetPowerPoliciesenabled),
+		string(SharedPCConfigurationSetPowerPoliciesnotConfigured),
+	}
+}
+
+func parseSharedPCConfigurationSetPowerPolicies(input string) (*SharedPCConfigurationSetPowerPolicies, error) {
+	vals := map[string]SharedPCConfigurationSetPowerPolicies{
+		"disabled":      SharedPCConfigurationSetPowerPoliciesdisabled,
+		"enabled":       SharedPCConfigurationSetPowerPoliciesenabled,
+		"notconfigured": SharedPCConfigurationSetPowerPoliciesnotConfigured,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SharedPCConfigurationSetPowerPolicies(input)
+	return &out, nil
+}

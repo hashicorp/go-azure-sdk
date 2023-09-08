@@ -1,0 +1,32 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type AccessReviewStageSettingsOperationPredicate struct {
+	DurationInDays         *int64
+	ODataType              *string
+	RecommendationsEnabled *bool
+	StageId                *string
+}
+
+func (p AccessReviewStageSettingsOperationPredicate) Matches(input AccessReviewStageSettings) bool {
+
+	if p.DurationInDays != nil && (input.DurationInDays == nil || *p.DurationInDays != *input.DurationInDays) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.RecommendationsEnabled != nil && (input.RecommendationsEnabled == nil || *p.RecommendationsEnabled != *input.RecommendationsEnabled) {
+		return false
+	}
+
+	if p.StageId != nil && (input.StageId == nil || *p.StageId != *input.StageId) {
+		return false
+	}
+
+	return true
+}

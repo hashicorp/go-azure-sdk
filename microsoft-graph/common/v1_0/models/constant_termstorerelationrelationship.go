@@ -1,0 +1,34 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type TermStoreRelationRelationship string
+
+const (
+	TermStoreRelationRelationshippin   TermStoreRelationRelationship = "Pin"
+	TermStoreRelationRelationshipreuse TermStoreRelationRelationship = "Reuse"
+)
+
+func PossibleValuesForTermStoreRelationRelationship() []string {
+	return []string{
+		string(TermStoreRelationRelationshippin),
+		string(TermStoreRelationRelationshipreuse),
+	}
+}
+
+func parseTermStoreRelationRelationship(input string) (*TermStoreRelationRelationship, error) {
+	vals := map[string]TermStoreRelationRelationship{
+		"pin":   TermStoreRelationRelationshippin,
+		"reuse": TermStoreRelationRelationshipreuse,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := TermStoreRelationRelationship(input)
+	return &out, nil
+}

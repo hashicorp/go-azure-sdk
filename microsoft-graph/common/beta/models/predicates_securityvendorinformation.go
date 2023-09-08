@@ -1,0 +1,37 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type SecurityVendorInformationOperationPredicate struct {
+	ODataType       *string
+	Provider        *string
+	ProviderVersion *string
+	SubProvider     *string
+	Vendor          *string
+}
+
+func (p SecurityVendorInformationOperationPredicate) Matches(input SecurityVendorInformation) bool {
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.Provider != nil && (input.Provider == nil || *p.Provider != *input.Provider) {
+		return false
+	}
+
+	if p.ProviderVersion != nil && (input.ProviderVersion == nil || *p.ProviderVersion != *input.ProviderVersion) {
+		return false
+	}
+
+	if p.SubProvider != nil && (input.SubProvider == nil || *p.SubProvider != *input.SubProvider) {
+		return false
+	}
+
+	if p.Vendor != nil && (input.Vendor == nil || *p.Vendor != *input.Vendor) {
+		return false
+	}
+
+	return true
+}

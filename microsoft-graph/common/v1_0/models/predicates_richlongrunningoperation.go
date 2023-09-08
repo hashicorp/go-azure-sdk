@@ -1,0 +1,57 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type RichLongRunningOperationOperationPredicate struct {
+	CreatedDateTime    *string
+	Id                 *string
+	LastActionDateTime *string
+	ODataType          *string
+	PercentageComplete *int64
+	ResourceId         *string
+	ResourceLocation   *string
+	StatusDetail       *string
+	Type               *string
+}
+
+func (p RichLongRunningOperationOperationPredicate) Matches(input RichLongRunningOperation) bool {
+
+	if p.CreatedDateTime != nil && (input.CreatedDateTime == nil || *p.CreatedDateTime != *input.CreatedDateTime) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.LastActionDateTime != nil && (input.LastActionDateTime == nil || *p.LastActionDateTime != *input.LastActionDateTime) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.PercentageComplete != nil && (input.PercentageComplete == nil || *p.PercentageComplete != *input.PercentageComplete) {
+		return false
+	}
+
+	if p.ResourceId != nil && (input.ResourceId == nil || *p.ResourceId != *input.ResourceId) {
+		return false
+	}
+
+	if p.ResourceLocation != nil && (input.ResourceLocation == nil || *p.ResourceLocation != *input.ResourceLocation) {
+		return false
+	}
+
+	if p.StatusDetail != nil && (input.StatusDetail == nil || *p.StatusDetail != *input.StatusDetail) {
+		return false
+	}
+
+	if p.Type != nil && (input.Type == nil || *p.Type != *input.Type) {
+		return false
+	}
+
+	return true
+}

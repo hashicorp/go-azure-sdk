@@ -1,0 +1,22 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type DeliveryOptimizationMaxCacheSizePercentageOperationPredicate struct {
+	MaximumCacheSizePercentage *int64
+	ODataType                  *string
+}
+
+func (p DeliveryOptimizationMaxCacheSizePercentageOperationPredicate) Matches(input DeliveryOptimizationMaxCacheSizePercentage) bool {
+
+	if p.MaximumCacheSizePercentage != nil && (input.MaximumCacheSizePercentage == nil || *p.MaximumCacheSizePercentage != *input.MaximumCacheSizePercentage) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	return true
+}

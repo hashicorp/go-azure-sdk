@@ -1,0 +1,69 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type ActivityHistoryItemOperationPredicate struct {
+	 ActiveDurationSeconds *int64
+	 CreatedDateTime *string
+	 ExpirationDateTime *string
+	 Id *string
+	 LastActiveDateTime *string
+	 LastModifiedDateTime *string
+	 ODataType *string
+	 StartedDateTime *string
+	 UserTimezone *string
+}
+
+func (p ActivityHistoryItemOperationPredicate) Matches(input ActivityHistoryItem) bool {
+
+	if p.ActiveDurationSeconds != nil && (input.ActiveDurationSeconds == nil || *p.ActiveDurationSeconds != *input.ActiveDurationSeconds) {
+	 	return false
+	}
+
+
+	if p.CreatedDateTime != nil && (input.CreatedDateTime == nil || *p.CreatedDateTime != *input.CreatedDateTime) {
+	 	return false
+	}
+
+
+	if p.ExpirationDateTime != nil && (input.ExpirationDateTime == nil || *p.ExpirationDateTime != *input.ExpirationDateTime) {
+	 	return false
+	}
+
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+	 	return false
+	}
+
+
+	if p.LastActiveDateTime != nil && (input.LastActiveDateTime == nil || *p.LastActiveDateTime != *input.LastActiveDateTime) {
+	 	return false
+	}
+
+
+	if p.LastModifiedDateTime != nil && (input.LastModifiedDateTime == nil || *p.LastModifiedDateTime != *input.LastModifiedDateTime) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.StartedDateTime != nil && (input.StartedDateTime == nil || *p.StartedDateTime != *input.StartedDateTime) {
+	 	return false
+	}
+
+
+	if p.UserTimezone != nil && (input.UserTimezone == nil || *p.UserTimezone != *input.UserTimezone) {
+	 	return false
+	}
+
+
+	return true
+}
+

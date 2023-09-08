@@ -1,0 +1,34 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type ManagedDeviceEncryptionStateEncryptionState string
+
+const (
+	ManagedDeviceEncryptionStateEncryptionStateencrypted    ManagedDeviceEncryptionStateEncryptionState = "Encrypted"
+	ManagedDeviceEncryptionStateEncryptionStatenotEncrypted ManagedDeviceEncryptionStateEncryptionState = "NotEncrypted"
+)
+
+func PossibleValuesForManagedDeviceEncryptionStateEncryptionState() []string {
+	return []string{
+		string(ManagedDeviceEncryptionStateEncryptionStateencrypted),
+		string(ManagedDeviceEncryptionStateEncryptionStatenotEncrypted),
+	}
+}
+
+func parseManagedDeviceEncryptionStateEncryptionState(input string) (*ManagedDeviceEncryptionStateEncryptionState, error) {
+	vals := map[string]ManagedDeviceEncryptionStateEncryptionState{
+		"encrypted":    ManagedDeviceEncryptionStateEncryptionStateencrypted,
+		"notencrypted": ManagedDeviceEncryptionStateEncryptionStatenotEncrypted,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ManagedDeviceEncryptionStateEncryptionState(input)
+	return &out, nil
+}

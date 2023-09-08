@@ -1,0 +1,137 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type Windows10TeamGeneralConfigurationOperationPredicate struct {
+	AzureOperationalInsightsBlockTelemetry *bool
+	AzureOperationalInsightsWorkspaceId    *string
+	AzureOperationalInsightsWorkspaceKey   *string
+	ConnectAppBlockAutoLaunch              *bool
+	CreatedDateTime                        *string
+	Description                            *string
+	DisplayName                            *string
+	Id                                     *string
+	LastModifiedDateTime                   *string
+	MaintenanceWindowBlocked               *bool
+	MaintenanceWindowDurationInHours       *int64
+	MaintenanceWindowStartTime             *string
+	MiracastBlocked                        *bool
+	MiracastRequirePin                     *bool
+	ODataType                              *string
+	SettingsBlockMyMeetingsAndFiles        *bool
+	SettingsBlockSessionResume             *bool
+	SettingsBlockSigninSuggestions         *bool
+	SettingsDefaultVolume                  *int64
+	SettingsScreenTimeoutInMinutes         *int64
+	SettingsSessionTimeoutInMinutes        *int64
+	SettingsSleepTimeoutInMinutes          *int64
+	Version                                *int64
+	WelcomeScreenBackgroundImageUrl        *string
+	WelcomeScreenBlockAutomaticWakeUp      *bool
+}
+
+func (p Windows10TeamGeneralConfigurationOperationPredicate) Matches(input Windows10TeamGeneralConfiguration) bool {
+
+	if p.AzureOperationalInsightsBlockTelemetry != nil && (input.AzureOperationalInsightsBlockTelemetry == nil || *p.AzureOperationalInsightsBlockTelemetry != *input.AzureOperationalInsightsBlockTelemetry) {
+		return false
+	}
+
+	if p.AzureOperationalInsightsWorkspaceId != nil && (input.AzureOperationalInsightsWorkspaceId == nil || *p.AzureOperationalInsightsWorkspaceId != *input.AzureOperationalInsightsWorkspaceId) {
+		return false
+	}
+
+	if p.AzureOperationalInsightsWorkspaceKey != nil && (input.AzureOperationalInsightsWorkspaceKey == nil || *p.AzureOperationalInsightsWorkspaceKey != *input.AzureOperationalInsightsWorkspaceKey) {
+		return false
+	}
+
+	if p.ConnectAppBlockAutoLaunch != nil && (input.ConnectAppBlockAutoLaunch == nil || *p.ConnectAppBlockAutoLaunch != *input.ConnectAppBlockAutoLaunch) {
+		return false
+	}
+
+	if p.CreatedDateTime != nil && (input.CreatedDateTime == nil || *p.CreatedDateTime != *input.CreatedDateTime) {
+		return false
+	}
+
+	if p.Description != nil && (input.Description == nil || *p.Description != *input.Description) {
+		return false
+	}
+
+	if p.DisplayName != nil && (input.DisplayName == nil || *p.DisplayName != *input.DisplayName) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.LastModifiedDateTime != nil && (input.LastModifiedDateTime == nil || *p.LastModifiedDateTime != *input.LastModifiedDateTime) {
+		return false
+	}
+
+	if p.MaintenanceWindowBlocked != nil && (input.MaintenanceWindowBlocked == nil || *p.MaintenanceWindowBlocked != *input.MaintenanceWindowBlocked) {
+		return false
+	}
+
+	if p.MaintenanceWindowDurationInHours != nil && (input.MaintenanceWindowDurationInHours == nil || *p.MaintenanceWindowDurationInHours != *input.MaintenanceWindowDurationInHours) {
+		return false
+	}
+
+	if p.MaintenanceWindowStartTime != nil && (input.MaintenanceWindowStartTime == nil || *p.MaintenanceWindowStartTime != *input.MaintenanceWindowStartTime) {
+		return false
+	}
+
+	if p.MiracastBlocked != nil && (input.MiracastBlocked == nil || *p.MiracastBlocked != *input.MiracastBlocked) {
+		return false
+	}
+
+	if p.MiracastRequirePin != nil && (input.MiracastRequirePin == nil || *p.MiracastRequirePin != *input.MiracastRequirePin) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.SettingsBlockMyMeetingsAndFiles != nil && (input.SettingsBlockMyMeetingsAndFiles == nil || *p.SettingsBlockMyMeetingsAndFiles != *input.SettingsBlockMyMeetingsAndFiles) {
+		return false
+	}
+
+	if p.SettingsBlockSessionResume != nil && (input.SettingsBlockSessionResume == nil || *p.SettingsBlockSessionResume != *input.SettingsBlockSessionResume) {
+		return false
+	}
+
+	if p.SettingsBlockSigninSuggestions != nil && (input.SettingsBlockSigninSuggestions == nil || *p.SettingsBlockSigninSuggestions != *input.SettingsBlockSigninSuggestions) {
+		return false
+	}
+
+	if p.SettingsDefaultVolume != nil && (input.SettingsDefaultVolume == nil || *p.SettingsDefaultVolume != *input.SettingsDefaultVolume) {
+		return false
+	}
+
+	if p.SettingsScreenTimeoutInMinutes != nil && (input.SettingsScreenTimeoutInMinutes == nil || *p.SettingsScreenTimeoutInMinutes != *input.SettingsScreenTimeoutInMinutes) {
+		return false
+	}
+
+	if p.SettingsSessionTimeoutInMinutes != nil && (input.SettingsSessionTimeoutInMinutes == nil || *p.SettingsSessionTimeoutInMinutes != *input.SettingsSessionTimeoutInMinutes) {
+		return false
+	}
+
+	if p.SettingsSleepTimeoutInMinutes != nil && (input.SettingsSleepTimeoutInMinutes == nil || *p.SettingsSleepTimeoutInMinutes != *input.SettingsSleepTimeoutInMinutes) {
+		return false
+	}
+
+	if p.Version != nil && (input.Version == nil || *p.Version != *input.Version) {
+		return false
+	}
+
+	if p.WelcomeScreenBackgroundImageUrl != nil && (input.WelcomeScreenBackgroundImageUrl == nil || *p.WelcomeScreenBackgroundImageUrl != *input.WelcomeScreenBackgroundImageUrl) {
+		return false
+	}
+
+	if p.WelcomeScreenBlockAutomaticWakeUp != nil && (input.WelcomeScreenBlockAutomaticWakeUp == nil || *p.WelcomeScreenBlockAutomaticWakeUp != *input.WelcomeScreenBlockAutomaticWakeUp) {
+		return false
+	}
+
+	return true
+}

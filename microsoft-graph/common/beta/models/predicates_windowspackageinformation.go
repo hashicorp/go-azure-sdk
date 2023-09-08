@@ -1,0 +1,42 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type WindowsPackageInformationOperationPredicate struct {
+	DisplayName                *string
+	IdentityName               *string
+	IdentityPublisher          *string
+	IdentityResourceIdentifier *string
+	IdentityVersion            *string
+	ODataType                  *string
+}
+
+func (p WindowsPackageInformationOperationPredicate) Matches(input WindowsPackageInformation) bool {
+
+	if p.DisplayName != nil && (input.DisplayName == nil || *p.DisplayName != *input.DisplayName) {
+		return false
+	}
+
+	if p.IdentityName != nil && (input.IdentityName == nil || *p.IdentityName != *input.IdentityName) {
+		return false
+	}
+
+	if p.IdentityPublisher != nil && (input.IdentityPublisher == nil || *p.IdentityPublisher != *input.IdentityPublisher) {
+		return false
+	}
+
+	if p.IdentityResourceIdentifier != nil && (input.IdentityResourceIdentifier == nil || *p.IdentityResourceIdentifier != *input.IdentityResourceIdentifier) {
+		return false
+	}
+
+	if p.IdentityVersion != nil && (input.IdentityVersion == nil || *p.IdentityVersion != *input.IdentityVersion) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	return true
+}

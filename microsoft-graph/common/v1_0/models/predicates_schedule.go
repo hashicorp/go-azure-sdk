@@ -1,0 +1,62 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type ScheduleOperationPredicate struct {
+	Enabled                   *bool
+	Id                        *string
+	ODataType                 *string
+	OfferShiftRequestsEnabled *bool
+	OpenShiftsEnabled         *bool
+	ProvisionStatusCode       *string
+	SwapShiftsRequestsEnabled *bool
+	TimeClockEnabled          *bool
+	TimeOffRequestsEnabled    *bool
+	TimeZone                  *string
+}
+
+func (p ScheduleOperationPredicate) Matches(input Schedule) bool {
+
+	if p.Enabled != nil && (input.Enabled == nil || *p.Enabled != *input.Enabled) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.OfferShiftRequestsEnabled != nil && (input.OfferShiftRequestsEnabled == nil || *p.OfferShiftRequestsEnabled != *input.OfferShiftRequestsEnabled) {
+		return false
+	}
+
+	if p.OpenShiftsEnabled != nil && (input.OpenShiftsEnabled == nil || *p.OpenShiftsEnabled != *input.OpenShiftsEnabled) {
+		return false
+	}
+
+	if p.ProvisionStatusCode != nil && (input.ProvisionStatusCode == nil || *p.ProvisionStatusCode != *input.ProvisionStatusCode) {
+		return false
+	}
+
+	if p.SwapShiftsRequestsEnabled != nil && (input.SwapShiftsRequestsEnabled == nil || *p.SwapShiftsRequestsEnabled != *input.SwapShiftsRequestsEnabled) {
+		return false
+	}
+
+	if p.TimeClockEnabled != nil && (input.TimeClockEnabled == nil || *p.TimeClockEnabled != *input.TimeClockEnabled) {
+		return false
+	}
+
+	if p.TimeOffRequestsEnabled != nil && (input.TimeOffRequestsEnabled == nil || *p.TimeOffRequestsEnabled != *input.TimeOffRequestsEnabled) {
+		return false
+	}
+
+	if p.TimeZone != nil && (input.TimeZone == nil || *p.TimeZone != *input.TimeZone) {
+		return false
+	}
+
+	return true
+}

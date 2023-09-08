@@ -1,0 +1,27 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type VirtualEventPresenterOperationPredicate struct {
+	Email     *string
+	Id        *string
+	ODataType *string
+}
+
+func (p VirtualEventPresenterOperationPredicate) Matches(input VirtualEventPresenter) bool {
+
+	if p.Email != nil && (input.Email == nil || *p.Email != *input.Email) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	return true
+}

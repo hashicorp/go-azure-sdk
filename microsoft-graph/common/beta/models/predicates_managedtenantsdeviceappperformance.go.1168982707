@@ -1,0 +1,123 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type ManagedTenantsDeviceAppPerformanceOperationPredicate struct {
+	 AppFriendlyName *string
+	 AppName *string
+	 AppPublisher *string
+	 AppVersion *string
+	 DeviceId *string
+	 DeviceManufacturer *string
+	 DeviceModel *string
+	 DeviceName *string
+	 HealthStatus *string
+	 Id *string
+	 IsLatestUsedVersion *int64
+	 IsMostUsedVersion *int64
+	 LastUpdatedDateTime *string
+	 ODataType *string
+	 TenantDisplayName *string
+	 TenantId *string
+	 TotalAppCrashCount *int64
+	 TotalAppFreezeCount *int64
+}
+
+func (p ManagedTenantsDeviceAppPerformanceOperationPredicate) Matches(input ManagedTenantsDeviceAppPerformance) bool {
+
+	if p.AppFriendlyName != nil && (input.AppFriendlyName == nil || *p.AppFriendlyName != *input.AppFriendlyName) {
+	 	return false
+	}
+
+
+	if p.AppName != nil && (input.AppName == nil || *p.AppName != *input.AppName) {
+	 	return false
+	}
+
+
+	if p.AppPublisher != nil && (input.AppPublisher == nil || *p.AppPublisher != *input.AppPublisher) {
+	 	return false
+	}
+
+
+	if p.AppVersion != nil && (input.AppVersion == nil || *p.AppVersion != *input.AppVersion) {
+	 	return false
+	}
+
+
+	if p.DeviceId != nil && (input.DeviceId == nil || *p.DeviceId != *input.DeviceId) {
+	 	return false
+	}
+
+
+	if p.DeviceManufacturer != nil && (input.DeviceManufacturer == nil || *p.DeviceManufacturer != *input.DeviceManufacturer) {
+	 	return false
+	}
+
+
+	if p.DeviceModel != nil && (input.DeviceModel == nil || *p.DeviceModel != *input.DeviceModel) {
+	 	return false
+	}
+
+
+	if p.DeviceName != nil && (input.DeviceName == nil || *p.DeviceName != *input.DeviceName) {
+	 	return false
+	}
+
+
+	if p.HealthStatus != nil && (input.HealthStatus == nil || *p.HealthStatus != *input.HealthStatus) {
+	 	return false
+	}
+
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+	 	return false
+	}
+
+
+	if p.IsLatestUsedVersion != nil && (input.IsLatestUsedVersion == nil || *p.IsLatestUsedVersion != *input.IsLatestUsedVersion) {
+	 	return false
+	}
+
+
+	if p.IsMostUsedVersion != nil && (input.IsMostUsedVersion == nil || *p.IsMostUsedVersion != *input.IsMostUsedVersion) {
+	 	return false
+	}
+
+
+	if p.LastUpdatedDateTime != nil && (input.LastUpdatedDateTime == nil || *p.LastUpdatedDateTime != *input.LastUpdatedDateTime) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.TenantDisplayName != nil && (input.TenantDisplayName == nil || *p.TenantDisplayName != *input.TenantDisplayName) {
+	 	return false
+	}
+
+
+	if p.TenantId != nil && (input.TenantId == nil || *p.TenantId != *input.TenantId) {
+	 	return false
+	}
+
+
+	if p.TotalAppCrashCount != nil && (input.TotalAppCrashCount == nil || *p.TotalAppCrashCount != *input.TotalAppCrashCount) {
+	 	return false
+	}
+
+
+	if p.TotalAppFreezeCount != nil && (input.TotalAppFreezeCount == nil || *p.TotalAppFreezeCount != *input.TotalAppFreezeCount) {
+	 	return false
+	}
+
+
+	return true
+}
+

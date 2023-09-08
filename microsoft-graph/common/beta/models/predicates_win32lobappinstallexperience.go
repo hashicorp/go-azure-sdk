@@ -1,0 +1,22 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type Win32LobAppInstallExperienceOperationPredicate struct {
+	MaxRunTimeInMinutes *int64
+	ODataType           *string
+}
+
+func (p Win32LobAppInstallExperienceOperationPredicate) Matches(input Win32LobAppInstallExperience) bool {
+
+	if p.MaxRunTimeInMinutes != nil && (input.MaxRunTimeInMinutes == nil || *p.MaxRunTimeInMinutes != *input.MaxRunTimeInMinutes) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	return true
+}

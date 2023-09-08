@@ -1,0 +1,51 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type PhotoOperationPredicate struct {
+	 CameraMake *string
+	 CameraModel *string
+	 Iso *int64
+	 ODataType *string
+	 Orientation *int64
+	 TakenDateTime *string
+}
+
+func (p PhotoOperationPredicate) Matches(input Photo) bool {
+
+	if p.CameraMake != nil && (input.CameraMake == nil || *p.CameraMake != *input.CameraMake) {
+	 	return false
+	}
+
+
+	if p.CameraModel != nil && (input.CameraModel == nil || *p.CameraModel != *input.CameraModel) {
+	 	return false
+	}
+
+
+	if p.Iso != nil && (input.Iso == nil || *p.Iso != *input.Iso) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.Orientation != nil && (input.Orientation == nil || *p.Orientation != *input.Orientation) {
+	 	return false
+	}
+
+
+	if p.TakenDateTime != nil && (input.TakenDateTime == nil || *p.TakenDateTime != *input.TakenDateTime) {
+	 	return false
+	}
+
+
+	return true
+}
+

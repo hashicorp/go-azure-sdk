@@ -1,0 +1,27 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type CallEndedEventMessageDetailOperationPredicate struct {
+	CallDuration *string
+	CallId       *string
+	ODataType    *string
+}
+
+func (p CallEndedEventMessageDetailOperationPredicate) Matches(input CallEndedEventMessageDetail) bool {
+
+	if p.CallDuration != nil && (input.CallDuration == nil || *p.CallDuration != *input.CallDuration) {
+		return false
+	}
+
+	if p.CallId != nil && (input.CallId == nil || *p.CallId != *input.CallId) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	return true
+}

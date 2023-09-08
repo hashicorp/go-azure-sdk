@@ -1,0 +1,47 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type SecurityArticleOperationPredicate struct {
+	CreatedDateTime     *string
+	Id                  *string
+	ImageUrl            *string
+	IsFeatured          *bool
+	LastUpdatedDateTime *string
+	ODataType           *string
+	Title               *string
+}
+
+func (p SecurityArticleOperationPredicate) Matches(input SecurityArticle) bool {
+
+	if p.CreatedDateTime != nil && (input.CreatedDateTime == nil || *p.CreatedDateTime != *input.CreatedDateTime) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.ImageUrl != nil && (input.ImageUrl == nil || *p.ImageUrl != *input.ImageUrl) {
+		return false
+	}
+
+	if p.IsFeatured != nil && (input.IsFeatured == nil || *p.IsFeatured != *input.IsFeatured) {
+		return false
+	}
+
+	if p.LastUpdatedDateTime != nil && (input.LastUpdatedDateTime == nil || *p.LastUpdatedDateTime != *input.LastUpdatedDateTime) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.Title != nil && (input.Title == nil || *p.Title != *input.Title) {
+		return false
+	}
+
+	return true
+}

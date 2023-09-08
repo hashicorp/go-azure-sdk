@@ -1,0 +1,111 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type PrivilegeManagementElevationOperationPredicate struct {
+	 CertificatePayload *string
+	 CompanyName *string
+	 DeviceId *string
+	 DeviceName *string
+	 EventDateTime *string
+	 FileDescription *string
+	 FilePath *string
+	 FileVersion *string
+	 Hash *string
+	 Id *string
+	 InternalName *string
+	 Justification *string
+	 ODataType *string
+	 ProductName *string
+	 Result *int64
+	 Upn *string
+}
+
+func (p PrivilegeManagementElevationOperationPredicate) Matches(input PrivilegeManagementElevation) bool {
+
+	if p.CertificatePayload != nil && (input.CertificatePayload == nil || *p.CertificatePayload != *input.CertificatePayload) {
+	 	return false
+	}
+
+
+	if p.CompanyName != nil && (input.CompanyName == nil || *p.CompanyName != *input.CompanyName) {
+	 	return false
+	}
+
+
+	if p.DeviceId != nil && (input.DeviceId == nil || *p.DeviceId != *input.DeviceId) {
+	 	return false
+	}
+
+
+	if p.DeviceName != nil && (input.DeviceName == nil || *p.DeviceName != *input.DeviceName) {
+	 	return false
+	}
+
+
+	if p.EventDateTime != nil && (input.EventDateTime == nil || *p.EventDateTime != *input.EventDateTime) {
+	 	return false
+	}
+
+
+	if p.FileDescription != nil && (input.FileDescription == nil || *p.FileDescription != *input.FileDescription) {
+	 	return false
+	}
+
+
+	if p.FilePath != nil && (input.FilePath == nil || *p.FilePath != *input.FilePath) {
+	 	return false
+	}
+
+
+	if p.FileVersion != nil && (input.FileVersion == nil || *p.FileVersion != *input.FileVersion) {
+	 	return false
+	}
+
+
+	if p.Hash != nil && (input.Hash == nil || *p.Hash != *input.Hash) {
+	 	return false
+	}
+
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+	 	return false
+	}
+
+
+	if p.InternalName != nil && (input.InternalName == nil || *p.InternalName != *input.InternalName) {
+	 	return false
+	}
+
+
+	if p.Justification != nil && (input.Justification == nil || *p.Justification != *input.Justification) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.ProductName != nil && (input.ProductName == nil || *p.ProductName != *input.ProductName) {
+	 	return false
+	}
+
+
+	if p.Result != nil && (input.Result == nil || *p.Result != *input.Result) {
+	 	return false
+	}
+
+
+	if p.Upn != nil && (input.Upn == nil || *p.Upn != *input.Upn) {
+	 	return false
+	}
+
+
+	return true
+}
+

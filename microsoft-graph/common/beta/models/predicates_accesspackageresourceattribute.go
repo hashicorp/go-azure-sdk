@@ -1,0 +1,37 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type AccessPackageResourceAttributeOperationPredicate struct {
+	AttributeName                  *string
+	Id                             *string
+	IsEditable                     *bool
+	IsPersistedOnAssignmentRemoval *bool
+	ODataType                      *string
+}
+
+func (p AccessPackageResourceAttributeOperationPredicate) Matches(input AccessPackageResourceAttribute) bool {
+
+	if p.AttributeName != nil && (input.AttributeName == nil || *p.AttributeName != *input.AttributeName) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.IsEditable != nil && (input.IsEditable == nil || *p.IsEditable != *input.IsEditable) {
+		return false
+	}
+
+	if p.IsPersistedOnAssignmentRemoval != nil && (input.IsPersistedOnAssignmentRemoval == nil || *p.IsPersistedOnAssignmentRemoval != *input.IsPersistedOnAssignmentRemoval) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	return true
+}

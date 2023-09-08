@@ -1,0 +1,37 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type Windows81SCEPCertificateProfileKeySize string
+
+const (
+	Windows81SCEPCertificateProfileKeySizesize1024 Windows81SCEPCertificateProfileKeySize = "Size1024"
+	Windows81SCEPCertificateProfileKeySizesize2048 Windows81SCEPCertificateProfileKeySize = "Size2048"
+	Windows81SCEPCertificateProfileKeySizesize4096 Windows81SCEPCertificateProfileKeySize = "Size4096"
+)
+
+func PossibleValuesForWindows81SCEPCertificateProfileKeySize() []string {
+	return []string{
+		string(Windows81SCEPCertificateProfileKeySizesize1024),
+		string(Windows81SCEPCertificateProfileKeySizesize2048),
+		string(Windows81SCEPCertificateProfileKeySizesize4096),
+	}
+}
+
+func parseWindows81SCEPCertificateProfileKeySize(input string) (*Windows81SCEPCertificateProfileKeySize, error) {
+	vals := map[string]Windows81SCEPCertificateProfileKeySize{
+		"size1024": Windows81SCEPCertificateProfileKeySizesize1024,
+		"size2048": Windows81SCEPCertificateProfileKeySizesize2048,
+		"size4096": Windows81SCEPCertificateProfileKeySizesize4096,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := Windows81SCEPCertificateProfileKeySize(input)
+	return &out, nil
+}

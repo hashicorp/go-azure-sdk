@@ -1,0 +1,22 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type ExternalLinkOperationPredicate struct {
+	Href      *string
+	ODataType *string
+}
+
+func (p ExternalLinkOperationPredicate) Matches(input ExternalLink) bool {
+
+	if p.Href != nil && (input.Href == nil || *p.Href != *input.Href) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	return true
+}

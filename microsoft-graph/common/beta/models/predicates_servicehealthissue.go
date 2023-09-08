@@ -1,0 +1,67 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type ServiceHealthIssueOperationPredicate struct {
+	EndDateTime          *string
+	Feature              *string
+	FeatureGroup         *string
+	Id                   *string
+	ImpactDescription    *string
+	IsResolved           *bool
+	LastModifiedDateTime *string
+	ODataType            *string
+	Service              *string
+	StartDateTime        *string
+	Title                *string
+}
+
+func (p ServiceHealthIssueOperationPredicate) Matches(input ServiceHealthIssue) bool {
+
+	if p.EndDateTime != nil && (input.EndDateTime == nil || *p.EndDateTime != *input.EndDateTime) {
+		return false
+	}
+
+	if p.Feature != nil && (input.Feature == nil || *p.Feature != *input.Feature) {
+		return false
+	}
+
+	if p.FeatureGroup != nil && (input.FeatureGroup == nil || *p.FeatureGroup != *input.FeatureGroup) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.ImpactDescription != nil && (input.ImpactDescription == nil || *p.ImpactDescription != *input.ImpactDescription) {
+		return false
+	}
+
+	if p.IsResolved != nil && (input.IsResolved == nil || *p.IsResolved != *input.IsResolved) {
+		return false
+	}
+
+	if p.LastModifiedDateTime != nil && (input.LastModifiedDateTime == nil || *p.LastModifiedDateTime != *input.LastModifiedDateTime) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.Service != nil && (input.Service == nil || *p.Service != *input.Service) {
+		return false
+	}
+
+	if p.StartDateTime != nil && (input.StartDateTime == nil || *p.StartDateTime != *input.StartDateTime) {
+		return false
+	}
+
+	if p.Title != nil && (input.Title == nil || *p.Title != *input.Title) {
+		return false
+	}
+
+	return true
+}

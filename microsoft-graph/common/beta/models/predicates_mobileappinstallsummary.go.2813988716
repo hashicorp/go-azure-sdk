@@ -1,0 +1,87 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type MobileAppInstallSummaryOperationPredicate struct {
+	 FailedDeviceCount *int64
+	 FailedUserCount *int64
+	 Id *string
+	 InstalledDeviceCount *int64
+	 InstalledUserCount *int64
+	 NotApplicableDeviceCount *int64
+	 NotApplicableUserCount *int64
+	 NotInstalledDeviceCount *int64
+	 NotInstalledUserCount *int64
+	 ODataType *string
+	 PendingInstallDeviceCount *int64
+	 PendingInstallUserCount *int64
+}
+
+func (p MobileAppInstallSummaryOperationPredicate) Matches(input MobileAppInstallSummary) bool {
+
+	if p.FailedDeviceCount != nil && (input.FailedDeviceCount == nil || *p.FailedDeviceCount != *input.FailedDeviceCount) {
+	 	return false
+	}
+
+
+	if p.FailedUserCount != nil && (input.FailedUserCount == nil || *p.FailedUserCount != *input.FailedUserCount) {
+	 	return false
+	}
+
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+	 	return false
+	}
+
+
+	if p.InstalledDeviceCount != nil && (input.InstalledDeviceCount == nil || *p.InstalledDeviceCount != *input.InstalledDeviceCount) {
+	 	return false
+	}
+
+
+	if p.InstalledUserCount != nil && (input.InstalledUserCount == nil || *p.InstalledUserCount != *input.InstalledUserCount) {
+	 	return false
+	}
+
+
+	if p.NotApplicableDeviceCount != nil && (input.NotApplicableDeviceCount == nil || *p.NotApplicableDeviceCount != *input.NotApplicableDeviceCount) {
+	 	return false
+	}
+
+
+	if p.NotApplicableUserCount != nil && (input.NotApplicableUserCount == nil || *p.NotApplicableUserCount != *input.NotApplicableUserCount) {
+	 	return false
+	}
+
+
+	if p.NotInstalledDeviceCount != nil && (input.NotInstalledDeviceCount == nil || *p.NotInstalledDeviceCount != *input.NotInstalledDeviceCount) {
+	 	return false
+	}
+
+
+	if p.NotInstalledUserCount != nil && (input.NotInstalledUserCount == nil || *p.NotInstalledUserCount != *input.NotInstalledUserCount) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.PendingInstallDeviceCount != nil && (input.PendingInstallDeviceCount == nil || *p.PendingInstallDeviceCount != *input.PendingInstallDeviceCount) {
+	 	return false
+	}
+
+
+	if p.PendingInstallUserCount != nil && (input.PendingInstallUserCount == nil || *p.PendingInstallUserCount != *input.PendingInstallUserCount) {
+	 	return false
+	}
+
+
+	return true
+}
+

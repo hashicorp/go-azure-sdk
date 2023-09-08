@@ -1,0 +1,19 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type MobileAppInstallSummary struct {
+	FailedDeviceCount         *int64  `json:"failedDeviceCount,omitempty"`
+	FailedUserCount           *int64  `json:"failedUserCount,omitempty"`
+	Id                        *string `json:"id,omitempty"`
+	InstalledDeviceCount      *int64  `json:"installedDeviceCount,omitempty"`
+	InstalledUserCount        *int64  `json:"installedUserCount,omitempty"`
+	NotApplicableDeviceCount  *int64  `json:"notApplicableDeviceCount,omitempty"`
+	NotApplicableUserCount    *int64  `json:"notApplicableUserCount,omitempty"`
+	NotInstalledDeviceCount   *int64  `json:"notInstalledDeviceCount,omitempty"`
+	NotInstalledUserCount     *int64  `json:"notInstalledUserCount,omitempty"`
+	ODataType                 *string `json:"@odata.type,omitempty"`
+	PendingInstallDeviceCount *int64  `json:"pendingInstallDeviceCount,omitempty"`
+	PendingInstallUserCount   *int64  `json:"pendingInstallUserCount,omitempty"`
+}

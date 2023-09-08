@@ -1,0 +1,27 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type SecurityQueryConditionOperationPredicate struct {
+	LastModifiedDateTime *string
+	ODataType            *string
+	QueryText            *string
+}
+
+func (p SecurityQueryConditionOperationPredicate) Matches(input SecurityQueryCondition) bool {
+
+	if p.LastModifiedDateTime != nil && (input.LastModifiedDateTime == nil || *p.LastModifiedDateTime != *input.LastModifiedDateTime) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.QueryText != nil && (input.QueryText == nil || *p.QueryText != *input.QueryText) {
+		return false
+	}
+
+	return true
+}

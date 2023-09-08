@@ -1,0 +1,46 @@
+package models
+
+import "strings"
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type TargetedManagedAppProtectionAppGroupType string
+
+const (
+	TargetedManagedAppProtectionAppGroupTypeallApps TargetedManagedAppProtectionAppGroupType = "AllApps"
+	TargetedManagedAppProtectionAppGroupTypeallCoreMicrosoftApps TargetedManagedAppProtectionAppGroupType = "AllCoreMicrosoftApps"
+	TargetedManagedAppProtectionAppGroupTypeallMicrosoftApps TargetedManagedAppProtectionAppGroupType = "AllMicrosoftApps"
+	TargetedManagedAppProtectionAppGroupTypeselectedPublicApps TargetedManagedAppProtectionAppGroupType = "SelectedPublicApps"
+)
+
+
+func PossibleValuesForTargetedManagedAppProtectionAppGroupType() []string {
+	return []string{
+		string(TargetedManagedAppProtectionAppGroupTypeallApps),
+string(TargetedManagedAppProtectionAppGroupTypeallCoreMicrosoftApps),
+string(TargetedManagedAppProtectionAppGroupTypeallMicrosoftApps),
+string(TargetedManagedAppProtectionAppGroupTypeselectedPublicApps),
+	}
+}
+
+
+
+func parseTargetedManagedAppProtectionAppGroupType(input string) (*TargetedManagedAppProtectionAppGroupType, error) {
+	vals := map[string]TargetedManagedAppProtectionAppGroupType{
+		"allapps": TargetedManagedAppProtectionAppGroupTypeallApps,
+"allcoremicrosoftapps": TargetedManagedAppProtectionAppGroupTypeallCoreMicrosoftApps,
+"allmicrosoftapps": TargetedManagedAppProtectionAppGroupTypeallMicrosoftApps,
+"selectedpublicapps": TargetedManagedAppProtectionAppGroupTypeselectedPublicApps,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := TargetedManagedAppProtectionAppGroupType(input)
+	return &out, nil
+}

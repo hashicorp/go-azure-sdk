@@ -1,0 +1,79 @@
+package models
+
+import "strings"
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type SecurityBlobEvidenceRoles string
+
+const (
+	SecurityBlobEvidenceRolesadded SecurityBlobEvidenceRoles = "Added"
+	SecurityBlobEvidenceRolesattacked SecurityBlobEvidenceRoles = "Attacked"
+	SecurityBlobEvidenceRolesattacker SecurityBlobEvidenceRoles = "Attacker"
+	SecurityBlobEvidenceRolescommandAndControl SecurityBlobEvidenceRoles = "CommandAndControl"
+	SecurityBlobEvidenceRolescompromised SecurityBlobEvidenceRoles = "Compromised"
+	SecurityBlobEvidenceRolescontextual SecurityBlobEvidenceRoles = "Contextual"
+	SecurityBlobEvidenceRolescreated SecurityBlobEvidenceRoles = "Created"
+	SecurityBlobEvidenceRolesdestination SecurityBlobEvidenceRoles = "Destination"
+	SecurityBlobEvidenceRolesedited SecurityBlobEvidenceRoles = "Edited"
+	SecurityBlobEvidenceRolesloaded SecurityBlobEvidenceRoles = "Loaded"
+	SecurityBlobEvidenceRolespolicyViolator SecurityBlobEvidenceRoles = "PolicyViolator"
+	SecurityBlobEvidenceRolesscanned SecurityBlobEvidenceRoles = "Scanned"
+	SecurityBlobEvidenceRolessource SecurityBlobEvidenceRoles = "Source"
+	SecurityBlobEvidenceRolessuspicious SecurityBlobEvidenceRoles = "Suspicious"
+	SecurityBlobEvidenceRolesunknown SecurityBlobEvidenceRoles = "Unknown"
+)
+
+
+func PossibleValuesForSecurityBlobEvidenceRoles() []string {
+	return []string{
+		string(SecurityBlobEvidenceRolesadded),
+string(SecurityBlobEvidenceRolesattacked),
+string(SecurityBlobEvidenceRolesattacker),
+string(SecurityBlobEvidenceRolescommandAndControl),
+string(SecurityBlobEvidenceRolescompromised),
+string(SecurityBlobEvidenceRolescontextual),
+string(SecurityBlobEvidenceRolescreated),
+string(SecurityBlobEvidenceRolesdestination),
+string(SecurityBlobEvidenceRolesedited),
+string(SecurityBlobEvidenceRolesloaded),
+string(SecurityBlobEvidenceRolespolicyViolator),
+string(SecurityBlobEvidenceRolesscanned),
+string(SecurityBlobEvidenceRolessource),
+string(SecurityBlobEvidenceRolessuspicious),
+string(SecurityBlobEvidenceRolesunknown),
+	}
+}
+
+
+
+func parseSecurityBlobEvidenceRoles(input string) (*SecurityBlobEvidenceRoles, error) {
+	vals := map[string]SecurityBlobEvidenceRoles{
+		"added": SecurityBlobEvidenceRolesadded,
+"attacked": SecurityBlobEvidenceRolesattacked,
+"attacker": SecurityBlobEvidenceRolesattacker,
+"commandandcontrol": SecurityBlobEvidenceRolescommandAndControl,
+"compromised": SecurityBlobEvidenceRolescompromised,
+"contextual": SecurityBlobEvidenceRolescontextual,
+"created": SecurityBlobEvidenceRolescreated,
+"destination": SecurityBlobEvidenceRolesdestination,
+"edited": SecurityBlobEvidenceRolesedited,
+"loaded": SecurityBlobEvidenceRolesloaded,
+"policyviolator": SecurityBlobEvidenceRolespolicyViolator,
+"scanned": SecurityBlobEvidenceRolesscanned,
+"source": SecurityBlobEvidenceRolessource,
+"suspicious": SecurityBlobEvidenceRolessuspicious,
+"unknown": SecurityBlobEvidenceRolesunknown,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SecurityBlobEvidenceRoles(input)
+	return &out, nil
+}

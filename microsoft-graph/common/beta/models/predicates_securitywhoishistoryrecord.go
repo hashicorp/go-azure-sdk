@@ -1,0 +1,62 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type SecurityWhoisHistoryRecordOperationPredicate struct {
+	DomainStatus         *string
+	ExpirationDateTime   *string
+	FirstSeenDateTime    *string
+	Id                   *string
+	LastSeenDateTime     *string
+	LastUpdateDateTime   *string
+	ODataType            *string
+	RawWhoisText         *string
+	RegistrationDateTime *string
+	WhoisServer          *string
+}
+
+func (p SecurityWhoisHistoryRecordOperationPredicate) Matches(input SecurityWhoisHistoryRecord) bool {
+
+	if p.DomainStatus != nil && (input.DomainStatus == nil || *p.DomainStatus != *input.DomainStatus) {
+		return false
+	}
+
+	if p.ExpirationDateTime != nil && (input.ExpirationDateTime == nil || *p.ExpirationDateTime != *input.ExpirationDateTime) {
+		return false
+	}
+
+	if p.FirstSeenDateTime != nil && (input.FirstSeenDateTime == nil || *p.FirstSeenDateTime != *input.FirstSeenDateTime) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.LastSeenDateTime != nil && (input.LastSeenDateTime == nil || *p.LastSeenDateTime != *input.LastSeenDateTime) {
+		return false
+	}
+
+	if p.LastUpdateDateTime != nil && (input.LastUpdateDateTime == nil || *p.LastUpdateDateTime != *input.LastUpdateDateTime) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.RawWhoisText != nil && (input.RawWhoisText == nil || *p.RawWhoisText != *input.RawWhoisText) {
+		return false
+	}
+
+	if p.RegistrationDateTime != nil && (input.RegistrationDateTime == nil || *p.RegistrationDateTime != *input.RegistrationDateTime) {
+		return false
+	}
+
+	if p.WhoisServer != nil && (input.WhoisServer == nil || *p.WhoisServer != *input.WhoisServer) {
+		return false
+	}
+
+	return true
+}

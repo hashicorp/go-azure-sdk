@@ -1,0 +1,58 @@
+package models
+
+import "strings"
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type SecurityEdiscoveryIndexOperationAction string
+
+const (
+	SecurityEdiscoveryIndexOperationActionaddToReviewSet SecurityEdiscoveryIndexOperationAction = "AddToReviewSet"
+	SecurityEdiscoveryIndexOperationActionapplyTags SecurityEdiscoveryIndexOperationAction = "ApplyTags"
+	SecurityEdiscoveryIndexOperationActioncontentExport SecurityEdiscoveryIndexOperationAction = "ContentExport"
+	SecurityEdiscoveryIndexOperationActionconvertToPdf SecurityEdiscoveryIndexOperationAction = "ConvertToPdf"
+	SecurityEdiscoveryIndexOperationActionestimateStatistics SecurityEdiscoveryIndexOperationAction = "EstimateStatistics"
+	SecurityEdiscoveryIndexOperationActionholdUpdate SecurityEdiscoveryIndexOperationAction = "HoldUpdate"
+	SecurityEdiscoveryIndexOperationActionindex SecurityEdiscoveryIndexOperationAction = "Index"
+	SecurityEdiscoveryIndexOperationActionpurgeData SecurityEdiscoveryIndexOperationAction = "PurgeData"
+)
+
+
+func PossibleValuesForSecurityEdiscoveryIndexOperationAction() []string {
+	return []string{
+		string(SecurityEdiscoveryIndexOperationActionaddToReviewSet),
+string(SecurityEdiscoveryIndexOperationActionapplyTags),
+string(SecurityEdiscoveryIndexOperationActioncontentExport),
+string(SecurityEdiscoveryIndexOperationActionconvertToPdf),
+string(SecurityEdiscoveryIndexOperationActionestimateStatistics),
+string(SecurityEdiscoveryIndexOperationActionholdUpdate),
+string(SecurityEdiscoveryIndexOperationActionindex),
+string(SecurityEdiscoveryIndexOperationActionpurgeData),
+	}
+}
+
+
+
+func parseSecurityEdiscoveryIndexOperationAction(input string) (*SecurityEdiscoveryIndexOperationAction, error) {
+	vals := map[string]SecurityEdiscoveryIndexOperationAction{
+		"addtoreviewset": SecurityEdiscoveryIndexOperationActionaddToReviewSet,
+"applytags": SecurityEdiscoveryIndexOperationActionapplyTags,
+"contentexport": SecurityEdiscoveryIndexOperationActioncontentExport,
+"converttopdf": SecurityEdiscoveryIndexOperationActionconvertToPdf,
+"estimatestatistics": SecurityEdiscoveryIndexOperationActionestimateStatistics,
+"holdupdate": SecurityEdiscoveryIndexOperationActionholdUpdate,
+"index": SecurityEdiscoveryIndexOperationActionindex,
+"purgedata": SecurityEdiscoveryIndexOperationActionpurgeData,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SecurityEdiscoveryIndexOperationAction(input)
+	return &out, nil
+}

@@ -1,0 +1,37 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type ServicePlanInfoOperationPredicate struct {
+	AppliesTo          *string
+	ODataType          *string
+	ProvisioningStatus *string
+	ServicePlanId      *string
+	ServicePlanName    *string
+}
+
+func (p ServicePlanInfoOperationPredicate) Matches(input ServicePlanInfo) bool {
+
+	if p.AppliesTo != nil && (input.AppliesTo == nil || *p.AppliesTo != *input.AppliesTo) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.ProvisioningStatus != nil && (input.ProvisioningStatus == nil || *p.ProvisioningStatus != *input.ProvisioningStatus) {
+		return false
+	}
+
+	if p.ServicePlanId != nil && (input.ServicePlanId == nil || *p.ServicePlanId != *input.ServicePlanId) {
+		return false
+	}
+
+	if p.ServicePlanName != nil && (input.ServicePlanName == nil || *p.ServicePlanName != *input.ServicePlanName) {
+		return false
+	}
+
+	return true
+}

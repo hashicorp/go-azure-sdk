@@ -1,0 +1,37 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type SecurityIndicatorSource string
+
+const (
+	SecurityIndicatorSourcemicrosoft SecurityIndicatorSource = "Microsoft"
+	SecurityIndicatorSourceosint     SecurityIndicatorSource = "Osint"
+	SecurityIndicatorSourcepublic    SecurityIndicatorSource = "Public"
+)
+
+func PossibleValuesForSecurityIndicatorSource() []string {
+	return []string{
+		string(SecurityIndicatorSourcemicrosoft),
+		string(SecurityIndicatorSourceosint),
+		string(SecurityIndicatorSourcepublic),
+	}
+}
+
+func parseSecurityIndicatorSource(input string) (*SecurityIndicatorSource, error) {
+	vals := map[string]SecurityIndicatorSource{
+		"microsoft": SecurityIndicatorSourcemicrosoft,
+		"osint":     SecurityIndicatorSourceosint,
+		"public":    SecurityIndicatorSourcepublic,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SecurityIndicatorSource(input)
+	return &out, nil
+}

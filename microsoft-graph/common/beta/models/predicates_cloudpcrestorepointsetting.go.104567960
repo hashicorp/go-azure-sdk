@@ -1,0 +1,33 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type CloudPCRestorePointSettingOperationPredicate struct {
+	 FrequencyInHours *int64
+	 ODataType *string
+	 UserRestoreEnabled *bool
+}
+
+func (p CloudPCRestorePointSettingOperationPredicate) Matches(input CloudPCRestorePointSetting) bool {
+
+	if p.FrequencyInHours != nil && (input.FrequencyInHours == nil || *p.FrequencyInHours != *input.FrequencyInHours) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.UserRestoreEnabled != nil && (input.UserRestoreEnabled == nil || *p.UserRestoreEnabled != *input.UserRestoreEnabled) {
+	 	return false
+	}
+
+
+	return true
+}
+

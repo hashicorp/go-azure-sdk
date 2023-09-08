@@ -1,0 +1,37 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type LicenseUnitsDetailOperationPredicate struct {
+	Enabled   *int64
+	LockedOut *int64
+	ODataType *string
+	Suspended *int64
+	Warning   *int64
+}
+
+func (p LicenseUnitsDetailOperationPredicate) Matches(input LicenseUnitsDetail) bool {
+
+	if p.Enabled != nil && (input.Enabled == nil || *p.Enabled != *input.Enabled) {
+		return false
+	}
+
+	if p.LockedOut != nil && (input.LockedOut == nil || *p.LockedOut != *input.LockedOut) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.Suspended != nil && (input.Suspended == nil || *p.Suspended != *input.Suspended) {
+		return false
+	}
+
+	if p.Warning != nil && (input.Warning == nil || *p.Warning != *input.Warning) {
+		return false
+	}
+
+	return true
+}

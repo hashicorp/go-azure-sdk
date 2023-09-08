@@ -1,0 +1,42 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type TeamworkTagOperationPredicate struct {
+	Description *string
+	DisplayName *string
+	Id          *string
+	MemberCount *int64
+	ODataType   *string
+	TeamId      *string
+}
+
+func (p TeamworkTagOperationPredicate) Matches(input TeamworkTag) bool {
+
+	if p.Description != nil && (input.Description == nil || *p.Description != *input.Description) {
+		return false
+	}
+
+	if p.DisplayName != nil && (input.DisplayName == nil || *p.DisplayName != *input.DisplayName) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.MemberCount != nil && (input.MemberCount == nil || *p.MemberCount != *input.MemberCount) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.TeamId != nil && (input.TeamId == nil || *p.TeamId != *input.TeamId) {
+		return false
+	}
+
+	return true
+}

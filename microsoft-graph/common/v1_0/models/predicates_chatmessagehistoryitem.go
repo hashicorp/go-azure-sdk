@@ -1,0 +1,22 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type ChatMessageHistoryItemOperationPredicate struct {
+	ModifiedDateTime *string
+	ODataType        *string
+}
+
+func (p ChatMessageHistoryItemOperationPredicate) Matches(input ChatMessageHistoryItem) bool {
+
+	if p.ModifiedDateTime != nil && (input.ModifiedDateTime == nil || *p.ModifiedDateTime != *input.ModifiedDateTime) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	return true
+}

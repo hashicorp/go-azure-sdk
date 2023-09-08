@@ -1,0 +1,40 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type NetworkaccessTunnelConfigurationIKEv2CustomIpSecIntegrity string
+
+const (
+	NetworkaccessTunnelConfigurationIKEv2CustomIpSecIntegritygcmAes128 NetworkaccessTunnelConfigurationIKEv2CustomIpSecIntegrity = "GcmAes128"
+	NetworkaccessTunnelConfigurationIKEv2CustomIpSecIntegritygcmAes192 NetworkaccessTunnelConfigurationIKEv2CustomIpSecIntegrity = "GcmAes192"
+	NetworkaccessTunnelConfigurationIKEv2CustomIpSecIntegritygcmAes256 NetworkaccessTunnelConfigurationIKEv2CustomIpSecIntegrity = "GcmAes256"
+	NetworkaccessTunnelConfigurationIKEv2CustomIpSecIntegritysha256    NetworkaccessTunnelConfigurationIKEv2CustomIpSecIntegrity = "Sha256"
+)
+
+func PossibleValuesForNetworkaccessTunnelConfigurationIKEv2CustomIpSecIntegrity() []string {
+	return []string{
+		string(NetworkaccessTunnelConfigurationIKEv2CustomIpSecIntegritygcmAes128),
+		string(NetworkaccessTunnelConfigurationIKEv2CustomIpSecIntegritygcmAes192),
+		string(NetworkaccessTunnelConfigurationIKEv2CustomIpSecIntegritygcmAes256),
+		string(NetworkaccessTunnelConfigurationIKEv2CustomIpSecIntegritysha256),
+	}
+}
+
+func parseNetworkaccessTunnelConfigurationIKEv2CustomIpSecIntegrity(input string) (*NetworkaccessTunnelConfigurationIKEv2CustomIpSecIntegrity, error) {
+	vals := map[string]NetworkaccessTunnelConfigurationIKEv2CustomIpSecIntegrity{
+		"gcmaes128": NetworkaccessTunnelConfigurationIKEv2CustomIpSecIntegritygcmAes128,
+		"gcmaes192": NetworkaccessTunnelConfigurationIKEv2CustomIpSecIntegritygcmAes192,
+		"gcmaes256": NetworkaccessTunnelConfigurationIKEv2CustomIpSecIntegritygcmAes256,
+		"sha256":    NetworkaccessTunnelConfigurationIKEv2CustomIpSecIntegritysha256,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := NetworkaccessTunnelConfigurationIKEv2CustomIpSecIntegrity(input)
+	return &out, nil
+}

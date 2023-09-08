@@ -1,0 +1,123 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type NetworkConnectionOperationPredicate struct {
+	 ApplicationName *string
+	 DestinationAddress *string
+	 DestinationDomain *string
+	 DestinationLocation *string
+	 DestinationPort *string
+	 DestinationUrl *string
+	 DomainRegisteredDateTime *string
+	 LocalDnsName *string
+	 NatDestinationAddress *string
+	 NatDestinationPort *string
+	 NatSourceAddress *string
+	 NatSourcePort *string
+	 ODataType *string
+	 RiskScore *string
+	 SourceAddress *string
+	 SourceLocation *string
+	 SourcePort *string
+	 UrlParameters *string
+}
+
+func (p NetworkConnectionOperationPredicate) Matches(input NetworkConnection) bool {
+
+	if p.ApplicationName != nil && (input.ApplicationName == nil || *p.ApplicationName != *input.ApplicationName) {
+	 	return false
+	}
+
+
+	if p.DestinationAddress != nil && (input.DestinationAddress == nil || *p.DestinationAddress != *input.DestinationAddress) {
+	 	return false
+	}
+
+
+	if p.DestinationDomain != nil && (input.DestinationDomain == nil || *p.DestinationDomain != *input.DestinationDomain) {
+	 	return false
+	}
+
+
+	if p.DestinationLocation != nil && (input.DestinationLocation == nil || *p.DestinationLocation != *input.DestinationLocation) {
+	 	return false
+	}
+
+
+	if p.DestinationPort != nil && (input.DestinationPort == nil || *p.DestinationPort != *input.DestinationPort) {
+	 	return false
+	}
+
+
+	if p.DestinationUrl != nil && (input.DestinationUrl == nil || *p.DestinationUrl != *input.DestinationUrl) {
+	 	return false
+	}
+
+
+	if p.DomainRegisteredDateTime != nil && (input.DomainRegisteredDateTime == nil || *p.DomainRegisteredDateTime != *input.DomainRegisteredDateTime) {
+	 	return false
+	}
+
+
+	if p.LocalDnsName != nil && (input.LocalDnsName == nil || *p.LocalDnsName != *input.LocalDnsName) {
+	 	return false
+	}
+
+
+	if p.NatDestinationAddress != nil && (input.NatDestinationAddress == nil || *p.NatDestinationAddress != *input.NatDestinationAddress) {
+	 	return false
+	}
+
+
+	if p.NatDestinationPort != nil && (input.NatDestinationPort == nil || *p.NatDestinationPort != *input.NatDestinationPort) {
+	 	return false
+	}
+
+
+	if p.NatSourceAddress != nil && (input.NatSourceAddress == nil || *p.NatSourceAddress != *input.NatSourceAddress) {
+	 	return false
+	}
+
+
+	if p.NatSourcePort != nil && (input.NatSourcePort == nil || *p.NatSourcePort != *input.NatSourcePort) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.RiskScore != nil && (input.RiskScore == nil || *p.RiskScore != *input.RiskScore) {
+	 	return false
+	}
+
+
+	if p.SourceAddress != nil && (input.SourceAddress == nil || *p.SourceAddress != *input.SourceAddress) {
+	 	return false
+	}
+
+
+	if p.SourceLocation != nil && (input.SourceLocation == nil || *p.SourceLocation != *input.SourceLocation) {
+	 	return false
+	}
+
+
+	if p.SourcePort != nil && (input.SourcePort == nil || *p.SourcePort != *input.SourcePort) {
+	 	return false
+	}
+
+
+	if p.UrlParameters != nil && (input.UrlParameters == nil || *p.UrlParameters != *input.UrlParameters) {
+	 	return false
+	}
+
+
+	return true
+}
+

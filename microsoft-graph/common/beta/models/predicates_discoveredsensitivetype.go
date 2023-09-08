@@ -1,0 +1,32 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type DiscoveredSensitiveTypeOperationPredicate struct {
+	Confidence *int64
+	Count      *int64
+	Id         *string
+	ODataType  *string
+}
+
+func (p DiscoveredSensitiveTypeOperationPredicate) Matches(input DiscoveredSensitiveType) bool {
+
+	if p.Confidence != nil && (input.Confidence == nil || *p.Confidence != *input.Confidence) {
+		return false
+	}
+
+	if p.Count != nil && (input.Count == nil || *p.Count != *input.Count) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	return true
+}

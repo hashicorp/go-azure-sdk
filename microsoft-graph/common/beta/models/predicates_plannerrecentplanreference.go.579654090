@@ -1,0 +1,33 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type PlannerRecentPlanReferenceOperationPredicate struct {
+	 LastAccessedDateTime *string
+	 ODataType *string
+	 PlanTitle *string
+}
+
+func (p PlannerRecentPlanReferenceOperationPredicate) Matches(input PlannerRecentPlanReference) bool {
+
+	if p.LastAccessedDateTime != nil && (input.LastAccessedDateTime == nil || *p.LastAccessedDateTime != *input.LastAccessedDateTime) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.PlanTitle != nil && (input.PlanTitle == nil || *p.PlanTitle != *input.PlanTitle) {
+	 	return false
+	}
+
+
+	return true
+}
+

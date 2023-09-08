@@ -1,0 +1,33 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type SimulationEventOperationPredicate struct {
+	 Count *int64
+	 EventName *string
+	 ODataType *string
+}
+
+func (p SimulationEventOperationPredicate) Matches(input SimulationEvent) bool {
+
+	if p.Count != nil && (input.Count == nil || *p.Count != *input.Count) {
+	 	return false
+	}
+
+
+	if p.EventName != nil && (input.EventName == nil || *p.EventName != *input.EventName) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	return true
+}
+

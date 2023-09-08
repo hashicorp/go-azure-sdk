@@ -1,0 +1,37 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type Windows10EndpointProtectionConfigurationXboxServicesLiveNetworkingServiceStartupMode string
+
+const (
+	Windows10EndpointProtectionConfigurationXboxServicesLiveNetworkingServiceStartupModeautomatic Windows10EndpointProtectionConfigurationXboxServicesLiveNetworkingServiceStartupMode = "Automatic"
+	Windows10EndpointProtectionConfigurationXboxServicesLiveNetworkingServiceStartupModedisabled  Windows10EndpointProtectionConfigurationXboxServicesLiveNetworkingServiceStartupMode = "Disabled"
+	Windows10EndpointProtectionConfigurationXboxServicesLiveNetworkingServiceStartupModemanual    Windows10EndpointProtectionConfigurationXboxServicesLiveNetworkingServiceStartupMode = "Manual"
+)
+
+func PossibleValuesForWindows10EndpointProtectionConfigurationXboxServicesLiveNetworkingServiceStartupMode() []string {
+	return []string{
+		string(Windows10EndpointProtectionConfigurationXboxServicesLiveNetworkingServiceStartupModeautomatic),
+		string(Windows10EndpointProtectionConfigurationXboxServicesLiveNetworkingServiceStartupModedisabled),
+		string(Windows10EndpointProtectionConfigurationXboxServicesLiveNetworkingServiceStartupModemanual),
+	}
+}
+
+func parseWindows10EndpointProtectionConfigurationXboxServicesLiveNetworkingServiceStartupMode(input string) (*Windows10EndpointProtectionConfigurationXboxServicesLiveNetworkingServiceStartupMode, error) {
+	vals := map[string]Windows10EndpointProtectionConfigurationXboxServicesLiveNetworkingServiceStartupMode{
+		"automatic": Windows10EndpointProtectionConfigurationXboxServicesLiveNetworkingServiceStartupModeautomatic,
+		"disabled":  Windows10EndpointProtectionConfigurationXboxServicesLiveNetworkingServiceStartupModedisabled,
+		"manual":    Windows10EndpointProtectionConfigurationXboxServicesLiveNetworkingServiceStartupModemanual,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := Windows10EndpointProtectionConfigurationXboxServicesLiveNetworkingServiceStartupMode(input)
+	return &out, nil
+}

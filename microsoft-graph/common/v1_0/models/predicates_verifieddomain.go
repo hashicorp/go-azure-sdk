@@ -1,0 +1,42 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type VerifiedDomainOperationPredicate struct {
+	Capabilities *string
+	IsDefault    *bool
+	IsInitial    *bool
+	Name         *string
+	ODataType    *string
+	Type         *string
+}
+
+func (p VerifiedDomainOperationPredicate) Matches(input VerifiedDomain) bool {
+
+	if p.Capabilities != nil && (input.Capabilities == nil || *p.Capabilities != *input.Capabilities) {
+		return false
+	}
+
+	if p.IsDefault != nil && (input.IsDefault == nil || *p.IsDefault != *input.IsDefault) {
+		return false
+	}
+
+	if p.IsInitial != nil && (input.IsInitial == nil || *p.IsInitial != *input.IsInitial) {
+		return false
+	}
+
+	if p.Name != nil && (input.Name == nil || *p.Name != *input.Name) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.Type != nil && (input.Type == nil || *p.Type != *input.Type) {
+		return false
+	}
+
+	return true
+}

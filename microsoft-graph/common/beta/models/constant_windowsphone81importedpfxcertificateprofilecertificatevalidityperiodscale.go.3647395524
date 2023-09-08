@@ -1,0 +1,43 @@
+package models
+
+import "strings"
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type WindowsPhone81ImportedPFXCertificateProfileCertificateValidityPeriodScale string
+
+const (
+	WindowsPhone81ImportedPFXCertificateProfileCertificateValidityPeriodScaledays WindowsPhone81ImportedPFXCertificateProfileCertificateValidityPeriodScale = "Days"
+	WindowsPhone81ImportedPFXCertificateProfileCertificateValidityPeriodScalemonths WindowsPhone81ImportedPFXCertificateProfileCertificateValidityPeriodScale = "Months"
+	WindowsPhone81ImportedPFXCertificateProfileCertificateValidityPeriodScaleyears WindowsPhone81ImportedPFXCertificateProfileCertificateValidityPeriodScale = "Years"
+)
+
+
+func PossibleValuesForWindowsPhone81ImportedPFXCertificateProfileCertificateValidityPeriodScale() []string {
+	return []string{
+		string(WindowsPhone81ImportedPFXCertificateProfileCertificateValidityPeriodScaledays),
+string(WindowsPhone81ImportedPFXCertificateProfileCertificateValidityPeriodScalemonths),
+string(WindowsPhone81ImportedPFXCertificateProfileCertificateValidityPeriodScaleyears),
+	}
+}
+
+
+
+func parseWindowsPhone81ImportedPFXCertificateProfileCertificateValidityPeriodScale(input string) (*WindowsPhone81ImportedPFXCertificateProfileCertificateValidityPeriodScale, error) {
+	vals := map[string]WindowsPhone81ImportedPFXCertificateProfileCertificateValidityPeriodScale{
+		"days": WindowsPhone81ImportedPFXCertificateProfileCertificateValidityPeriodScaledays,
+"months": WindowsPhone81ImportedPFXCertificateProfileCertificateValidityPeriodScalemonths,
+"years": WindowsPhone81ImportedPFXCertificateProfileCertificateValidityPeriodScaleyears,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := WindowsPhone81ImportedPFXCertificateProfileCertificateValidityPeriodScale(input)
+	return &out, nil
+}

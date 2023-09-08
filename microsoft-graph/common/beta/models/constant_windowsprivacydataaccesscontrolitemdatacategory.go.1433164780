@@ -1,0 +1,91 @@
+package models
+
+import "strings"
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type WindowsPrivacyDataAccessControlItemDataCategory string
+
+const (
+	WindowsPrivacyDataAccessControlItemDataCategoryaccountInfo WindowsPrivacyDataAccessControlItemDataCategory = "AccountInfo"
+	WindowsPrivacyDataAccessControlItemDataCategoryappsRunInBackground WindowsPrivacyDataAccessControlItemDataCategory = "AppsRunInBackground"
+	WindowsPrivacyDataAccessControlItemDataCategorycalendar WindowsPrivacyDataAccessControlItemDataCategory = "Calendar"
+	WindowsPrivacyDataAccessControlItemDataCategorycallHistory WindowsPrivacyDataAccessControlItemDataCategory = "CallHistory"
+	WindowsPrivacyDataAccessControlItemDataCategorycamera WindowsPrivacyDataAccessControlItemDataCategory = "Camera"
+	WindowsPrivacyDataAccessControlItemDataCategorycontacts WindowsPrivacyDataAccessControlItemDataCategory = "Contacts"
+	WindowsPrivacyDataAccessControlItemDataCategorydiagnosticsInfo WindowsPrivacyDataAccessControlItemDataCategory = "DiagnosticsInfo"
+	WindowsPrivacyDataAccessControlItemDataCategoryemail WindowsPrivacyDataAccessControlItemDataCategory = "Email"
+	WindowsPrivacyDataAccessControlItemDataCategorylocation WindowsPrivacyDataAccessControlItemDataCategory = "Location"
+	WindowsPrivacyDataAccessControlItemDataCategorymessaging WindowsPrivacyDataAccessControlItemDataCategory = "Messaging"
+	WindowsPrivacyDataAccessControlItemDataCategorymicrophone WindowsPrivacyDataAccessControlItemDataCategory = "Microphone"
+	WindowsPrivacyDataAccessControlItemDataCategorymotion WindowsPrivacyDataAccessControlItemDataCategory = "Motion"
+	WindowsPrivacyDataAccessControlItemDataCategorynotConfigured WindowsPrivacyDataAccessControlItemDataCategory = "NotConfigured"
+	WindowsPrivacyDataAccessControlItemDataCategorynotifications WindowsPrivacyDataAccessControlItemDataCategory = "Notifications"
+	WindowsPrivacyDataAccessControlItemDataCategoryphone WindowsPrivacyDataAccessControlItemDataCategory = "Phone"
+	WindowsPrivacyDataAccessControlItemDataCategoryradios WindowsPrivacyDataAccessControlItemDataCategory = "Radios"
+	WindowsPrivacyDataAccessControlItemDataCategorysyncWithDevices WindowsPrivacyDataAccessControlItemDataCategory = "SyncWithDevices"
+	WindowsPrivacyDataAccessControlItemDataCategorytasks WindowsPrivacyDataAccessControlItemDataCategory = "Tasks"
+	WindowsPrivacyDataAccessControlItemDataCategorytrustedDevices WindowsPrivacyDataAccessControlItemDataCategory = "TrustedDevices"
+)
+
+
+func PossibleValuesForWindowsPrivacyDataAccessControlItemDataCategory() []string {
+	return []string{
+		string(WindowsPrivacyDataAccessControlItemDataCategoryaccountInfo),
+string(WindowsPrivacyDataAccessControlItemDataCategoryappsRunInBackground),
+string(WindowsPrivacyDataAccessControlItemDataCategorycalendar),
+string(WindowsPrivacyDataAccessControlItemDataCategorycallHistory),
+string(WindowsPrivacyDataAccessControlItemDataCategorycamera),
+string(WindowsPrivacyDataAccessControlItemDataCategorycontacts),
+string(WindowsPrivacyDataAccessControlItemDataCategorydiagnosticsInfo),
+string(WindowsPrivacyDataAccessControlItemDataCategoryemail),
+string(WindowsPrivacyDataAccessControlItemDataCategorylocation),
+string(WindowsPrivacyDataAccessControlItemDataCategorymessaging),
+string(WindowsPrivacyDataAccessControlItemDataCategorymicrophone),
+string(WindowsPrivacyDataAccessControlItemDataCategorymotion),
+string(WindowsPrivacyDataAccessControlItemDataCategorynotConfigured),
+string(WindowsPrivacyDataAccessControlItemDataCategorynotifications),
+string(WindowsPrivacyDataAccessControlItemDataCategoryphone),
+string(WindowsPrivacyDataAccessControlItemDataCategoryradios),
+string(WindowsPrivacyDataAccessControlItemDataCategorysyncWithDevices),
+string(WindowsPrivacyDataAccessControlItemDataCategorytasks),
+string(WindowsPrivacyDataAccessControlItemDataCategorytrustedDevices),
+	}
+}
+
+
+
+func parseWindowsPrivacyDataAccessControlItemDataCategory(input string) (*WindowsPrivacyDataAccessControlItemDataCategory, error) {
+	vals := map[string]WindowsPrivacyDataAccessControlItemDataCategory{
+		"accountinfo": WindowsPrivacyDataAccessControlItemDataCategoryaccountInfo,
+"appsruninbackground": WindowsPrivacyDataAccessControlItemDataCategoryappsRunInBackground,
+"calendar": WindowsPrivacyDataAccessControlItemDataCategorycalendar,
+"callhistory": WindowsPrivacyDataAccessControlItemDataCategorycallHistory,
+"camera": WindowsPrivacyDataAccessControlItemDataCategorycamera,
+"contacts": WindowsPrivacyDataAccessControlItemDataCategorycontacts,
+"diagnosticsinfo": WindowsPrivacyDataAccessControlItemDataCategorydiagnosticsInfo,
+"email": WindowsPrivacyDataAccessControlItemDataCategoryemail,
+"location": WindowsPrivacyDataAccessControlItemDataCategorylocation,
+"messaging": WindowsPrivacyDataAccessControlItemDataCategorymessaging,
+"microphone": WindowsPrivacyDataAccessControlItemDataCategorymicrophone,
+"motion": WindowsPrivacyDataAccessControlItemDataCategorymotion,
+"notconfigured": WindowsPrivacyDataAccessControlItemDataCategorynotConfigured,
+"notifications": WindowsPrivacyDataAccessControlItemDataCategorynotifications,
+"phone": WindowsPrivacyDataAccessControlItemDataCategoryphone,
+"radios": WindowsPrivacyDataAccessControlItemDataCategoryradios,
+"syncwithdevices": WindowsPrivacyDataAccessControlItemDataCategorysyncWithDevices,
+"tasks": WindowsPrivacyDataAccessControlItemDataCategorytasks,
+"trusteddevices": WindowsPrivacyDataAccessControlItemDataCategorytrustedDevices,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := WindowsPrivacyDataAccessControlItemDataCategory(input)
+	return &out, nil
+}

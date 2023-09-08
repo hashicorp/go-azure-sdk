@@ -1,0 +1,49 @@
+package models
+
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/edgezones"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/identity"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/systemdata"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/zones"
+)
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type CallRecordsMediaStream struct {
+	AudioCodec *CallRecordsMediaStreamAudioCodec `json:"audioCodec,omitempty"`
+	AverageAudioNetworkJitter *string `json:"averageAudioNetworkJitter,omitempty"`
+	AverageBandwidthEstimate *int64 `json:"averageBandwidthEstimate,omitempty"`
+	AverageFreezeDuration *string `json:"averageFreezeDuration,omitempty"`
+	AverageJitter *string `json:"averageJitter,omitempty"`
+	AverageRoundTripTime *string `json:"averageRoundTripTime,omitempty"`
+	EndDateTime *string `json:"endDateTime,omitempty"`
+	IsAudioForwardErrorCorrectionUsed *bool `json:"isAudioForwardErrorCorrectionUsed,omitempty"`
+	MaxAudioNetworkJitter *string `json:"maxAudioNetworkJitter,omitempty"`
+	MaxJitter *string `json:"maxJitter,omitempty"`
+	MaxRoundTripTime *string `json:"maxRoundTripTime,omitempty"`
+	ODataType *string `json:"@odata.type,omitempty"`
+	PacketUtilization *int64 `json:"packetUtilization,omitempty"`
+	RmsFreezeDuration *string `json:"rmsFreezeDuration,omitempty"`
+	StartDateTime *string `json:"startDateTime,omitempty"`
+	StreamDirection *CallRecordsMediaStreamStreamDirection `json:"streamDirection,omitempty"`
+	StreamId *string `json:"streamId,omitempty"`
+	VideoCodec *CallRecordsMediaStreamVideoCodec `json:"videoCodec,omitempty"`
+	WasMediaBypassed *bool `json:"wasMediaBypassed,omitempty"`
+}
+
+
+
+
+
+
+

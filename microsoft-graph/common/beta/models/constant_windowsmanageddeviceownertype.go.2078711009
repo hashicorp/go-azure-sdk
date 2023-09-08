@@ -1,0 +1,43 @@
+package models
+
+import "strings"
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type WindowsManagedDeviceOwnerType string
+
+const (
+	WindowsManagedDeviceOwnerTypecompany WindowsManagedDeviceOwnerType = "Company"
+	WindowsManagedDeviceOwnerTypepersonal WindowsManagedDeviceOwnerType = "Personal"
+	WindowsManagedDeviceOwnerTypeunknown WindowsManagedDeviceOwnerType = "Unknown"
+)
+
+
+func PossibleValuesForWindowsManagedDeviceOwnerType() []string {
+	return []string{
+		string(WindowsManagedDeviceOwnerTypecompany),
+string(WindowsManagedDeviceOwnerTypepersonal),
+string(WindowsManagedDeviceOwnerTypeunknown),
+	}
+}
+
+
+
+func parseWindowsManagedDeviceOwnerType(input string) (*WindowsManagedDeviceOwnerType, error) {
+	vals := map[string]WindowsManagedDeviceOwnerType{
+		"company": WindowsManagedDeviceOwnerTypecompany,
+"personal": WindowsManagedDeviceOwnerTypepersonal,
+"unknown": WindowsManagedDeviceOwnerTypeunknown,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := WindowsManagedDeviceOwnerType(input)
+	return &out, nil
+}

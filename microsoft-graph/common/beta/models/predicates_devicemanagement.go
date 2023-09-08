@@ -1,0 +1,57 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type DeviceManagementOperationPredicate struct {
+	AccountMoveCompletionDateTime               *string
+	DeviceComplianceReportSummarizationDateTime *string
+	Id                                          *string
+	IntuneAccountId                             *string
+	LastReportAggregationDateTime               *string
+	LegacyPcManangementEnabled                  *bool
+	MaximumDepTokens                            *int64
+	ODataType                                   *string
+	UnlicensedAdminstratorsEnabled              *bool
+}
+
+func (p DeviceManagementOperationPredicate) Matches(input DeviceManagement) bool {
+
+	if p.AccountMoveCompletionDateTime != nil && (input.AccountMoveCompletionDateTime == nil || *p.AccountMoveCompletionDateTime != *input.AccountMoveCompletionDateTime) {
+		return false
+	}
+
+	if p.DeviceComplianceReportSummarizationDateTime != nil && (input.DeviceComplianceReportSummarizationDateTime == nil || *p.DeviceComplianceReportSummarizationDateTime != *input.DeviceComplianceReportSummarizationDateTime) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.IntuneAccountId != nil && (input.IntuneAccountId == nil || *p.IntuneAccountId != *input.IntuneAccountId) {
+		return false
+	}
+
+	if p.LastReportAggregationDateTime != nil && (input.LastReportAggregationDateTime == nil || *p.LastReportAggregationDateTime != *input.LastReportAggregationDateTime) {
+		return false
+	}
+
+	if p.LegacyPcManangementEnabled != nil && (input.LegacyPcManangementEnabled == nil || *p.LegacyPcManangementEnabled != *input.LegacyPcManangementEnabled) {
+		return false
+	}
+
+	if p.MaximumDepTokens != nil && (input.MaximumDepTokens == nil || *p.MaximumDepTokens != *input.MaximumDepTokens) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.UnlicensedAdminstratorsEnabled != nil && (input.UnlicensedAdminstratorsEnabled == nil || *p.UnlicensedAdminstratorsEnabled != *input.UnlicensedAdminstratorsEnabled) {
+		return false
+	}
+
+	return true
+}

@@ -1,0 +1,40 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type Windows10PFXImportCertificateProfileKeyStorageProvider string
+
+const (
+	Windows10PFXImportCertificateProfileKeyStorageProviderusePassportForWorkKspOtherwiseFail Windows10PFXImportCertificateProfileKeyStorageProvider = "UsePassportForWorkKspOtherwiseFail"
+	Windows10PFXImportCertificateProfileKeyStorageProvideruseSoftwareKsp                     Windows10PFXImportCertificateProfileKeyStorageProvider = "UseSoftwareKsp"
+	Windows10PFXImportCertificateProfileKeyStorageProvideruseTpmKspOtherwiseFail             Windows10PFXImportCertificateProfileKeyStorageProvider = "UseTpmKspOtherwiseFail"
+	Windows10PFXImportCertificateProfileKeyStorageProvideruseTpmKspOtherwiseUseSoftwareKsp   Windows10PFXImportCertificateProfileKeyStorageProvider = "UseTpmKspOtherwiseUseSoftwareKsp"
+)
+
+func PossibleValuesForWindows10PFXImportCertificateProfileKeyStorageProvider() []string {
+	return []string{
+		string(Windows10PFXImportCertificateProfileKeyStorageProviderusePassportForWorkKspOtherwiseFail),
+		string(Windows10PFXImportCertificateProfileKeyStorageProvideruseSoftwareKsp),
+		string(Windows10PFXImportCertificateProfileKeyStorageProvideruseTpmKspOtherwiseFail),
+		string(Windows10PFXImportCertificateProfileKeyStorageProvideruseTpmKspOtherwiseUseSoftwareKsp),
+	}
+}
+
+func parseWindows10PFXImportCertificateProfileKeyStorageProvider(input string) (*Windows10PFXImportCertificateProfileKeyStorageProvider, error) {
+	vals := map[string]Windows10PFXImportCertificateProfileKeyStorageProvider{
+		"usepassportforworkkspotherwisefail": Windows10PFXImportCertificateProfileKeyStorageProviderusePassportForWorkKspOtherwiseFail,
+		"usesoftwareksp":                     Windows10PFXImportCertificateProfileKeyStorageProvideruseSoftwareKsp,
+		"usetpmkspotherwisefail":             Windows10PFXImportCertificateProfileKeyStorageProvideruseTpmKspOtherwiseFail,
+		"usetpmkspotherwiseusesoftwareksp":   Windows10PFXImportCertificateProfileKeyStorageProvideruseTpmKspOtherwiseUseSoftwareKsp,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := Windows10PFXImportCertificateProfileKeyStorageProvider(input)
+	return &out, nil
+}

@@ -1,0 +1,57 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type TeamMemberSettingsOperationPredicate struct {
+	 AllowAddRemoveApps *bool
+	 AllowCreatePrivateChannels *bool
+	 AllowCreateUpdateChannels *bool
+	 AllowCreateUpdateRemoveConnectors *bool
+	 AllowCreateUpdateRemoveTabs *bool
+	 AllowDeleteChannels *bool
+	 ODataType *string
+}
+
+func (p TeamMemberSettingsOperationPredicate) Matches(input TeamMemberSettings) bool {
+
+	if p.AllowAddRemoveApps != nil && (input.AllowAddRemoveApps == nil || *p.AllowAddRemoveApps != *input.AllowAddRemoveApps) {
+	 	return false
+	}
+
+
+	if p.AllowCreatePrivateChannels != nil && (input.AllowCreatePrivateChannels == nil || *p.AllowCreatePrivateChannels != *input.AllowCreatePrivateChannels) {
+	 	return false
+	}
+
+
+	if p.AllowCreateUpdateChannels != nil && (input.AllowCreateUpdateChannels == nil || *p.AllowCreateUpdateChannels != *input.AllowCreateUpdateChannels) {
+	 	return false
+	}
+
+
+	if p.AllowCreateUpdateRemoveConnectors != nil && (input.AllowCreateUpdateRemoveConnectors == nil || *p.AllowCreateUpdateRemoveConnectors != *input.AllowCreateUpdateRemoveConnectors) {
+	 	return false
+	}
+
+
+	if p.AllowCreateUpdateRemoveTabs != nil && (input.AllowCreateUpdateRemoveTabs == nil || *p.AllowCreateUpdateRemoveTabs != *input.AllowCreateUpdateRemoveTabs) {
+	 	return false
+	}
+
+
+	if p.AllowDeleteChannels != nil && (input.AllowDeleteChannels == nil || *p.AllowDeleteChannels != *input.AllowDeleteChannels) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	return true
+}
+

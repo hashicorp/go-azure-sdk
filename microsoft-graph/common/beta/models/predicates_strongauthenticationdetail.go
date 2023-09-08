@@ -1,0 +1,32 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type StrongAuthenticationDetailOperationPredicate struct {
+	EncryptedPinHashHistory *string
+	Id                      *string
+	ODataType               *string
+	ProofupTime             *int64
+}
+
+func (p StrongAuthenticationDetailOperationPredicate) Matches(input StrongAuthenticationDetail) bool {
+
+	if p.EncryptedPinHashHistory != nil && (input.EncryptedPinHashHistory == nil || *p.EncryptedPinHashHistory != *input.EncryptedPinHashHistory) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.ProofupTime != nil && (input.ProofupTime == nil || *p.ProofupTime != *input.ProofupTime) {
+		return false
+	}
+
+	return true
+}

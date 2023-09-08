@@ -1,0 +1,37 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type AndroidDeviceOwnerSystemUpdateFreezePeriodOperationPredicate struct {
+	EndDay     *int64
+	EndMonth   *int64
+	ODataType  *string
+	StartDay   *int64
+	StartMonth *int64
+}
+
+func (p AndroidDeviceOwnerSystemUpdateFreezePeriodOperationPredicate) Matches(input AndroidDeviceOwnerSystemUpdateFreezePeriod) bool {
+
+	if p.EndDay != nil && (input.EndDay == nil || *p.EndDay != *input.EndDay) {
+		return false
+	}
+
+	if p.EndMonth != nil && (input.EndMonth == nil || *p.EndMonth != *input.EndMonth) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.StartDay != nil && (input.StartDay == nil || *p.StartDay != *input.StartDay) {
+		return false
+	}
+
+	if p.StartMonth != nil && (input.StartMonth == nil || *p.StartMonth != *input.StartMonth) {
+		return false
+	}
+
+	return true
+}

@@ -1,0 +1,37 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type Windows10EndpointProtectionConfigurationWindowsDefenderTamperProtection string
+
+const (
+	Windows10EndpointProtectionConfigurationWindowsDefenderTamperProtectiondisable       Windows10EndpointProtectionConfigurationWindowsDefenderTamperProtection = "Disable"
+	Windows10EndpointProtectionConfigurationWindowsDefenderTamperProtectionenable        Windows10EndpointProtectionConfigurationWindowsDefenderTamperProtection = "Enable"
+	Windows10EndpointProtectionConfigurationWindowsDefenderTamperProtectionnotConfigured Windows10EndpointProtectionConfigurationWindowsDefenderTamperProtection = "NotConfigured"
+)
+
+func PossibleValuesForWindows10EndpointProtectionConfigurationWindowsDefenderTamperProtection() []string {
+	return []string{
+		string(Windows10EndpointProtectionConfigurationWindowsDefenderTamperProtectiondisable),
+		string(Windows10EndpointProtectionConfigurationWindowsDefenderTamperProtectionenable),
+		string(Windows10EndpointProtectionConfigurationWindowsDefenderTamperProtectionnotConfigured),
+	}
+}
+
+func parseWindows10EndpointProtectionConfigurationWindowsDefenderTamperProtection(input string) (*Windows10EndpointProtectionConfigurationWindowsDefenderTamperProtection, error) {
+	vals := map[string]Windows10EndpointProtectionConfigurationWindowsDefenderTamperProtection{
+		"disable":       Windows10EndpointProtectionConfigurationWindowsDefenderTamperProtectiondisable,
+		"enable":        Windows10EndpointProtectionConfigurationWindowsDefenderTamperProtectionenable,
+		"notconfigured": Windows10EndpointProtectionConfigurationWindowsDefenderTamperProtectionnotConfigured,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := Windows10EndpointProtectionConfigurationWindowsDefenderTamperProtection(input)
+	return &out, nil
+}

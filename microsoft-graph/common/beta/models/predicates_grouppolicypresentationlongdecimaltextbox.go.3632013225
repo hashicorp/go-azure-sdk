@@ -1,0 +1,75 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type GroupPolicyPresentationLongDecimalTextBoxOperationPredicate struct {
+	 DefaultValue *int64
+	 Id *string
+	 Label *string
+	 LastModifiedDateTime *string
+	 MaxValue *int64
+	 MinValue *int64
+	 ODataType *string
+	 Required *bool
+	 Spin *bool
+	 SpinStep *int64
+}
+
+func (p GroupPolicyPresentationLongDecimalTextBoxOperationPredicate) Matches(input GroupPolicyPresentationLongDecimalTextBox) bool {
+
+	if p.DefaultValue != nil && (input.DefaultValue == nil || *p.DefaultValue != *input.DefaultValue) {
+	 	return false
+	}
+
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+	 	return false
+	}
+
+
+	if p.Label != nil && (input.Label == nil || *p.Label != *input.Label) {
+	 	return false
+	}
+
+
+	if p.LastModifiedDateTime != nil && (input.LastModifiedDateTime == nil || *p.LastModifiedDateTime != *input.LastModifiedDateTime) {
+	 	return false
+	}
+
+
+	if p.MaxValue != nil && (input.MaxValue == nil || *p.MaxValue != *input.MaxValue) {
+	 	return false
+	}
+
+
+	if p.MinValue != nil && (input.MinValue == nil || *p.MinValue != *input.MinValue) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.Required != nil && (input.Required == nil || *p.Required != *input.Required) {
+	 	return false
+	}
+
+
+	if p.Spin != nil && (input.Spin == nil || *p.Spin != *input.Spin) {
+	 	return false
+	}
+
+
+	if p.SpinStep != nil && (input.SpinStep == nil || *p.SpinStep != *input.SpinStep) {
+	 	return false
+	}
+
+
+	return true
+}
+

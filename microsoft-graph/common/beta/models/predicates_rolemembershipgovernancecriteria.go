@@ -1,0 +1,27 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type RoleMembershipGovernanceCriteriaOperationPredicate struct {
+	ODataType      *string
+	RoleId         *string
+	RoleTemplateId *string
+}
+
+func (p RoleMembershipGovernanceCriteriaOperationPredicate) Matches(input RoleMembershipGovernanceCriteria) bool {
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.RoleId != nil && (input.RoleId == nil || *p.RoleId != *input.RoleId) {
+		return false
+	}
+
+	if p.RoleTemplateId != nil && (input.RoleTemplateId == nil || *p.RoleTemplateId != *input.RoleTemplateId) {
+		return false
+	}
+
+	return true
+}

@@ -1,0 +1,49 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type TargetedManagedAppProtectionTargetedAppManagementLevels string
+
+const (
+	TargetedManagedAppProtectionTargetedAppManagementLevelsandroidEnterprise                                      TargetedManagedAppProtectionTargetedAppManagementLevels = "AndroidEnterprise"
+	TargetedManagedAppProtectionTargetedAppManagementLevelsandroidEnterpriseDedicatedDevicesWithAzureAdSharedMode TargetedManagedAppProtectionTargetedAppManagementLevels = "AndroidEnterpriseDedicatedDevicesWithAzureAdSharedMode"
+	TargetedManagedAppProtectionTargetedAppManagementLevelsandroidOpenSourceProjectUserAssociated                 TargetedManagedAppProtectionTargetedAppManagementLevels = "AndroidOpenSourceProjectUserAssociated"
+	TargetedManagedAppProtectionTargetedAppManagementLevelsandroidOpenSourceProjectUserless                       TargetedManagedAppProtectionTargetedAppManagementLevels = "AndroidOpenSourceProjectUserless"
+	TargetedManagedAppProtectionTargetedAppManagementLevelsmdm                                                    TargetedManagedAppProtectionTargetedAppManagementLevels = "Mdm"
+	TargetedManagedAppProtectionTargetedAppManagementLevelsunmanaged                                              TargetedManagedAppProtectionTargetedAppManagementLevels = "Unmanaged"
+	TargetedManagedAppProtectionTargetedAppManagementLevelsunspecified                                            TargetedManagedAppProtectionTargetedAppManagementLevels = "Unspecified"
+)
+
+func PossibleValuesForTargetedManagedAppProtectionTargetedAppManagementLevels() []string {
+	return []string{
+		string(TargetedManagedAppProtectionTargetedAppManagementLevelsandroidEnterprise),
+		string(TargetedManagedAppProtectionTargetedAppManagementLevelsandroidEnterpriseDedicatedDevicesWithAzureAdSharedMode),
+		string(TargetedManagedAppProtectionTargetedAppManagementLevelsandroidOpenSourceProjectUserAssociated),
+		string(TargetedManagedAppProtectionTargetedAppManagementLevelsandroidOpenSourceProjectUserless),
+		string(TargetedManagedAppProtectionTargetedAppManagementLevelsmdm),
+		string(TargetedManagedAppProtectionTargetedAppManagementLevelsunmanaged),
+		string(TargetedManagedAppProtectionTargetedAppManagementLevelsunspecified),
+	}
+}
+
+func parseTargetedManagedAppProtectionTargetedAppManagementLevels(input string) (*TargetedManagedAppProtectionTargetedAppManagementLevels, error) {
+	vals := map[string]TargetedManagedAppProtectionTargetedAppManagementLevels{
+		"androidenterprise": TargetedManagedAppProtectionTargetedAppManagementLevelsandroidEnterprise,
+		"androidenterprisededicateddeviceswithazureadsharedmode": TargetedManagedAppProtectionTargetedAppManagementLevelsandroidEnterpriseDedicatedDevicesWithAzureAdSharedMode,
+		"androidopensourceprojectuserassociated":                 TargetedManagedAppProtectionTargetedAppManagementLevelsandroidOpenSourceProjectUserAssociated,
+		"androidopensourceprojectuserless":                       TargetedManagedAppProtectionTargetedAppManagementLevelsandroidOpenSourceProjectUserless,
+		"mdm":                                                    TargetedManagedAppProtectionTargetedAppManagementLevelsmdm,
+		"unmanaged":                                              TargetedManagedAppProtectionTargetedAppManagementLevelsunmanaged,
+		"unspecified":                                            TargetedManagedAppProtectionTargetedAppManagementLevelsunspecified,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := TargetedManagedAppProtectionTargetedAppManagementLevels(input)
+	return &out, nil
+}

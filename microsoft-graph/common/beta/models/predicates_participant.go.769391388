@@ -1,0 +1,63 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type ParticipantOperationPredicate struct {
+	 Id *string
+	 IsIdentityAnonymized *bool
+	 IsInLobby *bool
+	 IsMuted *bool
+	 Metadata *string
+	 ODataType *string
+	 PreferredDisplayName *string
+	 RosterSequenceNumber *int64
+}
+
+func (p ParticipantOperationPredicate) Matches(input Participant) bool {
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+	 	return false
+	}
+
+
+	if p.IsIdentityAnonymized != nil && (input.IsIdentityAnonymized == nil || *p.IsIdentityAnonymized != *input.IsIdentityAnonymized) {
+	 	return false
+	}
+
+
+	if p.IsInLobby != nil && (input.IsInLobby == nil || *p.IsInLobby != *input.IsInLobby) {
+	 	return false
+	}
+
+
+	if p.IsMuted != nil && (input.IsMuted == nil || *p.IsMuted != *input.IsMuted) {
+	 	return false
+	}
+
+
+	if p.Metadata != nil && (input.Metadata == nil || *p.Metadata != *input.Metadata) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.PreferredDisplayName != nil && (input.PreferredDisplayName == nil || *p.PreferredDisplayName != *input.PreferredDisplayName) {
+	 	return false
+	}
+
+
+	if p.RosterSequenceNumber != nil && (input.RosterSequenceNumber == nil || *p.RosterSequenceNumber != *input.RosterSequenceNumber) {
+	 	return false
+	}
+
+
+	return true
+}
+

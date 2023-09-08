@@ -1,0 +1,27 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type LoginPageLayoutConfigurationOperationPredicate struct {
+	IsFooterShown *bool
+	IsHeaderShown *bool
+	ODataType     *string
+}
+
+func (p LoginPageLayoutConfigurationOperationPredicate) Matches(input LoginPageLayoutConfiguration) bool {
+
+	if p.IsFooterShown != nil && (input.IsFooterShown == nil || *p.IsFooterShown != *input.IsFooterShown) {
+		return false
+	}
+
+	if p.IsHeaderShown != nil && (input.IsHeaderShown == nil || *p.IsHeaderShown != *input.IsHeaderShown) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	return true
+}

@@ -1,0 +1,43 @@
+package models
+
+import "strings"
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type Windows10DeviceFirmwareConfigurationInterfaceRearCamera string
+
+const (
+	Windows10DeviceFirmwareConfigurationInterfaceRearCameradisabled Windows10DeviceFirmwareConfigurationInterfaceRearCamera = "Disabled"
+	Windows10DeviceFirmwareConfigurationInterfaceRearCameraenabled Windows10DeviceFirmwareConfigurationInterfaceRearCamera = "Enabled"
+	Windows10DeviceFirmwareConfigurationInterfaceRearCameranotConfigured Windows10DeviceFirmwareConfigurationInterfaceRearCamera = "NotConfigured"
+)
+
+
+func PossibleValuesForWindows10DeviceFirmwareConfigurationInterfaceRearCamera() []string {
+	return []string{
+		string(Windows10DeviceFirmwareConfigurationInterfaceRearCameradisabled),
+string(Windows10DeviceFirmwareConfigurationInterfaceRearCameraenabled),
+string(Windows10DeviceFirmwareConfigurationInterfaceRearCameranotConfigured),
+	}
+}
+
+
+
+func parseWindows10DeviceFirmwareConfigurationInterfaceRearCamera(input string) (*Windows10DeviceFirmwareConfigurationInterfaceRearCamera, error) {
+	vals := map[string]Windows10DeviceFirmwareConfigurationInterfaceRearCamera{
+		"disabled": Windows10DeviceFirmwareConfigurationInterfaceRearCameradisabled,
+"enabled": Windows10DeviceFirmwareConfigurationInterfaceRearCameraenabled,
+"notconfigured": Windows10DeviceFirmwareConfigurationInterfaceRearCameranotConfigured,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := Windows10DeviceFirmwareConfigurationInterfaceRearCamera(input)
+	return &out, nil
+}

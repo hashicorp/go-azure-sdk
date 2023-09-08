@@ -1,0 +1,37 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type LogicAppTriggerEndpointConfigurationOperationPredicate struct {
+	LogicAppWorkflowName *string
+	ODataType            *string
+	ResourceGroupName    *string
+	SubscriptionId       *string
+	Url                  *string
+}
+
+func (p LogicAppTriggerEndpointConfigurationOperationPredicate) Matches(input LogicAppTriggerEndpointConfiguration) bool {
+
+	if p.LogicAppWorkflowName != nil && (input.LogicAppWorkflowName == nil || *p.LogicAppWorkflowName != *input.LogicAppWorkflowName) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.ResourceGroupName != nil && (input.ResourceGroupName == nil || *p.ResourceGroupName != *input.ResourceGroupName) {
+		return false
+	}
+
+	if p.SubscriptionId != nil && (input.SubscriptionId == nil || *p.SubscriptionId != *input.SubscriptionId) {
+		return false
+	}
+
+	if p.Url != nil && (input.Url == nil || *p.Url != *input.Url) {
+		return false
+	}
+
+	return true
+}

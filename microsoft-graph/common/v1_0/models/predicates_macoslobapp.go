@@ -1,0 +1,122 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type MacOSLobAppOperationPredicate struct {
+	BuildNumber             *string
+	BundleId                *string
+	CommittedContentVersion *string
+	CreatedDateTime         *string
+	Description             *string
+	Developer               *string
+	DisplayName             *string
+	FileName                *string
+	Id                      *string
+	IgnoreVersionDetection  *bool
+	InformationUrl          *string
+	InstallAsManaged        *bool
+	IsFeatured              *bool
+	LastModifiedDateTime    *string
+	Md5HashChunkSize        *int64
+	Notes                   *string
+	ODataType               *string
+	Owner                   *string
+	PrivacyInformationUrl   *string
+	Publisher               *string
+	Size                    *int64
+	VersionNumber           *string
+}
+
+func (p MacOSLobAppOperationPredicate) Matches(input MacOSLobApp) bool {
+
+	if p.BuildNumber != nil && (input.BuildNumber == nil || *p.BuildNumber != *input.BuildNumber) {
+		return false
+	}
+
+	if p.BundleId != nil && (input.BundleId == nil || *p.BundleId != *input.BundleId) {
+		return false
+	}
+
+	if p.CommittedContentVersion != nil && (input.CommittedContentVersion == nil || *p.CommittedContentVersion != *input.CommittedContentVersion) {
+		return false
+	}
+
+	if p.CreatedDateTime != nil && (input.CreatedDateTime == nil || *p.CreatedDateTime != *input.CreatedDateTime) {
+		return false
+	}
+
+	if p.Description != nil && (input.Description == nil || *p.Description != *input.Description) {
+		return false
+	}
+
+	if p.Developer != nil && (input.Developer == nil || *p.Developer != *input.Developer) {
+		return false
+	}
+
+	if p.DisplayName != nil && (input.DisplayName == nil || *p.DisplayName != *input.DisplayName) {
+		return false
+	}
+
+	if p.FileName != nil && (input.FileName == nil || *p.FileName != *input.FileName) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.IgnoreVersionDetection != nil && (input.IgnoreVersionDetection == nil || *p.IgnoreVersionDetection != *input.IgnoreVersionDetection) {
+		return false
+	}
+
+	if p.InformationUrl != nil && (input.InformationUrl == nil || *p.InformationUrl != *input.InformationUrl) {
+		return false
+	}
+
+	if p.InstallAsManaged != nil && (input.InstallAsManaged == nil || *p.InstallAsManaged != *input.InstallAsManaged) {
+		return false
+	}
+
+	if p.IsFeatured != nil && (input.IsFeatured == nil || *p.IsFeatured != *input.IsFeatured) {
+		return false
+	}
+
+	if p.LastModifiedDateTime != nil && (input.LastModifiedDateTime == nil || *p.LastModifiedDateTime != *input.LastModifiedDateTime) {
+		return false
+	}
+
+	if p.Md5HashChunkSize != nil && (input.Md5HashChunkSize == nil || *p.Md5HashChunkSize != *input.Md5HashChunkSize) {
+		return false
+	}
+
+	if p.Notes != nil && (input.Notes == nil || *p.Notes != *input.Notes) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.Owner != nil && (input.Owner == nil || *p.Owner != *input.Owner) {
+		return false
+	}
+
+	if p.PrivacyInformationUrl != nil && (input.PrivacyInformationUrl == nil || *p.PrivacyInformationUrl != *input.PrivacyInformationUrl) {
+		return false
+	}
+
+	if p.Publisher != nil && (input.Publisher == nil || *p.Publisher != *input.Publisher) {
+		return false
+	}
+
+	if p.Size != nil && (input.Size == nil || *p.Size != *input.Size) {
+		return false
+	}
+
+	if p.VersionNumber != nil && (input.VersionNumber == nil || *p.VersionNumber != *input.VersionNumber) {
+		return false
+	}
+
+	return true
+}

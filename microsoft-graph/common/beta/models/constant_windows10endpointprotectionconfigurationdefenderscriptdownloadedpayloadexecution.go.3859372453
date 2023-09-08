@@ -1,0 +1,49 @@
+package models
+
+import "strings"
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type Windows10EndpointProtectionConfigurationDefenderScriptDownloadedPayloadExecution string
+
+const (
+	Windows10EndpointProtectionConfigurationDefenderScriptDownloadedPayloadExecutionauditMode Windows10EndpointProtectionConfigurationDefenderScriptDownloadedPayloadExecution = "AuditMode"
+	Windows10EndpointProtectionConfigurationDefenderScriptDownloadedPayloadExecutionenable Windows10EndpointProtectionConfigurationDefenderScriptDownloadedPayloadExecution = "Enable"
+	Windows10EndpointProtectionConfigurationDefenderScriptDownloadedPayloadExecutionnotConfigured Windows10EndpointProtectionConfigurationDefenderScriptDownloadedPayloadExecution = "NotConfigured"
+	Windows10EndpointProtectionConfigurationDefenderScriptDownloadedPayloadExecutionuserDefined Windows10EndpointProtectionConfigurationDefenderScriptDownloadedPayloadExecution = "UserDefined"
+	Windows10EndpointProtectionConfigurationDefenderScriptDownloadedPayloadExecutionwarn Windows10EndpointProtectionConfigurationDefenderScriptDownloadedPayloadExecution = "Warn"
+)
+
+
+func PossibleValuesForWindows10EndpointProtectionConfigurationDefenderScriptDownloadedPayloadExecution() []string {
+	return []string{
+		string(Windows10EndpointProtectionConfigurationDefenderScriptDownloadedPayloadExecutionauditMode),
+string(Windows10EndpointProtectionConfigurationDefenderScriptDownloadedPayloadExecutionenable),
+string(Windows10EndpointProtectionConfigurationDefenderScriptDownloadedPayloadExecutionnotConfigured),
+string(Windows10EndpointProtectionConfigurationDefenderScriptDownloadedPayloadExecutionuserDefined),
+string(Windows10EndpointProtectionConfigurationDefenderScriptDownloadedPayloadExecutionwarn),
+	}
+}
+
+
+
+func parseWindows10EndpointProtectionConfigurationDefenderScriptDownloadedPayloadExecution(input string) (*Windows10EndpointProtectionConfigurationDefenderScriptDownloadedPayloadExecution, error) {
+	vals := map[string]Windows10EndpointProtectionConfigurationDefenderScriptDownloadedPayloadExecution{
+		"auditmode": Windows10EndpointProtectionConfigurationDefenderScriptDownloadedPayloadExecutionauditMode,
+"enable": Windows10EndpointProtectionConfigurationDefenderScriptDownloadedPayloadExecutionenable,
+"notconfigured": Windows10EndpointProtectionConfigurationDefenderScriptDownloadedPayloadExecutionnotConfigured,
+"userdefined": Windows10EndpointProtectionConfigurationDefenderScriptDownloadedPayloadExecutionuserDefined,
+"warn": Windows10EndpointProtectionConfigurationDefenderScriptDownloadedPayloadExecutionwarn,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := Windows10EndpointProtectionConfigurationDefenderScriptDownloadedPayloadExecution(input)
+	return &out, nil
+}

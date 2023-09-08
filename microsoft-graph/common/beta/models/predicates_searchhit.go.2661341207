@@ -1,0 +1,75 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type SearchHitOperationPredicate struct {
+	 ContentSource *string
+	 HitId *string
+	 IsCollapsed *bool
+	 ODataType *string
+	 Rank *int64
+	 ResultTemplateId *string
+	 Summary *string
+	 id *string
+	 score *int64
+	 summary *string
+}
+
+func (p SearchHitOperationPredicate) Matches(input SearchHit) bool {
+
+	if p.ContentSource != nil && (input.ContentSource == nil || *p.ContentSource != *input.ContentSource) {
+	 	return false
+	}
+
+
+	if p.HitId != nil && (input.HitId == nil || *p.HitId != *input.HitId) {
+	 	return false
+	}
+
+
+	if p.IsCollapsed != nil && (input.IsCollapsed == nil || *p.IsCollapsed != *input.IsCollapsed) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.Rank != nil && (input.Rank == nil || *p.Rank != *input.Rank) {
+	 	return false
+	}
+
+
+	if p.ResultTemplateId != nil && (input.ResultTemplateId == nil || *p.ResultTemplateId != *input.ResultTemplateId) {
+	 	return false
+	}
+
+
+	if p.Summary != nil && (input.Summary == nil || *p.Summary != *input.Summary) {
+	 	return false
+	}
+
+
+	if p.id != nil && (input.id == nil || *p.id != *input.id) {
+	 	return false
+	}
+
+
+	if p.score != nil && (input.score == nil || *p.score != *input.score) {
+	 	return false
+	}
+
+
+	if p.summary != nil && (input.summary == nil || *p.summary != *input.summary) {
+	 	return false
+	}
+
+
+	return true
+}
+

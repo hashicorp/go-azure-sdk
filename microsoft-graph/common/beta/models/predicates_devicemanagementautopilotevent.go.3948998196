@@ -1,0 +1,153 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type DeviceManagementAutopilotEventOperationPredicate struct {
+	 AccountSetupDuration *string
+	 DeploymentDuration *string
+	 DeploymentEndDateTime *string
+	 DeploymentStartDateTime *string
+	 DeploymentTotalDuration *string
+	 DeviceId *string
+	 DevicePreparationDuration *string
+	 DeviceRegisteredDateTime *string
+	 DeviceSerialNumber *string
+	 DeviceSetupDuration *string
+	 EnrollmentFailureDetails *string
+	 EnrollmentStartDateTime *string
+	 EventDateTime *string
+	 Id *string
+	 ManagedDeviceName *string
+	 ODataType *string
+	 OsVersion *string
+	 TargetedAppCount *int64
+	 TargetedPolicyCount *int64
+	 UserPrincipalName *string
+	 Windows10EnrollmentCompletionPageConfigurationDisplayName *string
+	 Windows10EnrollmentCompletionPageConfigurationId *string
+	 WindowsAutopilotDeploymentProfileDisplayName *string
+}
+
+func (p DeviceManagementAutopilotEventOperationPredicate) Matches(input DeviceManagementAutopilotEvent) bool {
+
+	if p.AccountSetupDuration != nil && (input.AccountSetupDuration == nil || *p.AccountSetupDuration != *input.AccountSetupDuration) {
+	 	return false
+	}
+
+
+	if p.DeploymentDuration != nil && (input.DeploymentDuration == nil || *p.DeploymentDuration != *input.DeploymentDuration) {
+	 	return false
+	}
+
+
+	if p.DeploymentEndDateTime != nil && (input.DeploymentEndDateTime == nil || *p.DeploymentEndDateTime != *input.DeploymentEndDateTime) {
+	 	return false
+	}
+
+
+	if p.DeploymentStartDateTime != nil && (input.DeploymentStartDateTime == nil || *p.DeploymentStartDateTime != *input.DeploymentStartDateTime) {
+	 	return false
+	}
+
+
+	if p.DeploymentTotalDuration != nil && (input.DeploymentTotalDuration == nil || *p.DeploymentTotalDuration != *input.DeploymentTotalDuration) {
+	 	return false
+	}
+
+
+	if p.DeviceId != nil && (input.DeviceId == nil || *p.DeviceId != *input.DeviceId) {
+	 	return false
+	}
+
+
+	if p.DevicePreparationDuration != nil && (input.DevicePreparationDuration == nil || *p.DevicePreparationDuration != *input.DevicePreparationDuration) {
+	 	return false
+	}
+
+
+	if p.DeviceRegisteredDateTime != nil && (input.DeviceRegisteredDateTime == nil || *p.DeviceRegisteredDateTime != *input.DeviceRegisteredDateTime) {
+	 	return false
+	}
+
+
+	if p.DeviceSerialNumber != nil && (input.DeviceSerialNumber == nil || *p.DeviceSerialNumber != *input.DeviceSerialNumber) {
+	 	return false
+	}
+
+
+	if p.DeviceSetupDuration != nil && (input.DeviceSetupDuration == nil || *p.DeviceSetupDuration != *input.DeviceSetupDuration) {
+	 	return false
+	}
+
+
+	if p.EnrollmentFailureDetails != nil && (input.EnrollmentFailureDetails == nil || *p.EnrollmentFailureDetails != *input.EnrollmentFailureDetails) {
+	 	return false
+	}
+
+
+	if p.EnrollmentStartDateTime != nil && (input.EnrollmentStartDateTime == nil || *p.EnrollmentStartDateTime != *input.EnrollmentStartDateTime) {
+	 	return false
+	}
+
+
+	if p.EventDateTime != nil && (input.EventDateTime == nil || *p.EventDateTime != *input.EventDateTime) {
+	 	return false
+	}
+
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+	 	return false
+	}
+
+
+	if p.ManagedDeviceName != nil && (input.ManagedDeviceName == nil || *p.ManagedDeviceName != *input.ManagedDeviceName) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.OsVersion != nil && (input.OsVersion == nil || *p.OsVersion != *input.OsVersion) {
+	 	return false
+	}
+
+
+	if p.TargetedAppCount != nil && (input.TargetedAppCount == nil || *p.TargetedAppCount != *input.TargetedAppCount) {
+	 	return false
+	}
+
+
+	if p.TargetedPolicyCount != nil && (input.TargetedPolicyCount == nil || *p.TargetedPolicyCount != *input.TargetedPolicyCount) {
+	 	return false
+	}
+
+
+	if p.UserPrincipalName != nil && (input.UserPrincipalName == nil || *p.UserPrincipalName != *input.UserPrincipalName) {
+	 	return false
+	}
+
+
+	if p.Windows10EnrollmentCompletionPageConfigurationDisplayName != nil && (input.Windows10EnrollmentCompletionPageConfigurationDisplayName == nil || *p.Windows10EnrollmentCompletionPageConfigurationDisplayName != *input.Windows10EnrollmentCompletionPageConfigurationDisplayName) {
+	 	return false
+	}
+
+
+	if p.Windows10EnrollmentCompletionPageConfigurationId != nil && (input.Windows10EnrollmentCompletionPageConfigurationId == nil || *p.Windows10EnrollmentCompletionPageConfigurationId != *input.Windows10EnrollmentCompletionPageConfigurationId) {
+	 	return false
+	}
+
+
+	if p.WindowsAutopilotDeploymentProfileDisplayName != nil && (input.WindowsAutopilotDeploymentProfileDisplayName == nil || *p.WindowsAutopilotDeploymentProfileDisplayName != *input.WindowsAutopilotDeploymentProfileDisplayName) {
+	 	return false
+	}
+
+
+	return true
+}
+

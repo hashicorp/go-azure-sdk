@@ -1,0 +1,14 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type PrivilegedAccessSchedule struct {
+	CreatedDateTime  *string          `json:"createdDateTime,omitempty"`
+	CreatedUsing     *string          `json:"createdUsing,omitempty"`
+	Id               *string          `json:"id,omitempty"`
+	ModifiedDateTime *string          `json:"modifiedDateTime,omitempty"`
+	ODataType        *string          `json:"@odata.type,omitempty"`
+	ScheduleInfo     *RequestSchedule `json:"scheduleInfo,omitempty"`
+	Status           *string          `json:"status,omitempty"`
+}

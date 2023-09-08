@@ -1,0 +1,43 @@
+package models
+
+import "strings"
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type NetworkaccessForwardingProfileTrafficForwardingType string
+
+const (
+	NetworkaccessForwardingProfileTrafficForwardingTypeinternet NetworkaccessForwardingProfileTrafficForwardingType = "Internet"
+	NetworkaccessForwardingProfileTrafficForwardingTypem365 NetworkaccessForwardingProfileTrafficForwardingType = "M365"
+	NetworkaccessForwardingProfileTrafficForwardingTypeprivate NetworkaccessForwardingProfileTrafficForwardingType = "Private"
+)
+
+
+func PossibleValuesForNetworkaccessForwardingProfileTrafficForwardingType() []string {
+	return []string{
+		string(NetworkaccessForwardingProfileTrafficForwardingTypeinternet),
+string(NetworkaccessForwardingProfileTrafficForwardingTypem365),
+string(NetworkaccessForwardingProfileTrafficForwardingTypeprivate),
+	}
+}
+
+
+
+func parseNetworkaccessForwardingProfileTrafficForwardingType(input string) (*NetworkaccessForwardingProfileTrafficForwardingType, error) {
+	vals := map[string]NetworkaccessForwardingProfileTrafficForwardingType{
+		"internet": NetworkaccessForwardingProfileTrafficForwardingTypeinternet,
+"m365": NetworkaccessForwardingProfileTrafficForwardingTypem365,
+"private": NetworkaccessForwardingProfileTrafficForwardingTypeprivate,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := NetworkaccessForwardingProfileTrafficForwardingType(input)
+	return &out, nil
+}

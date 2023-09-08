@@ -1,0 +1,37 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type AttributeMappingOperationPredicate struct {
+	DefaultValue            *string
+	ExportMissingReferences *bool
+	MatchingPriority        *int64
+	ODataType               *string
+	TargetAttributeName     *string
+}
+
+func (p AttributeMappingOperationPredicate) Matches(input AttributeMapping) bool {
+
+	if p.DefaultValue != nil && (input.DefaultValue == nil || *p.DefaultValue != *input.DefaultValue) {
+		return false
+	}
+
+	if p.ExportMissingReferences != nil && (input.ExportMissingReferences == nil || *p.ExportMissingReferences != *input.ExportMissingReferences) {
+		return false
+	}
+
+	if p.MatchingPriority != nil && (input.MatchingPriority == nil || *p.MatchingPriority != *input.MatchingPriority) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.TargetAttributeName != nil && (input.TargetAttributeName == nil || *p.TargetAttributeName != *input.TargetAttributeName) {
+		return false
+	}
+
+	return true
+}

@@ -1,0 +1,27 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type AndroidPermissionActionOperationPredicate struct {
+	 ODataType *string
+	 Permission *string
+}
+
+func (p AndroidPermissionActionOperationPredicate) Matches(input AndroidPermissionAction) bool {
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.Permission != nil && (input.Permission == nil || *p.Permission != *input.Permission) {
+	 	return false
+	}
+
+
+	return true
+}
+

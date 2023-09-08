@@ -1,0 +1,45 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type TooManyGlobalAdminsAssignedToTenantAlertIncidentOperationPredicate struct {
+	 AssigneeDisplayName *string
+	 AssigneeId *string
+	 AssigneeUserPrincipalName *string
+	 Id *string
+	 ODataType *string
+}
+
+func (p TooManyGlobalAdminsAssignedToTenantAlertIncidentOperationPredicate) Matches(input TooManyGlobalAdminsAssignedToTenantAlertIncident) bool {
+
+	if p.AssigneeDisplayName != nil && (input.AssigneeDisplayName == nil || *p.AssigneeDisplayName != *input.AssigneeDisplayName) {
+	 	return false
+	}
+
+
+	if p.AssigneeId != nil && (input.AssigneeId == nil || *p.AssigneeId != *input.AssigneeId) {
+	 	return false
+	}
+
+
+	if p.AssigneeUserPrincipalName != nil && (input.AssigneeUserPrincipalName == nil || *p.AssigneeUserPrincipalName != *input.AssigneeUserPrincipalName) {
+	 	return false
+	}
+
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	return true
+}
+

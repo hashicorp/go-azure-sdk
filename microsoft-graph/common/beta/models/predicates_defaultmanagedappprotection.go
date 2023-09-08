@@ -1,0 +1,377 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type DefaultManagedAppProtectionOperationPredicate struct {
+	AllowedAndroidDeviceManufacturers               *string
+	AllowedIosDeviceModels                          *string
+	AllowedOutboundClipboardSharingExceptionLength  *int64
+	BiometricAuthenticationBlocked                  *bool
+	BlockAfterCompanyPortalUpdateDeferralInDays     *int64
+	BlockDataIngestionIntoOrganizationDocuments     *bool
+	ConnectToVpnOnLaunch                            *bool
+	ContactSyncBlocked                              *bool
+	CreatedDateTime                                 *string
+	CustomBrowserDisplayName                        *string
+	CustomBrowserPackageId                          *string
+	CustomBrowserProtocol                           *string
+	CustomDialerAppDisplayName                      *string
+	CustomDialerAppPackageId                        *string
+	CustomDialerAppProtocol                         *string
+	DataBackupBlocked                               *bool
+	DeployedAppCount                                *int64
+	Description                                     *string
+	DeviceComplianceRequired                        *bool
+	DeviceLockRequired                              *bool
+	DisableAppEncryptionIfDeviceEncryptionIsEnabled *bool
+	DisableAppPinIfDevicePinIsSet                   *bool
+	DisableProtectionOfManagedOutboundOpenInData    *bool
+	DisplayName                                     *string
+	EncryptAppData                                  *bool
+	FaceIdBlocked                                   *bool
+	FilterOpenInToOnlyManagedApps                   *bool
+	FingerprintAndBiometricEnabled                  *bool
+	FingerprintBlocked                              *bool
+	GracePeriodToBlockAppsDuringOffClockHours       *string
+	Id                                              *string
+	LastModifiedDateTime                            *string
+	ManagedBrowserToOpenLinksRequired               *bool
+	MaximumPinRetries                               *int64
+	MaximumRequiredOsVersion                        *string
+	MaximumWarningOsVersion                         *string
+	MaximumWipeOsVersion                            *string
+	MinimumPinLength                                *int64
+	MinimumRequiredAppVersion                       *string
+	MinimumRequiredCompanyPortalVersion             *string
+	MinimumRequiredOsVersion                        *string
+	MinimumRequiredPatchVersion                     *string
+	MinimumRequiredSdkVersion                       *string
+	MinimumWarningAppVersion                        *string
+	MinimumWarningCompanyPortalVersion              *string
+	MinimumWarningOsVersion                         *string
+	MinimumWarningPatchVersion                      *string
+	MinimumWarningSdkVersion                        *string
+	MinimumWipeAppVersion                           *string
+	MinimumWipeCompanyPortalVersion                 *string
+	MinimumWipeOsVersion                            *string
+	MinimumWipePatchVersion                         *string
+	MinimumWipeSdkVersion                           *string
+	ODataType                                       *string
+	OrganizationalCredentialsRequired               *bool
+	PeriodBeforePinReset                            *string
+	PeriodOfflineBeforeAccessCheck                  *string
+	PeriodOfflineBeforeWipeIsEnforced               *string
+	PeriodOnlineBeforeAccessCheck                   *string
+	PinRequired                                     *bool
+	PinRequiredInsteadOfBiometricTimeout            *string
+	PreviousPinBlockCount                           *int64
+	PrintBlocked                                    *bool
+	ProtectInboundDataFromUnknownSources            *bool
+	RequireClass3Biometrics                         *bool
+	RequirePinAfterBiometricChange                  *bool
+	SaveAsBlocked                                   *bool
+	ScreenCaptureBlocked                            *bool
+	SimplePinBlocked                                *bool
+	ThirdPartyKeyboardsBlocked                      *bool
+	Version                                         *string
+	WarnAfterCompanyPortalUpdateDeferralInDays      *int64
+	WipeAfterCompanyPortalUpdateDeferralInDays      *int64
+}
+
+func (p DefaultManagedAppProtectionOperationPredicate) Matches(input DefaultManagedAppProtection) bool {
+
+	if p.AllowedAndroidDeviceManufacturers != nil && (input.AllowedAndroidDeviceManufacturers == nil || *p.AllowedAndroidDeviceManufacturers != *input.AllowedAndroidDeviceManufacturers) {
+		return false
+	}
+
+	if p.AllowedIosDeviceModels != nil && (input.AllowedIosDeviceModels == nil || *p.AllowedIosDeviceModels != *input.AllowedIosDeviceModels) {
+		return false
+	}
+
+	if p.AllowedOutboundClipboardSharingExceptionLength != nil && (input.AllowedOutboundClipboardSharingExceptionLength == nil || *p.AllowedOutboundClipboardSharingExceptionLength != *input.AllowedOutboundClipboardSharingExceptionLength) {
+		return false
+	}
+
+	if p.BiometricAuthenticationBlocked != nil && (input.BiometricAuthenticationBlocked == nil || *p.BiometricAuthenticationBlocked != *input.BiometricAuthenticationBlocked) {
+		return false
+	}
+
+	if p.BlockAfterCompanyPortalUpdateDeferralInDays != nil && (input.BlockAfterCompanyPortalUpdateDeferralInDays == nil || *p.BlockAfterCompanyPortalUpdateDeferralInDays != *input.BlockAfterCompanyPortalUpdateDeferralInDays) {
+		return false
+	}
+
+	if p.BlockDataIngestionIntoOrganizationDocuments != nil && (input.BlockDataIngestionIntoOrganizationDocuments == nil || *p.BlockDataIngestionIntoOrganizationDocuments != *input.BlockDataIngestionIntoOrganizationDocuments) {
+		return false
+	}
+
+	if p.ConnectToVpnOnLaunch != nil && (input.ConnectToVpnOnLaunch == nil || *p.ConnectToVpnOnLaunch != *input.ConnectToVpnOnLaunch) {
+		return false
+	}
+
+	if p.ContactSyncBlocked != nil && (input.ContactSyncBlocked == nil || *p.ContactSyncBlocked != *input.ContactSyncBlocked) {
+		return false
+	}
+
+	if p.CreatedDateTime != nil && (input.CreatedDateTime == nil || *p.CreatedDateTime != *input.CreatedDateTime) {
+		return false
+	}
+
+	if p.CustomBrowserDisplayName != nil && (input.CustomBrowserDisplayName == nil || *p.CustomBrowserDisplayName != *input.CustomBrowserDisplayName) {
+		return false
+	}
+
+	if p.CustomBrowserPackageId != nil && (input.CustomBrowserPackageId == nil || *p.CustomBrowserPackageId != *input.CustomBrowserPackageId) {
+		return false
+	}
+
+	if p.CustomBrowserProtocol != nil && (input.CustomBrowserProtocol == nil || *p.CustomBrowserProtocol != *input.CustomBrowserProtocol) {
+		return false
+	}
+
+	if p.CustomDialerAppDisplayName != nil && (input.CustomDialerAppDisplayName == nil || *p.CustomDialerAppDisplayName != *input.CustomDialerAppDisplayName) {
+		return false
+	}
+
+	if p.CustomDialerAppPackageId != nil && (input.CustomDialerAppPackageId == nil || *p.CustomDialerAppPackageId != *input.CustomDialerAppPackageId) {
+		return false
+	}
+
+	if p.CustomDialerAppProtocol != nil && (input.CustomDialerAppProtocol == nil || *p.CustomDialerAppProtocol != *input.CustomDialerAppProtocol) {
+		return false
+	}
+
+	if p.DataBackupBlocked != nil && (input.DataBackupBlocked == nil || *p.DataBackupBlocked != *input.DataBackupBlocked) {
+		return false
+	}
+
+	if p.DeployedAppCount != nil && (input.DeployedAppCount == nil || *p.DeployedAppCount != *input.DeployedAppCount) {
+		return false
+	}
+
+	if p.Description != nil && (input.Description == nil || *p.Description != *input.Description) {
+		return false
+	}
+
+	if p.DeviceComplianceRequired != nil && (input.DeviceComplianceRequired == nil || *p.DeviceComplianceRequired != *input.DeviceComplianceRequired) {
+		return false
+	}
+
+	if p.DeviceLockRequired != nil && (input.DeviceLockRequired == nil || *p.DeviceLockRequired != *input.DeviceLockRequired) {
+		return false
+	}
+
+	if p.DisableAppEncryptionIfDeviceEncryptionIsEnabled != nil && (input.DisableAppEncryptionIfDeviceEncryptionIsEnabled == nil || *p.DisableAppEncryptionIfDeviceEncryptionIsEnabled != *input.DisableAppEncryptionIfDeviceEncryptionIsEnabled) {
+		return false
+	}
+
+	if p.DisableAppPinIfDevicePinIsSet != nil && (input.DisableAppPinIfDevicePinIsSet == nil || *p.DisableAppPinIfDevicePinIsSet != *input.DisableAppPinIfDevicePinIsSet) {
+		return false
+	}
+
+	if p.DisableProtectionOfManagedOutboundOpenInData != nil && (input.DisableProtectionOfManagedOutboundOpenInData == nil || *p.DisableProtectionOfManagedOutboundOpenInData != *input.DisableProtectionOfManagedOutboundOpenInData) {
+		return false
+	}
+
+	if p.DisplayName != nil && (input.DisplayName == nil || *p.DisplayName != *input.DisplayName) {
+		return false
+	}
+
+	if p.EncryptAppData != nil && (input.EncryptAppData == nil || *p.EncryptAppData != *input.EncryptAppData) {
+		return false
+	}
+
+	if p.FaceIdBlocked != nil && (input.FaceIdBlocked == nil || *p.FaceIdBlocked != *input.FaceIdBlocked) {
+		return false
+	}
+
+	if p.FilterOpenInToOnlyManagedApps != nil && (input.FilterOpenInToOnlyManagedApps == nil || *p.FilterOpenInToOnlyManagedApps != *input.FilterOpenInToOnlyManagedApps) {
+		return false
+	}
+
+	if p.FingerprintAndBiometricEnabled != nil && (input.FingerprintAndBiometricEnabled == nil || *p.FingerprintAndBiometricEnabled != *input.FingerprintAndBiometricEnabled) {
+		return false
+	}
+
+	if p.FingerprintBlocked != nil && (input.FingerprintBlocked == nil || *p.FingerprintBlocked != *input.FingerprintBlocked) {
+		return false
+	}
+
+	if p.GracePeriodToBlockAppsDuringOffClockHours != nil && (input.GracePeriodToBlockAppsDuringOffClockHours == nil || *p.GracePeriodToBlockAppsDuringOffClockHours != *input.GracePeriodToBlockAppsDuringOffClockHours) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.LastModifiedDateTime != nil && (input.LastModifiedDateTime == nil || *p.LastModifiedDateTime != *input.LastModifiedDateTime) {
+		return false
+	}
+
+	if p.ManagedBrowserToOpenLinksRequired != nil && (input.ManagedBrowserToOpenLinksRequired == nil || *p.ManagedBrowserToOpenLinksRequired != *input.ManagedBrowserToOpenLinksRequired) {
+		return false
+	}
+
+	if p.MaximumPinRetries != nil && (input.MaximumPinRetries == nil || *p.MaximumPinRetries != *input.MaximumPinRetries) {
+		return false
+	}
+
+	if p.MaximumRequiredOsVersion != nil && (input.MaximumRequiredOsVersion == nil || *p.MaximumRequiredOsVersion != *input.MaximumRequiredOsVersion) {
+		return false
+	}
+
+	if p.MaximumWarningOsVersion != nil && (input.MaximumWarningOsVersion == nil || *p.MaximumWarningOsVersion != *input.MaximumWarningOsVersion) {
+		return false
+	}
+
+	if p.MaximumWipeOsVersion != nil && (input.MaximumWipeOsVersion == nil || *p.MaximumWipeOsVersion != *input.MaximumWipeOsVersion) {
+		return false
+	}
+
+	if p.MinimumPinLength != nil && (input.MinimumPinLength == nil || *p.MinimumPinLength != *input.MinimumPinLength) {
+		return false
+	}
+
+	if p.MinimumRequiredAppVersion != nil && (input.MinimumRequiredAppVersion == nil || *p.MinimumRequiredAppVersion != *input.MinimumRequiredAppVersion) {
+		return false
+	}
+
+	if p.MinimumRequiredCompanyPortalVersion != nil && (input.MinimumRequiredCompanyPortalVersion == nil || *p.MinimumRequiredCompanyPortalVersion != *input.MinimumRequiredCompanyPortalVersion) {
+		return false
+	}
+
+	if p.MinimumRequiredOsVersion != nil && (input.MinimumRequiredOsVersion == nil || *p.MinimumRequiredOsVersion != *input.MinimumRequiredOsVersion) {
+		return false
+	}
+
+	if p.MinimumRequiredPatchVersion != nil && (input.MinimumRequiredPatchVersion == nil || *p.MinimumRequiredPatchVersion != *input.MinimumRequiredPatchVersion) {
+		return false
+	}
+
+	if p.MinimumRequiredSdkVersion != nil && (input.MinimumRequiredSdkVersion == nil || *p.MinimumRequiredSdkVersion != *input.MinimumRequiredSdkVersion) {
+		return false
+	}
+
+	if p.MinimumWarningAppVersion != nil && (input.MinimumWarningAppVersion == nil || *p.MinimumWarningAppVersion != *input.MinimumWarningAppVersion) {
+		return false
+	}
+
+	if p.MinimumWarningCompanyPortalVersion != nil && (input.MinimumWarningCompanyPortalVersion == nil || *p.MinimumWarningCompanyPortalVersion != *input.MinimumWarningCompanyPortalVersion) {
+		return false
+	}
+
+	if p.MinimumWarningOsVersion != nil && (input.MinimumWarningOsVersion == nil || *p.MinimumWarningOsVersion != *input.MinimumWarningOsVersion) {
+		return false
+	}
+
+	if p.MinimumWarningPatchVersion != nil && (input.MinimumWarningPatchVersion == nil || *p.MinimumWarningPatchVersion != *input.MinimumWarningPatchVersion) {
+		return false
+	}
+
+	if p.MinimumWarningSdkVersion != nil && (input.MinimumWarningSdkVersion == nil || *p.MinimumWarningSdkVersion != *input.MinimumWarningSdkVersion) {
+		return false
+	}
+
+	if p.MinimumWipeAppVersion != nil && (input.MinimumWipeAppVersion == nil || *p.MinimumWipeAppVersion != *input.MinimumWipeAppVersion) {
+		return false
+	}
+
+	if p.MinimumWipeCompanyPortalVersion != nil && (input.MinimumWipeCompanyPortalVersion == nil || *p.MinimumWipeCompanyPortalVersion != *input.MinimumWipeCompanyPortalVersion) {
+		return false
+	}
+
+	if p.MinimumWipeOsVersion != nil && (input.MinimumWipeOsVersion == nil || *p.MinimumWipeOsVersion != *input.MinimumWipeOsVersion) {
+		return false
+	}
+
+	if p.MinimumWipePatchVersion != nil && (input.MinimumWipePatchVersion == nil || *p.MinimumWipePatchVersion != *input.MinimumWipePatchVersion) {
+		return false
+	}
+
+	if p.MinimumWipeSdkVersion != nil && (input.MinimumWipeSdkVersion == nil || *p.MinimumWipeSdkVersion != *input.MinimumWipeSdkVersion) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.OrganizationalCredentialsRequired != nil && (input.OrganizationalCredentialsRequired == nil || *p.OrganizationalCredentialsRequired != *input.OrganizationalCredentialsRequired) {
+		return false
+	}
+
+	if p.PeriodBeforePinReset != nil && (input.PeriodBeforePinReset == nil || *p.PeriodBeforePinReset != *input.PeriodBeforePinReset) {
+		return false
+	}
+
+	if p.PeriodOfflineBeforeAccessCheck != nil && (input.PeriodOfflineBeforeAccessCheck == nil || *p.PeriodOfflineBeforeAccessCheck != *input.PeriodOfflineBeforeAccessCheck) {
+		return false
+	}
+
+	if p.PeriodOfflineBeforeWipeIsEnforced != nil && (input.PeriodOfflineBeforeWipeIsEnforced == nil || *p.PeriodOfflineBeforeWipeIsEnforced != *input.PeriodOfflineBeforeWipeIsEnforced) {
+		return false
+	}
+
+	if p.PeriodOnlineBeforeAccessCheck != nil && (input.PeriodOnlineBeforeAccessCheck == nil || *p.PeriodOnlineBeforeAccessCheck != *input.PeriodOnlineBeforeAccessCheck) {
+		return false
+	}
+
+	if p.PinRequired != nil && (input.PinRequired == nil || *p.PinRequired != *input.PinRequired) {
+		return false
+	}
+
+	if p.PinRequiredInsteadOfBiometricTimeout != nil && (input.PinRequiredInsteadOfBiometricTimeout == nil || *p.PinRequiredInsteadOfBiometricTimeout != *input.PinRequiredInsteadOfBiometricTimeout) {
+		return false
+	}
+
+	if p.PreviousPinBlockCount != nil && (input.PreviousPinBlockCount == nil || *p.PreviousPinBlockCount != *input.PreviousPinBlockCount) {
+		return false
+	}
+
+	if p.PrintBlocked != nil && (input.PrintBlocked == nil || *p.PrintBlocked != *input.PrintBlocked) {
+		return false
+	}
+
+	if p.ProtectInboundDataFromUnknownSources != nil && (input.ProtectInboundDataFromUnknownSources == nil || *p.ProtectInboundDataFromUnknownSources != *input.ProtectInboundDataFromUnknownSources) {
+		return false
+	}
+
+	if p.RequireClass3Biometrics != nil && (input.RequireClass3Biometrics == nil || *p.RequireClass3Biometrics != *input.RequireClass3Biometrics) {
+		return false
+	}
+
+	if p.RequirePinAfterBiometricChange != nil && (input.RequirePinAfterBiometricChange == nil || *p.RequirePinAfterBiometricChange != *input.RequirePinAfterBiometricChange) {
+		return false
+	}
+
+	if p.SaveAsBlocked != nil && (input.SaveAsBlocked == nil || *p.SaveAsBlocked != *input.SaveAsBlocked) {
+		return false
+	}
+
+	if p.ScreenCaptureBlocked != nil && (input.ScreenCaptureBlocked == nil || *p.ScreenCaptureBlocked != *input.ScreenCaptureBlocked) {
+		return false
+	}
+
+	if p.SimplePinBlocked != nil && (input.SimplePinBlocked == nil || *p.SimplePinBlocked != *input.SimplePinBlocked) {
+		return false
+	}
+
+	if p.ThirdPartyKeyboardsBlocked != nil && (input.ThirdPartyKeyboardsBlocked == nil || *p.ThirdPartyKeyboardsBlocked != *input.ThirdPartyKeyboardsBlocked) {
+		return false
+	}
+
+	if p.Version != nil && (input.Version == nil || *p.Version != *input.Version) {
+		return false
+	}
+
+	if p.WarnAfterCompanyPortalUpdateDeferralInDays != nil && (input.WarnAfterCompanyPortalUpdateDeferralInDays == nil || *p.WarnAfterCompanyPortalUpdateDeferralInDays != *input.WarnAfterCompanyPortalUpdateDeferralInDays) {
+		return false
+	}
+
+	if p.WipeAfterCompanyPortalUpdateDeferralInDays != nil && (input.WipeAfterCompanyPortalUpdateDeferralInDays == nil || *p.WipeAfterCompanyPortalUpdateDeferralInDays != *input.WipeAfterCompanyPortalUpdateDeferralInDays) {
+		return false
+	}
+
+	return true
+}

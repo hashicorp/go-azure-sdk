@@ -1,0 +1,40 @@
+package models
+
+import "strings"
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type WindowsManagedAppProtectionAllowedOutboundClipboardSharingLevel string
+
+const (
+	WindowsManagedAppProtectionAllowedOutboundClipboardSharingLevelanyDestinationAnySource WindowsManagedAppProtectionAllowedOutboundClipboardSharingLevel = "AnyDestinationAnySource"
+	WindowsManagedAppProtectionAllowedOutboundClipboardSharingLevelnone WindowsManagedAppProtectionAllowedOutboundClipboardSharingLevel = "None"
+)
+
+
+func PossibleValuesForWindowsManagedAppProtectionAllowedOutboundClipboardSharingLevel() []string {
+	return []string{
+		string(WindowsManagedAppProtectionAllowedOutboundClipboardSharingLevelanyDestinationAnySource),
+string(WindowsManagedAppProtectionAllowedOutboundClipboardSharingLevelnone),
+	}
+}
+
+
+
+func parseWindowsManagedAppProtectionAllowedOutboundClipboardSharingLevel(input string) (*WindowsManagedAppProtectionAllowedOutboundClipboardSharingLevel, error) {
+	vals := map[string]WindowsManagedAppProtectionAllowedOutboundClipboardSharingLevel{
+		"anydestinationanysource": WindowsManagedAppProtectionAllowedOutboundClipboardSharingLevelanyDestinationAnySource,
+"none": WindowsManagedAppProtectionAllowedOutboundClipboardSharingLevelnone,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := WindowsManagedAppProtectionAllowedOutboundClipboardSharingLevel(input)
+	return &out, nil
+}

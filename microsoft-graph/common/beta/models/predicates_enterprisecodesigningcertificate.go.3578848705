@@ -1,0 +1,69 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type EnterpriseCodeSigningCertificateOperationPredicate struct {
+	 Content *string
+	 ExpirationDateTime *string
+	 Id *string
+	 Issuer *string
+	 IssuerName *string
+	 ODataType *string
+	 Subject *string
+	 SubjectName *string
+	 UploadDateTime *string
+}
+
+func (p EnterpriseCodeSigningCertificateOperationPredicate) Matches(input EnterpriseCodeSigningCertificate) bool {
+
+	if p.Content != nil && (input.Content == nil || *p.Content != *input.Content) {
+	 	return false
+	}
+
+
+	if p.ExpirationDateTime != nil && (input.ExpirationDateTime == nil || *p.ExpirationDateTime != *input.ExpirationDateTime) {
+	 	return false
+	}
+
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+	 	return false
+	}
+
+
+	if p.Issuer != nil && (input.Issuer == nil || *p.Issuer != *input.Issuer) {
+	 	return false
+	}
+
+
+	if p.IssuerName != nil && (input.IssuerName == nil || *p.IssuerName != *input.IssuerName) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.Subject != nil && (input.Subject == nil || *p.Subject != *input.Subject) {
+	 	return false
+	}
+
+
+	if p.SubjectName != nil && (input.SubjectName == nil || *p.SubjectName != *input.SubjectName) {
+	 	return false
+	}
+
+
+	if p.UploadDateTime != nil && (input.UploadDateTime == nil || *p.UploadDateTime != *input.UploadDateTime) {
+	 	return false
+	}
+
+
+	return true
+}
+

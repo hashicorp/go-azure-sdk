@@ -1,0 +1,42 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type WorkbookSortFieldOperationPredicate struct {
+	Ascending  *bool
+	Color      *string
+	DataOption *string
+	Key        *int64
+	ODataType  *string
+	SortOn     *string
+}
+
+func (p WorkbookSortFieldOperationPredicate) Matches(input WorkbookSortField) bool {
+
+	if p.Ascending != nil && (input.Ascending == nil || *p.Ascending != *input.Ascending) {
+		return false
+	}
+
+	if p.Color != nil && (input.Color == nil || *p.Color != *input.Color) {
+		return false
+	}
+
+	if p.DataOption != nil && (input.DataOption == nil || *p.DataOption != *input.DataOption) {
+		return false
+	}
+
+	if p.Key != nil && (input.Key == nil || *p.Key != *input.Key) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.SortOn != nil && (input.SortOn == nil || *p.SortOn != *input.SortOn) {
+		return false
+	}
+
+	return true
+}

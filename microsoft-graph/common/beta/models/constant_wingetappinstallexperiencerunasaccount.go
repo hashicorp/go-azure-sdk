@@ -1,0 +1,34 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type WinGetAppInstallExperienceRunAsAccount string
+
+const (
+	WinGetAppInstallExperienceRunAsAccountsystem WinGetAppInstallExperienceRunAsAccount = "System"
+	WinGetAppInstallExperienceRunAsAccountuser   WinGetAppInstallExperienceRunAsAccount = "User"
+)
+
+func PossibleValuesForWinGetAppInstallExperienceRunAsAccount() []string {
+	return []string{
+		string(WinGetAppInstallExperienceRunAsAccountsystem),
+		string(WinGetAppInstallExperienceRunAsAccountuser),
+	}
+}
+
+func parseWinGetAppInstallExperienceRunAsAccount(input string) (*WinGetAppInstallExperienceRunAsAccount, error) {
+	vals := map[string]WinGetAppInstallExperienceRunAsAccount{
+		"system": WinGetAppInstallExperienceRunAsAccountsystem,
+		"user":   WinGetAppInstallExperienceRunAsAccountuser,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := WinGetAppInstallExperienceRunAsAccount(input)
+	return &out, nil
+}

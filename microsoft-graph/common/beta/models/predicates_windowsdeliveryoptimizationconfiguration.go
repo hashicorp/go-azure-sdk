@@ -1,0 +1,102 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type WindowsDeliveryOptimizationConfigurationOperationPredicate struct {
+	BackgroundDownloadFromHttpDelayInSeconds                  *int64
+	CacheServerBackgroundDownloadFallbackToHttpDelayInSeconds *int64
+	CacheServerForegroundDownloadFallbackToHttpDelayInSeconds *int64
+	CreatedDateTime                                           *string
+	Description                                               *string
+	DisplayName                                               *string
+	ForegroundDownloadFromHttpDelayInSeconds                  *int64
+	Id                                                        *string
+	LastModifiedDateTime                                      *string
+	MaximumCacheAgeInDays                                     *int64
+	MinimumBatteryPercentageAllowedToUpload                   *int64
+	MinimumDiskSizeAllowedToPeerInGigabytes                   *int64
+	MinimumFileSizeToCacheInMegabytes                         *int64
+	MinimumRamAllowedToPeerInGigabytes                        *int64
+	ModifyCacheLocation                                       *string
+	ODataType                                                 *string
+	SupportsScopeTags                                         *bool
+	Version                                                   *int64
+}
+
+func (p WindowsDeliveryOptimizationConfigurationOperationPredicate) Matches(input WindowsDeliveryOptimizationConfiguration) bool {
+
+	if p.BackgroundDownloadFromHttpDelayInSeconds != nil && (input.BackgroundDownloadFromHttpDelayInSeconds == nil || *p.BackgroundDownloadFromHttpDelayInSeconds != *input.BackgroundDownloadFromHttpDelayInSeconds) {
+		return false
+	}
+
+	if p.CacheServerBackgroundDownloadFallbackToHttpDelayInSeconds != nil && (input.CacheServerBackgroundDownloadFallbackToHttpDelayInSeconds == nil || *p.CacheServerBackgroundDownloadFallbackToHttpDelayInSeconds != *input.CacheServerBackgroundDownloadFallbackToHttpDelayInSeconds) {
+		return false
+	}
+
+	if p.CacheServerForegroundDownloadFallbackToHttpDelayInSeconds != nil && (input.CacheServerForegroundDownloadFallbackToHttpDelayInSeconds == nil || *p.CacheServerForegroundDownloadFallbackToHttpDelayInSeconds != *input.CacheServerForegroundDownloadFallbackToHttpDelayInSeconds) {
+		return false
+	}
+
+	if p.CreatedDateTime != nil && (input.CreatedDateTime == nil || *p.CreatedDateTime != *input.CreatedDateTime) {
+		return false
+	}
+
+	if p.Description != nil && (input.Description == nil || *p.Description != *input.Description) {
+		return false
+	}
+
+	if p.DisplayName != nil && (input.DisplayName == nil || *p.DisplayName != *input.DisplayName) {
+		return false
+	}
+
+	if p.ForegroundDownloadFromHttpDelayInSeconds != nil && (input.ForegroundDownloadFromHttpDelayInSeconds == nil || *p.ForegroundDownloadFromHttpDelayInSeconds != *input.ForegroundDownloadFromHttpDelayInSeconds) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.LastModifiedDateTime != nil && (input.LastModifiedDateTime == nil || *p.LastModifiedDateTime != *input.LastModifiedDateTime) {
+		return false
+	}
+
+	if p.MaximumCacheAgeInDays != nil && (input.MaximumCacheAgeInDays == nil || *p.MaximumCacheAgeInDays != *input.MaximumCacheAgeInDays) {
+		return false
+	}
+
+	if p.MinimumBatteryPercentageAllowedToUpload != nil && (input.MinimumBatteryPercentageAllowedToUpload == nil || *p.MinimumBatteryPercentageAllowedToUpload != *input.MinimumBatteryPercentageAllowedToUpload) {
+		return false
+	}
+
+	if p.MinimumDiskSizeAllowedToPeerInGigabytes != nil && (input.MinimumDiskSizeAllowedToPeerInGigabytes == nil || *p.MinimumDiskSizeAllowedToPeerInGigabytes != *input.MinimumDiskSizeAllowedToPeerInGigabytes) {
+		return false
+	}
+
+	if p.MinimumFileSizeToCacheInMegabytes != nil && (input.MinimumFileSizeToCacheInMegabytes == nil || *p.MinimumFileSizeToCacheInMegabytes != *input.MinimumFileSizeToCacheInMegabytes) {
+		return false
+	}
+
+	if p.MinimumRamAllowedToPeerInGigabytes != nil && (input.MinimumRamAllowedToPeerInGigabytes == nil || *p.MinimumRamAllowedToPeerInGigabytes != *input.MinimumRamAllowedToPeerInGigabytes) {
+		return false
+	}
+
+	if p.ModifyCacheLocation != nil && (input.ModifyCacheLocation == nil || *p.ModifyCacheLocation != *input.ModifyCacheLocation) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.SupportsScopeTags != nil && (input.SupportsScopeTags == nil || *p.SupportsScopeTags != *input.SupportsScopeTags) {
+		return false
+	}
+
+	if p.Version != nil && (input.Version == nil || *p.Version != *input.Version) {
+		return false
+	}
+
+	return true
+}

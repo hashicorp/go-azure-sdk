@@ -1,0 +1,39 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type PresenceOperationPredicate struct {
+	 Activity *string
+	 Availability *string
+	 Id *string
+	 ODataType *string
+}
+
+func (p PresenceOperationPredicate) Matches(input Presence) bool {
+
+	if p.Activity != nil && (input.Activity == nil || *p.Activity != *input.Activity) {
+	 	return false
+	}
+
+
+	if p.Availability != nil && (input.Availability == nil || *p.Availability != *input.Availability) {
+	 	return false
+	}
+
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	return true
+}
+

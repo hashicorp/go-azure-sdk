@@ -1,0 +1,32 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type ActionSummaryOperationPredicate struct {
+	Assigned  *int64
+	Available *int64
+	Exercised *int64
+	ODataType *string
+}
+
+func (p ActionSummaryOperationPredicate) Matches(input ActionSummary) bool {
+
+	if p.Assigned != nil && (input.Assigned == nil || *p.Assigned != *input.Assigned) {
+		return false
+	}
+
+	if p.Available != nil && (input.Available == nil || *p.Available != *input.Available) {
+		return false
+	}
+
+	if p.Exercised != nil && (input.Exercised == nil || *p.Exercised != *input.Exercised) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	return true
+}

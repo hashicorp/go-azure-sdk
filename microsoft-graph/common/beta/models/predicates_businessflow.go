@@ -1,0 +1,57 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type BusinessFlowOperationPredicate struct {
+	CustomData       *string
+	DeDuplicationId  *string
+	Description      *string
+	DisplayName      *string
+	Id               *string
+	ODataType        *string
+	PolicyTemplateId *string
+	RecordVersion    *string
+	SchemaId         *string
+}
+
+func (p BusinessFlowOperationPredicate) Matches(input BusinessFlow) bool {
+
+	if p.CustomData != nil && (input.CustomData == nil || *p.CustomData != *input.CustomData) {
+		return false
+	}
+
+	if p.DeDuplicationId != nil && (input.DeDuplicationId == nil || *p.DeDuplicationId != *input.DeDuplicationId) {
+		return false
+	}
+
+	if p.Description != nil && (input.Description == nil || *p.Description != *input.Description) {
+		return false
+	}
+
+	if p.DisplayName != nil && (input.DisplayName == nil || *p.DisplayName != *input.DisplayName) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.PolicyTemplateId != nil && (input.PolicyTemplateId == nil || *p.PolicyTemplateId != *input.PolicyTemplateId) {
+		return false
+	}
+
+	if p.RecordVersion != nil && (input.RecordVersion == nil || *p.RecordVersion != *input.RecordVersion) {
+		return false
+	}
+
+	if p.SchemaId != nil && (input.SchemaId == nil || *p.SchemaId != *input.SchemaId) {
+		return false
+	}
+
+	return true
+}

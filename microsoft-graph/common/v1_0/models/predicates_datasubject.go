@@ -1,0 +1,37 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type DataSubjectOperationPredicate struct {
+	Email     *string
+	FirstName *string
+	LastName  *string
+	ODataType *string
+	Residency *string
+}
+
+func (p DataSubjectOperationPredicate) Matches(input DataSubject) bool {
+
+	if p.Email != nil && (input.Email == nil || *p.Email != *input.Email) {
+		return false
+	}
+
+	if p.FirstName != nil && (input.FirstName == nil || *p.FirstName != *input.FirstName) {
+		return false
+	}
+
+	if p.LastName != nil && (input.LastName == nil || *p.LastName != *input.LastName) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.Residency != nil && (input.Residency == nil || *p.Residency != *input.Residency) {
+		return false
+	}
+
+	return true
+}

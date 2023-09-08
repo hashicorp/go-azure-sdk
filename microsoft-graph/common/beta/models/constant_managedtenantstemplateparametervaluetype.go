@@ -1,0 +1,52 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type ManagedTenantsTemplateParameterValueType string
+
+const (
+	ManagedTenantsTemplateParameterValueTypeboolean           ManagedTenantsTemplateParameterValueType = "Boolean"
+	ManagedTenantsTemplateParameterValueTypebooleanCollection ManagedTenantsTemplateParameterValueType = "BooleanCollection"
+	ManagedTenantsTemplateParameterValueTypeguid              ManagedTenantsTemplateParameterValueType = "Guid"
+	ManagedTenantsTemplateParameterValueTypeguidCollection    ManagedTenantsTemplateParameterValueType = "GuidCollection"
+	ManagedTenantsTemplateParameterValueTypeinteger           ManagedTenantsTemplateParameterValueType = "Integer"
+	ManagedTenantsTemplateParameterValueTypeintegerCollection ManagedTenantsTemplateParameterValueType = "IntegerCollection"
+	ManagedTenantsTemplateParameterValueTypestring            ManagedTenantsTemplateParameterValueType = "String"
+	ManagedTenantsTemplateParameterValueTypestringCollection  ManagedTenantsTemplateParameterValueType = "StringCollection"
+)
+
+func PossibleValuesForManagedTenantsTemplateParameterValueType() []string {
+	return []string{
+		string(ManagedTenantsTemplateParameterValueTypeboolean),
+		string(ManagedTenantsTemplateParameterValueTypebooleanCollection),
+		string(ManagedTenantsTemplateParameterValueTypeguid),
+		string(ManagedTenantsTemplateParameterValueTypeguidCollection),
+		string(ManagedTenantsTemplateParameterValueTypeinteger),
+		string(ManagedTenantsTemplateParameterValueTypeintegerCollection),
+		string(ManagedTenantsTemplateParameterValueTypestring),
+		string(ManagedTenantsTemplateParameterValueTypestringCollection),
+	}
+}
+
+func parseManagedTenantsTemplateParameterValueType(input string) (*ManagedTenantsTemplateParameterValueType, error) {
+	vals := map[string]ManagedTenantsTemplateParameterValueType{
+		"boolean":           ManagedTenantsTemplateParameterValueTypeboolean,
+		"booleancollection": ManagedTenantsTemplateParameterValueTypebooleanCollection,
+		"guid":              ManagedTenantsTemplateParameterValueTypeguid,
+		"guidcollection":    ManagedTenantsTemplateParameterValueTypeguidCollection,
+		"integer":           ManagedTenantsTemplateParameterValueTypeinteger,
+		"integercollection": ManagedTenantsTemplateParameterValueTypeintegerCollection,
+		"string":            ManagedTenantsTemplateParameterValueTypestring,
+		"stringcollection":  ManagedTenantsTemplateParameterValueTypestringCollection,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ManagedTenantsTemplateParameterValueType(input)
+	return &out, nil
+}

@@ -1,0 +1,67 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type EnrollmentTroubleshootingEventOperationPredicate struct {
+	CorrelationId           *string
+	DeviceId                *string
+	EventDateTime           *string
+	EventName               *string
+	FailureReason           *string
+	Id                      *string
+	ManagedDeviceIdentifier *string
+	ODataType               *string
+	OperatingSystem         *string
+	OsVersion               *string
+	UserId                  *string
+}
+
+func (p EnrollmentTroubleshootingEventOperationPredicate) Matches(input EnrollmentTroubleshootingEvent) bool {
+
+	if p.CorrelationId != nil && (input.CorrelationId == nil || *p.CorrelationId != *input.CorrelationId) {
+		return false
+	}
+
+	if p.DeviceId != nil && (input.DeviceId == nil || *p.DeviceId != *input.DeviceId) {
+		return false
+	}
+
+	if p.EventDateTime != nil && (input.EventDateTime == nil || *p.EventDateTime != *input.EventDateTime) {
+		return false
+	}
+
+	if p.EventName != nil && (input.EventName == nil || *p.EventName != *input.EventName) {
+		return false
+	}
+
+	if p.FailureReason != nil && (input.FailureReason == nil || *p.FailureReason != *input.FailureReason) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.ManagedDeviceIdentifier != nil && (input.ManagedDeviceIdentifier == nil || *p.ManagedDeviceIdentifier != *input.ManagedDeviceIdentifier) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.OperatingSystem != nil && (input.OperatingSystem == nil || *p.OperatingSystem != *input.OperatingSystem) {
+		return false
+	}
+
+	if p.OsVersion != nil && (input.OsVersion == nil || *p.OsVersion != *input.OsVersion) {
+		return false
+	}
+
+	if p.UserId != nil && (input.UserId == nil || *p.UserId != *input.UserId) {
+		return false
+	}
+
+	return true
+}

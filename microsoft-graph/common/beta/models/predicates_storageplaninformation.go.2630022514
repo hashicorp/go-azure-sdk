@@ -1,0 +1,27 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type StoragePlanInformationOperationPredicate struct {
+	 ODataType *string
+	 UpgradeAvailable *bool
+}
+
+func (p StoragePlanInformationOperationPredicate) Matches(input StoragePlanInformation) bool {
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.UpgradeAvailable != nil && (input.UpgradeAvailable == nil || *p.UpgradeAvailable != *input.UpgradeAvailable) {
+	 	return false
+	}
+
+
+	return true
+}
+

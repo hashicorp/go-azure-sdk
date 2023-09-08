@@ -1,0 +1,201 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type ContactOperationPredicate struct {
+	 AssistantName *string
+	 Birthday *string
+	 ChangeKey *string
+	 CompanyName *string
+	 CreatedDateTime *string
+	 Department *string
+	 DisplayName *string
+	 FileAs *string
+	 Gender *string
+	 Generation *string
+	 GivenName *string
+	 Id *string
+	 Initials *string
+	 IsFavorite *bool
+	 JobTitle *string
+	 LastModifiedDateTime *string
+	 Manager *string
+	 MiddleName *string
+	 NickName *string
+	 ODataType *string
+	 OfficeLocation *string
+	 ParentFolderId *string
+	 PersonalNotes *string
+	 Profession *string
+	 SpouseName *string
+	 Surname *string
+	 Title *string
+	 WeddingAnniversary *string
+	 YomiCompanyName *string
+	 YomiGivenName *string
+	 YomiSurname *string
+}
+
+func (p ContactOperationPredicate) Matches(input Contact) bool {
+
+	if p.AssistantName != nil && (input.AssistantName == nil || *p.AssistantName != *input.AssistantName) {
+	 	return false
+	}
+
+
+	if p.Birthday != nil && (input.Birthday == nil || *p.Birthday != *input.Birthday) {
+	 	return false
+	}
+
+
+	if p.ChangeKey != nil && (input.ChangeKey == nil || *p.ChangeKey != *input.ChangeKey) {
+	 	return false
+	}
+
+
+	if p.CompanyName != nil && (input.CompanyName == nil || *p.CompanyName != *input.CompanyName) {
+	 	return false
+	}
+
+
+	if p.CreatedDateTime != nil && (input.CreatedDateTime == nil || *p.CreatedDateTime != *input.CreatedDateTime) {
+	 	return false
+	}
+
+
+	if p.Department != nil && (input.Department == nil || *p.Department != *input.Department) {
+	 	return false
+	}
+
+
+	if p.DisplayName != nil && (input.DisplayName == nil || *p.DisplayName != *input.DisplayName) {
+	 	return false
+	}
+
+
+	if p.FileAs != nil && (input.FileAs == nil || *p.FileAs != *input.FileAs) {
+	 	return false
+	}
+
+
+	if p.Gender != nil && (input.Gender == nil || *p.Gender != *input.Gender) {
+	 	return false
+	}
+
+
+	if p.Generation != nil && (input.Generation == nil || *p.Generation != *input.Generation) {
+	 	return false
+	}
+
+
+	if p.GivenName != nil && (input.GivenName == nil || *p.GivenName != *input.GivenName) {
+	 	return false
+	}
+
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+	 	return false
+	}
+
+
+	if p.Initials != nil && (input.Initials == nil || *p.Initials != *input.Initials) {
+	 	return false
+	}
+
+
+	if p.IsFavorite != nil && (input.IsFavorite == nil || *p.IsFavorite != *input.IsFavorite) {
+	 	return false
+	}
+
+
+	if p.JobTitle != nil && (input.JobTitle == nil || *p.JobTitle != *input.JobTitle) {
+	 	return false
+	}
+
+
+	if p.LastModifiedDateTime != nil && (input.LastModifiedDateTime == nil || *p.LastModifiedDateTime != *input.LastModifiedDateTime) {
+	 	return false
+	}
+
+
+	if p.Manager != nil && (input.Manager == nil || *p.Manager != *input.Manager) {
+	 	return false
+	}
+
+
+	if p.MiddleName != nil && (input.MiddleName == nil || *p.MiddleName != *input.MiddleName) {
+	 	return false
+	}
+
+
+	if p.NickName != nil && (input.NickName == nil || *p.NickName != *input.NickName) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.OfficeLocation != nil && (input.OfficeLocation == nil || *p.OfficeLocation != *input.OfficeLocation) {
+	 	return false
+	}
+
+
+	if p.ParentFolderId != nil && (input.ParentFolderId == nil || *p.ParentFolderId != *input.ParentFolderId) {
+	 	return false
+	}
+
+
+	if p.PersonalNotes != nil && (input.PersonalNotes == nil || *p.PersonalNotes != *input.PersonalNotes) {
+	 	return false
+	}
+
+
+	if p.Profession != nil && (input.Profession == nil || *p.Profession != *input.Profession) {
+	 	return false
+	}
+
+
+	if p.SpouseName != nil && (input.SpouseName == nil || *p.SpouseName != *input.SpouseName) {
+	 	return false
+	}
+
+
+	if p.Surname != nil && (input.Surname == nil || *p.Surname != *input.Surname) {
+	 	return false
+	}
+
+
+	if p.Title != nil && (input.Title == nil || *p.Title != *input.Title) {
+	 	return false
+	}
+
+
+	if p.WeddingAnniversary != nil && (input.WeddingAnniversary == nil || *p.WeddingAnniversary != *input.WeddingAnniversary) {
+	 	return false
+	}
+
+
+	if p.YomiCompanyName != nil && (input.YomiCompanyName == nil || *p.YomiCompanyName != *input.YomiCompanyName) {
+	 	return false
+	}
+
+
+	if p.YomiGivenName != nil && (input.YomiGivenName == nil || *p.YomiGivenName != *input.YomiGivenName) {
+	 	return false
+	}
+
+
+	if p.YomiSurname != nil && (input.YomiSurname == nil || *p.YomiSurname != *input.YomiSurname) {
+	 	return false
+	}
+
+
+	return true
+}
+

@@ -1,0 +1,45 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type EncryptWithUserDefinedRightsOperationPredicate struct {
+	 AllowAdHocPermissions *bool
+	 AllowMailForwarding *bool
+	 DecryptionRightsManagementTemplateId *string
+	 Name *string
+	 ODataType *string
+}
+
+func (p EncryptWithUserDefinedRightsOperationPredicate) Matches(input EncryptWithUserDefinedRights) bool {
+
+	if p.AllowAdHocPermissions != nil && (input.AllowAdHocPermissions == nil || *p.AllowAdHocPermissions != *input.AllowAdHocPermissions) {
+	 	return false
+	}
+
+
+	if p.AllowMailForwarding != nil && (input.AllowMailForwarding == nil || *p.AllowMailForwarding != *input.AllowMailForwarding) {
+	 	return false
+	}
+
+
+	if p.DecryptionRightsManagementTemplateId != nil && (input.DecryptionRightsManagementTemplateId == nil || *p.DecryptionRightsManagementTemplateId != *input.DecryptionRightsManagementTemplateId) {
+	 	return false
+	}
+
+
+	if p.Name != nil && (input.Name == nil || *p.Name != *input.Name) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	return true
+}
+

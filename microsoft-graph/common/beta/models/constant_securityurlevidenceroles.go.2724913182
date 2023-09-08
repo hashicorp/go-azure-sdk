@@ -1,0 +1,79 @@
+package models
+
+import "strings"
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type SecurityUrlEvidenceRoles string
+
+const (
+	SecurityUrlEvidenceRolesadded SecurityUrlEvidenceRoles = "Added"
+	SecurityUrlEvidenceRolesattacked SecurityUrlEvidenceRoles = "Attacked"
+	SecurityUrlEvidenceRolesattacker SecurityUrlEvidenceRoles = "Attacker"
+	SecurityUrlEvidenceRolescommandAndControl SecurityUrlEvidenceRoles = "CommandAndControl"
+	SecurityUrlEvidenceRolescompromised SecurityUrlEvidenceRoles = "Compromised"
+	SecurityUrlEvidenceRolescontextual SecurityUrlEvidenceRoles = "Contextual"
+	SecurityUrlEvidenceRolescreated SecurityUrlEvidenceRoles = "Created"
+	SecurityUrlEvidenceRolesdestination SecurityUrlEvidenceRoles = "Destination"
+	SecurityUrlEvidenceRolesedited SecurityUrlEvidenceRoles = "Edited"
+	SecurityUrlEvidenceRolesloaded SecurityUrlEvidenceRoles = "Loaded"
+	SecurityUrlEvidenceRolespolicyViolator SecurityUrlEvidenceRoles = "PolicyViolator"
+	SecurityUrlEvidenceRolesscanned SecurityUrlEvidenceRoles = "Scanned"
+	SecurityUrlEvidenceRolessource SecurityUrlEvidenceRoles = "Source"
+	SecurityUrlEvidenceRolessuspicious SecurityUrlEvidenceRoles = "Suspicious"
+	SecurityUrlEvidenceRolesunknown SecurityUrlEvidenceRoles = "Unknown"
+)
+
+
+func PossibleValuesForSecurityUrlEvidenceRoles() []string {
+	return []string{
+		string(SecurityUrlEvidenceRolesadded),
+string(SecurityUrlEvidenceRolesattacked),
+string(SecurityUrlEvidenceRolesattacker),
+string(SecurityUrlEvidenceRolescommandAndControl),
+string(SecurityUrlEvidenceRolescompromised),
+string(SecurityUrlEvidenceRolescontextual),
+string(SecurityUrlEvidenceRolescreated),
+string(SecurityUrlEvidenceRolesdestination),
+string(SecurityUrlEvidenceRolesedited),
+string(SecurityUrlEvidenceRolesloaded),
+string(SecurityUrlEvidenceRolespolicyViolator),
+string(SecurityUrlEvidenceRolesscanned),
+string(SecurityUrlEvidenceRolessource),
+string(SecurityUrlEvidenceRolessuspicious),
+string(SecurityUrlEvidenceRolesunknown),
+	}
+}
+
+
+
+func parseSecurityUrlEvidenceRoles(input string) (*SecurityUrlEvidenceRoles, error) {
+	vals := map[string]SecurityUrlEvidenceRoles{
+		"added": SecurityUrlEvidenceRolesadded,
+"attacked": SecurityUrlEvidenceRolesattacked,
+"attacker": SecurityUrlEvidenceRolesattacker,
+"commandandcontrol": SecurityUrlEvidenceRolescommandAndControl,
+"compromised": SecurityUrlEvidenceRolescompromised,
+"contextual": SecurityUrlEvidenceRolescontextual,
+"created": SecurityUrlEvidenceRolescreated,
+"destination": SecurityUrlEvidenceRolesdestination,
+"edited": SecurityUrlEvidenceRolesedited,
+"loaded": SecurityUrlEvidenceRolesloaded,
+"policyviolator": SecurityUrlEvidenceRolespolicyViolator,
+"scanned": SecurityUrlEvidenceRolesscanned,
+"source": SecurityUrlEvidenceRolessource,
+"suspicious": SecurityUrlEvidenceRolessuspicious,
+"unknown": SecurityUrlEvidenceRolesunknown,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SecurityUrlEvidenceRoles(input)
+	return &out, nil
+}

@@ -1,0 +1,37 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type WinGetAppAssignmentSettingsNotifications string
+
+const (
+	WinGetAppAssignmentSettingsNotificationshideAll    WinGetAppAssignmentSettingsNotifications = "HideAll"
+	WinGetAppAssignmentSettingsNotificationsshowAll    WinGetAppAssignmentSettingsNotifications = "ShowAll"
+	WinGetAppAssignmentSettingsNotificationsshowReboot WinGetAppAssignmentSettingsNotifications = "ShowReboot"
+)
+
+func PossibleValuesForWinGetAppAssignmentSettingsNotifications() []string {
+	return []string{
+		string(WinGetAppAssignmentSettingsNotificationshideAll),
+		string(WinGetAppAssignmentSettingsNotificationsshowAll),
+		string(WinGetAppAssignmentSettingsNotificationsshowReboot),
+	}
+}
+
+func parseWinGetAppAssignmentSettingsNotifications(input string) (*WinGetAppAssignmentSettingsNotifications, error) {
+	vals := map[string]WinGetAppAssignmentSettingsNotifications{
+		"hideall":    WinGetAppAssignmentSettingsNotificationshideAll,
+		"showall":    WinGetAppAssignmentSettingsNotificationsshowAll,
+		"showreboot": WinGetAppAssignmentSettingsNotificationsshowReboot,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := WinGetAppAssignmentSettingsNotifications(input)
+	return &out, nil
+}

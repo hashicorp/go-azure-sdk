@@ -1,0 +1,192 @@
+package rolemanagementcloudpcroleassignment
+
+import (
+	"testing"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+var _ resourceids.ResourceId = RoleManagementCloudPCRoleAssignmentId{}
+
+func TestNewRoleManagementCloudPCRoleAssignmentID(t *testing.T) {
+	id := NewRoleManagementCloudPCRoleAssignmentID("unifiedRoleAssignmentMultipleIdValue")
+
+	if id.UnifiedRoleAssignmentMultipleId != "unifiedRoleAssignmentMultipleIdValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'UnifiedRoleAssignmentMultipleId'", id.UnifiedRoleAssignmentMultipleId, "unifiedRoleAssignmentMultipleIdValue")
+	}
+}
+
+func TestFormatRoleManagementCloudPCRoleAssignmentID(t *testing.T) {
+	actual := NewRoleManagementCloudPCRoleAssignmentID("unifiedRoleAssignmentMultipleIdValue").ID()
+	expected := "/roleManagement/cloudPC/roleAssignments/unifiedRoleAssignmentMultipleIdValue"
+	if actual != expected {
+		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
+	}
+}
+
+func TestParseRoleManagementCloudPCRoleAssignmentID(t *testing.T) {
+	testData := []struct {
+		Input    string
+		Error    bool
+		Expected *RoleManagementCloudPCRoleAssignmentId
+	}{
+		{
+			// Incomplete URI
+			Input: "",
+			Error: true,
+		},
+		{
+			// Incomplete URI
+			Input: "/roleManagement",
+			Error: true,
+		},
+		{
+			// Incomplete URI
+			Input: "/roleManagement/cloudPC",
+			Error: true,
+		},
+		{
+			// Incomplete URI
+			Input: "/roleManagement/cloudPC/roleAssignments",
+			Error: true,
+		},
+		{
+			// Valid URI
+			Input: "/roleManagement/cloudPC/roleAssignments/unifiedRoleAssignmentMultipleIdValue",
+			Expected: &RoleManagementCloudPCRoleAssignmentId{
+				UnifiedRoleAssignmentMultipleId: "unifiedRoleAssignmentMultipleIdValue",
+			},
+		},
+		{
+			// Invalid (Valid Uri with Extra segment)
+			Input: "/roleManagement/cloudPC/roleAssignments/unifiedRoleAssignmentMultipleIdValue/extra",
+			Error: true,
+		},
+	}
+	for _, v := range testData {
+		t.Logf("[DEBUG] Testing %q", v.Input)
+
+		actual, err := ParseRoleManagementCloudPCRoleAssignmentID(v.Input)
+		if err != nil {
+			if v.Error {
+				continue
+			}
+
+			t.Fatalf("Expect a value but got an error: %+v", err)
+		}
+		if v.Error {
+			t.Fatal("Expect an error but didn't get one")
+		}
+
+		if actual.UnifiedRoleAssignmentMultipleId != v.Expected.UnifiedRoleAssignmentMultipleId {
+			t.Fatalf("Expected %q but got %q for UnifiedRoleAssignmentMultipleId", v.Expected.UnifiedRoleAssignmentMultipleId, actual.UnifiedRoleAssignmentMultipleId)
+		}
+
+	}
+}
+
+func TestParseRoleManagementCloudPCRoleAssignmentIDInsensitively(t *testing.T) {
+	testData := []struct {
+		Input    string
+		Error    bool
+		Expected *RoleManagementCloudPCRoleAssignmentId
+	}{
+		{
+			// Incomplete URI
+			Input: "",
+			Error: true,
+		},
+		{
+			// Incomplete URI
+			Input: "/roleManagement",
+			Error: true,
+		},
+		{
+			// Incomplete URI (mIxEd CaSe since this is insensitive)
+			Input: "/rOlEmAnAgEmEnT",
+			Error: true,
+		},
+		{
+			// Incomplete URI
+			Input: "/roleManagement/cloudPC",
+			Error: true,
+		},
+		{
+			// Incomplete URI (mIxEd CaSe since this is insensitive)
+			Input: "/rOlEmAnAgEmEnT/cLoUdPc",
+			Error: true,
+		},
+		{
+			// Incomplete URI
+			Input: "/roleManagement/cloudPC/roleAssignments",
+			Error: true,
+		},
+		{
+			// Incomplete URI (mIxEd CaSe since this is insensitive)
+			Input: "/rOlEmAnAgEmEnT/cLoUdPc/rOlEaSsIgNmEnTs",
+			Error: true,
+		},
+		{
+			// Valid URI
+			Input: "/roleManagement/cloudPC/roleAssignments/unifiedRoleAssignmentMultipleIdValue",
+			Expected: &RoleManagementCloudPCRoleAssignmentId{
+				UnifiedRoleAssignmentMultipleId: "unifiedRoleAssignmentMultipleIdValue",
+			},
+		},
+		{
+			// Invalid (Valid Uri with Extra segment)
+			Input: "/roleManagement/cloudPC/roleAssignments/unifiedRoleAssignmentMultipleIdValue/extra",
+			Error: true,
+		},
+		{
+			// Valid URI (mIxEd CaSe since this is insensitive)
+			Input: "/rOlEmAnAgEmEnT/cLoUdPc/rOlEaSsIgNmEnTs/uNiFiEdRoLeAsSiGnMeNtMuLtIpLeIdVaLuE",
+			Expected: &RoleManagementCloudPCRoleAssignmentId{
+				UnifiedRoleAssignmentMultipleId: "uNiFiEdRoLeAsSiGnMeNtMuLtIpLeIdVaLuE",
+			},
+		},
+		{
+			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
+			Input: "/rOlEmAnAgEmEnT/cLoUdPc/rOlEaSsIgNmEnTs/uNiFiEdRoLeAsSiGnMeNtMuLtIpLeIdVaLuE/extra",
+			Error: true,
+		},
+	}
+	for _, v := range testData {
+		t.Logf("[DEBUG] Testing %q", v.Input)
+
+		actual, err := ParseRoleManagementCloudPCRoleAssignmentIDInsensitively(v.Input)
+		if err != nil {
+			if v.Error {
+				continue
+			}
+
+			t.Fatalf("Expect a value but got an error: %+v", err)
+		}
+		if v.Error {
+			t.Fatal("Expect an error but didn't get one")
+		}
+
+		if actual.UnifiedRoleAssignmentMultipleId != v.Expected.UnifiedRoleAssignmentMultipleId {
+			t.Fatalf("Expected %q but got %q for UnifiedRoleAssignmentMultipleId", v.Expected.UnifiedRoleAssignmentMultipleId, actual.UnifiedRoleAssignmentMultipleId)
+		}
+
+	}
+}
+
+func TestSegmentsForRoleManagementCloudPCRoleAssignmentId(t *testing.T) {
+	segments := RoleManagementCloudPCRoleAssignmentId{}.Segments()
+	if len(segments) == 0 {
+		t.Fatalf("RoleManagementCloudPCRoleAssignmentId has no segments")
+	}
+
+	uniqueNames := make(map[string]struct{}, 0)
+	for _, segment := range segments {
+		uniqueNames[segment.Name] = struct{}{}
+	}
+	if len(uniqueNames) != len(segments) {
+		t.Fatalf("Expected the Segments to be unique but got %q unique segments and %d total segments", len(uniqueNames), len(segments))
+	}
+}

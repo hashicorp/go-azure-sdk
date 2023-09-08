@@ -1,0 +1,159 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type MacOSCompliancePolicyOperationPredicate struct {
+	 CreatedDateTime *string
+	 Description *string
+	 DeviceThreatProtectionEnabled *bool
+	 DisplayName *string
+	 FirewallBlockAllIncoming *bool
+	 FirewallEnableStealthMode *bool
+	 FirewallEnabled *bool
+	 Id *string
+	 LastModifiedDateTime *string
+	 ODataType *string
+	 OsMaximumBuildVersion *string
+	 OsMaximumVersion *string
+	 OsMinimumBuildVersion *string
+	 OsMinimumVersion *string
+	 PasswordBlockSimple *bool
+	 PasswordExpirationDays *int64
+	 PasswordMinimumCharacterSetCount *int64
+	 PasswordMinimumLength *int64
+	 PasswordMinutesOfInactivityBeforeLock *int64
+	 PasswordPreviousPasswordBlockCount *int64
+	 PasswordRequired *bool
+	 StorageRequireEncryption *bool
+	 SystemIntegrityProtectionEnabled *bool
+	 Version *int64
+}
+
+func (p MacOSCompliancePolicyOperationPredicate) Matches(input MacOSCompliancePolicy) bool {
+
+	if p.CreatedDateTime != nil && (input.CreatedDateTime == nil || *p.CreatedDateTime != *input.CreatedDateTime) {
+	 	return false
+	}
+
+
+	if p.Description != nil && (input.Description == nil || *p.Description != *input.Description) {
+	 	return false
+	}
+
+
+	if p.DeviceThreatProtectionEnabled != nil && (input.DeviceThreatProtectionEnabled == nil || *p.DeviceThreatProtectionEnabled != *input.DeviceThreatProtectionEnabled) {
+	 	return false
+	}
+
+
+	if p.DisplayName != nil && (input.DisplayName == nil || *p.DisplayName != *input.DisplayName) {
+	 	return false
+	}
+
+
+	if p.FirewallBlockAllIncoming != nil && (input.FirewallBlockAllIncoming == nil || *p.FirewallBlockAllIncoming != *input.FirewallBlockAllIncoming) {
+	 	return false
+	}
+
+
+	if p.FirewallEnableStealthMode != nil && (input.FirewallEnableStealthMode == nil || *p.FirewallEnableStealthMode != *input.FirewallEnableStealthMode) {
+	 	return false
+	}
+
+
+	if p.FirewallEnabled != nil && (input.FirewallEnabled == nil || *p.FirewallEnabled != *input.FirewallEnabled) {
+	 	return false
+	}
+
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+	 	return false
+	}
+
+
+	if p.LastModifiedDateTime != nil && (input.LastModifiedDateTime == nil || *p.LastModifiedDateTime != *input.LastModifiedDateTime) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.OsMaximumBuildVersion != nil && (input.OsMaximumBuildVersion == nil || *p.OsMaximumBuildVersion != *input.OsMaximumBuildVersion) {
+	 	return false
+	}
+
+
+	if p.OsMaximumVersion != nil && (input.OsMaximumVersion == nil || *p.OsMaximumVersion != *input.OsMaximumVersion) {
+	 	return false
+	}
+
+
+	if p.OsMinimumBuildVersion != nil && (input.OsMinimumBuildVersion == nil || *p.OsMinimumBuildVersion != *input.OsMinimumBuildVersion) {
+	 	return false
+	}
+
+
+	if p.OsMinimumVersion != nil && (input.OsMinimumVersion == nil || *p.OsMinimumVersion != *input.OsMinimumVersion) {
+	 	return false
+	}
+
+
+	if p.PasswordBlockSimple != nil && (input.PasswordBlockSimple == nil || *p.PasswordBlockSimple != *input.PasswordBlockSimple) {
+	 	return false
+	}
+
+
+	if p.PasswordExpirationDays != nil && (input.PasswordExpirationDays == nil || *p.PasswordExpirationDays != *input.PasswordExpirationDays) {
+	 	return false
+	}
+
+
+	if p.PasswordMinimumCharacterSetCount != nil && (input.PasswordMinimumCharacterSetCount == nil || *p.PasswordMinimumCharacterSetCount != *input.PasswordMinimumCharacterSetCount) {
+	 	return false
+	}
+
+
+	if p.PasswordMinimumLength != nil && (input.PasswordMinimumLength == nil || *p.PasswordMinimumLength != *input.PasswordMinimumLength) {
+	 	return false
+	}
+
+
+	if p.PasswordMinutesOfInactivityBeforeLock != nil && (input.PasswordMinutesOfInactivityBeforeLock == nil || *p.PasswordMinutesOfInactivityBeforeLock != *input.PasswordMinutesOfInactivityBeforeLock) {
+	 	return false
+	}
+
+
+	if p.PasswordPreviousPasswordBlockCount != nil && (input.PasswordPreviousPasswordBlockCount == nil || *p.PasswordPreviousPasswordBlockCount != *input.PasswordPreviousPasswordBlockCount) {
+	 	return false
+	}
+
+
+	if p.PasswordRequired != nil && (input.PasswordRequired == nil || *p.PasswordRequired != *input.PasswordRequired) {
+	 	return false
+	}
+
+
+	if p.StorageRequireEncryption != nil && (input.StorageRequireEncryption == nil || *p.StorageRequireEncryption != *input.StorageRequireEncryption) {
+	 	return false
+	}
+
+
+	if p.SystemIntegrityProtectionEnabled != nil && (input.SystemIntegrityProtectionEnabled == nil || *p.SystemIntegrityProtectionEnabled != *input.SystemIntegrityProtectionEnabled) {
+	 	return false
+	}
+
+
+	if p.Version != nil && (input.Version == nil || *p.Version != *input.Version) {
+	 	return false
+	}
+
+
+	return true
+}
+

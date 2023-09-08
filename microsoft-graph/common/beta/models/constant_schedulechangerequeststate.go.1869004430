@@ -1,0 +1,43 @@
+package models
+
+import "strings"
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type ScheduleChangeRequestState string
+
+const (
+	ScheduleChangeRequestStateapproved ScheduleChangeRequestState = "Approved"
+	ScheduleChangeRequestStatedeclined ScheduleChangeRequestState = "Declined"
+	ScheduleChangeRequestStatepending ScheduleChangeRequestState = "Pending"
+)
+
+
+func PossibleValuesForScheduleChangeRequestState() []string {
+	return []string{
+		string(ScheduleChangeRequestStateapproved),
+string(ScheduleChangeRequestStatedeclined),
+string(ScheduleChangeRequestStatepending),
+	}
+}
+
+
+
+func parseScheduleChangeRequestState(input string) (*ScheduleChangeRequestState, error) {
+	vals := map[string]ScheduleChangeRequestState{
+		"approved": ScheduleChangeRequestStateapproved,
+"declined": ScheduleChangeRequestStatedeclined,
+"pending": ScheduleChangeRequestStatepending,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ScheduleChangeRequestState(input)
+	return &out, nil
+}

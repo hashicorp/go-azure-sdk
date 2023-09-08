@@ -1,0 +1,43 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type SecurityContainerEvidenceRemediationStatus string
+
+const (
+	SecurityContainerEvidenceRemediationStatusblocked    SecurityContainerEvidenceRemediationStatus = "Blocked"
+	SecurityContainerEvidenceRemediationStatusnone       SecurityContainerEvidenceRemediationStatus = "None"
+	SecurityContainerEvidenceRemediationStatusnotFound   SecurityContainerEvidenceRemediationStatus = "NotFound"
+	SecurityContainerEvidenceRemediationStatusprevented  SecurityContainerEvidenceRemediationStatus = "Prevented"
+	SecurityContainerEvidenceRemediationStatusremediated SecurityContainerEvidenceRemediationStatus = "Remediated"
+)
+
+func PossibleValuesForSecurityContainerEvidenceRemediationStatus() []string {
+	return []string{
+		string(SecurityContainerEvidenceRemediationStatusblocked),
+		string(SecurityContainerEvidenceRemediationStatusnone),
+		string(SecurityContainerEvidenceRemediationStatusnotFound),
+		string(SecurityContainerEvidenceRemediationStatusprevented),
+		string(SecurityContainerEvidenceRemediationStatusremediated),
+	}
+}
+
+func parseSecurityContainerEvidenceRemediationStatus(input string) (*SecurityContainerEvidenceRemediationStatus, error) {
+	vals := map[string]SecurityContainerEvidenceRemediationStatus{
+		"blocked":    SecurityContainerEvidenceRemediationStatusblocked,
+		"none":       SecurityContainerEvidenceRemediationStatusnone,
+		"notfound":   SecurityContainerEvidenceRemediationStatusnotFound,
+		"prevented":  SecurityContainerEvidenceRemediationStatusprevented,
+		"remediated": SecurityContainerEvidenceRemediationStatusremediated,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SecurityContainerEvidenceRemediationStatus(input)
+	return &out, nil
+}

@@ -1,0 +1,27 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type MediaInfoOperationPredicate struct {
+	ODataType  *string
+	ResourceId *string
+	Uri        *string
+}
+
+func (p MediaInfoOperationPredicate) Matches(input MediaInfo) bool {
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.ResourceId != nil && (input.ResourceId == nil || *p.ResourceId != *input.ResourceId) {
+		return false
+	}
+
+	if p.Uri != nil && (input.Uri == nil || *p.Uri != *input.Uri) {
+		return false
+	}
+
+	return true
+}

@@ -1,0 +1,27 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type ExtendedKeyUsageOperationPredicate struct {
+	Name             *string
+	ODataType        *string
+	ObjectIdentifier *string
+}
+
+func (p ExtendedKeyUsageOperationPredicate) Matches(input ExtendedKeyUsage) bool {
+
+	if p.Name != nil && (input.Name == nil || *p.Name != *input.Name) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.ObjectIdentifier != nil && (input.ObjectIdentifier == nil || *p.ObjectIdentifier != *input.ObjectIdentifier) {
+		return false
+	}
+
+	return true
+}

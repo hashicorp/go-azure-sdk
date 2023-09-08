@@ -1,0 +1,57 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type TeamsTabOperationPredicate struct {
+	 DisplayName *string
+	 Id *string
+	 MessageId *string
+	 ODataType *string
+	 SortOrderIndex *string
+	 TeamsAppId *string
+	 WebUrl *string
+}
+
+func (p TeamsTabOperationPredicate) Matches(input TeamsTab) bool {
+
+	if p.DisplayName != nil && (input.DisplayName == nil || *p.DisplayName != *input.DisplayName) {
+	 	return false
+	}
+
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+	 	return false
+	}
+
+
+	if p.MessageId != nil && (input.MessageId == nil || *p.MessageId != *input.MessageId) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.SortOrderIndex != nil && (input.SortOrderIndex == nil || *p.SortOrderIndex != *input.SortOrderIndex) {
+	 	return false
+	}
+
+
+	if p.TeamsAppId != nil && (input.TeamsAppId == nil || *p.TeamsAppId != *input.TeamsAppId) {
+	 	return false
+	}
+
+
+	if p.WebUrl != nil && (input.WebUrl == nil || *p.WebUrl != *input.WebUrl) {
+	 	return false
+	}
+
+
+	return true
+}
+

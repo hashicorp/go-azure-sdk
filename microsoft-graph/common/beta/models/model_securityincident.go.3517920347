@@ -1,0 +1,51 @@
+package models
+
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/edgezones"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/identity"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/systemdata"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/zones"
+)
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type SecurityIncident struct {
+	Alerts *[]SecurityAlert `json:"alerts,omitempty"`
+	AssignedTo *string `json:"assignedTo,omitempty"`
+	Classification *SecurityIncidentClassification `json:"classification,omitempty"`
+	Comments *[]SecurityAlertComment `json:"comments,omitempty"`
+	CreatedDateTime *string `json:"createdDateTime,omitempty"`
+	CustomTags *[]string `json:"customTags,omitempty"`
+	Description *string `json:"description,omitempty"`
+	Determination *SecurityIncidentDetermination `json:"determination,omitempty"`
+	DisplayName *string `json:"displayName,omitempty"`
+	Id *string `json:"id,omitempty"`
+	IncidentWebUrl *string `json:"incidentWebUrl,omitempty"`
+	LastModifiedBy *string `json:"lastModifiedBy,omitempty"`
+	LastUpdateDateTime *string `json:"lastUpdateDateTime,omitempty"`
+	ODataType *string `json:"@odata.type,omitempty"`
+	RecommendedActions *string `json:"recommendedActions,omitempty"`
+	RecommendedHuntingQueries *[]SecurityRecommendedHuntingQuery `json:"recommendedHuntingQueries,omitempty"`
+	RedirectIncidentId *string `json:"redirectIncidentId,omitempty"`
+	Severity *SecurityIncidentSeverity `json:"severity,omitempty"`
+	Status *SecurityIncidentStatus `json:"status,omitempty"`
+	SystemTags *[]string `json:"systemTags,omitempty"`
+	TenantId *string `json:"tenantId,omitempty"`
+}
+
+
+
+
+
+
+

@@ -1,0 +1,51 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type TeamworkFeaturesConfigurationOperationPredicate struct {
+	 EmailToSendLogsAndFeedback *string
+	 IsAutoScreenShareEnabled *bool
+	 IsBluetoothBeaconingEnabled *bool
+	 IsHideMeetingNamesEnabled *bool
+	 IsSendLogsAndFeedbackEnabled *bool
+	 ODataType *string
+}
+
+func (p TeamworkFeaturesConfigurationOperationPredicate) Matches(input TeamworkFeaturesConfiguration) bool {
+
+	if p.EmailToSendLogsAndFeedback != nil && (input.EmailToSendLogsAndFeedback == nil || *p.EmailToSendLogsAndFeedback != *input.EmailToSendLogsAndFeedback) {
+	 	return false
+	}
+
+
+	if p.IsAutoScreenShareEnabled != nil && (input.IsAutoScreenShareEnabled == nil || *p.IsAutoScreenShareEnabled != *input.IsAutoScreenShareEnabled) {
+	 	return false
+	}
+
+
+	if p.IsBluetoothBeaconingEnabled != nil && (input.IsBluetoothBeaconingEnabled == nil || *p.IsBluetoothBeaconingEnabled != *input.IsBluetoothBeaconingEnabled) {
+	 	return false
+	}
+
+
+	if p.IsHideMeetingNamesEnabled != nil && (input.IsHideMeetingNamesEnabled == nil || *p.IsHideMeetingNamesEnabled != *input.IsHideMeetingNamesEnabled) {
+	 	return false
+	}
+
+
+	if p.IsSendLogsAndFeedbackEnabled != nil && (input.IsSendLogsAndFeedbackEnabled == nil || *p.IsSendLogsAndFeedbackEnabled != *input.IsSendLogsAndFeedbackEnabled) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	return true
+}
+

@@ -1,0 +1,40 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type ManagedAppProtectionAllowedOutboundClipboardSharingLevel string
+
+const (
+	ManagedAppProtectionAllowedOutboundClipboardSharingLevelallApps                ManagedAppProtectionAllowedOutboundClipboardSharingLevel = "AllApps"
+	ManagedAppProtectionAllowedOutboundClipboardSharingLevelblocked                ManagedAppProtectionAllowedOutboundClipboardSharingLevel = "Blocked"
+	ManagedAppProtectionAllowedOutboundClipboardSharingLevelmanagedApps            ManagedAppProtectionAllowedOutboundClipboardSharingLevel = "ManagedApps"
+	ManagedAppProtectionAllowedOutboundClipboardSharingLevelmanagedAppsWithPasteIn ManagedAppProtectionAllowedOutboundClipboardSharingLevel = "ManagedAppsWithPasteIn"
+)
+
+func PossibleValuesForManagedAppProtectionAllowedOutboundClipboardSharingLevel() []string {
+	return []string{
+		string(ManagedAppProtectionAllowedOutboundClipboardSharingLevelallApps),
+		string(ManagedAppProtectionAllowedOutboundClipboardSharingLevelblocked),
+		string(ManagedAppProtectionAllowedOutboundClipboardSharingLevelmanagedApps),
+		string(ManagedAppProtectionAllowedOutboundClipboardSharingLevelmanagedAppsWithPasteIn),
+	}
+}
+
+func parseManagedAppProtectionAllowedOutboundClipboardSharingLevel(input string) (*ManagedAppProtectionAllowedOutboundClipboardSharingLevel, error) {
+	vals := map[string]ManagedAppProtectionAllowedOutboundClipboardSharingLevel{
+		"allapps":                ManagedAppProtectionAllowedOutboundClipboardSharingLevelallApps,
+		"blocked":                ManagedAppProtectionAllowedOutboundClipboardSharingLevelblocked,
+		"managedapps":            ManagedAppProtectionAllowedOutboundClipboardSharingLevelmanagedApps,
+		"managedappswithpastein": ManagedAppProtectionAllowedOutboundClipboardSharingLevelmanagedAppsWithPasteIn,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ManagedAppProtectionAllowedOutboundClipboardSharingLevel(input)
+	return &out, nil
+}

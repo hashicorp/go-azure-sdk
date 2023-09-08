@@ -1,0 +1,52 @@
+package models
+
+import "strings"
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type WindowsPhone81AppXBundleApplicableArchitectures string
+
+const (
+	WindowsPhone81AppXBundleApplicableArchitecturesarm WindowsPhone81AppXBundleApplicableArchitectures = "Arm"
+	WindowsPhone81AppXBundleApplicableArchitecturesarm64 WindowsPhone81AppXBundleApplicableArchitectures = "Arm64"
+	WindowsPhone81AppXBundleApplicableArchitecturesneutral WindowsPhone81AppXBundleApplicableArchitectures = "Neutral"
+	WindowsPhone81AppXBundleApplicableArchitecturesnone WindowsPhone81AppXBundleApplicableArchitectures = "None"
+	WindowsPhone81AppXBundleApplicableArchitecturesx64 WindowsPhone81AppXBundleApplicableArchitectures = "X64"
+	WindowsPhone81AppXBundleApplicableArchitecturesx86 WindowsPhone81AppXBundleApplicableArchitectures = "X86"
+)
+
+
+func PossibleValuesForWindowsPhone81AppXBundleApplicableArchitectures() []string {
+	return []string{
+		string(WindowsPhone81AppXBundleApplicableArchitecturesarm),
+string(WindowsPhone81AppXBundleApplicableArchitecturesarm64),
+string(WindowsPhone81AppXBundleApplicableArchitecturesneutral),
+string(WindowsPhone81AppXBundleApplicableArchitecturesnone),
+string(WindowsPhone81AppXBundleApplicableArchitecturesx64),
+string(WindowsPhone81AppXBundleApplicableArchitecturesx86),
+	}
+}
+
+
+
+func parseWindowsPhone81AppXBundleApplicableArchitectures(input string) (*WindowsPhone81AppXBundleApplicableArchitectures, error) {
+	vals := map[string]WindowsPhone81AppXBundleApplicableArchitectures{
+		"arm": WindowsPhone81AppXBundleApplicableArchitecturesarm,
+"arm64": WindowsPhone81AppXBundleApplicableArchitecturesarm64,
+"neutral": WindowsPhone81AppXBundleApplicableArchitecturesneutral,
+"none": WindowsPhone81AppXBundleApplicableArchitecturesnone,
+"x64": WindowsPhone81AppXBundleApplicableArchitecturesx64,
+"x86": WindowsPhone81AppXBundleApplicableArchitecturesx86,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := WindowsPhone81AppXBundleApplicableArchitectures(input)
+	return &out, nil
+}

@@ -1,0 +1,27 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type WindowsUpdatesCveInformationOperationPredicate struct {
+	Number    *string
+	ODataType *string
+	Url       *string
+}
+
+func (p WindowsUpdatesCveInformationOperationPredicate) Matches(input WindowsUpdatesCveInformation) bool {
+
+	if p.Number != nil && (input.Number == nil || *p.Number != *input.Number) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.Url != nil && (input.Url == nil || *p.Url != *input.Url) {
+		return false
+	}
+
+	return true
+}

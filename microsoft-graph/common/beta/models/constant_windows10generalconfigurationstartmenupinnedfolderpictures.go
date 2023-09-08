@@ -1,0 +1,37 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type Windows10GeneralConfigurationStartMenuPinnedFolderPictures string
+
+const (
+	Windows10GeneralConfigurationStartMenuPinnedFolderPictureshide          Windows10GeneralConfigurationStartMenuPinnedFolderPictures = "Hide"
+	Windows10GeneralConfigurationStartMenuPinnedFolderPicturesnotConfigured Windows10GeneralConfigurationStartMenuPinnedFolderPictures = "NotConfigured"
+	Windows10GeneralConfigurationStartMenuPinnedFolderPicturesshow          Windows10GeneralConfigurationStartMenuPinnedFolderPictures = "Show"
+)
+
+func PossibleValuesForWindows10GeneralConfigurationStartMenuPinnedFolderPictures() []string {
+	return []string{
+		string(Windows10GeneralConfigurationStartMenuPinnedFolderPictureshide),
+		string(Windows10GeneralConfigurationStartMenuPinnedFolderPicturesnotConfigured),
+		string(Windows10GeneralConfigurationStartMenuPinnedFolderPicturesshow),
+	}
+}
+
+func parseWindows10GeneralConfigurationStartMenuPinnedFolderPictures(input string) (*Windows10GeneralConfigurationStartMenuPinnedFolderPictures, error) {
+	vals := map[string]Windows10GeneralConfigurationStartMenuPinnedFolderPictures{
+		"hide":          Windows10GeneralConfigurationStartMenuPinnedFolderPictureshide,
+		"notconfigured": Windows10GeneralConfigurationStartMenuPinnedFolderPicturesnotConfigured,
+		"show":          Windows10GeneralConfigurationStartMenuPinnedFolderPicturesshow,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := Windows10GeneralConfigurationStartMenuPinnedFolderPictures(input)
+	return &out, nil
+}

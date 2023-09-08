@@ -1,0 +1,52 @@
+package models
+
+import "strings"
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type SecurityEdiscoveryIndexOperationStatus string
+
+const (
+	SecurityEdiscoveryIndexOperationStatusfailed SecurityEdiscoveryIndexOperationStatus = "Failed"
+	SecurityEdiscoveryIndexOperationStatusnotStarted SecurityEdiscoveryIndexOperationStatus = "NotStarted"
+	SecurityEdiscoveryIndexOperationStatuspartiallySucceeded SecurityEdiscoveryIndexOperationStatus = "PartiallySucceeded"
+	SecurityEdiscoveryIndexOperationStatusrunning SecurityEdiscoveryIndexOperationStatus = "Running"
+	SecurityEdiscoveryIndexOperationStatussubmissionFailed SecurityEdiscoveryIndexOperationStatus = "SubmissionFailed"
+	SecurityEdiscoveryIndexOperationStatussucceeded SecurityEdiscoveryIndexOperationStatus = "Succeeded"
+)
+
+
+func PossibleValuesForSecurityEdiscoveryIndexOperationStatus() []string {
+	return []string{
+		string(SecurityEdiscoveryIndexOperationStatusfailed),
+string(SecurityEdiscoveryIndexOperationStatusnotStarted),
+string(SecurityEdiscoveryIndexOperationStatuspartiallySucceeded),
+string(SecurityEdiscoveryIndexOperationStatusrunning),
+string(SecurityEdiscoveryIndexOperationStatussubmissionFailed),
+string(SecurityEdiscoveryIndexOperationStatussucceeded),
+	}
+}
+
+
+
+func parseSecurityEdiscoveryIndexOperationStatus(input string) (*SecurityEdiscoveryIndexOperationStatus, error) {
+	vals := map[string]SecurityEdiscoveryIndexOperationStatus{
+		"failed": SecurityEdiscoveryIndexOperationStatusfailed,
+"notstarted": SecurityEdiscoveryIndexOperationStatusnotStarted,
+"partiallysucceeded": SecurityEdiscoveryIndexOperationStatuspartiallySucceeded,
+"running": SecurityEdiscoveryIndexOperationStatusrunning,
+"submissionfailed": SecurityEdiscoveryIndexOperationStatussubmissionFailed,
+"succeeded": SecurityEdiscoveryIndexOperationStatussucceeded,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SecurityEdiscoveryIndexOperationStatus(input)
+	return &out, nil
+}

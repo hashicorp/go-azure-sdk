@@ -1,0 +1,47 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type SamlOrWsFedProviderOperationPredicate struct {
+	DisplayName         *string
+	Id                  *string
+	IssuerUri           *string
+	MetadataExchangeUri *string
+	ODataType           *string
+	PassiveSignInUri    *string
+	SigningCertificate  *string
+}
+
+func (p SamlOrWsFedProviderOperationPredicate) Matches(input SamlOrWsFedProvider) bool {
+
+	if p.DisplayName != nil && (input.DisplayName == nil || *p.DisplayName != *input.DisplayName) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.IssuerUri != nil && (input.IssuerUri == nil || *p.IssuerUri != *input.IssuerUri) {
+		return false
+	}
+
+	if p.MetadataExchangeUri != nil && (input.MetadataExchangeUri == nil || *p.MetadataExchangeUri != *input.MetadataExchangeUri) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.PassiveSignInUri != nil && (input.PassiveSignInUri == nil || *p.PassiveSignInUri != *input.PassiveSignInUri) {
+		return false
+	}
+
+	if p.SigningCertificate != nil && (input.SigningCertificate == nil || *p.SigningCertificate != *input.SigningCertificate) {
+		return false
+	}
+
+	return true
+}

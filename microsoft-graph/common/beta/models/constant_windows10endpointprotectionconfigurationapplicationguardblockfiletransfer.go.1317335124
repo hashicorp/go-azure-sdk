@@ -1,0 +1,49 @@
+package models
+
+import "strings"
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type Windows10EndpointProtectionConfigurationApplicationGuardBlockFileTransfer string
+
+const (
+	Windows10EndpointProtectionConfigurationApplicationGuardBlockFileTransferblockImageAndTextFile Windows10EndpointProtectionConfigurationApplicationGuardBlockFileTransfer = "BlockImageAndTextFile"
+	Windows10EndpointProtectionConfigurationApplicationGuardBlockFileTransferblockImageFile Windows10EndpointProtectionConfigurationApplicationGuardBlockFileTransfer = "BlockImageFile"
+	Windows10EndpointProtectionConfigurationApplicationGuardBlockFileTransferblockNone Windows10EndpointProtectionConfigurationApplicationGuardBlockFileTransfer = "BlockNone"
+	Windows10EndpointProtectionConfigurationApplicationGuardBlockFileTransferblockTextFile Windows10EndpointProtectionConfigurationApplicationGuardBlockFileTransfer = "BlockTextFile"
+	Windows10EndpointProtectionConfigurationApplicationGuardBlockFileTransfernotConfigured Windows10EndpointProtectionConfigurationApplicationGuardBlockFileTransfer = "NotConfigured"
+)
+
+
+func PossibleValuesForWindows10EndpointProtectionConfigurationApplicationGuardBlockFileTransfer() []string {
+	return []string{
+		string(Windows10EndpointProtectionConfigurationApplicationGuardBlockFileTransferblockImageAndTextFile),
+string(Windows10EndpointProtectionConfigurationApplicationGuardBlockFileTransferblockImageFile),
+string(Windows10EndpointProtectionConfigurationApplicationGuardBlockFileTransferblockNone),
+string(Windows10EndpointProtectionConfigurationApplicationGuardBlockFileTransferblockTextFile),
+string(Windows10EndpointProtectionConfigurationApplicationGuardBlockFileTransfernotConfigured),
+	}
+}
+
+
+
+func parseWindows10EndpointProtectionConfigurationApplicationGuardBlockFileTransfer(input string) (*Windows10EndpointProtectionConfigurationApplicationGuardBlockFileTransfer, error) {
+	vals := map[string]Windows10EndpointProtectionConfigurationApplicationGuardBlockFileTransfer{
+		"blockimageandtextfile": Windows10EndpointProtectionConfigurationApplicationGuardBlockFileTransferblockImageAndTextFile,
+"blockimagefile": Windows10EndpointProtectionConfigurationApplicationGuardBlockFileTransferblockImageFile,
+"blocknone": Windows10EndpointProtectionConfigurationApplicationGuardBlockFileTransferblockNone,
+"blocktextfile": Windows10EndpointProtectionConfigurationApplicationGuardBlockFileTransferblockTextFile,
+"notconfigured": Windows10EndpointProtectionConfigurationApplicationGuardBlockFileTransfernotConfigured,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := Windows10EndpointProtectionConfigurationApplicationGuardBlockFileTransfer(input)
+	return &out, nil
+}

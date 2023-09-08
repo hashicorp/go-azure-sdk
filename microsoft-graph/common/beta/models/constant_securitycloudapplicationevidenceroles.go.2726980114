@@ -1,0 +1,79 @@
+package models
+
+import "strings"
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type SecurityCloudApplicationEvidenceRoles string
+
+const (
+	SecurityCloudApplicationEvidenceRolesadded SecurityCloudApplicationEvidenceRoles = "Added"
+	SecurityCloudApplicationEvidenceRolesattacked SecurityCloudApplicationEvidenceRoles = "Attacked"
+	SecurityCloudApplicationEvidenceRolesattacker SecurityCloudApplicationEvidenceRoles = "Attacker"
+	SecurityCloudApplicationEvidenceRolescommandAndControl SecurityCloudApplicationEvidenceRoles = "CommandAndControl"
+	SecurityCloudApplicationEvidenceRolescompromised SecurityCloudApplicationEvidenceRoles = "Compromised"
+	SecurityCloudApplicationEvidenceRolescontextual SecurityCloudApplicationEvidenceRoles = "Contextual"
+	SecurityCloudApplicationEvidenceRolescreated SecurityCloudApplicationEvidenceRoles = "Created"
+	SecurityCloudApplicationEvidenceRolesdestination SecurityCloudApplicationEvidenceRoles = "Destination"
+	SecurityCloudApplicationEvidenceRolesedited SecurityCloudApplicationEvidenceRoles = "Edited"
+	SecurityCloudApplicationEvidenceRolesloaded SecurityCloudApplicationEvidenceRoles = "Loaded"
+	SecurityCloudApplicationEvidenceRolespolicyViolator SecurityCloudApplicationEvidenceRoles = "PolicyViolator"
+	SecurityCloudApplicationEvidenceRolesscanned SecurityCloudApplicationEvidenceRoles = "Scanned"
+	SecurityCloudApplicationEvidenceRolessource SecurityCloudApplicationEvidenceRoles = "Source"
+	SecurityCloudApplicationEvidenceRolessuspicious SecurityCloudApplicationEvidenceRoles = "Suspicious"
+	SecurityCloudApplicationEvidenceRolesunknown SecurityCloudApplicationEvidenceRoles = "Unknown"
+)
+
+
+func PossibleValuesForSecurityCloudApplicationEvidenceRoles() []string {
+	return []string{
+		string(SecurityCloudApplicationEvidenceRolesadded),
+string(SecurityCloudApplicationEvidenceRolesattacked),
+string(SecurityCloudApplicationEvidenceRolesattacker),
+string(SecurityCloudApplicationEvidenceRolescommandAndControl),
+string(SecurityCloudApplicationEvidenceRolescompromised),
+string(SecurityCloudApplicationEvidenceRolescontextual),
+string(SecurityCloudApplicationEvidenceRolescreated),
+string(SecurityCloudApplicationEvidenceRolesdestination),
+string(SecurityCloudApplicationEvidenceRolesedited),
+string(SecurityCloudApplicationEvidenceRolesloaded),
+string(SecurityCloudApplicationEvidenceRolespolicyViolator),
+string(SecurityCloudApplicationEvidenceRolesscanned),
+string(SecurityCloudApplicationEvidenceRolessource),
+string(SecurityCloudApplicationEvidenceRolessuspicious),
+string(SecurityCloudApplicationEvidenceRolesunknown),
+	}
+}
+
+
+
+func parseSecurityCloudApplicationEvidenceRoles(input string) (*SecurityCloudApplicationEvidenceRoles, error) {
+	vals := map[string]SecurityCloudApplicationEvidenceRoles{
+		"added": SecurityCloudApplicationEvidenceRolesadded,
+"attacked": SecurityCloudApplicationEvidenceRolesattacked,
+"attacker": SecurityCloudApplicationEvidenceRolesattacker,
+"commandandcontrol": SecurityCloudApplicationEvidenceRolescommandAndControl,
+"compromised": SecurityCloudApplicationEvidenceRolescompromised,
+"contextual": SecurityCloudApplicationEvidenceRolescontextual,
+"created": SecurityCloudApplicationEvidenceRolescreated,
+"destination": SecurityCloudApplicationEvidenceRolesdestination,
+"edited": SecurityCloudApplicationEvidenceRolesedited,
+"loaded": SecurityCloudApplicationEvidenceRolesloaded,
+"policyviolator": SecurityCloudApplicationEvidenceRolespolicyViolator,
+"scanned": SecurityCloudApplicationEvidenceRolesscanned,
+"source": SecurityCloudApplicationEvidenceRolessource,
+"suspicious": SecurityCloudApplicationEvidenceRolessuspicious,
+"unknown": SecurityCloudApplicationEvidenceRolesunknown,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SecurityCloudApplicationEvidenceRoles(input)
+	return &out, nil
+}

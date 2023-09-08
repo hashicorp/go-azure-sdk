@@ -1,0 +1,43 @@
+package models
+
+import "strings"
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type WindowsManagedAppProtectionAppActionIfUnableToAuthenticateUser string
+
+const (
+	WindowsManagedAppProtectionAppActionIfUnableToAuthenticateUserblock WindowsManagedAppProtectionAppActionIfUnableToAuthenticateUser = "Block"
+	WindowsManagedAppProtectionAppActionIfUnableToAuthenticateUserwarn WindowsManagedAppProtectionAppActionIfUnableToAuthenticateUser = "Warn"
+	WindowsManagedAppProtectionAppActionIfUnableToAuthenticateUserwipe WindowsManagedAppProtectionAppActionIfUnableToAuthenticateUser = "Wipe"
+)
+
+
+func PossibleValuesForWindowsManagedAppProtectionAppActionIfUnableToAuthenticateUser() []string {
+	return []string{
+		string(WindowsManagedAppProtectionAppActionIfUnableToAuthenticateUserblock),
+string(WindowsManagedAppProtectionAppActionIfUnableToAuthenticateUserwarn),
+string(WindowsManagedAppProtectionAppActionIfUnableToAuthenticateUserwipe),
+	}
+}
+
+
+
+func parseWindowsManagedAppProtectionAppActionIfUnableToAuthenticateUser(input string) (*WindowsManagedAppProtectionAppActionIfUnableToAuthenticateUser, error) {
+	vals := map[string]WindowsManagedAppProtectionAppActionIfUnableToAuthenticateUser{
+		"block": WindowsManagedAppProtectionAppActionIfUnableToAuthenticateUserblock,
+"warn": WindowsManagedAppProtectionAppActionIfUnableToAuthenticateUserwarn,
+"wipe": WindowsManagedAppProtectionAppActionIfUnableToAuthenticateUserwipe,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := WindowsManagedAppProtectionAppActionIfUnableToAuthenticateUser(input)
+	return &out, nil
+}

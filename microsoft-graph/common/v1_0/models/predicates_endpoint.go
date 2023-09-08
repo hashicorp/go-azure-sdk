@@ -1,0 +1,52 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type EndpointOperationPredicate struct {
+	Capability         *string
+	DeletedDateTime    *string
+	Id                 *string
+	ODataType          *string
+	ProviderId         *string
+	ProviderName       *string
+	ProviderResourceId *string
+	Uri                *string
+}
+
+func (p EndpointOperationPredicate) Matches(input Endpoint) bool {
+
+	if p.Capability != nil && (input.Capability == nil || *p.Capability != *input.Capability) {
+		return false
+	}
+
+	if p.DeletedDateTime != nil && (input.DeletedDateTime == nil || *p.DeletedDateTime != *input.DeletedDateTime) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.ProviderId != nil && (input.ProviderId == nil || *p.ProviderId != *input.ProviderId) {
+		return false
+	}
+
+	if p.ProviderName != nil && (input.ProviderName == nil || *p.ProviderName != *input.ProviderName) {
+		return false
+	}
+
+	if p.ProviderResourceId != nil && (input.ProviderResourceId == nil || *p.ProviderResourceId != *input.ProviderResourceId) {
+		return false
+	}
+
+	if p.Uri != nil && (input.Uri == nil || *p.Uri != *input.Uri) {
+		return false
+	}
+
+	return true
+}

@@ -1,0 +1,27 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type TimeRangeOperationPredicate struct {
+	EndTime   *string
+	ODataType *string
+	StartTime *string
+}
+
+func (p TimeRangeOperationPredicate) Matches(input TimeRange) bool {
+
+	if p.EndTime != nil && (input.EndTime == nil || *p.EndTime != *input.EndTime) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.StartTime != nil && (input.StartTime == nil || *p.StartTime != *input.StartTime) {
+		return false
+	}
+
+	return true
+}

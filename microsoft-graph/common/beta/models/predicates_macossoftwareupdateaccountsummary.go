@@ -1,0 +1,72 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type MacOSSoftwareUpdateAccountSummaryOperationPredicate struct {
+	DeviceId              *string
+	DeviceName            *string
+	DisplayName           *string
+	FailedUpdateCount     *int64
+	Id                    *string
+	LastUpdatedDateTime   *string
+	ODataType             *string
+	OsVersion             *string
+	SuccessfulUpdateCount *int64
+	TotalUpdateCount      *int64
+	UserId                *string
+	UserPrincipalName     *string
+}
+
+func (p MacOSSoftwareUpdateAccountSummaryOperationPredicate) Matches(input MacOSSoftwareUpdateAccountSummary) bool {
+
+	if p.DeviceId != nil && (input.DeviceId == nil || *p.DeviceId != *input.DeviceId) {
+		return false
+	}
+
+	if p.DeviceName != nil && (input.DeviceName == nil || *p.DeviceName != *input.DeviceName) {
+		return false
+	}
+
+	if p.DisplayName != nil && (input.DisplayName == nil || *p.DisplayName != *input.DisplayName) {
+		return false
+	}
+
+	if p.FailedUpdateCount != nil && (input.FailedUpdateCount == nil || *p.FailedUpdateCount != *input.FailedUpdateCount) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.LastUpdatedDateTime != nil && (input.LastUpdatedDateTime == nil || *p.LastUpdatedDateTime != *input.LastUpdatedDateTime) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.OsVersion != nil && (input.OsVersion == nil || *p.OsVersion != *input.OsVersion) {
+		return false
+	}
+
+	if p.SuccessfulUpdateCount != nil && (input.SuccessfulUpdateCount == nil || *p.SuccessfulUpdateCount != *input.SuccessfulUpdateCount) {
+		return false
+	}
+
+	if p.TotalUpdateCount != nil && (input.TotalUpdateCount == nil || *p.TotalUpdateCount != *input.TotalUpdateCount) {
+		return false
+	}
+
+	if p.UserId != nil && (input.UserId == nil || *p.UserId != *input.UserId) {
+		return false
+	}
+
+	if p.UserPrincipalName != nil && (input.UserPrincipalName == nil || *p.UserPrincipalName != *input.UserPrincipalName) {
+		return false
+	}
+
+	return true
+}

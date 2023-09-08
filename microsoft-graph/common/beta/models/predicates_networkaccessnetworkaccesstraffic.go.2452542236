@@ -1,0 +1,141 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type NetworkaccessNetworkAccessTrafficOperationPredicate struct {
+	 AgentVersion *string
+	 ConnectionId *string
+	 CreatedDateTime *string
+	 DestinationFQDN *string
+	 DestinationIp *string
+	 DestinationPort *int64
+	 DeviceId *string
+	 DeviceOperatingSystem *string
+	 DeviceOperatingSystemVersion *string
+	 ODataType *string
+	 PolicyId *string
+	 PolicyRuleId *string
+	 ReceivedBytes *int64
+	 SentBytes *int64
+	 SessionId *string
+	 SourceIp *string
+	 SourcePort *int64
+	 TenantId *string
+	 TransactionId *string
+	 UserId *string
+	 UserPrincipalName *string
+}
+
+func (p NetworkaccessNetworkAccessTrafficOperationPredicate) Matches(input NetworkaccessNetworkAccessTraffic) bool {
+
+	if p.AgentVersion != nil && (input.AgentVersion == nil || *p.AgentVersion != *input.AgentVersion) {
+	 	return false
+	}
+
+
+	if p.ConnectionId != nil && (input.ConnectionId == nil || *p.ConnectionId != *input.ConnectionId) {
+	 	return false
+	}
+
+
+	if p.CreatedDateTime != nil && (input.CreatedDateTime == nil || *p.CreatedDateTime != *input.CreatedDateTime) {
+	 	return false
+	}
+
+
+	if p.DestinationFQDN != nil && (input.DestinationFQDN == nil || *p.DestinationFQDN != *input.DestinationFQDN) {
+	 	return false
+	}
+
+
+	if p.DestinationIp != nil && (input.DestinationIp == nil || *p.DestinationIp != *input.DestinationIp) {
+	 	return false
+	}
+
+
+	if p.DestinationPort != nil && (input.DestinationPort == nil || *p.DestinationPort != *input.DestinationPort) {
+	 	return false
+	}
+
+
+	if p.DeviceId != nil && (input.DeviceId == nil || *p.DeviceId != *input.DeviceId) {
+	 	return false
+	}
+
+
+	if p.DeviceOperatingSystem != nil && (input.DeviceOperatingSystem == nil || *p.DeviceOperatingSystem != *input.DeviceOperatingSystem) {
+	 	return false
+	}
+
+
+	if p.DeviceOperatingSystemVersion != nil && (input.DeviceOperatingSystemVersion == nil || *p.DeviceOperatingSystemVersion != *input.DeviceOperatingSystemVersion) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.PolicyId != nil && (input.PolicyId == nil || *p.PolicyId != *input.PolicyId) {
+	 	return false
+	}
+
+
+	if p.PolicyRuleId != nil && (input.PolicyRuleId == nil || *p.PolicyRuleId != *input.PolicyRuleId) {
+	 	return false
+	}
+
+
+	if p.ReceivedBytes != nil && (input.ReceivedBytes == nil || *p.ReceivedBytes != *input.ReceivedBytes) {
+	 	return false
+	}
+
+
+	if p.SentBytes != nil && (input.SentBytes == nil || *p.SentBytes != *input.SentBytes) {
+	 	return false
+	}
+
+
+	if p.SessionId != nil && (input.SessionId == nil || *p.SessionId != *input.SessionId) {
+	 	return false
+	}
+
+
+	if p.SourceIp != nil && (input.SourceIp == nil || *p.SourceIp != *input.SourceIp) {
+	 	return false
+	}
+
+
+	if p.SourcePort != nil && (input.SourcePort == nil || *p.SourcePort != *input.SourcePort) {
+	 	return false
+	}
+
+
+	if p.TenantId != nil && (input.TenantId == nil || *p.TenantId != *input.TenantId) {
+	 	return false
+	}
+
+
+	if p.TransactionId != nil && (input.TransactionId == nil || *p.TransactionId != *input.TransactionId) {
+	 	return false
+	}
+
+
+	if p.UserId != nil && (input.UserId == nil || *p.UserId != *input.UserId) {
+	 	return false
+	}
+
+
+	if p.UserPrincipalName != nil && (input.UserPrincipalName == nil || *p.UserPrincipalName != *input.UserPrincipalName) {
+	 	return false
+	}
+
+
+	return true
+}
+

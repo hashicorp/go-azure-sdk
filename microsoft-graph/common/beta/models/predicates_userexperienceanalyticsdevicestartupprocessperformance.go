@@ -1,0 +1,52 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type UserExperienceAnalyticsDeviceStartupProcessPerformanceOperationPredicate struct {
+	DeviceCount      *int64
+	Id               *string
+	MedianImpactInMs *int64
+	ODataType        *string
+	ProcessName      *string
+	ProductName      *string
+	Publisher        *string
+	TotalImpactInMs  *int64
+}
+
+func (p UserExperienceAnalyticsDeviceStartupProcessPerformanceOperationPredicate) Matches(input UserExperienceAnalyticsDeviceStartupProcessPerformance) bool {
+
+	if p.DeviceCount != nil && (input.DeviceCount == nil || *p.DeviceCount != *input.DeviceCount) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.MedianImpactInMs != nil && (input.MedianImpactInMs == nil || *p.MedianImpactInMs != *input.MedianImpactInMs) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.ProcessName != nil && (input.ProcessName == nil || *p.ProcessName != *input.ProcessName) {
+		return false
+	}
+
+	if p.ProductName != nil && (input.ProductName == nil || *p.ProductName != *input.ProductName) {
+		return false
+	}
+
+	if p.Publisher != nil && (input.Publisher == nil || *p.Publisher != *input.Publisher) {
+		return false
+	}
+
+	if p.TotalImpactInMs != nil && (input.TotalImpactInMs == nil || *p.TotalImpactInMs != *input.TotalImpactInMs) {
+		return false
+	}
+
+	return true
+}

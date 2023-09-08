@@ -1,0 +1,32 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type CallRecordsTraceRouteHopOperationPredicate struct {
+	HopCount      *int64
+	IpAddress     *string
+	ODataType     *string
+	RoundTripTime *string
+}
+
+func (p CallRecordsTraceRouteHopOperationPredicate) Matches(input CallRecordsTraceRouteHop) bool {
+
+	if p.HopCount != nil && (input.HopCount == nil || *p.HopCount != *input.HopCount) {
+		return false
+	}
+
+	if p.IpAddress != nil && (input.IpAddress == nil || *p.IpAddress != *input.IpAddress) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.RoundTripTime != nil && (input.RoundTripTime == nil || *p.RoundTripTime != *input.RoundTripTime) {
+		return false
+	}
+
+	return true
+}

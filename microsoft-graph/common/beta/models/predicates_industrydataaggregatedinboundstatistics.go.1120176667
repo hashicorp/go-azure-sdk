@@ -1,0 +1,57 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type IndustryDataAggregatedInboundStatisticsOperationPredicate struct {
+	 Errors *int64
+	 Groups *int64
+	 Memberships *int64
+	 ODataType *string
+	 Organizations *int64
+	 People *int64
+	 Warnings *int64
+}
+
+func (p IndustryDataAggregatedInboundStatisticsOperationPredicate) Matches(input IndustryDataAggregatedInboundStatistics) bool {
+
+	if p.Errors != nil && (input.Errors == nil || *p.Errors != *input.Errors) {
+	 	return false
+	}
+
+
+	if p.Groups != nil && (input.Groups == nil || *p.Groups != *input.Groups) {
+	 	return false
+	}
+
+
+	if p.Memberships != nil && (input.Memberships == nil || *p.Memberships != *input.Memberships) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.Organizations != nil && (input.Organizations == nil || *p.Organizations != *input.Organizations) {
+	 	return false
+	}
+
+
+	if p.People != nil && (input.People == nil || *p.People != *input.People) {
+	 	return false
+	}
+
+
+	if p.Warnings != nil && (input.Warnings == nil || *p.Warnings != *input.Warnings) {
+	 	return false
+	}
+
+
+	return true
+}
+

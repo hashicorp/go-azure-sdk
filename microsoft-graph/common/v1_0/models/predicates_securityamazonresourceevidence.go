@@ -1,0 +1,47 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type SecurityAmazonResourceEvidenceOperationPredicate struct {
+	AmazonAccountId          *string
+	AmazonResourceId         *string
+	CreatedDateTime          *string
+	ODataType                *string
+	RemediationStatusDetails *string
+	ResourceName             *string
+	ResourceType             *string
+}
+
+func (p SecurityAmazonResourceEvidenceOperationPredicate) Matches(input SecurityAmazonResourceEvidence) bool {
+
+	if p.AmazonAccountId != nil && (input.AmazonAccountId == nil || *p.AmazonAccountId != *input.AmazonAccountId) {
+		return false
+	}
+
+	if p.AmazonResourceId != nil && (input.AmazonResourceId == nil || *p.AmazonResourceId != *input.AmazonResourceId) {
+		return false
+	}
+
+	if p.CreatedDateTime != nil && (input.CreatedDateTime == nil || *p.CreatedDateTime != *input.CreatedDateTime) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.RemediationStatusDetails != nil && (input.RemediationStatusDetails == nil || *p.RemediationStatusDetails != *input.RemediationStatusDetails) {
+		return false
+	}
+
+	if p.ResourceName != nil && (input.ResourceName == nil || *p.ResourceName != *input.ResourceName) {
+		return false
+	}
+
+	if p.ResourceType != nil && (input.ResourceType == nil || *p.ResourceType != *input.ResourceType) {
+		return false
+	}
+
+	return true
+}

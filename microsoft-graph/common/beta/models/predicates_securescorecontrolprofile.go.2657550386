@@ -1,0 +1,111 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type SecureScoreControlProfileOperationPredicate struct {
+	 ActionType *string
+	 ActionUrl *string
+	 AzureTenantId *string
+	 ControlCategory *string
+	 Deprecated *bool
+	 Id *string
+	 ImplementationCost *string
+	 LastModifiedDateTime *string
+	 ODataType *string
+	 Rank *int64
+	 Remediation *string
+	 RemediationImpact *string
+	 Service *string
+	 Tier *string
+	 Title *string
+	 UserImpact *string
+}
+
+func (p SecureScoreControlProfileOperationPredicate) Matches(input SecureScoreControlProfile) bool {
+
+	if p.ActionType != nil && (input.ActionType == nil || *p.ActionType != *input.ActionType) {
+	 	return false
+	}
+
+
+	if p.ActionUrl != nil && (input.ActionUrl == nil || *p.ActionUrl != *input.ActionUrl) {
+	 	return false
+	}
+
+
+	if p.AzureTenantId != nil && (input.AzureTenantId == nil || *p.AzureTenantId != *input.AzureTenantId) {
+	 	return false
+	}
+
+
+	if p.ControlCategory != nil && (input.ControlCategory == nil || *p.ControlCategory != *input.ControlCategory) {
+	 	return false
+	}
+
+
+	if p.Deprecated != nil && (input.Deprecated == nil || *p.Deprecated != *input.Deprecated) {
+	 	return false
+	}
+
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+	 	return false
+	}
+
+
+	if p.ImplementationCost != nil && (input.ImplementationCost == nil || *p.ImplementationCost != *input.ImplementationCost) {
+	 	return false
+	}
+
+
+	if p.LastModifiedDateTime != nil && (input.LastModifiedDateTime == nil || *p.LastModifiedDateTime != *input.LastModifiedDateTime) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.Rank != nil && (input.Rank == nil || *p.Rank != *input.Rank) {
+	 	return false
+	}
+
+
+	if p.Remediation != nil && (input.Remediation == nil || *p.Remediation != *input.Remediation) {
+	 	return false
+	}
+
+
+	if p.RemediationImpact != nil && (input.RemediationImpact == nil || *p.RemediationImpact != *input.RemediationImpact) {
+	 	return false
+	}
+
+
+	if p.Service != nil && (input.Service == nil || *p.Service != *input.Service) {
+	 	return false
+	}
+
+
+	if p.Tier != nil && (input.Tier == nil || *p.Tier != *input.Tier) {
+	 	return false
+	}
+
+
+	if p.Title != nil && (input.Title == nil || *p.Title != *input.Title) {
+	 	return false
+	}
+
+
+	if p.UserImpact != nil && (input.UserImpact == nil || *p.UserImpact != *input.UserImpact) {
+	 	return false
+	}
+
+
+	return true
+}
+

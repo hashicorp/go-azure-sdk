@@ -1,0 +1,27 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type AccessReviewNotificationRecipientItemOperationPredicate struct {
+	 NotificationTemplateType *string
+	 ODataType *string
+}
+
+func (p AccessReviewNotificationRecipientItemOperationPredicate) Matches(input AccessReviewNotificationRecipientItem) bool {
+
+	if p.NotificationTemplateType != nil && (input.NotificationTemplateType == nil || *p.NotificationTemplateType != *input.NotificationTemplateType) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	return true
+}
+

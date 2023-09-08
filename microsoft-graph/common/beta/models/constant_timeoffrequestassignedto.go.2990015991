@@ -1,0 +1,46 @@
+package models
+
+import "strings"
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type TimeOffRequestAssignedTo string
+
+const (
+	TimeOffRequestAssignedTomanager TimeOffRequestAssignedTo = "Manager"
+	TimeOffRequestAssignedTorecipient TimeOffRequestAssignedTo = "Recipient"
+	TimeOffRequestAssignedTosender TimeOffRequestAssignedTo = "Sender"
+	TimeOffRequestAssignedTosystem TimeOffRequestAssignedTo = "System"
+)
+
+
+func PossibleValuesForTimeOffRequestAssignedTo() []string {
+	return []string{
+		string(TimeOffRequestAssignedTomanager),
+string(TimeOffRequestAssignedTorecipient),
+string(TimeOffRequestAssignedTosender),
+string(TimeOffRequestAssignedTosystem),
+	}
+}
+
+
+
+func parseTimeOffRequestAssignedTo(input string) (*TimeOffRequestAssignedTo, error) {
+	vals := map[string]TimeOffRequestAssignedTo{
+		"manager": TimeOffRequestAssignedTomanager,
+"recipient": TimeOffRequestAssignedTorecipient,
+"sender": TimeOffRequestAssignedTosender,
+"system": TimeOffRequestAssignedTosystem,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := TimeOffRequestAssignedTo(input)
+	return &out, nil
+}

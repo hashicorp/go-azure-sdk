@@ -1,0 +1,46 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type WindowsProtectionStateDeviceState string
+
+const (
+	WindowsProtectionStateDeviceStateclean              WindowsProtectionStateDeviceState = "Clean"
+	WindowsProtectionStateDeviceStatecritical           WindowsProtectionStateDeviceState = "Critical"
+	WindowsProtectionStateDeviceStatefullScanPending    WindowsProtectionStateDeviceState = "FullScanPending"
+	WindowsProtectionStateDeviceStatemanualStepsPending WindowsProtectionStateDeviceState = "ManualStepsPending"
+	WindowsProtectionStateDeviceStateofflineScanPending WindowsProtectionStateDeviceState = "OfflineScanPending"
+	WindowsProtectionStateDeviceStaterebootPending      WindowsProtectionStateDeviceState = "RebootPending"
+)
+
+func PossibleValuesForWindowsProtectionStateDeviceState() []string {
+	return []string{
+		string(WindowsProtectionStateDeviceStateclean),
+		string(WindowsProtectionStateDeviceStatecritical),
+		string(WindowsProtectionStateDeviceStatefullScanPending),
+		string(WindowsProtectionStateDeviceStatemanualStepsPending),
+		string(WindowsProtectionStateDeviceStateofflineScanPending),
+		string(WindowsProtectionStateDeviceStaterebootPending),
+	}
+}
+
+func parseWindowsProtectionStateDeviceState(input string) (*WindowsProtectionStateDeviceState, error) {
+	vals := map[string]WindowsProtectionStateDeviceState{
+		"clean":              WindowsProtectionStateDeviceStateclean,
+		"critical":           WindowsProtectionStateDeviceStatecritical,
+		"fullscanpending":    WindowsProtectionStateDeviceStatefullScanPending,
+		"manualstepspending": WindowsProtectionStateDeviceStatemanualStepsPending,
+		"offlinescanpending": WindowsProtectionStateDeviceStateofflineScanPending,
+		"rebootpending":      WindowsProtectionStateDeviceStaterebootPending,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := WindowsProtectionStateDeviceState(input)
+	return &out, nil
+}

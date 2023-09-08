@@ -1,0 +1,37 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type MacOsVppAppAssignmentSettingsOperationPredicate struct {
+	ODataType                *string
+	PreventAutoAppUpdate     *bool
+	PreventManagedAppBackup  *bool
+	UninstallOnDeviceRemoval *bool
+	UseDeviceLicensing       *bool
+}
+
+func (p MacOsVppAppAssignmentSettingsOperationPredicate) Matches(input MacOsVppAppAssignmentSettings) bool {
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.PreventAutoAppUpdate != nil && (input.PreventAutoAppUpdate == nil || *p.PreventAutoAppUpdate != *input.PreventAutoAppUpdate) {
+		return false
+	}
+
+	if p.PreventManagedAppBackup != nil && (input.PreventManagedAppBackup == nil || *p.PreventManagedAppBackup != *input.PreventManagedAppBackup) {
+		return false
+	}
+
+	if p.UninstallOnDeviceRemoval != nil && (input.UninstallOnDeviceRemoval == nil || *p.UninstallOnDeviceRemoval != *input.UninstallOnDeviceRemoval) {
+		return false
+	}
+
+	if p.UseDeviceLicensing != nil && (input.UseDeviceLicensing == nil || *p.UseDeviceLicensing != *input.UseDeviceLicensing) {
+		return false
+	}
+
+	return true
+}

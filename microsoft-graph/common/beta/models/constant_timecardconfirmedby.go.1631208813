@@ -1,0 +1,43 @@
+package models
+
+import "strings"
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type TimeCardConfirmedBy string
+
+const (
+	TimeCardConfirmedBymanager TimeCardConfirmedBy = "Manager"
+	TimeCardConfirmedBynone TimeCardConfirmedBy = "None"
+	TimeCardConfirmedByuser TimeCardConfirmedBy = "User"
+)
+
+
+func PossibleValuesForTimeCardConfirmedBy() []string {
+	return []string{
+		string(TimeCardConfirmedBymanager),
+string(TimeCardConfirmedBynone),
+string(TimeCardConfirmedByuser),
+	}
+}
+
+
+
+func parseTimeCardConfirmedBy(input string) (*TimeCardConfirmedBy, error) {
+	vals := map[string]TimeCardConfirmedBy{
+		"manager": TimeCardConfirmedBymanager,
+"none": TimeCardConfirmedBynone,
+"user": TimeCardConfirmedByuser,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := TimeCardConfirmedBy(input)
+	return &out, nil
+}

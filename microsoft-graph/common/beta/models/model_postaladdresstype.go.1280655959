@@ -1,0 +1,36 @@
+package models
+
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/edgezones"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/identity"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/systemdata"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/zones"
+)
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type PostalAddressType struct {
+	City *string `json:"city,omitempty"`
+	CountryLetterCode *string `json:"countryLetterCode,omitempty"`
+	ODataType *string `json:"@odata.type,omitempty"`
+	PostalCode *string `json:"postalCode,omitempty"`
+	State *string `json:"state,omitempty"`
+	Street *string `json:"street,omitempty"`
+}
+
+
+
+
+
+
+

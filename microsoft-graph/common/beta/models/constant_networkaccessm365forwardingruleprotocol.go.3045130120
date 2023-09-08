@@ -1,0 +1,100 @@
+package models
+
+import "strings"
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type NetworkaccessM365ForwardingRuleProtocol string
+
+const (
+	NetworkaccessM365ForwardingRuleProtocolggp NetworkaccessM365ForwardingRuleProtocol = "Ggp"
+	NetworkaccessM365ForwardingRuleProtocolicmp NetworkaccessM365ForwardingRuleProtocol = "Icmp"
+	NetworkaccessM365ForwardingRuleProtocolicmpV6 NetworkaccessM365ForwardingRuleProtocol = "IcmpV6"
+	NetworkaccessM365ForwardingRuleProtocolidp NetworkaccessM365ForwardingRuleProtocol = "Idp"
+	NetworkaccessM365ForwardingRuleProtocoligmp NetworkaccessM365ForwardingRuleProtocol = "Igmp"
+	NetworkaccessM365ForwardingRuleProtocolip NetworkaccessM365ForwardingRuleProtocol = "Ip"
+	NetworkaccessM365ForwardingRuleProtocolipSecAuthenticationHeader NetworkaccessM365ForwardingRuleProtocol = "IpSecAuthenticationHeader"
+	NetworkaccessM365ForwardingRuleProtocolipSecEncapsulatingSecurityPayload NetworkaccessM365ForwardingRuleProtocol = "IpSecEncapsulatingSecurityPayload"
+	NetworkaccessM365ForwardingRuleProtocolipv4 NetworkaccessM365ForwardingRuleProtocol = "Ipv4"
+	NetworkaccessM365ForwardingRuleProtocolipv6 NetworkaccessM365ForwardingRuleProtocol = "Ipv6"
+	NetworkaccessM365ForwardingRuleProtocolipv6DestinationOptions NetworkaccessM365ForwardingRuleProtocol = "Ipv6DestinationOptions"
+	NetworkaccessM365ForwardingRuleProtocolipv6FragmentHeader NetworkaccessM365ForwardingRuleProtocol = "Ipv6FragmentHeader"
+	NetworkaccessM365ForwardingRuleProtocolipv6NoNextHeader NetworkaccessM365ForwardingRuleProtocol = "Ipv6NoNextHeader"
+	NetworkaccessM365ForwardingRuleProtocolipv6RoutingHeader NetworkaccessM365ForwardingRuleProtocol = "Ipv6RoutingHeader"
+	NetworkaccessM365ForwardingRuleProtocolipx NetworkaccessM365ForwardingRuleProtocol = "Ipx"
+	NetworkaccessM365ForwardingRuleProtocolnd NetworkaccessM365ForwardingRuleProtocol = "Nd"
+	NetworkaccessM365ForwardingRuleProtocolpup NetworkaccessM365ForwardingRuleProtocol = "Pup"
+	NetworkaccessM365ForwardingRuleProtocolraw NetworkaccessM365ForwardingRuleProtocol = "Raw"
+	NetworkaccessM365ForwardingRuleProtocolspx NetworkaccessM365ForwardingRuleProtocol = "Spx"
+	NetworkaccessM365ForwardingRuleProtocolspxII NetworkaccessM365ForwardingRuleProtocol = "SpxII"
+	NetworkaccessM365ForwardingRuleProtocoltcp NetworkaccessM365ForwardingRuleProtocol = "Tcp"
+	NetworkaccessM365ForwardingRuleProtocoludp NetworkaccessM365ForwardingRuleProtocol = "Udp"
+)
+
+
+func PossibleValuesForNetworkaccessM365ForwardingRuleProtocol() []string {
+	return []string{
+		string(NetworkaccessM365ForwardingRuleProtocolggp),
+string(NetworkaccessM365ForwardingRuleProtocolicmp),
+string(NetworkaccessM365ForwardingRuleProtocolicmpV6),
+string(NetworkaccessM365ForwardingRuleProtocolidp),
+string(NetworkaccessM365ForwardingRuleProtocoligmp),
+string(NetworkaccessM365ForwardingRuleProtocolip),
+string(NetworkaccessM365ForwardingRuleProtocolipSecAuthenticationHeader),
+string(NetworkaccessM365ForwardingRuleProtocolipSecEncapsulatingSecurityPayload),
+string(NetworkaccessM365ForwardingRuleProtocolipv4),
+string(NetworkaccessM365ForwardingRuleProtocolipv6),
+string(NetworkaccessM365ForwardingRuleProtocolipv6DestinationOptions),
+string(NetworkaccessM365ForwardingRuleProtocolipv6FragmentHeader),
+string(NetworkaccessM365ForwardingRuleProtocolipv6NoNextHeader),
+string(NetworkaccessM365ForwardingRuleProtocolipv6RoutingHeader),
+string(NetworkaccessM365ForwardingRuleProtocolipx),
+string(NetworkaccessM365ForwardingRuleProtocolnd),
+string(NetworkaccessM365ForwardingRuleProtocolpup),
+string(NetworkaccessM365ForwardingRuleProtocolraw),
+string(NetworkaccessM365ForwardingRuleProtocolspx),
+string(NetworkaccessM365ForwardingRuleProtocolspxII),
+string(NetworkaccessM365ForwardingRuleProtocoltcp),
+string(NetworkaccessM365ForwardingRuleProtocoludp),
+	}
+}
+
+
+
+func parseNetworkaccessM365ForwardingRuleProtocol(input string) (*NetworkaccessM365ForwardingRuleProtocol, error) {
+	vals := map[string]NetworkaccessM365ForwardingRuleProtocol{
+		"ggp": NetworkaccessM365ForwardingRuleProtocolggp,
+"icmp": NetworkaccessM365ForwardingRuleProtocolicmp,
+"icmpv6": NetworkaccessM365ForwardingRuleProtocolicmpV6,
+"idp": NetworkaccessM365ForwardingRuleProtocolidp,
+"igmp": NetworkaccessM365ForwardingRuleProtocoligmp,
+"ip": NetworkaccessM365ForwardingRuleProtocolip,
+"ipsecauthenticationheader": NetworkaccessM365ForwardingRuleProtocolipSecAuthenticationHeader,
+"ipsecencapsulatingsecuritypayload": NetworkaccessM365ForwardingRuleProtocolipSecEncapsulatingSecurityPayload,
+"ipv4": NetworkaccessM365ForwardingRuleProtocolipv4,
+"ipv6": NetworkaccessM365ForwardingRuleProtocolipv6,
+"ipv6destinationoptions": NetworkaccessM365ForwardingRuleProtocolipv6DestinationOptions,
+"ipv6fragmentheader": NetworkaccessM365ForwardingRuleProtocolipv6FragmentHeader,
+"ipv6nonextheader": NetworkaccessM365ForwardingRuleProtocolipv6NoNextHeader,
+"ipv6routingheader": NetworkaccessM365ForwardingRuleProtocolipv6RoutingHeader,
+"ipx": NetworkaccessM365ForwardingRuleProtocolipx,
+"nd": NetworkaccessM365ForwardingRuleProtocolnd,
+"pup": NetworkaccessM365ForwardingRuleProtocolpup,
+"raw": NetworkaccessM365ForwardingRuleProtocolraw,
+"spx": NetworkaccessM365ForwardingRuleProtocolspx,
+"spxii": NetworkaccessM365ForwardingRuleProtocolspxII,
+"tcp": NetworkaccessM365ForwardingRuleProtocoltcp,
+"udp": NetworkaccessM365ForwardingRuleProtocoludp,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := NetworkaccessM365ForwardingRuleProtocol(input)
+	return &out, nil
+}

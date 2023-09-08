@@ -1,0 +1,77 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type ManagedAllDeviceCertificateStateOperationPredicate struct {
+	CertificateExpirationDateTime             *string
+	CertificateExtendedKeyUsages              *string
+	CertificateIssuanceDateTime               *string
+	CertificateIssuerName                     *string
+	CertificateKeyUsages                      *int64
+	CertificateRevokeStatusLastChangeDateTime *string
+	CertificateSerialNumber                   *string
+	CertificateSubjectName                    *string
+	CertificateThumbprint                     *string
+	Id                                        *string
+	ManagedDeviceDisplayName                  *string
+	ODataType                                 *string
+	UserPrincipalName                         *string
+}
+
+func (p ManagedAllDeviceCertificateStateOperationPredicate) Matches(input ManagedAllDeviceCertificateState) bool {
+
+	if p.CertificateExpirationDateTime != nil && (input.CertificateExpirationDateTime == nil || *p.CertificateExpirationDateTime != *input.CertificateExpirationDateTime) {
+		return false
+	}
+
+	if p.CertificateExtendedKeyUsages != nil && (input.CertificateExtendedKeyUsages == nil || *p.CertificateExtendedKeyUsages != *input.CertificateExtendedKeyUsages) {
+		return false
+	}
+
+	if p.CertificateIssuanceDateTime != nil && (input.CertificateIssuanceDateTime == nil || *p.CertificateIssuanceDateTime != *input.CertificateIssuanceDateTime) {
+		return false
+	}
+
+	if p.CertificateIssuerName != nil && (input.CertificateIssuerName == nil || *p.CertificateIssuerName != *input.CertificateIssuerName) {
+		return false
+	}
+
+	if p.CertificateKeyUsages != nil && (input.CertificateKeyUsages == nil || *p.CertificateKeyUsages != *input.CertificateKeyUsages) {
+		return false
+	}
+
+	if p.CertificateRevokeStatusLastChangeDateTime != nil && (input.CertificateRevokeStatusLastChangeDateTime == nil || *p.CertificateRevokeStatusLastChangeDateTime != *input.CertificateRevokeStatusLastChangeDateTime) {
+		return false
+	}
+
+	if p.CertificateSerialNumber != nil && (input.CertificateSerialNumber == nil || *p.CertificateSerialNumber != *input.CertificateSerialNumber) {
+		return false
+	}
+
+	if p.CertificateSubjectName != nil && (input.CertificateSubjectName == nil || *p.CertificateSubjectName != *input.CertificateSubjectName) {
+		return false
+	}
+
+	if p.CertificateThumbprint != nil && (input.CertificateThumbprint == nil || *p.CertificateThumbprint != *input.CertificateThumbprint) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.ManagedDeviceDisplayName != nil && (input.ManagedDeviceDisplayName == nil || *p.ManagedDeviceDisplayName != *input.ManagedDeviceDisplayName) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.UserPrincipalName != nil && (input.UserPrincipalName == nil || *p.UserPrincipalName != *input.UserPrincipalName) {
+		return false
+	}
+
+	return true
+}

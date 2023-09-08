@@ -1,0 +1,33 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type RenameActionOperationPredicate struct {
+	 NewName *string
+	 ODataType *string
+	 OldName *string
+}
+
+func (p RenameActionOperationPredicate) Matches(input RenameAction) bool {
+
+	if p.NewName != nil && (input.NewName == nil || *p.NewName != *input.NewName) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.OldName != nil && (input.OldName == nil || *p.OldName != *input.OldName) {
+	 	return false
+	}
+
+
+	return true
+}
+

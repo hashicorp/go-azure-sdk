@@ -1,0 +1,27 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type CloudPCManagementGroupAssignmentTargetOperationPredicate struct {
+	GroupId       *string
+	ODataType     *string
+	ServicePlanId *string
+}
+
+func (p CloudPCManagementGroupAssignmentTargetOperationPredicate) Matches(input CloudPCManagementGroupAssignmentTarget) bool {
+
+	if p.GroupId != nil && (input.GroupId == nil || *p.GroupId != *input.GroupId) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.ServicePlanId != nil && (input.ServicePlanId == nil || *p.ServicePlanId != *input.ServicePlanId) {
+		return false
+	}
+
+	return true
+}

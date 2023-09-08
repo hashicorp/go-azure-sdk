@@ -1,0 +1,70 @@
+package models
+
+import "strings"
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type PayloadCompatibleAssignmentFilterPlatform string
+
+const (
+	PayloadCompatibleAssignmentFilterPlatformandroid PayloadCompatibleAssignmentFilterPlatform = "Android"
+	PayloadCompatibleAssignmentFilterPlatformandroidAOSP PayloadCompatibleAssignmentFilterPlatform = "AndroidAOSP"
+	PayloadCompatibleAssignmentFilterPlatformandroidForWork PayloadCompatibleAssignmentFilterPlatform = "AndroidForWork"
+	PayloadCompatibleAssignmentFilterPlatformandroidMobileApplicationManagement PayloadCompatibleAssignmentFilterPlatform = "AndroidMobileApplicationManagement"
+	PayloadCompatibleAssignmentFilterPlatformandroidWorkProfile PayloadCompatibleAssignmentFilterPlatform = "AndroidWorkProfile"
+	PayloadCompatibleAssignmentFilterPlatformiOS PayloadCompatibleAssignmentFilterPlatform = "IOS"
+	PayloadCompatibleAssignmentFilterPlatformiOSMobileApplicationManagement PayloadCompatibleAssignmentFilterPlatform = "IOSMobileApplicationManagement"
+	PayloadCompatibleAssignmentFilterPlatformmacOS PayloadCompatibleAssignmentFilterPlatform = "MacOS"
+	PayloadCompatibleAssignmentFilterPlatformunknown PayloadCompatibleAssignmentFilterPlatform = "Unknown"
+	PayloadCompatibleAssignmentFilterPlatformwindows10AndLater PayloadCompatibleAssignmentFilterPlatform = "Windows10AndLater"
+	PayloadCompatibleAssignmentFilterPlatformwindows81AndLater PayloadCompatibleAssignmentFilterPlatform = "Windows81AndLater"
+	PayloadCompatibleAssignmentFilterPlatformwindowsPhone81 PayloadCompatibleAssignmentFilterPlatform = "WindowsPhone81"
+)
+
+
+func PossibleValuesForPayloadCompatibleAssignmentFilterPlatform() []string {
+	return []string{
+		string(PayloadCompatibleAssignmentFilterPlatformandroid),
+string(PayloadCompatibleAssignmentFilterPlatformandroidAOSP),
+string(PayloadCompatibleAssignmentFilterPlatformandroidForWork),
+string(PayloadCompatibleAssignmentFilterPlatformandroidMobileApplicationManagement),
+string(PayloadCompatibleAssignmentFilterPlatformandroidWorkProfile),
+string(PayloadCompatibleAssignmentFilterPlatformiOS),
+string(PayloadCompatibleAssignmentFilterPlatformiOSMobileApplicationManagement),
+string(PayloadCompatibleAssignmentFilterPlatformmacOS),
+string(PayloadCompatibleAssignmentFilterPlatformunknown),
+string(PayloadCompatibleAssignmentFilterPlatformwindows10AndLater),
+string(PayloadCompatibleAssignmentFilterPlatformwindows81AndLater),
+string(PayloadCompatibleAssignmentFilterPlatformwindowsPhone81),
+	}
+}
+
+
+
+func parsePayloadCompatibleAssignmentFilterPlatform(input string) (*PayloadCompatibleAssignmentFilterPlatform, error) {
+	vals := map[string]PayloadCompatibleAssignmentFilterPlatform{
+		"android": PayloadCompatibleAssignmentFilterPlatformandroid,
+"androidaosp": PayloadCompatibleAssignmentFilterPlatformandroidAOSP,
+"androidforwork": PayloadCompatibleAssignmentFilterPlatformandroidForWork,
+"androidmobileapplicationmanagement": PayloadCompatibleAssignmentFilterPlatformandroidMobileApplicationManagement,
+"androidworkprofile": PayloadCompatibleAssignmentFilterPlatformandroidWorkProfile,
+"ios": PayloadCompatibleAssignmentFilterPlatformiOS,
+"iosmobileapplicationmanagement": PayloadCompatibleAssignmentFilterPlatformiOSMobileApplicationManagement,
+"macos": PayloadCompatibleAssignmentFilterPlatformmacOS,
+"unknown": PayloadCompatibleAssignmentFilterPlatformunknown,
+"windows10andlater": PayloadCompatibleAssignmentFilterPlatformwindows10AndLater,
+"windows81andlater": PayloadCompatibleAssignmentFilterPlatformwindows81AndLater,
+"windowsphone81": PayloadCompatibleAssignmentFilterPlatformwindowsPhone81,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := PayloadCompatibleAssignmentFilterPlatform(input)
+	return &out, nil
+}

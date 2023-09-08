@@ -1,0 +1,51 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type DeviceManagementScriptDeviceStateOperationPredicate struct {
+	 ErrorCode *int64
+	 ErrorDescription *string
+	 Id *string
+	 LastStateUpdateDateTime *string
+	 ODataType *string
+	 ResultMessage *string
+}
+
+func (p DeviceManagementScriptDeviceStateOperationPredicate) Matches(input DeviceManagementScriptDeviceState) bool {
+
+	if p.ErrorCode != nil && (input.ErrorCode == nil || *p.ErrorCode != *input.ErrorCode) {
+	 	return false
+	}
+
+
+	if p.ErrorDescription != nil && (input.ErrorDescription == nil || *p.ErrorDescription != *input.ErrorDescription) {
+	 	return false
+	}
+
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+	 	return false
+	}
+
+
+	if p.LastStateUpdateDateTime != nil && (input.LastStateUpdateDateTime == nil || *p.LastStateUpdateDateTime != *input.LastStateUpdateDateTime) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.ResultMessage != nil && (input.ResultMessage == nil || *p.ResultMessage != *input.ResultMessage) {
+	 	return false
+	}
+
+
+	return true
+}
+

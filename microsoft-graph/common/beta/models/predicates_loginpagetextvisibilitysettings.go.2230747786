@@ -1,0 +1,57 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type LoginPageTextVisibilitySettingsOperationPredicate struct {
+	 HideAccountResetCredentials *bool
+	 HideCannotAccessYourAccount *bool
+	 HideForgotMyPassword *bool
+	 HidePrivacyAndCookies *bool
+	 HideResetItNow *bool
+	 HideTermsOfUse *bool
+	 ODataType *string
+}
+
+func (p LoginPageTextVisibilitySettingsOperationPredicate) Matches(input LoginPageTextVisibilitySettings) bool {
+
+	if p.HideAccountResetCredentials != nil && (input.HideAccountResetCredentials == nil || *p.HideAccountResetCredentials != *input.HideAccountResetCredentials) {
+	 	return false
+	}
+
+
+	if p.HideCannotAccessYourAccount != nil && (input.HideCannotAccessYourAccount == nil || *p.HideCannotAccessYourAccount != *input.HideCannotAccessYourAccount) {
+	 	return false
+	}
+
+
+	if p.HideForgotMyPassword != nil && (input.HideForgotMyPassword == nil || *p.HideForgotMyPassword != *input.HideForgotMyPassword) {
+	 	return false
+	}
+
+
+	if p.HidePrivacyAndCookies != nil && (input.HidePrivacyAndCookies == nil || *p.HidePrivacyAndCookies != *input.HidePrivacyAndCookies) {
+	 	return false
+	}
+
+
+	if p.HideResetItNow != nil && (input.HideResetItNow == nil || *p.HideResetItNow != *input.HideResetItNow) {
+	 	return false
+	}
+
+
+	if p.HideTermsOfUse != nil && (input.HideTermsOfUse == nil || *p.HideTermsOfUse != *input.HideTermsOfUse) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	return true
+}
+

@@ -1,0 +1,87 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type PrivilegedRoleAssignmentRequestOperationPredicate struct {
+	 AssignmentState *string
+	 Duration *string
+	 Id *string
+	 ODataType *string
+	 Reason *string
+	 RequestedDateTime *string
+	 RoleId *string
+	 Status *string
+	 TicketNumber *string
+	 TicketSystem *string
+	 Type *string
+	 UserId *string
+}
+
+func (p PrivilegedRoleAssignmentRequestOperationPredicate) Matches(input PrivilegedRoleAssignmentRequest) bool {
+
+	if p.AssignmentState != nil && (input.AssignmentState == nil || *p.AssignmentState != *input.AssignmentState) {
+	 	return false
+	}
+
+
+	if p.Duration != nil && (input.Duration == nil || *p.Duration != *input.Duration) {
+	 	return false
+	}
+
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.Reason != nil && (input.Reason == nil || *p.Reason != *input.Reason) {
+	 	return false
+	}
+
+
+	if p.RequestedDateTime != nil && (input.RequestedDateTime == nil || *p.RequestedDateTime != *input.RequestedDateTime) {
+	 	return false
+	}
+
+
+	if p.RoleId != nil && (input.RoleId == nil || *p.RoleId != *input.RoleId) {
+	 	return false
+	}
+
+
+	if p.Status != nil && (input.Status == nil || *p.Status != *input.Status) {
+	 	return false
+	}
+
+
+	if p.TicketNumber != nil && (input.TicketNumber == nil || *p.TicketNumber != *input.TicketNumber) {
+	 	return false
+	}
+
+
+	if p.TicketSystem != nil && (input.TicketSystem == nil || *p.TicketSystem != *input.TicketSystem) {
+	 	return false
+	}
+
+
+	if p.Type != nil && (input.Type == nil || *p.Type != *input.Type) {
+	 	return false
+	}
+
+
+	if p.UserId != nil && (input.UserId == nil || *p.UserId != *input.UserId) {
+	 	return false
+	}
+
+
+	return true
+}
+

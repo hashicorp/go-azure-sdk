@@ -1,0 +1,37 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type LocationOperationPredicate struct {
+	DisplayName          *string
+	LocationEmailAddress *string
+	LocationUri          *string
+	ODataType            *string
+	UniqueId             *string
+}
+
+func (p LocationOperationPredicate) Matches(input Location) bool {
+
+	if p.DisplayName != nil && (input.DisplayName == nil || *p.DisplayName != *input.DisplayName) {
+		return false
+	}
+
+	if p.LocationEmailAddress != nil && (input.LocationEmailAddress == nil || *p.LocationEmailAddress != *input.LocationEmailAddress) {
+		return false
+	}
+
+	if p.LocationUri != nil && (input.LocationUri == nil || *p.LocationUri != *input.LocationUri) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.UniqueId != nil && (input.UniqueId == nil || *p.UniqueId != *input.UniqueId) {
+		return false
+	}
+
+	return true
+}

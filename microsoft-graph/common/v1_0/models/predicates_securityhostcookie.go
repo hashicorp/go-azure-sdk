@@ -1,0 +1,42 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type SecurityHostCookieOperationPredicate struct {
+	Domain            *string
+	FirstSeenDateTime *string
+	Id                *string
+	LastSeenDateTime  *string
+	Name              *string
+	ODataType         *string
+}
+
+func (p SecurityHostCookieOperationPredicate) Matches(input SecurityHostCookie) bool {
+
+	if p.Domain != nil && (input.Domain == nil || *p.Domain != *input.Domain) {
+		return false
+	}
+
+	if p.FirstSeenDateTime != nil && (input.FirstSeenDateTime == nil || *p.FirstSeenDateTime != *input.FirstSeenDateTime) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.LastSeenDateTime != nil && (input.LastSeenDateTime == nil || *p.LastSeenDateTime != *input.LastSeenDateTime) {
+		return false
+	}
+
+	if p.Name != nil && (input.Name == nil || *p.Name != *input.Name) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	return true
+}

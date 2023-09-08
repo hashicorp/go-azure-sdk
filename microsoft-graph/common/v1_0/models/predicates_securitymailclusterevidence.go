@@ -1,0 +1,52 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type SecurityMailClusterEvidenceOperationPredicate struct {
+	ClusterBy                *string
+	ClusterByValue           *string
+	CreatedDateTime          *string
+	EmailCount               *int64
+	ODataType                *string
+	Query                    *string
+	RemediationStatusDetails *string
+	Urn                      *string
+}
+
+func (p SecurityMailClusterEvidenceOperationPredicate) Matches(input SecurityMailClusterEvidence) bool {
+
+	if p.ClusterBy != nil && (input.ClusterBy == nil || *p.ClusterBy != *input.ClusterBy) {
+		return false
+	}
+
+	if p.ClusterByValue != nil && (input.ClusterByValue == nil || *p.ClusterByValue != *input.ClusterByValue) {
+		return false
+	}
+
+	if p.CreatedDateTime != nil && (input.CreatedDateTime == nil || *p.CreatedDateTime != *input.CreatedDateTime) {
+		return false
+	}
+
+	if p.EmailCount != nil && (input.EmailCount == nil || *p.EmailCount != *input.EmailCount) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.Query != nil && (input.Query == nil || *p.Query != *input.Query) {
+		return false
+	}
+
+	if p.RemediationStatusDetails != nil && (input.RemediationStatusDetails == nil || *p.RemediationStatusDetails != *input.RemediationStatusDetails) {
+		return false
+	}
+
+	if p.Urn != nil && (input.Urn == nil || *p.Urn != *input.Urn) {
+		return false
+	}
+
+	return true
+}

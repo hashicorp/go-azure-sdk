@@ -1,0 +1,81 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type BookingBusinessOperationPredicate struct {
+	 BusinessType *string
+	 DefaultCurrencyIso *string
+	 DisplayName *string
+	 Email *string
+	 Id *string
+	 IsPublished *bool
+	 LanguageTag *string
+	 ODataType *string
+	 Phone *string
+	 PublicUrl *string
+	 WebSiteUrl *string
+}
+
+func (p BookingBusinessOperationPredicate) Matches(input BookingBusiness) bool {
+
+	if p.BusinessType != nil && (input.BusinessType == nil || *p.BusinessType != *input.BusinessType) {
+	 	return false
+	}
+
+
+	if p.DefaultCurrencyIso != nil && (input.DefaultCurrencyIso == nil || *p.DefaultCurrencyIso != *input.DefaultCurrencyIso) {
+	 	return false
+	}
+
+
+	if p.DisplayName != nil && (input.DisplayName == nil || *p.DisplayName != *input.DisplayName) {
+	 	return false
+	}
+
+
+	if p.Email != nil && (input.Email == nil || *p.Email != *input.Email) {
+	 	return false
+	}
+
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+	 	return false
+	}
+
+
+	if p.IsPublished != nil && (input.IsPublished == nil || *p.IsPublished != *input.IsPublished) {
+	 	return false
+	}
+
+
+	if p.LanguageTag != nil && (input.LanguageTag == nil || *p.LanguageTag != *input.LanguageTag) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.Phone != nil && (input.Phone == nil || *p.Phone != *input.Phone) {
+	 	return false
+	}
+
+
+	if p.PublicUrl != nil && (input.PublicUrl == nil || *p.PublicUrl != *input.PublicUrl) {
+	 	return false
+	}
+
+
+	if p.WebSiteUrl != nil && (input.WebSiteUrl == nil || *p.WebSiteUrl != *input.WebSiteUrl) {
+	 	return false
+	}
+
+
+	return true
+}
+

@@ -1,0 +1,32 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type WindowsManagementAppOperationPredicate struct {
+	AvailableVersion                   *string
+	Id                                 *string
+	ManagedInstallerConfiguredDateTime *string
+	ODataType                          *string
+}
+
+func (p WindowsManagementAppOperationPredicate) Matches(input WindowsManagementApp) bool {
+
+	if p.AvailableVersion != nil && (input.AvailableVersion == nil || *p.AvailableVersion != *input.AvailableVersion) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.ManagedInstallerConfiguredDateTime != nil && (input.ManagedInstallerConfiguredDateTime == nil || *p.ManagedInstallerConfiguredDateTime != *input.ManagedInstallerConfiguredDateTime) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	return true
+}

@@ -1,0 +1,42 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type VirtualEventPresenterDetailsOperationPredicate struct {
+	Company               *string
+	JobTitle              *string
+	LinkedInProfileWebUrl *string
+	ODataType             *string
+	PersonalSiteWebUrl    *string
+	TwitterProfileWebUrl  *string
+}
+
+func (p VirtualEventPresenterDetailsOperationPredicate) Matches(input VirtualEventPresenterDetails) bool {
+
+	if p.Company != nil && (input.Company == nil || *p.Company != *input.Company) {
+		return false
+	}
+
+	if p.JobTitle != nil && (input.JobTitle == nil || *p.JobTitle != *input.JobTitle) {
+		return false
+	}
+
+	if p.LinkedInProfileWebUrl != nil && (input.LinkedInProfileWebUrl == nil || *p.LinkedInProfileWebUrl != *input.LinkedInProfileWebUrl) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.PersonalSiteWebUrl != nil && (input.PersonalSiteWebUrl == nil || *p.PersonalSiteWebUrl != *input.PersonalSiteWebUrl) {
+		return false
+	}
+
+	if p.TwitterProfileWebUrl != nil && (input.TwitterProfileWebUrl == nil || *p.TwitterProfileWebUrl != *input.TwitterProfileWebUrl) {
+		return false
+	}
+
+	return true
+}

@@ -1,0 +1,171 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type ServicePrincipalOperationPredicate struct {
+	 AccountEnabled *bool
+	 AppDescription *string
+	 AppDisplayName *string
+	 AppId *string
+	 AppOwnerOrganizationId *string
+	 AppRoleAssignmentRequired *bool
+	 ApplicationTemplateId *string
+	 DeletedDateTime *string
+	 Description *string
+	 DisabledByMicrosoftStatus *string
+	 DisplayName *string
+	 ErrorUrl *string
+	 Homepage *string
+	 Id *string
+	 LoginUrl *string
+	 LogoutUrl *string
+	 Notes *string
+	 ODataType *string
+	 PreferredSingleSignOnMode *string
+	 PreferredTokenSigningKeyEndDateTime *string
+	 PreferredTokenSigningKeyThumbprint *string
+	 PublisherName *string
+	 SamlMetadataUrl *string
+	 ServicePrincipalType *string
+	 SignInAudience *string
+	 TokenEncryptionKeyId *string
+}
+
+func (p ServicePrincipalOperationPredicate) Matches(input ServicePrincipal) bool {
+
+	if p.AccountEnabled != nil && (input.AccountEnabled == nil || *p.AccountEnabled != *input.AccountEnabled) {
+	 	return false
+	}
+
+
+	if p.AppDescription != nil && (input.AppDescription == nil || *p.AppDescription != *input.AppDescription) {
+	 	return false
+	}
+
+
+	if p.AppDisplayName != nil && (input.AppDisplayName == nil || *p.AppDisplayName != *input.AppDisplayName) {
+	 	return false
+	}
+
+
+	if p.AppId != nil && (input.AppId == nil || *p.AppId != *input.AppId) {
+	 	return false
+	}
+
+
+	if p.AppOwnerOrganizationId != nil && (input.AppOwnerOrganizationId == nil || *p.AppOwnerOrganizationId != *input.AppOwnerOrganizationId) {
+	 	return false
+	}
+
+
+	if p.AppRoleAssignmentRequired != nil && (input.AppRoleAssignmentRequired == nil || *p.AppRoleAssignmentRequired != *input.AppRoleAssignmentRequired) {
+	 	return false
+	}
+
+
+	if p.ApplicationTemplateId != nil && (input.ApplicationTemplateId == nil || *p.ApplicationTemplateId != *input.ApplicationTemplateId) {
+	 	return false
+	}
+
+
+	if p.DeletedDateTime != nil && (input.DeletedDateTime == nil || *p.DeletedDateTime != *input.DeletedDateTime) {
+	 	return false
+	}
+
+
+	if p.Description != nil && (input.Description == nil || *p.Description != *input.Description) {
+	 	return false
+	}
+
+
+	if p.DisabledByMicrosoftStatus != nil && (input.DisabledByMicrosoftStatus == nil || *p.DisabledByMicrosoftStatus != *input.DisabledByMicrosoftStatus) {
+	 	return false
+	}
+
+
+	if p.DisplayName != nil && (input.DisplayName == nil || *p.DisplayName != *input.DisplayName) {
+	 	return false
+	}
+
+
+	if p.ErrorUrl != nil && (input.ErrorUrl == nil || *p.ErrorUrl != *input.ErrorUrl) {
+	 	return false
+	}
+
+
+	if p.Homepage != nil && (input.Homepage == nil || *p.Homepage != *input.Homepage) {
+	 	return false
+	}
+
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+	 	return false
+	}
+
+
+	if p.LoginUrl != nil && (input.LoginUrl == nil || *p.LoginUrl != *input.LoginUrl) {
+	 	return false
+	}
+
+
+	if p.LogoutUrl != nil && (input.LogoutUrl == nil || *p.LogoutUrl != *input.LogoutUrl) {
+	 	return false
+	}
+
+
+	if p.Notes != nil && (input.Notes == nil || *p.Notes != *input.Notes) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.PreferredSingleSignOnMode != nil && (input.PreferredSingleSignOnMode == nil || *p.PreferredSingleSignOnMode != *input.PreferredSingleSignOnMode) {
+	 	return false
+	}
+
+
+	if p.PreferredTokenSigningKeyEndDateTime != nil && (input.PreferredTokenSigningKeyEndDateTime == nil || *p.PreferredTokenSigningKeyEndDateTime != *input.PreferredTokenSigningKeyEndDateTime) {
+	 	return false
+	}
+
+
+	if p.PreferredTokenSigningKeyThumbprint != nil && (input.PreferredTokenSigningKeyThumbprint == nil || *p.PreferredTokenSigningKeyThumbprint != *input.PreferredTokenSigningKeyThumbprint) {
+	 	return false
+	}
+
+
+	if p.PublisherName != nil && (input.PublisherName == nil || *p.PublisherName != *input.PublisherName) {
+	 	return false
+	}
+
+
+	if p.SamlMetadataUrl != nil && (input.SamlMetadataUrl == nil || *p.SamlMetadataUrl != *input.SamlMetadataUrl) {
+	 	return false
+	}
+
+
+	if p.ServicePrincipalType != nil && (input.ServicePrincipalType == nil || *p.ServicePrincipalType != *input.ServicePrincipalType) {
+	 	return false
+	}
+
+
+	if p.SignInAudience != nil && (input.SignInAudience == nil || *p.SignInAudience != *input.SignInAudience) {
+	 	return false
+	}
+
+
+	if p.TokenEncryptionKeyId != nil && (input.TokenEncryptionKeyId == nil || *p.TokenEncryptionKeyId != *input.TokenEncryptionKeyId) {
+	 	return false
+	}
+
+
+	return true
+}
+

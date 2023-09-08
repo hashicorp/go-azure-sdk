@@ -1,0 +1,131 @@
+package models
+
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/edgezones"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/identity"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/systemdata"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/zones"
+)
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type AndroidManagedAppProtection struct {
+	AllowedAndroidDeviceManufacturers *string `json:"allowedAndroidDeviceManufacturers,omitempty"`
+	AllowedAndroidDeviceModels *[]string `json:"allowedAndroidDeviceModels,omitempty"`
+	AllowedDataIngestionLocations *[]AndroidManagedAppProtectionAllowedDataIngestionLocations `json:"allowedDataIngestionLocations,omitempty"`
+	AllowedDataStorageLocations *[]AndroidManagedAppProtectionAllowedDataStorageLocations `json:"allowedDataStorageLocations,omitempty"`
+	AllowedInboundDataTransferSources *AndroidManagedAppProtectionAllowedInboundDataTransferSources `json:"allowedInboundDataTransferSources,omitempty"`
+	AllowedOutboundClipboardSharingExceptionLength *int64 `json:"allowedOutboundClipboardSharingExceptionLength,omitempty"`
+	AllowedOutboundClipboardSharingLevel *AndroidManagedAppProtectionAllowedOutboundClipboardSharingLevel `json:"allowedOutboundClipboardSharingLevel,omitempty"`
+	AllowedOutboundDataTransferDestinations *AndroidManagedAppProtectionAllowedOutboundDataTransferDestinations `json:"allowedOutboundDataTransferDestinations,omitempty"`
+	AppActionIfAccountIsClockedOut *AndroidManagedAppProtectionAppActionIfAccountIsClockedOut `json:"appActionIfAccountIsClockedOut,omitempty"`
+	AppActionIfAndroidDeviceManufacturerNotAllowed *AndroidManagedAppProtectionAppActionIfAndroidDeviceManufacturerNotAllowed `json:"appActionIfAndroidDeviceManufacturerNotAllowed,omitempty"`
+	AppActionIfAndroidDeviceModelNotAllowed *AndroidManagedAppProtectionAppActionIfAndroidDeviceModelNotAllowed `json:"appActionIfAndroidDeviceModelNotAllowed,omitempty"`
+	AppActionIfAndroidSafetyNetAppsVerificationFailed *AndroidManagedAppProtectionAppActionIfAndroidSafetyNetAppsVerificationFailed `json:"appActionIfAndroidSafetyNetAppsVerificationFailed,omitempty"`
+	AppActionIfAndroidSafetyNetDeviceAttestationFailed *AndroidManagedAppProtectionAppActionIfAndroidSafetyNetDeviceAttestationFailed `json:"appActionIfAndroidSafetyNetDeviceAttestationFailed,omitempty"`
+	AppActionIfDeviceComplianceRequired *AndroidManagedAppProtectionAppActionIfDeviceComplianceRequired `json:"appActionIfDeviceComplianceRequired,omitempty"`
+	AppActionIfDeviceLockNotSet *AndroidManagedAppProtectionAppActionIfDeviceLockNotSet `json:"appActionIfDeviceLockNotSet,omitempty"`
+	AppActionIfDevicePasscodeComplexityLessThanHigh *AndroidManagedAppProtectionAppActionIfDevicePasscodeComplexityLessThanHigh `json:"appActionIfDevicePasscodeComplexityLessThanHigh,omitempty"`
+	AppActionIfDevicePasscodeComplexityLessThanLow *AndroidManagedAppProtectionAppActionIfDevicePasscodeComplexityLessThanLow `json:"appActionIfDevicePasscodeComplexityLessThanLow,omitempty"`
+	AppActionIfDevicePasscodeComplexityLessThanMedium *AndroidManagedAppProtectionAppActionIfDevicePasscodeComplexityLessThanMedium `json:"appActionIfDevicePasscodeComplexityLessThanMedium,omitempty"`
+	AppActionIfMaximumPinRetriesExceeded *AndroidManagedAppProtectionAppActionIfMaximumPinRetriesExceeded `json:"appActionIfMaximumPinRetriesExceeded,omitempty"`
+	AppActionIfSamsungKnoxAttestationRequired *AndroidManagedAppProtectionAppActionIfSamsungKnoxAttestationRequired `json:"appActionIfSamsungKnoxAttestationRequired,omitempty"`
+	AppActionIfUnableToAuthenticateUser *AndroidManagedAppProtectionAppActionIfUnableToAuthenticateUser `json:"appActionIfUnableToAuthenticateUser,omitempty"`
+	AppGroupType *AndroidManagedAppProtectionAppGroupType `json:"appGroupType,omitempty"`
+	ApprovedKeyboards *[]KeyValuePair `json:"approvedKeyboards,omitempty"`
+	Apps *[]ManagedMobileApp `json:"apps,omitempty"`
+	Assignments *[]TargetedManagedAppPolicyAssignment `json:"assignments,omitempty"`
+	BiometricAuthenticationBlocked *bool `json:"biometricAuthenticationBlocked,omitempty"`
+	BlockAfterCompanyPortalUpdateDeferralInDays *int64 `json:"blockAfterCompanyPortalUpdateDeferralInDays,omitempty"`
+	BlockDataIngestionIntoOrganizationDocuments *bool `json:"blockDataIngestionIntoOrganizationDocuments,omitempty"`
+	ConnectToVpnOnLaunch *bool `json:"connectToVpnOnLaunch,omitempty"`
+	ContactSyncBlocked *bool `json:"contactSyncBlocked,omitempty"`
+	CreatedDateTime *string `json:"createdDateTime,omitempty"`
+	CustomBrowserDisplayName *string `json:"customBrowserDisplayName,omitempty"`
+	CustomBrowserPackageId *string `json:"customBrowserPackageId,omitempty"`
+	CustomDialerAppDisplayName *string `json:"customDialerAppDisplayName,omitempty"`
+	CustomDialerAppPackageId *string `json:"customDialerAppPackageId,omitempty"`
+	DataBackupBlocked *bool `json:"dataBackupBlocked,omitempty"`
+	DeployedAppCount *int64 `json:"deployedAppCount,omitempty"`
+	DeploymentSummary *ManagedAppPolicyDeploymentSummary `json:"deploymentSummary,omitempty"`
+	Description *string `json:"description,omitempty"`
+	DeviceComplianceRequired *bool `json:"deviceComplianceRequired,omitempty"`
+	DeviceLockRequired *bool `json:"deviceLockRequired,omitempty"`
+	DialerRestrictionLevel *AndroidManagedAppProtectionDialerRestrictionLevel `json:"dialerRestrictionLevel,omitempty"`
+	DisableAppEncryptionIfDeviceEncryptionIsEnabled *bool `json:"disableAppEncryptionIfDeviceEncryptionIsEnabled,omitempty"`
+	DisableAppPinIfDevicePinIsSet *bool `json:"disableAppPinIfDevicePinIsSet,omitempty"`
+	DisplayName *string `json:"displayName,omitempty"`
+	EncryptAppData *bool `json:"encryptAppData,omitempty"`
+	ExemptedAppPackages *[]KeyValuePair `json:"exemptedAppPackages,omitempty"`
+	FingerprintAndBiometricEnabled *bool `json:"fingerprintAndBiometricEnabled,omitempty"`
+	FingerprintBlocked *bool `json:"fingerprintBlocked,omitempty"`
+	GracePeriodToBlockAppsDuringOffClockHours *string `json:"gracePeriodToBlockAppsDuringOffClockHours,omitempty"`
+	Id *string `json:"id,omitempty"`
+	IsAssigned *bool `json:"isAssigned,omitempty"`
+	KeyboardsRestricted *bool `json:"keyboardsRestricted,omitempty"`
+	LastModifiedDateTime *string `json:"lastModifiedDateTime,omitempty"`
+	ManagedBrowser *AndroidManagedAppProtectionManagedBrowser `json:"managedBrowser,omitempty"`
+	ManagedBrowserToOpenLinksRequired *bool `json:"managedBrowserToOpenLinksRequired,omitempty"`
+	MaximumAllowedDeviceThreatLevel *AndroidManagedAppProtectionMaximumAllowedDeviceThreatLevel `json:"maximumAllowedDeviceThreatLevel,omitempty"`
+	MaximumPinRetries *int64 `json:"maximumPinRetries,omitempty"`
+	MaximumRequiredOsVersion *string `json:"maximumRequiredOsVersion,omitempty"`
+	MaximumWarningOsVersion *string `json:"maximumWarningOsVersion,omitempty"`
+	MaximumWipeOsVersion *string `json:"maximumWipeOsVersion,omitempty"`
+	MinimumPinLength *int64 `json:"minimumPinLength,omitempty"`
+	MinimumRequiredAppVersion *string `json:"minimumRequiredAppVersion,omitempty"`
+	MinimumRequiredCompanyPortalVersion *string `json:"minimumRequiredCompanyPortalVersion,omitempty"`
+	MinimumRequiredOsVersion *string `json:"minimumRequiredOsVersion,omitempty"`
+	MinimumRequiredPatchVersion *string `json:"minimumRequiredPatchVersion,omitempty"`
+	MinimumWarningAppVersion *string `json:"minimumWarningAppVersion,omitempty"`
+	MinimumWarningCompanyPortalVersion *string `json:"minimumWarningCompanyPortalVersion,omitempty"`
+	MinimumWarningOsVersion *string `json:"minimumWarningOsVersion,omitempty"`
+	MinimumWarningPatchVersion *string `json:"minimumWarningPatchVersion,omitempty"`
+	MinimumWipeAppVersion *string `json:"minimumWipeAppVersion,omitempty"`
+	MinimumWipeCompanyPortalVersion *string `json:"minimumWipeCompanyPortalVersion,omitempty"`
+	MinimumWipeOsVersion *string `json:"minimumWipeOsVersion,omitempty"`
+	MinimumWipePatchVersion *string `json:"minimumWipePatchVersion,omitempty"`
+	MobileThreatDefensePartnerPriority *AndroidManagedAppProtectionMobileThreatDefensePartnerPriority `json:"mobileThreatDefensePartnerPriority,omitempty"`
+	MobileThreatDefenseRemediationAction *AndroidManagedAppProtectionMobileThreatDefenseRemediationAction `json:"mobileThreatDefenseRemediationAction,omitempty"`
+	NotificationRestriction *AndroidManagedAppProtectionNotificationRestriction `json:"notificationRestriction,omitempty"`
+	ODataType *string `json:"@odata.type,omitempty"`
+	OrganizationalCredentialsRequired *bool `json:"organizationalCredentialsRequired,omitempty"`
+	PeriodBeforePinReset *string `json:"periodBeforePinReset,omitempty"`
+	PeriodOfflineBeforeAccessCheck *string `json:"periodOfflineBeforeAccessCheck,omitempty"`
+	PeriodOfflineBeforeWipeIsEnforced *string `json:"periodOfflineBeforeWipeIsEnforced,omitempty"`
+	PeriodOnlineBeforeAccessCheck *string `json:"periodOnlineBeforeAccessCheck,omitempty"`
+	PinCharacterSet *AndroidManagedAppProtectionPinCharacterSet `json:"pinCharacterSet,omitempty"`
+	PinRequired *bool `json:"pinRequired,omitempty"`
+	PinRequiredInsteadOfBiometricTimeout *string `json:"pinRequiredInsteadOfBiometricTimeout,omitempty"`
+	PreviousPinBlockCount *int64 `json:"previousPinBlockCount,omitempty"`
+	PrintBlocked *bool `json:"printBlocked,omitempty"`
+	RequireClass3Biometrics *bool `json:"requireClass3Biometrics,omitempty"`
+	RequirePinAfterBiometricChange *bool `json:"requirePinAfterBiometricChange,omitempty"`
+	RequiredAndroidSafetyNetAppsVerificationType *AndroidManagedAppProtectionRequiredAndroidSafetyNetAppsVerificationType `json:"requiredAndroidSafetyNetAppsVerificationType,omitempty"`
+	RequiredAndroidSafetyNetDeviceAttestationType *AndroidManagedAppProtectionRequiredAndroidSafetyNetDeviceAttestationType `json:"requiredAndroidSafetyNetDeviceAttestationType,omitempty"`
+	RequiredAndroidSafetyNetEvaluationType *AndroidManagedAppProtectionRequiredAndroidSafetyNetEvaluationType `json:"requiredAndroidSafetyNetEvaluationType,omitempty"`
+	RoleScopeTagIds *[]string `json:"roleScopeTagIds,omitempty"`
+	SaveAsBlocked *bool `json:"saveAsBlocked,omitempty"`
+	ScreenCaptureBlocked *bool `json:"screenCaptureBlocked,omitempty"`
+	SimplePinBlocked *bool `json:"simplePinBlocked,omitempty"`
+	TargetedAppManagementLevels *AndroidManagedAppProtectionTargetedAppManagementLevels `json:"targetedAppManagementLevels,omitempty"`
+	Version *string `json:"version,omitempty"`
+	WarnAfterCompanyPortalUpdateDeferralInDays *int64 `json:"warnAfterCompanyPortalUpdateDeferralInDays,omitempty"`
+	WipeAfterCompanyPortalUpdateDeferralInDays *int64 `json:"wipeAfterCompanyPortalUpdateDeferralInDays,omitempty"`
+}
+
+
+
+
+
+
+

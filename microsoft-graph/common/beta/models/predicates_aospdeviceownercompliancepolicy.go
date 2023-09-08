@@ -1,0 +1,87 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type AospDeviceOwnerCompliancePolicyOperationPredicate struct {
+	CreatedDateTime                       *string
+	Description                           *string
+	DisplayName                           *string
+	Id                                    *string
+	LastModifiedDateTime                  *string
+	MinAndroidSecurityPatchLevel          *string
+	ODataType                             *string
+	OsMaximumVersion                      *string
+	OsMinimumVersion                      *string
+	PasswordMinimumLength                 *int64
+	PasswordMinutesOfInactivityBeforeLock *int64
+	PasswordRequired                      *bool
+	SecurityBlockJailbrokenDevices        *bool
+	StorageRequireEncryption              *bool
+	Version                               *int64
+}
+
+func (p AospDeviceOwnerCompliancePolicyOperationPredicate) Matches(input AospDeviceOwnerCompliancePolicy) bool {
+
+	if p.CreatedDateTime != nil && (input.CreatedDateTime == nil || *p.CreatedDateTime != *input.CreatedDateTime) {
+		return false
+	}
+
+	if p.Description != nil && (input.Description == nil || *p.Description != *input.Description) {
+		return false
+	}
+
+	if p.DisplayName != nil && (input.DisplayName == nil || *p.DisplayName != *input.DisplayName) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.LastModifiedDateTime != nil && (input.LastModifiedDateTime == nil || *p.LastModifiedDateTime != *input.LastModifiedDateTime) {
+		return false
+	}
+
+	if p.MinAndroidSecurityPatchLevel != nil && (input.MinAndroidSecurityPatchLevel == nil || *p.MinAndroidSecurityPatchLevel != *input.MinAndroidSecurityPatchLevel) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.OsMaximumVersion != nil && (input.OsMaximumVersion == nil || *p.OsMaximumVersion != *input.OsMaximumVersion) {
+		return false
+	}
+
+	if p.OsMinimumVersion != nil && (input.OsMinimumVersion == nil || *p.OsMinimumVersion != *input.OsMinimumVersion) {
+		return false
+	}
+
+	if p.PasswordMinimumLength != nil && (input.PasswordMinimumLength == nil || *p.PasswordMinimumLength != *input.PasswordMinimumLength) {
+		return false
+	}
+
+	if p.PasswordMinutesOfInactivityBeforeLock != nil && (input.PasswordMinutesOfInactivityBeforeLock == nil || *p.PasswordMinutesOfInactivityBeforeLock != *input.PasswordMinutesOfInactivityBeforeLock) {
+		return false
+	}
+
+	if p.PasswordRequired != nil && (input.PasswordRequired == nil || *p.PasswordRequired != *input.PasswordRequired) {
+		return false
+	}
+
+	if p.SecurityBlockJailbrokenDevices != nil && (input.SecurityBlockJailbrokenDevices == nil || *p.SecurityBlockJailbrokenDevices != *input.SecurityBlockJailbrokenDevices) {
+		return false
+	}
+
+	if p.StorageRequireEncryption != nil && (input.StorageRequireEncryption == nil || *p.StorageRequireEncryption != *input.StorageRequireEncryption) {
+		return false
+	}
+
+	if p.Version != nil && (input.Version == nil || *p.Version != *input.Version) {
+		return false
+	}
+
+	return true
+}

@@ -1,0 +1,49 @@
+package models
+
+import "strings"
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type WebsiteType string
+
+const (
+	WebsiteTypeblog WebsiteType = "Blog"
+	WebsiteTypehome WebsiteType = "Home"
+	WebsiteTypeother WebsiteType = "Other"
+	WebsiteTypeprofile WebsiteType = "Profile"
+	WebsiteTypework WebsiteType = "Work"
+)
+
+
+func PossibleValuesForWebsiteType() []string {
+	return []string{
+		string(WebsiteTypeblog),
+string(WebsiteTypehome),
+string(WebsiteTypeother),
+string(WebsiteTypeprofile),
+string(WebsiteTypework),
+	}
+}
+
+
+
+func parseWebsiteType(input string) (*WebsiteType, error) {
+	vals := map[string]WebsiteType{
+		"blog": WebsiteTypeblog,
+"home": WebsiteTypehome,
+"other": WebsiteTypeother,
+"profile": WebsiteTypeprofile,
+"work": WebsiteTypework,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := WebsiteType(input)
+	return &out, nil
+}

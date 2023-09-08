@@ -1,0 +1,92 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type ExcludedAppsOperationPredicate struct {
+	Access             *bool
+	Bing               *bool
+	Excel              *bool
+	Groove             *bool
+	InfoPath           *bool
+	Lync               *bool
+	ODataType          *string
+	OneDrive           *bool
+	OneNote            *bool
+	Outlook            *bool
+	PowerPoint         *bool
+	Publisher          *bool
+	SharePointDesigner *bool
+	Teams              *bool
+	Visio              *bool
+	Word               *bool
+}
+
+func (p ExcludedAppsOperationPredicate) Matches(input ExcludedApps) bool {
+
+	if p.Access != nil && (input.Access == nil || *p.Access != *input.Access) {
+		return false
+	}
+
+	if p.Bing != nil && (input.Bing == nil || *p.Bing != *input.Bing) {
+		return false
+	}
+
+	if p.Excel != nil && (input.Excel == nil || *p.Excel != *input.Excel) {
+		return false
+	}
+
+	if p.Groove != nil && (input.Groove == nil || *p.Groove != *input.Groove) {
+		return false
+	}
+
+	if p.InfoPath != nil && (input.InfoPath == nil || *p.InfoPath != *input.InfoPath) {
+		return false
+	}
+
+	if p.Lync != nil && (input.Lync == nil || *p.Lync != *input.Lync) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.OneDrive != nil && (input.OneDrive == nil || *p.OneDrive != *input.OneDrive) {
+		return false
+	}
+
+	if p.OneNote != nil && (input.OneNote == nil || *p.OneNote != *input.OneNote) {
+		return false
+	}
+
+	if p.Outlook != nil && (input.Outlook == nil || *p.Outlook != *input.Outlook) {
+		return false
+	}
+
+	if p.PowerPoint != nil && (input.PowerPoint == nil || *p.PowerPoint != *input.PowerPoint) {
+		return false
+	}
+
+	if p.Publisher != nil && (input.Publisher == nil || *p.Publisher != *input.Publisher) {
+		return false
+	}
+
+	if p.SharePointDesigner != nil && (input.SharePointDesigner == nil || *p.SharePointDesigner != *input.SharePointDesigner) {
+		return false
+	}
+
+	if p.Teams != nil && (input.Teams == nil || *p.Teams != *input.Teams) {
+		return false
+	}
+
+	if p.Visio != nil && (input.Visio == nil || *p.Visio != *input.Visio) {
+		return false
+	}
+
+	if p.Word != nil && (input.Word == nil || *p.Word != *input.Word) {
+		return false
+	}
+
+	return true
+}

@@ -1,0 +1,52 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type IdentityGovernanceWorkflowVersionOperationPredicate struct {
+	CreatedDateTime      *string
+	Description          *string
+	DisplayName          *string
+	IsEnabled            *bool
+	IsSchedulingEnabled  *bool
+	LastModifiedDateTime *string
+	ODataType            *string
+	VersionNumber        *int64
+}
+
+func (p IdentityGovernanceWorkflowVersionOperationPredicate) Matches(input IdentityGovernanceWorkflowVersion) bool {
+
+	if p.CreatedDateTime != nil && (input.CreatedDateTime == nil || *p.CreatedDateTime != *input.CreatedDateTime) {
+		return false
+	}
+
+	if p.Description != nil && (input.Description == nil || *p.Description != *input.Description) {
+		return false
+	}
+
+	if p.DisplayName != nil && (input.DisplayName == nil || *p.DisplayName != *input.DisplayName) {
+		return false
+	}
+
+	if p.IsEnabled != nil && (input.IsEnabled == nil || *p.IsEnabled != *input.IsEnabled) {
+		return false
+	}
+
+	if p.IsSchedulingEnabled != nil && (input.IsSchedulingEnabled == nil || *p.IsSchedulingEnabled != *input.IsSchedulingEnabled) {
+		return false
+	}
+
+	if p.LastModifiedDateTime != nil && (input.LastModifiedDateTime == nil || *p.LastModifiedDateTime != *input.LastModifiedDateTime) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.VersionNumber != nil && (input.VersionNumber == nil || *p.VersionNumber != *input.VersionNumber) {
+		return false
+	}
+
+	return true
+}

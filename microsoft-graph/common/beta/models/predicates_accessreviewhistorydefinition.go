@@ -1,0 +1,52 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type AccessReviewHistoryDefinitionOperationPredicate struct {
+	CreatedDateTime                  *string
+	DisplayName                      *string
+	DownloadUri                      *string
+	FulfilledDateTime                *string
+	Id                               *string
+	ODataType                        *string
+	ReviewHistoryPeriodEndDateTime   *string
+	ReviewHistoryPeriodStartDateTime *string
+}
+
+func (p AccessReviewHistoryDefinitionOperationPredicate) Matches(input AccessReviewHistoryDefinition) bool {
+
+	if p.CreatedDateTime != nil && (input.CreatedDateTime == nil || *p.CreatedDateTime != *input.CreatedDateTime) {
+		return false
+	}
+
+	if p.DisplayName != nil && (input.DisplayName == nil || *p.DisplayName != *input.DisplayName) {
+		return false
+	}
+
+	if p.DownloadUri != nil && (input.DownloadUri == nil || *p.DownloadUri != *input.DownloadUri) {
+		return false
+	}
+
+	if p.FulfilledDateTime != nil && (input.FulfilledDateTime == nil || *p.FulfilledDateTime != *input.FulfilledDateTime) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.ReviewHistoryPeriodEndDateTime != nil && (input.ReviewHistoryPeriodEndDateTime == nil || *p.ReviewHistoryPeriodEndDateTime != *input.ReviewHistoryPeriodEndDateTime) {
+		return false
+	}
+
+	if p.ReviewHistoryPeriodStartDateTime != nil && (input.ReviewHistoryPeriodStartDateTime == nil || *p.ReviewHistoryPeriodStartDateTime != *input.ReviewHistoryPeriodStartDateTime) {
+		return false
+	}
+
+	return true
+}

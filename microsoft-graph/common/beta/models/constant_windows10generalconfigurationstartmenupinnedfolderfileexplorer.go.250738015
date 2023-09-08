@@ -1,0 +1,43 @@
+package models
+
+import "strings"
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type Windows10GeneralConfigurationStartMenuPinnedFolderFileExplorer string
+
+const (
+	Windows10GeneralConfigurationStartMenuPinnedFolderFileExplorerhide Windows10GeneralConfigurationStartMenuPinnedFolderFileExplorer = "Hide"
+	Windows10GeneralConfigurationStartMenuPinnedFolderFileExplorernotConfigured Windows10GeneralConfigurationStartMenuPinnedFolderFileExplorer = "NotConfigured"
+	Windows10GeneralConfigurationStartMenuPinnedFolderFileExplorershow Windows10GeneralConfigurationStartMenuPinnedFolderFileExplorer = "Show"
+)
+
+
+func PossibleValuesForWindows10GeneralConfigurationStartMenuPinnedFolderFileExplorer() []string {
+	return []string{
+		string(Windows10GeneralConfigurationStartMenuPinnedFolderFileExplorerhide),
+string(Windows10GeneralConfigurationStartMenuPinnedFolderFileExplorernotConfigured),
+string(Windows10GeneralConfigurationStartMenuPinnedFolderFileExplorershow),
+	}
+}
+
+
+
+func parseWindows10GeneralConfigurationStartMenuPinnedFolderFileExplorer(input string) (*Windows10GeneralConfigurationStartMenuPinnedFolderFileExplorer, error) {
+	vals := map[string]Windows10GeneralConfigurationStartMenuPinnedFolderFileExplorer{
+		"hide": Windows10GeneralConfigurationStartMenuPinnedFolderFileExplorerhide,
+"notconfigured": Windows10GeneralConfigurationStartMenuPinnedFolderFileExplorernotConfigured,
+"show": Windows10GeneralConfigurationStartMenuPinnedFolderFileExplorershow,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := Windows10GeneralConfigurationStartMenuPinnedFolderFileExplorer(input)
+	return &out, nil
+}

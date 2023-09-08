@@ -1,0 +1,40 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type NetworkaccessDeviceLinkBandwidthCapacityInMbps string
+
+const (
+	NetworkaccessDeviceLinkBandwidthCapacityInMbpsmbps1000 NetworkaccessDeviceLinkBandwidthCapacityInMbps = "Mbps1000"
+	NetworkaccessDeviceLinkBandwidthCapacityInMbpsmbps250  NetworkaccessDeviceLinkBandwidthCapacityInMbps = "Mbps250"
+	NetworkaccessDeviceLinkBandwidthCapacityInMbpsmbps500  NetworkaccessDeviceLinkBandwidthCapacityInMbps = "Mbps500"
+	NetworkaccessDeviceLinkBandwidthCapacityInMbpsmbps750  NetworkaccessDeviceLinkBandwidthCapacityInMbps = "Mbps750"
+)
+
+func PossibleValuesForNetworkaccessDeviceLinkBandwidthCapacityInMbps() []string {
+	return []string{
+		string(NetworkaccessDeviceLinkBandwidthCapacityInMbpsmbps1000),
+		string(NetworkaccessDeviceLinkBandwidthCapacityInMbpsmbps250),
+		string(NetworkaccessDeviceLinkBandwidthCapacityInMbpsmbps500),
+		string(NetworkaccessDeviceLinkBandwidthCapacityInMbpsmbps750),
+	}
+}
+
+func parseNetworkaccessDeviceLinkBandwidthCapacityInMbps(input string) (*NetworkaccessDeviceLinkBandwidthCapacityInMbps, error) {
+	vals := map[string]NetworkaccessDeviceLinkBandwidthCapacityInMbps{
+		"mbps1000": NetworkaccessDeviceLinkBandwidthCapacityInMbpsmbps1000,
+		"mbps250":  NetworkaccessDeviceLinkBandwidthCapacityInMbpsmbps250,
+		"mbps500":  NetworkaccessDeviceLinkBandwidthCapacityInMbpsmbps500,
+		"mbps750":  NetworkaccessDeviceLinkBandwidthCapacityInMbpsmbps750,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := NetworkaccessDeviceLinkBandwidthCapacityInMbps(input)
+	return &out, nil
+}

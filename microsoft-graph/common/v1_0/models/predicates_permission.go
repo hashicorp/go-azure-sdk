@@ -1,0 +1,37 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type PermissionOperationPredicate struct {
+	ExpirationDateTime *string
+	HasPassword        *bool
+	Id                 *string
+	ODataType          *string
+	ShareId            *string
+}
+
+func (p PermissionOperationPredicate) Matches(input Permission) bool {
+
+	if p.ExpirationDateTime != nil && (input.ExpirationDateTime == nil || *p.ExpirationDateTime != *input.ExpirationDateTime) {
+		return false
+	}
+
+	if p.HasPassword != nil && (input.HasPassword == nil || *p.HasPassword != *input.HasPassword) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.ShareId != nil && (input.ShareId == nil || *p.ShareId != *input.ShareId) {
+		return false
+	}
+
+	return true
+}

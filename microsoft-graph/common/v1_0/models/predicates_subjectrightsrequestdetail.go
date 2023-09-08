@@ -1,0 +1,42 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type SubjectRightsRequestDetailOperationPredicate struct {
+	ExcludedItemCount  *int64
+	ItemCount          *int64
+	ItemNeedReview     *int64
+	ODataType          *string
+	SignedOffItemCount *int64
+	TotalItemSize      *int64
+}
+
+func (p SubjectRightsRequestDetailOperationPredicate) Matches(input SubjectRightsRequestDetail) bool {
+
+	if p.ExcludedItemCount != nil && (input.ExcludedItemCount == nil || *p.ExcludedItemCount != *input.ExcludedItemCount) {
+		return false
+	}
+
+	if p.ItemCount != nil && (input.ItemCount == nil || *p.ItemCount != *input.ItemCount) {
+		return false
+	}
+
+	if p.ItemNeedReview != nil && (input.ItemNeedReview == nil || *p.ItemNeedReview != *input.ItemNeedReview) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.SignedOffItemCount != nil && (input.SignedOffItemCount == nil || *p.SignedOffItemCount != *input.SignedOffItemCount) {
+		return false
+	}
+
+	if p.TotalItemSize != nil && (input.TotalItemSize == nil || *p.TotalItemSize != *input.TotalItemSize) {
+		return false
+	}
+
+	return true
+}

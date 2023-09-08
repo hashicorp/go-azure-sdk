@@ -1,0 +1,34 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type ManagedAppAppAvailability string
+
+const (
+	ManagedAppAppAvailabilityglobal         ManagedAppAppAvailability = "Global"
+	ManagedAppAppAvailabilitylineOfBusiness ManagedAppAppAvailability = "LineOfBusiness"
+)
+
+func PossibleValuesForManagedAppAppAvailability() []string {
+	return []string{
+		string(ManagedAppAppAvailabilityglobal),
+		string(ManagedAppAppAvailabilitylineOfBusiness),
+	}
+}
+
+func parseManagedAppAppAvailability(input string) (*ManagedAppAppAvailability, error) {
+	vals := map[string]ManagedAppAppAvailability{
+		"global":         ManagedAppAppAvailabilityglobal,
+		"lineofbusiness": ManagedAppAppAvailabilitylineOfBusiness,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ManagedAppAppAvailability(input)
+	return &out, nil
+}

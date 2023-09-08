@@ -1,0 +1,27 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type ManagementCertificateWithThumbprintOperationPredicate struct {
+	Certificate *string
+	ODataType   *string
+	Thumbprint  *string
+}
+
+func (p ManagementCertificateWithThumbprintOperationPredicate) Matches(input ManagementCertificateWithThumbprint) bool {
+
+	if p.Certificate != nil && (input.Certificate == nil || *p.Certificate != *input.Certificate) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.Thumbprint != nil && (input.Thumbprint == nil || *p.Thumbprint != *input.Thumbprint) {
+		return false
+	}
+
+	return true
+}

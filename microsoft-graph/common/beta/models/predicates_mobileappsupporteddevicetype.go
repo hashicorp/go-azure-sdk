@@ -1,0 +1,27 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type MobileAppSupportedDeviceTypeOperationPredicate struct {
+	MaximumOperatingSystemVersion *string
+	MinimumOperatingSystemVersion *string
+	ODataType                     *string
+}
+
+func (p MobileAppSupportedDeviceTypeOperationPredicate) Matches(input MobileAppSupportedDeviceType) bool {
+
+	if p.MaximumOperatingSystemVersion != nil && (input.MaximumOperatingSystemVersion == nil || *p.MaximumOperatingSystemVersion != *input.MaximumOperatingSystemVersion) {
+		return false
+	}
+
+	if p.MinimumOperatingSystemVersion != nil && (input.MinimumOperatingSystemVersion == nil || *p.MinimumOperatingSystemVersion != *input.MinimumOperatingSystemVersion) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	return true
+}

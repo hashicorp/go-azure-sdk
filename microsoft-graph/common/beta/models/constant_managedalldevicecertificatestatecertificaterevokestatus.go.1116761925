@@ -1,0 +1,49 @@
+package models
+
+import "strings"
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type ManagedAllDeviceCertificateStateCertificateRevokeStatus string
+
+const (
+	ManagedAllDeviceCertificateStateCertificateRevokeStatusfailed ManagedAllDeviceCertificateStateCertificateRevokeStatus = "Failed"
+	ManagedAllDeviceCertificateStateCertificateRevokeStatusissued ManagedAllDeviceCertificateStateCertificateRevokeStatus = "Issued"
+	ManagedAllDeviceCertificateStateCertificateRevokeStatusnone ManagedAllDeviceCertificateStateCertificateRevokeStatus = "None"
+	ManagedAllDeviceCertificateStateCertificateRevokeStatuspending ManagedAllDeviceCertificateStateCertificateRevokeStatus = "Pending"
+	ManagedAllDeviceCertificateStateCertificateRevokeStatusrevoked ManagedAllDeviceCertificateStateCertificateRevokeStatus = "Revoked"
+)
+
+
+func PossibleValuesForManagedAllDeviceCertificateStateCertificateRevokeStatus() []string {
+	return []string{
+		string(ManagedAllDeviceCertificateStateCertificateRevokeStatusfailed),
+string(ManagedAllDeviceCertificateStateCertificateRevokeStatusissued),
+string(ManagedAllDeviceCertificateStateCertificateRevokeStatusnone),
+string(ManagedAllDeviceCertificateStateCertificateRevokeStatuspending),
+string(ManagedAllDeviceCertificateStateCertificateRevokeStatusrevoked),
+	}
+}
+
+
+
+func parseManagedAllDeviceCertificateStateCertificateRevokeStatus(input string) (*ManagedAllDeviceCertificateStateCertificateRevokeStatus, error) {
+	vals := map[string]ManagedAllDeviceCertificateStateCertificateRevokeStatus{
+		"failed": ManagedAllDeviceCertificateStateCertificateRevokeStatusfailed,
+"issued": ManagedAllDeviceCertificateStateCertificateRevokeStatusissued,
+"none": ManagedAllDeviceCertificateStateCertificateRevokeStatusnone,
+"pending": ManagedAllDeviceCertificateStateCertificateRevokeStatuspending,
+"revoked": ManagedAllDeviceCertificateStateCertificateRevokeStatusrevoked,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ManagedAllDeviceCertificateStateCertificateRevokeStatus(input)
+	return &out, nil
+}

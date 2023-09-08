@@ -1,0 +1,33 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type SearchHitsContainerOperationPredicate struct {
+	 MoreResultsAvailable *bool
+	 ODataType *string
+	 Total *int64
+}
+
+func (p SearchHitsContainerOperationPredicate) Matches(input SearchHitsContainer) bool {
+
+	if p.MoreResultsAvailable != nil && (input.MoreResultsAvailable == nil || *p.MoreResultsAvailable != *input.MoreResultsAvailable) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.Total != nil && (input.Total == nil || *p.Total != *input.Total) {
+	 	return false
+	}
+
+
+	return true
+}
+

@@ -1,0 +1,42 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type TermsAndConditionsAcceptanceStatusOperationPredicate struct {
+	AcceptedDateTime  *string
+	AcceptedVersion   *int64
+	Id                *string
+	ODataType         *string
+	UserDisplayName   *string
+	UserPrincipalName *string
+}
+
+func (p TermsAndConditionsAcceptanceStatusOperationPredicate) Matches(input TermsAndConditionsAcceptanceStatus) bool {
+
+	if p.AcceptedDateTime != nil && (input.AcceptedDateTime == nil || *p.AcceptedDateTime != *input.AcceptedDateTime) {
+		return false
+	}
+
+	if p.AcceptedVersion != nil && (input.AcceptedVersion == nil || *p.AcceptedVersion != *input.AcceptedVersion) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.UserDisplayName != nil && (input.UserDisplayName == nil || *p.UserDisplayName != *input.UserDisplayName) {
+		return false
+	}
+
+	if p.UserPrincipalName != nil && (input.UserPrincipalName == nil || *p.UserPrincipalName != *input.UserPrincipalName) {
+		return false
+	}
+
+	return true
+}

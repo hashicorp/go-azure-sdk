@@ -1,0 +1,27 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type ContentTypeOrderOperationPredicate struct {
+	Default   *bool
+	ODataType *string
+	Position  *int64
+}
+
+func (p ContentTypeOrderOperationPredicate) Matches(input ContentTypeOrder) bool {
+
+	if p.Default != nil && (input.Default == nil || *p.Default != *input.Default) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.Position != nil && (input.Position == nil || *p.Position != *input.Position) {
+		return false
+	}
+
+	return true
+}

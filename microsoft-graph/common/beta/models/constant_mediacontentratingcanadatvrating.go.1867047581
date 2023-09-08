@@ -1,0 +1,58 @@
+package models
+
+import "strings"
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type MediaContentRatingCanadaTvRating string
+
+const (
+	MediaContentRatingCanadaTvRatingagesAbove14 MediaContentRatingCanadaTvRating = "AgesAbove14"
+	MediaContentRatingCanadaTvRatingagesAbove18 MediaContentRatingCanadaTvRating = "AgesAbove18"
+	MediaContentRatingCanadaTvRatingallAllowed MediaContentRatingCanadaTvRating = "AllAllowed"
+	MediaContentRatingCanadaTvRatingallBlocked MediaContentRatingCanadaTvRating = "AllBlocked"
+	MediaContentRatingCanadaTvRatingchildren MediaContentRatingCanadaTvRating = "Children"
+	MediaContentRatingCanadaTvRatingchildrenAbove8 MediaContentRatingCanadaTvRating = "ChildrenAbove8"
+	MediaContentRatingCanadaTvRatinggeneral MediaContentRatingCanadaTvRating = "General"
+	MediaContentRatingCanadaTvRatingparentalGuidance MediaContentRatingCanadaTvRating = "ParentalGuidance"
+)
+
+
+func PossibleValuesForMediaContentRatingCanadaTvRating() []string {
+	return []string{
+		string(MediaContentRatingCanadaTvRatingagesAbove14),
+string(MediaContentRatingCanadaTvRatingagesAbove18),
+string(MediaContentRatingCanadaTvRatingallAllowed),
+string(MediaContentRatingCanadaTvRatingallBlocked),
+string(MediaContentRatingCanadaTvRatingchildren),
+string(MediaContentRatingCanadaTvRatingchildrenAbove8),
+string(MediaContentRatingCanadaTvRatinggeneral),
+string(MediaContentRatingCanadaTvRatingparentalGuidance),
+	}
+}
+
+
+
+func parseMediaContentRatingCanadaTvRating(input string) (*MediaContentRatingCanadaTvRating, error) {
+	vals := map[string]MediaContentRatingCanadaTvRating{
+		"agesabove14": MediaContentRatingCanadaTvRatingagesAbove14,
+"agesabove18": MediaContentRatingCanadaTvRatingagesAbove18,
+"allallowed": MediaContentRatingCanadaTvRatingallAllowed,
+"allblocked": MediaContentRatingCanadaTvRatingallBlocked,
+"children": MediaContentRatingCanadaTvRatingchildren,
+"childrenabove8": MediaContentRatingCanadaTvRatingchildrenAbove8,
+"general": MediaContentRatingCanadaTvRatinggeneral,
+"parentalguidance": MediaContentRatingCanadaTvRatingparentalGuidance,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := MediaContentRatingCanadaTvRating(input)
+	return &out, nil
+}

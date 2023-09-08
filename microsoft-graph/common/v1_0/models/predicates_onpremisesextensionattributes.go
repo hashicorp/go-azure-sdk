@@ -1,0 +1,92 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type OnPremisesExtensionAttributesOperationPredicate struct {
+	ExtensionAttribute1  *string
+	ExtensionAttribute10 *string
+	ExtensionAttribute11 *string
+	ExtensionAttribute12 *string
+	ExtensionAttribute13 *string
+	ExtensionAttribute14 *string
+	ExtensionAttribute15 *string
+	ExtensionAttribute2  *string
+	ExtensionAttribute3  *string
+	ExtensionAttribute4  *string
+	ExtensionAttribute5  *string
+	ExtensionAttribute6  *string
+	ExtensionAttribute7  *string
+	ExtensionAttribute8  *string
+	ExtensionAttribute9  *string
+	ODataType            *string
+}
+
+func (p OnPremisesExtensionAttributesOperationPredicate) Matches(input OnPremisesExtensionAttributes) bool {
+
+	if p.ExtensionAttribute1 != nil && (input.ExtensionAttribute1 == nil || *p.ExtensionAttribute1 != *input.ExtensionAttribute1) {
+		return false
+	}
+
+	if p.ExtensionAttribute10 != nil && (input.ExtensionAttribute10 == nil || *p.ExtensionAttribute10 != *input.ExtensionAttribute10) {
+		return false
+	}
+
+	if p.ExtensionAttribute11 != nil && (input.ExtensionAttribute11 == nil || *p.ExtensionAttribute11 != *input.ExtensionAttribute11) {
+		return false
+	}
+
+	if p.ExtensionAttribute12 != nil && (input.ExtensionAttribute12 == nil || *p.ExtensionAttribute12 != *input.ExtensionAttribute12) {
+		return false
+	}
+
+	if p.ExtensionAttribute13 != nil && (input.ExtensionAttribute13 == nil || *p.ExtensionAttribute13 != *input.ExtensionAttribute13) {
+		return false
+	}
+
+	if p.ExtensionAttribute14 != nil && (input.ExtensionAttribute14 == nil || *p.ExtensionAttribute14 != *input.ExtensionAttribute14) {
+		return false
+	}
+
+	if p.ExtensionAttribute15 != nil && (input.ExtensionAttribute15 == nil || *p.ExtensionAttribute15 != *input.ExtensionAttribute15) {
+		return false
+	}
+
+	if p.ExtensionAttribute2 != nil && (input.ExtensionAttribute2 == nil || *p.ExtensionAttribute2 != *input.ExtensionAttribute2) {
+		return false
+	}
+
+	if p.ExtensionAttribute3 != nil && (input.ExtensionAttribute3 == nil || *p.ExtensionAttribute3 != *input.ExtensionAttribute3) {
+		return false
+	}
+
+	if p.ExtensionAttribute4 != nil && (input.ExtensionAttribute4 == nil || *p.ExtensionAttribute4 != *input.ExtensionAttribute4) {
+		return false
+	}
+
+	if p.ExtensionAttribute5 != nil && (input.ExtensionAttribute5 == nil || *p.ExtensionAttribute5 != *input.ExtensionAttribute5) {
+		return false
+	}
+
+	if p.ExtensionAttribute6 != nil && (input.ExtensionAttribute6 == nil || *p.ExtensionAttribute6 != *input.ExtensionAttribute6) {
+		return false
+	}
+
+	if p.ExtensionAttribute7 != nil && (input.ExtensionAttribute7 == nil || *p.ExtensionAttribute7 != *input.ExtensionAttribute7) {
+		return false
+	}
+
+	if p.ExtensionAttribute8 != nil && (input.ExtensionAttribute8 == nil || *p.ExtensionAttribute8 != *input.ExtensionAttribute8) {
+		return false
+	}
+
+	if p.ExtensionAttribute9 != nil && (input.ExtensionAttribute9 == nil || *p.ExtensionAttribute9 != *input.ExtensionAttribute9) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	return true
+}

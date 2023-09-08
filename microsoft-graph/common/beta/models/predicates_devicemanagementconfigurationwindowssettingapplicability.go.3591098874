@@ -1,0 +1,51 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type DeviceManagementConfigurationWindowsSettingApplicabilityOperationPredicate struct {
+	 ConfigurationServiceProviderVersion *string
+	 Description *string
+	 MaximumSupportedVersion *string
+	 MinimumSupportedVersion *string
+	 ODataType *string
+	 RequiresAzureAd *bool
+}
+
+func (p DeviceManagementConfigurationWindowsSettingApplicabilityOperationPredicate) Matches(input DeviceManagementConfigurationWindowsSettingApplicability) bool {
+
+	if p.ConfigurationServiceProviderVersion != nil && (input.ConfigurationServiceProviderVersion == nil || *p.ConfigurationServiceProviderVersion != *input.ConfigurationServiceProviderVersion) {
+	 	return false
+	}
+
+
+	if p.Description != nil && (input.Description == nil || *p.Description != *input.Description) {
+	 	return false
+	}
+
+
+	if p.MaximumSupportedVersion != nil && (input.MaximumSupportedVersion == nil || *p.MaximumSupportedVersion != *input.MaximumSupportedVersion) {
+	 	return false
+	}
+
+
+	if p.MinimumSupportedVersion != nil && (input.MinimumSupportedVersion == nil || *p.MinimumSupportedVersion != *input.MinimumSupportedVersion) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.RequiresAzureAd != nil && (input.RequiresAzureAd == nil || *p.RequiresAzureAd != *input.RequiresAzureAd) {
+	 	return false
+	}
+
+
+	return true
+}
+

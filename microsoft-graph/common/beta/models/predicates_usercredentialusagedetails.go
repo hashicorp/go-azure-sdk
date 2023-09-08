@@ -1,0 +1,47 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type UserCredentialUsageDetailsOperationPredicate struct {
+	EventDateTime     *string
+	FailureReason     *string
+	Id                *string
+	IsSuccess         *bool
+	ODataType         *string
+	UserDisplayName   *string
+	UserPrincipalName *string
+}
+
+func (p UserCredentialUsageDetailsOperationPredicate) Matches(input UserCredentialUsageDetails) bool {
+
+	if p.EventDateTime != nil && (input.EventDateTime == nil || *p.EventDateTime != *input.EventDateTime) {
+		return false
+	}
+
+	if p.FailureReason != nil && (input.FailureReason == nil || *p.FailureReason != *input.FailureReason) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.IsSuccess != nil && (input.IsSuccess == nil || *p.IsSuccess != *input.IsSuccess) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.UserDisplayName != nil && (input.UserDisplayName == nil || *p.UserDisplayName != *input.UserDisplayName) {
+		return false
+	}
+
+	if p.UserPrincipalName != nil && (input.UserPrincipalName == nil || *p.UserPrincipalName != *input.UserPrincipalName) {
+		return false
+	}
+
+	return true
+}

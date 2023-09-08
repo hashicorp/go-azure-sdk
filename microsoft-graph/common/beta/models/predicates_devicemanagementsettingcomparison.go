@@ -1,0 +1,42 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type DeviceManagementSettingComparisonOperationPredicate struct {
+	CurrentValueJson *string
+	DefinitionId     *string
+	DisplayName      *string
+	Id               *string
+	NewValueJson     *string
+	ODataType        *string
+}
+
+func (p DeviceManagementSettingComparisonOperationPredicate) Matches(input DeviceManagementSettingComparison) bool {
+
+	if p.CurrentValueJson != nil && (input.CurrentValueJson == nil || *p.CurrentValueJson != *input.CurrentValueJson) {
+		return false
+	}
+
+	if p.DefinitionId != nil && (input.DefinitionId == nil || *p.DefinitionId != *input.DefinitionId) {
+		return false
+	}
+
+	if p.DisplayName != nil && (input.DisplayName == nil || *p.DisplayName != *input.DisplayName) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.NewValueJson != nil && (input.NewValueJson == nil || *p.NewValueJson != *input.NewValueJson) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	return true
+}

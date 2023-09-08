@@ -1,0 +1,46 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type SecurityEdiscoveryHoldOperationStatus string
+
+const (
+	SecurityEdiscoveryHoldOperationStatusfailed             SecurityEdiscoveryHoldOperationStatus = "Failed"
+	SecurityEdiscoveryHoldOperationStatusnotStarted         SecurityEdiscoveryHoldOperationStatus = "NotStarted"
+	SecurityEdiscoveryHoldOperationStatuspartiallySucceeded SecurityEdiscoveryHoldOperationStatus = "PartiallySucceeded"
+	SecurityEdiscoveryHoldOperationStatusrunning            SecurityEdiscoveryHoldOperationStatus = "Running"
+	SecurityEdiscoveryHoldOperationStatussubmissionFailed   SecurityEdiscoveryHoldOperationStatus = "SubmissionFailed"
+	SecurityEdiscoveryHoldOperationStatussucceeded          SecurityEdiscoveryHoldOperationStatus = "Succeeded"
+)
+
+func PossibleValuesForSecurityEdiscoveryHoldOperationStatus() []string {
+	return []string{
+		string(SecurityEdiscoveryHoldOperationStatusfailed),
+		string(SecurityEdiscoveryHoldOperationStatusnotStarted),
+		string(SecurityEdiscoveryHoldOperationStatuspartiallySucceeded),
+		string(SecurityEdiscoveryHoldOperationStatusrunning),
+		string(SecurityEdiscoveryHoldOperationStatussubmissionFailed),
+		string(SecurityEdiscoveryHoldOperationStatussucceeded),
+	}
+}
+
+func parseSecurityEdiscoveryHoldOperationStatus(input string) (*SecurityEdiscoveryHoldOperationStatus, error) {
+	vals := map[string]SecurityEdiscoveryHoldOperationStatus{
+		"failed":             SecurityEdiscoveryHoldOperationStatusfailed,
+		"notstarted":         SecurityEdiscoveryHoldOperationStatusnotStarted,
+		"partiallysucceeded": SecurityEdiscoveryHoldOperationStatuspartiallySucceeded,
+		"running":            SecurityEdiscoveryHoldOperationStatusrunning,
+		"submissionfailed":   SecurityEdiscoveryHoldOperationStatussubmissionFailed,
+		"succeeded":          SecurityEdiscoveryHoldOperationStatussucceeded,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SecurityEdiscoveryHoldOperationStatus(input)
+	return &out, nil
+}

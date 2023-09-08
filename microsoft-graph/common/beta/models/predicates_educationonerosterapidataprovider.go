@@ -1,0 +1,27 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type EducationOneRosterApiDataProviderOperationPredicate struct {
+	ConnectionUrl *string
+	ODataType     *string
+	ProviderName  *string
+}
+
+func (p EducationOneRosterApiDataProviderOperationPredicate) Matches(input EducationOneRosterApiDataProvider) bool {
+
+	if p.ConnectionUrl != nil && (input.ConnectionUrl == nil || *p.ConnectionUrl != *input.ConnectionUrl) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.ProviderName != nil && (input.ProviderName == nil || *p.ProviderName != *input.ProviderName) {
+		return false
+	}
+
+	return true
+}

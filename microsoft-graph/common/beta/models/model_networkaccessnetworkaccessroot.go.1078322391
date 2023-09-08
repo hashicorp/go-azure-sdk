@@ -1,0 +1,39 @@
+package models
+
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/edgezones"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/identity"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/systemdata"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/zones"
+)
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type NetworkaccessNetworkAccessRoot struct {
+	Connectivity *NetworkaccessConnectivity `json:"connectivity,omitempty"`
+	ForwardingPolicies *[]NetworkaccessForwardingPolicy `json:"forwardingPolicies,omitempty"`
+	ForwardingProfiles *[]NetworkaccessForwardingProfile `json:"forwardingProfiles,omitempty"`
+	Id *string `json:"id,omitempty"`
+	Logs *NetworkaccessLogs `json:"logs,omitempty"`
+	ODataType *string `json:"@odata.type,omitempty"`
+	Reports *NetworkaccessReports `json:"reports,omitempty"`
+	Settings *NetworkaccessSettings `json:"settings,omitempty"`
+	TenantStatus *NetworkaccessTenantStatus `json:"tenantStatus,omitempty"`
+}
+
+
+
+
+
+
+

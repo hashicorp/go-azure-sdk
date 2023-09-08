@@ -1,0 +1,57 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type CloudPCOnPremisesConnectionHealthCheckOperationPredicate struct {
+	 AdditionalDetails *string
+	 CorrelationId *string
+	 DisplayName *string
+	 EndDateTime *string
+	 ODataType *string
+	 RecommendedAction *string
+	 StartDateTime *string
+}
+
+func (p CloudPCOnPremisesConnectionHealthCheckOperationPredicate) Matches(input CloudPCOnPremisesConnectionHealthCheck) bool {
+
+	if p.AdditionalDetails != nil && (input.AdditionalDetails == nil || *p.AdditionalDetails != *input.AdditionalDetails) {
+	 	return false
+	}
+
+
+	if p.CorrelationId != nil && (input.CorrelationId == nil || *p.CorrelationId != *input.CorrelationId) {
+	 	return false
+	}
+
+
+	if p.DisplayName != nil && (input.DisplayName == nil || *p.DisplayName != *input.DisplayName) {
+	 	return false
+	}
+
+
+	if p.EndDateTime != nil && (input.EndDateTime == nil || *p.EndDateTime != *input.EndDateTime) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.RecommendedAction != nil && (input.RecommendedAction == nil || *p.RecommendedAction != *input.RecommendedAction) {
+	 	return false
+	}
+
+
+	if p.StartDateTime != nil && (input.StartDateTime == nil || *p.StartDateTime != *input.StartDateTime) {
+	 	return false
+	}
+
+
+	return true
+}
+

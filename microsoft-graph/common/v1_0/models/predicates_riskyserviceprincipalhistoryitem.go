@@ -1,0 +1,57 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type RiskyServicePrincipalHistoryItemOperationPredicate struct {
+	AppId                   *string
+	DisplayName             *string
+	Id                      *string
+	InitiatedBy             *string
+	IsEnabled               *bool
+	IsProcessing            *bool
+	ODataType               *string
+	RiskLastUpdatedDateTime *string
+	ServicePrincipalType    *string
+}
+
+func (p RiskyServicePrincipalHistoryItemOperationPredicate) Matches(input RiskyServicePrincipalHistoryItem) bool {
+
+	if p.AppId != nil && (input.AppId == nil || *p.AppId != *input.AppId) {
+		return false
+	}
+
+	if p.DisplayName != nil && (input.DisplayName == nil || *p.DisplayName != *input.DisplayName) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.InitiatedBy != nil && (input.InitiatedBy == nil || *p.InitiatedBy != *input.InitiatedBy) {
+		return false
+	}
+
+	if p.IsEnabled != nil && (input.IsEnabled == nil || *p.IsEnabled != *input.IsEnabled) {
+		return false
+	}
+
+	if p.IsProcessing != nil && (input.IsProcessing == nil || *p.IsProcessing != *input.IsProcessing) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.RiskLastUpdatedDateTime != nil && (input.RiskLastUpdatedDateTime == nil || *p.RiskLastUpdatedDateTime != *input.RiskLastUpdatedDateTime) {
+		return false
+	}
+
+	if p.ServicePrincipalType != nil && (input.ServicePrincipalType == nil || *p.ServicePrincipalType != *input.ServicePrincipalType) {
+		return false
+	}
+
+	return true
+}

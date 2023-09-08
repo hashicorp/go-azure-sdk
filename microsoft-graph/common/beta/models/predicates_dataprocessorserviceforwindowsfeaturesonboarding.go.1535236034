@@ -1,0 +1,33 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type DataProcessorServiceForWindowsFeaturesOnboardingOperationPredicate struct {
+	 AreDataProcessorServiceForWindowsFeaturesEnabled *bool
+	 HasValidWindowsLicense *bool
+	 ODataType *string
+}
+
+func (p DataProcessorServiceForWindowsFeaturesOnboardingOperationPredicate) Matches(input DataProcessorServiceForWindowsFeaturesOnboarding) bool {
+
+	if p.AreDataProcessorServiceForWindowsFeaturesEnabled != nil && (input.AreDataProcessorServiceForWindowsFeaturesEnabled == nil || *p.AreDataProcessorServiceForWindowsFeaturesEnabled != *input.AreDataProcessorServiceForWindowsFeaturesEnabled) {
+	 	return false
+	}
+
+
+	if p.HasValidWindowsLicense != nil && (input.HasValidWindowsLicense == nil || *p.HasValidWindowsLicense != *input.HasValidWindowsLicense) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	return true
+}
+

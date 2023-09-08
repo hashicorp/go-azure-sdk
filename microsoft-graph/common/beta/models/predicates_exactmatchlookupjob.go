@@ -1,0 +1,47 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type ExactMatchLookupJobOperationPredicate struct {
+	CompletionDateTime  *string
+	CreationDateTime    *string
+	Id                  *string
+	LastUpdatedDateTime *string
+	ODataType           *string
+	StartDateTime       *string
+	State               *string
+}
+
+func (p ExactMatchLookupJobOperationPredicate) Matches(input ExactMatchLookupJob) bool {
+
+	if p.CompletionDateTime != nil && (input.CompletionDateTime == nil || *p.CompletionDateTime != *input.CompletionDateTime) {
+		return false
+	}
+
+	if p.CreationDateTime != nil && (input.CreationDateTime == nil || *p.CreationDateTime != *input.CreationDateTime) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.LastUpdatedDateTime != nil && (input.LastUpdatedDateTime == nil || *p.LastUpdatedDateTime != *input.LastUpdatedDateTime) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.StartDateTime != nil && (input.StartDateTime == nil || *p.StartDateTime != *input.StartDateTime) {
+		return false
+	}
+
+	if p.State != nil && (input.State == nil || *p.State != *input.State) {
+		return false
+	}
+
+	return true
+}

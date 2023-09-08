@@ -1,0 +1,40 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type UserExperienceAnalyticsBatteryHealthOsPerformanceOsHealthStatus string
+
+const (
+	UserExperienceAnalyticsBatteryHealthOsPerformanceOsHealthStatusinsufficientData UserExperienceAnalyticsBatteryHealthOsPerformanceOsHealthStatus = "InsufficientData"
+	UserExperienceAnalyticsBatteryHealthOsPerformanceOsHealthStatusmeetingGoals     UserExperienceAnalyticsBatteryHealthOsPerformanceOsHealthStatus = "MeetingGoals"
+	UserExperienceAnalyticsBatteryHealthOsPerformanceOsHealthStatusneedsAttention   UserExperienceAnalyticsBatteryHealthOsPerformanceOsHealthStatus = "NeedsAttention"
+	UserExperienceAnalyticsBatteryHealthOsPerformanceOsHealthStatusunknown          UserExperienceAnalyticsBatteryHealthOsPerformanceOsHealthStatus = "Unknown"
+)
+
+func PossibleValuesForUserExperienceAnalyticsBatteryHealthOsPerformanceOsHealthStatus() []string {
+	return []string{
+		string(UserExperienceAnalyticsBatteryHealthOsPerformanceOsHealthStatusinsufficientData),
+		string(UserExperienceAnalyticsBatteryHealthOsPerformanceOsHealthStatusmeetingGoals),
+		string(UserExperienceAnalyticsBatteryHealthOsPerformanceOsHealthStatusneedsAttention),
+		string(UserExperienceAnalyticsBatteryHealthOsPerformanceOsHealthStatusunknown),
+	}
+}
+
+func parseUserExperienceAnalyticsBatteryHealthOsPerformanceOsHealthStatus(input string) (*UserExperienceAnalyticsBatteryHealthOsPerformanceOsHealthStatus, error) {
+	vals := map[string]UserExperienceAnalyticsBatteryHealthOsPerformanceOsHealthStatus{
+		"insufficientdata": UserExperienceAnalyticsBatteryHealthOsPerformanceOsHealthStatusinsufficientData,
+		"meetinggoals":     UserExperienceAnalyticsBatteryHealthOsPerformanceOsHealthStatusmeetingGoals,
+		"needsattention":   UserExperienceAnalyticsBatteryHealthOsPerformanceOsHealthStatusneedsAttention,
+		"unknown":          UserExperienceAnalyticsBatteryHealthOsPerformanceOsHealthStatusunknown,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := UserExperienceAnalyticsBatteryHealthOsPerformanceOsHealthStatus(input)
+	return &out, nil
+}

@@ -1,0 +1,40 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type OfferShiftRequestAssignedTo string
+
+const (
+	OfferShiftRequestAssignedTomanager   OfferShiftRequestAssignedTo = "Manager"
+	OfferShiftRequestAssignedTorecipient OfferShiftRequestAssignedTo = "Recipient"
+	OfferShiftRequestAssignedTosender    OfferShiftRequestAssignedTo = "Sender"
+	OfferShiftRequestAssignedTosystem    OfferShiftRequestAssignedTo = "System"
+)
+
+func PossibleValuesForOfferShiftRequestAssignedTo() []string {
+	return []string{
+		string(OfferShiftRequestAssignedTomanager),
+		string(OfferShiftRequestAssignedTorecipient),
+		string(OfferShiftRequestAssignedTosender),
+		string(OfferShiftRequestAssignedTosystem),
+	}
+}
+
+func parseOfferShiftRequestAssignedTo(input string) (*OfferShiftRequestAssignedTo, error) {
+	vals := map[string]OfferShiftRequestAssignedTo{
+		"manager":   OfferShiftRequestAssignedTomanager,
+		"recipient": OfferShiftRequestAssignedTorecipient,
+		"sender":    OfferShiftRequestAssignedTosender,
+		"system":    OfferShiftRequestAssignedTosystem,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := OfferShiftRequestAssignedTo(input)
+	return &out, nil
+}

@@ -1,0 +1,45 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type WorkbookRangeViewOperationPredicate struct {
+	 ColumnCount *int64
+	 Id *string
+	 Index *int64
+	 ODataType *string
+	 RowCount *int64
+}
+
+func (p WorkbookRangeViewOperationPredicate) Matches(input WorkbookRangeView) bool {
+
+	if p.ColumnCount != nil && (input.ColumnCount == nil || *p.ColumnCount != *input.ColumnCount) {
+	 	return false
+	}
+
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+	 	return false
+	}
+
+
+	if p.Index != nil && (input.Index == nil || *p.Index != *input.Index) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.RowCount != nil && (input.RowCount == nil || *p.RowCount != *input.RowCount) {
+	 	return false
+	}
+
+
+	return true
+}
+

@@ -1,0 +1,43 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type SecurityDataSourceHoldStatus string
+
+const (
+	SecurityDataSourceHoldStatusapplied    SecurityDataSourceHoldStatus = "Applied"
+	SecurityDataSourceHoldStatusapplying   SecurityDataSourceHoldStatus = "Applying"
+	SecurityDataSourceHoldStatusnotApplied SecurityDataSourceHoldStatus = "NotApplied"
+	SecurityDataSourceHoldStatuspartial    SecurityDataSourceHoldStatus = "Partial"
+	SecurityDataSourceHoldStatusremoving   SecurityDataSourceHoldStatus = "Removing"
+)
+
+func PossibleValuesForSecurityDataSourceHoldStatus() []string {
+	return []string{
+		string(SecurityDataSourceHoldStatusapplied),
+		string(SecurityDataSourceHoldStatusapplying),
+		string(SecurityDataSourceHoldStatusnotApplied),
+		string(SecurityDataSourceHoldStatuspartial),
+		string(SecurityDataSourceHoldStatusremoving),
+	}
+}
+
+func parseSecurityDataSourceHoldStatus(input string) (*SecurityDataSourceHoldStatus, error) {
+	vals := map[string]SecurityDataSourceHoldStatus{
+		"applied":    SecurityDataSourceHoldStatusapplied,
+		"applying":   SecurityDataSourceHoldStatusapplying,
+		"notapplied": SecurityDataSourceHoldStatusnotApplied,
+		"partial":    SecurityDataSourceHoldStatuspartial,
+		"removing":   SecurityDataSourceHoldStatusremoving,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SecurityDataSourceHoldStatus(input)
+	return &out, nil
+}

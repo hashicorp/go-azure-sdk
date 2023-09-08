@@ -1,0 +1,82 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type AgreementAcceptanceOperationPredicate struct {
+	AgreementFileId    *string
+	AgreementId        *string
+	DeviceDisplayName  *string
+	DeviceId           *string
+	DeviceOSType       *string
+	DeviceOSVersion    *string
+	ExpirationDateTime *string
+	Id                 *string
+	ODataType          *string
+	RecordedDateTime   *string
+	UserDisplayName    *string
+	UserEmail          *string
+	UserId             *string
+	UserPrincipalName  *string
+}
+
+func (p AgreementAcceptanceOperationPredicate) Matches(input AgreementAcceptance) bool {
+
+	if p.AgreementFileId != nil && (input.AgreementFileId == nil || *p.AgreementFileId != *input.AgreementFileId) {
+		return false
+	}
+
+	if p.AgreementId != nil && (input.AgreementId == nil || *p.AgreementId != *input.AgreementId) {
+		return false
+	}
+
+	if p.DeviceDisplayName != nil && (input.DeviceDisplayName == nil || *p.DeviceDisplayName != *input.DeviceDisplayName) {
+		return false
+	}
+
+	if p.DeviceId != nil && (input.DeviceId == nil || *p.DeviceId != *input.DeviceId) {
+		return false
+	}
+
+	if p.DeviceOSType != nil && (input.DeviceOSType == nil || *p.DeviceOSType != *input.DeviceOSType) {
+		return false
+	}
+
+	if p.DeviceOSVersion != nil && (input.DeviceOSVersion == nil || *p.DeviceOSVersion != *input.DeviceOSVersion) {
+		return false
+	}
+
+	if p.ExpirationDateTime != nil && (input.ExpirationDateTime == nil || *p.ExpirationDateTime != *input.ExpirationDateTime) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.RecordedDateTime != nil && (input.RecordedDateTime == nil || *p.RecordedDateTime != *input.RecordedDateTime) {
+		return false
+	}
+
+	if p.UserDisplayName != nil && (input.UserDisplayName == nil || *p.UserDisplayName != *input.UserDisplayName) {
+		return false
+	}
+
+	if p.UserEmail != nil && (input.UserEmail == nil || *p.UserEmail != *input.UserEmail) {
+		return false
+	}
+
+	if p.UserId != nil && (input.UserId == nil || *p.UserId != *input.UserId) {
+		return false
+	}
+
+	if p.UserPrincipalName != nil && (input.UserPrincipalName == nil || *p.UserPrincipalName != *input.UserPrincipalName) {
+		return false
+	}
+
+	return true
+}

@@ -1,0 +1,52 @@
+package models
+
+import "strings"
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type WindowsWifiConfigurationWifiSecurityType string
+
+const (
+	WindowsWifiConfigurationWifiSecurityTypeopen WindowsWifiConfigurationWifiSecurityType = "Open"
+	WindowsWifiConfigurationWifiSecurityTypewep WindowsWifiConfigurationWifiSecurityType = "Wep"
+	WindowsWifiConfigurationWifiSecurityTypewpa2Enterprise WindowsWifiConfigurationWifiSecurityType = "Wpa2Enterprise"
+	WindowsWifiConfigurationWifiSecurityTypewpa2Personal WindowsWifiConfigurationWifiSecurityType = "Wpa2Personal"
+	WindowsWifiConfigurationWifiSecurityTypewpaEnterprise WindowsWifiConfigurationWifiSecurityType = "WpaEnterprise"
+	WindowsWifiConfigurationWifiSecurityTypewpaPersonal WindowsWifiConfigurationWifiSecurityType = "WpaPersonal"
+)
+
+
+func PossibleValuesForWindowsWifiConfigurationWifiSecurityType() []string {
+	return []string{
+		string(WindowsWifiConfigurationWifiSecurityTypeopen),
+string(WindowsWifiConfigurationWifiSecurityTypewep),
+string(WindowsWifiConfigurationWifiSecurityTypewpa2Enterprise),
+string(WindowsWifiConfigurationWifiSecurityTypewpa2Personal),
+string(WindowsWifiConfigurationWifiSecurityTypewpaEnterprise),
+string(WindowsWifiConfigurationWifiSecurityTypewpaPersonal),
+	}
+}
+
+
+
+func parseWindowsWifiConfigurationWifiSecurityType(input string) (*WindowsWifiConfigurationWifiSecurityType, error) {
+	vals := map[string]WindowsWifiConfigurationWifiSecurityType{
+		"open": WindowsWifiConfigurationWifiSecurityTypeopen,
+"wep": WindowsWifiConfigurationWifiSecurityTypewep,
+"wpa2enterprise": WindowsWifiConfigurationWifiSecurityTypewpa2Enterprise,
+"wpa2personal": WindowsWifiConfigurationWifiSecurityTypewpa2Personal,
+"wpaenterprise": WindowsWifiConfigurationWifiSecurityTypewpaEnterprise,
+"wpapersonal": WindowsWifiConfigurationWifiSecurityTypewpaPersonal,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := WindowsWifiConfigurationWifiSecurityType(input)
+	return &out, nil
+}

@@ -1,0 +1,37 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type ThreatAssessmentRequestRequestSource string
+
+const (
+	ThreatAssessmentRequestRequestSourceadministrator ThreatAssessmentRequestRequestSource = "Administrator"
+	ThreatAssessmentRequestRequestSourceundefined     ThreatAssessmentRequestRequestSource = "Undefined"
+	ThreatAssessmentRequestRequestSourceuser          ThreatAssessmentRequestRequestSource = "User"
+)
+
+func PossibleValuesForThreatAssessmentRequestRequestSource() []string {
+	return []string{
+		string(ThreatAssessmentRequestRequestSourceadministrator),
+		string(ThreatAssessmentRequestRequestSourceundefined),
+		string(ThreatAssessmentRequestRequestSourceuser),
+	}
+}
+
+func parseThreatAssessmentRequestRequestSource(input string) (*ThreatAssessmentRequestRequestSource, error) {
+	vals := map[string]ThreatAssessmentRequestRequestSource{
+		"administrator": ThreatAssessmentRequestRequestSourceadministrator,
+		"undefined":     ThreatAssessmentRequestRequestSourceundefined,
+		"user":          ThreatAssessmentRequestRequestSourceuser,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ThreatAssessmentRequestRequestSource(input)
+	return &out, nil
+}

@@ -1,0 +1,51 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type TeamMessagingSettingsOperationPredicate struct {
+	 AllowChannelMentions *bool
+	 AllowOwnerDeleteMessages *bool
+	 AllowTeamMentions *bool
+	 AllowUserDeleteMessages *bool
+	 AllowUserEditMessages *bool
+	 ODataType *string
+}
+
+func (p TeamMessagingSettingsOperationPredicate) Matches(input TeamMessagingSettings) bool {
+
+	if p.AllowChannelMentions != nil && (input.AllowChannelMentions == nil || *p.AllowChannelMentions != *input.AllowChannelMentions) {
+	 	return false
+	}
+
+
+	if p.AllowOwnerDeleteMessages != nil && (input.AllowOwnerDeleteMessages == nil || *p.AllowOwnerDeleteMessages != *input.AllowOwnerDeleteMessages) {
+	 	return false
+	}
+
+
+	if p.AllowTeamMentions != nil && (input.AllowTeamMentions == nil || *p.AllowTeamMentions != *input.AllowTeamMentions) {
+	 	return false
+	}
+
+
+	if p.AllowUserDeleteMessages != nil && (input.AllowUserDeleteMessages == nil || *p.AllowUserDeleteMessages != *input.AllowUserDeleteMessages) {
+	 	return false
+	}
+
+
+	if p.AllowUserEditMessages != nil && (input.AllowUserEditMessages == nil || *p.AllowUserEditMessages != *input.AllowUserEditMessages) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	return true
+}
+

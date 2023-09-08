@@ -1,0 +1,49 @@
+package models
+
+import "strings"
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type Windows10GeneralConfigurationDefenderMonitorFileActivity string
+
+const (
+	Windows10GeneralConfigurationDefenderMonitorFileActivitydisable Windows10GeneralConfigurationDefenderMonitorFileActivity = "Disable"
+	Windows10GeneralConfigurationDefenderMonitorFileActivitymonitorAllFiles Windows10GeneralConfigurationDefenderMonitorFileActivity = "MonitorAllFiles"
+	Windows10GeneralConfigurationDefenderMonitorFileActivitymonitorIncomingFilesOnly Windows10GeneralConfigurationDefenderMonitorFileActivity = "MonitorIncomingFilesOnly"
+	Windows10GeneralConfigurationDefenderMonitorFileActivitymonitorOutgoingFilesOnly Windows10GeneralConfigurationDefenderMonitorFileActivity = "MonitorOutgoingFilesOnly"
+	Windows10GeneralConfigurationDefenderMonitorFileActivityuserDefined Windows10GeneralConfigurationDefenderMonitorFileActivity = "UserDefined"
+)
+
+
+func PossibleValuesForWindows10GeneralConfigurationDefenderMonitorFileActivity() []string {
+	return []string{
+		string(Windows10GeneralConfigurationDefenderMonitorFileActivitydisable),
+string(Windows10GeneralConfigurationDefenderMonitorFileActivitymonitorAllFiles),
+string(Windows10GeneralConfigurationDefenderMonitorFileActivitymonitorIncomingFilesOnly),
+string(Windows10GeneralConfigurationDefenderMonitorFileActivitymonitorOutgoingFilesOnly),
+string(Windows10GeneralConfigurationDefenderMonitorFileActivityuserDefined),
+	}
+}
+
+
+
+func parseWindows10GeneralConfigurationDefenderMonitorFileActivity(input string) (*Windows10GeneralConfigurationDefenderMonitorFileActivity, error) {
+	vals := map[string]Windows10GeneralConfigurationDefenderMonitorFileActivity{
+		"disable": Windows10GeneralConfigurationDefenderMonitorFileActivitydisable,
+"monitorallfiles": Windows10GeneralConfigurationDefenderMonitorFileActivitymonitorAllFiles,
+"monitorincomingfilesonly": Windows10GeneralConfigurationDefenderMonitorFileActivitymonitorIncomingFilesOnly,
+"monitoroutgoingfilesonly": Windows10GeneralConfigurationDefenderMonitorFileActivitymonitorOutgoingFilesOnly,
+"userdefined": Windows10GeneralConfigurationDefenderMonitorFileActivityuserDefined,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := Windows10GeneralConfigurationDefenderMonitorFileActivity(input)
+	return &out, nil
+}

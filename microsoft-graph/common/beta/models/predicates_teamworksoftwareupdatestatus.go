@@ -1,0 +1,27 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type TeamworkSoftwareUpdateStatusOperationPredicate struct {
+	AvailableVersion *string
+	CurrentVersion   *string
+	ODataType        *string
+}
+
+func (p TeamworkSoftwareUpdateStatusOperationPredicate) Matches(input TeamworkSoftwareUpdateStatus) bool {
+
+	if p.AvailableVersion != nil && (input.AvailableVersion == nil || *p.AvailableVersion != *input.AvailableVersion) {
+		return false
+	}
+
+	if p.CurrentVersion != nil && (input.CurrentVersion == nil || *p.CurrentVersion != *input.CurrentVersion) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	return true
+}

@@ -1,0 +1,39 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type SecurityVmMetadataOperationPredicate struct {
+	 ODataType *string
+	 ResourceId *string
+	 SubscriptionId *string
+	 VmId *string
+}
+
+func (p SecurityVmMetadataOperationPredicate) Matches(input SecurityVmMetadata) bool {
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.ResourceId != nil && (input.ResourceId == nil || *p.ResourceId != *input.ResourceId) {
+	 	return false
+	}
+
+
+	if p.SubscriptionId != nil && (input.SubscriptionId == nil || *p.SubscriptionId != *input.SubscriptionId) {
+	 	return false
+	}
+
+
+	if p.VmId != nil && (input.VmId == nil || *p.VmId != *input.VmId) {
+	 	return false
+	}
+
+
+	return true
+}
+

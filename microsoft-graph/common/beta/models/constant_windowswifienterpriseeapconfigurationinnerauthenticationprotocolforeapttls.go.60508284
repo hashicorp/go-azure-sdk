@@ -1,0 +1,46 @@
+package models
+
+import "strings"
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type WindowsWifiEnterpriseEAPConfigurationInnerAuthenticationProtocolForEAPTTLS string
+
+const (
+	WindowsWifiEnterpriseEAPConfigurationInnerAuthenticationProtocolForEAPTTLSchallengeHandshakeAuthenticationProtocol WindowsWifiEnterpriseEAPConfigurationInnerAuthenticationProtocolForEAPTTLS = "ChallengeHandshakeAuthenticationProtocol"
+	WindowsWifiEnterpriseEAPConfigurationInnerAuthenticationProtocolForEAPTTLSmicrosoftChap WindowsWifiEnterpriseEAPConfigurationInnerAuthenticationProtocolForEAPTTLS = "MicrosoftChap"
+	WindowsWifiEnterpriseEAPConfigurationInnerAuthenticationProtocolForEAPTTLSmicrosoftChapVersionTwo WindowsWifiEnterpriseEAPConfigurationInnerAuthenticationProtocolForEAPTTLS = "MicrosoftChapVersionTwo"
+	WindowsWifiEnterpriseEAPConfigurationInnerAuthenticationProtocolForEAPTTLSunencryptedPassword WindowsWifiEnterpriseEAPConfigurationInnerAuthenticationProtocolForEAPTTLS = "UnencryptedPassword"
+)
+
+
+func PossibleValuesForWindowsWifiEnterpriseEAPConfigurationInnerAuthenticationProtocolForEAPTTLS() []string {
+	return []string{
+		string(WindowsWifiEnterpriseEAPConfigurationInnerAuthenticationProtocolForEAPTTLSchallengeHandshakeAuthenticationProtocol),
+string(WindowsWifiEnterpriseEAPConfigurationInnerAuthenticationProtocolForEAPTTLSmicrosoftChap),
+string(WindowsWifiEnterpriseEAPConfigurationInnerAuthenticationProtocolForEAPTTLSmicrosoftChapVersionTwo),
+string(WindowsWifiEnterpriseEAPConfigurationInnerAuthenticationProtocolForEAPTTLSunencryptedPassword),
+	}
+}
+
+
+
+func parseWindowsWifiEnterpriseEAPConfigurationInnerAuthenticationProtocolForEAPTTLS(input string) (*WindowsWifiEnterpriseEAPConfigurationInnerAuthenticationProtocolForEAPTTLS, error) {
+	vals := map[string]WindowsWifiEnterpriseEAPConfigurationInnerAuthenticationProtocolForEAPTTLS{
+		"challengehandshakeauthenticationprotocol": WindowsWifiEnterpriseEAPConfigurationInnerAuthenticationProtocolForEAPTTLSchallengeHandshakeAuthenticationProtocol,
+"microsoftchap": WindowsWifiEnterpriseEAPConfigurationInnerAuthenticationProtocolForEAPTTLSmicrosoftChap,
+"microsoftchapversiontwo": WindowsWifiEnterpriseEAPConfigurationInnerAuthenticationProtocolForEAPTTLSmicrosoftChapVersionTwo,
+"unencryptedpassword": WindowsWifiEnterpriseEAPConfigurationInnerAuthenticationProtocolForEAPTTLSunencryptedPassword,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := WindowsWifiEnterpriseEAPConfigurationInnerAuthenticationProtocolForEAPTTLS(input)
+	return &out, nil
+}

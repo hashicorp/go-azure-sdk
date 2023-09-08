@@ -1,0 +1,42 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type SecurityInformationProtectionPolicySettingOperationPredicate struct {
+	DefaultLabelId                   *string
+	Id                               *string
+	IsDowngradeJustificationRequired *bool
+	IsMandatory                      *bool
+	MoreInfoUrl                      *string
+	ODataType                        *string
+}
+
+func (p SecurityInformationProtectionPolicySettingOperationPredicate) Matches(input SecurityInformationProtectionPolicySetting) bool {
+
+	if p.DefaultLabelId != nil && (input.DefaultLabelId == nil || *p.DefaultLabelId != *input.DefaultLabelId) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.IsDowngradeJustificationRequired != nil && (input.IsDowngradeJustificationRequired == nil || *p.IsDowngradeJustificationRequired != *input.IsDowngradeJustificationRequired) {
+		return false
+	}
+
+	if p.IsMandatory != nil && (input.IsMandatory == nil || *p.IsMandatory != *input.IsMandatory) {
+		return false
+	}
+
+	if p.MoreInfoUrl != nil && (input.MoreInfoUrl == nil || *p.MoreInfoUrl != *input.MoreInfoUrl) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	return true
+}

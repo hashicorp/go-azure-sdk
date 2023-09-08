@@ -1,0 +1,27 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type ChoiceColumnOperationPredicate struct {
+	AllowTextEntry *bool
+	DisplayAs      *string
+	ODataType      *string
+}
+
+func (p ChoiceColumnOperationPredicate) Matches(input ChoiceColumn) bool {
+
+	if p.AllowTextEntry != nil && (input.AllowTextEntry == nil || *p.AllowTextEntry != *input.AllowTextEntry) {
+		return false
+	}
+
+	if p.DisplayAs != nil && (input.DisplayAs == nil || *p.DisplayAs != *input.DisplayAs) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	return true
+}

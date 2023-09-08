@@ -1,0 +1,37 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type WindowsUpdatesResourceConnectionState string
+
+const (
+	WindowsUpdatesResourceConnectionStateconnected     WindowsUpdatesResourceConnectionState = "Connected"
+	WindowsUpdatesResourceConnectionStatenotAuthorized WindowsUpdatesResourceConnectionState = "NotAuthorized"
+	WindowsUpdatesResourceConnectionStatenotFound      WindowsUpdatesResourceConnectionState = "NotFound"
+)
+
+func PossibleValuesForWindowsUpdatesResourceConnectionState() []string {
+	return []string{
+		string(WindowsUpdatesResourceConnectionStateconnected),
+		string(WindowsUpdatesResourceConnectionStatenotAuthorized),
+		string(WindowsUpdatesResourceConnectionStatenotFound),
+	}
+}
+
+func parseWindowsUpdatesResourceConnectionState(input string) (*WindowsUpdatesResourceConnectionState, error) {
+	vals := map[string]WindowsUpdatesResourceConnectionState{
+		"connected":     WindowsUpdatesResourceConnectionStateconnected,
+		"notauthorized": WindowsUpdatesResourceConnectionStatenotAuthorized,
+		"notfound":      WindowsUpdatesResourceConnectionStatenotFound,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := WindowsUpdatesResourceConnectionState(input)
+	return &out, nil
+}

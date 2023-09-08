@@ -1,0 +1,32 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type ControlScoreOperationPredicate struct {
+	ControlCategory *string
+	ControlName     *string
+	Description     *string
+	ODataType       *string
+}
+
+func (p ControlScoreOperationPredicate) Matches(input ControlScore) bool {
+
+	if p.ControlCategory != nil && (input.ControlCategory == nil || *p.ControlCategory != *input.ControlCategory) {
+		return false
+	}
+
+	if p.ControlName != nil && (input.ControlName == nil || *p.ControlName != *input.ControlName) {
+		return false
+	}
+
+	if p.Description != nil && (input.Description == nil || *p.Description != *input.Description) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	return true
+}

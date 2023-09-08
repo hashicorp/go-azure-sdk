@@ -1,0 +1,13 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type IdentityGovernance struct {
+	AccessReviews         *AccessReviewSet                               `json:"accessReviews,omitempty"`
+	AppConsent            *AppConsentApprovalRoute                       `json:"appConsent,omitempty"`
+	EntitlementManagement *EntitlementManagement                         `json:"entitlementManagement,omitempty"`
+	LifecycleWorkflows    *IdentityGovernanceLifecycleWorkflowsContainer `json:"lifecycleWorkflows,omitempty"`
+	ODataType             *string                                        `json:"@odata.type,omitempty"`
+	TermsOfUse            *TermsOfUseContainer                           `json:"termsOfUse,omitempty"`
+}

@@ -1,0 +1,51 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type SecurityWhoisContactOperationPredicate struct {
+	 Email *string
+	 Fax *string
+	 Name *string
+	 ODataType *string
+	 Organization *string
+	 Telephone *string
+}
+
+func (p SecurityWhoisContactOperationPredicate) Matches(input SecurityWhoisContact) bool {
+
+	if p.Email != nil && (input.Email == nil || *p.Email != *input.Email) {
+	 	return false
+	}
+
+
+	if p.Fax != nil && (input.Fax == nil || *p.Fax != *input.Fax) {
+	 	return false
+	}
+
+
+	if p.Name != nil && (input.Name == nil || *p.Name != *input.Name) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.Organization != nil && (input.Organization == nil || *p.Organization != *input.Organization) {
+	 	return false
+	}
+
+
+	if p.Telephone != nil && (input.Telephone == nil || *p.Telephone != *input.Telephone) {
+	 	return false
+	}
+
+
+	return true
+}
+

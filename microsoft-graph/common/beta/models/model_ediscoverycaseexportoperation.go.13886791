@@ -1,0 +1,47 @@
+package models
+
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/edgezones"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/identity"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/systemdata"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/zones"
+)
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type EdiscoveryCaseExportOperation struct {
+	Action *EdiscoveryCaseExportOperationAction `json:"action,omitempty"`
+	AzureBlobContainer *string `json:"azureBlobContainer,omitempty"`
+	AzureBlobToken *string `json:"azureBlobToken,omitempty"`
+	CompletedDateTime *string `json:"completedDateTime,omitempty"`
+	CreatedBy *IdentitySet `json:"createdBy,omitempty"`
+	CreatedDateTime *string `json:"createdDateTime,omitempty"`
+	Description *string `json:"description,omitempty"`
+	ExportOptions *EdiscoveryCaseExportOperationExportOptions `json:"exportOptions,omitempty"`
+	ExportStructure *EdiscoveryCaseExportOperationExportStructure `json:"exportStructure,omitempty"`
+	Id *string `json:"id,omitempty"`
+	ODataType *string `json:"@odata.type,omitempty"`
+	OutputFolderId *string `json:"outputFolderId,omitempty"`
+	OutputName *string `json:"outputName,omitempty"`
+	PercentProgress *int64 `json:"percentProgress,omitempty"`
+	ResultInfo *ResultInfo `json:"resultInfo,omitempty"`
+	ReviewSet *EdiscoveryReviewSet `json:"reviewSet,omitempty"`
+	Status *EdiscoveryCaseExportOperationStatus `json:"status,omitempty"`
+}
+
+
+
+
+
+
+

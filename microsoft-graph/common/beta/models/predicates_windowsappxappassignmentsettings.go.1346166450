@@ -1,0 +1,27 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type WindowsAppXAppAssignmentSettingsOperationPredicate struct {
+	 ODataType *string
+	 UseDeviceContext *bool
+}
+
+func (p WindowsAppXAppAssignmentSettingsOperationPredicate) Matches(input WindowsAppXAppAssignmentSettings) bool {
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.UseDeviceContext != nil && (input.UseDeviceContext == nil || *p.UseDeviceContext != *input.UseDeviceContext) {
+	 	return false
+	}
+
+
+	return true
+}
+

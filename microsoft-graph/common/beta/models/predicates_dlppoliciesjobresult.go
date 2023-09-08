@@ -1,0 +1,27 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type DlpPoliciesJobResultOperationPredicate struct {
+	AuditCorrelationId *string
+	EvaluationDateTime *string
+	ODataType          *string
+}
+
+func (p DlpPoliciesJobResultOperationPredicate) Matches(input DlpPoliciesJobResult) bool {
+
+	if p.AuditCorrelationId != nil && (input.AuditCorrelationId == nil || *p.AuditCorrelationId != *input.AuditCorrelationId) {
+		return false
+	}
+
+	if p.EvaluationDateTime != nil && (input.EvaluationDateTime == nil || *p.EvaluationDateTime != *input.EvaluationDateTime) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	return true
+}

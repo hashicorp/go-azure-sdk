@@ -1,0 +1,81 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type SequentialActivationRenewalsAlertIncidentOperationPredicate struct {
+	 ActivationCount *int64
+	 AssigneeDisplayName *string
+	 AssigneeId *string
+	 AssigneeUserPrincipalName *string
+	 Id *string
+	 ODataType *string
+	 RoleDefinitionId *string
+	 RoleDisplayName *string
+	 RoleTemplateId *string
+	 SequenceEndDateTime *string
+	 SequenceStartDateTime *string
+}
+
+func (p SequentialActivationRenewalsAlertIncidentOperationPredicate) Matches(input SequentialActivationRenewalsAlertIncident) bool {
+
+	if p.ActivationCount != nil && (input.ActivationCount == nil || *p.ActivationCount != *input.ActivationCount) {
+	 	return false
+	}
+
+
+	if p.AssigneeDisplayName != nil && (input.AssigneeDisplayName == nil || *p.AssigneeDisplayName != *input.AssigneeDisplayName) {
+	 	return false
+	}
+
+
+	if p.AssigneeId != nil && (input.AssigneeId == nil || *p.AssigneeId != *input.AssigneeId) {
+	 	return false
+	}
+
+
+	if p.AssigneeUserPrincipalName != nil && (input.AssigneeUserPrincipalName == nil || *p.AssigneeUserPrincipalName != *input.AssigneeUserPrincipalName) {
+	 	return false
+	}
+
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.RoleDefinitionId != nil && (input.RoleDefinitionId == nil || *p.RoleDefinitionId != *input.RoleDefinitionId) {
+	 	return false
+	}
+
+
+	if p.RoleDisplayName != nil && (input.RoleDisplayName == nil || *p.RoleDisplayName != *input.RoleDisplayName) {
+	 	return false
+	}
+
+
+	if p.RoleTemplateId != nil && (input.RoleTemplateId == nil || *p.RoleTemplateId != *input.RoleTemplateId) {
+	 	return false
+	}
+
+
+	if p.SequenceEndDateTime != nil && (input.SequenceEndDateTime == nil || *p.SequenceEndDateTime != *input.SequenceEndDateTime) {
+	 	return false
+	}
+
+
+	if p.SequenceStartDateTime != nil && (input.SequenceStartDateTime == nil || *p.SequenceStartDateTime != *input.SequenceStartDateTime) {
+	 	return false
+	}
+
+
+	return true
+}
+

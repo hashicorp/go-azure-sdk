@@ -1,0 +1,37 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type UserExperienceAnalyticsBatteryHealthDeviceRuntimeHistoryOperationPredicate struct {
+	DeviceId                  *string
+	EstimatedRuntimeInMinutes *int64
+	Id                        *string
+	ODataType                 *string
+	RuntimeDateTime           *string
+}
+
+func (p UserExperienceAnalyticsBatteryHealthDeviceRuntimeHistoryOperationPredicate) Matches(input UserExperienceAnalyticsBatteryHealthDeviceRuntimeHistory) bool {
+
+	if p.DeviceId != nil && (input.DeviceId == nil || *p.DeviceId != *input.DeviceId) {
+		return false
+	}
+
+	if p.EstimatedRuntimeInMinutes != nil && (input.EstimatedRuntimeInMinutes == nil || *p.EstimatedRuntimeInMinutes != *input.EstimatedRuntimeInMinutes) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.RuntimeDateTime != nil && (input.RuntimeDateTime == nil || *p.RuntimeDateTime != *input.RuntimeDateTime) {
+		return false
+	}
+
+	return true
+}

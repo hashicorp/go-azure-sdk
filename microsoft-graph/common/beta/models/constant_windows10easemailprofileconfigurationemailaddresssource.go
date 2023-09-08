@@ -1,0 +1,34 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type Windows10EasEmailProfileConfigurationEmailAddressSource string
+
+const (
+	Windows10EasEmailProfileConfigurationEmailAddressSourceprimarySmtpAddress Windows10EasEmailProfileConfigurationEmailAddressSource = "PrimarySmtpAddress"
+	Windows10EasEmailProfileConfigurationEmailAddressSourceuserPrincipalName  Windows10EasEmailProfileConfigurationEmailAddressSource = "UserPrincipalName"
+)
+
+func PossibleValuesForWindows10EasEmailProfileConfigurationEmailAddressSource() []string {
+	return []string{
+		string(Windows10EasEmailProfileConfigurationEmailAddressSourceprimarySmtpAddress),
+		string(Windows10EasEmailProfileConfigurationEmailAddressSourceuserPrincipalName),
+	}
+}
+
+func parseWindows10EasEmailProfileConfigurationEmailAddressSource(input string) (*Windows10EasEmailProfileConfigurationEmailAddressSource, error) {
+	vals := map[string]Windows10EasEmailProfileConfigurationEmailAddressSource{
+		"primarysmtpaddress": Windows10EasEmailProfileConfigurationEmailAddressSourceprimarySmtpAddress,
+		"userprincipalname":  Windows10EasEmailProfileConfigurationEmailAddressSourceuserPrincipalName,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := Windows10EasEmailProfileConfigurationEmailAddressSource(input)
+	return &out, nil
+}

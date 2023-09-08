@@ -1,0 +1,32 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type CloudAppSecurityStateOperationPredicate struct {
+	DestinationServiceIp   *string
+	DestinationServiceName *string
+	ODataType              *string
+	RiskScore              *string
+}
+
+func (p CloudAppSecurityStateOperationPredicate) Matches(input CloudAppSecurityState) bool {
+
+	if p.DestinationServiceIp != nil && (input.DestinationServiceIp == nil || *p.DestinationServiceIp != *input.DestinationServiceIp) {
+		return false
+	}
+
+	if p.DestinationServiceName != nil && (input.DestinationServiceName == nil || *p.DestinationServiceName != *input.DestinationServiceName) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.RiskScore != nil && (input.RiskScore == nil || *p.RiskScore != *input.RiskScore) {
+		return false
+	}
+
+	return true
+}

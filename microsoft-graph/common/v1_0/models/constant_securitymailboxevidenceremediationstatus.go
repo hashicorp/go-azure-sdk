@@ -1,0 +1,43 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type SecurityMailboxEvidenceRemediationStatus string
+
+const (
+	SecurityMailboxEvidenceRemediationStatusblocked    SecurityMailboxEvidenceRemediationStatus = "Blocked"
+	SecurityMailboxEvidenceRemediationStatusnone       SecurityMailboxEvidenceRemediationStatus = "None"
+	SecurityMailboxEvidenceRemediationStatusnotFound   SecurityMailboxEvidenceRemediationStatus = "NotFound"
+	SecurityMailboxEvidenceRemediationStatusprevented  SecurityMailboxEvidenceRemediationStatus = "Prevented"
+	SecurityMailboxEvidenceRemediationStatusremediated SecurityMailboxEvidenceRemediationStatus = "Remediated"
+)
+
+func PossibleValuesForSecurityMailboxEvidenceRemediationStatus() []string {
+	return []string{
+		string(SecurityMailboxEvidenceRemediationStatusblocked),
+		string(SecurityMailboxEvidenceRemediationStatusnone),
+		string(SecurityMailboxEvidenceRemediationStatusnotFound),
+		string(SecurityMailboxEvidenceRemediationStatusprevented),
+		string(SecurityMailboxEvidenceRemediationStatusremediated),
+	}
+}
+
+func parseSecurityMailboxEvidenceRemediationStatus(input string) (*SecurityMailboxEvidenceRemediationStatus, error) {
+	vals := map[string]SecurityMailboxEvidenceRemediationStatus{
+		"blocked":    SecurityMailboxEvidenceRemediationStatusblocked,
+		"none":       SecurityMailboxEvidenceRemediationStatusnone,
+		"notfound":   SecurityMailboxEvidenceRemediationStatusnotFound,
+		"prevented":  SecurityMailboxEvidenceRemediationStatusprevented,
+		"remediated": SecurityMailboxEvidenceRemediationStatusremediated,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SecurityMailboxEvidenceRemediationStatus(input)
+	return &out, nil
+}

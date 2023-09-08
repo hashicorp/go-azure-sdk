@@ -1,0 +1,57 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type GroupPolicyObjectFileOperationPredicate struct {
+	 Content *string
+	 CreatedDateTime *string
+	 GroupPolicyObjectId *string
+	 Id *string
+	 LastModifiedDateTime *string
+	 ODataType *string
+	 OuDistinguishedName *string
+}
+
+func (p GroupPolicyObjectFileOperationPredicate) Matches(input GroupPolicyObjectFile) bool {
+
+	if p.Content != nil && (input.Content == nil || *p.Content != *input.Content) {
+	 	return false
+	}
+
+
+	if p.CreatedDateTime != nil && (input.CreatedDateTime == nil || *p.CreatedDateTime != *input.CreatedDateTime) {
+	 	return false
+	}
+
+
+	if p.GroupPolicyObjectId != nil && (input.GroupPolicyObjectId == nil || *p.GroupPolicyObjectId != *input.GroupPolicyObjectId) {
+	 	return false
+	}
+
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+	 	return false
+	}
+
+
+	if p.LastModifiedDateTime != nil && (input.LastModifiedDateTime == nil || *p.LastModifiedDateTime != *input.LastModifiedDateTime) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.OuDistinguishedName != nil && (input.OuDistinguishedName == nil || *p.OuDistinguishedName != *input.OuDistinguishedName) {
+	 	return false
+	}
+
+
+	return true
+}
+

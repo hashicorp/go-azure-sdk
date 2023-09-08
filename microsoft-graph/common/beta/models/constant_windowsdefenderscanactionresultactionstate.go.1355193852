@@ -1,0 +1,55 @@
+package models
+
+import "strings"
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type WindowsDefenderScanActionResultActionState string
+
+const (
+	WindowsDefenderScanActionResultActionStateactive WindowsDefenderScanActionResultActionState = "Active"
+	WindowsDefenderScanActionResultActionStatecanceled WindowsDefenderScanActionResultActionState = "Canceled"
+	WindowsDefenderScanActionResultActionStatedone WindowsDefenderScanActionResultActionState = "Done"
+	WindowsDefenderScanActionResultActionStatefailed WindowsDefenderScanActionResultActionState = "Failed"
+	WindowsDefenderScanActionResultActionStatenone WindowsDefenderScanActionResultActionState = "None"
+	WindowsDefenderScanActionResultActionStatenotSupported WindowsDefenderScanActionResultActionState = "NotSupported"
+	WindowsDefenderScanActionResultActionStatepending WindowsDefenderScanActionResultActionState = "Pending"
+)
+
+
+func PossibleValuesForWindowsDefenderScanActionResultActionState() []string {
+	return []string{
+		string(WindowsDefenderScanActionResultActionStateactive),
+string(WindowsDefenderScanActionResultActionStatecanceled),
+string(WindowsDefenderScanActionResultActionStatedone),
+string(WindowsDefenderScanActionResultActionStatefailed),
+string(WindowsDefenderScanActionResultActionStatenone),
+string(WindowsDefenderScanActionResultActionStatenotSupported),
+string(WindowsDefenderScanActionResultActionStatepending),
+	}
+}
+
+
+
+func parseWindowsDefenderScanActionResultActionState(input string) (*WindowsDefenderScanActionResultActionState, error) {
+	vals := map[string]WindowsDefenderScanActionResultActionState{
+		"active": WindowsDefenderScanActionResultActionStateactive,
+"canceled": WindowsDefenderScanActionResultActionStatecanceled,
+"done": WindowsDefenderScanActionResultActionStatedone,
+"failed": WindowsDefenderScanActionResultActionStatefailed,
+"none": WindowsDefenderScanActionResultActionStatenone,
+"notsupported": WindowsDefenderScanActionResultActionStatenotSupported,
+"pending": WindowsDefenderScanActionResultActionStatepending,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := WindowsDefenderScanActionResultActionState(input)
+	return &out, nil
+}

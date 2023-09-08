@@ -1,0 +1,123 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type AndroidDeviceOwnerEnrollmentProfileOperationPredicate struct {
+	 AccountId *string
+	 ConfigureWifi *bool
+	 CreatedDateTime *string
+	 Description *string
+	 DisplayName *string
+	 EnrolledDeviceCount *int64
+	 EnrollmentTokenUsageCount *int64
+	 Id *string
+	 IsTeamsDeviceProfile *bool
+	 LastModifiedDateTime *string
+	 ODataType *string
+	 QrCodeContent *string
+	 TokenCreationDateTime *string
+	 TokenExpirationDateTime *string
+	 TokenValue *string
+	 WifiHidden *bool
+	 WifiPassword *string
+	 WifiSsid *string
+}
+
+func (p AndroidDeviceOwnerEnrollmentProfileOperationPredicate) Matches(input AndroidDeviceOwnerEnrollmentProfile) bool {
+
+	if p.AccountId != nil && (input.AccountId == nil || *p.AccountId != *input.AccountId) {
+	 	return false
+	}
+
+
+	if p.ConfigureWifi != nil && (input.ConfigureWifi == nil || *p.ConfigureWifi != *input.ConfigureWifi) {
+	 	return false
+	}
+
+
+	if p.CreatedDateTime != nil && (input.CreatedDateTime == nil || *p.CreatedDateTime != *input.CreatedDateTime) {
+	 	return false
+	}
+
+
+	if p.Description != nil && (input.Description == nil || *p.Description != *input.Description) {
+	 	return false
+	}
+
+
+	if p.DisplayName != nil && (input.DisplayName == nil || *p.DisplayName != *input.DisplayName) {
+	 	return false
+	}
+
+
+	if p.EnrolledDeviceCount != nil && (input.EnrolledDeviceCount == nil || *p.EnrolledDeviceCount != *input.EnrolledDeviceCount) {
+	 	return false
+	}
+
+
+	if p.EnrollmentTokenUsageCount != nil && (input.EnrollmentTokenUsageCount == nil || *p.EnrollmentTokenUsageCount != *input.EnrollmentTokenUsageCount) {
+	 	return false
+	}
+
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+	 	return false
+	}
+
+
+	if p.IsTeamsDeviceProfile != nil && (input.IsTeamsDeviceProfile == nil || *p.IsTeamsDeviceProfile != *input.IsTeamsDeviceProfile) {
+	 	return false
+	}
+
+
+	if p.LastModifiedDateTime != nil && (input.LastModifiedDateTime == nil || *p.LastModifiedDateTime != *input.LastModifiedDateTime) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.QrCodeContent != nil && (input.QrCodeContent == nil || *p.QrCodeContent != *input.QrCodeContent) {
+	 	return false
+	}
+
+
+	if p.TokenCreationDateTime != nil && (input.TokenCreationDateTime == nil || *p.TokenCreationDateTime != *input.TokenCreationDateTime) {
+	 	return false
+	}
+
+
+	if p.TokenExpirationDateTime != nil && (input.TokenExpirationDateTime == nil || *p.TokenExpirationDateTime != *input.TokenExpirationDateTime) {
+	 	return false
+	}
+
+
+	if p.TokenValue != nil && (input.TokenValue == nil || *p.TokenValue != *input.TokenValue) {
+	 	return false
+	}
+
+
+	if p.WifiHidden != nil && (input.WifiHidden == nil || *p.WifiHidden != *input.WifiHidden) {
+	 	return false
+	}
+
+
+	if p.WifiPassword != nil && (input.WifiPassword == nil || *p.WifiPassword != *input.WifiPassword) {
+	 	return false
+	}
+
+
+	if p.WifiSsid != nil && (input.WifiSsid == nil || *p.WifiSsid != *input.WifiSsid) {
+	 	return false
+	}
+
+
+	return true
+}
+

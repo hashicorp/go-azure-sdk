@@ -1,0 +1,70 @@
+package models
+
+import "strings"
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type TimeOffItemTheme string
+
+const (
+	TimeOffItemThemeblue TimeOffItemTheme = "Blue"
+	TimeOffItemThemedarkBlue TimeOffItemTheme = "DarkBlue"
+	TimeOffItemThemedarkGreen TimeOffItemTheme = "DarkGreen"
+	TimeOffItemThemedarkPink TimeOffItemTheme = "DarkPink"
+	TimeOffItemThemedarkPurple TimeOffItemTheme = "DarkPurple"
+	TimeOffItemThemedarkYellow TimeOffItemTheme = "DarkYellow"
+	TimeOffItemThemegray TimeOffItemTheme = "Gray"
+	TimeOffItemThemegreen TimeOffItemTheme = "Green"
+	TimeOffItemThemepink TimeOffItemTheme = "Pink"
+	TimeOffItemThemepurple TimeOffItemTheme = "Purple"
+	TimeOffItemThemewhite TimeOffItemTheme = "White"
+	TimeOffItemThemeyellow TimeOffItemTheme = "Yellow"
+)
+
+
+func PossibleValuesForTimeOffItemTheme() []string {
+	return []string{
+		string(TimeOffItemThemeblue),
+string(TimeOffItemThemedarkBlue),
+string(TimeOffItemThemedarkGreen),
+string(TimeOffItemThemedarkPink),
+string(TimeOffItemThemedarkPurple),
+string(TimeOffItemThemedarkYellow),
+string(TimeOffItemThemegray),
+string(TimeOffItemThemegreen),
+string(TimeOffItemThemepink),
+string(TimeOffItemThemepurple),
+string(TimeOffItemThemewhite),
+string(TimeOffItemThemeyellow),
+	}
+}
+
+
+
+func parseTimeOffItemTheme(input string) (*TimeOffItemTheme, error) {
+	vals := map[string]TimeOffItemTheme{
+		"blue": TimeOffItemThemeblue,
+"darkblue": TimeOffItemThemedarkBlue,
+"darkgreen": TimeOffItemThemedarkGreen,
+"darkpink": TimeOffItemThemedarkPink,
+"darkpurple": TimeOffItemThemedarkPurple,
+"darkyellow": TimeOffItemThemedarkYellow,
+"gray": TimeOffItemThemegray,
+"green": TimeOffItemThemegreen,
+"pink": TimeOffItemThemepink,
+"purple": TimeOffItemThemepurple,
+"white": TimeOffItemThemewhite,
+"yellow": TimeOffItemThemeyellow,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := TimeOffItemTheme(input)
+	return &out, nil
+}

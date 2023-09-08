@@ -1,0 +1,37 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type UserExperienceAnalyticsAnomalySeverityOverviewOperationPredicate struct {
+	HighSeverityAnomalyCount          *int64
+	InformationalSeverityAnomalyCount *int64
+	LowSeverityAnomalyCount           *int64
+	MediumSeverityAnomalyCount        *int64
+	ODataType                         *string
+}
+
+func (p UserExperienceAnalyticsAnomalySeverityOverviewOperationPredicate) Matches(input UserExperienceAnalyticsAnomalySeverityOverview) bool {
+
+	if p.HighSeverityAnomalyCount != nil && (input.HighSeverityAnomalyCount == nil || *p.HighSeverityAnomalyCount != *input.HighSeverityAnomalyCount) {
+		return false
+	}
+
+	if p.InformationalSeverityAnomalyCount != nil && (input.InformationalSeverityAnomalyCount == nil || *p.InformationalSeverityAnomalyCount != *input.InformationalSeverityAnomalyCount) {
+		return false
+	}
+
+	if p.LowSeverityAnomalyCount != nil && (input.LowSeverityAnomalyCount == nil || *p.LowSeverityAnomalyCount != *input.LowSeverityAnomalyCount) {
+		return false
+	}
+
+	if p.MediumSeverityAnomalyCount != nil && (input.MediumSeverityAnomalyCount == nil || *p.MediumSeverityAnomalyCount != *input.MediumSeverityAnomalyCount) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	return true
+}

@@ -1,0 +1,39 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type RequestRemoteHelpSessionAccessResponseOperationPredicate struct {
+	 ODataType *string
+	 PubSubEncryption *string
+	 PubSubEncryptionKey *string
+	 SessionKey *string
+}
+
+func (p RequestRemoteHelpSessionAccessResponseOperationPredicate) Matches(input RequestRemoteHelpSessionAccessResponse) bool {
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.PubSubEncryption != nil && (input.PubSubEncryption == nil || *p.PubSubEncryption != *input.PubSubEncryption) {
+	 	return false
+	}
+
+
+	if p.PubSubEncryptionKey != nil && (input.PubSubEncryptionKey == nil || *p.PubSubEncryptionKey != *input.PubSubEncryptionKey) {
+	 	return false
+	}
+
+
+	if p.SessionKey != nil && (input.SessionKey == nil || *p.SessionKey != *input.SessionKey) {
+	 	return false
+	}
+
+
+	return true
+}
+

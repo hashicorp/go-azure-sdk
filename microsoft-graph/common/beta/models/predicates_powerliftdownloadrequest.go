@@ -1,0 +1,22 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type PowerliftDownloadRequestOperationPredicate struct {
+	ODataType   *string
+	PowerliftId *string
+}
+
+func (p PowerliftDownloadRequestOperationPredicate) Matches(input PowerliftDownloadRequest) bool {
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.PowerliftId != nil && (input.PowerliftId == nil || *p.PowerliftId != *input.PowerliftId) {
+		return false
+	}
+
+	return true
+}

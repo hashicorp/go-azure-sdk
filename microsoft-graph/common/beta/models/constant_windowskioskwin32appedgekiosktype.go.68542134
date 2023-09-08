@@ -1,0 +1,40 @@
+package models
+
+import "strings"
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type WindowsKioskWin32AppEdgeKioskType string
+
+const (
+	WindowsKioskWin32AppEdgeKioskTypefullScreen WindowsKioskWin32AppEdgeKioskType = "FullScreen"
+	WindowsKioskWin32AppEdgeKioskTypepublicBrowsing WindowsKioskWin32AppEdgeKioskType = "PublicBrowsing"
+)
+
+
+func PossibleValuesForWindowsKioskWin32AppEdgeKioskType() []string {
+	return []string{
+		string(WindowsKioskWin32AppEdgeKioskTypefullScreen),
+string(WindowsKioskWin32AppEdgeKioskTypepublicBrowsing),
+	}
+}
+
+
+
+func parseWindowsKioskWin32AppEdgeKioskType(input string) (*WindowsKioskWin32AppEdgeKioskType, error) {
+	vals := map[string]WindowsKioskWin32AppEdgeKioskType{
+		"fullscreen": WindowsKioskWin32AppEdgeKioskTypefullScreen,
+"publicbrowsing": WindowsKioskWin32AppEdgeKioskTypepublicBrowsing,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := WindowsKioskWin32AppEdgeKioskType(input)
+	return &out, nil
+}

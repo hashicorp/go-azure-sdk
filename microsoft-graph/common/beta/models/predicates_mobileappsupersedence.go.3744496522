@@ -1,0 +1,63 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type MobileAppSupersedenceOperationPredicate struct {
+	 Id *string
+	 ODataType *string
+	 SupersededAppCount *int64
+	 SupersedingAppCount *int64
+	 TargetDisplayName *string
+	 TargetDisplayVersion *string
+	 TargetId *string
+	 TargetPublisher *string
+}
+
+func (p MobileAppSupersedenceOperationPredicate) Matches(input MobileAppSupersedence) bool {
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.SupersededAppCount != nil && (input.SupersededAppCount == nil || *p.SupersededAppCount != *input.SupersededAppCount) {
+	 	return false
+	}
+
+
+	if p.SupersedingAppCount != nil && (input.SupersedingAppCount == nil || *p.SupersedingAppCount != *input.SupersedingAppCount) {
+	 	return false
+	}
+
+
+	if p.TargetDisplayName != nil && (input.TargetDisplayName == nil || *p.TargetDisplayName != *input.TargetDisplayName) {
+	 	return false
+	}
+
+
+	if p.TargetDisplayVersion != nil && (input.TargetDisplayVersion == nil || *p.TargetDisplayVersion != *input.TargetDisplayVersion) {
+	 	return false
+	}
+
+
+	if p.TargetId != nil && (input.TargetId == nil || *p.TargetId != *input.TargetId) {
+	 	return false
+	}
+
+
+	if p.TargetPublisher != nil && (input.TargetPublisher == nil || *p.TargetPublisher != *input.TargetPublisher) {
+	 	return false
+	}
+
+
+	return true
+}
+

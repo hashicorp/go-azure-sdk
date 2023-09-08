@@ -1,0 +1,39 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type ImportedWindowsAutopilotDeviceIdentityStateOperationPredicate struct {
+	 DeviceErrorCode *int64
+	 DeviceErrorName *string
+	 DeviceRegistrationId *string
+	 ODataType *string
+}
+
+func (p ImportedWindowsAutopilotDeviceIdentityStateOperationPredicate) Matches(input ImportedWindowsAutopilotDeviceIdentityState) bool {
+
+	if p.DeviceErrorCode != nil && (input.DeviceErrorCode == nil || *p.DeviceErrorCode != *input.DeviceErrorCode) {
+	 	return false
+	}
+
+
+	if p.DeviceErrorName != nil && (input.DeviceErrorName == nil || *p.DeviceErrorName != *input.DeviceErrorName) {
+	 	return false
+	}
+
+
+	if p.DeviceRegistrationId != nil && (input.DeviceRegistrationId == nil || *p.DeviceRegistrationId != *input.DeviceRegistrationId) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	return true
+}
+

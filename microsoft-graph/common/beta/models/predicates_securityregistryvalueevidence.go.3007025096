@@ -1,0 +1,69 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type SecurityRegistryValueEvidenceOperationPredicate struct {
+	 CreatedDateTime *string
+	 MdeDeviceId *string
+	 ODataType *string
+	 RegistryHive *string
+	 RegistryKey *string
+	 RegistryValue *string
+	 RegistryValueName *string
+	 RegistryValueType *string
+	 RemediationStatusDetails *string
+}
+
+func (p SecurityRegistryValueEvidenceOperationPredicate) Matches(input SecurityRegistryValueEvidence) bool {
+
+	if p.CreatedDateTime != nil && (input.CreatedDateTime == nil || *p.CreatedDateTime != *input.CreatedDateTime) {
+	 	return false
+	}
+
+
+	if p.MdeDeviceId != nil && (input.MdeDeviceId == nil || *p.MdeDeviceId != *input.MdeDeviceId) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.RegistryHive != nil && (input.RegistryHive == nil || *p.RegistryHive != *input.RegistryHive) {
+	 	return false
+	}
+
+
+	if p.RegistryKey != nil && (input.RegistryKey == nil || *p.RegistryKey != *input.RegistryKey) {
+	 	return false
+	}
+
+
+	if p.RegistryValue != nil && (input.RegistryValue == nil || *p.RegistryValue != *input.RegistryValue) {
+	 	return false
+	}
+
+
+	if p.RegistryValueName != nil && (input.RegistryValueName == nil || *p.RegistryValueName != *input.RegistryValueName) {
+	 	return false
+	}
+
+
+	if p.RegistryValueType != nil && (input.RegistryValueType == nil || *p.RegistryValueType != *input.RegistryValueType) {
+	 	return false
+	}
+
+
+	if p.RemediationStatusDetails != nil && (input.RemediationStatusDetails == nil || *p.RemediationStatusDetails != *input.RemediationStatusDetails) {
+	 	return false
+	}
+
+
+	return true
+}
+

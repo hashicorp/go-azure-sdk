@@ -1,0 +1,75 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type ApplePushNotificationCertificateOperationPredicate struct {
+	 AppleIdentifier *string
+	 Certificate *string
+	 CertificateSerialNumber *string
+	 CertificateUploadFailureReason *string
+	 CertificateUploadStatus *string
+	 ExpirationDateTime *string
+	 Id *string
+	 LastModifiedDateTime *string
+	 ODataType *string
+	 TopicIdentifier *string
+}
+
+func (p ApplePushNotificationCertificateOperationPredicate) Matches(input ApplePushNotificationCertificate) bool {
+
+	if p.AppleIdentifier != nil && (input.AppleIdentifier == nil || *p.AppleIdentifier != *input.AppleIdentifier) {
+	 	return false
+	}
+
+
+	if p.Certificate != nil && (input.Certificate == nil || *p.Certificate != *input.Certificate) {
+	 	return false
+	}
+
+
+	if p.CertificateSerialNumber != nil && (input.CertificateSerialNumber == nil || *p.CertificateSerialNumber != *input.CertificateSerialNumber) {
+	 	return false
+	}
+
+
+	if p.CertificateUploadFailureReason != nil && (input.CertificateUploadFailureReason == nil || *p.CertificateUploadFailureReason != *input.CertificateUploadFailureReason) {
+	 	return false
+	}
+
+
+	if p.CertificateUploadStatus != nil && (input.CertificateUploadStatus == nil || *p.CertificateUploadStatus != *input.CertificateUploadStatus) {
+	 	return false
+	}
+
+
+	if p.ExpirationDateTime != nil && (input.ExpirationDateTime == nil || *p.ExpirationDateTime != *input.ExpirationDateTime) {
+	 	return false
+	}
+
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+	 	return false
+	}
+
+
+	if p.LastModifiedDateTime != nil && (input.LastModifiedDateTime == nil || *p.LastModifiedDateTime != *input.LastModifiedDateTime) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.TopicIdentifier != nil && (input.TopicIdentifier == nil || *p.TopicIdentifier != *input.TopicIdentifier) {
+	 	return false
+	}
+
+
+	return true
+}
+

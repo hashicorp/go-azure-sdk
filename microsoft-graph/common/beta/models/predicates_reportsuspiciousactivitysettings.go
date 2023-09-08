@@ -1,0 +1,22 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type ReportSuspiciousActivitySettingsOperationPredicate struct {
+	ODataType          *string
+	VoiceReportingCode *int64
+}
+
+func (p ReportSuspiciousActivitySettingsOperationPredicate) Matches(input ReportSuspiciousActivitySettings) bool {
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.VoiceReportingCode != nil && (input.VoiceReportingCode == nil || *p.VoiceReportingCode != *input.VoiceReportingCode) {
+		return false
+	}
+
+	return true
+}

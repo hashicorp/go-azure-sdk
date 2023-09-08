@@ -1,0 +1,67 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type ManagedTenantsManagedDeviceComplianceTrendOperationPredicate struct {
+	CompliantDeviceCount     *int64
+	ConfigManagerDeviceCount *int64
+	CountDateTime            *string
+	ErrorDeviceCount         *int64
+	Id                       *string
+	InGracePeriodDeviceCount *int64
+	NoncompliantDeviceCount  *int64
+	ODataType                *string
+	TenantDisplayName        *string
+	TenantId                 *string
+	UnknownDeviceCount       *int64
+}
+
+func (p ManagedTenantsManagedDeviceComplianceTrendOperationPredicate) Matches(input ManagedTenantsManagedDeviceComplianceTrend) bool {
+
+	if p.CompliantDeviceCount != nil && (input.CompliantDeviceCount == nil || *p.CompliantDeviceCount != *input.CompliantDeviceCount) {
+		return false
+	}
+
+	if p.ConfigManagerDeviceCount != nil && (input.ConfigManagerDeviceCount == nil || *p.ConfigManagerDeviceCount != *input.ConfigManagerDeviceCount) {
+		return false
+	}
+
+	if p.CountDateTime != nil && (input.CountDateTime == nil || *p.CountDateTime != *input.CountDateTime) {
+		return false
+	}
+
+	if p.ErrorDeviceCount != nil && (input.ErrorDeviceCount == nil || *p.ErrorDeviceCount != *input.ErrorDeviceCount) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.InGracePeriodDeviceCount != nil && (input.InGracePeriodDeviceCount == nil || *p.InGracePeriodDeviceCount != *input.InGracePeriodDeviceCount) {
+		return false
+	}
+
+	if p.NoncompliantDeviceCount != nil && (input.NoncompliantDeviceCount == nil || *p.NoncompliantDeviceCount != *input.NoncompliantDeviceCount) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.TenantDisplayName != nil && (input.TenantDisplayName == nil || *p.TenantDisplayName != *input.TenantDisplayName) {
+		return false
+	}
+
+	if p.TenantId != nil && (input.TenantId == nil || *p.TenantId != *input.TenantId) {
+		return false
+	}
+
+	if p.UnknownDeviceCount != nil && (input.UnknownDeviceCount == nil || *p.UnknownDeviceCount != *input.UnknownDeviceCount) {
+		return false
+	}
+
+	return true
+}

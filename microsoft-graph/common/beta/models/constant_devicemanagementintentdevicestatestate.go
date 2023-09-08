@@ -1,0 +1,52 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type DeviceManagementIntentDeviceStateState string
+
+const (
+	DeviceManagementIntentDeviceStateStatecompliant     DeviceManagementIntentDeviceStateState = "Compliant"
+	DeviceManagementIntentDeviceStateStateconflict      DeviceManagementIntentDeviceStateState = "Conflict"
+	DeviceManagementIntentDeviceStateStateerror         DeviceManagementIntentDeviceStateState = "Error"
+	DeviceManagementIntentDeviceStateStatenonCompliant  DeviceManagementIntentDeviceStateState = "NonCompliant"
+	DeviceManagementIntentDeviceStateStatenotApplicable DeviceManagementIntentDeviceStateState = "NotApplicable"
+	DeviceManagementIntentDeviceStateStatenotAssigned   DeviceManagementIntentDeviceStateState = "NotAssigned"
+	DeviceManagementIntentDeviceStateStateremediated    DeviceManagementIntentDeviceStateState = "Remediated"
+	DeviceManagementIntentDeviceStateStateunknown       DeviceManagementIntentDeviceStateState = "Unknown"
+)
+
+func PossibleValuesForDeviceManagementIntentDeviceStateState() []string {
+	return []string{
+		string(DeviceManagementIntentDeviceStateStatecompliant),
+		string(DeviceManagementIntentDeviceStateStateconflict),
+		string(DeviceManagementIntentDeviceStateStateerror),
+		string(DeviceManagementIntentDeviceStateStatenonCompliant),
+		string(DeviceManagementIntentDeviceStateStatenotApplicable),
+		string(DeviceManagementIntentDeviceStateStatenotAssigned),
+		string(DeviceManagementIntentDeviceStateStateremediated),
+		string(DeviceManagementIntentDeviceStateStateunknown),
+	}
+}
+
+func parseDeviceManagementIntentDeviceStateState(input string) (*DeviceManagementIntentDeviceStateState, error) {
+	vals := map[string]DeviceManagementIntentDeviceStateState{
+		"compliant":     DeviceManagementIntentDeviceStateStatecompliant,
+		"conflict":      DeviceManagementIntentDeviceStateStateconflict,
+		"error":         DeviceManagementIntentDeviceStateStateerror,
+		"noncompliant":  DeviceManagementIntentDeviceStateStatenonCompliant,
+		"notapplicable": DeviceManagementIntentDeviceStateStatenotApplicable,
+		"notassigned":   DeviceManagementIntentDeviceStateStatenotAssigned,
+		"remediated":    DeviceManagementIntentDeviceStateStateremediated,
+		"unknown":       DeviceManagementIntentDeviceStateStateunknown,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DeviceManagementIntentDeviceStateState(input)
+	return &out, nil
+}

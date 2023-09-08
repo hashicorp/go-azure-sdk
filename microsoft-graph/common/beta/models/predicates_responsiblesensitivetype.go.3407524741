@@ -1,0 +1,57 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type ResponsibleSensitiveTypeOperationPredicate struct {
+	 Description *string
+	 Id *string
+	 Name *string
+	 ODataType *string
+	 PublisherName *string
+	 RulePackageId *string
+	 RulePackageType *string
+}
+
+func (p ResponsibleSensitiveTypeOperationPredicate) Matches(input ResponsibleSensitiveType) bool {
+
+	if p.Description != nil && (input.Description == nil || *p.Description != *input.Description) {
+	 	return false
+	}
+
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+	 	return false
+	}
+
+
+	if p.Name != nil && (input.Name == nil || *p.Name != *input.Name) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.PublisherName != nil && (input.PublisherName == nil || *p.PublisherName != *input.PublisherName) {
+	 	return false
+	}
+
+
+	if p.RulePackageId != nil && (input.RulePackageId == nil || *p.RulePackageId != *input.RulePackageId) {
+	 	return false
+	}
+
+
+	if p.RulePackageType != nil && (input.RulePackageType == nil || *p.RulePackageType != *input.RulePackageType) {
+	 	return false
+	}
+
+
+	return true
+}
+

@@ -1,0 +1,34 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type Win32LobAppFileSystemRuleRuleType string
+
+const (
+	Win32LobAppFileSystemRuleRuleTypedetection   Win32LobAppFileSystemRuleRuleType = "Detection"
+	Win32LobAppFileSystemRuleRuleTyperequirement Win32LobAppFileSystemRuleRuleType = "Requirement"
+)
+
+func PossibleValuesForWin32LobAppFileSystemRuleRuleType() []string {
+	return []string{
+		string(Win32LobAppFileSystemRuleRuleTypedetection),
+		string(Win32LobAppFileSystemRuleRuleTyperequirement),
+	}
+}
+
+func parseWin32LobAppFileSystemRuleRuleType(input string) (*Win32LobAppFileSystemRuleRuleType, error) {
+	vals := map[string]Win32LobAppFileSystemRuleRuleType{
+		"detection":   Win32LobAppFileSystemRuleRuleTypedetection,
+		"requirement": Win32LobAppFileSystemRuleRuleTyperequirement,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := Win32LobAppFileSystemRuleRuleType(input)
+	return &out, nil
+}

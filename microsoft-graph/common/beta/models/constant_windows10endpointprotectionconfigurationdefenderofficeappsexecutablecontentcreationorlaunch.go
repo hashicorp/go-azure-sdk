@@ -1,0 +1,43 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type Windows10EndpointProtectionConfigurationDefenderOfficeAppsExecutableContentCreationOrLaunch string
+
+const (
+	Windows10EndpointProtectionConfigurationDefenderOfficeAppsExecutableContentCreationOrLaunchauditMode     Windows10EndpointProtectionConfigurationDefenderOfficeAppsExecutableContentCreationOrLaunch = "AuditMode"
+	Windows10EndpointProtectionConfigurationDefenderOfficeAppsExecutableContentCreationOrLaunchenable        Windows10EndpointProtectionConfigurationDefenderOfficeAppsExecutableContentCreationOrLaunch = "Enable"
+	Windows10EndpointProtectionConfigurationDefenderOfficeAppsExecutableContentCreationOrLaunchnotConfigured Windows10EndpointProtectionConfigurationDefenderOfficeAppsExecutableContentCreationOrLaunch = "NotConfigured"
+	Windows10EndpointProtectionConfigurationDefenderOfficeAppsExecutableContentCreationOrLaunchuserDefined   Windows10EndpointProtectionConfigurationDefenderOfficeAppsExecutableContentCreationOrLaunch = "UserDefined"
+	Windows10EndpointProtectionConfigurationDefenderOfficeAppsExecutableContentCreationOrLaunchwarn          Windows10EndpointProtectionConfigurationDefenderOfficeAppsExecutableContentCreationOrLaunch = "Warn"
+)
+
+func PossibleValuesForWindows10EndpointProtectionConfigurationDefenderOfficeAppsExecutableContentCreationOrLaunch() []string {
+	return []string{
+		string(Windows10EndpointProtectionConfigurationDefenderOfficeAppsExecutableContentCreationOrLaunchauditMode),
+		string(Windows10EndpointProtectionConfigurationDefenderOfficeAppsExecutableContentCreationOrLaunchenable),
+		string(Windows10EndpointProtectionConfigurationDefenderOfficeAppsExecutableContentCreationOrLaunchnotConfigured),
+		string(Windows10EndpointProtectionConfigurationDefenderOfficeAppsExecutableContentCreationOrLaunchuserDefined),
+		string(Windows10EndpointProtectionConfigurationDefenderOfficeAppsExecutableContentCreationOrLaunchwarn),
+	}
+}
+
+func parseWindows10EndpointProtectionConfigurationDefenderOfficeAppsExecutableContentCreationOrLaunch(input string) (*Windows10EndpointProtectionConfigurationDefenderOfficeAppsExecutableContentCreationOrLaunch, error) {
+	vals := map[string]Windows10EndpointProtectionConfigurationDefenderOfficeAppsExecutableContentCreationOrLaunch{
+		"auditmode":     Windows10EndpointProtectionConfigurationDefenderOfficeAppsExecutableContentCreationOrLaunchauditMode,
+		"enable":        Windows10EndpointProtectionConfigurationDefenderOfficeAppsExecutableContentCreationOrLaunchenable,
+		"notconfigured": Windows10EndpointProtectionConfigurationDefenderOfficeAppsExecutableContentCreationOrLaunchnotConfigured,
+		"userdefined":   Windows10EndpointProtectionConfigurationDefenderOfficeAppsExecutableContentCreationOrLaunchuserDefined,
+		"warn":          Windows10EndpointProtectionConfigurationDefenderOfficeAppsExecutableContentCreationOrLaunchwarn,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := Windows10EndpointProtectionConfigurationDefenderOfficeAppsExecutableContentCreationOrLaunch(input)
+	return &out, nil
+}

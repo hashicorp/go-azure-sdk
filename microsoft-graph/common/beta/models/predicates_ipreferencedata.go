@@ -1,0 +1,47 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type IpReferenceDataOperationPredicate struct {
+	Asn                 *int64
+	City                *string
+	CountryOrRegionCode *string
+	ODataType           *string
+	Organization        *string
+	State               *string
+	Vendor              *string
+}
+
+func (p IpReferenceDataOperationPredicate) Matches(input IpReferenceData) bool {
+
+	if p.Asn != nil && (input.Asn == nil || *p.Asn != *input.Asn) {
+		return false
+	}
+
+	if p.City != nil && (input.City == nil || *p.City != *input.City) {
+		return false
+	}
+
+	if p.CountryOrRegionCode != nil && (input.CountryOrRegionCode == nil || *p.CountryOrRegionCode != *input.CountryOrRegionCode) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.Organization != nil && (input.Organization == nil || *p.Organization != *input.Organization) {
+		return false
+	}
+
+	if p.State != nil && (input.State == nil || *p.State != *input.State) {
+		return false
+	}
+
+	if p.Vendor != nil && (input.Vendor == nil || *p.Vendor != *input.Vendor) {
+		return false
+	}
+
+	return true
+}

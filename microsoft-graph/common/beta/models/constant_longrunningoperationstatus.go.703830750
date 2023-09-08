@@ -1,0 +1,46 @@
+package models
+
+import "strings"
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type LongRunningOperationStatus string
+
+const (
+	LongRunningOperationStatusfailed LongRunningOperationStatus = "Failed"
+	LongRunningOperationStatusnotStarted LongRunningOperationStatus = "NotStarted"
+	LongRunningOperationStatusrunning LongRunningOperationStatus = "Running"
+	LongRunningOperationStatussucceeded LongRunningOperationStatus = "Succeeded"
+)
+
+
+func PossibleValuesForLongRunningOperationStatus() []string {
+	return []string{
+		string(LongRunningOperationStatusfailed),
+string(LongRunningOperationStatusnotStarted),
+string(LongRunningOperationStatusrunning),
+string(LongRunningOperationStatussucceeded),
+	}
+}
+
+
+
+func parseLongRunningOperationStatus(input string) (*LongRunningOperationStatus, error) {
+	vals := map[string]LongRunningOperationStatus{
+		"failed": LongRunningOperationStatusfailed,
+"notstarted": LongRunningOperationStatusnotStarted,
+"running": LongRunningOperationStatusrunning,
+"succeeded": LongRunningOperationStatussucceeded,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := LongRunningOperationStatus(input)
+	return &out, nil
+}

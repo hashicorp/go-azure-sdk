@@ -1,0 +1,67 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type TeamworkSystemConfigurationOperationPredicate struct {
+	DefaultPassword        *string
+	DeviceLockTimeout      *string
+	IsDeviceLockEnabled    *bool
+	IsLoggingEnabled       *bool
+	IsPowerSavingEnabled   *bool
+	IsScreenCaptureEnabled *bool
+	IsSilentModeEnabled    *bool
+	Language               *string
+	LockPin                *string
+	LoggingLevel           *string
+	ODataType              *string
+}
+
+func (p TeamworkSystemConfigurationOperationPredicate) Matches(input TeamworkSystemConfiguration) bool {
+
+	if p.DefaultPassword != nil && (input.DefaultPassword == nil || *p.DefaultPassword != *input.DefaultPassword) {
+		return false
+	}
+
+	if p.DeviceLockTimeout != nil && (input.DeviceLockTimeout == nil || *p.DeviceLockTimeout != *input.DeviceLockTimeout) {
+		return false
+	}
+
+	if p.IsDeviceLockEnabled != nil && (input.IsDeviceLockEnabled == nil || *p.IsDeviceLockEnabled != *input.IsDeviceLockEnabled) {
+		return false
+	}
+
+	if p.IsLoggingEnabled != nil && (input.IsLoggingEnabled == nil || *p.IsLoggingEnabled != *input.IsLoggingEnabled) {
+		return false
+	}
+
+	if p.IsPowerSavingEnabled != nil && (input.IsPowerSavingEnabled == nil || *p.IsPowerSavingEnabled != *input.IsPowerSavingEnabled) {
+		return false
+	}
+
+	if p.IsScreenCaptureEnabled != nil && (input.IsScreenCaptureEnabled == nil || *p.IsScreenCaptureEnabled != *input.IsScreenCaptureEnabled) {
+		return false
+	}
+
+	if p.IsSilentModeEnabled != nil && (input.IsSilentModeEnabled == nil || *p.IsSilentModeEnabled != *input.IsSilentModeEnabled) {
+		return false
+	}
+
+	if p.Language != nil && (input.Language == nil || *p.Language != *input.Language) {
+		return false
+	}
+
+	if p.LockPin != nil && (input.LockPin == nil || *p.LockPin != *input.LockPin) {
+		return false
+	}
+
+	if p.LoggingLevel != nil && (input.LoggingLevel == nil || *p.LoggingLevel != *input.LoggingLevel) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	return true
+}

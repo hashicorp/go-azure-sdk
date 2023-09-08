@@ -1,0 +1,55 @@
+package models
+
+import "strings"
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type ItemPatentAllowedAudiences string
+
+const (
+	ItemPatentAllowedAudiencescontacts ItemPatentAllowedAudiences = "Contacts"
+	ItemPatentAllowedAudienceseveryone ItemPatentAllowedAudiences = "Everyone"
+	ItemPatentAllowedAudiencesfamily ItemPatentAllowedAudiences = "Family"
+	ItemPatentAllowedAudiencesfederatedOrganizations ItemPatentAllowedAudiences = "FederatedOrganizations"
+	ItemPatentAllowedAudiencesgroupMembers ItemPatentAllowedAudiences = "GroupMembers"
+	ItemPatentAllowedAudiencesme ItemPatentAllowedAudiences = "Me"
+	ItemPatentAllowedAudiencesorganization ItemPatentAllowedAudiences = "Organization"
+)
+
+
+func PossibleValuesForItemPatentAllowedAudiences() []string {
+	return []string{
+		string(ItemPatentAllowedAudiencescontacts),
+string(ItemPatentAllowedAudienceseveryone),
+string(ItemPatentAllowedAudiencesfamily),
+string(ItemPatentAllowedAudiencesfederatedOrganizations),
+string(ItemPatentAllowedAudiencesgroupMembers),
+string(ItemPatentAllowedAudiencesme),
+string(ItemPatentAllowedAudiencesorganization),
+	}
+}
+
+
+
+func parseItemPatentAllowedAudiences(input string) (*ItemPatentAllowedAudiences, error) {
+	vals := map[string]ItemPatentAllowedAudiences{
+		"contacts": ItemPatentAllowedAudiencescontacts,
+"everyone": ItemPatentAllowedAudienceseveryone,
+"family": ItemPatentAllowedAudiencesfamily,
+"federatedorganizations": ItemPatentAllowedAudiencesfederatedOrganizations,
+"groupmembers": ItemPatentAllowedAudiencesgroupMembers,
+"me": ItemPatentAllowedAudiencesme,
+"organization": ItemPatentAllowedAudiencesorganization,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ItemPatentAllowedAudiences(input)
+	return &out, nil
+}

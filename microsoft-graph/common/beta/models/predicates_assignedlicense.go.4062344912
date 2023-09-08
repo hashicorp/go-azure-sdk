@@ -1,0 +1,27 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type AssignedLicenseOperationPredicate struct {
+	 ODataType *string
+	 SkuId *string
+}
+
+func (p AssignedLicenseOperationPredicate) Matches(input AssignedLicense) bool {
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.SkuId != nil && (input.SkuId == nil || *p.SkuId != *input.SkuId) {
+	 	return false
+	}
+
+
+	return true
+}
+

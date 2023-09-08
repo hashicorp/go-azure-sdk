@@ -1,0 +1,37 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type Windows10GeneralConfigurationEdgeFavoritesBarVisibility string
+
+const (
+	Windows10GeneralConfigurationEdgeFavoritesBarVisibilityhide          Windows10GeneralConfigurationEdgeFavoritesBarVisibility = "Hide"
+	Windows10GeneralConfigurationEdgeFavoritesBarVisibilitynotConfigured Windows10GeneralConfigurationEdgeFavoritesBarVisibility = "NotConfigured"
+	Windows10GeneralConfigurationEdgeFavoritesBarVisibilityshow          Windows10GeneralConfigurationEdgeFavoritesBarVisibility = "Show"
+)
+
+func PossibleValuesForWindows10GeneralConfigurationEdgeFavoritesBarVisibility() []string {
+	return []string{
+		string(Windows10GeneralConfigurationEdgeFavoritesBarVisibilityhide),
+		string(Windows10GeneralConfigurationEdgeFavoritesBarVisibilitynotConfigured),
+		string(Windows10GeneralConfigurationEdgeFavoritesBarVisibilityshow),
+	}
+}
+
+func parseWindows10GeneralConfigurationEdgeFavoritesBarVisibility(input string) (*Windows10GeneralConfigurationEdgeFavoritesBarVisibility, error) {
+	vals := map[string]Windows10GeneralConfigurationEdgeFavoritesBarVisibility{
+		"hide":          Windows10GeneralConfigurationEdgeFavoritesBarVisibilityhide,
+		"notconfigured": Windows10GeneralConfigurationEdgeFavoritesBarVisibilitynotConfigured,
+		"show":          Windows10GeneralConfigurationEdgeFavoritesBarVisibilityshow,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := Windows10GeneralConfigurationEdgeFavoritesBarVisibility(input)
+	return &out, nil
+}

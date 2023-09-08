@@ -1,0 +1,52 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type UserConsentRequestOperationPredicate struct {
+	ApprovalId        *string
+	CompletedDateTime *string
+	CreatedDateTime   *string
+	CustomData        *string
+	Id                *string
+	ODataType         *string
+	Reason            *string
+	Status            *string
+}
+
+func (p UserConsentRequestOperationPredicate) Matches(input UserConsentRequest) bool {
+
+	if p.ApprovalId != nil && (input.ApprovalId == nil || *p.ApprovalId != *input.ApprovalId) {
+		return false
+	}
+
+	if p.CompletedDateTime != nil && (input.CompletedDateTime == nil || *p.CompletedDateTime != *input.CompletedDateTime) {
+		return false
+	}
+
+	if p.CreatedDateTime != nil && (input.CreatedDateTime == nil || *p.CreatedDateTime != *input.CreatedDateTime) {
+		return false
+	}
+
+	if p.CustomData != nil && (input.CustomData == nil || *p.CustomData != *input.CustomData) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.Reason != nil && (input.Reason == nil || *p.Reason != *input.Reason) {
+		return false
+	}
+
+	if p.Status != nil && (input.Status == nil || *p.Status != *input.Status) {
+		return false
+	}
+
+	return true
+}

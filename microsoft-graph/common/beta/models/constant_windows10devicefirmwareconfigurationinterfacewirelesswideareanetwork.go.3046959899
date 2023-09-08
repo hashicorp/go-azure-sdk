@@ -1,0 +1,43 @@
+package models
+
+import "strings"
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type Windows10DeviceFirmwareConfigurationInterfaceWirelessWideAreaNetwork string
+
+const (
+	Windows10DeviceFirmwareConfigurationInterfaceWirelessWideAreaNetworkdisabled Windows10DeviceFirmwareConfigurationInterfaceWirelessWideAreaNetwork = "Disabled"
+	Windows10DeviceFirmwareConfigurationInterfaceWirelessWideAreaNetworkenabled Windows10DeviceFirmwareConfigurationInterfaceWirelessWideAreaNetwork = "Enabled"
+	Windows10DeviceFirmwareConfigurationInterfaceWirelessWideAreaNetworknotConfigured Windows10DeviceFirmwareConfigurationInterfaceWirelessWideAreaNetwork = "NotConfigured"
+)
+
+
+func PossibleValuesForWindows10DeviceFirmwareConfigurationInterfaceWirelessWideAreaNetwork() []string {
+	return []string{
+		string(Windows10DeviceFirmwareConfigurationInterfaceWirelessWideAreaNetworkdisabled),
+string(Windows10DeviceFirmwareConfigurationInterfaceWirelessWideAreaNetworkenabled),
+string(Windows10DeviceFirmwareConfigurationInterfaceWirelessWideAreaNetworknotConfigured),
+	}
+}
+
+
+
+func parseWindows10DeviceFirmwareConfigurationInterfaceWirelessWideAreaNetwork(input string) (*Windows10DeviceFirmwareConfigurationInterfaceWirelessWideAreaNetwork, error) {
+	vals := map[string]Windows10DeviceFirmwareConfigurationInterfaceWirelessWideAreaNetwork{
+		"disabled": Windows10DeviceFirmwareConfigurationInterfaceWirelessWideAreaNetworkdisabled,
+"enabled": Windows10DeviceFirmwareConfigurationInterfaceWirelessWideAreaNetworkenabled,
+"notconfigured": Windows10DeviceFirmwareConfigurationInterfaceWirelessWideAreaNetworknotConfigured,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := Windows10DeviceFirmwareConfigurationInterfaceWirelessWideAreaNetwork(input)
+	return &out, nil
+}

@@ -1,0 +1,37 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type SharedAppleDeviceUserOperationPredicate struct {
+	DataQuota         *int64
+	DataToSync        *bool
+	DataUsed          *int64
+	ODataType         *string
+	UserPrincipalName *string
+}
+
+func (p SharedAppleDeviceUserOperationPredicate) Matches(input SharedAppleDeviceUser) bool {
+
+	if p.DataQuota != nil && (input.DataQuota == nil || *p.DataQuota != *input.DataQuota) {
+		return false
+	}
+
+	if p.DataToSync != nil && (input.DataToSync == nil || *p.DataToSync != *input.DataToSync) {
+		return false
+	}
+
+	if p.DataUsed != nil && (input.DataUsed == nil || *p.DataUsed != *input.DataUsed) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.UserPrincipalName != nil && (input.UserPrincipalName == nil || *p.UserPrincipalName != *input.UserPrincipalName) {
+		return false
+	}
+
+	return true
+}

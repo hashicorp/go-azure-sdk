@@ -1,0 +1,27 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type DeviceManagementConfigurationIntegerSettingValueDefinitionTemplateOperationPredicate struct {
+	MaxValue  *int64
+	MinValue  *int64
+	ODataType *string
+}
+
+func (p DeviceManagementConfigurationIntegerSettingValueDefinitionTemplateOperationPredicate) Matches(input DeviceManagementConfigurationIntegerSettingValueDefinitionTemplate) bool {
+
+	if p.MaxValue != nil && (input.MaxValue == nil || *p.MaxValue != *input.MaxValue) {
+		return false
+	}
+
+	if p.MinValue != nil && (input.MinValue == nil || *p.MinValue != *input.MinValue) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	return true
+}

@@ -1,0 +1,61 @@
+package models
+
+import "strings"
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type Windows81SCEPCertificateProfileSubjectNameFormat string
+
+const (
+	Windows81SCEPCertificateProfileSubjectNameFormatcommonName Windows81SCEPCertificateProfileSubjectNameFormat = "CommonName"
+	Windows81SCEPCertificateProfileSubjectNameFormatcommonNameAsAadDeviceId Windows81SCEPCertificateProfileSubjectNameFormat = "CommonNameAsAadDeviceId"
+	Windows81SCEPCertificateProfileSubjectNameFormatcommonNameAsDurableDeviceId Windows81SCEPCertificateProfileSubjectNameFormat = "CommonNameAsDurableDeviceId"
+	Windows81SCEPCertificateProfileSubjectNameFormatcommonNameAsEmail Windows81SCEPCertificateProfileSubjectNameFormat = "CommonNameAsEmail"
+	Windows81SCEPCertificateProfileSubjectNameFormatcommonNameAsIMEI Windows81SCEPCertificateProfileSubjectNameFormat = "CommonNameAsIMEI"
+	Windows81SCEPCertificateProfileSubjectNameFormatcommonNameAsIntuneDeviceId Windows81SCEPCertificateProfileSubjectNameFormat = "CommonNameAsIntuneDeviceId"
+	Windows81SCEPCertificateProfileSubjectNameFormatcommonNameAsSerialNumber Windows81SCEPCertificateProfileSubjectNameFormat = "CommonNameAsSerialNumber"
+	Windows81SCEPCertificateProfileSubjectNameFormatcommonNameIncludingEmail Windows81SCEPCertificateProfileSubjectNameFormat = "CommonNameIncludingEmail"
+	Windows81SCEPCertificateProfileSubjectNameFormatcustom Windows81SCEPCertificateProfileSubjectNameFormat = "Custom"
+)
+
+
+func PossibleValuesForWindows81SCEPCertificateProfileSubjectNameFormat() []string {
+	return []string{
+		string(Windows81SCEPCertificateProfileSubjectNameFormatcommonName),
+string(Windows81SCEPCertificateProfileSubjectNameFormatcommonNameAsAadDeviceId),
+string(Windows81SCEPCertificateProfileSubjectNameFormatcommonNameAsDurableDeviceId),
+string(Windows81SCEPCertificateProfileSubjectNameFormatcommonNameAsEmail),
+string(Windows81SCEPCertificateProfileSubjectNameFormatcommonNameAsIMEI),
+string(Windows81SCEPCertificateProfileSubjectNameFormatcommonNameAsIntuneDeviceId),
+string(Windows81SCEPCertificateProfileSubjectNameFormatcommonNameAsSerialNumber),
+string(Windows81SCEPCertificateProfileSubjectNameFormatcommonNameIncludingEmail),
+string(Windows81SCEPCertificateProfileSubjectNameFormatcustom),
+	}
+}
+
+
+
+func parseWindows81SCEPCertificateProfileSubjectNameFormat(input string) (*Windows81SCEPCertificateProfileSubjectNameFormat, error) {
+	vals := map[string]Windows81SCEPCertificateProfileSubjectNameFormat{
+		"commonname": Windows81SCEPCertificateProfileSubjectNameFormatcommonName,
+"commonnameasaaddeviceid": Windows81SCEPCertificateProfileSubjectNameFormatcommonNameAsAadDeviceId,
+"commonnameasdurabledeviceid": Windows81SCEPCertificateProfileSubjectNameFormatcommonNameAsDurableDeviceId,
+"commonnameasemail": Windows81SCEPCertificateProfileSubjectNameFormatcommonNameAsEmail,
+"commonnameasimei": Windows81SCEPCertificateProfileSubjectNameFormatcommonNameAsIMEI,
+"commonnameasintunedeviceid": Windows81SCEPCertificateProfileSubjectNameFormatcommonNameAsIntuneDeviceId,
+"commonnameasserialnumber": Windows81SCEPCertificateProfileSubjectNameFormatcommonNameAsSerialNumber,
+"commonnameincludingemail": Windows81SCEPCertificateProfileSubjectNameFormatcommonNameIncludingEmail,
+"custom": Windows81SCEPCertificateProfileSubjectNameFormatcustom,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := Windows81SCEPCertificateProfileSubjectNameFormat(input)
+	return &out, nil
+}

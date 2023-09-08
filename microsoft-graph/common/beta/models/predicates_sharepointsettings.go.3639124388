@@ -1,0 +1,147 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type SharepointSettingsOperationPredicate struct {
+	 DeletedUserPersonalSiteRetentionPeriodInDays *int64
+	 Id *string
+	 IsCommentingOnSitePagesEnabled *bool
+	 IsFileActivityNotificationEnabled *bool
+	 IsLegacyAuthProtocolsEnabled *bool
+	 IsLoopEnabled *bool
+	 IsMacSyncAppEnabled *bool
+	 IsRequireAcceptingUserToMatchInvitedUserEnabled *bool
+	 IsResharingByExternalUsersEnabled *bool
+	 IsSharePointMobileNotificationEnabled *bool
+	 IsSharePointNewsfeedEnabled *bool
+	 IsSiteCreationEnabled *bool
+	 IsSiteCreationUIEnabled *bool
+	 IsSitePagesCreationEnabled *bool
+	 IsSitesStorageLimitAutomatic *bool
+	 IsSyncButtonHiddenOnPersonalSite *bool
+	 IsUnmanagedSyncAppForTenantRestricted *bool
+	 ODataType *string
+	 PersonalSiteDefaultStorageLimitInMB *int64
+	 SiteCreationDefaultManagedPath *string
+	 SiteCreationDefaultStorageLimitInMB *int64
+	 TenantDefaultTimezone *string
+}
+
+func (p SharepointSettingsOperationPredicate) Matches(input SharepointSettings) bool {
+
+	if p.DeletedUserPersonalSiteRetentionPeriodInDays != nil && (input.DeletedUserPersonalSiteRetentionPeriodInDays == nil || *p.DeletedUserPersonalSiteRetentionPeriodInDays != *input.DeletedUserPersonalSiteRetentionPeriodInDays) {
+	 	return false
+	}
+
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+	 	return false
+	}
+
+
+	if p.IsCommentingOnSitePagesEnabled != nil && (input.IsCommentingOnSitePagesEnabled == nil || *p.IsCommentingOnSitePagesEnabled != *input.IsCommentingOnSitePagesEnabled) {
+	 	return false
+	}
+
+
+	if p.IsFileActivityNotificationEnabled != nil && (input.IsFileActivityNotificationEnabled == nil || *p.IsFileActivityNotificationEnabled != *input.IsFileActivityNotificationEnabled) {
+	 	return false
+	}
+
+
+	if p.IsLegacyAuthProtocolsEnabled != nil && (input.IsLegacyAuthProtocolsEnabled == nil || *p.IsLegacyAuthProtocolsEnabled != *input.IsLegacyAuthProtocolsEnabled) {
+	 	return false
+	}
+
+
+	if p.IsLoopEnabled != nil && (input.IsLoopEnabled == nil || *p.IsLoopEnabled != *input.IsLoopEnabled) {
+	 	return false
+	}
+
+
+	if p.IsMacSyncAppEnabled != nil && (input.IsMacSyncAppEnabled == nil || *p.IsMacSyncAppEnabled != *input.IsMacSyncAppEnabled) {
+	 	return false
+	}
+
+
+	if p.IsRequireAcceptingUserToMatchInvitedUserEnabled != nil && (input.IsRequireAcceptingUserToMatchInvitedUserEnabled == nil || *p.IsRequireAcceptingUserToMatchInvitedUserEnabled != *input.IsRequireAcceptingUserToMatchInvitedUserEnabled) {
+	 	return false
+	}
+
+
+	if p.IsResharingByExternalUsersEnabled != nil && (input.IsResharingByExternalUsersEnabled == nil || *p.IsResharingByExternalUsersEnabled != *input.IsResharingByExternalUsersEnabled) {
+	 	return false
+	}
+
+
+	if p.IsSharePointMobileNotificationEnabled != nil && (input.IsSharePointMobileNotificationEnabled == nil || *p.IsSharePointMobileNotificationEnabled != *input.IsSharePointMobileNotificationEnabled) {
+	 	return false
+	}
+
+
+	if p.IsSharePointNewsfeedEnabled != nil && (input.IsSharePointNewsfeedEnabled == nil || *p.IsSharePointNewsfeedEnabled != *input.IsSharePointNewsfeedEnabled) {
+	 	return false
+	}
+
+
+	if p.IsSiteCreationEnabled != nil && (input.IsSiteCreationEnabled == nil || *p.IsSiteCreationEnabled != *input.IsSiteCreationEnabled) {
+	 	return false
+	}
+
+
+	if p.IsSiteCreationUIEnabled != nil && (input.IsSiteCreationUIEnabled == nil || *p.IsSiteCreationUIEnabled != *input.IsSiteCreationUIEnabled) {
+	 	return false
+	}
+
+
+	if p.IsSitePagesCreationEnabled != nil && (input.IsSitePagesCreationEnabled == nil || *p.IsSitePagesCreationEnabled != *input.IsSitePagesCreationEnabled) {
+	 	return false
+	}
+
+
+	if p.IsSitesStorageLimitAutomatic != nil && (input.IsSitesStorageLimitAutomatic == nil || *p.IsSitesStorageLimitAutomatic != *input.IsSitesStorageLimitAutomatic) {
+	 	return false
+	}
+
+
+	if p.IsSyncButtonHiddenOnPersonalSite != nil && (input.IsSyncButtonHiddenOnPersonalSite == nil || *p.IsSyncButtonHiddenOnPersonalSite != *input.IsSyncButtonHiddenOnPersonalSite) {
+	 	return false
+	}
+
+
+	if p.IsUnmanagedSyncAppForTenantRestricted != nil && (input.IsUnmanagedSyncAppForTenantRestricted == nil || *p.IsUnmanagedSyncAppForTenantRestricted != *input.IsUnmanagedSyncAppForTenantRestricted) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.PersonalSiteDefaultStorageLimitInMB != nil && (input.PersonalSiteDefaultStorageLimitInMB == nil || *p.PersonalSiteDefaultStorageLimitInMB != *input.PersonalSiteDefaultStorageLimitInMB) {
+	 	return false
+	}
+
+
+	if p.SiteCreationDefaultManagedPath != nil && (input.SiteCreationDefaultManagedPath == nil || *p.SiteCreationDefaultManagedPath != *input.SiteCreationDefaultManagedPath) {
+	 	return false
+	}
+
+
+	if p.SiteCreationDefaultStorageLimitInMB != nil && (input.SiteCreationDefaultStorageLimitInMB == nil || *p.SiteCreationDefaultStorageLimitInMB != *input.SiteCreationDefaultStorageLimitInMB) {
+	 	return false
+	}
+
+
+	if p.TenantDefaultTimezone != nil && (input.TenantDefaultTimezone == nil || *p.TenantDefaultTimezone != *input.TenantDefaultTimezone) {
+	 	return false
+	}
+
+
+	return true
+}
+

@@ -1,0 +1,38 @@
+package models
+
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/edgezones"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/identity"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/systemdata"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/zones"
+)
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type WindowsUpdatesProductRevision struct {
+	DisplayName *string `json:"displayName,omitempty"`
+	Id *string `json:"id,omitempty"`
+	KnowledgeBaseArticle *WindowsUpdatesKnowledgeBaseArticle `json:"knowledgeBaseArticle,omitempty"`
+	ODataType *string `json:"@odata.type,omitempty"`
+	OsBuild *BuildVersionDetails `json:"osBuild,omitempty"`
+	Product *string `json:"product,omitempty"`
+	ReleaseDateTime *string `json:"releaseDateTime,omitempty"`
+	Version *string `json:"version,omitempty"`
+}
+
+
+
+
+
+
+

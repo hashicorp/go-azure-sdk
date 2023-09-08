@@ -1,0 +1,55 @@
+package models
+
+import "strings"
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type MediaContentRatingGermanyTvRating string
+
+const (
+	MediaContentRatingGermanyTvRatingadults MediaContentRatingGermanyTvRating = "Adults"
+	MediaContentRatingGermanyTvRatingagesAbove12 MediaContentRatingGermanyTvRating = "AgesAbove12"
+	MediaContentRatingGermanyTvRatingagesAbove16 MediaContentRatingGermanyTvRating = "AgesAbove16"
+	MediaContentRatingGermanyTvRatingagesAbove6 MediaContentRatingGermanyTvRating = "AgesAbove6"
+	MediaContentRatingGermanyTvRatingallAllowed MediaContentRatingGermanyTvRating = "AllAllowed"
+	MediaContentRatingGermanyTvRatingallBlocked MediaContentRatingGermanyTvRating = "AllBlocked"
+	MediaContentRatingGermanyTvRatinggeneral MediaContentRatingGermanyTvRating = "General"
+)
+
+
+func PossibleValuesForMediaContentRatingGermanyTvRating() []string {
+	return []string{
+		string(MediaContentRatingGermanyTvRatingadults),
+string(MediaContentRatingGermanyTvRatingagesAbove12),
+string(MediaContentRatingGermanyTvRatingagesAbove16),
+string(MediaContentRatingGermanyTvRatingagesAbove6),
+string(MediaContentRatingGermanyTvRatingallAllowed),
+string(MediaContentRatingGermanyTvRatingallBlocked),
+string(MediaContentRatingGermanyTvRatinggeneral),
+	}
+}
+
+
+
+func parseMediaContentRatingGermanyTvRating(input string) (*MediaContentRatingGermanyTvRating, error) {
+	vals := map[string]MediaContentRatingGermanyTvRating{
+		"adults": MediaContentRatingGermanyTvRatingadults,
+"agesabove12": MediaContentRatingGermanyTvRatingagesAbove12,
+"agesabove16": MediaContentRatingGermanyTvRatingagesAbove16,
+"agesabove6": MediaContentRatingGermanyTvRatingagesAbove6,
+"allallowed": MediaContentRatingGermanyTvRatingallAllowed,
+"allblocked": MediaContentRatingGermanyTvRatingallBlocked,
+"general": MediaContentRatingGermanyTvRatinggeneral,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := MediaContentRatingGermanyTvRating(input)
+	return &out, nil
+}

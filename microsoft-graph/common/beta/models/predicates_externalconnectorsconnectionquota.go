@@ -1,0 +1,27 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type ExternalConnectorsConnectionQuotaOperationPredicate struct {
+	Id             *string
+	ItemsRemaining *int64
+	ODataType      *string
+}
+
+func (p ExternalConnectorsConnectionQuotaOperationPredicate) Matches(input ExternalConnectorsConnectionQuota) bool {
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.ItemsRemaining != nil && (input.ItemsRemaining == nil || *p.ItemsRemaining != *input.ItemsRemaining) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	return true
+}

@@ -1,0 +1,34 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type SmsAuthenticationMethodTargetTargetType string
+
+const (
+	SmsAuthenticationMethodTargetTargetTypegroup SmsAuthenticationMethodTargetTargetType = "Group"
+	SmsAuthenticationMethodTargetTargetTypeuser  SmsAuthenticationMethodTargetTargetType = "User"
+)
+
+func PossibleValuesForSmsAuthenticationMethodTargetTargetType() []string {
+	return []string{
+		string(SmsAuthenticationMethodTargetTargetTypegroup),
+		string(SmsAuthenticationMethodTargetTargetTypeuser),
+	}
+}
+
+func parseSmsAuthenticationMethodTargetTargetType(input string) (*SmsAuthenticationMethodTargetTargetType, error) {
+	vals := map[string]SmsAuthenticationMethodTargetTargetType{
+		"group": SmsAuthenticationMethodTargetTargetTypegroup,
+		"user":  SmsAuthenticationMethodTargetTargetTypeuser,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SmsAuthenticationMethodTargetTargetType(input)
+	return &out, nil
+}

@@ -1,0 +1,32 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type OnPremisesConditionalAccessSettingsOperationPredicate struct {
+	Enabled             *bool
+	Id                  *string
+	ODataType           *string
+	OverrideDefaultRule *bool
+}
+
+func (p OnPremisesConditionalAccessSettingsOperationPredicate) Matches(input OnPremisesConditionalAccessSettings) bool {
+
+	if p.Enabled != nil && (input.Enabled == nil || *p.Enabled != *input.Enabled) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.OverrideDefaultRule != nil && (input.OverrideDefaultRule == nil || *p.OverrideDefaultRule != *input.OverrideDefaultRule) {
+		return false
+	}
+
+	return true
+}

@@ -1,0 +1,52 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type PrintConnectorOperationPredicate struct {
+	AppVersion               *string
+	DisplayName              *string
+	FullyQualifiedDomainName *string
+	Id                       *string
+	Name                     *string
+	ODataType                *string
+	OperatingSystem          *string
+	RegisteredDateTime       *string
+}
+
+func (p PrintConnectorOperationPredicate) Matches(input PrintConnector) bool {
+
+	if p.AppVersion != nil && (input.AppVersion == nil || *p.AppVersion != *input.AppVersion) {
+		return false
+	}
+
+	if p.DisplayName != nil && (input.DisplayName == nil || *p.DisplayName != *input.DisplayName) {
+		return false
+	}
+
+	if p.FullyQualifiedDomainName != nil && (input.FullyQualifiedDomainName == nil || *p.FullyQualifiedDomainName != *input.FullyQualifiedDomainName) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.Name != nil && (input.Name == nil || *p.Name != *input.Name) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.OperatingSystem != nil && (input.OperatingSystem == nil || *p.OperatingSystem != *input.OperatingSystem) {
+		return false
+	}
+
+	if p.RegisteredDateTime != nil && (input.RegisteredDateTime == nil || *p.RegisteredDateTime != *input.RegisteredDateTime) {
+		return false
+	}
+
+	return true
+}

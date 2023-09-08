@@ -1,0 +1,122 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type CallRecordsDirectRoutingLogRowOperationPredicate struct {
+	CallEndSubReason              *int64
+	CallType                      *string
+	CalleeNumber                  *string
+	CallerNumber                  *string
+	CorrelationId                 *string
+	Duration                      *int64
+	EndDateTime                   *string
+	FailureDateTime               *string
+	FinalSipCode                  *int64
+	FinalSipCodePhrase            *string
+	Id                            *string
+	InviteDateTime                *string
+	MediaBypassEnabled            *bool
+	MediaPathLocation             *string
+	ODataType                     *string
+	SignalingLocation             *string
+	StartDateTime                 *string
+	SuccessfulCall                *bool
+	TrunkFullyQualifiedDomainName *string
+	UserDisplayName               *string
+	UserId                        *string
+	UserPrincipalName             *string
+}
+
+func (p CallRecordsDirectRoutingLogRowOperationPredicate) Matches(input CallRecordsDirectRoutingLogRow) bool {
+
+	if p.CallEndSubReason != nil && (input.CallEndSubReason == nil || *p.CallEndSubReason != *input.CallEndSubReason) {
+		return false
+	}
+
+	if p.CallType != nil && (input.CallType == nil || *p.CallType != *input.CallType) {
+		return false
+	}
+
+	if p.CalleeNumber != nil && (input.CalleeNumber == nil || *p.CalleeNumber != *input.CalleeNumber) {
+		return false
+	}
+
+	if p.CallerNumber != nil && (input.CallerNumber == nil || *p.CallerNumber != *input.CallerNumber) {
+		return false
+	}
+
+	if p.CorrelationId != nil && (input.CorrelationId == nil || *p.CorrelationId != *input.CorrelationId) {
+		return false
+	}
+
+	if p.Duration != nil && (input.Duration == nil || *p.Duration != *input.Duration) {
+		return false
+	}
+
+	if p.EndDateTime != nil && (input.EndDateTime == nil || *p.EndDateTime != *input.EndDateTime) {
+		return false
+	}
+
+	if p.FailureDateTime != nil && (input.FailureDateTime == nil || *p.FailureDateTime != *input.FailureDateTime) {
+		return false
+	}
+
+	if p.FinalSipCode != nil && (input.FinalSipCode == nil || *p.FinalSipCode != *input.FinalSipCode) {
+		return false
+	}
+
+	if p.FinalSipCodePhrase != nil && (input.FinalSipCodePhrase == nil || *p.FinalSipCodePhrase != *input.FinalSipCodePhrase) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.InviteDateTime != nil && (input.InviteDateTime == nil || *p.InviteDateTime != *input.InviteDateTime) {
+		return false
+	}
+
+	if p.MediaBypassEnabled != nil && (input.MediaBypassEnabled == nil || *p.MediaBypassEnabled != *input.MediaBypassEnabled) {
+		return false
+	}
+
+	if p.MediaPathLocation != nil && (input.MediaPathLocation == nil || *p.MediaPathLocation != *input.MediaPathLocation) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.SignalingLocation != nil && (input.SignalingLocation == nil || *p.SignalingLocation != *input.SignalingLocation) {
+		return false
+	}
+
+	if p.StartDateTime != nil && (input.StartDateTime == nil || *p.StartDateTime != *input.StartDateTime) {
+		return false
+	}
+
+	if p.SuccessfulCall != nil && (input.SuccessfulCall == nil || *p.SuccessfulCall != *input.SuccessfulCall) {
+		return false
+	}
+
+	if p.TrunkFullyQualifiedDomainName != nil && (input.TrunkFullyQualifiedDomainName == nil || *p.TrunkFullyQualifiedDomainName != *input.TrunkFullyQualifiedDomainName) {
+		return false
+	}
+
+	if p.UserDisplayName != nil && (input.UserDisplayName == nil || *p.UserDisplayName != *input.UserDisplayName) {
+		return false
+	}
+
+	if p.UserId != nil && (input.UserId == nil || *p.UserId != *input.UserId) {
+		return false
+	}
+
+	if p.UserPrincipalName != nil && (input.UserPrincipalName == nil || *p.UserPrincipalName != *input.UserPrincipalName) {
+		return false
+	}
+
+	return true
+}

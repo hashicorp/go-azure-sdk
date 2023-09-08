@@ -1,0 +1,37 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type PrinterDefaultsDuplexMode string
+
+const (
+	PrinterDefaultsDuplexModeflipOnLongEdge  PrinterDefaultsDuplexMode = "FlipOnLongEdge"
+	PrinterDefaultsDuplexModeflipOnShortEdge PrinterDefaultsDuplexMode = "FlipOnShortEdge"
+	PrinterDefaultsDuplexModeoneSided        PrinterDefaultsDuplexMode = "OneSided"
+)
+
+func PossibleValuesForPrinterDefaultsDuplexMode() []string {
+	return []string{
+		string(PrinterDefaultsDuplexModeflipOnLongEdge),
+		string(PrinterDefaultsDuplexModeflipOnShortEdge),
+		string(PrinterDefaultsDuplexModeoneSided),
+	}
+}
+
+func parsePrinterDefaultsDuplexMode(input string) (*PrinterDefaultsDuplexMode, error) {
+	vals := map[string]PrinterDefaultsDuplexMode{
+		"fliponlongedge":  PrinterDefaultsDuplexModeflipOnLongEdge,
+		"fliponshortedge": PrinterDefaultsDuplexModeflipOnShortEdge,
+		"onesided":        PrinterDefaultsDuplexModeoneSided,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := PrinterDefaultsDuplexMode(input)
+	return &out, nil
+}

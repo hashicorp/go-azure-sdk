@@ -1,0 +1,57 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type OnPremisesCurrentExportDataOperationPredicate struct {
+	ClientMachineName                  *string
+	ODataType                          *string
+	PendingObjectsAddition             *int64
+	PendingObjectsDeletion             *int64
+	PendingObjectsUpdate               *int64
+	ServiceAccount                     *string
+	SuccessfulLinksProvisioningCount   *int64
+	SuccessfulObjectsProvisioningCount *int64
+	TotalConnectorSpaceObjects         *int64
+}
+
+func (p OnPremisesCurrentExportDataOperationPredicate) Matches(input OnPremisesCurrentExportData) bool {
+
+	if p.ClientMachineName != nil && (input.ClientMachineName == nil || *p.ClientMachineName != *input.ClientMachineName) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.PendingObjectsAddition != nil && (input.PendingObjectsAddition == nil || *p.PendingObjectsAddition != *input.PendingObjectsAddition) {
+		return false
+	}
+
+	if p.PendingObjectsDeletion != nil && (input.PendingObjectsDeletion == nil || *p.PendingObjectsDeletion != *input.PendingObjectsDeletion) {
+		return false
+	}
+
+	if p.PendingObjectsUpdate != nil && (input.PendingObjectsUpdate == nil || *p.PendingObjectsUpdate != *input.PendingObjectsUpdate) {
+		return false
+	}
+
+	if p.ServiceAccount != nil && (input.ServiceAccount == nil || *p.ServiceAccount != *input.ServiceAccount) {
+		return false
+	}
+
+	if p.SuccessfulLinksProvisioningCount != nil && (input.SuccessfulLinksProvisioningCount == nil || *p.SuccessfulLinksProvisioningCount != *input.SuccessfulLinksProvisioningCount) {
+		return false
+	}
+
+	if p.SuccessfulObjectsProvisioningCount != nil && (input.SuccessfulObjectsProvisioningCount == nil || *p.SuccessfulObjectsProvisioningCount != *input.SuccessfulObjectsProvisioningCount) {
+		return false
+	}
+
+	if p.TotalConnectorSpaceObjects != nil && (input.TotalConnectorSpaceObjects == nil || *p.TotalConnectorSpaceObjects != *input.TotalConnectorSpaceObjects) {
+		return false
+	}
+
+	return true
+}

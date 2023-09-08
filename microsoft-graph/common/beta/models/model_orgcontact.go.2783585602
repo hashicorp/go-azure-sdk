@@ -1,0 +1,53 @@
+package models
+
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/edgezones"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/identity"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/systemdata"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/zones"
+)
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type OrgContact struct {
+	Addresses *[]PhysicalOfficeAddress `json:"addresses,omitempty"`
+	CompanyName *string `json:"companyName,omitempty"`
+	DeletedDateTime *string `json:"deletedDateTime,omitempty"`
+	Department *string `json:"department,omitempty"`
+	DirectReports *[]DirectoryObject `json:"directReports,omitempty"`
+	DisplayName *string `json:"displayName,omitempty"`
+	GivenName *string `json:"givenName,omitempty"`
+	Id *string `json:"id,omitempty"`
+	JobTitle *string `json:"jobTitle,omitempty"`
+	Mail *string `json:"mail,omitempty"`
+	MailNickname *string `json:"mailNickname,omitempty"`
+	Manager *DirectoryObject `json:"manager,omitempty"`
+	MemberOf *[]DirectoryObject `json:"memberOf,omitempty"`
+	ODataType *string `json:"@odata.type,omitempty"`
+	OnPremisesLastSyncDateTime *string `json:"onPremisesLastSyncDateTime,omitempty"`
+	OnPremisesProvisioningErrors *[]OnPremisesProvisioningError `json:"onPremisesProvisioningErrors,omitempty"`
+	OnPremisesSyncEnabled *bool `json:"onPremisesSyncEnabled,omitempty"`
+	Phones *[]Phone `json:"phones,omitempty"`
+	ProxyAddresses *[]string `json:"proxyAddresses,omitempty"`
+	ServiceProvisioningErrors *[]ServiceProvisioningError `json:"serviceProvisioningErrors,omitempty"`
+	Surname *string `json:"surname,omitempty"`
+	TransitiveMemberOf *[]DirectoryObject `json:"transitiveMemberOf,omitempty"`
+	TransitiveReports *[]DirectoryObject `json:"transitiveReports,omitempty"`
+}
+
+
+
+
+
+
+

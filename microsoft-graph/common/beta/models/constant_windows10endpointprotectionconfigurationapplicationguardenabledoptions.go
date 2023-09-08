@@ -1,0 +1,40 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type Windows10EndpointProtectionConfigurationApplicationGuardEnabledOptions string
+
+const (
+	Windows10EndpointProtectionConfigurationApplicationGuardEnabledOptionsenabledForEdge          Windows10EndpointProtectionConfigurationApplicationGuardEnabledOptions = "EnabledForEdge"
+	Windows10EndpointProtectionConfigurationApplicationGuardEnabledOptionsenabledForEdgeAndOffice Windows10EndpointProtectionConfigurationApplicationGuardEnabledOptions = "EnabledForEdgeAndOffice"
+	Windows10EndpointProtectionConfigurationApplicationGuardEnabledOptionsenabledForOffice        Windows10EndpointProtectionConfigurationApplicationGuardEnabledOptions = "EnabledForOffice"
+	Windows10EndpointProtectionConfigurationApplicationGuardEnabledOptionsnotConfigured           Windows10EndpointProtectionConfigurationApplicationGuardEnabledOptions = "NotConfigured"
+)
+
+func PossibleValuesForWindows10EndpointProtectionConfigurationApplicationGuardEnabledOptions() []string {
+	return []string{
+		string(Windows10EndpointProtectionConfigurationApplicationGuardEnabledOptionsenabledForEdge),
+		string(Windows10EndpointProtectionConfigurationApplicationGuardEnabledOptionsenabledForEdgeAndOffice),
+		string(Windows10EndpointProtectionConfigurationApplicationGuardEnabledOptionsenabledForOffice),
+		string(Windows10EndpointProtectionConfigurationApplicationGuardEnabledOptionsnotConfigured),
+	}
+}
+
+func parseWindows10EndpointProtectionConfigurationApplicationGuardEnabledOptions(input string) (*Windows10EndpointProtectionConfigurationApplicationGuardEnabledOptions, error) {
+	vals := map[string]Windows10EndpointProtectionConfigurationApplicationGuardEnabledOptions{
+		"enabledforedge":          Windows10EndpointProtectionConfigurationApplicationGuardEnabledOptionsenabledForEdge,
+		"enabledforedgeandoffice": Windows10EndpointProtectionConfigurationApplicationGuardEnabledOptionsenabledForEdgeAndOffice,
+		"enabledforoffice":        Windows10EndpointProtectionConfigurationApplicationGuardEnabledOptionsenabledForOffice,
+		"notconfigured":           Windows10EndpointProtectionConfigurationApplicationGuardEnabledOptionsnotConfigured,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := Windows10EndpointProtectionConfigurationApplicationGuardEnabledOptions(input)
+	return &out, nil
+}

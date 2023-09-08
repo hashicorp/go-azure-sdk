@@ -1,0 +1,93 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type DomainDnsSrvRecordOperationPredicate struct {
+	 Id *string
+	 IsOptional *bool
+	 Label *string
+	 NameTarget *string
+	 ODataType *string
+	 Port *int64
+	 Priority *int64
+	 Protocol *string
+	 RecordType *string
+	 Service *string
+	 SupportedService *string
+	 Ttl *int64
+	 Weight *int64
+}
+
+func (p DomainDnsSrvRecordOperationPredicate) Matches(input DomainDnsSrvRecord) bool {
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+	 	return false
+	}
+
+
+	if p.IsOptional != nil && (input.IsOptional == nil || *p.IsOptional != *input.IsOptional) {
+	 	return false
+	}
+
+
+	if p.Label != nil && (input.Label == nil || *p.Label != *input.Label) {
+	 	return false
+	}
+
+
+	if p.NameTarget != nil && (input.NameTarget == nil || *p.NameTarget != *input.NameTarget) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.Port != nil && (input.Port == nil || *p.Port != *input.Port) {
+	 	return false
+	}
+
+
+	if p.Priority != nil && (input.Priority == nil || *p.Priority != *input.Priority) {
+	 	return false
+	}
+
+
+	if p.Protocol != nil && (input.Protocol == nil || *p.Protocol != *input.Protocol) {
+	 	return false
+	}
+
+
+	if p.RecordType != nil && (input.RecordType == nil || *p.RecordType != *input.RecordType) {
+	 	return false
+	}
+
+
+	if p.Service != nil && (input.Service == nil || *p.Service != *input.Service) {
+	 	return false
+	}
+
+
+	if p.SupportedService != nil && (input.SupportedService == nil || *p.SupportedService != *input.SupportedService) {
+	 	return false
+	}
+
+
+	if p.Ttl != nil && (input.Ttl == nil || *p.Ttl != *input.Ttl) {
+	 	return false
+	}
+
+
+	if p.Weight != nil && (input.Weight == nil || *p.Weight != *input.Weight) {
+	 	return false
+	}
+
+
+	return true
+}
+

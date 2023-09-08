@@ -1,0 +1,27 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type SharedEmailDomainOperationPredicate struct {
+	Id                 *string
+	ODataType          *string
+	ProvisioningStatus *string
+}
+
+func (p SharedEmailDomainOperationPredicate) Matches(input SharedEmailDomain) bool {
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.ProvisioningStatus != nil && (input.ProvisioningStatus == nil || *p.ProvisioningStatus != *input.ProvisioningStatus) {
+		return false
+	}
+
+	return true
+}

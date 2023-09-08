@@ -1,0 +1,27 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type FreeBusyErrorOperationPredicate struct {
+	Message      *string
+	ODataType    *string
+	ResponseCode *string
+}
+
+func (p FreeBusyErrorOperationPredicate) Matches(input FreeBusyError) bool {
+
+	if p.Message != nil && (input.Message == nil || *p.Message != *input.Message) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.ResponseCode != nil && (input.ResponseCode == nil || *p.ResponseCode != *input.ResponseCode) {
+		return false
+	}
+
+	return true
+}

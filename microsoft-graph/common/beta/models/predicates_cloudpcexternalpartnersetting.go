@@ -1,0 +1,42 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type CloudPCExternalPartnerSettingOperationPredicate struct {
+	EnableConnection *bool
+	Id               *string
+	LastSyncDateTime *string
+	ODataType        *string
+	PartnerId        *string
+	StatusDetails    *string
+}
+
+func (p CloudPCExternalPartnerSettingOperationPredicate) Matches(input CloudPCExternalPartnerSetting) bool {
+
+	if p.EnableConnection != nil && (input.EnableConnection == nil || *p.EnableConnection != *input.EnableConnection) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.LastSyncDateTime != nil && (input.LastSyncDateTime == nil || *p.LastSyncDateTime != *input.LastSyncDateTime) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.PartnerId != nil && (input.PartnerId == nil || *p.PartnerId != *input.PartnerId) {
+		return false
+	}
+
+	if p.StatusDetails != nil && (input.StatusDetails == nil || *p.StatusDetails != *input.StatusDetails) {
+		return false
+	}
+
+	return true
+}

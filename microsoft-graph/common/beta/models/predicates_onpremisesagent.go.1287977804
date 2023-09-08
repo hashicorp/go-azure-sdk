@@ -1,0 +1,39 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type OnPremisesAgentOperationPredicate struct {
+	 ExternalIp *string
+	 Id *string
+	 MachineName *string
+	 ODataType *string
+}
+
+func (p OnPremisesAgentOperationPredicate) Matches(input OnPremisesAgent) bool {
+
+	if p.ExternalIp != nil && (input.ExternalIp == nil || *p.ExternalIp != *input.ExternalIp) {
+	 	return false
+	}
+
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+	 	return false
+	}
+
+
+	if p.MachineName != nil && (input.MachineName == nil || *p.MachineName != *input.MachineName) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	return true
+}
+

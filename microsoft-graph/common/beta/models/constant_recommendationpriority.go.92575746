@@ -1,0 +1,43 @@
+package models
+
+import "strings"
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type RecommendationPriority string
+
+const (
+	RecommendationPriorityhigh RecommendationPriority = "High"
+	RecommendationPrioritylow RecommendationPriority = "Low"
+	RecommendationPrioritymedium RecommendationPriority = "Medium"
+)
+
+
+func PossibleValuesForRecommendationPriority() []string {
+	return []string{
+		string(RecommendationPriorityhigh),
+string(RecommendationPrioritylow),
+string(RecommendationPrioritymedium),
+	}
+}
+
+
+
+func parseRecommendationPriority(input string) (*RecommendationPriority, error) {
+	vals := map[string]RecommendationPriority{
+		"high": RecommendationPriorityhigh,
+"low": RecommendationPrioritylow,
+"medium": RecommendationPrioritymedium,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := RecommendationPriority(input)
+	return &out, nil
+}

@@ -1,0 +1,77 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type GroupPolicyMigrationReportOperationPredicate struct {
+	CreatedDateTime                 *string
+	DisplayName                     *string
+	GroupPolicyCreatedDateTime      *string
+	GroupPolicyLastModifiedDateTime *string
+	GroupPolicyObjectId             *string
+	Id                              *string
+	LastModifiedDateTime            *string
+	ODataType                       *string
+	OuDistinguishedName             *string
+	SupportedSettingsCount          *int64
+	SupportedSettingsPercent        *int64
+	TargetedInActiveDirectory       *bool
+	TotalSettingsCount              *int64
+}
+
+func (p GroupPolicyMigrationReportOperationPredicate) Matches(input GroupPolicyMigrationReport) bool {
+
+	if p.CreatedDateTime != nil && (input.CreatedDateTime == nil || *p.CreatedDateTime != *input.CreatedDateTime) {
+		return false
+	}
+
+	if p.DisplayName != nil && (input.DisplayName == nil || *p.DisplayName != *input.DisplayName) {
+		return false
+	}
+
+	if p.GroupPolicyCreatedDateTime != nil && (input.GroupPolicyCreatedDateTime == nil || *p.GroupPolicyCreatedDateTime != *input.GroupPolicyCreatedDateTime) {
+		return false
+	}
+
+	if p.GroupPolicyLastModifiedDateTime != nil && (input.GroupPolicyLastModifiedDateTime == nil || *p.GroupPolicyLastModifiedDateTime != *input.GroupPolicyLastModifiedDateTime) {
+		return false
+	}
+
+	if p.GroupPolicyObjectId != nil && (input.GroupPolicyObjectId == nil || *p.GroupPolicyObjectId != *input.GroupPolicyObjectId) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.LastModifiedDateTime != nil && (input.LastModifiedDateTime == nil || *p.LastModifiedDateTime != *input.LastModifiedDateTime) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.OuDistinguishedName != nil && (input.OuDistinguishedName == nil || *p.OuDistinguishedName != *input.OuDistinguishedName) {
+		return false
+	}
+
+	if p.SupportedSettingsCount != nil && (input.SupportedSettingsCount == nil || *p.SupportedSettingsCount != *input.SupportedSettingsCount) {
+		return false
+	}
+
+	if p.SupportedSettingsPercent != nil && (input.SupportedSettingsPercent == nil || *p.SupportedSettingsPercent != *input.SupportedSettingsPercent) {
+		return false
+	}
+
+	if p.TargetedInActiveDirectory != nil && (input.TargetedInActiveDirectory == nil || *p.TargetedInActiveDirectory != *input.TargetedInActiveDirectory) {
+		return false
+	}
+
+	if p.TotalSettingsCount != nil && (input.TotalSettingsCount == nil || *p.TotalSettingsCount != *input.TotalSettingsCount) {
+		return false
+	}
+
+	return true
+}

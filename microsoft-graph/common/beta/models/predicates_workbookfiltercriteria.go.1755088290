@@ -1,0 +1,57 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type WorkbookFilterCriteriaOperationPredicate struct {
+	 Color *string
+	 Criterion1 *string
+	 Criterion2 *string
+	 DynamicCriteria *string
+	 FilterOn *string
+	 ODataType *string
+	 Operator *string
+}
+
+func (p WorkbookFilterCriteriaOperationPredicate) Matches(input WorkbookFilterCriteria) bool {
+
+	if p.Color != nil && (input.Color == nil || *p.Color != *input.Color) {
+	 	return false
+	}
+
+
+	if p.Criterion1 != nil && (input.Criterion1 == nil || *p.Criterion1 != *input.Criterion1) {
+	 	return false
+	}
+
+
+	if p.Criterion2 != nil && (input.Criterion2 == nil || *p.Criterion2 != *input.Criterion2) {
+	 	return false
+	}
+
+
+	if p.DynamicCriteria != nil && (input.DynamicCriteria == nil || *p.DynamicCriteria != *input.DynamicCriteria) {
+	 	return false
+	}
+
+
+	if p.FilterOn != nil && (input.FilterOn == nil || *p.FilterOn != *input.FilterOn) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.Operator != nil && (input.Operator == nil || *p.Operator != *input.Operator) {
+	 	return false
+	}
+
+
+	return true
+}
+

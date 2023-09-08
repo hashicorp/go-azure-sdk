@@ -1,0 +1,87 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type UserActivityOperationPredicate struct {
+	 ActivationUrl *string
+	 ActivitySourceHost *string
+	 AppActivityId *string
+	 AppDisplayName *string
+	 ContentUrl *string
+	 CreatedDateTime *string
+	 ExpirationDateTime *string
+	 FallbackUrl *string
+	 Id *string
+	 LastModifiedDateTime *string
+	 ODataType *string
+	 UserTimezone *string
+}
+
+func (p UserActivityOperationPredicate) Matches(input UserActivity) bool {
+
+	if p.ActivationUrl != nil && (input.ActivationUrl == nil || *p.ActivationUrl != *input.ActivationUrl) {
+	 	return false
+	}
+
+
+	if p.ActivitySourceHost != nil && (input.ActivitySourceHost == nil || *p.ActivitySourceHost != *input.ActivitySourceHost) {
+	 	return false
+	}
+
+
+	if p.AppActivityId != nil && (input.AppActivityId == nil || *p.AppActivityId != *input.AppActivityId) {
+	 	return false
+	}
+
+
+	if p.AppDisplayName != nil && (input.AppDisplayName == nil || *p.AppDisplayName != *input.AppDisplayName) {
+	 	return false
+	}
+
+
+	if p.ContentUrl != nil && (input.ContentUrl == nil || *p.ContentUrl != *input.ContentUrl) {
+	 	return false
+	}
+
+
+	if p.CreatedDateTime != nil && (input.CreatedDateTime == nil || *p.CreatedDateTime != *input.CreatedDateTime) {
+	 	return false
+	}
+
+
+	if p.ExpirationDateTime != nil && (input.ExpirationDateTime == nil || *p.ExpirationDateTime != *input.ExpirationDateTime) {
+	 	return false
+	}
+
+
+	if p.FallbackUrl != nil && (input.FallbackUrl == nil || *p.FallbackUrl != *input.FallbackUrl) {
+	 	return false
+	}
+
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+	 	return false
+	}
+
+
+	if p.LastModifiedDateTime != nil && (input.LastModifiedDateTime == nil || *p.LastModifiedDateTime != *input.LastModifiedDateTime) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.UserTimezone != nil && (input.UserTimezone == nil || *p.UserTimezone != *input.UserTimezone) {
+	 	return false
+	}
+
+
+	return true
+}
+

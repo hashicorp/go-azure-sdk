@@ -1,0 +1,40 @@
+package models
+
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/edgezones"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/identity"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/systemdata"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/zones"
+)
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type RoleSuccessStatistics struct {
+	ODataType *string `json:"@odata.type,omitempty"`
+	PermanentFail *int64 `json:"permanentFail,omitempty"`
+	PermanentSuccess *int64 `json:"permanentSuccess,omitempty"`
+	RemoveFail *int64 `json:"removeFail,omitempty"`
+	RemoveSuccess *int64 `json:"removeSuccess,omitempty"`
+	RoleId *string `json:"roleId,omitempty"`
+	RoleName *string `json:"roleName,omitempty"`
+	TemporaryFail *int64 `json:"temporaryFail,omitempty"`
+	TemporarySuccess *int64 `json:"temporarySuccess,omitempty"`
+	UnknownFail *int64 `json:"unknownFail,omitempty"`
+}
+
+
+
+
+
+
+

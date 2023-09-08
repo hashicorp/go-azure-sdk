@@ -1,0 +1,72 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type WindowsUpdatesDriverUpdateCatalogEntryOperationPredicate struct {
+	DeployableUntilDateTime *string
+	Description             *string
+	DisplayName             *string
+	DriverClass             *string
+	Id                      *string
+	Manufacturer            *string
+	ODataType               *string
+	Provider                *string
+	ReleaseDateTime         *string
+	SetupInformationFile    *string
+	Version                 *string
+	VersionDateTime         *string
+}
+
+func (p WindowsUpdatesDriverUpdateCatalogEntryOperationPredicate) Matches(input WindowsUpdatesDriverUpdateCatalogEntry) bool {
+
+	if p.DeployableUntilDateTime != nil && (input.DeployableUntilDateTime == nil || *p.DeployableUntilDateTime != *input.DeployableUntilDateTime) {
+		return false
+	}
+
+	if p.Description != nil && (input.Description == nil || *p.Description != *input.Description) {
+		return false
+	}
+
+	if p.DisplayName != nil && (input.DisplayName == nil || *p.DisplayName != *input.DisplayName) {
+		return false
+	}
+
+	if p.DriverClass != nil && (input.DriverClass == nil || *p.DriverClass != *input.DriverClass) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.Manufacturer != nil && (input.Manufacturer == nil || *p.Manufacturer != *input.Manufacturer) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.Provider != nil && (input.Provider == nil || *p.Provider != *input.Provider) {
+		return false
+	}
+
+	if p.ReleaseDateTime != nil && (input.ReleaseDateTime == nil || *p.ReleaseDateTime != *input.ReleaseDateTime) {
+		return false
+	}
+
+	if p.SetupInformationFile != nil && (input.SetupInformationFile == nil || *p.SetupInformationFile != *input.SetupInformationFile) {
+		return false
+	}
+
+	if p.Version != nil && (input.Version == nil || *p.Version != *input.Version) {
+		return false
+	}
+
+	if p.VersionDateTime != nil && (input.VersionDateTime == nil || *p.VersionDateTime != *input.VersionDateTime) {
+		return false
+	}
+
+	return true
+}

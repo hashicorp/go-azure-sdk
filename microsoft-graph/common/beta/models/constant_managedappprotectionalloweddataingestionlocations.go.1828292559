@@ -1,0 +1,46 @@
+package models
+
+import "strings"
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type ManagedAppProtectionAllowedDataIngestionLocations string
+
+const (
+	ManagedAppProtectionAllowedDataIngestionLocationscamera ManagedAppProtectionAllowedDataIngestionLocations = "Camera"
+	ManagedAppProtectionAllowedDataIngestionLocationsoneDriveForBusiness ManagedAppProtectionAllowedDataIngestionLocations = "OneDriveForBusiness"
+	ManagedAppProtectionAllowedDataIngestionLocationsphotoLibrary ManagedAppProtectionAllowedDataIngestionLocations = "PhotoLibrary"
+	ManagedAppProtectionAllowedDataIngestionLocationssharePoint ManagedAppProtectionAllowedDataIngestionLocations = "SharePoint"
+)
+
+
+func PossibleValuesForManagedAppProtectionAllowedDataIngestionLocations() []string {
+	return []string{
+		string(ManagedAppProtectionAllowedDataIngestionLocationscamera),
+string(ManagedAppProtectionAllowedDataIngestionLocationsoneDriveForBusiness),
+string(ManagedAppProtectionAllowedDataIngestionLocationsphotoLibrary),
+string(ManagedAppProtectionAllowedDataIngestionLocationssharePoint),
+	}
+}
+
+
+
+func parseManagedAppProtectionAllowedDataIngestionLocations(input string) (*ManagedAppProtectionAllowedDataIngestionLocations, error) {
+	vals := map[string]ManagedAppProtectionAllowedDataIngestionLocations{
+		"camera": ManagedAppProtectionAllowedDataIngestionLocationscamera,
+"onedriveforbusiness": ManagedAppProtectionAllowedDataIngestionLocationsoneDriveForBusiness,
+"photolibrary": ManagedAppProtectionAllowedDataIngestionLocationsphotoLibrary,
+"sharepoint": ManagedAppProtectionAllowedDataIngestionLocationssharePoint,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ManagedAppProtectionAllowedDataIngestionLocations(input)
+	return &out, nil
+}

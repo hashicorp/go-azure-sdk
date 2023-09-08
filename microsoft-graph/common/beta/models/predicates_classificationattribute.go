@@ -1,0 +1,27 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type ClassificationAttributeOperationPredicate struct {
+	Confidence *int64
+	Count      *int64
+	ODataType  *string
+}
+
+func (p ClassificationAttributeOperationPredicate) Matches(input ClassificationAttribute) bool {
+
+	if p.Confidence != nil && (input.Confidence == nil || *p.Confidence != *input.Confidence) {
+		return false
+	}
+
+	if p.Count != nil && (input.Count == nil || *p.Count != *input.Count) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	return true
+}

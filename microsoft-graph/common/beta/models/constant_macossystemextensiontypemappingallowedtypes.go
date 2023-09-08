@@ -1,0 +1,37 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type MacOSSystemExtensionTypeMappingAllowedTypes string
+
+const (
+	MacOSSystemExtensionTypeMappingAllowedTypesdriverExtensionsAllowed           MacOSSystemExtensionTypeMappingAllowedTypes = "DriverExtensionsAllowed"
+	MacOSSystemExtensionTypeMappingAllowedTypesendpointSecurityExtensionsAllowed MacOSSystemExtensionTypeMappingAllowedTypes = "EndpointSecurityExtensionsAllowed"
+	MacOSSystemExtensionTypeMappingAllowedTypesnetworkExtensionsAllowed          MacOSSystemExtensionTypeMappingAllowedTypes = "NetworkExtensionsAllowed"
+)
+
+func PossibleValuesForMacOSSystemExtensionTypeMappingAllowedTypes() []string {
+	return []string{
+		string(MacOSSystemExtensionTypeMappingAllowedTypesdriverExtensionsAllowed),
+		string(MacOSSystemExtensionTypeMappingAllowedTypesendpointSecurityExtensionsAllowed),
+		string(MacOSSystemExtensionTypeMappingAllowedTypesnetworkExtensionsAllowed),
+	}
+}
+
+func parseMacOSSystemExtensionTypeMappingAllowedTypes(input string) (*MacOSSystemExtensionTypeMappingAllowedTypes, error) {
+	vals := map[string]MacOSSystemExtensionTypeMappingAllowedTypes{
+		"driverextensionsallowed":           MacOSSystemExtensionTypeMappingAllowedTypesdriverExtensionsAllowed,
+		"endpointsecurityextensionsallowed": MacOSSystemExtensionTypeMappingAllowedTypesendpointSecurityExtensionsAllowed,
+		"networkextensionsallowed":          MacOSSystemExtensionTypeMappingAllowedTypesnetworkExtensionsAllowed,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := MacOSSystemExtensionTypeMappingAllowedTypes(input)
+	return &out, nil
+}

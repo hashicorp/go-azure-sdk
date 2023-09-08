@@ -1,0 +1,49 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type MicrosoftTunnelServerTunnelServerHealthStatus string
+
+const (
+	MicrosoftTunnelServerTunnelServerHealthStatushealthy           MicrosoftTunnelServerTunnelServerHealthStatus = "Healthy"
+	MicrosoftTunnelServerTunnelServerHealthStatusoffline           MicrosoftTunnelServerTunnelServerHealthStatus = "Offline"
+	MicrosoftTunnelServerTunnelServerHealthStatusunhealthy         MicrosoftTunnelServerTunnelServerHealthStatus = "Unhealthy"
+	MicrosoftTunnelServerTunnelServerHealthStatusunknown           MicrosoftTunnelServerTunnelServerHealthStatus = "Unknown"
+	MicrosoftTunnelServerTunnelServerHealthStatusupgradeFailed     MicrosoftTunnelServerTunnelServerHealthStatus = "UpgradeFailed"
+	MicrosoftTunnelServerTunnelServerHealthStatusupgradeInProgress MicrosoftTunnelServerTunnelServerHealthStatus = "UpgradeInProgress"
+	MicrosoftTunnelServerTunnelServerHealthStatuswarning           MicrosoftTunnelServerTunnelServerHealthStatus = "Warning"
+)
+
+func PossibleValuesForMicrosoftTunnelServerTunnelServerHealthStatus() []string {
+	return []string{
+		string(MicrosoftTunnelServerTunnelServerHealthStatushealthy),
+		string(MicrosoftTunnelServerTunnelServerHealthStatusoffline),
+		string(MicrosoftTunnelServerTunnelServerHealthStatusunhealthy),
+		string(MicrosoftTunnelServerTunnelServerHealthStatusunknown),
+		string(MicrosoftTunnelServerTunnelServerHealthStatusupgradeFailed),
+		string(MicrosoftTunnelServerTunnelServerHealthStatusupgradeInProgress),
+		string(MicrosoftTunnelServerTunnelServerHealthStatuswarning),
+	}
+}
+
+func parseMicrosoftTunnelServerTunnelServerHealthStatus(input string) (*MicrosoftTunnelServerTunnelServerHealthStatus, error) {
+	vals := map[string]MicrosoftTunnelServerTunnelServerHealthStatus{
+		"healthy":           MicrosoftTunnelServerTunnelServerHealthStatushealthy,
+		"offline":           MicrosoftTunnelServerTunnelServerHealthStatusoffline,
+		"unhealthy":         MicrosoftTunnelServerTunnelServerHealthStatusunhealthy,
+		"unknown":           MicrosoftTunnelServerTunnelServerHealthStatusunknown,
+		"upgradefailed":     MicrosoftTunnelServerTunnelServerHealthStatusupgradeFailed,
+		"upgradeinprogress": MicrosoftTunnelServerTunnelServerHealthStatusupgradeInProgress,
+		"warning":           MicrosoftTunnelServerTunnelServerHealthStatuswarning,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := MicrosoftTunnelServerTunnelServerHealthStatus(input)
+	return &out, nil
+}

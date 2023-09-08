@@ -1,0 +1,27 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type IndustryDataIndustryDataRunStatisticsOperationPredicate struct {
+	 ODataType *string
+	 RunId *string
+}
+
+func (p IndustryDataIndustryDataRunStatisticsOperationPredicate) Matches(input IndustryDataIndustryDataRunStatistics) bool {
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.RunId != nil && (input.RunId == nil || *p.RunId != *input.RunId) {
+	 	return false
+	}
+
+
+	return true
+}
+

@@ -1,0 +1,72 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type Office365ActiveUserCountsOperationPredicate struct {
+	Exchange          *int64
+	Id                *string
+	ODataType         *string
+	Office365         *int64
+	OneDrive          *int64
+	ReportDate        *string
+	ReportPeriod      *string
+	ReportRefreshDate *string
+	SharePoint        *int64
+	SkypeForBusiness  *int64
+	Teams             *int64
+	Yammer            *int64
+}
+
+func (p Office365ActiveUserCountsOperationPredicate) Matches(input Office365ActiveUserCounts) bool {
+
+	if p.Exchange != nil && (input.Exchange == nil || *p.Exchange != *input.Exchange) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.Office365 != nil && (input.Office365 == nil || *p.Office365 != *input.Office365) {
+		return false
+	}
+
+	if p.OneDrive != nil && (input.OneDrive == nil || *p.OneDrive != *input.OneDrive) {
+		return false
+	}
+
+	if p.ReportDate != nil && (input.ReportDate == nil || *p.ReportDate != *input.ReportDate) {
+		return false
+	}
+
+	if p.ReportPeriod != nil && (input.ReportPeriod == nil || *p.ReportPeriod != *input.ReportPeriod) {
+		return false
+	}
+
+	if p.ReportRefreshDate != nil && (input.ReportRefreshDate == nil || *p.ReportRefreshDate != *input.ReportRefreshDate) {
+		return false
+	}
+
+	if p.SharePoint != nil && (input.SharePoint == nil || *p.SharePoint != *input.SharePoint) {
+		return false
+	}
+
+	if p.SkypeForBusiness != nil && (input.SkypeForBusiness == nil || *p.SkypeForBusiness != *input.SkypeForBusiness) {
+		return false
+	}
+
+	if p.Teams != nil && (input.Teams == nil || *p.Teams != *input.Teams) {
+		return false
+	}
+
+	if p.Yammer != nil && (input.Yammer == nil || *p.Yammer != *input.Yammer) {
+		return false
+	}
+
+	return true
+}

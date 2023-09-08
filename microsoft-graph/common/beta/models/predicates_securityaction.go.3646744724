@@ -1,0 +1,81 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type SecurityActionOperationPredicate struct {
+	 ActionReason *string
+	 AppId *string
+	 AzureTenantId *string
+	 ClientContext *string
+	 CompletedDateTime *string
+	 CreatedDateTime *string
+	 Id *string
+	 LastActionDateTime *string
+	 Name *string
+	 ODataType *string
+	 User *string
+}
+
+func (p SecurityActionOperationPredicate) Matches(input SecurityAction) bool {
+
+	if p.ActionReason != nil && (input.ActionReason == nil || *p.ActionReason != *input.ActionReason) {
+	 	return false
+	}
+
+
+	if p.AppId != nil && (input.AppId == nil || *p.AppId != *input.AppId) {
+	 	return false
+	}
+
+
+	if p.AzureTenantId != nil && (input.AzureTenantId == nil || *p.AzureTenantId != *input.AzureTenantId) {
+	 	return false
+	}
+
+
+	if p.ClientContext != nil && (input.ClientContext == nil || *p.ClientContext != *input.ClientContext) {
+	 	return false
+	}
+
+
+	if p.CompletedDateTime != nil && (input.CompletedDateTime == nil || *p.CompletedDateTime != *input.CompletedDateTime) {
+	 	return false
+	}
+
+
+	if p.CreatedDateTime != nil && (input.CreatedDateTime == nil || *p.CreatedDateTime != *input.CreatedDateTime) {
+	 	return false
+	}
+
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+	 	return false
+	}
+
+
+	if p.LastActionDateTime != nil && (input.LastActionDateTime == nil || *p.LastActionDateTime != *input.LastActionDateTime) {
+	 	return false
+	}
+
+
+	if p.Name != nil && (input.Name == nil || *p.Name != *input.Name) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.User != nil && (input.User == nil || *p.User != *input.User) {
+	 	return false
+	}
+
+
+	return true
+}
+

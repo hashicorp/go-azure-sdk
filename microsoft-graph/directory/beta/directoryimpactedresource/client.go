@@ -1,0 +1,26 @@
+package directoryimpactedresource
+
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type DirectoryImpactedResourceClient struct {
+	Client *msgraph.Client
+}
+
+func NewDirectoryImpactedResourceClientWithBaseURI(api sdkEnv.Api) (*DirectoryImpactedResourceClient, error) {
+	client, err := msgraph.NewMsGraphClient(api, "directoryimpactedresource", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating DirectoryImpactedResourceClient: %+v", err)
+	}
+
+	return &DirectoryImpactedResourceClient{
+		Client: client,
+	}, nil
+}

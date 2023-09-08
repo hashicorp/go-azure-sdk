@@ -1,0 +1,69 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type SecurityFileDetailsOperationPredicate struct {
+	 FileName *string
+	 FilePath *string
+	 FilePublisher *string
+	 FileSize *int64
+	 Issuer *string
+	 ODataType *string
+	 Sha1 *string
+	 Sha256 *string
+	 Signer *string
+}
+
+func (p SecurityFileDetailsOperationPredicate) Matches(input SecurityFileDetails) bool {
+
+	if p.FileName != nil && (input.FileName == nil || *p.FileName != *input.FileName) {
+	 	return false
+	}
+
+
+	if p.FilePath != nil && (input.FilePath == nil || *p.FilePath != *input.FilePath) {
+	 	return false
+	}
+
+
+	if p.FilePublisher != nil && (input.FilePublisher == nil || *p.FilePublisher != *input.FilePublisher) {
+	 	return false
+	}
+
+
+	if p.FileSize != nil && (input.FileSize == nil || *p.FileSize != *input.FileSize) {
+	 	return false
+	}
+
+
+	if p.Issuer != nil && (input.Issuer == nil || *p.Issuer != *input.Issuer) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.Sha1 != nil && (input.Sha1 == nil || *p.Sha1 != *input.Sha1) {
+	 	return false
+	}
+
+
+	if p.Sha256 != nil && (input.Sha256 == nil || *p.Sha256 != *input.Sha256) {
+	 	return false
+	}
+
+
+	if p.Signer != nil && (input.Signer == nil || *p.Signer != *input.Signer) {
+	 	return false
+	}
+
+
+	return true
+}
+

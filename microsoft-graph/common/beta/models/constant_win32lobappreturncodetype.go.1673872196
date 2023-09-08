@@ -1,0 +1,49 @@
+package models
+
+import "strings"
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type Win32LobAppReturnCodeType string
+
+const (
+	Win32LobAppReturnCodeTypefailed Win32LobAppReturnCodeType = "Failed"
+	Win32LobAppReturnCodeTypehardReboot Win32LobAppReturnCodeType = "HardReboot"
+	Win32LobAppReturnCodeTyperetry Win32LobAppReturnCodeType = "Retry"
+	Win32LobAppReturnCodeTypesoftReboot Win32LobAppReturnCodeType = "SoftReboot"
+	Win32LobAppReturnCodeTypesuccess Win32LobAppReturnCodeType = "Success"
+)
+
+
+func PossibleValuesForWin32LobAppReturnCodeType() []string {
+	return []string{
+		string(Win32LobAppReturnCodeTypefailed),
+string(Win32LobAppReturnCodeTypehardReboot),
+string(Win32LobAppReturnCodeTyperetry),
+string(Win32LobAppReturnCodeTypesoftReboot),
+string(Win32LobAppReturnCodeTypesuccess),
+	}
+}
+
+
+
+func parseWin32LobAppReturnCodeType(input string) (*Win32LobAppReturnCodeType, error) {
+	vals := map[string]Win32LobAppReturnCodeType{
+		"failed": Win32LobAppReturnCodeTypefailed,
+"hardreboot": Win32LobAppReturnCodeTypehardReboot,
+"retry": Win32LobAppReturnCodeTyperetry,
+"softreboot": Win32LobAppReturnCodeTypesoftReboot,
+"success": Win32LobAppReturnCodeTypesuccess,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := Win32LobAppReturnCodeType(input)
+	return &out, nil
+}

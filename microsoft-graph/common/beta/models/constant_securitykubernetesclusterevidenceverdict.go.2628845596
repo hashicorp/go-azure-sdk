@@ -1,0 +1,46 @@
+package models
+
+import "strings"
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type SecurityKubernetesClusterEvidenceVerdict string
+
+const (
+	SecurityKubernetesClusterEvidenceVerdictmalicious SecurityKubernetesClusterEvidenceVerdict = "Malicious"
+	SecurityKubernetesClusterEvidenceVerdictnoThreatsFound SecurityKubernetesClusterEvidenceVerdict = "NoThreatsFound"
+	SecurityKubernetesClusterEvidenceVerdictsuspicious SecurityKubernetesClusterEvidenceVerdict = "Suspicious"
+	SecurityKubernetesClusterEvidenceVerdictunknown SecurityKubernetesClusterEvidenceVerdict = "Unknown"
+)
+
+
+func PossibleValuesForSecurityKubernetesClusterEvidenceVerdict() []string {
+	return []string{
+		string(SecurityKubernetesClusterEvidenceVerdictmalicious),
+string(SecurityKubernetesClusterEvidenceVerdictnoThreatsFound),
+string(SecurityKubernetesClusterEvidenceVerdictsuspicious),
+string(SecurityKubernetesClusterEvidenceVerdictunknown),
+	}
+}
+
+
+
+func parseSecurityKubernetesClusterEvidenceVerdict(input string) (*SecurityKubernetesClusterEvidenceVerdict, error) {
+	vals := map[string]SecurityKubernetesClusterEvidenceVerdict{
+		"malicious": SecurityKubernetesClusterEvidenceVerdictmalicious,
+"nothreatsfound": SecurityKubernetesClusterEvidenceVerdictnoThreatsFound,
+"suspicious": SecurityKubernetesClusterEvidenceVerdictsuspicious,
+"unknown": SecurityKubernetesClusterEvidenceVerdictunknown,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SecurityKubernetesClusterEvidenceVerdict(input)
+	return &out, nil
+}

@@ -1,0 +1,37 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type Windows10XSCEPCertificateProfileKeySize string
+
+const (
+	Windows10XSCEPCertificateProfileKeySizesize1024 Windows10XSCEPCertificateProfileKeySize = "Size1024"
+	Windows10XSCEPCertificateProfileKeySizesize2048 Windows10XSCEPCertificateProfileKeySize = "Size2048"
+	Windows10XSCEPCertificateProfileKeySizesize4096 Windows10XSCEPCertificateProfileKeySize = "Size4096"
+)
+
+func PossibleValuesForWindows10XSCEPCertificateProfileKeySize() []string {
+	return []string{
+		string(Windows10XSCEPCertificateProfileKeySizesize1024),
+		string(Windows10XSCEPCertificateProfileKeySizesize2048),
+		string(Windows10XSCEPCertificateProfileKeySizesize4096),
+	}
+}
+
+func parseWindows10XSCEPCertificateProfileKeySize(input string) (*Windows10XSCEPCertificateProfileKeySize, error) {
+	vals := map[string]Windows10XSCEPCertificateProfileKeySize{
+		"size1024": Windows10XSCEPCertificateProfileKeySizesize1024,
+		"size2048": Windows10XSCEPCertificateProfileKeySizesize2048,
+		"size4096": Windows10XSCEPCertificateProfileKeySizesize4096,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := Windows10XSCEPCertificateProfileKeySize(input)
+	return &out, nil
+}

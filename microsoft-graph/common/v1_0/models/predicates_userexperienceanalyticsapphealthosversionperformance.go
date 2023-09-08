@@ -1,0 +1,42 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type UserExperienceAnalyticsAppHealthOSVersionPerformanceOperationPredicate struct {
+	ActiveDeviceCount          *int64
+	Id                         *string
+	MeanTimeToFailureInMinutes *int64
+	ODataType                  *string
+	OsBuildNumber              *string
+	OsVersion                  *string
+}
+
+func (p UserExperienceAnalyticsAppHealthOSVersionPerformanceOperationPredicate) Matches(input UserExperienceAnalyticsAppHealthOSVersionPerformance) bool {
+
+	if p.ActiveDeviceCount != nil && (input.ActiveDeviceCount == nil || *p.ActiveDeviceCount != *input.ActiveDeviceCount) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.MeanTimeToFailureInMinutes != nil && (input.MeanTimeToFailureInMinutes == nil || *p.MeanTimeToFailureInMinutes != *input.MeanTimeToFailureInMinutes) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.OsBuildNumber != nil && (input.OsBuildNumber == nil || *p.OsBuildNumber != *input.OsBuildNumber) {
+		return false
+	}
+
+	if p.OsVersion != nil && (input.OsVersion == nil || *p.OsVersion != *input.OsVersion) {
+		return false
+	}
+
+	return true
+}

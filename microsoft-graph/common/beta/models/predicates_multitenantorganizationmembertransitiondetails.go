@@ -1,0 +1,22 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type MultiTenantOrganizationMemberTransitionDetailsOperationPredicate struct {
+	Details   *string
+	ODataType *string
+}
+
+func (p MultiTenantOrganizationMemberTransitionDetailsOperationPredicate) Matches(input MultiTenantOrganizationMemberTransitionDetails) bool {
+
+	if p.Details != nil && (input.Details == nil || *p.Details != *input.Details) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	return true
+}

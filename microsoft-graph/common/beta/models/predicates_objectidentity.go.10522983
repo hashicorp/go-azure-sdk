@@ -1,0 +1,39 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type ObjectIdentityOperationPredicate struct {
+	 Issuer *string
+	 IssuerAssignedId *string
+	 ODataType *string
+	 SignInType *string
+}
+
+func (p ObjectIdentityOperationPredicate) Matches(input ObjectIdentity) bool {
+
+	if p.Issuer != nil && (input.Issuer == nil || *p.Issuer != *input.Issuer) {
+	 	return false
+	}
+
+
+	if p.IssuerAssignedId != nil && (input.IssuerAssignedId == nil || *p.IssuerAssignedId != *input.IssuerAssignedId) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.SignInType != nil && (input.SignInType == nil || *p.SignInType != *input.SignInType) {
+	 	return false
+	}
+
+
+	return true
+}
+

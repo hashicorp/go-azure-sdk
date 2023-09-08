@@ -1,0 +1,42 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type TeamworkDateTimeConfigurationOperationPredicate struct {
+	DateFormat           *string
+	ODataType            *string
+	OfficeHoursEndTime   *string
+	OfficeHoursStartTime *string
+	TimeFormat           *string
+	TimeZone             *string
+}
+
+func (p TeamworkDateTimeConfigurationOperationPredicate) Matches(input TeamworkDateTimeConfiguration) bool {
+
+	if p.DateFormat != nil && (input.DateFormat == nil || *p.DateFormat != *input.DateFormat) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.OfficeHoursEndTime != nil && (input.OfficeHoursEndTime == nil || *p.OfficeHoursEndTime != *input.OfficeHoursEndTime) {
+		return false
+	}
+
+	if p.OfficeHoursStartTime != nil && (input.OfficeHoursStartTime == nil || *p.OfficeHoursStartTime != *input.OfficeHoursStartTime) {
+		return false
+	}
+
+	if p.TimeFormat != nil && (input.TimeFormat == nil || *p.TimeFormat != *input.TimeFormat) {
+		return false
+	}
+
+	if p.TimeZone != nil && (input.TimeZone == nil || *p.TimeZone != *input.TimeZone) {
+		return false
+	}
+
+	return true
+}

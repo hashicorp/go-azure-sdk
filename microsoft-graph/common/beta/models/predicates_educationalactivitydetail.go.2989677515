@@ -1,0 +1,57 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type EducationalActivityDetailOperationPredicate struct {
+	 Abbreviation *string
+	 Description *string
+	 DisplayName *string
+	 Grade *string
+	 Notes *string
+	 ODataType *string
+	 WebUrl *string
+}
+
+func (p EducationalActivityDetailOperationPredicate) Matches(input EducationalActivityDetail) bool {
+
+	if p.Abbreviation != nil && (input.Abbreviation == nil || *p.Abbreviation != *input.Abbreviation) {
+	 	return false
+	}
+
+
+	if p.Description != nil && (input.Description == nil || *p.Description != *input.Description) {
+	 	return false
+	}
+
+
+	if p.DisplayName != nil && (input.DisplayName == nil || *p.DisplayName != *input.DisplayName) {
+	 	return false
+	}
+
+
+	if p.Grade != nil && (input.Grade == nil || *p.Grade != *input.Grade) {
+	 	return false
+	}
+
+
+	if p.Notes != nil && (input.Notes == nil || *p.Notes != *input.Notes) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.WebUrl != nil && (input.WebUrl == nil || *p.WebUrl != *input.WebUrl) {
+	 	return false
+	}
+
+
+	return true
+}
+

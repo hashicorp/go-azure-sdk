@@ -1,0 +1,34 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type Windows10GeneralConfigurationMicrosoftAccountSignInAssistantSettings string
+
+const (
+	Windows10GeneralConfigurationMicrosoftAccountSignInAssistantSettingsdisabled      Windows10GeneralConfigurationMicrosoftAccountSignInAssistantSettings = "Disabled"
+	Windows10GeneralConfigurationMicrosoftAccountSignInAssistantSettingsnotConfigured Windows10GeneralConfigurationMicrosoftAccountSignInAssistantSettings = "NotConfigured"
+)
+
+func PossibleValuesForWindows10GeneralConfigurationMicrosoftAccountSignInAssistantSettings() []string {
+	return []string{
+		string(Windows10GeneralConfigurationMicrosoftAccountSignInAssistantSettingsdisabled),
+		string(Windows10GeneralConfigurationMicrosoftAccountSignInAssistantSettingsnotConfigured),
+	}
+}
+
+func parseWindows10GeneralConfigurationMicrosoftAccountSignInAssistantSettings(input string) (*Windows10GeneralConfigurationMicrosoftAccountSignInAssistantSettings, error) {
+	vals := map[string]Windows10GeneralConfigurationMicrosoftAccountSignInAssistantSettings{
+		"disabled":      Windows10GeneralConfigurationMicrosoftAccountSignInAssistantSettingsdisabled,
+		"notconfigured": Windows10GeneralConfigurationMicrosoftAccountSignInAssistantSettingsnotConfigured,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := Windows10GeneralConfigurationMicrosoftAccountSignInAssistantSettings(input)
+	return &out, nil
+}

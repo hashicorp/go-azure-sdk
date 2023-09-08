@@ -1,0 +1,52 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type SecurityEdiscoveryTagOperationAction string
+
+const (
+	SecurityEdiscoveryTagOperationActionaddToReviewSet     SecurityEdiscoveryTagOperationAction = "AddToReviewSet"
+	SecurityEdiscoveryTagOperationActionapplyTags          SecurityEdiscoveryTagOperationAction = "ApplyTags"
+	SecurityEdiscoveryTagOperationActioncontentExport      SecurityEdiscoveryTagOperationAction = "ContentExport"
+	SecurityEdiscoveryTagOperationActionconvertToPdf       SecurityEdiscoveryTagOperationAction = "ConvertToPdf"
+	SecurityEdiscoveryTagOperationActionestimateStatistics SecurityEdiscoveryTagOperationAction = "EstimateStatistics"
+	SecurityEdiscoveryTagOperationActionholdUpdate         SecurityEdiscoveryTagOperationAction = "HoldUpdate"
+	SecurityEdiscoveryTagOperationActionindex              SecurityEdiscoveryTagOperationAction = "Index"
+	SecurityEdiscoveryTagOperationActionpurgeData          SecurityEdiscoveryTagOperationAction = "PurgeData"
+)
+
+func PossibleValuesForSecurityEdiscoveryTagOperationAction() []string {
+	return []string{
+		string(SecurityEdiscoveryTagOperationActionaddToReviewSet),
+		string(SecurityEdiscoveryTagOperationActionapplyTags),
+		string(SecurityEdiscoveryTagOperationActioncontentExport),
+		string(SecurityEdiscoveryTagOperationActionconvertToPdf),
+		string(SecurityEdiscoveryTagOperationActionestimateStatistics),
+		string(SecurityEdiscoveryTagOperationActionholdUpdate),
+		string(SecurityEdiscoveryTagOperationActionindex),
+		string(SecurityEdiscoveryTagOperationActionpurgeData),
+	}
+}
+
+func parseSecurityEdiscoveryTagOperationAction(input string) (*SecurityEdiscoveryTagOperationAction, error) {
+	vals := map[string]SecurityEdiscoveryTagOperationAction{
+		"addtoreviewset":     SecurityEdiscoveryTagOperationActionaddToReviewSet,
+		"applytags":          SecurityEdiscoveryTagOperationActionapplyTags,
+		"contentexport":      SecurityEdiscoveryTagOperationActioncontentExport,
+		"converttopdf":       SecurityEdiscoveryTagOperationActionconvertToPdf,
+		"estimatestatistics": SecurityEdiscoveryTagOperationActionestimateStatistics,
+		"holdupdate":         SecurityEdiscoveryTagOperationActionholdUpdate,
+		"index":              SecurityEdiscoveryTagOperationActionindex,
+		"purgedata":          SecurityEdiscoveryTagOperationActionpurgeData,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SecurityEdiscoveryTagOperationAction(input)
+	return &out, nil
+}

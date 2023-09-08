@@ -1,0 +1,36 @@
+package models
+
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/edgezones"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/identity"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/systemdata"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/zones"
+)
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type TeamworkDisplayConfiguration struct {
+	ConfiguredDisplays *[]TeamworkConfiguredPeripheral `json:"configuredDisplays,omitempty"`
+	DisplayCount *int64 `json:"displayCount,omitempty"`
+	InBuiltDisplayScreenConfiguration *TeamworkDisplayScreenConfiguration `json:"inBuiltDisplayScreenConfiguration,omitempty"`
+	IsContentDuplicationAllowed *bool `json:"isContentDuplicationAllowed,omitempty"`
+	IsDualDisplayModeEnabled *bool `json:"isDualDisplayModeEnabled,omitempty"`
+	ODataType *string `json:"@odata.type,omitempty"`
+}
+
+
+
+
+
+
+

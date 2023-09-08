@@ -1,0 +1,37 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type AttendanceRecordOperationPredicate struct {
+	EmailAddress             *string
+	Id                       *string
+	ODataType                *string
+	Role                     *string
+	TotalAttendanceInSeconds *int64
+}
+
+func (p AttendanceRecordOperationPredicate) Matches(input AttendanceRecord) bool {
+
+	if p.EmailAddress != nil && (input.EmailAddress == nil || *p.EmailAddress != *input.EmailAddress) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.Role != nil && (input.Role == nil || *p.Role != *input.Role) {
+		return false
+	}
+
+	if p.TotalAttendanceInSeconds != nil && (input.TotalAttendanceInSeconds == nil || *p.TotalAttendanceInSeconds != *input.TotalAttendanceInSeconds) {
+		return false
+	}
+
+	return true
+}

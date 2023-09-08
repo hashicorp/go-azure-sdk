@@ -1,0 +1,49 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type Win32LobAppPowerShellScriptRuleOperator string
+
+const (
+	Win32LobAppPowerShellScriptRuleOperatorequal              Win32LobAppPowerShellScriptRuleOperator = "Equal"
+	Win32LobAppPowerShellScriptRuleOperatorgreaterThan        Win32LobAppPowerShellScriptRuleOperator = "GreaterThan"
+	Win32LobAppPowerShellScriptRuleOperatorgreaterThanOrEqual Win32LobAppPowerShellScriptRuleOperator = "GreaterThanOrEqual"
+	Win32LobAppPowerShellScriptRuleOperatorlessThan           Win32LobAppPowerShellScriptRuleOperator = "LessThan"
+	Win32LobAppPowerShellScriptRuleOperatorlessThanOrEqual    Win32LobAppPowerShellScriptRuleOperator = "LessThanOrEqual"
+	Win32LobAppPowerShellScriptRuleOperatornotConfigured      Win32LobAppPowerShellScriptRuleOperator = "NotConfigured"
+	Win32LobAppPowerShellScriptRuleOperatornotEqual           Win32LobAppPowerShellScriptRuleOperator = "NotEqual"
+)
+
+func PossibleValuesForWin32LobAppPowerShellScriptRuleOperator() []string {
+	return []string{
+		string(Win32LobAppPowerShellScriptRuleOperatorequal),
+		string(Win32LobAppPowerShellScriptRuleOperatorgreaterThan),
+		string(Win32LobAppPowerShellScriptRuleOperatorgreaterThanOrEqual),
+		string(Win32LobAppPowerShellScriptRuleOperatorlessThan),
+		string(Win32LobAppPowerShellScriptRuleOperatorlessThanOrEqual),
+		string(Win32LobAppPowerShellScriptRuleOperatornotConfigured),
+		string(Win32LobAppPowerShellScriptRuleOperatornotEqual),
+	}
+}
+
+func parseWin32LobAppPowerShellScriptRuleOperator(input string) (*Win32LobAppPowerShellScriptRuleOperator, error) {
+	vals := map[string]Win32LobAppPowerShellScriptRuleOperator{
+		"equal":              Win32LobAppPowerShellScriptRuleOperatorequal,
+		"greaterthan":        Win32LobAppPowerShellScriptRuleOperatorgreaterThan,
+		"greaterthanorequal": Win32LobAppPowerShellScriptRuleOperatorgreaterThanOrEqual,
+		"lessthan":           Win32LobAppPowerShellScriptRuleOperatorlessThan,
+		"lessthanorequal":    Win32LobAppPowerShellScriptRuleOperatorlessThanOrEqual,
+		"notconfigured":      Win32LobAppPowerShellScriptRuleOperatornotConfigured,
+		"notequal":           Win32LobAppPowerShellScriptRuleOperatornotEqual,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := Win32LobAppPowerShellScriptRuleOperator(input)
+	return &out, nil
+}

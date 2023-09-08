@@ -1,0 +1,40 @@
+package models
+
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/edgezones"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/identity"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/systemdata"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/zones"
+)
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type JobResponseBase struct {
+	CreationDateTime *string `json:"creationDateTime,omitempty"`
+	EndDateTime *string `json:"endDateTime,omitempty"`
+	Error *ClassificationError `json:"error,omitempty"`
+	Id *string `json:"id,omitempty"`
+	ODataType *string `json:"@odata.type,omitempty"`
+	StartDateTime *string `json:"startDateTime,omitempty"`
+	Status *string `json:"status,omitempty"`
+	TenantId *string `json:"tenantId,omitempty"`
+	Type *string `json:"type,omitempty"`
+	UserId *string `json:"userId,omitempty"`
+}
+
+
+
+
+
+
+

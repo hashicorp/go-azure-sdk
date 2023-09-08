@@ -1,0 +1,39 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type WindowsAutopilotSettingsOperationPredicate struct {
+	 Id *string
+	 LastManualSyncTriggerDateTime *string
+	 LastSyncDateTime *string
+	 ODataType *string
+}
+
+func (p WindowsAutopilotSettingsOperationPredicate) Matches(input WindowsAutopilotSettings) bool {
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+	 	return false
+	}
+
+
+	if p.LastManualSyncTriggerDateTime != nil && (input.LastManualSyncTriggerDateTime == nil || *p.LastManualSyncTriggerDateTime != *input.LastManualSyncTriggerDateTime) {
+	 	return false
+	}
+
+
+	if p.LastSyncDateTime != nil && (input.LastSyncDateTime == nil || *p.LastSyncDateTime != *input.LastSyncDateTime) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	return true
+}
+

@@ -1,0 +1,37 @@
+package models
+
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/edgezones"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/identity"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/systemdata"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/zones"
+)
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type BroadcastMeetingSettings struct {
+	AllowedAudience *BroadcastMeetingSettingsAllowedAudience `json:"allowedAudience,omitempty"`
+	Captions *BroadcastMeetingCaptionSettings `json:"captions,omitempty"`
+	IsAttendeeReportEnabled *bool `json:"isAttendeeReportEnabled,omitempty"`
+	IsQuestionAndAnswerEnabled *bool `json:"isQuestionAndAnswerEnabled,omitempty"`
+	IsRecordingEnabled *bool `json:"isRecordingEnabled,omitempty"`
+	IsVideoOnDemandEnabled *bool `json:"isVideoOnDemandEnabled,omitempty"`
+	ODataType *string `json:"@odata.type,omitempty"`
+}
+
+
+
+
+
+
+

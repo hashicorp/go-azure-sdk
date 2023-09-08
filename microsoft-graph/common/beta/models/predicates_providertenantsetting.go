@@ -1,0 +1,47 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type ProviderTenantSettingOperationPredicate struct {
+	AzureTenantId        *string
+	Enabled              *bool
+	Id                   *string
+	LastModifiedDateTime *string
+	ODataType            *string
+	Provider             *string
+	Vendor               *string
+}
+
+func (p ProviderTenantSettingOperationPredicate) Matches(input ProviderTenantSetting) bool {
+
+	if p.AzureTenantId != nil && (input.AzureTenantId == nil || *p.AzureTenantId != *input.AzureTenantId) {
+		return false
+	}
+
+	if p.Enabled != nil && (input.Enabled == nil || *p.Enabled != *input.Enabled) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.LastModifiedDateTime != nil && (input.LastModifiedDateTime == nil || *p.LastModifiedDateTime != *input.LastModifiedDateTime) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.Provider != nil && (input.Provider == nil || *p.Provider != *input.Provider) {
+		return false
+	}
+
+	if p.Vendor != nil && (input.Vendor == nil || *p.Vendor != *input.Vendor) {
+		return false
+	}
+
+	return true
+}

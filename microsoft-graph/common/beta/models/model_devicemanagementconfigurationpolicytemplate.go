@@ -1,0 +1,21 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type DeviceManagementConfigurationPolicyTemplate struct {
+	AllowUnmanagedSettings *bool                                                      `json:"allowUnmanagedSettings,omitempty"`
+	BaseId                 *string                                                    `json:"baseId,omitempty"`
+	Description            *string                                                    `json:"description,omitempty"`
+	DisplayName            *string                                                    `json:"displayName,omitempty"`
+	DisplayVersion         *string                                                    `json:"displayVersion,omitempty"`
+	Id                     *string                                                    `json:"id,omitempty"`
+	LifecycleState         *DeviceManagementConfigurationPolicyTemplateLifecycleState `json:"lifecycleState,omitempty"`
+	ODataType              *string                                                    `json:"@odata.type,omitempty"`
+	Platforms              *DeviceManagementConfigurationPolicyTemplatePlatforms      `json:"platforms,omitempty"`
+	SettingTemplateCount   *int64                                                     `json:"settingTemplateCount,omitempty"`
+	SettingTemplates       *[]DeviceManagementConfigurationSettingTemplate            `json:"settingTemplates,omitempty"`
+	Technologies           *DeviceManagementConfigurationPolicyTemplateTechnologies   `json:"technologies,omitempty"`
+	TemplateFamily         *DeviceManagementConfigurationPolicyTemplateTemplateFamily `json:"templateFamily,omitempty"`
+	Version                *int64                                                     `json:"version,omitempty"`
+}

@@ -1,0 +1,27 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type ExactMatchClassificationRequestOperationPredicate struct {
+	ODataType   *string
+	Text        *string
+	TimeoutInMs *int64
+}
+
+func (p ExactMatchClassificationRequestOperationPredicate) Matches(input ExactMatchClassificationRequest) bool {
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.Text != nil && (input.Text == nil || *p.Text != *input.Text) {
+		return false
+	}
+
+	if p.TimeoutInMs != nil && (input.TimeoutInMs == nil || *p.TimeoutInMs != *input.TimeoutInMs) {
+		return false
+	}
+
+	return true
+}

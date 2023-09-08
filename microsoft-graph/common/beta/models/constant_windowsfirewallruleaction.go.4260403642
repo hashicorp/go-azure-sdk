@@ -1,0 +1,43 @@
+package models
+
+import "strings"
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type WindowsFirewallRuleAction string
+
+const (
+	WindowsFirewallRuleActionallowed WindowsFirewallRuleAction = "Allowed"
+	WindowsFirewallRuleActionblocked WindowsFirewallRuleAction = "Blocked"
+	WindowsFirewallRuleActionnotConfigured WindowsFirewallRuleAction = "NotConfigured"
+)
+
+
+func PossibleValuesForWindowsFirewallRuleAction() []string {
+	return []string{
+		string(WindowsFirewallRuleActionallowed),
+string(WindowsFirewallRuleActionblocked),
+string(WindowsFirewallRuleActionnotConfigured),
+	}
+}
+
+
+
+func parseWindowsFirewallRuleAction(input string) (*WindowsFirewallRuleAction, error) {
+	vals := map[string]WindowsFirewallRuleAction{
+		"allowed": WindowsFirewallRuleActionallowed,
+"blocked": WindowsFirewallRuleActionblocked,
+"notconfigured": WindowsFirewallRuleActionnotConfigured,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := WindowsFirewallRuleAction(input)
+	return &out, nil
+}

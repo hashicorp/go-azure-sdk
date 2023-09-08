@@ -1,0 +1,39 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type VisualInfoOperationPredicate struct {
+	 BackgroundColor *string
+	 Description *string
+	 DisplayText *string
+	 ODataType *string
+}
+
+func (p VisualInfoOperationPredicate) Matches(input VisualInfo) bool {
+
+	if p.BackgroundColor != nil && (input.BackgroundColor == nil || *p.BackgroundColor != *input.BackgroundColor) {
+	 	return false
+	}
+
+
+	if p.Description != nil && (input.Description == nil || *p.Description != *input.Description) {
+	 	return false
+	}
+
+
+	if p.DisplayText != nil && (input.DisplayText == nil || *p.DisplayText != *input.DisplayText) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	return true
+}
+

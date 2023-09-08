@@ -1,0 +1,27 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type ScheduleInformationOperationPredicate struct {
+	AvailabilityView *string
+	ODataType        *string
+	ScheduleId       *string
+}
+
+func (p ScheduleInformationOperationPredicate) Matches(input ScheduleInformation) bool {
+
+	if p.AvailabilityView != nil && (input.AvailabilityView == nil || *p.AvailabilityView != *input.AvailabilityView) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.ScheduleId != nil && (input.ScheduleId == nil || *p.ScheduleId != *input.ScheduleId) {
+		return false
+	}
+
+	return true
+}

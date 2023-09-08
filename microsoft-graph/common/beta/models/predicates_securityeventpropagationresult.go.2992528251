@@ -1,0 +1,39 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type SecurityEventPropagationResultOperationPredicate struct {
+	 Location *string
+	 ODataType *string
+	 ServiceName *string
+	 StatusInformation *string
+}
+
+func (p SecurityEventPropagationResultOperationPredicate) Matches(input SecurityEventPropagationResult) bool {
+
+	if p.Location != nil && (input.Location == nil || *p.Location != *input.Location) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.ServiceName != nil && (input.ServiceName == nil || *p.ServiceName != *input.ServiceName) {
+	 	return false
+	}
+
+
+	if p.StatusInformation != nil && (input.StatusInformation == nil || *p.StatusInformation != *input.StatusInformation) {
+	 	return false
+	}
+
+
+	return true
+}
+

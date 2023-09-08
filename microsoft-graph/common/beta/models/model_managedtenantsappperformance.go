@@ -1,0 +1,19 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type ManagedTenantsAppPerformance struct {
+	AppFriendlyName            *string `json:"appFriendlyName,omitempty"`
+	AppName                    *string `json:"appName,omitempty"`
+	AppPublisher               *string `json:"appPublisher,omitempty"`
+	Id                         *string `json:"id,omitempty"`
+	LastUpdatedDateTime        *string `json:"lastUpdatedDateTime,omitempty"`
+	MeanTimeToFailureInMinutes *int64  `json:"meanTimeToFailureInMinutes,omitempty"`
+	ODataType                  *string `json:"@odata.type,omitempty"`
+	TenantDisplayName          *string `json:"tenantDisplayName,omitempty"`
+	TenantId                   *string `json:"tenantId,omitempty"`
+	TotalActiveDeviceCount     *int64  `json:"totalActiveDeviceCount,omitempty"`
+	TotalAppCrashCount         *int64  `json:"totalAppCrashCount,omitempty"`
+	TotalAppFreezeCount        *int64  `json:"totalAppFreezeCount,omitempty"`
+}

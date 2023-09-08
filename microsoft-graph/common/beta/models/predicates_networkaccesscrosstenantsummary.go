@@ -1,0 +1,42 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type NetworkaccessCrossTenantSummaryOperationPredicate struct {
+	AuthTransactionCount *int64
+	DeviceCount          *int64
+	NewTenantCount       *int64
+	ODataType            *string
+	TenantCount          *int64
+	UserCount            *int64
+}
+
+func (p NetworkaccessCrossTenantSummaryOperationPredicate) Matches(input NetworkaccessCrossTenantSummary) bool {
+
+	if p.AuthTransactionCount != nil && (input.AuthTransactionCount == nil || *p.AuthTransactionCount != *input.AuthTransactionCount) {
+		return false
+	}
+
+	if p.DeviceCount != nil && (input.DeviceCount == nil || *p.DeviceCount != *input.DeviceCount) {
+		return false
+	}
+
+	if p.NewTenantCount != nil && (input.NewTenantCount == nil || *p.NewTenantCount != *input.NewTenantCount) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.TenantCount != nil && (input.TenantCount == nil || *p.TenantCount != *input.TenantCount) {
+		return false
+	}
+
+	if p.UserCount != nil && (input.UserCount == nil || *p.UserCount != *input.UserCount) {
+		return false
+	}
+
+	return true
+}

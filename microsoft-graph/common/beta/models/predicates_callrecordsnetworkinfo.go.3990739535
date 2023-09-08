@@ -1,0 +1,123 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type CallRecordsNetworkInfoOperationPredicate struct {
+	 BasicServiceSetIdentifier *string
+	 DnsSuffix *string
+	 IpAddress *string
+	 LinkSpeed *int64
+	 MacAddress *string
+	 ODataType *string
+	 Port *int64
+	 ReflexiveIPAddress *string
+	 RelayIPAddress *string
+	 RelayPort *int64
+	 Subnet *string
+	 WifiBatteryCharge *int64
+	 WifiChannel *int64
+	 WifiMicrosoftDriver *string
+	 WifiMicrosoftDriverVersion *string
+	 WifiSignalStrength *int64
+	 WifiVendorDriver *string
+	 WifiVendorDriverVersion *string
+}
+
+func (p CallRecordsNetworkInfoOperationPredicate) Matches(input CallRecordsNetworkInfo) bool {
+
+	if p.BasicServiceSetIdentifier != nil && (input.BasicServiceSetIdentifier == nil || *p.BasicServiceSetIdentifier != *input.BasicServiceSetIdentifier) {
+	 	return false
+	}
+
+
+	if p.DnsSuffix != nil && (input.DnsSuffix == nil || *p.DnsSuffix != *input.DnsSuffix) {
+	 	return false
+	}
+
+
+	if p.IpAddress != nil && (input.IpAddress == nil || *p.IpAddress != *input.IpAddress) {
+	 	return false
+	}
+
+
+	if p.LinkSpeed != nil && (input.LinkSpeed == nil || *p.LinkSpeed != *input.LinkSpeed) {
+	 	return false
+	}
+
+
+	if p.MacAddress != nil && (input.MacAddress == nil || *p.MacAddress != *input.MacAddress) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.Port != nil && (input.Port == nil || *p.Port != *input.Port) {
+	 	return false
+	}
+
+
+	if p.ReflexiveIPAddress != nil && (input.ReflexiveIPAddress == nil || *p.ReflexiveIPAddress != *input.ReflexiveIPAddress) {
+	 	return false
+	}
+
+
+	if p.RelayIPAddress != nil && (input.RelayIPAddress == nil || *p.RelayIPAddress != *input.RelayIPAddress) {
+	 	return false
+	}
+
+
+	if p.RelayPort != nil && (input.RelayPort == nil || *p.RelayPort != *input.RelayPort) {
+	 	return false
+	}
+
+
+	if p.Subnet != nil && (input.Subnet == nil || *p.Subnet != *input.Subnet) {
+	 	return false
+	}
+
+
+	if p.WifiBatteryCharge != nil && (input.WifiBatteryCharge == nil || *p.WifiBatteryCharge != *input.WifiBatteryCharge) {
+	 	return false
+	}
+
+
+	if p.WifiChannel != nil && (input.WifiChannel == nil || *p.WifiChannel != *input.WifiChannel) {
+	 	return false
+	}
+
+
+	if p.WifiMicrosoftDriver != nil && (input.WifiMicrosoftDriver == nil || *p.WifiMicrosoftDriver != *input.WifiMicrosoftDriver) {
+	 	return false
+	}
+
+
+	if p.WifiMicrosoftDriverVersion != nil && (input.WifiMicrosoftDriverVersion == nil || *p.WifiMicrosoftDriverVersion != *input.WifiMicrosoftDriverVersion) {
+	 	return false
+	}
+
+
+	if p.WifiSignalStrength != nil && (input.WifiSignalStrength == nil || *p.WifiSignalStrength != *input.WifiSignalStrength) {
+	 	return false
+	}
+
+
+	if p.WifiVendorDriver != nil && (input.WifiVendorDriver == nil || *p.WifiVendorDriver != *input.WifiVendorDriver) {
+	 	return false
+	}
+
+
+	if p.WifiVendorDriverVersion != nil && (input.WifiVendorDriverVersion == nil || *p.WifiVendorDriverVersion != *input.WifiVendorDriverVersion) {
+	 	return false
+	}
+
+
+	return true
+}
+

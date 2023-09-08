@@ -1,0 +1,22 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type DeviceManagementPriorityMetaDataOperationPredicate struct {
+	ODataType *string
+	Priority  *int64
+}
+
+func (p DeviceManagementPriorityMetaDataOperationPredicate) Matches(input DeviceManagementPriorityMetaData) bool {
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.Priority != nil && (input.Priority == nil || *p.Priority != *input.Priority) {
+		return false
+	}
+
+	return true
+}

@@ -1,0 +1,10 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type PermissionsAnalyticsAggregatedIdentitySummary struct {
+	FindingsCount *int64  `json:"findingsCount,omitempty"`
+	ODataType     *string `json:"@odata.type,omitempty"`
+	TotalCount    *int64  `json:"totalCount,omitempty"`
+}

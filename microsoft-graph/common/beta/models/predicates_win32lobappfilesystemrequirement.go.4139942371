@@ -1,0 +1,45 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type Win32LobAppFileSystemRequirementOperationPredicate struct {
+	 Check32BitOn64System *bool
+	 DetectionValue *string
+	 FileOrFolderName *string
+	 ODataType *string
+	 Path *string
+}
+
+func (p Win32LobAppFileSystemRequirementOperationPredicate) Matches(input Win32LobAppFileSystemRequirement) bool {
+
+	if p.Check32BitOn64System != nil && (input.Check32BitOn64System == nil || *p.Check32BitOn64System != *input.Check32BitOn64System) {
+	 	return false
+	}
+
+
+	if p.DetectionValue != nil && (input.DetectionValue == nil || *p.DetectionValue != *input.DetectionValue) {
+	 	return false
+	}
+
+
+	if p.FileOrFolderName != nil && (input.FileOrFolderName == nil || *p.FileOrFolderName != *input.FileOrFolderName) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.Path != nil && (input.Path == nil || *p.Path != *input.Path) {
+	 	return false
+	}
+
+
+	return true
+}
+

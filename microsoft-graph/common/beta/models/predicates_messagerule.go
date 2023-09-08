@@ -1,0 +1,47 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type MessageRuleOperationPredicate struct {
+	DisplayName *string
+	HasError    *bool
+	Id          *string
+	IsEnabled   *bool
+	IsReadOnly  *bool
+	ODataType   *string
+	Sequence    *int64
+}
+
+func (p MessageRuleOperationPredicate) Matches(input MessageRule) bool {
+
+	if p.DisplayName != nil && (input.DisplayName == nil || *p.DisplayName != *input.DisplayName) {
+		return false
+	}
+
+	if p.HasError != nil && (input.HasError == nil || *p.HasError != *input.HasError) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.IsEnabled != nil && (input.IsEnabled == nil || *p.IsEnabled != *input.IsEnabled) {
+		return false
+	}
+
+	if p.IsReadOnly != nil && (input.IsReadOnly == nil || *p.IsReadOnly != *input.IsReadOnly) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.Sequence != nil && (input.Sequence == nil || *p.Sequence != *input.Sequence) {
+		return false
+	}
+
+	return true
+}

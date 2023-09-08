@@ -1,0 +1,37 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type OnenoteResourceOperationPredicate struct {
+	Content    *string
+	ContentUrl *string
+	Id         *string
+	ODataType  *string
+	Self       *string
+}
+
+func (p OnenoteResourceOperationPredicate) Matches(input OnenoteResource) bool {
+
+	if p.Content != nil && (input.Content == nil || *p.Content != *input.Content) {
+		return false
+	}
+
+	if p.ContentUrl != nil && (input.ContentUrl == nil || *p.ContentUrl != *input.ContentUrl) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.Self != nil && (input.Self == nil || *p.Self != *input.Self) {
+		return false
+	}
+
+	return true
+}

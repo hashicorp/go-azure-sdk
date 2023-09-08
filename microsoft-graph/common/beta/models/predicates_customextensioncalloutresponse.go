@@ -1,0 +1,27 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type CustomExtensionCalloutResponseOperationPredicate struct {
+	ODataType *string
+	Source    *string
+	Type      *string
+}
+
+func (p CustomExtensionCalloutResponseOperationPredicate) Matches(input CustomExtensionCalloutResponse) bool {
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.Source != nil && (input.Source == nil || *p.Source != *input.Source) {
+		return false
+	}
+
+	if p.Type != nil && (input.Type == nil || *p.Type != *input.Type) {
+		return false
+	}
+
+	return true
+}

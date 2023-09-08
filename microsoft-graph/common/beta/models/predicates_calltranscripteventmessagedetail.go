@@ -1,0 +1,27 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type CallTranscriptEventMessageDetailOperationPredicate struct {
+	CallId                *string
+	CallTranscriptICalUid *string
+	ODataType             *string
+}
+
+func (p CallTranscriptEventMessageDetailOperationPredicate) Matches(input CallTranscriptEventMessageDetail) bool {
+
+	if p.CallId != nil && (input.CallId == nil || *p.CallId != *input.CallId) {
+		return false
+	}
+
+	if p.CallTranscriptICalUid != nil && (input.CallTranscriptICalUid == nil || *p.CallTranscriptICalUid != *input.CallTranscriptICalUid) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	return true
+}

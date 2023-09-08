@@ -1,0 +1,43 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type IosImportedPFXCertificateProfileIntendedPurpose string
+
+const (
+	IosImportedPFXCertificateProfileIntendedPurposesmimeEncryption IosImportedPFXCertificateProfileIntendedPurpose = "SmimeEncryption"
+	IosImportedPFXCertificateProfileIntendedPurposesmimeSigning    IosImportedPFXCertificateProfileIntendedPurpose = "SmimeSigning"
+	IosImportedPFXCertificateProfileIntendedPurposeunassigned      IosImportedPFXCertificateProfileIntendedPurpose = "Unassigned"
+	IosImportedPFXCertificateProfileIntendedPurposevpn             IosImportedPFXCertificateProfileIntendedPurpose = "Vpn"
+	IosImportedPFXCertificateProfileIntendedPurposewifi            IosImportedPFXCertificateProfileIntendedPurpose = "Wifi"
+)
+
+func PossibleValuesForIosImportedPFXCertificateProfileIntendedPurpose() []string {
+	return []string{
+		string(IosImportedPFXCertificateProfileIntendedPurposesmimeEncryption),
+		string(IosImportedPFXCertificateProfileIntendedPurposesmimeSigning),
+		string(IosImportedPFXCertificateProfileIntendedPurposeunassigned),
+		string(IosImportedPFXCertificateProfileIntendedPurposevpn),
+		string(IosImportedPFXCertificateProfileIntendedPurposewifi),
+	}
+}
+
+func parseIosImportedPFXCertificateProfileIntendedPurpose(input string) (*IosImportedPFXCertificateProfileIntendedPurpose, error) {
+	vals := map[string]IosImportedPFXCertificateProfileIntendedPurpose{
+		"smimeencryption": IosImportedPFXCertificateProfileIntendedPurposesmimeEncryption,
+		"smimesigning":    IosImportedPFXCertificateProfileIntendedPurposesmimeSigning,
+		"unassigned":      IosImportedPFXCertificateProfileIntendedPurposeunassigned,
+		"vpn":             IosImportedPFXCertificateProfileIntendedPurposevpn,
+		"wifi":            IosImportedPFXCertificateProfileIntendedPurposewifi,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := IosImportedPFXCertificateProfileIntendedPurpose(input)
+	return &out, nil
+}

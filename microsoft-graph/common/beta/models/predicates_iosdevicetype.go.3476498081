@@ -1,0 +1,33 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type IosDeviceTypeOperationPredicate struct {
+	 IPad *bool
+	 IPhoneAndIPod *bool
+	 ODataType *string
+}
+
+func (p IosDeviceTypeOperationPredicate) Matches(input IosDeviceType) bool {
+
+	if p.IPad != nil && (input.IPad == nil || *p.IPad != *input.IPad) {
+	 	return false
+	}
+
+
+	if p.IPhoneAndIPod != nil && (input.IPhoneAndIPod == nil || *p.IPhoneAndIPod != *input.IPhoneAndIPod) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	return true
+}
+

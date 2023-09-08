@@ -1,0 +1,69 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type IdentityGovernanceUserProcessingResultOperationPredicate struct {
+	 CompletedDateTime *string
+	 FailedTasksCount *int64
+	 Id *string
+	 ODataType *string
+	 ScheduledDateTime *string
+	 StartedDateTime *string
+	 TotalTasksCount *int64
+	 TotalUnprocessedTasksCount *int64
+	 WorkflowVersion *int64
+}
+
+func (p IdentityGovernanceUserProcessingResultOperationPredicate) Matches(input IdentityGovernanceUserProcessingResult) bool {
+
+	if p.CompletedDateTime != nil && (input.CompletedDateTime == nil || *p.CompletedDateTime != *input.CompletedDateTime) {
+	 	return false
+	}
+
+
+	if p.FailedTasksCount != nil && (input.FailedTasksCount == nil || *p.FailedTasksCount != *input.FailedTasksCount) {
+	 	return false
+	}
+
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.ScheduledDateTime != nil && (input.ScheduledDateTime == nil || *p.ScheduledDateTime != *input.ScheduledDateTime) {
+	 	return false
+	}
+
+
+	if p.StartedDateTime != nil && (input.StartedDateTime == nil || *p.StartedDateTime != *input.StartedDateTime) {
+	 	return false
+	}
+
+
+	if p.TotalTasksCount != nil && (input.TotalTasksCount == nil || *p.TotalTasksCount != *input.TotalTasksCount) {
+	 	return false
+	}
+
+
+	if p.TotalUnprocessedTasksCount != nil && (input.TotalUnprocessedTasksCount == nil || *p.TotalUnprocessedTasksCount != *input.TotalUnprocessedTasksCount) {
+	 	return false
+	}
+
+
+	if p.WorkflowVersion != nil && (input.WorkflowVersion == nil || *p.WorkflowVersion != *input.WorkflowVersion) {
+	 	return false
+	}
+
+
+	return true
+}
+

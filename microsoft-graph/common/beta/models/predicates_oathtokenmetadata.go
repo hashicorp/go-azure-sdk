@@ -1,0 +1,37 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type OathTokenMetadataOperationPredicate struct {
+	Enabled      *bool
+	Manufacturer *string
+	ODataType    *string
+	SerialNumber *string
+	TokenType    *string
+}
+
+func (p OathTokenMetadataOperationPredicate) Matches(input OathTokenMetadata) bool {
+
+	if p.Enabled != nil && (input.Enabled == nil || *p.Enabled != *input.Enabled) {
+		return false
+	}
+
+	if p.Manufacturer != nil && (input.Manufacturer == nil || *p.Manufacturer != *input.Manufacturer) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.SerialNumber != nil && (input.SerialNumber == nil || *p.SerialNumber != *input.SerialNumber) {
+		return false
+	}
+
+	if p.TokenType != nil && (input.TokenType == nil || *p.TokenType != *input.TokenType) {
+		return false
+	}
+
+	return true
+}

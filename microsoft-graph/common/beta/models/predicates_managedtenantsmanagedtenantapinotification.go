@@ -1,0 +1,62 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type ManagedTenantsManagedTenantApiNotificationOperationPredicate struct {
+	CreatedByUserId    *string
+	CreatedDateTime    *string
+	Id                 *string
+	IsAcknowledged     *bool
+	LastActionByUserId *string
+	LastActionDateTime *string
+	Message            *string
+	ODataType          *string
+	Title              *string
+	UserId             *string
+}
+
+func (p ManagedTenantsManagedTenantApiNotificationOperationPredicate) Matches(input ManagedTenantsManagedTenantApiNotification) bool {
+
+	if p.CreatedByUserId != nil && (input.CreatedByUserId == nil || *p.CreatedByUserId != *input.CreatedByUserId) {
+		return false
+	}
+
+	if p.CreatedDateTime != nil && (input.CreatedDateTime == nil || *p.CreatedDateTime != *input.CreatedDateTime) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.IsAcknowledged != nil && (input.IsAcknowledged == nil || *p.IsAcknowledged != *input.IsAcknowledged) {
+		return false
+	}
+
+	if p.LastActionByUserId != nil && (input.LastActionByUserId == nil || *p.LastActionByUserId != *input.LastActionByUserId) {
+		return false
+	}
+
+	if p.LastActionDateTime != nil && (input.LastActionDateTime == nil || *p.LastActionDateTime != *input.LastActionDateTime) {
+		return false
+	}
+
+	if p.Message != nil && (input.Message == nil || *p.Message != *input.Message) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.Title != nil && (input.Title == nil || *p.Title != *input.Title) {
+		return false
+	}
+
+	if p.UserId != nil && (input.UserId == nil || *p.UserId != *input.UserId) {
+		return false
+	}
+
+	return true
+}

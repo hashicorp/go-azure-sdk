@@ -1,0 +1,187 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type GroupOperationPredicate struct {
+	AllowExternalSenders          *bool
+	AutoSubscribeNewMembers       *bool
+	Classification                *string
+	CreatedDateTime               *string
+	DeletedDateTime               *string
+	Description                   *string
+	DisplayName                   *string
+	ExpirationDateTime            *string
+	HasMembersWithLicenseErrors   *bool
+	HideFromAddressLists          *bool
+	HideFromOutlookClients        *bool
+	Id                            *string
+	IsArchived                    *bool
+	IsAssignableToRole            *bool
+	IsSubscribedByMail            *bool
+	Mail                          *string
+	MailEnabled                   *bool
+	MailNickname                  *string
+	MembershipRule                *string
+	MembershipRuleProcessingState *string
+	ODataType                     *string
+	OnPremisesDomainName          *string
+	OnPremisesLastSyncDateTime    *string
+	OnPremisesNetBiosName         *string
+	OnPremisesSamAccountName      *string
+	OnPremisesSecurityIdentifier  *string
+	OnPremisesSyncEnabled         *bool
+	PreferredDataLocation         *string
+	PreferredLanguage             *string
+	RenewedDateTime               *string
+	SecurityEnabled               *bool
+	SecurityIdentifier            *string
+	Theme                         *string
+	UnseenCount                   *int64
+	Visibility                    *string
+}
+
+func (p GroupOperationPredicate) Matches(input Group) bool {
+
+	if p.AllowExternalSenders != nil && (input.AllowExternalSenders == nil || *p.AllowExternalSenders != *input.AllowExternalSenders) {
+		return false
+	}
+
+	if p.AutoSubscribeNewMembers != nil && (input.AutoSubscribeNewMembers == nil || *p.AutoSubscribeNewMembers != *input.AutoSubscribeNewMembers) {
+		return false
+	}
+
+	if p.Classification != nil && (input.Classification == nil || *p.Classification != *input.Classification) {
+		return false
+	}
+
+	if p.CreatedDateTime != nil && (input.CreatedDateTime == nil || *p.CreatedDateTime != *input.CreatedDateTime) {
+		return false
+	}
+
+	if p.DeletedDateTime != nil && (input.DeletedDateTime == nil || *p.DeletedDateTime != *input.DeletedDateTime) {
+		return false
+	}
+
+	if p.Description != nil && (input.Description == nil || *p.Description != *input.Description) {
+		return false
+	}
+
+	if p.DisplayName != nil && (input.DisplayName == nil || *p.DisplayName != *input.DisplayName) {
+		return false
+	}
+
+	if p.ExpirationDateTime != nil && (input.ExpirationDateTime == nil || *p.ExpirationDateTime != *input.ExpirationDateTime) {
+		return false
+	}
+
+	if p.HasMembersWithLicenseErrors != nil && (input.HasMembersWithLicenseErrors == nil || *p.HasMembersWithLicenseErrors != *input.HasMembersWithLicenseErrors) {
+		return false
+	}
+
+	if p.HideFromAddressLists != nil && (input.HideFromAddressLists == nil || *p.HideFromAddressLists != *input.HideFromAddressLists) {
+		return false
+	}
+
+	if p.HideFromOutlookClients != nil && (input.HideFromOutlookClients == nil || *p.HideFromOutlookClients != *input.HideFromOutlookClients) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.IsArchived != nil && (input.IsArchived == nil || *p.IsArchived != *input.IsArchived) {
+		return false
+	}
+
+	if p.IsAssignableToRole != nil && (input.IsAssignableToRole == nil || *p.IsAssignableToRole != *input.IsAssignableToRole) {
+		return false
+	}
+
+	if p.IsSubscribedByMail != nil && (input.IsSubscribedByMail == nil || *p.IsSubscribedByMail != *input.IsSubscribedByMail) {
+		return false
+	}
+
+	if p.Mail != nil && (input.Mail == nil || *p.Mail != *input.Mail) {
+		return false
+	}
+
+	if p.MailEnabled != nil && (input.MailEnabled == nil || *p.MailEnabled != *input.MailEnabled) {
+		return false
+	}
+
+	if p.MailNickname != nil && (input.MailNickname == nil || *p.MailNickname != *input.MailNickname) {
+		return false
+	}
+
+	if p.MembershipRule != nil && (input.MembershipRule == nil || *p.MembershipRule != *input.MembershipRule) {
+		return false
+	}
+
+	if p.MembershipRuleProcessingState != nil && (input.MembershipRuleProcessingState == nil || *p.MembershipRuleProcessingState != *input.MembershipRuleProcessingState) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.OnPremisesDomainName != nil && (input.OnPremisesDomainName == nil || *p.OnPremisesDomainName != *input.OnPremisesDomainName) {
+		return false
+	}
+
+	if p.OnPremisesLastSyncDateTime != nil && (input.OnPremisesLastSyncDateTime == nil || *p.OnPremisesLastSyncDateTime != *input.OnPremisesLastSyncDateTime) {
+		return false
+	}
+
+	if p.OnPremisesNetBiosName != nil && (input.OnPremisesNetBiosName == nil || *p.OnPremisesNetBiosName != *input.OnPremisesNetBiosName) {
+		return false
+	}
+
+	if p.OnPremisesSamAccountName != nil && (input.OnPremisesSamAccountName == nil || *p.OnPremisesSamAccountName != *input.OnPremisesSamAccountName) {
+		return false
+	}
+
+	if p.OnPremisesSecurityIdentifier != nil && (input.OnPremisesSecurityIdentifier == nil || *p.OnPremisesSecurityIdentifier != *input.OnPremisesSecurityIdentifier) {
+		return false
+	}
+
+	if p.OnPremisesSyncEnabled != nil && (input.OnPremisesSyncEnabled == nil || *p.OnPremisesSyncEnabled != *input.OnPremisesSyncEnabled) {
+		return false
+	}
+
+	if p.PreferredDataLocation != nil && (input.PreferredDataLocation == nil || *p.PreferredDataLocation != *input.PreferredDataLocation) {
+		return false
+	}
+
+	if p.PreferredLanguage != nil && (input.PreferredLanguage == nil || *p.PreferredLanguage != *input.PreferredLanguage) {
+		return false
+	}
+
+	if p.RenewedDateTime != nil && (input.RenewedDateTime == nil || *p.RenewedDateTime != *input.RenewedDateTime) {
+		return false
+	}
+
+	if p.SecurityEnabled != nil && (input.SecurityEnabled == nil || *p.SecurityEnabled != *input.SecurityEnabled) {
+		return false
+	}
+
+	if p.SecurityIdentifier != nil && (input.SecurityIdentifier == nil || *p.SecurityIdentifier != *input.SecurityIdentifier) {
+		return false
+	}
+
+	if p.Theme != nil && (input.Theme == nil || *p.Theme != *input.Theme) {
+		return false
+	}
+
+	if p.UnseenCount != nil && (input.UnseenCount == nil || *p.UnseenCount != *input.UnseenCount) {
+		return false
+	}
+
+	if p.Visibility != nil && (input.Visibility == nil || *p.Visibility != *input.Visibility) {
+		return false
+	}
+
+	return true
+}

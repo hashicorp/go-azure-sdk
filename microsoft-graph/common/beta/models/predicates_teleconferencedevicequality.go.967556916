@@ -1,0 +1,75 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type TeleconferenceDeviceQualityOperationPredicate struct {
+	 CallChainId *string
+	 CloudServiceDeploymentEnvironment *string
+	 CloudServiceDeploymentId *string
+	 CloudServiceInstanceName *string
+	 CloudServiceName *string
+	 DeviceDescription *string
+	 DeviceName *string
+	 MediaLegId *string
+	 ODataType *string
+	 ParticipantId *string
+}
+
+func (p TeleconferenceDeviceQualityOperationPredicate) Matches(input TeleconferenceDeviceQuality) bool {
+
+	if p.CallChainId != nil && (input.CallChainId == nil || *p.CallChainId != *input.CallChainId) {
+	 	return false
+	}
+
+
+	if p.CloudServiceDeploymentEnvironment != nil && (input.CloudServiceDeploymentEnvironment == nil || *p.CloudServiceDeploymentEnvironment != *input.CloudServiceDeploymentEnvironment) {
+	 	return false
+	}
+
+
+	if p.CloudServiceDeploymentId != nil && (input.CloudServiceDeploymentId == nil || *p.CloudServiceDeploymentId != *input.CloudServiceDeploymentId) {
+	 	return false
+	}
+
+
+	if p.CloudServiceInstanceName != nil && (input.CloudServiceInstanceName == nil || *p.CloudServiceInstanceName != *input.CloudServiceInstanceName) {
+	 	return false
+	}
+
+
+	if p.CloudServiceName != nil && (input.CloudServiceName == nil || *p.CloudServiceName != *input.CloudServiceName) {
+	 	return false
+	}
+
+
+	if p.DeviceDescription != nil && (input.DeviceDescription == nil || *p.DeviceDescription != *input.DeviceDescription) {
+	 	return false
+	}
+
+
+	if p.DeviceName != nil && (input.DeviceName == nil || *p.DeviceName != *input.DeviceName) {
+	 	return false
+	}
+
+
+	if p.MediaLegId != nil && (input.MediaLegId == nil || *p.MediaLegId != *input.MediaLegId) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.ParticipantId != nil && (input.ParticipantId == nil || *p.ParticipantId != *input.ParticipantId) {
+	 	return false
+	}
+
+
+	return true
+}
+

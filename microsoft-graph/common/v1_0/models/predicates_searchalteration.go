@@ -1,0 +1,27 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type SearchAlterationOperationPredicate struct {
+	AlteredHighlightedQueryString *string
+	AlteredQueryString            *string
+	ODataType                     *string
+}
+
+func (p SearchAlterationOperationPredicate) Matches(input SearchAlteration) bool {
+
+	if p.AlteredHighlightedQueryString != nil && (input.AlteredHighlightedQueryString == nil || *p.AlteredHighlightedQueryString != *input.AlteredHighlightedQueryString) {
+		return false
+	}
+
+	if p.AlteredQueryString != nil && (input.AlteredQueryString == nil || *p.AlteredQueryString != *input.AlteredQueryString) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	return true
+}

@@ -1,0 +1,81 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type InternalDomainFederationOperationPredicate struct {
+	 ActiveSignInUri *string
+	 DisplayName *string
+	 Id *string
+	 IsSignedAuthenticationRequestRequired *bool
+	 IssuerUri *string
+	 MetadataExchangeUri *string
+	 NextSigningCertificate *string
+	 ODataType *string
+	 PassiveSignInUri *string
+	 SignOutUri *string
+	 SigningCertificate *string
+}
+
+func (p InternalDomainFederationOperationPredicate) Matches(input InternalDomainFederation) bool {
+
+	if p.ActiveSignInUri != nil && (input.ActiveSignInUri == nil || *p.ActiveSignInUri != *input.ActiveSignInUri) {
+	 	return false
+	}
+
+
+	if p.DisplayName != nil && (input.DisplayName == nil || *p.DisplayName != *input.DisplayName) {
+	 	return false
+	}
+
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+	 	return false
+	}
+
+
+	if p.IsSignedAuthenticationRequestRequired != nil && (input.IsSignedAuthenticationRequestRequired == nil || *p.IsSignedAuthenticationRequestRequired != *input.IsSignedAuthenticationRequestRequired) {
+	 	return false
+	}
+
+
+	if p.IssuerUri != nil && (input.IssuerUri == nil || *p.IssuerUri != *input.IssuerUri) {
+	 	return false
+	}
+
+
+	if p.MetadataExchangeUri != nil && (input.MetadataExchangeUri == nil || *p.MetadataExchangeUri != *input.MetadataExchangeUri) {
+	 	return false
+	}
+
+
+	if p.NextSigningCertificate != nil && (input.NextSigningCertificate == nil || *p.NextSigningCertificate != *input.NextSigningCertificate) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.PassiveSignInUri != nil && (input.PassiveSignInUri == nil || *p.PassiveSignInUri != *input.PassiveSignInUri) {
+	 	return false
+	}
+
+
+	if p.SignOutUri != nil && (input.SignOutUri == nil || *p.SignOutUri != *input.SignOutUri) {
+	 	return false
+	}
+
+
+	if p.SigningCertificate != nil && (input.SigningCertificate == nil || *p.SigningCertificate != *input.SigningCertificate) {
+	 	return false
+	}
+
+
+	return true
+}
+

@@ -1,0 +1,37 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type EducationSynchronizationProfileOperationPredicate struct {
+	DisplayName                      *string
+	ExpirationDate                   *string
+	HandleSpecialCharacterConstraint *bool
+	Id                               *string
+	ODataType                        *string
+}
+
+func (p EducationSynchronizationProfileOperationPredicate) Matches(input EducationSynchronizationProfile) bool {
+
+	if p.DisplayName != nil && (input.DisplayName == nil || *p.DisplayName != *input.DisplayName) {
+		return false
+	}
+
+	if p.ExpirationDate != nil && (input.ExpirationDate == nil || *p.ExpirationDate != *input.ExpirationDate) {
+		return false
+	}
+
+	if p.HandleSpecialCharacterConstraint != nil && (input.HandleSpecialCharacterConstraint == nil || *p.HandleSpecialCharacterConstraint != *input.HandleSpecialCharacterConstraint) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	return true
+}

@@ -1,0 +1,56 @@
+package models
+
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/edgezones"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/identity"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/systemdata"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/zones"
+)
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type NetworkaccessNetworkAccessTraffic struct {
+	AgentVersion *string `json:"agentVersion,omitempty"`
+	ConnectionId *string `json:"connectionId,omitempty"`
+	CreatedDateTime *string `json:"createdDateTime,omitempty"`
+	DestinationFQDN *string `json:"destinationFQDN,omitempty"`
+	DestinationIp *string `json:"destinationIp,omitempty"`
+	DestinationPort *int64 `json:"destinationPort,omitempty"`
+	DeviceCategory *NetworkaccessNetworkAccessTrafficDeviceCategory `json:"deviceCategory,omitempty"`
+	DeviceId *string `json:"deviceId,omitempty"`
+	DeviceOperatingSystem *string `json:"deviceOperatingSystem,omitempty"`
+	DeviceOperatingSystemVersion *string `json:"deviceOperatingSystemVersion,omitempty"`
+	Headers *NetworkaccessHeaders `json:"headers,omitempty"`
+	NetworkProtocol *NetworkaccessNetworkAccessTrafficNetworkProtocol `json:"networkProtocol,omitempty"`
+	ODataType *string `json:"@odata.type,omitempty"`
+	PolicyId *string `json:"policyId,omitempty"`
+	PolicyRuleId *string `json:"policyRuleId,omitempty"`
+	ReceivedBytes *int64 `json:"receivedBytes,omitempty"`
+	SentBytes *int64 `json:"sentBytes,omitempty"`
+	SessionId *string `json:"sessionId,omitempty"`
+	SourceIp *string `json:"sourceIp,omitempty"`
+	SourcePort *int64 `json:"sourcePort,omitempty"`
+	TenantId *string `json:"tenantId,omitempty"`
+	TrafficType *NetworkaccessNetworkAccessTrafficTrafficType `json:"trafficType,omitempty"`
+	TransactionId *string `json:"transactionId,omitempty"`
+	TransportProtocol *NetworkaccessNetworkAccessTrafficTransportProtocol `json:"transportProtocol,omitempty"`
+	UserId *string `json:"userId,omitempty"`
+	UserPrincipalName *string `json:"userPrincipalName,omitempty"`
+}
+
+
+
+
+
+
+

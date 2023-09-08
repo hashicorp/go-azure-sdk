@@ -1,0 +1,73 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type SecurityKubernetesControllerEvidenceRoles string
+
+const (
+	SecurityKubernetesControllerEvidenceRolesadded             SecurityKubernetesControllerEvidenceRoles = "Added"
+	SecurityKubernetesControllerEvidenceRolesattacked          SecurityKubernetesControllerEvidenceRoles = "Attacked"
+	SecurityKubernetesControllerEvidenceRolesattacker          SecurityKubernetesControllerEvidenceRoles = "Attacker"
+	SecurityKubernetesControllerEvidenceRolescommandAndControl SecurityKubernetesControllerEvidenceRoles = "CommandAndControl"
+	SecurityKubernetesControllerEvidenceRolescompromised       SecurityKubernetesControllerEvidenceRoles = "Compromised"
+	SecurityKubernetesControllerEvidenceRolescontextual        SecurityKubernetesControllerEvidenceRoles = "Contextual"
+	SecurityKubernetesControllerEvidenceRolescreated           SecurityKubernetesControllerEvidenceRoles = "Created"
+	SecurityKubernetesControllerEvidenceRolesdestination       SecurityKubernetesControllerEvidenceRoles = "Destination"
+	SecurityKubernetesControllerEvidenceRolesedited            SecurityKubernetesControllerEvidenceRoles = "Edited"
+	SecurityKubernetesControllerEvidenceRolesloaded            SecurityKubernetesControllerEvidenceRoles = "Loaded"
+	SecurityKubernetesControllerEvidenceRolespolicyViolator    SecurityKubernetesControllerEvidenceRoles = "PolicyViolator"
+	SecurityKubernetesControllerEvidenceRolesscanned           SecurityKubernetesControllerEvidenceRoles = "Scanned"
+	SecurityKubernetesControllerEvidenceRolessource            SecurityKubernetesControllerEvidenceRoles = "Source"
+	SecurityKubernetesControllerEvidenceRolessuspicious        SecurityKubernetesControllerEvidenceRoles = "Suspicious"
+	SecurityKubernetesControllerEvidenceRolesunknown           SecurityKubernetesControllerEvidenceRoles = "Unknown"
+)
+
+func PossibleValuesForSecurityKubernetesControllerEvidenceRoles() []string {
+	return []string{
+		string(SecurityKubernetesControllerEvidenceRolesadded),
+		string(SecurityKubernetesControllerEvidenceRolesattacked),
+		string(SecurityKubernetesControllerEvidenceRolesattacker),
+		string(SecurityKubernetesControllerEvidenceRolescommandAndControl),
+		string(SecurityKubernetesControllerEvidenceRolescompromised),
+		string(SecurityKubernetesControllerEvidenceRolescontextual),
+		string(SecurityKubernetesControllerEvidenceRolescreated),
+		string(SecurityKubernetesControllerEvidenceRolesdestination),
+		string(SecurityKubernetesControllerEvidenceRolesedited),
+		string(SecurityKubernetesControllerEvidenceRolesloaded),
+		string(SecurityKubernetesControllerEvidenceRolespolicyViolator),
+		string(SecurityKubernetesControllerEvidenceRolesscanned),
+		string(SecurityKubernetesControllerEvidenceRolessource),
+		string(SecurityKubernetesControllerEvidenceRolessuspicious),
+		string(SecurityKubernetesControllerEvidenceRolesunknown),
+	}
+}
+
+func parseSecurityKubernetesControllerEvidenceRoles(input string) (*SecurityKubernetesControllerEvidenceRoles, error) {
+	vals := map[string]SecurityKubernetesControllerEvidenceRoles{
+		"added":             SecurityKubernetesControllerEvidenceRolesadded,
+		"attacked":          SecurityKubernetesControllerEvidenceRolesattacked,
+		"attacker":          SecurityKubernetesControllerEvidenceRolesattacker,
+		"commandandcontrol": SecurityKubernetesControllerEvidenceRolescommandAndControl,
+		"compromised":       SecurityKubernetesControllerEvidenceRolescompromised,
+		"contextual":        SecurityKubernetesControllerEvidenceRolescontextual,
+		"created":           SecurityKubernetesControllerEvidenceRolescreated,
+		"destination":       SecurityKubernetesControllerEvidenceRolesdestination,
+		"edited":            SecurityKubernetesControllerEvidenceRolesedited,
+		"loaded":            SecurityKubernetesControllerEvidenceRolesloaded,
+		"policyviolator":    SecurityKubernetesControllerEvidenceRolespolicyViolator,
+		"scanned":           SecurityKubernetesControllerEvidenceRolesscanned,
+		"source":            SecurityKubernetesControllerEvidenceRolessource,
+		"suspicious":        SecurityKubernetesControllerEvidenceRolessuspicious,
+		"unknown":           SecurityKubernetesControllerEvidenceRolesunknown,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SecurityKubernetesControllerEvidenceRoles(input)
+	return &out, nil
+}

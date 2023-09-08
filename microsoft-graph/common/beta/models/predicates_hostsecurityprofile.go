@@ -1,0 +1,87 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type HostSecurityProfileOperationPredicate struct {
+	AzureSubscriptionId       *string
+	AzureTenantId             *string
+	FirstSeenDateTime         *string
+	Fqdn                      *string
+	Id                        *string
+	IsAzureAdJoined           *bool
+	IsAzureAdRegistered       *bool
+	IsHybridAzureDomainJoined *bool
+	LastSeenDateTime          *string
+	NetBiosName               *string
+	ODataType                 *string
+	Os                        *string
+	OsVersion                 *string
+	ParentHost                *string
+	RiskScore                 *string
+}
+
+func (p HostSecurityProfileOperationPredicate) Matches(input HostSecurityProfile) bool {
+
+	if p.AzureSubscriptionId != nil && (input.AzureSubscriptionId == nil || *p.AzureSubscriptionId != *input.AzureSubscriptionId) {
+		return false
+	}
+
+	if p.AzureTenantId != nil && (input.AzureTenantId == nil || *p.AzureTenantId != *input.AzureTenantId) {
+		return false
+	}
+
+	if p.FirstSeenDateTime != nil && (input.FirstSeenDateTime == nil || *p.FirstSeenDateTime != *input.FirstSeenDateTime) {
+		return false
+	}
+
+	if p.Fqdn != nil && (input.Fqdn == nil || *p.Fqdn != *input.Fqdn) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.IsAzureAdJoined != nil && (input.IsAzureAdJoined == nil || *p.IsAzureAdJoined != *input.IsAzureAdJoined) {
+		return false
+	}
+
+	if p.IsAzureAdRegistered != nil && (input.IsAzureAdRegistered == nil || *p.IsAzureAdRegistered != *input.IsAzureAdRegistered) {
+		return false
+	}
+
+	if p.IsHybridAzureDomainJoined != nil && (input.IsHybridAzureDomainJoined == nil || *p.IsHybridAzureDomainJoined != *input.IsHybridAzureDomainJoined) {
+		return false
+	}
+
+	if p.LastSeenDateTime != nil && (input.LastSeenDateTime == nil || *p.LastSeenDateTime != *input.LastSeenDateTime) {
+		return false
+	}
+
+	if p.NetBiosName != nil && (input.NetBiosName == nil || *p.NetBiosName != *input.NetBiosName) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.Os != nil && (input.Os == nil || *p.Os != *input.Os) {
+		return false
+	}
+
+	if p.OsVersion != nil && (input.OsVersion == nil || *p.OsVersion != *input.OsVersion) {
+		return false
+	}
+
+	if p.ParentHost != nil && (input.ParentHost == nil || *p.ParentHost != *input.ParentHost) {
+		return false
+	}
+
+	if p.RiskScore != nil && (input.RiskScore == nil || *p.RiskScore != *input.RiskScore) {
+		return false
+	}
+
+	return true
+}

@@ -1,0 +1,47 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type UriClickSecurityStateOperationPredicate struct {
+	ClickAction   *string
+	ClickDateTime *string
+	Id            *string
+	ODataType     *string
+	SourceId      *string
+	UriDomain     *string
+	Verdict       *string
+}
+
+func (p UriClickSecurityStateOperationPredicate) Matches(input UriClickSecurityState) bool {
+
+	if p.ClickAction != nil && (input.ClickAction == nil || *p.ClickAction != *input.ClickAction) {
+		return false
+	}
+
+	if p.ClickDateTime != nil && (input.ClickDateTime == nil || *p.ClickDateTime != *input.ClickDateTime) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.SourceId != nil && (input.SourceId == nil || *p.SourceId != *input.SourceId) {
+		return false
+	}
+
+	if p.UriDomain != nil && (input.UriDomain == nil || *p.UriDomain != *input.UriDomain) {
+		return false
+	}
+
+	if p.Verdict != nil && (input.Verdict == nil || *p.Verdict != *input.Verdict) {
+		return false
+	}
+
+	return true
+}

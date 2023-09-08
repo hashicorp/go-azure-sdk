@@ -1,0 +1,49 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type SynchronizationJobRestartCriteriaResetScope string
+
+const (
+	SynchronizationJobRestartCriteriaResetScopeConnectorDataStore SynchronizationJobRestartCriteriaResetScope = "ConnectorDataStore"
+	SynchronizationJobRestartCriteriaResetScopeEscrows            SynchronizationJobRestartCriteriaResetScope = "Escrows"
+	SynchronizationJobRestartCriteriaResetScopeForceDeletes       SynchronizationJobRestartCriteriaResetScope = "ForceDeletes"
+	SynchronizationJobRestartCriteriaResetScopeFull               SynchronizationJobRestartCriteriaResetScope = "Full"
+	SynchronizationJobRestartCriteriaResetScopeNone               SynchronizationJobRestartCriteriaResetScope = "None"
+	SynchronizationJobRestartCriteriaResetScopeQuarantineState    SynchronizationJobRestartCriteriaResetScope = "QuarantineState"
+	SynchronizationJobRestartCriteriaResetScopeWatermark          SynchronizationJobRestartCriteriaResetScope = "Watermark"
+)
+
+func PossibleValuesForSynchronizationJobRestartCriteriaResetScope() []string {
+	return []string{
+		string(SynchronizationJobRestartCriteriaResetScopeConnectorDataStore),
+		string(SynchronizationJobRestartCriteriaResetScopeEscrows),
+		string(SynchronizationJobRestartCriteriaResetScopeForceDeletes),
+		string(SynchronizationJobRestartCriteriaResetScopeFull),
+		string(SynchronizationJobRestartCriteriaResetScopeNone),
+		string(SynchronizationJobRestartCriteriaResetScopeQuarantineState),
+		string(SynchronizationJobRestartCriteriaResetScopeWatermark),
+	}
+}
+
+func parseSynchronizationJobRestartCriteriaResetScope(input string) (*SynchronizationJobRestartCriteriaResetScope, error) {
+	vals := map[string]SynchronizationJobRestartCriteriaResetScope{
+		"connectordatastore": SynchronizationJobRestartCriteriaResetScopeConnectorDataStore,
+		"escrows":            SynchronizationJobRestartCriteriaResetScopeEscrows,
+		"forcedeletes":       SynchronizationJobRestartCriteriaResetScopeForceDeletes,
+		"full":               SynchronizationJobRestartCriteriaResetScopeFull,
+		"none":               SynchronizationJobRestartCriteriaResetScopeNone,
+		"quarantinestate":    SynchronizationJobRestartCriteriaResetScopeQuarantineState,
+		"watermark":          SynchronizationJobRestartCriteriaResetScopeWatermark,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SynchronizationJobRestartCriteriaResetScope(input)
+	return &out, nil
+}

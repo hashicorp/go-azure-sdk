@@ -1,0 +1,40 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type SecurityKubernetesPodEvidenceVerdict string
+
+const (
+	SecurityKubernetesPodEvidenceVerdictmalicious      SecurityKubernetesPodEvidenceVerdict = "Malicious"
+	SecurityKubernetesPodEvidenceVerdictnoThreatsFound SecurityKubernetesPodEvidenceVerdict = "NoThreatsFound"
+	SecurityKubernetesPodEvidenceVerdictsuspicious     SecurityKubernetesPodEvidenceVerdict = "Suspicious"
+	SecurityKubernetesPodEvidenceVerdictunknown        SecurityKubernetesPodEvidenceVerdict = "Unknown"
+)
+
+func PossibleValuesForSecurityKubernetesPodEvidenceVerdict() []string {
+	return []string{
+		string(SecurityKubernetesPodEvidenceVerdictmalicious),
+		string(SecurityKubernetesPodEvidenceVerdictnoThreatsFound),
+		string(SecurityKubernetesPodEvidenceVerdictsuspicious),
+		string(SecurityKubernetesPodEvidenceVerdictunknown),
+	}
+}
+
+func parseSecurityKubernetesPodEvidenceVerdict(input string) (*SecurityKubernetesPodEvidenceVerdict, error) {
+	vals := map[string]SecurityKubernetesPodEvidenceVerdict{
+		"malicious":      SecurityKubernetesPodEvidenceVerdictmalicious,
+		"nothreatsfound": SecurityKubernetesPodEvidenceVerdictnoThreatsFound,
+		"suspicious":     SecurityKubernetesPodEvidenceVerdictsuspicious,
+		"unknown":        SecurityKubernetesPodEvidenceVerdictunknown,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SecurityKubernetesPodEvidenceVerdict(input)
+	return &out, nil
+}

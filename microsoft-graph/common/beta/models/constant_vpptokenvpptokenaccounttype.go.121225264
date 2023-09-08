@@ -1,0 +1,40 @@
+package models
+
+import "strings"
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type VppTokenVppTokenAccountType string
+
+const (
+	VppTokenVppTokenAccountTypebusiness VppTokenVppTokenAccountType = "Business"
+	VppTokenVppTokenAccountTypeeducation VppTokenVppTokenAccountType = "Education"
+)
+
+
+func PossibleValuesForVppTokenVppTokenAccountType() []string {
+	return []string{
+		string(VppTokenVppTokenAccountTypebusiness),
+string(VppTokenVppTokenAccountTypeeducation),
+	}
+}
+
+
+
+func parseVppTokenVppTokenAccountType(input string) (*VppTokenVppTokenAccountType, error) {
+	vals := map[string]VppTokenVppTokenAccountType{
+		"business": VppTokenVppTokenAccountTypebusiness,
+"education": VppTokenVppTokenAccountTypeeducation,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := VppTokenVppTokenAccountType(input)
+	return &out, nil
+}

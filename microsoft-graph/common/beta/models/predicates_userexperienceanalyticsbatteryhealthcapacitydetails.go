@@ -1,0 +1,47 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type UserExperienceAnalyticsBatteryHealthCapacityDetailsOperationPredicate struct {
+	ActiveDevices         *int64
+	BatteryCapacityFair   *int64
+	BatteryCapacityGood   *int64
+	BatteryCapacityPoor   *int64
+	Id                    *string
+	LastRefreshedDateTime *string
+	ODataType             *string
+}
+
+func (p UserExperienceAnalyticsBatteryHealthCapacityDetailsOperationPredicate) Matches(input UserExperienceAnalyticsBatteryHealthCapacityDetails) bool {
+
+	if p.ActiveDevices != nil && (input.ActiveDevices == nil || *p.ActiveDevices != *input.ActiveDevices) {
+		return false
+	}
+
+	if p.BatteryCapacityFair != nil && (input.BatteryCapacityFair == nil || *p.BatteryCapacityFair != *input.BatteryCapacityFair) {
+		return false
+	}
+
+	if p.BatteryCapacityGood != nil && (input.BatteryCapacityGood == nil || *p.BatteryCapacityGood != *input.BatteryCapacityGood) {
+		return false
+	}
+
+	if p.BatteryCapacityPoor != nil && (input.BatteryCapacityPoor == nil || *p.BatteryCapacityPoor != *input.BatteryCapacityPoor) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.LastRefreshedDateTime != nil && (input.LastRefreshedDateTime == nil || *p.LastRefreshedDateTime != *input.LastRefreshedDateTime) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	return true
+}

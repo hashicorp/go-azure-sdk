@@ -1,0 +1,46 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type OrganizationPartnerTenantType string
+
+const (
+	OrganizationPartnerTenantTypebreadthPartner                          OrganizationPartnerTenantType = "BreadthPartner"
+	OrganizationPartnerTenantTypebreadthPartnerDelegatedAdmin            OrganizationPartnerTenantType = "BreadthPartnerDelegatedAdmin"
+	OrganizationPartnerTenantTypemicrosoftSupport                        OrganizationPartnerTenantType = "MicrosoftSupport"
+	OrganizationPartnerTenantTyperesellerPartnerDelegatedAdmin           OrganizationPartnerTenantType = "ResellerPartnerDelegatedAdmin"
+	OrganizationPartnerTenantTypesyndicatePartner                        OrganizationPartnerTenantType = "SyndicatePartner"
+	OrganizationPartnerTenantTypevalueAddedResellerPartnerDelegatedAdmin OrganizationPartnerTenantType = "ValueAddedResellerPartnerDelegatedAdmin"
+)
+
+func PossibleValuesForOrganizationPartnerTenantType() []string {
+	return []string{
+		string(OrganizationPartnerTenantTypebreadthPartner),
+		string(OrganizationPartnerTenantTypebreadthPartnerDelegatedAdmin),
+		string(OrganizationPartnerTenantTypemicrosoftSupport),
+		string(OrganizationPartnerTenantTyperesellerPartnerDelegatedAdmin),
+		string(OrganizationPartnerTenantTypesyndicatePartner),
+		string(OrganizationPartnerTenantTypevalueAddedResellerPartnerDelegatedAdmin),
+	}
+}
+
+func parseOrganizationPartnerTenantType(input string) (*OrganizationPartnerTenantType, error) {
+	vals := map[string]OrganizationPartnerTenantType{
+		"breadthpartner":                          OrganizationPartnerTenantTypebreadthPartner,
+		"breadthpartnerdelegatedadmin":            OrganizationPartnerTenantTypebreadthPartnerDelegatedAdmin,
+		"microsoftsupport":                        OrganizationPartnerTenantTypemicrosoftSupport,
+		"resellerpartnerdelegatedadmin":           OrganizationPartnerTenantTyperesellerPartnerDelegatedAdmin,
+		"syndicatepartner":                        OrganizationPartnerTenantTypesyndicatePartner,
+		"valueaddedresellerpartnerdelegatedadmin": OrganizationPartnerTenantTypevalueAddedResellerPartnerDelegatedAdmin,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := OrganizationPartnerTenantType(input)
+	return &out, nil
+}

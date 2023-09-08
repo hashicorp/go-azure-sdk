@@ -1,0 +1,99 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type ManagedTenantsCloudPCDeviceOperationPredicate struct {
+	 CloudPCStatus *string
+	 DeviceSpecification *string
+	 DisplayName *string
+	 Id *string
+	 LastRefreshedDateTime *string
+	 ManagedDeviceId *string
+	 ManagedDeviceName *string
+	 ODataType *string
+	 ProvisioningPolicyId *string
+	 ServicePlanName *string
+	 ServicePlanType *string
+	 TenantDisplayName *string
+	 TenantId *string
+	 UserPrincipalName *string
+}
+
+func (p ManagedTenantsCloudPCDeviceOperationPredicate) Matches(input ManagedTenantsCloudPCDevice) bool {
+
+	if p.CloudPCStatus != nil && (input.CloudPCStatus == nil || *p.CloudPCStatus != *input.CloudPCStatus) {
+	 	return false
+	}
+
+
+	if p.DeviceSpecification != nil && (input.DeviceSpecification == nil || *p.DeviceSpecification != *input.DeviceSpecification) {
+	 	return false
+	}
+
+
+	if p.DisplayName != nil && (input.DisplayName == nil || *p.DisplayName != *input.DisplayName) {
+	 	return false
+	}
+
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+	 	return false
+	}
+
+
+	if p.LastRefreshedDateTime != nil && (input.LastRefreshedDateTime == nil || *p.LastRefreshedDateTime != *input.LastRefreshedDateTime) {
+	 	return false
+	}
+
+
+	if p.ManagedDeviceId != nil && (input.ManagedDeviceId == nil || *p.ManagedDeviceId != *input.ManagedDeviceId) {
+	 	return false
+	}
+
+
+	if p.ManagedDeviceName != nil && (input.ManagedDeviceName == nil || *p.ManagedDeviceName != *input.ManagedDeviceName) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.ProvisioningPolicyId != nil && (input.ProvisioningPolicyId == nil || *p.ProvisioningPolicyId != *input.ProvisioningPolicyId) {
+	 	return false
+	}
+
+
+	if p.ServicePlanName != nil && (input.ServicePlanName == nil || *p.ServicePlanName != *input.ServicePlanName) {
+	 	return false
+	}
+
+
+	if p.ServicePlanType != nil && (input.ServicePlanType == nil || *p.ServicePlanType != *input.ServicePlanType) {
+	 	return false
+	}
+
+
+	if p.TenantDisplayName != nil && (input.TenantDisplayName == nil || *p.TenantDisplayName != *input.TenantDisplayName) {
+	 	return false
+	}
+
+
+	if p.TenantId != nil && (input.TenantId == nil || *p.TenantId != *input.TenantId) {
+	 	return false
+	}
+
+
+	if p.UserPrincipalName != nil && (input.UserPrincipalName == nil || *p.UserPrincipalName != *input.UserPrincipalName) {
+	 	return false
+	}
+
+
+	return true
+}
+

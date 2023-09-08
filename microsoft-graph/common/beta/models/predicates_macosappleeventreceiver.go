@@ -1,0 +1,32 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type MacOSAppleEventReceiverOperationPredicate struct {
+	Allowed         *bool
+	CodeRequirement *string
+	Identifier      *string
+	ODataType       *string
+}
+
+func (p MacOSAppleEventReceiverOperationPredicate) Matches(input MacOSAppleEventReceiver) bool {
+
+	if p.Allowed != nil && (input.Allowed == nil || *p.Allowed != *input.Allowed) {
+		return false
+	}
+
+	if p.CodeRequirement != nil && (input.CodeRequirement == nil || *p.CodeRequirement != *input.CodeRequirement) {
+		return false
+	}
+
+	if p.Identifier != nil && (input.Identifier == nil || *p.Identifier != *input.Identifier) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	return true
+}

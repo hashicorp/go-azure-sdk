@@ -1,0 +1,27 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type RubricQualitySelectedColumnModelOperationPredicate struct {
+	ColumnId  *string
+	ODataType *string
+	QualityId *string
+}
+
+func (p RubricQualitySelectedColumnModelOperationPredicate) Matches(input RubricQualitySelectedColumnModel) bool {
+
+	if p.ColumnId != nil && (input.ColumnId == nil || *p.ColumnId != *input.ColumnId) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.QualityId != nil && (input.QualityId == nil || *p.QualityId != *input.QualityId) {
+		return false
+	}
+
+	return true
+}

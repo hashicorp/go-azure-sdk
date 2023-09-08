@@ -1,0 +1,43 @@
+package models
+
+import "strings"
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type StatusDetailsErrorCategory string
+
+const (
+	StatusDetailsErrorCategoryfailure StatusDetailsErrorCategory = "Failure"
+	StatusDetailsErrorCategorynonServiceFailure StatusDetailsErrorCategory = "NonServiceFailure"
+	StatusDetailsErrorCategorysuccess StatusDetailsErrorCategory = "Success"
+)
+
+
+func PossibleValuesForStatusDetailsErrorCategory() []string {
+	return []string{
+		string(StatusDetailsErrorCategoryfailure),
+string(StatusDetailsErrorCategorynonServiceFailure),
+string(StatusDetailsErrorCategorysuccess),
+	}
+}
+
+
+
+func parseStatusDetailsErrorCategory(input string) (*StatusDetailsErrorCategory, error) {
+	vals := map[string]StatusDetailsErrorCategory{
+		"failure": StatusDetailsErrorCategoryfailure,
+"nonservicefailure": StatusDetailsErrorCategorynonServiceFailure,
+"success": StatusDetailsErrorCategorysuccess,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := StatusDetailsErrorCategory(input)
+	return &out, nil
+}

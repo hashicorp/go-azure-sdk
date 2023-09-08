@@ -1,0 +1,67 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type UserExperienceAnalyticsAppHealthDevicePerformanceOperationPredicate struct {
+	AppCrashCount              *int64
+	AppHangCount               *int64
+	CrashedAppCount            *int64
+	DeviceDisplayName          *string
+	DeviceId                   *string
+	DeviceManufacturer         *string
+	DeviceModel                *string
+	Id                         *string
+	MeanTimeToFailureInMinutes *int64
+	ODataType                  *string
+	ProcessedDateTime          *string
+}
+
+func (p UserExperienceAnalyticsAppHealthDevicePerformanceOperationPredicate) Matches(input UserExperienceAnalyticsAppHealthDevicePerformance) bool {
+
+	if p.AppCrashCount != nil && (input.AppCrashCount == nil || *p.AppCrashCount != *input.AppCrashCount) {
+		return false
+	}
+
+	if p.AppHangCount != nil && (input.AppHangCount == nil || *p.AppHangCount != *input.AppHangCount) {
+		return false
+	}
+
+	if p.CrashedAppCount != nil && (input.CrashedAppCount == nil || *p.CrashedAppCount != *input.CrashedAppCount) {
+		return false
+	}
+
+	if p.DeviceDisplayName != nil && (input.DeviceDisplayName == nil || *p.DeviceDisplayName != *input.DeviceDisplayName) {
+		return false
+	}
+
+	if p.DeviceId != nil && (input.DeviceId == nil || *p.DeviceId != *input.DeviceId) {
+		return false
+	}
+
+	if p.DeviceManufacturer != nil && (input.DeviceManufacturer == nil || *p.DeviceManufacturer != *input.DeviceManufacturer) {
+		return false
+	}
+
+	if p.DeviceModel != nil && (input.DeviceModel == nil || *p.DeviceModel != *input.DeviceModel) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.MeanTimeToFailureInMinutes != nil && (input.MeanTimeToFailureInMinutes == nil || *p.MeanTimeToFailureInMinutes != *input.MeanTimeToFailureInMinutes) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.ProcessedDateTime != nil && (input.ProcessedDateTime == nil || *p.ProcessedDateTime != *input.ProcessedDateTime) {
+		return false
+	}
+
+	return true
+}

@@ -1,0 +1,47 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type WorkbookRangeFontOperationPredicate struct {
+	Bold      *bool
+	Color     *string
+	Id        *string
+	Italic    *bool
+	Name      *string
+	ODataType *string
+	Underline *string
+}
+
+func (p WorkbookRangeFontOperationPredicate) Matches(input WorkbookRangeFont) bool {
+
+	if p.Bold != nil && (input.Bold == nil || *p.Bold != *input.Bold) {
+		return false
+	}
+
+	if p.Color != nil && (input.Color == nil || *p.Color != *input.Color) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.Italic != nil && (input.Italic == nil || *p.Italic != *input.Italic) {
+		return false
+	}
+
+	if p.Name != nil && (input.Name == nil || *p.Name != *input.Name) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.Underline != nil && (input.Underline == nil || *p.Underline != *input.Underline) {
+		return false
+	}
+
+	return true
+}

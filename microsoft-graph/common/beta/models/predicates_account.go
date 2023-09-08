@@ -1,0 +1,52 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type AccountOperationPredicate struct {
+	Blocked              *bool
+	Category             *string
+	DisplayName          *string
+	Id                   *string
+	LastModifiedDateTime *string
+	Number               *string
+	ODataType            *string
+	SubCategory          *string
+}
+
+func (p AccountOperationPredicate) Matches(input Account) bool {
+
+	if p.Blocked != nil && (input.Blocked == nil || *p.Blocked != *input.Blocked) {
+		return false
+	}
+
+	if p.Category != nil && (input.Category == nil || *p.Category != *input.Category) {
+		return false
+	}
+
+	if p.DisplayName != nil && (input.DisplayName == nil || *p.DisplayName != *input.DisplayName) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.LastModifiedDateTime != nil && (input.LastModifiedDateTime == nil || *p.LastModifiedDateTime != *input.LastModifiedDateTime) {
+		return false
+	}
+
+	if p.Number != nil && (input.Number == nil || *p.Number != *input.Number) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.SubCategory != nil && (input.SubCategory == nil || *p.SubCategory != *input.SubCategory) {
+		return false
+	}
+
+	return true
+}

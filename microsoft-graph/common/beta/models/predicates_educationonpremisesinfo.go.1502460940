@@ -1,0 +1,27 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type EducationOnPremisesInfoOperationPredicate struct {
+	 ImmutableId *string
+	 ODataType *string
+}
+
+func (p EducationOnPremisesInfoOperationPredicate) Matches(input EducationOnPremisesInfo) bool {
+
+	if p.ImmutableId != nil && (input.ImmutableId == nil || *p.ImmutableId != *input.ImmutableId) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	return true
+}
+

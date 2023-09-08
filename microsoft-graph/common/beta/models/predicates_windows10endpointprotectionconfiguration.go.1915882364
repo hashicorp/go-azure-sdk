@@ -1,0 +1,789 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type Windows10EndpointProtectionConfigurationOperationPredicate struct {
+	 ApplicationGuardAllowCameraMicrophoneRedirection *bool
+	 ApplicationGuardAllowFileSaveOnHost *bool
+	 ApplicationGuardAllowPersistence *bool
+	 ApplicationGuardAllowPrintToLocalPrinters *bool
+	 ApplicationGuardAllowPrintToNetworkPrinters *bool
+	 ApplicationGuardAllowPrintToPDF *bool
+	 ApplicationGuardAllowPrintToXPS *bool
+	 ApplicationGuardAllowVirtualGPU *bool
+	 ApplicationGuardBlockNonEnterpriseContent *bool
+	 ApplicationGuardEnabled *bool
+	 ApplicationGuardForceAuditing *bool
+	 BitLockerAllowStandardUserEncryption *bool
+	 BitLockerDisableWarningForOtherDiskEncryption *bool
+	 BitLockerEnableStorageCardEncryptionOnMobile *bool
+	 BitLockerEncryptDevice *bool
+	 CreatedDateTime *string
+	 DefenderAllowBehaviorMonitoring *bool
+	 DefenderAllowCloudProtection *bool
+	 DefenderAllowEndUserAccess *bool
+	 DefenderAllowIntrusionPreventionSystem *bool
+	 DefenderAllowOnAccessProtection *bool
+	 DefenderAllowRealTimeMonitoring *bool
+	 DefenderAllowScanArchiveFiles *bool
+	 DefenderAllowScanDownloads *bool
+	 DefenderAllowScanNetworkFiles *bool
+	 DefenderAllowScanRemovableDrivesDuringFullScan *bool
+	 DefenderAllowScanScriptsLoadedInInternetExplorer *bool
+	 DefenderBlockEndUserAccess *bool
+	 DefenderCheckForSignaturesBeforeRunningScan *bool
+	 DefenderCloudExtendedTimeoutInSeconds *int64
+	 DefenderDaysBeforeDeletingQuarantinedMalware *int64
+	 DefenderDisableBehaviorMonitoring *bool
+	 DefenderDisableCatchupFullScan *bool
+	 DefenderDisableCatchupQuickScan *bool
+	 DefenderDisableCloudProtection *bool
+	 DefenderDisableIntrusionPreventionSystem *bool
+	 DefenderDisableOnAccessProtection *bool
+	 DefenderDisableRealTimeMonitoring *bool
+	 DefenderDisableScanArchiveFiles *bool
+	 DefenderDisableScanDownloads *bool
+	 DefenderDisableScanNetworkFiles *bool
+	 DefenderDisableScanRemovableDrivesDuringFullScan *bool
+	 DefenderDisableScanScriptsLoadedInInternetExplorer *bool
+	 DefenderEnableLowCpuPriority *bool
+	 DefenderEnableScanIncomingMail *bool
+	 DefenderEnableScanMappedNetworkDrivesDuringFullScan *bool
+	 DefenderExploitProtectionXml *string
+	 DefenderExploitProtectionXmlFileName *string
+	 DefenderScanMaxCpuPercentage *int64
+	 DefenderScheduledQuickScanTime *string
+	 DefenderScheduledScanTime *string
+	 DefenderSecurityCenterBlockExploitProtectionOverride *bool
+	 DefenderSecurityCenterDisableAccountUI *bool
+	 DefenderSecurityCenterDisableAppBrowserUI *bool
+	 DefenderSecurityCenterDisableClearTpmUI *bool
+	 DefenderSecurityCenterDisableFamilyUI *bool
+	 DefenderSecurityCenterDisableHardwareUI *bool
+	 DefenderSecurityCenterDisableHealthUI *bool
+	 DefenderSecurityCenterDisableNetworkUI *bool
+	 DefenderSecurityCenterDisableNotificationAreaUI *bool
+	 DefenderSecurityCenterDisableRansomwareUI *bool
+	 DefenderSecurityCenterDisableSecureBootUI *bool
+	 DefenderSecurityCenterDisableTroubleshootingUI *bool
+	 DefenderSecurityCenterDisableVirusUI *bool
+	 DefenderSecurityCenterDisableVulnerableTpmFirmwareUpdateUI *bool
+	 DefenderSecurityCenterHelpEmail *string
+	 DefenderSecurityCenterHelpPhone *string
+	 DefenderSecurityCenterHelpURL *string
+	 DefenderSecurityCenterOrganizationDisplayName *string
+	 DefenderSignatureUpdateIntervalInHours *int64
+	 Description *string
+	 DeviceGuardEnableSecureBootWithDMA *bool
+	 DeviceGuardEnableVirtualizationBasedSecurity *bool
+	 DisplayName *string
+	 FirewallBlockStatefulFTP *bool
+	 FirewallIPSecExemptionsAllowDHCP *bool
+	 FirewallIPSecExemptionsAllowICMP *bool
+	 FirewallIPSecExemptionsAllowNeighborDiscovery *bool
+	 FirewallIPSecExemptionsAllowRouterDiscovery *bool
+	 FirewallIPSecExemptionsNone *bool
+	 FirewallIdleTimeoutForSecurityAssociationInSeconds *int64
+	 FirewallMergeKeyingModuleSettings *bool
+	 Id *string
+	 LanManagerWorkstationDisableInsecureGuestLogons *bool
+	 LastModifiedDateTime *string
+	 LocalSecurityOptionsAdministratorAccountName *string
+	 LocalSecurityOptionsAllowAnonymousEnumerationOfSAMAccountsAndShares *bool
+	 LocalSecurityOptionsAllowPKU2UAuthenticationRequests *bool
+	 LocalSecurityOptionsAllowRemoteCallsToSecurityAccountsManager *string
+	 LocalSecurityOptionsAllowRemoteCallsToSecurityAccountsManagerHelperBool *bool
+	 LocalSecurityOptionsAllowSystemToBeShutDownWithoutHavingToLogOn *bool
+	 LocalSecurityOptionsAllowUIAccessApplicationElevation *bool
+	 LocalSecurityOptionsAllowUIAccessApplicationsForSecureLocations *bool
+	 LocalSecurityOptionsAllowUndockWithoutHavingToLogon *bool
+	 LocalSecurityOptionsBlockMicrosoftAccounts *bool
+	 LocalSecurityOptionsBlockRemoteLogonWithBlankPassword *bool
+	 LocalSecurityOptionsBlockRemoteOpticalDriveAccess *bool
+	 LocalSecurityOptionsBlockUsersInstallingPrinterDrivers *bool
+	 LocalSecurityOptionsClearVirtualMemoryPageFile *bool
+	 LocalSecurityOptionsClientDigitallySignCommunicationsAlways *bool
+	 LocalSecurityOptionsClientSendUnencryptedPasswordToThirdPartySMBServers *bool
+	 LocalSecurityOptionsDetectApplicationInstallationsAndPromptForElevation *bool
+	 LocalSecurityOptionsDisableAdministratorAccount *bool
+	 LocalSecurityOptionsDisableClientDigitallySignCommunicationsIfServerAgrees *bool
+	 LocalSecurityOptionsDisableGuestAccount *bool
+	 LocalSecurityOptionsDisableServerDigitallySignCommunicationsAlways *bool
+	 LocalSecurityOptionsDisableServerDigitallySignCommunicationsIfClientAgrees *bool
+	 LocalSecurityOptionsDoNotAllowAnonymousEnumerationOfSAMAccounts *bool
+	 LocalSecurityOptionsDoNotRequireCtrlAltDel *bool
+	 LocalSecurityOptionsDoNotStoreLANManagerHashValueOnNextPasswordChange *bool
+	 LocalSecurityOptionsGuestAccountName *string
+	 LocalSecurityOptionsHideLastSignedInUser *bool
+	 LocalSecurityOptionsHideUsernameAtSignIn *bool
+	 LocalSecurityOptionsLogOnMessageText *string
+	 LocalSecurityOptionsLogOnMessageTitle *string
+	 LocalSecurityOptionsMachineInactivityLimit *int64
+	 LocalSecurityOptionsMachineInactivityLimitInMinutes *int64
+	 LocalSecurityOptionsOnlyElevateSignedExecutables *bool
+	 LocalSecurityOptionsRestrictAnonymousAccessToNamedPipesAndShares *bool
+	 LocalSecurityOptionsSwitchToSecureDesktopWhenPromptingForElevation *bool
+	 LocalSecurityOptionsUseAdminApprovalMode *bool
+	 LocalSecurityOptionsUseAdminApprovalModeForAdministrators *bool
+	 LocalSecurityOptionsVirtualizeFileAndRegistryWriteFailuresToPerUserLocations *bool
+	 ODataType *string
+	 SmartScreenBlockOverrideForFiles *bool
+	 SmartScreenEnableInShell *bool
+	 SupportsScopeTags *bool
+	 Version *int64
+	 XboxServicesEnableXboxGameSaveTask *bool
+}
+
+func (p Windows10EndpointProtectionConfigurationOperationPredicate) Matches(input Windows10EndpointProtectionConfiguration) bool {
+
+	if p.ApplicationGuardAllowCameraMicrophoneRedirection != nil && (input.ApplicationGuardAllowCameraMicrophoneRedirection == nil || *p.ApplicationGuardAllowCameraMicrophoneRedirection != *input.ApplicationGuardAllowCameraMicrophoneRedirection) {
+	 	return false
+	}
+
+
+	if p.ApplicationGuardAllowFileSaveOnHost != nil && (input.ApplicationGuardAllowFileSaveOnHost == nil || *p.ApplicationGuardAllowFileSaveOnHost != *input.ApplicationGuardAllowFileSaveOnHost) {
+	 	return false
+	}
+
+
+	if p.ApplicationGuardAllowPersistence != nil && (input.ApplicationGuardAllowPersistence == nil || *p.ApplicationGuardAllowPersistence != *input.ApplicationGuardAllowPersistence) {
+	 	return false
+	}
+
+
+	if p.ApplicationGuardAllowPrintToLocalPrinters != nil && (input.ApplicationGuardAllowPrintToLocalPrinters == nil || *p.ApplicationGuardAllowPrintToLocalPrinters != *input.ApplicationGuardAllowPrintToLocalPrinters) {
+	 	return false
+	}
+
+
+	if p.ApplicationGuardAllowPrintToNetworkPrinters != nil && (input.ApplicationGuardAllowPrintToNetworkPrinters == nil || *p.ApplicationGuardAllowPrintToNetworkPrinters != *input.ApplicationGuardAllowPrintToNetworkPrinters) {
+	 	return false
+	}
+
+
+	if p.ApplicationGuardAllowPrintToPDF != nil && (input.ApplicationGuardAllowPrintToPDF == nil || *p.ApplicationGuardAllowPrintToPDF != *input.ApplicationGuardAllowPrintToPDF) {
+	 	return false
+	}
+
+
+	if p.ApplicationGuardAllowPrintToXPS != nil && (input.ApplicationGuardAllowPrintToXPS == nil || *p.ApplicationGuardAllowPrintToXPS != *input.ApplicationGuardAllowPrintToXPS) {
+	 	return false
+	}
+
+
+	if p.ApplicationGuardAllowVirtualGPU != nil && (input.ApplicationGuardAllowVirtualGPU == nil || *p.ApplicationGuardAllowVirtualGPU != *input.ApplicationGuardAllowVirtualGPU) {
+	 	return false
+	}
+
+
+	if p.ApplicationGuardBlockNonEnterpriseContent != nil && (input.ApplicationGuardBlockNonEnterpriseContent == nil || *p.ApplicationGuardBlockNonEnterpriseContent != *input.ApplicationGuardBlockNonEnterpriseContent) {
+	 	return false
+	}
+
+
+	if p.ApplicationGuardEnabled != nil && (input.ApplicationGuardEnabled == nil || *p.ApplicationGuardEnabled != *input.ApplicationGuardEnabled) {
+	 	return false
+	}
+
+
+	if p.ApplicationGuardForceAuditing != nil && (input.ApplicationGuardForceAuditing == nil || *p.ApplicationGuardForceAuditing != *input.ApplicationGuardForceAuditing) {
+	 	return false
+	}
+
+
+	if p.BitLockerAllowStandardUserEncryption != nil && (input.BitLockerAllowStandardUserEncryption == nil || *p.BitLockerAllowStandardUserEncryption != *input.BitLockerAllowStandardUserEncryption) {
+	 	return false
+	}
+
+
+	if p.BitLockerDisableWarningForOtherDiskEncryption != nil && (input.BitLockerDisableWarningForOtherDiskEncryption == nil || *p.BitLockerDisableWarningForOtherDiskEncryption != *input.BitLockerDisableWarningForOtherDiskEncryption) {
+	 	return false
+	}
+
+
+	if p.BitLockerEnableStorageCardEncryptionOnMobile != nil && (input.BitLockerEnableStorageCardEncryptionOnMobile == nil || *p.BitLockerEnableStorageCardEncryptionOnMobile != *input.BitLockerEnableStorageCardEncryptionOnMobile) {
+	 	return false
+	}
+
+
+	if p.BitLockerEncryptDevice != nil && (input.BitLockerEncryptDevice == nil || *p.BitLockerEncryptDevice != *input.BitLockerEncryptDevice) {
+	 	return false
+	}
+
+
+	if p.CreatedDateTime != nil && (input.CreatedDateTime == nil || *p.CreatedDateTime != *input.CreatedDateTime) {
+	 	return false
+	}
+
+
+	if p.DefenderAllowBehaviorMonitoring != nil && (input.DefenderAllowBehaviorMonitoring == nil || *p.DefenderAllowBehaviorMonitoring != *input.DefenderAllowBehaviorMonitoring) {
+	 	return false
+	}
+
+
+	if p.DefenderAllowCloudProtection != nil && (input.DefenderAllowCloudProtection == nil || *p.DefenderAllowCloudProtection != *input.DefenderAllowCloudProtection) {
+	 	return false
+	}
+
+
+	if p.DefenderAllowEndUserAccess != nil && (input.DefenderAllowEndUserAccess == nil || *p.DefenderAllowEndUserAccess != *input.DefenderAllowEndUserAccess) {
+	 	return false
+	}
+
+
+	if p.DefenderAllowIntrusionPreventionSystem != nil && (input.DefenderAllowIntrusionPreventionSystem == nil || *p.DefenderAllowIntrusionPreventionSystem != *input.DefenderAllowIntrusionPreventionSystem) {
+	 	return false
+	}
+
+
+	if p.DefenderAllowOnAccessProtection != nil && (input.DefenderAllowOnAccessProtection == nil || *p.DefenderAllowOnAccessProtection != *input.DefenderAllowOnAccessProtection) {
+	 	return false
+	}
+
+
+	if p.DefenderAllowRealTimeMonitoring != nil && (input.DefenderAllowRealTimeMonitoring == nil || *p.DefenderAllowRealTimeMonitoring != *input.DefenderAllowRealTimeMonitoring) {
+	 	return false
+	}
+
+
+	if p.DefenderAllowScanArchiveFiles != nil && (input.DefenderAllowScanArchiveFiles == nil || *p.DefenderAllowScanArchiveFiles != *input.DefenderAllowScanArchiveFiles) {
+	 	return false
+	}
+
+
+	if p.DefenderAllowScanDownloads != nil && (input.DefenderAllowScanDownloads == nil || *p.DefenderAllowScanDownloads != *input.DefenderAllowScanDownloads) {
+	 	return false
+	}
+
+
+	if p.DefenderAllowScanNetworkFiles != nil && (input.DefenderAllowScanNetworkFiles == nil || *p.DefenderAllowScanNetworkFiles != *input.DefenderAllowScanNetworkFiles) {
+	 	return false
+	}
+
+
+	if p.DefenderAllowScanRemovableDrivesDuringFullScan != nil && (input.DefenderAllowScanRemovableDrivesDuringFullScan == nil || *p.DefenderAllowScanRemovableDrivesDuringFullScan != *input.DefenderAllowScanRemovableDrivesDuringFullScan) {
+	 	return false
+	}
+
+
+	if p.DefenderAllowScanScriptsLoadedInInternetExplorer != nil && (input.DefenderAllowScanScriptsLoadedInInternetExplorer == nil || *p.DefenderAllowScanScriptsLoadedInInternetExplorer != *input.DefenderAllowScanScriptsLoadedInInternetExplorer) {
+	 	return false
+	}
+
+
+	if p.DefenderBlockEndUserAccess != nil && (input.DefenderBlockEndUserAccess == nil || *p.DefenderBlockEndUserAccess != *input.DefenderBlockEndUserAccess) {
+	 	return false
+	}
+
+
+	if p.DefenderCheckForSignaturesBeforeRunningScan != nil && (input.DefenderCheckForSignaturesBeforeRunningScan == nil || *p.DefenderCheckForSignaturesBeforeRunningScan != *input.DefenderCheckForSignaturesBeforeRunningScan) {
+	 	return false
+	}
+
+
+	if p.DefenderCloudExtendedTimeoutInSeconds != nil && (input.DefenderCloudExtendedTimeoutInSeconds == nil || *p.DefenderCloudExtendedTimeoutInSeconds != *input.DefenderCloudExtendedTimeoutInSeconds) {
+	 	return false
+	}
+
+
+	if p.DefenderDaysBeforeDeletingQuarantinedMalware != nil && (input.DefenderDaysBeforeDeletingQuarantinedMalware == nil || *p.DefenderDaysBeforeDeletingQuarantinedMalware != *input.DefenderDaysBeforeDeletingQuarantinedMalware) {
+	 	return false
+	}
+
+
+	if p.DefenderDisableBehaviorMonitoring != nil && (input.DefenderDisableBehaviorMonitoring == nil || *p.DefenderDisableBehaviorMonitoring != *input.DefenderDisableBehaviorMonitoring) {
+	 	return false
+	}
+
+
+	if p.DefenderDisableCatchupFullScan != nil && (input.DefenderDisableCatchupFullScan == nil || *p.DefenderDisableCatchupFullScan != *input.DefenderDisableCatchupFullScan) {
+	 	return false
+	}
+
+
+	if p.DefenderDisableCatchupQuickScan != nil && (input.DefenderDisableCatchupQuickScan == nil || *p.DefenderDisableCatchupQuickScan != *input.DefenderDisableCatchupQuickScan) {
+	 	return false
+	}
+
+
+	if p.DefenderDisableCloudProtection != nil && (input.DefenderDisableCloudProtection == nil || *p.DefenderDisableCloudProtection != *input.DefenderDisableCloudProtection) {
+	 	return false
+	}
+
+
+	if p.DefenderDisableIntrusionPreventionSystem != nil && (input.DefenderDisableIntrusionPreventionSystem == nil || *p.DefenderDisableIntrusionPreventionSystem != *input.DefenderDisableIntrusionPreventionSystem) {
+	 	return false
+	}
+
+
+	if p.DefenderDisableOnAccessProtection != nil && (input.DefenderDisableOnAccessProtection == nil || *p.DefenderDisableOnAccessProtection != *input.DefenderDisableOnAccessProtection) {
+	 	return false
+	}
+
+
+	if p.DefenderDisableRealTimeMonitoring != nil && (input.DefenderDisableRealTimeMonitoring == nil || *p.DefenderDisableRealTimeMonitoring != *input.DefenderDisableRealTimeMonitoring) {
+	 	return false
+	}
+
+
+	if p.DefenderDisableScanArchiveFiles != nil && (input.DefenderDisableScanArchiveFiles == nil || *p.DefenderDisableScanArchiveFiles != *input.DefenderDisableScanArchiveFiles) {
+	 	return false
+	}
+
+
+	if p.DefenderDisableScanDownloads != nil && (input.DefenderDisableScanDownloads == nil || *p.DefenderDisableScanDownloads != *input.DefenderDisableScanDownloads) {
+	 	return false
+	}
+
+
+	if p.DefenderDisableScanNetworkFiles != nil && (input.DefenderDisableScanNetworkFiles == nil || *p.DefenderDisableScanNetworkFiles != *input.DefenderDisableScanNetworkFiles) {
+	 	return false
+	}
+
+
+	if p.DefenderDisableScanRemovableDrivesDuringFullScan != nil && (input.DefenderDisableScanRemovableDrivesDuringFullScan == nil || *p.DefenderDisableScanRemovableDrivesDuringFullScan != *input.DefenderDisableScanRemovableDrivesDuringFullScan) {
+	 	return false
+	}
+
+
+	if p.DefenderDisableScanScriptsLoadedInInternetExplorer != nil && (input.DefenderDisableScanScriptsLoadedInInternetExplorer == nil || *p.DefenderDisableScanScriptsLoadedInInternetExplorer != *input.DefenderDisableScanScriptsLoadedInInternetExplorer) {
+	 	return false
+	}
+
+
+	if p.DefenderEnableLowCpuPriority != nil && (input.DefenderEnableLowCpuPriority == nil || *p.DefenderEnableLowCpuPriority != *input.DefenderEnableLowCpuPriority) {
+	 	return false
+	}
+
+
+	if p.DefenderEnableScanIncomingMail != nil && (input.DefenderEnableScanIncomingMail == nil || *p.DefenderEnableScanIncomingMail != *input.DefenderEnableScanIncomingMail) {
+	 	return false
+	}
+
+
+	if p.DefenderEnableScanMappedNetworkDrivesDuringFullScan != nil && (input.DefenderEnableScanMappedNetworkDrivesDuringFullScan == nil || *p.DefenderEnableScanMappedNetworkDrivesDuringFullScan != *input.DefenderEnableScanMappedNetworkDrivesDuringFullScan) {
+	 	return false
+	}
+
+
+	if p.DefenderExploitProtectionXml != nil && (input.DefenderExploitProtectionXml == nil || *p.DefenderExploitProtectionXml != *input.DefenderExploitProtectionXml) {
+	 	return false
+	}
+
+
+	if p.DefenderExploitProtectionXmlFileName != nil && (input.DefenderExploitProtectionXmlFileName == nil || *p.DefenderExploitProtectionXmlFileName != *input.DefenderExploitProtectionXmlFileName) {
+	 	return false
+	}
+
+
+	if p.DefenderScanMaxCpuPercentage != nil && (input.DefenderScanMaxCpuPercentage == nil || *p.DefenderScanMaxCpuPercentage != *input.DefenderScanMaxCpuPercentage) {
+	 	return false
+	}
+
+
+	if p.DefenderScheduledQuickScanTime != nil && (input.DefenderScheduledQuickScanTime == nil || *p.DefenderScheduledQuickScanTime != *input.DefenderScheduledQuickScanTime) {
+	 	return false
+	}
+
+
+	if p.DefenderScheduledScanTime != nil && (input.DefenderScheduledScanTime == nil || *p.DefenderScheduledScanTime != *input.DefenderScheduledScanTime) {
+	 	return false
+	}
+
+
+	if p.DefenderSecurityCenterBlockExploitProtectionOverride != nil && (input.DefenderSecurityCenterBlockExploitProtectionOverride == nil || *p.DefenderSecurityCenterBlockExploitProtectionOverride != *input.DefenderSecurityCenterBlockExploitProtectionOverride) {
+	 	return false
+	}
+
+
+	if p.DefenderSecurityCenterDisableAccountUI != nil && (input.DefenderSecurityCenterDisableAccountUI == nil || *p.DefenderSecurityCenterDisableAccountUI != *input.DefenderSecurityCenterDisableAccountUI) {
+	 	return false
+	}
+
+
+	if p.DefenderSecurityCenterDisableAppBrowserUI != nil && (input.DefenderSecurityCenterDisableAppBrowserUI == nil || *p.DefenderSecurityCenterDisableAppBrowserUI != *input.DefenderSecurityCenterDisableAppBrowserUI) {
+	 	return false
+	}
+
+
+	if p.DefenderSecurityCenterDisableClearTpmUI != nil && (input.DefenderSecurityCenterDisableClearTpmUI == nil || *p.DefenderSecurityCenterDisableClearTpmUI != *input.DefenderSecurityCenterDisableClearTpmUI) {
+	 	return false
+	}
+
+
+	if p.DefenderSecurityCenterDisableFamilyUI != nil && (input.DefenderSecurityCenterDisableFamilyUI == nil || *p.DefenderSecurityCenterDisableFamilyUI != *input.DefenderSecurityCenterDisableFamilyUI) {
+	 	return false
+	}
+
+
+	if p.DefenderSecurityCenterDisableHardwareUI != nil && (input.DefenderSecurityCenterDisableHardwareUI == nil || *p.DefenderSecurityCenterDisableHardwareUI != *input.DefenderSecurityCenterDisableHardwareUI) {
+	 	return false
+	}
+
+
+	if p.DefenderSecurityCenterDisableHealthUI != nil && (input.DefenderSecurityCenterDisableHealthUI == nil || *p.DefenderSecurityCenterDisableHealthUI != *input.DefenderSecurityCenterDisableHealthUI) {
+	 	return false
+	}
+
+
+	if p.DefenderSecurityCenterDisableNetworkUI != nil && (input.DefenderSecurityCenterDisableNetworkUI == nil || *p.DefenderSecurityCenterDisableNetworkUI != *input.DefenderSecurityCenterDisableNetworkUI) {
+	 	return false
+	}
+
+
+	if p.DefenderSecurityCenterDisableNotificationAreaUI != nil && (input.DefenderSecurityCenterDisableNotificationAreaUI == nil || *p.DefenderSecurityCenterDisableNotificationAreaUI != *input.DefenderSecurityCenterDisableNotificationAreaUI) {
+	 	return false
+	}
+
+
+	if p.DefenderSecurityCenterDisableRansomwareUI != nil && (input.DefenderSecurityCenterDisableRansomwareUI == nil || *p.DefenderSecurityCenterDisableRansomwareUI != *input.DefenderSecurityCenterDisableRansomwareUI) {
+	 	return false
+	}
+
+
+	if p.DefenderSecurityCenterDisableSecureBootUI != nil && (input.DefenderSecurityCenterDisableSecureBootUI == nil || *p.DefenderSecurityCenterDisableSecureBootUI != *input.DefenderSecurityCenterDisableSecureBootUI) {
+	 	return false
+	}
+
+
+	if p.DefenderSecurityCenterDisableTroubleshootingUI != nil && (input.DefenderSecurityCenterDisableTroubleshootingUI == nil || *p.DefenderSecurityCenterDisableTroubleshootingUI != *input.DefenderSecurityCenterDisableTroubleshootingUI) {
+	 	return false
+	}
+
+
+	if p.DefenderSecurityCenterDisableVirusUI != nil && (input.DefenderSecurityCenterDisableVirusUI == nil || *p.DefenderSecurityCenterDisableVirusUI != *input.DefenderSecurityCenterDisableVirusUI) {
+	 	return false
+	}
+
+
+	if p.DefenderSecurityCenterDisableVulnerableTpmFirmwareUpdateUI != nil && (input.DefenderSecurityCenterDisableVulnerableTpmFirmwareUpdateUI == nil || *p.DefenderSecurityCenterDisableVulnerableTpmFirmwareUpdateUI != *input.DefenderSecurityCenterDisableVulnerableTpmFirmwareUpdateUI) {
+	 	return false
+	}
+
+
+	if p.DefenderSecurityCenterHelpEmail != nil && (input.DefenderSecurityCenterHelpEmail == nil || *p.DefenderSecurityCenterHelpEmail != *input.DefenderSecurityCenterHelpEmail) {
+	 	return false
+	}
+
+
+	if p.DefenderSecurityCenterHelpPhone != nil && (input.DefenderSecurityCenterHelpPhone == nil || *p.DefenderSecurityCenterHelpPhone != *input.DefenderSecurityCenterHelpPhone) {
+	 	return false
+	}
+
+
+	if p.DefenderSecurityCenterHelpURL != nil && (input.DefenderSecurityCenterHelpURL == nil || *p.DefenderSecurityCenterHelpURL != *input.DefenderSecurityCenterHelpURL) {
+	 	return false
+	}
+
+
+	if p.DefenderSecurityCenterOrganizationDisplayName != nil && (input.DefenderSecurityCenterOrganizationDisplayName == nil || *p.DefenderSecurityCenterOrganizationDisplayName != *input.DefenderSecurityCenterOrganizationDisplayName) {
+	 	return false
+	}
+
+
+	if p.DefenderSignatureUpdateIntervalInHours != nil && (input.DefenderSignatureUpdateIntervalInHours == nil || *p.DefenderSignatureUpdateIntervalInHours != *input.DefenderSignatureUpdateIntervalInHours) {
+	 	return false
+	}
+
+
+	if p.Description != nil && (input.Description == nil || *p.Description != *input.Description) {
+	 	return false
+	}
+
+
+	if p.DeviceGuardEnableSecureBootWithDMA != nil && (input.DeviceGuardEnableSecureBootWithDMA == nil || *p.DeviceGuardEnableSecureBootWithDMA != *input.DeviceGuardEnableSecureBootWithDMA) {
+	 	return false
+	}
+
+
+	if p.DeviceGuardEnableVirtualizationBasedSecurity != nil && (input.DeviceGuardEnableVirtualizationBasedSecurity == nil || *p.DeviceGuardEnableVirtualizationBasedSecurity != *input.DeviceGuardEnableVirtualizationBasedSecurity) {
+	 	return false
+	}
+
+
+	if p.DisplayName != nil && (input.DisplayName == nil || *p.DisplayName != *input.DisplayName) {
+	 	return false
+	}
+
+
+	if p.FirewallBlockStatefulFTP != nil && (input.FirewallBlockStatefulFTP == nil || *p.FirewallBlockStatefulFTP != *input.FirewallBlockStatefulFTP) {
+	 	return false
+	}
+
+
+	if p.FirewallIPSecExemptionsAllowDHCP != nil && (input.FirewallIPSecExemptionsAllowDHCP == nil || *p.FirewallIPSecExemptionsAllowDHCP != *input.FirewallIPSecExemptionsAllowDHCP) {
+	 	return false
+	}
+
+
+	if p.FirewallIPSecExemptionsAllowICMP != nil && (input.FirewallIPSecExemptionsAllowICMP == nil || *p.FirewallIPSecExemptionsAllowICMP != *input.FirewallIPSecExemptionsAllowICMP) {
+	 	return false
+	}
+
+
+	if p.FirewallIPSecExemptionsAllowNeighborDiscovery != nil && (input.FirewallIPSecExemptionsAllowNeighborDiscovery == nil || *p.FirewallIPSecExemptionsAllowNeighborDiscovery != *input.FirewallIPSecExemptionsAllowNeighborDiscovery) {
+	 	return false
+	}
+
+
+	if p.FirewallIPSecExemptionsAllowRouterDiscovery != nil && (input.FirewallIPSecExemptionsAllowRouterDiscovery == nil || *p.FirewallIPSecExemptionsAllowRouterDiscovery != *input.FirewallIPSecExemptionsAllowRouterDiscovery) {
+	 	return false
+	}
+
+
+	if p.FirewallIPSecExemptionsNone != nil && (input.FirewallIPSecExemptionsNone == nil || *p.FirewallIPSecExemptionsNone != *input.FirewallIPSecExemptionsNone) {
+	 	return false
+	}
+
+
+	if p.FirewallIdleTimeoutForSecurityAssociationInSeconds != nil && (input.FirewallIdleTimeoutForSecurityAssociationInSeconds == nil || *p.FirewallIdleTimeoutForSecurityAssociationInSeconds != *input.FirewallIdleTimeoutForSecurityAssociationInSeconds) {
+	 	return false
+	}
+
+
+	if p.FirewallMergeKeyingModuleSettings != nil && (input.FirewallMergeKeyingModuleSettings == nil || *p.FirewallMergeKeyingModuleSettings != *input.FirewallMergeKeyingModuleSettings) {
+	 	return false
+	}
+
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+	 	return false
+	}
+
+
+	if p.LanManagerWorkstationDisableInsecureGuestLogons != nil && (input.LanManagerWorkstationDisableInsecureGuestLogons == nil || *p.LanManagerWorkstationDisableInsecureGuestLogons != *input.LanManagerWorkstationDisableInsecureGuestLogons) {
+	 	return false
+	}
+
+
+	if p.LastModifiedDateTime != nil && (input.LastModifiedDateTime == nil || *p.LastModifiedDateTime != *input.LastModifiedDateTime) {
+	 	return false
+	}
+
+
+	if p.LocalSecurityOptionsAdministratorAccountName != nil && (input.LocalSecurityOptionsAdministratorAccountName == nil || *p.LocalSecurityOptionsAdministratorAccountName != *input.LocalSecurityOptionsAdministratorAccountName) {
+	 	return false
+	}
+
+
+	if p.LocalSecurityOptionsAllowAnonymousEnumerationOfSAMAccountsAndShares != nil && (input.LocalSecurityOptionsAllowAnonymousEnumerationOfSAMAccountsAndShares == nil || *p.LocalSecurityOptionsAllowAnonymousEnumerationOfSAMAccountsAndShares != *input.LocalSecurityOptionsAllowAnonymousEnumerationOfSAMAccountsAndShares) {
+	 	return false
+	}
+
+
+	if p.LocalSecurityOptionsAllowPKU2UAuthenticationRequests != nil && (input.LocalSecurityOptionsAllowPKU2UAuthenticationRequests == nil || *p.LocalSecurityOptionsAllowPKU2UAuthenticationRequests != *input.LocalSecurityOptionsAllowPKU2UAuthenticationRequests) {
+	 	return false
+	}
+
+
+	if p.LocalSecurityOptionsAllowRemoteCallsToSecurityAccountsManager != nil && (input.LocalSecurityOptionsAllowRemoteCallsToSecurityAccountsManager == nil || *p.LocalSecurityOptionsAllowRemoteCallsToSecurityAccountsManager != *input.LocalSecurityOptionsAllowRemoteCallsToSecurityAccountsManager) {
+	 	return false
+	}
+
+
+	if p.LocalSecurityOptionsAllowRemoteCallsToSecurityAccountsManagerHelperBool != nil && (input.LocalSecurityOptionsAllowRemoteCallsToSecurityAccountsManagerHelperBool == nil || *p.LocalSecurityOptionsAllowRemoteCallsToSecurityAccountsManagerHelperBool != *input.LocalSecurityOptionsAllowRemoteCallsToSecurityAccountsManagerHelperBool) {
+	 	return false
+	}
+
+
+	if p.LocalSecurityOptionsAllowSystemToBeShutDownWithoutHavingToLogOn != nil && (input.LocalSecurityOptionsAllowSystemToBeShutDownWithoutHavingToLogOn == nil || *p.LocalSecurityOptionsAllowSystemToBeShutDownWithoutHavingToLogOn != *input.LocalSecurityOptionsAllowSystemToBeShutDownWithoutHavingToLogOn) {
+	 	return false
+	}
+
+
+	if p.LocalSecurityOptionsAllowUIAccessApplicationElevation != nil && (input.LocalSecurityOptionsAllowUIAccessApplicationElevation == nil || *p.LocalSecurityOptionsAllowUIAccessApplicationElevation != *input.LocalSecurityOptionsAllowUIAccessApplicationElevation) {
+	 	return false
+	}
+
+
+	if p.LocalSecurityOptionsAllowUIAccessApplicationsForSecureLocations != nil && (input.LocalSecurityOptionsAllowUIAccessApplicationsForSecureLocations == nil || *p.LocalSecurityOptionsAllowUIAccessApplicationsForSecureLocations != *input.LocalSecurityOptionsAllowUIAccessApplicationsForSecureLocations) {
+	 	return false
+	}
+
+
+	if p.LocalSecurityOptionsAllowUndockWithoutHavingToLogon != nil && (input.LocalSecurityOptionsAllowUndockWithoutHavingToLogon == nil || *p.LocalSecurityOptionsAllowUndockWithoutHavingToLogon != *input.LocalSecurityOptionsAllowUndockWithoutHavingToLogon) {
+	 	return false
+	}
+
+
+	if p.LocalSecurityOptionsBlockMicrosoftAccounts != nil && (input.LocalSecurityOptionsBlockMicrosoftAccounts == nil || *p.LocalSecurityOptionsBlockMicrosoftAccounts != *input.LocalSecurityOptionsBlockMicrosoftAccounts) {
+	 	return false
+	}
+
+
+	if p.LocalSecurityOptionsBlockRemoteLogonWithBlankPassword != nil && (input.LocalSecurityOptionsBlockRemoteLogonWithBlankPassword == nil || *p.LocalSecurityOptionsBlockRemoteLogonWithBlankPassword != *input.LocalSecurityOptionsBlockRemoteLogonWithBlankPassword) {
+	 	return false
+	}
+
+
+	if p.LocalSecurityOptionsBlockRemoteOpticalDriveAccess != nil && (input.LocalSecurityOptionsBlockRemoteOpticalDriveAccess == nil || *p.LocalSecurityOptionsBlockRemoteOpticalDriveAccess != *input.LocalSecurityOptionsBlockRemoteOpticalDriveAccess) {
+	 	return false
+	}
+
+
+	if p.LocalSecurityOptionsBlockUsersInstallingPrinterDrivers != nil && (input.LocalSecurityOptionsBlockUsersInstallingPrinterDrivers == nil || *p.LocalSecurityOptionsBlockUsersInstallingPrinterDrivers != *input.LocalSecurityOptionsBlockUsersInstallingPrinterDrivers) {
+	 	return false
+	}
+
+
+	if p.LocalSecurityOptionsClearVirtualMemoryPageFile != nil && (input.LocalSecurityOptionsClearVirtualMemoryPageFile == nil || *p.LocalSecurityOptionsClearVirtualMemoryPageFile != *input.LocalSecurityOptionsClearVirtualMemoryPageFile) {
+	 	return false
+	}
+
+
+	if p.LocalSecurityOptionsClientDigitallySignCommunicationsAlways != nil && (input.LocalSecurityOptionsClientDigitallySignCommunicationsAlways == nil || *p.LocalSecurityOptionsClientDigitallySignCommunicationsAlways != *input.LocalSecurityOptionsClientDigitallySignCommunicationsAlways) {
+	 	return false
+	}
+
+
+	if p.LocalSecurityOptionsClientSendUnencryptedPasswordToThirdPartySMBServers != nil && (input.LocalSecurityOptionsClientSendUnencryptedPasswordToThirdPartySMBServers == nil || *p.LocalSecurityOptionsClientSendUnencryptedPasswordToThirdPartySMBServers != *input.LocalSecurityOptionsClientSendUnencryptedPasswordToThirdPartySMBServers) {
+	 	return false
+	}
+
+
+	if p.LocalSecurityOptionsDetectApplicationInstallationsAndPromptForElevation != nil && (input.LocalSecurityOptionsDetectApplicationInstallationsAndPromptForElevation == nil || *p.LocalSecurityOptionsDetectApplicationInstallationsAndPromptForElevation != *input.LocalSecurityOptionsDetectApplicationInstallationsAndPromptForElevation) {
+	 	return false
+	}
+
+
+	if p.LocalSecurityOptionsDisableAdministratorAccount != nil && (input.LocalSecurityOptionsDisableAdministratorAccount == nil || *p.LocalSecurityOptionsDisableAdministratorAccount != *input.LocalSecurityOptionsDisableAdministratorAccount) {
+	 	return false
+	}
+
+
+	if p.LocalSecurityOptionsDisableClientDigitallySignCommunicationsIfServerAgrees != nil && (input.LocalSecurityOptionsDisableClientDigitallySignCommunicationsIfServerAgrees == nil || *p.LocalSecurityOptionsDisableClientDigitallySignCommunicationsIfServerAgrees != *input.LocalSecurityOptionsDisableClientDigitallySignCommunicationsIfServerAgrees) {
+	 	return false
+	}
+
+
+	if p.LocalSecurityOptionsDisableGuestAccount != nil && (input.LocalSecurityOptionsDisableGuestAccount == nil || *p.LocalSecurityOptionsDisableGuestAccount != *input.LocalSecurityOptionsDisableGuestAccount) {
+	 	return false
+	}
+
+
+	if p.LocalSecurityOptionsDisableServerDigitallySignCommunicationsAlways != nil && (input.LocalSecurityOptionsDisableServerDigitallySignCommunicationsAlways == nil || *p.LocalSecurityOptionsDisableServerDigitallySignCommunicationsAlways != *input.LocalSecurityOptionsDisableServerDigitallySignCommunicationsAlways) {
+	 	return false
+	}
+
+
+	if p.LocalSecurityOptionsDisableServerDigitallySignCommunicationsIfClientAgrees != nil && (input.LocalSecurityOptionsDisableServerDigitallySignCommunicationsIfClientAgrees == nil || *p.LocalSecurityOptionsDisableServerDigitallySignCommunicationsIfClientAgrees != *input.LocalSecurityOptionsDisableServerDigitallySignCommunicationsIfClientAgrees) {
+	 	return false
+	}
+
+
+	if p.LocalSecurityOptionsDoNotAllowAnonymousEnumerationOfSAMAccounts != nil && (input.LocalSecurityOptionsDoNotAllowAnonymousEnumerationOfSAMAccounts == nil || *p.LocalSecurityOptionsDoNotAllowAnonymousEnumerationOfSAMAccounts != *input.LocalSecurityOptionsDoNotAllowAnonymousEnumerationOfSAMAccounts) {
+	 	return false
+	}
+
+
+	if p.LocalSecurityOptionsDoNotRequireCtrlAltDel != nil && (input.LocalSecurityOptionsDoNotRequireCtrlAltDel == nil || *p.LocalSecurityOptionsDoNotRequireCtrlAltDel != *input.LocalSecurityOptionsDoNotRequireCtrlAltDel) {
+	 	return false
+	}
+
+
+	if p.LocalSecurityOptionsDoNotStoreLANManagerHashValueOnNextPasswordChange != nil && (input.LocalSecurityOptionsDoNotStoreLANManagerHashValueOnNextPasswordChange == nil || *p.LocalSecurityOptionsDoNotStoreLANManagerHashValueOnNextPasswordChange != *input.LocalSecurityOptionsDoNotStoreLANManagerHashValueOnNextPasswordChange) {
+	 	return false
+	}
+
+
+	if p.LocalSecurityOptionsGuestAccountName != nil && (input.LocalSecurityOptionsGuestAccountName == nil || *p.LocalSecurityOptionsGuestAccountName != *input.LocalSecurityOptionsGuestAccountName) {
+	 	return false
+	}
+
+
+	if p.LocalSecurityOptionsHideLastSignedInUser != nil && (input.LocalSecurityOptionsHideLastSignedInUser == nil || *p.LocalSecurityOptionsHideLastSignedInUser != *input.LocalSecurityOptionsHideLastSignedInUser) {
+	 	return false
+	}
+
+
+	if p.LocalSecurityOptionsHideUsernameAtSignIn != nil && (input.LocalSecurityOptionsHideUsernameAtSignIn == nil || *p.LocalSecurityOptionsHideUsernameAtSignIn != *input.LocalSecurityOptionsHideUsernameAtSignIn) {
+	 	return false
+	}
+
+
+	if p.LocalSecurityOptionsLogOnMessageText != nil && (input.LocalSecurityOptionsLogOnMessageText == nil || *p.LocalSecurityOptionsLogOnMessageText != *input.LocalSecurityOptionsLogOnMessageText) {
+	 	return false
+	}
+
+
+	if p.LocalSecurityOptionsLogOnMessageTitle != nil && (input.LocalSecurityOptionsLogOnMessageTitle == nil || *p.LocalSecurityOptionsLogOnMessageTitle != *input.LocalSecurityOptionsLogOnMessageTitle) {
+	 	return false
+	}
+
+
+	if p.LocalSecurityOptionsMachineInactivityLimit != nil && (input.LocalSecurityOptionsMachineInactivityLimit == nil || *p.LocalSecurityOptionsMachineInactivityLimit != *input.LocalSecurityOptionsMachineInactivityLimit) {
+	 	return false
+	}
+
+
+	if p.LocalSecurityOptionsMachineInactivityLimitInMinutes != nil && (input.LocalSecurityOptionsMachineInactivityLimitInMinutes == nil || *p.LocalSecurityOptionsMachineInactivityLimitInMinutes != *input.LocalSecurityOptionsMachineInactivityLimitInMinutes) {
+	 	return false
+	}
+
+
+	if p.LocalSecurityOptionsOnlyElevateSignedExecutables != nil && (input.LocalSecurityOptionsOnlyElevateSignedExecutables == nil || *p.LocalSecurityOptionsOnlyElevateSignedExecutables != *input.LocalSecurityOptionsOnlyElevateSignedExecutables) {
+	 	return false
+	}
+
+
+	if p.LocalSecurityOptionsRestrictAnonymousAccessToNamedPipesAndShares != nil && (input.LocalSecurityOptionsRestrictAnonymousAccessToNamedPipesAndShares == nil || *p.LocalSecurityOptionsRestrictAnonymousAccessToNamedPipesAndShares != *input.LocalSecurityOptionsRestrictAnonymousAccessToNamedPipesAndShares) {
+	 	return false
+	}
+
+
+	if p.LocalSecurityOptionsSwitchToSecureDesktopWhenPromptingForElevation != nil && (input.LocalSecurityOptionsSwitchToSecureDesktopWhenPromptingForElevation == nil || *p.LocalSecurityOptionsSwitchToSecureDesktopWhenPromptingForElevation != *input.LocalSecurityOptionsSwitchToSecureDesktopWhenPromptingForElevation) {
+	 	return false
+	}
+
+
+	if p.LocalSecurityOptionsUseAdminApprovalMode != nil && (input.LocalSecurityOptionsUseAdminApprovalMode == nil || *p.LocalSecurityOptionsUseAdminApprovalMode != *input.LocalSecurityOptionsUseAdminApprovalMode) {
+	 	return false
+	}
+
+
+	if p.LocalSecurityOptionsUseAdminApprovalModeForAdministrators != nil && (input.LocalSecurityOptionsUseAdminApprovalModeForAdministrators == nil || *p.LocalSecurityOptionsUseAdminApprovalModeForAdministrators != *input.LocalSecurityOptionsUseAdminApprovalModeForAdministrators) {
+	 	return false
+	}
+
+
+	if p.LocalSecurityOptionsVirtualizeFileAndRegistryWriteFailuresToPerUserLocations != nil && (input.LocalSecurityOptionsVirtualizeFileAndRegistryWriteFailuresToPerUserLocations == nil || *p.LocalSecurityOptionsVirtualizeFileAndRegistryWriteFailuresToPerUserLocations != *input.LocalSecurityOptionsVirtualizeFileAndRegistryWriteFailuresToPerUserLocations) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.SmartScreenBlockOverrideForFiles != nil && (input.SmartScreenBlockOverrideForFiles == nil || *p.SmartScreenBlockOverrideForFiles != *input.SmartScreenBlockOverrideForFiles) {
+	 	return false
+	}
+
+
+	if p.SmartScreenEnableInShell != nil && (input.SmartScreenEnableInShell == nil || *p.SmartScreenEnableInShell != *input.SmartScreenEnableInShell) {
+	 	return false
+	}
+
+
+	if p.SupportsScopeTags != nil && (input.SupportsScopeTags == nil || *p.SupportsScopeTags != *input.SupportsScopeTags) {
+	 	return false
+	}
+
+
+	if p.Version != nil && (input.Version == nil || *p.Version != *input.Version) {
+	 	return false
+	}
+
+
+	if p.XboxServicesEnableXboxGameSaveTask != nil && (input.XboxServicesEnableXboxGameSaveTask == nil || *p.XboxServicesEnableXboxGameSaveTask != *input.XboxServicesEnableXboxGameSaveTask) {
+	 	return false
+	}
+
+
+	return true
+}
+

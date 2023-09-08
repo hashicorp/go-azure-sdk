@@ -1,0 +1,63 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type UserSimulationDetailsOperationPredicate struct {
+	 AssignedTrainingsCount *int64
+	 CompletedTrainingsCount *int64
+	 CompromisedDateTime *string
+	 InProgressTrainingsCount *int64
+	 IsCompromised *bool
+	 LatestSimulationActivity *string
+	 ODataType *string
+	 ReportedPhishDateTime *string
+}
+
+func (p UserSimulationDetailsOperationPredicate) Matches(input UserSimulationDetails) bool {
+
+	if p.AssignedTrainingsCount != nil && (input.AssignedTrainingsCount == nil || *p.AssignedTrainingsCount != *input.AssignedTrainingsCount) {
+	 	return false
+	}
+
+
+	if p.CompletedTrainingsCount != nil && (input.CompletedTrainingsCount == nil || *p.CompletedTrainingsCount != *input.CompletedTrainingsCount) {
+	 	return false
+	}
+
+
+	if p.CompromisedDateTime != nil && (input.CompromisedDateTime == nil || *p.CompromisedDateTime != *input.CompromisedDateTime) {
+	 	return false
+	}
+
+
+	if p.InProgressTrainingsCount != nil && (input.InProgressTrainingsCount == nil || *p.InProgressTrainingsCount != *input.InProgressTrainingsCount) {
+	 	return false
+	}
+
+
+	if p.IsCompromised != nil && (input.IsCompromised == nil || *p.IsCompromised != *input.IsCompromised) {
+	 	return false
+	}
+
+
+	if p.LatestSimulationActivity != nil && (input.LatestSimulationActivity == nil || *p.LatestSimulationActivity != *input.LatestSimulationActivity) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.ReportedPhishDateTime != nil && (input.ReportedPhishDateTime == nil || *p.ReportedPhishDateTime != *input.ReportedPhishDateTime) {
+	 	return false
+	}
+
+
+	return true
+}
+

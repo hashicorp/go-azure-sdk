@@ -1,0 +1,46 @@
+package models
+
+import "strings"
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type UserRegistrationMethodSummaryUserRoles string
+
+const (
+	UserRegistrationMethodSummaryUserRolesadmin UserRegistrationMethodSummaryUserRoles = "Admin"
+	UserRegistrationMethodSummaryUserRolesall UserRegistrationMethodSummaryUserRoles = "All"
+	UserRegistrationMethodSummaryUserRolesprivilegedAdmin UserRegistrationMethodSummaryUserRoles = "PrivilegedAdmin"
+	UserRegistrationMethodSummaryUserRolesuser UserRegistrationMethodSummaryUserRoles = "User"
+)
+
+
+func PossibleValuesForUserRegistrationMethodSummaryUserRoles() []string {
+	return []string{
+		string(UserRegistrationMethodSummaryUserRolesadmin),
+string(UserRegistrationMethodSummaryUserRolesall),
+string(UserRegistrationMethodSummaryUserRolesprivilegedAdmin),
+string(UserRegistrationMethodSummaryUserRolesuser),
+	}
+}
+
+
+
+func parseUserRegistrationMethodSummaryUserRoles(input string) (*UserRegistrationMethodSummaryUserRoles, error) {
+	vals := map[string]UserRegistrationMethodSummaryUserRoles{
+		"admin": UserRegistrationMethodSummaryUserRolesadmin,
+"all": UserRegistrationMethodSummaryUserRolesall,
+"privilegedadmin": UserRegistrationMethodSummaryUserRolesprivilegedAdmin,
+"user": UserRegistrationMethodSummaryUserRolesuser,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := UserRegistrationMethodSummaryUserRoles(input)
+	return &out, nil
+}

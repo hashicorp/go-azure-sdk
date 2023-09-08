@@ -1,0 +1,37 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type PlannerBucketOperationPredicate struct {
+	Id        *string
+	Name      *string
+	ODataType *string
+	OrderHint *string
+	PlanId    *string
+}
+
+func (p PlannerBucketOperationPredicate) Matches(input PlannerBucket) bool {
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.Name != nil && (input.Name == nil || *p.Name != *input.Name) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.OrderHint != nil && (input.OrderHint == nil || *p.OrderHint != *input.OrderHint) {
+		return false
+	}
+
+	if p.PlanId != nil && (input.PlanId == nil || *p.PlanId != *input.PlanId) {
+		return false
+	}
+
+	return true
+}

@@ -1,0 +1,27 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type SearchQueryOperationPredicate struct {
+	ODataType     *string
+	QueryString   *string
+	QueryTemplate *string
+}
+
+func (p SearchQueryOperationPredicate) Matches(input SearchQuery) bool {
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.QueryString != nil && (input.QueryString == nil || *p.QueryString != *input.QueryString) {
+		return false
+	}
+
+	if p.QueryTemplate != nil && (input.QueryTemplate == nil || *p.QueryTemplate != *input.QueryTemplate) {
+		return false
+	}
+
+	return true
+}

@@ -1,0 +1,43 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type HardwareInformationDeviceGuardVirtualizationBasedSecurityHardwareRequirementState string
+
+const (
+	HardwareInformationDeviceGuardVirtualizationBasedSecurityHardwareRequirementStatedmaProtectionRequired        HardwareInformationDeviceGuardVirtualizationBasedSecurityHardwareRequirementState = "DmaProtectionRequired"
+	HardwareInformationDeviceGuardVirtualizationBasedSecurityHardwareRequirementStatehyperVNotAvailable           HardwareInformationDeviceGuardVirtualizationBasedSecurityHardwareRequirementState = "HyperVNotAvailable"
+	HardwareInformationDeviceGuardVirtualizationBasedSecurityHardwareRequirementStatehyperVNotSupportedForGuestVM HardwareInformationDeviceGuardVirtualizationBasedSecurityHardwareRequirementState = "HyperVNotSupportedForGuestVM"
+	HardwareInformationDeviceGuardVirtualizationBasedSecurityHardwareRequirementStatemeetHardwareRequirements     HardwareInformationDeviceGuardVirtualizationBasedSecurityHardwareRequirementState = "MeetHardwareRequirements"
+	HardwareInformationDeviceGuardVirtualizationBasedSecurityHardwareRequirementStatesecureBootRequired           HardwareInformationDeviceGuardVirtualizationBasedSecurityHardwareRequirementState = "SecureBootRequired"
+)
+
+func PossibleValuesForHardwareInformationDeviceGuardVirtualizationBasedSecurityHardwareRequirementState() []string {
+	return []string{
+		string(HardwareInformationDeviceGuardVirtualizationBasedSecurityHardwareRequirementStatedmaProtectionRequired),
+		string(HardwareInformationDeviceGuardVirtualizationBasedSecurityHardwareRequirementStatehyperVNotAvailable),
+		string(HardwareInformationDeviceGuardVirtualizationBasedSecurityHardwareRequirementStatehyperVNotSupportedForGuestVM),
+		string(HardwareInformationDeviceGuardVirtualizationBasedSecurityHardwareRequirementStatemeetHardwareRequirements),
+		string(HardwareInformationDeviceGuardVirtualizationBasedSecurityHardwareRequirementStatesecureBootRequired),
+	}
+}
+
+func parseHardwareInformationDeviceGuardVirtualizationBasedSecurityHardwareRequirementState(input string) (*HardwareInformationDeviceGuardVirtualizationBasedSecurityHardwareRequirementState, error) {
+	vals := map[string]HardwareInformationDeviceGuardVirtualizationBasedSecurityHardwareRequirementState{
+		"dmaprotectionrequired":        HardwareInformationDeviceGuardVirtualizationBasedSecurityHardwareRequirementStatedmaProtectionRequired,
+		"hypervnotavailable":           HardwareInformationDeviceGuardVirtualizationBasedSecurityHardwareRequirementStatehyperVNotAvailable,
+		"hypervnotsupportedforguestvm": HardwareInformationDeviceGuardVirtualizationBasedSecurityHardwareRequirementStatehyperVNotSupportedForGuestVM,
+		"meethardwarerequirements":     HardwareInformationDeviceGuardVirtualizationBasedSecurityHardwareRequirementStatemeetHardwareRequirements,
+		"securebootrequired":           HardwareInformationDeviceGuardVirtualizationBasedSecurityHardwareRequirementStatesecureBootRequired,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := HardwareInformationDeviceGuardVirtualizationBasedSecurityHardwareRequirementState(input)
+	return &out, nil
+}

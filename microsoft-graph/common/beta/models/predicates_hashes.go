@@ -1,0 +1,37 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type HashesOperationPredicate struct {
+	Crc32Hash    *string
+	ODataType    *string
+	QuickXorHash *string
+	Sha1Hash     *string
+	Sha256Hash   *string
+}
+
+func (p HashesOperationPredicate) Matches(input Hashes) bool {
+
+	if p.Crc32Hash != nil && (input.Crc32Hash == nil || *p.Crc32Hash != *input.Crc32Hash) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.QuickXorHash != nil && (input.QuickXorHash == nil || *p.QuickXorHash != *input.QuickXorHash) {
+		return false
+	}
+
+	if p.Sha1Hash != nil && (input.Sha1Hash == nil || *p.Sha1Hash != *input.Sha1Hash) {
+		return false
+	}
+
+	if p.Sha256Hash != nil && (input.Sha256Hash == nil || *p.Sha256Hash != *input.Sha256Hash) {
+		return false
+	}
+
+	return true
+}

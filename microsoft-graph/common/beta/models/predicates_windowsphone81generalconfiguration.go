@@ -1,0 +1,182 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type WindowsPhone81GeneralConfigurationOperationPredicate struct {
+	ApplyOnlyToWindowsPhone81                      *bool
+	AppsBlockCopyPaste                             *bool
+	BluetoothBlocked                               *bool
+	CameraBlocked                                  *bool
+	CellularBlockWifiTethering                     *bool
+	CreatedDateTime                                *string
+	Description                                    *string
+	DiagnosticDataBlockSubmission                  *bool
+	DisplayName                                    *string
+	EmailBlockAddingAccounts                       *bool
+	Id                                             *string
+	LastModifiedDateTime                           *string
+	LocationServicesBlocked                        *bool
+	MicrosoftAccountBlocked                        *bool
+	NfcBlocked                                     *bool
+	ODataType                                      *string
+	PasswordBlockSimple                            *bool
+	PasswordExpirationDays                         *int64
+	PasswordMinimumCharacterSetCount               *int64
+	PasswordMinimumLength                          *int64
+	PasswordMinutesOfInactivityBeforeScreenTimeout *int64
+	PasswordPreviousPasswordBlockCount             *int64
+	PasswordRequired                               *bool
+	PasswordSignInFailureCountBeforeFactoryReset   *int64
+	ScreenCaptureBlocked                           *bool
+	StorageBlockRemovableStorage                   *bool
+	StorageRequireEncryption                       *bool
+	SupportsScopeTags                              *bool
+	Version                                        *int64
+	WebBrowserBlocked                              *bool
+	WifiBlockAutomaticConnectHotspots              *bool
+	WifiBlockHotspotReporting                      *bool
+	WifiBlocked                                    *bool
+	WindowsStoreBlocked                            *bool
+}
+
+func (p WindowsPhone81GeneralConfigurationOperationPredicate) Matches(input WindowsPhone81GeneralConfiguration) bool {
+
+	if p.ApplyOnlyToWindowsPhone81 != nil && (input.ApplyOnlyToWindowsPhone81 == nil || *p.ApplyOnlyToWindowsPhone81 != *input.ApplyOnlyToWindowsPhone81) {
+		return false
+	}
+
+	if p.AppsBlockCopyPaste != nil && (input.AppsBlockCopyPaste == nil || *p.AppsBlockCopyPaste != *input.AppsBlockCopyPaste) {
+		return false
+	}
+
+	if p.BluetoothBlocked != nil && (input.BluetoothBlocked == nil || *p.BluetoothBlocked != *input.BluetoothBlocked) {
+		return false
+	}
+
+	if p.CameraBlocked != nil && (input.CameraBlocked == nil || *p.CameraBlocked != *input.CameraBlocked) {
+		return false
+	}
+
+	if p.CellularBlockWifiTethering != nil && (input.CellularBlockWifiTethering == nil || *p.CellularBlockWifiTethering != *input.CellularBlockWifiTethering) {
+		return false
+	}
+
+	if p.CreatedDateTime != nil && (input.CreatedDateTime == nil || *p.CreatedDateTime != *input.CreatedDateTime) {
+		return false
+	}
+
+	if p.Description != nil && (input.Description == nil || *p.Description != *input.Description) {
+		return false
+	}
+
+	if p.DiagnosticDataBlockSubmission != nil && (input.DiagnosticDataBlockSubmission == nil || *p.DiagnosticDataBlockSubmission != *input.DiagnosticDataBlockSubmission) {
+		return false
+	}
+
+	if p.DisplayName != nil && (input.DisplayName == nil || *p.DisplayName != *input.DisplayName) {
+		return false
+	}
+
+	if p.EmailBlockAddingAccounts != nil && (input.EmailBlockAddingAccounts == nil || *p.EmailBlockAddingAccounts != *input.EmailBlockAddingAccounts) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.LastModifiedDateTime != nil && (input.LastModifiedDateTime == nil || *p.LastModifiedDateTime != *input.LastModifiedDateTime) {
+		return false
+	}
+
+	if p.LocationServicesBlocked != nil && (input.LocationServicesBlocked == nil || *p.LocationServicesBlocked != *input.LocationServicesBlocked) {
+		return false
+	}
+
+	if p.MicrosoftAccountBlocked != nil && (input.MicrosoftAccountBlocked == nil || *p.MicrosoftAccountBlocked != *input.MicrosoftAccountBlocked) {
+		return false
+	}
+
+	if p.NfcBlocked != nil && (input.NfcBlocked == nil || *p.NfcBlocked != *input.NfcBlocked) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.PasswordBlockSimple != nil && (input.PasswordBlockSimple == nil || *p.PasswordBlockSimple != *input.PasswordBlockSimple) {
+		return false
+	}
+
+	if p.PasswordExpirationDays != nil && (input.PasswordExpirationDays == nil || *p.PasswordExpirationDays != *input.PasswordExpirationDays) {
+		return false
+	}
+
+	if p.PasswordMinimumCharacterSetCount != nil && (input.PasswordMinimumCharacterSetCount == nil || *p.PasswordMinimumCharacterSetCount != *input.PasswordMinimumCharacterSetCount) {
+		return false
+	}
+
+	if p.PasswordMinimumLength != nil && (input.PasswordMinimumLength == nil || *p.PasswordMinimumLength != *input.PasswordMinimumLength) {
+		return false
+	}
+
+	if p.PasswordMinutesOfInactivityBeforeScreenTimeout != nil && (input.PasswordMinutesOfInactivityBeforeScreenTimeout == nil || *p.PasswordMinutesOfInactivityBeforeScreenTimeout != *input.PasswordMinutesOfInactivityBeforeScreenTimeout) {
+		return false
+	}
+
+	if p.PasswordPreviousPasswordBlockCount != nil && (input.PasswordPreviousPasswordBlockCount == nil || *p.PasswordPreviousPasswordBlockCount != *input.PasswordPreviousPasswordBlockCount) {
+		return false
+	}
+
+	if p.PasswordRequired != nil && (input.PasswordRequired == nil || *p.PasswordRequired != *input.PasswordRequired) {
+		return false
+	}
+
+	if p.PasswordSignInFailureCountBeforeFactoryReset != nil && (input.PasswordSignInFailureCountBeforeFactoryReset == nil || *p.PasswordSignInFailureCountBeforeFactoryReset != *input.PasswordSignInFailureCountBeforeFactoryReset) {
+		return false
+	}
+
+	if p.ScreenCaptureBlocked != nil && (input.ScreenCaptureBlocked == nil || *p.ScreenCaptureBlocked != *input.ScreenCaptureBlocked) {
+		return false
+	}
+
+	if p.StorageBlockRemovableStorage != nil && (input.StorageBlockRemovableStorage == nil || *p.StorageBlockRemovableStorage != *input.StorageBlockRemovableStorage) {
+		return false
+	}
+
+	if p.StorageRequireEncryption != nil && (input.StorageRequireEncryption == nil || *p.StorageRequireEncryption != *input.StorageRequireEncryption) {
+		return false
+	}
+
+	if p.SupportsScopeTags != nil && (input.SupportsScopeTags == nil || *p.SupportsScopeTags != *input.SupportsScopeTags) {
+		return false
+	}
+
+	if p.Version != nil && (input.Version == nil || *p.Version != *input.Version) {
+		return false
+	}
+
+	if p.WebBrowserBlocked != nil && (input.WebBrowserBlocked == nil || *p.WebBrowserBlocked != *input.WebBrowserBlocked) {
+		return false
+	}
+
+	if p.WifiBlockAutomaticConnectHotspots != nil && (input.WifiBlockAutomaticConnectHotspots == nil || *p.WifiBlockAutomaticConnectHotspots != *input.WifiBlockAutomaticConnectHotspots) {
+		return false
+	}
+
+	if p.WifiBlockHotspotReporting != nil && (input.WifiBlockHotspotReporting == nil || *p.WifiBlockHotspotReporting != *input.WifiBlockHotspotReporting) {
+		return false
+	}
+
+	if p.WifiBlocked != nil && (input.WifiBlocked == nil || *p.WifiBlocked != *input.WifiBlocked) {
+		return false
+	}
+
+	if p.WindowsStoreBlocked != nil && (input.WindowsStoreBlocked == nil || *p.WindowsStoreBlocked != *input.WindowsStoreBlocked) {
+		return false
+	}
+
+	return true
+}

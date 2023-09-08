@@ -1,0 +1,39 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type OnPremisesSipInfoOperationPredicate struct {
+	 IsSipEnabled *bool
+	 ODataType *string
+	 SipDeploymentLocation *string
+	 SipPrimaryAddress *string
+}
+
+func (p OnPremisesSipInfoOperationPredicate) Matches(input OnPremisesSipInfo) bool {
+
+	if p.IsSipEnabled != nil && (input.IsSipEnabled == nil || *p.IsSipEnabled != *input.IsSipEnabled) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.SipDeploymentLocation != nil && (input.SipDeploymentLocation == nil || *p.SipDeploymentLocation != *input.SipDeploymentLocation) {
+	 	return false
+	}
+
+
+	if p.SipPrimaryAddress != nil && (input.SipPrimaryAddress == nil || *p.SipPrimaryAddress != *input.SipPrimaryAddress) {
+	 	return false
+	}
+
+
+	return true
+}
+

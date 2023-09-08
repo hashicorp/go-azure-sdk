@@ -1,0 +1,52 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type RetireScheduledManagedDeviceComplianceState string
+
+const (
+	RetireScheduledManagedDeviceComplianceStatecompliant     RetireScheduledManagedDeviceComplianceState = "Compliant"
+	RetireScheduledManagedDeviceComplianceStateconflict      RetireScheduledManagedDeviceComplianceState = "Conflict"
+	RetireScheduledManagedDeviceComplianceStateerror         RetireScheduledManagedDeviceComplianceState = "Error"
+	RetireScheduledManagedDeviceComplianceStatenonCompliant  RetireScheduledManagedDeviceComplianceState = "NonCompliant"
+	RetireScheduledManagedDeviceComplianceStatenotApplicable RetireScheduledManagedDeviceComplianceState = "NotApplicable"
+	RetireScheduledManagedDeviceComplianceStatenotAssigned   RetireScheduledManagedDeviceComplianceState = "NotAssigned"
+	RetireScheduledManagedDeviceComplianceStateremediated    RetireScheduledManagedDeviceComplianceState = "Remediated"
+	RetireScheduledManagedDeviceComplianceStateunknown       RetireScheduledManagedDeviceComplianceState = "Unknown"
+)
+
+func PossibleValuesForRetireScheduledManagedDeviceComplianceState() []string {
+	return []string{
+		string(RetireScheduledManagedDeviceComplianceStatecompliant),
+		string(RetireScheduledManagedDeviceComplianceStateconflict),
+		string(RetireScheduledManagedDeviceComplianceStateerror),
+		string(RetireScheduledManagedDeviceComplianceStatenonCompliant),
+		string(RetireScheduledManagedDeviceComplianceStatenotApplicable),
+		string(RetireScheduledManagedDeviceComplianceStatenotAssigned),
+		string(RetireScheduledManagedDeviceComplianceStateremediated),
+		string(RetireScheduledManagedDeviceComplianceStateunknown),
+	}
+}
+
+func parseRetireScheduledManagedDeviceComplianceState(input string) (*RetireScheduledManagedDeviceComplianceState, error) {
+	vals := map[string]RetireScheduledManagedDeviceComplianceState{
+		"compliant":     RetireScheduledManagedDeviceComplianceStatecompliant,
+		"conflict":      RetireScheduledManagedDeviceComplianceStateconflict,
+		"error":         RetireScheduledManagedDeviceComplianceStateerror,
+		"noncompliant":  RetireScheduledManagedDeviceComplianceStatenonCompliant,
+		"notapplicable": RetireScheduledManagedDeviceComplianceStatenotApplicable,
+		"notassigned":   RetireScheduledManagedDeviceComplianceStatenotAssigned,
+		"remediated":    RetireScheduledManagedDeviceComplianceStateremediated,
+		"unknown":       RetireScheduledManagedDeviceComplianceStateunknown,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := RetireScheduledManagedDeviceComplianceState(input)
+	return &out, nil
+}

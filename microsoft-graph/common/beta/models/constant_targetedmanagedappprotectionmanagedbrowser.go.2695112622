@@ -1,0 +1,40 @@
+package models
+
+import "strings"
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type TargetedManagedAppProtectionManagedBrowser string
+
+const (
+	TargetedManagedAppProtectionManagedBrowsermicrosoftEdge TargetedManagedAppProtectionManagedBrowser = "MicrosoftEdge"
+	TargetedManagedAppProtectionManagedBrowsernotConfigured TargetedManagedAppProtectionManagedBrowser = "NotConfigured"
+)
+
+
+func PossibleValuesForTargetedManagedAppProtectionManagedBrowser() []string {
+	return []string{
+		string(TargetedManagedAppProtectionManagedBrowsermicrosoftEdge),
+string(TargetedManagedAppProtectionManagedBrowsernotConfigured),
+	}
+}
+
+
+
+func parseTargetedManagedAppProtectionManagedBrowser(input string) (*TargetedManagedAppProtectionManagedBrowser, error) {
+	vals := map[string]TargetedManagedAppProtectionManagedBrowser{
+		"microsoftedge": TargetedManagedAppProtectionManagedBrowsermicrosoftEdge,
+"notconfigured": TargetedManagedAppProtectionManagedBrowsernotConfigured,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := TargetedManagedAppProtectionManagedBrowser(input)
+	return &out, nil
+}

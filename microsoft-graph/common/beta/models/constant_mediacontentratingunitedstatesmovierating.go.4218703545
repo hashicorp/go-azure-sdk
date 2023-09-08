@@ -1,0 +1,55 @@
+package models
+
+import "strings"
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type MediaContentRatingUnitedStatesMovieRating string
+
+const (
+	MediaContentRatingUnitedStatesMovieRatingadults MediaContentRatingUnitedStatesMovieRating = "Adults"
+	MediaContentRatingUnitedStatesMovieRatingallAllowed MediaContentRatingUnitedStatesMovieRating = "AllAllowed"
+	MediaContentRatingUnitedStatesMovieRatingallBlocked MediaContentRatingUnitedStatesMovieRating = "AllBlocked"
+	MediaContentRatingUnitedStatesMovieRatinggeneral MediaContentRatingUnitedStatesMovieRating = "General"
+	MediaContentRatingUnitedStatesMovieRatingparentalGuidance MediaContentRatingUnitedStatesMovieRating = "ParentalGuidance"
+	MediaContentRatingUnitedStatesMovieRatingparentalGuidance13 MediaContentRatingUnitedStatesMovieRating = "ParentalGuidance13"
+	MediaContentRatingUnitedStatesMovieRatingrestricted MediaContentRatingUnitedStatesMovieRating = "Restricted"
+)
+
+
+func PossibleValuesForMediaContentRatingUnitedStatesMovieRating() []string {
+	return []string{
+		string(MediaContentRatingUnitedStatesMovieRatingadults),
+string(MediaContentRatingUnitedStatesMovieRatingallAllowed),
+string(MediaContentRatingUnitedStatesMovieRatingallBlocked),
+string(MediaContentRatingUnitedStatesMovieRatinggeneral),
+string(MediaContentRatingUnitedStatesMovieRatingparentalGuidance),
+string(MediaContentRatingUnitedStatesMovieRatingparentalGuidance13),
+string(MediaContentRatingUnitedStatesMovieRatingrestricted),
+	}
+}
+
+
+
+func parseMediaContentRatingUnitedStatesMovieRating(input string) (*MediaContentRatingUnitedStatesMovieRating, error) {
+	vals := map[string]MediaContentRatingUnitedStatesMovieRating{
+		"adults": MediaContentRatingUnitedStatesMovieRatingadults,
+"allallowed": MediaContentRatingUnitedStatesMovieRatingallAllowed,
+"allblocked": MediaContentRatingUnitedStatesMovieRatingallBlocked,
+"general": MediaContentRatingUnitedStatesMovieRatinggeneral,
+"parentalguidance": MediaContentRatingUnitedStatesMovieRatingparentalGuidance,
+"parentalguidance13": MediaContentRatingUnitedStatesMovieRatingparentalGuidance13,
+"restricted": MediaContentRatingUnitedStatesMovieRatingrestricted,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := MediaContentRatingUnitedStatesMovieRating(input)
+	return &out, nil
+}

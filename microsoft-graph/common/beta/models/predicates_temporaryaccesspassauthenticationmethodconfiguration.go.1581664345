@@ -1,0 +1,57 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type TemporaryAccessPassAuthenticationMethodConfigurationOperationPredicate struct {
+	 DefaultLength *int64
+	 DefaultLifetimeInMinutes *int64
+	 Id *string
+	 IsUsableOnce *bool
+	 MaximumLifetimeInMinutes *int64
+	 MinimumLifetimeInMinutes *int64
+	 ODataType *string
+}
+
+func (p TemporaryAccessPassAuthenticationMethodConfigurationOperationPredicate) Matches(input TemporaryAccessPassAuthenticationMethodConfiguration) bool {
+
+	if p.DefaultLength != nil && (input.DefaultLength == nil || *p.DefaultLength != *input.DefaultLength) {
+	 	return false
+	}
+
+
+	if p.DefaultLifetimeInMinutes != nil && (input.DefaultLifetimeInMinutes == nil || *p.DefaultLifetimeInMinutes != *input.DefaultLifetimeInMinutes) {
+	 	return false
+	}
+
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+	 	return false
+	}
+
+
+	if p.IsUsableOnce != nil && (input.IsUsableOnce == nil || *p.IsUsableOnce != *input.IsUsableOnce) {
+	 	return false
+	}
+
+
+	if p.MaximumLifetimeInMinutes != nil && (input.MaximumLifetimeInMinutes == nil || *p.MaximumLifetimeInMinutes != *input.MaximumLifetimeInMinutes) {
+	 	return false
+	}
+
+
+	if p.MinimumLifetimeInMinutes != nil && (input.MinimumLifetimeInMinutes == nil || *p.MinimumLifetimeInMinutes != *input.MinimumLifetimeInMinutes) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	return true
+}
+

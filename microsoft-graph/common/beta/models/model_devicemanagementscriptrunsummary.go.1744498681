@@ -1,0 +1,36 @@
+package models
+
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/edgezones"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/identity"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/systemdata"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/zones"
+)
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type DeviceManagementScriptRunSummary struct {
+	ErrorDeviceCount *int64 `json:"errorDeviceCount,omitempty"`
+	ErrorUserCount *int64 `json:"errorUserCount,omitempty"`
+	Id *string `json:"id,omitempty"`
+	ODataType *string `json:"@odata.type,omitempty"`
+	SuccessDeviceCount *int64 `json:"successDeviceCount,omitempty"`
+	SuccessUserCount *int64 `json:"successUserCount,omitempty"`
+}
+
+
+
+
+
+
+

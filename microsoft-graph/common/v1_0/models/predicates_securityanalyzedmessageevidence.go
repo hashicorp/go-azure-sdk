@@ -1,0 +1,92 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type SecurityAnalyzedMessageEvidenceOperationPredicate struct {
+	AntiSpamDirection        *string
+	AttachmentsCount         *int64
+	CreatedDateTime          *string
+	DeliveryAction           *string
+	DeliveryLocation         *string
+	InternetMessageId        *string
+	Language                 *string
+	NetworkMessageId         *string
+	ODataType                *string
+	ReceivedDateTime         *string
+	RecipientEmailAddress    *string
+	RemediationStatusDetails *string
+	SenderIp                 *string
+	Subject                  *string
+	UrlCount                 *int64
+	Urn                      *string
+}
+
+func (p SecurityAnalyzedMessageEvidenceOperationPredicate) Matches(input SecurityAnalyzedMessageEvidence) bool {
+
+	if p.AntiSpamDirection != nil && (input.AntiSpamDirection == nil || *p.AntiSpamDirection != *input.AntiSpamDirection) {
+		return false
+	}
+
+	if p.AttachmentsCount != nil && (input.AttachmentsCount == nil || *p.AttachmentsCount != *input.AttachmentsCount) {
+		return false
+	}
+
+	if p.CreatedDateTime != nil && (input.CreatedDateTime == nil || *p.CreatedDateTime != *input.CreatedDateTime) {
+		return false
+	}
+
+	if p.DeliveryAction != nil && (input.DeliveryAction == nil || *p.DeliveryAction != *input.DeliveryAction) {
+		return false
+	}
+
+	if p.DeliveryLocation != nil && (input.DeliveryLocation == nil || *p.DeliveryLocation != *input.DeliveryLocation) {
+		return false
+	}
+
+	if p.InternetMessageId != nil && (input.InternetMessageId == nil || *p.InternetMessageId != *input.InternetMessageId) {
+		return false
+	}
+
+	if p.Language != nil && (input.Language == nil || *p.Language != *input.Language) {
+		return false
+	}
+
+	if p.NetworkMessageId != nil && (input.NetworkMessageId == nil || *p.NetworkMessageId != *input.NetworkMessageId) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.ReceivedDateTime != nil && (input.ReceivedDateTime == nil || *p.ReceivedDateTime != *input.ReceivedDateTime) {
+		return false
+	}
+
+	if p.RecipientEmailAddress != nil && (input.RecipientEmailAddress == nil || *p.RecipientEmailAddress != *input.RecipientEmailAddress) {
+		return false
+	}
+
+	if p.RemediationStatusDetails != nil && (input.RemediationStatusDetails == nil || *p.RemediationStatusDetails != *input.RemediationStatusDetails) {
+		return false
+	}
+
+	if p.SenderIp != nil && (input.SenderIp == nil || *p.SenderIp != *input.SenderIp) {
+		return false
+	}
+
+	if p.Subject != nil && (input.Subject == nil || *p.Subject != *input.Subject) {
+		return false
+	}
+
+	if p.UrlCount != nil && (input.UrlCount == nil || *p.UrlCount != *input.UrlCount) {
+		return false
+	}
+
+	if p.Urn != nil && (input.Urn == nil || *p.Urn != *input.Urn) {
+		return false
+	}
+
+	return true
+}

@@ -1,0 +1,81 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type OnenotePageOperationPredicate struct {
+	 Content *string
+	 ContentUrl *string
+	 CreatedByAppId *string
+	 CreatedDateTime *string
+	 Id *string
+	 LastModifiedDateTime *string
+	 Level *int64
+	 ODataType *string
+	 Order *int64
+	 Self *string
+	 Title *string
+}
+
+func (p OnenotePageOperationPredicate) Matches(input OnenotePage) bool {
+
+	if p.Content != nil && (input.Content == nil || *p.Content != *input.Content) {
+	 	return false
+	}
+
+
+	if p.ContentUrl != nil && (input.ContentUrl == nil || *p.ContentUrl != *input.ContentUrl) {
+	 	return false
+	}
+
+
+	if p.CreatedByAppId != nil && (input.CreatedByAppId == nil || *p.CreatedByAppId != *input.CreatedByAppId) {
+	 	return false
+	}
+
+
+	if p.CreatedDateTime != nil && (input.CreatedDateTime == nil || *p.CreatedDateTime != *input.CreatedDateTime) {
+	 	return false
+	}
+
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+	 	return false
+	}
+
+
+	if p.LastModifiedDateTime != nil && (input.LastModifiedDateTime == nil || *p.LastModifiedDateTime != *input.LastModifiedDateTime) {
+	 	return false
+	}
+
+
+	if p.Level != nil && (input.Level == nil || *p.Level != *input.Level) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.Order != nil && (input.Order == nil || *p.Order != *input.Order) {
+	 	return false
+	}
+
+
+	if p.Self != nil && (input.Self == nil || *p.Self != *input.Self) {
+	 	return false
+	}
+
+
+	if p.Title != nil && (input.Title == nil || *p.Title != *input.Title) {
+	 	return false
+	}
+
+
+	return true
+}
+

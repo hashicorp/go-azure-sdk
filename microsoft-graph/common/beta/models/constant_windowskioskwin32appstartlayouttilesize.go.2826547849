@@ -1,0 +1,49 @@
+package models
+
+import "strings"
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type WindowsKioskWin32AppStartLayoutTileSize string
+
+const (
+	WindowsKioskWin32AppStartLayoutTileSizehidden WindowsKioskWin32AppStartLayoutTileSize = "Hidden"
+	WindowsKioskWin32AppStartLayoutTileSizelarge WindowsKioskWin32AppStartLayoutTileSize = "Large"
+	WindowsKioskWin32AppStartLayoutTileSizemedium WindowsKioskWin32AppStartLayoutTileSize = "Medium"
+	WindowsKioskWin32AppStartLayoutTileSizesmall WindowsKioskWin32AppStartLayoutTileSize = "Small"
+	WindowsKioskWin32AppStartLayoutTileSizewide WindowsKioskWin32AppStartLayoutTileSize = "Wide"
+)
+
+
+func PossibleValuesForWindowsKioskWin32AppStartLayoutTileSize() []string {
+	return []string{
+		string(WindowsKioskWin32AppStartLayoutTileSizehidden),
+string(WindowsKioskWin32AppStartLayoutTileSizelarge),
+string(WindowsKioskWin32AppStartLayoutTileSizemedium),
+string(WindowsKioskWin32AppStartLayoutTileSizesmall),
+string(WindowsKioskWin32AppStartLayoutTileSizewide),
+	}
+}
+
+
+
+func parseWindowsKioskWin32AppStartLayoutTileSize(input string) (*WindowsKioskWin32AppStartLayoutTileSize, error) {
+	vals := map[string]WindowsKioskWin32AppStartLayoutTileSize{
+		"hidden": WindowsKioskWin32AppStartLayoutTileSizehidden,
+"large": WindowsKioskWin32AppStartLayoutTileSizelarge,
+"medium": WindowsKioskWin32AppStartLayoutTileSizemedium,
+"small": WindowsKioskWin32AppStartLayoutTileSizesmall,
+"wide": WindowsKioskWin32AppStartLayoutTileSizewide,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := WindowsKioskWin32AppStartLayoutTileSize(input)
+	return &out, nil
+}

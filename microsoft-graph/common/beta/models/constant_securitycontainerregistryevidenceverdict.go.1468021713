@@ -1,0 +1,46 @@
+package models
+
+import "strings"
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type SecurityContainerRegistryEvidenceVerdict string
+
+const (
+	SecurityContainerRegistryEvidenceVerdictmalicious SecurityContainerRegistryEvidenceVerdict = "Malicious"
+	SecurityContainerRegistryEvidenceVerdictnoThreatsFound SecurityContainerRegistryEvidenceVerdict = "NoThreatsFound"
+	SecurityContainerRegistryEvidenceVerdictsuspicious SecurityContainerRegistryEvidenceVerdict = "Suspicious"
+	SecurityContainerRegistryEvidenceVerdictunknown SecurityContainerRegistryEvidenceVerdict = "Unknown"
+)
+
+
+func PossibleValuesForSecurityContainerRegistryEvidenceVerdict() []string {
+	return []string{
+		string(SecurityContainerRegistryEvidenceVerdictmalicious),
+string(SecurityContainerRegistryEvidenceVerdictnoThreatsFound),
+string(SecurityContainerRegistryEvidenceVerdictsuspicious),
+string(SecurityContainerRegistryEvidenceVerdictunknown),
+	}
+}
+
+
+
+func parseSecurityContainerRegistryEvidenceVerdict(input string) (*SecurityContainerRegistryEvidenceVerdict, error) {
+	vals := map[string]SecurityContainerRegistryEvidenceVerdict{
+		"malicious": SecurityContainerRegistryEvidenceVerdictmalicious,
+"nothreatsfound": SecurityContainerRegistryEvidenceVerdictnoThreatsFound,
+"suspicious": SecurityContainerRegistryEvidenceVerdictsuspicious,
+"unknown": SecurityContainerRegistryEvidenceVerdictunknown,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SecurityContainerRegistryEvidenceVerdict(input)
+	return &out, nil
+}

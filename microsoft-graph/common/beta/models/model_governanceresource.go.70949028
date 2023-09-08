@@ -1,0 +1,43 @@
+package models
+
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/edgezones"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/identity"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/systemdata"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/zones"
+)
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type GovernanceResource struct {
+	DisplayName *string `json:"displayName,omitempty"`
+	ExternalId *string `json:"externalId,omitempty"`
+	Id *string `json:"id,omitempty"`
+	ODataType *string `json:"@odata.type,omitempty"`
+	Parent *GovernanceResource `json:"parent,omitempty"`
+	RegisteredDateTime *string `json:"registeredDateTime,omitempty"`
+	RegisteredRoot *string `json:"registeredRoot,omitempty"`
+	RoleAssignmentRequests *[]GovernanceRoleAssignmentRequest `json:"roleAssignmentRequests,omitempty"`
+	RoleAssignments *[]GovernanceRoleAssignment `json:"roleAssignments,omitempty"`
+	RoleDefinitions *[]GovernanceRoleDefinition `json:"roleDefinitions,omitempty"`
+	RoleSettings *[]GovernanceRoleSetting `json:"roleSettings,omitempty"`
+	Status *string `json:"status,omitempty"`
+	Type *string `json:"type,omitempty"`
+}
+
+
+
+
+
+
+

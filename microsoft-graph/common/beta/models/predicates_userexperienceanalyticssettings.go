@@ -1,0 +1,22 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type UserExperienceAnalyticsSettingsOperationPredicate struct {
+	ConfigurationManagerDataConnectorConfigured *bool
+	ODataType                                   *string
+}
+
+func (p UserExperienceAnalyticsSettingsOperationPredicate) Matches(input UserExperienceAnalyticsSettings) bool {
+
+	if p.ConfigurationManagerDataConnectorConfigured != nil && (input.ConfigurationManagerDataConnectorConfigured == nil || *p.ConfigurationManagerDataConnectorConfigured != *input.ConfigurationManagerDataConnectorConfigured) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	return true
+}

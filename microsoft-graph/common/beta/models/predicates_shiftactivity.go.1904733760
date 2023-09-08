@@ -1,0 +1,51 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type ShiftActivityOperationPredicate struct {
+	 Code *string
+	 DisplayName *string
+	 EndDateTime *string
+	 IsPaid *bool
+	 ODataType *string
+	 StartDateTime *string
+}
+
+func (p ShiftActivityOperationPredicate) Matches(input ShiftActivity) bool {
+
+	if p.Code != nil && (input.Code == nil || *p.Code != *input.Code) {
+	 	return false
+	}
+
+
+	if p.DisplayName != nil && (input.DisplayName == nil || *p.DisplayName != *input.DisplayName) {
+	 	return false
+	}
+
+
+	if p.EndDateTime != nil && (input.EndDateTime == nil || *p.EndDateTime != *input.EndDateTime) {
+	 	return false
+	}
+
+
+	if p.IsPaid != nil && (input.IsPaid == nil || *p.IsPaid != *input.IsPaid) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.StartDateTime != nil && (input.StartDateTime == nil || *p.StartDateTime != *input.StartDateTime) {
+	 	return false
+	}
+
+
+	return true
+}
+

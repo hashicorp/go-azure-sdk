@@ -1,0 +1,37 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type PlannerChecklistItemOperationPredicate struct {
+	IsChecked            *bool
+	LastModifiedDateTime *string
+	ODataType            *string
+	OrderHint            *string
+	Title                *string
+}
+
+func (p PlannerChecklistItemOperationPredicate) Matches(input PlannerChecklistItem) bool {
+
+	if p.IsChecked != nil && (input.IsChecked == nil || *p.IsChecked != *input.IsChecked) {
+		return false
+	}
+
+	if p.LastModifiedDateTime != nil && (input.LastModifiedDateTime == nil || *p.LastModifiedDateTime != *input.LastModifiedDateTime) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.OrderHint != nil && (input.OrderHint == nil || *p.OrderHint != *input.OrderHint) {
+		return false
+	}
+
+	if p.Title != nil && (input.Title == nil || *p.Title != *input.Title) {
+		return false
+	}
+
+	return true
+}

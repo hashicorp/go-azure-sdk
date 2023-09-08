@@ -1,0 +1,43 @@
+package models
+
+import "strings"
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type Windows10GeneralConfigurationInkWorkspaceAccessState string
+
+const (
+	Windows10GeneralConfigurationInkWorkspaceAccessStateallowed Windows10GeneralConfigurationInkWorkspaceAccessState = "Allowed"
+	Windows10GeneralConfigurationInkWorkspaceAccessStateblocked Windows10GeneralConfigurationInkWorkspaceAccessState = "Blocked"
+	Windows10GeneralConfigurationInkWorkspaceAccessStatenotConfigured Windows10GeneralConfigurationInkWorkspaceAccessState = "NotConfigured"
+)
+
+
+func PossibleValuesForWindows10GeneralConfigurationInkWorkspaceAccessState() []string {
+	return []string{
+		string(Windows10GeneralConfigurationInkWorkspaceAccessStateallowed),
+string(Windows10GeneralConfigurationInkWorkspaceAccessStateblocked),
+string(Windows10GeneralConfigurationInkWorkspaceAccessStatenotConfigured),
+	}
+}
+
+
+
+func parseWindows10GeneralConfigurationInkWorkspaceAccessState(input string) (*Windows10GeneralConfigurationInkWorkspaceAccessState, error) {
+	vals := map[string]Windows10GeneralConfigurationInkWorkspaceAccessState{
+		"allowed": Windows10GeneralConfigurationInkWorkspaceAccessStateallowed,
+"blocked": Windows10GeneralConfigurationInkWorkspaceAccessStateblocked,
+"notconfigured": Windows10GeneralConfigurationInkWorkspaceAccessStatenotConfigured,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := Windows10GeneralConfigurationInkWorkspaceAccessState(input)
+	return &out, nil
+}

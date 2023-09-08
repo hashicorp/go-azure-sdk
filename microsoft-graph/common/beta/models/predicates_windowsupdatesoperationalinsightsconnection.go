@@ -1,0 +1,37 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type WindowsUpdatesOperationalInsightsConnectionOperationPredicate struct {
+	AzureResourceGroupName *string
+	AzureSubscriptionId    *string
+	Id                     *string
+	ODataType              *string
+	WorkspaceName          *string
+}
+
+func (p WindowsUpdatesOperationalInsightsConnectionOperationPredicate) Matches(input WindowsUpdatesOperationalInsightsConnection) bool {
+
+	if p.AzureResourceGroupName != nil && (input.AzureResourceGroupName == nil || *p.AzureResourceGroupName != *input.AzureResourceGroupName) {
+		return false
+	}
+
+	if p.AzureSubscriptionId != nil && (input.AzureSubscriptionId == nil || *p.AzureSubscriptionId != *input.AzureSubscriptionId) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.WorkspaceName != nil && (input.WorkspaceName == nil || *p.WorkspaceName != *input.WorkspaceName) {
+		return false
+	}
+
+	return true
+}

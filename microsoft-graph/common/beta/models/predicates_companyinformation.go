@@ -1,0 +1,77 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type CompanyInformationOperationPredicate struct {
+	CurrencyCode               *string
+	CurrentFiscalYearStartDate *string
+	DisplayName                *string
+	Email                      *string
+	FaxNumber                  *string
+	Id                         *string
+	Industry                   *string
+	LastModifiedDateTime       *string
+	ODataType                  *string
+	PhoneNumber                *string
+	Picture                    *string
+	TaxRegistrationNumber      *string
+	Website                    *string
+}
+
+func (p CompanyInformationOperationPredicate) Matches(input CompanyInformation) bool {
+
+	if p.CurrencyCode != nil && (input.CurrencyCode == nil || *p.CurrencyCode != *input.CurrencyCode) {
+		return false
+	}
+
+	if p.CurrentFiscalYearStartDate != nil && (input.CurrentFiscalYearStartDate == nil || *p.CurrentFiscalYearStartDate != *input.CurrentFiscalYearStartDate) {
+		return false
+	}
+
+	if p.DisplayName != nil && (input.DisplayName == nil || *p.DisplayName != *input.DisplayName) {
+		return false
+	}
+
+	if p.Email != nil && (input.Email == nil || *p.Email != *input.Email) {
+		return false
+	}
+
+	if p.FaxNumber != nil && (input.FaxNumber == nil || *p.FaxNumber != *input.FaxNumber) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.Industry != nil && (input.Industry == nil || *p.Industry != *input.Industry) {
+		return false
+	}
+
+	if p.LastModifiedDateTime != nil && (input.LastModifiedDateTime == nil || *p.LastModifiedDateTime != *input.LastModifiedDateTime) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.PhoneNumber != nil && (input.PhoneNumber == nil || *p.PhoneNumber != *input.PhoneNumber) {
+		return false
+	}
+
+	if p.Picture != nil && (input.Picture == nil || *p.Picture != *input.Picture) {
+		return false
+	}
+
+	if p.TaxRegistrationNumber != nil && (input.TaxRegistrationNumber == nil || *p.TaxRegistrationNumber != *input.TaxRegistrationNumber) {
+		return false
+	}
+
+	if p.Website != nil && (input.Website == nil || *p.Website != *input.Website) {
+		return false
+	}
+
+	return true
+}

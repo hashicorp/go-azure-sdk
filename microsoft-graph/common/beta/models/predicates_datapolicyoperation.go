@@ -1,0 +1,42 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type DataPolicyOperationOperationPredicate struct {
+	CompletedDateTime *string
+	Id                *string
+	ODataType         *string
+	StorageLocation   *string
+	SubmittedDateTime *string
+	UserId            *string
+}
+
+func (p DataPolicyOperationOperationPredicate) Matches(input DataPolicyOperation) bool {
+
+	if p.CompletedDateTime != nil && (input.CompletedDateTime == nil || *p.CompletedDateTime != *input.CompletedDateTime) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.StorageLocation != nil && (input.StorageLocation == nil || *p.StorageLocation != *input.StorageLocation) {
+		return false
+	}
+
+	if p.SubmittedDateTime != nil && (input.SubmittedDateTime == nil || *p.SubmittedDateTime != *input.SubmittedDateTime) {
+		return false
+	}
+
+	if p.UserId != nil && (input.UserId == nil || *p.UserId != *input.UserId) {
+		return false
+	}
+
+	return true
+}

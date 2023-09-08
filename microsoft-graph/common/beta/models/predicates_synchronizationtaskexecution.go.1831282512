@@ -1,0 +1,93 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type SynchronizationTaskExecutionOperationPredicate struct {
+	 ActivityIdentifier *string
+	 CountEntitled *int64
+	 CountEntitledForProvisioning *int64
+	 CountEscrowed *int64
+	 CountEscrowedRaw *int64
+	 CountExported *int64
+	 CountExports *int64
+	 CountImported *int64
+	 CountImportedDeltas *int64
+	 CountImportedReferenceDeltas *int64
+	 ODataType *string
+	 TimeBegan *string
+	 TimeEnded *string
+}
+
+func (p SynchronizationTaskExecutionOperationPredicate) Matches(input SynchronizationTaskExecution) bool {
+
+	if p.ActivityIdentifier != nil && (input.ActivityIdentifier == nil || *p.ActivityIdentifier != *input.ActivityIdentifier) {
+	 	return false
+	}
+
+
+	if p.CountEntitled != nil && (input.CountEntitled == nil || *p.CountEntitled != *input.CountEntitled) {
+	 	return false
+	}
+
+
+	if p.CountEntitledForProvisioning != nil && (input.CountEntitledForProvisioning == nil || *p.CountEntitledForProvisioning != *input.CountEntitledForProvisioning) {
+	 	return false
+	}
+
+
+	if p.CountEscrowed != nil && (input.CountEscrowed == nil || *p.CountEscrowed != *input.CountEscrowed) {
+	 	return false
+	}
+
+
+	if p.CountEscrowedRaw != nil && (input.CountEscrowedRaw == nil || *p.CountEscrowedRaw != *input.CountEscrowedRaw) {
+	 	return false
+	}
+
+
+	if p.CountExported != nil && (input.CountExported == nil || *p.CountExported != *input.CountExported) {
+	 	return false
+	}
+
+
+	if p.CountExports != nil && (input.CountExports == nil || *p.CountExports != *input.CountExports) {
+	 	return false
+	}
+
+
+	if p.CountImported != nil && (input.CountImported == nil || *p.CountImported != *input.CountImported) {
+	 	return false
+	}
+
+
+	if p.CountImportedDeltas != nil && (input.CountImportedDeltas == nil || *p.CountImportedDeltas != *input.CountImportedDeltas) {
+	 	return false
+	}
+
+
+	if p.CountImportedReferenceDeltas != nil && (input.CountImportedReferenceDeltas == nil || *p.CountImportedReferenceDeltas != *input.CountImportedReferenceDeltas) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.TimeBegan != nil && (input.TimeBegan == nil || *p.TimeBegan != *input.TimeBegan) {
+	 	return false
+	}
+
+
+	if p.TimeEnded != nil && (input.TimeEnded == nil || *p.TimeEnded != *input.TimeEnded) {
+	 	return false
+	}
+
+
+	return true
+}
+

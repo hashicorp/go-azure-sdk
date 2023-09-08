@@ -1,0 +1,27 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type SizeRangeOperationPredicate struct {
+	MaximumSize *int64
+	MinimumSize *int64
+	ODataType   *string
+}
+
+func (p SizeRangeOperationPredicate) Matches(input SizeRange) bool {
+
+	if p.MaximumSize != nil && (input.MaximumSize == nil || *p.MaximumSize != *input.MaximumSize) {
+		return false
+	}
+
+	if p.MinimumSize != nil && (input.MinimumSize == nil || *p.MinimumSize != *input.MinimumSize) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	return true
+}

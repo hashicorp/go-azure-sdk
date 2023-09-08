@@ -1,0 +1,117 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type MdmWindowsInformationProtectionPolicyOperationPredicate struct {
+	 AzureRightsManagementServicesAllowed *bool
+	 CreatedDateTime *string
+	 Description *string
+	 DisplayName *string
+	 EnterpriseDomain *string
+	 EnterpriseIPRangesAreAuthoritative *bool
+	 EnterpriseProxyServersAreAuthoritative *bool
+	 IconsVisible *bool
+	 Id *string
+	 IndexingEncryptedStoresOrItemsBlocked *bool
+	 IsAssigned *bool
+	 LastModifiedDateTime *string
+	 ODataType *string
+	 ProtectionUnderLockConfigRequired *bool
+	 RevokeOnUnenrollDisabled *bool
+	 RightsManagementServicesTemplateId *string
+	 Version *string
+}
+
+func (p MdmWindowsInformationProtectionPolicyOperationPredicate) Matches(input MdmWindowsInformationProtectionPolicy) bool {
+
+	if p.AzureRightsManagementServicesAllowed != nil && (input.AzureRightsManagementServicesAllowed == nil || *p.AzureRightsManagementServicesAllowed != *input.AzureRightsManagementServicesAllowed) {
+	 	return false
+	}
+
+
+	if p.CreatedDateTime != nil && (input.CreatedDateTime == nil || *p.CreatedDateTime != *input.CreatedDateTime) {
+	 	return false
+	}
+
+
+	if p.Description != nil && (input.Description == nil || *p.Description != *input.Description) {
+	 	return false
+	}
+
+
+	if p.DisplayName != nil && (input.DisplayName == nil || *p.DisplayName != *input.DisplayName) {
+	 	return false
+	}
+
+
+	if p.EnterpriseDomain != nil && (input.EnterpriseDomain == nil || *p.EnterpriseDomain != *input.EnterpriseDomain) {
+	 	return false
+	}
+
+
+	if p.EnterpriseIPRangesAreAuthoritative != nil && (input.EnterpriseIPRangesAreAuthoritative == nil || *p.EnterpriseIPRangesAreAuthoritative != *input.EnterpriseIPRangesAreAuthoritative) {
+	 	return false
+	}
+
+
+	if p.EnterpriseProxyServersAreAuthoritative != nil && (input.EnterpriseProxyServersAreAuthoritative == nil || *p.EnterpriseProxyServersAreAuthoritative != *input.EnterpriseProxyServersAreAuthoritative) {
+	 	return false
+	}
+
+
+	if p.IconsVisible != nil && (input.IconsVisible == nil || *p.IconsVisible != *input.IconsVisible) {
+	 	return false
+	}
+
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+	 	return false
+	}
+
+
+	if p.IndexingEncryptedStoresOrItemsBlocked != nil && (input.IndexingEncryptedStoresOrItemsBlocked == nil || *p.IndexingEncryptedStoresOrItemsBlocked != *input.IndexingEncryptedStoresOrItemsBlocked) {
+	 	return false
+	}
+
+
+	if p.IsAssigned != nil && (input.IsAssigned == nil || *p.IsAssigned != *input.IsAssigned) {
+	 	return false
+	}
+
+
+	if p.LastModifiedDateTime != nil && (input.LastModifiedDateTime == nil || *p.LastModifiedDateTime != *input.LastModifiedDateTime) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.ProtectionUnderLockConfigRequired != nil && (input.ProtectionUnderLockConfigRequired == nil || *p.ProtectionUnderLockConfigRequired != *input.ProtectionUnderLockConfigRequired) {
+	 	return false
+	}
+
+
+	if p.RevokeOnUnenrollDisabled != nil && (input.RevokeOnUnenrollDisabled == nil || *p.RevokeOnUnenrollDisabled != *input.RevokeOnUnenrollDisabled) {
+	 	return false
+	}
+
+
+	if p.RightsManagementServicesTemplateId != nil && (input.RightsManagementServicesTemplateId == nil || *p.RightsManagementServicesTemplateId != *input.RightsManagementServicesTemplateId) {
+	 	return false
+	}
+
+
+	if p.Version != nil && (input.Version == nil || *p.Version != *input.Version) {
+	 	return false
+	}
+
+
+	return true
+}
+

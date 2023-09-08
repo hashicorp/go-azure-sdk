@@ -1,0 +1,42 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type SecurityProviderStatusOperationPredicate struct {
+	Enabled   *bool
+	Endpoint  *string
+	ODataType *string
+	Provider  *string
+	Region    *string
+	Vendor    *string
+}
+
+func (p SecurityProviderStatusOperationPredicate) Matches(input SecurityProviderStatus) bool {
+
+	if p.Enabled != nil && (input.Enabled == nil || *p.Enabled != *input.Enabled) {
+		return false
+	}
+
+	if p.Endpoint != nil && (input.Endpoint == nil || *p.Endpoint != *input.Endpoint) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.Provider != nil && (input.Provider == nil || *p.Provider != *input.Provider) {
+		return false
+	}
+
+	if p.Region != nil && (input.Region == nil || *p.Region != *input.Region) {
+		return false
+	}
+
+	if p.Vendor != nil && (input.Vendor == nil || *p.Vendor != *input.Vendor) {
+		return false
+	}
+
+	return true
+}

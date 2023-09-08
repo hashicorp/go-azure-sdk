@@ -1,0 +1,19 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type VpnTrafficRule struct {
+	AppId               *string                            `json:"appId,omitempty"`
+	AppType             *VpnTrafficRuleAppType             `json:"appType,omitempty"`
+	Claims              *string                            `json:"claims,omitempty"`
+	LocalAddressRanges  *[]IPv4Range                       `json:"localAddressRanges,omitempty"`
+	LocalPortRanges     *[]NumberRange                     `json:"localPortRanges,omitempty"`
+	Name                *string                            `json:"name,omitempty"`
+	ODataType           *string                            `json:"@odata.type,omitempty"`
+	Protocols           *int64                             `json:"protocols,omitempty"`
+	RemoteAddressRanges *[]IPv4Range                       `json:"remoteAddressRanges,omitempty"`
+	RemotePortRanges    *[]NumberRange                     `json:"remotePortRanges,omitempty"`
+	RoutingPolicyType   *VpnTrafficRuleRoutingPolicyType   `json:"routingPolicyType,omitempty"`
+	VpnTrafficDirection *VpnTrafficRuleVpnTrafficDirection `json:"vpnTrafficDirection,omitempty"`
+}

@@ -1,0 +1,52 @@
+package models
+
+import "strings"
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type Windows81SCEPCertificateProfileSubjectAlternativeNameType string
+
+const (
+	Windows81SCEPCertificateProfileSubjectAlternativeNameTypecustomAzureADAttribute Windows81SCEPCertificateProfileSubjectAlternativeNameType = "CustomAzureADAttribute"
+	Windows81SCEPCertificateProfileSubjectAlternativeNameTypedomainNameService Windows81SCEPCertificateProfileSubjectAlternativeNameType = "DomainNameService"
+	Windows81SCEPCertificateProfileSubjectAlternativeNameTypeemailAddress Windows81SCEPCertificateProfileSubjectAlternativeNameType = "EmailAddress"
+	Windows81SCEPCertificateProfileSubjectAlternativeNameTypenone Windows81SCEPCertificateProfileSubjectAlternativeNameType = "None"
+	Windows81SCEPCertificateProfileSubjectAlternativeNameTypeuniversalResourceIdentifier Windows81SCEPCertificateProfileSubjectAlternativeNameType = "UniversalResourceIdentifier"
+	Windows81SCEPCertificateProfileSubjectAlternativeNameTypeuserPrincipalName Windows81SCEPCertificateProfileSubjectAlternativeNameType = "UserPrincipalName"
+)
+
+
+func PossibleValuesForWindows81SCEPCertificateProfileSubjectAlternativeNameType() []string {
+	return []string{
+		string(Windows81SCEPCertificateProfileSubjectAlternativeNameTypecustomAzureADAttribute),
+string(Windows81SCEPCertificateProfileSubjectAlternativeNameTypedomainNameService),
+string(Windows81SCEPCertificateProfileSubjectAlternativeNameTypeemailAddress),
+string(Windows81SCEPCertificateProfileSubjectAlternativeNameTypenone),
+string(Windows81SCEPCertificateProfileSubjectAlternativeNameTypeuniversalResourceIdentifier),
+string(Windows81SCEPCertificateProfileSubjectAlternativeNameTypeuserPrincipalName),
+	}
+}
+
+
+
+func parseWindows81SCEPCertificateProfileSubjectAlternativeNameType(input string) (*Windows81SCEPCertificateProfileSubjectAlternativeNameType, error) {
+	vals := map[string]Windows81SCEPCertificateProfileSubjectAlternativeNameType{
+		"customazureadattribute": Windows81SCEPCertificateProfileSubjectAlternativeNameTypecustomAzureADAttribute,
+"domainnameservice": Windows81SCEPCertificateProfileSubjectAlternativeNameTypedomainNameService,
+"emailaddress": Windows81SCEPCertificateProfileSubjectAlternativeNameTypeemailAddress,
+"none": Windows81SCEPCertificateProfileSubjectAlternativeNameTypenone,
+"universalresourceidentifier": Windows81SCEPCertificateProfileSubjectAlternativeNameTypeuniversalResourceIdentifier,
+"userprincipalname": Windows81SCEPCertificateProfileSubjectAlternativeNameTypeuserPrincipalName,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := Windows81SCEPCertificateProfileSubjectAlternativeNameType(input)
+	return &out, nil
+}

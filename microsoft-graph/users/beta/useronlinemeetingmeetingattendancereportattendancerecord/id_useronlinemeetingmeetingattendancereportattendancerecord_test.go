@@ -1,0 +1,267 @@
+package useronlinemeetingmeetingattendancereportattendancerecord
+
+import (
+	"testing"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+var _ resourceids.ResourceId = UserOnlineMeetingMeetingAttendanceReportAttendanceRecordId{}
+
+func TestNewUserOnlineMeetingMeetingAttendanceReportAttendanceRecordID(t *testing.T) {
+	id := NewUserOnlineMeetingMeetingAttendanceReportAttendanceRecordID("userIdValue", "onlineMeetingIdValue", "attendanceRecordIdValue")
+
+	if id.UserId != "userIdValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userIdValue")
+	}
+
+	if id.OnlineMeetingId != "onlineMeetingIdValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'OnlineMeetingId'", id.OnlineMeetingId, "onlineMeetingIdValue")
+	}
+
+	if id.AttendanceRecordId != "attendanceRecordIdValue" {
+		t.Fatalf("Expected %q but got %q for Segment 'AttendanceRecordId'", id.AttendanceRecordId, "attendanceRecordIdValue")
+	}
+}
+
+func TestFormatUserOnlineMeetingMeetingAttendanceReportAttendanceRecordID(t *testing.T) {
+	actual := NewUserOnlineMeetingMeetingAttendanceReportAttendanceRecordID("userIdValue", "onlineMeetingIdValue", "attendanceRecordIdValue").ID()
+	expected := "/users/userIdValue/onlineMeetings/onlineMeetingIdValue/meetingAttendanceReport/attendanceRecords/attendanceRecordIdValue"
+	if actual != expected {
+		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
+	}
+}
+
+func TestParseUserOnlineMeetingMeetingAttendanceReportAttendanceRecordID(t *testing.T) {
+	testData := []struct {
+		Input    string
+		Error    bool
+		Expected *UserOnlineMeetingMeetingAttendanceReportAttendanceRecordId
+	}{
+		{
+			// Incomplete URI
+			Input: "",
+			Error: true,
+		},
+		{
+			// Incomplete URI
+			Input: "/users",
+			Error: true,
+		},
+		{
+			// Incomplete URI
+			Input: "/users/userIdValue",
+			Error: true,
+		},
+		{
+			// Incomplete URI
+			Input: "/users/userIdValue/onlineMeetings",
+			Error: true,
+		},
+		{
+			// Incomplete URI
+			Input: "/users/userIdValue/onlineMeetings/onlineMeetingIdValue",
+			Error: true,
+		},
+		{
+			// Incomplete URI
+			Input: "/users/userIdValue/onlineMeetings/onlineMeetingIdValue/meetingAttendanceReport",
+			Error: true,
+		},
+		{
+			// Incomplete URI
+			Input: "/users/userIdValue/onlineMeetings/onlineMeetingIdValue/meetingAttendanceReport/attendanceRecords",
+			Error: true,
+		},
+		{
+			// Valid URI
+			Input: "/users/userIdValue/onlineMeetings/onlineMeetingIdValue/meetingAttendanceReport/attendanceRecords/attendanceRecordIdValue",
+			Expected: &UserOnlineMeetingMeetingAttendanceReportAttendanceRecordId{
+				UserId:             "userIdValue",
+				OnlineMeetingId:    "onlineMeetingIdValue",
+				AttendanceRecordId: "attendanceRecordIdValue",
+			},
+		},
+		{
+			// Invalid (Valid Uri with Extra segment)
+			Input: "/users/userIdValue/onlineMeetings/onlineMeetingIdValue/meetingAttendanceReport/attendanceRecords/attendanceRecordIdValue/extra",
+			Error: true,
+		},
+	}
+	for _, v := range testData {
+		t.Logf("[DEBUG] Testing %q", v.Input)
+
+		actual, err := ParseUserOnlineMeetingMeetingAttendanceReportAttendanceRecordID(v.Input)
+		if err != nil {
+			if v.Error {
+				continue
+			}
+
+			t.Fatalf("Expect a value but got an error: %+v", err)
+		}
+		if v.Error {
+			t.Fatal("Expect an error but didn't get one")
+		}
+
+		if actual.UserId != v.Expected.UserId {
+			t.Fatalf("Expected %q but got %q for UserId", v.Expected.UserId, actual.UserId)
+		}
+
+		if actual.OnlineMeetingId != v.Expected.OnlineMeetingId {
+			t.Fatalf("Expected %q but got %q for OnlineMeetingId", v.Expected.OnlineMeetingId, actual.OnlineMeetingId)
+		}
+
+		if actual.AttendanceRecordId != v.Expected.AttendanceRecordId {
+			t.Fatalf("Expected %q but got %q for AttendanceRecordId", v.Expected.AttendanceRecordId, actual.AttendanceRecordId)
+		}
+
+	}
+}
+
+func TestParseUserOnlineMeetingMeetingAttendanceReportAttendanceRecordIDInsensitively(t *testing.T) {
+	testData := []struct {
+		Input    string
+		Error    bool
+		Expected *UserOnlineMeetingMeetingAttendanceReportAttendanceRecordId
+	}{
+		{
+			// Incomplete URI
+			Input: "",
+			Error: true,
+		},
+		{
+			// Incomplete URI
+			Input: "/users",
+			Error: true,
+		},
+		{
+			// Incomplete URI (mIxEd CaSe since this is insensitive)
+			Input: "/uSeRs",
+			Error: true,
+		},
+		{
+			// Incomplete URI
+			Input: "/users/userIdValue",
+			Error: true,
+		},
+		{
+			// Incomplete URI (mIxEd CaSe since this is insensitive)
+			Input: "/uSeRs/uSeRiDvAlUe",
+			Error: true,
+		},
+		{
+			// Incomplete URI
+			Input: "/users/userIdValue/onlineMeetings",
+			Error: true,
+		},
+		{
+			// Incomplete URI (mIxEd CaSe since this is insensitive)
+			Input: "/uSeRs/uSeRiDvAlUe/oNlInEmEeTiNgS",
+			Error: true,
+		},
+		{
+			// Incomplete URI
+			Input: "/users/userIdValue/onlineMeetings/onlineMeetingIdValue",
+			Error: true,
+		},
+		{
+			// Incomplete URI (mIxEd CaSe since this is insensitive)
+			Input: "/uSeRs/uSeRiDvAlUe/oNlInEmEeTiNgS/oNlInEmEeTiNgIdVaLuE",
+			Error: true,
+		},
+		{
+			// Incomplete URI
+			Input: "/users/userIdValue/onlineMeetings/onlineMeetingIdValue/meetingAttendanceReport",
+			Error: true,
+		},
+		{
+			// Incomplete URI (mIxEd CaSe since this is insensitive)
+			Input: "/uSeRs/uSeRiDvAlUe/oNlInEmEeTiNgS/oNlInEmEeTiNgIdVaLuE/mEeTiNgAtTeNdAnCeRePoRt",
+			Error: true,
+		},
+		{
+			// Incomplete URI
+			Input: "/users/userIdValue/onlineMeetings/onlineMeetingIdValue/meetingAttendanceReport/attendanceRecords",
+			Error: true,
+		},
+		{
+			// Incomplete URI (mIxEd CaSe since this is insensitive)
+			Input: "/uSeRs/uSeRiDvAlUe/oNlInEmEeTiNgS/oNlInEmEeTiNgIdVaLuE/mEeTiNgAtTeNdAnCeRePoRt/aTtEnDaNcErEcOrDs",
+			Error: true,
+		},
+		{
+			// Valid URI
+			Input: "/users/userIdValue/onlineMeetings/onlineMeetingIdValue/meetingAttendanceReport/attendanceRecords/attendanceRecordIdValue",
+			Expected: &UserOnlineMeetingMeetingAttendanceReportAttendanceRecordId{
+				UserId:             "userIdValue",
+				OnlineMeetingId:    "onlineMeetingIdValue",
+				AttendanceRecordId: "attendanceRecordIdValue",
+			},
+		},
+		{
+			// Invalid (Valid Uri with Extra segment)
+			Input: "/users/userIdValue/onlineMeetings/onlineMeetingIdValue/meetingAttendanceReport/attendanceRecords/attendanceRecordIdValue/extra",
+			Error: true,
+		},
+		{
+			// Valid URI (mIxEd CaSe since this is insensitive)
+			Input: "/uSeRs/uSeRiDvAlUe/oNlInEmEeTiNgS/oNlInEmEeTiNgIdVaLuE/mEeTiNgAtTeNdAnCeRePoRt/aTtEnDaNcErEcOrDs/aTtEnDaNcErEcOrDiDvAlUe",
+			Expected: &UserOnlineMeetingMeetingAttendanceReportAttendanceRecordId{
+				UserId:             "uSeRiDvAlUe",
+				OnlineMeetingId:    "oNlInEmEeTiNgIdVaLuE",
+				AttendanceRecordId: "aTtEnDaNcErEcOrDiDvAlUe",
+			},
+		},
+		{
+			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
+			Input: "/uSeRs/uSeRiDvAlUe/oNlInEmEeTiNgS/oNlInEmEeTiNgIdVaLuE/mEeTiNgAtTeNdAnCeRePoRt/aTtEnDaNcErEcOrDs/aTtEnDaNcErEcOrDiDvAlUe/extra",
+			Error: true,
+		},
+	}
+	for _, v := range testData {
+		t.Logf("[DEBUG] Testing %q", v.Input)
+
+		actual, err := ParseUserOnlineMeetingMeetingAttendanceReportAttendanceRecordIDInsensitively(v.Input)
+		if err != nil {
+			if v.Error {
+				continue
+			}
+
+			t.Fatalf("Expect a value but got an error: %+v", err)
+		}
+		if v.Error {
+			t.Fatal("Expect an error but didn't get one")
+		}
+
+		if actual.UserId != v.Expected.UserId {
+			t.Fatalf("Expected %q but got %q for UserId", v.Expected.UserId, actual.UserId)
+		}
+
+		if actual.OnlineMeetingId != v.Expected.OnlineMeetingId {
+			t.Fatalf("Expected %q but got %q for OnlineMeetingId", v.Expected.OnlineMeetingId, actual.OnlineMeetingId)
+		}
+
+		if actual.AttendanceRecordId != v.Expected.AttendanceRecordId {
+			t.Fatalf("Expected %q but got %q for AttendanceRecordId", v.Expected.AttendanceRecordId, actual.AttendanceRecordId)
+		}
+
+	}
+}
+
+func TestSegmentsForUserOnlineMeetingMeetingAttendanceReportAttendanceRecordId(t *testing.T) {
+	segments := UserOnlineMeetingMeetingAttendanceReportAttendanceRecordId{}.Segments()
+	if len(segments) == 0 {
+		t.Fatalf("UserOnlineMeetingMeetingAttendanceReportAttendanceRecordId has no segments")
+	}
+
+	uniqueNames := make(map[string]struct{}, 0)
+	for _, segment := range segments {
+		uniqueNames[segment.Name] = struct{}{}
+	}
+	if len(uniqueNames) != len(segments) {
+		t.Fatalf("Expected the Segments to be unique but got %q unique segments and %d total segments", len(uniqueNames), len(segments))
+	}
+}

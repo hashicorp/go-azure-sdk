@@ -1,0 +1,37 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type EventMessageResponseImportance string
+
+const (
+	EventMessageResponseImportancehigh   EventMessageResponseImportance = "High"
+	EventMessageResponseImportancelow    EventMessageResponseImportance = "Low"
+	EventMessageResponseImportancenormal EventMessageResponseImportance = "Normal"
+)
+
+func PossibleValuesForEventMessageResponseImportance() []string {
+	return []string{
+		string(EventMessageResponseImportancehigh),
+		string(EventMessageResponseImportancelow),
+		string(EventMessageResponseImportancenormal),
+	}
+}
+
+func parseEventMessageResponseImportance(input string) (*EventMessageResponseImportance, error) {
+	vals := map[string]EventMessageResponseImportance{
+		"high":   EventMessageResponseImportancehigh,
+		"low":    EventMessageResponseImportancelow,
+		"normal": EventMessageResponseImportancenormal,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := EventMessageResponseImportance(input)
+	return &out, nil
+}

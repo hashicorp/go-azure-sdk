@@ -1,0 +1,32 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type UserExperienceAnalyticsDeviceWithoutCloudIdentityOperationPredicate struct {
+	AzureAdDeviceId *string
+	DeviceName      *string
+	Id              *string
+	ODataType       *string
+}
+
+func (p UserExperienceAnalyticsDeviceWithoutCloudIdentityOperationPredicate) Matches(input UserExperienceAnalyticsDeviceWithoutCloudIdentity) bool {
+
+	if p.AzureAdDeviceId != nil && (input.AzureAdDeviceId == nil || *p.AzureAdDeviceId != *input.AzureAdDeviceId) {
+		return false
+	}
+
+	if p.DeviceName != nil && (input.DeviceName == nil || *p.DeviceName != *input.DeviceName) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	return true
+}

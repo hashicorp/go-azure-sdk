@@ -1,0 +1,46 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type MacOSDeviceFeaturesConfigurationContentCachingParentSelectionPolicy string
+
+const (
+	MacOSDeviceFeaturesConfigurationContentCachingParentSelectionPolicyfirstAvailable  MacOSDeviceFeaturesConfigurationContentCachingParentSelectionPolicy = "FirstAvailable"
+	MacOSDeviceFeaturesConfigurationContentCachingParentSelectionPolicynotConfigured   MacOSDeviceFeaturesConfigurationContentCachingParentSelectionPolicy = "NotConfigured"
+	MacOSDeviceFeaturesConfigurationContentCachingParentSelectionPolicyrandom          MacOSDeviceFeaturesConfigurationContentCachingParentSelectionPolicy = "Random"
+	MacOSDeviceFeaturesConfigurationContentCachingParentSelectionPolicyroundRobin      MacOSDeviceFeaturesConfigurationContentCachingParentSelectionPolicy = "RoundRobin"
+	MacOSDeviceFeaturesConfigurationContentCachingParentSelectionPolicystickyAvailable MacOSDeviceFeaturesConfigurationContentCachingParentSelectionPolicy = "StickyAvailable"
+	MacOSDeviceFeaturesConfigurationContentCachingParentSelectionPolicyurlPathHash     MacOSDeviceFeaturesConfigurationContentCachingParentSelectionPolicy = "UrlPathHash"
+)
+
+func PossibleValuesForMacOSDeviceFeaturesConfigurationContentCachingParentSelectionPolicy() []string {
+	return []string{
+		string(MacOSDeviceFeaturesConfigurationContentCachingParentSelectionPolicyfirstAvailable),
+		string(MacOSDeviceFeaturesConfigurationContentCachingParentSelectionPolicynotConfigured),
+		string(MacOSDeviceFeaturesConfigurationContentCachingParentSelectionPolicyrandom),
+		string(MacOSDeviceFeaturesConfigurationContentCachingParentSelectionPolicyroundRobin),
+		string(MacOSDeviceFeaturesConfigurationContentCachingParentSelectionPolicystickyAvailable),
+		string(MacOSDeviceFeaturesConfigurationContentCachingParentSelectionPolicyurlPathHash),
+	}
+}
+
+func parseMacOSDeviceFeaturesConfigurationContentCachingParentSelectionPolicy(input string) (*MacOSDeviceFeaturesConfigurationContentCachingParentSelectionPolicy, error) {
+	vals := map[string]MacOSDeviceFeaturesConfigurationContentCachingParentSelectionPolicy{
+		"firstavailable":  MacOSDeviceFeaturesConfigurationContentCachingParentSelectionPolicyfirstAvailable,
+		"notconfigured":   MacOSDeviceFeaturesConfigurationContentCachingParentSelectionPolicynotConfigured,
+		"random":          MacOSDeviceFeaturesConfigurationContentCachingParentSelectionPolicyrandom,
+		"roundrobin":      MacOSDeviceFeaturesConfigurationContentCachingParentSelectionPolicyroundRobin,
+		"stickyavailable": MacOSDeviceFeaturesConfigurationContentCachingParentSelectionPolicystickyAvailable,
+		"urlpathhash":     MacOSDeviceFeaturesConfigurationContentCachingParentSelectionPolicyurlPathHash,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := MacOSDeviceFeaturesConfigurationContentCachingParentSelectionPolicy(input)
+	return &out, nil
+}

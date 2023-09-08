@@ -1,0 +1,51 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type RelatedContactOperationPredicate struct {
+	 AccessConsent *bool
+	 DisplayName *string
+	 EmailAddress *string
+	 Id *string
+	 MobilePhone *string
+	 ODataType *string
+}
+
+func (p RelatedContactOperationPredicate) Matches(input RelatedContact) bool {
+
+	if p.AccessConsent != nil && (input.AccessConsent == nil || *p.AccessConsent != *input.AccessConsent) {
+	 	return false
+	}
+
+
+	if p.DisplayName != nil && (input.DisplayName == nil || *p.DisplayName != *input.DisplayName) {
+	 	return false
+	}
+
+
+	if p.EmailAddress != nil && (input.EmailAddress == nil || *p.EmailAddress != *input.EmailAddress) {
+	 	return false
+	}
+
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+	 	return false
+	}
+
+
+	if p.MobilePhone != nil && (input.MobilePhone == nil || *p.MobilePhone != *input.MobilePhone) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	return true
+}
+

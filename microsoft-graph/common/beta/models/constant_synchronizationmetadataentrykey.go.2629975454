@@ -1,0 +1,61 @@
+package models
+
+import "strings"
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type SynchronizationMetadataEntryKey string
+
+const (
+	SynchronizationMetadataEntryKeyIsSynchronizationAgentAssignmentRequired SynchronizationMetadataEntryKey = "IsSynchronizationAgentAssignmentRequired"
+	SynchronizationMetadataEntryKeyconfigurationFields SynchronizationMetadataEntryKey = "ConfigurationFields"
+	SynchronizationMetadataEntryKeygalleryApplicationIdentifier SynchronizationMetadataEntryKey = "GalleryApplicationIdentifier"
+	SynchronizationMetadataEntryKeygalleryApplicationKey SynchronizationMetadataEntryKey = "GalleryApplicationKey"
+	SynchronizationMetadataEntryKeyisOAuthEnabled SynchronizationMetadataEntryKey = "IsOAuthEnabled"
+	SynchronizationMetadataEntryKeyisSynchronizationAgentRequired SynchronizationMetadataEntryKey = "IsSynchronizationAgentRequired"
+	SynchronizationMetadataEntryKeyisSynchronizationInPreview SynchronizationMetadataEntryKey = "IsSynchronizationInPreview"
+	SynchronizationMetadataEntryKeyoAuthSettings SynchronizationMetadataEntryKey = "OAuthSettings"
+	SynchronizationMetadataEntryKeysynchronizationLearnMoreIbizaFwLink SynchronizationMetadataEntryKey = "SynchronizationLearnMoreIbizaFwLink"
+)
+
+
+func PossibleValuesForSynchronizationMetadataEntryKey() []string {
+	return []string{
+		string(SynchronizationMetadataEntryKeyIsSynchronizationAgentAssignmentRequired),
+string(SynchronizationMetadataEntryKeyconfigurationFields),
+string(SynchronizationMetadataEntryKeygalleryApplicationIdentifier),
+string(SynchronizationMetadataEntryKeygalleryApplicationKey),
+string(SynchronizationMetadataEntryKeyisOAuthEnabled),
+string(SynchronizationMetadataEntryKeyisSynchronizationAgentRequired),
+string(SynchronizationMetadataEntryKeyisSynchronizationInPreview),
+string(SynchronizationMetadataEntryKeyoAuthSettings),
+string(SynchronizationMetadataEntryKeysynchronizationLearnMoreIbizaFwLink),
+	}
+}
+
+
+
+func parseSynchronizationMetadataEntryKey(input string) (*SynchronizationMetadataEntryKey, error) {
+	vals := map[string]SynchronizationMetadataEntryKey{
+		"issynchronizationagentassignmentrequired": SynchronizationMetadataEntryKeyIsSynchronizationAgentAssignmentRequired,
+"configurationfields": SynchronizationMetadataEntryKeyconfigurationFields,
+"galleryapplicationidentifier": SynchronizationMetadataEntryKeygalleryApplicationIdentifier,
+"galleryapplicationkey": SynchronizationMetadataEntryKeygalleryApplicationKey,
+"isoauthenabled": SynchronizationMetadataEntryKeyisOAuthEnabled,
+"issynchronizationagentrequired": SynchronizationMetadataEntryKeyisSynchronizationAgentRequired,
+"issynchronizationinpreview": SynchronizationMetadataEntryKeyisSynchronizationInPreview,
+"oauthsettings": SynchronizationMetadataEntryKeyoAuthSettings,
+"synchronizationlearnmoreibizafwlink": SynchronizationMetadataEntryKeysynchronizationLearnMoreIbizaFwLink,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SynchronizationMetadataEntryKey(input)
+	return &out, nil
+}

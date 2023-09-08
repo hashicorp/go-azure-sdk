@@ -1,0 +1,51 @@
+package models
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+ 
+type SearchRequestOperationPredicate struct {
+	 EnableTopResults *bool
+	 From *int64
+	 ODataType *string
+	 Region *string
+	 Size *int64
+	 TrimDuplicates *bool
+}
+
+func (p SearchRequestOperationPredicate) Matches(input SearchRequest) bool {
+
+	if p.EnableTopResults != nil && (input.EnableTopResults == nil || *p.EnableTopResults != *input.EnableTopResults) {
+	 	return false
+	}
+
+
+	if p.From != nil && (input.From == nil || *p.From != *input.From) {
+	 	return false
+	}
+
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+	 	return false
+	}
+
+
+	if p.Region != nil && (input.Region == nil || *p.Region != *input.Region) {
+	 	return false
+	}
+
+
+	if p.Size != nil && (input.Size == nil || *p.Size != *input.Size) {
+	 	return false
+	}
+
+
+	if p.TrimDuplicates != nil && (input.TrimDuplicates == nil || *p.TrimDuplicates != *input.TrimDuplicates) {
+	 	return false
+	}
+
+
+	return true
+}
+

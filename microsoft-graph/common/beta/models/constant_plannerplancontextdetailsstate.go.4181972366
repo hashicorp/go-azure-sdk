@@ -1,0 +1,40 @@
+package models
+
+import "strings"
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type PlannerPlanContextDetailsState string
+
+const (
+	PlannerPlanContextDetailsStateactive PlannerPlanContextDetailsState = "Active"
+	PlannerPlanContextDetailsStatedelinked PlannerPlanContextDetailsState = "Delinked"
+)
+
+
+func PossibleValuesForPlannerPlanContextDetailsState() []string {
+	return []string{
+		string(PlannerPlanContextDetailsStateactive),
+string(PlannerPlanContextDetailsStatedelinked),
+	}
+}
+
+
+
+func parsePlannerPlanContextDetailsState(input string) (*PlannerPlanContextDetailsState, error) {
+	vals := map[string]PlannerPlanContextDetailsState{
+		"active": PlannerPlanContextDetailsStateactive,
+"delinked": PlannerPlanContextDetailsStatedelinked,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := PlannerPlanContextDetailsState(input)
+	return &out, nil
+}

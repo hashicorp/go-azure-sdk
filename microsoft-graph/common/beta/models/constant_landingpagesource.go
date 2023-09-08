@@ -1,0 +1,37 @@
+package models
+
+import "strings"
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type LandingPageSource string
+
+const (
+	LandingPageSourceglobal  LandingPageSource = "Global"
+	LandingPageSourcetenant  LandingPageSource = "Tenant"
+	LandingPageSourceunknown LandingPageSource = "Unknown"
+)
+
+func PossibleValuesForLandingPageSource() []string {
+	return []string{
+		string(LandingPageSourceglobal),
+		string(LandingPageSourcetenant),
+		string(LandingPageSourceunknown),
+	}
+}
+
+func parseLandingPageSource(input string) (*LandingPageSource, error) {
+	vals := map[string]LandingPageSource{
+		"global":  LandingPageSourceglobal,
+		"tenant":  LandingPageSourcetenant,
+		"unknown": LandingPageSourceunknown,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := LandingPageSource(input)
+	return &out, nil
+}

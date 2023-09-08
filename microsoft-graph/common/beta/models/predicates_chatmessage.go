@@ -1,0 +1,77 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type ChatMessageOperationPredicate struct {
+	ChatId               *string
+	CreatedDateTime      *string
+	DeletedDateTime      *string
+	Etag                 *string
+	Id                   *string
+	LastEditedDateTime   *string
+	LastModifiedDateTime *string
+	Locale               *string
+	ODataType            *string
+	ReplyToId            *string
+	Subject              *string
+	Summary              *string
+	WebUrl               *string
+}
+
+func (p ChatMessageOperationPredicate) Matches(input ChatMessage) bool {
+
+	if p.ChatId != nil && (input.ChatId == nil || *p.ChatId != *input.ChatId) {
+		return false
+	}
+
+	if p.CreatedDateTime != nil && (input.CreatedDateTime == nil || *p.CreatedDateTime != *input.CreatedDateTime) {
+		return false
+	}
+
+	if p.DeletedDateTime != nil && (input.DeletedDateTime == nil || *p.DeletedDateTime != *input.DeletedDateTime) {
+		return false
+	}
+
+	if p.Etag != nil && (input.Etag == nil || *p.Etag != *input.Etag) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.LastEditedDateTime != nil && (input.LastEditedDateTime == nil || *p.LastEditedDateTime != *input.LastEditedDateTime) {
+		return false
+	}
+
+	if p.LastModifiedDateTime != nil && (input.LastModifiedDateTime == nil || *p.LastModifiedDateTime != *input.LastModifiedDateTime) {
+		return false
+	}
+
+	if p.Locale != nil && (input.Locale == nil || *p.Locale != *input.Locale) {
+		return false
+	}
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.ReplyToId != nil && (input.ReplyToId == nil || *p.ReplyToId != *input.ReplyToId) {
+		return false
+	}
+
+	if p.Subject != nil && (input.Subject == nil || *p.Subject != *input.Subject) {
+		return false
+	}
+
+	if p.Summary != nil && (input.Summary == nil || *p.Summary != *input.Summary) {
+		return false
+	}
+
+	if p.WebUrl != nil && (input.WebUrl == nil || *p.WebUrl != *input.WebUrl) {
+		return false
+	}
+
+	return true
+}

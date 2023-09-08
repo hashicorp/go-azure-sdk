@@ -1,0 +1,32 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type DeviceManagementConfigurationPolicyTemplateReferenceOperationPredicate struct {
+	ODataType              *string
+	TemplateDisplayName    *string
+	TemplateDisplayVersion *string
+	TemplateId             *string
+}
+
+func (p DeviceManagementConfigurationPolicyTemplateReferenceOperationPredicate) Matches(input DeviceManagementConfigurationPolicyTemplateReference) bool {
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.TemplateDisplayName != nil && (input.TemplateDisplayName == nil || *p.TemplateDisplayName != *input.TemplateDisplayName) {
+		return false
+	}
+
+	if p.TemplateDisplayVersion != nil && (input.TemplateDisplayVersion == nil || *p.TemplateDisplayVersion != *input.TemplateDisplayVersion) {
+		return false
+	}
+
+	if p.TemplateId != nil && (input.TemplateId == nil || *p.TemplateId != *input.TemplateId) {
+		return false
+	}
+
+	return true
+}

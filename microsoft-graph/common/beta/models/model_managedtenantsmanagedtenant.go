@@ -1,0 +1,46 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type ManagedTenantsManagedTenant struct {
+	AggregatedPolicyCompliances                 *[]ManagedTenantsAggregatedPolicyCompliance                `json:"aggregatedPolicyCompliances,omitempty"`
+	AppPerformances                             *[]ManagedTenantsAppPerformance                            `json:"appPerformances,omitempty"`
+	AuditEvents                                 *[]ManagedTenantsAuditEvent                                `json:"auditEvents,omitempty"`
+	CloudPCConnections                          *[]ManagedTenantsCloudPCConnection                         `json:"cloudPcConnections,omitempty"`
+	CloudPCDevices                              *[]ManagedTenantsCloudPCDevice                             `json:"cloudPcDevices,omitempty"`
+	CloudPCsOverview                            *[]ManagedTenantsCloudPCOverview                           `json:"cloudPcsOverview,omitempty"`
+	ConditionalAccessPolicyCoverages            *[]ManagedTenantsConditionalAccessPolicyCoverage           `json:"conditionalAccessPolicyCoverages,omitempty"`
+	CredentialUserRegistrationsSummaries        *[]ManagedTenantsCredentialUserRegistrationsSummary        `json:"credentialUserRegistrationsSummaries,omitempty"`
+	DeviceAppPerformances                       *[]ManagedTenantsDeviceAppPerformance                      `json:"deviceAppPerformances,omitempty"`
+	DeviceCompliancePolicySettingStateSummaries *[]ManagedTenantsDeviceCompliancePolicySettingStateSummary `json:"deviceCompliancePolicySettingStateSummaries,omitempty"`
+	DeviceHealthStatuses                        *[]ManagedTenantsDeviceHealthStatus                        `json:"deviceHealthStatuses,omitempty"`
+	Id                                          *string                                                    `json:"id,omitempty"`
+	ManagedDeviceComplianceTrends               *[]ManagedTenantsManagedDeviceComplianceTrend              `json:"managedDeviceComplianceTrends,omitempty"`
+	ManagedDeviceCompliances                    *[]ManagedTenantsManagedDeviceCompliance                   `json:"managedDeviceCompliances,omitempty"`
+	ManagedTenantAlertLogs                      *[]ManagedTenantsManagedTenantAlertLog                     `json:"managedTenantAlertLogs,omitempty"`
+	ManagedTenantAlertRuleDefinitions           *[]ManagedTenantsManagedTenantAlertRuleDefinition          `json:"managedTenantAlertRuleDefinitions,omitempty"`
+	ManagedTenantAlertRules                     *[]ManagedTenantsManagedTenantAlertRule                    `json:"managedTenantAlertRules,omitempty"`
+	ManagedTenantAlerts                         *[]ManagedTenantsManagedTenantAlert                        `json:"managedTenantAlerts,omitempty"`
+	ManagedTenantApiNotifications               *[]ManagedTenantsManagedTenantApiNotification              `json:"managedTenantApiNotifications,omitempty"`
+	ManagedTenantEmailNotifications             *[]ManagedTenantsManagedTenantEmailNotification            `json:"managedTenantEmailNotifications,omitempty"`
+	ManagedTenantTicketingEndpoints             *[]ManagedTenantsManagedTenantTicketingEndpoint            `json:"managedTenantTicketingEndpoints,omitempty"`
+	ManagementActionTenantDeploymentStatuses    *[]ManagedTenantsManagementActionTenantDeploymentStatus    `json:"managementActionTenantDeploymentStatuses,omitempty"`
+	ManagementActions                           *[]ManagedTenantsManagementAction                          `json:"managementActions,omitempty"`
+	ManagementIntents                           *[]ManagedTenantsManagementIntent                          `json:"managementIntents,omitempty"`
+	ManagementTemplateCollectionTenantSummaries *[]ManagedTenantsManagementTemplateCollectionTenantSummary `json:"managementTemplateCollectionTenantSummaries,omitempty"`
+	ManagementTemplateCollections               *[]ManagedTenantsManagementTemplateCollection              `json:"managementTemplateCollections,omitempty"`
+	ManagementTemplateStepTenantSummaries       *[]ManagedTenantsManagementTemplateStepTenantSummary       `json:"managementTemplateStepTenantSummaries,omitempty"`
+	ManagementTemplateStepVersions              *[]ManagedTenantsManagementTemplateStepVersion             `json:"managementTemplateStepVersions,omitempty"`
+	ManagementTemplateSteps                     *[]ManagedTenantsManagementTemplateStep                    `json:"managementTemplateSteps,omitempty"`
+	ManagementTemplates                         *[]ManagedTenantsManagementTemplate                        `json:"managementTemplates,omitempty"`
+	MyRoles                                     *[]ManagedTenantsMyRole                                    `json:"myRoles,omitempty"`
+	ODataType                                   *string                                                    `json:"@odata.type,omitempty"`
+	TenantGroups                                *[]ManagedTenantsTenantGroup                               `json:"tenantGroups,omitempty"`
+	TenantTags                                  *[]ManagedTenantsTenantTag                                 `json:"tenantTags,omitempty"`
+	Tenants                                     *[]ManagedTenantsTenant                                    `json:"tenants,omitempty"`
+	TenantsCustomizedInformation                *[]ManagedTenantsTenantCustomizedInformation               `json:"tenantsCustomizedInformation,omitempty"`
+	TenantsDetailedInformation                  *[]ManagedTenantsTenantDetailedInformation                 `json:"tenantsDetailedInformation,omitempty"`
+	WindowsDeviceMalwareStates                  *[]ManagedTenantsWindowsDeviceMalwareState                 `json:"windowsDeviceMalwareStates,omitempty"`
+	WindowsProtectionStates                     *[]ManagedTenantsWindowsProtectionState                    `json:"windowsProtectionStates,omitempty"`
+}

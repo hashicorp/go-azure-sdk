@@ -1,0 +1,43 @@
+package models
+
+import "strings"
+
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+
+
+type WindowsPhone81AppXPublishingState string
+
+const (
+	WindowsPhone81AppXPublishingStatenotPublished WindowsPhone81AppXPublishingState = "NotPublished"
+	WindowsPhone81AppXPublishingStateprocessing WindowsPhone81AppXPublishingState = "Processing"
+	WindowsPhone81AppXPublishingStatepublished WindowsPhone81AppXPublishingState = "Published"
+)
+
+
+func PossibleValuesForWindowsPhone81AppXPublishingState() []string {
+	return []string{
+		string(WindowsPhone81AppXPublishingStatenotPublished),
+string(WindowsPhone81AppXPublishingStateprocessing),
+string(WindowsPhone81AppXPublishingStatepublished),
+	}
+}
+
+
+
+func parseWindowsPhone81AppXPublishingState(input string) (*WindowsPhone81AppXPublishingState, error) {
+	vals := map[string]WindowsPhone81AppXPublishingState{
+		"notpublished": WindowsPhone81AppXPublishingStatenotPublished,
+"processing": WindowsPhone81AppXPublishingStateprocessing,
+"published": WindowsPhone81AppXPublishingStatepublished,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := WindowsPhone81AppXPublishingState(input)
+	return &out, nil
+}

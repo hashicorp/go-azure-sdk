@@ -1,0 +1,32 @@
+package models
+
+// Copyright (c) HashiCorp Inc. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+type NetworkaccessHeadersOperationPredicate struct {
+	ODataType     *string
+	Origin        *string
+	Referrer      *string
+	XForwardedFor *string
+}
+
+func (p NetworkaccessHeadersOperationPredicate) Matches(input NetworkaccessHeaders) bool {
+
+	if p.ODataType != nil && (input.ODataType == nil || *p.ODataType != *input.ODataType) {
+		return false
+	}
+
+	if p.Origin != nil && (input.Origin == nil || *p.Origin != *input.Origin) {
+		return false
+	}
+
+	if p.Referrer != nil && (input.Referrer == nil || *p.Referrer != *input.Referrer) {
+		return false
+	}
+
+	if p.XForwardedFor != nil && (input.XForwardedFor == nil || *p.XForwardedFor != *input.XForwardedFor) {
+		return false
+	}
+
+	return true
+}
