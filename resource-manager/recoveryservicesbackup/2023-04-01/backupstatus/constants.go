@@ -5,6 +5,34 @@ import "strings"
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
+type AcquireStorageAccountLock string
+
+const (
+	AcquireStorageAccountLockAcquire    AcquireStorageAccountLock = "Acquire"
+	AcquireStorageAccountLockNotAcquire AcquireStorageAccountLock = "NotAcquire"
+)
+
+func PossibleValuesForAcquireStorageAccountLock() []string {
+	return []string{
+		string(AcquireStorageAccountLockAcquire),
+		string(AcquireStorageAccountLockNotAcquire),
+	}
+}
+
+func parseAcquireStorageAccountLock(input string) (*AcquireStorageAccountLock, error) {
+	vals := map[string]AcquireStorageAccountLock{
+		"acquire":    AcquireStorageAccountLockAcquire,
+		"notacquire": AcquireStorageAccountLockNotAcquire,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := AcquireStorageAccountLock(input)
+	return &out, nil
+}
+
 type DataSourceType string
 
 const (
