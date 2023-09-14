@@ -52,6 +52,30 @@ func unmarshalUserSourceInfoImplementation(input []byte) (UserSourceInfo, error)
 		return out, nil
 	}
 
+	if strings.EqualFold(value, "Jar") {
+		var out JarUploadedUserSourceInfo
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into JarUploadedUserSourceInfo: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "NetCoreZip") {
+		var out NetCoreZipUploadedUserSourceInfo
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into NetCoreZipUploadedUserSourceInfo: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "Source") {
+		var out SourceUploadedUserSourceInfo
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into SourceUploadedUserSourceInfo: %+v", err)
+		}
+		return out, nil
+	}
+
 	out := RawUserSourceInfoImpl{
 		Type:   value,
 		Values: temp,
