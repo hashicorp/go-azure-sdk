@@ -156,8 +156,8 @@ func parseJsonWebKeyType(input string) (*JsonWebKeyType, error) {
 type KeyRotationPolicyActionType string
 
 const (
-	KeyRotationPolicyActionTypeNotify KeyRotationPolicyActionType = "notify"
-	KeyRotationPolicyActionTypeRotate KeyRotationPolicyActionType = "rotate"
+	KeyRotationPolicyActionTypeNotify KeyRotationPolicyActionType = "Notify"
+	KeyRotationPolicyActionTypeRotate KeyRotationPolicyActionType = "Rotate"
 )
 
 func PossibleValuesForKeyRotationPolicyActionType() []string {
