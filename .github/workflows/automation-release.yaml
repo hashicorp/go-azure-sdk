@@ -10,7 +10,7 @@ concurrency:
 jobs:
   release-go-sdk:
     if: ${{ github.event.pull_request.merged == true && contains( github.event.pull_request.labels.*.name, 'release-once-merged') }}
-    runs-on: ubuntu-latest
+    runs-on: custom-linux-medium
     permissions:
       contents: write
     steps:
