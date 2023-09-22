@@ -26,7 +26,7 @@ func (c WebAppsClient) ListHostKeysSlot(ctx context.Context, id SlotId) (result 
 			http.StatusOK,
 		},
 		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/host/default/listkeys", id.ID()),
+		Path:       fmt.Sprintf("%s/host/default/listKeys", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)
