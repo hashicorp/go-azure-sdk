@@ -12,6 +12,10 @@ import (
 
 const tokenExpiryDelta = 20 * time.Minute
 
+func ForceExpiry(token *oauth2.Token) error {
+	return nil
+}
+
 // tokenExpiresSoon returns true if the token expires within 10 minutes, or if more than 50% of its validity period has elapsed (if this can be determined), whichever is later
 func tokenDueForRenewal(token *oauth2.Token) bool {
 	if token == nil {
@@ -26,7 +30,11 @@ func tokenDueForRenewal(token *oauth2.Token) bool {
 	expiry := token.Expiry.Round(0)
 	delta := tokenExpiryDelta
 	now := time.Now()
-	expiresWithinTenMinutes := expiry.Add(-delta).Before(now)
+
+	// Always return early if the token validity doesn't extend past the expiry delta
+	if expiry.Add(-delta).Before(now) {
+		return true
+	}
 
 	// Try to parse the token claims to retrieve the issuedAt time
 	if claims, err := claims.ParseClaims(token); err == nil {
@@ -43,5 +51,5 @@ func tokenDueForRenewal(token *oauth2.Token) bool {
 		}
 	}
 
-	return expiresWithinTenMinutes
+	return false
 }

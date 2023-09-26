@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"net/http"
 	"sync"
+	"time"
 
 	"golang.org/x/oauth2"
 )
@@ -65,6 +66,12 @@ func (c *CachedAuthorizer) AuxiliaryTokens(ctx context.Context, req *http.Reques
 	}
 
 	return c.auxTokens, nil
+}
+
+// ExpireToken expires the currently cached token, forcing a new token to be acquired when Token() is next called
+func (c *CachedAuthorizer) ExpireToken() error {
+	c.token.Expiry = time.Now()
+	return nil
 }
 
 // NewCachedAuthorizer returns an Authorizer that caches an access token for the duration of its validity.
