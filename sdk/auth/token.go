@@ -4,11 +4,48 @@
 package auth
 
 import (
+	"context"
+	"fmt"
 	"golang.org/x/oauth2"
+	"net/http"
+	"strings"
 	"time"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/claims"
 )
+
+func SetAuthHeaders(ctx context.Context, req *http.Request, authorizer Authorizer) error {
+	if req == nil {
+		return fmt.Errorf("request was nil")
+	}
+	if authorizer == nil {
+		return fmt.Errorf("authorizer was nil")
+	}
+
+	token, err := authorizer.Token(ctx, req)
+	if err != nil {
+		return err
+	}
+
+	if req.Header == nil {
+		req.Header = make(http.Header)
+	}
+
+	req.Header.Set("Authorization", fmt.Sprintf("%s %s", token.Type(), token.AccessToken))
+
+	auxTokens, err := authorizer.AuxiliaryTokens(ctx, req)
+	if err != nil {
+		return err
+	}
+
+	auxTokenValues := make([]string, 0)
+	for _, auxToken := range auxTokens {
+		auxTokenValues = append(auxTokenValues, fmt.Sprintf("%s %s", auxToken.Type(), auxToken.AccessToken))
+	}
+	req.Header.Set("X-Ms-Authorization-Auxiliary", strings.Join(auxTokenValues, ", "))
+
+	return nil
+}
 
 const tokenExpiryDelta = 20 * time.Minute
 
