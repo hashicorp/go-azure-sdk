@@ -12,7 +12,7 @@ import (
 )
 
 func TestCachedAuthorizer(t *testing.T) {
-	tokenPattern := regexp.MustCompile("^[a-zA-Z0-9-]+[.][a-zA-Z0-9-]+[.][a-zA-Z0-9-]+")
+	tokenPattern := regexp.MustCompile("^[a-zA-Z0-9_-]+[.][a-zA-Z0-9_-]+[.][a-zA-Z0-9_-]+")
 	req := &http.Request{}
 
 	authorizer, err := auth.NewCachedAuthorizer(&testAuthorizer{})

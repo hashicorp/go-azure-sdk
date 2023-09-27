@@ -89,7 +89,7 @@ func TestSetAuthHeaders(t *testing.T) {
 		t.Fatalf("received error: %+v", err)
 	}
 
-	expected := regexp.MustCompile("^Bearer [a-zA-Z0-9-]+[.][a-zA-Z0-9-]+[.][a-zA-Z0-9-]+")
+	expected := regexp.MustCompile("^Bearer [a-zA-Z0-9_-]+[.][a-zA-Z0-9_-]+[.][a-zA-Z0-9_-]+")
 	if val := req.Header.Get("Authorization"); !expected.MatchString(val) {
 		t.Fatalf("Authorization header mismatch, received: %q", val)
 	}

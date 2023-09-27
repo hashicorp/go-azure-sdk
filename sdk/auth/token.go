@@ -51,7 +51,7 @@ func SetAuthHeaders(ctx context.Context, req *http.Request, authorizer Authorize
 
 const tokenExpiryDelta = 20 * time.Minute
 
-// tokenExpiresSoon returns true if the token expires within 10 minutes, or if more than 50% of its validity period has elapsed (if this can be determined), whichever is later
+// tokenDueForRenewal returns true if the token expires within 10 minutes, or if more than 50% of its validity period has elapsed (if this can be determined), whichever is later
 func tokenDueForRenewal(token *oauth2.Token) bool {
 	if token == nil {
 		return true
