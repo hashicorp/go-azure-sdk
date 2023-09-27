@@ -65,7 +65,7 @@ func (s *SharedKeyAuthorizer) AuxiliaryTokens(_ context.Context, _ *http.Request
 }
 
 // ExpireToken has no effect with shared keys
-func (c *SharedKeyAuthorizer) ExpireToken() error {
+func (c *SharedKeyAuthorizer) ExpireTokens() error {
 	return fmt.Errorf("SharedKeyAuthorizer tokens cannot expire")
 }
 

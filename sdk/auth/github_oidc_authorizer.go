@@ -191,7 +191,7 @@ type gitHubOIDCConfig struct {
 }
 
 // ExpireToken has no effect with uncached Authorizers
-func (a *GitHubOIDCAuthorizer) ExpireToken() error {
+func (a *GitHubOIDCAuthorizer) ExpireTokens() error {
 	return nil
 }
 

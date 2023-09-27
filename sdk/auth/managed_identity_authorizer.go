@@ -119,7 +119,7 @@ func (a *ManagedIdentityAuthorizer) AuxiliaryTokens(_ context.Context, _ *http.R
 }
 
 // ExpireToken has no effect with uncached Authorizers
-func (a *ManagedIdentityAuthorizer) ExpireToken() error {
+func (a *ManagedIdentityAuthorizer) ExpireTokens() error {
 	return nil
 }
 

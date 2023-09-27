@@ -14,7 +14,7 @@ import (
 type Authorizer interface {
 	Token(ctx context.Context, request *http.Request) (*oauth2.Token, error)
 	AuxiliaryTokens(ctx context.Context, request *http.Request) ([]*oauth2.Token, error)
-	ExpireToken() error
+	ExpireTokens() error
 }
 
 // HTTPClient is an HTTP client used for sending authentication requests and obtaining tokens

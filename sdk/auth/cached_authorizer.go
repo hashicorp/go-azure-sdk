@@ -68,9 +68,12 @@ func (c *CachedAuthorizer) AuxiliaryTokens(ctx context.Context, req *http.Reques
 	return c.auxTokens, nil
 }
 
-// ExpireToken expires the currently cached token, forcing a new token to be acquired when Token() is next called
-func (c *CachedAuthorizer) ExpireToken() error {
+// ExpireTokens expires the currently cached token and auxTokens, forcing new tokens to be acquired when Token() or AuxiliaryTokens() are next called
+func (c *CachedAuthorizer) ExpireTokens() error {
 	c.token.Expiry = time.Now()
+	for i := range c.auxTokens {
+		c.auxTokens[i].Expiry = time.Now()
+	}
 	return nil
 }
 
