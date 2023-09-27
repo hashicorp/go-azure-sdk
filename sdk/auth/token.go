@@ -6,14 +6,16 @@ package auth
 import (
 	"context"
 	"fmt"
-	"golang.org/x/oauth2"
 	"net/http"
 	"strings"
 	"time"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/claims"
+	"golang.org/x/oauth2"
 )
 
+// SetAuthHeaders decorates a *http.Request with necessary authorization headers for Azure APIs. For more information about the vendor-specific
+// `x-ms-authorization-auxiliary` header, see https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/authenticate-multi-tenant
 func SetAuthHeaders(ctx context.Context, req *http.Request, authorizer Authorizer) error {
 	if req == nil {
 		return fmt.Errorf("request was nil")
@@ -48,10 +50,6 @@ func SetAuthHeaders(ctx context.Context, req *http.Request, authorizer Authorize
 }
 
 const tokenExpiryDelta = 20 * time.Minute
-
-func ForceExpiry(token *oauth2.Token) error {
-	return nil
-}
 
 // tokenExpiresSoon returns true if the token expires within 10 minutes, or if more than 50% of its validity period has elapsed (if this can be determined), whichever is later
 func tokenDueForRenewal(token *oauth2.Token) bool {
