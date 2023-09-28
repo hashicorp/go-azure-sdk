@@ -55,7 +55,7 @@ func (c *CachedAuthorizer) AuxiliaryTokens(ctx context.Context, req *http.Reques
 	}
 	c.mutex.RUnlock()
 
-	if dueForRenewal {
+	if dueForRenewal || len(c.auxTokens) == 0 {
 		c.mutex.Lock()
 		defer c.mutex.Unlock()
 		var err error
