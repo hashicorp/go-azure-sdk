@@ -79,12 +79,8 @@ payload := protectioncontainers.ProtectionContainerResource{
 }
 
 
-read, err := client.Register(ctx, id, payload)
-if err != nil {
+if err := client.RegisterThenPoll(ctx, id, payload); err != nil {
 	// handle the error
-}
-if model := read.Model; model != nil {
-	// do something with the model/response object
 }
 ```
 
