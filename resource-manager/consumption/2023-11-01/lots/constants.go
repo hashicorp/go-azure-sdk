@@ -53,26 +53,26 @@ func parseLotSource(input string) (*LotSource, error) {
 	return &out, nil
 }
 
-type OrgType string
+type OrganizationType string
 
 const (
-	OrgTypeContributor OrgType = "Contributor"
-	OrgTypePrimary     OrgType = "Primary"
+	OrganizationTypeContributor OrganizationType = "Contributor"
+	OrganizationTypePrimary     OrganizationType = "Primary"
 )
 
-func PossibleValuesForOrgType() []string {
+func PossibleValuesForOrganizationType() []string {
 	return []string{
-		string(OrgTypeContributor),
-		string(OrgTypePrimary),
+		string(OrganizationTypeContributor),
+		string(OrganizationTypePrimary),
 	}
 }
 
-func (s *OrgType) UnmarshalJSON(bytes []byte) error {
+func (s *OrganizationType) UnmarshalJSON(bytes []byte) error {
 	var decoded string
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
 		return fmt.Errorf("unmarshaling: %+v", err)
 	}
-	out, err := parseOrgType(decoded)
+	out, err := parseOrganizationType(decoded)
 	if err != nil {
 		return fmt.Errorf("parsing %q: %+v", decoded, err)
 	}
@@ -80,17 +80,17 @@ func (s *OrgType) UnmarshalJSON(bytes []byte) error {
 	return nil
 }
 
-func parseOrgType(input string) (*OrgType, error) {
-	vals := map[string]OrgType{
-		"contributor": OrgTypeContributor,
-		"primary":     OrgTypePrimary,
+func parseOrganizationType(input string) (*OrganizationType, error) {
+	vals := map[string]OrganizationType{
+		"contributor": OrganizationTypeContributor,
+		"primary":     OrganizationTypePrimary,
 	}
 	if v, ok := vals[strings.ToLower(input)]; ok {
 		return &v, nil
 	}
 
 	// otherwise presume it's an undefined value and best-effort it
-	out := OrgType(input)
+	out := OrganizationType(input)
 	return &out, nil
 }
 

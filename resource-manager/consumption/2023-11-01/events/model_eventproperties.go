@@ -12,6 +12,8 @@ import (
 type EventProperties struct {
 	Adjustments                    *Amount                 `json:"adjustments,omitempty"`
 	AdjustmentsInBillingCurrency   *AmountWithExchangeRate `json:"adjustmentsInBillingCurrency,omitempty"`
+	BillingAccountDisplayName      *string                 `json:"billingAccountDisplayName,omitempty"`
+	BillingAccountId               *string                 `json:"billingAccountId,omitempty"`
 	BillingCurrency                *string                 `json:"billingCurrency,omitempty"`
 	BillingProfileDisplayName      *string                 `json:"billingProfileDisplayName,omitempty"`
 	BillingProfileId               *string                 `json:"billingProfileId,omitempty"`
