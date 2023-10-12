@@ -1,6 +1,6 @@
 module github.com/hashicorp/go-azure-sdk
 
-go 1.19
+go 1.21
 
 require (
 	github.com/Azure/go-autorest/autorest v0.11.29
