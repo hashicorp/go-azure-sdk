@@ -71,8 +71,32 @@ func TestParseErrorFromApiResponse_ResourceManagerType2(t *testing.T) {
 		ActivityId:   "abc123",
 		Code:         "FailedToStartOperation",
 		FullHttpBody: body,
-		Message:      "Failed to start operation. Verify input and try operation again.\nPossible Causes: \"Invalid parameters were specified.\"\nRecommended Action: \"Verify the input and try again.\"",
-		Status:       "Unknown",
+		Message:      "Failed to start operation. Verify input and try operation again.\nFailed to start operation. Verify input and try operation again.\nPossible Causes: \"Invalid parameters were specified.\"\nRecommended Action: \"Verify the input and try again.\"",
+		Status:       "BadRequest",
+	}
+	actual, err := parseErrorFromApiResponse(input)
+	if err != nil {
+		t.Fatalf("parsing error from api response: %+v", err)
+	}
+	if actual == nil {
+		t.Fatalf("`actual` was nil")
+	}
+	if !reflect.DeepEqual(*actual, expected) {
+		t.Fatalf("expected and actual didn't match. Expected: %+v\n\n Actual: %+v", expected, actual)
+	}
+}
+
+func TestParseErrorFromApiResponse_ResourceManagerType2Alt(t *testing.T) {
+	body := `{"error":{"code":"ValidationError","message":"The request is not valid.","details":[{"code":"InvalidDevCenterName","target":"Name","message":"Resource name is not valid. It must be between 3 and 26 characters and can only include alphanumeric characters and hyphens.","details":[],"additionalInfo":[]}]}}`
+	input := http.Response{
+		Body: io.NopCloser(bytes.NewReader([]byte(body))),
+	}
+	expected := Error{
+		ActivityId:   "",
+		Code:         "InvalidDevCenterName",
+		FullHttpBody: body,
+		Message:      "The request is not valid.\nResource name is not valid. It must be between 3 and 26 characters and can only include alphanumeric characters and hyphens.",
+		Status:       "ValidationError",
 	}
 	actual, err := parseErrorFromApiResponse(input)
 	if err != nil {
