@@ -7,7 +7,6 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-azure-sdk/resource-manager/postgresql/2018-06-01/advisors"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/postgresql/2018-06-01/locationbasedrecommendedactionsessionsresult"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/postgresql/2018-06-01/privateendpointconnections"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/postgresql/2018-06-01/privatelinkresources"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/postgresql/2018-06-01/querytexts"
@@ -21,16 +20,15 @@ import (
 )
 
 type Client struct {
-	Advisors                                     *advisors.AdvisorsClient
-	LocationBasedRecommendedActionSessionsResult *locationbasedrecommendedactionsessionsresult.LocationBasedRecommendedActionSessionsResultClient
-	PrivateEndpointConnections                   *privateendpointconnections.PrivateEndpointConnectionsClient
-	PrivateLinkResources                         *privatelinkresources.PrivateLinkResourcesClient
-	QueryTexts                                   *querytexts.QueryTextsClient
-	RecommendedActionSessions                    *recommendedactionsessions.RecommendedActionSessionsClient
-	RecommendedActions                           *recommendedactions.RecommendedActionsClient
-	ResetQueryPerformanceInsightData             *resetqueryperformanceinsightdata.ResetQueryPerformanceInsightDataClient
-	TopQueryStatistics                           *topquerystatistics.TopQueryStatisticsClient
-	WaitStatistics                               *waitstatistics.WaitStatisticsClient
+	Advisors                         *advisors.AdvisorsClient
+	PrivateEndpointConnections       *privateendpointconnections.PrivateEndpointConnectionsClient
+	PrivateLinkResources             *privatelinkresources.PrivateLinkResourcesClient
+	QueryTexts                       *querytexts.QueryTextsClient
+	RecommendedActionSessions        *recommendedactionsessions.RecommendedActionSessionsClient
+	RecommendedActions               *recommendedactions.RecommendedActionsClient
+	ResetQueryPerformanceInsightData *resetqueryperformanceinsightdata.ResetQueryPerformanceInsightDataClient
+	TopQueryStatistics               *topquerystatistics.TopQueryStatisticsClient
+	WaitStatistics                   *waitstatistics.WaitStatisticsClient
 }
 
 func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
@@ -39,12 +37,6 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanag
 		return nil, fmt.Errorf("building Advisors client: %+v", err)
 	}
 	configureFunc(advisorsClient.Client)
-
-	locationBasedRecommendedActionSessionsResultClient, err := locationbasedrecommendedactionsessionsresult.NewLocationBasedRecommendedActionSessionsResultClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building LocationBasedRecommendedActionSessionsResult client: %+v", err)
-	}
-	configureFunc(locationBasedRecommendedActionSessionsResultClient.Client)
 
 	privateEndpointConnectionsClient, err := privateendpointconnections.NewPrivateEndpointConnectionsClientWithBaseURI(sdkApi)
 	if err != nil {
@@ -95,15 +87,14 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanag
 	configureFunc(waitStatisticsClient.Client)
 
 	return &Client{
-		Advisors: advisorsClient,
-		LocationBasedRecommendedActionSessionsResult: locationBasedRecommendedActionSessionsResultClient,
-		PrivateEndpointConnections:                   privateEndpointConnectionsClient,
-		PrivateLinkResources:                         privateLinkResourcesClient,
-		QueryTexts:                                   queryTextsClient,
-		RecommendedActionSessions:                    recommendedActionSessionsClient,
-		RecommendedActions:                           recommendedActionsClient,
-		ResetQueryPerformanceInsightData:             resetQueryPerformanceInsightDataClient,
-		TopQueryStatistics:                           topQueryStatisticsClient,
-		WaitStatistics:                               waitStatisticsClient,
+		Advisors:                         advisorsClient,
+		PrivateEndpointConnections:       privateEndpointConnectionsClient,
+		PrivateLinkResources:             privateLinkResourcesClient,
+		QueryTexts:                       queryTextsClient,
+		RecommendedActionSessions:        recommendedActionSessionsClient,
+		RecommendedActions:               recommendedActionsClient,
+		ResetQueryPerformanceInsightData: resetQueryPerformanceInsightDataClient,
+		TopQueryStatistics:               topQueryStatisticsClient,
+		WaitStatistics:                   waitStatisticsClient,
 	}, nil
 }

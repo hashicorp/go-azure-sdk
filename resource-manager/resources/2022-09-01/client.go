@@ -6,7 +6,6 @@ package v2022_09_01
 import (
 	"fmt"
 
-	"github.com/hashicorp/go-azure-sdk/resource-manager/resources/2022-09-01/deploymentoperations"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/resources/2022-09-01/deployments"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/resources/2022-09-01/providers"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/resources/2022-09-01/resourcegroups"
@@ -16,20 +15,13 @@ import (
 )
 
 type Client struct {
-	DeploymentOperations *deploymentoperations.DeploymentOperationsClient
-	Deployments          *deployments.DeploymentsClient
-	Providers            *providers.ProvidersClient
-	ResourceGroups       *resourcegroups.ResourceGroupsClient
-	Resources            *resources.ResourcesClient
+	Deployments    *deployments.DeploymentsClient
+	Providers      *providers.ProvidersClient
+	ResourceGroups *resourcegroups.ResourceGroupsClient
+	Resources      *resources.ResourcesClient
 }
 
 func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
-	deploymentOperationsClient, err := deploymentoperations.NewDeploymentOperationsClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building DeploymentOperations client: %+v", err)
-	}
-	configureFunc(deploymentOperationsClient.Client)
-
 	deploymentsClient, err := deployments.NewDeploymentsClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Deployments client: %+v", err)
@@ -55,10 +47,9 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanag
 	configureFunc(resourcesClient.Client)
 
 	return &Client{
-		DeploymentOperations: deploymentOperationsClient,
-		Deployments:          deploymentsClient,
-		Providers:            providersClient,
-		ResourceGroups:       resourceGroupsClient,
-		Resources:            resourcesClient,
+		Deployments:    deploymentsClient,
+		Providers:      providersClient,
+		ResourceGroups: resourceGroupsClient,
+		Resources:      resourcesClient,
 	}, nil
 }

@@ -34,19 +34,3 @@ if model := read.Model; model != nil {
 	// do something with the model/response object
 }
 ```
-
-
-### Example Usage: `OperationStatusClient.OperationStatusGet`
-
-```go
-ctx := context.TODO()
-id := operationstatus.NewWorkflowOperationID("12345678-1234-9876-4563-123456789012", "example-resource-group", "locationValue", "workflowIdValue", "operationIdValue")
-
-read, err := client.OperationStatusGet(ctx, id)
-if err != nil {
-	// handle the error
-}
-if model := read.Model; model != nil {
-	// do something with the model/response object
-}
-```
