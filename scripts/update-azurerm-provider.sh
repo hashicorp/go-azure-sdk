@@ -29,7 +29,7 @@ function prepare {
 function runUpdaterTool {
   local workingDirectory=$1
   local newSdkVersion=$2
-  local branch="dependencies/updating-go-azure-sdk-to-${newSdkVersion}"
+  local branch="auto-deps-pr/updating-go-azure-sdk-to-${newSdkVersion}"
 
   echo "Moving into the AzureRM Provider directory.."
   pwd
