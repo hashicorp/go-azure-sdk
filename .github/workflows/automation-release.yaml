@@ -13,6 +13,9 @@ jobs:
     runs-on: custom-linux-medium
     permissions:
       contents: write
+    outputs:
+      latest_tag: ${{ steps.results.outputs.latest_tag }}
+      should_update_azurerm: ${{ steps.results.outputs.should_update_azurerm }}
     steps:
       - uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4.1.0
 
@@ -24,3 +27,71 @@ jobs:
       - name: "determine and publish the Git Tag"
         run: |
           ./scripts/determine-and-publish-git-tag.sh
+
+      - id: outputs
+        name: "collecting outputs"
+        run: |
+          echo "latest_tag=$(git describe --tags $(git rev-list --tags --max-count=1))" >> "$GITHUB_OUTPUT"
+          echo "should_update_azurerm=${{ github.event.pull_request.merged == true && contains( github.event.pull_request.labels.*.name, 'update-azurerm-after-release') }}" >> "$GITHUB_OUTPUT"
+
+  conditionally-update-azurerm:
+    needs: [release-go-sdk]
+    if: ${{ needs.release-go-sdk.outputs.should_update_azurerm == 'true' }}
+    runs-on: custom-linux-medium
+    outputs:
+      description: ${{ steps.update-azurerm-provider.outputs.description }}
+    steps:
+      - uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4.1.0
+
+      - uses: actions/setup-go@93397bea11091df50f3d7e59dc26a7711a8bcfbe # v4.1.0
+        with:
+          go-version-file: ./.go-version
+
+      - name: "Launch SSH Agent"
+        run: |
+          # launch an ssh agent and export it's env vars
+          ssh-agent -a $SSH_AUTH_SOCK > /dev/null
+        env:
+          SSH_AUTH_SOCK: /tmp/azurerm_ssh_agent.sock
+
+      - name: "Load SSH Key"
+        run: |
+          # load the Deployment Write Key for the AzureRM repository
+          echo "${{ secrets.AZURERM_DEPLOYMENT_WRITE_KEY }}" | ssh-add -
+        env:
+          SSH_AUTH_SOCK: /tmp/azurerm_ssh_agent.sock
+
+      - id: update-azurerm-provider
+        name: "Update then push the AzureRM Provider"
+        run: |
+          ./scripts/update-azurerm-provider.sh ${{ needs.release-go-sdk.outputs.latest_tag }}
+          "description=$(cat ./tmp/pr-description.txt)" >> $GITHUB_OUTPUT
+
+      - name: "Remove the Key from the SSH Agent"
+        if: always()
+        run: |
+          # remove the ssh key
+          ssh-add -D
+        env:
+          SSH_AUTH_SOCK: /tmp/azurerm_ssh_agent.sock
+
+      - name: "Terminate the SSH Agent"
+        if: always()
+        run: |
+          pkill -9 ssh-agent
+
+  conditionally-comment-on-azurerm:
+    needs: [conditionally-update-azurerm, release-go-sdk]
+    steps:
+      - name: Comment on the PR with the PR description
+        env:
+          BRANCH_NAME: "auto-pr/deps/updating-go-azure-sdk-to-${{ needs.release-go-sdk.outputs.latest_tag }}"
+          GITHUB_TOKEN: "${{ secrets.AZURERM_COMMENT_KEY }}""
+          PR_DESCRIPTION: ${{ needs.update-azurerm-provider.outputs.description }}"
+        run: |
+          echo "Sleeping 60s to give Github time to create the PR.."
+          sleep 60
+          echo "Finding the PR number.."
+          $number=gh pr list --repo="hashicorp/terraform-provider-azurerm" --search "author:hc-github-team-tf-azure sort:created-desc is:pr is:open" --json "headRefName,number" | jq '.[] | select(.headRefName=="${BRANCH_NAME}") | .number'
+          echo "Commenting on the PR"
+          gh issue comment $number --repo "hashicorp/terraform-provider-azurerm" --body "${PR_DESCRIPTION}"
