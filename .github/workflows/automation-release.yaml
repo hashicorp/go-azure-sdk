@@ -82,11 +82,12 @@ jobs:
 
   conditionally-comment-on-azurerm:
     needs: [conditionally-update-azurerm, release-go-sdk]
+    runs-on: custom-linux-medium
     steps:
       - name: Comment on the PR with the PR description
         env:
           BRANCH_NAME: "auto-pr/deps/updating-go-azure-sdk-to-${{ needs.release-go-sdk.outputs.latest_tag }}"
-          GITHUB_TOKEN: "${{ secrets.AZURERM_COMMENT_KEY }}""
+          GITHUB_TOKEN: "${{ secrets.AZURERM_COMMENT_KEY }}"
           PR_DESCRIPTION: ${{ needs.update-azurerm-provider.outputs.description }}"
         run: |
           echo "Sleeping 60s to give Github time to create the PR.."
