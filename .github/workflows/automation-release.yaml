@@ -36,7 +36,7 @@ jobs:
 
   conditionally-update-azurerm:
     needs: [release-go-sdk]
-    if: ${{ needs.release-go-sdk.outputs.should_update_azurerm == 'true' }}
+    if: ${{ needs.release-go-sdk.outputs.should_update_azurerm == true }}
     runs-on: custom-linux-medium
     outputs:
       description: ${{ steps.update-azurerm-provider.outputs.description }}
