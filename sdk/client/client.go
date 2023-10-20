@@ -365,7 +365,7 @@ func (c *Client) Execute(ctx context.Context, req *Request) (*Response, error) {
 				return true, nil
 			}
 
-			// Some API's don't return a response in time
+			// Some APIs don't return a response in time
 			if r.StatusCode == http.StatusRequestTimeout {
 				return true, nil
 			}
