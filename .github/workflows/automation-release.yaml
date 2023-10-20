@@ -66,6 +66,8 @@ jobs:
         run: |
           ./scripts/update-azurerm-provider.sh ${{ needs.release-go-sdk.outputs.latest_tag }}
           "description=$(cat ./tmp/pr-description.txt)" >> $GITHUB_OUTPUT
+        env:
+          SSH_AUTH_SOCK: /tmp/azurerm_ssh_agent.sock
 
       - name: "Remove the Key from the SSH Agent"
         if: always()
