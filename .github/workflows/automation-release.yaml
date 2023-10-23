@@ -18,6 +18,8 @@ jobs:
       should_update_azurerm: ${{ steps.results.outputs.should_update_azurerm }}
     steps:
       - uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4.1.0
+        with:
+          fetch-depth: 0
 
       - name: run the unit tests
         run: |
