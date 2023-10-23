@@ -43,7 +43,7 @@ function runUpdaterTool {
   go build .
 
   echo "Running the updater tool.."
-  ./update-go-azure-sdk --new-sdk-version="${newSdkVersion}" --azurerm-repo-path=../../ --go-sdk-repo-path=../../../../ --output-file="../../../../pr-description.txt"
+  ./update-go-azure-sdk --new-sdk-version="${newSdkVersion}" --azurerm-repo-path=../../../ --go-sdk-repo-path=../../../../../ --output-file="../../../../pr-description.txt"
 
   echo "Pushing the branch"
   git push origin "$branch" -f
