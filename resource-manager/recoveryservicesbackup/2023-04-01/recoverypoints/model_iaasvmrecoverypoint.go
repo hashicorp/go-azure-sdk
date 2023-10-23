@@ -13,6 +13,7 @@ import (
 var _ RecoveryPoint = IaasVMRecoveryPoint{}
 
 type IaasVMRecoveryPoint struct {
+	ExtendedLocation                *ExtendedLocation                          `json:"extendedLocation,omitempty"`
 	IsInstantIlrSessionActive       *bool                                      `json:"isInstantIlrSessionActive,omitempty"`
 	IsManagedVirtualMachine         *bool                                      `json:"isManagedVirtualMachine,omitempty"`
 	IsPrivateAccessEnabledOnAnyDisk *bool                                      `json:"isPrivateAccessEnabledOnAnyDisk,omitempty"`

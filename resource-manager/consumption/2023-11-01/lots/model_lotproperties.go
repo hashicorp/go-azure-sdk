@@ -17,7 +17,7 @@ type LotProperties struct {
 	ETag                            *string                 `json:"eTag,omitempty"`
 	ExpirationDate                  *string                 `json:"expirationDate,omitempty"`
 	IsEstimatedBalance              *bool                   `json:"isEstimatedBalance,omitempty"`
-	OrgType                         *OrgType                `json:"orgType,omitempty"`
+	OrganizationType                *OrganizationType       `json:"OrganizationType,omitempty"`
 	OriginalAmount                  *Amount                 `json:"originalAmount,omitempty"`
 	OriginalAmountInBillingCurrency *AmountWithExchangeRate `json:"originalAmountInBillingCurrency,omitempty"`
 	PoNumber                        *string                 `json:"poNumber,omitempty"`

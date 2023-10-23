@@ -13,7 +13,6 @@ import (
 	"github.com/hashicorp/go-azure-sdk/resource-manager/mariadb/2018-06-01/databases"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/mariadb/2018-06-01/firewallrules"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/mariadb/2018-06-01/locationbasedperformancetier"
-	"github.com/hashicorp/go-azure-sdk/resource-manager/mariadb/2018-06-01/locationbasedrecommendedactionsessionsresult"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/mariadb/2018-06-01/logfiles"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/mariadb/2018-06-01/privateendpointconnections"
 	"github.com/hashicorp/go-azure-sdk/resource-manager/mariadb/2018-06-01/privatelinkresources"
@@ -35,30 +34,29 @@ import (
 )
 
 type Client struct {
-	Advisors                                     *advisors.AdvisorsClient
-	CheckNameAvailability                        *checknameavailability.CheckNameAvailabilityClient
-	Configurations                               *configurations.ConfigurationsClient
-	ConfigurationsUpdate                         *configurationsupdate.ConfigurationsUpdateClient
-	Databases                                    *databases.DatabasesClient
-	FirewallRules                                *firewallrules.FirewallRulesClient
-	LocationBasedPerformanceTier                 *locationbasedperformancetier.LocationBasedPerformanceTierClient
-	LocationBasedRecommendedActionSessionsResult *locationbasedrecommendedactionsessionsresult.LocationBasedRecommendedActionSessionsResultClient
-	LogFiles                                     *logfiles.LogFilesClient
-	PrivateEndpointConnections                   *privateendpointconnections.PrivateEndpointConnectionsClient
-	PrivateLinkResources                         *privatelinkresources.PrivateLinkResourcesClient
-	QueryTexts                                   *querytexts.QueryTextsClient
-	RecommendedActionSessions                    *recommendedactionsessions.RecommendedActionSessionsClient
-	RecommendedActions                           *recommendedactions.RecommendedActionsClient
-	RecoverableServers                           *recoverableservers.RecoverableServersClient
-	Replicas                                     *replicas.ReplicasClient
-	ResetQueryPerformanceInsightData             *resetqueryperformanceinsightdata.ResetQueryPerformanceInsightDataClient
-	ServerBasedPerformanceTier                   *serverbasedperformancetier.ServerBasedPerformanceTierClient
-	ServerRestart                                *serverrestart.ServerRestartClient
-	ServerSecurityAlertPolicies                  *serversecurityalertpolicies.ServerSecurityAlertPoliciesClient
-	Servers                                      *servers.ServersClient
-	TopQueryStatistics                           *topquerystatistics.TopQueryStatisticsClient
-	VirtualNetworkRules                          *virtualnetworkrules.VirtualNetworkRulesClient
-	WaitStatistics                               *waitstatistics.WaitStatisticsClient
+	Advisors                         *advisors.AdvisorsClient
+	CheckNameAvailability            *checknameavailability.CheckNameAvailabilityClient
+	Configurations                   *configurations.ConfigurationsClient
+	ConfigurationsUpdate             *configurationsupdate.ConfigurationsUpdateClient
+	Databases                        *databases.DatabasesClient
+	FirewallRules                    *firewallrules.FirewallRulesClient
+	LocationBasedPerformanceTier     *locationbasedperformancetier.LocationBasedPerformanceTierClient
+	LogFiles                         *logfiles.LogFilesClient
+	PrivateEndpointConnections       *privateendpointconnections.PrivateEndpointConnectionsClient
+	PrivateLinkResources             *privatelinkresources.PrivateLinkResourcesClient
+	QueryTexts                       *querytexts.QueryTextsClient
+	RecommendedActionSessions        *recommendedactionsessions.RecommendedActionSessionsClient
+	RecommendedActions               *recommendedactions.RecommendedActionsClient
+	RecoverableServers               *recoverableservers.RecoverableServersClient
+	Replicas                         *replicas.ReplicasClient
+	ResetQueryPerformanceInsightData *resetqueryperformanceinsightdata.ResetQueryPerformanceInsightDataClient
+	ServerBasedPerformanceTier       *serverbasedperformancetier.ServerBasedPerformanceTierClient
+	ServerRestart                    *serverrestart.ServerRestartClient
+	ServerSecurityAlertPolicies      *serversecurityalertpolicies.ServerSecurityAlertPoliciesClient
+	Servers                          *servers.ServersClient
+	TopQueryStatistics               *topquerystatistics.TopQueryStatisticsClient
+	VirtualNetworkRules              *virtualnetworkrules.VirtualNetworkRulesClient
+	WaitStatistics                   *waitstatistics.WaitStatisticsClient
 }
 
 func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
@@ -103,12 +101,6 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanag
 		return nil, fmt.Errorf("building LocationBasedPerformanceTier client: %+v", err)
 	}
 	configureFunc(locationBasedPerformanceTierClient.Client)
-
-	locationBasedRecommendedActionSessionsResultClient, err := locationbasedrecommendedactionsessionsresult.NewLocationBasedRecommendedActionSessionsResultClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building LocationBasedRecommendedActionSessionsResult client: %+v", err)
-	}
-	configureFunc(locationBasedRecommendedActionSessionsResultClient.Client)
 
 	logFilesClient, err := logfiles.NewLogFilesClientWithBaseURI(sdkApi)
 	if err != nil {
@@ -207,14 +199,13 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanag
 	configureFunc(waitStatisticsClient.Client)
 
 	return &Client{
-		Advisors:                     advisorsClient,
-		CheckNameAvailability:        checkNameAvailabilityClient,
-		Configurations:               configurationsClient,
-		ConfigurationsUpdate:         configurationsUpdateClient,
-		Databases:                    databasesClient,
-		FirewallRules:                firewallRulesClient,
-		LocationBasedPerformanceTier: locationBasedPerformanceTierClient,
-		LocationBasedRecommendedActionSessionsResult: locationBasedRecommendedActionSessionsResultClient,
+		Advisors:                         advisorsClient,
+		CheckNameAvailability:            checkNameAvailabilityClient,
+		Configurations:                   configurationsClient,
+		ConfigurationsUpdate:             configurationsUpdateClient,
+		Databases:                        databasesClient,
+		FirewallRules:                    firewallRulesClient,
+		LocationBasedPerformanceTier:     locationBasedPerformanceTierClient,
 		LogFiles:                         logFilesClient,
 		PrivateEndpointConnections:       privateEndpointConnectionsClient,
 		PrivateLinkResources:             privateLinkResourcesClient,
