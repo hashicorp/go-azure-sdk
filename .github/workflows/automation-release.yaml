@@ -28,10 +28,11 @@ jobs:
         run: |
           ./scripts/determine-and-publish-git-tag.sh
 
-      - id: outputs
+      - id: results
         name: "collecting outputs"
         run: |
-          echo "latest_tag=$(git describe --tags $(git rev-list --tags --max-count=1))" >> "$GITHUB_OUTPUT"
+          latestTag=$(git describe --tags $(git rev-list --tags --max-count=1))
+          echo "latest_tag=$latestTag" >> "$GITHUB_OUTPUT"
           echo "should_update_azurerm=${{ github.event.pull_request.merged == true && contains( github.event.pull_request.labels.*.name, 'update-azurerm-after-release') }}" >> "$GITHUB_OUTPUT"
         shell: bash
 
