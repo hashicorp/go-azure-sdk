@@ -39,7 +39,7 @@ function runUpdaterTool {
 
   echo "Configuring Git in the AzureRM repository.."
   git config user.name "hc-github-team-tf-azure"
-  git config user.email "<>"
+  git config user.email '<>'
 
   echo "Running the updater tool.."
   ./update-go-azure-sdk --new-sdk-version="${newSdkVersion}" --azurerm-repo-path=../../../ --go-sdk-repo-path=../../../../../ --output-file="../../../../pr-description.txt"
