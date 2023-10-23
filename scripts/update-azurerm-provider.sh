@@ -17,11 +17,6 @@ function prepare {
   pushd "${workingDirectory}"
   git clone git@github.com:hashicorp/terraform-provider-azurerm.git "${repositoryDirectory}"
 
-  echo "Configuring Git in that repository.."
-  cd "${repositoryDirectory}"
-  git config user.name "hc-github-team-tf-azure"
-  git config user.email "<>"
-
   echo "Returning to the original directory.."
   popd
 }
@@ -41,6 +36,10 @@ function runUpdaterTool {
   echo "Building the updater tool.."
   cd ./internal/tools/update-go-azure-sdk
   go build .
+
+  echo "Configuring Git in the AzureRM repository.."
+  git config user.name "hc-github-team-tf-azure"
+  git config user.email "<>"
 
   echo "Running the updater tool.."
   ./update-go-azure-sdk --new-sdk-version="${newSdkVersion}" --azurerm-repo-path=../../../ --go-sdk-repo-path=../../../../../ --output-file="../../../../pr-description.txt"
