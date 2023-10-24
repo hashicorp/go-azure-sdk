@@ -7,16 +7,15 @@ import (
 	"context"
 	"fmt"
 	"net/http"
-	"strings"
 	"time"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/claims"
 	"golang.org/x/oauth2"
 )
 
-// SetAuthHeaders decorates a *http.Request with necessary authorization headers for Azure APIs. For more information about the vendor-specific
-// `x-ms-authorization-auxiliary` header, see https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/authenticate-multi-tenant
-func SetAuthHeaders(ctx context.Context, req *http.Request, authorizer Authorizer) error {
+// SetAuthHeader decorates a *http.Request with the Authorization header using a bearer token obtained from the Token
+// method of the supplied Authorizer.
+func SetAuthHeader(ctx context.Context, req *http.Request, authorizer Authorizer) error {
 	if req == nil {
 		return fmt.Errorf("request was nil")
 	}
@@ -34,17 +33,6 @@ func SetAuthHeaders(ctx context.Context, req *http.Request, authorizer Authorize
 	}
 
 	req.Header.Set("Authorization", fmt.Sprintf("%s %s", token.Type(), token.AccessToken))
-
-	auxTokens, err := authorizer.AuxiliaryTokens(ctx, req)
-	if err != nil {
-		return err
-	}
-
-	auxTokenValues := make([]string, 0)
-	for _, auxToken := range auxTokens {
-		auxTokenValues = append(auxTokenValues, fmt.Sprintf("%s %s", auxToken.Type(), auxToken.AccessToken))
-	}
-	req.Header.Set("X-Ms-Authorization-Auxiliary", strings.Join(auxTokenValues, ", "))
 
 	return nil
 }

@@ -68,7 +68,8 @@ func RequestRetryAll(retryFuncs ...RequestRetryFunc) func(resp *http.Response, o
 	}
 }
 
-// RetryableErrorHandler simply returns the resp and err, this is needed to makes the retryablehttp client's Do() return early with the response body not drained.
+// RetryableErrorHandler simply returns the resp and err, this is needed to make the Do() method
+// of retryablehttp client return early with the response body not drained.
 func RetryableErrorHandler(resp *http.Response, err error, _ int) (*http.Response, error) {
 	return resp, err
 }
@@ -260,6 +261,11 @@ type Client struct {
 	// Authorizer is anything that can provide an access token with which to authorize requests.
 	Authorizer auth.Authorizer
 
+	// AuthorizeRequest is an optional function to decorate a Request for authorization prior to being sent.
+	// When nil, a standard Authorization header will be added using a bearer token as returned by the Token method
+	// of the configured Authorizer. Define this function in order to customize the request authorization.
+	AuthorizeRequest func(context.Context, *http.Request, auth.Authorizer) error
+
 	// DisableRetries prevents the client from reattempting failed requests (which it does to work around eventual consistency issues).
 	// This does not impact handling of retries related to rate limiting, which are always performed.
 	DisableRetries bool
@@ -327,10 +333,14 @@ func (c *Client) Execute(ctx context.Context, req *Request) (*Response, error) {
 		return nil, fmt.Errorf("req.Request was nil")
 	}
 
-	// Set Authorization and X-Ms-Authorization-Auxiliary headers
-	if c.Authorizer != nil {
-		if err := auth.SetAuthHeaders(ctx, req.Request, c.Authorizer); err != nil {
-			return nil, err
+	// Authorize the request
+	if c.AuthorizeRequest != nil {
+		if err := c.AuthorizeRequest(ctx, req.Request, c.Authorizer); err != nil {
+			return nil, fmt.Errorf("authorizing request: %+v", err)
+		}
+	} else if c.Authorizer != nil {
+		if err := auth.SetAuthHeader(ctx, req.Request, c.Authorizer); err != nil {
+			return nil, fmt.Errorf("authorizing request: %+v", err)
 		}
 	}
 

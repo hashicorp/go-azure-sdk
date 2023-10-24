@@ -30,6 +30,7 @@ func NewBaseClient(baseUri string, componentName, apiVersion string) (*BaseClien
 }
 
 func (c *BaseClient) NewRequest(ctx context.Context, input client.RequestOptions) (*client.Request, error) {
+	// TODO move these validations to base client method
 	if _, ok := ctx.Deadline(); !ok {
 		return nil, fmt.Errorf("the context used must have a deadline attached for polling purposes, but got no deadline")
 	}

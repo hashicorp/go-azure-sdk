@@ -9,13 +9,14 @@ import (
 
 	"github.com/hashicorp/go-azure-sdk/sdk/auth"
 	"github.com/hashicorp/go-azure-sdk/sdk/claims"
+	"github.com/hashicorp/go-azure-sdk/sdk/internal/test"
 )
 
 func TestCachedAuthorizer(t *testing.T) {
 	tokenPattern := regexp.MustCompile("^[a-zA-Z0-9_-]+[.][a-zA-Z0-9_-]+[.][a-zA-Z0-9_-]+")
 	req := &http.Request{}
 
-	authorizer, err := auth.NewCachedAuthorizer(&testAuthorizer{})
+	authorizer, err := auth.NewCachedAuthorizer(&test.TestAuthorizer{})
 	if err != nil {
 		t.Fatalf("received error for NewCachedAuthorizer(): %+v", err)
 	}
@@ -43,31 +44,31 @@ func TestCachedAuthorizer(t *testing.T) {
 	if err != nil {
 		t.Fatalf("received error for claims.ParseClaims(): %+v", err)
 	}
-	if tokenClaims.IssuedAt != testTokenIssued.Unix() {
-		t.Fatalf("unexpected `iat` claim for access token, expected: %d, received: %d", testTokenIssued.Unix(), tokenClaims.IssuedAt)
+	if tokenClaims.IssuedAt != test.TestTokenIssued.Unix() {
+		t.Fatalf("unexpected `iat` claim for access token, expected: %d, received: %d", test.TestTokenIssued.Unix(), tokenClaims.IssuedAt)
 	}
-	if tokenClaims.Expires != testTokenExpiry.Unix() {
-		t.Fatalf("unexpected `exp` claim for access token, expected: %d, received: %d", testTokenExpiry.Unix(), tokenClaims.Expires)
+	if tokenClaims.Expires != test.TestTokenExpiry.Unix() {
+		t.Fatalf("unexpected `exp` claim for access token, expected: %d, received: %d", test.TestTokenExpiry.Unix(), tokenClaims.Expires)
 	}
 	for i, auxToken := range auxTokens {
 		auxTokenClaims, err := claims.ParseClaims(auxToken)
 		if err != nil {
 			t.Fatalf("received error for claims.ParseClaims(): %+v", err)
 		}
-		if auxTokenClaims.IssuedAt != testTokenIssued.Unix() {
-			t.Fatalf("unexpected `iat` claim for auxiliary access token at %d, expected: %d, received: %d", i, testTokenIssued.Unix(), auxTokenClaims.IssuedAt)
+		if auxTokenClaims.IssuedAt != test.TestTokenIssued.Unix() {
+			t.Fatalf("unexpected `iat` claim for auxiliary access token at %d, expected: %d, received: %d", i, test.TestTokenIssued.Unix(), auxTokenClaims.IssuedAt)
 		}
-		if auxTokenClaims.Expires != testTokenExpiry.Unix() {
-			t.Fatalf("unexpected `exp` claim for auxiliary access token at %d, expected: %d, received: %d", i, testTokenExpiry.Unix(), auxTokenClaims.Expires)
+		if auxTokenClaims.Expires != test.TestTokenExpiry.Unix() {
+			t.Fatalf("unexpected `exp` claim for auxiliary access token at %d, expected: %d, received: %d", i, test.TestTokenExpiry.Unix(), auxTokenClaims.Expires)
 		}
 	}
 
 	// Wait for 5 seconds and advance the issued/expiry times for the testAuthorizer
 	time.Sleep(5 * time.Second)
-	earlierTestTokenIssued := testTokenIssued
-	earlierTestTokenExpiry := testTokenExpiry
-	testTokenIssued = time.Now()
-	testTokenExpiry = time.Now().Add(3599 * time.Second)
+	earlierTestTokenIssued := test.TestTokenIssued
+	earlierTestTokenExpiry := test.TestTokenExpiry
+	test.TestTokenIssued = time.Now()
+	test.TestTokenExpiry = time.Now().Add(3599 * time.Second)
 
 	// Retrieve a second token, this should be retrieved from the cache
 	token, err = authorizer.Token(context.Background(), req)
@@ -112,7 +113,7 @@ func TestCachedAuthorizer(t *testing.T) {
 	}
 
 	// Invalidate the access tokens
-	if err = authorizer.ExpireTokens(); err != nil {
+	if err = authorizer.InvalidateCachedTokens(); err != nil {
 		t.Fatalf("received error for CachedAuthorizer.ExpireTokens(): %+v", err)
 	}
 
@@ -139,22 +140,22 @@ func TestCachedAuthorizer(t *testing.T) {
 	if err != nil {
 		t.Fatalf("received error for claims.ParseClaims(): %+v", err)
 	}
-	if tokenClaims.IssuedAt != testTokenIssued.Unix() {
-		t.Fatalf("unexpected `iat` claim for access token, expected: %d, received: %d", testTokenIssued.Unix(), tokenClaims.IssuedAt)
+	if tokenClaims.IssuedAt != test.TestTokenIssued.Unix() {
+		t.Fatalf("unexpected `iat` claim for access token, expected: %d, received: %d", test.TestTokenIssued.Unix(), tokenClaims.IssuedAt)
 	}
-	if tokenClaims.Expires != testTokenExpiry.Unix() {
-		t.Fatalf("unexpected `exp` claim for access token, expected: %d, received: %d", testTokenExpiry.Unix(), tokenClaims.Expires)
+	if tokenClaims.Expires != test.TestTokenExpiry.Unix() {
+		t.Fatalf("unexpected `exp` claim for access token, expected: %d, received: %d", test.TestTokenExpiry.Unix(), tokenClaims.Expires)
 	}
 	for i, auxToken := range auxTokens {
 		auxTokenClaims, err := claims.ParseClaims(auxToken)
 		if err != nil {
 			t.Fatalf("received error for claims.ParseClaims(): %+v", err)
 		}
-		if auxTokenClaims.IssuedAt != testTokenIssued.Unix() {
-			t.Fatalf("unexpected `iat` claim for auxiliary access token at %d, expected: %d, received: %d", i, testTokenIssued.Unix(), auxTokenClaims.IssuedAt)
+		if auxTokenClaims.IssuedAt != test.TestTokenIssued.Unix() {
+			t.Fatalf("unexpected `iat` claim for auxiliary access token at %d, expected: %d, received: %d", i, test.TestTokenIssued.Unix(), auxTokenClaims.IssuedAt)
 		}
-		if auxTokenClaims.Expires != testTokenExpiry.Unix() {
-			t.Fatalf("unexpected `exp` claim for auxiliary access token at %d, expected: %d, received: %d", i, testTokenExpiry.Unix(), auxTokenClaims.Expires)
+		if auxTokenClaims.Expires != test.TestTokenExpiry.Unix() {
+			t.Fatalf("unexpected `exp` claim for auxiliary access token at %d, expected: %d, received: %d", i, test.TestTokenExpiry.Unix(), auxTokenClaims.Expires)
 		}
 	}
 }

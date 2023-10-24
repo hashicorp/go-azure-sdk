@@ -13,7 +13,7 @@ import (
 	"golang.org/x/oauth2"
 )
 
-var _ Authorizer = &CachedAuthorizer{}
+var _ CachingAuthorizer = &CachedAuthorizer{}
 
 // CachedAuthorizer caches a token until it expires, then acquires a new token from Source
 type CachedAuthorizer struct {
@@ -68,8 +68,12 @@ func (c *CachedAuthorizer) AuxiliaryTokens(ctx context.Context, req *http.Reques
 	return c.auxTokens, nil
 }
 
-// ExpireTokens expires the currently cached token and auxTokens, forcing new tokens to be acquired when Token() or AuxiliaryTokens() are next called
-func (c *CachedAuthorizer) ExpireTokens() error {
+// InvalidateCachedTokens expires the currently cached token and auxTokens, forcing new
+// tokens to be acquired when Token() or AuxiliaryTokens() are next called
+func (c *CachedAuthorizer) InvalidateCachedTokens() error {
+	if c.token == nil {
+		return fmt.Errorf("internal-error: c.token was nil")
+	}
 	c.token.Expiry = time.Now()
 	for i := range c.auxTokens {
 		c.auxTokens[i].Expiry = time.Now()
@@ -79,7 +83,7 @@ func (c *CachedAuthorizer) ExpireTokens() error {
 
 // NewCachedAuthorizer returns an Authorizer that caches an access token for the duration of its validity.
 // If the cached token expires, a new one is acquired and cached.
-func NewCachedAuthorizer(src Authorizer) (Authorizer, error) {
+func NewCachedAuthorizer(src Authorizer) (CachingAuthorizer, error) {
 	if _, ok := src.(*SharedKeyAuthorizer); ok {
 		return nil, fmt.Errorf("internal-error: SharedKeyAuthorizer cannot be cached")
 	}
