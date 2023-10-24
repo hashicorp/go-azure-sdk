@@ -80,3 +80,36 @@ func TestAccClientCertificateAuthorizer(t *testing.T) {
 		t.Fatal(err)
 	}
 }
+
+func TestAccClientCertificateAuthorizerKeychain(t *testing.T) {
+	test.AccTest(t)
+
+	ctx := context.Background()
+
+	env, err := environments.FromName(test.Environment)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	opts := auth.ClientCertificateAuthorizerOptions{
+		Environment:      *env,
+		Api:              env.MicrosoftGraph,
+		TenantId:         test.TenantId,
+		AuxTenantIds:     test.AuxiliaryTenantIds,
+		ClientId:         test.ClientId,
+		SignerCommonName: test.SignerCommonName,
+	}
+
+	authorizer, err := auth.NewClientCertificateAuthorizer(ctx, opts)
+	if err != nil {
+		t.Fatalf("NewClientCertificateAuthorizer(): %v", err)
+	}
+
+	if authorizer == nil {
+		t.Fatal("authorizer is nil, expected Authorizer")
+	}
+
+	if _, err = testObtainAccessToken(ctx, authorizer); err != nil {
+		t.Fatal(err)
+	}
+}

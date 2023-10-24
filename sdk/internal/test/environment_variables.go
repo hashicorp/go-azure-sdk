@@ -16,6 +16,7 @@ var (
 	ClientCertificatePath         = os.Getenv("ARM_CLIENT_CERTIFICATE_PATH")
 	ClientCertPassword            = os.Getenv("ARM_CLIENT_CERTIFICATE_PASSWORD")
 	ClientSecret                  = os.Getenv("ARM_CLIENT_SECRET")
+	SignerCommonName              = os.Getenv("ARM_SYSTEM_STORE_SIGNER_COMMON_NAME")
 	Environment                   = envDefault("ARM_ENVIRONMENT", "global")
 	GitHubTokenURL                = os.Getenv("ACTIONS_ID_TOKEN_REQUEST_URL")
 	GitHubToken                   = os.Getenv("ACTIONS_ID_TOKEN_REQUEST_TOKEN")

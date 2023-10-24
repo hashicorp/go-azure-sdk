@@ -5,6 +5,7 @@ package auth
 
 import (
 	"context"
+	"crypto/x509"
 	"fmt"
 	"os"
 
@@ -38,22 +39,26 @@ type ClientCertificateAuthorizerOptions struct {
 
 	// Pkcs12Pass is the challenge passphrase to decrypt the PKCS#12 archive
 	Pkcs12Pass string
+
+	// SignerCommonName is the common name of an identity from your system certificate store, e.g. macOS Keychain
+	SignerCommonName string
 }
 
 // NewClientCertificateAuthorizer returns an authorizer which uses client certificate authentication.
 func NewClientCertificateAuthorizer(ctx context.Context, options ClientCertificateAuthorizerOptions) (Authorizer, error) {
-	if len(options.Pkcs12Data) == 0 {
-		var err error
-		options.Pkcs12Data, err = os.ReadFile(options.Pkcs12Path)
-		if err != nil {
+	var key interface{}
+	var cert *x509.Certificate
+	var err error
+
+	if len(options.Pkcs12Data) == 0 && options.Pkcs12Path != "" {
+		if options.Pkcs12Data, err = os.ReadFile(options.Pkcs12Path); err != nil {
 			return nil, fmt.Errorf("could not read PKCS#12 archive at %q: %s", options.Pkcs12Path, err)
 		}
-	}
 
-	// we aren't interested in the issuer chain, but we use the DecodeChain method to parse them out in case they are present
-	key, cert, _, err := pkcs12.DecodeChain(options.Pkcs12Data, options.Pkcs12Pass)
-	if err != nil {
-		return nil, fmt.Errorf("could not decode PKCS#12 archive: %s", err)
+		// we aren't interested in the issuer chain, but we use the DecodeChain method to parse them out in case they are present
+		if key, cert, _, err = pkcs12.DecodeChain(options.Pkcs12Data, options.Pkcs12Pass); err != nil {
+			return nil, fmt.Errorf("could not decode PKCS#12 archive: %s", err)
+		}
 	}
 
 	scope, err := environments.Scope(options.Api)
@@ -66,6 +71,7 @@ func NewClientCertificateAuthorizer(ctx context.Context, options ClientCertifica
 		TenantID:           options.TenantId,
 		AuxiliaryTenantIDs: options.AuxTenantIds,
 		ClientID:           options.ClientId,
+		SignerCommonName:   options.SignerCommonName,
 		PrivateKey:         key,
 		Certificate:        cert,
 		Scopes: []string{

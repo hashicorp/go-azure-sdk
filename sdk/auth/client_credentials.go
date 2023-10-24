@@ -15,6 +15,7 @@ import (
 	"encoding/base64"
 	"encoding/json"
 	"fmt"
+	"github.com/github/smimesign/certstore"
 	"io"
 	"net/http"
 	"net/url"
@@ -33,6 +34,10 @@ const (
 	clientCredentialsAssertionType clientCredentialsType = "ClientCredentials"
 	clientCredentialsSecretType    clientCredentialsType = "ClientSecret"
 )
+
+type signingFunc func([]byte) ([]byte, error)
+
+const clientCredentialsCryptHash = crypto.SHA256
 
 // clientCredentialsConfig is the configuration for using client credentials flow.
 //
@@ -68,6 +73,9 @@ type clientCredentialsConfig struct {
 	// Certificate contains the (optionally PEM encoded) X509 certificate registered
 	// for the application with which you are authenticating. Used when FederatedAssertion is empty.
 	Certificate *x509.Certificate
+
+	// SignerCommonName is the common name of an identity from your system certificate store, e.g. macOS Keychain
+	SignerCommonName string
 
 	// FederatedAssertion contains a JWT provided by a trusted third-party vendor
 	// for obtaining an access token with a federated credential. When empty, an
@@ -139,7 +147,7 @@ type clientAssertionToken struct {
 	claims clientAssertionTokenClaims
 }
 
-func (c *clientAssertionToken) encode(key crypto.PrivateKey) (*string, error) {
+func (c *clientAssertionToken) encode(sign signingFunc) (*string, error) {
 	var err error
 
 	c.claims.NotBefore = time.Now().Unix()
@@ -149,23 +157,7 @@ func (c *clientAssertionToken) encode(key crypto.PrivateKey) (*string, error) {
 		return nil, err
 	}
 
-	var hash = crypto.SHA256
-	var sign func([]byte, []byte) ([]byte, error)
-
-	// determine algorithm and signing function, fail for unsupported keys
-	if k, ok := key.(*ecdsa.PrivateKey); ok {
-		c.header.Algorithm = "ES256"
-		sign = func(data []byte, sum []byte) ([]byte, error) {
-			return ecdsa.SignASN1(rand.Reader, k, sum)
-		}
-	} else if k, ok := key.(*rsa.PrivateKey); ok {
-		c.header.Algorithm = "RS256"
-		sign = func(data []byte, sum []byte) ([]byte, error) {
-			return rsa.SignPKCS1v15(rand.Reader, k, hash, sum)
-		}
-	} else {
-		return nil, fmt.Errorf("unrecognized/unsupported key type: %T", key)
-	}
+	var hash = clientCredentialsCryptHash
 
 	// encode the header
 	hs, err := c.header.encode()
@@ -183,7 +175,7 @@ func (c *clientAssertionToken) encode(key crypto.PrivateKey) (*string, error) {
 	ss := fmt.Sprintf("%s.%s", hs, cs)
 	h := hash.New()
 	h.Write([]byte(ss))
-	sig, err := sign([]byte(ss), h.Sum(nil))
+	sig, err := sign(h.Sum(nil))
 	if err != nil {
 		return nil, err
 	}
@@ -203,12 +195,51 @@ func (a *ClientAssertionAuthorizer) assertion(tokenUrl string) (*string, error) 
 		return nil, fmt.Errorf("internal-error: ClientAssertionAuthorizer not configured")
 	}
 
-	if a.conf.Certificate == nil {
-		return nil, fmt.Errorf("internal-error: ClientAssertionAuthorizer misconfigured; Certificate was nil")
-	}
+	var algo, keyId string
+	var identity certstore.Identity
+	var err error
 
-	keySig := sha1.Sum(a.conf.Certificate.Raw)
-	keyId := base64.URLEncoding.EncodeToString(keySig[:])
+	if a.conf.SignerCommonName != "" {
+		if identity, err = systemStoreIdentity(a.conf.SignerCommonName); err != nil {
+			return nil, err
+		}
+
+		certificate, err := identity.Certificate()
+		if err != nil {
+			return nil, err
+		}
+		if certificate == nil {
+			return nil, fmt.Errorf("certificate from system store for CommonName %q was nil", a.conf.SignerCommonName)
+		}
+
+		switch certificate.PublicKey.(type) {
+		case *ecdsa.PublicKey:
+			algo = "ES256"
+		case *rsa.PublicKey:
+			algo = "RS256"
+		default:
+			return nil, fmt.Errorf("unsupported certificate from system store: key type must be RSA or ECDSA")
+		}
+
+		keySig := sha1.Sum(certificate.Raw)
+		keyId = base64.URLEncoding.EncodeToString(keySig[:])
+	} else {
+		if a.conf.Certificate == nil || a.conf.PrivateKey == nil {
+			return nil, fmt.Errorf("internal-error: ClientAssertionAuthorizer misconfigured; SignerCommonName not specified and Certificate or PrivateKey were nil")
+		}
+
+		switch a.conf.PrivateKey.(type) {
+		case *ecdsa.PrivateKey:
+			algo = "ES256"
+		case *rsa.PrivateKey:
+			algo = "RS256"
+		default:
+			return nil, fmt.Errorf("unsupported key type: must be RSA or ECDSA")
+		}
+
+		keySig := sha1.Sum(a.conf.Certificate.Raw)
+		keyId = base64.URLEncoding.EncodeToString(keySig[:])
+	}
 
 	audience := a.conf.Audience
 	if audience == "" {
@@ -217,8 +248,9 @@ func (a *ClientAssertionAuthorizer) assertion(tokenUrl string) (*string, error) 
 
 	t := clientAssertionToken{
 		header: clientAssertionTokenHeader{
-			Type:  "JWT",
-			KeyId: keyId,
+			Algorithm: algo,
+			Type:      "JWT",
+			KeyId:     keyId,
 		},
 		claims: clientAssertionTokenClaims{
 			Audience: audience,
@@ -227,7 +259,31 @@ func (a *ClientAssertionAuthorizer) assertion(tokenUrl string) (*string, error) 
 		},
 	}
 
-	assertion, err := t.encode(a.conf.PrivateKey)
+	var sign signingFunc
+
+	// determine algorithm and signing function, fail for unsupported keys
+	if identity != nil {
+		sign = func(sum []byte) ([]byte, error) {
+			defer identity.Close()
+			signer, err := identity.Signer()
+			if err != nil {
+				return nil, err
+			}
+			return signer.Sign(rand.Reader, sum, clientCredentialsCryptHash)
+		}
+	} else if k, ok := a.conf.PrivateKey.(*ecdsa.PrivateKey); ok {
+		sign = func(sum []byte) ([]byte, error) {
+			return ecdsa.SignASN1(rand.Reader, k, sum)
+		}
+	} else if k, ok := a.conf.PrivateKey.(*rsa.PrivateKey); ok {
+		sign = func(sum []byte) ([]byte, error) {
+			return rsa.SignPKCS1v15(rand.Reader, k, clientCredentialsCryptHash, sum)
+		}
+	} else {
+		return nil, fmt.Errorf("unrecognized/unsupported key type: %T", a.conf.PrivateKey)
+	}
+
+	assertion, err := t.encode(sign)
 	if err != nil {
 		return nil, fmt.Errorf("ClientAssertionAuthorizer: failed to encode and sign JWT assertion: %v", err)
 	}
@@ -312,6 +368,36 @@ func (a *ClientAssertionAuthorizer) AuxiliaryTokens(ctx context.Context, _ *http
 	}
 
 	return tokens, nil
+}
+
+func systemStoreIdentity(commonName string) (certstore.Identity, error) {
+	store, err := certstore.Open()
+	if err != nil {
+		return nil, err
+	}
+	defer store.Close()
+
+	identities, err := store.Identities()
+	if err != nil {
+		return nil, err
+	}
+
+	var identity certstore.Identity
+	for _, ident := range identities {
+		if crt, err := ident.Certificate(); err != nil {
+			return nil, err
+		} else if crt.Subject.CommonName == commonName {
+			identity = ident
+			break
+		}
+		ident.Close()
+	}
+
+	if identity == nil {
+		return nil, fmt.Errorf("no identity found in system certificate store with common name: %q", commonName)
+	}
+
+	return identity, nil
 }
 
 func clientCredentialsToken(ctx context.Context, endpoint string, params *url.Values) (*oauth2.Token, error) {
