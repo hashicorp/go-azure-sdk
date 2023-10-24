@@ -1,6 +1,8 @@
 name: "Pull Request Labeler"
 on:
-  - pull_request_target
+  pull_request_target:
+    types:
+      - opened # run once per PR to work around https://github.com/actions/labeler/issues/624 (avoid unwanted label removal)
 
 jobs:
   triage:
