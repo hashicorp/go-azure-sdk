@@ -46,6 +46,7 @@ type AzureVMWorkloadSQLDatabaseProtectedItem struct {
 	ResourceGuardOperationRequests   *[]string             `json:"resourceGuardOperationRequests,omitempty"`
 	SoftDeleteRetentionPeriodInDays  *int64                `json:"softDeleteRetentionPeriodInDays,omitempty"`
 	SourceResourceId                 *string               `json:"sourceResourceId,omitempty"`
+	VaultId                          *string               `json:"vaultId,omitempty"`
 	WorkloadType                     *DataSourceType       `json:"workloadType,omitempty"`
 }
 
