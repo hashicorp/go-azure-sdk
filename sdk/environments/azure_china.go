@@ -3,7 +3,7 @@
 
 package environments
 
-const AzureChinaCloud = "China"
+const AzureChinaCloud = "AzureChinaCloud"
 
 func AzureChina() *Environment {
 	env := baseEnvironmentWithName(AzureChinaCloud)
