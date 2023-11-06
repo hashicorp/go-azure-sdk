@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := managedinstanceoperations.NewManagedInstanceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedInstanceValue")
+id := managedinstanceoperations.NewSqlManagedInstanceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedInstanceValue")
 
 // alternatively `client.ListByManagedInstance(ctx, id)` can be used to do batched pagination
 items, err := client.ListByManagedInstanceComplete(ctx, id)

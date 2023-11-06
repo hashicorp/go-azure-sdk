@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
@@ -21,7 +22,7 @@ type ImportDatabaseOperationResponse struct {
 }
 
 // ImportDatabase ...
-func (c ServersClient) ImportDatabase(ctx context.Context, id ServerId, input ImportNewDatabaseDefinition) (result ImportDatabaseOperationResponse, err error) {
+func (c ServersClient) ImportDatabase(ctx context.Context, id commonids.SqlServerId, input ImportNewDatabaseDefinition) (result ImportDatabaseOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -60,7 +61,7 @@ func (c ServersClient) ImportDatabase(ctx context.Context, id ServerId, input Im
 }
 
 // ImportDatabaseThenPoll performs ImportDatabase then polls until it's completed
-func (c ServersClient) ImportDatabaseThenPoll(ctx context.Context, id ServerId, input ImportNewDatabaseDefinition) error {
+func (c ServersClient) ImportDatabaseThenPoll(ctx context.Context, id commonids.SqlServerId, input ImportNewDatabaseDefinition) error {
 	result, err := c.ImportDatabase(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing ImportDatabase: %+v", err)

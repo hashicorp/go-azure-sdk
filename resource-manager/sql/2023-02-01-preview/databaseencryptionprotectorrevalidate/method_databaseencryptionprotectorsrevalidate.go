@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
@@ -21,7 +22,7 @@ type DatabaseEncryptionProtectorsRevalidateOperationResponse struct {
 }
 
 // DatabaseEncryptionProtectorsRevalidate ...
-func (c DatabaseEncryptionProtectorRevalidateClient) DatabaseEncryptionProtectorsRevalidate(ctx context.Context, id DatabaseId) (result DatabaseEncryptionProtectorsRevalidateOperationResponse, err error) {
+func (c DatabaseEncryptionProtectorRevalidateClient) DatabaseEncryptionProtectorsRevalidate(ctx context.Context, id commonids.SqlDatabaseId) (result DatabaseEncryptionProtectorsRevalidateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -56,7 +57,7 @@ func (c DatabaseEncryptionProtectorRevalidateClient) DatabaseEncryptionProtector
 }
 
 // DatabaseEncryptionProtectorsRevalidateThenPoll performs DatabaseEncryptionProtectorsRevalidate then polls until it's completed
-func (c DatabaseEncryptionProtectorRevalidateClient) DatabaseEncryptionProtectorsRevalidateThenPoll(ctx context.Context, id DatabaseId) error {
+func (c DatabaseEncryptionProtectorRevalidateClient) DatabaseEncryptionProtectorsRevalidateThenPoll(ctx context.Context, id commonids.SqlDatabaseId) error {
 	result, err := c.DatabaseEncryptionProtectorsRevalidate(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing DatabaseEncryptionProtectorsRevalidate: %+v", err)

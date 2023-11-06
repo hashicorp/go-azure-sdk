@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := maintenancewindows.NewDatabaseID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverValue", "databaseValue")
+id := maintenancewindows.NewSqlDatabaseID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverValue", "databaseValue")
 
 payload := maintenancewindows.MaintenanceWindows{
 	// ...
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := maintenancewindows.NewDatabaseID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverValue", "databaseValue")
+id := maintenancewindows.NewSqlDatabaseID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverValue", "databaseValue")
 
 read, err := client.Get(ctx, id, maintenancewindows.DefaultGetOperationOptions())
 if err != nil {

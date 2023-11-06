@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
@@ -21,7 +22,7 @@ type SettingsCreateOrUpdateOperationResponse struct {
 }
 
 // SettingsCreateOrUpdate ...
-func (c ServerDevOpsAuditClient) SettingsCreateOrUpdate(ctx context.Context, id ServerId, input ServerDevOpsAuditingSettings) (result SettingsCreateOrUpdateOperationResponse, err error) {
+func (c ServerDevOpsAuditClient) SettingsCreateOrUpdate(ctx context.Context, id commonids.SqlServerId, input ServerDevOpsAuditingSettings) (result SettingsCreateOrUpdateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -60,7 +61,7 @@ func (c ServerDevOpsAuditClient) SettingsCreateOrUpdate(ctx context.Context, id 
 }
 
 // SettingsCreateOrUpdateThenPoll performs SettingsCreateOrUpdate then polls until it's completed
-func (c ServerDevOpsAuditClient) SettingsCreateOrUpdateThenPoll(ctx context.Context, id ServerId, input ServerDevOpsAuditingSettings) error {
+func (c ServerDevOpsAuditClient) SettingsCreateOrUpdateThenPoll(ctx context.Context, id commonids.SqlServerId, input ServerDevOpsAuditingSettings) error {
 	result, err := c.SettingsCreateOrUpdate(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing SettingsCreateOrUpdate: %+v", err)

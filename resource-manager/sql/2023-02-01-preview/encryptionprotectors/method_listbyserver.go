@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -23,7 +24,7 @@ type ListByServerCompleteResult struct {
 }
 
 // ListByServer ...
-func (c EncryptionProtectorsClient) ListByServer(ctx context.Context, id ServerId) (result ListByServerOperationResponse, err error) {
+func (c EncryptionProtectorsClient) ListByServer(ctx context.Context, id commonids.SqlServerId) (result ListByServerOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -61,12 +62,12 @@ func (c EncryptionProtectorsClient) ListByServer(ctx context.Context, id ServerI
 }
 
 // ListByServerComplete retrieves all the results into a single object
-func (c EncryptionProtectorsClient) ListByServerComplete(ctx context.Context, id ServerId) (ListByServerCompleteResult, error) {
+func (c EncryptionProtectorsClient) ListByServerComplete(ctx context.Context, id commonids.SqlServerId) (ListByServerCompleteResult, error) {
 	return c.ListByServerCompleteMatchingPredicate(ctx, id, EncryptionProtectorOperationPredicate{})
 }
 
 // ListByServerCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c EncryptionProtectorsClient) ListByServerCompleteMatchingPredicate(ctx context.Context, id ServerId, predicate EncryptionProtectorOperationPredicate) (result ListByServerCompleteResult, err error) {
+func (c EncryptionProtectorsClient) ListByServerCompleteMatchingPredicate(ctx context.Context, id commonids.SqlServerId, predicate EncryptionProtectorOperationPredicate) (result ListByServerCompleteResult, err error) {
 	items := make([]EncryptionProtector, 0)
 
 	resp, err := c.ListByServer(ctx, id)

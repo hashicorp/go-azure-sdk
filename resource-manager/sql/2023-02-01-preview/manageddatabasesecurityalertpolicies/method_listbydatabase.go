@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -23,7 +24,7 @@ type ListByDatabaseCompleteResult struct {
 }
 
 // ListByDatabase ...
-func (c ManagedDatabaseSecurityAlertPoliciesClient) ListByDatabase(ctx context.Context, id ManagedInstanceDatabaseId) (result ListByDatabaseOperationResponse, err error) {
+func (c ManagedDatabaseSecurityAlertPoliciesClient) ListByDatabase(ctx context.Context, id commonids.SqlManagedInstanceDatabaseId) (result ListByDatabaseOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -61,12 +62,12 @@ func (c ManagedDatabaseSecurityAlertPoliciesClient) ListByDatabase(ctx context.C
 }
 
 // ListByDatabaseComplete retrieves all the results into a single object
-func (c ManagedDatabaseSecurityAlertPoliciesClient) ListByDatabaseComplete(ctx context.Context, id ManagedInstanceDatabaseId) (ListByDatabaseCompleteResult, error) {
+func (c ManagedDatabaseSecurityAlertPoliciesClient) ListByDatabaseComplete(ctx context.Context, id commonids.SqlManagedInstanceDatabaseId) (ListByDatabaseCompleteResult, error) {
 	return c.ListByDatabaseCompleteMatchingPredicate(ctx, id, ManagedDatabaseSecurityAlertPolicyOperationPredicate{})
 }
 
 // ListByDatabaseCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c ManagedDatabaseSecurityAlertPoliciesClient) ListByDatabaseCompleteMatchingPredicate(ctx context.Context, id ManagedInstanceDatabaseId, predicate ManagedDatabaseSecurityAlertPolicyOperationPredicate) (result ListByDatabaseCompleteResult, err error) {
+func (c ManagedDatabaseSecurityAlertPoliciesClient) ListByDatabaseCompleteMatchingPredicate(ctx context.Context, id commonids.SqlManagedInstanceDatabaseId, predicate ManagedDatabaseSecurityAlertPolicyOperationPredicate) (result ListByDatabaseCompleteResult, err error) {
 	items := make([]ManagedDatabaseSecurityAlertPolicy, 0)
 
 	resp, err := c.ListByDatabase(ctx, id)

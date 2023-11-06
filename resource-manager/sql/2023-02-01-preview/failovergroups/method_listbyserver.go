@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -23,7 +24,7 @@ type ListByServerCompleteResult struct {
 }
 
 // ListByServer ...
-func (c FailoverGroupsClient) ListByServer(ctx context.Context, id ServerId) (result ListByServerOperationResponse, err error) {
+func (c FailoverGroupsClient) ListByServer(ctx context.Context, id commonids.SqlServerId) (result ListByServerOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -61,12 +62,12 @@ func (c FailoverGroupsClient) ListByServer(ctx context.Context, id ServerId) (re
 }
 
 // ListByServerComplete retrieves all the results into a single object
-func (c FailoverGroupsClient) ListByServerComplete(ctx context.Context, id ServerId) (ListByServerCompleteResult, error) {
+func (c FailoverGroupsClient) ListByServerComplete(ctx context.Context, id commonids.SqlServerId) (ListByServerCompleteResult, error) {
 	return c.ListByServerCompleteMatchingPredicate(ctx, id, FailoverGroupOperationPredicate{})
 }
 
 // ListByServerCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c FailoverGroupsClient) ListByServerCompleteMatchingPredicate(ctx context.Context, id ServerId, predicate FailoverGroupOperationPredicate) (result ListByServerCompleteResult, err error) {
+func (c FailoverGroupsClient) ListByServerCompleteMatchingPredicate(ctx context.Context, id commonids.SqlServerId, predicate FailoverGroupOperationPredicate) (result ListByServerCompleteResult, err error) {
 	items := make([]FailoverGroup, 0)
 
 	resp, err := c.ListByServer(ctx, id)

@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
@@ -21,7 +22,7 @@ type ExportOperationResponse struct {
 }
 
 // Export ...
-func (c DatabasesClient) Export(ctx context.Context, id DatabaseId, input ExportDatabaseDefinition) (result ExportOperationResponse, err error) {
+func (c DatabasesClient) Export(ctx context.Context, id commonids.SqlDatabaseId, input ExportDatabaseDefinition) (result ExportOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -60,7 +61,7 @@ func (c DatabasesClient) Export(ctx context.Context, id DatabaseId, input Export
 }
 
 // ExportThenPoll performs Export then polls until it's completed
-func (c DatabasesClient) ExportThenPoll(ctx context.Context, id DatabaseId, input ExportDatabaseDefinition) error {
+func (c DatabasesClient) ExportThenPoll(ctx context.Context, id commonids.SqlDatabaseId, input ExportDatabaseDefinition) error {
 	result, err := c.Export(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing Export: %+v", err)

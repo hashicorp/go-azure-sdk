@@ -85,7 +85,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := syncgroups.NewDatabaseID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverValue", "databaseValue")
+id := syncgroups.NewSqlDatabaseID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverValue", "databaseValue")
 
 // alternatively `client.ListByDatabase(ctx, id)` can be used to do batched pagination
 items, err := client.ListByDatabaseComplete(ctx, id)

@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
@@ -48,7 +49,7 @@ func (o FailoverOperationOptions) ToQuery() *client.QueryParams {
 }
 
 // Failover ...
-func (c DatabasesClient) Failover(ctx context.Context, id DatabaseId, options FailoverOperationOptions) (result FailoverOperationResponse, err error) {
+func (c DatabasesClient) Failover(ctx context.Context, id commonids.SqlDatabaseId, options FailoverOperationOptions) (result FailoverOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -84,7 +85,7 @@ func (c DatabasesClient) Failover(ctx context.Context, id DatabaseId, options Fa
 }
 
 // FailoverThenPoll performs Failover then polls until it's completed
-func (c DatabasesClient) FailoverThenPoll(ctx context.Context, id DatabaseId, options FailoverOperationOptions) error {
+func (c DatabasesClient) FailoverThenPoll(ctx context.Context, id commonids.SqlDatabaseId, options FailoverOperationOptions) error {
 	result, err := c.Failover(ctx, id, options)
 	if err != nil {
 		return fmt.Errorf("performing Failover: %+v", err)

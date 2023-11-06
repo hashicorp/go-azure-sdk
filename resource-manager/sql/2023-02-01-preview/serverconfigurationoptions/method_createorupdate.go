@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
@@ -21,7 +22,7 @@ type CreateOrUpdateOperationResponse struct {
 }
 
 // CreateOrUpdate ...
-func (c ServerConfigurationOptionsClient) CreateOrUpdate(ctx context.Context, id ManagedInstanceId, input ServerConfigurationOption) (result CreateOrUpdateOperationResponse, err error) {
+func (c ServerConfigurationOptionsClient) CreateOrUpdate(ctx context.Context, id commonids.SqlManagedInstanceId, input ServerConfigurationOption) (result CreateOrUpdateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -59,7 +60,7 @@ func (c ServerConfigurationOptionsClient) CreateOrUpdate(ctx context.Context, id
 }
 
 // CreateOrUpdateThenPoll performs CreateOrUpdate then polls until it's completed
-func (c ServerConfigurationOptionsClient) CreateOrUpdateThenPoll(ctx context.Context, id ManagedInstanceId, input ServerConfigurationOption) error {
+func (c ServerConfigurationOptionsClient) CreateOrUpdateThenPoll(ctx context.Context, id commonids.SqlManagedInstanceId, input ServerConfigurationOption) error {
 	result, err := c.CreateOrUpdate(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing CreateOrUpdate: %+v", err)

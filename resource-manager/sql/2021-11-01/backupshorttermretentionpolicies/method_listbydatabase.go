@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -23,7 +24,7 @@ type ListByDatabaseCompleteResult struct {
 }
 
 // ListByDatabase ...
-func (c BackupShortTermRetentionPoliciesClient) ListByDatabase(ctx context.Context, id DatabaseId) (result ListByDatabaseOperationResponse, err error) {
+func (c BackupShortTermRetentionPoliciesClient) ListByDatabase(ctx context.Context, id commonids.SqlDatabaseId) (result ListByDatabaseOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -61,12 +62,12 @@ func (c BackupShortTermRetentionPoliciesClient) ListByDatabase(ctx context.Conte
 }
 
 // ListByDatabaseComplete retrieves all the results into a single object
-func (c BackupShortTermRetentionPoliciesClient) ListByDatabaseComplete(ctx context.Context, id DatabaseId) (ListByDatabaseCompleteResult, error) {
+func (c BackupShortTermRetentionPoliciesClient) ListByDatabaseComplete(ctx context.Context, id commonids.SqlDatabaseId) (ListByDatabaseCompleteResult, error) {
 	return c.ListByDatabaseCompleteMatchingPredicate(ctx, id, BackupShortTermRetentionPolicyOperationPredicate{})
 }
 
 // ListByDatabaseCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c BackupShortTermRetentionPoliciesClient) ListByDatabaseCompleteMatchingPredicate(ctx context.Context, id DatabaseId, predicate BackupShortTermRetentionPolicyOperationPredicate) (result ListByDatabaseCompleteResult, err error) {
+func (c BackupShortTermRetentionPoliciesClient) ListByDatabaseCompleteMatchingPredicate(ctx context.Context, id commonids.SqlDatabaseId, predicate BackupShortTermRetentionPolicyOperationPredicate) (result ListByDatabaseCompleteResult, err error) {
 	items := make([]BackupShortTermRetentionPolicy, 0)
 
 	resp, err := c.ListByDatabase(ctx, id)

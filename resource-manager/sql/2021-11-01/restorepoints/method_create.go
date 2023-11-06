@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
@@ -21,7 +22,7 @@ type CreateOperationResponse struct {
 }
 
 // Create ...
-func (c RestorePointsClient) Create(ctx context.Context, id DatabaseId, input CreateDatabaseRestorePointDefinition) (result CreateOperationResponse, err error) {
+func (c RestorePointsClient) Create(ctx context.Context, id commonids.SqlDatabaseId, input CreateDatabaseRestorePointDefinition) (result CreateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -61,7 +62,7 @@ func (c RestorePointsClient) Create(ctx context.Context, id DatabaseId, input Cr
 }
 
 // CreateThenPoll performs Create then polls until it's completed
-func (c RestorePointsClient) CreateThenPoll(ctx context.Context, id DatabaseId, input CreateDatabaseRestorePointDefinition) error {
+func (c RestorePointsClient) CreateThenPoll(ctx context.Context, id commonids.SqlDatabaseId, input CreateDatabaseRestorePointDefinition) error {
 	result, err := c.Create(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing Create: %+v", err)

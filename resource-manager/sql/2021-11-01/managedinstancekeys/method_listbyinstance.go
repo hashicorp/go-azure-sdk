@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -50,7 +51,7 @@ func (o ListByInstanceOperationOptions) ToQuery() *client.QueryParams {
 }
 
 // ListByInstance ...
-func (c ManagedInstanceKeysClient) ListByInstance(ctx context.Context, id ManagedInstanceId, options ListByInstanceOperationOptions) (result ListByInstanceOperationResponse, err error) {
+func (c ManagedInstanceKeysClient) ListByInstance(ctx context.Context, id commonids.SqlManagedInstanceId, options ListByInstanceOperationOptions) (result ListByInstanceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -89,12 +90,12 @@ func (c ManagedInstanceKeysClient) ListByInstance(ctx context.Context, id Manage
 }
 
 // ListByInstanceComplete retrieves all the results into a single object
-func (c ManagedInstanceKeysClient) ListByInstanceComplete(ctx context.Context, id ManagedInstanceId, options ListByInstanceOperationOptions) (ListByInstanceCompleteResult, error) {
+func (c ManagedInstanceKeysClient) ListByInstanceComplete(ctx context.Context, id commonids.SqlManagedInstanceId, options ListByInstanceOperationOptions) (ListByInstanceCompleteResult, error) {
 	return c.ListByInstanceCompleteMatchingPredicate(ctx, id, options, ManagedInstanceKeyOperationPredicate{})
 }
 
 // ListByInstanceCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c ManagedInstanceKeysClient) ListByInstanceCompleteMatchingPredicate(ctx context.Context, id ManagedInstanceId, options ListByInstanceOperationOptions, predicate ManagedInstanceKeyOperationPredicate) (result ListByInstanceCompleteResult, err error) {
+func (c ManagedInstanceKeysClient) ListByInstanceCompleteMatchingPredicate(ctx context.Context, id commonids.SqlManagedInstanceId, options ListByInstanceOperationOptions, predicate ManagedInstanceKeyOperationPredicate) (result ListByInstanceCompleteResult, err error) {
 	items := make([]ManagedInstanceKey, 0)
 
 	resp, err := c.ListByInstance(ctx, id, options)

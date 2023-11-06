@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -23,7 +24,7 @@ type ListInaccessibleByInstanceCompleteResult struct {
 }
 
 // ListInaccessibleByInstance ...
-func (c ManagedDatabasesClient) ListInaccessibleByInstance(ctx context.Context, id ManagedInstanceId) (result ListInaccessibleByInstanceOperationResponse, err error) {
+func (c ManagedDatabasesClient) ListInaccessibleByInstance(ctx context.Context, id commonids.SqlManagedInstanceId) (result ListInaccessibleByInstanceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -61,12 +62,12 @@ func (c ManagedDatabasesClient) ListInaccessibleByInstance(ctx context.Context, 
 }
 
 // ListInaccessibleByInstanceComplete retrieves all the results into a single object
-func (c ManagedDatabasesClient) ListInaccessibleByInstanceComplete(ctx context.Context, id ManagedInstanceId) (ListInaccessibleByInstanceCompleteResult, error) {
+func (c ManagedDatabasesClient) ListInaccessibleByInstanceComplete(ctx context.Context, id commonids.SqlManagedInstanceId) (ListInaccessibleByInstanceCompleteResult, error) {
 	return c.ListInaccessibleByInstanceCompleteMatchingPredicate(ctx, id, ManagedDatabaseOperationPredicate{})
 }
 
 // ListInaccessibleByInstanceCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c ManagedDatabasesClient) ListInaccessibleByInstanceCompleteMatchingPredicate(ctx context.Context, id ManagedInstanceId, predicate ManagedDatabaseOperationPredicate) (result ListInaccessibleByInstanceCompleteResult, err error) {
+func (c ManagedDatabasesClient) ListInaccessibleByInstanceCompleteMatchingPredicate(ctx context.Context, id commonids.SqlManagedInstanceId, predicate ManagedDatabaseOperationPredicate) (result ListInaccessibleByInstanceCompleteResult, err error) {
 	items := make([]ManagedDatabase, 0)
 
 	resp, err := c.ListInaccessibleByInstance(ctx, id)

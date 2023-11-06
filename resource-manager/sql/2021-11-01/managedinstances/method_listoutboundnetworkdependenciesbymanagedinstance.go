@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -23,7 +24,7 @@ type ListOutboundNetworkDependenciesByManagedInstanceCompleteResult struct {
 }
 
 // ListOutboundNetworkDependenciesByManagedInstance ...
-func (c ManagedInstancesClient) ListOutboundNetworkDependenciesByManagedInstance(ctx context.Context, id ManagedInstanceId) (result ListOutboundNetworkDependenciesByManagedInstanceOperationResponse, err error) {
+func (c ManagedInstancesClient) ListOutboundNetworkDependenciesByManagedInstance(ctx context.Context, id commonids.SqlManagedInstanceId) (result ListOutboundNetworkDependenciesByManagedInstanceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -61,12 +62,12 @@ func (c ManagedInstancesClient) ListOutboundNetworkDependenciesByManagedInstance
 }
 
 // ListOutboundNetworkDependenciesByManagedInstanceComplete retrieves all the results into a single object
-func (c ManagedInstancesClient) ListOutboundNetworkDependenciesByManagedInstanceComplete(ctx context.Context, id ManagedInstanceId) (ListOutboundNetworkDependenciesByManagedInstanceCompleteResult, error) {
+func (c ManagedInstancesClient) ListOutboundNetworkDependenciesByManagedInstanceComplete(ctx context.Context, id commonids.SqlManagedInstanceId) (ListOutboundNetworkDependenciesByManagedInstanceCompleteResult, error) {
 	return c.ListOutboundNetworkDependenciesByManagedInstanceCompleteMatchingPredicate(ctx, id, OutboundEnvironmentEndpointOperationPredicate{})
 }
 
 // ListOutboundNetworkDependenciesByManagedInstanceCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c ManagedInstancesClient) ListOutboundNetworkDependenciesByManagedInstanceCompleteMatchingPredicate(ctx context.Context, id ManagedInstanceId, predicate OutboundEnvironmentEndpointOperationPredicate) (result ListOutboundNetworkDependenciesByManagedInstanceCompleteResult, err error) {
+func (c ManagedInstancesClient) ListOutboundNetworkDependenciesByManagedInstanceCompleteMatchingPredicate(ctx context.Context, id commonids.SqlManagedInstanceId, predicate OutboundEnvironmentEndpointOperationPredicate) (result ListOutboundNetworkDependenciesByManagedInstanceCompleteResult, err error) {
 	items := make([]OutboundEnvironmentEndpoint, 0)
 
 	resp, err := c.ListOutboundNetworkDependenciesByManagedInstance(ctx, id)

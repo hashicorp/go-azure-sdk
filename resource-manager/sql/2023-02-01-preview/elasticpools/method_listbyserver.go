@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -50,7 +51,7 @@ func (o ListByServerOperationOptions) ToQuery() *client.QueryParams {
 }
 
 // ListByServer ...
-func (c ElasticPoolsClient) ListByServer(ctx context.Context, id ServerId, options ListByServerOperationOptions) (result ListByServerOperationResponse, err error) {
+func (c ElasticPoolsClient) ListByServer(ctx context.Context, id commonids.SqlServerId, options ListByServerOperationOptions) (result ListByServerOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -89,12 +90,12 @@ func (c ElasticPoolsClient) ListByServer(ctx context.Context, id ServerId, optio
 }
 
 // ListByServerComplete retrieves all the results into a single object
-func (c ElasticPoolsClient) ListByServerComplete(ctx context.Context, id ServerId, options ListByServerOperationOptions) (ListByServerCompleteResult, error) {
+func (c ElasticPoolsClient) ListByServerComplete(ctx context.Context, id commonids.SqlServerId, options ListByServerOperationOptions) (ListByServerCompleteResult, error) {
 	return c.ListByServerCompleteMatchingPredicate(ctx, id, options, ElasticPoolOperationPredicate{})
 }
 
 // ListByServerCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c ElasticPoolsClient) ListByServerCompleteMatchingPredicate(ctx context.Context, id ServerId, options ListByServerOperationOptions, predicate ElasticPoolOperationPredicate) (result ListByServerCompleteResult, err error) {
+func (c ElasticPoolsClient) ListByServerCompleteMatchingPredicate(ctx context.Context, id commonids.SqlServerId, options ListByServerOperationOptions, predicate ElasticPoolOperationPredicate) (result ListByServerCompleteResult, err error) {
 	items := make([]ElasticPool, 0)
 
 	resp, err := c.ListByServer(ctx, id, options)

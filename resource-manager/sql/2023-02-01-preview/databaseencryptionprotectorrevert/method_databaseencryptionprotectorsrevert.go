@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
@@ -21,7 +22,7 @@ type DatabaseEncryptionProtectorsRevertOperationResponse struct {
 }
 
 // DatabaseEncryptionProtectorsRevert ...
-func (c DatabaseEncryptionProtectorRevertClient) DatabaseEncryptionProtectorsRevert(ctx context.Context, id DatabaseId) (result DatabaseEncryptionProtectorsRevertOperationResponse, err error) {
+func (c DatabaseEncryptionProtectorRevertClient) DatabaseEncryptionProtectorsRevert(ctx context.Context, id commonids.SqlDatabaseId) (result DatabaseEncryptionProtectorsRevertOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -56,7 +57,7 @@ func (c DatabaseEncryptionProtectorRevertClient) DatabaseEncryptionProtectorsRev
 }
 
 // DatabaseEncryptionProtectorsRevertThenPoll performs DatabaseEncryptionProtectorsRevert then polls until it's completed
-func (c DatabaseEncryptionProtectorRevertClient) DatabaseEncryptionProtectorsRevertThenPoll(ctx context.Context, id DatabaseId) error {
+func (c DatabaseEncryptionProtectorRevertClient) DatabaseEncryptionProtectorsRevertThenPoll(ctx context.Context, id commonids.SqlDatabaseId) error {
 	result, err := c.DatabaseEncryptionProtectorsRevert(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing DatabaseEncryptionProtectorsRevert: %+v", err)

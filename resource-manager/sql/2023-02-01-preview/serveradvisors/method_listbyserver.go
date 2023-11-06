@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -46,7 +47,7 @@ func (o ListByServerOperationOptions) ToQuery() *client.QueryParams {
 }
 
 // ListByServer ...
-func (c ServerAdvisorsClient) ListByServer(ctx context.Context, id ServerId, options ListByServerOperationOptions) (result ListByServerOperationResponse, err error) {
+func (c ServerAdvisorsClient) ListByServer(ctx context.Context, id commonids.SqlServerId, options ListByServerOperationOptions) (result ListByServerOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{

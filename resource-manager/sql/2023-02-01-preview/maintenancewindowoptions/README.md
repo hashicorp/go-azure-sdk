@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := maintenancewindowoptions.NewDatabaseID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverValue", "databaseValue")
+id := maintenancewindowoptions.NewSqlDatabaseID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverValue", "databaseValue")
 
 read, err := client.Get(ctx, id, maintenancewindowoptions.DefaultGetOperationOptions())
 if err != nil {

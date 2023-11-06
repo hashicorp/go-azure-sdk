@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
@@ -21,7 +22,7 @@ type CompleteRestoreOperationResponse struct {
 }
 
 // CompleteRestore ...
-func (c ManagedDatabasesClient) CompleteRestore(ctx context.Context, id ManagedInstanceDatabaseId, input CompleteDatabaseRestoreDefinition) (result CompleteRestoreOperationResponse, err error) {
+func (c ManagedDatabasesClient) CompleteRestore(ctx context.Context, id commonids.SqlManagedInstanceDatabaseId, input CompleteDatabaseRestoreDefinition) (result CompleteRestoreOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -60,7 +61,7 @@ func (c ManagedDatabasesClient) CompleteRestore(ctx context.Context, id ManagedI
 }
 
 // CompleteRestoreThenPoll performs CompleteRestore then polls until it's completed
-func (c ManagedDatabasesClient) CompleteRestoreThenPoll(ctx context.Context, id ManagedInstanceDatabaseId, input CompleteDatabaseRestoreDefinition) error {
+func (c ManagedDatabasesClient) CompleteRestoreThenPoll(ctx context.Context, id commonids.SqlManagedInstanceDatabaseId, input CompleteDatabaseRestoreDefinition) error {
 	result, err := c.CompleteRestore(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing CompleteRestore: %+v", err)

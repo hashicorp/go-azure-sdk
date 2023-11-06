@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -54,7 +55,7 @@ func (o ListRecommendedByDatabaseOperationOptions) ToQuery() *client.QueryParams
 }
 
 // ListRecommendedByDatabase ...
-func (c ManagedDatabaseSensitivityLabelsClient) ListRecommendedByDatabase(ctx context.Context, id ManagedInstanceDatabaseId, options ListRecommendedByDatabaseOperationOptions) (result ListRecommendedByDatabaseOperationResponse, err error) {
+func (c ManagedDatabaseSensitivityLabelsClient) ListRecommendedByDatabase(ctx context.Context, id commonids.SqlManagedInstanceDatabaseId, options ListRecommendedByDatabaseOperationOptions) (result ListRecommendedByDatabaseOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -93,12 +94,12 @@ func (c ManagedDatabaseSensitivityLabelsClient) ListRecommendedByDatabase(ctx co
 }
 
 // ListRecommendedByDatabaseComplete retrieves all the results into a single object
-func (c ManagedDatabaseSensitivityLabelsClient) ListRecommendedByDatabaseComplete(ctx context.Context, id ManagedInstanceDatabaseId, options ListRecommendedByDatabaseOperationOptions) (ListRecommendedByDatabaseCompleteResult, error) {
+func (c ManagedDatabaseSensitivityLabelsClient) ListRecommendedByDatabaseComplete(ctx context.Context, id commonids.SqlManagedInstanceDatabaseId, options ListRecommendedByDatabaseOperationOptions) (ListRecommendedByDatabaseCompleteResult, error) {
 	return c.ListRecommendedByDatabaseCompleteMatchingPredicate(ctx, id, options, SensitivityLabelOperationPredicate{})
 }
 
 // ListRecommendedByDatabaseCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c ManagedDatabaseSensitivityLabelsClient) ListRecommendedByDatabaseCompleteMatchingPredicate(ctx context.Context, id ManagedInstanceDatabaseId, options ListRecommendedByDatabaseOperationOptions, predicate SensitivityLabelOperationPredicate) (result ListRecommendedByDatabaseCompleteResult, err error) {
+func (c ManagedDatabaseSensitivityLabelsClient) ListRecommendedByDatabaseCompleteMatchingPredicate(ctx context.Context, id commonids.SqlManagedInstanceDatabaseId, options ListRecommendedByDatabaseOperationOptions, predicate SensitivityLabelOperationPredicate) (result ListRecommendedByDatabaseCompleteResult, err error) {
 	items := make([]SensitivityLabel, 0)
 
 	resp, err := c.ListRecommendedByDatabase(ctx, id, options)

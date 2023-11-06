@@ -86,7 +86,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := managedserverdnsaliases.NewManagedInstanceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedInstanceValue")
+id := managedserverdnsaliases.NewSqlManagedInstanceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedInstanceValue")
 
 // alternatively `client.ListByManagedInstance(ctx, id)` can be used to do batched pagination
 items, err := client.ListByManagedInstanceComplete(ctx, id)

@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -19,7 +20,7 @@ type GetOperationResponse struct {
 }
 
 // Get ...
-func (c TransparentDataEncryptionsClient) Get(ctx context.Context, id DatabaseId) (result GetOperationResponse, err error) {
+func (c TransparentDataEncryptionsClient) Get(ctx context.Context, id commonids.SqlDatabaseId) (result GetOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{

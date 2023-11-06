@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
@@ -21,7 +22,7 @@ type ServerBlobAuditingPoliciesCreateOrUpdateOperationResponse struct {
 }
 
 // ServerBlobAuditingPoliciesCreateOrUpdate ...
-func (c BlobAuditingClient) ServerBlobAuditingPoliciesCreateOrUpdate(ctx context.Context, id ServerId, input ServerBlobAuditingPolicy) (result ServerBlobAuditingPoliciesCreateOrUpdateOperationResponse, err error) {
+func (c BlobAuditingClient) ServerBlobAuditingPoliciesCreateOrUpdate(ctx context.Context, id commonids.SqlServerId, input ServerBlobAuditingPolicy) (result ServerBlobAuditingPoliciesCreateOrUpdateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -60,7 +61,7 @@ func (c BlobAuditingClient) ServerBlobAuditingPoliciesCreateOrUpdate(ctx context
 }
 
 // ServerBlobAuditingPoliciesCreateOrUpdateThenPoll performs ServerBlobAuditingPoliciesCreateOrUpdate then polls until it's completed
-func (c BlobAuditingClient) ServerBlobAuditingPoliciesCreateOrUpdateThenPoll(ctx context.Context, id ServerId, input ServerBlobAuditingPolicy) error {
+func (c BlobAuditingClient) ServerBlobAuditingPoliciesCreateOrUpdateThenPoll(ctx context.Context, id commonids.SqlServerId, input ServerBlobAuditingPolicy) error {
 	result, err := c.ServerBlobAuditingPoliciesCreateOrUpdate(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing ServerBlobAuditingPoliciesCreateOrUpdate: %+v", err)

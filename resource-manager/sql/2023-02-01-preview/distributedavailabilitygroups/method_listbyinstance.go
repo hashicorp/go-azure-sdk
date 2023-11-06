@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -23,7 +24,7 @@ type ListByInstanceCompleteResult struct {
 }
 
 // ListByInstance ...
-func (c DistributedAvailabilityGroupsClient) ListByInstance(ctx context.Context, id ManagedInstanceId) (result ListByInstanceOperationResponse, err error) {
+func (c DistributedAvailabilityGroupsClient) ListByInstance(ctx context.Context, id commonids.SqlManagedInstanceId) (result ListByInstanceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -61,12 +62,12 @@ func (c DistributedAvailabilityGroupsClient) ListByInstance(ctx context.Context,
 }
 
 // ListByInstanceComplete retrieves all the results into a single object
-func (c DistributedAvailabilityGroupsClient) ListByInstanceComplete(ctx context.Context, id ManagedInstanceId) (ListByInstanceCompleteResult, error) {
+func (c DistributedAvailabilityGroupsClient) ListByInstanceComplete(ctx context.Context, id commonids.SqlManagedInstanceId) (ListByInstanceCompleteResult, error) {
 	return c.ListByInstanceCompleteMatchingPredicate(ctx, id, DistributedAvailabilityGroupOperationPredicate{})
 }
 
 // ListByInstanceCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c DistributedAvailabilityGroupsClient) ListByInstanceCompleteMatchingPredicate(ctx context.Context, id ManagedInstanceId, predicate DistributedAvailabilityGroupOperationPredicate) (result ListByInstanceCompleteResult, err error) {
+func (c DistributedAvailabilityGroupsClient) ListByInstanceCompleteMatchingPredicate(ctx context.Context, id commonids.SqlManagedInstanceId, predicate DistributedAvailabilityGroupOperationPredicate) (result ListByInstanceCompleteResult, err error) {
 	items := make([]DistributedAvailabilityGroup, 0)
 
 	resp, err := c.ListByInstance(ctx, id)

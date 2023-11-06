@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -18,7 +19,7 @@ type ManagedDatabaseRecommendedSensitivityLabelsUpdateOperationResponse struct {
 }
 
 // ManagedDatabaseRecommendedSensitivityLabelsUpdate ...
-func (c ManagedDatabaseSensitivityLabelsClient) ManagedDatabaseRecommendedSensitivityLabelsUpdate(ctx context.Context, id ManagedInstanceDatabaseId, input RecommendedSensitivityLabelUpdateList) (result ManagedDatabaseRecommendedSensitivityLabelsUpdateOperationResponse, err error) {
+func (c ManagedDatabaseSensitivityLabelsClient) ManagedDatabaseRecommendedSensitivityLabelsUpdate(ctx context.Context, id commonids.SqlManagedInstanceDatabaseId, input RecommendedSensitivityLabelUpdateList) (result ManagedDatabaseRecommendedSensitivityLabelsUpdateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{

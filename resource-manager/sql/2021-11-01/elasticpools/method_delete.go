@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
@@ -21,7 +22,7 @@ type DeleteOperationResponse struct {
 }
 
 // Delete ...
-func (c ElasticPoolsClient) Delete(ctx context.Context, id ElasticPoolId) (result DeleteOperationResponse, err error) {
+func (c ElasticPoolsClient) Delete(ctx context.Context, id commonids.SqlElasticPoolId) (result DeleteOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -57,7 +58,7 @@ func (c ElasticPoolsClient) Delete(ctx context.Context, id ElasticPoolId) (resul
 }
 
 // DeleteThenPoll performs Delete then polls until it's completed
-func (c ElasticPoolsClient) DeleteThenPoll(ctx context.Context, id ElasticPoolId) error {
+func (c ElasticPoolsClient) DeleteThenPoll(ctx context.Context, id commonids.SqlElasticPoolId) error {
 	result, err := c.Delete(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing Delete: %+v", err)

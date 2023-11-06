@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -23,7 +24,7 @@ type ListByDatabaseCompleteResult struct {
 }
 
 // ListByDatabase ...
-func (c DatabaseUsagesClient) ListByDatabase(ctx context.Context, id DatabaseId) (result ListByDatabaseOperationResponse, err error) {
+func (c DatabaseUsagesClient) ListByDatabase(ctx context.Context, id commonids.SqlDatabaseId) (result ListByDatabaseOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -61,12 +62,12 @@ func (c DatabaseUsagesClient) ListByDatabase(ctx context.Context, id DatabaseId)
 }
 
 // ListByDatabaseComplete retrieves all the results into a single object
-func (c DatabaseUsagesClient) ListByDatabaseComplete(ctx context.Context, id DatabaseId) (ListByDatabaseCompleteResult, error) {
+func (c DatabaseUsagesClient) ListByDatabaseComplete(ctx context.Context, id commonids.SqlDatabaseId) (ListByDatabaseCompleteResult, error) {
 	return c.ListByDatabaseCompleteMatchingPredicate(ctx, id, DatabaseUsageOperationPredicate{})
 }
 
 // ListByDatabaseCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c DatabaseUsagesClient) ListByDatabaseCompleteMatchingPredicate(ctx context.Context, id DatabaseId, predicate DatabaseUsageOperationPredicate) (result ListByDatabaseCompleteResult, err error) {
+func (c DatabaseUsagesClient) ListByDatabaseCompleteMatchingPredicate(ctx context.Context, id commonids.SqlDatabaseId, predicate DatabaseUsageOperationPredicate) (result ListByDatabaseCompleteResult, err error) {
 	items := make([]DatabaseUsage, 0)
 
 	resp, err := c.ListByDatabase(ctx, id)

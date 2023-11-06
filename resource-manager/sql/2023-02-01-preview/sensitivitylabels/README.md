@@ -109,7 +109,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := sensitivitylabels.NewDatabaseID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverValue", "databaseValue")
+id := sensitivitylabels.NewSqlDatabaseID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverValue", "databaseValue")
 
 // alternatively `client.ListByDatabase(ctx, id, sensitivitylabels.DefaultListByDatabaseOperationOptions())` can be used to do batched pagination
 items, err := client.ListByDatabaseComplete(ctx, id, sensitivitylabels.DefaultListByDatabaseOperationOptions())
@@ -126,7 +126,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := sensitivitylabels.NewDatabaseID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverValue", "databaseValue")
+id := sensitivitylabels.NewSqlDatabaseID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverValue", "databaseValue")
 
 // alternatively `client.ListCurrentByDatabase(ctx, id, sensitivitylabels.DefaultListCurrentByDatabaseOperationOptions())` can be used to do batched pagination
 items, err := client.ListCurrentByDatabaseComplete(ctx, id, sensitivitylabels.DefaultListCurrentByDatabaseOperationOptions())
@@ -143,7 +143,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := sensitivitylabels.NewDatabaseID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverValue", "databaseValue")
+id := sensitivitylabels.NewSqlDatabaseID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverValue", "databaseValue")
 
 // alternatively `client.ListRecommendedByDatabase(ctx, id, sensitivitylabels.DefaultListRecommendedByDatabaseOperationOptions())` can be used to do batched pagination
 items, err := client.ListRecommendedByDatabaseComplete(ctx, id, sensitivitylabels.DefaultListRecommendedByDatabaseOperationOptions())
@@ -160,7 +160,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := sensitivitylabels.NewDatabaseID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverValue", "databaseValue")
+id := sensitivitylabels.NewSqlDatabaseID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverValue", "databaseValue")
 
 payload := sensitivitylabels.RecommendedSensitivityLabelUpdateList{
 	// ...
@@ -181,7 +181,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := sensitivitylabels.NewDatabaseID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverValue", "databaseValue")
+id := sensitivitylabels.NewSqlDatabaseID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverValue", "databaseValue")
 
 payload := sensitivitylabels.SensitivityLabelUpdateList{
 	// ...

@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
@@ -21,7 +22,7 @@ type StartOperationResponse struct {
 }
 
 // Start ...
-func (c ManagedInstancesClient) Start(ctx context.Context, id ManagedInstanceId) (result StartOperationResponse, err error) {
+func (c ManagedInstancesClient) Start(ctx context.Context, id commonids.SqlManagedInstanceId) (result StartOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -56,7 +57,7 @@ func (c ManagedInstancesClient) Start(ctx context.Context, id ManagedInstanceId)
 }
 
 // StartThenPoll performs Start then polls until it's completed
-func (c ManagedInstancesClient) StartThenPoll(ctx context.Context, id ManagedInstanceId) error {
+func (c ManagedInstancesClient) StartThenPoll(ctx context.Context, id commonids.SqlManagedInstanceId) error {
 	result, err := c.Start(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing Start: %+v", err)

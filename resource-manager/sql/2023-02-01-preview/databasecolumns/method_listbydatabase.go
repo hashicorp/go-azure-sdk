@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -62,7 +63,7 @@ func (o ListByDatabaseOperationOptions) ToQuery() *client.QueryParams {
 }
 
 // ListByDatabase ...
-func (c DatabaseColumnsClient) ListByDatabase(ctx context.Context, id DatabaseId, options ListByDatabaseOperationOptions) (result ListByDatabaseOperationResponse, err error) {
+func (c DatabaseColumnsClient) ListByDatabase(ctx context.Context, id commonids.SqlDatabaseId, options ListByDatabaseOperationOptions) (result ListByDatabaseOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -101,12 +102,12 @@ func (c DatabaseColumnsClient) ListByDatabase(ctx context.Context, id DatabaseId
 }
 
 // ListByDatabaseComplete retrieves all the results into a single object
-func (c DatabaseColumnsClient) ListByDatabaseComplete(ctx context.Context, id DatabaseId, options ListByDatabaseOperationOptions) (ListByDatabaseCompleteResult, error) {
+func (c DatabaseColumnsClient) ListByDatabaseComplete(ctx context.Context, id commonids.SqlDatabaseId, options ListByDatabaseOperationOptions) (ListByDatabaseCompleteResult, error) {
 	return c.ListByDatabaseCompleteMatchingPredicate(ctx, id, options, DatabaseColumnOperationPredicate{})
 }
 
 // ListByDatabaseCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c DatabaseColumnsClient) ListByDatabaseCompleteMatchingPredicate(ctx context.Context, id DatabaseId, options ListByDatabaseOperationOptions, predicate DatabaseColumnOperationPredicate) (result ListByDatabaseCompleteResult, err error) {
+func (c DatabaseColumnsClient) ListByDatabaseCompleteMatchingPredicate(ctx context.Context, id commonids.SqlDatabaseId, options ListByDatabaseOperationOptions, predicate DatabaseColumnOperationPredicate) (result ListByDatabaseCompleteResult, err error) {
 	items := make([]DatabaseColumn, 0)
 
 	resp, err := c.ListByDatabase(ctx, id, options)

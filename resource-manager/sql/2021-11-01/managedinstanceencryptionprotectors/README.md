@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := managedinstanceencryptionprotectors.NewManagedInstanceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedInstanceValue")
+id := managedinstanceencryptionprotectors.NewSqlManagedInstanceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedInstanceValue")
 
 payload := managedinstanceencryptionprotectors.ManagedInstanceEncryptionProtector{
 	// ...
@@ -41,7 +41,7 @@ if err := client.CreateOrUpdateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := managedinstanceencryptionprotectors.NewManagedInstanceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedInstanceValue")
+id := managedinstanceencryptionprotectors.NewSqlManagedInstanceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedInstanceValue")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -57,7 +57,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := managedinstanceencryptionprotectors.NewManagedInstanceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedInstanceValue")
+id := managedinstanceencryptionprotectors.NewSqlManagedInstanceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedInstanceValue")
 
 // alternatively `client.ListByInstance(ctx, id)` can be used to do batched pagination
 items, err := client.ListByInstanceComplete(ctx, id)
@@ -74,7 +74,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := managedinstanceencryptionprotectors.NewManagedInstanceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedInstanceValue")
+id := managedinstanceencryptionprotectors.NewSqlManagedInstanceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedInstanceValue")
 
 if err := client.RevalidateThenPoll(ctx, id); err != nil {
 	// handle the error

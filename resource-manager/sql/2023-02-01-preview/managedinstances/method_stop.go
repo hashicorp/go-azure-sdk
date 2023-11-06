@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
@@ -21,7 +22,7 @@ type StopOperationResponse struct {
 }
 
 // Stop ...
-func (c ManagedInstancesClient) Stop(ctx context.Context, id ManagedInstanceId) (result StopOperationResponse, err error) {
+func (c ManagedInstancesClient) Stop(ctx context.Context, id commonids.SqlManagedInstanceId) (result StopOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -56,7 +57,7 @@ func (c ManagedInstancesClient) Stop(ctx context.Context, id ManagedInstanceId) 
 }
 
 // StopThenPoll performs Stop then polls until it's completed
-func (c ManagedInstancesClient) StopThenPoll(ctx context.Context, id ManagedInstanceId) error {
+func (c ManagedInstancesClient) StopThenPoll(ctx context.Context, id commonids.SqlManagedInstanceId) error {
 	result, err := c.Stop(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing Stop: %+v", err)
