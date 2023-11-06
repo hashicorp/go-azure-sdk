@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -74,7 +75,7 @@ func (o ListByManagedInstanceOperationOptions) ToQuery() *client.QueryParams {
 }
 
 // ListByManagedInstance ...
-func (c ManagedInstancesClient) ListByManagedInstance(ctx context.Context, id ManagedInstanceId, options ListByManagedInstanceOperationOptions) (result ListByManagedInstanceOperationResponse, err error) {
+func (c ManagedInstancesClient) ListByManagedInstance(ctx context.Context, id commonids.SqlManagedInstanceId, options ListByManagedInstanceOperationOptions) (result ListByManagedInstanceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -113,12 +114,12 @@ func (c ManagedInstancesClient) ListByManagedInstance(ctx context.Context, id Ma
 }
 
 // ListByManagedInstanceComplete retrieves all the results into a single object
-func (c ManagedInstancesClient) ListByManagedInstanceComplete(ctx context.Context, id ManagedInstanceId, options ListByManagedInstanceOperationOptions) (ListByManagedInstanceCompleteResult, error) {
+func (c ManagedInstancesClient) ListByManagedInstanceComplete(ctx context.Context, id commonids.SqlManagedInstanceId, options ListByManagedInstanceOperationOptions) (ListByManagedInstanceCompleteResult, error) {
 	return c.ListByManagedInstanceCompleteMatchingPredicate(ctx, id, options, TopQueriesOperationPredicate{})
 }
 
 // ListByManagedInstanceCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c ManagedInstancesClient) ListByManagedInstanceCompleteMatchingPredicate(ctx context.Context, id ManagedInstanceId, options ListByManagedInstanceOperationOptions, predicate TopQueriesOperationPredicate) (result ListByManagedInstanceCompleteResult, err error) {
+func (c ManagedInstancesClient) ListByManagedInstanceCompleteMatchingPredicate(ctx context.Context, id commonids.SqlManagedInstanceId, options ListByManagedInstanceOperationOptions, predicate TopQueriesOperationPredicate) (result ListByManagedInstanceCompleteResult, err error) {
 	items := make([]TopQueries, 0)
 
 	resp, err := c.ListByManagedInstance(ctx, id, options)

@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -23,7 +24,7 @@ type ListByDatabaseCompleteResult struct {
 }
 
 // ListByDatabase ...
-func (c ManagedDatabaseTransparentDataEncryptionClient) ListByDatabase(ctx context.Context, id ManagedInstanceDatabaseId) (result ListByDatabaseOperationResponse, err error) {
+func (c ManagedDatabaseTransparentDataEncryptionClient) ListByDatabase(ctx context.Context, id commonids.SqlManagedInstanceDatabaseId) (result ListByDatabaseOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -61,12 +62,12 @@ func (c ManagedDatabaseTransparentDataEncryptionClient) ListByDatabase(ctx conte
 }
 
 // ListByDatabaseComplete retrieves all the results into a single object
-func (c ManagedDatabaseTransparentDataEncryptionClient) ListByDatabaseComplete(ctx context.Context, id ManagedInstanceDatabaseId) (ListByDatabaseCompleteResult, error) {
+func (c ManagedDatabaseTransparentDataEncryptionClient) ListByDatabaseComplete(ctx context.Context, id commonids.SqlManagedInstanceDatabaseId) (ListByDatabaseCompleteResult, error) {
 	return c.ListByDatabaseCompleteMatchingPredicate(ctx, id, ManagedTransparentDataEncryptionOperationPredicate{})
 }
 
 // ListByDatabaseCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c ManagedDatabaseTransparentDataEncryptionClient) ListByDatabaseCompleteMatchingPredicate(ctx context.Context, id ManagedInstanceDatabaseId, predicate ManagedTransparentDataEncryptionOperationPredicate) (result ListByDatabaseCompleteResult, err error) {
+func (c ManagedDatabaseTransparentDataEncryptionClient) ListByDatabaseCompleteMatchingPredicate(ctx context.Context, id commonids.SqlManagedInstanceDatabaseId, predicate ManagedTransparentDataEncryptionOperationPredicate) (result ListByDatabaseCompleteResult, err error) {
 	items := make([]ManagedTransparentDataEncryption, 0)
 
 	resp, err := c.ListByDatabase(ctx, id)

@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -23,7 +24,7 @@ type ListByDatabaseCompleteResult struct {
 }
 
 // ListByDatabase ...
-func (c ManagedLedgerDigestUploadsClient) ListByDatabase(ctx context.Context, id ManagedInstanceDatabaseId) (result ListByDatabaseOperationResponse, err error) {
+func (c ManagedLedgerDigestUploadsClient) ListByDatabase(ctx context.Context, id commonids.SqlManagedInstanceDatabaseId) (result ListByDatabaseOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -61,12 +62,12 @@ func (c ManagedLedgerDigestUploadsClient) ListByDatabase(ctx context.Context, id
 }
 
 // ListByDatabaseComplete retrieves all the results into a single object
-func (c ManagedLedgerDigestUploadsClient) ListByDatabaseComplete(ctx context.Context, id ManagedInstanceDatabaseId) (ListByDatabaseCompleteResult, error) {
+func (c ManagedLedgerDigestUploadsClient) ListByDatabaseComplete(ctx context.Context, id commonids.SqlManagedInstanceDatabaseId) (ListByDatabaseCompleteResult, error) {
 	return c.ListByDatabaseCompleteMatchingPredicate(ctx, id, ManagedLedgerDigestUploadsOperationPredicate{})
 }
 
 // ListByDatabaseCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c ManagedLedgerDigestUploadsClient) ListByDatabaseCompleteMatchingPredicate(ctx context.Context, id ManagedInstanceDatabaseId, predicate ManagedLedgerDigestUploadsOperationPredicate) (result ListByDatabaseCompleteResult, err error) {
+func (c ManagedLedgerDigestUploadsClient) ListByDatabaseCompleteMatchingPredicate(ctx context.Context, id commonids.SqlManagedInstanceDatabaseId, predicate ManagedLedgerDigestUploadsOperationPredicate) (result ListByDatabaseCompleteResult, err error) {
 	items := make([]ManagedLedgerDigestUploads, 0)
 
 	resp, err := c.ListByDatabase(ctx, id)

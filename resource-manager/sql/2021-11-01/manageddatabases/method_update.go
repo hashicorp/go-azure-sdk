@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
@@ -21,7 +22,7 @@ type UpdateOperationResponse struct {
 }
 
 // Update ...
-func (c ManagedDatabasesClient) Update(ctx context.Context, id ManagedInstanceDatabaseId, input ManagedDatabaseUpdate) (result UpdateOperationResponse, err error) {
+func (c ManagedDatabasesClient) Update(ctx context.Context, id commonids.SqlManagedInstanceDatabaseId, input ManagedDatabaseUpdate) (result UpdateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -60,7 +61,7 @@ func (c ManagedDatabasesClient) Update(ctx context.Context, id ManagedInstanceDa
 }
 
 // UpdateThenPoll performs Update then polls until it's completed
-func (c ManagedDatabasesClient) UpdateThenPoll(ctx context.Context, id ManagedInstanceDatabaseId, input ManagedDatabaseUpdate) error {
+func (c ManagedDatabasesClient) UpdateThenPoll(ctx context.Context, id commonids.SqlManagedInstanceDatabaseId, input ManagedDatabaseUpdate) error {
 	result, err := c.Update(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing Update: %+v", err)

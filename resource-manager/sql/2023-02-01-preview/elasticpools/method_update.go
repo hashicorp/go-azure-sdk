@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
@@ -21,7 +22,7 @@ type UpdateOperationResponse struct {
 }
 
 // Update ...
-func (c ElasticPoolsClient) Update(ctx context.Context, id ElasticPoolId, input ElasticPoolUpdate) (result UpdateOperationResponse, err error) {
+func (c ElasticPoolsClient) Update(ctx context.Context, id commonids.SqlElasticPoolId, input ElasticPoolUpdate) (result UpdateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -60,7 +61,7 @@ func (c ElasticPoolsClient) Update(ctx context.Context, id ElasticPoolId, input 
 }
 
 // UpdateThenPoll performs Update then polls until it's completed
-func (c ElasticPoolsClient) UpdateThenPoll(ctx context.Context, id ElasticPoolId, input ElasticPoolUpdate) error {
+func (c ElasticPoolsClient) UpdateThenPoll(ctx context.Context, id commonids.SqlElasticPoolId, input ElasticPoolUpdate) error {
 	result, err := c.Update(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing Update: %+v", err)

@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -23,7 +24,7 @@ type ListByManagedInstanceCompleteResult struct {
 }
 
 // ListByManagedInstance ...
-func (c ServerConfigurationOptionsClient) ListByManagedInstance(ctx context.Context, id ManagedInstanceId) (result ListByManagedInstanceOperationResponse, err error) {
+func (c ServerConfigurationOptionsClient) ListByManagedInstance(ctx context.Context, id commonids.SqlManagedInstanceId) (result ListByManagedInstanceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -61,12 +62,12 @@ func (c ServerConfigurationOptionsClient) ListByManagedInstance(ctx context.Cont
 }
 
 // ListByManagedInstanceComplete retrieves all the results into a single object
-func (c ServerConfigurationOptionsClient) ListByManagedInstanceComplete(ctx context.Context, id ManagedInstanceId) (ListByManagedInstanceCompleteResult, error) {
+func (c ServerConfigurationOptionsClient) ListByManagedInstanceComplete(ctx context.Context, id commonids.SqlManagedInstanceId) (ListByManagedInstanceCompleteResult, error) {
 	return c.ListByManagedInstanceCompleteMatchingPredicate(ctx, id, ServerConfigurationOptionOperationPredicate{})
 }
 
 // ListByManagedInstanceCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c ServerConfigurationOptionsClient) ListByManagedInstanceCompleteMatchingPredicate(ctx context.Context, id ManagedInstanceId, predicate ServerConfigurationOptionOperationPredicate) (result ListByManagedInstanceCompleteResult, err error) {
+func (c ServerConfigurationOptionsClient) ListByManagedInstanceCompleteMatchingPredicate(ctx context.Context, id commonids.SqlManagedInstanceId, predicate ServerConfigurationOptionOperationPredicate) (result ListByManagedInstanceCompleteResult, err error) {
 	items := make([]ServerConfigurationOption, 0)
 
 	resp, err := c.ListByManagedInstance(ctx, id)

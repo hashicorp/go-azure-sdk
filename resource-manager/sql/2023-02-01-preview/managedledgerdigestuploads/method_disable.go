@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
@@ -21,7 +22,7 @@ type DisableOperationResponse struct {
 }
 
 // Disable ...
-func (c ManagedLedgerDigestUploadsClient) Disable(ctx context.Context, id ManagedInstanceDatabaseId) (result DisableOperationResponse, err error) {
+func (c ManagedLedgerDigestUploadsClient) Disable(ctx context.Context, id commonids.SqlManagedInstanceDatabaseId) (result DisableOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -56,7 +57,7 @@ func (c ManagedLedgerDigestUploadsClient) Disable(ctx context.Context, id Manage
 }
 
 // DisableThenPoll performs Disable then polls until it's completed
-func (c ManagedLedgerDigestUploadsClient) DisableThenPoll(ctx context.Context, id ManagedInstanceDatabaseId) error {
+func (c ManagedLedgerDigestUploadsClient) DisableThenPoll(ctx context.Context, id commonids.SqlManagedInstanceDatabaseId) error {
 	result, err := c.Disable(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing Disable: %+v", err)

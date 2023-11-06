@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := serverdevopsaudit.NewServerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverValue")
+id := serverdevopsaudit.NewSqlServerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverValue")
 
 payload := serverdevopsaudit.ServerDevOpsAuditingSettings{
 	// ...
@@ -41,7 +41,7 @@ if err := client.SettingsCreateOrUpdateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := serverdevopsaudit.NewServerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverValue")
+id := serverdevopsaudit.NewSqlServerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverValue")
 
 read, err := client.SettingsGet(ctx, id)
 if err != nil {
@@ -57,7 +57,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := serverdevopsaudit.NewServerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverValue")
+id := serverdevopsaudit.NewSqlServerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverValue")
 
 // alternatively `client.SettingsListByServer(ctx, id)` can be used to do batched pagination
 items, err := client.SettingsListByServerComplete(ctx, id)

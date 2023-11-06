@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
@@ -21,7 +22,7 @@ type StartMoveOperationResponse struct {
 }
 
 // StartMove ...
-func (c ManagedDatabasesClient) StartMove(ctx context.Context, id ManagedInstanceDatabaseId, input ManagedDatabaseStartMoveDefinition) (result StartMoveOperationResponse, err error) {
+func (c ManagedDatabasesClient) StartMove(ctx context.Context, id commonids.SqlManagedInstanceDatabaseId, input ManagedDatabaseStartMoveDefinition) (result StartMoveOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -60,7 +61,7 @@ func (c ManagedDatabasesClient) StartMove(ctx context.Context, id ManagedInstanc
 }
 
 // StartMoveThenPoll performs StartMove then polls until it's completed
-func (c ManagedDatabasesClient) StartMoveThenPoll(ctx context.Context, id ManagedInstanceDatabaseId, input ManagedDatabaseStartMoveDefinition) error {
+func (c ManagedDatabasesClient) StartMoveThenPoll(ctx context.Context, id commonids.SqlManagedInstanceDatabaseId, input ManagedDatabaseStartMoveDefinition) error {
 	result, err := c.StartMove(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing StartMove: %+v", err)

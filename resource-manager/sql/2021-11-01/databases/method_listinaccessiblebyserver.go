@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -23,7 +24,7 @@ type ListInaccessibleByServerCompleteResult struct {
 }
 
 // ListInaccessibleByServer ...
-func (c DatabasesClient) ListInaccessibleByServer(ctx context.Context, id ServerId) (result ListInaccessibleByServerOperationResponse, err error) {
+func (c DatabasesClient) ListInaccessibleByServer(ctx context.Context, id commonids.SqlServerId) (result ListInaccessibleByServerOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -61,12 +62,12 @@ func (c DatabasesClient) ListInaccessibleByServer(ctx context.Context, id Server
 }
 
 // ListInaccessibleByServerComplete retrieves all the results into a single object
-func (c DatabasesClient) ListInaccessibleByServerComplete(ctx context.Context, id ServerId) (ListInaccessibleByServerCompleteResult, error) {
+func (c DatabasesClient) ListInaccessibleByServerComplete(ctx context.Context, id commonids.SqlServerId) (ListInaccessibleByServerCompleteResult, error) {
 	return c.ListInaccessibleByServerCompleteMatchingPredicate(ctx, id, DatabaseOperationPredicate{})
 }
 
 // ListInaccessibleByServerCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c DatabasesClient) ListInaccessibleByServerCompleteMatchingPredicate(ctx context.Context, id ServerId, predicate DatabaseOperationPredicate) (result ListInaccessibleByServerCompleteResult, err error) {
+func (c DatabasesClient) ListInaccessibleByServerCompleteMatchingPredicate(ctx context.Context, id commonids.SqlServerId, predicate DatabaseOperationPredicate) (result ListInaccessibleByServerCompleteResult, err error) {
 	items := make([]Database, 0)
 
 	resp, err := c.ListInaccessibleByServer(ctx, id)

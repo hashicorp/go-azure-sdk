@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -45,7 +46,7 @@ func (o CreateOrUpdateOperationOptions) ToQuery() *client.QueryParams {
 }
 
 // CreateOrUpdate ...
-func (c MaintenanceWindowsClient) CreateOrUpdate(ctx context.Context, id DatabaseId, input MaintenanceWindows, options CreateOrUpdateOperationOptions) (result CreateOrUpdateOperationResponse, err error) {
+func (c MaintenanceWindowsClient) CreateOrUpdate(ctx context.Context, id commonids.SqlDatabaseId, input MaintenanceWindows, options CreateOrUpdateOperationOptions) (result CreateOrUpdateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{

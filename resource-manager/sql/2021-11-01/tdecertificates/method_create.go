@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
@@ -21,7 +22,7 @@ type CreateOperationResponse struct {
 }
 
 // Create ...
-func (c TdeCertificatesClient) Create(ctx context.Context, id ServerId, input TdeCertificate) (result CreateOperationResponse, err error) {
+func (c TdeCertificatesClient) Create(ctx context.Context, id commonids.SqlServerId, input TdeCertificate) (result CreateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -60,7 +61,7 @@ func (c TdeCertificatesClient) Create(ctx context.Context, id ServerId, input Td
 }
 
 // CreateThenPoll performs Create then polls until it's completed
-func (c TdeCertificatesClient) CreateThenPoll(ctx context.Context, id ServerId, input TdeCertificate) error {
+func (c TdeCertificatesClient) CreateThenPoll(ctx context.Context, id commonids.SqlServerId, input TdeCertificate) error {
 	result, err := c.Create(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing Create: %+v", err)

@@ -109,7 +109,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := manageddatabasesensitivitylabels.NewManagedInstanceDatabaseID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedInstanceValue", "databaseValue")
+id := manageddatabasesensitivitylabels.NewSqlManagedInstanceDatabaseID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedInstanceValue", "databaseValue")
 
 // alternatively `client.ListByDatabase(ctx, id, manageddatabasesensitivitylabels.DefaultListByDatabaseOperationOptions())` can be used to do batched pagination
 items, err := client.ListByDatabaseComplete(ctx, id, manageddatabasesensitivitylabels.DefaultListByDatabaseOperationOptions())
@@ -126,7 +126,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := manageddatabasesensitivitylabels.NewManagedInstanceDatabaseID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedInstanceValue", "databaseValue")
+id := manageddatabasesensitivitylabels.NewSqlManagedInstanceDatabaseID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedInstanceValue", "databaseValue")
 
 // alternatively `client.ListCurrentByDatabase(ctx, id, manageddatabasesensitivitylabels.DefaultListCurrentByDatabaseOperationOptions())` can be used to do batched pagination
 items, err := client.ListCurrentByDatabaseComplete(ctx, id, manageddatabasesensitivitylabels.DefaultListCurrentByDatabaseOperationOptions())
@@ -143,7 +143,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := manageddatabasesensitivitylabels.NewManagedInstanceDatabaseID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedInstanceValue", "databaseValue")
+id := manageddatabasesensitivitylabels.NewSqlManagedInstanceDatabaseID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedInstanceValue", "databaseValue")
 
 // alternatively `client.ListRecommendedByDatabase(ctx, id, manageddatabasesensitivitylabels.DefaultListRecommendedByDatabaseOperationOptions())` can be used to do batched pagination
 items, err := client.ListRecommendedByDatabaseComplete(ctx, id, manageddatabasesensitivitylabels.DefaultListRecommendedByDatabaseOperationOptions())
@@ -160,7 +160,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := manageddatabasesensitivitylabels.NewManagedInstanceDatabaseID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedInstanceValue", "databaseValue")
+id := manageddatabasesensitivitylabels.NewSqlManagedInstanceDatabaseID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedInstanceValue", "databaseValue")
 
 payload := manageddatabasesensitivitylabels.RecommendedSensitivityLabelUpdateList{
 	// ...
@@ -181,7 +181,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := manageddatabasesensitivitylabels.NewManagedInstanceDatabaseID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedInstanceValue", "databaseValue")
+id := manageddatabasesensitivitylabels.NewSqlManagedInstanceDatabaseID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedInstanceValue", "databaseValue")
 
 payload := manageddatabasesensitivitylabels.SensitivityLabelUpdateList{
 	// ...

@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := manageddatabases.NewManagedInstanceDatabaseID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedInstanceValue", "databaseValue")
+id := manageddatabases.NewSqlManagedInstanceDatabaseID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedInstanceValue", "databaseValue")
 
 payload := manageddatabases.ManagedDatabaseMoveDefinition{
 	// ...
@@ -41,7 +41,7 @@ if err := client.CancelMoveThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := manageddatabases.NewManagedInstanceDatabaseID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedInstanceValue", "databaseValue")
+id := manageddatabases.NewSqlManagedInstanceDatabaseID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedInstanceValue", "databaseValue")
 
 payload := manageddatabases.ManagedDatabaseMoveDefinition{
 	// ...
@@ -58,7 +58,7 @@ if err := client.CompleteMoveThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := manageddatabases.NewManagedInstanceDatabaseID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedInstanceValue", "databaseValue")
+id := manageddatabases.NewSqlManagedInstanceDatabaseID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedInstanceValue", "databaseValue")
 
 payload := manageddatabases.CompleteDatabaseRestoreDefinition{
 	// ...
@@ -75,7 +75,7 @@ if err := client.CompleteRestoreThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := manageddatabases.NewManagedInstanceDatabaseID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedInstanceValue", "databaseValue")
+id := manageddatabases.NewSqlManagedInstanceDatabaseID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedInstanceValue", "databaseValue")
 
 payload := manageddatabases.ManagedDatabase{
 	// ...
@@ -92,7 +92,7 @@ if err := client.CreateOrUpdateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := manageddatabases.NewManagedInstanceDatabaseID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedInstanceValue", "databaseValue")
+id := manageddatabases.NewSqlManagedInstanceDatabaseID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedInstanceValue", "databaseValue")
 
 if err := client.DeleteThenPoll(ctx, id); err != nil {
 	// handle the error
@@ -104,7 +104,7 @@ if err := client.DeleteThenPoll(ctx, id); err != nil {
 
 ```go
 ctx := context.TODO()
-id := manageddatabases.NewManagedInstanceDatabaseID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedInstanceValue", "databaseValue")
+id := manageddatabases.NewSqlManagedInstanceDatabaseID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedInstanceValue", "databaseValue")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -120,7 +120,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := manageddatabases.NewManagedInstanceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedInstanceValue")
+id := manageddatabases.NewSqlManagedInstanceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedInstanceValue")
 
 // alternatively `client.ListByInstance(ctx, id)` can be used to do batched pagination
 items, err := client.ListByInstanceComplete(ctx, id)
@@ -137,7 +137,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := manageddatabases.NewManagedInstanceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedInstanceValue")
+id := manageddatabases.NewSqlManagedInstanceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedInstanceValue")
 
 // alternatively `client.ListInaccessibleByInstance(ctx, id)` can be used to do batched pagination
 items, err := client.ListInaccessibleByInstanceComplete(ctx, id)
@@ -154,7 +154,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := manageddatabases.NewManagedInstanceDatabaseID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedInstanceValue", "databaseValue")
+id := manageddatabases.NewSqlManagedInstanceDatabaseID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedInstanceValue", "databaseValue")
 
 payload := manageddatabases.ManagedDatabaseStartMoveDefinition{
 	// ...
@@ -171,7 +171,7 @@ if err := client.StartMoveThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := manageddatabases.NewManagedInstanceDatabaseID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedInstanceValue", "databaseValue")
+id := manageddatabases.NewSqlManagedInstanceDatabaseID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedInstanceValue", "databaseValue")
 
 payload := manageddatabases.ManagedDatabaseUpdate{
 	// ...

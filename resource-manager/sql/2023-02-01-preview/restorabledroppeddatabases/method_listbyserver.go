@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -23,7 +24,7 @@ type ListByServerCompleteResult struct {
 }
 
 // ListByServer ...
-func (c RestorableDroppedDatabasesClient) ListByServer(ctx context.Context, id ServerId) (result ListByServerOperationResponse, err error) {
+func (c RestorableDroppedDatabasesClient) ListByServer(ctx context.Context, id commonids.SqlServerId) (result ListByServerOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -61,12 +62,12 @@ func (c RestorableDroppedDatabasesClient) ListByServer(ctx context.Context, id S
 }
 
 // ListByServerComplete retrieves all the results into a single object
-func (c RestorableDroppedDatabasesClient) ListByServerComplete(ctx context.Context, id ServerId) (ListByServerCompleteResult, error) {
+func (c RestorableDroppedDatabasesClient) ListByServerComplete(ctx context.Context, id commonids.SqlServerId) (ListByServerCompleteResult, error) {
 	return c.ListByServerCompleteMatchingPredicate(ctx, id, RestorableDroppedDatabaseOperationPredicate{})
 }
 
 // ListByServerCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c RestorableDroppedDatabasesClient) ListByServerCompleteMatchingPredicate(ctx context.Context, id ServerId, predicate RestorableDroppedDatabaseOperationPredicate) (result ListByServerCompleteResult, err error) {
+func (c RestorableDroppedDatabasesClient) ListByServerCompleteMatchingPredicate(ctx context.Context, id commonids.SqlServerId, predicate RestorableDroppedDatabaseOperationPredicate) (result ListByServerCompleteResult, err error) {
 	items := make([]RestorableDroppedDatabase, 0)
 
 	resp, err := c.ListByServer(ctx, id)

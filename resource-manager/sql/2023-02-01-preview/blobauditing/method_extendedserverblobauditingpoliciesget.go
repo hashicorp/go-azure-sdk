@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -19,7 +20,7 @@ type ExtendedServerBlobAuditingPoliciesGetOperationResponse struct {
 }
 
 // ExtendedServerBlobAuditingPoliciesGet ...
-func (c BlobAuditingClient) ExtendedServerBlobAuditingPoliciesGet(ctx context.Context, id ServerId) (result ExtendedServerBlobAuditingPoliciesGetOperationResponse, err error) {
+func (c BlobAuditingClient) ExtendedServerBlobAuditingPoliciesGet(ctx context.Context, id commonids.SqlServerId) (result ExtendedServerBlobAuditingPoliciesGetOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{

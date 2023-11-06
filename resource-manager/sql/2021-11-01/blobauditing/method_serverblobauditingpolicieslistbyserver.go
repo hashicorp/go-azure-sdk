@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -23,7 +24,7 @@ type ServerBlobAuditingPoliciesListByServerCompleteResult struct {
 }
 
 // ServerBlobAuditingPoliciesListByServer ...
-func (c BlobAuditingClient) ServerBlobAuditingPoliciesListByServer(ctx context.Context, id ServerId) (result ServerBlobAuditingPoliciesListByServerOperationResponse, err error) {
+func (c BlobAuditingClient) ServerBlobAuditingPoliciesListByServer(ctx context.Context, id commonids.SqlServerId) (result ServerBlobAuditingPoliciesListByServerOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -61,12 +62,12 @@ func (c BlobAuditingClient) ServerBlobAuditingPoliciesListByServer(ctx context.C
 }
 
 // ServerBlobAuditingPoliciesListByServerComplete retrieves all the results into a single object
-func (c BlobAuditingClient) ServerBlobAuditingPoliciesListByServerComplete(ctx context.Context, id ServerId) (ServerBlobAuditingPoliciesListByServerCompleteResult, error) {
+func (c BlobAuditingClient) ServerBlobAuditingPoliciesListByServerComplete(ctx context.Context, id commonids.SqlServerId) (ServerBlobAuditingPoliciesListByServerCompleteResult, error) {
 	return c.ServerBlobAuditingPoliciesListByServerCompleteMatchingPredicate(ctx, id, ServerBlobAuditingPolicyOperationPredicate{})
 }
 
 // ServerBlobAuditingPoliciesListByServerCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c BlobAuditingClient) ServerBlobAuditingPoliciesListByServerCompleteMatchingPredicate(ctx context.Context, id ServerId, predicate ServerBlobAuditingPolicyOperationPredicate) (result ServerBlobAuditingPoliciesListByServerCompleteResult, err error) {
+func (c BlobAuditingClient) ServerBlobAuditingPoliciesListByServerCompleteMatchingPredicate(ctx context.Context, id commonids.SqlServerId, predicate ServerBlobAuditingPolicyOperationPredicate) (result ServerBlobAuditingPoliciesListByServerCompleteResult, err error) {
 	items := make([]ServerBlobAuditingPolicy, 0)
 
 	resp, err := c.ServerBlobAuditingPoliciesListByServer(ctx, id)

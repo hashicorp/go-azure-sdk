@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
@@ -21,7 +22,7 @@ type RefreshStatusOperationResponse struct {
 }
 
 // RefreshStatus ...
-func (c ManagedInstancesClient) RefreshStatus(ctx context.Context, id ManagedInstanceId) (result RefreshStatusOperationResponse, err error) {
+func (c ManagedInstancesClient) RefreshStatus(ctx context.Context, id commonids.SqlManagedInstanceId) (result RefreshStatusOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -56,7 +57,7 @@ func (c ManagedInstancesClient) RefreshStatus(ctx context.Context, id ManagedIns
 }
 
 // RefreshStatusThenPoll performs RefreshStatus then polls until it's completed
-func (c ManagedInstancesClient) RefreshStatusThenPoll(ctx context.Context, id ManagedInstanceId) error {
+func (c ManagedInstancesClient) RefreshStatusThenPoll(ctx context.Context, id commonids.SqlManagedInstanceId) error {
 	result, err := c.RefreshStatus(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing RefreshStatus: %+v", err)

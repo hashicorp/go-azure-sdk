@@ -69,7 +69,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := managedinstancekeys.NewManagedInstanceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedInstanceValue")
+id := managedinstancekeys.NewSqlManagedInstanceID("12345678-1234-9876-4563-123456789012", "example-resource-group", "managedInstanceValue")
 
 // alternatively `client.ListByInstance(ctx, id, managedinstancekeys.DefaultListByInstanceOperationOptions())` can be used to do batched pagination
 items, err := client.ListByInstanceComplete(ctx, id, managedinstancekeys.DefaultListByInstanceOperationOptions())

@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
@@ -21,7 +22,7 @@ type CompleteMoveOperationResponse struct {
 }
 
 // CompleteMove ...
-func (c ManagedDatabasesClient) CompleteMove(ctx context.Context, id ManagedInstanceDatabaseId, input ManagedDatabaseMoveDefinition) (result CompleteMoveOperationResponse, err error) {
+func (c ManagedDatabasesClient) CompleteMove(ctx context.Context, id commonids.SqlManagedInstanceDatabaseId, input ManagedDatabaseMoveDefinition) (result CompleteMoveOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -60,7 +61,7 @@ func (c ManagedDatabasesClient) CompleteMove(ctx context.Context, id ManagedInst
 }
 
 // CompleteMoveThenPoll performs CompleteMove then polls until it's completed
-func (c ManagedDatabasesClient) CompleteMoveThenPoll(ctx context.Context, id ManagedInstanceDatabaseId, input ManagedDatabaseMoveDefinition) error {
+func (c ManagedDatabasesClient) CompleteMoveThenPoll(ctx context.Context, id commonids.SqlManagedInstanceDatabaseId, input ManagedDatabaseMoveDefinition) error {
 	result, err := c.CompleteMove(ctx, id, input)
 	if err != nil {
 		return fmt.Errorf("performing CompleteMove: %+v", err)

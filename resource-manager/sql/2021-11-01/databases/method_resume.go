@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
@@ -21,7 +22,7 @@ type ResumeOperationResponse struct {
 }
 
 // Resume ...
-func (c DatabasesClient) Resume(ctx context.Context, id DatabaseId) (result ResumeOperationResponse, err error) {
+func (c DatabasesClient) Resume(ctx context.Context, id commonids.SqlDatabaseId) (result ResumeOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -56,7 +57,7 @@ func (c DatabasesClient) Resume(ctx context.Context, id DatabaseId) (result Resu
 }
 
 // ResumeThenPoll performs Resume then polls until it's completed
-func (c DatabasesClient) ResumeThenPoll(ctx context.Context, id DatabaseId) error {
+func (c DatabasesClient) ResumeThenPoll(ctx context.Context, id commonids.SqlDatabaseId) error {
 	result, err := c.Resume(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing Resume: %+v", err)

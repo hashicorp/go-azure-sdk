@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -23,7 +24,7 @@ type ListByServerCompleteResult struct {
 }
 
 // ListByServer ...
-func (c VirtualNetworkRulesClient) ListByServer(ctx context.Context, id ServerId) (result ListByServerOperationResponse, err error) {
+func (c VirtualNetworkRulesClient) ListByServer(ctx context.Context, id commonids.SqlServerId) (result ListByServerOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -61,12 +62,12 @@ func (c VirtualNetworkRulesClient) ListByServer(ctx context.Context, id ServerId
 }
 
 // ListByServerComplete retrieves all the results into a single object
-func (c VirtualNetworkRulesClient) ListByServerComplete(ctx context.Context, id ServerId) (ListByServerCompleteResult, error) {
+func (c VirtualNetworkRulesClient) ListByServerComplete(ctx context.Context, id commonids.SqlServerId) (ListByServerCompleteResult, error) {
 	return c.ListByServerCompleteMatchingPredicate(ctx, id, VirtualNetworkRuleOperationPredicate{})
 }
 
 // ListByServerCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c VirtualNetworkRulesClient) ListByServerCompleteMatchingPredicate(ctx context.Context, id ServerId, predicate VirtualNetworkRuleOperationPredicate) (result ListByServerCompleteResult, err error) {
+func (c VirtualNetworkRulesClient) ListByServerCompleteMatchingPredicate(ctx context.Context, id commonids.SqlServerId, predicate VirtualNetworkRuleOperationPredicate) (result ListByServerCompleteResult, err error) {
 	items := make([]VirtualNetworkRule, 0)
 
 	resp, err := c.ListByServer(ctx, id)

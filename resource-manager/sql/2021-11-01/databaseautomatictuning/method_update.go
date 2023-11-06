@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -19,7 +20,7 @@ type UpdateOperationResponse struct {
 }
 
 // Update ...
-func (c DatabaseAutomaticTuningClient) Update(ctx context.Context, id DatabaseId, input DatabaseAutomaticTuning) (result UpdateOperationResponse, err error) {
+func (c DatabaseAutomaticTuningClient) Update(ctx context.Context, id commonids.SqlDatabaseId, input DatabaseAutomaticTuning) (result UpdateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{

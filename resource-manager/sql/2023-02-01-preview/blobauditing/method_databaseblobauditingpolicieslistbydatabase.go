@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -23,7 +24,7 @@ type DatabaseBlobAuditingPoliciesListByDatabaseCompleteResult struct {
 }
 
 // DatabaseBlobAuditingPoliciesListByDatabase ...
-func (c BlobAuditingClient) DatabaseBlobAuditingPoliciesListByDatabase(ctx context.Context, id DatabaseId) (result DatabaseBlobAuditingPoliciesListByDatabaseOperationResponse, err error) {
+func (c BlobAuditingClient) DatabaseBlobAuditingPoliciesListByDatabase(ctx context.Context, id commonids.SqlDatabaseId) (result DatabaseBlobAuditingPoliciesListByDatabaseOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -61,12 +62,12 @@ func (c BlobAuditingClient) DatabaseBlobAuditingPoliciesListByDatabase(ctx conte
 }
 
 // DatabaseBlobAuditingPoliciesListByDatabaseComplete retrieves all the results into a single object
-func (c BlobAuditingClient) DatabaseBlobAuditingPoliciesListByDatabaseComplete(ctx context.Context, id DatabaseId) (DatabaseBlobAuditingPoliciesListByDatabaseCompleteResult, error) {
+func (c BlobAuditingClient) DatabaseBlobAuditingPoliciesListByDatabaseComplete(ctx context.Context, id commonids.SqlDatabaseId) (DatabaseBlobAuditingPoliciesListByDatabaseCompleteResult, error) {
 	return c.DatabaseBlobAuditingPoliciesListByDatabaseCompleteMatchingPredicate(ctx, id, DatabaseBlobAuditingPolicyOperationPredicate{})
 }
 
 // DatabaseBlobAuditingPoliciesListByDatabaseCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c BlobAuditingClient) DatabaseBlobAuditingPoliciesListByDatabaseCompleteMatchingPredicate(ctx context.Context, id DatabaseId, predicate DatabaseBlobAuditingPolicyOperationPredicate) (result DatabaseBlobAuditingPoliciesListByDatabaseCompleteResult, err error) {
+func (c BlobAuditingClient) DatabaseBlobAuditingPoliciesListByDatabaseCompleteMatchingPredicate(ctx context.Context, id commonids.SqlDatabaseId, predicate DatabaseBlobAuditingPolicyOperationPredicate) (result DatabaseBlobAuditingPoliciesListByDatabaseCompleteResult, err error) {
 	items := make([]DatabaseBlobAuditingPolicy, 0)
 
 	resp, err := c.DatabaseBlobAuditingPoliciesListByDatabase(ctx, id)

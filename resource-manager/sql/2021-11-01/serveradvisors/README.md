@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := serveradvisors.NewServerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverValue")
+id := serveradvisors.NewSqlServerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverValue")
 
 read, err := client.ListByServer(ctx, id, serveradvisors.DefaultListByServerOperationOptions())
 if err != nil {

@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -23,7 +24,7 @@ type ListByElasticPoolCompleteResult struct {
 }
 
 // ListByElasticPool ...
-func (c DatabasesClient) ListByElasticPool(ctx context.Context, id ElasticPoolId) (result ListByElasticPoolOperationResponse, err error) {
+func (c DatabasesClient) ListByElasticPool(ctx context.Context, id commonids.SqlElasticPoolId) (result ListByElasticPoolOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -61,12 +62,12 @@ func (c DatabasesClient) ListByElasticPool(ctx context.Context, id ElasticPoolId
 }
 
 // ListByElasticPoolComplete retrieves all the results into a single object
-func (c DatabasesClient) ListByElasticPoolComplete(ctx context.Context, id ElasticPoolId) (ListByElasticPoolCompleteResult, error) {
+func (c DatabasesClient) ListByElasticPoolComplete(ctx context.Context, id commonids.SqlElasticPoolId) (ListByElasticPoolCompleteResult, error) {
 	return c.ListByElasticPoolCompleteMatchingPredicate(ctx, id, DatabaseOperationPredicate{})
 }
 
 // ListByElasticPoolCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c DatabasesClient) ListByElasticPoolCompleteMatchingPredicate(ctx context.Context, id ElasticPoolId, predicate DatabaseOperationPredicate) (result ListByElasticPoolCompleteResult, err error) {
+func (c DatabasesClient) ListByElasticPoolCompleteMatchingPredicate(ctx context.Context, id commonids.SqlElasticPoolId, predicate DatabaseOperationPredicate) (result ListByElasticPoolCompleteResult, err error) {
 	items := make([]Database, 0)
 
 	resp, err := c.ListByElasticPool(ctx, id)

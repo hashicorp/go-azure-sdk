@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
@@ -21,7 +22,7 @@ type RevalidateOperationResponse struct {
 }
 
 // Revalidate ...
-func (c ManagedInstanceEncryptionProtectorsClient) Revalidate(ctx context.Context, id ManagedInstanceId) (result RevalidateOperationResponse, err error) {
+func (c ManagedInstanceEncryptionProtectorsClient) Revalidate(ctx context.Context, id commonids.SqlManagedInstanceId) (result RevalidateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -56,7 +57,7 @@ func (c ManagedInstanceEncryptionProtectorsClient) Revalidate(ctx context.Contex
 }
 
 // RevalidateThenPoll performs Revalidate then polls until it's completed
-func (c ManagedInstanceEncryptionProtectorsClient) RevalidateThenPoll(ctx context.Context, id ManagedInstanceId) error {
+func (c ManagedInstanceEncryptionProtectorsClient) RevalidateThenPoll(ctx context.Context, id commonids.SqlManagedInstanceId) error {
 	result, err := c.Revalidate(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing Revalidate: %+v", err)

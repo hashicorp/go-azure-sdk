@@ -4,6 +4,7 @@ import (
 	"context"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -18,7 +19,7 @@ type GetOperationResponse struct {
 }
 
 // Get ...
-func (c ManagedDatabasesClient) Get(ctx context.Context, id ManagedInstanceDatabaseId) (result GetOperationResponse, err error) {
+func (c ManagedDatabasesClient) Get(ctx context.Context, id commonids.SqlManagedInstanceDatabaseId) (result GetOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{

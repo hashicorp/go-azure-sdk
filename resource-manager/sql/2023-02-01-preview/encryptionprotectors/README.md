@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := encryptionprotectors.NewServerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverValue")
+id := encryptionprotectors.NewSqlServerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverValue")
 
 payload := encryptionprotectors.EncryptionProtector{
 	// ...
@@ -41,7 +41,7 @@ if err := client.CreateOrUpdateThenPoll(ctx, id, payload); err != nil {
 
 ```go
 ctx := context.TODO()
-id := encryptionprotectors.NewServerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverValue")
+id := encryptionprotectors.NewSqlServerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverValue")
 
 read, err := client.Get(ctx, id)
 if err != nil {
@@ -57,7 +57,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := encryptionprotectors.NewServerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverValue")
+id := encryptionprotectors.NewSqlServerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverValue")
 
 // alternatively `client.ListByServer(ctx, id)` can be used to do batched pagination
 items, err := client.ListByServerComplete(ctx, id)
@@ -74,7 +74,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := encryptionprotectors.NewServerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverValue")
+id := encryptionprotectors.NewSqlServerID("12345678-1234-9876-4563-123456789012", "example-resource-group", "serverValue")
 
 if err := client.RevalidateThenPoll(ctx, id); err != nil {
 	// handle the error

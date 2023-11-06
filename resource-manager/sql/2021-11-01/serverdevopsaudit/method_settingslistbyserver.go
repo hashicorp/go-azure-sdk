@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -23,7 +24,7 @@ type SettingsListByServerCompleteResult struct {
 }
 
 // SettingsListByServer ...
-func (c ServerDevOpsAuditClient) SettingsListByServer(ctx context.Context, id ServerId) (result SettingsListByServerOperationResponse, err error) {
+func (c ServerDevOpsAuditClient) SettingsListByServer(ctx context.Context, id commonids.SqlServerId) (result SettingsListByServerOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -61,12 +62,12 @@ func (c ServerDevOpsAuditClient) SettingsListByServer(ctx context.Context, id Se
 }
 
 // SettingsListByServerComplete retrieves all the results into a single object
-func (c ServerDevOpsAuditClient) SettingsListByServerComplete(ctx context.Context, id ServerId) (SettingsListByServerCompleteResult, error) {
+func (c ServerDevOpsAuditClient) SettingsListByServerComplete(ctx context.Context, id commonids.SqlServerId) (SettingsListByServerCompleteResult, error) {
 	return c.SettingsListByServerCompleteMatchingPredicate(ctx, id, ServerDevOpsAuditingSettingsOperationPredicate{})
 }
 
 // SettingsListByServerCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c ServerDevOpsAuditClient) SettingsListByServerCompleteMatchingPredicate(ctx context.Context, id ServerId, predicate ServerDevOpsAuditingSettingsOperationPredicate) (result SettingsListByServerCompleteResult, err error) {
+func (c ServerDevOpsAuditClient) SettingsListByServerCompleteMatchingPredicate(ctx context.Context, id commonids.SqlServerId, predicate ServerDevOpsAuditingSettingsOperationPredicate) (result SettingsListByServerCompleteResult, err error) {
 	items := make([]ServerDevOpsAuditingSettings, 0)
 
 	resp, err := c.SettingsListByServer(ctx, id)

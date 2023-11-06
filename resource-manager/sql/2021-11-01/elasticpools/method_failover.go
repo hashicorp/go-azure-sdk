@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
 	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
@@ -21,7 +22,7 @@ type FailoverOperationResponse struct {
 }
 
 // Failover ...
-func (c ElasticPoolsClient) Failover(ctx context.Context, id ElasticPoolId) (result FailoverOperationResponse, err error) {
+func (c ElasticPoolsClient) Failover(ctx context.Context, id commonids.SqlElasticPoolId) (result FailoverOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -56,7 +57,7 @@ func (c ElasticPoolsClient) Failover(ctx context.Context, id ElasticPoolId) (res
 }
 
 // FailoverThenPoll performs Failover then polls until it's completed
-func (c ElasticPoolsClient) FailoverThenPoll(ctx context.Context, id ElasticPoolId) error {
+func (c ElasticPoolsClient) FailoverThenPoll(ctx context.Context, id commonids.SqlElasticPoolId) error {
 	result, err := c.Failover(ctx, id)
 	if err != nil {
 		return fmt.Errorf("performing Failover: %+v", err)

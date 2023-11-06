@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -54,7 +55,7 @@ func (o ListCurrentByDatabaseOperationOptions) ToQuery() *client.QueryParams {
 }
 
 // ListCurrentByDatabase ...
-func (c SensitivityLabelsClient) ListCurrentByDatabase(ctx context.Context, id DatabaseId, options ListCurrentByDatabaseOperationOptions) (result ListCurrentByDatabaseOperationResponse, err error) {
+func (c SensitivityLabelsClient) ListCurrentByDatabase(ctx context.Context, id commonids.SqlDatabaseId, options ListCurrentByDatabaseOperationOptions) (result ListCurrentByDatabaseOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -93,12 +94,12 @@ func (c SensitivityLabelsClient) ListCurrentByDatabase(ctx context.Context, id D
 }
 
 // ListCurrentByDatabaseComplete retrieves all the results into a single object
-func (c SensitivityLabelsClient) ListCurrentByDatabaseComplete(ctx context.Context, id DatabaseId, options ListCurrentByDatabaseOperationOptions) (ListCurrentByDatabaseCompleteResult, error) {
+func (c SensitivityLabelsClient) ListCurrentByDatabaseComplete(ctx context.Context, id commonids.SqlDatabaseId, options ListCurrentByDatabaseOperationOptions) (ListCurrentByDatabaseCompleteResult, error) {
 	return c.ListCurrentByDatabaseCompleteMatchingPredicate(ctx, id, options, SensitivityLabelOperationPredicate{})
 }
 
 // ListCurrentByDatabaseCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c SensitivityLabelsClient) ListCurrentByDatabaseCompleteMatchingPredicate(ctx context.Context, id DatabaseId, options ListCurrentByDatabaseOperationOptions, predicate SensitivityLabelOperationPredicate) (result ListCurrentByDatabaseCompleteResult, err error) {
+func (c SensitivityLabelsClient) ListCurrentByDatabaseCompleteMatchingPredicate(ctx context.Context, id commonids.SqlDatabaseId, options ListCurrentByDatabaseOperationOptions, predicate SensitivityLabelOperationPredicate) (result ListCurrentByDatabaseCompleteResult, err error) {
 	items := make([]SensitivityLabel, 0)
 
 	resp, err := c.ListCurrentByDatabase(ctx, id, options)

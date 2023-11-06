@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -23,7 +24,7 @@ type ListCompleteResult struct {
 }
 
 // List ...
-func (c GeoBackupPoliciesClient) List(ctx context.Context, id DatabaseId) (result ListOperationResponse, err error) {
+func (c GeoBackupPoliciesClient) List(ctx context.Context, id commonids.SqlDatabaseId) (result ListOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -61,12 +62,12 @@ func (c GeoBackupPoliciesClient) List(ctx context.Context, id DatabaseId) (resul
 }
 
 // ListComplete retrieves all the results into a single object
-func (c GeoBackupPoliciesClient) ListComplete(ctx context.Context, id DatabaseId) (ListCompleteResult, error) {
+func (c GeoBackupPoliciesClient) ListComplete(ctx context.Context, id commonids.SqlDatabaseId) (ListCompleteResult, error) {
 	return c.ListCompleteMatchingPredicate(ctx, id, GeoBackupPolicyOperationPredicate{})
 }
 
 // ListCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c GeoBackupPoliciesClient) ListCompleteMatchingPredicate(ctx context.Context, id DatabaseId, predicate GeoBackupPolicyOperationPredicate) (result ListCompleteResult, err error) {
+func (c GeoBackupPoliciesClient) ListCompleteMatchingPredicate(ctx context.Context, id commonids.SqlDatabaseId, predicate GeoBackupPolicyOperationPredicate) (result ListCompleteResult, err error) {
 	items := make([]GeoBackupPolicy, 0)
 
 	resp, err := c.List(ctx, id)

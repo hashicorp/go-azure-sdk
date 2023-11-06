@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -23,7 +24,7 @@ type ListByServerCompleteResult struct {
 }
 
 // ListByServer ...
-func (c NetworkSecurityPerimeterConfigurationsClient) ListByServer(ctx context.Context, id ServerId) (result ListByServerOperationResponse, err error) {
+func (c NetworkSecurityPerimeterConfigurationsClient) ListByServer(ctx context.Context, id commonids.SqlServerId) (result ListByServerOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -61,12 +62,12 @@ func (c NetworkSecurityPerimeterConfigurationsClient) ListByServer(ctx context.C
 }
 
 // ListByServerComplete retrieves all the results into a single object
-func (c NetworkSecurityPerimeterConfigurationsClient) ListByServerComplete(ctx context.Context, id ServerId) (ListByServerCompleteResult, error) {
+func (c NetworkSecurityPerimeterConfigurationsClient) ListByServerComplete(ctx context.Context, id commonids.SqlServerId) (ListByServerCompleteResult, error) {
 	return c.ListByServerCompleteMatchingPredicate(ctx, id, NetworkSecurityPerimeterConfigurationOperationPredicate{})
 }
 
 // ListByServerCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c NetworkSecurityPerimeterConfigurationsClient) ListByServerCompleteMatchingPredicate(ctx context.Context, id ServerId, predicate NetworkSecurityPerimeterConfigurationOperationPredicate) (result ListByServerCompleteResult, err error) {
+func (c NetworkSecurityPerimeterConfigurationsClient) ListByServerCompleteMatchingPredicate(ctx context.Context, id commonids.SqlServerId, predicate NetworkSecurityPerimeterConfigurationOperationPredicate) (result ListByServerCompleteResult, err error) {
 	items := make([]NetworkSecurityPerimeterConfiguration, 0)
 
 	resp, err := c.ListByServer(ctx, id)
