@@ -29,8 +29,8 @@ func AppConfigurationAPI(domainSuffix string) Api {
 	return &ApiEndpoint{
 		domainSuffix:       pointer.To(domainSuffix),
 		endpoint:           nil,
-		appId:              pointer.To(apiManagementAppId),
-		name:               "ApiManagement",
+		appId:              pointer.To(appConfigurationAppId),
+		name:               "AzureAppConfiguration",
 		resourceIdentifier: nil,
 	}
 }
