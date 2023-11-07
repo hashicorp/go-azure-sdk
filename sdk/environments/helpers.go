@@ -30,7 +30,7 @@ func AppConfigurationAPI(domainSuffix string) Api {
 		domainSuffix:       pointer.To(domainSuffix),
 		endpoint:           nil,
 		appId:              pointer.To(appConfigurationAppId),
-		name:               "AzureAppConfiguration",
+		name:               "AppConfiguration",
 		resourceIdentifier: nil,
 	}
 }
