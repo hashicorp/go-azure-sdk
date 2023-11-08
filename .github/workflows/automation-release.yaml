@@ -69,7 +69,7 @@ jobs:
         name: "Update then push the AzureRM Provider"
         run: |
           ./scripts/update-azurerm-provider.sh ${{ needs.release-go-sdk.outputs.latest_tag }}
-          description=$(cat ./tmp/pr-description.txt)
+          description=$(base64 -i ./tmp/pr-description.txt)
           echo "description=$description" >> $GITHUB_OUTPUT
         shell: bash
         env:
@@ -98,12 +98,15 @@ jobs:
         run: |
           echo "Sleeping 60s to give Github time to create the PR.."
           sleep 60
+          echo "Outputting PR Description to a file.."
+          echo "${{ needs.update-azurerm-provider.outputs.description }}" > pr-description-base64.txt
+          echo "Base64-decoding the PR Description.."
+          base64 -i pr-description-base64.txt -o pr-description.txt 
           echo "Finding the PR number.."
           pr_number=gh pr list --repo="hashicorp/terraform-provider-azurerm" --search "author:hc-github-team-tf-azure sort:created-desc is:pr is:open" --json "headRefName,number" | jq '.[] | select(.headRefName=="${BRANCH_NAME}") | .number'
           echo "Commenting on the PR"
-          gh issue comment $pr_number --repo "hashicorp/terraform-provider-azurerm" --body "${PR_DESCRIPTION}"
+          gh issue comment $pr_number --repo "hashicorp/terraform-provider-azurerm" --body-file pr-description.txt"
         shell: bash
         env:
           BRANCH_NAME: "auto-pr/deps/updating-go-azure-sdk-to-${{ needs.release-go-sdk.outputs.latest_tag }}"
           GITHUB_TOKEN: "${{ secrets.AZURERM_COMMENT_KEY }}"
-          PR_DESCRIPTION: "${{ needs.update-azurerm-provider.outputs.description }}"
