@@ -38,8 +38,8 @@ function runUpdaterTool {
   go build .
 
   echo "Configuring Git in the AzureRM repository.."
-  git config user.name "hc-github-team-tf-azure"
-  git config user.email '<>'
+  git config --global user.name "hc-github-team-tf-azure"
+  git config --global user.email '<>'
 
   echo "Running the updater tool.."
   ./update-go-azure-sdk --new-sdk-version="${newSdkVersion}" --azurerm-repo-path=../../../ --go-sdk-repo-path=../../../../../ --output-file="../../../../pr-description.txt"
