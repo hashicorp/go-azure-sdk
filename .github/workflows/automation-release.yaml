@@ -73,6 +73,8 @@ jobs:
           echo "description=$description" >> $GITHUB_OUTPUT
         shell: bash
         env:
+          GIT_COMMIT_USERNAME: "hc-github-team-tf-azure"
+          RUNNING_IN_AUTOMATION: "yep"
           SSH_AUTH_SOCK: /tmp/azurerm_ssh_agent.sock
 
       - name: "Remove the Key from the SSH Agent"
