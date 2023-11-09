@@ -86,14 +86,39 @@ jobs:
         run: |
           pkill -9 ssh-agent
 
-      - name: Comment on the PR with the PR description
+      - name: Wait 60s for the other Github Action to open the PR
         if: success()
         run: |
           echo "Sleeping 60s to give Github time to create the PR.."
           sleep 60
-          echo "Finding the PR number.."
-          pr_number=$(gh pr list --repo="hashicorp/terraform-provider-azurerm" --search "author:hc-github-team-tf-azure sort:created-desc is:pr is:open" --json "headRefName,number" | jq '.[] | select(.headRefName=="auto-deps-pr/updating-go-azure-sdk-to-${{ needs.release-go-sdk.outputs.latest_tag }}") | .number')
-          echo "Commenting on the PR"
+
+      - id: find-pr-number
+        name: Find the PR number
+        if: success()
+        uses: nick-fields/retry@14672906e672a08bd6eeb15720e9ed3ce869cdd4 # v2.9.0
+        with:
+          max_attempts: 10
+          retry_on: any
+          shell: bash
+          timeout_seconds: 30
+          command: |
+            echo "Finding the PR number.."
+            pr_number=$(gh pr list --repo="hashicorp/terraform-provider-azurerm" --search "author:hc-github-team-tf-azure sort:created-desc is:pr is:open" --json "headRefName,number" | jq '.[] | select(.headRefName=="auto-deps-pr/updating-go-azure-sdk-to-${{ needs.release-go-sdk.outputs.latest_tag }}") | .number')
+            if [[ "${pr_number}" == "" ]]; then
+              # not ready yet
+              echo "PR Number not found, not available yet?"
+              exit 1
+            fi
+            echo "PR Number was ${pr_number}"
+            echo "pr_number=$pr_number" >> "$GITHUB_OUTPUT"
+        env:
+          GH_TOKEN: "${{ secrets.AZURERM_COMMENT_KEY }}"
+
+      - name: Comment on the PR with the PR description
+        if: success()
+        run: |
+          pr_number="${{ steps.find-pr-number.outputs.pr_number }}"
+          echo "Commenting on PR Number ${pr_number}.."
           gh issue comment $pr_number --repo "hashicorp/terraform-provider-azurerm" --body-file ./tmp/pr-description.txt
         shell: bash
         env:
