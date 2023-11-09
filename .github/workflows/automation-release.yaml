@@ -69,9 +69,9 @@ jobs:
         name: "Update then push the AzureRM Provider"
         run: |
           ./scripts/update-azurerm-provider.sh ${{ needs.release-go-sdk.outputs.latest_tag }}
-          echo "description=<<EOF" >> $GITHUB_OUTPUT
+          echo 'description=<<EOF' >> $GITHUB_OUTPUT
           echo "$(base64 -i ./tmp/pr-description.txt)" >> $GITHUB_OUTPUT
-          echo "EOF" >> $GITHUB_OUTPUT
+          echo 'EOF' >> $GITHUB_OUTPUT
         shell: bash
         env:
           GIT_COMMIT_USERNAME: "hc-github-team-tf-azure"
