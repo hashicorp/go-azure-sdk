@@ -40,8 +40,6 @@ jobs:
     needs: [release-go-sdk]
     if: ${{github.event.pull_request.merged == true && contains( github.event.pull_request.labels.*.name, 'update-azurerm-after-release') }}
     runs-on: custom-linux-xl
-    outputs:
-      description: ${{ steps.update-azurerm-provider.outputs.description }}
     steps:
       - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
         with:
@@ -69,8 +67,6 @@ jobs:
         name: "Update then push the AzureRM Provider"
         run: |
           ./scripts/update-azurerm-provider.sh ${{ needs.release-go-sdk.outputs.latest_tag }}
-          # for whatever reason Github isn't happy outputting a multiline string 
-          ./scripts/output-pr-description-for-gha.sh ./tmp/pr-description.txt >> $GITHUB_OUTPUT
         shell: bash
         env:
           GIT_COMMIT_USERNAME: "hc-github-team-tf-azure"
@@ -90,23 +86,16 @@ jobs:
         run: |
           pkill -9 ssh-agent
 
-  conditionally-comment-on-azurerm:
-    needs: [conditionally-update-azurerm, release-go-sdk]
-    runs-on: custom-linux-medium
-    steps:
       - name: Comment on the PR with the PR description
+        if: success()
         run: |
           echo "Sleeping 60s to give Github time to create the PR.."
           sleep 60
-          echo "Outputting PR Description to a file.."
-          echo "${{ needs.update-azurerm-provider.outputs.description }}" > pr-description-base64.txt
-          echo "Base64-decoding the PR Description.."
-          base64 -i pr-description-base64.txt -o pr-description.txt 
           echo "Finding the PR number.."
           pr_number=gh pr list --repo="hashicorp/terraform-provider-azurerm" --search "author:hc-github-team-tf-azure sort:created-desc is:pr is:open" --json "headRefName,number" | jq '.[] | select(.headRefName=="${BRANCH_NAME}") | .number'
           echo "Commenting on the PR"
-          gh issue comment $pr_number --repo "hashicorp/terraform-provider-azurerm" --body-file pr-description.txt"
+          gh issue comment $pr_number --repo "hashicorp/terraform-provider-azurerm" --body-file ./tmp/pr-description.txt
         shell: bash
         env:
-          BRANCH_NAME: "auto-pr/deps/updating-go-azure-sdk-to-${{ needs.release-go-sdk.outputs.latest_tag }}"
+          BRANCH_NAME: "auto-deps-pr/updating-go-azure-sdk-to-${{ needs.release-go-sdk.outputs.latest_tag }}"
           GITHUB_TOKEN: "${{ secrets.AZURERM_COMMENT_KEY }}"
