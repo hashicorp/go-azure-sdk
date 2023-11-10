@@ -97,7 +97,8 @@ jobs:
         if: success()
         uses: nick-fields/retry@14672906e672a08bd6eeb15720e9ed3ce869cdd4 # v2.9.0
         with:
-          max_attempts: 10
+          max_attempts: 20
+          polling_interval_seconds: 15
           retry_on: any
           shell: bash
           timeout_seconds: 30
