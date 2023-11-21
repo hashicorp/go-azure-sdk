@@ -41,6 +41,22 @@ if model := read.Model; model != nil {
 ```
 
 
+### Example Usage: `HybridRunbookWorkerGroupClient.Delete`
+
+```go
+ctx := context.TODO()
+id := hybridrunbookworkergroup.NewHybridRunbookWorkerGroupID("12345678-1234-9876-4563-123456789012", "example-resource-group", "automationAccountValue", "hybridRunbookWorkerGroupValue")
+
+read, err := client.Delete(ctx, id)
+if err != nil {
+	// handle the error
+}
+if model := read.Model; model != nil {
+	// do something with the model/response object
+}
+```
+
+
 ### Example Usage: `HybridRunbookWorkerGroupClient.Get`
 
 ```go
