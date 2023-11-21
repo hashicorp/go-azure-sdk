@@ -1,4 +1,4 @@
-package listallhybridrunbookworkergroupinautomationaccount
+package hybridrunbookworkergroup
 
 import (
 	"context"
@@ -11,13 +11,13 @@ import (
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See NOTICE.txt in the project root for license information.
 
-type HybridRunbookWorkerGroupDeleteOperationResponse struct {
+type DeleteOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
 }
 
-// HybridRunbookWorkerGroupDelete ...
-func (c ListAllHybridRunbookWorkerGroupInAutomationAccountClient) HybridRunbookWorkerGroupDelete(ctx context.Context, id HybridRunbookWorkerGroupId) (result HybridRunbookWorkerGroupDeleteOperationResponse, err error) {
+// Delete ...
+func (c HybridRunbookWorkerGroupClient) Delete(ctx context.Context, id HybridRunbookWorkerGroupId) (result DeleteOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
