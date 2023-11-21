@@ -1,0 +1,127 @@
+package smartdetectoralertrules
+
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License. See NOTICE.txt in the project root for license information.
+
+var _ resourceids.ResourceId = SmartDetectorAlertRuleId{}
+
+// SmartDetectorAlertRuleId is a struct representing the Resource ID for a Smart Detector Alert Rule
+type SmartDetectorAlertRuleId struct {
+	SubscriptionId             string
+	ResourceGroupName          string
+	SmartDetectorAlertRuleName string
+}
+
+// NewSmartDetectorAlertRuleID returns a new SmartDetectorAlertRuleId struct
+func NewSmartDetectorAlertRuleID(subscriptionId string, resourceGroupName string, smartDetectorAlertRuleName string) SmartDetectorAlertRuleId {
+	return SmartDetectorAlertRuleId{
+		SubscriptionId:             subscriptionId,
+		ResourceGroupName:          resourceGroupName,
+		SmartDetectorAlertRuleName: smartDetectorAlertRuleName,
+	}
+}
+
+// ParseSmartDetectorAlertRuleID parses 'input' into a SmartDetectorAlertRuleId
+func ParseSmartDetectorAlertRuleID(input string) (*SmartDetectorAlertRuleId, error) {
+	parser := resourceids.NewParserFromResourceIdType(SmartDetectorAlertRuleId{})
+	parsed, err := parser.Parse(input, false)
+	if err != nil {
+		return nil, fmt.Errorf("parsing %q: %+v", input, err)
+	}
+
+	var ok bool
+	id := SmartDetectorAlertRuleId{}
+
+	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
+	}
+
+	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
+	}
+
+	if id.SmartDetectorAlertRuleName, ok = parsed.Parsed["smartDetectorAlertRuleName"]; !ok {
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "smartDetectorAlertRuleName", *parsed)
+	}
+
+	return &id, nil
+}
+
+// ParseSmartDetectorAlertRuleIDInsensitively parses 'input' case-insensitively into a SmartDetectorAlertRuleId
+// note: this method should only be used for API response data and not user input
+func ParseSmartDetectorAlertRuleIDInsensitively(input string) (*SmartDetectorAlertRuleId, error) {
+	parser := resourceids.NewParserFromResourceIdType(SmartDetectorAlertRuleId{})
+	parsed, err := parser.Parse(input, true)
+	if err != nil {
+		return nil, fmt.Errorf("parsing %q: %+v", input, err)
+	}
+
+	var ok bool
+	id := SmartDetectorAlertRuleId{}
+
+	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
+	}
+
+	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
+	}
+
+	if id.SmartDetectorAlertRuleName, ok = parsed.Parsed["smartDetectorAlertRuleName"]; !ok {
+		return nil, resourceids.NewSegmentNotSpecifiedError(id, "smartDetectorAlertRuleName", *parsed)
+	}
+
+	return &id, nil
+}
+
+// ValidateSmartDetectorAlertRuleID checks that 'input' can be parsed as a Smart Detector Alert Rule ID
+func ValidateSmartDetectorAlertRuleID(input interface{}, key string) (warnings []string, errors []error) {
+	v, ok := input.(string)
+	if !ok {
+		errors = append(errors, fmt.Errorf("expected %q to be a string", key))
+		return
+	}
+
+	if _, err := ParseSmartDetectorAlertRuleID(v); err != nil {
+		errors = append(errors, err)
+	}
+
+	return
+}
+
+// ID returns the formatted Smart Detector Alert Rule ID
+func (id SmartDetectorAlertRuleId) ID() string {
+	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.AlertsManagement/smartDetectorAlertRules/%s"
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.SmartDetectorAlertRuleName)
+}
+
+// Segments returns a slice of Resource ID Segments which comprise this Smart Detector Alert Rule ID
+func (id SmartDetectorAlertRuleId) Segments() []resourceids.Segment {
+	return []resourceids.Segment{
+		resourceids.StaticSegment("staticSubscriptions", "subscriptions", "subscriptions"),
+		resourceids.SubscriptionIdSegment("subscriptionId", "12345678-1234-9876-4563-123456789012"),
+		resourceids.StaticSegment("staticResourceGroups", "resourceGroups", "resourceGroups"),
+		resourceids.ResourceGroupSegment("resourceGroupName", "example-resource-group"),
+		resourceids.StaticSegment("staticProviders", "providers", "providers"),
+		resourceids.ResourceProviderSegment("staticMicrosoftAlertsManagement", "Microsoft.AlertsManagement", "Microsoft.AlertsManagement"),
+		resourceids.StaticSegment("staticSmartDetectorAlertRules", "smartDetectorAlertRules", "smartDetectorAlertRules"),
+		resourceids.UserSpecifiedSegment("smartDetectorAlertRuleName", "smartDetectorAlertRuleValue"),
+	}
+}
+
+// String returns a human-readable description of this Smart Detector Alert Rule ID
+func (id SmartDetectorAlertRuleId) String() string {
+	components := []string{
+		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
+		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
+		fmt.Sprintf("Smart Detector Alert Rule Name: %q", id.SmartDetectorAlertRuleName),
+	}
+	return fmt.Sprintf("Smart Detector Alert Rule (%s)", strings.Join(components, "\n"))
+}
