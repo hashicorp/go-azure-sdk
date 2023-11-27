@@ -36,19 +36,9 @@ func ParseConnectionGatewayInstallationID(input string) (*ConnectionGatewayInsta
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := ConnectionGatewayInstallationId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.LocationName, ok = parsed.Parsed["locationName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "locationName", *parsed)
-	}
-
-	if id.GatewayId, ok = parsed.Parsed["gatewayId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "gatewayId", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -63,22 +53,30 @@ func ParseConnectionGatewayInstallationIDInsensitively(input string) (*Connectio
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := ConnectionGatewayInstallationId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.LocationName, ok = parsed.Parsed["locationName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "locationName", *parsed)
-	}
-
-	if id.GatewayId, ok = parsed.Parsed["gatewayId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "gatewayId", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *ConnectionGatewayInstallationId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
+	}
+
+	if id.LocationName, ok = input.Parsed["locationName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "locationName", input)
+	}
+
+	if id.GatewayId, ok = input.Parsed["gatewayId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "gatewayId", input)
+	}
+
+	return nil
 }
 
 // ValidateConnectionGatewayInstallationID checks that 'input' can be parsed as a Connection Gateway Installation ID

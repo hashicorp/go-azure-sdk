@@ -34,15 +34,9 @@ func ParseScopedDeploymentID(input string) (*ScopedDeploymentId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := ScopedDeploymentId{}
-
-	if id.Scope, ok = parsed.Parsed["scope"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "scope", *parsed)
-	}
-
-	if id.DeploymentName, ok = parsed.Parsed["deploymentName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "deploymentName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -57,18 +51,26 @@ func ParseScopedDeploymentIDInsensitively(input string) (*ScopedDeploymentId, er
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := ScopedDeploymentId{}
-
-	if id.Scope, ok = parsed.Parsed["scope"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "scope", *parsed)
-	}
-
-	if id.DeploymentName, ok = parsed.Parsed["deploymentName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "deploymentName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *ScopedDeploymentId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.Scope, ok = input.Parsed["scope"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "scope", input)
+	}
+
+	if id.DeploymentName, ok = input.Parsed["deploymentName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "deploymentName", input)
+	}
+
+	return nil
 }
 
 // ValidateScopedDeploymentID checks that 'input' can be parsed as a Scoped Deployment ID

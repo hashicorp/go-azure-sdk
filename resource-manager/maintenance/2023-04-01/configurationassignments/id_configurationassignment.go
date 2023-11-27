@@ -34,15 +34,9 @@ func ParseConfigurationAssignmentID(input string) (*ConfigurationAssignmentId, e
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := ConfigurationAssignmentId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ConfigurationAssignmentName, ok = parsed.Parsed["configurationAssignmentName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "configurationAssignmentName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -57,18 +51,26 @@ func ParseConfigurationAssignmentIDInsensitively(input string) (*ConfigurationAs
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := ConfigurationAssignmentId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ConfigurationAssignmentName, ok = parsed.Parsed["configurationAssignmentName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "configurationAssignmentName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *ConfigurationAssignmentId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
+	}
+
+	if id.ConfigurationAssignmentName, ok = input.Parsed["configurationAssignmentName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "configurationAssignmentName", input)
+	}
+
+	return nil
 }
 
 // ValidateConfigurationAssignmentID checks that 'input' can be parsed as a Configuration Assignment ID

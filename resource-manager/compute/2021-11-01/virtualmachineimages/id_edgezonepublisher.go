@@ -38,23 +38,9 @@ func ParseEdgeZonePublisherID(input string) (*EdgeZonePublisherId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := EdgeZonePublisherId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.LocationName, ok = parsed.Parsed["locationName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "locationName", *parsed)
-	}
-
-	if id.EdgeZoneName, ok = parsed.Parsed["edgeZoneName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "edgeZoneName", *parsed)
-	}
-
-	if id.PublisherName, ok = parsed.Parsed["publisherName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "publisherName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -69,26 +55,34 @@ func ParseEdgeZonePublisherIDInsensitively(input string) (*EdgeZonePublisherId, 
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := EdgeZonePublisherId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.LocationName, ok = parsed.Parsed["locationName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "locationName", *parsed)
-	}
-
-	if id.EdgeZoneName, ok = parsed.Parsed["edgeZoneName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "edgeZoneName", *parsed)
-	}
-
-	if id.PublisherName, ok = parsed.Parsed["publisherName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "publisherName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *EdgeZonePublisherId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
+	}
+
+	if id.LocationName, ok = input.Parsed["locationName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "locationName", input)
+	}
+
+	if id.EdgeZoneName, ok = input.Parsed["edgeZoneName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "edgeZoneName", input)
+	}
+
+	if id.PublisherName, ok = input.Parsed["publisherName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "publisherName", input)
+	}
+
+	return nil
 }
 
 // ValidateEdgeZonePublisherID checks that 'input' can be parsed as a Edge Zone Publisher ID

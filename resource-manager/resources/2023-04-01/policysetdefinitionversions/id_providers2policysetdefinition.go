@@ -34,15 +34,9 @@ func ParseProviders2PolicySetDefinitionID(input string) (*Providers2PolicySetDef
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := Providers2PolicySetDefinitionId{}
-
-	if id.ManagementGroupName, ok = parsed.Parsed["managementGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "managementGroupName", *parsed)
-	}
-
-	if id.PolicySetDefinitionName, ok = parsed.Parsed["policySetDefinitionName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "policySetDefinitionName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -57,18 +51,26 @@ func ParseProviders2PolicySetDefinitionIDInsensitively(input string) (*Providers
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := Providers2PolicySetDefinitionId{}
-
-	if id.ManagementGroupName, ok = parsed.Parsed["managementGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "managementGroupName", *parsed)
-	}
-
-	if id.PolicySetDefinitionName, ok = parsed.Parsed["policySetDefinitionName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "policySetDefinitionName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *Providers2PolicySetDefinitionId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.ManagementGroupName, ok = input.Parsed["managementGroupName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "managementGroupName", input)
+	}
+
+	if id.PolicySetDefinitionName, ok = input.Parsed["policySetDefinitionName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "policySetDefinitionName", input)
+	}
+
+	return nil
 }
 
 // ValidateProviders2PolicySetDefinitionID checks that 'input' can be parsed as a Providers 2 Policy Set Definition ID

@@ -34,15 +34,9 @@ func ParseProviders2DiagnosticSettingID(input string) (*Providers2DiagnosticSett
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := Providers2DiagnosticSettingId{}
-
-	if id.ManagementGroupId, ok = parsed.Parsed["managementGroupId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "managementGroupId", *parsed)
-	}
-
-	if id.DiagnosticSettingName, ok = parsed.Parsed["diagnosticSettingName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "diagnosticSettingName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -57,18 +51,26 @@ func ParseProviders2DiagnosticSettingIDInsensitively(input string) (*Providers2D
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := Providers2DiagnosticSettingId{}
-
-	if id.ManagementGroupId, ok = parsed.Parsed["managementGroupId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "managementGroupId", *parsed)
-	}
-
-	if id.DiagnosticSettingName, ok = parsed.Parsed["diagnosticSettingName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "diagnosticSettingName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *Providers2DiagnosticSettingId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.ManagementGroupId, ok = input.Parsed["managementGroupId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "managementGroupId", input)
+	}
+
+	if id.DiagnosticSettingName, ok = input.Parsed["diagnosticSettingName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "diagnosticSettingName", input)
+	}
+
+	return nil
 }
 
 // ValidateProviders2DiagnosticSettingID checks that 'input' can be parsed as a Providers 2 Diagnostic Setting ID

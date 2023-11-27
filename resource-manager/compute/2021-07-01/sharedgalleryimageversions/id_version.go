@@ -40,27 +40,9 @@ func ParseVersionID(input string) (*VersionId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := VersionId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.LocationName, ok = parsed.Parsed["locationName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "locationName", *parsed)
-	}
-
-	if id.SharedGalleryName, ok = parsed.Parsed["sharedGalleryName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "sharedGalleryName", *parsed)
-	}
-
-	if id.ImageName, ok = parsed.Parsed["imageName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "imageName", *parsed)
-	}
-
-	if id.VersionName, ok = parsed.Parsed["versionName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "versionName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -75,30 +57,38 @@ func ParseVersionIDInsensitively(input string) (*VersionId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := VersionId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.LocationName, ok = parsed.Parsed["locationName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "locationName", *parsed)
-	}
-
-	if id.SharedGalleryName, ok = parsed.Parsed["sharedGalleryName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "sharedGalleryName", *parsed)
-	}
-
-	if id.ImageName, ok = parsed.Parsed["imageName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "imageName", *parsed)
-	}
-
-	if id.VersionName, ok = parsed.Parsed["versionName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "versionName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *VersionId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
+	}
+
+	if id.LocationName, ok = input.Parsed["locationName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "locationName", input)
+	}
+
+	if id.SharedGalleryName, ok = input.Parsed["sharedGalleryName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "sharedGalleryName", input)
+	}
+
+	if id.ImageName, ok = input.Parsed["imageName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "imageName", input)
+	}
+
+	if id.VersionName, ok = input.Parsed["versionName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "versionName", input)
+	}
+
+	return nil
 }
 
 // ValidateVersionID checks that 'input' can be parsed as a Version ID

@@ -42,31 +42,9 @@ func ParseWorkspaceApiSchemaID(input string) (*WorkspaceApiSchemaId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := WorkspaceApiSchemaId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.ServiceName, ok = parsed.Parsed["serviceName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "serviceName", *parsed)
-	}
-
-	if id.WorkspaceId, ok = parsed.Parsed["workspaceId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "workspaceId", *parsed)
-	}
-
-	if id.ApiId, ok = parsed.Parsed["apiId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "apiId", *parsed)
-	}
-
-	if id.SchemaId, ok = parsed.Parsed["schemaId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "schemaId", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -81,34 +59,42 @@ func ParseWorkspaceApiSchemaIDInsensitively(input string) (*WorkspaceApiSchemaId
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := WorkspaceApiSchemaId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.ServiceName, ok = parsed.Parsed["serviceName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "serviceName", *parsed)
-	}
-
-	if id.WorkspaceId, ok = parsed.Parsed["workspaceId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "workspaceId", *parsed)
-	}
-
-	if id.ApiId, ok = parsed.Parsed["apiId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "apiId", *parsed)
-	}
-
-	if id.SchemaId, ok = parsed.Parsed["schemaId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "schemaId", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *WorkspaceApiSchemaId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
+	}
+
+	if id.ResourceGroupName, ok = input.Parsed["resourceGroupName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", input)
+	}
+
+	if id.ServiceName, ok = input.Parsed["serviceName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "serviceName", input)
+	}
+
+	if id.WorkspaceId, ok = input.Parsed["workspaceId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "workspaceId", input)
+	}
+
+	if id.ApiId, ok = input.Parsed["apiId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "apiId", input)
+	}
+
+	if id.SchemaId, ok = input.Parsed["schemaId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "schemaId", input)
+	}
+
+	return nil
 }
 
 // ValidateWorkspaceApiSchemaID checks that 'input' can be parsed as a Workspace Api Schema ID

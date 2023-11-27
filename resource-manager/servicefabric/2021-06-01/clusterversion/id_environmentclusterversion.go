@@ -38,31 +38,9 @@ func ParseEnvironmentClusterVersionID(input string) (*EnvironmentClusterVersionI
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := EnvironmentClusterVersionId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.LocationName, ok = parsed.Parsed["locationName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "locationName", *parsed)
-	}
-
-	if v, ok := parsed.Parsed["environment"]; true {
-		if !ok {
-			return nil, resourceids.NewSegmentNotSpecifiedError(id, "environment", *parsed)
-		}
-
-		environment, err := parseClusterVersionsEnvironment(v)
-		if err != nil {
-			return nil, fmt.Errorf("parsing %q: %+v", v, err)
-		}
-		id.Environment = *environment
-	}
-
-	if id.ClusterVersionName, ok = parsed.Parsed["clusterVersionName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "clusterVersionName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -77,34 +55,42 @@ func ParseEnvironmentClusterVersionIDInsensitively(input string) (*EnvironmentCl
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := EnvironmentClusterVersionId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
-	if id.LocationName, ok = parsed.Parsed["locationName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "locationName", *parsed)
+	return &id, nil
+}
+
+func (id *EnvironmentClusterVersionId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
 	}
 
-	if v, ok := parsed.Parsed["environment"]; true {
+	if id.LocationName, ok = input.Parsed["locationName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "locationName", input)
+	}
+
+	if v, ok := input.Parsed["environment"]; true {
 		if !ok {
-			return nil, resourceids.NewSegmentNotSpecifiedError(id, "environment", *parsed)
+			return resourceids.NewSegmentNotSpecifiedError(id, "environment", input)
 		}
 
 		environment, err := parseClusterVersionsEnvironment(v)
 		if err != nil {
-			return nil, fmt.Errorf("parsing %q: %+v", v, err)
+			return fmt.Errorf("parsing %q: %+v", v, err)
 		}
 		id.Environment = *environment
 	}
 
-	if id.ClusterVersionName, ok = parsed.Parsed["clusterVersionName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "clusterVersionName", *parsed)
+	if id.ClusterVersionName, ok = input.Parsed["clusterVersionName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "clusterVersionName", input)
 	}
 
-	return &id, nil
+	return nil
 }
 
 // ValidateEnvironmentClusterVersionID checks that 'input' can be parsed as a Environment Cluster Version ID

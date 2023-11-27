@@ -38,23 +38,9 @@ func ParseIntegrationRuntimeID(input string) (*IntegrationRuntimeId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := IntegrationRuntimeId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.FactoryName, ok = parsed.Parsed["factoryName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "factoryName", *parsed)
-	}
-
-	if id.IntegrationRuntimeName, ok = parsed.Parsed["integrationRuntimeName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "integrationRuntimeName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -69,26 +55,34 @@ func ParseIntegrationRuntimeIDInsensitively(input string) (*IntegrationRuntimeId
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := IntegrationRuntimeId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.FactoryName, ok = parsed.Parsed["factoryName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "factoryName", *parsed)
-	}
-
-	if id.IntegrationRuntimeName, ok = parsed.Parsed["integrationRuntimeName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "integrationRuntimeName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *IntegrationRuntimeId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
+	}
+
+	if id.ResourceGroupName, ok = input.Parsed["resourceGroupName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", input)
+	}
+
+	if id.FactoryName, ok = input.Parsed["factoryName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "factoryName", input)
+	}
+
+	if id.IntegrationRuntimeName, ok = input.Parsed["integrationRuntimeName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "integrationRuntimeName", input)
+	}
+
+	return nil
 }
 
 // ValidateIntegrationRuntimeID checks that 'input' can be parsed as a Integration Runtime ID

@@ -34,23 +34,9 @@ func ParseScopedInformationProtectionPolicyID(input string) (*ScopedInformationP
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := ScopedInformationProtectionPolicyId{}
-
-	if id.Scope, ok = parsed.Parsed["scope"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "scope", *parsed)
-	}
-
-	if v, ok := parsed.Parsed["informationProtectionPolicyName"]; true {
-		if !ok {
-			return nil, resourceids.NewSegmentNotSpecifiedError(id, "informationProtectionPolicyName", *parsed)
-		}
-
-		informationProtectionPolicyName, err := parseInformationProtectionPolicyName(v)
-		if err != nil {
-			return nil, fmt.Errorf("parsing %q: %+v", v, err)
-		}
-		id.InformationProtectionPolicyName = *informationProtectionPolicyName
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -65,26 +51,34 @@ func ParseScopedInformationProtectionPolicyIDInsensitively(input string) (*Scope
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := ScopedInformationProtectionPolicyId{}
-
-	if id.Scope, ok = parsed.Parsed["scope"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "scope", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
-	if v, ok := parsed.Parsed["informationProtectionPolicyName"]; true {
+	return &id, nil
+}
+
+func (id *ScopedInformationProtectionPolicyId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.Scope, ok = input.Parsed["scope"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "scope", input)
+	}
+
+	if v, ok := input.Parsed["informationProtectionPolicyName"]; true {
 		if !ok {
-			return nil, resourceids.NewSegmentNotSpecifiedError(id, "informationProtectionPolicyName", *parsed)
+			return resourceids.NewSegmentNotSpecifiedError(id, "informationProtectionPolicyName", input)
 		}
 
 		informationProtectionPolicyName, err := parseInformationProtectionPolicyName(v)
 		if err != nil {
-			return nil, fmt.Errorf("parsing %q: %+v", v, err)
+			return fmt.Errorf("parsing %q: %+v", v, err)
 		}
 		id.InformationProtectionPolicyName = *informationProtectionPolicyName
 	}
 
-	return &id, nil
+	return nil
 }
 
 // ValidateScopedInformationProtectionPolicyID checks that 'input' can be parsed as a Scoped Information Protection Policy ID

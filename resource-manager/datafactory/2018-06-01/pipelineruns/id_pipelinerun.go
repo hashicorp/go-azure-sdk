@@ -38,23 +38,9 @@ func ParsePipelineRunID(input string) (*PipelineRunId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := PipelineRunId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.FactoryName, ok = parsed.Parsed["factoryName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "factoryName", *parsed)
-	}
-
-	if id.RunId, ok = parsed.Parsed["runId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "runId", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -69,26 +55,34 @@ func ParsePipelineRunIDInsensitively(input string) (*PipelineRunId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := PipelineRunId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.FactoryName, ok = parsed.Parsed["factoryName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "factoryName", *parsed)
-	}
-
-	if id.RunId, ok = parsed.Parsed["runId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "runId", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *PipelineRunId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
+	}
+
+	if id.ResourceGroupName, ok = input.Parsed["resourceGroupName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", input)
+	}
+
+	if id.FactoryName, ok = input.Parsed["factoryName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "factoryName", input)
+	}
+
+	if id.RunId, ok = input.Parsed["runId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "runId", input)
+	}
+
+	return nil
 }
 
 // ValidatePipelineRunID checks that 'input' can be parsed as a Pipeline Run ID

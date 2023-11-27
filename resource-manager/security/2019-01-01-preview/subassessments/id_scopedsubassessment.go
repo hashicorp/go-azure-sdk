@@ -36,19 +36,9 @@ func ParseScopedSubAssessmentID(input string) (*ScopedSubAssessmentId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := ScopedSubAssessmentId{}
-
-	if id.Scope, ok = parsed.Parsed["scope"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "scope", *parsed)
-	}
-
-	if id.AssessmentName, ok = parsed.Parsed["assessmentName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "assessmentName", *parsed)
-	}
-
-	if id.SubAssessmentName, ok = parsed.Parsed["subAssessmentName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subAssessmentName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -63,22 +53,30 @@ func ParseScopedSubAssessmentIDInsensitively(input string) (*ScopedSubAssessment
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := ScopedSubAssessmentId{}
-
-	if id.Scope, ok = parsed.Parsed["scope"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "scope", *parsed)
-	}
-
-	if id.AssessmentName, ok = parsed.Parsed["assessmentName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "assessmentName", *parsed)
-	}
-
-	if id.SubAssessmentName, ok = parsed.Parsed["subAssessmentName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subAssessmentName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *ScopedSubAssessmentId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.Scope, ok = input.Parsed["scope"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "scope", input)
+	}
+
+	if id.AssessmentName, ok = input.Parsed["assessmentName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "assessmentName", input)
+	}
+
+	if id.SubAssessmentName, ok = input.Parsed["subAssessmentName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subAssessmentName", input)
+	}
+
+	return nil
 }
 
 // ValidateScopedSubAssessmentID checks that 'input' can be parsed as a Scoped Sub Assessment ID

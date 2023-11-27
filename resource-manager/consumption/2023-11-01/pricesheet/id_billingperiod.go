@@ -34,15 +34,9 @@ func ParseBillingPeriodID(input string) (*BillingPeriodId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := BillingPeriodId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.BillingPeriodName, ok = parsed.Parsed["billingPeriodName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "billingPeriodName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -57,18 +51,26 @@ func ParseBillingPeriodIDInsensitively(input string) (*BillingPeriodId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := BillingPeriodId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.BillingPeriodName, ok = parsed.Parsed["billingPeriodName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "billingPeriodName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *BillingPeriodId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
+	}
+
+	if id.BillingPeriodName, ok = input.Parsed["billingPeriodName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "billingPeriodName", input)
+	}
+
+	return nil
 }
 
 // ValidateBillingPeriodID checks that 'input' can be parsed as a Billing Period ID

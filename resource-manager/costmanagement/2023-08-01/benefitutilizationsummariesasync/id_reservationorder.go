@@ -32,11 +32,9 @@ func ParseReservationOrderID(input string) (*ReservationOrderId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := ReservationOrderId{}
-
-	if id.ReservationOrderId, ok = parsed.Parsed["reservationOrderId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "reservationOrderId", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -51,14 +49,22 @@ func ParseReservationOrderIDInsensitively(input string) (*ReservationOrderId, er
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := ReservationOrderId{}
-
-	if id.ReservationOrderId, ok = parsed.Parsed["reservationOrderId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "reservationOrderId", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *ReservationOrderId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.ReservationOrderId, ok = input.Parsed["reservationOrderId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "reservationOrderId", input)
+	}
+
+	return nil
 }
 
 // ValidateReservationOrderID checks that 'input' can be parsed as a Reservation Order ID

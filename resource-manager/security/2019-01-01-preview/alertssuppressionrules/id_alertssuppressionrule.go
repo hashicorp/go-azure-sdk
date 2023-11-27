@@ -34,15 +34,9 @@ func ParseAlertsSuppressionRuleID(input string) (*AlertsSuppressionRuleId, error
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := AlertsSuppressionRuleId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.AlertsSuppressionRuleName, ok = parsed.Parsed["alertsSuppressionRuleName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "alertsSuppressionRuleName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -57,18 +51,26 @@ func ParseAlertsSuppressionRuleIDInsensitively(input string) (*AlertsSuppression
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := AlertsSuppressionRuleId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.AlertsSuppressionRuleName, ok = parsed.Parsed["alertsSuppressionRuleName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "alertsSuppressionRuleName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *AlertsSuppressionRuleId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
+	}
+
+	if id.AlertsSuppressionRuleName, ok = input.Parsed["alertsSuppressionRuleName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "alertsSuppressionRuleName", input)
+	}
+
+	return nil
 }
 
 // ValidateAlertsSuppressionRuleID checks that 'input' can be parsed as a Alerts Suppression Rule ID

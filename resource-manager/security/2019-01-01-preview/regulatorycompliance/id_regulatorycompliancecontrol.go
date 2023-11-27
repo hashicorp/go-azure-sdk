@@ -36,19 +36,9 @@ func ParseRegulatoryComplianceControlID(input string) (*RegulatoryComplianceCont
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := RegulatoryComplianceControlId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.RegulatoryComplianceStandardName, ok = parsed.Parsed["regulatoryComplianceStandardName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "regulatoryComplianceStandardName", *parsed)
-	}
-
-	if id.RegulatoryComplianceControlName, ok = parsed.Parsed["regulatoryComplianceControlName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "regulatoryComplianceControlName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -63,22 +53,30 @@ func ParseRegulatoryComplianceControlIDInsensitively(input string) (*RegulatoryC
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := RegulatoryComplianceControlId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.RegulatoryComplianceStandardName, ok = parsed.Parsed["regulatoryComplianceStandardName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "regulatoryComplianceStandardName", *parsed)
-	}
-
-	if id.RegulatoryComplianceControlName, ok = parsed.Parsed["regulatoryComplianceControlName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "regulatoryComplianceControlName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *RegulatoryComplianceControlId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
+	}
+
+	if id.RegulatoryComplianceStandardName, ok = input.Parsed["regulatoryComplianceStandardName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "regulatoryComplianceStandardName", input)
+	}
+
+	if id.RegulatoryComplianceControlName, ok = input.Parsed["regulatoryComplianceControlName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "regulatoryComplianceControlName", input)
+	}
+
+	return nil
 }
 
 // ValidateRegulatoryComplianceControlID checks that 'input' can be parsed as a Regulatory Compliance Control ID

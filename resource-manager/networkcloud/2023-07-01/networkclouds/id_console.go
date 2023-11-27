@@ -38,23 +38,9 @@ func ParseConsoleID(input string) (*ConsoleId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := ConsoleId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.VirtualMachineName, ok = parsed.Parsed["virtualMachineName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "virtualMachineName", *parsed)
-	}
-
-	if id.ConsoleName, ok = parsed.Parsed["consoleName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "consoleName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -69,26 +55,34 @@ func ParseConsoleIDInsensitively(input string) (*ConsoleId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := ConsoleId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.VirtualMachineName, ok = parsed.Parsed["virtualMachineName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "virtualMachineName", *parsed)
-	}
-
-	if id.ConsoleName, ok = parsed.Parsed["consoleName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "consoleName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *ConsoleId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
+	}
+
+	if id.ResourceGroupName, ok = input.Parsed["resourceGroupName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", input)
+	}
+
+	if id.VirtualMachineName, ok = input.Parsed["virtualMachineName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "virtualMachineName", input)
+	}
+
+	if id.ConsoleName, ok = input.Parsed["consoleName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "consoleName", input)
+	}
+
+	return nil
 }
 
 // ValidateConsoleID checks that 'input' can be parsed as a Console ID

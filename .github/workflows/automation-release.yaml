@@ -17,7 +17,7 @@ jobs:
       latest_tag: ${{ steps.results.outputs.latest_tag }}
       should_update_azurerm: ${{ steps.results.outputs.should_update_azurerm }}
     steps:
-      - uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4.1.0
+      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
 
       - name: run the unit tests
         run: |
@@ -40,10 +40,8 @@ jobs:
     needs: [release-go-sdk]
     if: ${{github.event.pull_request.merged == true && contains( github.event.pull_request.labels.*.name, 'update-azurerm-after-release') }}
     runs-on: custom-linux-xl
-    outputs:
-      description: ${{ steps.update-azurerm-provider.outputs.description }}
     steps:
-      - uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4.1.0
+      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
         with:
           fetch-depth: 0
 
@@ -69,10 +67,15 @@ jobs:
         name: "Update then push the AzureRM Provider"
         run: |
           ./scripts/update-azurerm-provider.sh ${{ needs.release-go-sdk.outputs.latest_tag }}
-          description=$(cat ./tmp/pr-description.txt)
-          echo "description=$description" >> $GITHUB_OUTPUT
+          if [[ $(git diff main --name-only | wc -l) -gt 0 ]]; then
+            echo "has_changes_to_push=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "has_changes_to_push=false" >> "$GITHUB_OUTPUT"
+          fi
         shell: bash
         env:
+          GIT_COMMIT_USERNAME: "hc-github-team-tf-azure"
+          RUNNING_IN_AUTOMATION: "yep"
           SSH_AUTH_SOCK: /tmp/azurerm_ssh_agent.sock
 
       - name: "Remove the Key from the SSH Agent"
@@ -88,20 +91,41 @@ jobs:
         run: |
           pkill -9 ssh-agent
 
-  conditionally-comment-on-azurerm:
-    needs: [conditionally-update-azurerm, release-go-sdk]
-    runs-on: custom-linux-medium
-    steps:
-      - name: Comment on the PR with the PR description
+      - name: Wait 60s for the other Github Action to open the PR
+        if: success()
         run: |
           echo "Sleeping 60s to give Github time to create the PR.."
           sleep 60
-          echo "Finding the PR number.."
-          pr_number=gh pr list --repo="hashicorp/terraform-provider-azurerm" --search "author:hc-github-team-tf-azure sort:created-desc is:pr is:open" --json "headRefName,number" | jq '.[] | select(.headRefName=="${BRANCH_NAME}") | .number'
-          echo "Commenting on the PR"
-          gh issue comment $pr_number --repo "hashicorp/terraform-provider-azurerm" --body "${PR_DESCRIPTION}"
+
+      - id: find-pr-number
+        name: Find the PR number
+        if: ${{ steps.update-azurerm-provider.outputs.has_changes_to_push == true }}
+        uses: nick-fields/retry@14672906e672a08bd6eeb15720e9ed3ce869cdd4 # v2.9.0
+        with:
+          max_attempts: 20
+          polling_interval_seconds: 15
+          retry_on: any
+          shell: bash
+          timeout_seconds: 30
+          command: |
+            echo "Finding the PR number.."
+            pr_number=$(gh pr list --repo="hashicorp/terraform-provider-azurerm" --search "author:hc-github-team-tf-azure sort:created-desc is:pr is:open" --json "headRefName,number" | jq '.[] | select(.headRefName=="auto-deps-pr/updating-go-azure-sdk-to-${{ needs.release-go-sdk.outputs.latest_tag }}") | .number')
+            if [[ "${pr_number}" == "" ]]; then
+              # not ready yet
+              echo "PR Number not found, not available yet?"
+              exit 1
+            fi
+            echo "PR Number was ${pr_number}"
+            echo "pr_number=$pr_number" >> "$GITHUB_OUTPUT"
+        env:
+          GH_TOKEN: "${{ secrets.AZURERM_COMMENT_KEY }}"
+
+      - name: Comment on the PR with the PR description
+        if: ${{ steps.update-azurerm-provider.outputs.has_changes_to_push == true }}
+        run: |
+          pr_number="${{ steps.find-pr-number.outputs.pr_number }}"
+          echo "Commenting on PR Number ${pr_number}.."
+          gh issue comment $pr_number --repo "hashicorp/terraform-provider-azurerm" --body-file ./tmp/pr-description.txt
         shell: bash
         env:
-          BRANCH_NAME: "auto-pr/deps/updating-go-azure-sdk-to-${{ needs.release-go-sdk.outputs.latest_tag }}"
-          GITHUB_TOKEN: "${{ secrets.AZURERM_COMMENT_KEY }}"
-          PR_DESCRIPTION: "${{ needs.update-azurerm-provider.outputs.description }}"
+          GH_TOKEN: "${{ secrets.AZURERM_COMMENT_KEY }}"

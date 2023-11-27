@@ -36,19 +36,9 @@ func ParseArtifactScopedID(input string) (*ArtifactScopedId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := ArtifactScopedId{}
-
-	if id.ResourceScope, ok = parsed.Parsed["resourceScope"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceScope", *parsed)
-	}
-
-	if id.BlueprintName, ok = parsed.Parsed["blueprintName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "blueprintName", *parsed)
-	}
-
-	if id.ArtifactName, ok = parsed.Parsed["artifactName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "artifactName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -63,22 +53,30 @@ func ParseArtifactScopedIDInsensitively(input string) (*ArtifactScopedId, error)
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := ArtifactScopedId{}
-
-	if id.ResourceScope, ok = parsed.Parsed["resourceScope"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceScope", *parsed)
-	}
-
-	if id.BlueprintName, ok = parsed.Parsed["blueprintName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "blueprintName", *parsed)
-	}
-
-	if id.ArtifactName, ok = parsed.Parsed["artifactName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "artifactName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *ArtifactScopedId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.ResourceScope, ok = input.Parsed["resourceScope"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "resourceScope", input)
+	}
+
+	if id.BlueprintName, ok = input.Parsed["blueprintName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "blueprintName", input)
+	}
+
+	if id.ArtifactName, ok = input.Parsed["artifactName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "artifactName", input)
+	}
+
+	return nil
 }
 
 // ValidateArtifactScopedID checks that 'input' can be parsed as a Artifact Scoped ID

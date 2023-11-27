@@ -38,23 +38,9 @@ func ParseRegisteredServerID(input string) (*RegisteredServerId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := RegisteredServerId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.StorageSyncServiceName, ok = parsed.Parsed["storageSyncServiceName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "storageSyncServiceName", *parsed)
-	}
-
-	if id.ServerId, ok = parsed.Parsed["serverId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "serverId", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -69,26 +55,34 @@ func ParseRegisteredServerIDInsensitively(input string) (*RegisteredServerId, er
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := RegisteredServerId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.StorageSyncServiceName, ok = parsed.Parsed["storageSyncServiceName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "storageSyncServiceName", *parsed)
-	}
-
-	if id.ServerId, ok = parsed.Parsed["serverId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "serverId", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *RegisteredServerId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
+	}
+
+	if id.ResourceGroupName, ok = input.Parsed["resourceGroupName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", input)
+	}
+
+	if id.StorageSyncServiceName, ok = input.Parsed["storageSyncServiceName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "storageSyncServiceName", input)
+	}
+
+	if id.ServerId, ok = input.Parsed["serverId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "serverId", input)
+	}
+
+	return nil
 }
 
 // ValidateRegisteredServerID checks that 'input' can be parsed as a Registered Server ID

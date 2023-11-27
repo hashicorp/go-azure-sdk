@@ -38,23 +38,9 @@ func ParseScriptExecutionID(input string) (*ScriptExecutionId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := ScriptExecutionId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.PrivateCloudName, ok = parsed.Parsed["privateCloudName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "privateCloudName", *parsed)
-	}
-
-	if id.ScriptExecutionName, ok = parsed.Parsed["scriptExecutionName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "scriptExecutionName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -69,26 +55,34 @@ func ParseScriptExecutionIDInsensitively(input string) (*ScriptExecutionId, erro
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := ScriptExecutionId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.PrivateCloudName, ok = parsed.Parsed["privateCloudName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "privateCloudName", *parsed)
-	}
-
-	if id.ScriptExecutionName, ok = parsed.Parsed["scriptExecutionName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "scriptExecutionName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *ScriptExecutionId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
+	}
+
+	if id.ResourceGroupName, ok = input.Parsed["resourceGroupName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", input)
+	}
+
+	if id.PrivateCloudName, ok = input.Parsed["privateCloudName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "privateCloudName", input)
+	}
+
+	if id.ScriptExecutionName, ok = input.Parsed["scriptExecutionName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "scriptExecutionName", input)
+	}
+
+	return nil
 }
 
 // ValidateScriptExecutionID checks that 'input' can be parsed as a Script Execution ID

@@ -40,27 +40,9 @@ func ParseNodeID(input string) (*NodeId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := NodeId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.FactoryName, ok = parsed.Parsed["factoryName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "factoryName", *parsed)
-	}
-
-	if id.IntegrationRuntimeName, ok = parsed.Parsed["integrationRuntimeName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "integrationRuntimeName", *parsed)
-	}
-
-	if id.NodeName, ok = parsed.Parsed["nodeName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "nodeName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -75,30 +57,38 @@ func ParseNodeIDInsensitively(input string) (*NodeId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := NodeId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.FactoryName, ok = parsed.Parsed["factoryName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "factoryName", *parsed)
-	}
-
-	if id.IntegrationRuntimeName, ok = parsed.Parsed["integrationRuntimeName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "integrationRuntimeName", *parsed)
-	}
-
-	if id.NodeName, ok = parsed.Parsed["nodeName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "nodeName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *NodeId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
+	}
+
+	if id.ResourceGroupName, ok = input.Parsed["resourceGroupName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", input)
+	}
+
+	if id.FactoryName, ok = input.Parsed["factoryName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "factoryName", input)
+	}
+
+	if id.IntegrationRuntimeName, ok = input.Parsed["integrationRuntimeName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "integrationRuntimeName", input)
+	}
+
+	if id.NodeName, ok = input.Parsed["nodeName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "nodeName", input)
+	}
+
+	return nil
 }
 
 // ValidateNodeID checks that 'input' can be parsed as a Node ID

@@ -40,27 +40,9 @@ func ParseUserSessionID(input string) (*UserSessionId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := UserSessionId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.HostPoolName, ok = parsed.Parsed["hostPoolName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "hostPoolName", *parsed)
-	}
-
-	if id.SessionHostName, ok = parsed.Parsed["sessionHostName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "sessionHostName", *parsed)
-	}
-
-	if id.UserSessionId, ok = parsed.Parsed["userSessionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "userSessionId", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -75,30 +57,38 @@ func ParseUserSessionIDInsensitively(input string) (*UserSessionId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := UserSessionId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.HostPoolName, ok = parsed.Parsed["hostPoolName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "hostPoolName", *parsed)
-	}
-
-	if id.SessionHostName, ok = parsed.Parsed["sessionHostName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "sessionHostName", *parsed)
-	}
-
-	if id.UserSessionId, ok = parsed.Parsed["userSessionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "userSessionId", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *UserSessionId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
+	}
+
+	if id.ResourceGroupName, ok = input.Parsed["resourceGroupName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", input)
+	}
+
+	if id.HostPoolName, ok = input.Parsed["hostPoolName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "hostPoolName", input)
+	}
+
+	if id.SessionHostName, ok = input.Parsed["sessionHostName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "sessionHostName", input)
+	}
+
+	if id.UserSessionId, ok = input.Parsed["userSessionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "userSessionId", input)
+	}
+
+	return nil
 }
 
 // ValidateUserSessionID checks that 'input' can be parsed as a User Session ID

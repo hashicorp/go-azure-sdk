@@ -34,15 +34,9 @@ func ParseScopedDeviceSecurityGroupID(input string) (*ScopedDeviceSecurityGroupI
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := ScopedDeviceSecurityGroupId{}
-
-	if id.ResourceId, ok = parsed.Parsed["resourceId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceId", *parsed)
-	}
-
-	if id.DeviceSecurityGroupName, ok = parsed.Parsed["deviceSecurityGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "deviceSecurityGroupName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -57,18 +51,26 @@ func ParseScopedDeviceSecurityGroupIDInsensitively(input string) (*ScopedDeviceS
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := ScopedDeviceSecurityGroupId{}
-
-	if id.ResourceId, ok = parsed.Parsed["resourceId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceId", *parsed)
-	}
-
-	if id.DeviceSecurityGroupName, ok = parsed.Parsed["deviceSecurityGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "deviceSecurityGroupName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *ScopedDeviceSecurityGroupId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.ResourceId, ok = input.Parsed["resourceId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "resourceId", input)
+	}
+
+	if id.DeviceSecurityGroupName, ok = input.Parsed["deviceSecurityGroupName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "deviceSecurityGroupName", input)
+	}
+
+	return nil
 }
 
 // ValidateScopedDeviceSecurityGroupID checks that 'input' can be parsed as a Scoped Device Security Group ID

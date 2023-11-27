@@ -34,15 +34,9 @@ func ParseScopedMarketplaceRegistrationDefinitionID(input string) (*ScopedMarket
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := ScopedMarketplaceRegistrationDefinitionId{}
-
-	if id.Scope, ok = parsed.Parsed["scope"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "scope", *parsed)
-	}
-
-	if id.MarketplaceIdentifier, ok = parsed.Parsed["marketplaceIdentifier"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "marketplaceIdentifier", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -57,18 +51,26 @@ func ParseScopedMarketplaceRegistrationDefinitionIDInsensitively(input string) (
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := ScopedMarketplaceRegistrationDefinitionId{}
-
-	if id.Scope, ok = parsed.Parsed["scope"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "scope", *parsed)
-	}
-
-	if id.MarketplaceIdentifier, ok = parsed.Parsed["marketplaceIdentifier"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "marketplaceIdentifier", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *ScopedMarketplaceRegistrationDefinitionId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.Scope, ok = input.Parsed["scope"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "scope", input)
+	}
+
+	if id.MarketplaceIdentifier, ok = input.Parsed["marketplaceIdentifier"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "marketplaceIdentifier", input)
+	}
+
+	return nil
 }
 
 // ValidateScopedMarketplaceRegistrationDefinitionID checks that 'input' can be parsed as a Scoped Marketplace Registration Definition ID

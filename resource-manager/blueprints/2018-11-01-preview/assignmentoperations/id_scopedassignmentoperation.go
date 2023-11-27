@@ -36,19 +36,9 @@ func ParseScopedAssignmentOperationID(input string) (*ScopedAssignmentOperationI
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := ScopedAssignmentOperationId{}
-
-	if id.ResourceScope, ok = parsed.Parsed["resourceScope"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceScope", *parsed)
-	}
-
-	if id.BlueprintAssignmentName, ok = parsed.Parsed["blueprintAssignmentName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "blueprintAssignmentName", *parsed)
-	}
-
-	if id.AssignmentOperationName, ok = parsed.Parsed["assignmentOperationName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "assignmentOperationName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -63,22 +53,30 @@ func ParseScopedAssignmentOperationIDInsensitively(input string) (*ScopedAssignm
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := ScopedAssignmentOperationId{}
-
-	if id.ResourceScope, ok = parsed.Parsed["resourceScope"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceScope", *parsed)
-	}
-
-	if id.BlueprintAssignmentName, ok = parsed.Parsed["blueprintAssignmentName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "blueprintAssignmentName", *parsed)
-	}
-
-	if id.AssignmentOperationName, ok = parsed.Parsed["assignmentOperationName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "assignmentOperationName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *ScopedAssignmentOperationId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.ResourceScope, ok = input.Parsed["resourceScope"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "resourceScope", input)
+	}
+
+	if id.BlueprintAssignmentName, ok = input.Parsed["blueprintAssignmentName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "blueprintAssignmentName", input)
+	}
+
+	if id.AssignmentOperationName, ok = input.Parsed["assignmentOperationName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "assignmentOperationName", input)
+	}
+
+	return nil
 }
 
 // ValidateScopedAssignmentOperationID checks that 'input' can be parsed as a Scoped Assignment Operation ID

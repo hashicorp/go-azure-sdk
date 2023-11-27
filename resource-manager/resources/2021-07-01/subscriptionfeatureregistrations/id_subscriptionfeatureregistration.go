@@ -36,19 +36,9 @@ func ParseSubscriptionFeatureRegistrationID(input string) (*SubscriptionFeatureR
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := SubscriptionFeatureRegistrationId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.FeatureProviderName, ok = parsed.Parsed["featureProviderName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "featureProviderName", *parsed)
-	}
-
-	if id.SubscriptionFeatureRegistrationName, ok = parsed.Parsed["subscriptionFeatureRegistrationName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionFeatureRegistrationName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -63,22 +53,30 @@ func ParseSubscriptionFeatureRegistrationIDInsensitively(input string) (*Subscri
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := SubscriptionFeatureRegistrationId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.FeatureProviderName, ok = parsed.Parsed["featureProviderName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "featureProviderName", *parsed)
-	}
-
-	if id.SubscriptionFeatureRegistrationName, ok = parsed.Parsed["subscriptionFeatureRegistrationName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionFeatureRegistrationName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *SubscriptionFeatureRegistrationId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
+	}
+
+	if id.FeatureProviderName, ok = input.Parsed["featureProviderName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "featureProviderName", input)
+	}
+
+	if id.SubscriptionFeatureRegistrationName, ok = input.Parsed["subscriptionFeatureRegistrationName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionFeatureRegistrationName", input)
+	}
+
+	return nil
 }
 
 // ValidateSubscriptionFeatureRegistrationID checks that 'input' can be parsed as a Subscription Feature Registration ID

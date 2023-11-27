@@ -36,19 +36,9 @@ func ParsePolicyDefinitionVersionID(input string) (*PolicyDefinitionVersionId, e
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := PolicyDefinitionVersionId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.PolicyDefinitionName, ok = parsed.Parsed["policyDefinitionName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "policyDefinitionName", *parsed)
-	}
-
-	if id.VersionName, ok = parsed.Parsed["versionName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "versionName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -63,22 +53,30 @@ func ParsePolicyDefinitionVersionIDInsensitively(input string) (*PolicyDefinitio
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := PolicyDefinitionVersionId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.PolicyDefinitionName, ok = parsed.Parsed["policyDefinitionName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "policyDefinitionName", *parsed)
-	}
-
-	if id.VersionName, ok = parsed.Parsed["versionName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "versionName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *PolicyDefinitionVersionId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
+	}
+
+	if id.PolicyDefinitionName, ok = input.Parsed["policyDefinitionName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "policyDefinitionName", input)
+	}
+
+	if id.VersionName, ok = input.Parsed["versionName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "versionName", input)
+	}
+
+	return nil
 }
 
 // ValidatePolicyDefinitionVersionID checks that 'input' can be parsed as a Policy Definition Version ID

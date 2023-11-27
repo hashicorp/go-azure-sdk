@@ -36,19 +36,9 @@ func ParseEdgeZoneID(input string) (*EdgeZoneId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := EdgeZoneId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.LocationName, ok = parsed.Parsed["locationName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "locationName", *parsed)
-	}
-
-	if id.EdgeZoneName, ok = parsed.Parsed["edgeZoneName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "edgeZoneName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -63,22 +53,30 @@ func ParseEdgeZoneIDInsensitively(input string) (*EdgeZoneId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := EdgeZoneId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.LocationName, ok = parsed.Parsed["locationName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "locationName", *parsed)
-	}
-
-	if id.EdgeZoneName, ok = parsed.Parsed["edgeZoneName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "edgeZoneName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *EdgeZoneId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
+	}
+
+	if id.LocationName, ok = input.Parsed["locationName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "locationName", input)
+	}
+
+	if id.EdgeZoneName, ok = input.Parsed["edgeZoneName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "edgeZoneName", input)
+	}
+
+	return nil
 }
 
 // ValidateEdgeZoneID checks that 'input' can be parsed as a Edge Zone ID

@@ -34,15 +34,9 @@ func ParseScopedAssessmentID(input string) (*ScopedAssessmentId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := ScopedAssessmentId{}
-
-	if id.ResourceId, ok = parsed.Parsed["resourceId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceId", *parsed)
-	}
-
-	if id.AssessmentName, ok = parsed.Parsed["assessmentName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "assessmentName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -57,18 +51,26 @@ func ParseScopedAssessmentIDInsensitively(input string) (*ScopedAssessmentId, er
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := ScopedAssessmentId{}
-
-	if id.ResourceId, ok = parsed.Parsed["resourceId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceId", *parsed)
-	}
-
-	if id.AssessmentName, ok = parsed.Parsed["assessmentName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "assessmentName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *ScopedAssessmentId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.ResourceId, ok = input.Parsed["resourceId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "resourceId", input)
+	}
+
+	if id.AssessmentName, ok = input.Parsed["assessmentName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "assessmentName", input)
+	}
+
+	return nil
 }
 
 // ValidateScopedAssessmentID checks that 'input' can be parsed as a Scoped Assessment ID

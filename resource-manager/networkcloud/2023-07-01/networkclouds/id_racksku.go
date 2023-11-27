@@ -34,15 +34,9 @@ func ParseRackSkuID(input string) (*RackSkuId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := RackSkuId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.RackSkuName, ok = parsed.Parsed["rackSkuName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "rackSkuName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -57,18 +51,26 @@ func ParseRackSkuIDInsensitively(input string) (*RackSkuId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := RackSkuId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.RackSkuName, ok = parsed.Parsed["rackSkuName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "rackSkuName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *RackSkuId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
+	}
+
+	if id.RackSkuName, ok = input.Parsed["rackSkuName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "rackSkuName", input)
+	}
+
+	return nil
 }
 
 // ValidateRackSkuID checks that 'input' can be parsed as a Rack Sku ID

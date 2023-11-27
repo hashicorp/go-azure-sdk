@@ -40,27 +40,9 @@ func ParseDeploymentID(input string) (*DeploymentId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := DeploymentId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.WorkspaceName, ok = parsed.Parsed["workspaceName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "workspaceName", *parsed)
-	}
-
-	if id.BatchEndpointName, ok = parsed.Parsed["batchEndpointName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "batchEndpointName", *parsed)
-	}
-
-	if id.DeploymentName, ok = parsed.Parsed["deploymentName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "deploymentName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -75,30 +57,38 @@ func ParseDeploymentIDInsensitively(input string) (*DeploymentId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := DeploymentId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.WorkspaceName, ok = parsed.Parsed["workspaceName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "workspaceName", *parsed)
-	}
-
-	if id.BatchEndpointName, ok = parsed.Parsed["batchEndpointName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "batchEndpointName", *parsed)
-	}
-
-	if id.DeploymentName, ok = parsed.Parsed["deploymentName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "deploymentName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *DeploymentId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
+	}
+
+	if id.ResourceGroupName, ok = input.Parsed["resourceGroupName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", input)
+	}
+
+	if id.WorkspaceName, ok = input.Parsed["workspaceName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "workspaceName", input)
+	}
+
+	if id.BatchEndpointName, ok = input.Parsed["batchEndpointName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "batchEndpointName", input)
+	}
+
+	if id.DeploymentName, ok = input.Parsed["deploymentName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "deploymentName", input)
+	}
+
+	return nil
 }
 
 // ValidateDeploymentID checks that 'input' can be parsed as a Deployment ID

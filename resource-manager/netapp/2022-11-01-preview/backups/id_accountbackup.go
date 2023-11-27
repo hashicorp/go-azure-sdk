@@ -38,23 +38,9 @@ func ParseAccountBackupID(input string) (*AccountBackupId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := AccountBackupId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.NetAppAccountName, ok = parsed.Parsed["netAppAccountName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "netAppAccountName", *parsed)
-	}
-
-	if id.AccountBackupName, ok = parsed.Parsed["accountBackupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "accountBackupName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -69,26 +55,34 @@ func ParseAccountBackupIDInsensitively(input string) (*AccountBackupId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := AccountBackupId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.NetAppAccountName, ok = parsed.Parsed["netAppAccountName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "netAppAccountName", *parsed)
-	}
-
-	if id.AccountBackupName, ok = parsed.Parsed["accountBackupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "accountBackupName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *AccountBackupId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
+	}
+
+	if id.ResourceGroupName, ok = input.Parsed["resourceGroupName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", input)
+	}
+
+	if id.NetAppAccountName, ok = input.Parsed["netAppAccountName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "netAppAccountName", input)
+	}
+
+	if id.AccountBackupName, ok = input.Parsed["accountBackupName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "accountBackupName", input)
+	}
+
+	return nil
 }
 
 // ValidateAccountBackupID checks that 'input' can be parsed as a Account Backup ID

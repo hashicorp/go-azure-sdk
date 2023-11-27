@@ -34,15 +34,9 @@ func ParseScopedDenyAssignmentIdID(input string) (*ScopedDenyAssignmentIdId, err
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := ScopedDenyAssignmentIdId{}
-
-	if id.Scope, ok = parsed.Parsed["scope"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "scope", *parsed)
-	}
-
-	if id.DenyAssignmentId, ok = parsed.Parsed["denyAssignmentId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "denyAssignmentId", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -57,18 +51,26 @@ func ParseScopedDenyAssignmentIdIDInsensitively(input string) (*ScopedDenyAssign
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := ScopedDenyAssignmentIdId{}
-
-	if id.Scope, ok = parsed.Parsed["scope"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "scope", *parsed)
-	}
-
-	if id.DenyAssignmentId, ok = parsed.Parsed["denyAssignmentId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "denyAssignmentId", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *ScopedDenyAssignmentIdId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.Scope, ok = input.Parsed["scope"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "scope", input)
+	}
+
+	if id.DenyAssignmentId, ok = input.Parsed["denyAssignmentId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "denyAssignmentId", input)
+	}
+
+	return nil
 }
 
 // ValidateScopedDenyAssignmentIdID checks that 'input' can be parsed as a Scoped Deny Assignment Id ID

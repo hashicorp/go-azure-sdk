@@ -38,23 +38,9 @@ func ParseSyncIdentityProviderID(input string) (*SyncIdentityProviderId, error) 
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := SyncIdentityProviderId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.OpenShiftClusterName, ok = parsed.Parsed["openShiftClusterName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "openShiftClusterName", *parsed)
-	}
-
-	if id.SyncIdentityProviderName, ok = parsed.Parsed["syncIdentityProviderName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "syncIdentityProviderName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -69,26 +55,34 @@ func ParseSyncIdentityProviderIDInsensitively(input string) (*SyncIdentityProvid
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := SyncIdentityProviderId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.OpenShiftClusterName, ok = parsed.Parsed["openShiftClusterName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "openShiftClusterName", *parsed)
-	}
-
-	if id.SyncIdentityProviderName, ok = parsed.Parsed["syncIdentityProviderName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "syncIdentityProviderName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *SyncIdentityProviderId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
+	}
+
+	if id.ResourceGroupName, ok = input.Parsed["resourceGroupName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", input)
+	}
+
+	if id.OpenShiftClusterName, ok = input.Parsed["openShiftClusterName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "openShiftClusterName", input)
+	}
+
+	if id.SyncIdentityProviderName, ok = input.Parsed["syncIdentityProviderName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "syncIdentityProviderName", input)
+	}
+
+	return nil
 }
 
 // ValidateSyncIdentityProviderID checks that 'input' can be parsed as a Sync Identity Provider ID

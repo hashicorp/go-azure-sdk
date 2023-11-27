@@ -36,19 +36,9 @@ func ParseManagedUnsupportedVMSizeID(input string) (*ManagedUnsupportedVMSizeId,
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := ManagedUnsupportedVMSizeId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.LocationName, ok = parsed.Parsed["locationName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "locationName", *parsed)
-	}
-
-	if id.ManagedUnsupportedVMSizeName, ok = parsed.Parsed["managedUnsupportedVMSizeName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "managedUnsupportedVMSizeName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -63,22 +53,30 @@ func ParseManagedUnsupportedVMSizeIDInsensitively(input string) (*ManagedUnsuppo
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := ManagedUnsupportedVMSizeId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.LocationName, ok = parsed.Parsed["locationName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "locationName", *parsed)
-	}
-
-	if id.ManagedUnsupportedVMSizeName, ok = parsed.Parsed["managedUnsupportedVMSizeName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "managedUnsupportedVMSizeName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *ManagedUnsupportedVMSizeId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
+	}
+
+	if id.LocationName, ok = input.Parsed["locationName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "locationName", input)
+	}
+
+	if id.ManagedUnsupportedVMSizeName, ok = input.Parsed["managedUnsupportedVMSizeName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "managedUnsupportedVMSizeName", input)
+	}
+
+	return nil
 }
 
 // ValidateManagedUnsupportedVMSizeID checks that 'input' can be parsed as a Managed Unsupported V M Size ID

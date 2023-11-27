@@ -34,15 +34,9 @@ func ParseRegulatoryComplianceStandardID(input string) (*RegulatoryComplianceSta
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := RegulatoryComplianceStandardId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.RegulatoryComplianceStandardName, ok = parsed.Parsed["regulatoryComplianceStandardName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "regulatoryComplianceStandardName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -57,18 +51,26 @@ func ParseRegulatoryComplianceStandardIDInsensitively(input string) (*Regulatory
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := RegulatoryComplianceStandardId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.RegulatoryComplianceStandardName, ok = parsed.Parsed["regulatoryComplianceStandardName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "regulatoryComplianceStandardName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *RegulatoryComplianceStandardId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
+	}
+
+	if id.RegulatoryComplianceStandardName, ok = input.Parsed["regulatoryComplianceStandardName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "regulatoryComplianceStandardName", input)
+	}
+
+	return nil
 }
 
 // ValidateRegulatoryComplianceStandardID checks that 'input' can be parsed as a Regulatory Compliance Standard ID

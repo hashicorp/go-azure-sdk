@@ -34,15 +34,9 @@ func ParseWorkspaceSettingID(input string) (*WorkspaceSettingId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := WorkspaceSettingId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.WorkspaceSettingName, ok = parsed.Parsed["workspaceSettingName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "workspaceSettingName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -57,18 +51,26 @@ func ParseWorkspaceSettingIDInsensitively(input string) (*WorkspaceSettingId, er
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := WorkspaceSettingId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.WorkspaceSettingName, ok = parsed.Parsed["workspaceSettingName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "workspaceSettingName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *WorkspaceSettingId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
+	}
+
+	if id.WorkspaceSettingName, ok = input.Parsed["workspaceSettingName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "workspaceSettingName", input)
+	}
+
+	return nil
 }
 
 // ValidateWorkspaceSettingID checks that 'input' can be parsed as a Workspace Setting ID

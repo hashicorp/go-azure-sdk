@@ -40,27 +40,9 @@ func ParseConfigurationProfileAssignmentReportID(input string) (*ConfigurationPr
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := ConfigurationProfileAssignmentReportId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.MachineName, ok = parsed.Parsed["machineName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "machineName", *parsed)
-	}
-
-	if id.ConfigurationProfileAssignmentName, ok = parsed.Parsed["configurationProfileAssignmentName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "configurationProfileAssignmentName", *parsed)
-	}
-
-	if id.ReportName, ok = parsed.Parsed["reportName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "reportName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -75,30 +57,38 @@ func ParseConfigurationProfileAssignmentReportIDInsensitively(input string) (*Co
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := ConfigurationProfileAssignmentReportId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.MachineName, ok = parsed.Parsed["machineName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "machineName", *parsed)
-	}
-
-	if id.ConfigurationProfileAssignmentName, ok = parsed.Parsed["configurationProfileAssignmentName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "configurationProfileAssignmentName", *parsed)
-	}
-
-	if id.ReportName, ok = parsed.Parsed["reportName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "reportName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *ConfigurationProfileAssignmentReportId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
+	}
+
+	if id.ResourceGroupName, ok = input.Parsed["resourceGroupName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", input)
+	}
+
+	if id.MachineName, ok = input.Parsed["machineName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "machineName", input)
+	}
+
+	if id.ConfigurationProfileAssignmentName, ok = input.Parsed["configurationProfileAssignmentName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "configurationProfileAssignmentName", input)
+	}
+
+	if id.ReportName, ok = input.Parsed["reportName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "reportName", input)
+	}
+
+	return nil
 }
 
 // ValidateConfigurationProfileAssignmentReportID checks that 'input' can be parsed as a Configuration Profile Assignment Report ID

@@ -38,23 +38,9 @@ func ParsePublicIPID(input string) (*PublicIPId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := PublicIPId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.PrivateCloudName, ok = parsed.Parsed["privateCloudName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "privateCloudName", *parsed)
-	}
-
-	if id.PublicIPId, ok = parsed.Parsed["publicIPId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "publicIPId", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -69,26 +55,34 @@ func ParsePublicIPIDInsensitively(input string) (*PublicIPId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := PublicIPId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.PrivateCloudName, ok = parsed.Parsed["privateCloudName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "privateCloudName", *parsed)
-	}
-
-	if id.PublicIPId, ok = parsed.Parsed["publicIPId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "publicIPId", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *PublicIPId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
+	}
+
+	if id.ResourceGroupName, ok = input.Parsed["resourceGroupName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", input)
+	}
+
+	if id.PrivateCloudName, ok = input.Parsed["privateCloudName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "privateCloudName", input)
+	}
+
+	if id.PublicIPId, ok = input.Parsed["publicIPId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "publicIPId", input)
+	}
+
+	return nil
 }
 
 // ValidatePublicIPID checks that 'input' can be parsed as a Public I P ID

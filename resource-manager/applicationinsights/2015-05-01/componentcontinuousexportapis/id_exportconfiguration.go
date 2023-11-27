@@ -38,23 +38,9 @@ func ParseExportConfigurationID(input string) (*ExportConfigurationId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := ExportConfigurationId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.ComponentName, ok = parsed.Parsed["componentName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "componentName", *parsed)
-	}
-
-	if id.ExportId, ok = parsed.Parsed["exportId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "exportId", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -69,26 +55,34 @@ func ParseExportConfigurationIDInsensitively(input string) (*ExportConfiguration
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := ExportConfigurationId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.ComponentName, ok = parsed.Parsed["componentName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "componentName", *parsed)
-	}
-
-	if id.ExportId, ok = parsed.Parsed["exportId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "exportId", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *ExportConfigurationId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
+	}
+
+	if id.ResourceGroupName, ok = input.Parsed["resourceGroupName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", input)
+	}
+
+	if id.ComponentName, ok = input.Parsed["componentName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "componentName", input)
+	}
+
+	if id.ExportId, ok = input.Parsed["exportId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "exportId", input)
+	}
+
+	return nil
 }
 
 // ValidateExportConfigurationID checks that 'input' can be parsed as a Export Configuration ID

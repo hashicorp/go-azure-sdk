@@ -32,11 +32,9 @@ func ParseMarketplaceRegistrationDefinitionID(input string) (*MarketplaceRegistr
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := MarketplaceRegistrationDefinitionId{}
-
-	if id.MarketplaceIdentifier, ok = parsed.Parsed["marketplaceIdentifier"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "marketplaceIdentifier", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -51,14 +49,22 @@ func ParseMarketplaceRegistrationDefinitionIDInsensitively(input string) (*Marke
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := MarketplaceRegistrationDefinitionId{}
-
-	if id.MarketplaceIdentifier, ok = parsed.Parsed["marketplaceIdentifier"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "marketplaceIdentifier", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *MarketplaceRegistrationDefinitionId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.MarketplaceIdentifier, ok = input.Parsed["marketplaceIdentifier"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "marketplaceIdentifier", input)
+	}
+
+	return nil
 }
 
 // ValidateMarketplaceRegistrationDefinitionID checks that 'input' can be parsed as a Marketplace Registration Definition ID

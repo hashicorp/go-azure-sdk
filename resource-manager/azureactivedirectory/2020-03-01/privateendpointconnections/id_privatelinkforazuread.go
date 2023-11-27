@@ -36,19 +36,9 @@ func ParsePrivateLinkForAzureAdID(input string) (*PrivateLinkForAzureAdId, error
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := PrivateLinkForAzureAdId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.PrivateLinkForAzureAdName, ok = parsed.Parsed["privateLinkForAzureAdName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "privateLinkForAzureAdName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -63,22 +53,30 @@ func ParsePrivateLinkForAzureAdIDInsensitively(input string) (*PrivateLinkForAzu
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := PrivateLinkForAzureAdId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.PrivateLinkForAzureAdName, ok = parsed.Parsed["privateLinkForAzureAdName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "privateLinkForAzureAdName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *PrivateLinkForAzureAdId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
+	}
+
+	if id.ResourceGroupName, ok = input.Parsed["resourceGroupName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", input)
+	}
+
+	if id.PrivateLinkForAzureAdName, ok = input.Parsed["privateLinkForAzureAdName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "privateLinkForAzureAdName", input)
+	}
+
+	return nil
 }
 
 // ValidatePrivateLinkForAzureAdID checks that 'input' can be parsed as a Private Link For Azure Ad ID
