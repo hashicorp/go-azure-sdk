@@ -38,23 +38,9 @@ func ParseActionGroupNotificationStatusID(input string) (*ActionGroupNotificatio
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := ActionGroupNotificationStatusId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.ActionGroupName, ok = parsed.Parsed["actionGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "actionGroupName", *parsed)
-	}
-
-	if id.NotificationId, ok = parsed.Parsed["notificationId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "notificationId", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -69,26 +55,34 @@ func ParseActionGroupNotificationStatusIDInsensitively(input string) (*ActionGro
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := ActionGroupNotificationStatusId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.ActionGroupName, ok = parsed.Parsed["actionGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "actionGroupName", *parsed)
-	}
-
-	if id.NotificationId, ok = parsed.Parsed["notificationId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "notificationId", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *ActionGroupNotificationStatusId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
+	}
+
+	if id.ResourceGroupName, ok = input.Parsed["resourceGroupName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", input)
+	}
+
+	if id.ActionGroupName, ok = input.Parsed["actionGroupName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "actionGroupName", input)
+	}
+
+	if id.NotificationId, ok = input.Parsed["notificationId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "notificationId", input)
+	}
+
+	return nil
 }
 
 // ValidateActionGroupNotificationStatusID checks that 'input' can be parsed as a Action Group Notification Status ID

@@ -38,23 +38,9 @@ func ParseAuthConfigID(input string) (*AuthConfigId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := AuthConfigId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.ContainerAppName, ok = parsed.Parsed["containerAppName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "containerAppName", *parsed)
-	}
-
-	if id.AuthConfigName, ok = parsed.Parsed["authConfigName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "authConfigName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -69,26 +55,34 @@ func ParseAuthConfigIDInsensitively(input string) (*AuthConfigId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := AuthConfigId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.ContainerAppName, ok = parsed.Parsed["containerAppName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "containerAppName", *parsed)
-	}
-
-	if id.AuthConfigName, ok = parsed.Parsed["authConfigName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "authConfigName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *AuthConfigId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
+	}
+
+	if id.ResourceGroupName, ok = input.Parsed["resourceGroupName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", input)
+	}
+
+	if id.ContainerAppName, ok = input.Parsed["containerAppName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "containerAppName", input)
+	}
+
+	if id.AuthConfigName, ok = input.Parsed["authConfigName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "authConfigName", input)
+	}
+
+	return nil
 }
 
 // ValidateAuthConfigID checks that 'input' can be parsed as a Auth Config ID

@@ -42,31 +42,9 @@ func ParseStepID(input string) (*StepId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := StepId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.ServerName, ok = parsed.Parsed["serverName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "serverName", *parsed)
-	}
-
-	if id.JobAgentName, ok = parsed.Parsed["jobAgentName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "jobAgentName", *parsed)
-	}
-
-	if id.JobName, ok = parsed.Parsed["jobName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "jobName", *parsed)
-	}
-
-	if id.StepName, ok = parsed.Parsed["stepName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "stepName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -81,34 +59,42 @@ func ParseStepIDInsensitively(input string) (*StepId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := StepId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.ServerName, ok = parsed.Parsed["serverName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "serverName", *parsed)
-	}
-
-	if id.JobAgentName, ok = parsed.Parsed["jobAgentName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "jobAgentName", *parsed)
-	}
-
-	if id.JobName, ok = parsed.Parsed["jobName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "jobName", *parsed)
-	}
-
-	if id.StepName, ok = parsed.Parsed["stepName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "stepName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *StepId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
+	}
+
+	if id.ResourceGroupName, ok = input.Parsed["resourceGroupName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", input)
+	}
+
+	if id.ServerName, ok = input.Parsed["serverName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "serverName", input)
+	}
+
+	if id.JobAgentName, ok = input.Parsed["jobAgentName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "jobAgentName", input)
+	}
+
+	if id.JobName, ok = input.Parsed["jobName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "jobName", input)
+	}
+
+	if id.StepName, ok = input.Parsed["stepName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "stepName", input)
+	}
+
+	return nil
 }
 
 // ValidateStepID checks that 'input' can be parsed as a Step ID

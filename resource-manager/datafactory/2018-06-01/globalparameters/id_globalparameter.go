@@ -38,23 +38,9 @@ func ParseGlobalParameterID(input string) (*GlobalParameterId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := GlobalParameterId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.FactoryName, ok = parsed.Parsed["factoryName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "factoryName", *parsed)
-	}
-
-	if id.GlobalParameterName, ok = parsed.Parsed["globalParameterName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "globalParameterName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -69,26 +55,34 @@ func ParseGlobalParameterIDInsensitively(input string) (*GlobalParameterId, erro
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := GlobalParameterId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.FactoryName, ok = parsed.Parsed["factoryName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "factoryName", *parsed)
-	}
-
-	if id.GlobalParameterName, ok = parsed.Parsed["globalParameterName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "globalParameterName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *GlobalParameterId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
+	}
+
+	if id.ResourceGroupName, ok = input.Parsed["resourceGroupName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", input)
+	}
+
+	if id.FactoryName, ok = input.Parsed["factoryName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "factoryName", input)
+	}
+
+	if id.GlobalParameterName, ok = input.Parsed["globalParameterName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "globalParameterName", input)
+	}
+
+	return nil
 }
 
 // ValidateGlobalParameterID checks that 'input' can be parsed as a Global Parameter ID

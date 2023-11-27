@@ -38,23 +38,9 @@ func ParseIncidentID(input string) (*IncidentId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := IncidentId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.AlertRuleName, ok = parsed.Parsed["alertRuleName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "alertRuleName", *parsed)
-	}
-
-	if id.IncidentName, ok = parsed.Parsed["incidentName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "incidentName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -69,26 +55,34 @@ func ParseIncidentIDInsensitively(input string) (*IncidentId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := IncidentId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.AlertRuleName, ok = parsed.Parsed["alertRuleName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "alertRuleName", *parsed)
-	}
-
-	if id.IncidentName, ok = parsed.Parsed["incidentName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "incidentName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *IncidentId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
+	}
+
+	if id.ResourceGroupName, ok = input.Parsed["resourceGroupName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", input)
+	}
+
+	if id.AlertRuleName, ok = input.Parsed["alertRuleName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "alertRuleName", input)
+	}
+
+	if id.IncidentName, ok = input.Parsed["incidentName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "incidentName", input)
+	}
+
+	return nil
 }
 
 // ValidateIncidentID checks that 'input' can be parsed as a Incident ID

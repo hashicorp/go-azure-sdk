@@ -36,19 +36,9 @@ func ParseScopedCapabilityID(input string) (*ScopedCapabilityId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := ScopedCapabilityId{}
-
-	if id.Scope, ok = parsed.Parsed["scope"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "scope", *parsed)
-	}
-
-	if id.TargetName, ok = parsed.Parsed["targetName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "targetName", *parsed)
-	}
-
-	if id.CapabilityName, ok = parsed.Parsed["capabilityName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "capabilityName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -63,22 +53,30 @@ func ParseScopedCapabilityIDInsensitively(input string) (*ScopedCapabilityId, er
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := ScopedCapabilityId{}
-
-	if id.Scope, ok = parsed.Parsed["scope"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "scope", *parsed)
-	}
-
-	if id.TargetName, ok = parsed.Parsed["targetName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "targetName", *parsed)
-	}
-
-	if id.CapabilityName, ok = parsed.Parsed["capabilityName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "capabilityName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *ScopedCapabilityId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.Scope, ok = input.Parsed["scope"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "scope", input)
+	}
+
+	if id.TargetName, ok = input.Parsed["targetName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "targetName", input)
+	}
+
+	if id.CapabilityName, ok = input.Parsed["capabilityName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "capabilityName", input)
+	}
+
+	return nil
 }
 
 // ValidateScopedCapabilityID checks that 'input' can be parsed as a Scoped Capability ID

@@ -38,23 +38,9 @@ func ParseContinuousWebJobID(input string) (*ContinuousWebJobId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := ContinuousWebJobId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.SiteName, ok = parsed.Parsed["siteName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "siteName", *parsed)
-	}
-
-	if id.ContinuousWebJobName, ok = parsed.Parsed["continuousWebJobName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "continuousWebJobName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -69,26 +55,34 @@ func ParseContinuousWebJobIDInsensitively(input string) (*ContinuousWebJobId, er
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := ContinuousWebJobId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.SiteName, ok = parsed.Parsed["siteName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "siteName", *parsed)
-	}
-
-	if id.ContinuousWebJobName, ok = parsed.Parsed["continuousWebJobName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "continuousWebJobName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *ContinuousWebJobId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
+	}
+
+	if id.ResourceGroupName, ok = input.Parsed["resourceGroupName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", input)
+	}
+
+	if id.SiteName, ok = input.Parsed["siteName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "siteName", input)
+	}
+
+	if id.ContinuousWebJobName, ok = input.Parsed["continuousWebJobName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "continuousWebJobName", input)
+	}
+
+	return nil
 }
 
 // ValidateContinuousWebJobID checks that 'input' can be parsed as a Continuous Web Job ID

@@ -40,27 +40,9 @@ func ParseEnvironmentID(input string) (*EnvironmentId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := EnvironmentId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.LabName, ok = parsed.Parsed["labName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "labName", *parsed)
-	}
-
-	if id.UserName, ok = parsed.Parsed["userName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "userName", *parsed)
-	}
-
-	if id.EnvironmentName, ok = parsed.Parsed["environmentName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "environmentName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -75,30 +57,38 @@ func ParseEnvironmentIDInsensitively(input string) (*EnvironmentId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := EnvironmentId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.LabName, ok = parsed.Parsed["labName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "labName", *parsed)
-	}
-
-	if id.UserName, ok = parsed.Parsed["userName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "userName", *parsed)
-	}
-
-	if id.EnvironmentName, ok = parsed.Parsed["environmentName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "environmentName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *EnvironmentId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
+	}
+
+	if id.ResourceGroupName, ok = input.Parsed["resourceGroupName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", input)
+	}
+
+	if id.LabName, ok = input.Parsed["labName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "labName", input)
+	}
+
+	if id.UserName, ok = input.Parsed["userName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "userName", input)
+	}
+
+	if id.EnvironmentName, ok = input.Parsed["environmentName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "environmentName", input)
+	}
+
+	return nil
 }
 
 // ValidateEnvironmentID checks that 'input' can be parsed as a Environment ID

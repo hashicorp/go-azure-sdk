@@ -32,11 +32,9 @@ func ParseSavingsPlanOrderID(input string) (*SavingsPlanOrderId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := SavingsPlanOrderId{}
-
-	if id.SavingsPlanOrderId, ok = parsed.Parsed["savingsPlanOrderId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "savingsPlanOrderId", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -51,14 +49,22 @@ func ParseSavingsPlanOrderIDInsensitively(input string) (*SavingsPlanOrderId, er
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := SavingsPlanOrderId{}
-
-	if id.SavingsPlanOrderId, ok = parsed.Parsed["savingsPlanOrderId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "savingsPlanOrderId", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *SavingsPlanOrderId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SavingsPlanOrderId, ok = input.Parsed["savingsPlanOrderId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "savingsPlanOrderId", input)
+	}
+
+	return nil
 }
 
 // ValidateSavingsPlanOrderID checks that 'input' can be parsed as a Savings Plan Order ID

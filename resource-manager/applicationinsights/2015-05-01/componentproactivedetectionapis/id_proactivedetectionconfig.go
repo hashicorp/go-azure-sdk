@@ -38,23 +38,9 @@ func ParseProactiveDetectionConfigID(input string) (*ProactiveDetectionConfigId,
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := ProactiveDetectionConfigId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.ComponentName, ok = parsed.Parsed["componentName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "componentName", *parsed)
-	}
-
-	if id.ConfigurationId, ok = parsed.Parsed["configurationId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "configurationId", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -69,26 +55,34 @@ func ParseProactiveDetectionConfigIDInsensitively(input string) (*ProactiveDetec
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := ProactiveDetectionConfigId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.ComponentName, ok = parsed.Parsed["componentName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "componentName", *parsed)
-	}
-
-	if id.ConfigurationId, ok = parsed.Parsed["configurationId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "configurationId", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *ProactiveDetectionConfigId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
+	}
+
+	if id.ResourceGroupName, ok = input.Parsed["resourceGroupName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", input)
+	}
+
+	if id.ComponentName, ok = input.Parsed["componentName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "componentName", input)
+	}
+
+	if id.ConfigurationId, ok = input.Parsed["configurationId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "configurationId", input)
+	}
+
+	return nil
 }
 
 // ValidateProactiveDetectionConfigID checks that 'input' can be parsed as a Proactive Detection Config ID

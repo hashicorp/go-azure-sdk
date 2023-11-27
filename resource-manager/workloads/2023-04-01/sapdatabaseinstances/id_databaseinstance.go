@@ -38,23 +38,9 @@ func ParseDatabaseInstanceID(input string) (*DatabaseInstanceId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := DatabaseInstanceId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.SapVirtualInstanceName, ok = parsed.Parsed["sapVirtualInstanceName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "sapVirtualInstanceName", *parsed)
-	}
-
-	if id.DatabaseInstanceName, ok = parsed.Parsed["databaseInstanceName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "databaseInstanceName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -69,26 +55,34 @@ func ParseDatabaseInstanceIDInsensitively(input string) (*DatabaseInstanceId, er
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := DatabaseInstanceId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.SapVirtualInstanceName, ok = parsed.Parsed["sapVirtualInstanceName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "sapVirtualInstanceName", *parsed)
-	}
-
-	if id.DatabaseInstanceName, ok = parsed.Parsed["databaseInstanceName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "databaseInstanceName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *DatabaseInstanceId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
+	}
+
+	if id.ResourceGroupName, ok = input.Parsed["resourceGroupName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", input)
+	}
+
+	if id.SapVirtualInstanceName, ok = input.Parsed["sapVirtualInstanceName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "sapVirtualInstanceName", input)
+	}
+
+	if id.DatabaseInstanceName, ok = input.Parsed["databaseInstanceName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "databaseInstanceName", input)
+	}
+
+	return nil
 }
 
 // ValidateDatabaseInstanceID checks that 'input' can be parsed as a Database Instance ID

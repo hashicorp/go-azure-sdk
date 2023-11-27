@@ -38,23 +38,9 @@ func ParseServerFarmVirtualNetworkConnectionID(input string) (*ServerFarmVirtual
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := ServerFarmVirtualNetworkConnectionId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.ServerFarmName, ok = parsed.Parsed["serverFarmName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "serverFarmName", *parsed)
-	}
-
-	if id.VirtualNetworkConnectionName, ok = parsed.Parsed["virtualNetworkConnectionName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "virtualNetworkConnectionName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -69,26 +55,34 @@ func ParseServerFarmVirtualNetworkConnectionIDInsensitively(input string) (*Serv
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := ServerFarmVirtualNetworkConnectionId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.ServerFarmName, ok = parsed.Parsed["serverFarmName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "serverFarmName", *parsed)
-	}
-
-	if id.VirtualNetworkConnectionName, ok = parsed.Parsed["virtualNetworkConnectionName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "virtualNetworkConnectionName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *ServerFarmVirtualNetworkConnectionId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
+	}
+
+	if id.ResourceGroupName, ok = input.Parsed["resourceGroupName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", input)
+	}
+
+	if id.ServerFarmName, ok = input.Parsed["serverFarmName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "serverFarmName", input)
+	}
+
+	if id.VirtualNetworkConnectionName, ok = input.Parsed["virtualNetworkConnectionName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "virtualNetworkConnectionName", input)
+	}
+
+	return nil
 }
 
 // ValidateServerFarmVirtualNetworkConnectionID checks that 'input' can be parsed as a Server Farm Virtual Network Connection ID

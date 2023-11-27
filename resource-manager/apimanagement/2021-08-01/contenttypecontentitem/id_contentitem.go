@@ -40,27 +40,9 @@ func ParseContentItemID(input string) (*ContentItemId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := ContentItemId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.ServiceName, ok = parsed.Parsed["serviceName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "serviceName", *parsed)
-	}
-
-	if id.ContentTypeId, ok = parsed.Parsed["contentTypeId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "contentTypeId", *parsed)
-	}
-
-	if id.ContentItemId, ok = parsed.Parsed["contentItemId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "contentItemId", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -75,30 +57,38 @@ func ParseContentItemIDInsensitively(input string) (*ContentItemId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := ContentItemId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.ServiceName, ok = parsed.Parsed["serviceName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "serviceName", *parsed)
-	}
-
-	if id.ContentTypeId, ok = parsed.Parsed["contentTypeId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "contentTypeId", *parsed)
-	}
-
-	if id.ContentItemId, ok = parsed.Parsed["contentItemId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "contentItemId", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *ContentItemId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
+	}
+
+	if id.ResourceGroupName, ok = input.Parsed["resourceGroupName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", input)
+	}
+
+	if id.ServiceName, ok = input.Parsed["serviceName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "serviceName", input)
+	}
+
+	if id.ContentTypeId, ok = input.Parsed["contentTypeId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "contentTypeId", input)
+	}
+
+	if id.ContentItemId, ok = input.Parsed["contentItemId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "contentItemId", input)
+	}
+
+	return nil
 }
 
 // ValidateContentItemID checks that 'input' can be parsed as a Content Item ID

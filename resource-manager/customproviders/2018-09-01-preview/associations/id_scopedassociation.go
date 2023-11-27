@@ -34,15 +34,9 @@ func ParseScopedAssociationID(input string) (*ScopedAssociationId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := ScopedAssociationId{}
-
-	if id.Scope, ok = parsed.Parsed["scope"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "scope", *parsed)
-	}
-
-	if id.AssociationName, ok = parsed.Parsed["associationName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "associationName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -57,18 +51,26 @@ func ParseScopedAssociationIDInsensitively(input string) (*ScopedAssociationId, 
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := ScopedAssociationId{}
-
-	if id.Scope, ok = parsed.Parsed["scope"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "scope", *parsed)
-	}
-
-	if id.AssociationName, ok = parsed.Parsed["associationName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "associationName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *ScopedAssociationId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.Scope, ok = input.Parsed["scope"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "scope", input)
+	}
+
+	if id.AssociationName, ok = input.Parsed["associationName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "associationName", input)
+	}
+
+	return nil
 }
 
 // ValidateScopedAssociationID checks that 'input' can be parsed as a Scoped Association ID

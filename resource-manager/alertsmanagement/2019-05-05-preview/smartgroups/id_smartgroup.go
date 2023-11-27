@@ -34,15 +34,9 @@ func ParseSmartGroupID(input string) (*SmartGroupId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := SmartGroupId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.SmartGroupId, ok = parsed.Parsed["smartGroupId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "smartGroupId", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -57,18 +51,26 @@ func ParseSmartGroupIDInsensitively(input string) (*SmartGroupId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := SmartGroupId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.SmartGroupId, ok = parsed.Parsed["smartGroupId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "smartGroupId", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *SmartGroupId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
+	}
+
+	if id.SmartGroupId, ok = input.Parsed["smartGroupId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "smartGroupId", input)
+	}
+
+	return nil
 }
 
 // ValidateSmartGroupID checks that 'input' can be parsed as a Smart Group ID

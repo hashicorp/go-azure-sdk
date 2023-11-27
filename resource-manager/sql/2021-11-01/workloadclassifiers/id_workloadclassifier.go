@@ -42,31 +42,9 @@ func ParseWorkloadClassifierID(input string) (*WorkloadClassifierId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := WorkloadClassifierId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.ServerName, ok = parsed.Parsed["serverName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "serverName", *parsed)
-	}
-
-	if id.DatabaseName, ok = parsed.Parsed["databaseName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "databaseName", *parsed)
-	}
-
-	if id.WorkloadGroupName, ok = parsed.Parsed["workloadGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "workloadGroupName", *parsed)
-	}
-
-	if id.WorkloadClassifierName, ok = parsed.Parsed["workloadClassifierName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "workloadClassifierName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -81,34 +59,42 @@ func ParseWorkloadClassifierIDInsensitively(input string) (*WorkloadClassifierId
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := WorkloadClassifierId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.ServerName, ok = parsed.Parsed["serverName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "serverName", *parsed)
-	}
-
-	if id.DatabaseName, ok = parsed.Parsed["databaseName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "databaseName", *parsed)
-	}
-
-	if id.WorkloadGroupName, ok = parsed.Parsed["workloadGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "workloadGroupName", *parsed)
-	}
-
-	if id.WorkloadClassifierName, ok = parsed.Parsed["workloadClassifierName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "workloadClassifierName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *WorkloadClassifierId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
+	}
+
+	if id.ResourceGroupName, ok = input.Parsed["resourceGroupName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", input)
+	}
+
+	if id.ServerName, ok = input.Parsed["serverName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "serverName", input)
+	}
+
+	if id.DatabaseName, ok = input.Parsed["databaseName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "databaseName", input)
+	}
+
+	if id.WorkloadGroupName, ok = input.Parsed["workloadGroupName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "workloadGroupName", input)
+	}
+
+	if id.WorkloadClassifierName, ok = input.Parsed["workloadClassifierName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "workloadClassifierName", input)
+	}
+
+	return nil
 }
 
 // ValidateWorkloadClassifierID checks that 'input' can be parsed as a Workload Classifier ID

@@ -34,15 +34,9 @@ func ParseConsumerInvitationID(input string) (*ConsumerInvitationId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := ConsumerInvitationId{}
-
-	if id.LocationName, ok = parsed.Parsed["locationName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "locationName", *parsed)
-	}
-
-	if id.InvitationId, ok = parsed.Parsed["invitationId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "invitationId", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -57,18 +51,26 @@ func ParseConsumerInvitationIDInsensitively(input string) (*ConsumerInvitationId
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := ConsumerInvitationId{}
-
-	if id.LocationName, ok = parsed.Parsed["locationName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "locationName", *parsed)
-	}
-
-	if id.InvitationId, ok = parsed.Parsed["invitationId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "invitationId", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *ConsumerInvitationId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.LocationName, ok = input.Parsed["locationName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "locationName", input)
+	}
+
+	if id.InvitationId, ok = input.Parsed["invitationId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "invitationId", input)
+	}
+
+	return nil
 }
 
 // ValidateConsumerInvitationID checks that 'input' can be parsed as a Consumer Invitation ID

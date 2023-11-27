@@ -32,11 +32,9 @@ func ParsePolicyDefinitionID(input string) (*PolicyDefinitionId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := PolicyDefinitionId{}
-
-	if id.PolicyDefinitionName, ok = parsed.Parsed["policyDefinitionName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "policyDefinitionName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -51,14 +49,22 @@ func ParsePolicyDefinitionIDInsensitively(input string) (*PolicyDefinitionId, er
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := PolicyDefinitionId{}
-
-	if id.PolicyDefinitionName, ok = parsed.Parsed["policyDefinitionName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "policyDefinitionName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *PolicyDefinitionId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.PolicyDefinitionName, ok = input.Parsed["policyDefinitionName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "policyDefinitionName", input)
+	}
+
+	return nil
 }
 
 // ValidatePolicyDefinitionID checks that 'input' can be parsed as a Policy Definition ID

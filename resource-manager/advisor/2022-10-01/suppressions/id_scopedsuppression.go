@@ -36,19 +36,9 @@ func ParseScopedSuppressionID(input string) (*ScopedSuppressionId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := ScopedSuppressionId{}
-
-	if id.ResourceUri, ok = parsed.Parsed["resourceUri"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceUri", *parsed)
-	}
-
-	if id.RecommendationId, ok = parsed.Parsed["recommendationId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "recommendationId", *parsed)
-	}
-
-	if id.SuppressionName, ok = parsed.Parsed["suppressionName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "suppressionName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -63,22 +53,30 @@ func ParseScopedSuppressionIDInsensitively(input string) (*ScopedSuppressionId, 
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := ScopedSuppressionId{}
-
-	if id.ResourceUri, ok = parsed.Parsed["resourceUri"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceUri", *parsed)
-	}
-
-	if id.RecommendationId, ok = parsed.Parsed["recommendationId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "recommendationId", *parsed)
-	}
-
-	if id.SuppressionName, ok = parsed.Parsed["suppressionName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "suppressionName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *ScopedSuppressionId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.ResourceUri, ok = input.Parsed["resourceUri"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "resourceUri", input)
+	}
+
+	if id.RecommendationId, ok = input.Parsed["recommendationId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "recommendationId", input)
+	}
+
+	if id.SuppressionName, ok = input.Parsed["suppressionName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "suppressionName", input)
+	}
+
+	return nil
 }
 
 // ValidateScopedSuppressionID checks that 'input' can be parsed as a Scoped Suppression ID

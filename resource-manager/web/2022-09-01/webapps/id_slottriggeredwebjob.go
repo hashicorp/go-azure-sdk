@@ -40,27 +40,9 @@ func ParseSlotTriggeredWebJobID(input string) (*SlotTriggeredWebJobId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := SlotTriggeredWebJobId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.SiteName, ok = parsed.Parsed["siteName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "siteName", *parsed)
-	}
-
-	if id.SlotName, ok = parsed.Parsed["slotName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "slotName", *parsed)
-	}
-
-	if id.TriggeredWebJobName, ok = parsed.Parsed["triggeredWebJobName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "triggeredWebJobName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -75,30 +57,38 @@ func ParseSlotTriggeredWebJobIDInsensitively(input string) (*SlotTriggeredWebJob
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := SlotTriggeredWebJobId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.SiteName, ok = parsed.Parsed["siteName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "siteName", *parsed)
-	}
-
-	if id.SlotName, ok = parsed.Parsed["slotName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "slotName", *parsed)
-	}
-
-	if id.TriggeredWebJobName, ok = parsed.Parsed["triggeredWebJobName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "triggeredWebJobName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *SlotTriggeredWebJobId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
+	}
+
+	if id.ResourceGroupName, ok = input.Parsed["resourceGroupName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", input)
+	}
+
+	if id.SiteName, ok = input.Parsed["siteName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "siteName", input)
+	}
+
+	if id.SlotName, ok = input.Parsed["slotName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "slotName", input)
+	}
+
+	if id.TriggeredWebJobName, ok = input.Parsed["triggeredWebJobName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "triggeredWebJobName", input)
+	}
+
+	return nil
 }
 
 // ValidateSlotTriggeredWebJobID checks that 'input' can be parsed as a Slot Triggered Web Job ID

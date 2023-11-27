@@ -38,23 +38,9 @@ func ParseMonitoredSubscriptionID(input string) (*MonitoredSubscriptionId, error
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := MonitoredSubscriptionId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.MonitorName, ok = parsed.Parsed["monitorName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "monitorName", *parsed)
-	}
-
-	if id.MonitoredSubscriptionName, ok = parsed.Parsed["monitoredSubscriptionName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "monitoredSubscriptionName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -69,26 +55,34 @@ func ParseMonitoredSubscriptionIDInsensitively(input string) (*MonitoredSubscrip
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := MonitoredSubscriptionId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.MonitorName, ok = parsed.Parsed["monitorName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "monitorName", *parsed)
-	}
-
-	if id.MonitoredSubscriptionName, ok = parsed.Parsed["monitoredSubscriptionName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "monitoredSubscriptionName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *MonitoredSubscriptionId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
+	}
+
+	if id.ResourceGroupName, ok = input.Parsed["resourceGroupName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", input)
+	}
+
+	if id.MonitorName, ok = input.Parsed["monitorName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "monitorName", input)
+	}
+
+	if id.MonitoredSubscriptionName, ok = input.Parsed["monitoredSubscriptionName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "monitoredSubscriptionName", input)
+	}
+
+	return nil
 }
 
 // ValidateMonitoredSubscriptionID checks that 'input' can be parsed as a Monitored Subscription ID

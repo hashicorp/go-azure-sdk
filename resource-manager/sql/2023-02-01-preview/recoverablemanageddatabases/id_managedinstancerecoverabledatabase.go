@@ -38,23 +38,9 @@ func ParseManagedInstanceRecoverableDatabaseID(input string) (*ManagedInstanceRe
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := ManagedInstanceRecoverableDatabaseId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.ManagedInstanceName, ok = parsed.Parsed["managedInstanceName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "managedInstanceName", *parsed)
-	}
-
-	if id.RecoverableDatabaseName, ok = parsed.Parsed["recoverableDatabaseName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "recoverableDatabaseName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -69,26 +55,34 @@ func ParseManagedInstanceRecoverableDatabaseIDInsensitively(input string) (*Mana
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := ManagedInstanceRecoverableDatabaseId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.ManagedInstanceName, ok = parsed.Parsed["managedInstanceName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "managedInstanceName", *parsed)
-	}
-
-	if id.RecoverableDatabaseName, ok = parsed.Parsed["recoverableDatabaseName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "recoverableDatabaseName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *ManagedInstanceRecoverableDatabaseId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
+	}
+
+	if id.ResourceGroupName, ok = input.Parsed["resourceGroupName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", input)
+	}
+
+	if id.ManagedInstanceName, ok = input.Parsed["managedInstanceName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "managedInstanceName", input)
+	}
+
+	if id.RecoverableDatabaseName, ok = input.Parsed["recoverableDatabaseName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "recoverableDatabaseName", input)
+	}
+
+	return nil
 }
 
 // ValidateManagedInstanceRecoverableDatabaseID checks that 'input' can be parsed as a Managed Instance Recoverable Database ID

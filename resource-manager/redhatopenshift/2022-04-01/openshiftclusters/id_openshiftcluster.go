@@ -36,19 +36,9 @@ func ParseOpenShiftClusterID(input string) (*OpenShiftClusterId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := OpenShiftClusterId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.OpenShiftClusterName, ok = parsed.Parsed["openShiftClusterName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "openShiftClusterName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -63,22 +53,30 @@ func ParseOpenShiftClusterIDInsensitively(input string) (*OpenShiftClusterId, er
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := OpenShiftClusterId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.OpenShiftClusterName, ok = parsed.Parsed["openShiftClusterName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "openShiftClusterName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *OpenShiftClusterId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
+	}
+
+	if id.ResourceGroupName, ok = input.Parsed["resourceGroupName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", input)
+	}
+
+	if id.OpenShiftClusterName, ok = input.Parsed["openShiftClusterName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "openShiftClusterName", input)
+	}
+
+	return nil
 }
 
 // ValidateOpenShiftClusterID checks that 'input' can be parsed as a Open Shift Cluster ID

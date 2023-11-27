@@ -32,11 +32,9 @@ func ParseBestPracticeID(input string) (*BestPracticeId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := BestPracticeId{}
-
-	if id.BestPracticeName, ok = parsed.Parsed["bestPracticeName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "bestPracticeName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -51,14 +49,22 @@ func ParseBestPracticeIDInsensitively(input string) (*BestPracticeId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := BestPracticeId{}
-
-	if id.BestPracticeName, ok = parsed.Parsed["bestPracticeName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "bestPracticeName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *BestPracticeId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.BestPracticeName, ok = input.Parsed["bestPracticeName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "bestPracticeName", input)
+	}
+
+	return nil
 }
 
 // ValidateBestPracticeID checks that 'input' can be parsed as a Best Practice ID

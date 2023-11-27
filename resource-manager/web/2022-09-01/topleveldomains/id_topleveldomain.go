@@ -34,15 +34,9 @@ func ParseTopLevelDomainID(input string) (*TopLevelDomainId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := TopLevelDomainId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.TopLevelDomainName, ok = parsed.Parsed["topLevelDomainName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "topLevelDomainName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -57,18 +51,26 @@ func ParseTopLevelDomainIDInsensitively(input string) (*TopLevelDomainId, error)
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := TopLevelDomainId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.TopLevelDomainName, ok = parsed.Parsed["topLevelDomainName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "topLevelDomainName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *TopLevelDomainId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
+	}
+
+	if id.TopLevelDomainName, ok = input.Parsed["topLevelDomainName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "topLevelDomainName", input)
+	}
+
+	return nil
 }
 
 // ValidateTopLevelDomainID checks that 'input' can be parsed as a Top Level Domain ID

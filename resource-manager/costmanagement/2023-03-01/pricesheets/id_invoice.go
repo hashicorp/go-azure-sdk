@@ -36,19 +36,9 @@ func ParseInvoiceID(input string) (*InvoiceId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := InvoiceId{}
-
-	if id.BillingAccountName, ok = parsed.Parsed["billingAccountName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "billingAccountName", *parsed)
-	}
-
-	if id.BillingProfileName, ok = parsed.Parsed["billingProfileName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "billingProfileName", *parsed)
-	}
-
-	if id.InvoiceName, ok = parsed.Parsed["invoiceName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "invoiceName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -63,22 +53,30 @@ func ParseInvoiceIDInsensitively(input string) (*InvoiceId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := InvoiceId{}
-
-	if id.BillingAccountName, ok = parsed.Parsed["billingAccountName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "billingAccountName", *parsed)
-	}
-
-	if id.BillingProfileName, ok = parsed.Parsed["billingProfileName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "billingProfileName", *parsed)
-	}
-
-	if id.InvoiceName, ok = parsed.Parsed["invoiceName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "invoiceName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *InvoiceId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.BillingAccountName, ok = input.Parsed["billingAccountName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "billingAccountName", input)
+	}
+
+	if id.BillingProfileName, ok = input.Parsed["billingProfileName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "billingProfileName", input)
+	}
+
+	if id.InvoiceName, ok = input.Parsed["invoiceName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "invoiceName", input)
+	}
+
+	return nil
 }
 
 // ValidateInvoiceID checks that 'input' can be parsed as a Invoice ID

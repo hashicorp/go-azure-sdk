@@ -34,15 +34,9 @@ func ParseAlertID(input string) (*AlertId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := AlertId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.AlertId, ok = parsed.Parsed["alertId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "alertId", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -57,18 +51,26 @@ func ParseAlertIDInsensitively(input string) (*AlertId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := AlertId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.AlertId, ok = parsed.Parsed["alertId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "alertId", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *AlertId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
+	}
+
+	if id.AlertId, ok = input.Parsed["alertId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "alertId", input)
+	}
+
+	return nil
 }
 
 // ValidateAlertID checks that 'input' can be parsed as a Alert ID

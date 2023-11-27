@@ -32,11 +32,9 @@ func ParseSourceControlID(input string) (*SourceControlId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := SourceControlId{}
-
-	if id.SourceControlName, ok = parsed.Parsed["sourceControlName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "sourceControlName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -51,14 +49,22 @@ func ParseSourceControlIDInsensitively(input string) (*SourceControlId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := SourceControlId{}
-
-	if id.SourceControlName, ok = parsed.Parsed["sourceControlName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "sourceControlName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *SourceControlId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SourceControlName, ok = input.Parsed["sourceControlName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "sourceControlName", input)
+	}
+
+	return nil
 }
 
 // ValidateSourceControlID checks that 'input' can be parsed as a Source Control ID

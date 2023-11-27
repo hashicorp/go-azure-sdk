@@ -42,31 +42,9 @@ func ParseRecommendedActionID(input string) (*RecommendedActionId, error) {
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := RecommendedActionId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.ServerName, ok = parsed.Parsed["serverName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "serverName", *parsed)
-	}
-
-	if id.DatabaseName, ok = parsed.Parsed["databaseName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "databaseName", *parsed)
-	}
-
-	if id.AdvisorName, ok = parsed.Parsed["advisorName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "advisorName", *parsed)
-	}
-
-	if id.RecommendedActionName, ok = parsed.Parsed["recommendedActionName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "recommendedActionName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
@@ -81,34 +59,42 @@ func ParseRecommendedActionIDInsensitively(input string) (*RecommendedActionId, 
 		return nil, fmt.Errorf("parsing %q: %+v", input, err)
 	}
 
-	var ok bool
 	id := RecommendedActionId{}
-
-	if id.SubscriptionId, ok = parsed.Parsed["subscriptionId"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", *parsed)
-	}
-
-	if id.ResourceGroupName, ok = parsed.Parsed["resourceGroupName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", *parsed)
-	}
-
-	if id.ServerName, ok = parsed.Parsed["serverName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "serverName", *parsed)
-	}
-
-	if id.DatabaseName, ok = parsed.Parsed["databaseName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "databaseName", *parsed)
-	}
-
-	if id.AdvisorName, ok = parsed.Parsed["advisorName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "advisorName", *parsed)
-	}
-
-	if id.RecommendedActionName, ok = parsed.Parsed["recommendedActionName"]; !ok {
-		return nil, resourceids.NewSegmentNotSpecifiedError(id, "recommendedActionName", *parsed)
+	if err := id.FromParseResult(*parsed); err != nil {
+		return nil, err
 	}
 
 	return &id, nil
+}
+
+func (id *RecommendedActionId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
+	}
+
+	if id.ResourceGroupName, ok = input.Parsed["resourceGroupName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", input)
+	}
+
+	if id.ServerName, ok = input.Parsed["serverName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "serverName", input)
+	}
+
+	if id.DatabaseName, ok = input.Parsed["databaseName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "databaseName", input)
+	}
+
+	if id.AdvisorName, ok = input.Parsed["advisorName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "advisorName", input)
+	}
+
+	if id.RecommendedActionName, ok = input.Parsed["recommendedActionName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "recommendedActionName", input)
+	}
+
+	return nil
 }
 
 // ValidateRecommendedActionID checks that 'input' can be parsed as a Recommended Action ID
