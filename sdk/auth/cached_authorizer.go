@@ -72,7 +72,7 @@ func (c *CachedAuthorizer) AuxiliaryTokens(ctx context.Context, req *http.Reques
 // tokens to be acquired when Token() or AuxiliaryTokens() are next called
 func (c *CachedAuthorizer) InvalidateCachedTokens() error {
 	if c.token == nil {
-		return fmt.Errorf("internal-error: c.token was nil")
+		return nil
 	}
 	c.token.Expiry = time.Now()
 	for i := range c.auxTokens {
