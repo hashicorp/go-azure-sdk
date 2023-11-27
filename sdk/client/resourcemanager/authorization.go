@@ -37,7 +37,9 @@ func AuthorizeResourceManagerRequest(ctx context.Context, req *http.Request, aut
 	for _, auxToken := range auxTokens {
 		auxTokenValues = append(auxTokenValues, fmt.Sprintf("%s %s", auxToken.Type(), auxToken.AccessToken))
 	}
-	req.Header.Set("X-Ms-Authorization-Auxiliary", strings.Join(auxTokenValues, ", "))
+	if len(auxTokenValues) > 0 {
+		req.Header.Set("X-Ms-Authorization-Auxiliary", strings.Join(auxTokenValues, ", "))
+	}
 
 	return nil
 }
